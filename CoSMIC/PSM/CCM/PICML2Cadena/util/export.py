@@ -57,13 +57,21 @@ if (len(purifiedparams)!=2) :
 Or: export.py --help for extensive help'
     sys.exit(0)
 
+picml_file = os.path.abspath(purifiedparams[0])
+cadenascenario_file = os.path.abspath(purifiedparams[1])
 
-greinvocationcommand = 'gre.exe'+ space +quotes+transformations_fullpath+'PICML2Cadena_Configuration.mga'+quotes
-greinvocationcommand += space+quotes+'PICML_File='+os.path.abspath(purifiedparams[0])+quotes
-greinvocationcommand += space+quotes+'CadenaScenario_File='+os.path.abspath(purifiedparams[1])+quotes
+if (False==os.path.isfile(picml_file)) :
+    print 'Fatal: File '+quotes+picml_file+quotes+' not found.\nExiting.'
+    sys.exit(-1)
+if (False==os.path.isfile(cadenascenario_file)) :
+    print 'Fatal: File '+quotes+cadena_file+quotes+' not found.\nExiting.'
+    sys.exit(-1)
+
+greinvocationcommand = 'gre.exe'+ space +quotes+transformations_fullpath+'Cadena2PICML_Configuration.mga'+quotes
+greinvocationcommand += space+quotes+'PICML_File='+picml_file+quotes
+greinvocationcommand += space+quotes+'CadenaScenario_File='+cadenascenario_file+quotes
 greinvocationcommand += space+quotes+'EmbeddedDummy_File='+tempfile.gettempdir().rstrip('\\')+'\\'+'dummy_embedded.xml'+quotes
 greinvocationcommand += debugflag
-
 
 print 'Invoking GRE.exe with the following commandline:\n\
 _______________________________________________________________________________\n',\
