@@ -1,3 +1,19 @@
+Mon Nov 1 10:40:39 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/MPC/MPCStream.cpp:
+        * PIM/PICML/interpreters/MPC/Component.dsp:
+          
+          Fixed generation of export files for directories that have
+          white space between them. 
+
+        * PIM/PICML/interpreters/BGML_Interpreter/Component.dsp:
+        * PIM/PICML/interpreters/BGML_Interpreter/BGML_Visitor.cpp:
+
+          Fixed some errors with Timer information in the interpreter
+
+        * PIM/PICML/interpreters/cidl/Component.dsp:
+          Ensured that the generated dll is in PICML_ROOT\bin
+
 Mon Nov 01 09:51:31 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * Installer/RegisterParadigm/RegisterParadigm.cpp: 
