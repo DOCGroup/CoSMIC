@@ -1,0 +1,58 @@
+<Scenarios xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\..\Udm\cadena_scenario.xsd">
+	<Scenario>
+		<ComponentInstance name="HumanMachineInterface" type="HumanMachineInterface">
+			<EventSink _id="id1625" name="WorkDisplayUpdate" sourcesConnections="id1626"/>
+			<Facet name="Controller"/>
+			<Receptacle _id="id1627" name="HumanResponse" facets="id1628"/>
+		</ComponentInstance>
+		<ComponentInstance name="ManagementWorkInstructions" type="ManagementWorkInstructions">
+			<EventSink _id="id162b" name="ProductionReport" sourcesConnections="id162c"/>
+			<EventSource _id="id1629" name="WorkOrder" sinksConnections="id162a"/>
+			<Facet name="Controller"/>
+		</ComponentInstance>
+		<ComponentInstance name="WatchSettingManager" type="WatchSettingManager">
+			<EventSink _id="id1633" name="ProcessingStatus" sourcesConnections="id1634"/>
+			<EventSink _id="id1635" name="PalletStatus" sourcesConnections="id1636"/>
+			<EventSink _id="id1637" name="WorkOrder" sourcesConnections="id162a"/>
+			<EventSource _id="id162d" name="Display" sinksConnections="id1626"/>
+			<EventSource _id="id162e" name="ProductionControl" sinksConnections="id162f"/>
+			<EventSource _id="id1630" name="MovePallet" sinksConnections="id1631"/>
+			<EventSource _id="id1632" name="ProductionReport" sinksConnections="id162c"/>
+			<Facet _id="id1638" name="DisplayResponse" receptacles="id1628"/>
+			<Facet name="Controller"/>
+			<Facet _id="id1639" name="AnalysisOne" receptacles="id163a"/>
+			<Facet _id="id163b" name="AnalysisTwo" receptacles="id163c"/>
+			<Facet name="AnalysisCalls"/>
+			<Receptacle name="Analysis"/>
+		</ComponentInstance>
+		<ComponentInstance name="PalletConveyorManager" type="PalletConveyorManager">
+			<EventSink _id="id163e" name="PalletRequests" sourcesConnections="id1631"/>
+			<EventSource _id="id163d" name="PalletStatus" sinksConnections="id1636"/>
+			<Facet name="Controller"/>
+			<Facet _id="id1640" name="CircleAnalysis" receptacles="id1641"/>
+			<Receptacle _id="id163f" name="AnalysisTwo" facets="id163c"/>
+		</ComponentInstance>
+		<ComponentInstance name="RobotManager" type="RobotManager">
+			<EventSink _id="id1643" name="ProcessPalletCommands" sourcesConnections="id162f"/>
+			<EventSource _id="id1642" name="ProcessingStatus" sinksConnections="id1634"/>
+			<Facet name="Controller"/>
+			<Facet name="Analysis"/>
+			<Receptacle _id="id1644" name="AnalysisOne" facets="id163a"/>
+			<Receptacle _id="id1645" name="CircleAnalysis" facets="id1641"/>
+		</ComponentInstance>
+		<ESSConnection _id="id162a" sinks="id1637" sources="id1629" ConnectorID="emit"/>
+		<ESSConnection _id="id1626" sinks="id1625" sources="id162d" ConnectorID="emit"/>
+		<ESSConnection _id="id162f" sinks="id1643" sources="id162e" ConnectorID="emit"/>
+		<ESSConnection _id="id1631" sinks="id163e" sources="id1630" ConnectorID="emit"/>
+		<ESSConnection _id="id162c" sinks="id162b" sources="id1632" ConnectorID="emit"/>
+		<ESSConnection _id="id1636" sinks="id1635" sources="id163d" ConnectorID="emit"/>
+		<ESSConnection _id="id1634" sinks="id1633" sources="id1642" ConnectorID="emit"/>
+		<FRConnection _id="id1628" facets_end_="id1638" receptacles_end_="id1627"/>
+		<FRConnection _id="id163c" facets_end_="id163b" receptacles_end_="id163f"/>
+		<FRConnection _id="id163a" facets_end_="id1639" receptacles_end_="id1644"/>
+		<FRConnection _id="id1641" facets_end_="id1640" receptacles_end_="id1645"/>
+		<Property name="PICML_pathname" type="STRING" value="/RobotAssemblyImplementations/RobotAssemblyImplementation/RobotAssembly"/>
+	</Scenario>
+</Scenarios>
+
+

@@ -1,0 +1,133 @@
+<Scenarios xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\Udm\cadena_scenario.xsd">
+	<Scenario>
+		<ComponentInstance name="HumanMachineInterface" type="RobotAssembly/HumanMachineInterface">
+			<EventSink _id="id18a4" name="WorkDisplayUpdate" sourcesConnections="id18a5"/>
+			<Facet name="AnalysisController"/>
+			<Facet name="Controller"/>
+			<Property name="Prop_Longint_999thousand" type="INT" value="999000"/>
+			<Receptacle _id="id18a6" name="HumanResponse" facets="id18a7"/>
+		</ComponentInstance>
+		<ComponentInstance name="ManagementWorkInstructions" type="RobotAssembly/ManagementWorkInstructions">
+			<EventSink _id="id18aa" name="ProductionReport" sourcesConnections="id18ab"/>
+			<EventSource _id="id18a8" name="WorkOrder" sinksConnections="id18a9"/>
+			<Facet name="Controller"/>
+			<Property name="Prop_Longint_999thousand" type="INT" value="999000"/>
+			<Property name="Prop_str_hi_foo" type="STRING" value="Hi foo!!"/>
+		</ComponentInstance>
+		<ComponentInstance name="WatchSettingManager" type="RobotAssembly/WatchSettingManager">
+			<EventSink _id="id18b2" name="ProcessingStatus" sourcesConnections="id18b3"/>
+			<EventSink _id="id18b4" name="PalletStatus" sourcesConnections="id18b5"/>
+			<EventSink _id="id18b6" name="WorkOrder" sourcesConnections="id18a9"/>
+			<EventSource _id="id18ac" name="Display" sinksConnections="id18a5"/>
+			<EventSource _id="id18ad" name="ProductionControl" sinksConnections="id18ae"/>
+			<EventSource _id="id18af" name="MovePallet" sinksConnections="id18b0"/>
+			<EventSource _id="id18b1" name="ProductionReport" sinksConnections="id18ab"/>
+			<Facet name="AnalysisCalls"/>
+			<Facet _id="id18b7" name="DisplayResponse" receptacles="id18a7"/>
+			<Facet name="Controller"/>
+			<Facet _id="id18b8" name="AnalysisOne" receptacles="id18b9"/>
+			<Facet _id="id18ba" name="AnalysisTwo" receptacles="id18bb"/>
+			<Property name="Prop_bool_true" type="BOOLEAN" value="TRUE"/>
+		</ComponentInstance>
+		<ComponentInstance name="PalletConveyorManager" type="RobotAssembly/PalletConveyorManager">
+			<EventSink _id="id18bd" name="PalletRequests" sourcesConnections="id18b0"/>
+			<EventSource _id="id18bc" name="PalletStatus" sinksConnections="id18b5"/>
+			<Facet name="Controller"/>
+			<Facet _id="id18bf" name="CircleAnalysis" receptacles="id18c0"/>
+			<Receptacle _id="id18be" name="AnalysisTwo" facets="id18bb"/>
+		</ComponentInstance>
+		<ComponentInstance name="RobotManager" type="RobotAssembly/RobotManager">
+			<EventSink _id="id18c2" name="ProcessPalletCommands" sourcesConnections="id18ae"/>
+			<EventSource _id="id18c1" name="ProcessingStatus" sinksConnections="id18b3"/>
+			<Facet name="Controller"/>
+			<Facet name="Analysis"/>
+			<Receptacle _id="id18c3" name="AnalysisOne" facets="id18b9"/>
+			<Receptacle _id="id18c4" name="CircleAnalysis" facets="id18c0"/>
+		</ComponentInstance>
+		<ComponentInstance name="DumbWatchSetting1_GabrieleTry" type="RobotAssembly/WatchSettingManager">
+			<EventSink name="ProcessingStatus"/>
+			<EventSink name="PalletStatus"/>
+			<EventSink _id="id18c8" name="WorkOrder" sourcesConnections="id18c9"/>
+			<EventSource _id="id18c5" name="Display" sinksConnections="id18c6"/>
+			<EventSource _id="id18c7" name="ProductionControl" sinksConnections="id18c6"/>
+			<EventSource name="MovePallet"/>
+			<EventSource name="ProductionReport"/>
+			<Facet name="AnalysisCalls"/>
+			<Facet name="DisplayResponse"/>
+			<Facet name="Controller"/>
+			<Facet name="AnalysisOne"/>
+			<Facet name="AnalysisTwo"/>
+		</ComponentInstance>
+		<ComponentInstance name="DumbWatchSetting2_GabrieleTry" type="RobotAssembly/WatchSettingManager">
+			<EventSink _id="id18cb" name="ProcessingStatus" sourcesConnections="id18c6"/>
+			<EventSink _id="id18cc" name="PalletStatus" sourcesConnections="id18c6"/>
+			<EventSink name="WorkOrder"/>
+			<EventSource name="Display"/>
+			<EventSource name="ProductionControl"/>
+			<EventSource name="MovePallet"/>
+			<EventSource _id="id18ca" name="ProductionReport" sinksConnections="id18c9"/>
+			<Facet _id="id18cd" name="AnalysisCalls" receptacles="id18ce"/>
+			<Facet name="DisplayResponse"/>
+			<Facet name="Controller"/>
+			<Facet _id="id18cf" name="AnalysisOne" receptacles="id18d0"/>
+			<Facet name="AnalysisTwo"/>
+		</ComponentInstance>
+		<ComponentInstance name="DumbWatchSetting3_GabrieleTry" type="RobotAssembly/WatchSettingManager">
+			<EventSink _id="id18d3" name="ProcessingStatus" sourcesConnections="id18c6"/>
+			<EventSink name="PalletStatus"/>
+			<EventSink name="WorkOrder"/>
+			<EventSource _id="id18d1" name="Display" sinksConnections="id18c6"/>
+			<EventSource _id="id18d2" name="ProductionControl" sinksConnections="id18c9"/>
+			<EventSource name="MovePallet"/>
+			<EventSource name="ProductionReport"/>
+			<Facet name="AnalysisCalls"/>
+			<Facet name="DisplayResponse"/>
+			<Facet name="Controller"/>
+			<Facet name="AnalysisOne"/>
+			<Facet name="AnalysisTwo"/>
+		</ComponentInstance>
+		<ComponentInstance name="DumbHumanMachineInterface1_GabrieleTry" type="RobotAssembly/HumanMachineInterface">
+			<EventSink _id="id18d4" name="WorkDisplayUpdate" sourcesConnections="id18d5"/>
+			<Facet _id="id18d7" name="AnalysisController" receptacles="id18d8 id18d9"/>
+			<Facet name="Controller"/>
+			<Receptacle _id="id18d6" name="HumanResponse" facets="id18d0 id18ce"/>
+		</ComponentInstance>
+		<ComponentInstance name="DumbRobotManager1_GabrieleTry" type="RobotAssembly/RobotManager">
+			<EventSink name="ProcessPalletCommands"/>
+			<EventSource _id="id18da" name="ProcessingStatus" sinksConnections="id18d5"/>
+			<Facet name="Controller"/>
+			<Facet name="Analysis"/>
+			<Receptacle _id="id18db" name="AnalysisOne" facets="id18d8"/>
+			<Receptacle _id="id18dc" name="CircleAnalysis" facets="id18d9"/>
+		</ComponentInstance>
+		<ESSConnection _id="id18c6" sinks="id18cb id18cc id18d3" sources="id18c5 id18c7 id18d1" ConnectorID="PublishConnector(364,861)200000039">
+			<Property name="Prop_int_onethousand" type="INT" value="1000"/>
+			<Property name="Prop_str_whatever" type="STRING" value="Whatever!!"/>
+		</ESSConnection>
+		<ESSConnection _id="id18c9" sinks="id18c8" sources="id18ca id18d2" ConnectorID="PublishConnector(455,1225)200000040"/>
+		<ESSConnection _id="id18a9" sinks="id18b6" sources="id18a8" ConnectorID="emit"/>
+		<ESSConnection _id="id18a5" sinks="id18a4" sources="id18ac" ConnectorID="emit"/>
+		<ESSConnection _id="id18ae" sinks="id18c2" sources="id18ad" ConnectorID="emit"/>
+		<ESSConnection _id="id18b0" sinks="id18bd" sources="id18af" ConnectorID="emit"/>
+		<ESSConnection _id="id18ab" sinks="id18aa" sources="id18b1" ConnectorID="emit"/>
+		<ESSConnection _id="id18b5" sinks="id18b4" sources="id18bc" ConnectorID="emit"/>
+		<ESSConnection _id="id18b3" sinks="id18b2" sources="id18c1" ConnectorID="emit"/>
+		<ESSConnection _id="id18d5" sinks="id18d4" sources="id18da" ConnectorID="emit">
+			<Property name="AnIntProp_ThreeHundred" type="INT" value="300"/>
+			<Property name="AStringProp" type="STRING" value="my string property for this emit connection"/>
+		</ESSConnection>
+		<FRConnection _id="id18a7" facets_end_="id18b7" receptacles_end_="id18a6"/>
+		<FRConnection _id="id18bb" facets_end_="id18ba" receptacles_end_="id18be"/>
+		<FRConnection _id="id18b9" facets_end_="id18b8" receptacles_end_="id18c3"/>
+		<FRConnection _id="id18c0" facets_end_="id18bf" receptacles_end_="id18c4"/>
+		<FRConnection _id="id18d0" facets_end_="id18cf" receptacles_end_="id18d6"/>
+		<FRConnection _id="id18ce" facets_end_="id18cd" receptacles_end_="id18d6"/>
+		<FRConnection _id="id18d8" facets_end_="id18d7" receptacles_end_="id18db">
+			<Property name="ABoolProp" type="BOOLEAN" value="true"/>
+		</FRConnection>
+		<FRConnection _id="id18d9" facets_end_="id18d7" receptacles_end_="id18dc"/>
+		<Property name="PICML_pathname" type="STRING" value="/RobotAssemblyImplementations/RobotAssemblyImplementation/RobotAssembly"/>
+	</Scenario>
+</Scenarios>
+
+
