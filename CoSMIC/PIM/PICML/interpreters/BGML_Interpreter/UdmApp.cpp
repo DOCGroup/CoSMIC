@@ -168,7 +168,7 @@ void CUdmApp::UdmMain(
 	 }
       catch(udm_exception &ex)
         {
-          AfxMessageBox ("Error: generation of MPC files failed");
+          AfxMessageBox ("Error: generation of Benchmarking files failed");
 		  AfxMessageBox (ex.what());
           return;
         }

@@ -18,6 +18,7 @@ public:
 	
 private:
     std::string outputPath_;
+	void write_timer_information (std::string& file_name);
 };
 
 #endif // BGML_VISITOR_H

@@ -304,7 +304,13 @@ MPCStream::create_export_macro (std::string& shared_name)
 
 	// Redirect to required file
 	command.append (" > ");
+
+	// The output path should be within quotes otherwise it is going to crib if
+	// the output directory has spaces in it somewhere
+	command.append ("\"");
 	command.append (this->output_path_);
+	command.append ("\"");
+
 	command.append ("\\");
 	command.append (shared_name);
 	command.append ("_export.h");
