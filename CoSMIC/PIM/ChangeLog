@@ -1,3 +1,31 @@
+Sat Jun 19 16:50:05 2004  Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * PICML/interpreters/plan/CompIcon.ico:
+        * PICML/interpreters/plan/Component.def
+        * PICML/interpreters/plan/Component.rc
+        * PICML/interpreters/plan/ComponentConfig.h
+        * PICML/interpreters/plan/DeploymentPlan.dsp
+        * PICML/interpreters/plan/DeploymentPlan.dsw
+        * PICML/interpreters/plan/PICML.cpp
+        * PICML/interpreters/plan/PICML.h
+        * PICML/interpreters/plan/PICML.xsd
+        * PICML/interpreters/plan/PlanVisitor.cpp
+        * PICML/interpreters/plan/PlanVisitor.h
+        * PICML/interpreters/plan/RawComponent.cpp
+        * PICML/interpreters/plan/RawComponent.h
+        * PICML/interpreters/plan/StdAfx.cpp
+        * PICML/interpreters/plan/StdAfx.h
+        * PICML/interpreters/plan/UdmApp.cpp
+        * PICML/interpreters/plan/UdmApp.h
+        * PICML/interpreters/plan/UdmConfig.h
+        * PICML/interpreters/plan/UuidString.cpp
+        * PICML/interpreters/plan/UuidString.h
+        * PICML/interpreters/plan/XercesString.cpp
+        * PICML/interpreters/plan/XercesString.h
+        * PICML/interpreters/plan/resource.h
+
+          Added new files for the DeploymentPlan interpretation.
+
 Sat Jun 19 16:25:35 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PICML/interpreters/packaging/PackageVisitor.h:
