@@ -4,6 +4,11 @@
     <ROW Property="ARPNOMODIFY" Value="1"/>
     <ROW Property="CTRLS" Value="1"/>
     <ROW Property="ARPCOMMENTS" Value="Component Synthesis using Model-Integrated Computing"/>
+    <ROW Property="ARPURLINFOABOUT" Value="http://www.dre.vanderbilt.edu/cosmic/"/>
+    <ROW Property="ARPURLUPDATEINFO" Value="http://www.dre.vanderbilt.edu/cosmic/"/>
+    <ROW Property="DialogBitmap" Value="style2blue_dialog.jpg"/>
+    <ROW Property="Manufacturer" Value="ISIS"/>
+    <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="VIEWREADME" Value="1"/>
     <ROW Property="ProductName" Value="CoSMIC"/>
     <ROW Property="ALLUSERS" Value="2"/>
@@ -13,11 +18,6 @@
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS"/>
     <ROW Property="UpgradeCode" Value="{42C014ED-7C97-4107-94CD-2028CDBA3FD1}"/>
     <ROW Property="ProductCode" Value="{67F7B59D-8C69-4AA6-B7B4-8AE51D1F10E0}"/>
-    <ROW Property="ARPURLINFOABOUT" Value="http://www.dre.vanderbilt.edu/cosmic/"/>
-    <ROW Property="ARPURLUPDATEINFO" Value="http://www.dre.vanderbilt.edu/cosmic/"/>
-    <ROW Property="DialogBitmap" Value="style2blue_dialog.jpg"/>
-    <ROW Property="Manufacturer" Value="ISIS"/>
-    <ROW Property="ProductLanguage" Value="1033"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="paradigms" Directory_Parent="TARGETDIR" DefaultDir="paradi~1|paradigms"/>
@@ -258,22 +258,33 @@
     <ROW File="switchedaggregate.bmp" Component_="aggregate.bmp" FileName="switch~1.bmp|switchedaggregate.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\switchedaggregate.bmp" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="regsvr32.exe_12" Type="1026" Source="regsvr32.exe" Target="/s &quot;[TARGETDIR]\bin\cidl.dll&quot;"/>
+    <ROW Action="regsvr32.exe_21" Type="1026" Source="regsvr32.exe" Target="/s &quot;[TARGETDIR]\bin\PackageComponent.dll&quot;"/>
+    <ROW Action="regsvr32.exe_3" Type="1026" Source="regsvr32.exe" Target="/s /u &quot;[TARGETDIR]\bin\Domain.dll&quot;"/>
+    <ROW Action="SET_TARGETDIR" Type="307" Source="TARGETDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]"/>
+    <ROW Action="regsvr32.exe_13" Type="1026" Source="regsvr32.exe" Target="/s &quot;[TARGETDIR]\bin\DeploymentPlan.dll&quot;"/>
+    <ROW Action="regsvr32.exe_4" Type="1026" Source="regsvr32.exe" Target="/s /u &quot;[TARGETDIR]\bin\EQAL.dll&quot;"/>
+    <ROW Action="AI_ViewReadme" Type="194" Source="viewer.exe" Target="[#ReleaseNotes.rtf]"/>
+    <ROW Action="regsvr32.exe_14" Type="1026" Source="regsvr32.exe" Target="/s  &quot;[TARGETDIR]\bin\Domain.dll&quot;"/>
+    <ROW Action="regsvr32.exe_5" Type="1026" Source="regsvr32.exe" Target="/s /u &quot;[TARGETDIR]\bin\IDLGenerator.dll&quot;"/>
+    <ROW Action="regsvr32.exe_11" Type="1026" Source="regsvr32.exe" Target="/s &quot;[TARGETDIR]\bin\BGML.dll&quot;"/>
+    <ROW Action="regsvr32.exe_15" Type="1026" Source="regsvr32.exe" Target="/s &quot;[TARGETDIR]\bin\EQAL.dll&quot;"/>
+    <ROW Action="regsvr32.exe_19" Type="1026" Source="regsvr32.exe" Target="/s &quot;[TARGETDIR]\bin\OCML_Svc_Conf_Exporter.dll&quot;"/>
+    <ROW Action="regsvr32.exe_2" Type="1026" Source="regsvr32.exe" Target="/s /u &quot;[TARGETDIR]\bin\DeploymentPlan.dll&quot;"/>
+    <ROW Action="regsvr32.exe_20" Type="1026" Source="regsvr32.exe" Target="/s &quot;[TARGETDIR]\bin\OCMLConfigurationInterpreter.dll&quot;"/>
+    <ROW Action="regsvr32.exe_6" Type="1026" Source="regsvr32.exe" Target="/s /u &quot;[TARGETDIR]\bin\MPC.dll&quot;"/>
     <ROW Action="RegisterParadigm.dll" Type="1025" Source="RegisterParadigm.dll" Target="RegisterParadigm"/>
     <ROW Action="RegisterParadigm.dll_1" Type="1025" Source="RegisterParadigm.dll" Target="UnRegisterParadigm"/>
-    <ROW Action="regsvr32.exe_3" Type="1026" Source="regsvr32.exe" Target="/s /u &quot;[TARGETDIR]\bin\Domain.dll&quot;"/>
+    <ROW Action="regsvr32.exe_16" Type="1026" Source="regsvr32.exe" Target="/s &quot;[TARGETDIR]\bin\IDLGenerator.dll&quot;"/>
     <ROW Action="regsvr32.exe_7" Type="1026" Source="regsvr32.exe" Target="/s /u &quot;[TARGETDIR]\bin\OCML.dll&quot;"/>
-    <ROW Action="SET_TARGETDIR" Type="307" Source="TARGETDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]"/>
-    <ROW Action="regsvr32.exe_4" Type="1026" Source="regsvr32.exe" Target="/s /u &quot;[TARGETDIR]\bin\EQAL.dll&quot;"/>
+    <ROW Action="regsvr32.exe_17" Type="1026" Source="regsvr32.exe" Target="/s  &quot;[TARGETDIR]\bin\MPC.dll&quot;"/>
     <ROW Action="regsvr32.exe_8" Type="1026" Source="regsvr32.exe" Target="/s /u &quot;[TARGETDIR]\bin\OCML_Svc_Conf_Exporter.dll&quot;"/>
-    <ROW Action="AI_ViewReadme" Type="194" Source="viewer.exe" Target="[#ReleaseNotes.rtf]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="regsvr32.exe" Type="1026" Source="regsvr32.exe" Target="/s /u &quot;[TARGETDIR]\bin\BGML.dll&quot;"/>
     <ROW Action="regsvr32.exe_1" Type="1026" Source="regsvr32.exe" Target="/s /u &quot;[TARGETDIR]\bin\cidl.dll&quot;"/>
     <ROW Action="regsvr32.exe_10" Type="1026" Source="regsvr32.exe" Target="/s /u &quot;[TARGETDIR]\bin\PackageComponent.dll&quot;"/>
-    <ROW Action="regsvr32.exe_5" Type="1026" Source="regsvr32.exe" Target="/s /u &quot;[TARGETDIR]\bin\IDLGenerator.dll&quot;"/>
+    <ROW Action="regsvr32.exe_18" Type="1026" Source="regsvr32.exe" Target="/s &quot;[TARGETDIR]\bin\OCML.dll&quot;"/>
     <ROW Action="regsvr32.exe_9" Type="1026" Source="regsvr32.exe" Target="/s /u &quot;[TARGETDIR]\bin\OCMLConfigurationInterpreter.dll&quot;"/>
-    <ROW Action="regsvr32.exe_2" Type="1026" Source="regsvr32.exe" Target="/s /u &quot;[TARGETDIR]\bin\DeploymentPlan.dll&quot;"/>
-    <ROW Action="regsvr32.exe_6" Type="1026" Source="regsvr32.exe" Target="/s /u &quot;[TARGETDIR]\bin\MPC.dll&quot;"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiUpgradeComponent">
     <ROW UpgradeCode="UpgradeCode" VersionMin="" VersionMax="ProductVersion" Language="" Attributes="4097" Remove=""/>
@@ -294,19 +305,30 @@
     <ROW Shortcut="ReleaseNotes" Directory_="Docs" Name="Releas~1|ReleaseNotes" Component_="ReleaseNotes.rtf" Target="[#ReleaseNotes.rtf]" Arguments="" Description="ReleaseNotes for CoSMIC" Hotkey="0" Icon_="" IconIndex="0" ShowCmd="1" WkDir="Docs"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
-    <ROW Action="regsvr32.exe_2" Condition="REMOVE=&quot;ALL&quot;" Sequence="2"/>
-    <ROW Action="regsvr32.exe_6" Condition="REMOVE=&quot;ALL&quot;" Sequence="6"/>
-    <ROW Action="regsvr32.exe_9" Condition="REMOVE=&quot;ALL&quot;" Sequence="9"/>
-    <ROW Action="regsvr32.exe_1" Condition="REMOVE=&quot;ALL&quot;" Sequence="1"/>
-    <ROW Action="regsvr32.exe_5" Condition="REMOVE=&quot;ALL&quot;" Sequence="5"/>
-    <ROW Action="regsvr32.exe_8" Condition="REMOVE=&quot;ALL&quot;" Sequence="8"/>
-    <ROW Action="regsvr32.exe" Condition="REMOVE=&quot;ALL&quot;" Sequence="0"/>
     <ROW Action="regsvr32.exe_4" Condition="REMOVE=&quot;ALL&quot;" Sequence="4"/>
-    <ROW Action="RegisterParadigm.dll" Condition="NOT Installed" Sequence="0"/>
+    <ROW Action="regsvr32.exe_13" Condition="NOT Installed" Sequence="3"/>
+    <ROW Action="regsvr32.exe_21" Condition="NOT Installed" Sequence="11"/>
+    <ROW Action="regsvr32.exe" Condition="REMOVE=&quot;ALL&quot;" Sequence="0"/>
+    <ROW Action="regsvr32.exe_12" Condition="NOT Installed" Sequence="2"/>
+    <ROW Action="regsvr32.exe_20" Condition="NOT Installed" Sequence="10"/>
+    <ROW Action="regsvr32.exe_6" Condition="REMOVE=&quot;ALL&quot;" Sequence="6"/>
+    <ROW Action="regsvr32.exe_8" Condition="REMOVE=&quot;ALL&quot;" Sequence="8"/>
     <ROW Action="RegisterParadigm.dll_1" Condition="REMOVE=&quot;ALL&quot;" Sequence="11"/>
-    <ROW Action="regsvr32.exe_3" Condition="REMOVE=&quot;ALL&quot;" Sequence="3"/>
-    <ROW Action="regsvr32.exe_7" Condition="REMOVE=&quot;ALL&quot;" Sequence="7"/>
+    <ROW Action="regsvr32.exe_11" Condition="NOT Installed" Sequence="1"/>
+    <ROW Action="regsvr32.exe_15" Condition="NOT Installed" Sequence="5"/>
+    <ROW Action="regsvr32.exe_19" Condition="NOT Installed" Sequence="9"/>
+    <ROW Action="regsvr32.exe_2" Condition="REMOVE=&quot;ALL&quot;" Sequence="2"/>
+    <ROW Action="regsvr32.exe_5" Condition="REMOVE=&quot;ALL&quot;" Sequence="5"/>
+    <ROW Action="RegisterParadigm.dll" Condition="NOT Installed" Sequence="0"/>
     <ROW Action="regsvr32.exe_10" Condition="REMOVE=&quot;ALL&quot;" Sequence="10"/>
+    <ROW Action="regsvr32.exe_14" Condition="NOT Installed" Sequence="4"/>
+    <ROW Action="regsvr32.exe_18" Condition="NOT Installed" Sequence="8"/>
+    <ROW Action="regsvr32.exe_1" Condition="REMOVE=&quot;ALL&quot;" Sequence="1"/>
+    <ROW Action="regsvr32.exe_7" Condition="REMOVE=&quot;ALL&quot;" Sequence="7"/>
+    <ROW Action="regsvr32.exe_17" Condition="NOT Installed" Sequence="7"/>
+    <ROW Action="regsvr32.exe_9" Condition="REMOVE=&quot;ALL&quot;" Sequence="9"/>
+    <ROW Action="regsvr32.exe_3" Condition="REMOVE=&quot;ALL&quot;" Sequence="3"/>
+    <ROW Action="regsvr32.exe_16" Condition="NOT Installed" Sequence="6"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
     <ROW Name="RegisterParadigm.dll" SourcePath="Installer\RegisterParadigm\Release\RegisterParadigm.dll"/>

@@ -1,3 +1,8 @@
+Sat Nov  6 19:09:15 2004  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * Installer/CoSMIC-Installer.aip: Updated to fix the bug with the
+          interpreters not getting registered correctly.
+
 Sat Nov  6 18:57:44 2004  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * Installer/CoSMIC-Installer.aip: Updated version of the script.
