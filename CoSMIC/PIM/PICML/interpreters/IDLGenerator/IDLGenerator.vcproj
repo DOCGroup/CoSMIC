@@ -127,7 +127,9 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				SubSystem="2"
 				ImportLibrary="../../lib/IDLGenerator.lib"/>
 			<Tool
-				Name="VCMIDLTool"/>
+				Name="VCMIDLTool"
+				MkTypLibCompatible="TRUE"
+				HeaderFileName="$(InputName).h"/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
 			<Tool
@@ -415,8 +417,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Invoking midl on $(GME_ROOT)\SDK\BON\ComponentLib.idl"
-						CommandLine="midl -I. -server none -client none &quot;$(GME_ROOT)\SDK\BON\ComponentLib.idl&quot;
-"
+						CommandLine="midl /env win32  -I. -server none -client none &quot;$(GME_ROOT)\SDK\BON\ComponentLib.idl&quot;"
 						Outputs=".\ComponentLib.h"/>
 				</FileConfiguration>
 			</File>

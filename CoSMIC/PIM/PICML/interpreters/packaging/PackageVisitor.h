@@ -19,12 +19,12 @@
 
 namespace PICML
 {
-	using xercesc::DOMImplementation;
-	using xercesc::DOMDocument;
-	using xercesc::DOMElement;
-	using xercesc::DOMWriter;
-	using xercesc::XMLFormatTarget;
-	using xercesc::LocalFileFormatTarget;
+  using xercesc::DOMImplementation;
+  using xercesc::DOMDocument;
+  using xercesc::DOMElement;
+  using xercesc::DOMWriter;
+  using xercesc::XMLFormatTarget;
+  using xercesc::LocalFileFormatTarget;
 
   class PackageVisitor: public Visitor
   {

@@ -942,6 +942,16 @@ namespace PICML
 
   void PackageVisitor::Visit_ComponentAssembly(const ComponentAssembly& assembly)
   {
+    std::set<ComponentAssembly>
+      asms = assembly.ComponentAssembly_kind_children();
+    for (std::set<ComponentAssembly>::iterator aiter = asms.begin();
+         aiter != asms.end();
+         ++aiter)
+      {
+        ComponentAssembly rassembly  = *aiter;
+        rassembly.Accept (*this);
+      }
+
     this->push();
     std::string name = this->outputPath_ + "\\";
     name += assembly.name();
@@ -964,8 +974,19 @@ namespace PICML
     this->curr_->appendChild (ele);
     this->curr_ = ele;
 
-    const std::set<Component> comps = assembly.Component_kind_children();
-    for (std::set<Component>::const_iterator iter = comps.begin();
+    std::set<Component> comps = assembly.Component_kind_children();
+    std::vector<ComponentAssembly> nasms = assembly.ComponentAssembly_kind_children();
+    while (!nasms.empty())
+      {
+        ComponentAssembly rassembly = nasms.back();
+        nasms.pop_back();
+        std::set<Component> rcomps = rassembly.Component_kind_children();
+        comps.insert (rcomps.begin(), rcomps.end());
+        std::vector<ComponentAssembly> rasms = rassembly.ComponentAssembly_kind_children();
+        std::copy (rasms.begin(), rasms.end(), std::back_inserter (nasms));
+      }
+
+    for (std::set<Component>::iterator iter = comps.begin();
          iter != comps.end();
          ++iter)
       {
@@ -1051,12 +1072,54 @@ namespace PICML
     DOMElement* ele = this->doc_->createElement (XStr ("connection"));
     this->curr_->appendChild (ele);
     this->curr_ = ele;
-    // Get the facet end
-    const ProvidedRequestPort facet = iv.dstinvoke_end();
-    const Component facet_comp = facet.Component_parent();
+
     // Get the receptacle end
-    const RequiredRequestPort receptacle = iv.srcinvoke_end();
-    const Component recep_comp = receptacle.Component_parent();
+    RequiredRequestPort receptacle = iv.srcinvoke_end();
+    Component recep_comp;
+    while (true)
+      {
+        Udm::Object par = receptacle.parent();
+        if (Udm::IsDerivedFrom (par.type(), Component::meta))
+          {
+            recep_comp = Component::Cast (par);
+            break;
+          }
+        else if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
+          {
+            ReceptacleDelegate delegate = receptacle.dstReceptacleDelegate();
+            if (delegate != Udm::null)
+              receptacle = delegate.dstReceptacleDelegate_end();
+            else
+              {
+                delegate = receptacle.srcReceptacleDelegate();
+                receptacle = delegate.srcReceptacleDelegate_end();
+              }
+          }
+      }
+
+    // Get the facet end
+    ProvidedRequestPort facet = iv.dstinvoke_end();
+    Component facet_comp;
+    while (true)
+      {
+        Udm::Object par = facet.parent();
+        if (Udm::IsDerivedFrom (par.type(), Component::meta))
+          {
+            facet_comp = Component::Cast (par);
+            break;
+          }
+        else if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
+          {
+            FacetDelegate delegate = facet.dstFacetDelegate();
+            if (delegate != Udm::null)
+              facet = delegate.dstFacetDelegate_end();
+            else
+              {
+                delegate = facet.srcFacetDelegate();
+                facet = delegate.srcFacetDelegate_end();
+              }
+          }
+      }
 
     // Create a connection
     std::string connection = receptacle.name();
@@ -1097,12 +1160,54 @@ namespace PICML
     DOMElement* ele = this->doc_->createElement (XStr ("connection"));
     this->curr_->appendChild (ele);
     this->curr_ = ele;
+
     // Get the emitter end
-    const OutEventPort emitter = ev.srcemit_end();
-    const Component emitter_comp = emitter.Component_parent();
+    OutEventPort emitter = ev.srcemit_end();
+    Component emitter_comp;
+    while (true)
+      {
+        Udm::Object par = emitter.parent();
+        if (Udm::IsDerivedFrom (par.type(), Component::meta))
+          {
+            emitter_comp = Component::Cast (par);
+            break;
+          }
+        else if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
+          {
+            EventSourceDelegate delegate = emitter.dstEventSourceDelegate();
+            if (delegate != Udm::null)
+              emitter = delegate.dstEventSourceDelegate_end();
+            else
+              {
+                delegate = emitter.srcEventSourceDelegate();
+                emitter = delegate.srcEventSourceDelegate_end();
+              }
+          }
+      }
+
     // Get the consumer end
-    const InEventPort consumer = ev.dstemit_end();
-    const Component consumer_comp = consumer.Component_parent();
+    InEventPort consumer = ev.dstemit_end();
+    Component consumer_comp;
+    while (true)
+      {
+        Udm::Object par = consumer.parent();
+        if (Udm::IsDerivedFrom (par.type(), Component::meta))
+          {
+            consumer_comp = Component::Cast (par);
+            break;
+          }
+        else if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
+          {
+            EventSinkDelegate delegate = consumer.dstEventSinkDelegate();
+            if (delegate != Udm::null)
+              consumer = delegate.dstEventSinkDelegate_end();
+            else
+              {
+                delegate = consumer.srcEventSinkDelegate();
+                consumer = delegate.srcEventSinkDelegate_end();
+              }
+          }
+      }
 
     // Create a connection
     std::string connection = consumer.name();
@@ -1166,8 +1271,29 @@ namespace PICML
     std::string ctor = pubctor.name();
 
     // Get Publisher
-    const OutEventPort publisher = this->publishers_[ctor];
-    const Component publisher_comp = publisher.Component_parent();
+    OutEventPort publisher = this->publishers_[ctor];
+    Component publisher_comp;
+
+    while (true)
+      {
+        Udm::Object par = publisher.parent();
+        if (Udm::IsDerivedFrom (par.type(), Component::meta))
+          {
+            publisher_comp = Component::Cast (par);
+            break;
+          }
+        else if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
+          {
+            EventSourceDelegate delegate = publisher.dstEventSourceDelegate();
+            if (delegate != Udm::null)
+              publisher = delegate.dstEventSourceDelegate_end();
+            else
+              {
+                delegate = publisher.srcEventSourceDelegate();
+                publisher = delegate.srcEventSourceDelegate_end();
+              }
+          }
+      }
 
     for (std::multimap<std::string, InEventPort>::const_iterator
            iter = this->consumers_.lower_bound (ctor);
@@ -1181,8 +1307,29 @@ namespace PICML
         this->curr_ = ele;
 
         // Get Consumer
-        const InEventPort consumer = iter->second;
-        const Component consumer_comp = consumer.Component_parent();
+        InEventPort consumer = iter->second;
+        Component consumer_comp;
+
+        while (true)
+          {
+            Udm::Object par = consumer.parent();
+            if (Udm::IsDerivedFrom (par.type(), Component::meta))
+              {
+                consumer_comp = Component::Cast (par);
+                break;
+              }
+            else if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
+              {
+                EventSinkDelegate delegate = consumer.dstEventSinkDelegate();
+                if (delegate != Udm::null)
+                  consumer = delegate.dstEventSinkDelegate_end();
+                else
+                  {
+                    delegate = consumer.srcEventSinkDelegate();
+                    consumer = delegate.srcEventSinkDelegate_end();
+                  }
+              }
+          }
 
         // Create connection(s)
         std::string connection = consumer.name();

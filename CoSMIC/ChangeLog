@@ -1,3 +1,20 @@
+Tue Nov 23 22:59:42 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.vcproj: Fixed
+          file to not generate 64-bit stubs.
+
+        * PIM/PICML/interpreters/packaging/PICML.h:
+        * PIM/PICML/interpreters/packaging/PICML.cpp:
+        * PIM/PICML/interpreters/packaging/PackageComponent.dsp:
+        * PIM/PICML/interpreters/packaging/PackageVisitor.h:
+        * PIM/PICML/interpreters/packaging/PackageVisitor.cpp: Added
+          support for generation of descriptors in the presence of nested
+          assemblies.  Currently the nested assemblies are collapsed into
+          a single assembly.  However, descriptors for each nested
+          assembly is also generated.  Thus testing can be done on
+          individual nested assemblies by changing the *.pcd file to point
+          to the corresponding .cid file.
+
 Mon Nov 22 20:27:25 2004  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * PIM/PICML/paradigms/PICML.xmp:

@@ -43,7 +43,8 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /Yu"stdafx.h" /FD /GZ /c
-# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I ".\\" /I "$(GME_ROOT)/sdk/BON/" /I "$(XERCESCROOT)/include" /I "$(UDM_PATH)/include" /I "$(UDM_PATH)/3rdParty/stl" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /FR /FD /GZ /Zm200 /c
+# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I ".\\" /I "$(GME_ROOT)/sdk/BON/" /I "$(XERCESCROOT)/include" /I "$(UDM_PATH)/include" /I "$(UDM_PATH)/3rdParty/stl" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /FD /GZ /Zm200 /c
+# SUBTRACT CPP /Fr
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
 # ADD RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
@@ -81,7 +82,8 @@ SOURCE="$(InputPath)"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O1 /I ".\\" /I "C:/Program Files/GME/sdk/BON/" /I "$(UDM_PATH)\include" /I "$(UDM_PATH)\3rdParty\stl" /D "NDEBUG" /D "_ATL_DLL" /D "WIN32" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /D "GME_INTERPRETER_USED" /D "UML_CLASS_DIAGRAM" /FR /FD /Zm200 /c
-# ADD CPP /nologo /MD /W3 /GR /GX /O1 /I ".\\" /I "$(GME_ROOT)/sdk/BON/" /I "$(XERCESCROOT)/include" /I "$(UDM_PATH)/include" /I "$(UDM_PATH)/3rdParty/stl" /D "NDEBUG" /D "_ATL_DLL" /D "WIN32" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /FR /FD /Zm200 /c
+# ADD CPP /nologo /MD /W3 /GR /GX /O1 /I ".\\" /I "$(GME_ROOT)/sdk/BON/" /I "$(XERCESCROOT)/include" /I "$(UDM_PATH)/include" /I "$(UDM_PATH)/3rdParty/stl" /D "NDEBUG" /D "_ATL_DLL" /D "WIN32" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /FD /Zm200 /c
+# SUBTRACT CPP /Fr
 # ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
 # ADD RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
 BSC32=bscmake.exe
