@@ -1,6 +1,6 @@
 ; Interpreter.def : Declares the module parameters.
 
-LIBRARY      "PackageComponent.DLL"
+LIBRARY      "DeploymentPlan.DLL"
 
 EXPORTS
 	DllCanUnloadNow     @1 PRIVATE

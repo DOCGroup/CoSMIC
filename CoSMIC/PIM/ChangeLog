@@ -1,3 +1,9 @@
+Sun Jun 20 10:37:03 2004  Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * PICML/interpreters/plan/Component.def:
+
+          Made changes to fix the name of the DLL exported.
+
 Sat Jun 19 19:31:27 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PICML/examples/RobotAssembly.xme: Updated model to include
