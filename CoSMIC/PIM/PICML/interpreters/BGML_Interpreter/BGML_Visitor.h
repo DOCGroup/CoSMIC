@@ -14,6 +14,7 @@ public:
 	
 	// Visitor Operations
 	void Visit_BenchmarkAnalysis (const PICML::BenchmarkAnalysis& model);
+	void Visit_TimeProbe (const PICML::TimeProbe& probe);
 	
 private:
     std::string outputPath_;

@@ -54,12 +54,12 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 mfcs42d.lib MSVCRTD.lib xerces-c_2D.lib ZlibD.lib UdmBase_D.lib UdmDom_D.lib UdmUtil_D.lib UdmGme_D.lib /nologo /subsystem:windows /dll /debug /machine:I386 /nodefaultlib:"MSVCRTD.lib" /nodefaultlib:"mfcs42d.lib" /pdbtype:sept /libpath:"C:\Program Files\ISIS\UDM\lib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\zlib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib"
+# ADD LINK32 mfcs42d.lib MSVCRTD.lib xerces-c_2D.lib ZlibD.lib UdmBase_D.lib UdmDom_D.lib UdmUtil_D.lib UdmGme_D.lib /nologo /subsystem:windows /dll /debug /machine:I386 /nodefaultlib:"MSVCRTD.lib" /nodefaultlib:"mfcs42d.lib" /out:"Debug/BGML.dll" /pdbtype:sept /libpath:"C:\Program Files\ISIS\UDM\lib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\zlib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib"
 # SUBTRACT LINK32 /pdb:none
 # Begin Custom Build - Performing registration
 OutDir=.\Debug
-TargetPath=.\Debug\Component.dll
-InputPath=.\Debug\Component.dll
+TargetPath=.\Debug\BGML.dll
+InputPath=.\Debug\BGML.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -91,11 +91,11 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 xerces-c_2.lib Zlib.lib /nologo /subsystem:windows /dll /machine:I386 /out:"Release/Component.dll" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\zlib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib"
-# ADD LINK32 xerces-c_2.lib Zlib.lib UdmBase.lib UdmDom.lib UdmUtil.lib UdmGme.lib /nologo /subsystem:windows /dll /machine:I386 /libpath:"C:\Program Files\ISIS\UDM\lib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\zlib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib"
+# ADD LINK32 xerces-c_2.lib Zlib.lib UdmBase.lib UdmDom.lib UdmUtil.lib UdmGme.lib /nologo /subsystem:windows /dll /machine:I386 /out:"ReleaseMinSize/BGML.dll" /libpath:"C:\Program Files\ISIS\UDM\lib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\zlib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib"
 # Begin Custom Build - Performing registration
 OutDir=.\ReleaseMinSize
-TargetPath=.\ReleaseMinSize\Component.dll
-InputPath=.\ReleaseMinSize\Component.dll
+TargetPath=.\ReleaseMinSize\BGML.dll
+InputPath=.\ReleaseMinSize\BGML.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -127,11 +127,11 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 xerces-c_2.lib zlib.lib UdmBase.lib UdmGme.lib UdmUtil.lib UdmDom.lib /nologo /subsystem:windows /dll /machine:I386 /libpath:"C:\Program Files\ISIS\UDM\Lib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib" /libpath:"C:\Program Files\ISIS\UDM\3rdparty\zlib"
+# ADD LINK32 xerces-c_2.lib zlib.lib UdmBase.lib UdmGme.lib UdmUtil.lib UdmDom.lib /nologo /subsystem:windows /dll /machine:I386 /out:"ReleaseMinDependency/BGML.dll" /libpath:"C:\Program Files\ISIS\UDM\Lib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib" /libpath:"C:\Program Files\ISIS\UDM\3rdparty\zlib"
 # Begin Custom Build - Performing registration
 OutDir=.\ReleaseMinDependency
-TargetPath=.\ReleaseMinDependency\Component.dll
-InputPath=.\ReleaseMinDependency\Component.dll
+TargetPath=.\ReleaseMinDependency\BGML.dll
+InputPath=.\ReleaseMinDependency\BGML.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -265,6 +265,10 @@ SOURCE=.\StdAfx.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\Timer_Stream.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\TypeEmitter.cpp
 # End Source File
 # Begin Source File
@@ -326,6 +330,10 @@ SOURCE=.\Resource.h
 # Begin Source File
 
 SOURCE=.\StdAfx.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Timer_Stream.h
 # End Source File
 # Begin Source File
 
