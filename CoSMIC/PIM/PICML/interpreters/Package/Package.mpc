@@ -1,0 +1,18 @@
+project(Package): picmllib {
+   after += PICML
+   sharedname = Package
+   macros += PACKAGE_BUILD_DLL PICML_HAS_DLL
+   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML
+   libs += PICML
+
+   Source_Files {
+     PackageVisitor.cpp
+     XercesString.cpp
+   }
+
+   Header_Files {
+     PackageVisitor.h
+     XercesString.h
+     Package_Export.h
+   }
+}

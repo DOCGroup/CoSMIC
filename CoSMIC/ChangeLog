@@ -1,3 +1,15 @@
+Fri Feb 25 18:49:53 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/PICML/PICML.mpc:
+
+        * PIM/PICML/interpreters/Package/Package.mpc:
+        * PIM/PICML/interpreters/Package/PackageVisitor.h:
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:
+        * PIM/PICML/interpreters/Package/Package_Export.h:
+        * PIM/PICML/interpreters/Package/XercesString.h:
+        * PIM/PICML/interpreters/Package/XercesString.cpp: Missed checkin
+          of these files.
+
 Fri Feb 25 18:31:54 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/examples/BasicSP.xme:
