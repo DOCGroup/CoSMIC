@@ -1,3 +1,32 @@
+Sun Jun 20 17:10:38 2004  Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * PICML/interpreters/domain/CompIcon.ico:
+        * PICML/interpreters/domain/Component.def:
+        * PICML/interpreters/domain/Component.rc:
+        * PICML/interpreters/domain/ComponentConfig.h:
+        * PICML/interpreters/domain/Domain.dsp:
+        * PICML/interpreters/domain/Domain.dsw:
+        * PICML/interpreters/domain/DomainVisitor.cpp:
+        * PICML/interpreters/domain/DomainVisitor.h:
+        * PICML/interpreters/domain/PICML.cpp:
+        * PICML/interpreters/domain/PICML.h:
+        * PICML/interpreters/domain/PICML.xsd:
+        * PICML/interpreters/domain/RawComponent.cpp:
+        * PICML/interpreters/domain/RawComponent.h:
+        * PICML/interpreters/domain/StdAfx.cpp:
+        * PICML/interpreters/domain/StdAfx.h:
+        * PICML/interpreters/domain/UdmApp.cpp:
+        * PICML/interpreters/domain/UdmApp.h:
+        * PICML/interpreters/domain/UdmConfig.h:
+        * PICML/interpreters/domain/UuidString.cpp:
+        * PICML/interpreters/domain/UuidString.h:
+        * PICML/interpreters/domain/XercesString.cpp:
+        * PICML/interpreters/domain/XercesString.h:
+        * PICML/interpreters/domain/resource.h:
+
+          Checked in the files needed for creating the Domain
+          descriptor (.cdd) from the PICML models.
+
 Sun Jun 20 16:49:13 2004  Jaiganesh B  <jai@dre.vanderbilt.edu>
 
         * PICML/interpreters/plan/DeploymentPlan.dsp:
