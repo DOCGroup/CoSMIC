@@ -1,3 +1,10 @@
+Sun Jun 20 11:06:35 2004  Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * PICML/examples/RobotAssembly.xme:
+
+          Updated the RobotAssembly after registering the Deployment
+          Plan interpreter.
+
 Sun Jun 20 10:37:03 2004  Jaiganesh B  <jai@dre.vanderbilt.edu>
 
         * PICML/interpreters/plan/Component.def:
