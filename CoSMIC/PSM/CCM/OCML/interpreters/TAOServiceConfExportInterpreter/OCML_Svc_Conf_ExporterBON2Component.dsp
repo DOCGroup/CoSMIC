@@ -1,24 +1,24 @@
-# Microsoft Developer Studio Project File - Name="OCML" - Package Owner=<4>
+# Microsoft Developer Studio Project File - Name="OCML_Svc_Conf_Exporter" - Package Owner=<4>
 # Microsoft Developer Studio Generated Build File, Format Version 6.00
 # ** DO NOT EDIT **
 
 # TARGTYPE "Win32 (x86) Dynamic-Link Library" 0x0102
 
-CFG=OCML - Win32 Debug
+CFG=OCML_Svc_Conf_Exporter - Win32 Debug
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
 !MESSAGE 
-!MESSAGE NMAKE /f "OCMLBON2Component.mak".
+!MESSAGE NMAKE /f "OCML_Svc_Conf_ExporterBON2Component.mak".
 !MESSAGE 
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "OCMLBON2Component.mak" CFG="OCML - Win32 Debug"
+!MESSAGE NMAKE /f "OCML_Svc_Conf_ExporterBON2Component.mak" CFG="OCML_Svc_Conf_Exporter - Win32 Debug"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
-!MESSAGE "OCML - Win32 Debug" (based on "Win32 (x86) Dynamic-Link Library")
-!MESSAGE "OCML - Win32 Release" (based on "Win32 (x86) Dynamic-Link Library")
+!MESSAGE "OCML_Svc_Conf_Exporter - Win32 Debug" (based on "Win32 (x86) Dynamic-Link Library")
+!MESSAGE "OCML_Svc_Conf_Exporter - Win32 Release" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE 
 
 # Begin Project
@@ -29,7 +29,7 @@ CPP=cl.exe
 MTL=midl.exe
 RSC=rc.exe
 
-!IF  "$(CFG)" == "OCML - Win32 Debug"
+!IF  "$(CFG)" == "OCML_Svc_Conf_Exporter - Win32 Debug"
 
 # PROP BASE Use_MFC 2
 # PROP BASE Use_Debug_Libraries 1
@@ -52,11 +52,11 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 xerces-c_2D.lib /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
+# ADD LINK32 OCMLSvcConfExporterd.lib /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept /libpath:"..\TAOServiceConfExporter"
 # Begin Custom Build - Performing registration
 OutDir=.\Debug
-TargetPath=.\Debug\OCMLBON2Component.dll
-InputPath=.\Debug\OCMLBON2Component.dll
+TargetPath=.\Debug\OCML_Svc_Conf_ExporterBON2Component.dll
+InputPath=.\Debug\OCML_Svc_Conf_ExporterBON2Component.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -65,7 +65,7 @@ SOURCE="$(InputPath)"
 	
 # End Custom Build
 
-!ELSEIF  "$(CFG)" == "OCML - Win32 Release"
+!ELSEIF  "$(CFG)" == "OCML_Svc_Conf_Exporter - Win32 Release"
 
 # PROP BASE Use_MFC 2
 # PROP BASE Use_Debug_Libraries 0
@@ -88,11 +88,11 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 xerces-c_2D.lib /nologo /subsystem:windows /dll /debug /machine:I386
+# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386
 # Begin Custom Build - Performing registration
 OutDir=.\Release
-TargetPath=.\Release\OCMLBON2Component.dll
-InputPath=.\Release\OCMLBON2Component.dll
+TargetPath=.\Release\OCML_Svc_Conf_ExporterBON2Component.dll
+InputPath=.\Release\OCML_Svc_Conf_ExporterBON2Component.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -105,8 +105,8 @@ SOURCE="$(InputPath)"
 
 # Begin Target
 
-# Name "OCML - Win32 Debug"
-# Name "OCML - Win32 Release"
+# Name "OCML_Svc_Conf_Exporter - Win32 Debug"
+# Name "OCML_Svc_Conf_Exporter - Win32 Release"
 # Begin Group "Source Files"
 
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
@@ -150,7 +150,7 @@ SOURCE="C:/Program Files/GME/sdk/BON/ComponentDll.cpp"
 
 SOURCE="C:/Program Files/GME/sdk/BON/ComponentLib.idl"
 
-!IF  "$(CFG)" == "OCML - Win32 Debug"
+!IF  "$(CFG)" == "OCML_Svc_Conf_Exporter - Win32 Debug"
 
 # PROP Ignore_Default_Tool 1
 # Begin Custom Build - MIDL $(InputPath))
@@ -169,7 +169,7 @@ BuildCmds= \
    $(BuildCmds)
 # End Custom Build
 
-!ELSEIF  "$(CFG)" == "OCML - Win32 Release"
+!ELSEIF  "$(CFG)" == "OCML_Svc_Conf_Exporter - Win32 Release"
 
 # PROP Ignore_Default_Tool 1
 # Begin Custom Build - MIDL $(InputPath))
@@ -212,6 +212,19 @@ SOURCE="C:/Program Files/GME/sdk/BON/Extensions.cpp"
 # End Source File
 # Begin Source File
 
+SOURCE=..\Common\FileSaveDlg.cpp
+
+!IF  "$(CFG)" == "OCML_Svc_Conf_Exporter - Win32 Debug"
+
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "OCML_Svc_Conf_Exporter - Win32 Release"
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
 SOURCE="C:/Program Files/GME/sdk/BON/MON.cpp"
 # SUBTRACT CPP /YX /Yc /Yu
 # End Source File
@@ -219,58 +232,6 @@ SOURCE="C:/Program Files/GME/sdk/BON/MON.cpp"
 
 SOURCE="C:/Program Files/GME/sdk/BON/MONImpl.cpp"
 # SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=.\OCMLBonExtension.cpp
-
-!IF  "$(CFG)" == "OCML - Win32 Debug"
-
-!ELSEIF  "$(CFG)" == "OCML - Win32 Release"
-
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
-# End Source File
-# Begin Source File
-
-SOURCE=.\OCMLBonExtension_Manual.cpp
-
-!IF  "$(CFG)" == "OCML - Win32 Debug"
-
-!ELSEIF  "$(CFG)" == "OCML - Win32 Release"
-
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
-# End Source File
-# Begin Source File
-
-SOURCE=.\OCMLInterpreter.cpp
-
-!IF  "$(CFG)" == "OCML - Win32 Debug"
-
-!ELSEIF  "$(CFG)" == "OCML - Win32 Release"
-
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
-# End Source File
-# Begin Source File
-
-SOURCE=.\OCMLVisitor.cpp
-
-!IF  "$(CFG)" == "OCML - Win32 Debug"
-
-!ELSEIF  "$(CFG)" == "OCML - Win32 Release"
-
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -332,6 +293,10 @@ SOURCE="C:/Program Files/GME/sdk/BON/Extensions.h"
 # End Source File
 # Begin Source File
 
+SOURCE=..\Common\FileSaveDlg.hpp
+# End Source File
+# Begin Source File
+
 SOURCE="C:/Program Files/GME/sdk/BON/GMECOM.h"
 # End Source File
 # Begin Source File
@@ -341,22 +306,6 @@ SOURCE="C:/Program Files/GME/sdk/BON/MON.h"
 # Begin Source File
 
 SOURCE="C:/Program Files/GME/sdk/BON/MONImpl.h"
-# End Source File
-# Begin Source File
-
-SOURCE=.\OCMLBonExtension.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\OCMLInterpreter.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\OCMLUtils.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\OCMLVisitor.h
 # End Source File
 # Begin Source File
 

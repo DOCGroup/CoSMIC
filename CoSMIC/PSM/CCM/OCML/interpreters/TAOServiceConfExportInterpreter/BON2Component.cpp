@@ -20,7 +20,9 @@
 */
 
 #include "BON2Component.h"
-#include "OCMLInterpreter.h"
+#include <fstream>
+#include "../TAOServiceConfExporter/SvcConfExporter.hpp"
+#include "../Common/FileSaveDlg.hpp"
 
 namespace BON
 {
@@ -67,8 +69,8 @@ namespace BON
 
   // ====================================================
   // This is the obsolete component interface
-  // This present implementation either tries to call InvokeEx,
-  // or does nothing except of a notification
+  // This present implementation either tries to call InvokeEx, or does nothing
+  // except of a notification
 
   void Component::invoke( Project& project, const std::set<FCO>& setModels,
                           long lParam )
@@ -89,19 +91,29 @@ namespace BON
   void Component::invokeEx( Project& project, FCO& currentFCO,
                             const std::set<FCO>& setSelectedFCOs, long lParam )
   {
-    OCMLInterpreter ocml_interpreter;
+    if (setSelectedFCOs.empty())
+      {
+        AfxMessageBox("An implementation artifact should be selected");
+        return;
+      }
 
-    // Get all the models in the root folder
-    std::set<BON::Model> root_models =
-      project->getRootFolder()->getChildModels();
+    FCO selected_fco = *(setSelectedFCOs.begin());
+    BON::Attribute attr = selected_fco->getAttribute("configuration");
+    if (!attr)
+      {
+        AfxMessageBox("An implementation artifact should be selected");
+        return;
+      }
+    
+    std::string value = attr->getStringValue();
 
-    xercesc::DOMDocument* doc =
-      ocml_interpreter.create_document(root_models);
-
-    std::string file_name;
-
-    if (ocml_interpreter.save_file("Save - Option definitions", file_name))
-      ocml_interpreter.write(file_name.c_str(), doc);
+    FileSaveDlg file_save("svc.conf.xml");
+    if (file_save.show())
+      {
+        SvcConfExporter exporter;
+        std::ofstream f(file_save.file_name());
+        f << exporter.generate_svc_conf(value.c_str()) << std::endl;
+      }
   }
 
   // ====================================================

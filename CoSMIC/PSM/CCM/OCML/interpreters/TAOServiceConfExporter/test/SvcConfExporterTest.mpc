@@ -1,0 +1,14 @@
+project {
+  after += OCMLSvcConfExporter
+  exename = svc_conf_exporter
+
+  libs += OCMLSvcConfExporter
+
+  Source_Files {
+    main.cpp
+  }
+
+  Header_Files {
+    ../SvcConfExporter.hpp
+  }
+}
