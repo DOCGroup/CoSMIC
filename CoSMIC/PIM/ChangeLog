@@ -1,3 +1,9 @@
+Fri Jun 18 14:22:30 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * IDML/docs/IDML_User_Manual.pdf:
+        
+          New file, user's manual and reference for IDML and IDLGenerator.
+
 Tue Jun 15 10:47:57 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * IDML/examples/new_test.xme:
