@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?udm interface="cadena_scenario" version="1.00"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-<!-- generated on Fri Jun 11 19:20:26 2004 -->
+<!-- generated on Mon Nov 15 23:59:43 2004 -->
 
  <xsd:complexType name="ESSConnectionType">
 			<xsd:sequence>

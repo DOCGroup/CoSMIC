@@ -1,3 +1,71 @@
+Mon Nov 15 18:39:52 2004  Gabriele Trombetti  <gtrombetti@nospam.invalid.domain>
+
+          Changed the following files:
+        
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML-gr.xml
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML.mga
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML.xme
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML_Configuration.mga
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML_Configuration.xme
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena-gr.xml
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena.mga
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena.xme
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena_Configuration.mga
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena_configuration.xme
+          Transformations updated to the new PICML meta version 1.42 (November 11th 2004 by Kitty)
+          and to support the new toolset (GME 4.8.25, UDM 2.20, GReAT 1.3.2)
+                  
+        * PSM/CCM/PICML2Cadena/Transformations/examples/TweakedRobotAssembly.mga
+        * PSM/CCM/PICML2Cadena/Transformations/examples/TweakedRobotAssembly.xme
+        * PSM/CCM/PICML2Cadena/Transformations/examples/TweakedRobotAssembly_afterexport.mga
+        * PSM/CCM/PICML2Cadena/Transformations/examples/TweakedRobotAssembly_afterexport.xme
+        * PSM/CCM/PICML2Cadena/Transformations/examples/TweakedRobotAssembly_reimported_from_modified.mga
+        * PSM/CCM/PICML2Cadena/Transformations/examples/TweakedRobotAssembly_reimported_from_modified.xme
+        * PSM/CCM/PICML2Cadena/Transformations/examples/RobotAssembly_OriginalVersion/RobotAssembly.mga
+        * PSM/CCM/PICML2Cadena/Transformations/examples/RobotAssembly_OriginalVersion/exported.xml
+          Examples updated to the new meta and toolset
+
+        * PSM/CCM/PICML2Cadena/Docs/PICMLCadena_integration_manual.doc
+          Updated manual
+
+          Local copy of the metas follows:
+        * PSM/CCM/PICML2Cadena/paradigms/PICML/PICML-uml.xme
+        * PSM/CCM/PICML2Cadena/paradigms/PICML/PICML.xme
+        * PSM/CCM/PICML2Cadena/paradigms/PICML/PICML.xml
+        * PSM/CCM/PICML2Cadena/paradigms/PICML/PICML.xmp
+        * PSM/CCM/PICML2Cadena/paradigms/PICML/PICMLTemplate.xme
+          Local copy of the PICML meta version 1.42 (November 11th 2004 by Kitty)
+          
+        * PSM/CCM/PICML2Cadena/paradigms/cadena_scenario/cadena_scenario.cpp
+        * PSM/CCM/PICML2Cadena/paradigms/cadena_scenario/cadena_scenario.h
+        * PSM/CCM/PICML2Cadena/paradigms/cadena_scenario/cadena_scenario.mga
+        * PSM/CCM/PICML2Cadena/paradigms/cadena_scenario/cadena_scenario.xme
+        * PSM/CCM/PICML2Cadena/paradigms/cadena_scenario/cadena_scenario.xml
+        * PSM/CCM/PICML2Cadena/paradigms/cadena_scenario/cadena_scenario.xsd
+          Updated for GME 4.8.25, UDM 2.20
+          
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/Cadena2PICML.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/Cadena2PICML.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/Cadena2PICML.udm
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/Cadena2PICML.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/CrossLinks.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/CrossLinks.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/CrossLinks.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML2Cadena.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML2Cadena.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML2Cadena.udm
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML2Cadena.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICMLCadena_Xchange_embedded_EIProperties.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICMLCadena_Xchange_embedded_EIProperties.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICMLCadena_Xchange_embedded_EIProperties.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/cadena_scenario.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/cadena_scenario.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/cadena_scenario.xsd
+          Generated files also updated.
+
 Wed Nov 10 13:53:00 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * OCML/interpreters/OCMLConfiguratorLibrary/test/main.cpp: 

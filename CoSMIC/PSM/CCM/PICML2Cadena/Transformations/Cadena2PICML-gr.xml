@@ -1,5 +1,5 @@
 <RootFolder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="GR.XSD">
-	<RewritingRule _id="id3" cut="false" name="RootRuleBlock" guard="" ruleId="3" dstRule="id267" forBlock="false" position="(0,1240936)" ruleType="BLOCK" exhaustive="true">
+	<RewritingRule _id="id3" cut="false" name="RootRuleBlock" guard="" ruleId="3" dstRule="id267" forBlock="false" position="(0,1240924)" ruleType="BLOCK" exhaustive="true">
 		<InputPort _id="id25e" name="PICML_File_In" action="Bound" objectID="0" position="(48,27)" classType="" cardinality="1" paradigmName="" dstObjectWrapper="id25f"/>
 		<InputPort _id="id25c" name="Cadena_File_In" action="Bound" objectID="0" position="(48,132)" classType="" cardinality="1" paradigmName="" dstObjectWrapper="id25d"/>
 		<InputPort _id="id25a" name="Embedded_Dummy_File_In" action="Bound" objectID="0" position="(48,251)" classType="" cardinality="1" paradigmName="" dstObjectWrapper="id25b"/>
@@ -738,15 +738,15 @@ workaround marker (for GME search queries)*/"/>
 			<PassAlong _id="id36e" name="Sequence" dstObjectWrapper_end_="id1aa" srcObjectWrapper_end_="id36d"/>
 			<PassAlong _id="id370" name="Sequence" dstObjectWrapper_end_="id1a8" srcObjectWrapper_end_="id36f"/>
 			<PassAlong _id="id372" name="Sequence" dstObjectWrapper_end_="id351" srcObjectWrapper_end_="id371"/>
-			<PassAlong _id="id374" name="Sequence" dstObjectWrapper_end_="id353" srcObjectWrapper_end_="id373"/>
-			<PassAlong _id="id375" name="Sequence" dstObjectWrapper_end_="id356" srcObjectWrapper_end_="id1a1"/>
+			<PassAlong _id="id374" name="Sequence" dstObjectWrapper_end_="id356" srcObjectWrapper_end_="id373"/>
+			<PassAlong _id="id375" name="Sequence" dstObjectWrapper_end_="id357" srcObjectWrapper_end_="id1a1"/>
 			<PassAlong _id="id376" name="Sequence" dstObjectWrapper_end_="id36d" srcObjectWrapper_end_="id34f"/>
 			<PassAlong _id="id377" name="Sequence" dstObjectWrapper_end_="id36f" srcObjectWrapper_end_="id352"/>
-			<PassAlong _id="id378" name="Sequence" dstObjectWrapper_end_="id19f" srcObjectWrapper_end_="id355"/>
+			<PassAlong _id="id378" name="Sequence" dstObjectWrapper_end_="id19f" srcObjectWrapper_end_="id354"/>
 			<PassAlong _id="id379" name="Sequence" dstObjectWrapper_end_="id371" srcObjectWrapper_end_="id34f"/>
 			<PassAlong _id="id37a" name="Sequence" dstObjectWrapper_end_="id373" srcObjectWrapper_end_="id352"/>
-			<PassAlong _id="id37b" name="Sequence" dstObjectWrapper_end_="id1a3" srcObjectWrapper_end_="id355"/>
-			<PassAlong _id="id37c" name="Sequence" dstObjectWrapper_end_="id355" srcObjectWrapper_end_="id1ac"/>
+			<PassAlong _id="id37b" name="Sequence" dstObjectWrapper_end_="id1a3" srcObjectWrapper_end_="id354"/>
+			<PassAlong _id="id37c" name="Sequence" dstObjectWrapper_end_="id354" srcObjectWrapper_end_="id1ac"/>
 			<PassAlong _id="id37e" name="Sequence" dstObjectWrapper_end_="id34f" srcObjectWrapper_end_="id37d"/>
 			<PassAlong _id="id37f" name="Sequence" dstObjectWrapper_end_="id352" srcObjectWrapper_end_="id1af"/>
 			<PassAlong _id="id380" name="Sequence" dstObjectWrapper_end_="id1bc" srcObjectWrapper_end_="id258"/>
@@ -947,8 +947,8 @@ newComponent ->setStringAttr(Uml::Attribute::meta_name, cadname);"/>
 				<PatternObject _id="id371" name="ComponentInstance" action="Bound" objectID="0" position="(198,531)" classType="ComponentInstance" cardinality="1" paradigmName="cadena_scenario" dstObjectWrapper="id372" srcObjectWrapper="id379" isAssociationClass="false"/>
 			</RewritingRule>
 			<RewritingRule _id="id1a4" cut="false" name="MatchAPackage" guard="" ruleId="420" dstRule="id390 id391" srcRule="id392" forBlock="false" position="(511,77)" ruleType="RULE" referedBy="id34e" exhaustive="true">
-				<PatternObject _id="id355" name="Package" action="Bound" objectID="0" position="(216,209)" classType="Package" referedBy="id356 id357" cardinality="1" paradigmName="PICML" dstObjectWrapper="id378 id37b" srcObjectWrapper="id37c" isAssociationClass="false"/>
-				<PatternObject _id="id352" name="ComponentAssembly" action="Bound" objectID="0" position="(187,363)" classType="ComponentAssembly" referedBy="id353 id354" cardinality="1" paradigmName="PICML" dstObjectWrapper="id377 id37a" srcObjectWrapper="id37f" isAssociationClass="false"/>
+				<PatternObject _id="id354" name="Package" action="Bound" objectID="0" position="(216,209)" classType="Package" referedBy="id355 id357" cardinality="1" paradigmName="PICML" dstObjectWrapper="id378 id37b" srcObjectWrapper="id37c" isAssociationClass="false"/>
+				<PatternObject _id="id352" name="ComponentAssembly" action="Bound" objectID="0" position="(187,363)" classType="ComponentAssembly" referedBy="id353 id356" cardinality="1" paradigmName="PICML" dstObjectWrapper="id377 id37a" srcObjectWrapper="id37f" isAssociationClass="false"/>
 				<PatternObject _id="id34f" name="ComponentInstance" action="Bound" objectID="0" position="(198,531)" classType="ComponentInstance" referedBy="id350 id351" cardinality="1" paradigmName="cadena_scenario" dstObjectWrapper="id376 id379" srcObjectWrapper="id37e" isAssociationClass="false"/>
 			</RewritingRule>
 			<RewritingRule _id="id1a5" cut="false" name="AssociateComponentsNow" guard="string pName, cName;
@@ -998,10 +998,10 @@ else return false;" ruleId="421" srcRule="id38e" forBlock="false" position="(959
 			<RewritingRuleProxy _id="id34e" name="MatchAPackage_ref" srcRule="id38f" position="(889,77)" refersTo="id1a4">
 				<ObjectWrapperProxy _id="id350" name="CComponentInstance" action="Bound" objectID="0" position="(972,559)" refersTo="id34f" classType="" cardinality="1" paradigmName=""/>
 				<ObjectWrapperProxy _id="id351" name="CComponentInstance" action="Bound" objectID="0" position="(62,559)" refersTo="id34f" classType="" cardinality="1" paradigmName="" srcObjectWrapper="id372"/>
-				<ObjectWrapperProxy _id="id353" name="PAssembly" action="Bound" objectID="0" position="(62,384)" refersTo="id352" classType="" cardinality="1" paradigmName="" srcObjectWrapper="id374"/>
-				<ObjectWrapperProxy _id="id354" name="PAssembly" action="Bound" objectID="0" position="(972,384)" refersTo="id352" classType="" cardinality="1" paradigmName=""/>
-				<ObjectWrapperProxy _id="id356" name="PPackage" action="Bound" objectID="0" position="(62,230)" refersTo="id355" classType="" cardinality="1" paradigmName="" srcObjectWrapper="id375"/>
-				<ObjectWrapperProxy _id="id357" name="PPackage" action="Bound" objectID="0" position="(972,230)" refersTo="id355" classType="" cardinality="1" paradigmName=""/>
+				<ObjectWrapperProxy _id="id353" name="PAssembly" action="Bound" objectID="0" position="(972,384)" refersTo="id352" classType="" cardinality="1" paradigmName=""/>
+				<ObjectWrapperProxy _id="id355" name="PPackage" action="Bound" objectID="0" position="(972,230)" refersTo="id354" classType="" cardinality="1" paradigmName=""/>
+				<ObjectWrapperProxy _id="id356" name="PAssembly" action="Bound" objectID="0" position="(62,384)" refersTo="id352" classType="" cardinality="1" paradigmName="" srcObjectWrapper="id374"/>
+				<ObjectWrapperProxy _id="id357" name="PPackage" action="Bound" objectID="0" position="(62,230)" refersTo="id354" classType="" cardinality="1" paradigmName="" srcObjectWrapper="id375"/>
 			</RewritingRuleProxy>
 			<Sequence _id="id388" name="Sequence" recursive="false" dstRule_end_="id165" srcRule_end_="id196"/>
 			<Sequence _id="id389" name="Sequence" recursive="false" dstRule_end_="id16e" srcRule_end_="id1b9"/>

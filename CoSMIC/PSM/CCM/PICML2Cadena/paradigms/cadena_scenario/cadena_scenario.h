@@ -1,7 +1,7 @@
 #ifndef MOBIES_CADENA_SCENARIO_H
 #define MOBIES_CADENA_SCENARIO_H
 // header file cadena_scenario.h generated from diagram cadena_scenario
-// generated on Fri Jun 11 19:20:26 2004
+// generated on Mon Nov 15 23:59:43 2004
 
 #ifndef MOBIES_UDMBASE_H
 #include "UdmBase.h"
@@ -366,13 +366,13 @@ namespace cadena_scenario {
 
 		Udm::ArchetypeAttr<cadena_scenario::Scenario> Archetype() { return Udm::ArchetypeAttr<cadena_scenario::Scenario>(impl);}
 
-		static Uml::CompositionChildRole meta_PortConnection_children;
-		Udm::ChildrenAttr<cadena_scenario::PortConnection> PortConnection_children() const { return Udm::ChildrenAttr<cadena_scenario::PortConnection>(impl, meta_PortConnection_children); }
-		 template <class Pred> Udm::ChildrenAttr<cadena_scenario::PortConnection, Pred> PortConnection_children_sorted(const Pred &) const { return Udm::ChildrenAttr<cadena_scenario::PortConnection, Pred>(impl, meta_PortConnection_children); }
-
 		static Uml::CompositionChildRole meta_ComponentInstance_children;
 		Udm::ChildrenAttr<cadena_scenario::ComponentInstance> ComponentInstance_children() const { return Udm::ChildrenAttr<cadena_scenario::ComponentInstance>(impl, meta_ComponentInstance_children); }
 		 template <class Pred> Udm::ChildrenAttr<cadena_scenario::ComponentInstance, Pred> ComponentInstance_children_sorted(const Pred &) const { return Udm::ChildrenAttr<cadena_scenario::ComponentInstance, Pred>(impl, meta_ComponentInstance_children); }
+
+		static Uml::CompositionChildRole meta_PortConnection_children;
+		Udm::ChildrenAttr<cadena_scenario::PortConnection> PortConnection_children() const { return Udm::ChildrenAttr<cadena_scenario::PortConnection>(impl, meta_PortConnection_children); }
+		 template <class Pred> Udm::ChildrenAttr<cadena_scenario::PortConnection, Pred> PortConnection_children_sorted(const Pred &) const { return Udm::ChildrenAttr<cadena_scenario::PortConnection, Pred>(impl, meta_PortConnection_children); }
 
 		Udm::ChildrenAttr<cadena_scenario::ESSConnection> ESSConnection_kind_children() const { return Udm::ChildrenAttr<cadena_scenario::ESSConnection>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<cadena_scenario::ESSConnection, Pred> ESSConnection_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<cadena_scenario::ESSConnection, Pred>(impl, Udm::NULLCHILDROLE); }

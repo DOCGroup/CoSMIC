@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?udm interface="PICML" version="1.00"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-<!-- generated on Fri Oct 08 20:10:51 2004 -->
+<!-- generated on Mon Nov 15 23:04:45 2004 -->
 
  <xsd:complexType name="RTEC_Proxy_SupplierType">
 			<xsd:sequence>
@@ -56,10 +56,8 @@
   <xsd:attribute name="info_type" type="xsd:string" use="required"/>
   <xsd:attribute name="worst_case_execution_time" type="xsd:long" use="required"/>
   <xsd:attribute name="typical_execution_time" type="xsd:long" use="required"/>
-  <xsd:attribute name="dstInclude_RT_Info" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcInclude_RT_Info" type="xsd:IDREFS"/>
   <xsd:attribute name="dstUse_RT_Info" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcUse_RT_Info" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstInclude_RT_Info" type="xsd:IDREFS"/>
   <xsd:attribute name="srcRTEC_Connection" type="xsd:IDREFS"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
@@ -87,7 +85,6 @@
  <xsd:complexType name="LogicalANDGroupType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstInclude_RT_Info" type="xsd:IDREFS"/>
   <xsd:attribute name="srcInclude_RT_Info" type="xsd:IDREFS"/>
   <xsd:attribute name="dstInclude_RTEC_Filter_Group" type="xsd:IDREFS"/>
   <xsd:attribute name="srcInclude_RTEC_Filter_Group" type="xsd:IDREFS"/>
@@ -118,7 +115,6 @@
  <xsd:complexType name="DisjunctionGroupType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstInclude_RT_Info" type="xsd:IDREFS"/>
   <xsd:attribute name="srcInclude_RT_Info" type="xsd:IDREFS"/>
   <xsd:attribute name="dstInclude_RTEC_Filter_Group" type="xsd:IDREFS"/>
   <xsd:attribute name="srcInclude_RTEC_Filter_Group" type="xsd:IDREFS"/>
@@ -135,7 +131,6 @@
  <xsd:complexType name="ConjunctionGroupType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstInclude_RT_Info" type="xsd:IDREFS"/>
   <xsd:attribute name="srcInclude_RT_Info" type="xsd:IDREFS"/>
   <xsd:attribute name="dstInclude_RTEC_Filter_Group" type="xsd:IDREFS"/>
   <xsd:attribute name="srcInclude_RTEC_Filter_Group" type="xsd:IDREFS"/>
@@ -152,8 +147,8 @@
  <xsd:complexType name="Use_RTEC_FilterType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstUse_RTEC_Filter_end_" type="xsd:IDREF"/>
   <xsd:attribute name="srcUse_RTEC_Filter_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="dstUse_RTEC_Filter_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -224,8 +219,8 @@
  <xsd:complexType name="Include_RT_InfoType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstInclude_RT_Info_end_" type="xsd:IDREF"/>
   <xsd:attribute name="srcInclude_RT_Info_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="dstInclude_RT_Info_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -238,8 +233,8 @@
  <xsd:complexType name="Use_RT_InfoType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstUse_RT_Info_end_" type="xsd:IDREF"/>
   <xsd:attribute name="srcUse_RT_Info_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="dstUse_RT_Info_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -252,10 +247,8 @@
  <xsd:complexType name="Null_RT_InfoType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstInclude_RT_Info" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcInclude_RT_Info" type="xsd:IDREFS"/>
   <xsd:attribute name="dstUse_RT_Info" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcUse_RT_Info" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstInclude_RT_Info" type="xsd:IDREFS"/>
   <xsd:attribute name="srcRTEC_Connection" type="xsd:IDREFS"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
@@ -269,7 +262,6 @@
  <xsd:complexType name="RTEC_Resource_Factory_ReferenceType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstUse_RT_Info" type="xsd:IDREFS"/>
   <xsd:attribute name="srcUse_RT_Info" type="xsd:IDREFS"/>
   <xsd:attribute name="ref" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
@@ -360,8 +352,8 @@
  <xsd:complexType name="TimeProbeType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="srcTimerEventSinkConn" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcTimerConnection" type="xsd:IDREF" use="required"/>
+  <xsd:attribute name="srcTimerEventSinkConn" type="xsd:IDREF"/>
+  <xsd:attribute name="srcTimerConnection" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -482,7 +474,7 @@
  <xsd:complexType name="OperationRefType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstMetricConnection" type="xsd:IDREF" use="required"/>
+  <xsd:attribute name="dstMetricConnection" type="xsd:IDREF"/>
   <xsd:attribute name="dstTimerConnection" type="xsd:IDREF"/>
   <xsd:attribute name="ref" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
@@ -539,8 +531,9 @@
  <xsd:complexType name="TaskType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="rate" type="xsd:long" default="0"/>
   <xsd:attribute name="priority" type="xsd:long" use="required"/>
-  <xsd:attribute name="TaskSet" type="xsd:IDREFS"/>
+  <xsd:attribute name="setTaskSet" type="xsd:IDREFS"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -578,14 +571,53 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="SharedResourceType">
+ <xsd:complexType name="InterconnectType">
+			<xsd:sequence>
+				<xsd:element name="Resource" type="ResourceType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="label" type="xsd:string" use="required"/>
+  <xsd:attribute name="dstInterconnect2Node" type="xsd:IDREFS" use="required"/>
+  <xsd:attribute name="dstInterconnect2Bridge" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcNode2Interconnect" type="xsd:IDREFS" use="required"/>
+  <xsd:attribute name="srcBridge2Interconnect" type="xsd:IDREFS"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="NodeType">
+			<xsd:sequence>
+				<xsd:element name="Resource" type="ResourceType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="label" type="xsd:string" use="required"/>
+  <xsd:attribute name="referedbyNodeReference" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcInterconnect2Node" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstNode2Interconnect" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstShares" type="xsd:IDREFS"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="ResourceType">
 			<xsd:sequence>
 				<xsd:element name="SatisfierProperty" type="SatisfierPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 			</xsd:sequence>
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
   <xsd:attribute name="resourceType" type="xsd:string" use="required"/>
-  <xsd:attribute name="srcShares" type="xsd:IDREFS" use="required"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -613,13 +645,14 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="ResourceType">
+ <xsd:complexType name="SharedResourceType">
 			<xsd:sequence>
 				<xsd:element name="SatisfierProperty" type="SatisfierPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 			</xsd:sequence>
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
   <xsd:attribute name="resourceType" type="xsd:string" use="required"/>
+  <xsd:attribute name="srcShares" type="xsd:IDREFS" use="required"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -629,51 +662,11 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="NodeType">
-			<xsd:sequence>
-				<xsd:element name="Resource" type="ResourceType" minOccurs="0" maxOccurs="unbounded"/>
-			</xsd:sequence>
+ <xsd:complexType name="InstanceMappingType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="label" type="xsd:string" use="required"/>
-  <xsd:attribute name="referedbyNodeReference" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstShares" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstNode2Interconnect" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcInterconnect2Node" type="xsd:IDREFS"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="InterconnectType">
-			<xsd:sequence>
-				<xsd:element name="Resource" type="ResourceType" minOccurs="0" maxOccurs="unbounded"/>
-			</xsd:sequence>
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="label" type="xsd:string" use="required"/>
-  <xsd:attribute name="dstInterconnect2Bridge" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcBridge2Interconnect" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcNode2Interconnect" type="xsd:IDREFS" use="required"/>
-  <xsd:attribute name="dstInterconnect2Node" type="xsd:IDREFS" use="required"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="CollocationGroupType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstInstanceMapping" type="xsd:IDREFS"/>
-  <xsd:attribute name="members" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstInstanceMapping_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcInstanceMapping_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -697,11 +690,11 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="InstanceMappingType">
+ <xsd:complexType name="CollocationGroupType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstInstanceMapping_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcInstanceMapping_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="dstInstanceMapping" type="xsd:IDREFS"/>
+  <xsd:attribute name="members" type="xsd:IDREFS"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -730,11 +723,110 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="ExternalReferenceEndPointType">
+ <xsd:complexType name="invokeType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="location" type="xsd:string" use="required"/>
-  <xsd:attribute name="srcExternalDelegate" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstinvoke_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcinvoke_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="AssemblyselectRequirementType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="dstAssemblyselectRequirement_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcAssemblyselectRequirement_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="AssemblyConfigPropertyType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="dstAssemblyConfigProperty_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcAssemblyConfigProperty_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="PublishConnectorType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="dstAssemblyDeployRequirement" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstdeliverTo" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcpublish" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="publishType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="dstpublish_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcpublish_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="deliverToType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="srcdeliverTo_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="dstdeliverTo_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="AssemblyDeployRequirementType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="srcAssemblyDeployRequirement_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="dstAssemblyDeployRequirement_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="emitType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="dstemit_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcemit_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -860,11 +952,11 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="emitType">
+ <xsd:complexType name="ExternalReferenceEndPointType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstemit_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcemit_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="location" type="xsd:string" use="required"/>
+  <xsd:attribute name="srcExternalDelegate" type="xsd:IDREFS"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -874,11 +966,11 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="AssemblyDeployRequirementType">
+ <xsd:complexType name="ImplementationCapabilityType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstAssemblyDeployRequirement_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcAssemblyDeployRequirement_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcImplementationCapability_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="dstImplementationCapability_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -888,11 +980,11 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="deliverToType">
+ <xsd:complexType name="ImplementationDependsOnType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstdeliverTo_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcdeliverTo_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcImplementationDependsOn_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="dstImplementationDependsOn_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -902,11 +994,11 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="publishType">
+ <xsd:complexType name="ImplementsType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstpublish_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcpublish_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcImplements_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="dstImplements_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -916,12 +1008,11 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="PublishConnectorType">
-  <xsd:attribute name="position" type="xsd:string"/>
+ <xsd:complexType name="ComponentImplementationsType">
+			<xsd:sequence>
+				<xsd:element name="ComponentImplementationContainer" type="ComponentImplementationContainerType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstAssemblyDeployRequirement" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstdeliverTo" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcpublish" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -931,11 +1022,11 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="AssemblyConfigPropertyType">
+ <xsd:complexType name="ConfigPropertyType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstAssemblyConfigProperty_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcAssemblyConfigProperty_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcConfigProperty_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="dstConfigProperty_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -945,11 +1036,11 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="AssemblyselectRequirementType">
+ <xsd:complexType name="InfoPropertyType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstAssemblyselectRequirement_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcAssemblyselectRequirement_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcInfoProperty_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="dstInfoProperty_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -959,11 +1050,11 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="invokeType">
+ <xsd:complexType name="MonolithprimaryArtifactType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstinvoke_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcinvoke_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="dstMonolithprimaryArtifact_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcMonolithprimaryArtifact_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -973,48 +1064,11 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="MonolithicImplementationType">
+ <xsd:complexType name="MonolithDeployRequirementType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="UUID" type="xsd:string" use="required"/>
-  <xsd:attribute name="label" type="xsd:string" use="required"/>
-  <xsd:attribute name="dstImplementationDependsOn" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstImplementationCapability" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstImplements" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstConfigProperty" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstInfoProperty" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyComponentImplementationReference" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstMonolithDeployRequirement" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstMonolithprimaryArtifact" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstMonolithExecParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="ComponentImplementationReferenceType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="ref" type="xsd:IDREF"/>
-  <xsd:attribute name="srcImplementation" type="xsd:IDREFS"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="MonolithExecParameterType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="srcMonolithExecParameter_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="dstMonolithExecParameter_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="dstMonolithDeployRequirement_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcMonolithDeployRequirement_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -1054,11 +1108,11 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="MonolithDeployRequirementType">
+ <xsd:complexType name="MonolithExecParameterType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="srcMonolithDeployRequirement_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="dstMonolithDeployRequirement_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="dstMonolithExecParameter_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcMonolithExecParameter_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -1068,11 +1122,20 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="MonolithprimaryArtifactType">
+ <xsd:complexType name="MonolithicImplementationType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="srcMonolithprimaryArtifact_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="dstMonolithprimaryArtifact_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="UUID" type="xsd:string" use="required"/>
+  <xsd:attribute name="label" type="xsd:string" use="required"/>
+  <xsd:attribute name="dstImplementationDependsOn" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstImplementationCapability" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstImplements" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstConfigProperty" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstInfoProperty" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyComponentImplementationReference" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstMonolithprimaryArtifact" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstMonolithDeployRequirement" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstMonolithExecParameter" type="xsd:IDREFS"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -1082,81 +1145,11 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="InfoPropertyType">
+ <xsd:complexType name="ComponentImplementationReferenceType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="srcInfoProperty_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="dstInfoProperty_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="ConfigPropertyType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="srcConfigProperty_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="dstConfigProperty_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="ComponentImplementationsType">
-			<xsd:sequence>
-				<xsd:element name="ComponentImplementationContainer" type="ComponentImplementationContainerType" minOccurs="0" maxOccurs="unbounded"/>
-			</xsd:sequence>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="ImplementsType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="srcImplements_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="dstImplements_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="ImplementationDependsOnType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="srcImplementationDependsOn_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="dstImplementationDependsOn_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="ImplementationCapabilityType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="srcImplementationCapability_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="dstImplementationCapability_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="ref" type="xsd:IDREF"/>
+  <xsd:attribute name="srcImplementation" type="xsd:IDREFS"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -1180,17 +1173,11 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="PackageConfigurationType">
+ <xsd:complexType name="PackageConfReferenceType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="UUID" type="xsd:string" use="required"/>
-  <xsd:attribute name="label" type="xsd:string" use="required"/>
-  <xsd:attribute name="dstPackageConfBasePackage" type="xsd:IDREF"/>
-  <xsd:attribute name="dstPackageConfReference" type="xsd:IDREF"/>
-  <xsd:attribute name="dstPackageConfSelectRequirement" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstPackageConfConfigProperty" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstPackageConfSpecializedConfig" type="xsd:IDREF"/>
-  <xsd:attribute name="referedbyPackageConfigurationReference" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstPackageConfReference_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcPackageConfReference_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -1200,54 +1187,11 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="PackageConfigurationReferenceType">
-  <xsd:attribute name="position" type="xsd:string"/>
+ <xsd:complexType name="PackageConfigurationsType">
+			<xsd:sequence>
+				<xsd:element name="PackageConfigurationContainer" type="PackageConfigurationContainerType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="srcPackageConfSpecializedConfig" type="xsd:IDREFS"/>
-  <xsd:attribute name="ref" type="xsd:IDREF"/>
-  <xsd:attribute name="srcpackage" type="xsd:IDREF" use="required"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="PackageConfSpecializedConfigType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="srcPackageConfSpecializedConfig_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="dstPackageConfSpecializedConfig_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="PackageConfSelectRequirementType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="srcPackageConfSelectRequirement_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="dstPackageConfSelectRequirement_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="PackageConfConfigPropertyType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="srcPackageConfConfigProperty_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="dstPackageConfConfigProperty_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -1281,9 +1225,86 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="PackageConfigurationsType">
+ <xsd:complexType name="PackageConfConfigPropertyType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="dstPackageConfConfigProperty_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcPackageConfConfigProperty_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="PackageConfSelectRequirementType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="dstPackageConfSelectRequirement_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcPackageConfSelectRequirement_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="PackageConfSpecializedConfigType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="dstPackageConfSpecializedConfig_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcPackageConfSpecializedConfig_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="PackageConfigurationReferenceType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="srcPackageConfSpecializedConfig" type="xsd:IDREFS"/>
+  <xsd:attribute name="ref" type="xsd:IDREF"/>
+  <xsd:attribute name="srcpackage" type="xsd:IDREF" use="required"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="PackageConfigurationType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="UUID" type="xsd:string" use="required"/>
+  <xsd:attribute name="label" type="xsd:string" use="required"/>
+  <xsd:attribute name="dstPackageConfBasePackage" type="xsd:IDREF"/>
+  <xsd:attribute name="dstPackageConfReference" type="xsd:IDREF"/>
+  <xsd:attribute name="dstPackageConfConfigProperty" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstPackageConfSelectRequirement" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstPackageConfSpecializedConfig" type="xsd:IDREF"/>
+  <xsd:attribute name="referedbyPackageConfigurationReference" type="xsd:IDREFS"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="ImplementationArtifactsType">
 			<xsd:sequence>
-				<xsd:element name="PackageConfigurationContainer" type="PackageConfigurationContainerType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="ArtifactContainer" type="ArtifactContainerType" minOccurs="0" maxOccurs="unbounded"/>
 			</xsd:sequence>
   <xsd:attribute name="name" type="xsd:string"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
@@ -1295,11 +1316,11 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="PackageConfReferenceType">
+ <xsd:complexType name="ArtifactDependsOnType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="srcPackageConfReference_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="dstPackageConfReference_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="dstArtifactDependsOn_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcArtifactDependsOn_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -1309,25 +1330,11 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="ArtifactInfoPropertyType">
+ <xsd:complexType name="ArtifactDeployRequirementType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstArtifactInfoProperty_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcArtifactInfoProperty_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="ArtifactExecParameterType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstArtifactExecParameter_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcArtifactExecParameter_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="dstArtifactDeployRequirement_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcArtifactDeployRequirement_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -1359,11 +1366,11 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="ArtifactDeployRequirementType">
+ <xsd:complexType name="ArtifactExecParameterType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstArtifactDeployRequirement_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcArtifactDeployRequirement_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="dstArtifactExecParameter_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcArtifactExecParameter_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -1373,47 +1380,11 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="ArtifactDependsOnType">
+ <xsd:complexType name="ArtifactInfoPropertyType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstArtifactDependsOn_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcArtifactDependsOn_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="ImplementationArtifactsType">
-			<xsd:sequence>
-				<xsd:element name="ArtifactContainer" type="ArtifactContainerType" minOccurs="0" maxOccurs="unbounded"/>
-			</xsd:sequence>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="ImplementationArtifactType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="label" type="xsd:string" use="required"/>
-  <xsd:attribute name="configuration" type="xsd:string" use="required"/>
-  <xsd:attribute name="UUID" type="xsd:string" use="required"/>
-  <xsd:attribute name="location" type="xsd:string" use="required"/>
-  <xsd:attribute name="dstArtifactInfoProperty" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstArtifactExecParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstArtifactDeployRequirement" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstArtifactDependsOn" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyImplementationArtifactReference" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyExternalResources" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstArtifactInfoProperty_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcArtifactInfoProperty_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -1438,11 +1409,20 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="ComponentInfoPropertyType">
+ <xsd:complexType name="ImplementationArtifactType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstComponentInfoProperty_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcComponentInfoProperty_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="tree_file_name" type="xsd:string" default="orb_tree.xml"/>
+  <xsd:attribute name="configuration" type="xsd:string" use="required"/>
+  <xsd:attribute name="label" type="xsd:string" use="required"/>
+  <xsd:attribute name="UUID" type="xsd:string" use="required"/>
+  <xsd:attribute name="location" type="xsd:string" use="required"/>
+  <xsd:attribute name="dstArtifactDependsOn" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstArtifactDeployRequirement" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstArtifactExecParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstArtifactInfoProperty" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyImplementationArtifactReference" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyExternalResources" type="xsd:IDREFS"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -1452,11 +1432,41 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="ComponentConfigPropertyType">
+ <xsd:complexType name="ComponentTypesType">
+			<xsd:sequence>
+				<xsd:element name="ComponentContainer" type="ComponentContainerType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="ComponentPropertyDescriptionType">
+			<xsd:sequence>
+				<xsd:element name="DataType" type="DataTypeType"/>
+			</xsd:sequence>
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstComponentConfigProperty_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcComponentConfigProperty_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcComponentProperty" type="xsd:IDREFS"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="ComponentPropertyType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="dstComponentProperty_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcComponentProperty_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -1486,11 +1496,11 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="ComponentPropertyType">
+ <xsd:complexType name="ComponentConfigPropertyType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstComponentProperty_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcComponentProperty_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="dstComponentConfigProperty_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcComponentConfigProperty_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -1500,68 +1510,11 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="ComponentPropertyDescriptionType">
-			<xsd:sequence>
-				<xsd:element name="DataType" type="DataTypeType"/>
-			</xsd:sequence>
+ <xsd:complexType name="ComponentInfoPropertyType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="srcComponentProperty" type="xsd:IDREFS"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="ComponentTypesType">
-			<xsd:sequence>
-				<xsd:element name="ComponentContainer" type="ComponentContainerType" minOccurs="0" maxOccurs="unbounded"/>
-			</xsd:sequence>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="packageType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstpackage_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcpackage_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="TopLevelPackageType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstpackage" type="xsd:IDREF" use="required"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="TopLevelPackagesType">
-			<xsd:sequence>
-				<xsd:element name="TopLevelPackageContainer" type="TopLevelPackageContainerType" minOccurs="0" maxOccurs="unbounded"/>
-			</xsd:sequence>
-  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="dstComponentInfoProperty_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcComponentInfoProperty_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -1588,11 +1541,11 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="PackageInfoPropertyType">
-  <xsd:attribute name="position" type="xsd:string"/>
+ <xsd:complexType name="TopLevelPackagesType">
+			<xsd:sequence>
+				<xsd:element name="TopLevelPackageContainer" type="TopLevelPackageContainerType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstPackageInfoProperty_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcPackageInfoProperty_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -1602,11 +1555,66 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="PackageConfigPropertyType">
+ <xsd:complexType name="TopLevelPackageType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstPackageConfigProperty_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcPackageConfigProperty_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="dstpackage" type="xsd:IDREF" use="required"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="packageType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="dstpackage_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcpackage_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="ComponentPackagesType">
+			<xsd:sequence>
+				<xsd:element name="PackageContainer" type="PackageContainerType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="PackageInterfaceType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="dstPackageInterface_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcPackageInterface_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="ImplementationType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="dstImplementation_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcImplementation_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -1638,11 +1646,11 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="ImplementationType">
+ <xsd:complexType name="PackageConfigPropertyType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstImplementation_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcImplementation_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="dstPackageConfigProperty_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcPackageConfigProperty_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -1652,11 +1660,11 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="PackageInterfaceType">
+ <xsd:complexType name="PackageInfoPropertyType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstPackageInterface_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcPackageInterface_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="dstPackageInfoProperty_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcPackageInfoProperty_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -1666,11 +1674,17 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="ComponentPackagesType">
-			<xsd:sequence>
-				<xsd:element name="PackageContainer" type="PackageContainerType" minOccurs="0" maxOccurs="unbounded"/>
-			</xsd:sequence>
+ <xsd:complexType name="ComponentPackageType">
+  <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="UUID" type="xsd:string" use="required"/>
+  <xsd:attribute name="label" type="xsd:string" use="required"/>
+  <xsd:attribute name="dstImplementation" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcPackageConfBasePackage" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstPackageInterface" type="xsd:IDREF"/>
+  <xsd:attribute name="dstPackageConfigProperty" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstPackageInfoProperty" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyComponentPackageReference" type="xsd:IDREFS"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -1697,30 +1711,17 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="ComponentPackageType">
+ <xsd:complexType name="RequirementType">
+			<xsd:sequence>
+				<xsd:element name="Property" type="PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="UUID" type="xsd:string" use="required"/>
-  <xsd:attribute name="label" type="xsd:string" use="required"/>
-  <xsd:attribute name="dstImplementation" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcPackageConfBasePackage" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstPackageInfoProperty" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstPackageConfigProperty" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstPackageInterface" type="xsd:IDREF"/>
-  <xsd:attribute name="referedbyComponentPackageReference" type="xsd:IDREFS"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="DataTypeType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="ref" type="xsd:IDREF"/>
+  <xsd:attribute name="resourceType" type="xsd:string" use="required"/>
+  <xsd:attribute name="srcAssemblyselectRequirement" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcAssemblyDeployRequirement" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcPackageConfSelectRequirement" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcArtifactDeployRequirement" type="xsd:IDREFS"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -1747,17 +1748,10 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="RequirementType">
-			<xsd:sequence>
-				<xsd:element name="Property" type="PropertyType" minOccurs="0" maxOccurs="unbounded"/>
-			</xsd:sequence>
+ <xsd:complexType name="DataTypeType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="resourceType" type="xsd:string" use="required"/>
-  <xsd:attribute name="srcAssemblyDeployRequirement" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcAssemblyselectRequirement" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcPackageConfSelectRequirement" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcArtifactDeployRequirement" type="xsd:IDREFS"/>
+  <xsd:attribute name="ref" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -1767,24 +1761,28 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="PropertyType">
+ <xsd:complexType name="SatisfierPropertyType">
 			<xsd:sequence>
 				<xsd:element name="DataType" type="DataTypeType"/>
 			</xsd:sequence>
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
   <xsd:attribute name="DataValue" type="xsd:string" use="required"/>
-  <xsd:attribute name="srcConfigProperty" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcInfoProperty" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcAssemblyConfigProperty" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcMonolithExecParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcPackageConfConfigProperty" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcArtifactInfoProperty" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcArtifactExecParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcComponentInfoProperty" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcComponentConfigProperty" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcPackageInfoProperty" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcPackageConfigProperty" type="xsd:IDREFS"/>
+  <xsd:attribute name="SatisfierPropertyKind" type="xsd:string" default="Quantity"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="ImplementationDependencyType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="requiredType" type="xsd:string" use="required"/>
+  <xsd:attribute name="srcImplementationDependsOn" type="xsd:IDREFS"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -1814,98 +1812,24 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="ImplementationDependencyType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="requiredType" type="xsd:string" use="required"/>
-  <xsd:attribute name="srcImplementationDependsOn" type="xsd:IDREFS"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="SatisfierPropertyType">
+ <xsd:complexType name="PropertyType">
 			<xsd:sequence>
 				<xsd:element name="DataType" type="DataTypeType"/>
 			</xsd:sequence>
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
   <xsd:attribute name="DataValue" type="xsd:string" use="required"/>
-  <xsd:attribute name="SatisfierPropertyKind" type="xsd:string" default="Quantity"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="Interconnect2BridgeType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstInterconnect2Bridge_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcInterconnect2Bridge_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="Interconnect2NodeType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstInterconnect2Node_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcInterconnect2Node_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="Bridge2InterconnectType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="srcBridge2Interconnect_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="dstBridge2Interconnect_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="Node2InterconnectType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="srcNode2Interconnect_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="dstNode2Interconnect_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="SharesType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstShares_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcShares_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcAssemblyConfigProperty" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcConfigProperty" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcInfoProperty" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcMonolithExecParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcPackageConfConfigProperty" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcArtifactExecParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcArtifactInfoProperty" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcComponentConfigProperty" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcComponentInfoProperty" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcPackageConfigProperty" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcPackageInfoProperty" type="xsd:IDREFS"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -1920,6 +1844,76 @@
 				<xsd:element name="Domain" type="DomainType" minOccurs="0" maxOccurs="unbounded"/>
 			</xsd:sequence>
   <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="SharesType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="srcShares_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="dstShares_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="Node2InterconnectType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="dstNode2Interconnect_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcNode2Interconnect_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="Bridge2InterconnectType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="dstBridge2Interconnect_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcBridge2Interconnect_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="Interconnect2NodeType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="srcInterconnect2Node_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="dstInterconnect2Node_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="Interconnect2BridgeType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="srcInterconnect2Bridge_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="dstInterconnect2Bridge_end_" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -1955,7 +1949,7 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="InEventPortType">
+ <xsd:complexType name="OutEventPortType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
   <xsd:attribute name="exclusiveUser" type="xsd:boolean" default="false"/>
@@ -1963,11 +1957,34 @@
   <xsd:attribute name="exclusiveProvider" type="xsd:boolean" default="false"/>
   <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
   <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="srcUse_RTEC_Filter" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstEventSinkDelegate" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcEventSinkDelegate" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcemit" type="xsd:IDREF"/>
-  <xsd:attribute name="srcdeliverTo" type="xsd:IDREF"/>
+  <xsd:attribute name="out_event_port_type" type="xsd:string" default="Direct_Connect"/>
+  <xsd:attribute name="single_destination" type="xsd:boolean" default="false"/>
+  <xsd:attribute name="dstRTEC_Connection" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstpublish" type="xsd:IDREF"/>
+  <xsd:attribute name="dstemit" type="xsd:IDREF"/>
+  <xsd:attribute name="dstEventSourceDelegate" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcEventSourceDelegate" type="xsd:IDREFS"/>
+  <xsd:attribute name="ref" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="ProvidedRequestPortType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="exclusiveUser" type="xsd:boolean" default="false"/>
+  <xsd:attribute name="optional" type="xsd:boolean" default="false"/>
+  <xsd:attribute name="exclusiveProvider" type="xsd:boolean" default="false"/>
+  <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="srcinvoke" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstFacetDelegate" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcFacetDelegate" type="xsd:IDREFS"/>
   <xsd:attribute name="ref" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
@@ -1987,9 +2004,9 @@
   <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
   <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
   <xsd:attribute name="multiple_connections" type="xsd:boolean" default="false"/>
+  <xsd:attribute name="dstinvoke" type="xsd:IDREFS"/>
   <xsd:attribute name="dstReceptacleDelegate" type="xsd:IDREFS"/>
   <xsd:attribute name="srcReceptacleDelegate" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstinvoke" type="xsd:IDREFS"/>
   <xsd:attribute name="ref" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
@@ -2000,7 +2017,7 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="ProvidedRequestPortType">
+ <xsd:complexType name="InEventPortType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
   <xsd:attribute name="exclusiveUser" type="xsd:boolean" default="false"/>
@@ -2008,106 +2025,11 @@
   <xsd:attribute name="exclusiveProvider" type="xsd:boolean" default="false"/>
   <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
   <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="dstFacetDelegate" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcFacetDelegate" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcinvoke" type="xsd:IDREFS"/>
-  <xsd:attribute name="ref" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="OutEventPortType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="exclusiveUser" type="xsd:boolean" default="false"/>
-  <xsd:attribute name="optional" type="xsd:boolean" default="false"/>
-  <xsd:attribute name="exclusiveProvider" type="xsd:boolean" default="false"/>
-  <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="single_destination" type="xsd:boolean" default="false"/>
-  <xsd:attribute name="dstRTEC_Connection" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstEventSourceDelegate" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcEventSourceDelegate" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstemit" type="xsd:IDREF"/>
-  <xsd:attribute name="dstpublish" type="xsd:IDREF"/>
-  <xsd:attribute name="ref" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="ComponentType">
-			<xsd:sequence>
-				<xsd:element name="Attribute" type="AttributeType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="InEventPort" type="InEventPortType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="OutEventPort" type="OutEventPortType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="ProvidedRequestPort" type="ProvidedRequestPortType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="ReadonlyAttribute" type="ReadonlyAttributeType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="RequiredRequestPort" type="RequiredRequestPortType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="Supports" type="SupportsType" minOccurs="0" maxOccurs="unbounded"/>
-			</xsd:sequence>
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="UUID" type="xsd:string" use="required"/>
-  <xsd:attribute name="label" type="xsd:string" use="required"/>
-  <xsd:attribute name="dstExternalDelegate" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstAssemblyConfigProperty" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstAssemblyselectRequirement" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcManagesComponent" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyComponentRef" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="ManagesComponentType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstManagesComponent_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcManagesComponent_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="ComponentRefType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="CollocationGroup" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcImplements" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstComponentInfoProperty" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstComponentConfigProperty" type="xsd:IDREFS"/>
-  <xsd:attribute name="dstComponentProperty" type="xsd:IDREFS"/>
-  <xsd:attribute name="srcPackageInterface" type="xsd:IDREF"/>
-  <xsd:attribute name="srcManagesComponent" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcUse_RTEC_Filter" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcdeliverTo" type="xsd:IDREF"/>
+  <xsd:attribute name="srcemit" type="xsd:IDREF"/>
+  <xsd:attribute name="dstEventSinkDelegate" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcEventSinkDelegate" type="xsd:IDREFS"/>
   <xsd:attribute name="ref" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
@@ -2142,16 +2064,145 @@
   <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
   <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
   <xsd:attribute name="dstManagesComponent" type="xsd:IDREF" use="required"/>
-  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInherits" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInherits" type="xsd:IDREFS"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="ComponentRefType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="setCollocationGroup" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcImplements" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstComponentProperty" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstComponentConfigProperty" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstComponentInfoProperty" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcPackageInterface" type="xsd:IDREF"/>
+  <xsd:attribute name="srcManagesComponent" type="xsd:IDREFS"/>
+  <xsd:attribute name="ref" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="ManagesComponentType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="dstManagesComponent_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcManagesComponent_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="ComponentType">
+			<xsd:sequence>
+				<xsd:element name="Attribute" type="AttributeType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="InEventPort" type="InEventPortType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="OutEventPort" type="OutEventPortType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="ProvidedRequestPort" type="ProvidedRequestPortType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="ReadonlyAttribute" type="ReadonlyAttributeType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="RequiredRequestPort" type="RequiredRequestPortType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Supports" type="SupportsType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="UUID" type="xsd:string" use="required"/>
+  <xsd:attribute name="label" type="xsd:string" use="required"/>
+  <xsd:attribute name="dstAssemblyselectRequirement" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstAssemblyConfigProperty" type="xsd:IDREFS"/>
+  <xsd:attribute name="dstExternalDelegate" type="xsd:IDREFS"/>
+  <xsd:attribute name="srcManagesComponent" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyComponentRef" type="xsd:IDREFS"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="OnewayOperationType">
+			<xsd:sequence>
+				<xsd:element name="InParameter" type="InParameterType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="referedbyOperationRef" type="xsd:IDREFS"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="LookupOperationType">
+			<xsd:sequence>
+				<xsd:element name="ExceptionRef" type="ExceptionRefType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="InParameter" type="InParameterType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="referedbyOperationRef" type="xsd:IDREFS"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="FactoryOperationType">
+			<xsd:sequence>
+				<xsd:element name="ExceptionRef" type="ExceptionRefType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="InParameter" type="InParameterType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="referedbyOperationRef" type="xsd:IDREFS"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -2174,16 +2225,36 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="FactoryOperationType">
-			<xsd:sequence>
-				<xsd:element name="ExceptionRef" type="ExceptionRefType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="InParameter" type="InParameterType" minOccurs="0" maxOccurs="unbounded"/>
-			</xsd:sequence>
+ <xsd:complexType name="InoutParameterType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="referedbyOperationRef" type="xsd:IDREFS"/>
+  <xsd:attribute name="ref" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="OutParameterType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="ref" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="ReturnTypeType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="ref" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -2215,83 +2286,7 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="OnewayOperationType">
-			<xsd:sequence>
-				<xsd:element name="InParameter" type="InParameterType" minOccurs="0" maxOccurs="unbounded"/>
-			</xsd:sequence>
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="referedbyOperationRef" type="xsd:IDREFS"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="ReturnTypeType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="ref" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="OutParameterType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="ref" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="InoutParameterType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="ref" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="LookupOperationType">
-			<xsd:sequence>
-				<xsd:element name="ExceptionRef" type="ExceptionRefType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="InParameter" type="InParameterType" minOccurs="0" maxOccurs="unbounded"/>
-			</xsd:sequence>
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="referedbyOperationRef" type="xsd:IDREFS"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="ValueObjectType">
+ <xsd:complexType name="ObjectType">
 			<xsd:sequence>
 				<xsd:element name="Aggregate" type="AggregateType" minOccurs="0" maxOccurs="unbounded"/>
 				<xsd:element name="Alias" type="AliasType" minOccurs="0" maxOccurs="unbounded"/>
@@ -2300,14 +2295,9 @@
 				<xsd:element name="Constant" type="ConstantType" minOccurs="0" maxOccurs="unbounded"/>
 				<xsd:element name="Enum" type="EnumType" minOccurs="0" maxOccurs="unbounded"/>
 				<xsd:element name="Exception" type="ExceptionType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="FactoryOperation" type="FactoryOperationType" minOccurs="0" maxOccurs="unbounded"/>
 				<xsd:element name="Inherits" type="InheritsType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="MakeMemberPrivate" type="MakeMemberPrivateType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="Member" type="MemberType" minOccurs="0" maxOccurs="unbounded"/>
 				<xsd:element name="OnewayOperation" type="OnewayOperationType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="PrivateFlag" type="PrivateFlagType" minOccurs="0" maxOccurs="unbounded"/>
 				<xsd:element name="ReadonlyAttribute" type="ReadonlyAttributeType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="Supports" type="SupportsType" minOccurs="0" maxOccurs="unbounded"/>
 				<xsd:element name="SwitchedAggregate" type="SwitchedAggregateType" minOccurs="0" maxOccurs="unbounded"/>
 				<xsd:element name="TwowayOperation" type="TwowayOperationType" minOccurs="0" maxOccurs="unbounded"/>
 			</xsd:sequence>
@@ -2316,18 +2306,21 @@
   <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
   <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
   <xsd:attribute name="PrefixTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="local" type="xsd:boolean" default="false"/>
   <xsd:attribute name="abstract" type="xsd:boolean" default="false"/>
-  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyProvidedRequestPort" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyRequiredRequestPort" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInherits" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInherits" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyLookupKey" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbySupports" type="xsd:IDREFS"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -2337,123 +2330,7 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="AttributeType">
-			<xsd:sequence>
-				<xsd:element name="AttributeMember" type="AttributeMemberType"/>
-				<xsd:element name="GetException" type="GetExceptionType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="SetException" type="SetExceptionType" minOccurs="0" maxOccurs="unbounded"/>
-			</xsd:sequence>
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="AttributeMemberType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="ref" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="MakeMemberPrivateType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="dstMakeMemberPrivate_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="srcMakeMemberPrivate_end_" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="PrivateFlagType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="srcMakeMemberPrivate" type="xsd:IDREF" use="required"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="GetExceptionType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="ref" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="SetExceptionType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="ref" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="LookupKeyType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="ref" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="ReadonlyAttributeType">
-			<xsd:sequence>
-				<xsd:element name="AttributeMember" type="AttributeMemberType"/>
-				<xsd:element name="GetException" type="GetExceptionType" minOccurs="0" maxOccurs="unbounded"/>
-			</xsd:sequence>
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="SupportsType">
+ <xsd:complexType name="InheritsType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
   <xsd:attribute name="ref" type="xsd:IDREF"/>
@@ -2493,18 +2370,18 @@
   <xsd:attribute name="PrefixTag" type="xsd:string" use="required"/>
   <xsd:attribute name="abstract" type="xsd:boolean" default="false"/>
   <xsd:attribute name="referedbyEventRef" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInEventPort" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyOutEventPort" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInEventPort" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInherits" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInherits" type="xsd:IDREFS"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -2514,7 +2391,53 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="InheritsType">
+ <xsd:complexType name="ValueObjectType">
+			<xsd:sequence>
+				<xsd:element name="Aggregate" type="AggregateType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Alias" type="AliasType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Attribute" type="AttributeType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Collection" type="CollectionType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Constant" type="ConstantType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Enum" type="EnumType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Exception" type="ExceptionType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="FactoryOperation" type="FactoryOperationType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Inherits" type="InheritsType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="MakeMemberPrivate" type="MakeMemberPrivateType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Member" type="MemberType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="OnewayOperation" type="OnewayOperationType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="PrivateFlag" type="PrivateFlagType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="ReadonlyAttribute" type="ReadonlyAttributeType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Supports" type="SupportsType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="SwitchedAggregate" type="SwitchedAggregateType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="TwowayOperation" type="TwowayOperationType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="PrefixTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="abstract" type="xsd:boolean" default="false"/>
+  <xsd:attribute name="referedbyInherits" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyLookupKey" type="xsd:IDREFS"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="SupportsType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
   <xsd:attribute name="ref" type="xsd:IDREF"/>
@@ -2527,41 +2450,125 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="ObjectType">
+ <xsd:complexType name="ReadonlyAttributeType">
 			<xsd:sequence>
-				<xsd:element name="Aggregate" type="AggregateType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="Alias" type="AliasType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="Attribute" type="AttributeType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="Collection" type="CollectionType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="Constant" type="ConstantType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="Enum" type="EnumType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="Exception" type="ExceptionType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="Inherits" type="InheritsType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="OnewayOperation" type="OnewayOperationType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="ReadonlyAttribute" type="ReadonlyAttributeType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="SwitchedAggregate" type="SwitchedAggregateType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="TwowayOperation" type="TwowayOperationType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="AttributeMember" type="AttributeMemberType"/>
+				<xsd:element name="GetException" type="GetExceptionType" minOccurs="0" maxOccurs="unbounded"/>
 			</xsd:sequence>
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
   <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
   <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="PrefixTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="local" type="xsd:boolean" default="false"/>
-  <xsd:attribute name="abstract" type="xsd:boolean" default="false"/>
-  <xsd:attribute name="referedbyRequiredRequestPort" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyProvidedRequestPort" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInherits" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbySupports" type="xsd:IDREFS"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="AttributeType">
+			<xsd:sequence>
+				<xsd:element name="AttributeMember" type="AttributeMemberType"/>
+				<xsd:element name="GetException" type="GetExceptionType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="SetException" type="SetExceptionType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="LookupKeyType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="ref" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="SetExceptionType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="ref" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="GetExceptionType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="ref" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="PrivateFlagType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="srcMakeMemberPrivate" type="xsd:IDREF" use="required"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="MakeMemberPrivateType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="dstMakeMemberPrivate_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="srcMakeMemberPrivate_end_" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="AttributeMemberType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="ref" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="EnumValueType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -2579,10 +2586,10 @@
   <xsd:attribute name="name" type="xsd:string"/>
   <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
   <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
@@ -2608,10 +2615,10 @@
   <xsd:attribute name="name" type="xsd:string"/>
   <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
   <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
@@ -2626,82 +2633,10 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="CollectionType">
+ <xsd:complexType name="LabelType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="ref" type="xsd:IDREF"/>
-  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="AliasType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="ref" type="xsd:IDREF"/>
-  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="BoxedType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="ref" type="xsd:IDREF"/>
-  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="DiscriminatorType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="ref" type="xsd:IDREF"/>
+  <xsd:attribute name="srcLabelConnection" type="xsd:IDREF" use="required"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -2725,37 +2660,82 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="LabelType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="srcLabelConnection" type="xsd:IDREF" use="required"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="EnumValueType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="MemberType">
+ <xsd:complexType name="DiscriminatorType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
   <xsd:attribute name="ref" type="xsd:IDREF"/>
-  <xsd:attribute name="dstMakeMemberPrivate" type="xsd:IDREF"/>
-  <xsd:attribute name="dstLabelConnection" type="xsd:IDREFS"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="CollectionType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="ref" type="xsd:IDREF"/>
+  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="AliasType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="ref" type="xsd:IDREF"/>
+  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="BoxedType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="ref" type="xsd:IDREF"/>
+  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -2773,10 +2753,10 @@
   <xsd:attribute name="name" type="xsd:string"/>
   <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
   <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
@@ -2793,237 +2773,12 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="ByteType">
+ <xsd:complexType name="MemberType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="referedbyDataType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyDiscriminator" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyConstant" type="xsd:IDREFS"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="BooleanType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="referedbyDataType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyDiscriminator" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyConstant" type="xsd:IDREFS"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="ShortIntegerType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="referedbyDataType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyDiscriminator" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyConstant" type="xsd:IDREFS"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="LongIntegerType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="referedbyDataType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyDiscriminator" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyConstant" type="xsd:IDREFS"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="RealNumberType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="referedbyDataType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyDiscriminator" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyConstant" type="xsd:IDREFS"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="StringType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="referedbyDataType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyDiscriminator" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyConstant" type="xsd:IDREFS"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="GenericValueObjectType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="referedbyDataType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyDiscriminator" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyConstant" type="xsd:IDREFS"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="GenericValueType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="referedbyDataType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyDiscriminator" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyConstant" type="xsd:IDREFS"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="TypeEncodingType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="referedbyDataType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyDiscriminator" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyConstant" type="xsd:IDREFS"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="TypeKindType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="referedbyDataType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyDiscriminator" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyConstant" type="xsd:IDREFS"/>
+  <xsd:attribute name="ref" type="xsd:IDREF"/>
+  <xsd:attribute name="dstMakeMemberPrivate" type="xsd:IDREF"/>
+  <xsd:attribute name="dstLabelConnection" type="xsd:IDREFS"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -3057,16 +2812,14 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="GenericObjectType">
+ <xsd:complexType name="ByteType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
   <xsd:attribute name="referedbyDataType" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyRequiredRequestPort" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyProvidedRequestPort" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
   <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
@@ -3083,60 +2836,272 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="ConstantType">
+ <xsd:complexType name="BooleanType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="referedbyDataType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyDiscriminator" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyConstant" type="xsd:IDREFS"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="ShortIntegerType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="referedbyDataType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyDiscriminator" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyConstant" type="xsd:IDREFS"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="LongIntegerType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="referedbyDataType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyDiscriminator" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyConstant" type="xsd:IDREFS"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="RealNumberType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="referedbyDataType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyDiscriminator" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyConstant" type="xsd:IDREFS"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="StringType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="referedbyDataType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyDiscriminator" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyConstant" type="xsd:IDREFS"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="GenericObjectType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="referedbyDataType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyProvidedRequestPort" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyRequiredRequestPort" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyDiscriminator" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyConstant" type="xsd:IDREFS"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="GenericValueObjectType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="referedbyDataType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyDiscriminator" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyConstant" type="xsd:IDREFS"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="GenericValueType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="referedbyDataType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyDiscriminator" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyConstant" type="xsd:IDREFS"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="TypeEncodingType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="referedbyDataType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyDiscriminator" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyConstant" type="xsd:IDREFS"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="TypeKindType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="referedbyDataType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInoutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyInParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyOutParameter" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyReturnType" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAttributeMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyCollection" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyAlias" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyBoxed" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyMember" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyDiscriminator" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyConstant" type="xsd:IDREFS"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="PackageType">
+			<xsd:sequence>
+				<xsd:element name="Aggregate" type="AggregateType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Alias" type="AliasType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Boxed" type="BoxedType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Collection" type="CollectionType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Component" type="ComponentType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="ComponentFactory" type="ComponentFactoryType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="ComponentRef" type="ComponentRefType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Constant" type="ConstantType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Enum" type="EnumType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Event" type="EventType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Exception" type="ExceptionType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="ManagesComponent" type="ManagesComponentType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Object" type="ObjectType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Package" type="PackageType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="SwitchedAggregate" type="SwitchedAggregateType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="ValueObject" type="ValueObjectType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
   <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
   <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="value" type="xsd:string" use="required"/>
-  <xsd:attribute name="ref" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="InterfaceDefinitionsType">
-			<xsd:sequence>
-				<xsd:element name="File" type="FileType" maxOccurs="unbounded"/>
-			</xsd:sequence>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="ExceptionRefType">
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="ref" type="xsd:IDREF"/>
-  <xsd:attribute name="_id" type="xsd:ID"/>
-  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
-  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
-  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
-  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
-  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-  <xsd:attribute name="_subtype" type="xsd:boolean"/>
- </xsd:complexType>
-
- <xsd:complexType name="ExceptionType">
-			<xsd:sequence>
-				<xsd:element name="Member" type="MemberType" minOccurs="0" maxOccurs="unbounded"/>
-			</xsd:sequence>
-  <xsd:attribute name="position" type="xsd:string"/>
-  <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="referedbyGetException" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbySetException" type="xsd:IDREFS"/>
-  <xsd:attribute name="referedbyExceptionRef" type="xsd:IDREFS"/>
+  <xsd:attribute name="PrefixTag" type="xsd:string" use="required"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -3179,30 +3144,60 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="PackageType">
+ <xsd:complexType name="ExceptionType">
 			<xsd:sequence>
-				<xsd:element name="Aggregate" type="AggregateType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="Alias" type="AliasType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="Boxed" type="BoxedType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="Collection" type="CollectionType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="Component" type="ComponentType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="ComponentFactory" type="ComponentFactoryType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="ComponentRef" type="ComponentRefType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="Constant" type="ConstantType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="Enum" type="EnumType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="Event" type="EventType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="Exception" type="ExceptionType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="ManagesComponent" type="ManagesComponentType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="Object" type="ObjectType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="Package" type="PackageType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="SwitchedAggregate" type="SwitchedAggregateType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="ValueObject" type="ValueObjectType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Member" type="MemberType" minOccurs="0" maxOccurs="unbounded"/>
 			</xsd:sequence>
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
   <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
   <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
-  <xsd:attribute name="PrefixTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="referedbySetException" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyGetException" type="xsd:IDREFS"/>
+  <xsd:attribute name="referedbyExceptionRef" type="xsd:IDREFS"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="ExceptionRefType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="ref" type="xsd:IDREF"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="InterfaceDefinitionsType">
+			<xsd:sequence>
+				<xsd:element name="File" type="FileType" maxOccurs="unbounded"/>
+			</xsd:sequence>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="_id" type="xsd:ID"/>
+  <xsd:attribute name="_archetype" type="xsd:IDREF"/>
+  <xsd:attribute name="_derived" type="xsd:IDREFS"/>
+  <xsd:attribute name="_instances" type="xsd:IDREFS"/>
+  <xsd:attribute name="_desynched_atts" type="xsd:string"/>
+  <xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+  <xsd:attribute name="_subtype" type="xsd:boolean"/>
+ </xsd:complexType>
+
+ <xsd:complexType name="ConstantType">
+  <xsd:attribute name="position" type="xsd:string"/>
+  <xsd:attribute name="name" type="xsd:string"/>
+  <xsd:attribute name="SpecifyIdTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="VersionTag" type="xsd:string" use="required"/>
+  <xsd:attribute name="value" type="xsd:string" use="required"/>
+  <xsd:attribute name="ref" type="xsd:IDREF"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -3250,7 +3245,7 @@
 			</xsd:sequence>
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
-  <xsd:attribute name="Workspace" type="xsd:IDREFS"/>
+  <xsd:attribute name="setWorkspace" type="xsd:IDREFS"/>
   <xsd:attribute name="_id" type="xsd:ID"/>
   <xsd:attribute name="_archetype" type="xsd:IDREF"/>
   <xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -3291,7 +3286,7 @@
  <xsd:complexType name="MPCType">
 			<xsd:sequence>
 				<xsd:element name="Project" type="ProjectType" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element name="Workspace" type="WorkspaceType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Workspaces" type="WorkspacesType" minOccurs="0" maxOccurs="unbounded"/>
 			</xsd:sequence>
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
@@ -3362,7 +3357,7 @@
   <xsd:attribute name="_subtype" type="xsd:boolean"/>
  </xsd:complexType>
 
- <xsd:complexType name="WorkspaceType">
+ <xsd:complexType name="WorkspacesType">
   <xsd:attribute name="position" type="xsd:string"/>
   <xsd:attribute name="name" type="xsd:string"/>
   <xsd:attribute name="members" type="xsd:IDREFS"/>
