@@ -1,6 +1,4 @@
 //UuidString.cpp
-#include "stdafx.h"
-#include "rpcdce.h"
 #include "UuidString.h"
 
 namespace PICML

@@ -1,5 +1,6 @@
 #include <afxdlgs.h> // For CFileDialog
 #include "PackageVisitor.h"
+#include "UuidString.h"
 
 using xercesc::LocalFileFormatTarget;
 using xercesc::DOMImplementationRegistry;
@@ -87,15 +88,6 @@ namespace PICML
   void PackageVisitor::Visit_LongInteger(const LongInteger&)
   {}
 
-  void PackageVisitor::Visit_String(const String& str)
-  {
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
-    this->curr_->appendChild (type);
-    this->curr_ = type;
-    this->curr_->appendChild (this->createSimpleContent ("kind",
-                                                         "tk_string"));
-  }
-
   void PackageVisitor::Visit_Boolean(const Boolean&)
   {}
 
@@ -106,22 +98,28 @@ namespace PICML
 
   void PackageVisitor::Visit_ImplementationArtifacts(const ImplementationArtifacts& ia)
   {
-    const std::set<ArtifactContainer>
+    std::set<ArtifactContainer>
       afs = ia.ArtifactContainer_kind_children();
-    for (std::set<ArtifactContainer>::const_iterator iter = afs.begin();
+    for (std::set<ArtifactContainer>::iterator iter = afs.begin();
          iter != afs.end();
          ++iter)
-      (*iter).Accept (*this);
+      {
+        ArtifactContainer ac = *iter;
+        ac.Accept (*this);
+      }
   }
 
   void PackageVisitor::Visit_ArtifactContainer(const ArtifactContainer& ac)
   {
     const std::set<ImplementationArtifact>
-      ias = ac.ArtifactContainer_kind_children();
+      ias = ac.ImplementationArtifact_kind_children();
     for (std::set<ImplementationArtifact>::const_iterator iter = ias.begin();
          iter != ias.end();
          ++iter)
-      (*iter).Accept (*this);
+      {
+        ImplementationArtifact ia = *iter;
+        ia.Accept (*this);
+      }
   }
 
   void PackageVisitor::Visit_ImplementationArtifact(const ImplementationArtifact& ia)
@@ -142,18 +140,24 @@ namespace PICML
     for (std::set<ArtifactDependsOn>::const_iterator iter = dps.begin();
          iter != dps.end();
          ++iter)
-      (*iter).Accept (*this);
+      {
+        ArtifactDependsOn ad = *iter;
+        ad.Accept (*this);
+      }
 
     const std::set<ArtifactExecParameter> exec = ia.dstArtifactExecParameter();
-    for (std::set<ArtifactExecParameter>::const_iterator iter = exec.begin();
-         iter != exec.end();
-         ++iter)
-      (*iter).Accept (*this);
+    for (std::set<ArtifactExecParameter>::const_iterator it = exec.begin();
+         it != exec.end();
+         ++it)
+      {
+        ArtifactExecParameter aep = *it;
+        aep.Accept (*this);
+      }
   }
 
   void PackageVisitor::Visit_ArtifactDependsOn(const ArtifactDependsOn& ado)
   {
-    const ImplementationArtifactReference ref = ado.dstArtifactDependsOn_end();
+    ImplementationArtifactReference ref = ado.dstArtifactDependsOn_end();
     ref.Accept (*this);
   }
 
@@ -162,7 +166,8 @@ namespace PICML
     DOMElement* ele = this->doc_->createElement (XStr ("dependsOn"));
     ele->appendChild (this->createSimpleContent ("name", iar.name()));
     const ImplementationArtifact ref = iar.ref();
-    std::string refName = ref.name() + ".iad";
+    std::string refName (ref.name());
+	refName += ".iad";
     DOMElement*
       refEle = this->doc_->createElement (XStr ("referencedArtifact"));
     refEle->setAttribute (XStr ("href"), XStr (refName));
@@ -172,7 +177,7 @@ namespace PICML
 
   void PackageVisitor::Visit_ArtifactExecParameter(const ArtifactExecParameter& param)
   {
-    const Property ref = param.dstArtifactExecParameter_end();
+    Property ref = param.dstArtifactExecParameter_end();
     ref.Accept (*this);
   }
 
@@ -189,21 +194,30 @@ namespace PICML
     this->curr_->appendChild (this->createSimpleContent ("name",
                                                          property.name()));
     DOMElement* value = this->doc_->createElement (XStr ("value"));
-    this->curr->appendChild (value);
+    this->curr_->appendChild (value);
     this->curr_ = value;
-    const DataType type = property.DataType_child();
+    DataType type = property.DataType_child();
     type.Accept (*this);
     ele->appendChild (value);
   }
 
   void PackageVisitor::Visit_DataType(const DataType& type)
   {
-    const PredefinedType ref = type.ref();
+    PredefinedType ref = type.ref();
     if (ref.type().name() == "String")
       {
         String str = PICML::String::Cast (ref);
         str.Accept (*this);
       }
+  }
+
+  void PackageVisitor::Visit_String(const String& str)
+  {
+    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    this->curr_->appendChild (type);
+    this->curr_ = type;
+    this->curr_->appendChild (this->createSimpleContent ("kind",
+                                                         "tk_string"));
   }
 
   void PackageVisitor::Visit_ArtifactDeployRequirement(const ArtifactDeployRequirement&)

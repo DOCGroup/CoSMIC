@@ -29,7 +29,7 @@ namespace PICML
 
     void init();
     void initTarget (const std::string& fileName);
-    void initDocument (const std::string& rootName)
+    void initDocument (const std::string& rootName);
     void initRootAttributes();
     void dumpDocument();
 
@@ -195,7 +195,7 @@ namespace PICML
     DOMElement*         root_;
     DOMElement*         curr_;
     DOMWriter*          serializer_;
-    auto_ptr<XMLFormatTarget>    target_;
+    auto_ptr<LocalFileFormatTarget>    target_;
     std::string         outputPath_;
   };
 }

@@ -23,6 +23,7 @@
 #include <afxdlgs.h> // For CFileDialog
 #include "resource.h"
 #include <stdlib.h>
+#include <sstream>
 
 // Xerces includes
 #include <xercesc/util/PlatformUtils.hpp>
@@ -45,9 +46,11 @@
 
 using xercesc::XMLPlatformUtils;
 using xercesc::XMLException;
+using xercesc::DOMException;
+using xercesc::XMLString;
 using PICML::XStr;
 
-#define SetUpVisitor (type, root, visitor)                              \
+#define SetUpVisitor(type, root, visitor)                              \
     do                                                                  \
       {                                                                 \
         PICML:: ## type start = PICML:: ## type ## ::Cast (root);       \
@@ -193,8 +196,8 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
                 SetUpVisitor (TopLevelPackageContainer, root, visitor);
               else if (kindName == "ImplementationArtifacts")
                 SetUpVisitor (ImplementationArtifacts, root, visitor);
-              else if (kindName == "ImplementationArtifactContainer")
-                SetUpVisitor (ImplementationArtifactContainer, root, visitor);
+              else if (kindName == "ArtifactContainer")
+                SetUpVisitor (ArtifactContainer, root, visitor);
               else if (kindName == "ComponentTypes")
                 SetUpVisitor (ComponentTypes, root, visitor);
               else if (kindName == "ComponentContainer")
@@ -229,7 +232,7 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
       const unsigned int maxChars = 2047;
       XMLCh errText[maxChars + 1];
 
-      std::strstream estream;
+      std::stringstream estream;
       estream << "DOMException code: " << e.code << std::endl;
       if (DOMImplementation::loadDOMExceptionMsg(e.code, errText, maxChars))
         {
