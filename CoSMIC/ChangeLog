@@ -1,3 +1,10 @@
+Fri Dec 03 15:56:11 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * build.pl: 
+
+          Added perl script to compile all the projects for Release build
+          with VC6 by invoking msvc_mpc_auto_compile script.
+
 Fri Dec 03 13:20:23 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/plan/DeploymentPlan.dsp (SOURCE): 
