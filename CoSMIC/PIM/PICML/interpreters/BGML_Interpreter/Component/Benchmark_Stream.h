@@ -1,0 +1,148 @@
+#ifndef BENCHMARK_STREAM_H
+#define BENCHMARK_STREAM_H
+
+#include <ostream>
+#include <string>
+#include <vector>
+
+// A dummy structure to inform TAO_OutStream's << operator to  put a newline
+// and use the current indentation for the succeeding line
+struct NL
+{
+  NL (void);
+};
+
+struct INDENT
+{
+  //   Increase the indentation level, if the "do_now" parameter is
+  //   not zero then the <indent> method is called on the stream.
+  //
+  INDENT (int do_now = 0);
+
+  const int do_now_;
+};
+
+struct UNINDENT
+{
+  //   Decrease the indentation level, if the "do_now" parameter is
+  //   not zero then the <indent> method is called on the stream.
+  //
+  UNINDENT (int do_now = 0);
+
+  const int do_now_;
+};
+
+extern const NL nl;
+extern const INDENT idt;
+extern const INDENT idt_nl;
+extern const UNINDENT uidt;
+extern const UNINDENT uidt_nl;
+
+// --- Constants for Warmup and Benchmarking
+const int BGML_DEFAULT_WARMUP_ITER = 100;
+const int BGML_DEFAULT_BENCH_ITER  = 5000;
+
+class BenchmarkStream
+{
+public:
+  BenchmarkStream (std::string& component_name, 
+				   std::string& operation_name, 
+				   std::vector<std::string>& arg_list,
+				   std::ostream& strm,
+				   std::vector<__int64>& task_priorities_);
+  // constructor.
+
+  virtual ~BenchmarkStream (void);
+  // destructor.
+
+  void incr_indent (unsigned short flag = 1);
+  // increment the indentation level and by default actually indent the output
+  // accordingly
+
+  void decr_indent (unsigned short flag = 1);
+  // decrease the indentation level and by default actually indent the output
+  // accordingly
+
+  inline void reset (void);
+  // reset indentation level to 0
+
+  void indent (void);
+  // indent starting next line
+
+  void nl (void);
+  // put a newline and indent on the next line
+
+  BenchmarkStream &operator<< (const std::string &);
+  BenchmarkStream &operator<< (const char *);
+  BenchmarkStream &operator<< (const long &);
+  BenchmarkStream &operator<< (const unsigned long &);
+  BenchmarkStream &operator<< (const double &);
+  BenchmarkStream &operator<< (const char &);
+
+  // = MANIPULATORS
+  BenchmarkStream &operator<< (const NL &);
+  BenchmarkStream &operator<< (const INDENT &);
+  BenchmarkStream &operator<< (const UNINDENT &);
+
+  void gen_ifdef_macro (const std::string &);
+  void gen_ifdef_macro (const char *);
+  void gen_ifdefc_macro (const char *name);
+  void gen_ifdefc_macro (const std::string& name);
+  void gen_endif (const std::string &);
+  void gen_endif (const char *);
+  void gen_endifc (const std::string &);
+  void gen_endifc (const char *);
+  
+  // generate a #if !defined, #defined macro
+
+  void generate_task_header (std::string& class_name);
+  // Generate the header file for the Task
+
+  void gen_include_file (std::string& file_name);
+  // Generate the "#include" definitions
+
+  void gen_constructor_decl (std::string& name);
+  void gen_destructor_decl  (std::string& name);
+  void gen_constructor_defn (std::string& name);
+  void gen_destructor_defn (std::string& name);
+  // Generate the Constructor/Destructor for the Task classes
+
+  void gen_private_mem_decl ();
+  // Generate the private members of the Task_Base class
+
+  void generate_task_def (__int64 warmup, 
+						  __int64 iterations, 
+						  std::string& file_name, 
+						  std::string& metrics);
+  // Generate the .cpp file required by the task
+
+  void gen_template_function_def (const std::string& name,
+								  const std::string& class_name,
+								  const std::string& return_type,
+								  const std::vector<std::string>& param_list);
+
+  void gen_warmup_iterations (__int64 iterations);
+  // Generate the warmup iterations
+
+  void gen_bench_def (__int64 iterations);
+  // Generate the benchmarking definition
+
+  void gen_background_load (std::string& class_name);
+  // Generate Background load
+
+  void generate_workload_def (__int64 interations);
+  // Generates the workload definition
+
+private:
+  std::string& component_name_;
+  std::string& operation_name_; 
+  std::vector<std::string>& arg_list_;
+  std::ostream& strm_;
+  std::vector<__int64> task_priorities_;
+  int indent_level_;
+  
+private:
+  void upcase (const char *);
+};
+
+#endif // BenchmarkStream_H
