@@ -46,7 +46,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /machine:IX86
-# ADD LINK32 shell32.lib Comdlg32.lib Advapi32.lib ole32.lib user32.lib gdi32.lib comctl32.lib wsock32.lib rpcrt4.lib xerces-c_2.lib wxmsw.lib /nologo /version:1.0 /subsystem:windows /dll /pdb:"$(COSMIC_ROOT)\bin\OCMLConfigurator.pdb" /machine:I386 /out:"..\..\..\..\..\bin\OCMLConfigurator.dll" /libpath:"$(XERCESCROOT)\lib" /libpath:"$(WXWINDOWS_ROOT)\lib"
+# ADD LINK32 xerces-c_2_5.lib shell32.lib Comdlg32.lib Advapi32.lib ole32.lib user32.lib gdi32.lib comctl32.lib wsock32.lib rpcrt4.lib wxmsw.lib /nologo /version:1.0 /subsystem:windows /dll /pdb:"$(COSMIC_ROOT)\bin\OCMLConfigurator.pdb" /machine:I386 /out:"..\..\..\..\..\bin\OCMLConfigurator.dll" /libpath:"$(XERCESCROOT)\lib" /libpath:"$(WXWINDOWS_ROOT)\lib"
 # SUBTRACT LINK32 /pdb:none
 
 !ELSEIF  "$(CFG)" == "OCMLConfigurator - Win32 Debug"
@@ -66,7 +66,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /machine:IX86
-# ADD LINK32 shell32.lib Comdlg32.lib Advapi32.lib ole32.lib user32.lib gdi32.lib comctl32.lib wsock32.lib rpcrt4.lib xerces-c_2d.lib wxmswd.lib /nologo /version:1.0 /subsystem:windows /dll /incremental:no /pdb:"$(COSMIC_ROOT)\bin\OCMLConfiguratord.pdb" /debug /machine:I386 /out:"..\..\..\..\..\bin\OCMLConfiguratord.dll" /libpath:"$(XERCESCROOT)\lib" /libpath:"$(WXWINDOWS_ROOT)\lib"
+# ADD LINK32 xerces-c_2_5D.lib shell32.lib Comdlg32.lib Advapi32.lib ole32.lib user32.lib gdi32.lib comctl32.lib wsock32.lib rpcrt4.lib wxmswd.lib /nologo /version:1.0 /subsystem:windows /dll /incremental:no /pdb:"$(COSMIC_ROOT)\bin\OCMLConfiguratord.pdb" /debug /machine:I386 /out:"..\..\..\..\..\bin\OCMLConfiguratord.dll" /libpath:"$(XERCESCROOT)\lib" /libpath:"$(WXWINDOWS_ROOT)\lib"
 # SUBTRACT LINK32 /pdb:none
 
 !ENDIF 

@@ -52,7 +52,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 xerces-c_2D.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\..\..\..\..\bin\OCML.dll" /pdbtype:sept /libpath:"$(XERCESCROOT)\lib"
+# ADD LINK32 xerces-c_2_5D.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\..\..\..\..\bin\OCML.dll" /pdbtype:sept /libpath:"$(XERCESCROOT)\lib"
 # Begin Custom Build - Performing registration
 OutDir=.\..\..\..\..\..\lib
 TargetPath=\CoSMIC\bin\OCML.dll
@@ -88,7 +88,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 xerces-c_2.lib /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\..\..\..\bin\OCML.dll" /libpath:"$(XERCESCROOT)\lib"
+# ADD LINK32 xerces-c_2_5.lib /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\..\..\..\bin\OCML.dll" /libpath:"$(XERCESCROOT)\lib"
 # SUBTRACT LINK32 /debug
 # Begin Custom Build - Performing registration
 OutDir=.\..\..\..\..\..\lib
