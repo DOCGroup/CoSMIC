@@ -1,0 +1,7 @@
+workspace (*Interpreters) {
+   cmdline += -feature_file default.features -base release_libs \
+              -name_modifier *_Release -value_template configurations=Release
+   PICML
+   Package
+   PackageComponent
+}

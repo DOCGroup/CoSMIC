@@ -1,0 +1,66 @@
+project (PackageComponent): mfc, picmllib {
+  after += PICML Package
+
+  Define_Custom(MIDL) {
+    automatic            = 0
+    command              = midl
+    commandflags         = -I. -server none -client none
+    source_pre_extension = _i,_p
+    source_outputext     = .c
+    header_outputext     = .h
+    resource_outputext   = .tlb
+    inputext             = .idl
+  }
+
+  MIDL_Files {
+    gendir = .
+    $(GME_ROOT)/SDK/BON/ComponentLib.idl
+  }
+
+  sharedname = PackageComponent
+  includes += $(PICML_ROOT)/interpreters/PICML \
+              $(PICML_ROOT)/interpreters/Package
+  libs += PICML Package
+
+  Source_Files {
+    $(GME_ROOT)/SDK/BON/ComHelp.cpp
+    $(GME_ROOT)/SDK/BON/ComponentDll.cpp
+    $(GME_ROOT)/SDK/BON/ComponentObj.cpp
+    ComponentLib_p.c
+    ComponentLib_i.c
+    RawComponent.cpp
+    StdAfx.cpp
+    UdmApp.cpp
+    dlldata.c
+  }
+
+  Header_Files {
+    ComponentLib.h
+    $(GME_ROOT)/SDK/BON/ComHelp.h
+    ComponentConfig.h
+    $(GME_ROOT)/SDK/BON/ComponentDll.h
+    $(GME_ROOT)/SDK/BON/ComponentObj.h
+    $(GME_ROOT)/SDK/BON/GMECOM.h
+    RawComponent.h
+    StdAfx.h
+    UdmApp.h
+    UdmConfig.h
+  }
+
+  Resource_Files {
+    PackageComponent.rc
+    CompIcon.ico
+  }
+
+  Define_Custom(Register) {
+    automatic           = 0
+    command             = regsvr32
+    commandflags        = -s -c
+    inputext            = .dll
+    generic_outputext   = .trg
+  }
+
+  Register_Files {
+     $(PICML_ROOT)\bin\PackageComponent.dll
+  }
+}

@@ -1,3 +1,84 @@
+Sun May 23 01:11:38 2004  Krishnakumar B  <unknown@isis.vanderbilt.edu>
+
+        * IDML/paradigms/IDML-Meta.xme: Modified the OperationTypes to
+          refer to the MemberType directly as it causes problems with
+          MetaGME2UML. I have also filed a bug report with GME folks;
+          will do so if I think it will be a problem with
+          UDM/MetaGME2UML.
+
+        * IDML/paradigms/IDML.xmp:
+        * IDML/paradigms/IDMLTemplate.xme:
+        * IDML/paradigms/PredefinedTypes.xme:
+        * IDML/examples/new_test.xme:
+
+          Updated to reflect the above change.
+
+        * PICML/bin/.empty: New directory to store the different DLLs and
+          the binaries for PICML.
+
+        * PICML/interpreters/PICML/PICML.mpc:
+
+          New MPC file to generate workspace for PICML as a library.
+
+        * PICML/interpreters/PICML/PICML_Export.h: Export file for PICML
+          library.
+
+        * PICML/interpreters/PICML_Debug.mwc:
+        * PICML/interpreters/PICML_Release.mwc:
+
+          MWC files for PICML. Two versions are necessary because
+          some of the libraries needed by PICML e.g., UDM, use _D as library
+          decorator, while some like xerces use D as library decorator.
+          Thanks to Chad Elliot <elliot_c @ ociweb . com > for suggesting
+          this.
+
+        * PICML/interpreters/Package/Package.mpc: New MPC file for
+          implementation of the visitor logic.
+
+        * PICML/interpreters/Package/Package_Export.h: Export file for the
+          visitor classes to be compiled as a DLL.
+
+        * PICML/interpreters/PackageComponent/PackageComponent.mpc: New
+          MPC file for the interpreter to generate Package related
+          descriptors.
+
+        * PICML/interpreters/debug_libs.mpb:
+        * PICML/interpreters/default.features:
+        * PICML/interpreters/picmllib.mpb:
+        * PICML/interpreters/release_libs.mpb:
+
+          Default MPC settings for projects using UDM and PICML.
+
+        * PICML/lib/.empty: New directory to store all the libraries and
+          the import files.
+
+        * PICML/paradigms/IDML-uml.xme:
+        * PICML/paradigms/PICML-uml.xme:
+
+          XML exports of IDML & PICML generated using MetaGME2UML.
+
+
+        * PICML/paradigms/PICML.xme: New version of PICML XML export
+          file.
+
+        * PICML/paradigms/PICML.xmp: New version of the PICML paradigm.
+
+        * PICML/paradigms/PICML.xml: XML output from UML2XML interpreter.
+
+        * PICML/paradigms/PredefinedTypes.xme: XML export containing definitions
+          of IDML predefined types. This file is attached as a library by
+          PICMLTemplate.
+
+        * PICML/paradigms/PICMLTemplate.xme: New XML export file that
+          should be imported by every PICML model. This file serves as a
+          template and includes PredefinedTypes as a library. This file
+          should be saved under a new name by users.
+
+        * PICML/examples/BasicSP.mga:
+        * PICML/paradigms/PICML.mga:
+
+          Removed these files.
+
 Sat May 22 20:33:28 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * IDML/examples/new_test.xme:
@@ -5,7 +86,7 @@ Sat May 22 20:33:28 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
         * IDML/paradigms/IDML.xmp:
         * IDML/paradigms/IDMLTemplate.xme:
         * IDML/paradigms/PredefinedTypes.xme:
-        
+
           Fixed a couple of minor problems with the paradigm, and regenerated
           XML for it and everything that uses it.
 
@@ -14,25 +95,25 @@ Fri May 21 18:37:50 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
         * IDML/examples/new_test.xme:
         * IDML/paradigms/IDML-Meta.xme:
         * IDML/paradigms/IDML.xmp:
-        
+
           Major overhaul of paradigm, to make fewer steps and more
           simplicity for the user.
-        
+
         * IDML/paradigms/PredefinedTypes.xme:
-        
-          New file, a model containing a folder with all the 
+
+          New file, a model containing a folder with all the
           basic types.
-          
+
         * IDML/paradigms/IDMLTemplate.xme:
-        
+
           New file.
           Users can start from this file instead of creating a new
           project, and they will get an attached read-only library
           with the basic types from the model above.
-         
+
         * IDML/paradigms/Icons/member.bmp:
-        
-          New file, need because after the overhaul of the 
+
+          New file, need because after the overhaul of the
           paradigm, Member is no longer abstract.
 
 Thu May 20 11:53:28 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
@@ -45,28 +126,28 @@ Thu May 20 11:53:28 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
           Moved all the IDML files to their own directory. Also
           made minor changes to constraints and turned off name
           display on a couple of icons.
-          
+
         * IDML/examples/new_test.xme:
-        
+
           Example model.
-          
+
         * IDML/paradigms/Icons/file.bmp:
         * IDML/paradigms/Icons/prefix.bmp:
         * IDML/paradigms/Icons/id.bmp:
         * IDML/paradigms/Icons/version.bmp:
-        
+
           Removed these icons - no longer used.
-          
+
         * IDML/paradigms/Icons/getexception.bmp:
         * IDML/paradigms/Icons/setexception.bmp:
-        
+
           Swapped these, they had been saved to the wrong file.
 
 Sun May 16 23:14:49 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PICML/paradifms/IDML-Meta.xme:
         * PICML/paradigms/IDML.xmp:
-        
+
           Turned off the name display of some metamodel elememts, so that
           the name is hidden when dragged into the model editor. This
           change is to make things less confusing for the user, since now
@@ -83,16 +164,16 @@ Wed May 13 017:32:44 2004  Jeff Parsons  <j.parsons@vanderbilt.edu>
 
         * PICML/paradifms/IDML-Meta.xme:
         * PICML/paradigms/IDML.xmp:
-        
+
           Made some minor changes to better integrate with PICML.
-          
+
         * PICML/paradigms/icons/file.bmp:
-        
+
           New icon, created because the model element File is no longer
           in the root folder.
-          
+
         * PICML/paradigms/icons/fileref.cmp:
-        
+
           Modified icon to be similar to the new icon described above.
 
 Wed May  5 02:44:11 2004  Krishnakumar B  <kitty@nospam.invalid.domain>

@@ -1,0 +1,27 @@
+project (PICML) : mfc, picmllib {
+   Define_Custom(UDM) {
+      automatic         = 0
+      command           = "$(UDM_PATH)"/bin/Udm
+      commandflags      = -l PICML_Export
+      inputext          = .xml
+      source_outputext  = .cpp
+      header_outputext  = .h
+   }
+
+   UDM_Files {
+      gendir = .
+      $(PICML_ROOT)/paradigms/PICML.xml
+   }
+
+
+   sharedname = PICML
+   macros += PICML_BUILD_DLL
+   Source_Files {
+     PICML.cpp
+   }
+
+   Header_Files {
+     PICML.h
+     PICML_Export.h
+   }
+}

@@ -1,0 +1,4 @@
+// release_libs.mpb
+project {
+  lit_libs += xerces-c_2 zlib UdmBase UdmDom UdmUtil UdmGme
+}

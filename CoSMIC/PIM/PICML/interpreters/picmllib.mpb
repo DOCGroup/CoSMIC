@@ -1,0 +1,12 @@
+// MPC file to generate library
+project {
+   libout = $(PICML_ROOT)/lib
+   dllout = $(PICML_ROOT)/bin
+   includes += $(GME_ROOT)/SDK/BON \
+               $(UDM_PATH)/include \
+               $(UDM_PATH)/3rdParty/stl
+   macros += GME_INTERPRETER_USED UML_CLASS_DIAGRAM UDM_DLL_EXPORT
+   libpaths += $(UDM_PATH)/lib \
+               $(UDM_PATH)/3rdParty/zlib \
+               $(UDM_PATH)/3rdParty/xerces/xerces-c2_2_0-win32/lib
+}

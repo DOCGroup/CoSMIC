@@ -51,13 +51,10 @@ supported_set->iterate (ref; accu = Set{} |
   accu + supported.inheritsRecursive (supported))]]>
       </constraint>
       <attrdef name="PrefixTag" metaref = "2748" valuetype = "string" defvalue = "">
-         <dispname></dispname>
       </attrdef>
       <attrdef name="SpecifyIdTag" metaref = "2749" valuetype = "string" defvalue = "">
-         <dispname></dispname>
       </attrdef>
       <attrdef name="VersionTag" metaref = "2750" valuetype = "string" defvalue = "">
-         <dispname></dispname>
       </attrdef>
       <atom name = "Boolean" metaref = "2914" >
             <regnode name = "namePosition" value ="4"></regnode>
@@ -160,6 +157,8 @@ supported_set->iterate (ref; accu = Set{} |
          </constraint>
       </atom>
       <connection name = "LabelConnection" metaref = "1796" >
+            <regnode name = "sName" value ="srcLabelConnection"></regnode>
+            <regnode name = "dName" value ="dstLabelConnection"></regnode>
             <regnode name = "color" value ="0x0000FF"></regnode>
             <regnode name = "dstStyle" value ="butt"></regnode>
             <regnode name = "srcStyle" value ="butt"></regnode>
@@ -174,6 +173,8 @@ supported_set->iterate (ref; accu = Set{} |
          </connjoint>
       </connection>
       <connection name = "MakeMemberPrivate" metaref = "2303" >
+            <regnode name = "sName" value ="srcMakeMemberPrivate"></regnode>
+            <regnode name = "dName" value ="dstMakeMemberPrivate"></regnode>
             <regnode name = "color" value ="0xFF0000"></regnode>
             <regnode name = "dstStyle" value ="butt"></regnode>
             <regnode name = "srcStyle" value ="butt"></regnode>
@@ -188,6 +189,8 @@ supported_set->iterate (ref; accu = Set{} |
          </connjoint>
       </connection>
       <connection name = "ManagesComponent" metaref = "3238" >
+            <regnode name = "sName" value ="srcManagesComponent"></regnode>
+            <regnode name = "dName" value ="dstManagesComponent"></regnode>
             <regnode name = "color" value ="0x00FF00"></regnode>
             <regnode name = "dstStyle" value ="arrow"></regnode>
             <regnode name = "srcStyle" value ="butt"></regnode>
@@ -204,6 +207,8 @@ supported_set->iterate (ref; accu = Set{} |
       </connection>
       <reference name = "Alias" metaref = "3119" attributes = "VersionTag SpecifyIdTag">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbyAlias"></regnode>
          <constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[not refersTo ().isNull ()]]>
             <dispname>A reference to a named type must be assigned</dispname>
@@ -244,6 +249,8 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "AttributeMember" metaref = "3239">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbyAttributeMember"></regnode>
          <regnode name = "icon" value ="member.bmp"></regnode>
          <regnode name = "isNameEnabled" value ="false"></regnode>
          <pointerspec name = "ref">
@@ -273,6 +280,8 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "Boxed" metaref = "3120" attributes = "VersionTag SpecifyIdTag">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbyBoxed"></regnode>
          <constraint name="NoBoxedValueDef" eventmask = "0x80000011" depth = "1" priority = "1">
             <![CDATA[let boxedref = refersTo () in
    boxedref.kindName <> "ValueDef" and boxedref.kindName <> "EventDef"]]>
@@ -318,6 +327,8 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "Collection" metaref = "3121" attributes = "VersionTag SpecifyIdTag">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbyCollection"></regnode>
          <constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[not refersTo ().isNull ()]]>
             <dispname>A reference to a named type must be assigned</dispname>
@@ -358,6 +369,8 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "ComponentRef" metaref = "3240">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbyComponentRef"></regnode>
          <regnode name = "icon" value ="manages.bmp"></regnode>
          <regnode name = "isNameEnabled" value ="false"></regnode>
          <pointerspec name = "ref">
@@ -366,6 +379,8 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "Constant" metaref = "3112" attributes = "VersionTag SpecifyIdTag value">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbyConstant"></regnode>
          <constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -375,7 +390,6 @@ supported_set->iterate (ref; accu = Set{} |
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <attrdef name="value" metaref = "3113" valuetype = "string" defvalue = "">
-            <dispname></dispname>
          </attrdef>
          <regnode name = "icon" value ="const.bmp"></regnode>
          <pointerspec name = "ref">
@@ -395,6 +409,8 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "Discriminator" metaref = "3122">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbyDiscriminator"></regnode>
          <constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[not refersTo ().isNull ()]]>
             <dispname>A reference to a named type must be assigned</dispname>
@@ -418,6 +434,8 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "ExceptionRef" metaref = "2312">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbyExceptionRef"></regnode>
          <constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -430,6 +448,8 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "FileRef" metaref = "2627">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbyFileRef"></regnode>
          <constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -442,6 +462,8 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "GetException" metaref = "2264">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbyGetException"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -454,6 +476,8 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "InEventPort" metaref = "2753" attributes = "VersionTag SpecifyIdTag">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbyInEventPort"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -469,6 +493,8 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "InParameter" metaref = "3123">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbyInParameter"></regnode>
          <regnode name = "icon" value ="in.bmp"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "Aggregate"></pointeritem>
@@ -497,6 +523,8 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "Inherits" metaref = "1401">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbyInherits"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -513,6 +541,8 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "InoutParameter" metaref = "3124">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbyInoutParameter"></regnode>
          <regnode name = "icon" value ="inout.bmp"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "Aggregate"></pointeritem>
@@ -541,6 +571,8 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "LookupKey" metaref = "1800">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbyLookupKey"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -553,6 +585,8 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "Member" metaref = "3125">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbyMember"></regnode>
          <constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[not refersTo ().isNull ()]]>
             <dispname>A reference to a named type must be assigned</dispname>
@@ -590,6 +624,8 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "OutEventPort" metaref = "2754" attributes = "VersionTag SpecifyIdTag single_destination">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbyOutEventPort"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -599,7 +635,6 @@ supported_set->iterate (ref; accu = Set{} |
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <attrdef name="single_destination" metaref = "2190" valuetype = "boolean" defvalue = "false">
-            <dispname></dispname>
          </attrdef>
          <regnode name = "icon" value ="outeventport.bmp"></regnode>
          <pointerspec name = "ref">
@@ -608,6 +643,8 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "OutParameter" metaref = "3126">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbyOutParameter"></regnode>
          <regnode name = "icon" value ="out.bmp"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "Aggregate"></pointeritem>
@@ -636,6 +673,8 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "ProvidedRequestPort" metaref = "2755" attributes = "VersionTag SpecifyIdTag">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbyProvidedRequestPort"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -651,6 +690,8 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "RequiredRequestPort" metaref = "2756" attributes = "VersionTag SpecifyIdTag multiple_connections">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbyRequiredRequestPort"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -660,7 +701,6 @@ supported_set->iterate (ref; accu = Set{} |
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <attrdef name="multiple_connections" metaref = "2195" valuetype = "boolean" defvalue = "false">
-            <dispname></dispname>
          </attrdef>
          <regnode name = "icon" value ="requiredrequestport.bmp"></regnode>
          <pointerspec name = "ref">
@@ -669,6 +709,8 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "ReturnType" metaref = "3127">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbyReturnType"></regnode>
          <regnode name = "icon" value ="return.bmp"></regnode>
          <regnode name = "isNameEnabled" value ="false"></regnode>
          <pointerspec name = "ref">
@@ -698,6 +740,8 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "SetException" metaref = "1701">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbySetException"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -710,6 +754,8 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "Supports" metaref = "1404">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbySupports"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -737,7 +783,7 @@ supported_set->iterate (ref; accu = Set{} |
          </constraint>
          <role name = "Member" metaref = "3128" kind = "Member"></role>
          <aspect name = "InterfaceDefinition" metaref = "2930" attributes = "VersionTag SpecifyIdTag" >
-            <part metaref = "3129" role = "Member" primary = "yes" linked = "no"></part>
+            <part metaref = "3129" role = "Member" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
          </aspect>
       </model>
       <model name = "Attribute" metaref = "1405" attributes = "VersionTag SpecifyIdTag" >
@@ -757,7 +803,7 @@ supported_set->iterate (ref; accu = Set{} |
          <role name = "GetException" metaref = "2265" kind = "GetException"></role>
          <role name = "SetException" metaref = "1702" kind = "SetException"></role>
          <aspect name = "InterfaceDefinition" metaref = "2372" attributes = "VersionTag SpecifyIdTag" >
-            <part metaref = "3242" role = "AttributeMember" primary = "yes" linked = "no"></part>
+            <part metaref = "3242" role = "AttributeMember" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "2376" role = "GetException" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "2379" role = "SetException" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
          </aspect>
@@ -876,10 +922,10 @@ supported_set->iterate (ref; accu = Set{} |
          <role name = "TwowayOperation" metaref = "2722" kind = "TwowayOperation"></role>
          <aspect name = "InterfaceDefinition" metaref = "2724" attributes = "VersionTag SpecifyIdTag" >
             <part metaref = "2945" role = "Aggregate" primary = "yes" linked = "no"></part>
-            <part metaref = "3140" role = "Alias" primary = "yes" linked = "no"></part>
+            <part metaref = "3140" role = "Alias" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "2727" role = "Attribute" primary = "yes" linked = "no"></part>
-            <part metaref = "3141" role = "Collection" primary = "yes" linked = "no"></part>
-            <part metaref = "3144" role = "Constant" primary = "yes" linked = "no"></part>
+            <part metaref = "3141" role = "Collection" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3144" role = "Constant" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "2947" role = "Enum" primary = "yes" linked = "no"></part>
             <part metaref = "2948" role = "Exception" primary = "yes" linked = "no"></part>
             <part metaref = "2731" role = "FactoryOperation" primary = "yes" linked = "no"></part>
@@ -956,7 +1002,6 @@ endif]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <attrdef name="abstract" metaref = "2955" valuetype = "boolean" defvalue = "false">
-            <dispname></dispname>
          </attrdef>
          <role name = "Aggregate" metaref = "2958" kind = "Aggregate"></role>
          <role name = "Alias" metaref = "3148" kind = "Alias"></role>
@@ -977,16 +1022,16 @@ endif]]>
          <role name = "TwowayOperation" metaref = "2973" kind = "TwowayOperation"></role>
          <aspect name = "InterfaceDefinition" metaref = "2974" attributes = "VersionTag PrefixTag SpecifyIdTag abstract" >
             <part metaref = "2975" role = "Aggregate" primary = "yes" linked = "no"></part>
-            <part metaref = "3157" role = "Alias" primary = "yes" linked = "no"></part>
+            <part metaref = "3157" role = "Alias" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "2977" role = "Attribute" primary = "yes" linked = "no"></part>
-            <part metaref = "3158" role = "Collection" primary = "yes" linked = "no"></part>
-            <part metaref = "3161" role = "Constant" primary = "yes" linked = "no"></part>
+            <part metaref = "3158" role = "Collection" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3161" role = "Constant" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "2979" role = "Enum" primary = "yes" linked = "no"></part>
             <part metaref = "2980" role = "Exception" primary = "yes" linked = "no"></part>
             <part metaref = "2981" role = "FactoryOperation" primary = "yes" linked = "no"></part>
             <part metaref = "2982" role = "Inherits" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "2983" role = "MakeMemberPrivate" primary = "yes" linked = "no"></part>
-            <part metaref = "3163" role = "Member" primary = "yes" linked = "no"></part>
+            <part metaref = "3163" role = "Member" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "2985" role = "OnewayOperation" primary = "yes" linked = "no"></part>
             <part metaref = "2986" role = "PrivateFlag" primary = "yes" linked = "no"></part>
             <part metaref = "2987" role = "ReadonlyAttribute" primary = "yes" linked = "no"></part>
@@ -1004,7 +1049,7 @@ endif]]>
          </constraint>
          <role name = "Member" metaref = "3166" kind = "Member"></role>
          <aspect name = "InterfaceDefinition" metaref = "2992" attributes = "VersionTag SpecifyIdTag" >
-            <part metaref = "3167" role = "Member" primary = "yes" linked = "no"></part>
+            <part metaref = "3167" role = "Member" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
          </aspect>
       </model>
       <model name = "FactoryOperation" metaref = "1927" attributes = "VersionTag SpecifyIdTag" >
@@ -1028,7 +1073,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
          <role name = "InParameter" metaref = "3168" kind = "InParameter"></role>
          <aspect name = "InterfaceDefinition" metaref = "2470" attributes = "VersionTag SpecifyIdTag" >
             <part metaref = "2471" role = "ExceptionRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3169" role = "InParameter" primary = "yes" linked = "no"></part>
+            <part metaref = "3169" role = "InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
          </aspect>
       </model>
       <model name = "File" metaref = "2326" attributes = "PrefixTag" >
@@ -1052,13 +1097,13 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
          <role name = "ValueObject" metaref = "3004" kind = "ValueObject"></role>
          <aspect name = "InterfaceDefinition" metaref = "2475" attributes = "PrefixTag" >
             <part metaref = "3005" role = "Aggregate" primary = "yes" linked = "no"></part>
-            <part metaref = "3174" role = "Alias" primary = "yes" linked = "no"></part>
-            <part metaref = "3175" role = "Boxed" primary = "yes" linked = "no"></part>
-            <part metaref = "3176" role = "Collection" primary = "yes" linked = "no"></part>
+            <part metaref = "3174" role = "Alias" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3175" role = "Boxed" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3176" role = "Collection" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3268" role = "Component" primary = "yes" linked = "no"></part>
             <part metaref = "3269" role = "ComponentFactory" primary = "yes" linked = "no"></part>
             <part metaref = "3270" role = "ComponentRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3115" role = "Constant" primary = "yes" linked = "no"></part>
+            <part metaref = "3115" role = "Constant" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3008" role = "Enum" primary = "yes" linked = "no"></part>
             <part metaref = "3010" role = "Event" primary = "yes" linked = "no"></part>
             <part metaref = "3011" role = "Exception" primary = "yes" linked = "no"></part>
@@ -1091,7 +1136,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
          <role name = "InParameter" metaref = "3178" kind = "InParameter"></role>
          <aspect name = "InterfaceDefinition" metaref = "2523" attributes = "VersionTag SpecifyIdTag" >
             <part metaref = "2524" role = "ExceptionRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3179" role = "InParameter" primary = "yes" linked = "no"></part>
+            <part metaref = "3179" role = "InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
          </aspect>
       </model>
       <model name = "Object" metaref = "3016" attributes = "VersionTag PrefixTag SpecifyIdTag local abstract" >
@@ -1135,10 +1180,8 @@ endif]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <attrdef name="abstract" metaref = "3017" valuetype = "boolean" defvalue = "false">
-            <dispname></dispname>
          </attrdef>
          <attrdef name="local" metaref = "3018" valuetype = "boolean" defvalue = "false">
-            <dispname></dispname>
          </attrdef>
          <role name = "Aggregate" metaref = "3019" kind = "Aggregate"></role>
          <role name = "Alias" metaref = "3180" kind = "Alias"></role>
@@ -1154,10 +1197,10 @@ endif]]>
          <role name = "TwowayOperation" metaref = "3029" kind = "TwowayOperation"></role>
          <aspect name = "InterfaceDefinition" metaref = "3030" attributes = "VersionTag PrefixTag SpecifyIdTag local abstract" >
             <part metaref = "3031" role = "Aggregate" primary = "yes" linked = "no"></part>
-            <part metaref = "3188" role = "Alias" primary = "yes" linked = "no"></part>
+            <part metaref = "3188" role = "Alias" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3033" role = "Attribute" primary = "yes" linked = "no"></part>
-            <part metaref = "3189" role = "Collection" primary = "yes" linked = "no"></part>
-            <part metaref = "3192" role = "Constant" primary = "yes" linked = "no"></part>
+            <part metaref = "3189" role = "Collection" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3192" role = "Constant" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3035" role = "Enum" primary = "yes" linked = "no"></part>
             <part metaref = "3036" role = "Exception" primary = "yes" linked = "no"></part>
             <part metaref = "3037" role = "Inherits" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
@@ -1180,7 +1223,7 @@ endif]]>
          </constraint>
          <role name = "InParameter" metaref = "3196" kind = "InParameter"></role>
          <aspect name = "InterfaceDefinition" metaref = "2528" attributes = "VersionTag SpecifyIdTag" >
-            <part metaref = "3197" role = "InParameter" primary = "yes" linked = "no"></part>
+            <part metaref = "3197" role = "InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
          </aspect>
       </model>
       <model name = "Package" metaref = "2341" attributes = "VersionTag PrefixTag SpecifyIdTag" >
@@ -1219,13 +1262,13 @@ endif]]>
          <role name = "ValueObject" metaref = "3052" kind = "ValueObject"></role>
          <aspect name = "InterfaceDefinition" metaref = "2539" attributes = "VersionTag PrefixTag SpecifyIdTag" >
             <part metaref = "3053" role = "Aggregate" primary = "yes" linked = "no"></part>
-            <part metaref = "3202" role = "Alias" primary = "yes" linked = "no"></part>
-            <part metaref = "3203" role = "Boxed" primary = "yes" linked = "no"></part>
-            <part metaref = "3204" role = "Collection" primary = "yes" linked = "no"></part>
+            <part metaref = "3202" role = "Alias" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3203" role = "Boxed" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3204" role = "Collection" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3279" role = "Component" primary = "yes" linked = "no"></part>
             <part metaref = "3280" role = "ComponentFactory" primary = "yes" linked = "no"></part>
             <part metaref = "3281" role = "ComponentRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3117" role = "Constant" primary = "yes" linked = "no"></part>
+            <part metaref = "3117" role = "Constant" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3056" role = "Enum" primary = "yes" linked = "no"></part>
             <part metaref = "3058" role = "Event" primary = "yes" linked = "no"></part>
             <part metaref = "3059" role = "Exception" primary = "yes" linked = "no"></part>
@@ -1251,7 +1294,7 @@ endif]]>
          <role name = "AttributeMember" metaref = "3283" kind = "AttributeMember"></role>
          <role name = "GetException" metaref = "2267" kind = "GetException"></role>
          <aspect name = "InterfaceDefinition" metaref = "2560" attributes = "VersionTag SpecifyIdTag" >
-            <part metaref = "3284" role = "AttributeMember" primary = "yes" linked = "no"></part>
+            <part metaref = "3284" role = "AttributeMember" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "2564" role = "GetException" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
          </aspect>
       </model>
@@ -1287,9 +1330,9 @@ endif]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidSwitchedAggregatePartCardinality10" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
-                     (partCount >= 1)]]>
-            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
+            <![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
+                     (partCount = 1)]]>
+            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
          </constraint>
          <constraint name="ValidSwitchedAggregatePartCardinality11" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "Label" ) -> size in
@@ -1297,9 +1340,9 @@ endif]]>
             <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
          </constraint>
          <constraint name="ValidSwitchedAggregatePartCardinality12" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
-                     (partCount = 1)]]>
-            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
+            <![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
+                     (partCount >= 1)]]>
+            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
             <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
@@ -1310,10 +1353,10 @@ endif]]>
          <role name = "LabelConnection" metaref = "3067" kind = "LabelConnection"></role>
          <role name = "Member" metaref = "3209" kind = "Member"></role>
          <aspect name = "InterfaceDefinition" metaref = "3069" attributes = "VersionTag SpecifyIdTag" >
-            <part metaref = "3210" role = "Discriminator" primary = "yes" linked = "no"></part>
+            <part metaref = "3210" role = "Discriminator" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3071" role = "Label" primary = "yes" linked = "no"></part>
             <part metaref = "3072" role = "LabelConnection" primary = "yes" linked = "no"></part>
-            <part metaref = "3211" role = "Member" primary = "yes" linked = "no"></part>
+            <part metaref = "3211" role = "Member" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
          </aspect>
       </model>
       <model name = "TwowayOperation" metaref = "2040" attributes = "VersionTag SpecifyIdTag" >
@@ -1345,10 +1388,10 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
          <role name = "ReturnType" metaref = "3215" kind = "ReturnType"></role>
          <aspect name = "InterfaceDefinition" metaref = "2587" attributes = "VersionTag SpecifyIdTag" >
             <part metaref = "2588" role = "ExceptionRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3216" role = "InParameter" primary = "yes" linked = "no"></part>
-            <part metaref = "3217" role = "InoutParameter" primary = "yes" linked = "no"></part>
-            <part metaref = "3218" role = "OutParameter" primary = "yes" linked = "no"></part>
-            <part metaref = "3219" role = "ReturnType" primary = "yes" linked = "no"></part>
+            <part metaref = "3216" role = "InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3217" role = "InoutParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3218" role = "OutParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3219" role = "ReturnType" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
          </aspect>
       </model>
       <model name = "ValueObject" metaref = "3074" attributes = "VersionTag PrefixTag SpecifyIdTag abstract" >
@@ -1390,7 +1433,6 @@ endif]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <attrdef name="abstract" metaref = "3075" valuetype = "boolean" defvalue = "false">
-            <dispname></dispname>
          </attrdef>
          <role name = "Aggregate" metaref = "3078" kind = "Aggregate"></role>
          <role name = "Alias" metaref = "3220" kind = "Alias"></role>
@@ -1411,16 +1453,16 @@ endif]]>
          <role name = "TwowayOperation" metaref = "3093" kind = "TwowayOperation"></role>
          <aspect name = "InterfaceDefinition" metaref = "3094" attributes = "VersionTag PrefixTag SpecifyIdTag abstract" >
             <part metaref = "3095" role = "Aggregate" primary = "yes" linked = "no"></part>
-            <part metaref = "3229" role = "Alias" primary = "yes" linked = "no"></part>
+            <part metaref = "3229" role = "Alias" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3097" role = "Attribute" primary = "yes" linked = "no"></part>
-            <part metaref = "3230" role = "Collection" primary = "yes" linked = "no"></part>
-            <part metaref = "3233" role = "Constant" primary = "yes" linked = "no"></part>
+            <part metaref = "3230" role = "Collection" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3233" role = "Constant" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3099" role = "Enum" primary = "yes" linked = "no"></part>
             <part metaref = "3100" role = "Exception" primary = "yes" linked = "no"></part>
             <part metaref = "3101" role = "FactoryOperation" primary = "yes" linked = "no"></part>
             <part metaref = "3102" role = "Inherits" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3103" role = "MakeMemberPrivate" primary = "yes" linked = "no"></part>
-            <part metaref = "3235" role = "Member" primary = "yes" linked = "no"></part>
+            <part metaref = "3235" role = "Member" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3105" role = "OnewayOperation" primary = "yes" linked = "no"></part>
             <part metaref = "3106" role = "PrivateFlag" primary = "yes" linked = "no"></part>
             <part metaref = "3107" role = "ReadonlyAttribute" primary = "yes" linked = "no"></part>
