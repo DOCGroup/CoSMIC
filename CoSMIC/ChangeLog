@@ -1,3 +1,41 @@
+Fri Dec 3 21:31:03 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+          Updated the meta to fix some constraint violations for the
+          MPC paradigm.
+
+        * PIM/PICML/examples/BasicSP.xme:
+        * PIM/PICML/examples/RobotAssembly.xme:
+          Updated examples to reflect meta.
+
+        * PIM/PICML/interpreters/BGML_Interpreter/PICML.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/PICML.cpp:
+
+        * PIM/PICML/interpreters/MPC/PICML.h:
+        * PIM/PICML/interpreters/MPC/PICML.cpp:
+        * PIM/PICML/interpreters/MPC/PICML.xsd:
+
+        * PIM/PICML/interpreters/cidl/PICML.h:
+        * PIM/PICML/interpreters/cidl/PICML.xsd:
+        * PIM/PICML/interpreters/cidl/PICML.cpp:
+
+        * PIM/PICML/interpreters/domain/PICML.h:
+        * PIM/PICML/interpreters/domain/PICML.cpp:
+        * PIM/PICML/interpreters/domain/PICML.xsd:
+
+        * PIM/PICML/interpreters/packaging/PICML.h:
+        * PIM/PICML/interpreters/packaging/PICML.xsd:
+        * PIM/PICML/interpreters/packaging/PICML.cpp:
+
+        * PIM/PICML/interpreters/plan/PICML.h:
+        * PIM/PICML/interpreters/plan/PICML.xsd:
+        * PIM/PICML/interpreters/plan/PICML.cpp:
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+          Regenerated files to include changes in the metamodel.
+
 Fri Dec  3 17:03:39 2004  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * PIM/PICML/paradigms/PICML.xme:

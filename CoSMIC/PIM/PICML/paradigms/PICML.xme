@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{23208D99-9005-434C-AF40-970261016ACF}" cdate="Mon Nov 29 17:06:55 2004" mdate="Mon Nov 29 17:29:57 2004" version="" metaguid="{DF851054-A0B3-41EF-8FF2-8C42EE5EDD12}" metaversion="" metaname="MetaGME">
+<project guid="{98D7FDFE-F775-4300-8E98-625135C90E84}" cdate="Fri Dec 03 17:25:41 2004" mdate="Fri Dec 03 17:57:50 2004" version="" metaguid="{DF851054-A0B3-41EF-8FF2-8C42EE5EDD12}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment></comment>
 	<author></author>
@@ -4779,19 +4779,19 @@
 					<value>7</value>
 				</regnode>
 				<regnode name="ComponentLibraries" isopaque="yes">
-					<value>6</value>
-				</regnode>
-				<regnode name="ComponentMetrics" isopaque="yes">
 					<value>9</value>
 				</regnode>
-				<regnode name="DataAnalysis" isopaque="yes">
-					<value>5</value>
-				</regnode>
-				<regnode name="InterfaceDefinition" isopaque="yes">
+				<regnode name="ComponentMetrics" isopaque="yes">
 					<value>1</value>
 				</regnode>
-				<regnode name="LibraryArtifact" isopaque="yes">
+				<regnode name="DataAnalysis" isopaque="yes">
 					<value>8</value>
+				</regnode>
+				<regnode name="InterfaceDefinition" isopaque="yes">
+					<value>4</value>
+				</regnode>
+				<regnode name="LibraryArtifact" isopaque="yes">
+					<value>10</value>
 				</regnode>
 				<regnode name="MainAspect" isopaque="yes">
 					<value>1</value>
@@ -4800,19 +4800,19 @@
 					<value>5</value>
 				</regnode>
 				<regnode name="NodeMapping" isopaque="yes">
-					<value>4</value>
+					<value>7</value>
 				</regnode>
 				<regnode name="Package" isopaque="yes">
 					<value>2</value>
 				</regnode>
 				<regnode name="Packaging" isopaque="yes">
-					<value>2</value>
+					<value>6</value>
 				</regnode>
 				<regnode name="ResourceView" isopaque="yes">
 					<value>3</value>
 				</regnode>
 				<regnode name="RtecConfigAspect" isopaque="yes">
-					<value>10</value>
+					<value>2</value>
 				</regnode>
 				<regnode name="Target" isopaque="yes">
 					<value>3</value>
@@ -4821,7 +4821,7 @@
 					<value>1</value>
 				</regnode>
 				<regnode name="Workspace" isopaque="yes">
-					<value>7</value>
+					<value>5</value>
 				</regnode>
 			</regnode>
 			<regnode name="AspectSelNames" isopaque="yes">
@@ -34922,8 +34922,8 @@
 			</connection>
 			<connection id="id-0068-00000041" kind="Containment" role="Containment" relid="0x24">
 				<name>Containment</name>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
+				<attribute kind="Cardinality">
+					<value>1</value>
 				</attribute>
 				<attribute kind="IsPort" status="meta">
 					<value>false</value>
@@ -34953,8 +34953,8 @@
 			</connection>
 			<connection id="id-0068-00000043" kind="Containment" role="Containment" relid="0x26">
 				<name>Containment</name>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
+				<attribute kind="Cardinality">
+					<value>0..1</value>
 				</attribute>
 				<attribute kind="IsPort" status="meta">
 					<value>false</value>
@@ -36776,8 +36776,8 @@
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="src" target="id-0066-00000022"/>
 				<connpoint role="dst" target="id-0066-00000022"/>
+				<connpoint role="src" target="id-0066-00000022"/>
 			</connection>
 			<connection id="id-0068-00000045" kind="HasAspect" role="HasAspect" relid="0x54">
 				<name>HasAspect</name>
@@ -65954,8 +65954,8 @@ RTEventChannel</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="src" target="id-0066-00000134"/>
 				<connpoint role="dst" target="id-0066-00000134"/>
+				<connpoint role="src" target="id-0066-00000134"/>
 			</connection>
 			<connection id="id-0068-0000023a" kind="Containment" role="Containment" relid="0x9d">
 				<name>Containment</name>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{83F53861-F703-4992-95BD-6DD9DCEE1E63}" cdate="Fri Dec 03 16:22:11 2004" mdate="Fri Dec 03 17:07:54 2004" version="" metaguid="{C27FF4EA-D183-4EC2-A003-3B7D80F1CF3C}" metaversion="" metaname="PICML">
+<project guid="{83F53861-F703-4992-95BD-6DD9DCEE1E63}" cdate="Fri Dec 03 18:06:00 2004" mdate="Fri Dec 03 18:06:03 2004" version="" metaguid="{08937800-2F5B-425C-B800-46BBC353565B}" metaversion="" metaname="PICML">
 	<name>RobotAssembly</name>
 	<comment></comment>
 	<author></author>
@@ -117,7 +117,7 @@
 						<attribute kind="VersionTag" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000090" kind="Member" role="Member" relid="0x1" referred="id-0066-0000004b">
+						<reference id="id-0067-00000091" kind="Member" role="Member" relid="0x1" referred="id-0066-0000004a">
 							<name>TimeTypeMember</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -195,7 +195,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000091" kind="Member" role="Member" relid="0x2" referred="id-0066-0000004b">
+						<reference id="id-0067-00000092" kind="Member" role="Member" relid="0x2" referred="id-0066-0000004a">
 							<name>OrderNumber</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -207,7 +207,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000092" kind="Member" role="Member" relid="0x3" referred="id-0066-0000004b">
+						<reference id="id-0067-00000093" kind="Member" role="Member" relid="0x3" referred="id-0066-0000004a">
 							<name>ProductNumber</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -219,7 +219,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000093" kind="Member" role="Member" relid="0x4" referred="id-0066-0000004b">
+						<reference id="id-0067-00000094" kind="Member" role="Member" relid="0x4" referred="id-0066-0000004a">
 							<name>Priority</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -231,7 +231,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000094" kind="Member" role="Member" relid="0x5" referred="id-0066-0000004b">
+						<reference id="id-0067-00000095" kind="Member" role="Member" relid="0x5" referred="id-0066-0000004a">
 							<name>Quantity</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -611,7 +611,7 @@
 									</regnode>
 								</regnode>
 							</reference>
-							<reference id="id-0067-00000095" kind="InParameter" role="InParameter" relid="0x2" referred="id-0066-0000004b">
+							<reference id="id-0067-00000096" kind="InParameter" role="InParameter" relid="0x2" referred="id-0066-0000004a">
 								<name>OrderNumber</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -641,7 +641,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-00000096" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-00000047">
+							<reference id="id-0067-00000097" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-00000046">
 								<name>ShutdownStarted</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -810,7 +810,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000097" kind="Member" role="Member" relid="0x2" referred="id-0066-0000004b">
+						<reference id="id-0067-00000098" kind="Member" role="Member" relid="0x2" referred="id-0066-0000004a">
 							<name>OrderNumber</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -822,7 +822,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000098" kind="Member" role="Member" relid="0x3" referred="id-0066-0000004b">
+						<reference id="id-0067-00000099" kind="Member" role="Member" relid="0x3" referred="id-0066-0000004a">
 							<name>ProductNumber</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -864,7 +864,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000099" kind="Member" role="Member" relid="0x1" referred="id-0066-0000004b">
+						<reference id="id-0067-0000009a" kind="Member" role="Member" relid="0x1" referred="id-0066-0000004a">
 							<name>ProductNumber</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -876,7 +876,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000009a" kind="Member" role="Member" relid="0x2" referred="id-0066-0000004b">
+						<reference id="id-0067-0000009b" kind="Member" role="Member" relid="0x2" referred="id-0066-0000004a">
 							<name>OrderNumber</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -1050,7 +1050,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000009b" kind="Member" role="Member" relid="0x2" referred="id-0066-0000004b">
+						<reference id="id-0067-0000009c" kind="Member" role="Member" relid="0x2" referred="id-0066-0000004a">
 							<name>OrderNumber</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -1062,7 +1062,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000009c" kind="Member" role="Member" relid="0x3" referred="id-0066-0000004b">
+						<reference id="id-0067-0000009d" kind="Member" role="Member" relid="0x3" referred="id-0066-0000004a">
 							<name>ProductNumber</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -1074,7 +1074,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000009d" kind="Member" role="Member" relid="0x4" referred="id-0066-0000004b">
+						<reference id="id-0067-0000009e" kind="Member" role="Member" relid="0x4" referred="id-0066-0000004a">
 							<name>JobPriority</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -1128,7 +1128,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000009e" kind="Member" role="Member" relid="0x1" referred="id-0066-0000004b">
+						<reference id="id-0067-0000009f" kind="Member" role="Member" relid="0x1" referred="id-0066-0000004a">
 							<name>OrderNumber</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -1140,7 +1140,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000009f" kind="Member" role="Member" relid="0x4" referred="id-0066-0000004b">
+						<reference id="id-0067-000000a0" kind="Member" role="Member" relid="0x4" referred="id-0066-0000004a">
 							<name>RequestedProduction</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -1152,7 +1152,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-000000a0" kind="Member" role="Member" relid="0x5" referred="id-0066-0000004b">
+						<reference id="id-0067-000000a1" kind="Member" role="Member" relid="0x5" referred="id-0066-0000004a">
 							<name>ActualProduction</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -1164,7 +1164,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-000000a1" kind="Member" role="Member" relid="0x6" referred="id-0066-0000004b">
+						<reference id="id-0067-000000a2" kind="Member" role="Member" relid="0x6" referred="id-0066-0000004a">
 							<name>ProductNumber</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -1484,7 +1484,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000a2" kind="ReturnType" role="ReturnType" relid="0x2" referred="id-0066-0000004e">
+							<reference id="id-0067-000000a3" kind="ReturnType" role="ReturnType" relid="0x2" referred="id-0066-0000004d">
 								<name>String</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -1514,7 +1514,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000a3" kind="InParameter" role="InParameter" relid="0x2" referred="id-0066-0000004d">
+							<reference id="id-0067-000000a4" kind="InParameter" role="InParameter" relid="0x2" referred="id-0066-0000004c">
 								<name>theKey</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -1556,7 +1556,7 @@
 									</regnode>
 								</regnode>
 							</reference>
-							<reference id="id-0067-000000a4" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-0000004d">
+							<reference id="id-0067-000000a5" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-0000004c">
 								<name>SwitchNumber</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -1586,7 +1586,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000a5" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-0000004d">
+							<reference id="id-0067-000000a6" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-0000004c">
 								<name>SwitchNumber</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -1616,7 +1616,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000a6" kind="ReturnType" role="ReturnType" relid="0x1" referred="id-0066-0000004d">
+							<reference id="id-0067-000000a7" kind="ReturnType" role="ReturnType" relid="0x1" referred="id-0066-0000004c">
 								<name>short</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -1646,7 +1646,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000a7" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-0000004d">
+							<reference id="id-0067-000000a8" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-0000004c">
 								<name>volume</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -1754,7 +1754,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000a8" kind="ReturnType" role="ReturnType" relid="0x3" referred="id-0066-0000004e">
+							<reference id="id-0067-000000a9" kind="ReturnType" role="ReturnType" relid="0x3" referred="id-0066-0000004d">
 								<name>string</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -1871,7 +1871,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000a9" kind="ReturnType" role="ReturnType" relid="0x3" referred="id-0066-0000004e">
+							<reference id="id-0067-000000aa" kind="ReturnType" role="ReturnType" relid="0x3" referred="id-0066-0000004d">
 								<name>string</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -1988,7 +1988,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000aa" kind="ReturnType" role="ReturnType" relid="0x3" referred="id-0065-00000046">
+							<reference id="id-0067-000000ab" kind="ReturnType" role="ReturnType" relid="0x3" referred="id-0065-00000046">
 								<name>MovePalletRequestType</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -2018,7 +2018,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000ab" kind="ReturnType" role="ReturnType" relid="0x1" referred="id-0066-0000004d">
+							<reference id="id-0067-000000ac" kind="ReturnType" role="ReturnType" relid="0x1" referred="id-0066-0000004c">
 								<name>Short</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -2048,7 +2048,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000ac" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-0000004d">
+							<reference id="id-0067-000000ad" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-0000004c">
 								<name>number</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -2096,7 +2096,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000ad" kind="ReturnType" role="ReturnType" relid="0x3" referred="id-0066-0000004e">
+							<reference id="id-0067-000000ae" kind="ReturnType" role="ReturnType" relid="0x3" referred="id-0066-0000004d">
 								<name>string</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -2225,7 +2225,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000ae" kind="ReturnType" role="ReturnType" relid="0x3" referred="id-0066-0000004e">
+							<reference id="id-0067-000000af" kind="ReturnType" role="ReturnType" relid="0x3" referred="id-0066-0000004d">
 								<name>string</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -2282,7 +2282,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000af" kind="ReturnType" role="ReturnType" relid="0x3" referred="id-0066-0000004e">
+							<reference id="id-0067-000000b0" kind="ReturnType" role="ReturnType" relid="0x3" referred="id-0066-0000004d">
 								<name>string</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -2646,7 +2646,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-000000b0" kind="Member" role="Member" relid="0x2" referred="id-0066-0000004b">
+						<reference id="id-0067-000000b1" kind="Member" role="Member" relid="0x2" referred="id-0066-0000004a">
 							<name>OrderNumber</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -2658,7 +2658,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-000000b1" kind="Member" role="Member" relid="0x3" referred="id-0066-0000004b">
+						<reference id="id-0067-000000b2" kind="Member" role="Member" relid="0x3" referred="id-0066-0000004a">
 							<name>ProductNumber</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -2670,7 +2670,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-000000b2" kind="Member" role="Member" relid="0x4" referred="id-0066-0000004b">
+						<reference id="id-0067-000000b3" kind="Member" role="Member" relid="0x4" referred="id-0066-0000004a">
 							<name>JobPriority</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -3636,47 +3636,11 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-00000038" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-0000002c" isinstance="yes" isprimary="no" referred="id-0065-00000017" isbound="yes">
+							<reference id="id-0067-00000036" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-0000002c" isinstance="yes" isprimary="no" referred="id-0065-00000017" isbound="yes">
 								<name>AttributeMember</name>
 							</reference>
 						</model>
-						<reference id="id-0067-00000036" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-0000002e" isinstance="yes" isprimary="no" referred="id-0065-00000009" isbound="yes">
-							<name>WorkDisplayUpdate</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser">
-								<value>true</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000037" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-0000002f" isinstance="yes" isprimary="no" referred="id-0065-0000001b" isbound="yes">
-							<name>Controller</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional">
-								<value>true</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000039" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-0000002d" isinstance="yes" isprimary="no" referred="id-0065-0000000a" isbound="yes">
+						<reference id="id-0067-00000037" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-0000002d" isinstance="yes" isprimary="no" referred="id-0065-0000000a" isbound="yes">
 							<name>HumanResponse</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -3695,6 +3659,42 @@
 							</attribute>
 							<attribute kind="optional" status="meta">
 								<value>false</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000038" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-0000002e" isinstance="yes" isprimary="no" referred="id-0065-00000009" isbound="yes">
+							<name>WorkDisplayUpdate</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser">
+								<value>true</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000039" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-0000002f" isinstance="yes" isprimary="no" referred="id-0065-0000001b" isbound="yes">
+							<name>Controller</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional">
+								<value>true</value>
 							</attribute>
 						</reference>
 					</model>
@@ -3817,8 +3817,8 @@
 						<attribute kind="label" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-0000003d" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000026" isinstance="yes" isprimary="no" referred="id-0065-00000014" isbound="yes">
-							<name>MovePallet</name>
+						<reference id="id-0067-0000003d" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000024" isinstance="yes" isprimary="no" referred="id-0065-00000009" isbound="yes">
+							<name>Display</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
 							</attribute>
@@ -3841,26 +3841,32 @@
 								<value>true</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-0000003e" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-00000029" isinstance="yes" isprimary="no" referred="id-0065-00000011" isbound="yes">
-							<name>ProcessingStatus</name>
+						<reference id="id-0067-0000003e" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000025" isinstance="yes" isprimary="no" referred="id-0065-0000000f" isbound="yes">
+							<name>ProductionControl</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
 							</attribute>
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser">
+							<attribute kind="exclusiveProvider" status="inherited">
 								<value>true</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
 							</attribute>
 							<attribute kind="optional" status="meta">
 								<value>false</value>
 							</attribute>
+							<attribute kind="out_event_port_type" status="meta">
+								<value>DirectConnect</value>
+							</attribute>
+							<attribute kind="single_destination" status="inherited">
+								<value>true</value>
+							</attribute>
 						</reference>
-						<reference id="id-0067-0000003f" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000024" isinstance="yes" isprimary="no" referred="id-0065-00000009" isbound="yes">
-							<name>Display</name>
+						<reference id="id-0067-0000003f" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000026" isinstance="yes" isprimary="no" referred="id-0065-00000014" isbound="yes">
+							<name>MovePallet</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
 							</attribute>
@@ -3907,43 +3913,7 @@
 								<value>true</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000041" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-0000002b" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
-							<name>recvWorkOrder</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="inherited">
-								<value>true</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000042" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-0000002a" isinstance="yes" isprimary="no" referred="id-0065-00000012" isbound="yes">
-							<name>PalletStatus</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser">
-								<value>true</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000043" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000028" isinstance="yes" isprimary="no" referred="id-0065-0000000a" isbound="yes">
+						<reference id="id-0067-00000041" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000028" isinstance="yes" isprimary="no" referred="id-0065-0000000a" isbound="yes">
 							<name>DisplayResponse</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -3961,28 +3931,58 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000044" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000025" isinstance="yes" isprimary="no" referred="id-0065-0000000f" isbound="yes">
-							<name>ProductionControl</name>
+						<reference id="id-0067-00000042" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-00000029" isinstance="yes" isprimary="no" referred="id-0065-00000011" isbound="yes">
+							<name>ProcessingStatus</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
 							</attribute>
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<attribute kind="exclusiveProvider" status="inherited">
-								<value>true</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
+							<attribute kind="exclusiveProvider" status="meta">
 								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser">
+								<value>true</value>
 							</attribute>
 							<attribute kind="optional" status="meta">
 								<value>false</value>
 							</attribute>
-							<attribute kind="out_event_port_type" status="meta">
-								<value>DirectConnect</value>
+						</reference>
+						<reference id="id-0067-00000043" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-0000002a" isinstance="yes" isprimary="no" referred="id-0065-00000012" isbound="yes">
+							<name>PalletStatus</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
 							</attribute>
-							<attribute kind="single_destination" status="inherited">
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser">
 								<value>true</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000044" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-0000002b" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+							<name>recvWorkOrder</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="inherited">
+								<value>true</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
 							</attribute>
 						</reference>
 					</model>
@@ -4033,25 +4033,7 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000046" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000035" isinstance="yes" isprimary="no" referred="id-0065-0000002a" isbound="yes">
-							<name>Controller</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional">
-								<value>true</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000047" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000034" isinstance="yes" isprimary="no" referred="id-0065-00000012" isbound="yes">
+						<reference id="id-0067-00000046" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000034" isinstance="yes" isprimary="no" referred="id-0065-00000012" isbound="yes">
 							<name>PalletStatus</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -4072,6 +4054,24 @@
 								<value>DirectConnect</value>
 							</attribute>
 							<attribute kind="single_destination" status="inherited">
+								<value>true</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000047" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000035" isinstance="yes" isprimary="no" referred="id-0065-0000002a" isbound="yes">
+							<name>Controller</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional">
 								<value>true</value>
 							</attribute>
 						</reference>
@@ -4105,25 +4105,7 @@
 						<attribute kind="label" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000048" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000032" isinstance="yes" isprimary="no" referred="id-0065-00000036" isbound="yes">
-							<name>Controller</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional">
-								<value>true</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000049" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-00000030" isinstance="yes" isprimary="no" referred="id-0065-0000000f" isbound="yes">
+						<reference id="id-0067-00000048" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-00000030" isinstance="yes" isprimary="no" referred="id-0065-0000000f" isbound="yes">
 							<name>ProcessPalletCommands</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -4141,7 +4123,7 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-0000004a" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000031" isinstance="yes" isprimary="no" referred="id-0065-00000011" isbound="yes">
+						<reference id="id-0067-00000049" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000031" isinstance="yes" isprimary="no" referred="id-0065-00000011" isbound="yes">
 							<name>ProcessingStatus</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -4165,11 +4147,29 @@
 								<value>true</value>
 							</attribute>
 						</reference>
+						<reference id="id-0067-0000004a" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000032" isinstance="yes" isprimary="no" referred="id-0065-00000036" isbound="yes">
+							<name>Controller</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional">
+								<value>true</value>
+							</attribute>
+						</reference>
 					</model>
 					<connection id="id-0068-00000006" kind="emit" role="emit" relid="0x6">
 						<name>emit</name>
 						<connpoint role="src" target="id-0067-0000003b"/>
-						<connpoint role="dst" target="id-0067-00000041"/>
+						<connpoint role="dst" target="id-0067-00000044"/>
 					</connection>
 					<connection id="id-0068-00000007" kind="emit" role="emit" relid="0x7">
 						<name>emit</name>
@@ -4178,33 +4178,33 @@
 					</connection>
 					<connection id="id-0068-00000008" kind="emit" role="emit" relid="0x8">
 						<name>emit</name>
-						<connpoint role="src" target="id-0067-0000003d"/>
+						<connpoint role="src" target="id-0067-0000003f"/>
 						<connpoint role="dst" target="id-0067-00000045"/>
 					</connection>
 					<connection id="id-0068-00000009" kind="emit" role="emit" relid="0xa">
 						<name>emit</name>
-						<connpoint role="dst" target="id-0067-00000042"/>
-						<connpoint role="src" target="id-0067-00000047"/>
+						<connpoint role="dst" target="id-0067-00000043"/>
+						<connpoint role="src" target="id-0067-00000046"/>
 					</connection>
 					<connection id="id-0068-0000000a" kind="invoke" role="invoke" relid="0xf">
 						<name>invoke</name>
-						<connpoint role="src" target="id-0067-00000039"/>
-						<connpoint role="dst" target="id-0067-00000043"/>
+						<connpoint role="src" target="id-0067-00000037"/>
+						<connpoint role="dst" target="id-0067-00000041"/>
 					</connection>
 					<connection id="id-0068-0000000b" kind="emit" role="emit" relid="0x10">
 						<name>emit</name>
-						<connpoint role="dst" target="id-0067-00000036"/>
-						<connpoint role="src" target="id-0067-0000003f"/>
+						<connpoint role="dst" target="id-0067-00000038"/>
+						<connpoint role="src" target="id-0067-0000003d"/>
 					</connection>
 					<connection id="id-0068-0000000c" kind="emit" role="emit" relid="0x2c">
 						<name>emit</name>
-						<connpoint role="src" target="id-0067-00000044"/>
-						<connpoint role="dst" target="id-0067-00000049"/>
+						<connpoint role="src" target="id-0067-0000003e"/>
+						<connpoint role="dst" target="id-0067-00000048"/>
 					</connection>
 					<connection id="id-0068-0000000d" kind="emit" role="emit" relid="0x2d">
 						<name>emit</name>
-						<connpoint role="dst" target="id-0067-0000003e"/>
-						<connpoint role="src" target="id-0067-0000004a"/>
+						<connpoint role="dst" target="id-0067-00000042"/>
+						<connpoint role="src" target="id-0067-00000049"/>
 					</connection>
 				</model>
 			</model>
@@ -4230,7 +4230,7 @@
 					<attribute kind="DataValue">
 						<value>RM.ior</value>
 					</attribute>
-					<reference id="id-0067-000000b3" kind="DataType" role="DataType" relid="0x1" referred="id-0066-0000004e">
+					<reference id="id-0067-000000b4" kind="DataType" role="DataType" relid="0x1" referred="id-0066-0000004d">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -4285,7 +4285,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000b4" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-00000036">
+				<reference id="id-0067-000000b5" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-00000035">
 					<name>RobotManager_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4303,7 +4303,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000b5" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x7" referred="id-0066-00000037">
+				<reference id="id-0067-000000b6" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x7" referred="id-0066-00000036">
 					<name>RobotManager_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4321,7 +4321,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000b6" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x8" referred="id-0066-00000038">
+				<reference id="id-0067-000000b7" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x8" referred="id-0066-00000037">
 					<name>RobotManager_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4350,7 +4350,7 @@
 				<connection id="id-0068-0000000f" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x9">
 					<name>MonolithprimaryArtifact</name>
 					<connpoint role="src" target="id-0066-00000029"/>
-					<connpoint role="dst" target="id-0067-000000b4"/>
+					<connpoint role="dst" target="id-0067-000000b5"/>
 				</connection>
 				<connection id="id-0068-00000010" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0xa">
 					<name>MonolithprimaryArtifact</name>
@@ -4358,12 +4358,12 @@
 						<value>w</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-00000029"/>
-					<connpoint role="dst" target="id-0067-000000b5"/>
+					<connpoint role="dst" target="id-0067-000000b6"/>
 				</connection>
 				<connection id="id-0068-00000011" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0xb">
 					<name>MonolithprimaryArtifact</name>
 					<connpoint role="src" target="id-0066-00000029"/>
-					<connpoint role="dst" target="id-0067-000000b6"/>
+					<connpoint role="dst" target="id-0067-000000b7"/>
 				</connection>
 				<connection id="id-0068-00000012" kind="ConfigProperty" role="ConfigProperty" relid="0xd">
 					<name>ConfigProperty</name>
@@ -4387,7 +4387,7 @@
 					<attribute kind="DataValue">
 						<value>WSM.ior</value>
 					</attribute>
-					<reference id="id-0067-000000b7" kind="DataType" role="DataType" relid="0x1" referred="id-0066-0000004e">
+					<reference id="id-0067-000000b8" kind="DataType" role="DataType" relid="0x1" referred="id-0066-0000004d">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -4430,7 +4430,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000b8" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x2" referred="id-0066-00000041">
+				<reference id="id-0067-000000b9" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x2" referred="id-0066-00000040">
 					<name>WatchSettingManager_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4442,7 +4442,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000b9" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x3" referred="id-0066-00000040">
+				<reference id="id-0067-000000ba" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x3" referred="id-0066-0000003f">
 					<name>WatchSettingManager_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4454,7 +4454,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000ba" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-0000003f">
+				<reference id="id-0067-000000bb" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-0000003e">
 					<name>WatchSettingManager_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4474,17 +4474,17 @@
 				<connection id="id-0068-00000014" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x7">
 					<name>MonolithprimaryArtifact</name>
 					<connpoint role="src" target="id-0066-0000002a"/>
-					<connpoint role="dst" target="id-0067-000000b8"/>
+					<connpoint role="dst" target="id-0067-000000b9"/>
 				</connection>
 				<connection id="id-0068-00000015" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x8">
 					<name>MonolithprimaryArtifact</name>
 					<connpoint role="src" target="id-0066-0000002a"/>
-					<connpoint role="dst" target="id-0067-000000b9"/>
+					<connpoint role="dst" target="id-0067-000000ba"/>
 				</connection>
 				<connection id="id-0068-00000016" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x9">
 					<name>MonolithprimaryArtifact</name>
 					<connpoint role="src" target="id-0066-0000002a"/>
-					<connpoint role="dst" target="id-0067-000000ba"/>
+					<connpoint role="dst" target="id-0067-000000bb"/>
 				</connection>
 				<connection id="id-0068-00000017" kind="ConfigProperty" role="ConfigProperty" relid="0xb">
 					<name>ConfigProperty</name>
@@ -4508,7 +4508,7 @@
 					<attribute kind="DataValue">
 						<value>MWI.ior</value>
 					</attribute>
-					<reference id="id-0067-000000bb" kind="DataType" role="DataType" relid="0x1" referred="id-0066-0000004e">
+					<reference id="id-0067-000000bc" kind="DataType" role="DataType" relid="0x1" referred="id-0066-0000004d">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -4551,7 +4551,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000bc" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-0000003e">
+				<reference id="id-0067-000000bd" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-0000003d">
 					<name>ManagementWorkInstructions_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4563,7 +4563,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000bd" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x5" referred="id-0066-0000003d">
+				<reference id="id-0067-000000be" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x5" referred="id-0066-0000003c">
 					<name>ManagementWorkInstructions_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4575,7 +4575,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000be" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-0000003c">
+				<reference id="id-0067-000000bf" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-0000003b">
 					<name>ManagementWorkInstructions_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4601,7 +4601,7 @@
 						<value>w</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-0000002b"/>
-					<connpoint role="dst" target="id-0067-000000bc"/>
+					<connpoint role="dst" target="id-0067-000000bd"/>
 				</connection>
 				<connection id="id-0068-0000001a" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x8">
 					<name>MonolithprimaryArtifact</name>
@@ -4609,7 +4609,7 @@
 						<value>w</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-0000002b"/>
-					<connpoint role="dst" target="id-0067-000000bd"/>
+					<connpoint role="dst" target="id-0067-000000be"/>
 				</connection>
 				<connection id="id-0068-0000001b" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x9">
 					<name>MonolithprimaryArtifact</name>
@@ -4617,7 +4617,7 @@
 						<value>w</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-0000002b"/>
-					<connpoint role="dst" target="id-0067-000000be"/>
+					<connpoint role="dst" target="id-0067-000000bf"/>
 				</connection>
 				<connection id="id-0068-0000001c" kind="ConfigProperty" role="ConfigProperty" relid="0xb">
 					<name>ConfigProperty</name>
@@ -4647,7 +4647,7 @@
 					<attribute kind="DataValue">
 						<value>HMI.ior</value>
 					</attribute>
-					<reference id="id-0067-000000bf" kind="DataType" role="DataType" relid="0x1" referred="id-0066-0000004e">
+					<reference id="id-0067-000000c0" kind="DataType" role="DataType" relid="0x1" referred="id-0066-0000004d">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -4702,7 +4702,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000c0" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x3" referred="id-0066-00000044">
+				<reference id="id-0067-000000c1" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x3" referred="id-0066-00000043">
 					<name>HumanMachineInterface_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4720,7 +4720,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000c1" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-00000043">
+				<reference id="id-0067-000000c2" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-00000042">
 					<name>HumanMachineInterface_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4738,7 +4738,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000c2" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x5" referred="id-0066-00000042">
+				<reference id="id-0067-000000c3" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x5" referred="id-0066-00000041">
 					<name>HumanMachineInterface_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4767,7 +4767,7 @@
 				<connection id="id-0068-0000001e" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x7">
 					<name>MonolithprimaryArtifact</name>
 					<connpoint role="src" target="id-0066-0000002c"/>
-					<connpoint role="dst" target="id-0067-000000c0"/>
+					<connpoint role="dst" target="id-0067-000000c1"/>
 				</connection>
 				<connection id="id-0068-0000001f" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x8">
 					<name>MonolithprimaryArtifact</name>
@@ -4775,7 +4775,7 @@
 						<value>w</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-0000002c"/>
-					<connpoint role="dst" target="id-0067-000000c1"/>
+					<connpoint role="dst" target="id-0067-000000c2"/>
 				</connection>
 				<connection id="id-0068-00000020" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x9">
 					<name>MonolithprimaryArtifact</name>
@@ -4783,7 +4783,7 @@
 						<value>w</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-0000002c"/>
-					<connpoint role="dst" target="id-0067-000000c2"/>
+					<connpoint role="dst" target="id-0067-000000c3"/>
 				</connection>
 				<connection id="id-0068-00000021" kind="ConfigProperty" role="ConfigProperty" relid="0xb">
 					<name>ConfigProperty</name>
@@ -4810,7 +4810,7 @@
 					<attribute kind="DataValue">
 						<value>PCM.ior</value>
 					</attribute>
-					<reference id="id-0067-000000c3" kind="DataType" role="DataType" relid="0x1" referred="id-0066-0000004e">
+					<reference id="id-0067-000000c4" kind="DataType" role="DataType" relid="0x1" referred="id-0066-0000004d">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -4853,7 +4853,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000c4" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x3" referred="id-0066-0000003a">
+				<reference id="id-0067-000000c5" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x3" referred="id-0066-00000039">
 					<name>PalletConveyorManager_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4865,7 +4865,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000c5" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-0000003b">
+				<reference id="id-0067-000000c6" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-0000003a">
 					<name>PalletConveyorManager_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4877,7 +4877,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000c6" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x5" referred="id-0066-00000039">
+				<reference id="id-0067-000000c7" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x5" referred="id-0066-00000038">
 					<name>PalletConveyorManager_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4903,7 +4903,7 @@
 						<value>w</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-0000002d"/>
-					<connpoint role="dst" target="id-0067-000000c4"/>
+					<connpoint role="dst" target="id-0067-000000c5"/>
 				</connection>
 				<connection id="id-0068-00000024" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x8">
 					<name>MonolithprimaryArtifact</name>
@@ -4911,7 +4911,7 @@
 						<value>w</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-0000002d"/>
-					<connpoint role="dst" target="id-0067-000000c5"/>
+					<connpoint role="dst" target="id-0067-000000c6"/>
 				</connection>
 				<connection id="id-0068-00000025" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x9">
 					<name>MonolithprimaryArtifact</name>
@@ -4919,7 +4919,7 @@
 						<value>w</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-0000002d"/>
-					<connpoint role="dst" target="id-0067-000000c6"/>
+					<connpoint role="dst" target="id-0067-000000c7"/>
 				</connection>
 				<connection id="id-0068-00000026" kind="ConfigProperty" role="ConfigProperty" relid="0xb">
 					<name>ConfigProperty</name>
@@ -5556,7 +5556,7 @@
 								<value>145,264</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>389,354</value>
@@ -5570,11 +5570,11 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-000000dc" kind="ComponentPackageReference" role="ComponentPackageReference" relid="0x8" referred="id-0066-0000002e">
+				<reference id="id-0067-00000067" kind="ComponentPackageReference" role="ComponentPackageReference" relid="0x8" referred="id-0066-0000002e">
 					<name>RobotAssembly</name>
-					<regnode name="PartRegs">
+					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>697,354</value>
@@ -5591,13 +5591,13 @@
 						<value></value>
 					</attribute>
 				</reference>
-				<connection id="id-0068-00000061" kind="PackageConfReference" role="PackageConfReference" relid="0x9">
+				<connection id="id-0068-00000034" kind="PackageConfReference" role="PackageConfReference" relid="0x9">
 					<name>PackageConfReference</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-00000034"/>
-					<connpoint role="dst" target="id-0067-000000dc"/>
+					<connpoint role="dst" target="id-0067-00000067"/>
 				</connection>
 			</model>
 		</folder>
@@ -5625,7 +5625,7 @@
 					<attribute kind="DataValue">
 						<value>createRobotManagerHome_Impl</value>
 					</attribute>
-					<reference id="id-0067-000000c7" kind="DataType" role="DataType" relid="0x2" referred="id-0066-0000004e">
+					<reference id="id-0067-000000c8" kind="DataType" role="DataType" relid="0x2" referred="id-0066-0000004d">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -5658,7 +5658,7 @@
 					<attribute kind="DataValue">
 						<value>createRobotManagerHome_Servant</value>
 					</attribute>
-					<reference id="id-0067-000000c8" kind="DataType" role="DataType" relid="0x1" referred="id-0066-0000004e">
+					<reference id="id-0067-000000c9" kind="DataType" role="DataType" relid="0x1" referred="id-0066-0000004d">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -5671,7 +5671,7 @@
 						</regnode>
 					</reference>
 				</model>
-				<atom id="id-0066-00000036" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x1">
+				<atom id="id-0066-00000035" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x1">
 					<name>RobotManager_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -5704,7 +5704,7 @@
 						<value>orb_tree.xml</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000037" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
+				<atom id="id-0066-00000036" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
 					<name>RobotManager_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -5737,7 +5737,7 @@
 						<value>orb_tree.xml</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000038" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
+				<atom id="id-0066-00000037" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
 					<name>RobotManager_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -5770,7 +5770,7 @@
 						<value>orb_tree.xml</value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-00000067" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-00000037">
+				<reference id="id-0067-00000068" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-00000036">
 					<name>RobotManager_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -5788,7 +5788,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000068" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x12" referred="id-0066-00000038">
+				<reference id="id-0067-00000069" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x12" referred="id-0066-00000037">
 					<name>RobotManager_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -5800,7 +5800,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000c9" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x14" referred="id-0066-00000045">
+				<reference id="id-0067-000000ca" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x14" referred="id-0066-00000044">
 					<name>RobotModel_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -5812,7 +5812,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000ca" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x15" referred="id-0066-00000046">
+				<reference id="id-0067-000000cb" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x15" referred="id-0066-00000045">
 					<name>RobotModel_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -5829,44 +5829,44 @@
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-00000036"/>
-					<connpoint role="dst" target="id-0067-00000067"/>
+					<connpoint role="src" target="id-0066-00000035"/>
+					<connpoint role="dst" target="id-0067-00000068"/>
 				</connection>
 				<connection id="id-0068-00000036" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x6">
 					<name>ArtifactDependsOn</name>
-					<connpoint role="src" target="id-0066-00000038"/>
-					<connpoint role="dst" target="id-0067-00000067"/>
+					<connpoint role="src" target="id-0066-00000037"/>
+					<connpoint role="dst" target="id-0067-00000068"/>
 				</connection>
 				<connection id="id-0068-00000037" kind="ArtifactExecParameter" role="ArtifactExecParameter" relid="0x9">
 					<name>ArtifactExecParameter</name>
 					<connpoint role="dst" target="id-0065-00000076"/>
-					<connpoint role="src" target="id-0066-00000036"/>
+					<connpoint role="src" target="id-0066-00000035"/>
 				</connection>
 				<connection id="id-0068-00000038" kind="ArtifactExecParameter" role="ArtifactExecParameter" relid="0xb">
 					<name>ArtifactExecParameter</name>
 					<connpoint role="dst" target="id-0065-00000077"/>
-					<connpoint role="src" target="id-0066-00000038"/>
+					<connpoint role="src" target="id-0066-00000037"/>
 				</connection>
 				<connection id="id-0068-00000039" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x13">
 					<name>ArtifactDependsOn</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>s</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-00000036"/>
-					<connpoint role="dst" target="id-0067-00000068"/>
+					<connpoint role="src" target="id-0066-00000035"/>
+					<connpoint role="dst" target="id-0067-00000069"/>
 				</connection>
 				<connection id="id-0068-0000003a" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x16">
 					<name>ArtifactDependsOn</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>N</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-00000037"/>
-					<connpoint role="dst" target="id-0067-000000ca"/>
+					<connpoint role="src" target="id-0066-00000036"/>
+					<connpoint role="dst" target="id-0067-000000cb"/>
 				</connection>
 				<connection id="id-0068-0000003b" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x17">
 					<name>ArtifactDependsOn</name>
-					<connpoint role="src" target="id-0066-00000037"/>
-					<connpoint role="dst" target="id-0067-000000c9"/>
+					<connpoint role="src" target="id-0066-00000036"/>
+					<connpoint role="dst" target="id-0067-000000ca"/>
 				</connection>
 			</model>
 			<model id="id-0065-00000078" kind="ArtifactContainer" relid="0x3" childrelidcntr="0x16">
@@ -5891,7 +5891,7 @@
 					<attribute kind="DataValue">
 						<value>createPalletConveyorManagerHome_Servant</value>
 					</attribute>
-					<reference id="id-0067-000000cb" kind="DataType" role="DataType" relid="0x1" referred="id-0066-0000004e">
+					<reference id="id-0067-000000cc" kind="DataType" role="DataType" relid="0x1" referred="id-0066-0000004d">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -5924,7 +5924,7 @@
 					<attribute kind="DataValue">
 						<value>createPalletConveyorManagerHome_Impl</value>
 					</attribute>
-					<reference id="id-0067-000000cc" kind="DataType" role="DataType" relid="0x2" referred="id-0066-0000004e">
+					<reference id="id-0067-000000cd" kind="DataType" role="DataType" relid="0x2" referred="id-0066-0000004d">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -5937,7 +5937,7 @@
 						</regnode>
 					</reference>
 				</model>
-				<atom id="id-0066-00000039" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x1">
+				<atom id="id-0066-00000038" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x1">
 					<name>PalletConveyorManager_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -5970,7 +5970,7 @@
 						<value>orb_tree.xml</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000003a" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
+				<atom id="id-0066-00000039" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
 					<name>PalletConveyorManager_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6003,7 +6003,7 @@
 						<value>orb_tree.xml</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000003b" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
+				<atom id="id-0066-0000003a" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
 					<name>PalletConveyorManager_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6036,7 +6036,7 @@
 						<value>orb_tree.xml</value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-00000069" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-0000003a">
+				<reference id="id-0067-0000006a" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-00000039">
 					<name>PalletConveyorManager_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6054,7 +6054,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000006a" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x11" referred="id-0066-00000039">
+				<reference id="id-0067-0000006b" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x11" referred="id-0066-00000038">
 					<name>PalletConveyorManager_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6066,7 +6066,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000cd" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x13" referred="id-0066-00000045">
+				<reference id="id-0067-000000ce" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x13" referred="id-0066-00000044">
 					<name>RobotModel_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6078,7 +6078,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000ce" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x14" referred="id-0066-00000046">
+				<reference id="id-0067-000000cf" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x14" referred="id-0066-00000045">
 					<name>RobotModel_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6093,43 +6093,43 @@
 				<connection id="id-0068-0000003c" kind="ArtifactExecParameter" role="ArtifactExecParameter" relid="0x7">
 					<name>ArtifactExecParameter</name>
 					<connpoint role="dst" target="id-0065-00000079"/>
-					<connpoint role="src" target="id-0066-00000039"/>
+					<connpoint role="src" target="id-0066-00000038"/>
 				</connection>
 				<connection id="id-0068-0000003d" kind="ArtifactExecParameter" role="ArtifactExecParameter" relid="0x8">
 					<name>ArtifactExecParameter</name>
 					<connpoint role="dst" target="id-0065-0000007a"/>
-					<connpoint role="src" target="id-0066-0000003b"/>
+					<connpoint role="src" target="id-0066-0000003a"/>
 				</connection>
 				<connection id="id-0068-0000003e" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x9">
 					<name>ArtifactDependsOn</name>
-					<connpoint role="src" target="id-0066-00000039"/>
-					<connpoint role="dst" target="id-0067-00000069"/>
+					<connpoint role="src" target="id-0066-00000038"/>
+					<connpoint role="dst" target="id-0067-0000006a"/>
 				</connection>
 				<connection id="id-0068-0000003f" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0xa">
 					<name>ArtifactDependsOn</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-0000003b"/>
-					<connpoint role="dst" target="id-0067-00000069"/>
+					<connpoint role="src" target="id-0066-0000003a"/>
+					<connpoint role="dst" target="id-0067-0000006a"/>
 				</connection>
 				<connection id="id-0068-00000040" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x12">
 					<name>ArtifactDependsOn</name>
-					<connpoint role="src" target="id-0066-0000003b"/>
-					<connpoint role="dst" target="id-0067-0000006a"/>
+					<connpoint role="src" target="id-0066-0000003a"/>
+					<connpoint role="dst" target="id-0067-0000006b"/>
 				</connection>
 				<connection id="id-0068-00000041" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x15">
 					<name>ArtifactDependsOn</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>N</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-0000003a"/>
-					<connpoint role="dst" target="id-0067-000000ce"/>
+					<connpoint role="src" target="id-0066-00000039"/>
+					<connpoint role="dst" target="id-0067-000000cf"/>
 				</connection>
 				<connection id="id-0068-00000042" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x16">
 					<name>ArtifactDependsOn</name>
-					<connpoint role="src" target="id-0066-0000003a"/>
-					<connpoint role="dst" target="id-0067-000000cd"/>
+					<connpoint role="src" target="id-0066-00000039"/>
+					<connpoint role="dst" target="id-0067-000000ce"/>
 				</connection>
 			</model>
 			<model id="id-0065-0000007b" kind="ArtifactContainer" relid="0x4" childrelidcntr="0x16">
@@ -6154,7 +6154,7 @@
 					<attribute kind="DataValue">
 						<value>createManagementWorkInstructionsHome_Servant</value>
 					</attribute>
-					<reference id="id-0067-000000cf" kind="DataType" role="DataType" relid="0x1" referred="id-0066-0000004e">
+					<reference id="id-0067-000000d0" kind="DataType" role="DataType" relid="0x1" referred="id-0066-0000004d">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -6187,7 +6187,7 @@
 					<attribute kind="DataValue">
 						<value>createManagementWorkInstructionsHome_Impl</value>
 					</attribute>
-					<reference id="id-0067-000000d0" kind="DataType" role="DataType" relid="0x2" referred="id-0066-0000004e">
+					<reference id="id-0067-000000d1" kind="DataType" role="DataType" relid="0x2" referred="id-0066-0000004d">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -6200,7 +6200,7 @@
 						</regnode>
 					</reference>
 				</model>
-				<atom id="id-0066-0000003c" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x1">
+				<atom id="id-0066-0000003b" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x1">
 					<name>ManagementWorkInstructions_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6233,7 +6233,7 @@
 						<value>orb_tree.xml</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000003d" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
+				<atom id="id-0066-0000003c" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
 					<name>ManagementWorkInstructions_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6266,7 +6266,7 @@
 						<value>orb_tree.xml</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000003e" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
+				<atom id="id-0066-0000003d" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
 					<name>ManagementWorkInstructions_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6299,7 +6299,7 @@
 						<value>orb_tree.xml</value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-0000006b" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-0000003d">
+				<reference id="id-0067-0000006c" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-0000003c">
 					<name>ManagementWorkInstructions_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6317,7 +6317,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000006c" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x11" referred="id-0066-0000003c">
+				<reference id="id-0067-0000006d" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x11" referred="id-0066-0000003b">
 					<name>ManagementWorkInstructions_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6329,7 +6329,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000d1" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x13" referred="id-0066-00000045">
+				<reference id="id-0067-000000d2" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x13" referred="id-0066-00000044">
 					<name>RobotModel_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6341,7 +6341,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000d2" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x14" referred="id-0066-00000046">
+				<reference id="id-0067-000000d3" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x14" referred="id-0066-00000045">
 					<name>RobotModel_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6356,43 +6356,43 @@
 				<connection id="id-0068-00000043" kind="ArtifactExecParameter" role="ArtifactExecParameter" relid="0x7">
 					<name>ArtifactExecParameter</name>
 					<connpoint role="dst" target="id-0065-0000007c"/>
-					<connpoint role="src" target="id-0066-0000003c"/>
+					<connpoint role="src" target="id-0066-0000003b"/>
 				</connection>
 				<connection id="id-0068-00000044" kind="ArtifactExecParameter" role="ArtifactExecParameter" relid="0x8">
 					<name>ArtifactExecParameter</name>
 					<connpoint role="dst" target="id-0065-0000007d"/>
-					<connpoint role="src" target="id-0066-0000003e"/>
+					<connpoint role="src" target="id-0066-0000003d"/>
 				</connection>
 				<connection id="id-0068-00000045" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x9">
 					<name>ArtifactDependsOn</name>
-					<connpoint role="src" target="id-0066-0000003c"/>
-					<connpoint role="dst" target="id-0067-0000006b"/>
+					<connpoint role="src" target="id-0066-0000003b"/>
+					<connpoint role="dst" target="id-0067-0000006c"/>
 				</connection>
 				<connection id="id-0068-00000046" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0xa">
 					<name>ArtifactDependsOn</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-0000003e"/>
-					<connpoint role="dst" target="id-0067-0000006b"/>
+					<connpoint role="src" target="id-0066-0000003d"/>
+					<connpoint role="dst" target="id-0067-0000006c"/>
 				</connection>
 				<connection id="id-0068-00000047" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x12">
 					<name>ArtifactDependsOn</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>W</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-0000003e"/>
-					<connpoint role="dst" target="id-0067-0000006c"/>
+					<connpoint role="src" target="id-0066-0000003d"/>
+					<connpoint role="dst" target="id-0067-0000006d"/>
 				</connection>
 				<connection id="id-0068-00000048" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x15">
 					<name>ArtifactDependsOn</name>
-					<connpoint role="src" target="id-0066-0000003d"/>
-					<connpoint role="dst" target="id-0067-000000d2"/>
+					<connpoint role="src" target="id-0066-0000003c"/>
+					<connpoint role="dst" target="id-0067-000000d3"/>
 				</connection>
 				<connection id="id-0068-00000049" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x16">
 					<name>ArtifactDependsOn</name>
-					<connpoint role="src" target="id-0066-0000003d"/>
-					<connpoint role="dst" target="id-0067-000000d1"/>
+					<connpoint role="src" target="id-0066-0000003c"/>
+					<connpoint role="dst" target="id-0067-000000d2"/>
 				</connection>
 			</model>
 			<model id="id-0065-0000007e" kind="ArtifactContainer" relid="0x5" childrelidcntr="0x16">
@@ -6417,7 +6417,7 @@
 					<attribute kind="DataValue">
 						<value>createWatchSettingManagerHome_Servant</value>
 					</attribute>
-					<reference id="id-0067-000000d3" kind="DataType" role="DataType" relid="0x1" referred="id-0066-0000004e">
+					<reference id="id-0067-000000d4" kind="DataType" role="DataType" relid="0x1" referred="id-0066-0000004d">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -6450,7 +6450,7 @@
 					<attribute kind="DataValue">
 						<value>createWatchSettingManagerHome_Impl</value>
 					</attribute>
-					<reference id="id-0067-000000d4" kind="DataType" role="DataType" relid="0x2" referred="id-0066-0000004e">
+					<reference id="id-0067-000000d5" kind="DataType" role="DataType" relid="0x2" referred="id-0066-0000004d">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -6463,7 +6463,7 @@
 						</regnode>
 					</reference>
 				</model>
-				<atom id="id-0066-0000003f" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x1">
+				<atom id="id-0066-0000003e" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x1">
 					<name>WatchSettingManager_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6496,7 +6496,7 @@
 						<value>orb_tree.xml</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000040" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
+				<atom id="id-0066-0000003f" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
 					<name>WatchSettingManager_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6529,7 +6529,7 @@
 						<value>orb_tree.xml</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000041" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
+				<atom id="id-0066-00000040" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
 					<name>WatchSettingManager_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6562,7 +6562,7 @@
 						<value>orb_tree.xml</value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-0000006d" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-00000040">
+				<reference id="id-0067-0000006e" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-0000003f">
 					<name>WatchSettingManager_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6580,7 +6580,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000006e" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x11" referred="id-0066-0000003f">
+				<reference id="id-0067-0000006f" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x11" referred="id-0066-0000003e">
 					<name>WatchSettingManager_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6592,7 +6592,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000d5" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x13" referred="id-0066-00000045">
+				<reference id="id-0067-000000d6" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x13" referred="id-0066-00000044">
 					<name>RobotModel_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6604,7 +6604,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000d6" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x14" referred="id-0066-00000046">
+				<reference id="id-0067-000000d7" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x14" referred="id-0066-00000045">
 					<name>RobotModel_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6619,46 +6619,46 @@
 				<connection id="id-0068-0000004a" kind="ArtifactExecParameter" role="ArtifactExecParameter" relid="0x7">
 					<name>ArtifactExecParameter</name>
 					<connpoint role="dst" target="id-0065-0000007f"/>
-					<connpoint role="src" target="id-0066-0000003f"/>
+					<connpoint role="src" target="id-0066-0000003e"/>
 				</connection>
 				<connection id="id-0068-0000004b" kind="ArtifactExecParameter" role="ArtifactExecParameter" relid="0x8">
 					<name>ArtifactExecParameter</name>
 					<connpoint role="dst" target="id-0065-00000080"/>
-					<connpoint role="src" target="id-0066-00000041"/>
+					<connpoint role="src" target="id-0066-00000040"/>
 				</connection>
 				<connection id="id-0068-0000004c" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x9">
 					<name>ArtifactDependsOn</name>
-					<connpoint role="src" target="id-0066-0000003f"/>
-					<connpoint role="dst" target="id-0067-0000006d"/>
+					<connpoint role="src" target="id-0066-0000003e"/>
+					<connpoint role="dst" target="id-0067-0000006e"/>
 				</connection>
 				<connection id="id-0068-0000004d" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0xa">
 					<name>ArtifactDependsOn</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-00000041"/>
-					<connpoint role="dst" target="id-0067-0000006d"/>
+					<connpoint role="src" target="id-0066-00000040"/>
+					<connpoint role="dst" target="id-0067-0000006e"/>
 				</connection>
 				<connection id="id-0068-0000004e" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x12">
 					<name>ArtifactDependsOn</name>
-					<connpoint role="src" target="id-0066-00000041"/>
-					<connpoint role="dst" target="id-0067-0000006e"/>
+					<connpoint role="src" target="id-0066-00000040"/>
+					<connpoint role="dst" target="id-0067-0000006f"/>
 				</connection>
 				<connection id="id-0068-0000004f" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x15">
 					<name>ArtifactDependsOn</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>N</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-00000040"/>
-					<connpoint role="dst" target="id-0067-000000d6"/>
+					<connpoint role="src" target="id-0066-0000003f"/>
+					<connpoint role="dst" target="id-0067-000000d7"/>
 				</connection>
 				<connection id="id-0068-00000050" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x16">
 					<name>ArtifactDependsOn</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-00000040"/>
-					<connpoint role="dst" target="id-0067-000000d5"/>
+					<connpoint role="src" target="id-0066-0000003f"/>
+					<connpoint role="dst" target="id-0067-000000d6"/>
 				</connection>
 			</model>
 			<model id="id-0065-00000081" kind="ArtifactContainer" relid="0x6" childrelidcntr="0x16">
@@ -6683,7 +6683,7 @@
 					<attribute kind="DataValue">
 						<value>createHumanMachineInterfaceHome_Servant</value>
 					</attribute>
-					<reference id="id-0067-000000d7" kind="DataType" role="DataType" relid="0x1" referred="id-0066-0000004e">
+					<reference id="id-0067-000000d8" kind="DataType" role="DataType" relid="0x1" referred="id-0066-0000004d">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -6716,7 +6716,7 @@
 					<attribute kind="DataValue">
 						<value>createHumanMachineInterfaceHome_Impl</value>
 					</attribute>
-					<reference id="id-0067-000000d8" kind="DataType" role="DataType" relid="0x2" referred="id-0066-0000004e">
+					<reference id="id-0067-000000d9" kind="DataType" role="DataType" relid="0x2" referred="id-0066-0000004d">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -6729,7 +6729,7 @@
 						</regnode>
 					</reference>
 				</model>
-				<atom id="id-0066-00000042" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x1">
+				<atom id="id-0066-00000041" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x1">
 					<name>HumanMachineInterface_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6762,7 +6762,7 @@
 						<value>orb_tree.xml</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000043" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
+				<atom id="id-0066-00000042" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
 					<name>HumanMachineInterface_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6795,7 +6795,7 @@
 						<value>orb_tree.xml</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000044" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
+				<atom id="id-0066-00000043" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
 					<name>HumanMachineInterface_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6828,7 +6828,7 @@
 						<value>orb_tree.xml</value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-0000006f" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-00000043">
+				<reference id="id-0067-00000070" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-00000042">
 					<name>HumanMachineInterface_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6846,7 +6846,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000070" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x11" referred="id-0066-00000042">
+				<reference id="id-0067-00000071" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x11" referred="id-0066-00000041">
 					<name>HumanMachineInterface_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6858,7 +6858,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000d9" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x13" referred="id-0066-00000045">
+				<reference id="id-0067-000000da" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x13" referred="id-0066-00000044">
 					<name>RobotModel_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6870,7 +6870,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000da" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x14" referred="id-0066-00000046">
+				<reference id="id-0067-000000db" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x14" referred="id-0066-00000045">
 					<name>RobotModel_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6885,37 +6885,37 @@
 				<connection id="id-0068-00000051" kind="ArtifactExecParameter" role="ArtifactExecParameter" relid="0x7">
 					<name>ArtifactExecParameter</name>
 					<connpoint role="dst" target="id-0065-00000082"/>
-					<connpoint role="src" target="id-0066-00000042"/>
+					<connpoint role="src" target="id-0066-00000041"/>
 				</connection>
 				<connection id="id-0068-00000052" kind="ArtifactExecParameter" role="ArtifactExecParameter" relid="0x8">
 					<name>ArtifactExecParameter</name>
 					<connpoint role="dst" target="id-0065-00000083"/>
-					<connpoint role="src" target="id-0066-00000044"/>
+					<connpoint role="src" target="id-0066-00000043"/>
 				</connection>
 				<connection id="id-0068-00000053" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x9">
 					<name>ArtifactDependsOn</name>
-					<connpoint role="src" target="id-0066-00000042"/>
-					<connpoint role="dst" target="id-0067-0000006f"/>
+					<connpoint role="src" target="id-0066-00000041"/>
+					<connpoint role="dst" target="id-0067-00000070"/>
 				</connection>
 				<connection id="id-0068-00000054" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x12">
 					<name>ArtifactDependsOn</name>
-					<connpoint role="src" target="id-0066-00000044"/>
-					<connpoint role="dst" target="id-0067-00000070"/>
+					<connpoint role="src" target="id-0066-00000043"/>
+					<connpoint role="dst" target="id-0067-00000071"/>
 				</connection>
 				<connection id="id-0068-00000055" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x15">
 					<name>ArtifactDependsOn</name>
-					<connpoint role="src" target="id-0066-00000043"/>
-					<connpoint role="dst" target="id-0067-000000da"/>
+					<connpoint role="src" target="id-0066-00000042"/>
+					<connpoint role="dst" target="id-0067-000000db"/>
 				</connection>
 				<connection id="id-0068-00000056" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x16">
 					<name>ArtifactDependsOn</name>
-					<connpoint role="src" target="id-0066-00000043"/>
-					<connpoint role="dst" target="id-0067-000000d9"/>
+					<connpoint role="src" target="id-0066-00000042"/>
+					<connpoint role="dst" target="id-0067-000000da"/>
 				</connection>
 			</model>
 			<model id="id-0065-00000084" kind="ArtifactContainer" relid="0x7" childrelidcntr="0x4">
 				<name>CommonArtifacts</name>
-				<atom id="id-0066-00000045" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x1">
+				<atom id="id-0066-00000044" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x1">
 					<name>RobotModel_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6942,7 +6942,7 @@
 						<value>orb_tree.xml</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000046" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
+				<atom id="id-0066-00000045" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
 					<name>RobotModel_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6969,7 +6969,7 @@
 						<value>orb_tree.xml</value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-00000071" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x3" referred="id-0066-00000046">
+				<reference id="id-0067-00000072" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x3" referred="id-0066-00000045">
 					<name>RobotModel_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6986,41 +6986,41 @@
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-00000045"/>
-					<connpoint role="dst" target="id-0067-00000071"/>
+					<connpoint role="src" target="id-0066-00000044"/>
+					<connpoint role="dst" target="id-0067-00000072"/>
 				</connection>
 			</model>
 		</folder>
 		<folder id="id-006a-0000000a" relid="0xc" childrelidcntr="0xb" kind="PredefinedTypes">
 			<name>PredefinedTypes</name>
-			<atom id="id-0066-00000047" kind="Boolean" relid="0x2">
+			<atom id="id-0066-00000046" kind="Boolean" relid="0x2">
 				<name>Boolean</name>
 			</atom>
-			<atom id="id-0066-00000048" kind="Byte" relid="0x3">
+			<atom id="id-0066-00000047" kind="Byte" relid="0x3">
 				<name>Byte</name>
 			</atom>
-			<atom id="id-0066-00000049" kind="GenericObject" relid="0x4">
+			<atom id="id-0066-00000048" kind="GenericObject" relid="0x4">
 				<name>GenericObject</name>
 			</atom>
-			<atom id="id-0066-0000004a" kind="GenericValue" relid="0x5">
+			<atom id="id-0066-00000049" kind="GenericValue" relid="0x5">
 				<name>GenericValue</name>
 			</atom>
-			<atom id="id-0066-0000004b" kind="LongInteger" relid="0x6">
+			<atom id="id-0066-0000004a" kind="LongInteger" relid="0x6">
 				<name>LongInteger</name>
 			</atom>
-			<atom id="id-0066-0000004c" kind="RealNumber" relid="0x7">
+			<atom id="id-0066-0000004b" kind="RealNumber" relid="0x7">
 				<name>RealNumber</name>
 			</atom>
-			<atom id="id-0066-0000004d" kind="ShortInteger" relid="0x8">
+			<atom id="id-0066-0000004c" kind="ShortInteger" relid="0x8">
 				<name>ShortInteger</name>
 			</atom>
-			<atom id="id-0066-0000004e" kind="String" relid="0x9">
+			<atom id="id-0066-0000004d" kind="String" relid="0x9">
 				<name>String</name>
 			</atom>
-			<atom id="id-0066-0000004f" kind="TypeEncoding" relid="0xa">
+			<atom id="id-0066-0000004e" kind="TypeEncoding" relid="0xa">
 				<name>TypeEncoding</name>
 			</atom>
-			<atom id="id-0066-00000050" kind="TypeKind" relid="0xb">
+			<atom id="id-0066-0000004f" kind="TypeKind" relid="0xb">
 				<name>TypeKind</name>
 			</atom>
 		</folder>
@@ -7028,7 +7028,7 @@
 			<name>TopLevelPackages</name>
 			<model id="id-0065-00000085" kind="TopLevelPackageContainer" relid="0x1" childrelidcntr="0x3">
 				<name>TopLevelPackage</name>
-				<atom id="id-0066-00000051" kind="TopLevelPackage" role="TopLevelPackage" relid="0x1">
+				<atom id="id-0066-00000050" kind="TopLevelPackage" role="TopLevelPackage" relid="0x1">
 					<name>RobotAssembly</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -7040,7 +7040,7 @@
 						</regnode>
 					</regnode>
 				</atom>
-				<reference id="id-0067-00000072" kind="PackageConfigurationReference" role="PackageConfigurationReference" relid="0x2" referred="id-0066-00000034">
+				<reference id="id-0067-00000073" kind="PackageConfigurationReference" role="PackageConfigurationReference" relid="0x2" referred="id-0066-00000034">
 					<name>DefaultConfiguration</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -7057,8 +7057,8 @@
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-00000051"/>
-					<connpoint role="dst" target="id-0067-00000072"/>
+					<connpoint role="src" target="id-0066-00000050"/>
+					<connpoint role="dst" target="id-0067-00000073"/>
 				</connection>
 			</model>
 		</folder>
@@ -7097,7 +7097,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000073" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-00000036">
+						<reference id="id-0067-00000074" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-00000035">
 							<name>RobotManager_exec</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7130,7 +7130,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000074" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-00000038">
+						<reference id="id-0067-00000075" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-00000037">
 							<name>RobotManager_svnt</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7142,7 +7142,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000075" kind="FileRef" role="FileRef" relid="0x2" referred="id-0065-00000001">
+						<reference id="id-0067-00000076" kind="FileRef" role="FileRef" relid="0x2" referred="id-0065-00000001">
 							<name>RobotModel</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7175,7 +7175,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000076" kind="FileRef" role="FileRef" relid="0x1" referred="id-0065-00000001">
+						<reference id="id-0067-00000077" kind="FileRef" role="FileRef" relid="0x1" referred="id-0065-00000001">
 							<name>RobotModel</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7187,7 +7187,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000077" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x2" referred="id-0066-00000037">
+						<reference id="id-0067-00000078" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x2" referred="id-0066-00000036">
 							<name>RobotManager_stub</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7232,7 +7232,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000078" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-00000041">
+						<reference id="id-0067-00000079" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-00000040">
 							<name>WatchSettingManager_exec</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7265,7 +7265,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000079" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-0000003f">
+						<reference id="id-0067-0000007a" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-0000003e">
 							<name>WatchSettingManager_svnt</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7277,7 +7277,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000007a" kind="FileRef" role="FileRef" relid="0x2" referred="id-0065-00000001">
+						<reference id="id-0067-0000007b" kind="FileRef" role="FileRef" relid="0x2" referred="id-0065-00000001">
 							<name>RobotModel</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7310,7 +7310,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-0000007b" kind="FileRef" role="FileRef" relid="0x1" referred="id-0065-00000001">
+						<reference id="id-0067-0000007c" kind="FileRef" role="FileRef" relid="0x1" referred="id-0065-00000001">
 							<name>RobotModel</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7322,7 +7322,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000007c" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x2" referred="id-0066-00000040">
+						<reference id="id-0067-0000007d" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x2" referred="id-0066-0000003f">
 							<name>WatchSettingManager_stub</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7367,7 +7367,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-0000007d" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-0000003b">
+						<reference id="id-0067-0000007e" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-0000003a">
 							<name>PalletConveyorManager_exec</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7400,7 +7400,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-0000007e" kind="FileRef" role="FileRef" relid="0x1" referred="id-0065-00000001">
+						<reference id="id-0067-0000007f" kind="FileRef" role="FileRef" relid="0x1" referred="id-0065-00000001">
 							<name>RobotModel</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7412,7 +7412,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000007f" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x2" referred="id-0066-0000003a">
+						<reference id="id-0067-00000080" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x2" referred="id-0066-00000039">
 							<name>PalletConveyorManager_stub</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7445,7 +7445,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000080" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-00000039">
+						<reference id="id-0067-00000081" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-00000038">
 							<name>PalletConveyorManager_svnt</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7457,7 +7457,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000081" kind="FileRef" role="FileRef" relid="0x2" referred="id-0065-00000001">
+						<reference id="id-0067-00000082" kind="FileRef" role="FileRef" relid="0x2" referred="id-0065-00000001">
 							<name>RobotModel</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7502,7 +7502,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000082" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-00000044">
+						<reference id="id-0067-00000083" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-00000043">
 							<name>HumanMachineInterface_exec</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7535,7 +7535,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000083" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-00000042">
+						<reference id="id-0067-00000084" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-00000041">
 							<name>HumanMachineInterface_svnt</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7547,7 +7547,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000084" kind="FileRef" role="FileRef" relid="0x2" referred="id-0065-00000001">
+						<reference id="id-0067-00000085" kind="FileRef" role="FileRef" relid="0x2" referred="id-0065-00000001">
 							<name>RobotModel</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7580,7 +7580,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000085" kind="FileRef" role="FileRef" relid="0x1" referred="id-0065-00000001">
+						<reference id="id-0067-00000086" kind="FileRef" role="FileRef" relid="0x1" referred="id-0065-00000001">
 							<name>RobotModel</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7592,7 +7592,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000086" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x2" referred="id-0066-00000043">
+						<reference id="id-0067-00000087" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x2" referred="id-0066-00000042">
 							<name>HumanMachineInterface_stub</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7637,7 +7637,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000087" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-0000003e">
+						<reference id="id-0067-00000088" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-0000003d">
 							<name>ManagementWorkInstructions_exec</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7670,7 +7670,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000088" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-0000003c">
+						<reference id="id-0067-00000089" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-0000003b">
 							<name>ManagementWorkInstructions_svnt</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7682,7 +7682,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000089" kind="FileRef" role="FileRef" relid="0x2" referred="id-0065-00000001">
+						<reference id="id-0067-0000008a" kind="FileRef" role="FileRef" relid="0x2" referred="id-0065-00000001">
 							<name>RobotModel</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7715,7 +7715,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-0000008a" kind="FileRef" role="FileRef" relid="0x1" referred="id-0065-00000001">
+						<reference id="id-0067-0000008b" kind="FileRef" role="FileRef" relid="0x1" referred="id-0065-00000001">
 							<name>RobotModel</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7727,7 +7727,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000008b" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x2" referred="id-0066-0000003d">
+						<reference id="id-0067-0000008c" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x2" referred="id-0066-0000003c">
 							<name>ManagementWorkInstructions_stub</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7780,7 +7780,7 @@
 						<value>0</value>
 					</attribute>
 				</model>
-				<atom id="id-0066-00000052" kind="Task" role="Task" relid="0x8">
+				<atom id="id-0066-00000051" kind="Task" role="Task" relid="0x8">
 					<name>Task</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -7798,7 +7798,7 @@
 						<value>50</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000053" kind="Task" role="Task" relid="0x9">
+				<atom id="id-0066-00000052" kind="Task" role="Task" relid="0x9">
 					<name>Task</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -7816,7 +7816,7 @@
 						<value>10</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000054" kind="Task" role="Task" relid="0xa">
+				<atom id="id-0066-00000053" kind="Task" role="Task" relid="0xa">
 					<name>Task</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -7834,7 +7834,7 @@
 						<value>20</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000055" kind="TimeProbe" role="TimeProbe" relid="0xc">
+				<atom id="id-0066-00000054" kind="TimeProbe" role="TimeProbe" relid="0xc">
 					<name>TimeProbe</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -7846,7 +7846,7 @@
 						</regnode>
 					</regnode>
 				</atom>
-				<reference id="id-0067-0000008c" kind="EventRef" role="EventRef" relid="0x10" referred="id-0065-00000016">
+				<reference id="id-0067-0000008d" kind="EventRef" role="EventRef" relid="0x10" referred="id-0065-00000016">
 					<name>ProductionStatus</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -7858,7 +7858,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000008d" kind="OperationRef" role="OperationRef" relid="0x15" referred="id-0065-0000000d">
+				<reference id="id-0067-0000008e" kind="OperationRef" role="OperationRef" relid="0x15" referred="id-0065-0000000d">
 					<name>AcceptWorkOrderResponse</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -7880,15 +7880,15 @@
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>e</value>
 					</regnode>
-					<connpoint role="dst" target="id-0066-00000055"/>
-					<connpoint role="src" target="id-0067-0000008c"/>
+					<connpoint role="dst" target="id-0066-00000054"/>
+					<connpoint role="src" target="id-0067-0000008d"/>
 				</connection>
 				<connection id="id-0068-0000005b" kind="MetricConnection" role="MetricConnection" relid="0x16">
 					<name>MetricConnection</name>
 					<connpoint role="dst" target="id-0065-0000009c"/>
-					<connpoint role="src" target="id-0067-0000008d"/>
+					<connpoint role="src" target="id-0067-0000008e"/>
 				</connection>
-				<set id="id-0069-00000004" kind="TaskSet" role="TaskSet" relid="0x7" members="id-0066-00000054 id-0066-00000052 id-0066-00000053">
+				<set id="id-0069-00000004" kind="TaskSet" role="TaskSet" relid="0x7" members="id-0066-00000053 id-0066-00000051 id-0066-00000052">
 					<name>TaskSet</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -7917,7 +7917,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<atom id="id-0066-00000056" kind="RT_Info" role="RT_Info" relid="0x1">
+					<atom id="id-0066-00000055" kind="RT_Info" role="RT_Info" relid="0x1">
 						<name>RT_Info</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -7962,7 +7962,7 @@
 							<value>0</value>
 						</attribute>
 					</atom>
-					<reference id="id-0067-000000db" kind="RTEC_Resource_Factory_Reference" role="RTEC_Resource_Factory_Reference" relid="0x4" referred="id-0066-00000059">
+					<reference id="id-0067-000000dc" kind="RTEC_Resource_Factory_Reference" role="RTEC_Resource_Factory_Reference" relid="0x4" referred="id-0066-00000058">
 						<name>RTEC_Resource_Factory</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -7979,8 +7979,8 @@
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>e</value>
 						</regnode>
-						<connpoint role="src" target="id-0066-00000056"/>
-						<connpoint role="dst" target="id-0067-000000db"/>
+						<connpoint role="src" target="id-0066-00000055"/>
+						<connpoint role="dst" target="id-0067-000000dc"/>
 					</connection>
 				</model>
 				<model id="id-0065-0000009f" kind="RTEC_Proxy_Supplier" role="RTEC_Proxy_Supplier" relid="0x4" childrelidcntr="0x4">
@@ -7994,7 +7994,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<atom id="id-0066-00000057" kind="RT_Info" role="RT_Info" relid="0x1">
+					<atom id="id-0066-00000056" kind="RT_Info" role="RT_Info" relid="0x1">
 						<name>RT_Info</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -8039,7 +8039,7 @@
 							<value>0</value>
 						</attribute>
 					</atom>
-					<atom id="id-0066-00000058" kind="DisjunctionGroup" role="DisjunctionGroup" relid="0x2">
+					<atom id="id-0066-00000057" kind="DisjunctionGroup" role="DisjunctionGroup" relid="0x2">
 						<name>DisjunctionGroup</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -8056,11 +8056,11 @@
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>We</value>
 						</regnode>
-						<connpoint role="src" target="id-0066-00000057"/>
-						<connpoint role="dst" target="id-0066-00000058"/>
+						<connpoint role="src" target="id-0066-00000056"/>
+						<connpoint role="dst" target="id-0066-00000057"/>
 					</connection>
 				</model>
-				<atom id="id-0066-00000059" kind="RTEC_Resource_Factory" role="RTEC_Resource_Factory" relid="0x5">
+				<atom id="id-0066-00000058" kind="RTEC_Resource_Factory" role="RTEC_Resource_Factory" relid="0x5">
 					<name>RTEC_Resource_Factory</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -8132,7 +8132,7 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-0000008e" kind="ComponentRef" role="ComponentRef" relid="0x1" referred="id-0065-0000005a">
+				<reference id="id-0067-0000008f" kind="ComponentRef" role="ComponentRef" relid="0x1" referred="id-0065-0000005a">
 					<name>RobotManager</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -8144,7 +8144,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000008f" kind="ComponentRef" role="ComponentRef" relid="0x2" referred="id-0065-00000058">
+				<reference id="id-0067-00000090" kind="ComponentRef" role="ComponentRef" relid="0x2" referred="id-0065-00000058">
 					<name>WatchSettingManager</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -8158,18 +8158,18 @@
 				</reference>
 				<connection id="id-0068-0000005e" kind="RTEC_Connection" role="RTEC_Connection" relid="0x6">
 					<name>RTEC_Connection</name>
-					<connpoint role="dst" target="id-0066-00000056"/>
-					<connpoint role="src" target="id-0067-0000004a" refs="id-0067-0000008e"/>
+					<connpoint role="dst" target="id-0066-00000055"/>
+					<connpoint role="src" target="id-0067-00000049" refs="id-0067-0000008f"/>
 				</connection>
 				<connection id="id-0068-0000005f" kind="Use_RTEC_Filter" role="Use_RTEC_Filter" relid="0xb">
 					<name>Use_RTEC_Filter</name>
-					<connpoint role="src" target="id-0066-00000058"/>
-					<connpoint role="dst" target="id-0067-0000003e" refs="id-0067-0000008f"/>
+					<connpoint role="src" target="id-0066-00000057"/>
+					<connpoint role="dst" target="id-0067-00000042" refs="id-0067-00000090"/>
 				</connection>
 				<connection id="id-0068-00000060" kind="Use_RT_Info" role="Use_RT_Info" relid="0xc">
 					<name>Use_RT_Info</name>
-					<connpoint role="src" target="id-0066-00000057"/>
-					<connpoint role="dst" target="id-0067-000000db"/>
+					<connpoint role="src" target="id-0066-00000056"/>
+					<connpoint role="dst" target="id-0067-000000dc"/>
 				</connection>
 			</model>
 		</folder>
