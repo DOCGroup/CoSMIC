@@ -99,7 +99,6 @@ BGML_Visitor::Visit_BenchmarkAnalysis (const PICML::BenchmarkAnalysis& model)
 		// Check if there are any connections to Task Sets
 		PICML::WorkloadCharacteristics task_set = iter->dstWorkloadCharacteristics();
 		
-
 		if (task_set != Udm::null)
 		{
 			PICML::TaskSet set = task_set.dstWorkloadCharacteristics_end();
@@ -123,7 +122,7 @@ BGML_Visitor::Visit_BenchmarkAnalysis (const PICML::BenchmarkAnalysis& model)
 		{
 			// Write out the Latency information for this guy
 			PICML::Latency latency = PICML::Latency::Cast (* iter);
-			MetricEmitter<PICML::Latency> emitter (operation, 
+			MetricEmitter<PICML::Latency> emitter (op_ref, 
 												   latency, 
 												   kindName,
 												   this->bgml_state_);
@@ -134,7 +133,7 @@ BGML_Visitor::Visit_BenchmarkAnalysis (const PICML::BenchmarkAnalysis& model)
 		  {
 			// Write out the Latency information for this guy
 			PICML::Throughput thr = PICML::Throughput::Cast (* iter);
-			MetricEmitter<PICML::Throughput> thr_emitter (operation, 
+			MetricEmitter<PICML::Throughput> thr_emitter (op_ref, 
 														  thr, 
 														  kindName,
 														  this->bgml_state_);

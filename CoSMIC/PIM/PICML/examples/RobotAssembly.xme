@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{FD25D5A9-AC9C-4E5B-B8D5-F917A8AB0E35}" cdate="Tue Jan 25 11:12:00 2005" mdate="Tue Jan 25 11:50:20 2005" version="" metaguid="{49C182D5-3558-4C88-82D8-891F8C10A6D2}" metaversion="" metaname="PICML">
+<project guid="{EF8D0CB8-1E02-4660-B275-0DE8F81CBBCE}" cdate="Tue Jan 25 11:12:00 2005" mdate="Fri Feb 04 13:51:21 2005" version="" metaguid="{49C182D5-3558-4C88-82D8-891F8C10A6D2}" metaversion="" metaname="PICML">
 	<name>RobotAssembly</name>
 	<comment></comment>
 	<author></author>
@@ -4089,7 +4089,7 @@
 							<regnode name="Packaging" isopaque="yes">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>762,242</value>
+									<value>650,249</value>
 								</regnode>
 							</regnode>
 						</regnode>

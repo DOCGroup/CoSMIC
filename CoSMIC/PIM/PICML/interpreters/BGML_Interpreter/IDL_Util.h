@@ -7,7 +7,7 @@
 class IDL_Util
 {
 public:
-	static std::string component_name (PICML::TwowayOperation& op);
+	static std::string component_name (PICML::OperationRef& op);
 	static void return_type_signature (PICML::MemberType& mem_type,
 									   std::string& operation_name,
 									   std::string& package,

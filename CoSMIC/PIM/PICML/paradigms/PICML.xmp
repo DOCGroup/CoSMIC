@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="PICML" guid="{49C182D5-3558-4C88-82D8-891F8C10A6D2}" cdate="Mon Jan 24 13:26:57 2005" mdate="Tue Jan 25 10:33:06 2005" >
+<paradigm name="PICML" guid="{B45FD20D-32BC-49D1-9471-AAB2455EA58A}" cdate="Mon Jan 24 13:26:57 2005" mdate="Wed Feb 16 10:46:10 2005" >
 
 	<comment></comment>
 
@@ -292,7 +292,7 @@
           self.UUID <> "" implies packages->isUnique (i : ComponentPackage | i.UUID)]]>
 				<dispname>UUIDs if defined, should uniquely identify ComponentPackages</dispname>
 			</constraint>
-			<constraint name="ValidPackageInterfacedstCardinality86" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPackageInterfacedstCardinality88" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", PackageInterface ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to ComponentPackage as "dst" over PackageInterface, has to match 0..1.</dispname>
@@ -357,7 +357,7 @@
 		</atom>
 		<atom name = "Label" metaref = "1793" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidLabelConnectionsrcCardinality55" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidLabelConnectionsrcCardinality57" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", LabelConnection ) -> size in
                      (srcCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to Label as "src" over LabelConnection, has to match 1.</dispname>
@@ -408,17 +408,17 @@
           self.UUID <> "" implies packageconfigs->isUnique (i : PackageConfiguration | i.UUID)]]>
 				<dispname>UUIDs if defined, should uniquely identify PackageConfigurations</dispname>
 			</constraint>
-			<constraint name="ValidPackageConfBasePackagedstCardinality72" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPackageConfBasePackagedstCardinality74" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", PackageConfBasePackage ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to PackageConfiguration as "dst" over PackageConfBasePackage, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidPackageConfReferencedstCardinality76" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPackageConfReferencedstCardinality78" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", PackageConfReference ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to PackageConfiguration as "dst" over PackageConfReference, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidPackageConfSpecializedConfigdstCardinality80" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPackageConfSpecializedConfigdstCardinality82" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", PackageConfSpecializedConfig ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to PackageConfiguration as "dst" over PackageConfSpecializedConfig, has to match 0..1.</dispname>
@@ -427,7 +427,7 @@
 		</atom>
 		<atom name = "PrivateFlag" metaref = "2302" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidMakeMemberPrivatesrcCardinality57" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidMakeMemberPrivatesrcCardinality59" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", MakeMemberPrivate ) -> size in
                      (srcCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to PrivateFlag as "src" over MakeMemberPrivate, has to match 1.</dispname>
@@ -448,7 +448,7 @@
 				<![CDATA[self.attachingConnPoints()->size() >= 2]]>
 				<dispname>A connector element  should be used to connect atleast two ports</dispname>
 			</constraint>
-			<constraint name="ValidpublishsrcCardinality111" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidpublishsrcCardinality113" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", publish ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to PublishConnector as "src" over publish, has to match 0..1.</dispname>
@@ -517,12 +517,12 @@
 		</atom>
 		<atom name = "TimeProbe" metaref = "4075" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidTimerConnectionsrcCardinality93" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidTimerConnectionsrcCardinality95" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", TimerConnection ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to TimeProbe as "src" over TimerConnection, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidTimerEventSinkConnsrcCardinality95" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidTimerEventSinkConnsrcCardinality97" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", TimerEventSinkConn ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to TimeProbe as "src" over TimerEventSinkConn, has to match 0..1.</dispname>
@@ -531,7 +531,7 @@
 		</atom>
 		<atom name = "TopLevelPackage" metaref = "2767" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidpackagedstCardinality110" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidpackagedstCardinality112" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", package ) -> size in
                      (dstCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to TopLevelPackage as "dst" over package, has to match 1.</dispname>
@@ -566,7 +566,7 @@
 				<regnode name = "mName" value ="members"></regnode>
 				<regnode name = "sName" value ="setTaskSet"></regnode>
 				<regnode name = "icon" value ="taskset.bmp"></regnode>
-			<constraint name="ValidWorkloadCharacteristicssrcCardinality101" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidWorkloadCharacteristicssrcCardinality103" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", WorkloadCharacteristics ) -> size in
                      (srcCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to TaskSet as "src" over WorkloadCharacteristics, has to match 1.</dispname>
@@ -750,6 +750,23 @@
 				</pointerspec>
 				<pointerspec name = "dst">
 					<pointeritem desc = "Property"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "ComponentOperation" metaref = "4396" >
+				<regnode name = "labelFormatStr" value ="benchmarks"></regnode>
+				<regnode name = "sName" value ="srcComponentOperation"></regnode>
+				<regnode name = "dName" value ="dstComponentOperation"></regnode>
+				<regnode name = "color" value ="0x0000FF"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "OperationRef"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "CompRef"></pointeritem>
 				</pointerspec>
 			</connjoint>
 		</connection>
@@ -1758,6 +1775,20 @@
 				<pointeritem desc = "ValueObject"></pointeritem>
 			</pointerspec>
 		</reference>
+		<reference name = "CompRef" metaref = "4401">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbyCompRef"></regnode>
+			<constraint name="ValidComponentOperationsrcCardinality21" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", ComponentOperation ) -> size in
+                     (srcCount = 1)]]>
+				<dispname>Multiplicity of objects, which are associated to CompRef as "src" over ComponentOperation, has to match 1.</dispname>
+			</constraint>
+			<regnode name = "icon" value ="componentref.bmp"></regnode>
+			<pointerspec name = "ref">
+				<pointeritem desc = "Component"></pointeritem>
+			</pointerspec>
+		</reference>
 		<reference name = "ComponentImplementationReference" metaref = "3941">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
@@ -1798,7 +1829,7 @@
 				<![CDATA[not self.refersTo ().isNull ()]]>
 				<dispname>A reference cannot be null</dispname>
 			</constraint>
-			<constraint name="ValidPackageInterfacesrcCardinality85" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPackageInterfacesrcCardinality87" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", PackageInterface ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to ComponentRef as "src" over PackageInterface, has to match 0..1.</dispname>
@@ -2003,12 +2034,12 @@
 				<![CDATA[self.isInstance() => (self.optional = false => not self.connectedFCOs()->isEmpty())]]>
 				<dispname>Non-optional ports should have connections to other ports</dispname>
 			</constraint>
-			<constraint name="ValidEventSinkDelegatedstCardinality26" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidEventSinkDelegatedstCardinality28" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", EventSinkDelegate ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to InEventPort as "dst" over EventSinkDelegate, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidEventSinkDelegatesrcCardinality25" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidEventSinkDelegatesrcCardinality27" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", EventSinkDelegate ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to InEventPort as "src" over EventSinkDelegate, has to match 0..1.</dispname>
@@ -2134,7 +2165,7 @@
 				<![CDATA[name <> parent ().name]]>
 				<dispname>A member may not have the same name as its container.</dispname>
 			</constraint>
-			<constraint name="ValidMakeMemberPrivatedstCardinality58" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidMakeMemberPrivatedstCardinality60" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", MakeMemberPrivate ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to Member as "dst" over MakeMemberPrivate, has to match 0..1.</dispname>
@@ -2186,12 +2217,17 @@
 				<![CDATA[not self.refersTo().isNull()]]>
 				<dispname>A reference cannot be null</dispname>
 			</constraint>
-			<constraint name="ValidMetricConnectiondstCardinality62" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidComponentOperationdstCardinality22" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", ComponentOperation ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to OperationRef as "dst" over ComponentOperation, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidMetricConnectiondstCardinality64" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", MetricConnection ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to OperationRef as "dst" over MetricConnection, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidTimerConnectiondstCardinality94" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidTimerConnectiondstCardinality96" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", TimerConnection ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to OperationRef as "dst" over TimerConnection, has to match 0..1.</dispname>
@@ -2230,12 +2266,12 @@
 				<![CDATA[self.attachingConnections(emit)->size() <= 1]]>
 				<dispname>Every OutEventPort can emit events to only one InEventPort</dispname>
 			</constraint>
-			<constraint name="ValidEventSourceDelegatedstCardinality28" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidEventSourceDelegatedstCardinality30" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", EventSourceDelegate ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to OutEventPort as "dst" over EventSourceDelegate, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidEventSourceDelegatesrcCardinality27" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidEventSourceDelegatesrcCardinality29" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", EventSourceDelegate ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to OutEventPort as "src" over EventSourceDelegate, has to match 0..1.</dispname>
@@ -2244,12 +2280,12 @@
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<constraint name="ValidemitdstCardinality106" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidemitdstCardinality108" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", emit ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to OutEventPort as "dst" over emit, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidpublishdstCardinality112" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidpublishdstCardinality114" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", publish ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to OutEventPort as "dst" over publish, has to match 0..1.</dispname>
@@ -2303,7 +2339,7 @@
 				<![CDATA[not self.refersTo().isNull()]]>
 				<dispname>PackageConfigurationReference cannot be null</dispname>
 			</constraint>
-			<constraint name="ValidpackagesrcCardinality109" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidpackagesrcCardinality111" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", package ) -> size in
                      (srcCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to PackageConfigurationReference as "src" over package, has to match 1.</dispname>
@@ -2325,12 +2361,12 @@
 				<![CDATA[self.isInstance() => (self.optional = false => not self.connectedFCOs()->isEmpty())]]>
 				<dispname>Non-optional ports should have connections to other ports</dispname>
 			</constraint>
-			<constraint name="ValidFacetDelegatedstCardinality34" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidFacetDelegatedstCardinality36" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", FacetDelegate ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to ProvidedRequestPort as "dst" over FacetDelegate, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidFacetDelegatesrcCardinality33" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidFacetDelegatesrcCardinality35" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", FacetDelegate ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to ProvidedRequestPort as "src" over FacetDelegate, has to match 0..1.</dispname>
@@ -2373,12 +2409,12 @@
 				<![CDATA[self.isInstance() => (self.optional = false => not self.connectedFCOs()->isEmpty())]]>
 				<dispname>Non-optional ports should have connections to other ports</dispname>
 			</constraint>
-			<constraint name="ValidReceptacleDelegatedstCardinality90" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidReceptacleDelegatedstCardinality92" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", ReceptacleDelegate ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to RequiredRequestPort as "dst" over ReceptacleDelegate, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidReceptacleDelegatesrcCardinality89" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidReceptacleDelegatesrcCardinality91" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", ReceptacleDelegate ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to RequiredRequestPort as "src" over ReceptacleDelegate, has to match 0..1.</dispname>
@@ -2480,7 +2516,7 @@
 		</model>
 		<model name = "ArtifactContainer" metaref = "3566" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidArtifactContainerPartCardinality113" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidArtifactContainerPartCardinality115" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ImplementationArtifact" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ArtifactContainer, has to match 1..*.</dispname>
@@ -2508,7 +2544,7 @@
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="readonlyattribute.bmp"></regnode>
 				<regnode name = "icon" value ="attribute.bmp"></regnode>
-			<constraint name="ValidReadonlyAttributePartCardinality131" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidReadonlyAttributePartCardinality133" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "AttributeMember" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ReadonlyAttribute, has to match 1.</dispname>
@@ -2529,6 +2565,8 @@
 		<model name = "BenchmarkAnalysis" metaref = "4006" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<role name = "Average" metaref = "4007" kind = "Average"></role>
+			<role name = "CompRef" metaref = "4402" kind = "CompRef"></role>
+			<role name = "ComponentOperation" metaref = "4397" kind = "ComponentOperation"></role>
 			<role name = "Event" metaref = "4105" kind = "Event"></role>
 			<role name = "EventRef" metaref = "4009" kind = "EventRef"></role>
 			<role name = "FactoryOperation" metaref = "4106" kind = "FactoryOperation"></role>
@@ -2549,6 +2587,8 @@
 			<role name = "TwowayOperation" metaref = "4109" kind = "TwowayOperation"></role>
 			<role name = "WorkloadCharacteristics" metaref = "4262" kind = "WorkloadCharacteristics"></role>
 			<aspect name = "ComponentMetrics" metaref = "4052" >
+				<part metaref = "4403" role = "CompRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "4399" role = "ComponentOperation" primary = "yes" linked = "no"></part>
 				<part metaref = "4054" role = "EventRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 				<part metaref = "4056" role = "Latency" primary = "yes" linked = "no"></part>
 				<part metaref = "4058" role = "MetricConnection" primary = "yes" linked = "no"></part>
@@ -2570,7 +2610,7 @@
                      (dstCount >= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to Bridge as "dst" over Bridge2Interconnect, has to match 1..*.</dispname>
 			</constraint>
-			<constraint name="ValidInterconnect2BridgesrcCardinality51" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidInterconnect2BridgesrcCardinality53" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", Interconnect2Bridge ) -> size in
                      (srcCount >= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to Bridge as "src" over Interconnect2Bridge, has to match 1..*.</dispname>
@@ -2670,7 +2710,7 @@
           components->isUnique (i : Component | i.name.trim())]]>
 				<dispname>Components of an Assembly should have unique names</dispname>
 			</constraint>
-			<constraint name="ValidComponentAssemblyPartCardinality114" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidComponentAssemblyPartCardinality116" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Component" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentAssembly, has to match 1..*.</dispname>
@@ -2728,7 +2768,7 @@
 		</model>
 		<model name = "ComponentContainer" metaref = "2862" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidComponentContainerPartCardinality115" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidComponentContainerPartCardinality117" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentContainer, has to match 0..1.</dispname>
@@ -2782,7 +2822,7 @@
           ]]>
 				<dispname>Local, inherited and supported operations must all have unique names</dispname>
 			</constraint>
-			<constraint name="ValidComponentFactoryPartCardinality116" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidComponentFactoryPartCardinality118" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "LookupKey" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentFactory, has to match 0..1.</dispname>
@@ -2791,7 +2831,7 @@
 				<![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<dispname>Not a valid identifier</dispname>
 			</constraint>
-			<constraint name="ValidManagesComponentdstCardinality60" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidManagesComponentdstCardinality62" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", ManagesComponent ) -> size in
                      (dstCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to ComponentFactory as "dst" over ManagesComponent, has to match 1.</dispname>
@@ -2842,7 +2882,7 @@
           (self.atomParts (MonolithicImplementation)->size = 1 implies self.modelParts (ComponentAssembly)->size = 0)]]>
 				<dispname>ComponentImplementation can either be Monolithic or be assembly based, but not both</dispname>
 			</constraint>
-			<constraint name="ValidComponentImplementationContainerPartCardinality117" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidComponentImplementationContainerPartCardinality119" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ComponentImplementation" ) -> size + self.parts( "MonolithicImplementation" ) -> size + self.parts( "ComponentAssembly" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 1.</dispname>
@@ -2885,7 +2925,7 @@
 		<model name = "ComponentPropertyDescription" metaref = "2910" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="ComponentProperty.bmp"></regnode>
-			<constraint name="ValidComponentPropertyDescriptionPartCardinality118" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidComponentPropertyDescriptionPartCardinality120" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "DataType" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentPropertyDescription, has to match 1.</dispname>
@@ -2941,7 +2981,7 @@
 				<![CDATA[atomParts ()->forAll (x, y : gme::Atom | x <> y implies x.name <> y.name)]]>
 				<dispname>An enum's member names must be unique</dispname>
 			</constraint>
-			<constraint name="ValidEnumPartCardinality119" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidEnumPartCardinality121" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "EnumValue" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Enum, has to match 1..*.</dispname>
@@ -3082,7 +3122,7 @@
 		<model name = "ExecutorProject" metaref = "4133" attributes = "libraryexport sharedname ORBServices" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="project.bmp"></regnode>
-			<constraint name="ValidExecutorProjectPartCardinality120" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidExecutorProjectPartCardinality122" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ImplementationArtifactReference" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ExecutorProject, has to match 1.</dispname>
@@ -3178,12 +3218,12 @@
 		<model name = "Interconnect" metaref = "3702" attributes = "label" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Interconnect"></regnode>
-			<constraint name="ValidInterconnect2NodedstCardinality54" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidInterconnect2NodedstCardinality56" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", Interconnect2Node ) -> size in
                      (dstCount >= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to Interconnect as "dst" over Interconnect2Node, has to match 1..*.</dispname>
 			</constraint>
-			<constraint name="ValidNode2InterconnectsrcCardinality69" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidNode2InterconnectsrcCardinality71" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", Node2Interconnect ) -> size in
                      (srcCount >= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to Interconnect as "src" over Node2Interconnect, has to match 1..*.</dispname>
@@ -3196,12 +3236,12 @@
 		<model name = "Latency" metaref = "4033" attributes = "fileName warmup iterations priority rate" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Latency.bmp"></regnode>
-			<constraint name="ValidMetricConnectionsrcCardinality61" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidMetricConnectionsrcCardinality63" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", MetricConnection ) -> size in
                      (srcCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to MetricsBase as "src" over MetricConnection, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidWorkloadCharacteristicsdstCardinality102" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidWorkloadCharacteristicsdstCardinality104" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", WorkloadCharacteristics ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to MetricsBase as "dst" over WorkloadCharacteristics, has to match 0..1.</dispname>
@@ -3423,32 +3463,32 @@
           xor self.atomParts(ComponentPackage)->size = 1]]>
 				<dispname>A PackageConfiguration can either specialize another PackageConfiguration, or contain a ComponentPackage, or contain a reference to a ComponentPackage</dispname>
 			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality121" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfBasePackage" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality122" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
-			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality123" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality124" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfiguration" ) -> size in
-                     (partCount >= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 1..*.</dispname>
-			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality125" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PackageConfSpecializedConfig" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
+			<constraint name="ValidPackageConfigurationContainerPartCardinality124" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPackageConfigurationContainerPartCardinality125" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PackageConfBasePackage" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality126" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPackageConfigurationContainerPartCardinality127" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PackageConfiguration" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 1..*.</dispname>
+			</constraint>
+			<constraint name="ValidPackageConfigurationContainerPartCardinality128" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
@@ -3478,13 +3518,13 @@
 		</model>
 		<model name = "PackageContainer" metaref = "4116" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidPackageContainerPartCardinality127" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
+			<constraint name="ValidPackageContainerPartCardinality129" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PackageInterface" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidPackageContainerPartCardinality128" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageInterface" ) -> size in
+			<constraint name="ValidPackageContainerPartCardinality130" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -3527,7 +3567,7 @@
 		<model name = "Property" metaref = "3650" attributes = "DataValue" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Property.bmp"></regnode>
-			<constraint name="ValidPropertyPartCardinality129" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPropertyPartCardinality131" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "DataType" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Property, has to match 1.</dispname>
@@ -3540,7 +3580,7 @@
 		<model name = "RTEC_Proxy_Consumer" metaref = "4327" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="rtec_proxy_consumer.bmp"></regnode>
-			<constraint name="ValidRTEC_Proxy_ConsumerPartCardinality130" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidRTEC_Proxy_ConsumerPartCardinality132" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "RTEC_Resource_Factory_Reference" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RTEC_Proxy_Consumer, has to match 1.</dispname>
@@ -3579,7 +3619,7 @@
 		<model name = "ReadonlyAttribute" metaref = "1626" attributes = "VersionTag SpecifyIdTag" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="readonlyattribute.bmp"></regnode>
-			<constraint name="ValidReadonlyAttributePartCardinality131" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidReadonlyAttributePartCardinality133" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "AttributeMember" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ReadonlyAttribute, has to match 1.</dispname>
@@ -3614,7 +3654,7 @@
 		<model name = "SatisfierProperty" metaref = "3657" attributes = "DataValue SatisfierPropertyKind" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="SatisfierProperty.bmp"></regnode>
-			<constraint name="ValidSatisfierPropertyPartCardinality132" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSatisfierPropertyPartCardinality134" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "DataType" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SatisfierProperty, has to match 1.</dispname>
@@ -3627,12 +3667,12 @@
 		<model name = "ServantProject" metaref = "4143" attributes = "libraryexport sharedname ORBServices" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="project.bmp"></regnode>
-			<constraint name="ValidServantProjectPartCardinality133" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidServantProjectPartCardinality135" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ImplementationArtifactReference" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ServantProject, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidServantProjectPartCardinality134" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidServantProjectPartCardinality136" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "FileRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ServantProject, has to match 0..1.</dispname>
@@ -3651,7 +3691,7 @@
 		<model name = "SharedResource" metaref = "3709" attributes = "resourceType" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="SharedResource"></regnode>
-			<constraint name="ValidSharessrcCardinality91" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSharessrcCardinality93" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", Shares ) -> size in
                      (srcCount >= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to SharedResource as "src" over Shares, has to match 1..*.</dispname>
@@ -3664,12 +3704,12 @@
 		<model name = "StubProject" metaref = "4160" attributes = "libraryexport sharedname ORBServices" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="project.bmp"></regnode>
-			<constraint name="ValidStubProjectPartCardinality135" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidStubProjectPartCardinality137" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ImplementationArtifactReference" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by StubProject, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidStubProjectPartCardinality136" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidStubProjectPartCardinality138" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "FileRef" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by StubProject, has to match 1.</dispname>
@@ -3716,17 +3756,17 @@
 				<![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<dispname>Not a valid identifier</dispname>
 			</constraint>
-			<constraint name="ValidSwitchedAggregatePartCardinality137" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSwitchedAggregatePartCardinality139" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Label" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
-			<constraint name="ValidSwitchedAggregatePartCardinality138" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSwitchedAggregatePartCardinality140" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
-			<constraint name="ValidSwitchedAggregatePartCardinality139" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSwitchedAggregatePartCardinality141" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
@@ -3749,12 +3789,12 @@
 		<model name = "Throughput" metaref = "4042" attributes = "fileName warmup iterations priority rate" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Throughput.bmp"></regnode>
-			<constraint name="ValidMetricConnectionsrcCardinality61" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidMetricConnectionsrcCardinality63" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", MetricConnection ) -> size in
                      (srcCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to MetricsBase as "src" over MetricConnection, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidWorkloadCharacteristicsdstCardinality102" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidWorkloadCharacteristicsdstCardinality104" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", WorkloadCharacteristics ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to MetricsBase as "dst" over WorkloadCharacteristics, has to match 0..1.</dispname>
@@ -3773,20 +3813,20 @@
 		<model name = "TopLevelPackageContainer" metaref = "3945" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="TopLevelPackageConfiguration.bmp"></regnode>
-			<constraint name="ValidTopLevelPackageContainerPartCardinality140" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidTopLevelPackageContainerPartCardinality141" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "package" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
-			</constraint>
 			<constraint name="ValidTopLevelPackageContainerPartCardinality142" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PackageConfigurationReference" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 1.</dispname>
+			</constraint>
+			<constraint name="ValidTopLevelPackageContainerPartCardinality143" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidTopLevelPackageContainerPartCardinality144" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "package" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>
 			<role name = "PackageConfigurationReference" metaref = "3030" kind = "PackageConfigurationReference"></role>
 			<role name = "TopLevelPackage" metaref = "3664" kind = "TopLevelPackage"></role>
@@ -3814,7 +3854,7 @@
 				<![CDATA[AllParams ()->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
 				<dispname>An operation's parameters must have unique names</dispname>
 			</constraint>
-			<constraint name="ValidTwowayOperationPartCardinality143" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidTwowayOperationPartCardinality145" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ReturnType" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TwowayOperation, has to match 0..1.</dispname>

@@ -10,11 +10,11 @@
 #include <algorithm>
 
 template <class T>
-MetricEmitter<T>::MetricEmitter (PICML::OperationBase &base, 
+MetricEmitter<T>::MetricEmitter (PICML::OperationRef &ref, 
 								 T& latency,
 								 std::string& metric,
 								 BGML_Data& state)
-: operation_ (base), 
+: operation_ref_ (ref), 
   latency_ (latency), 
   metric_ (metric),
   bgml_state_ (state)
@@ -119,14 +119,19 @@ MetricEmitter<T>::generate_benchmark ()
 	// This is necessary to get the signature of the remote operation
 	
 	// PART 1: Obtaing Component Name
-	PICML::TwowayOperation twoway_op = PICML::TwowayOperation::Cast (operation_);
+	PICML::OperationBase operation_base = operation_ref_.ref ();
+	PICML::TwowayOperation twoway_op = PICML::TwowayOperation::Cast (operation_base);
 	
-	std::string& component_name = IDL_Util::component_name (twoway_op);
+	// Check if there is a component associated with this operation, if so 
+	// use that component, else figure out which component I am associated 
+	// with
+	std::string& component_name = IDL_Util::component_name (this->operation_ref_);
 	std::string& operation_name = IDL_Util::operation_name (twoway_op);
 	std::vector<std::string>& arg_list = IDL_Util::argument_list (twoway_op);
 
 	//// Generate the Benchmarking Header
-	std::string class_name = "Benchmark_" + operation_name;
+	std::string class_name = "Benchmark_" + component_name + "_" + operation_name;
+
 	this->generate_header_file (class_name, 
 								component_name, 
 								operation_name, 
@@ -142,7 +147,7 @@ MetricEmitter<T>::generate_benchmark ()
 		 i < this->bgml_state_.task_group_data.size (); 
 		 i++)
 	{
-		class_name = operation_name + "_Workload";
+		class_name = component_name + "_" + operation_name + "_Workload";
 
 		// Add a barrier to the list of arguments
 		std::vector<std::string> temp_list (arg_list);
@@ -155,7 +160,7 @@ MetricEmitter<T>::generate_benchmark ()
 									dummy);
 
 		std::string workload_cpp_file = 
-			this->bgml_state_.output_path + "\\" + operation_name + "_Workload.cpp";
+			this->bgml_state_.output_path + "\\" + component_name + "_" + operation_name + "_Workload.cpp";
 		source_file_list.push_back (operation_name + "_Workload.cpp");
 
 		std::ofstream workload_stream (workload_cpp_file.c_str (), ios::out);
@@ -171,7 +176,8 @@ MetricEmitter<T>::generate_benchmark ()
 	}
 
 	///// Generate .cpp file for the task ///////////////////////////
-	std::string cpp_file = this->bgml_state_.output_path + "\\" + "Benchmark_" + operation_name + ".cpp";
+	std::string cpp_file = 
+		this->bgml_state_.output_path + "\\" + "Benchmark_" + component_name + "_" + operation_name + ".cpp";
 	source_file_list.push_back ("Benchmark_" + operation_name + ".cpp");
 
 	std::ofstream cpp_stream (cpp_file.c_str (), ios::out);
@@ -191,7 +197,11 @@ MetricEmitter<T>::generate_benchmark ()
 	std::string project_name = "Benchmark_" + operation_name;
 	std::string dependant_libs = IDL_Util::dependant_idls (twoway_op);
 
+	/* ------------ DO NOT NEED THIS FOR NOW ----------------------------
+	// The generated files are templates so we can directly include them rather
+	// than create this as a separate library
 	this->create_build_file (source_file_list, project_name, dependant_libs);
+	*/
 }
 
 #endif // METRIC_EMITTER_C

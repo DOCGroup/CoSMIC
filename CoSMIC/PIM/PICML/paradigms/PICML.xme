@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{0FDC3D9B-138A-4200-9C9F-BBBBA089B98A}" cdate="Mon Jan 24 13:26:57 2005" mdate="Tue Jan 25 10:33:06 2005" version="" metaguid="{DF851054-A0B3-41EF-8FF2-8C42EE5EDD12}" metaversion="" metaname="MetaGME">
+<project guid="{52144056-D1C0-442C-B8F5-A89E83E590C6}" cdate="Mon Jan 24 13:26:57 2005" mdate="Wed Feb 16 09:11:34 2005" version="" metaguid="{DF851054-A0B3-41EF-8FF2-8C42EE5EDD12}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment></comment>
 	<author></author>
@@ -4779,16 +4779,16 @@
 					<value>7</value>
 				</regnode>
 				<regnode name="ComponentLibraries" isopaque="yes">
-					<value>1</value>
-				</regnode>
-				<regnode name="ComponentMetrics" isopaque="yes">
-					<value>9</value>
-				</regnode>
-				<regnode name="DataAnalysis" isopaque="yes">
 					<value>8</value>
 				</regnode>
+				<regnode name="ComponentMetrics" isopaque="yes">
+					<value>7</value>
+				</regnode>
+				<regnode name="DataAnalysis" isopaque="yes">
+					<value>5</value>
+				</regnode>
 				<regnode name="InterfaceDefinition" isopaque="yes">
-					<value>4</value>
+					<value>9</value>
 				</regnode>
 				<regnode name="LibraryArtifact" isopaque="yes">
 					<value>10</value>
@@ -4806,22 +4806,22 @@
 					<value>2</value>
 				</regnode>
 				<regnode name="Packaging" isopaque="yes">
-					<value>7</value>
+					<value>2</value>
 				</regnode>
 				<regnode name="ResourceView" isopaque="yes">
 					<value>3</value>
 				</regnode>
 				<regnode name="RtecConfigAspect" isopaque="yes">
-					<value>2</value>
+					<value>3</value>
 				</regnode>
 				<regnode name="Target" isopaque="yes">
-					<value>3</value>
+					<value>4</value>
 				</regnode>
 				<regnode name="TypeDefinintionAspect" isopaque="yes">
 					<value>1</value>
 				</regnode>
 				<regnode name="Workspace" isopaque="yes">
-					<value>5</value>
+					<value>1</value>
 				</regnode>
 			</regnode>
 			<regnode name="AspectSelNames" isopaque="yes">
@@ -8787,10 +8787,67 @@
 					<value>4006</value>
 				</regnode>
 			</regnode>
+			<regnode name="CompRef-8f-Reference">
+				<value></value>
+				<regnode name="KindAspects">
+					<value></value>
+					<regnode name="BenchmarkAnalysis:CompRef">
+						<value></value>
+						<regnode name="ComponentMetrics" isopaque="yes">
+							<value>InterfaceDefinition</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>4401</value>
+					<regnode name="BenchmarkAnalysis">
+						<value></value>
+						<regnode name="CompRef" isopaque="yes">
+							<value>4402</value>
+							<regnode name="ComponentMetrics" isopaque="yes">
+								<value>4403</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects">
+					<value></value>
+					<regnode name="BenchmarkAnalysis:CompRef">
+						<value></value>
+						<regnode name="ComponentMetrics" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
 			<regnode name="ComponentAnalyses-2d-Folder" isopaque="yes">
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>4051</value>
+				</regnode>
+			</regnode>
+			<regnode name="ComponentOperation-88-Connection">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>4396</value>
+					<regnode name="BenchmarkAnalysis">
+						<value></value>
+						<regnode name="ComponentOperation" isopaque="yes">
+							<value>4397</value>
+							<regnode name="ComponentMetrics" isopaque="yes">
+								<value>4399</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects">
+					<value></value>
+					<regnode name="BenchmarkAnalysis:ComponentOperation">
+						<value></value>
+						<regnode name="ComponentMetrics" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
 				</regnode>
 			</regnode>
 			<regnode name="EventRef-5c-Reference" isopaque="yes">
@@ -11329,6 +11386,12 @@
 				<value></value>
 				<regnode name="KindAspects" isopaque="yes">
 					<value></value>
+					<regnode name="BenchmarkAnalysis:ComponentRef">
+						<value></value>
+						<regnode name="ComponentMetrics" isopaque="yes">
+							<value>InterfaceDefinition</value>
+						</regnode>
+					</regnode>
 					<regnode name="ComponentContainer:ComponentRef" isopaque="yes">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
@@ -11374,6 +11437,15 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>3240</value>
+					<regnode name="BenchmarkAnalysis">
+						<value></value>
+						<regnode name="ComponentRef" isopaque="yes">
+							<value>4398</value>
+							<regnode name="ComponentMetrics" isopaque="yes">
+								<value>4400</value>
+							</regnode>
+						</regnode>
+					</regnode>
 					<regnode name="ComponentContainer">
 						<value></value>
 						<regnode name="ComponentRef" isopaque="yes">
@@ -11440,6 +11512,12 @@
 				</regnode>
 				<regnode name="PrimaryAspects" isopaque="yes">
 					<value></value>
+					<regnode name="BenchmarkAnalysis:ComponentRef">
+						<value></value>
+						<regnode name="ComponentMetrics" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
 					<regnode name="ComponentContainer:ComponentRef" isopaque="yes">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
@@ -67689,7 +67767,7 @@ RTEventChannel</value>
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-00000015" kind="ParadigmSheet" relid="0x2a" childrelidcntr="0x83">
+		<model id="id-0065-00000015" kind="ParadigmSheet" relid="0x2a" childrelidcntr="0x92">
 			<name>ComponentBenchmark</name>
 			<atom id="id-0066-00000167" kind="Inheritance" role="Inheritance" relid="0x3">
 				<name>Inheritance</name>
@@ -67704,7 +67782,7 @@ RTEventChannel</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>556,138</value>
+							<value>675,159</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -67728,7 +67806,7 @@ RTEventChannel</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>249,130</value>
+							<value>564,158</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -67752,7 +67830,7 @@ RTEventChannel</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>246,167</value>
+							<value>309,272</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -67764,7 +67842,7 @@ RTEventChannel</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>204,20</value>
+							<value>232,20</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -67841,7 +67919,7 @@ RTEventChannel</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>555,65</value>
+							<value>547,118</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -67913,7 +67991,7 @@ RTEventChannel</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>576,177</value>
+							<value>575,188</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -68129,7 +68207,7 @@ RTEventChannel</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>835,170</value>
+							<value>883,174</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -68291,7 +68369,7 @@ RTEventChannel</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>155,279</value>
+							<value>155,272</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -68303,7 +68381,7 @@ RTEventChannel</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>113,167</value>
+							<value>155,202</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -68360,7 +68438,7 @@ RTEventChannel</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>79,156</value>
+							<value>102,200</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -68384,7 +68462,7 @@ RTEventChannel</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>512,230</value>
+							<value>554,258</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -68459,7 +68537,7 @@ RTEventChannel</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>617,230</value>
+							<value>666,251</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -68546,7 +68624,7 @@ RTEventChannel</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>8,265</value>
+							<value>8,272</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -68570,7 +68648,7 @@ RTEventChannel</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>666,447</value>
+							<value>645,412</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -68582,7 +68660,7 @@ RTEventChannel</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>113,335</value>
+							<value>127,363</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -68645,7 +68723,7 @@ RTEventChannel</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>540,13</value>
+							<value>638,10</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -68657,7 +68735,7 @@ RTEventChannel</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>358,67</value>
+							<value>365,38</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -68720,7 +68798,7 @@ RTEventChannel</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>211,13</value>
+							<value>204,41</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -68732,7 +68810,7 @@ RTEventChannel</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>456,13</value>
+							<value>232,132</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -68980,7 +69058,7 @@ RTEventChannel</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>64,419</value>
+							<value>57,482</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -69221,7 +69299,7 @@ RTEventChannel</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>750,104</value>
+							<value>904,47</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -69295,7 +69373,7 @@ RTEventChannel</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>792,244</value>
+							<value>869,293</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -69355,7 +69433,7 @@ RTEventChannel</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>729,27</value>
+							<value>799,20</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -69423,7 +69501,7 @@ RTEventChannel</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>681,128</value>
+							<value>858,165</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -69500,6 +69578,172 @@ RTEventChannel</value>
 					<value></value>
 				</attribute>
 			</atom>
+			<atom id="id-0066-000001d0" kind="Connector" role="Connector" relid="0x85">
+				<name>Connector</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>340,123</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>473,46</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</atom>
+			<atom id="id-0066-000001d1" kind="Connection" role="Connection" relid="0x88">
+				<name>ComponentOperation</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>366,142</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>204,146</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>366,142</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>512,314</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="color" isopaque="yes">
+					<value>0x0000ff</value>
+				</regnode>
+				<attribute kind="Color">
+					<value>0x0000FF</value>
+				</attribute>
+				<attribute kind="ConnLineEnd" status="meta">
+					<value>butt</value>
+				</attribute>
+				<attribute kind="ConnLineStart" status="meta">
+					<value>butt</value>
+				</attribute>
+				<attribute kind="ConnLineType" status="meta">
+					<value>solid</value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DstAttrLabel1" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DstAttrLabel2" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences">
+					<value>labelFormatStr=benchmarks
+          sName = srcComponentOperation
+          dName = dstComponentOperation</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="SrcAttrLabel1" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SrcAttrLabel2" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-000001d3" kind="Reference" role="Reference" relid="0x8f">
+				<name>CompRef</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>429,121</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>442,146</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>429,121</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>491,48</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences">
+					<value>
+rName = ref
+rrName = referedbyCompRef</value>
+				</attribute>
+				<attribute kind="Icon">
+					<value>componentref.bmp</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
 			<reference id="id-0067-00000039" kind="ModelProxy" role="ModelProxy" relid="0x1" referred="id-0066-0000008e">
 				<name>OperationBase</name>
 				<regnode name="PartRegs" isopaque="yes">
@@ -69513,7 +69757,7 @@ RTEventChannel</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>36,13</value>
+							<value>50,13</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -69525,7 +69769,7 @@ RTEventChannel</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>50,27</value>
+							<value>71,20</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -69600,7 +69844,70 @@ RTEventChannel</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>92,97</value>
+							<value>106,104</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeInfoShown" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</reference>
+			<reference id="id-0067-0000007d" kind="ModelProxy" role="ModelProxy" relid="0x8e" referred="id-0066-0000009e">
+				<name>Component</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>379,12</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>344,292</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -70140,14 +70447,86 @@ RTEventChannel</value>
 				<connpoint role="dst" target="id-0066-00000181"/>
 				<connpoint role="src" target="id-0066-00000186"/>
 			</connection>
-			<set id="id-0069-0000000e" kind="Aspect" role="Aspect" relid="0x2c" members="id-0066-0000017d id-0066-0000017e id-0066-00000178 id-0066-00000174 id-0066-00000173 id-0066-00000170 id-0066-00000176 id-0066-00000171 id-0066-00000169 id-0066-00000181 id-0066-00000183 id-0066-00000182">
+			<connection id="id-0068-00000305" kind="AssociationClass" role="AssociationClass" relid="0x89">
+				<name>AssociationClass</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Nn</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-000001d0"/>
+				<connpoint role="src" target="id-0066-000001d1"/>
+			</connection>
+			<connection id="id-0068-00000306" kind="SourceToConnector" role="SourceToConnector" relid="0x8a">
+				<name>SourceToConnector</name>
+				<attribute kind="Cardinality">
+					<value>1</value>
+				</attribute>
+				<attribute kind="srcRolename" status="meta">
+					<value>src</value>
+				</attribute>
+				<connpoint role="src" target="id-0066-00000178"/>
+				<connpoint role="dst" target="id-0066-000001d0"/>
+			</connection>
+			<connection id="id-0068-00000309" kind="Containment" role="Containment" relid="0x8d">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ew</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000176"/>
+				<connpoint role="src" target="id-0066-000001d1"/>
+			</connection>
+			<connection id="id-0068-0000030a" kind="ReferTo" role="ReferTo" relid="0x90">
+				<name>ReferTo</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>N</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-000001d3"/>
+				<connpoint role="dst" target="id-0067-0000007d"/>
+			</connection>
+			<connection id="id-0068-0000030c" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x91">
+				<name>ConnectorToDestination</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>w</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="dstRolename" status="meta">
+					<value>dst</value>
+				</attribute>
+				<connpoint role="src" target="id-0066-000001d0"/>
+				<connpoint role="dst" target="id-0066-000001d3"/>
+			</connection>
+			<connection id="id-0068-0000030d" kind="Containment" role="Containment" relid="0x92">
+				<name>Containment</name>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000176"/>
+				<connpoint role="src" target="id-0066-000001d3"/>
+			</connection>
+			<set id="id-0069-0000000e" kind="Aspect" role="Aspect" relid="0x2c" members="id-0066-000001d3 id-0066-000001d1 id-0066-0000017d id-0066-0000017e id-0066-00000178 id-0066-00000174 id-0066-00000173 id-0066-00000170 id-0066-00000176 id-0066-00000171 id-0066-00000169 id-0066-00000181 id-0066-00000183 id-0066-00000182">
 				<name>ComponentMetrics</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>540,328</value>
+							<value>575,468</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -70162,7 +70541,7 @@ RTEventChannel</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>708,265</value>
+							<value>729,272</value>
 						</regnode>
 					</regnode>
 				</regnode>

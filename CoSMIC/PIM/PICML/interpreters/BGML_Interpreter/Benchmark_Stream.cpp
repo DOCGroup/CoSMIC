@@ -611,7 +611,7 @@ BenchmarkStream::generate_workload_def (__int64 iterations,
 										BGML_Task_Data &data)
 {
 	/// Step 1: Generate the ifdef macros
-	std::string macro_name = this->operation_name_ + "_Workload";
+	std::string macro_name = this->component_name_ + "_" + this->operation_name_ + "_Workload";
 	this->gen_ifdefc_macro (macro_name);
 	this->nl ();
 	
@@ -845,7 +845,7 @@ BenchmarkStream::generate_task_def (std::string& metrics,
 									BGML_Data &bgml_state)
 {
 	/// Step 1: Generate the ifdef macros
-	std::string header_name = "Benchmark_" + this->operation_name_;
+	std::string header_name = "Benchmark_" + this->component_name_ + "_" + this->operation_name_;
 	this->gen_ifdefc_macro (header_name);
 	this->nl ();
 
@@ -863,7 +863,8 @@ BenchmarkStream::generate_task_def (std::string& metrics,
 
 	if (this->bgml_state_.task_group_data.size ())
 	{
-		std::string workload_name = this->operation_name_ + "_Workload.h";
+		std::string workload_name = 
+			this->component_name_ + "_" + this->operation_name_ + "_Workload.h";
 		this->gen_include_file (workload_name);
 
 		/// Generate the header file
@@ -896,7 +897,7 @@ BenchmarkStream::generate_task_def (std::string& metrics,
 	/// For each of the data generate the load
 	for (size_t i = 0; i < this->bgml_state_.task_group_data.size (); i++)
 	{
-		std::string class_name = this->operation_name_ + "_Workload";
+		std::string class_name = this->component_name_ + "_" + this->operation_name_ + "_Workload";
 		this->gen_background_load (class_name, 
 								   this->bgml_state_.task_group_data[i].number_of_tasks);
 	}

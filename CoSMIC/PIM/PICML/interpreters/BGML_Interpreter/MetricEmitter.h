@@ -12,7 +12,7 @@ template <class T>
 class MetricEmitter 
 {
 public:
-	MetricEmitter (PICML::OperationBase &base, 
+	MetricEmitter (PICML::OperationRef &base, 
 				   T& latency,
 			       std::string& metric,
 				   BGML_Data &state);
@@ -42,7 +42,7 @@ protected:
 	// Generate the build file building benchmarking library
 	
 private:
-	PICML::OperationBase &operation_;
+	PICML::OperationRef &operation_ref_;
 	T& latency_;
 	std::string& metric_;
 	BGML_Data &bgml_state_;

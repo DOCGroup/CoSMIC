@@ -5,25 +5,41 @@
 
 
 std::string 
-IDL_Util::component_name (PICML::TwowayOperation& op)
+IDL_Util::component_name (PICML::OperationRef& op_ref)
 {
-	// Obtain the object parent
-	PICML::HasOperations has_op = op.HasOperations_parent();
-	PICML::Object object = PICML::Object::Cast (has_op);
-	std::vector<std::string> return_set;
-	std::set<PICML::RequiredRequestPort> receptacle_set = object.referedbyRequiredRequestPort();
-	for (std::set<PICML::RequiredRequestPort>::iterator iter = receptacle_set.begin ();
-	iter != receptacle_set.end ();
-	iter ++)
+	PICML::OperationBase op_base = PICML::OperationBase::Cast (op_ref.ref ());
+	PICML::TwowayOperation op = PICML::TwowayOperation::Cast (op_base);
+    
+	PICML::ComponentOperation op_end = op_ref.dstComponentOperation();
+
+	PICML::Component parent;
+
+	if (op_end == Udm::null)
 	{
-		// Return the first component name; all names will be the same
-		PICML::Component parent = iter->Component_parent();
-		std::string name;
-		parent.GetStrValue ("name", name);
-		return name;
+		// Obtain the object parent
+		PICML::HasOperations has_op = op.HasOperations_parent();
+		PICML::Object object = PICML::Object::Cast (has_op);
+		std::vector<std::string> return_set;
+		std::set<PICML::RequiredRequestPort> receptacle_set = object.referedbyRequiredRequestPort();
+		for (std::set<PICML::RequiredRequestPort>::iterator iter = receptacle_set.begin ();
+		     iter != receptacle_set.end ();
+			 iter ++)
+		{
+			// Return the first component name; all names will be the same
+			parent = iter->Component_parent();
+			break;
+		}
+	}
+	else
+	{
+		// Return the Component Associated with this
+		PICML::CompRef component_ref = op_end.dstComponentOperation_end();
+		parent = component_ref.ref ();
 	}
 	
-	return NULL;
+	std::string name;
+	parent.GetStrValue ("name", name);
+	return name;
 }
 
 std::string
