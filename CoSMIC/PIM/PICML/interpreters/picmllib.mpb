@@ -1,0 +1,45 @@
+// MPC file to generate base library
+project {
+   libs += UdmDll xerces-c_2 zlib
+   libout = $(COSMIC_ROOT)/lib
+   dllout = $(COSMIC_ROOT)/bin
+   includes += $(GME_ROOT)/SDK/BON \
+               $(UDM_PATH)/include $(XERCESCROOT)/include
+   macros += UDM_DYNAMIC_LINKING
+   libpaths += $(COSMIC_ROOT)/lib $(UDM_PATH)/lib \
+               $(UDM_PATH)/3rdParty/zlib \
+               $(XERCESCROOT)/lib
+
+  Define_Custom(UDM) {
+      automatic         = 0
+      dependent         = $(UDM_PATH)/bin/Udm
+      command           = <%quote%>$(UDM_PATH)<%quote%>/bin/Udm
+      commandflags      = -l PICML_Export -v
+      inputext          = .xml
+      header_outputext  = .h
+      source_outputext  = .cpp
+//      postcommand       = <%quote%>$(COSMIC_ROOT)<%quote%>/bin/fix.py <%header_file%>
+   }
+
+  Define_Custom(MIDL) {
+    automatic            = 0
+    command              = midl
+    commandflags         = -win32 -I. -server none -client none
+    source_pre_extension = _i,_p
+    source_outputext     = .c
+    header_outputext     = .h
+    resource_outputext   = .tlb
+    inputext             = .idl
+  }
+
+  Define_Custom(Register) {
+    automatic           = 0
+    command             = regsvr32.exe
+    inputext            = .dll
+    generic_outputext   = .trg
+    postcommand         = echo regsvr32 exec. time <%gt%> <%output%>
+  }
+
+
+
+}

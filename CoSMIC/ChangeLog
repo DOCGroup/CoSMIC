@@ -1,3 +1,35 @@
+Fri Feb 25 18:31:54 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/examples/BasicSP.xme:
+        * PIM/PICML/examples/RobotAssembly.xme:
+
+        * PIM/PICML/interpreters/default.features:
+        * PIM/PICML/interpreters/picmllib.mpb:
+        * PIM/PICML/interpreters/Interpreters.mwc: New MWC file to build
+          interpreters using MPC.
+
+        * PIM/PICML/interpreters/PackageComponent/CompIcon.ico:
+        * PIM/PICML/interpreters/PackageComponent/Component.def:
+        * PIM/PICML/interpreters/PackageComponent/Component.rc:
+        * PIM/PICML/interpreters/PackageComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.h:
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.cpp:
+        * PIM/PICML/interpreters/PackageComponent/RawComponent.h:
+        * PIM/PICML/interpreters/PackageComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/PackageComponent/StdAfx.h:
+        * PIM/PICML/interpreters/PackageComponent/StdAfx.cpp:
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.h:
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/PackageComponent/UdmConfig.h:
+        * PIM/PICML/interpreters/PackageComponent/resource.h:  Moved to
+          a new directory.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:  Updated to reflect changes.
+
 Wed Feb 16 11:10:36 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
        * PIM/PICML/examples/BasicSP.xme:
@@ -14,9 +46,9 @@ Wed Feb 16 11:10:36 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
        * PIM/PICML/interpreters/BGML_Interpreter/PICML.cpp:
        * PIM/PICML/interpreters/BGML_Interpreter/PICML.h:
 
-         Resolved the issue where two operations in different 
-         components have same name. In this case, the unique name 
-         will be a combination of component and operation name. This 
+         Resolved the issue where two operations in different
+         components have same name. In this case, the unique name
+         will be a combination of component and operation name. This
          was changed due to an update in the BasicSP example. Thanks
          to Diana Ukleja for pointing this out.
 
@@ -52,21 +84,21 @@ Tue Feb 15 22:43:34 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.cpp:
 
-          Fixed bug involving non generation of remote reference data 
+          Fixed bug involving non generation of remote reference data
           member within a benchmarking class if the operation takes in
-          no arguments. Thanks to Diana Ukleja <Diana_Ukleja@raytheon.com> 
+          no arguments. Thanks to Diana Ukleja <Diana_Ukleja@raytheon.com>
           for pointing this out.
 
 Mon Feb 14 16:34:19 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
- 
+
         * PIM/PICML/examples/BasicSP.xme:
- 
-          Updated the BasicSP example to include a benchmark example as 
+
+          Updated the BasicSP example to include a benchmark example as
           well.
 
         * PIM/PICML/interpreters/BGML_Interpreter/BenchmarkStream.cpp:
           Fixed a wait on thread manager to the corresponding wait call
-          on a ACE_Task. Thus preventing a task waiting on itself to 
+          on a ACE_Task. Thus preventing a task waiting on itself to
           finish.
 
 Mon Feb  7 20:37:13 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
@@ -75,7 +107,7 @@ Mon Feb  7 20:37:13 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/interpreters/IDLImporter/be_global.h:
         * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
         * PIM/PICML/interpreters/IDLImporter/picml_visitor.h:
-        
+
           Added code to BE_GlobalData::cache_files() to create a DOM
           element and GME id for each file, and store these created
           items in their respective tables in the backend. Then, when
@@ -97,9 +129,9 @@ Fri Feb 4 16:17:05 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/BGML_Interpreter/Metric_Emitter.cpp:
 
           Eliminated the generation of export files and export definitions
-          these are not needed as currently, all the generated code is 
+          these are not needed as currently, all the generated code is
           templatized. This was an error which came out by help from Diana
-          Ukleja <diana_ukleja@raytheon.com> and Kitty 
+          Ukleja <diana_ukleja@raytheon.com> and Kitty
           <kitty@dre.vanderbilt.edu>
 
 Thu Jan 27 21:18:11 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
@@ -111,12 +143,12 @@ Thu Jan 27 21:18:11 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/BGML_Interpreter/BGML_Visitor.h:
         * PIM/PICML/interpreters/BGML_Interpreter/BGML_Visitor.cpp:
 
-          These commits fix the problem that was foundout in the PCES PI 
-          meeting Dec 12th with the BGML Generated code. The problem was 
-          when tasks were spawned from an already spawned task and not 
+          These commits fix the problem that was foundout in the PCES PI
+          meeting Dec 12th with the BGML Generated code. The problem was
+          when tasks were spawned from an already spawned task and not
           the main thread, waiting on the global thread manager deadlocks
-          the system. The solution then is to wait on the tasks one by one 
-          rather on the thred manager. Thanks to Theckla Lochious 
+          the system. The solution then is to wait on the tasks one by one
+          rather on the thred manager. Thanks to Theckla Lochious
           <theckla@lmco.com> for reporting this problem.
 
 Tue Jan 25 16:08:22 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
@@ -126,7 +158,7 @@ Tue Jan 25 16:08:22 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/BGML_Interpreter/Metric_Emitter.h:
         * PIM/PICML/interpreters/BGML_Interpreter/Metric_Emitter.cpp:
 
-          Fixed compilation errors from the generated code. Things should 
+          Fixed compilation errors from the generated code. Things should
           work fine now.
 
 Tue Jan 25 13:15:59 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
@@ -137,8 +169,8 @@ Tue Jan 25 13:15:59 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xmp:
         * PIM/PICML/examples/RobotAssembly.xme:
 
-          Added a priority and rate attributed to the BGML tasks and the 
-          main benchmarking task. This enables the generation of the main 
+          Added a priority and rate attributed to the BGML tasks and the
+          main benchmarking task. This enables the generation of the main
           task and the background tasks at a given rate or priority. Updated
           the example to refect this.
 
@@ -151,7 +183,7 @@ Tue Jan 25 13:15:59 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/BGML_Interpreter/UdmApp.cpp:
         * PIM/PICML/interpreters/BGML_Interpreter/Component.dsp:
         * PIM/PICML/interpreters/BGML_Interpreter/Global_Data.h:
- 
+
           Updated the interpreter to generate the benchmark code that
           honor the rate and priority of the benchmarking tasks.
 
@@ -172,15 +204,15 @@ Tue Jan 25 13:15:59 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/plan/PICML.h:
         * PIM/PICML/interpreters/plan/PICML.xsd:
         * PIM/PICML/interpreters/plan/PICML.cpp:
-	
-	    Regenerated the above files to reflect changes to the paradigm
+
+            Regenerated the above files to reflect changes to the paradigm
 
 Tue Jan 25 12:49:33 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
-   
+
        * PIM/PICML/docs/BGML/BGML_Documentation_Guide.tex:
 
          Added expiliciltly the fact that user needs to run $ACE_ROOT/bin/mwc.pl
-         and not $ACE_ROOT/MPC/mwc.pl. This was thanks to Diana Ukleja 
+         and not $ACE_ROOT/MPC/mwc.pl. This was thanks to Diana Ukleja
          <diana_ukleja@raytheon.com>
 
 Tue Jan 25 11:57:36 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
@@ -188,9 +220,9 @@ Tue Jan 25 11:57:36 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/BGML_Base/BGML_Base.mpc:
         * PIM/PICML/interpreters/BGML_Base/BGML_Base.h:
         * PIM/PICML/interpreters/BGML_Base/BGML_Base.cpp:
- 
-          Fixed the MPC file to explicitly state the ouput for the BGML_Base 
-          library as "$ACE_ROOT"/lib. This aviods the problem with VC6 which 
+
+          Fixed the MPC file to explicitly state the ouput for the BGML_Base
+          library as "$ACE_ROOT"/lib. This aviods the problem with VC6 which
           otherwise creates a $ACE_ROOT/lib directory. Cleaned up some of the
           functions in BGML_Base class.
 

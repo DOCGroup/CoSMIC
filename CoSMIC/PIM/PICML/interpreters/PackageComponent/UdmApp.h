@@ -9,6 +9,14 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
+#ifdef min
+#undef min
+#endif
+
+#ifdef max
+#undef max
+#endif
+
 // Udm includes
 #include "UdmBase.h"
 #include "Uml.h"
@@ -22,7 +30,7 @@
 #include "UdmStatic.h"
 
 
-class CUdmApp  
+class CUdmApp
 {
 
 public:
@@ -33,7 +41,7 @@ public:
 	static string ExtractName(Udm::Object ob);
 #endif
 
-	
+
 };
 
 #endif // !defined(AFX_UDMAPP_H__296A93EB_6DB6_4179_AA0B_A3D799FB3A1C__INCLUDED_)

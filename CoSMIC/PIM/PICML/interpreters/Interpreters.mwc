@@ -1,0 +1,6 @@
+workspace {
+   cmdline += -feature_file default.features
+   PICML
+   Package
+   PackageComponent
+}

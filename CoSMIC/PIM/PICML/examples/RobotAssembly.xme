@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{EF8D0CB8-1E02-4660-B275-0DE8F81CBBCE}" cdate="Tue Jan 25 11:12:00 2005" mdate="Fri Feb 04 13:51:21 2005" version="" metaguid="{49C182D5-3558-4C88-82D8-891F8C10A6D2}" metaversion="" metaname="PICML">
+<project guid="{EF8D0CB8-1E02-4660-B275-0DE8F81CBBCE}" cdate="Fri Feb 25 18:30:02 2005" mdate="Fri Feb 25 18:30:02 2005" version="" metaguid="{422E3338-49F6-4AA7-A4B7-AAE1018DCC06}" metaversion="" metaname="PICML">
 	<name>RobotAssembly</name>
 	<comment></comment>
 	<author></author>
@@ -5074,7 +5074,7 @@
 					<connpoint role="dst" target="id-0067-00000050"/>
 					<connpoint role="src" target="id-0069-00000002"/>
 				</connection>
-				<set id="id-0069-00000001" kind="CollocationGroup" role="CollocationGroup" relid="0x9" members="id-0067-00000052 id-0067-00000055 id-0067-00000053 id-0067-00000054">
+				<set id="id-0069-00000001" kind="CollocationGroup" role="CollocationGroup" relid="0x9" members="id-0067-00000054 id-0067-00000053 id-0067-00000055 id-0067-00000052">
 					<name>Group1</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -7741,7 +7741,7 @@
 						</reference>
 					</model>
 				</model>
-				<set id="id-0069-00000003" kind="Workspaces" role="Workspaces" relid="0x8" members="id-0065-0000008f id-0065-00000097 id-0065-00000087 id-0065-0000008b id-0065-00000093">
+				<set id="id-0069-00000003" kind="Workspaces" role="Workspaces" relid="0x8" members="id-0065-00000093 id-0065-0000008b id-0065-00000087 id-0065-00000097 id-0065-0000008f">
 					<name>RobotAssembly</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -7876,7 +7876,7 @@
 					<connpoint role="dst" target="id-0065-0000009c"/>
 					<connpoint role="src" target="id-0067-0000008e"/>
 				</connection>
-				<set id="id-0069-00000004" kind="TaskSet" role="TaskSet" relid="0x7" members="id-0066-00000052 id-0066-00000051 id-0066-00000053">
+				<set id="id-0069-00000004" kind="TaskSet" role="TaskSet" relid="0x7" members="id-0066-00000053 id-0066-00000051 id-0066-00000052">
 					<name>TaskSet</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>

@@ -95,7 +95,7 @@ static bool getPath (const std::string& description, std::string& path)
   // Dialog instruction string
   folder_browsinfo.lpszTitle = description.c_str();
   // Use new GUI style and allow edit plus file view
-  folder_browsinfo.ulFlags = BIF_RETURNONLYFSDIRS;
+  folder_browsinfo.ulFlags = BIF_RETURNONLYFSDIRS|BIF_USENEWUI;
   // No callback function
   folder_browsinfo.lpfn = NULL;
   // No parameter passing into the dialog
