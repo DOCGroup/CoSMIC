@@ -1,3 +1,19 @@
+Mon Nov 08 11:57:41 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * OCML/interpreters/OCMLConfiguratorLibrary/MainFrame.cpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/MainApp.hpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/MainApp.cpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/LoadLibrary.cpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/LoadLibrary.hpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/DLLEntry.hpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/DLLEntry.cpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/Configurator.hpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/Configurator.cpp: 
+        * OCML/interpreters/OCMLConfiguratorInterpreter/DLLEntry.hpp: 
+        * OCML/interpreters/OCMLConfiguratorInterpreter/BON2Component.cpp: 
+
+          Added code to read the xml file containing the OCML data structure.
+
 Sat Nov 06 19:38:43 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * OCML/interpreters/TAOServiceConfExportInterpreter/BON2Component.cpp:
