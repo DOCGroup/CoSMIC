@@ -1,3 +1,19 @@
+Thu May 27 13:07:08 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * IDML/paradigms/IDML-Meta.xme:
+        * IDML/paradigms/IDML.xmp:
+        * IDML/paradigms/IDMLTemplate.xme:
+        * IDML/paradigms/PredefinedTypes.xme:
+        * IDML/examples/new_test.xme:
+        
+          Made slight change to metamodel - changed ProvidedRequestPort and
+          RequiredRequestPort elements to refer to, instead of an Object,
+          and FCO abstract base class of Object and GenericObject. This
+          change will allow IDL importing and exporting of facets and
+          receptacles that are associated with Object (mapped to
+          CORBA::Object in C++). Also updated the related models
+          accordingly.
+
 Thu May 27 00:36:39 2004  Jaiganesh B  <jai@dre.vanderbilt.edu>
 
         * PICML/paradigms/PICML.xme:

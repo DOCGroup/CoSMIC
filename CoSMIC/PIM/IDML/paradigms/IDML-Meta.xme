@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Sun May 23 00:19:42 2004" mdate="Sun May 23 00:46:27 2004" metaguid="{99CB7435-DEAD-BEEF-FEED-DAD000000001}" metaname="MetaGME">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Sun May 23 01:37:27 2004" mdate="Thu May 27 12:26:05 2004" metaguid="{99CB7435-DEAD-BEEF-FEED-DAD000000001}" metaname="MetaGME">
 	<name>IDML</name>
 	<comment></comment>
 	<author></author>
@@ -22834,7 +22834,7 @@
 				</regnode>
 			</regnode>
 		</regnode>
-		<model id="id-0065-00000001" kind="ParadigmSheet" relid="0x1" childrelidcntr="0x114">
+		<model id="id-0065-00000001" kind="ParadigmSheet" relid="0x1" childrelidcntr="0x116">
 			<name>TopLevel</name>
 			<attribute kind="AuthorInformation" status="meta">
 				<value></value>
@@ -23141,10 +23141,8 @@
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-rName = ref
-rrName = referedbyExceptionRef</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>exceptionref.bmp</value>
@@ -23346,7 +23344,7 @@ rrName = referedbyExceptionRef</value>
   if (closure->size < 1) then
     Set{}
   else
-    closure->iterate (x ; accu = Set{} | accu + x.parts ())
+    closure->iterate (x ; accu = Set{} | accu + x.parts () - x.parts ("FileRef") )
   endif]]></value>
 				</attribute>
 				<attribute kind="CFuncParamList">
@@ -23546,10 +23544,8 @@ rrName = referedbyExceptionRef</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-rName = ref
-rrName = referedbyFileRef</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>fileref.bmp</value>
@@ -23709,7 +23705,7 @@ rrName = referedbyFileRef</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>346,642</value>
+							<value>346,544</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -23739,7 +23735,7 @@ rrName = referedbyFileRef</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>309,552</value>
+							<value>309,468</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -23811,7 +23807,7 @@ rrName = referedbyFileRef</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>309,432</value>
+							<value>309,376</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -23833,10 +23829,8 @@ rrName = referedbyFileRef</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-rName = ref
-rrName = referedbyConstant</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>const.bmp</value>
@@ -23870,6 +23864,81 @@ rrName = referedbyConstant</value>
 				</attribute>
 				<attribute kind="SubTypeIcon" status="meta">
 					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000008f" kind="Constraint" role="Constraint" relid="0x115">
+				<name>UniqueFileIncludes</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>828,58</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>A file cannot be included more than once</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value><![CDATA[referenceParts (FileRef)->forAll (x, y : gme::Reference | x <> y implies x.refersTo ().name <> y.refersTo ().name)]]></value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority">
+					<value>1</value>
+				</attribute>
+				<attribute kind="CreateEvent">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent">
+					<value>true</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
 				</attribute>
 			</atom>
 			<reference id="id-0067-00000019" kind="AspectProxy" role="AspectProxy" relid="0x9e" referred="id-0069-00000002">
@@ -23933,7 +24002,7 @@ rrName = referedbyConstant</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>190,671</value>
+							<value>190,552</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -24005,7 +24074,7 @@ rrName = referedbyConstant</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>407,671</value>
+							<value>407,552</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -24152,7 +24221,7 @@ rrName = referedbyConstant</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>743,223</value>
+							<value>743,202</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -24224,7 +24293,7 @@ rrName = referedbyConstant</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>722,377</value>
+							<value>722,321</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -24296,7 +24365,7 @@ rrName = referedbyConstant</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>281,293</value>
+							<value>281,258</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -24821,6 +24890,14 @@ rrName = referedbyConstant</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-00000014"/>
 				<connpoint role="src" target="id-0066-00000015"/>
+			</connection>
+			<connection id="id-0068-000000e8" kind="HasConstraint" role="HasConstraint" relid="0x116">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ew</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000002"/>
+				<connpoint role="src" target="id-0066-0000008f"/>
 			</connection>
 			<set id="id-0069-00000005" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-00000021 id-0067-00000022 id-0067-00000020 id-0067-0000001f id-0067-0000001e id-0067-0000001d id-0066-00000015 id-0066-00000010 id-0066-00000007 id-0066-00000001 id-0066-00000002 id-0066-00000005">
 				<name>InterfaceDefinition</name>
@@ -26332,10 +26409,8 @@ rrName = referedbyConstant</value>
 				<attribute kind="DstAttrLabel2" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-sName = srcLabelConnection
-dName = dstLabelConnection</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -27075,10 +27150,8 @@ dName = dstLabelConnection</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-rName = ref
-rrName = referedbyDiscriminator</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>discriminator.bmp</value>
@@ -27221,10 +27294,8 @@ rrName = referedbyDiscriminator</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-rName = ref
-rrName = referedbyCollection</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>variablecollection.bmp</value>
@@ -27295,10 +27366,8 @@ rrName = referedbyCollection</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-rName = ref
-rrName = referedbyAlias</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>alias.bmp</value>
@@ -27369,10 +27438,8 @@ rrName = referedbyAlias</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-rName = ref
-rrName = referedbyBoxed</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>boxed.bmp</value>
@@ -27443,10 +27510,8 @@ rrName = referedbyBoxed</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-rName = ref
-rrName = referedbyMember</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>member.bmp</value>
@@ -28527,10 +28592,8 @@ rrName = referedbyMember</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-rName = ref
-rrName = referedbyInherits</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>inherits.bmp</value>
@@ -29066,10 +29129,8 @@ rrName = referedbyInherits</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-rName = ref
-rrName = referedbySupports</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>supports.bmp</value>
@@ -29374,10 +29435,8 @@ rrName = referedbySupports</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-rName = ref
-rrName = referedbyLookupKey</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>lookupkey.bmp</value>
@@ -29448,10 +29507,8 @@ rrName = referedbyLookupKey</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-rName = ref
-rrName = referedbySetException</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>setexception.bmp</value>
@@ -29597,10 +29654,8 @@ rrName = referedbySetException</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-rName = ref
-rrName = referedbyGetException</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>getexception.bmp</value>
@@ -29758,10 +29813,8 @@ rrName = referedbyGetException</value>
 				<attribute kind="DstAttrLabel2" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-sName = srcMakeMemberPrivate
-dName = dstMakeMemberPrivate</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -30726,10 +30779,8 @@ supported_set->iterate (ref; accu = Set{} |
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-rName = ref
-rrName = referedbyAttributeMember</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>member.bmp</value>
@@ -33145,10 +33196,8 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-rName = ref
-rrName = referedbyInParameter</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>in.bmp</value>
@@ -33219,10 +33268,8 @@ rrName = referedbyInParameter</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-rName = ref
-rrName = referedbyInoutParameter</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>inout.bmp</value>
@@ -33293,10 +33340,8 @@ rrName = referedbyInoutParameter</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-rName = ref
-rrName = referedbyOutParameter</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>out.bmp</value>
@@ -33367,10 +33412,8 @@ rrName = referedbyOutParameter</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-rName = ref
-rrName = referedbyReturnType</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>return.bmp</value>
@@ -33717,24 +33760,33 @@ rrName = referedbyReturnType</value>
 			</connection>
 			<connection id="id-0068-000000e4" kind="ReferTo" role="ReferTo" relid="0x62">
 				<name>ReferTo</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ws</value>
+				</regnode>
 				<connpoint role="src" target="id-0066-00000072"/>
 				<connpoint role="dst" target="id-0067-0000000c"/>
 			</connection>
 			<connection id="id-0068-000000e5" kind="ReferTo" role="ReferTo" relid="0x63">
 				<name>ReferTo</name>
 				<regnode name="autorouterPref" isopaque="yes">
-					<value>s</value>
+					<value>Ws</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-00000073"/>
 				<connpoint role="dst" target="id-0067-0000000c"/>
 			</connection>
 			<connection id="id-0068-000000e6" kind="ReferTo" role="ReferTo" relid="0x64">
 				<name>ReferTo</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ws</value>
+				</regnode>
 				<connpoint role="src" target="id-0066-00000074"/>
 				<connpoint role="dst" target="id-0067-0000000c"/>
 			</connection>
 			<connection id="id-0068-000000e7" kind="ReferTo" role="ReferTo" relid="0x65">
 				<name>ReferTo</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ws</value>
+				</regnode>
 				<connpoint role="src" target="id-0066-00000075"/>
 				<connpoint role="dst" target="id-0067-0000000c"/>
 			</connection>
@@ -33754,7 +33806,7 @@ rrName = referedbyReturnType</value>
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-00000006" kind="ParadigmSheet" relid="0x6" childrelidcntr="0x60">
+		<model id="id-0065-00000006" kind="ParadigmSheet" relid="0x6" childrelidcntr="0x6b">
 			<name>ComponentType</name>
 			<attribute kind="AuthorInformation" status="meta">
 				<value></value>
@@ -33772,25 +33824,25 @@ rrName = referedbyReturnType</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>505,342</value>
+							<value>680,237</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>624,307</value>
+							<value>624,223</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>603,321</value>
+							<value>568,195</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>666,286</value>
+							<value>624,230</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -33847,25 +33899,25 @@ rrName = referedbyReturnType</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>687,509</value>
+							<value>806,418</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>883,446</value>
+							<value>883,362</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>813,516</value>
+							<value>813,425</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1093,439</value>
+							<value>1051,376</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -33875,10 +33927,8 @@ rrName = referedbyReturnType</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-rName = ref
-rrName = referedbyOutEventPort</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>outeventport.bmp</value>
@@ -33921,25 +33971,25 @@ rrName = referedbyOutEventPort</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>288,517</value>
+							<value>316,419</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>477,440</value>
+							<value>477,356</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>428,510</value>
+							<value>421,419</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>519,440</value>
+							<value>477,377</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -33949,10 +33999,8 @@ rrName = referedbyOutEventPort</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-rName = ref
-rrName = referedbyProvidedRequestPort</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>providedrequestport.bmp</value>
@@ -33995,7 +34043,7 @@ rrName = referedbyProvidedRequestPort</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>484,650</value>
+							<value>603,538</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -34022,7 +34070,7 @@ rrName = referedbyProvidedRequestPort</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>694,657</value>
+							<value>813,524</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -34049,7 +34097,7 @@ rrName = referedbyProvidedRequestPort</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>776,650</value>
+							<value>776,545</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -34124,25 +34172,25 @@ rrName = referedbyProvidedRequestPort</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>470,516</value>
+							<value>589,418</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>666,446</value>
+							<value>666,362</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>596,516</value>
+							<value>610,432</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>715,432</value>
+							<value>673,369</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -34152,10 +34200,8 @@ rrName = referedbyProvidedRequestPort</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-rName = ref
-rrName = referedbyRequiredRequestPort</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>requiredrequestport.bmp</value>
@@ -34198,25 +34244,25 @@ rrName = referedbyRequiredRequestPort</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>876,510</value>
+							<value>1044,412</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1086,447</value>
+							<value>1086,363</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1023,510</value>
+							<value>1009,419</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>953,433</value>
+							<value>911,370</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -34226,10 +34272,8 @@ rrName = referedbyRequiredRequestPort</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-rName = ref
-rrName = referedbyInEventPort</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>ineventport.bmp</value>
@@ -34272,25 +34316,25 @@ rrName = referedbyInEventPort</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>617,335</value>
+							<value>792,230</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>813,307</value>
+							<value>813,223</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>757,314</value>
+							<value>757,251</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>876,286</value>
+							<value>834,230</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -34344,25 +34388,25 @@ rrName = referedbyInEventPort</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>640,439</value>
+							<value>815,334</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>836,383</value>
+							<value>836,299</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>780,418</value>
+							<value>780,327</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>899,369</value>
+							<value>857,313</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -34374,7 +34418,7 @@ rrName = referedbyInEventPort</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>804,97</value>
+							<value>930,209</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -34449,25 +34493,25 @@ rrName = referedbyInEventPort</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>358,342</value>
+							<value>533,237</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>435,307</value>
+							<value>435,223</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>449,328</value>
+							<value>414,202</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>463,286</value>
+							<value>421,230</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -34477,10 +34521,8 @@ rrName = referedbyInEventPort</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-rName = ref
-rrName = referedbyComponentRef</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>manages.bmp</value>
@@ -34523,25 +34565,25 @@ rrName = referedbyComponentRef</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>428,195</value>
+							<value>603,90</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>526,160</value>
+							<value>526,90</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>548,177</value>
+							<value>498,41</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>575,139</value>
+							<value>533,104</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -34595,25 +34637,25 @@ rrName = referedbyComponentRef</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>458,278</value>
+							<value>633,173</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>556,250</value>
+							<value>556,173</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>563,264</value>
+							<value>528,138</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>605,222</value>
+							<value>563,180</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -34625,13 +34667,13 @@ rrName = referedbyComponentRef</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>93,114</value>
+							<value>106,41</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>113,48</value>
+							<value>113,27</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -34706,7 +34748,7 @@ rrName = referedbyComponentRef</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>267,160</value>
+							<value>267,90</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -34718,7 +34760,7 @@ rrName = referedbyComponentRef</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>260,160</value>
+							<value>260,125</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -34743,10 +34785,8 @@ rrName = referedbyComponentRef</value>
 				<attribute kind="DstAttrLabel2" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-sName = srcManagesComponent
-dName = dstManagesComponent</value>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -34771,7 +34811,7 @@ dName = dstManagesComponent</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>333,74</value>
+							<value>333,53</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -34785,6 +34825,108 @@ dName = dstManagesComponent</value>
 					<value>swE</value>
 				</regnode>
 			</atom>
+			<atom id="id-0066-00000091" kind="FCO" role="FCO" relid="0x62">
+				<name>Provideable</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>155,146</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>596,468</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>134,356</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>596,461</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000092" kind="Inheritance" role="Inheritance" relid="0x63">
+				<name>Inheritance</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>185,222</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>626,544</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>164,439</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>626,544</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</atom>
 			<reference id="id-0067-0000000d" kind="ModelProxy" role="ModelProxy" relid="0xf" referred="id-0066-00000041">
 				<name>Event</name>
 				<regnode name="PartRegs" isopaque="yes">
@@ -34792,25 +34934,25 @@ dName = dstManagesComponent</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1009,622</value>
+							<value>1030,510</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>988,545</value>
+							<value>988,461</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1086,678</value>
+							<value>1093,307</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1030,566</value>
+							<value>981,503</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -34867,25 +35009,25 @@ dName = dstManagesComponent</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>232,621</value>
+							<value>260,229</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>589,544</value>
+							<value>708,523</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>309,607</value>
+							<value>253,467</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>631,530</value>
+							<value>743,523</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -34935,6 +35077,78 @@ dName = dstManagesComponent</value>
 					<value></value>
 				</attribute>
 			</reference>
+			<reference id="id-0067-0000002c" kind="AtomProxy" role="AtomProxy" relid="0x68" referred="id-0066-0000001f">
+				<name>GenericObject</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>15,251</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>477,552</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>36,475</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>407,538</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</reference>
 			<connection id="id-0068-000000b8" kind="HasAttribute" role="HasAttribute" relid="0x37">
 				<name>HasAttribute</name>
 				<regnode name="autorouterPref" isopaque="yes">
@@ -34950,22 +35164,6 @@ dName = dstManagesComponent</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-00000077"/>
 				<connpoint role="src" target="id-0066-0000007a"/>
-			</connection>
-			<connection id="id-0068-000000ba" kind="ReferTo" role="ReferTo" relid="0x39">
-				<name>ReferTo</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-00000078"/>
-				<connpoint role="dst" target="id-0067-0000000e"/>
-			</connection>
-			<connection id="id-0068-000000bb" kind="ReferTo" role="ReferTo" relid="0x3a">
-				<name>ReferTo</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-0000007c"/>
-				<connpoint role="dst" target="id-0067-0000000e"/>
 			</connection>
 			<connection id="id-0068-000000bc" kind="ReferTo" role="ReferTo" relid="0x3b">
 				<name>ReferTo</name>
@@ -35164,14 +35362,54 @@ dName = dstManagesComponent</value>
 				<connpoint role="dst" target="id-0066-00000076"/>
 				<connpoint role="src" target="id-0069-00000003"/>
 			</connection>
-			<set id="id-0069-00000003" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-0000007c id-0066-0000007d id-0066-00000077 id-0066-00000078 id-0066-00000076 id-0066-00000085 id-0066-00000081 id-0066-00000084">
+			<connection id="id-0068-000000e9" kind="BaseInheritance" role="BaseInheritance" relid="0x64">
+				<name>BaseInheritance</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-00000091"/>
+				<connpoint role="dst" target="id-0066-00000092"/>
+			</connection>
+			<connection id="id-0068-000000ea" kind="DerivedInheritance" role="DerivedInheritance" relid="0x65">
+				<name>DerivedInheritance</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sw</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-00000092"/>
+				<connpoint role="dst" target="id-0067-0000000e"/>
+			</connection>
+			<connection id="id-0068-000000ec" kind="ReferTo" role="ReferTo" relid="0x67">
+				<name>ReferTo</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-00000078"/>
+				<connpoint role="dst" target="id-0066-00000091"/>
+			</connection>
+			<connection id="id-0068-000000ee" kind="DerivedInheritance" role="DerivedInheritance" relid="0x6a">
+				<name>DerivedInheritance</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Se</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-00000092"/>
+				<connpoint role="dst" target="id-0067-0000002c"/>
+			</connection>
+			<connection id="id-0068-000000ef" kind="ReferTo" role="ReferTo" relid="0x6b">
+				<name>ReferTo</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-0000007c"/>
+				<connpoint role="dst" target="id-0066-00000091"/>
+			</connection>
+			<set id="id-0069-00000003" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-0000000d id-0066-0000007c id-0066-0000007d id-0066-00000077 id-0066-00000078 id-0066-00000076 id-0066-00000085 id-0066-00000081 id-0066-00000084 id-0067-0000002c id-0067-0000000e">
 				<name>ComponentAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>50,377</value>
+							<value>50,342</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -35210,7 +35448,7 @@ dName = dstManagesComponent</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>360,299</value>
+							<value>360,264</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -35240,13 +35478,13 @@ dName = dstManagesComponent</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>323,110</value>
+							<value>323,75</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>260,195</value>
+							<value>253,194</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -35315,7 +35553,7 @@ dName = dstManagesComponent</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1010,331</value>
+							<value>1004,292</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -35333,7 +35571,7 @@ dName = dstManagesComponent</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>727,188</value>
+							<value>727,153</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -35359,7 +35597,7 @@ dName = dstManagesComponent</value>
 					<value>Version must be a valid decimal number</value>
 				</attribute>
 				<attribute kind="ConstraintEqn">
-					<value><![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]></value>
+					<value><![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]></value>
 				</attribute>
 				<attribute kind="ConstraintParam" status="meta">
 					<value></value>
@@ -35420,13 +35658,13 @@ dName = dstManagesComponent</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>953,166</value>
+							<value>953,131</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>989,219</value>
+							<value>974,215</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -35591,13 +35829,13 @@ dName = dstManagesComponent</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>85,461</value>
+							<value>85,426</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>29,363</value>
+							<value>78,405</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -35666,13 +35904,13 @@ dName = dstManagesComponent</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>645,370</value>
+							<value>645,335</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>582,510</value>
+							<value>617,356</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -35741,13 +35979,13 @@ dName = dstManagesComponent</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>540,495</value>
+							<value>540,454</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>246,600</value>
+							<value>358,412</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -35816,7 +36054,7 @@ dName = dstManagesComponent</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1107,433</value>
+							<value>1100,363</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -35891,13 +36129,13 @@ dName = dstManagesComponent</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>820,615</value>
+							<value>820,489</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>848,573</value>
+							<value>841,454</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -35966,13 +36204,13 @@ dName = dstManagesComponent</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>316,614</value>
+							<value>316,579</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>148,152</value>
+							<value>246,537</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -36041,13 +36279,13 @@ dName = dstManagesComponent</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1149,643</value>
+							<value>1107,531</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>78,83</value>
+							<value>1149,426</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -36110,10 +36348,16 @@ dName = dstManagesComponent</value>
 							<value>967,622</value>
 						</regnode>
 					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>960,608</value>
+						</regnode>
+					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>8,13</value>
+							<value>981,622</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -36173,6 +36417,18 @@ dName = dstManagesComponent</value>
 							<value>1142,433</value>
 						</regnode>
 					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1100,440</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1135,524</value>
+						</regnode>
+					</regnode>
 				</regnode>
 				<attribute kind="Decorator" status="meta">
 					<value></value>
@@ -36225,6 +36481,18 @@ dName = dstManagesComponent</value>
 						<value></value>
 						<regnode name="Position" isopaque="yes">
 							<value>785,412</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>820,391</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>834,545</value>
 						</regnode>
 					</regnode>
 				</regnode>

@@ -16,7 +16,7 @@
   if (closure->size < 1) then
     Set{}
   else
-    closure->iterate (x ; accu = Set{} | accu + x.parts ())
+    closure->iterate (x ; accu = Set{} | accu + x.parts () - x.parts ("FileRef") )
   endif]]>
       </constraint>
       <constraint type="function" name="inheritedOps">
@@ -157,8 +157,6 @@ supported_set->iterate (ref; accu = Set{} |
          </constraint>
       </atom>
       <connection name = "LabelConnection" metaref = "1796" >
-            <regnode name = "sName" value ="srcLabelConnection"></regnode>
-            <regnode name = "dName" value ="dstLabelConnection"></regnode>
             <regnode name = "color" value ="0x0000FF"></regnode>
             <regnode name = "dstStyle" value ="butt"></regnode>
             <regnode name = "srcStyle" value ="butt"></regnode>
@@ -173,8 +171,6 @@ supported_set->iterate (ref; accu = Set{} |
          </connjoint>
       </connection>
       <connection name = "MakeMemberPrivate" metaref = "2303" >
-            <regnode name = "sName" value ="srcMakeMemberPrivate"></regnode>
-            <regnode name = "dName" value ="dstMakeMemberPrivate"></regnode>
             <regnode name = "color" value ="0xFF0000"></regnode>
             <regnode name = "dstStyle" value ="butt"></regnode>
             <regnode name = "srcStyle" value ="butt"></regnode>
@@ -189,8 +185,6 @@ supported_set->iterate (ref; accu = Set{} |
          </connjoint>
       </connection>
       <connection name = "ManagesComponent" metaref = "3238" >
-            <regnode name = "sName" value ="srcManagesComponent"></regnode>
-            <regnode name = "dName" value ="dstManagesComponent"></regnode>
             <regnode name = "color" value ="0x00FF00"></regnode>
             <regnode name = "dstStyle" value ="arrow"></regnode>
             <regnode name = "srcStyle" value ="butt"></regnode>
@@ -207,8 +201,6 @@ supported_set->iterate (ref; accu = Set{} |
       </connection>
       <reference name = "Alias" metaref = "3119" attributes = "VersionTag SpecifyIdTag">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyAlias"></regnode>
          <constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[not refersTo ().isNull ()]]>
             <dispname>A reference to a named type must be assigned</dispname>
@@ -218,7 +210,7 @@ supported_set->iterate (ref; accu = Set{} |
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <regnode name = "icon" value ="alias.bmp"></regnode>
@@ -249,8 +241,6 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "AttributeMember" metaref = "3239">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyAttributeMember"></regnode>
          <regnode name = "icon" value ="member.bmp"></regnode>
          <regnode name = "isNameEnabled" value ="false"></regnode>
          <pointerspec name = "ref">
@@ -280,8 +270,6 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "Boxed" metaref = "3120" attributes = "VersionTag SpecifyIdTag">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyBoxed"></regnode>
          <constraint name="NoBoxedValueDef" eventmask = "0x80000011" depth = "1" priority = "1">
             <![CDATA[let boxedref = refersTo () in
    boxedref.kindName <> "ValueDef" and boxedref.kindName <> "EventDef"]]>
@@ -296,7 +284,7 @@ supported_set->iterate (ref; accu = Set{} |
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <regnode name = "icon" value ="boxed.bmp"></regnode>
@@ -327,8 +315,6 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "Collection" metaref = "3121" attributes = "VersionTag SpecifyIdTag">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyCollection"></regnode>
          <constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[not refersTo ().isNull ()]]>
             <dispname>A reference to a named type must be assigned</dispname>
@@ -338,7 +324,7 @@ supported_set->iterate (ref; accu = Set{} |
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <regnode name = "icon" value ="variablecollection.bmp"></regnode>
@@ -369,8 +355,6 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "ComponentRef" metaref = "3240">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyComponentRef"></regnode>
          <regnode name = "icon" value ="manages.bmp"></regnode>
          <regnode name = "isNameEnabled" value ="false"></regnode>
          <pointerspec name = "ref">
@@ -379,14 +363,12 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "Constant" metaref = "3112" attributes = "VersionTag SpecifyIdTag value">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyConstant"></regnode>
          <constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <attrdef name="value" metaref = "3113" valuetype = "string" defvalue = "">
@@ -409,8 +391,6 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "Discriminator" metaref = "3122">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyDiscriminator"></regnode>
          <constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[not refersTo ().isNull ()]]>
             <dispname>A reference to a named type must be assigned</dispname>
@@ -434,8 +414,6 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "ExceptionRef" metaref = "2312">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyExceptionRef"></regnode>
          <constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -448,8 +426,6 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "FileRef" metaref = "2627">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyFileRef"></regnode>
          <constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -462,8 +438,6 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "GetException" metaref = "2264">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyGetException"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -476,14 +450,12 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "InEventPort" metaref = "2753" attributes = "VersionTag SpecifyIdTag">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyInEventPort"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <regnode name = "icon" value ="ineventport.bmp"></regnode>
@@ -493,8 +465,6 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "InParameter" metaref = "3123">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyInParameter"></regnode>
          <regnode name = "icon" value ="in.bmp"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "Aggregate"></pointeritem>
@@ -523,8 +493,6 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "Inherits" metaref = "1401">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyInherits"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -541,8 +509,6 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "InoutParameter" metaref = "3124">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyInoutParameter"></regnode>
          <regnode name = "icon" value ="inout.bmp"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "Aggregate"></pointeritem>
@@ -571,8 +537,6 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "LookupKey" metaref = "1800">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyLookupKey"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -585,8 +549,6 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "Member" metaref = "3125">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyMember"></regnode>
          <constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[not refersTo ().isNull ()]]>
             <dispname>A reference to a named type must be assigned</dispname>
@@ -624,14 +586,12 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "OutEventPort" metaref = "2754" attributes = "VersionTag SpecifyIdTag single_destination">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyOutEventPort"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <attrdef name="single_destination" metaref = "2190" valuetype = "boolean" defvalue = "false">
@@ -643,8 +603,6 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "OutParameter" metaref = "3126">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyOutParameter"></regnode>
          <regnode name = "icon" value ="out.bmp"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "Aggregate"></pointeritem>
@@ -673,44 +631,40 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "ProvidedRequestPort" metaref = "2755" attributes = "VersionTag SpecifyIdTag">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyProvidedRequestPort"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <regnode name = "icon" value ="providedrequestport.bmp"></regnode>
          <pointerspec name = "ref">
+            <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "Object"></pointeritem>
          </pointerspec>
       </reference>
       <reference name = "RequiredRequestPort" metaref = "2756" attributes = "VersionTag SpecifyIdTag multiple_connections">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyRequiredRequestPort"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <attrdef name="multiple_connections" metaref = "2195" valuetype = "boolean" defvalue = "false">
          </attrdef>
          <regnode name = "icon" value ="requiredrequestport.bmp"></regnode>
          <pointerspec name = "ref">
+            <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "Object"></pointeritem>
          </pointerspec>
       </reference>
       <reference name = "ReturnType" metaref = "3127">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyReturnType"></regnode>
          <regnode name = "icon" value ="return.bmp"></regnode>
          <regnode name = "isNameEnabled" value ="false"></regnode>
          <pointerspec name = "ref">
@@ -740,8 +694,6 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "SetException" metaref = "1701">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbySetException"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -754,8 +706,6 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "Supports" metaref = "1404">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbySupports"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -778,7 +728,7 @@ supported_set->iterate (ref; accu = Set{} |
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "Member" metaref = "3128" kind = "Member"></role>
@@ -796,7 +746,7 @@ supported_set->iterate (ref; accu = Set{} |
             <dispname>Multiplicity of parts, which are contained by ReadonlyAttribute, has to match 1.</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "AttributeMember" metaref = "3241" kind = "AttributeMember"></role>
@@ -841,7 +791,7 @@ supported_set->iterate (ref; accu = Set{} |
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "Attribute" metaref = "1420" kind = "Attribute"></role>
@@ -901,7 +851,7 @@ supported_set->iterate (ref; accu = Set{} |
             <dispname>Multiplicity of objects, which are associated to ComponentFactory as "dst" over ManagesComponent, has to match 1.</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "Aggregate" metaref = "2940" kind = "Aggregate"></role>
@@ -956,7 +906,7 @@ supported_set->iterate (ref; accu = Set{} |
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "EnumValue" metaref = "2951" kind = "EnumValue"></role>
@@ -998,7 +948,7 @@ endif]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <attrdef name="abstract" metaref = "2955" valuetype = "boolean" defvalue = "false">
@@ -1044,7 +994,7 @@ endif]]>
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="exception.bmp"></regnode>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "Member" metaref = "3166" kind = "Member"></role>
@@ -1066,7 +1016,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
             <dispname>An operation's parameters must have unique names</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "ExceptionRef" metaref = "2324" kind = "ExceptionRef"></role>
@@ -1078,6 +1028,10 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
       </model>
       <model name = "File" metaref = "2326" attributes = "PrefixTag" >
             <regnode name = "namePosition" value ="4"></regnode>
+         <constraint name="UniqueFileIncludes" eventmask = "0x400" depth = "1" priority = "1">
+            <![CDATA[referenceParts (FileRef)->forAll (x, y : gme::Reference | x <> y implies x.refersTo ().name <> y.refersTo ().name)]]>
+            <dispname>A file cannot be included more than once</dispname>
+         </constraint>
          <role name = "Aggregate" metaref = "2994" kind = "Aggregate"></role>
          <role name = "Alias" metaref = "3170" kind = "Alias"></role>
          <role name = "Boxed" metaref = "3171" kind = "Boxed"></role>
@@ -1129,7 +1083,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
             <dispname>An operation's parameters must have unique names</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "ExceptionRef" metaref = "2339" kind = "ExceptionRef"></role>
@@ -1176,7 +1130,7 @@ endif]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <attrdef name="abstract" metaref = "3017" valuetype = "boolean" defvalue = "false">
@@ -1218,7 +1172,7 @@ endif]]>
             <dispname>An operation's parameters must have unique names</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "InParameter" metaref = "3196" kind = "InParameter"></role>
@@ -1241,7 +1195,7 @@ endif]]>
             <dispname>Declarations in a Package must have unique names unless they are themselves Packages</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "Aggregate" metaref = "3042" kind = "Aggregate"></role>
@@ -1288,7 +1242,7 @@ endif]]>
             <dispname>Multiplicity of parts, which are contained by ReadonlyAttribute, has to match 1.</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "AttributeMember" metaref = "3283" kind = "AttributeMember"></role>
@@ -1335,17 +1289,17 @@ endif]]>
             <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
          </constraint>
          <constraint name="ValidSwitchedAggregatePartCardinality11" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "Label" ) -> size in
-                     (partCount >= 1)]]>
-            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
-         </constraint>
-         <constraint name="ValidSwitchedAggregatePartCardinality12" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
                      (partCount >= 1)]]>
             <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
          </constraint>
+         <constraint name="ValidSwitchedAggregatePartCardinality12" eventmask = "0x0" depth = "1" priority = "1">
+            <![CDATA[let partCount = self.parts( "Label" ) -> size in
+                     (partCount >= 1)]]>
+            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
+         </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "Discriminator" metaref = "3208" kind = "Discriminator"></role>
@@ -1378,7 +1332,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
             <dispname>Multiplicity of parts, which are contained by TwowayOperation, has to match 0..1.</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "ExceptionRef" metaref = "2348" kind = "ExceptionRef"></role>
@@ -1429,7 +1383,7 @@ endif]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <attrdef name="abstract" metaref = "3075" valuetype = "boolean" defvalue = "false">

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Sun May 23 00:23:04 2004" mdate="Sun May 23 00:23:04 2004" metaguid="{01F382BF-DEAD-BEEF-FEED-DAD000000001}" metaname="IDML">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri May 21 14:10:26 2004" mdate="Mon May 24 14:27:52 2004" metaguid="{887B9156-DEAD-BEEF-FEED-DAD000000001}" metaname="IDML">
 	<name>PredefinedTypes</name>
 	<comment></comment>
 	<author></author>
@@ -9,37 +9,37 @@
 		<name>PredefinedTypes</name>
 		<folder id="id-006a-00000002" relid="0x1" childrelidcntr="0xc" kind="PredefinedTypes">
 			<name>PredefinedTypes</name>
-			<atom id="id-0066-00000001" kind="Byte" relid="0x2">
+			<atom id="id-0066-00000002" kind="Byte" relid="0x2">
 				<name>Byte</name>
 			</atom>
-			<atom id="id-0066-00000002" kind="GenericObject" relid="0x3">
+			<atom id="id-0066-00000003" kind="GenericObject" relid="0x3">
 				<name>GenericObject</name>
 			</atom>
-			<atom id="id-0066-00000003" kind="GenericValue" relid="0x4">
+			<atom id="id-0066-00000004" kind="GenericValue" relid="0x4">
 				<name>GenericValue</name>
 			</atom>
-			<atom id="id-0066-00000004" kind="GenericValueObject" relid="0x5">
+			<atom id="id-0066-00000005" kind="GenericValueObject" relid="0x5">
 				<name>GenericValueObject</name>
 			</atom>
-			<atom id="id-0066-00000005" kind="LongInteger" relid="0x6">
+			<atom id="id-0066-00000006" kind="LongInteger" relid="0x6">
 				<name>LongInteger</name>
 			</atom>
-			<atom id="id-0066-00000006" kind="RealNumber" relid="0x7">
+			<atom id="id-0066-00000007" kind="RealNumber" relid="0x7">
 				<name>RealNumber</name>
 			</atom>
-			<atom id="id-0066-00000007" kind="ShortInteger" relid="0x8">
+			<atom id="id-0066-00000008" kind="ShortInteger" relid="0x8">
 				<name>ShortInteger</name>
 			</atom>
-			<atom id="id-0066-00000008" kind="Boolean" relid="0x9">
+			<atom id="id-0066-00000009" kind="Boolean" relid="0x9">
 				<name>Boolean</name>
 			</atom>
-			<atom id="id-0066-00000009" kind="String" relid="0xa">
+			<atom id="id-0066-0000000a" kind="String" relid="0xa">
 				<name>String</name>
 			</atom>
-			<atom id="id-0066-0000000a" kind="TypeEncoding" relid="0xb">
+			<atom id="id-0066-0000000b" kind="TypeEncoding" relid="0xb">
 				<name>TypeEncoding</name>
 			</atom>
-			<atom id="id-0066-0000000b" kind="TypeKind" relid="0xc">
+			<atom id="id-0066-0000000c" kind="TypeKind" relid="0xc">
 				<name>TypeKind</name>
 			</atom>
 		</folder>

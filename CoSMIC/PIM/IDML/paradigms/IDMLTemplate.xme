@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Sun May 23 00:23:32 2004" mdate="Sun May 23 00:23:32 2004" metaguid="{01F382BF-DEAD-BEEF-FEED-DAD000000001}" metaname="IDML">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Mon May 24 14:27:41 2004" mdate="Mon May 24 14:28:06 2004" metaguid="{887B9156-DEAD-BEEF-FEED-DAD000000001}" metaname="IDML">
 	<name>IDMLTemplate</name>
 	<comment></comment>
 	<author></author>
-	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x9" kind="RootFolder">
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x2" kind="RootFolder">
 		<name>IDMLTemplate</name>
-		<folder id="id-006a-00000002" relid="0x8" childrelidcntr="0x1" libref="MGA=C:\Program Files\GME\Paradigms\IDML\PredefinedTypes.mga" kind="RootFolder">
+		<folder id="id-006a-00000002" relid="0x1" childrelidcntr="0x1" libref="MGA=C:\Program Files\GME\Paradigms\IDML\PredefinedTypes.mga" kind="RootFolder">
 			<name>MGA=C:\Program Files\GME\Paradigms\IDML\PredefinedTypes.mga</name>
 			<folder id="id-006a-00000003" relid="0x1" childrelidcntr="0xc" kind="PredefinedTypes">
 				<name>PredefinedTypes</name>
@@ -46,7 +46,7 @@
 				</atom>
 			</folder>
 		</folder>
-		<folder id="id-006a-00000004" relid="0x9" childrelidcntr="0x0" kind="InterfaceDefinitions">
+		<folder id="id-006a-00000004" relid="0x2" childrelidcntr="0x0" kind="InterfaceDefinitions">
 			<name>NewInterfaceDefinitions</name>
 		</folder>
 	</folder>
