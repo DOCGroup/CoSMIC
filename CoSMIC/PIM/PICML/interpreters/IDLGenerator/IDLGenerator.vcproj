@@ -53,8 +53,9 @@
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				ImportLibrary="$(OutDir)/IDLGenerator.lib"
-			/>
+				ImportLibrary="$(OutDir)/IDLGenerator.lib"/>
+			<Tool
+				Name="VCMIDLTool"/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
 			<Tool
@@ -69,7 +70,13 @@
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
 				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
@@ -91,29 +98,35 @@
 				BufferSecurityCheck="TRUE"
 				EnableFunctionLevelLinking="TRUE"
 				TreatWChar_tAsBuiltInType="TRUE"
-				ForceConformanceInForLoopScope="TRUE"
+				ForceConformanceInForLoopScope="FALSE"
 				RuntimeTypeInfo="TRUE"
-				UsePrecompiledHeader="3"
+				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="StdAfx.h"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				Detect64BitPortabilityProblems="FALSE"
 				DebugInformationFormat="3"/>
 			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCCustomBuildTool"
+				Description="Performing registration"
+				CommandLine="regsvr32 /c &quot;$(TargetPath)&quot;
+echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;"
+				Outputs="$(OutDir)\regsvr32.trg"/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies=""
-				OutputFile="$(OutDir)/IDLGeneratord.dll"
+				OutputFile="$(OutDir)/IDLGenerator.dll"
 				Version="1.0"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories=""
+				ModuleDefinitionFile=".\Component.def"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="$(OutDir)/IDLGeneratord.pdb"
+				ProgramDatabaseFile="$(OutDir)/IDLGenerator.pdb"
 				SubSystem="2"
-				ImportLibrary="$(OutDir)/IDLGeneratord.lib"
-			/>
+				ImportLibrary="$(OutDir)/IDLGenerator.lib"/>
+			<Tool
+				Name="VCMIDLTool"/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
 			<Tool
@@ -128,13 +141,171 @@
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
 				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 	</Configurations>
+	<References>
+	</References>
 	<Files>
 		<Filter
 			Name="Source Files"
 			Filter="cpp;cxx;cc;C;c">
+			<File
+				RelativePath="$(GME_ROOT)\SDK\BON\BON.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\BON2Component.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="$(GME_ROOT)\SDK\BON\BONImpl.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="$(GME_ROOT)\SDK\BON\ComHelp.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="$(GME_ROOT)\SDK\BON\Common.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="Component.def">
+			</File>
+			<File
+				RelativePath="Component.rc">
+			</File>
+			<File
+				RelativePath="$(GME_ROOT)\SDK\BON\ComponentDll.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="$(GME_ROOT)\SDK\BON\ComponentObj.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="DependencyVisitor.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="$(GME_ROOT)\SDK\BON\Events.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="$(GME_ROOT)\SDK\BON\Exceptions.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="$(GME_ROOT)\SDK\BON\Extensions.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="IDLEmitVisitor.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="IDLStream.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="IDMLBonExtension.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="$(GME_ROOT)\SDK\BON\MON.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="$(GME_ROOT)\SDK\BON\MONImpl.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"/>
+				</FileConfiguration>
+			</File>
 			<File
 				RelativePath="StdAfx.cpp">
 				<FileConfiguration
@@ -151,68 +322,23 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="$(GME_ROOT)\SDK\BON\BON.cpp">
-			</File>
-			<File
-				RelativePath="$(GME_ROOT)\SDK\BON\BONImpl.cpp">
-			</File>
-			<File
-				RelativePath="$(GME_ROOT)\SDK\BON\ComHelp.cpp">
-			</File>
-			<File
-				RelativePath="$(GME_ROOT)\SDK\BON\Common.cpp">
-			</File>
-			<File
-				RelativePath="$(GME_ROOT)\SDK\BON\ComponentDll.cpp">
-			</File>
-			<File
-				RelativePath="$(GME_ROOT)\SDK\BON\ComponentObj.cpp">
-			</File>
-			<File
-				RelativePath="$(GME_ROOT)\SDK\BON\Events.cpp">
-			</File>
-			<File
-				RelativePath="$(GME_ROOT)\SDK\BON\Exceptions.cpp">
-			</File>
-			<File
-				RelativePath="$(GME_ROOT)\SDK\BON\Extensions.cpp">
-			</File>
-			<File
-				RelativePath="$(GME_ROOT)\SDK\BON\MON.cpp">
-			</File>
-			<File
-				RelativePath="$(GME_ROOT)\SDK\BON\MONImpl.cpp">
-			</File>
-			<File
 				RelativePath="$(GME_ROOT)\SDK\BON\Utils.cpp">
-			</File>
-			<File
-				RelativePath="Component.def">
-			</File>
-			<File
-				RelativePath="Component.rc">
-			</File>
-			<File
-				RelativePath="DependencyVisitor.cpp">
-			</File>
-			<File
-				RelativePath="IDLEmitVisitor.cpp">
-			</File>
-			<File
-				RelativePath="IDLStream.cpp">
-			</File>
-			<File
-				RelativePath="IDMLBonExtension.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="2"/>
+				</FileConfiguration>
 			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hh">
 			<File
-				 RelativePath="StdAfx.h">
+				RelativePath="$(GME_ROOT)\SDK\BON\BON.h">
 			</File>
 			<File
-				RelativePath="$(GME_ROOT)\SDK\BON\BON.h">
+				RelativePath=".\BON2Component.h">
 			</File>
 			<File
 				RelativePath="$(GME_ROOT)\SDK\BON\BONImpl.h">
@@ -221,10 +347,19 @@
 				RelativePath="$(GME_ROOT)\SDK\BON\ComHelp.h">
 			</File>
 			<File
+				RelativePath="ComponentConfig.h">
+			</File>
+			<File
 				RelativePath="$(GME_ROOT)\SDK\BON\ComponentDll.h">
 			</File>
 			<File
+				RelativePath="ComponentLib.h">
+			</File>
+			<File
 				RelativePath="$(GME_ROOT)\SDK\BON\ComponentObj.h">
+			</File>
+			<File
+				RelativePath="DependencyVisitor.h">
 			</File>
 			<File
 				RelativePath="$(GME_ROOT)\SDK\BON\Events.h">
@@ -236,24 +371,6 @@
 				RelativePath="$(GME_ROOT)\SDK\BON\Extensions.h">
 			</File>
 			<File
-				RelativePath="$(GME_ROOT)\SDK\BON\MON.h">
-			</File>
-			<File
-				RelativePath="$(GME_ROOT)\SDK\BON\MONImpl.h">
-			</File>
-			<File
-				RelativePath="$(GME_ROOT)\SDK\BON\Utils.h">
-			</File>
-			<File
-				RelativePath="ComponentConfig.h">
-			</File>
-			<File
-				RelativePath="ComponentLib.h">
-			</File>
-			<File
-				RelativePath="DependencyVisitor.h">
-			</File>
-			<File
 				RelativePath="IDLEmitVisitor.h">
 			</File>
 			<File
@@ -263,7 +380,19 @@
 				RelativePath="IDMLBonExtension.h">
 			</File>
 			<File
+				RelativePath="$(GME_ROOT)\SDK\BON\MON.h">
+			</File>
+			<File
+				RelativePath="$(GME_ROOT)\SDK\BON\MONImpl.h">
+			</File>
+			<File
 				RelativePath="Resource.h">
+			</File>
+			<File
+				RelativePath="StdAfx.h">
+			</File>
+			<File
+				RelativePath="$(GME_ROOT)\SDK\BON\Utils.h">
 			</File>
 		</Filter>
 		<Filter
@@ -276,7 +405,8 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Invoking midl on $(GME_ROOT)\SDK\BON\ComponentLib.idl"
-						CommandLine="midl -I. -server none -client none $(GME_ROOT)\SDK\BON\ComponentLib.idl"
+						CommandLine="midl -I. -server none -client none $(GME_ROOT)\SDK\BON\ComponentLib.idl
+"
 						Outputs=".\ComponentLib.h"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -284,7 +414,8 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Invoking midl on $(GME_ROOT)\SDK\BON\ComponentLib.idl"
-						CommandLine="midl -I. -server none -client none $(GME_ROOT)\SDK\BON\ComponentLib.idl"
+						CommandLine="midl -I. -server none -client none $(GME_ROOT)\SDK\BON\ComponentLib.idl
+"
 						Outputs=".\ComponentLib.h"/>
 				</FileConfiguration>
 			</File>
