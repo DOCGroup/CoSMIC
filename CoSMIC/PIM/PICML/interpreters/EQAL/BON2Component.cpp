@@ -334,7 +334,7 @@ void RTEC_Proxy_ConsumerVisitor::visitRT_InfoImpl (const RT_Info & rt_info)
   rt_info->generate_CPF (cpf_name.c_str (), component_name.c_str (), source_port_name.c_str ());
 
   // Write svc.conf
-  std::multiset<ConnectionEnd> rtec_factory_list = rt_info->getInConnEnds ("Use_RT_Info");
+  std::multiset<ConnectionEnd> rtec_factory_list = rt_info->getOutConnEnds ("Use_RT_Info");
 
   // One event channel has only one RTEC_Resource_Factory.
 	for (std::multiset<ConnectionEnd>::iterator rtec_factory_iter = rtec_factory_list.begin ();

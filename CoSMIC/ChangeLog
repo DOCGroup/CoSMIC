@@ -1,4 +1,12 @@
+Sun Nov 7 19:29:16 2004 Gan Deng <gan.deng@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/EQAL/BON2Component.cpp:
+
+          Fixed a bug related to the role type of USE_RT_Info
+          connection type.
+
 Sun Nov 7 16:10:16 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+
         * PIM/PICML/interpreters/cidl/UdmApp.cpp:
           
           Fixed error message when intrepretation starts from the wrong
