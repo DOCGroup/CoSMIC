@@ -4,7 +4,8 @@
 #include "OCMLUtils.h"
 #include <algorithm>
 
-namespace OCML_BON {
+namespace OCML_BON
+{
 
   xercesc::DOMElement*
   Described_ItemImpl::xml_export(xercesc::DOMDocument* doc)
@@ -34,6 +35,54 @@ namespace OCML_BON {
     xercesc::DOMElement* node = Described_ItemImpl::xml_export(doc);
 
     node->setAttribute(XStr("param-name"), XStr(getParameter_Name()));
+
+    return node;
+  }
+
+  xercesc::DOMElement*
+  Option_ItemImpl::xml_export(xercesc::DOMDocument* doc)
+  {
+    xercesc::DOMElement* node = Described_ItemImpl::xml_export(doc);
+
+    if (isItem_Default_Value())
+      node->setAttribute(XStr("default-value"), XStr("true"));
+    else
+      node->setAttribute(XStr("default-value"), XStr("false"));
+
+    return node;
+  }
+
+  xercesc::DOMElement*
+  Boolean_OptionImpl::xml_export(xercesc::DOMDocument* doc)
+  {
+    xercesc::DOMElement* node = Described_ItemImpl::xml_export(doc);
+
+    if (isBoolean_Default_Value())
+      node->setAttribute(XStr("default-value"), XStr("true"));
+    else
+      node->setAttribute(XStr("default-value"), XStr("false"));
+
+    return node;
+  }
+
+  xercesc::DOMElement*
+  Integer_OptionImpl::xml_export(xercesc::DOMDocument* doc)
+  {
+    xercesc::DOMElement* node = Described_ItemImpl::xml_export(doc);
+
+    node->setAttribute(XStr("default-value"),
+                       XStr(getInteger_Default_Value()));
+
+    return node;
+  }
+
+  xercesc::DOMElement*
+  String_OptionImpl::xml_export(xercesc::DOMDocument* doc)
+  {
+    xercesc::DOMElement* node = Described_ItemImpl::xml_export(doc);
+    
+    node->setAttribute(XStr("default-value"),
+                       XStr(getString_Default_Value()));
 
     return node;
   }

@@ -1,3 +1,11 @@
+Wed Oct 27 17:38:45 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * OCML/interpreters/OCML_Interpreter/OCMLBonExtension_Manual.cpp:
+        * OCML/interpreters/OCML_Interpreter/OCMLBonX.h: 
+
+          Implemented the functionality of exporting the default values
+          into the OCML interpreter.
+
 Wed Oct 27 17:10:52 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * OCML/interpreters/OCML_Interpreter/OCMLBonX.h: 
@@ -16,7 +24,7 @@ Wed Oct 27 16:51:14 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
           Deleted the files and added the followings instead. (Generated
           files by GME metamodel BON extender interpreter).
-	
+
         * OCML/interpreters/OCML_Interpreter/OCMLBonX.cpp
         * OCML/interpreters/OCML_Interpreter/OCMLBonX.h
 

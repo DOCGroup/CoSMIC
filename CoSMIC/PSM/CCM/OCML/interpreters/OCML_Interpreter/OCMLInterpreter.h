@@ -4,7 +4,7 @@
 #define OCML_INTERPRETER_H
 
 #include <string>
-#include "OCMLBonExtension.h"
+#include "OCMLBonX.h"
 #include <xercesc/dom/DOM.hpp>
 
 class OCMLInterpreter
