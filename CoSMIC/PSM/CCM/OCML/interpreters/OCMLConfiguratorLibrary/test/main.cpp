@@ -1,3 +1,7 @@
+/**
+ * $Id$
+ */
+
 #include <windows.h>
 #include "assert.h"
 
@@ -110,7 +114,8 @@ LRESULT CALLBACK MainWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
       char* new_values = (pProc)(values.c_str(), values.size());
       if (new_values)
         {
-          std::ofstream of("c:\\Data\\values.xml");
+          // TODO: 
+          std::ofstream of("values.xml");
           of << new_values;
         }
       FreeLibrary(hModule);
