@@ -38,7 +38,7 @@ RSC=rc.exe
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 2
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "Debug"
+# PROP Output_Dir "../../bin"
 # PROP Intermediate_Dir "Debug"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
@@ -54,9 +54,9 @@ LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
 # ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
 # Begin Custom Build - Performing registration
-OutDir=.\Debug
-TargetPath=.\Debug\IDLGenerator.dll
-InputPath=.\Debug\IDLGenerator.dll
+OutDir=.\../../bin
+TargetPath=\CoSMIC\PIM\PICML\bin\IDLGenerator.dll
+InputPath=\CoSMIC\PIM\PICML\bin\IDLGenerator.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -74,7 +74,7 @@ SOURCE="$(InputPath)"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 2
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "Release"
+# PROP Output_Dir "../../bin"
 # PROP Intermediate_Dir "Release"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
@@ -90,9 +90,9 @@ LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
 # ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386
 # Begin Custom Build - Performing registration
-OutDir=.\Release
-TargetPath=.\Release\IDLGenerator.dll
-InputPath=.\Release\IDLGenerator.dll
+OutDir=.\../../bin
+TargetPath=\CoSMIC\PIM\PICML\bin\IDLGenerator.dll
+InputPath=\CoSMIC\PIM\PICML\bin\IDLGenerator.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -167,6 +167,12 @@ BuildCmds= \
 
 "ComponentLib_i.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
+
+"ComponentLib_p.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+   $(BuildCmds)
+
+"dlldata.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+   $(BuildCmds)
 # End Custom Build
 
 !ELSEIF  "$(CFG)" == "IDLGenerator - Win32 Release"
@@ -185,6 +191,12 @@ BuildCmds= \
    $(BuildCmds)
 
 "ComponentLib_i.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+   $(BuildCmds)
+
+"ComponentLib_p.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+   $(BuildCmds)
+
+"dlldata.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
 # End Custom Build
 

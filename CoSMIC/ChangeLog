@@ -1,3 +1,13 @@
+Thu Nov  4 13:33:30 2004  Krishankumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.dsp:
+        * PIM/PICML/interpreters/MPC/Component.dsp: More files which
+          needed the same fix as done in the previous checkin.
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc: Renamed the
+          xerces-c_2 library target to xerces-c_2_5 for the time being to
+          get around other issues.
+
 Thu Nov 4 13:26:18 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
        * PIM/PICML/paradigms/PICML.xme:
        * PIM/PICML/examples/RobotAssembly.xme:
@@ -8,7 +18,7 @@ Thu Nov  4 13:08:50 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.dsp:
         * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.dsw:
-        
+
           Added these files so the intepreter can be compiled with
           VC6.
 
