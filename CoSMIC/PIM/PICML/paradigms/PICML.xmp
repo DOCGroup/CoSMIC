@@ -2194,8 +2194,8 @@ or self.requiredUUID <> ""]]>
          </constraint>
          <constraint name="ValidTimerConnectiondstCardinality94" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let dstCount = self.attachingConnections( "src", TimerConnection ) -> size in
-                     (dstCount = 1)]]>
-            <dispname>Multiplicity of objects, which are associated to OperationRef as "dst" over TimerConnection, has to match 1.</dispname>
+                     (dstCount <= 1)]]>
+            <dispname>Multiplicity of objects, which are associated to OperationRef as "dst" over TimerConnection, has to match 0..1.</dispname>
          </constraint>
          <regnode name = "icon" value ="operationref.bmp"></regnode>
          <pointerspec name = "ref">
@@ -3194,8 +3194,8 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
          </constraint>
          <constraint name="ValidWorkloadCharacteristicsdstCardinality102" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let dstCount = self.attachingConnections( "src", WorkloadCharacteristics ) -> size in
-                     (dstCount = 1)]]>
-            <dispname>Multiplicity of objects, which are associated to MetricsBase as "dst" over WorkloadCharacteristics, has to match 1.</dispname>
+                     (dstCount <= 1)]]>
+            <dispname>Multiplicity of objects, which are associated to MetricsBase as "dst" over WorkloadCharacteristics, has to match 0..1.</dispname>
          </constraint>
          <role name = "Average" metaref = "4034" kind = "Average"></role>
          <role name = "Jitter" metaref = "4035" kind = "Jitter"></role>
@@ -3735,8 +3735,8 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
          </constraint>
          <constraint name="ValidWorkloadCharacteristicsdstCardinality102" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let dstCount = self.attachingConnections( "src", WorkloadCharacteristics ) -> size in
-                     (dstCount = 1)]]>
-            <dispname>Multiplicity of objects, which are associated to MetricsBase as "dst" over WorkloadCharacteristics, has to match 1.</dispname>
+                     (dstCount <= 1)]]>
+            <dispname>Multiplicity of objects, which are associated to MetricsBase as "dst" over WorkloadCharacteristics, has to match 0..1.</dispname>
          </constraint>
          <role name = "Average" metaref = "4043" kind = "Average"></role>
          <role name = "Jitter" metaref = "4044" kind = "Jitter"></role>
