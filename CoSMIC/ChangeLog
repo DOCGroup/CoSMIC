@@ -1,3 +1,11 @@
+Wed Nov 24 11:18:35 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/BGML_Interter/Benchmark_Stream.h:
+        * PIM/PICML/interpreters/BGML_Interter/Benchmark_Stream.cpp:
+
+          Fixed interpeters to generate tool specific information similar
+          to what TAO IDL compiler generates.
+
 Tue Nov 23 22:59:42 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.vcproj: Fixed

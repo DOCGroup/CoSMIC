@@ -141,6 +141,9 @@ public:
   void create_build_file ();
   // Generate the mpc file to create the benchmarking library
 
+  void generate_tool_description ();
+  // Generate the tool description information
+
 private:
   std::string& component_name_;
   std::string& operation_name_; 
