@@ -1,3 +1,21 @@
+Thu May 27 00:36:39 2004  Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * PICML/paradigms/PICML.xme:
+        * PICML/paradigms/PICML.xmp:
+        * PICML/paradigms/PICMLTemplate.xme:
+        * PICML/paradigms/PredefinedTypes.xme:
+        * PICML/paradigms/icons/Bridge.bmp:
+        * PICML/paradigms/icons/Node.bmp:
+        * PICML/paradigms/icons/Domain.bmp:
+        * PICML/paradigms/icons/ComponentSet.bmp:
+        * PICML/paradigms/icons/Interconnect.bmp:
+        * PICML/paradigms/icons/Resource.bmp:
+        * PICML/paradigms/icons/SharedResource.bmp:
+
+          Added the MIDCESS and DeploymentPlan meta modeling
+          environment to the
+          PICML modeling tool suite.
+
 Sun May 23 01:11:38 2004  Krishnakumar B  <unknown@isis.vanderbilt.edu>
 
         * IDML/paradigms/IDML-Meta.xme: Modified the OperationTypes to
