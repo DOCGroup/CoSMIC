@@ -1,10 +1,68 @@
+Mon Apr 26 10:43:10 2004  Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * MIDCESS/interpreters/BON2Component.cpp:
+        * MIDCESS/interpreters/BON2Component.dsw:
+        * MIDCESS/interpreters/BON2Component.h:
+        * MIDCESS/interpreters/BON2Component.ncb:
+        * MIDCESS/interpreters/BON2Component.opt:
+        * MIDCESS/interpreters/ComponentLib.h:
+        * MIDCESS/interpreters/ComponentLib_i.c:
+        * MIDCESS/interpreters/ComponentLib_p.c:
+        * MIDCESS/interpreters/ComponentLib.tlb:
+        * MIDCESS/interpreters/Component.rc:
+        * MIDCESS/interpreters/ComponentConfig.h:
+        * MIDCESS/interpreters/ComponentConfig.old:
+        * MIDCESS/interpreters/component.def:
+        * MIDCESS/interpreters/CompIcon.ico:
+        * MIDCESS/interpreters/ConfigureComponent.exe:
+        * MIDCESS/interpreters/dlldata.c:
+        * MIDCESS/interpreters/GMESources.txt:
+        * MIDCESS/interpreters/Resource.h:
+        * MIDCESS/interpreters/SchemaDefines.h:
+        * MIDCESS/interpreters/SchemaLogger.h:
+        * MIDCESS/interpreters/SchemaLogger.cpp:
+        * MIDCESS/interpreters/SchemaUtils.h:
+        * MIDCESS/interpreters/SchemaUtils.cpp:
+        * MIDCESS/interpreters/SchemaVisitor.h:
+        * MIDCESS/interpreters/SchemaVisitor.cpp:
+        * MIDCESS/interpreters/StdAfx.h:
+        * MIDCESS/interpreters/StdAfx.cpp:
+        * MIDCESS/interpreters/TargetDataMLBON2Component.dsp:
+        * MIDCESS/interpreters/TargetDataMLBON2Component.plg:
+        * MIDCESS/paradigms/icons/Arch.bmp:
+        * MIDCESS/paradigms/icons/ATM.bmp:
+        * MIDCESS/paradigms/icons/Bridge.bmp:
+        * MIDCESS/paradigms/icons/Capacity.bmp:
+        * MIDCESS/paradigms/icons/CORBA.bmp:
+        * MIDCESS/paradigms/icons/Disk.bmp:
+        * MIDCESS/paradigms/icons/Domain.bmp:
+        * MIDCESS/paradigms/icons/Ethernet.bmp:
+        * MIDCESS/paradigms/icons/Firewire.bmp:
+        * MIDCESS/paradigms/icons/IIOP.bmp:
+        * MIDCESS/paradigms/icons/Interconnect.bmp:
+        * MIDCESS/paradigms/icons/JVM.bmp:
+        * MIDCESS/paradigms/icons/Node.bmp:
+        * MIDCESS/paradigms/icons/OS.bmp:
+        * MIDCESS/paradigms/icons/Port.bmp:
+        * MIDCESS/paradigms/icons/Printer.bmp:
+        * MIDCESS/paradigms/icons/RAM/bmp:
+        * MIDCESS/paradigms/icons/RTOS.bmp:
+        * MIDCESS/paradigms/icons/SCTP.bmp:
+        * MIDCESS/paradigms/icons/Speed.bmp:
+        * MIDCESS/paradigms/icons/Thumbs.db:
+        * MIDCESS/paradigms/TargetDataML.xme:
+        * MIDCESS/paradigms/TargetDataML_D&C.mga:
+        * MIDCESS/examples/Demo_Example.mga:
+
+          Added the MIDCESS tool into the repository.
+
 Thu Apr 22 00:52:39 2004  Gabriele Trombetti  <gtrombetti@nospam.invalid.domain>
 
         * PICML2Cadena/cadena-scenario.mga: Added for ease of use (can be
           created from the .xme file)
 
-        * PICML2Cadena/cadena-scenario.xme: Added ComponentPort hierarchy to 
-          reflect facets-receptacles-eventsources-eventsinks; changed 
+        * PICML2Cadena/cadena-scenario.xme: Added ComponentPort hierarchy to
+          reflect facets-receptacles-eventsources-eventsinks; changed
           representation of connections again (now a class hierarchy), to allow
           correlated connections.
 
