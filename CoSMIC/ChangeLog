@@ -1,3 +1,9 @@
+Mon Nov 01 09:51:31 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * Installer/RegisterParadigm/RegisterParadigm.cpp: 
+
+          OCML paradigm register/unregister code is updated in the installer.
+
 Mon Nov 1 08:29:55 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/MPC/MPCStream.cpp:

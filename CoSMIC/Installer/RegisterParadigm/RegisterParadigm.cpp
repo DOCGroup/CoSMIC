@@ -173,18 +173,37 @@ UINT __stdcall RegisterParadigm (MSIHANDLE hInstall)
     }
 
   // Register the PICML paradigm
-  std::string svParadigmName = "PICML.xmp";
-  SendMsgToProgressBar(hInstall, svParadigmName.c_str());
-  std::string targetParadigm ("XML=");
-  targetParadigm += std::string(value) + "\\paradigms\\" + svParadigmName;
-  if (!Register (targetParadigm))
-    {
-      std::string errorMsg ("Unable to register Paradigm " + targetParadigm);
-      errorMsg += ". Please check if you have a valid GME installation. \n";
-      errorMsg += LastError();
-      SendErrorMsg (hInstall, errorMsg.c_str(), 1);
-      return ERROR_FUNCTION_FAILED;
-    }
+  {
+    std::string svParadigmName = "PICML.xmp";
+    SendMsgToProgressBar(hInstall, svParadigmName.c_str());
+    std::string targetParadigm ("XML=");
+    targetParadigm += std::string(value) + "\\paradigms\\" + svParadigmName;
+    if (!Register (targetParadigm))
+      {
+        std::string errorMsg ("Unable to register Paradigm " + targetParadigm);
+        errorMsg += ". Please check if you have a valid GME installation. \n";
+        errorMsg += LastError();
+        SendErrorMsg (hInstall, errorMsg.c_str(), 1);
+        return ERROR_FUNCTION_FAILED;
+      }
+  }
+
+  // Register the OCML paradigm
+  {
+    std::string svParadigmName = "OCML.xmp";
+    SendMsgToProgressBar(hInstall, svParadigmName.c_str());
+    std::string targetParadigm ("XML=");
+    targetParadigm += std::string(value) + "\\paradigms\\" + svParadigmName;
+    if (!Register (targetParadigm))
+      {
+        std::string errorMsg ("Unable to register Paradigm " + targetParadigm);
+        errorMsg += ". Please check if you have a valid GME installation. \n";
+        errorMsg += LastError();
+        SendErrorMsg (hInstall, errorMsg.c_str(), 1);
+        return ERROR_FUNCTION_FAILED;
+      }
+  }
+
   return ERROR_SUCCESS;
 }
 
@@ -235,16 +254,35 @@ UINT __stdcall UnRegisterParadigm (MSIHANDLE hInstall)
   InitProgressBar(hInstall, nParadigmNum, PARADIGMCOST,
                   "Paradigm Uninstall",
                   "UnRegistering Paradigms from GME.", "UnRegistering [1]");
+
   // UnRegister the PICML paradigm
-  std::string svParadigmName = "PICML";
-  SendMsgToProgressBar(hInstall, svParadigmName.c_str());
-  if (!UnRegister (svParadigmName))
-    {
-      std::string errorMsg ("Unable to unregister Paradigm " + svParadigmName);
-      errorMsg += LastError();
-      SendErrorMsg (hInstall, errorMsg.c_str(), 1);
-      return ERROR_FUNCTION_FAILED;
-    }
+  {
+    std::string svParadigmName = "PICML";
+    SendMsgToProgressBar(hInstall, svParadigmName.c_str());
+    if (!UnRegister (svParadigmName))
+      {
+        std::string errorMsg ("Unable to unregister Paradigm " +
+                              svParadigmName);
+        errorMsg += LastError();
+        SendErrorMsg (hInstall, errorMsg.c_str(), 1);
+        return ERROR_FUNCTION_FAILED;
+      }
+  }
+
+  // UnRegister the OCML paradigm
+  {
+    std::string svParadigmName = "OCML";
+    SendMsgToProgressBar(hInstall, svParadigmName.c_str());
+    if (!UnRegister (svParadigmName))
+      {
+        std::string errorMsg ("Unable to unregister Paradigm " +
+                              svParadigmName);
+        errorMsg += LastError();
+        SendErrorMsg (hInstall, errorMsg.c_str(), 1);
+        return ERROR_FUNCTION_FAILED;
+      }
+  }
+
   return ERROR_SUCCESS;
 }
 
