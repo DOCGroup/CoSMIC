@@ -12,10 +12,6 @@
   )]]>
          <dispname>Declarations at global scope must have unique names unless they are Packages</dispname>
       </constraint>
-      <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
-         <![CDATA[name.trim ().match( "^[0-9]*.[0-9]*$" )]]>
-         <dispname>Version must be a valid decimal number</dispname>
-      </constraint>
       <constraint type="function" name="AllParams">
          <![CDATA[method;gme::Model;;ocl::Set;
          parts (InParameter) + parts (InoutParameter) + parts (OutParameter)]]>
@@ -82,10 +78,10 @@ supported_set->iterate (ref; accu = Set{} |
       <attrdef name="SpecifyIdTag" metaref = "2749" valuetype = "string" defvalue = "">
          <dispname></dispname>
       </attrdef>
-      <attrdef name="VersionTag" metaref = "2750" valuetype = "double" defvalue = "1.0">
+      <attrdef name="VersionTag" metaref = "2750" valuetype = "string" defvalue = "">
          <dispname></dispname>
       </attrdef>
-      <atom name = "BoundedString" metaref = "1001"  attributes = "bound wide">
+      <atom name = "BoundedString" metaref = "1001"  attributes = "wide bound">
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="NonNegativeBound" eventmask = "0x1" depth = "1" priority = "1">
             <![CDATA[bound >= 0]]>
@@ -121,7 +117,7 @@ endif]]>
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="enumvalue.bmp"></regnode>
       </atom>
-      <atom name = "FixedPoint" metaref = "2136"  attributes = "total_digits decimal_digits">
+      <atom name = "FixedPoint" metaref = "2136"  attributes = "decimal_digits total_digits">
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="DecimalDigitsNotGreater" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[total_digits >= decimal_digits]]>
@@ -221,6 +217,68 @@ endif]]>
             <regnode name = "icon" value ="private.bmp"></regnode>
             <regnode name = "isNameEnabled" value ="false"></regnode>
       </atom>
+      <atom name = "SingleBoundedString" metaref = "2797"  attributes = "wide bound">
+            <regnode name = "namePosition" value ="4"></regnode>
+         <constraint name="NonNegativeBound" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[bound >= 0]]>
+            <dispname>Bounded cannot be negative</dispname>
+         </constraint>
+         <attrdef name="bound" metaref = "2798" valuetype = "integer" defvalue = "0">
+            <dispname></dispname>
+         </attrdef>
+         <attrdef name="wide" metaref = "2799" valuetype = "boolean" defvalue = "false">
+            <dispname></dispname>
+         </attrdef>
+            <regnode name = "icon" value ="boundedstring.bmp"></regnode>
+            <regnode name = "isNameEnabled" value ="false"></regnode>
+      </atom>
+      <atom name = "SingleFixedPoint" metaref = "2800"  attributes = "decimal_digits total_digits">
+            <regnode name = "namePosition" value ="4"></regnode>
+         <constraint name="DecimalDigitsNotGreater" eventmask = "0x0" depth = "1" priority = "1">
+            <![CDATA[total_digits >= decimal_digits]]>
+            <dispname>The number of decimal digits cannot be greater than the number of total digits</dispname>
+         </constraint>
+         <constraint name="NonNegativeFixedPointParameters" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[decimal_digits >= 0 and total_digits >= 0]]>
+            <dispname>Neither the number of decimal digits nor the number of total digits can be negative</dispname>
+         </constraint>
+         <attrdef name="decimal_digits" metaref = "2801" valuetype = "integer" defvalue = "">
+            <dispname></dispname>
+         </attrdef>
+         <attrdef name="total_digits" metaref = "2802" valuetype = "integer" defvalue = "">
+            <dispname></dispname>
+         </attrdef>
+            <regnode name = "icon" value ="fixedpoint.bmp"></regnode>
+            <regnode name = "isNameEnabled" value ="false"></regnode>
+      </atom>
+      <atom name = "SinglePredefinedType" metaref = "2803"  attributes = "which_type">
+            <regnode name = "namePosition" value ="4"></regnode>
+         <attrdef name="which_type" metaref = "2804" valuetype = "enum" defvalue = "UNSIGNED_LONG">
+            <dispname></dispname>
+            <enumitem dispname = "BOOLEAN" value = "BOOLEAN"></enumitem>
+            <enumitem dispname = "BYTE" value = "BYTE"></enumitem>
+            <enumitem dispname = "CHARACTER" value = "CHARACTER"></enumitem>
+            <enumitem dispname = "WIDE_CHARACTER" value = "WIDE_CHARACTER"></enumitem>
+            <enumitem dispname = "SHORT" value = "SHORT"></enumitem>
+            <enumitem dispname = "UNSIGNED_SHORT" value = "UNSIGNED_SHORT"></enumitem>
+            <enumitem dispname = "LONG" value = "LONG"></enumitem>
+            <enumitem dispname = "UNSIGNED_LONG" value = "UNSIGNED_LONG"></enumitem>
+            <enumitem dispname = "LONGLONG" value = "LONGLONG"></enumitem>
+            <enumitem dispname = "UNSIGNED_LONGLONG" value = "UNSIGNED_LONGLONG"></enumitem>
+            <enumitem dispname = "FLOAT" value = "FLOAT"></enumitem>
+            <enumitem dispname = "DOUBLE" value = "DOUBLE"></enumitem>
+            <enumitem dispname = "LONGDOUBLE" value = "LONGDOUBLE"></enumitem>
+            <enumitem dispname = "STRING" value = "STRING"></enumitem>
+            <enumitem dispname = "WIDE_STRING" value = "WIDE_STRING"></enumitem>
+            <enumitem dispname = "GENERIC_CONTAINER" value = "GENERIC_CONTAINER"></enumitem>
+            <enumitem dispname = "GENERIC_OBJECT_BY_VALUE" value = "GENERIC_OBJECT_BY_VALUE"></enumitem>
+            <enumitem dispname = "GENERIC_OBJECT_REFERENCE" value = "GENERIC_OBJECT_REFERENCE"></enumitem>
+            <enumitem dispname = "TYPE_ENCODING" value = "TYPE_ENCODING"></enumitem>
+            <enumitem dispname = "TYPE_KIND" value = "TYPE_KIND"></enumitem>
+         </attrdef>
+            <regnode name = "icon" value ="predefined.bmp"></regnode>
+            <regnode name = "isNameEnabled" value ="false"></regnode>
+      </atom>
       <connection name = "LabelConnection" metaref = "1796" >
             <regnode name = "color" value ="0x0000FF"></regnode>
             <regnode name = "dstStyle" value ="butt"></regnode>
@@ -261,7 +319,7 @@ endif]]>
       </connection>
       <connection name = "MangesComponent" metaref = "2751" >
          <dispname>manages</dispname>
-            <regnode name = "color" value ="0x00FF00"></regnode>
+            <regnode name = "color" value ="0x00DD00"></regnode>
             <regnode name = "dstStyle" value ="arrow"></regnode>
             <regnode name = "srcStyle" value ="butt"></regnode>
             <regnode name = "lineType" value ="solid"></regnode>
@@ -281,12 +339,8 @@ endif]]>
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
          </constraint>
-         <constraint name="ValidMangesComponentsrcCardinality5" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let srcCount = self.attachingConnections( "dst", MangesComponent ) -> size in
-                     (srcCount >= 1)]]>
-            <dispname>Multiplicity of objects, which are associated to Manageable as "src" over MangesComponent, has to match 1..*.</dispname>
-         </constraint>
          <regnode name = "icon" value ="manages.bmp"></regnode>
+         <regnode name = "isNameEnabled" value ="false"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "ComponentDef"></pointeritem>
          </pointerspec>
@@ -298,6 +352,7 @@ endif]]>
             <dispname>A reference to a named type must be assigned</dispname>
          </constraint>
          <regnode name = "icon" value ="enumref.bmp"></regnode>
+         <regnode name = "isNameEnabled" value ="false"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "EnumerationDef"></pointeritem>
          </pointerspec>
@@ -309,6 +364,7 @@ endif]]>
             <dispname>A reference cannot be null</dispname>
          </constraint>
          <regnode name = "icon" value ="exceptionref.bmp"></regnode>
+         <regnode name = "isNameEnabled" value ="false"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "ExceptionDef"></pointeritem>
          </pointerspec>
@@ -320,6 +376,7 @@ endif]]>
             <dispname>A reference cannot be null</dispname>
          </constraint>
          <regnode name = "icon" value ="fileref.bmp"></regnode>
+         <regnode name = "isNameEnabled" value ="false"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "File"></pointeritem>
          </pointerspec>
@@ -331,6 +388,7 @@ endif]]>
             <dispname>A reference cannot be null</dispname>
          </constraint>
          <regnode name = "icon" value ="getexception.bmp"></regnode>
+         <regnode name = "isNameEnabled" value ="false"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "ExceptionDef"></pointeritem>
          </pointerspec>
@@ -340,6 +398,10 @@ endif]]>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
+         </constraint>
+         <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
+            <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <regnode name = "icon" value ="ineventport.bmp"></regnode>
          <pointerspec name = "ref">
@@ -353,6 +415,7 @@ endif]]>
             <dispname>A reference cannot be null</dispname>
          </constraint>
          <regnode name = "icon" value ="inherits.bmp"></regnode>
+         <regnode name = "isNameEnabled" value ="false"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "ComponentDef"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
@@ -416,6 +479,10 @@ endif]]>
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
          </constraint>
+         <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
+            <dispname>Version must be a valid decimal number</dispname>
+         </constraint>
          <attrdef name="single_destination" metaref = "2190" valuetype = "boolean" defvalue = "false">
             <dispname></dispname>
          </attrdef>
@@ -430,6 +497,10 @@ endif]]>
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
          </constraint>
+         <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
+            <dispname>Version must be a valid decimal number</dispname>
+         </constraint>
          <regnode name = "icon" value ="providedrequestport.bmp"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "ObjectDef"></pointeritem>
@@ -440,6 +511,10 @@ endif]]>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
+         </constraint>
+         <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
+            <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <attrdef name="multiple_connections" metaref = "2195" valuetype = "boolean" defvalue = "false">
             <dispname></dispname>
@@ -456,8 +531,30 @@ endif]]>
             <dispname>A reference cannot be null</dispname>
          </constraint>
          <regnode name = "icon" value ="setexception.bmp"></regnode>
+         <regnode name = "isNameEnabled" value ="false"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "ExceptionDef"></pointeritem>
+         </pointerspec>
+      </reference>
+      <reference name = "SingleNamedTypeRef" metaref = "2776">
+            <regnode name = "namePosition" value ="4"></regnode>
+         <constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "1">
+            <![CDATA[not refersTo ().isNull ()]]>
+            <dispname>A reference to a named type must be assigned</dispname>
+         </constraint>
+         <regnode name = "icon" value ="namedtyperef.bmp"></regnode>
+         <regnode name = "isNameEnabled" value ="false"></regnode>
+         <pointerspec name = "ref">
+            <pointeritem desc = "AggregateDef"></pointeritem>
+            <pointeritem desc = "AliasDef"></pointeritem>
+            <pointeritem desc = "BoxedDef"></pointeritem>
+            <pointeritem desc = "ComponentDef"></pointeritem>
+            <pointeritem desc = "ComponentFactory"></pointeritem>
+            <pointeritem desc = "EnumerationDef"></pointeritem>
+            <pointeritem desc = "EventDef"></pointeritem>
+            <pointeritem desc = "ObjectDef"></pointeritem>
+            <pointeritem desc = "SwitchedAggregateDef"></pointeritem>
+            <pointeritem desc = "ValueDef"></pointeritem>
          </pointerspec>
       </reference>
       <reference name = "Supports" metaref = "1404">
@@ -467,6 +564,7 @@ endif]]>
             <dispname>A reference cannot be null</dispname>
          </constraint>
          <regnode name = "icon" value ="supports.bmp"></regnode>
+         <regnode name = "isNameEnabled" value ="false"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "ObjectDef"></pointeritem>
          </pointerspec>
@@ -482,6 +580,10 @@ endif]]>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
             <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
+         </constraint>
+         <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
+            <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "BoundedString" metaref = "1363" kind = "BoundedString"></role>
          <role name = "FixedPoint" metaref = "2143" kind = "FixedPoint"></role>
@@ -502,7 +604,7 @@ endif]]>
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="alias.bmp"></regnode>
          <constraint name="ValidAliasDefPartCardinality8" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "Member" ) -> size + self.parts( "BoundedString" ) -> size + self.parts( "FixedPoint" ) -> size + self.parts( "PredefinedType" ) -> size + self.parts( "FixedSizeCollection" ) -> size + self.parts( "VariableSizeCollection" ) -> size + self.parts( "NamedTypeRef" ) -> size in
+            <![CDATA[let partCount = self.parts( "SingleMember" ) -> size + self.parts( "SingleBoundedString" ) -> size + self.parts( "SingleFixedPoint" ) -> size + self.parts( "SinglePredefinedType" ) -> size + self.parts( "SingleFixedSizeCollection" ) -> size + self.parts( "SingleVariableSizeCollection" ) -> size + self.parts( "SingleNamedTypeRef" ) -> size in
                      (partCount = 1)]]>
             <dispname>Multiplicity of parts, which are contained by AliasDef, has to match 1.</dispname>
          </constraint>
@@ -510,19 +612,23 @@ endif]]>
             <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
-         <role name = "BoundedString" metaref = "1068" kind = "BoundedString"></role>
-         <role name = "FixedPoint" metaref = "2145" kind = "FixedPoint"></role>
-         <role name = "FixedSizeCollection" metaref = "1712" kind = "FixedSizeCollection"></role>
-         <role name = "NamedTypeRef" metaref = "1811" kind = "NamedTypeRef"></role>
-         <role name = "PredefinedType" metaref = "1071" kind = "PredefinedType"></role>
-         <role name = "VariableSizeCollection" metaref = "1713" kind = "VariableSizeCollection"></role>
+         <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
+            <dispname>Version must be a valid decimal number</dispname>
+         </constraint>
+         <role name = "SingleBoundedString" metaref = "2805" kind = "SingleBoundedString"></role>
+         <role name = "SingleFixedPoint" metaref = "2806" kind = "SingleFixedPoint"></role>
+         <role name = "SingleFixedSizeCollection" metaref = "2807" kind = "SingleFixedSizeCollection"></role>
+         <role name = "SingleNamedTypeRef" metaref = "2777" kind = "SingleNamedTypeRef"></role>
+         <role name = "SinglePredefinedType" metaref = "2808" kind = "SinglePredefinedType"></role>
+         <role name = "SingleVariableSizeCollection" metaref = "2809" kind = "SingleVariableSizeCollection"></role>
          <aspect name = "InterfaceDefinition" metaref = "2363" attributes = "VersionTag SpecifyIdTag" >
-            <part metaref = "2364" role = "BoundedString" primary = "yes" linked = "no"></part>
-            <part metaref = "2365" role = "FixedPoint" primary = "yes" linked = "no"></part>
-            <part metaref = "2366" role = "FixedSizeCollection" primary = "yes" linked = "no"></part>
-            <part metaref = "2367" role = "NamedTypeRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "2368" role = "PredefinedType" primary = "yes" linked = "no"></part>
-            <part metaref = "2370" role = "VariableSizeCollection" primary = "yes" linked = "no"></part>
+            <part metaref = "2810" role = "SingleBoundedString" primary = "yes" linked = "no"></part>
+            <part metaref = "2811" role = "SingleFixedPoint" primary = "yes" linked = "no"></part>
+            <part metaref = "2812" role = "SingleFixedSizeCollection" primary = "yes" linked = "no"></part>
+            <part metaref = "2778" role = "SingleNamedTypeRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "2813" role = "SinglePredefinedType" primary = "yes" linked = "no"></part>
+            <part metaref = "2814" role = "SingleVariableSizeCollection" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "Attribute" metaref = "1405" attributes = "VersionTag SpecifyIdTag" >
@@ -530,27 +636,31 @@ endif]]>
             <regnode name = "icon" value ="readonlyattribute.bmp"></regnode>
             <regnode name = "icon" value ="attribute.bmp"></regnode>
          <constraint name="ValidReadonlyAttributePartCardinality20" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "Member" ) -> size + self.parts( "BoundedString" ) -> size + self.parts( "FixedPoint" ) -> size + self.parts( "PredefinedType" ) -> size + self.parts( "FixedSizeCollection" ) -> size + self.parts( "VariableSizeCollection" ) -> size + self.parts( "NamedTypeRef" ) -> size in
+            <![CDATA[let partCount = self.parts( "SingleMember" ) -> size + self.parts( "SingleBoundedString" ) -> size + self.parts( "SingleFixedPoint" ) -> size + self.parts( "SinglePredefinedType" ) -> size + self.parts( "SingleFixedSizeCollection" ) -> size + self.parts( "SingleVariableSizeCollection" ) -> size + self.parts( "SingleNamedTypeRef" ) -> size in
                      (partCount = 1)]]>
             <dispname>Multiplicity of parts, which are contained by ReadonlyAttribute, has to match 1.</dispname>
          </constraint>
-         <role name = "BoundedString" metaref = "1406" kind = "BoundedString"></role>
-         <role name = "FixedPoint" metaref = "2147" kind = "FixedPoint"></role>
-         <role name = "FixedSizeCollection" metaref = "1716" kind = "FixedSizeCollection"></role>
+         <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
+            <dispname>Version must be a valid decimal number</dispname>
+         </constraint>
          <role name = "GetException" metaref = "2265" kind = "GetException"></role>
-         <role name = "NamedTypeRef" metaref = "1817" kind = "NamedTypeRef"></role>
-         <role name = "PredefinedType" metaref = "1410" kind = "PredefinedType"></role>
          <role name = "SetException" metaref = "1702" kind = "SetException"></role>
-         <role name = "VariableSizeCollection" metaref = "1717" kind = "VariableSizeCollection"></role>
+         <role name = "SingleBoundedString" metaref = "2815" kind = "SingleBoundedString"></role>
+         <role name = "SingleFixedPoint" metaref = "2816" kind = "SingleFixedPoint"></role>
+         <role name = "SingleFixedSizeCollection" metaref = "2817" kind = "SingleFixedSizeCollection"></role>
+         <role name = "SingleNamedTypeRef" metaref = "2779" kind = "SingleNamedTypeRef"></role>
+         <role name = "SinglePredefinedType" metaref = "2818" kind = "SinglePredefinedType"></role>
+         <role name = "SingleVariableSizeCollection" metaref = "2819" kind = "SingleVariableSizeCollection"></role>
          <aspect name = "InterfaceDefinition" metaref = "2372" attributes = "VersionTag SpecifyIdTag" >
-            <part metaref = "2373" role = "BoundedString" primary = "yes" linked = "no"></part>
-            <part metaref = "2374" role = "FixedPoint" primary = "yes" linked = "no"></part>
-            <part metaref = "2375" role = "FixedSizeCollection" primary = "yes" linked = "no"></part>
             <part metaref = "2376" role = "GetException" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "2377" role = "NamedTypeRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "2378" role = "PredefinedType" primary = "yes" linked = "no"></part>
             <part metaref = "2379" role = "SetException" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "2381" role = "VariableSizeCollection" primary = "yes" linked = "no"></part>
+            <part metaref = "2820" role = "SingleBoundedString" primary = "yes" linked = "no"></part>
+            <part metaref = "2821" role = "SingleFixedPoint" primary = "yes" linked = "no"></part>
+            <part metaref = "2822" role = "SingleFixedSizeCollection" primary = "yes" linked = "no"></part>
+            <part metaref = "2780" role = "SingleNamedTypeRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "2823" role = "SinglePredefinedType" primary = "yes" linked = "no"></part>
+            <part metaref = "2824" role = "SingleVariableSizeCollection" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "BoxedDef" metaref = "2149" attributes = "VersionTag SpecifyIdTag" >
@@ -565,7 +675,7 @@ boxedref->size > 0 implies boxedref->forAll (
             <dispname>It is redundant and illegal to box a ValueDef or an EventDef</dispname>
          </constraint>
          <constraint name="ValidBoxedDefPartCardinality9" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "Member" ) -> size + self.parts( "BoundedString" ) -> size + self.parts( "FixedPoint" ) -> size + self.parts( "PredefinedType" ) -> size + self.parts( "FixedSizeCollection" ) -> size + self.parts( "VariableSizeCollection" ) -> size + self.parts( "NamedTypeRef" ) -> size in
+            <![CDATA[let partCount = self.parts( "SingleMember" ) -> size + self.parts( "SingleBoundedString" ) -> size + self.parts( "SingleFixedPoint" ) -> size + self.parts( "SinglePredefinedType" ) -> size + self.parts( "SingleFixedSizeCollection" ) -> size + self.parts( "SingleVariableSizeCollection" ) -> size + self.parts( "SingleNamedTypeRef" ) -> size in
                      (partCount = 1)]]>
             <dispname>Multiplicity of parts, which are contained by BoxedDef, has to match 1.</dispname>
          </constraint>
@@ -573,19 +683,23 @@ boxedref->size > 0 implies boxedref->forAll (
             <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
-         <role name = "BoundedString" metaref = "2150" kind = "BoundedString"></role>
-         <role name = "FixedPoint" metaref = "2151" kind = "FixedPoint"></role>
-         <role name = "FixedSizeCollection" metaref = "2152" kind = "FixedSizeCollection"></role>
-         <role name = "NamedTypeRef" metaref = "2153" kind = "NamedTypeRef"></role>
-         <role name = "PredefinedType" metaref = "2154" kind = "PredefinedType"></role>
-         <role name = "VariableSizeCollection" metaref = "2156" kind = "VariableSizeCollection"></role>
+         <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
+            <dispname>Version must be a valid decimal number</dispname>
+         </constraint>
+         <role name = "SingleBoundedString" metaref = "2825" kind = "SingleBoundedString"></role>
+         <role name = "SingleFixedPoint" metaref = "2826" kind = "SingleFixedPoint"></role>
+         <role name = "SingleFixedSizeCollection" metaref = "2827" kind = "SingleFixedSizeCollection"></role>
+         <role name = "SingleNamedTypeRef" metaref = "2781" kind = "SingleNamedTypeRef"></role>
+         <role name = "SinglePredefinedType" metaref = "2828" kind = "SinglePredefinedType"></role>
+         <role name = "SingleVariableSizeCollection" metaref = "2829" kind = "SingleVariableSizeCollection"></role>
          <aspect name = "InterfaceDefinition" metaref = "2383" attributes = "VersionTag SpecifyIdTag" >
-            <part metaref = "2384" role = "BoundedString" primary = "yes" linked = "no"></part>
-            <part metaref = "2385" role = "FixedPoint" primary = "yes" linked = "no"></part>
-            <part metaref = "2386" role = "FixedSizeCollection" primary = "yes" linked = "no"></part>
-            <part metaref = "2387" role = "NamedTypeRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "2388" role = "PredefinedType" primary = "yes" linked = "no"></part>
-            <part metaref = "2390" role = "VariableSizeCollection" primary = "yes" linked = "no"></part>
+            <part metaref = "2830" role = "SingleBoundedString" primary = "yes" linked = "no"></part>
+            <part metaref = "2831" role = "SingleFixedPoint" primary = "yes" linked = "no"></part>
+            <part metaref = "2832" role = "SingleFixedSizeCollection" primary = "yes" linked = "no"></part>
+            <part metaref = "2782" role = "SingleNamedTypeRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "2833" role = "SinglePredefinedType" primary = "yes" linked = "no"></part>
+            <part metaref = "2834" role = "SingleVariableSizeCollection" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "ComponentDef" metaref = "2209" attributes = "VersionTag SpecifyIdTag" >
@@ -609,17 +723,16 @@ boxedref->size > 0 implies boxedref->forAll (
             <dispname>ComponentDef and ComponentManager may have only one parent</dispname>
          </constraint>
          <constraint name="UniqueInheritableDeclNames" eventmask = "0x0" depth = "1" priority = "2">
-            <![CDATA[(self.parts () - self.parts ("Inherits"))->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
+            <![CDATA[(parts () - parts ("Inherits") - parts ("Supports"))->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
             <dispname>Declarations in a scope must have unique names</dispname>
          </constraint>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
             <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
-         <constraint name="ValidMangesComponentsrcCardinality5" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let srcCount = self.attachingConnections( "dst", MangesComponent ) -> size in
-                     (srcCount >= 1)]]>
-            <dispname>Multiplicity of objects, which are associated to Manageable as "src" over MangesComponent, has to match 1..*.</dispname>
+         <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
+            <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "Attribute" metaref = "2210" kind = "Attribute"></role>
          <role name = "InEventPort" metaref = "2757" kind = "InEventPort"></role>
@@ -660,7 +773,7 @@ boxedref->size > 0 implies boxedref->forAll (
             <dispname>ComponentDef and ComponentManager may have only one parent</dispname>
          </constraint>
          <constraint name="UniqueInheritableDeclNames" eventmask = "0x0" depth = "1" priority = "2">
-            <![CDATA[(self.parts () - self.parts ("Inherits"))->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
+            <![CDATA[(parts () - parts ("Inherits") - parts ("Supports"))->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
             <dispname>Declarations in a scope must have unique names</dispname>
          </constraint>
          <constraint name="ValidComponentFactoryPartCardinality11" eventmask = "0x0" depth = "1" priority = "1">
@@ -676,6 +789,10 @@ boxedref->size > 0 implies boxedref->forAll (
             <![CDATA[let dstCount = self.attachingConnections( "src", MangesComponent ) -> size in
                      (dstCount = 1)]]>
             <dispname>Multiplicity of objects, which are associated to ComponentFactory as "dst" over MangesComponent, has to match 1.</dispname>
+         </constraint>
+         <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
+            <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "AggregateDef" metaref = "2706" kind = "AggregateDef"></role>
          <role name = "AliasDef" metaref = "2707" kind = "AliasDef"></role>
@@ -723,37 +840,42 @@ boxedref->size > 0 implies boxedref->forAll (
             <dispname>Multiplicity of parts, which are contained by ConstantDef, has to match 0..1.</dispname>
          </constraint>
          <constraint name="ValidConstantDefPartCardinality13" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "BoundedString" ) -> size in
+            <![CDATA[let partCount = self.parts( "SingleBoundedString" ) -> size in
                      (partCount <= 1)]]>
             <dispname>Multiplicity of parts, which are contained by ConstantDef, has to match 0..1.</dispname>
          </constraint>
          <constraint name="ValidConstantDefPartCardinality14" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "FixedPoint" ) -> size in
+            <![CDATA[let partCount = self.parts( "SingleFixedPoint" ) -> size in
                      (partCount <= 1)]]>
             <dispname>Multiplicity of parts, which are contained by ConstantDef, has to match 0..1.</dispname>
          </constraint>
          <constraint name="ValidConstantDefPartCardinality15" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "PredefinedType" ) -> size in
+            <![CDATA[let partCount = self.parts( "SinglePredefinedType" ) -> size in
                      (partCount <= 1)]]>
             <dispname>Multiplicity of parts, which are contained by ConstantDef, has to match 0..1.</dispname>
+         </constraint>
+         <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
+            <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <attrdef name="value" metaref = "2318" valuetype = "string" defvalue = "">
             <dispname></dispname>
          </attrdef>
-         <role name = "BoundedString" metaref = "1288" kind = "BoundedString"></role>
          <role name = "EnumRef" metaref = "1881" kind = "EnumRef"></role>
-         <role name = "FixedPoint" metaref = "2170" kind = "FixedPoint"></role>
-         <role name = "PredefinedType" metaref = "1290" kind = "PredefinedType"></role>
+         <role name = "SingleBoundedString" metaref = "2903" kind = "SingleBoundedString"></role>
+         <role name = "SingleFixedPoint" metaref = "2904" kind = "SingleFixedPoint"></role>
+         <role name = "SinglePredefinedType" metaref = "2905" kind = "SinglePredefinedType"></role>
          <aspect name = "InterfaceDefinition" metaref = "2422" attributes = "VersionTag SpecifyIdTag value" >
-            <part metaref = "2423" role = "BoundedString" primary = "yes" linked = "no"></part>
             <part metaref = "2424" role = "EnumRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "2425" role = "FixedPoint" primary = "yes" linked = "no"></part>
-            <part metaref = "2426" role = "PredefinedType" primary = "yes" linked = "no"></part>
+            <part metaref = "2906" role = "SingleBoundedString" primary = "yes" linked = "no"></part>
+            <part metaref = "2907" role = "SingleFixedPoint" primary = "yes" linked = "no"></part>
+            <part metaref = "2908" role = "SinglePredefinedType" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "Discriminator" metaref = "1887" >
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="discriminator.bmp"></regnode>
+            <regnode name = "isNameEnabled" value ="false"></regnode>
          <constraint name="LegalDiscriminatorType" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[parts ()->one (isTypeOf (EnumRef) 
                      or (isTypeOf (PredefinedType) 
@@ -774,15 +896,15 @@ boxedref->size > 0 implies boxedref->forAll (
             <dispname>Multiplicity of parts, which are contained by Discriminator, has to match 0..1.</dispname>
          </constraint>
          <constraint name="ValidDiscriminatorPartCardinality17" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "PredefinedType" ) -> size in
+            <![CDATA[let partCount = self.parts( "SinglePredefinedType" ) -> size in
                      (partCount <= 1)]]>
             <dispname>Multiplicity of parts, which are contained by Discriminator, has to match 0..1.</dispname>
          </constraint>
          <role name = "EnumRef" metaref = "1888" kind = "EnumRef"></role>
-         <role name = "PredefinedType" metaref = "1297" kind = "PredefinedType"></role>
+         <role name = "SinglePredefinedType" metaref = "2909" kind = "SinglePredefinedType"></role>
          <aspect name = "InterfaceDefinition" metaref = "2429" >
             <part metaref = "2430" role = "EnumRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "2431" role = "PredefinedType" primary = "yes" linked = "no"></part>
+            <part metaref = "2910" role = "SinglePredefinedType" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "EnumerationDef" metaref = "1890" attributes = "VersionTag SpecifyIdTag" >
@@ -800,6 +922,10 @@ boxedref->size > 0 implies boxedref->forAll (
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
             <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
+         </constraint>
+         <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
+            <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "EnumValue" metaref = "1891" kind = "EnumValue"></role>
          <aspect name = "InterfaceDefinition" metaref = "2432" attributes = "VersionTag SpecifyIdTag" >
@@ -832,12 +958,16 @@ endif]]>
             <dispname>There is a cycle in the inheritance graph</dispname>
          </constraint>
          <constraint name="UniqueInheritableDeclNames" eventmask = "0x0" depth = "1" priority = "2">
-            <![CDATA[(self.parts () - self.parts ("Inherits"))->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
+            <![CDATA[(parts () - parts ("Inherits") - parts ("Supports"))->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
             <dispname>Declarations in a scope must have unique names</dispname>
          </constraint>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
             <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
+         </constraint>
+         <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
+            <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <attrdef name="abstract" metaref = "2172" valuetype = "boolean" defvalue = "false">
             <dispname></dispname>
@@ -896,6 +1026,10 @@ endif]]>
       <model name = "ExceptionDef" metaref = "2323" attributes = "VersionTag SpecifyIdTag" >
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="exception.bmp"></regnode>
+         <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
+            <dispname>Version must be a valid decimal number</dispname>
+         </constraint>
          <role name = "BoundedString" metaref = "2235" kind = "BoundedString"></role>
          <role name = "FixedPoint" metaref = "2236" kind = "FixedPoint"></role>
          <role name = "FixedSizeCollection" metaref = "2237" kind = "FixedSizeCollection"></role>
@@ -923,6 +1057,10 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
          <constraint name="UniqueParamNames" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[AllParams ()->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
             <dispname>An operation's parameters must have unique names</dispname>
+         </constraint>
+         <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
+            <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "ExceptionRef" metaref = "2324" kind = "ExceptionRef"></role>
          <role name = "InParameter" metaref = "1930" kind = "InParameter"></role>
@@ -990,7 +1128,7 @@ endif]]>
             <dispname>All members in a scope must have unique names</dispname>
          </constraint>
          <constraint name="ValidCollectionTypePartCardinality10" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "Member" ) -> size + self.parts( "BoundedString" ) -> size + self.parts( "FixedPoint" ) -> size + self.parts( "PredefinedType" ) -> size + self.parts( "FixedSizeCollection" ) -> size + self.parts( "VariableSizeCollection" ) -> size + self.parts( "NamedTypeRef" ) -> size in
+            <![CDATA[let partCount = self.parts( "SingleMember" ) -> size + self.parts( "SingleBoundedString" ) -> size + self.parts( "SingleFixedPoint" ) -> size + self.parts( "SinglePredefinedType" ) -> size + self.parts( "SingleFixedSizeCollection" ) -> size + self.parts( "SingleVariableSizeCollection" ) -> size + self.parts( "SingleNamedTypeRef" ) -> size in
                      (partCount = 1)]]>
             <dispname>Multiplicity of parts, which are contained by CollectionType, has to match 1.</dispname>
          </constraint>
@@ -1006,49 +1144,49 @@ endif]]>
          <attrdef name="bound" metaref = "2182" valuetype = "integer" defvalue = "0">
             <dispname></dispname>
          </attrdef>
-         <role name = "BoundedString" metaref = "1737" kind = "BoundedString"></role>
-         <role name = "FixedPoint" metaref = "2184" kind = "FixedPoint"></role>
-         <role name = "FixedSizeCollection" metaref = "1738" kind = "FixedSizeCollection"></role>
-         <role name = "NamedTypeRef" metaref = "1951" kind = "NamedTypeRef"></role>
-         <role name = "PredefinedType" metaref = "1740" kind = "PredefinedType"></role>
-         <role name = "VariableSizeCollection" metaref = "1741" kind = "VariableSizeCollection"></role>
+         <role name = "SingleBoundedString" metaref = "2835" kind = "SingleBoundedString"></role>
+         <role name = "SingleFixedPoint" metaref = "2836" kind = "SingleFixedPoint"></role>
+         <role name = "SingleFixedSizeCollection" metaref = "2837" kind = "SingleFixedSizeCollection"></role>
+         <role name = "SingleNamedTypeRef" metaref = "2783" kind = "SingleNamedTypeRef"></role>
+         <role name = "SinglePredefinedType" metaref = "2838" kind = "SinglePredefinedType"></role>
+         <role name = "SingleVariableSizeCollection" metaref = "2839" kind = "SingleVariableSizeCollection"></role>
          <aspect name = "InterfaceDefinition" metaref = "2491" attributes = "bound" >
-            <part metaref = "2492" role = "BoundedString" primary = "yes" linked = "no"></part>
-            <part metaref = "2493" role = "FixedPoint" primary = "yes" linked = "no"></part>
-            <part metaref = "2494" role = "FixedSizeCollection" primary = "yes" linked = "no"></part>
-            <part metaref = "2495" role = "NamedTypeRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "2496" role = "PredefinedType" primary = "yes" linked = "no"></part>
-            <part metaref = "2497" role = "VariableSizeCollection" primary = "yes" linked = "no"></part>
+            <part metaref = "2840" role = "SingleBoundedString" primary = "yes" linked = "no"></part>
+            <part metaref = "2841" role = "SingleFixedPoint" primary = "yes" linked = "no"></part>
+            <part metaref = "2842" role = "SingleFixedSizeCollection" primary = "yes" linked = "no"></part>
+            <part metaref = "2784" role = "SingleNamedTypeRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "2843" role = "SinglePredefinedType" primary = "yes" linked = "no"></part>
+            <part metaref = "2844" role = "SingleVariableSizeCollection" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "InParameter" metaref = "1549" >
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="in.bmp"></regnode>
          <constraint name="ValidParameterPartCardinality19" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "ParameterType" ) -> size + self.parts( "PredefinedType" ) -> size + self.parts( "NamedTypeRef" ) -> size in
+            <![CDATA[let partCount = self.parts( "ParameterType" ) -> size + self.parts( "SinglePredefinedType" ) -> size + self.parts( "SingleNamedTypeRef" ) -> size in
                      (partCount = 1)]]>
             <dispname>Multiplicity of parts, which are contained by Parameter, has to match 1.</dispname>
          </constraint>
-         <role name = "NamedTypeRef" metaref = "1956" kind = "NamedTypeRef"></role>
-         <role name = "PredefinedType" metaref = "1551" kind = "PredefinedType"></role>
+         <role name = "SingleNamedTypeRef" metaref = "2785" kind = "SingleNamedTypeRef"></role>
+         <role name = "SinglePredefinedType" metaref = "2895" kind = "SinglePredefinedType"></role>
          <aspect name = "InterfaceDefinition" metaref = "2502" >
-            <part metaref = "2503" role = "NamedTypeRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "2504" role = "PredefinedType" primary = "yes" linked = "no"></part>
+            <part metaref = "2786" role = "SingleNamedTypeRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "2896" role = "SinglePredefinedType" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "InoutParameter" metaref = "1555" >
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="inout.bmp"></regnode>
          <constraint name="ValidParameterPartCardinality19" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "ParameterType" ) -> size + self.parts( "PredefinedType" ) -> size + self.parts( "NamedTypeRef" ) -> size in
+            <![CDATA[let partCount = self.parts( "ParameterType" ) -> size + self.parts( "SinglePredefinedType" ) -> size + self.parts( "SingleNamedTypeRef" ) -> size in
                      (partCount = 1)]]>
             <dispname>Multiplicity of parts, which are contained by Parameter, has to match 1.</dispname>
          </constraint>
-         <role name = "NamedTypeRef" metaref = "1958" kind = "NamedTypeRef"></role>
-         <role name = "PredefinedType" metaref = "1557" kind = "PredefinedType"></role>
+         <role name = "SingleNamedTypeRef" metaref = "2787" kind = "SingleNamedTypeRef"></role>
+         <role name = "SinglePredefinedType" metaref = "2897" kind = "SinglePredefinedType"></role>
          <aspect name = "InterfaceDefinition" metaref = "2505" >
-            <part metaref = "2506" role = "NamedTypeRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "2507" role = "PredefinedType" primary = "yes" linked = "no"></part>
+            <part metaref = "2788" role = "SingleNamedTypeRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "2898" role = "SinglePredefinedType" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "LookupOperation" metaref = "1980" attributes = "VersionTag SpecifyIdTag" >
@@ -1063,6 +1201,10 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
          <constraint name="UniqueParamNames" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[AllParams ()->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
             <dispname>An operation's parameters must have unique names</dispname>
+         </constraint>
+         <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
+            <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "ExceptionRef" metaref = "2339" kind = "ExceptionRef"></role>
          <role name = "InParameter" metaref = "1983" kind = "InParameter"></role>
@@ -1095,13 +1237,21 @@ endif]]>
             <![CDATA[self.inheritsRecursive (self)->forAll (x : gme::Model | x <> self)]]>
             <dispname>There is a cycle in the inheritance graph</dispname>
          </constraint>
+         <constraint name="NotLocalAndAbstract" eventmask = "0x0" depth = "1" priority = "2">
+            <![CDATA[not local or not abstract]]>
+            <dispname>An ObjectDef cannot be both local and abstract</dispname>
+         </constraint>
          <constraint name="UniqueInheritableDeclNames" eventmask = "0x0" depth = "1" priority = "2">
-            <![CDATA[(self.parts () - self.parts ("Inherits"))->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
+            <![CDATA[(parts () - parts ("Inherits") - parts ("Supports"))->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
             <dispname>Declarations in a scope must have unique names</dispname>
          </constraint>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
             <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
+         </constraint>
+         <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
+            <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <attrdef name="abstract" metaref = "2668" valuetype = "boolean" defvalue = "false">
             <dispname></dispname>
@@ -1141,6 +1291,10 @@ endif]]>
             <![CDATA[AllParams ()->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
             <dispname>An operation's parameters must have unique names</dispname>
          </constraint>
+         <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
+            <dispname>Version must be a valid decimal number</dispname>
+         </constraint>
          <role name = "InParameter" metaref = "1594" kind = "InParameter"></role>
          <aspect name = "InterfaceDefinition" metaref = "2528" attributes = "VersionTag SpecifyIdTag" >
             <part metaref = "2529" role = "InParameter" primary = "yes" linked = "no"></part>
@@ -1150,15 +1304,15 @@ endif]]>
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="out.bmp"></regnode>
          <constraint name="ValidParameterPartCardinality19" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "ParameterType" ) -> size + self.parts( "PredefinedType" ) -> size + self.parts( "NamedTypeRef" ) -> size in
+            <![CDATA[let partCount = self.parts( "ParameterType" ) -> size + self.parts( "SinglePredefinedType" ) -> size + self.parts( "SingleNamedTypeRef" ) -> size in
                      (partCount = 1)]]>
             <dispname>Multiplicity of parts, which are contained by Parameter, has to match 1.</dispname>
          </constraint>
-         <role name = "NamedTypeRef" metaref = "1997" kind = "NamedTypeRef"></role>
-         <role name = "PredefinedType" metaref = "1612" kind = "PredefinedType"></role>
+         <role name = "SingleNamedTypeRef" metaref = "2789" kind = "SingleNamedTypeRef"></role>
+         <role name = "SinglePredefinedType" metaref = "2899" kind = "SinglePredefinedType"></role>
          <aspect name = "InterfaceDefinition" metaref = "2536" >
-            <part metaref = "2537" role = "NamedTypeRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "2538" role = "PredefinedType" primary = "yes" linked = "no"></part>
+            <part metaref = "2790" role = "SingleNamedTypeRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "2900" role = "SinglePredefinedType" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "Package" metaref = "2341" attributes = "VersionTag PrefixTag SpecifyIdTag" >
@@ -1178,6 +1332,10 @@ else
       )
 endif]]>
             <dispname>Declarations in a Package must have unique names unless they are themselves Packages</dispname>
+         </constraint>
+         <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
+            <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "AggregateDef" metaref = "1999" kind = "AggregateDef"></role>
          <role name = "AliasDef" metaref = "2000" kind = "AliasDef"></role>
@@ -1212,44 +1370,118 @@ endif]]>
             <part metaref = "2554" role = "ValueDef" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
-      <model name = "ReadonlyAttribute" metaref = "1626" >
+      <model name = "ReadonlyAttribute" metaref = "1626" attributes = "VersionTag SpecifyIdTag" >
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="readonlyattribute.bmp"></regnode>
          <constraint name="ValidReadonlyAttributePartCardinality20" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "Member" ) -> size + self.parts( "BoundedString" ) -> size + self.parts( "FixedPoint" ) -> size + self.parts( "PredefinedType" ) -> size + self.parts( "FixedSizeCollection" ) -> size + self.parts( "VariableSizeCollection" ) -> size + self.parts( "NamedTypeRef" ) -> size in
+            <![CDATA[let partCount = self.parts( "SingleMember" ) -> size + self.parts( "SingleBoundedString" ) -> size + self.parts( "SingleFixedPoint" ) -> size + self.parts( "SinglePredefinedType" ) -> size + self.parts( "SingleFixedSizeCollection" ) -> size + self.parts( "SingleVariableSizeCollection" ) -> size + self.parts( "SingleNamedTypeRef" ) -> size in
                      (partCount = 1)]]>
             <dispname>Multiplicity of parts, which are contained by ReadonlyAttribute, has to match 1.</dispname>
          </constraint>
-         <role name = "BoundedString" metaref = "1627" kind = "BoundedString"></role>
-         <role name = "FixedPoint" metaref = "2193" kind = "FixedPoint"></role>
-         <role name = "FixedSizeCollection" metaref = "1760" kind = "FixedSizeCollection"></role>
+         <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
+            <dispname>Version must be a valid decimal number</dispname>
+         </constraint>
          <role name = "GetException" metaref = "2267" kind = "GetException"></role>
-         <role name = "NamedTypeRef" metaref = "2020" kind = "NamedTypeRef"></role>
-         <role name = "PredefinedType" metaref = "1631" kind = "PredefinedType"></role>
-         <role name = "VariableSizeCollection" metaref = "1761" kind = "VariableSizeCollection"></role>
-         <aspect name = "InterfaceDefinition" metaref = "2560" >
-            <part metaref = "2561" role = "BoundedString" primary = "yes" linked = "no"></part>
-            <part metaref = "2562" role = "FixedPoint" primary = "yes" linked = "no"></part>
-            <part metaref = "2563" role = "FixedSizeCollection" primary = "yes" linked = "no"></part>
+         <role name = "SingleBoundedString" metaref = "2845" kind = "SingleBoundedString"></role>
+         <role name = "SingleFixedPoint" metaref = "2846" kind = "SingleFixedPoint"></role>
+         <role name = "SingleFixedSizeCollection" metaref = "2847" kind = "SingleFixedSizeCollection"></role>
+         <role name = "SingleNamedTypeRef" metaref = "2791" kind = "SingleNamedTypeRef"></role>
+         <role name = "SinglePredefinedType" metaref = "2848" kind = "SinglePredefinedType"></role>
+         <role name = "SingleVariableSizeCollection" metaref = "2849" kind = "SingleVariableSizeCollection"></role>
+         <aspect name = "InterfaceDefinition" metaref = "2560" attributes = "VersionTag SpecifyIdTag" >
             <part metaref = "2564" role = "GetException" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "2565" role = "NamedTypeRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "2566" role = "PredefinedType" primary = "yes" linked = "no"></part>
-            <part metaref = "2567" role = "VariableSizeCollection" primary = "yes" linked = "no"></part>
+            <part metaref = "2850" role = "SingleBoundedString" primary = "yes" linked = "no"></part>
+            <part metaref = "2851" role = "SingleFixedPoint" primary = "yes" linked = "no"></part>
+            <part metaref = "2852" role = "SingleFixedSizeCollection" primary = "yes" linked = "no"></part>
+            <part metaref = "2792" role = "SingleNamedTypeRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "2853" role = "SinglePredefinedType" primary = "yes" linked = "no"></part>
+            <part metaref = "2854" role = "SingleVariableSizeCollection" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "ReturnType" metaref = "1640" >
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="return.bmp"></regnode>
          <constraint name="ValidParameterPartCardinality19" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "ParameterType" ) -> size + self.parts( "PredefinedType" ) -> size + self.parts( "NamedTypeRef" ) -> size in
+            <![CDATA[let partCount = self.parts( "ParameterType" ) -> size + self.parts( "SinglePredefinedType" ) -> size + self.parts( "SingleNamedTypeRef" ) -> size in
                      (partCount = 1)]]>
             <dispname>Multiplicity of parts, which are contained by Parameter, has to match 1.</dispname>
          </constraint>
-         <role name = "NamedTypeRef" metaref = "2025" kind = "NamedTypeRef"></role>
-         <role name = "PredefinedType" metaref = "1642" kind = "PredefinedType"></role>
+         <role name = "SingleNamedTypeRef" metaref = "2793" kind = "SingleNamedTypeRef"></role>
+         <role name = "SinglePredefinedType" metaref = "2901" kind = "SinglePredefinedType"></role>
          <aspect name = "InterfaceDefinition" metaref = "2572" >
-            <part metaref = "2573" role = "NamedTypeRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "2574" role = "PredefinedType" primary = "yes" linked = "no"></part>
+            <part metaref = "2794" role = "SingleNamedTypeRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "2902" role = "SinglePredefinedType" primary = "yes" linked = "no"></part>
+         </aspect>
+      </model>
+      <model name = "SingleFixedSizeCollection" metaref = "2855" attributes = "bound" >
+            <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "icon" value ="fixedcollection.bmp"></regnode>
+            <regnode name = "isNameEnabled" value ="false"></regnode>
+         <constraint name="NoNestedArray" eventmask = "0x80000000" depth = "1" priority = "1">
+            <![CDATA[parts ("FixedSizeCollection")->size = 0]]>
+            <dispname>An unaliased fixed size collection may not be the element type of a collection</dispname>
+         </constraint>
+         <constraint name="NonNegativeBound" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[bound >= 0]]>
+            <dispname>Bounded cannot be negative</dispname>
+         </constraint>
+         <constraint name="ValidSingleCollectionTypePartCardinality21" eventmask = "0x0" depth = "1" priority = "1">
+            <![CDATA[let partCount = self.parts( "SingleMember" ) -> size + self.parts( "SingleBoundedString" ) -> size + self.parts( "SingleFixedPoint" ) -> size + self.parts( "SinglePredefinedType" ) -> size + self.parts( "SingleFixedSizeCollection" ) -> size + self.parts( "SingleVariableSizeCollection" ) -> size + self.parts( "SingleNamedTypeRef" ) -> size in
+                     (partCount = 1)]]>
+            <dispname>Multiplicity of parts, which are contained by SingleCollectionType, has to match 1.</dispname>
+         </constraint>
+         <attrdef name="bound" metaref = "2856" valuetype = "integer" defvalue = "0">
+            <dispname></dispname>
+         </attrdef>
+         <role name = "SingleBoundedString" metaref = "2857" kind = "SingleBoundedString"></role>
+         <role name = "SingleFixedPoint" metaref = "2858" kind = "SingleFixedPoint"></role>
+         <role name = "SingleFixedSizeCollection" metaref = "2859" kind = "SingleFixedSizeCollection"></role>
+         <role name = "SingleNamedTypeRef" metaref = "2860" kind = "SingleNamedTypeRef"></role>
+         <role name = "SinglePredefinedType" metaref = "2861" kind = "SinglePredefinedType"></role>
+         <role name = "SingleVariableSizeCollection" metaref = "2862" kind = "SingleVariableSizeCollection"></role>
+         <aspect name = "InterfaceDefinition" metaref = "2863" attributes = "bound" >
+            <part metaref = "2864" role = "SingleBoundedString" primary = "yes" linked = "no"></part>
+            <part metaref = "2865" role = "SingleFixedPoint" primary = "yes" linked = "no"></part>
+            <part metaref = "2866" role = "SingleFixedSizeCollection" primary = "yes" linked = "no"></part>
+            <part metaref = "2867" role = "SingleNamedTypeRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "2868" role = "SinglePredefinedType" primary = "yes" linked = "no"></part>
+            <part metaref = "2869" role = "SingleVariableSizeCollection" primary = "yes" linked = "no"></part>
+         </aspect>
+      </model>
+      <model name = "SingleVariableSizeCollection" metaref = "2870" attributes = "bound" >
+            <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "icon" value ="variablecollection.bmp"></regnode>
+            <regnode name = "isNameEnabled" value ="false"></regnode>
+         <constraint name="NoNestedArray" eventmask = "0x80000000" depth = "1" priority = "1">
+            <![CDATA[parts ("FixedSizeCollection")->size = 0]]>
+            <dispname>An unaliased fixed size collection may not be the element type of a collection</dispname>
+         </constraint>
+         <constraint name="NonNegativeBound" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[bound >= 0]]>
+            <dispname>Bounded cannot be negative</dispname>
+         </constraint>
+         <constraint name="ValidSingleCollectionTypePartCardinality21" eventmask = "0x0" depth = "1" priority = "1">
+            <![CDATA[let partCount = self.parts( "SingleMember" ) -> size + self.parts( "SingleBoundedString" ) -> size + self.parts( "SingleFixedPoint" ) -> size + self.parts( "SinglePredefinedType" ) -> size + self.parts( "SingleFixedSizeCollection" ) -> size + self.parts( "SingleVariableSizeCollection" ) -> size + self.parts( "SingleNamedTypeRef" ) -> size in
+                     (partCount = 1)]]>
+            <dispname>Multiplicity of parts, which are contained by SingleCollectionType, has to match 1.</dispname>
+         </constraint>
+         <attrdef name="bound" metaref = "2871" valuetype = "integer" defvalue = "0">
+            <dispname></dispname>
+         </attrdef>
+         <role name = "SingleBoundedString" metaref = "2872" kind = "SingleBoundedString"></role>
+         <role name = "SingleFixedPoint" metaref = "2873" kind = "SingleFixedPoint"></role>
+         <role name = "SingleFixedSizeCollection" metaref = "2874" kind = "SingleFixedSizeCollection"></role>
+         <role name = "SingleNamedTypeRef" metaref = "2875" kind = "SingleNamedTypeRef"></role>
+         <role name = "SinglePredefinedType" metaref = "2876" kind = "SinglePredefinedType"></role>
+         <role name = "SingleVariableSizeCollection" metaref = "2877" kind = "SingleVariableSizeCollection"></role>
+         <aspect name = "InterfaceDefinition" metaref = "2878" attributes = "bound" >
+            <part metaref = "2879" role = "SingleBoundedString" primary = "yes" linked = "no"></part>
+            <part metaref = "2880" role = "SingleFixedPoint" primary = "yes" linked = "no"></part>
+            <part metaref = "2881" role = "SingleFixedSizeCollection" primary = "yes" linked = "no"></part>
+            <part metaref = "2882" role = "SingleNamedTypeRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "2883" role = "SinglePredefinedType" primary = "yes" linked = "no"></part>
+            <part metaref = "2884" role = "SingleVariableSizeCollection" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "SwitchedAggregateDef" metaref = "2027" attributes = "VersionTag SpecifyIdTag" >
@@ -1271,25 +1503,29 @@ endif]]>
             <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
-         <constraint name="ValidSwitchedAggregateDefPartCardinality21" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "Label" ) -> size in
-                     (partCount >= 1)]]>
-            <dispname>Multiplicity of parts, which are contained by SwitchedAggregateDef, has to match 1..*.</dispname>
-         </constraint>
          <constraint name="ValidSwitchedAggregateDefPartCardinality22" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
-                     (partCount >= 1)]]>
-            <dispname>Multiplicity of parts, which are contained by SwitchedAggregateDef, has to match 1..*.</dispname>
-         </constraint>
-         <constraint name="ValidSwitchedAggregateDefPartCardinality23" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
                      (partCount = 1)]]>
             <dispname>Multiplicity of parts, which are contained by SwitchedAggregateDef, has to match 1.</dispname>
          </constraint>
+         <constraint name="ValidSwitchedAggregateDefPartCardinality23" eventmask = "0x0" depth = "1" priority = "1">
+            <![CDATA[let partCount = self.parts( "Label" ) -> size in
+                     (partCount >= 1)]]>
+            <dispname>Multiplicity of parts, which are contained by SwitchedAggregateDef, has to match 1..*.</dispname>
+         </constraint>
          <constraint name="ValidSwitchedAggregateDefPartCardinality24" eventmask = "0x0" depth = "1" priority = "1">
+            <![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
+                     (partCount >= 1)]]>
+            <dispname>Multiplicity of parts, which are contained by SwitchedAggregateDef, has to match 1..*.</dispname>
+         </constraint>
+         <constraint name="ValidSwitchedAggregateDefPartCardinality25" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "Member" ) -> size + self.parts( "BoundedString" ) -> size + self.parts( "FixedPoint" ) -> size + self.parts( "PredefinedType" ) -> size + self.parts( "FixedSizeCollection" ) -> size + self.parts( "VariableSizeCollection" ) -> size + self.parts( "NamedTypeRef" ) -> size in
                      (partCount >= 1)]]>
             <dispname>Multiplicity of parts, which are contained by SwitchedAggregateDef, has to match 1..*.</dispname>
+         </constraint>
+         <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
+            <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "BoundedString" metaref = "1381" kind = "BoundedString"></role>
          <role name = "Discriminator" metaref = "2028" kind = "Discriminator"></role>
@@ -1324,6 +1560,10 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
          <constraint name="UniqueParamNames" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[AllParams ()->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
             <dispname>An operation's parameters must have unique names</dispname>
+         </constraint>
+         <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
+            <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "ExceptionRef" metaref = "2348" kind = "ExceptionRef"></role>
          <role name = "InParameter" metaref = "2043" kind = "InParameter"></role>
@@ -1364,12 +1604,16 @@ endif]]>
             <dispname>There is a cycle in the inheritance graph</dispname>
          </constraint>
          <constraint name="UniqueInheritableDeclNames" eventmask = "0x0" depth = "1" priority = "2">
-            <![CDATA[(self.parts () - self.parts ("Inherits"))->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
+            <![CDATA[(parts () - parts ("Inherits") - parts ("Supports"))->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
             <dispname>Declarations in a scope must have unique names</dispname>
          </constraint>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
             <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
+         </constraint>
+         <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
+            <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <attrdef name="abstract" metaref = "2198" valuetype = "boolean" defvalue = "false">
             <dispname></dispname>
@@ -1446,7 +1690,7 @@ endif]]>
             <dispname>All members in a scope must have unique names</dispname>
          </constraint>
          <constraint name="ValidCollectionTypePartCardinality10" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "Member" ) -> size + self.parts( "BoundedString" ) -> size + self.parts( "FixedPoint" ) -> size + self.parts( "PredefinedType" ) -> size + self.parts( "FixedSizeCollection" ) -> size + self.parts( "VariableSizeCollection" ) -> size + self.parts( "NamedTypeRef" ) -> size in
+            <![CDATA[let partCount = self.parts( "SingleMember" ) -> size + self.parts( "SingleBoundedString" ) -> size + self.parts( "SingleFixedPoint" ) -> size + self.parts( "SinglePredefinedType" ) -> size + self.parts( "SingleFixedSizeCollection" ) -> size + self.parts( "SingleVariableSizeCollection" ) -> size + self.parts( "SingleNamedTypeRef" ) -> size in
                      (partCount = 1)]]>
             <dispname>Multiplicity of parts, which are contained by CollectionType, has to match 1.</dispname>
          </constraint>
@@ -1462,19 +1706,19 @@ endif]]>
          <attrdef name="bound" metaref = "2204" valuetype = "integer" defvalue = "0">
             <dispname></dispname>
          </attrdef>
-         <role name = "BoundedString" metaref = "1777" kind = "BoundedString"></role>
-         <role name = "FixedPoint" metaref = "2206" kind = "FixedPoint"></role>
-         <role name = "FixedSizeCollection" metaref = "1778" kind = "FixedSizeCollection"></role>
-         <role name = "NamedTypeRef" metaref = "2080" kind = "NamedTypeRef"></role>
-         <role name = "PredefinedType" metaref = "1780" kind = "PredefinedType"></role>
-         <role name = "VariableSizeCollection" metaref = "1781" kind = "VariableSizeCollection"></role>
+         <role name = "SingleBoundedString" metaref = "2885" kind = "SingleBoundedString"></role>
+         <role name = "SingleFixedPoint" metaref = "2886" kind = "SingleFixedPoint"></role>
+         <role name = "SingleFixedSizeCollection" metaref = "2887" kind = "SingleFixedSizeCollection"></role>
+         <role name = "SingleNamedTypeRef" metaref = "2795" kind = "SingleNamedTypeRef"></role>
+         <role name = "SinglePredefinedType" metaref = "2888" kind = "SinglePredefinedType"></role>
+         <role name = "SingleVariableSizeCollection" metaref = "2889" kind = "SingleVariableSizeCollection"></role>
          <aspect name = "InterfaceDefinition" metaref = "2620" attributes = "bound" >
-            <part metaref = "2621" role = "BoundedString" primary = "yes" linked = "no"></part>
-            <part metaref = "2622" role = "FixedPoint" primary = "yes" linked = "no"></part>
-            <part metaref = "2623" role = "FixedSizeCollection" primary = "yes" linked = "no"></part>
-            <part metaref = "2624" role = "NamedTypeRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "2625" role = "PredefinedType" primary = "yes" linked = "no"></part>
-            <part metaref = "2626" role = "VariableSizeCollection" primary = "yes" linked = "no"></part>
+            <part metaref = "2890" role = "SingleBoundedString" primary = "yes" linked = "no"></part>
+            <part metaref = "2891" role = "SingleFixedPoint" primary = "yes" linked = "no"></part>
+            <part metaref = "2892" role = "SingleFixedSizeCollection" primary = "yes" linked = "no"></part>
+            <part metaref = "2796" role = "SingleNamedTypeRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "2893" role = "SinglePredefinedType" primary = "yes" linked = "no"></part>
+            <part metaref = "2894" role = "SingleVariableSizeCollection" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <folder name = "InterfaceDefinitions" metaref = "2775"  rootobjects = "File" >

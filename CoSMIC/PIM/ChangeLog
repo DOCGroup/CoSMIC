@@ -1,3 +1,20 @@
+Sun May 16 23:14:49 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PICML/paradifms/IDML-Meta.xme:
+        * PICML/paradigms/IDML.xmp:
+        
+          Turned off the name display of some metamodel elememts, so that
+          the name is hidden when dragged into the model editor. This
+          change is to make things less confusing for the user, since now
+          all the names that are not used by the IDL generator interpreter
+          (in progress) and not checked by the GME constraint manager are
+          not displayed for the user to worry about or try to edit. Also
+          created some new metamodel elements which are twins of the
+          various elements for the various anonymous types and also for
+          the named type reference element. These new elements use the
+          same icons as their twins, but their name display is turned
+          off as explained above.
+
 Wed May 13 017:32:44 2004  Jeff Parsons  <j.parsons@vanderbilt.edu>
 
         * PICML/paradifms/IDML-Meta.xme:
