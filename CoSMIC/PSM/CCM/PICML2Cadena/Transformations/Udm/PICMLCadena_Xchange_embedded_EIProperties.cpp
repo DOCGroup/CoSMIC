@@ -1,5 +1,5 @@
 // cpp(meta datanetwork format) source file PICMLCadena_Xchange_embedded_EIProperties.cpp generated from diagram PICMLCadena_Xchange_embedded_EIProperties
-// generated on Wed Aug 25 16:06:01 2004
+// generated on Fri Oct 08 20:11:02 2004
 
 #include "PICMLCadena_Xchange_embedded_EIProperties.h"
 #include "UmlExt.h"

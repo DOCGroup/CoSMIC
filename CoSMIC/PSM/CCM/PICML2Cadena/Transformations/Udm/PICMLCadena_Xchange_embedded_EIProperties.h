@@ -1,7 +1,7 @@
 #ifndef MOBIES_PICMLCADENA_XCHANGE_EMBEDDED_EIPROPERTIES_H
 #define MOBIES_PICMLCADENA_XCHANGE_EMBEDDED_EIPROPERTIES_H
 // header file PICMLCadena_Xchange_embedded_EIProperties.h generated from diagram PICMLCadena_Xchange_embedded_EIProperties
-// generated on Wed Aug 25 16:06:01 2004
+// generated on Fri Oct 08 20:11:02 2004
 
 #ifndef MOBIES_UDMBASE_H
 #include "UdmBase.h"
@@ -9,29 +9,29 @@
 
 namespace PICML
 { 
-	 class  Property;
-	 class  invoke;
+	 class  ComponentAssembly;
 	 class  emit;
 	 class  PublishConnector;
-	 class  ComponentAssembly;
-	 class  Component;
-	 class  OutEventPort;
-	 class  ProvidedRequestPort;
-	 class  RequiredRequestPort;
+	 class  invoke;
+	 class  Property;
 	 class  InEventPort;
+	 class  RequiredRequestPort;
+	 class  ProvidedRequestPort;
+	 class  OutEventPort;
+	 class  Component;
 	 class  Port;
 };
 namespace cadena_scenario
 { 
-	 class  EventSink;
 	 class  FRConnection;
+	 class  ESSConnection;
+	 class  EventSink;
 	 class  EventSource;
 	 class  Receptacle;
 	 class  Facet;
 	 class  ComponentPort;
-	 class  ComponentInstance;
 	 class  Property;
-	 class  ESSConnection;
+	 class  ComponentInstance;
 	 class  Scenario;
 };
 

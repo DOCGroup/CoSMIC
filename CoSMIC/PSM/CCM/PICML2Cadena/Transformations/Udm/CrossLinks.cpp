@@ -1,5 +1,5 @@
 // cpp(meta datanetwork format) source file CrossLinks.cpp generated from diagram CrossLinks
-// generated on Wed Aug 25 16:05:52 2004
+// generated on Fri Oct 08 20:10:51 2004
 
 #include "CrossLinks.h"
 #include "UmlExt.h"

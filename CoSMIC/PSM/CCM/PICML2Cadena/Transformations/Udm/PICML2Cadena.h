@@ -1,7 +1,7 @@
 #ifndef MOBIES_PICML2CADENA_H
 #define MOBIES_PICML2CADENA_H
 // header file PICML2Cadena.h generated from diagram PICML2Cadena
-// generated on Wed Aug 25 13:47:20 2004
+// generated on Fri Oct 08 19:38:19 2004
 
 #ifndef MOBIES_UDMBASE_H
 #include "UdmBase.h"
@@ -21,15 +21,15 @@ namespace PICML2Cadena {
 	class  ComponentInstance_cross_ph_cadena_scenario;
 	class  RootContainer_cross_ph_PICMLCadena_Xchange_embedded_EIProperties;
 	class  invoke_cross_ph_PICML;
-	class  emit_cross_ph_PICML;
 	class  PublishConnector_cross_ph_PICML;
+	class  emit_cross_ph_PICML;
 	class  ComponentAssembly_cross_ph_PICML;
+	class  Component_cross_ph_PICML;
 	class  OutEventPort_cross_ph_PICML;
 	class  ProvidedRequestPort_cross_ph_PICML;
 	class  RequiredRequestPort_cross_ph_PICML;
 	class  InEventPort_cross_ph_PICML;
 	class  Port_cross_ph_PICML;
-	class  Component_cross_ph_PICML;
 	class  _gen_cont;
 
 	  void Initialize();
@@ -104,13 +104,13 @@ namespace PICML2Cadena {
 		static Uml::Attribute meta_rem_sysname;
 		Udm::StringAttr rem_sysname() const { return Udm::StringAttr(impl, meta_rem_sysname); }
 
-		static Uml::AssociationRole meta_picmlPublishConnector;
-		Udm::AssocAttr<PICML2Cadena::PublishConnector_cross_ph_PICML> picmlPublishConnector() const { return Udm::AssocAttr<PICML2Cadena::PublishConnector_cross_ph_PICML>(impl, meta_picmlPublishConnector); }
-		template <class Pred> Udm::AssocAttr<PICML2Cadena::PublishConnector_cross_ph_PICML, Pred > picmlPublishConnector_sorted(const Pred &) const { return Udm::AssocAttr<PICML2Cadena::PublishConnector_cross_ph_PICML, Pred>(impl, meta_picmlPublishConnector); }
-
 		static Uml::AssociationRole meta_picmlEmit;
 		Udm::AssocAttr<PICML2Cadena::emit_cross_ph_PICML> picmlEmit() const { return Udm::AssocAttr<PICML2Cadena::emit_cross_ph_PICML>(impl, meta_picmlEmit); }
 		template <class Pred> Udm::AssocAttr<PICML2Cadena::emit_cross_ph_PICML, Pred > picmlEmit_sorted(const Pred &) const { return Udm::AssocAttr<PICML2Cadena::emit_cross_ph_PICML, Pred>(impl, meta_picmlEmit); }
+
+		static Uml::AssociationRole meta_picmlPublishConnector;
+		Udm::AssocAttr<PICML2Cadena::PublishConnector_cross_ph_PICML> picmlPublishConnector() const { return Udm::AssocAttr<PICML2Cadena::PublishConnector_cross_ph_PICML>(impl, meta_picmlPublishConnector); }
+		template <class Pred> Udm::AssocAttr<PICML2Cadena::PublishConnector_cross_ph_PICML, Pred > picmlPublishConnector_sorted(const Pred &) const { return Udm::AssocAttr<PICML2Cadena::PublishConnector_cross_ph_PICML, Pred>(impl, meta_picmlPublishConnector); }
 
 		static Uml::CompositionParentRole meta__gen_cont_parent;
 		Udm::ParentAttr<PICML2Cadena::_gen_cont> _gen_cont_parent() const { return Udm::ParentAttr<PICML2Cadena::_gen_cont>(impl, meta__gen_cont_parent); }
@@ -374,6 +374,44 @@ namespace PICML2Cadena {
 		Udm::ParentAttr<PICML2Cadena::_gen_cont> parent() const { return Udm::ParentAttr<PICML2Cadena::_gen_cont>(impl, Udm::NULLPARENTROLE); }
 	};
 
+	class  PublishConnector_cross_ph_PICML :  public Udm::Object {
+	 public:
+		static Uml::Class meta;
+
+		PublishConnector_cross_ph_PICML() { }
+		PublishConnector_cross_ph_PICML(Udm::ObjectImpl *impl) : Object(impl) { }
+		PublishConnector_cross_ph_PICML(const PublishConnector_cross_ph_PICML &master) : Object(master) { }
+		static PublishConnector_cross_ph_PICML Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static PublishConnector_cross_ph_PICML Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		PublishConnector_cross_ph_PICML CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		PublishConnector_cross_ph_PICML CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<PublishConnector_cross_ph_PICML> Instances() { return Udm::InstantiatedAttr<PICML2Cadena::PublishConnector_cross_ph_PICML>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<PublishConnector_cross_ph_PICML, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML2Cadena::PublishConnector_cross_ph_PICML, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML2Cadena::PublishConnector_cross_ph_PICML> Derived() { return Udm::DerivedAttr<PICML2Cadena::PublishConnector_cross_ph_PICML>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML2Cadena::PublishConnector_cross_ph_PICML, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML2Cadena::PublishConnector_cross_ph_PICML, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML2Cadena::PublishConnector_cross_ph_PICML> Archetype() { return Udm::ArchetypeAttr<PICML2Cadena::PublishConnector_cross_ph_PICML>(impl);}
+
+		static Uml::Attribute meta_rem_id;
+		Udm::IntegerAttr rem_id() const { return Udm::IntegerAttr(impl, meta_rem_id); }
+
+		static Uml::Attribute meta_rem_sysname;
+		Udm::StringAttr rem_sysname() const { return Udm::StringAttr(impl, meta_rem_sysname); }
+
+		static Uml::AssociationRole meta_cadenaESSConnection;
+		Udm::PointerAttr<PICML2Cadena::ESSConnection_cross_ph_cadena_scenario> cadenaESSConnection() const { return Udm::PointerAttr<PICML2Cadena::ESSConnection_cross_ph_cadena_scenario>(impl, meta_cadenaESSConnection); }
+
+		static Uml::CompositionParentRole meta__gen_cont_parent;
+		Udm::ParentAttr<PICML2Cadena::_gen_cont> _gen_cont_parent() const { return Udm::ParentAttr<PICML2Cadena::_gen_cont>(impl, meta__gen_cont_parent); }
+
+		Udm::ParentAttr<PICML2Cadena::_gen_cont> parent() const { return Udm::ParentAttr<PICML2Cadena::_gen_cont>(impl, Udm::NULLPARENTROLE); }
+	};
+
 	class  emit_cross_ph_PICML :  public Udm::Object {
 	 public:
 		static Uml::Class meta;
@@ -413,44 +451,6 @@ namespace PICML2Cadena {
 		Udm::ParentAttr<PICML2Cadena::_gen_cont> parent() const { return Udm::ParentAttr<PICML2Cadena::_gen_cont>(impl, Udm::NULLPARENTROLE); }
 	};
 
-	class  PublishConnector_cross_ph_PICML :  public Udm::Object {
-	 public:
-		static Uml::Class meta;
-
-		PublishConnector_cross_ph_PICML() { }
-		PublishConnector_cross_ph_PICML(Udm::ObjectImpl *impl) : Object(impl) { }
-		PublishConnector_cross_ph_PICML(const PublishConnector_cross_ph_PICML &master) : Object(master) { }
-		static PublishConnector_cross_ph_PICML Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static PublishConnector_cross_ph_PICML Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		PublishConnector_cross_ph_PICML CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		PublishConnector_cross_ph_PICML CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<PublishConnector_cross_ph_PICML> Instances() { return Udm::InstantiatedAttr<PICML2Cadena::PublishConnector_cross_ph_PICML>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<PublishConnector_cross_ph_PICML, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML2Cadena::PublishConnector_cross_ph_PICML, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML2Cadena::PublishConnector_cross_ph_PICML> Derived() { return Udm::DerivedAttr<PICML2Cadena::PublishConnector_cross_ph_PICML>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML2Cadena::PublishConnector_cross_ph_PICML, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML2Cadena::PublishConnector_cross_ph_PICML, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML2Cadena::PublishConnector_cross_ph_PICML> Archetype() { return Udm::ArchetypeAttr<PICML2Cadena::PublishConnector_cross_ph_PICML>(impl);}
-
-		static Uml::Attribute meta_rem_id;
-		Udm::IntegerAttr rem_id() const { return Udm::IntegerAttr(impl, meta_rem_id); }
-
-		static Uml::Attribute meta_rem_sysname;
-		Udm::StringAttr rem_sysname() const { return Udm::StringAttr(impl, meta_rem_sysname); }
-
-		static Uml::AssociationRole meta_cadenaESSConnection;
-		Udm::PointerAttr<PICML2Cadena::ESSConnection_cross_ph_cadena_scenario> cadenaESSConnection() const { return Udm::PointerAttr<PICML2Cadena::ESSConnection_cross_ph_cadena_scenario>(impl, meta_cadenaESSConnection); }
-
-		static Uml::CompositionParentRole meta__gen_cont_parent;
-		Udm::ParentAttr<PICML2Cadena::_gen_cont> _gen_cont_parent() const { return Udm::ParentAttr<PICML2Cadena::_gen_cont>(impl, meta__gen_cont_parent); }
-
-		Udm::ParentAttr<PICML2Cadena::_gen_cont> parent() const { return Udm::ParentAttr<PICML2Cadena::_gen_cont>(impl, Udm::NULLPARENTROLE); }
-	};
-
 	class  ComponentAssembly_cross_ph_PICML :  public Udm::Object {
 	 public:
 		static Uml::Class meta;
@@ -482,6 +482,44 @@ namespace PICML2Cadena {
 
 		static Uml::AssociationRole meta_rootContainer;
 		Udm::PointerAttr<PICML2Cadena::RootContainer_cross_ph_PICMLCadena_Xchange_embedded_EIProperties> rootContainer() const { return Udm::PointerAttr<PICML2Cadena::RootContainer_cross_ph_PICMLCadena_Xchange_embedded_EIProperties>(impl, meta_rootContainer); }
+
+		static Uml::CompositionParentRole meta__gen_cont_parent;
+		Udm::ParentAttr<PICML2Cadena::_gen_cont> _gen_cont_parent() const { return Udm::ParentAttr<PICML2Cadena::_gen_cont>(impl, meta__gen_cont_parent); }
+
+		Udm::ParentAttr<PICML2Cadena::_gen_cont> parent() const { return Udm::ParentAttr<PICML2Cadena::_gen_cont>(impl, Udm::NULLPARENTROLE); }
+	};
+
+	class  Component_cross_ph_PICML :  public Udm::Object {
+	 public:
+		static Uml::Class meta;
+
+		Component_cross_ph_PICML() { }
+		Component_cross_ph_PICML(Udm::ObjectImpl *impl) : Object(impl) { }
+		Component_cross_ph_PICML(const Component_cross_ph_PICML &master) : Object(master) { }
+		static Component_cross_ph_PICML Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static Component_cross_ph_PICML Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		Component_cross_ph_PICML CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		Component_cross_ph_PICML CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<Component_cross_ph_PICML> Instances() { return Udm::InstantiatedAttr<PICML2Cadena::Component_cross_ph_PICML>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Component_cross_ph_PICML, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML2Cadena::Component_cross_ph_PICML, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML2Cadena::Component_cross_ph_PICML> Derived() { return Udm::DerivedAttr<PICML2Cadena::Component_cross_ph_PICML>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML2Cadena::Component_cross_ph_PICML, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML2Cadena::Component_cross_ph_PICML, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML2Cadena::Component_cross_ph_PICML> Archetype() { return Udm::ArchetypeAttr<PICML2Cadena::Component_cross_ph_PICML>(impl);}
+
+		static Uml::Attribute meta_rem_id;
+		Udm::IntegerAttr rem_id() const { return Udm::IntegerAttr(impl, meta_rem_id); }
+
+		static Uml::Attribute meta_rem_sysname;
+		Udm::StringAttr rem_sysname() const { return Udm::StringAttr(impl, meta_rem_sysname); }
+
+		static Uml::AssociationRole meta_cadenaComponentInstance;
+		Udm::PointerAttr<PICML2Cadena::ComponentInstance_cross_ph_cadena_scenario> cadenaComponentInstance() const { return Udm::PointerAttr<PICML2Cadena::ComponentInstance_cross_ph_cadena_scenario>(impl, meta_cadenaComponentInstance); }
 
 		static Uml::CompositionParentRole meta__gen_cont_parent;
 		Udm::ParentAttr<PICML2Cadena::_gen_cont> _gen_cont_parent() const { return Udm::ParentAttr<PICML2Cadena::_gen_cont>(impl, meta__gen_cont_parent); }
@@ -631,44 +669,6 @@ namespace PICML2Cadena {
 		Udm::ParentAttr<PICML2Cadena::_gen_cont> parent() const { return Udm::ParentAttr<PICML2Cadena::_gen_cont>(impl, Udm::NULLPARENTROLE); }
 	};
 
-	class  Component_cross_ph_PICML :  public Udm::Object {
-	 public:
-		static Uml::Class meta;
-
-		Component_cross_ph_PICML() { }
-		Component_cross_ph_PICML(Udm::ObjectImpl *impl) : Object(impl) { }
-		Component_cross_ph_PICML(const Component_cross_ph_PICML &master) : Object(master) { }
-		static Component_cross_ph_PICML Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static Component_cross_ph_PICML Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		Component_cross_ph_PICML CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		Component_cross_ph_PICML CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<Component_cross_ph_PICML> Instances() { return Udm::InstantiatedAttr<PICML2Cadena::Component_cross_ph_PICML>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Component_cross_ph_PICML, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML2Cadena::Component_cross_ph_PICML, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML2Cadena::Component_cross_ph_PICML> Derived() { return Udm::DerivedAttr<PICML2Cadena::Component_cross_ph_PICML>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML2Cadena::Component_cross_ph_PICML, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML2Cadena::Component_cross_ph_PICML, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML2Cadena::Component_cross_ph_PICML> Archetype() { return Udm::ArchetypeAttr<PICML2Cadena::Component_cross_ph_PICML>(impl);}
-
-		static Uml::Attribute meta_rem_id;
-		Udm::IntegerAttr rem_id() const { return Udm::IntegerAttr(impl, meta_rem_id); }
-
-		static Uml::Attribute meta_rem_sysname;
-		Udm::StringAttr rem_sysname() const { return Udm::StringAttr(impl, meta_rem_sysname); }
-
-		static Uml::AssociationRole meta_cadenaComponentInstance;
-		Udm::PointerAttr<PICML2Cadena::ComponentInstance_cross_ph_cadena_scenario> cadenaComponentInstance() const { return Udm::PointerAttr<PICML2Cadena::ComponentInstance_cross_ph_cadena_scenario>(impl, meta_cadenaComponentInstance); }
-
-		static Uml::CompositionParentRole meta__gen_cont_parent;
-		Udm::ParentAttr<PICML2Cadena::_gen_cont> _gen_cont_parent() const { return Udm::ParentAttr<PICML2Cadena::_gen_cont>(impl, meta__gen_cont_parent); }
-
-		Udm::ParentAttr<PICML2Cadena::_gen_cont> parent() const { return Udm::ParentAttr<PICML2Cadena::_gen_cont>(impl, Udm::NULLPARENTROLE); }
-	};
-
 	class  _gen_cont :  public Udm::Object {
 	 public:
 		static Uml::Class meta;
@@ -716,25 +716,25 @@ namespace PICML2Cadena {
 		Udm::ChildrenAttr<PICML2Cadena::invoke_cross_ph_PICML> invoke_cross_ph_PICML_children() const { return Udm::ChildrenAttr<PICML2Cadena::invoke_cross_ph_PICML>(impl, meta_invoke_cross_ph_PICML_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML2Cadena::invoke_cross_ph_PICML, Pred> invoke_cross_ph_PICML_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML2Cadena::invoke_cross_ph_PICML, Pred>(impl, meta_invoke_cross_ph_PICML_children); }
 
-		static Uml::CompositionChildRole meta_emit_cross_ph_PICML_children;
-		Udm::ChildrenAttr<PICML2Cadena::emit_cross_ph_PICML> emit_cross_ph_PICML_children() const { return Udm::ChildrenAttr<PICML2Cadena::emit_cross_ph_PICML>(impl, meta_emit_cross_ph_PICML_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML2Cadena::emit_cross_ph_PICML, Pred> emit_cross_ph_PICML_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML2Cadena::emit_cross_ph_PICML, Pred>(impl, meta_emit_cross_ph_PICML_children); }
-
 		static Uml::CompositionChildRole meta_PublishConnector_cross_ph_PICML_children;
 		Udm::ChildrenAttr<PICML2Cadena::PublishConnector_cross_ph_PICML> PublishConnector_cross_ph_PICML_children() const { return Udm::ChildrenAttr<PICML2Cadena::PublishConnector_cross_ph_PICML>(impl, meta_PublishConnector_cross_ph_PICML_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML2Cadena::PublishConnector_cross_ph_PICML, Pred> PublishConnector_cross_ph_PICML_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML2Cadena::PublishConnector_cross_ph_PICML, Pred>(impl, meta_PublishConnector_cross_ph_PICML_children); }
+
+		static Uml::CompositionChildRole meta_emit_cross_ph_PICML_children;
+		Udm::ChildrenAttr<PICML2Cadena::emit_cross_ph_PICML> emit_cross_ph_PICML_children() const { return Udm::ChildrenAttr<PICML2Cadena::emit_cross_ph_PICML>(impl, meta_emit_cross_ph_PICML_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML2Cadena::emit_cross_ph_PICML, Pred> emit_cross_ph_PICML_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML2Cadena::emit_cross_ph_PICML, Pred>(impl, meta_emit_cross_ph_PICML_children); }
 
 		static Uml::CompositionChildRole meta_ComponentAssembly_cross_ph_PICML_children;
 		Udm::ChildrenAttr<PICML2Cadena::ComponentAssembly_cross_ph_PICML> ComponentAssembly_cross_ph_PICML_children() const { return Udm::ChildrenAttr<PICML2Cadena::ComponentAssembly_cross_ph_PICML>(impl, meta_ComponentAssembly_cross_ph_PICML_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML2Cadena::ComponentAssembly_cross_ph_PICML, Pred> ComponentAssembly_cross_ph_PICML_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML2Cadena::ComponentAssembly_cross_ph_PICML, Pred>(impl, meta_ComponentAssembly_cross_ph_PICML_children); }
 
-		static Uml::CompositionChildRole meta_Port_cross_ph_PICML_children;
-		Udm::ChildrenAttr<PICML2Cadena::Port_cross_ph_PICML> Port_cross_ph_PICML_children() const { return Udm::ChildrenAttr<PICML2Cadena::Port_cross_ph_PICML>(impl, meta_Port_cross_ph_PICML_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML2Cadena::Port_cross_ph_PICML, Pred> Port_cross_ph_PICML_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML2Cadena::Port_cross_ph_PICML, Pred>(impl, meta_Port_cross_ph_PICML_children); }
-
 		static Uml::CompositionChildRole meta_Component_cross_ph_PICML_children;
 		Udm::ChildrenAttr<PICML2Cadena::Component_cross_ph_PICML> Component_cross_ph_PICML_children() const { return Udm::ChildrenAttr<PICML2Cadena::Component_cross_ph_PICML>(impl, meta_Component_cross_ph_PICML_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML2Cadena::Component_cross_ph_PICML, Pred> Component_cross_ph_PICML_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML2Cadena::Component_cross_ph_PICML, Pred>(impl, meta_Component_cross_ph_PICML_children); }
+
+		static Uml::CompositionChildRole meta_Port_cross_ph_PICML_children;
+		Udm::ChildrenAttr<PICML2Cadena::Port_cross_ph_PICML> Port_cross_ph_PICML_children() const { return Udm::ChildrenAttr<PICML2Cadena::Port_cross_ph_PICML>(impl, meta_Port_cross_ph_PICML_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML2Cadena::Port_cross_ph_PICML, Pred> Port_cross_ph_PICML_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML2Cadena::Port_cross_ph_PICML, Pred>(impl, meta_Port_cross_ph_PICML_children); }
 
 		Udm::ChildrenAttr<PICML2Cadena::FRConnection_cross_ph_cadena_scenario> FRConnection_cross_ph_cadena_scenario_kind_children() const { return Udm::ChildrenAttr<PICML2Cadena::FRConnection_cross_ph_cadena_scenario>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML2Cadena::FRConnection_cross_ph_cadena_scenario, Pred> FRConnection_cross_ph_cadena_scenario_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML2Cadena::FRConnection_cross_ph_cadena_scenario, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -766,14 +766,17 @@ namespace PICML2Cadena {
 		Udm::ChildrenAttr<PICML2Cadena::invoke_cross_ph_PICML> invoke_cross_ph_PICML_kind_children() const { return Udm::ChildrenAttr<PICML2Cadena::invoke_cross_ph_PICML>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML2Cadena::invoke_cross_ph_PICML, Pred> invoke_cross_ph_PICML_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML2Cadena::invoke_cross_ph_PICML, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML2Cadena::emit_cross_ph_PICML> emit_cross_ph_PICML_kind_children() const { return Udm::ChildrenAttr<PICML2Cadena::emit_cross_ph_PICML>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML2Cadena::emit_cross_ph_PICML, Pred> emit_cross_ph_PICML_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML2Cadena::emit_cross_ph_PICML, Pred>(impl, Udm::NULLCHILDROLE); }
-
 		Udm::ChildrenAttr<PICML2Cadena::PublishConnector_cross_ph_PICML> PublishConnector_cross_ph_PICML_kind_children() const { return Udm::ChildrenAttr<PICML2Cadena::PublishConnector_cross_ph_PICML>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML2Cadena::PublishConnector_cross_ph_PICML, Pred> PublishConnector_cross_ph_PICML_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML2Cadena::PublishConnector_cross_ph_PICML, Pred>(impl, Udm::NULLCHILDROLE); }
 
+		Udm::ChildrenAttr<PICML2Cadena::emit_cross_ph_PICML> emit_cross_ph_PICML_kind_children() const { return Udm::ChildrenAttr<PICML2Cadena::emit_cross_ph_PICML>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML2Cadena::emit_cross_ph_PICML, Pred> emit_cross_ph_PICML_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML2Cadena::emit_cross_ph_PICML, Pred>(impl, Udm::NULLCHILDROLE); }
+
 		Udm::ChildrenAttr<PICML2Cadena::ComponentAssembly_cross_ph_PICML> ComponentAssembly_cross_ph_PICML_kind_children() const { return Udm::ChildrenAttr<PICML2Cadena::ComponentAssembly_cross_ph_PICML>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML2Cadena::ComponentAssembly_cross_ph_PICML, Pred> ComponentAssembly_cross_ph_PICML_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML2Cadena::ComponentAssembly_cross_ph_PICML, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML2Cadena::Component_cross_ph_PICML> Component_cross_ph_PICML_kind_children() const { return Udm::ChildrenAttr<PICML2Cadena::Component_cross_ph_PICML>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML2Cadena::Component_cross_ph_PICML, Pred> Component_cross_ph_PICML_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML2Cadena::Component_cross_ph_PICML, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML2Cadena::OutEventPort_cross_ph_PICML> OutEventPort_cross_ph_PICML_kind_children() const { return Udm::ChildrenAttr<PICML2Cadena::OutEventPort_cross_ph_PICML>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML2Cadena::OutEventPort_cross_ph_PICML, Pred> OutEventPort_cross_ph_PICML_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML2Cadena::OutEventPort_cross_ph_PICML, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -789,9 +792,6 @@ namespace PICML2Cadena {
 
 		Udm::ChildrenAttr<PICML2Cadena::Port_cross_ph_PICML> Port_cross_ph_PICML_kind_children() const { return Udm::ChildrenAttr<PICML2Cadena::Port_cross_ph_PICML>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML2Cadena::Port_cross_ph_PICML, Pred> Port_cross_ph_PICML_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML2Cadena::Port_cross_ph_PICML, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML2Cadena::Component_cross_ph_PICML> Component_cross_ph_PICML_kind_children() const { return Udm::ChildrenAttr<PICML2Cadena::Component_cross_ph_PICML>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML2Cadena::Component_cross_ph_PICML, Pred> Component_cross_ph_PICML_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML2Cadena::Component_cross_ph_PICML, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 	};

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?udm interface="PICMLCadena_Xchange_embedded_EIProperties" version="1.00"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-<!-- generated on Wed Aug 25 16:06:01 2004 -->
+<!-- generated on Fri Oct 08 20:11:02 2004 -->
 
  <xsd:complexType name="PropertyType">
   <xsd:attribute name="type" type="xsd:string" use="required"/>

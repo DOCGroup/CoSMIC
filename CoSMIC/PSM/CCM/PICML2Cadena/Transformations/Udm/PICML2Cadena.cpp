@@ -1,5 +1,5 @@
 // cpp(meta datanetwork format) source file PICML2Cadena.cpp generated from diagram PICML2Cadena
-// generated on Wed Aug 25 13:47:20 2004
+// generated on Fri Oct 08 19:38:19 2004
 
 #include "PICML2Cadena.h"
 #include "UmlExt.h"
@@ -20,15 +20,15 @@ namespace PICML2Cadena {
 	Uml::Class ComponentInstance_cross_ph_cadena_scenario::meta;
 	Uml::Class RootContainer_cross_ph_PICMLCadena_Xchange_embedded_EIProperties::meta;
 	Uml::Class invoke_cross_ph_PICML::meta;
-	Uml::Class emit_cross_ph_PICML::meta;
 	Uml::Class PublishConnector_cross_ph_PICML::meta;
+	Uml::Class emit_cross_ph_PICML::meta;
 	Uml::Class ComponentAssembly_cross_ph_PICML::meta;
+	Uml::Class Component_cross_ph_PICML::meta;
 	Uml::Class OutEventPort_cross_ph_PICML::meta;
 	Uml::Class ProvidedRequestPort_cross_ph_PICML::meta;
 	Uml::Class RequiredRequestPort_cross_ph_PICML::meta;
 	Uml::Class InEventPort_cross_ph_PICML::meta;
 	Uml::Class Port_cross_ph_PICML::meta;
-	Uml::Class Component_cross_ph_PICML::meta;
 	Uml::Class _gen_cont::meta;
 	Uml::Attribute FRConnection_cross_ph_cadena_scenario::meta_rem_id;
 	Uml::Attribute FRConnection_cross_ph_cadena_scenario::meta_rem_sysname;
@@ -42,50 +42,50 @@ namespace PICML2Cadena {
 	Uml::Attribute RootContainer_cross_ph_PICMLCadena_Xchange_embedded_EIProperties::meta_rem_sysname;
 	Uml::Attribute invoke_cross_ph_PICML::meta_rem_id;
 	Uml::Attribute invoke_cross_ph_PICML::meta_rem_sysname;
-	Uml::Attribute emit_cross_ph_PICML::meta_rem_id;
-	Uml::Attribute emit_cross_ph_PICML::meta_rem_sysname;
 	Uml::Attribute PublishConnector_cross_ph_PICML::meta_rem_id;
 	Uml::Attribute PublishConnector_cross_ph_PICML::meta_rem_sysname;
+	Uml::Attribute emit_cross_ph_PICML::meta_rem_id;
+	Uml::Attribute emit_cross_ph_PICML::meta_rem_sysname;
 	Uml::Attribute ComponentAssembly_cross_ph_PICML::meta_rem_id;
 	Uml::Attribute ComponentAssembly_cross_ph_PICML::meta_rem_sysname;
-	Uml::Attribute Port_cross_ph_PICML::meta_rem_id;
-	Uml::Attribute Port_cross_ph_PICML::meta_rem_sysname;
 	Uml::Attribute Component_cross_ph_PICML::meta_rem_id;
 	Uml::Attribute Component_cross_ph_PICML::meta_rem_sysname;
+	Uml::Attribute Port_cross_ph_PICML::meta_rem_id;
+	Uml::Attribute Port_cross_ph_PICML::meta_rem_sysname;
 	Uml::AssociationRole FRConnection_cross_ph_cadena_scenario::meta_picmlInvoke;
-	Uml::AssociationRole ESSConnection_cross_ph_cadena_scenario::meta_picmlPublishConnector;
 	Uml::AssociationRole ESSConnection_cross_ph_cadena_scenario::meta_picmlEmit;
+	Uml::AssociationRole ESSConnection_cross_ph_cadena_scenario::meta_picmlPublishConnector;
 	Uml::AssociationRole ComponentPort_cross_ph_cadena_scenario::meta_picmlPort;
 	Uml::AssociationRole ComponentInstance_cross_ph_cadena_scenario::meta_picmlComponentDef;
 	Uml::AssociationRole RootContainer_cross_ph_PICMLCadena_Xchange_embedded_EIProperties::meta_componentAssembly;
 	Uml::AssociationRole invoke_cross_ph_PICML::meta_cadenaInvoke;
-	Uml::AssociationRole emit_cross_ph_PICML::meta_cadenaEmit;
 	Uml::AssociationRole PublishConnector_cross_ph_PICML::meta_cadenaESSConnection;
+	Uml::AssociationRole emit_cross_ph_PICML::meta_cadenaEmit;
 	Uml::AssociationRole ComponentAssembly_cross_ph_PICML::meta_rootContainer;
-	Uml::AssociationRole Port_cross_ph_PICML::meta_cadenaPort;
 	Uml::AssociationRole Component_cross_ph_PICML::meta_cadenaComponentInstance;
+	Uml::AssociationRole Port_cross_ph_PICML::meta_cadenaPort;
 	Uml::CompositionParentRole FRConnection_cross_ph_cadena_scenario::meta__gen_cont_parent;
 	Uml::CompositionParentRole ESSConnection_cross_ph_cadena_scenario::meta__gen_cont_parent;
 	Uml::CompositionParentRole ComponentPort_cross_ph_cadena_scenario::meta__gen_cont_parent;
 	Uml::CompositionParentRole ComponentInstance_cross_ph_cadena_scenario::meta__gen_cont_parent;
 	Uml::CompositionParentRole RootContainer_cross_ph_PICMLCadena_Xchange_embedded_EIProperties::meta__gen_cont_parent;
 	Uml::CompositionParentRole invoke_cross_ph_PICML::meta__gen_cont_parent;
-	Uml::CompositionParentRole emit_cross_ph_PICML::meta__gen_cont_parent;
 	Uml::CompositionParentRole PublishConnector_cross_ph_PICML::meta__gen_cont_parent;
+	Uml::CompositionParentRole emit_cross_ph_PICML::meta__gen_cont_parent;
 	Uml::CompositionParentRole ComponentAssembly_cross_ph_PICML::meta__gen_cont_parent;
-	Uml::CompositionParentRole Port_cross_ph_PICML::meta__gen_cont_parent;
 	Uml::CompositionParentRole Component_cross_ph_PICML::meta__gen_cont_parent;
+	Uml::CompositionParentRole Port_cross_ph_PICML::meta__gen_cont_parent;
 	Uml::CompositionChildRole _gen_cont::meta_FRConnection_cross_ph_cadena_scenario_children;
 	Uml::CompositionChildRole _gen_cont::meta_ESSConnection_cross_ph_cadena_scenario_children;
 	Uml::CompositionChildRole _gen_cont::meta_ComponentPort_cross_ph_cadena_scenario_children;
 	Uml::CompositionChildRole _gen_cont::meta_ComponentInstance_cross_ph_cadena_scenario_children;
 	Uml::CompositionChildRole _gen_cont::meta_RootContainer_cross_ph_PICMLCadena_Xchange_embedded_EIProperties_children;
 	Uml::CompositionChildRole _gen_cont::meta_invoke_cross_ph_PICML_children;
-	Uml::CompositionChildRole _gen_cont::meta_emit_cross_ph_PICML_children;
 	Uml::CompositionChildRole _gen_cont::meta_PublishConnector_cross_ph_PICML_children;
+	Uml::CompositionChildRole _gen_cont::meta_emit_cross_ph_PICML_children;
 	Uml::CompositionChildRole _gen_cont::meta_ComponentAssembly_cross_ph_PICML_children;
-	Uml::CompositionChildRole _gen_cont::meta_Port_cross_ph_PICML_children;
 	Uml::CompositionChildRole _gen_cont::meta_Component_cross_ph_PICML_children;
+	Uml::CompositionChildRole _gen_cont::meta_Port_cross_ph_PICML_children;
 	void Creates()
 	{
 		FRConnection_cross_ph_cadena_scenario::meta = Uml::Class::Create(umldiagram);
@@ -98,15 +98,15 @@ namespace PICML2Cadena {
 		ComponentInstance_cross_ph_cadena_scenario::meta = Uml::Class::Create(umldiagram);
 		RootContainer_cross_ph_PICMLCadena_Xchange_embedded_EIProperties::meta = Uml::Class::Create(umldiagram);
 		invoke_cross_ph_PICML::meta = Uml::Class::Create(umldiagram);
-		emit_cross_ph_PICML::meta = Uml::Class::Create(umldiagram);
 		PublishConnector_cross_ph_PICML::meta = Uml::Class::Create(umldiagram);
+		emit_cross_ph_PICML::meta = Uml::Class::Create(umldiagram);
 		ComponentAssembly_cross_ph_PICML::meta = Uml::Class::Create(umldiagram);
+		Component_cross_ph_PICML::meta = Uml::Class::Create(umldiagram);
 		OutEventPort_cross_ph_PICML::meta = Uml::Class::Create(umldiagram);
 		ProvidedRequestPort_cross_ph_PICML::meta = Uml::Class::Create(umldiagram);
 		RequiredRequestPort_cross_ph_PICML::meta = Uml::Class::Create(umldiagram);
 		InEventPort_cross_ph_PICML::meta = Uml::Class::Create(umldiagram);
 		Port_cross_ph_PICML::meta = Uml::Class::Create(umldiagram);
-		Component_cross_ph_PICML::meta = Uml::Class::Create(umldiagram);
 		_gen_cont::meta = Uml::Class::Create(umldiagram);
 		FRConnection_cross_ph_cadena_scenario::meta_rem_id = Uml::Attribute::Create(FRConnection_cross_ph_cadena_scenario::meta);
 		FRConnection_cross_ph_cadena_scenario::meta_rem_sysname = Uml::Attribute::Create(FRConnection_cross_ph_cadena_scenario::meta);
@@ -120,16 +120,16 @@ namespace PICML2Cadena {
 		RootContainer_cross_ph_PICMLCadena_Xchange_embedded_EIProperties::meta_rem_sysname = Uml::Attribute::Create(RootContainer_cross_ph_PICMLCadena_Xchange_embedded_EIProperties::meta);
 		invoke_cross_ph_PICML::meta_rem_id = Uml::Attribute::Create(invoke_cross_ph_PICML::meta);
 		invoke_cross_ph_PICML::meta_rem_sysname = Uml::Attribute::Create(invoke_cross_ph_PICML::meta);
-		emit_cross_ph_PICML::meta_rem_id = Uml::Attribute::Create(emit_cross_ph_PICML::meta);
-		emit_cross_ph_PICML::meta_rem_sysname = Uml::Attribute::Create(emit_cross_ph_PICML::meta);
 		PublishConnector_cross_ph_PICML::meta_rem_id = Uml::Attribute::Create(PublishConnector_cross_ph_PICML::meta);
 		PublishConnector_cross_ph_PICML::meta_rem_sysname = Uml::Attribute::Create(PublishConnector_cross_ph_PICML::meta);
+		emit_cross_ph_PICML::meta_rem_id = Uml::Attribute::Create(emit_cross_ph_PICML::meta);
+		emit_cross_ph_PICML::meta_rem_sysname = Uml::Attribute::Create(emit_cross_ph_PICML::meta);
 		ComponentAssembly_cross_ph_PICML::meta_rem_id = Uml::Attribute::Create(ComponentAssembly_cross_ph_PICML::meta);
 		ComponentAssembly_cross_ph_PICML::meta_rem_sysname = Uml::Attribute::Create(ComponentAssembly_cross_ph_PICML::meta);
-		Port_cross_ph_PICML::meta_rem_id = Uml::Attribute::Create(Port_cross_ph_PICML::meta);
-		Port_cross_ph_PICML::meta_rem_sysname = Uml::Attribute::Create(Port_cross_ph_PICML::meta);
 		Component_cross_ph_PICML::meta_rem_id = Uml::Attribute::Create(Component_cross_ph_PICML::meta);
 		Component_cross_ph_PICML::meta_rem_sysname = Uml::Attribute::Create(Component_cross_ph_PICML::meta);
+		Port_cross_ph_PICML::meta_rem_id = Uml::Attribute::Create(Port_cross_ph_PICML::meta);
+		Port_cross_ph_PICML::meta_rem_sysname = Uml::Attribute::Create(Port_cross_ph_PICML::meta);
 	}
 	void InitClassesAttributes()
 	{
@@ -163,15 +163,18 @@ namespace PICML2Cadena {
 		invoke_cross_ph_PICML::meta.name() = "invoke_cross_ph_PICML";
 		invoke_cross_ph_PICML::meta.isAbstract() = false;
 		invoke_cross_ph_PICML::meta.from() = "PICML";
-		emit_cross_ph_PICML::meta.name() = "emit_cross_ph_PICML";
-		emit_cross_ph_PICML::meta.isAbstract() = false;
-		emit_cross_ph_PICML::meta.from() = "PICML";
 		PublishConnector_cross_ph_PICML::meta.name() = "PublishConnector_cross_ph_PICML";
 		PublishConnector_cross_ph_PICML::meta.isAbstract() = false;
 		PublishConnector_cross_ph_PICML::meta.from() = "PICML";
+		emit_cross_ph_PICML::meta.name() = "emit_cross_ph_PICML";
+		emit_cross_ph_PICML::meta.isAbstract() = false;
+		emit_cross_ph_PICML::meta.from() = "PICML";
 		ComponentAssembly_cross_ph_PICML::meta.name() = "ComponentAssembly_cross_ph_PICML";
 		ComponentAssembly_cross_ph_PICML::meta.isAbstract() = false;
 		ComponentAssembly_cross_ph_PICML::meta.from() = "PICML";
+		Component_cross_ph_PICML::meta.name() = "Component_cross_ph_PICML";
+		Component_cross_ph_PICML::meta.isAbstract() = false;
+		Component_cross_ph_PICML::meta.from() = "PICML";
 		OutEventPort_cross_ph_PICML::meta.name() = "OutEventPort_cross_ph_PICML";
 		OutEventPort_cross_ph_PICML::meta.isAbstract() = false;
 		OutEventPort_cross_ph_PICML::meta.from() = "PICML";
@@ -187,9 +190,6 @@ namespace PICML2Cadena {
 		Port_cross_ph_PICML::meta.name() = "Port_cross_ph_PICML";
 		Port_cross_ph_PICML::meta.isAbstract() = false;
 		Port_cross_ph_PICML::meta.from() = "PICML";
-		Component_cross_ph_PICML::meta.name() = "Component_cross_ph_PICML";
-		Component_cross_ph_PICML::meta.isAbstract() = false;
-		Component_cross_ph_PICML::meta.from() = "PICML";
 		_gen_cont::meta.name() = "_gen_cont";
 		_gen_cont::meta.isAbstract() = false;
 		
@@ -301,24 +301,6 @@ namespace PICML2Cadena {
 		invoke_cross_ph_PICML::meta_rem_sysname.ordered() = false;
 		invoke_cross_ph_PICML::meta_rem_sysname.visibility() = "";
 		invoke_cross_ph_PICML::meta_rem_sysname.defvalue() = vector<string>();
-		emit_cross_ph_PICML::meta_rem_id.name() = "rem_id";
-		emit_cross_ph_PICML::meta_rem_id.type() = "Integer";
-		emit_cross_ph_PICML::meta_rem_id.min() = 1;
-		emit_cross_ph_PICML::meta_rem_id.max() = 1;
-		emit_cross_ph_PICML::meta_rem_id.nonpersistent() = false;
-		emit_cross_ph_PICML::meta_rem_id.registry() = false;
-		emit_cross_ph_PICML::meta_rem_id.ordered() = false;
-		emit_cross_ph_PICML::meta_rem_id.visibility() = "";
-		emit_cross_ph_PICML::meta_rem_id.defvalue() = vector<string>();
-		emit_cross_ph_PICML::meta_rem_sysname.name() = "rem_sysname";
-		emit_cross_ph_PICML::meta_rem_sysname.type() = "String";
-		emit_cross_ph_PICML::meta_rem_sysname.min() = 1;
-		emit_cross_ph_PICML::meta_rem_sysname.max() = 1;
-		emit_cross_ph_PICML::meta_rem_sysname.nonpersistent() = false;
-		emit_cross_ph_PICML::meta_rem_sysname.registry() = false;
-		emit_cross_ph_PICML::meta_rem_sysname.ordered() = false;
-		emit_cross_ph_PICML::meta_rem_sysname.visibility() = "";
-		emit_cross_ph_PICML::meta_rem_sysname.defvalue() = vector<string>();
 		PublishConnector_cross_ph_PICML::meta_rem_id.name() = "rem_id";
 		PublishConnector_cross_ph_PICML::meta_rem_id.type() = "Integer";
 		PublishConnector_cross_ph_PICML::meta_rem_id.min() = 1;
@@ -337,6 +319,24 @@ namespace PICML2Cadena {
 		PublishConnector_cross_ph_PICML::meta_rem_sysname.ordered() = false;
 		PublishConnector_cross_ph_PICML::meta_rem_sysname.visibility() = "";
 		PublishConnector_cross_ph_PICML::meta_rem_sysname.defvalue() = vector<string>();
+		emit_cross_ph_PICML::meta_rem_id.name() = "rem_id";
+		emit_cross_ph_PICML::meta_rem_id.type() = "Integer";
+		emit_cross_ph_PICML::meta_rem_id.min() = 1;
+		emit_cross_ph_PICML::meta_rem_id.max() = 1;
+		emit_cross_ph_PICML::meta_rem_id.nonpersistent() = false;
+		emit_cross_ph_PICML::meta_rem_id.registry() = false;
+		emit_cross_ph_PICML::meta_rem_id.ordered() = false;
+		emit_cross_ph_PICML::meta_rem_id.visibility() = "";
+		emit_cross_ph_PICML::meta_rem_id.defvalue() = vector<string>();
+		emit_cross_ph_PICML::meta_rem_sysname.name() = "rem_sysname";
+		emit_cross_ph_PICML::meta_rem_sysname.type() = "String";
+		emit_cross_ph_PICML::meta_rem_sysname.min() = 1;
+		emit_cross_ph_PICML::meta_rem_sysname.max() = 1;
+		emit_cross_ph_PICML::meta_rem_sysname.nonpersistent() = false;
+		emit_cross_ph_PICML::meta_rem_sysname.registry() = false;
+		emit_cross_ph_PICML::meta_rem_sysname.ordered() = false;
+		emit_cross_ph_PICML::meta_rem_sysname.visibility() = "";
+		emit_cross_ph_PICML::meta_rem_sysname.defvalue() = vector<string>();
 		ComponentAssembly_cross_ph_PICML::meta_rem_id.name() = "rem_id";
 		ComponentAssembly_cross_ph_PICML::meta_rem_id.type() = "Integer";
 		ComponentAssembly_cross_ph_PICML::meta_rem_id.min() = 1;
@@ -355,24 +355,6 @@ namespace PICML2Cadena {
 		ComponentAssembly_cross_ph_PICML::meta_rem_sysname.ordered() = false;
 		ComponentAssembly_cross_ph_PICML::meta_rem_sysname.visibility() = "";
 		ComponentAssembly_cross_ph_PICML::meta_rem_sysname.defvalue() = vector<string>();
-		Port_cross_ph_PICML::meta_rem_id.name() = "rem_id";
-		Port_cross_ph_PICML::meta_rem_id.type() = "Integer";
-		Port_cross_ph_PICML::meta_rem_id.min() = 1;
-		Port_cross_ph_PICML::meta_rem_id.max() = 1;
-		Port_cross_ph_PICML::meta_rem_id.nonpersistent() = false;
-		Port_cross_ph_PICML::meta_rem_id.registry() = false;
-		Port_cross_ph_PICML::meta_rem_id.ordered() = false;
-		Port_cross_ph_PICML::meta_rem_id.visibility() = "";
-		Port_cross_ph_PICML::meta_rem_id.defvalue() = vector<string>();
-		Port_cross_ph_PICML::meta_rem_sysname.name() = "rem_sysname";
-		Port_cross_ph_PICML::meta_rem_sysname.type() = "String";
-		Port_cross_ph_PICML::meta_rem_sysname.min() = 1;
-		Port_cross_ph_PICML::meta_rem_sysname.max() = 1;
-		Port_cross_ph_PICML::meta_rem_sysname.nonpersistent() = false;
-		Port_cross_ph_PICML::meta_rem_sysname.registry() = false;
-		Port_cross_ph_PICML::meta_rem_sysname.ordered() = false;
-		Port_cross_ph_PICML::meta_rem_sysname.visibility() = "";
-		Port_cross_ph_PICML::meta_rem_sysname.defvalue() = vector<string>();
 		Component_cross_ph_PICML::meta_rem_id.name() = "rem_id";
 		Component_cross_ph_PICML::meta_rem_id.type() = "Integer";
 		Component_cross_ph_PICML::meta_rem_id.min() = 1;
@@ -391,6 +373,24 @@ namespace PICML2Cadena {
 		Component_cross_ph_PICML::meta_rem_sysname.ordered() = false;
 		Component_cross_ph_PICML::meta_rem_sysname.visibility() = "";
 		Component_cross_ph_PICML::meta_rem_sysname.defvalue() = vector<string>();
+		Port_cross_ph_PICML::meta_rem_id.name() = "rem_id";
+		Port_cross_ph_PICML::meta_rem_id.type() = "Integer";
+		Port_cross_ph_PICML::meta_rem_id.min() = 1;
+		Port_cross_ph_PICML::meta_rem_id.max() = 1;
+		Port_cross_ph_PICML::meta_rem_id.nonpersistent() = false;
+		Port_cross_ph_PICML::meta_rem_id.registry() = false;
+		Port_cross_ph_PICML::meta_rem_id.ordered() = false;
+		Port_cross_ph_PICML::meta_rem_id.visibility() = "";
+		Port_cross_ph_PICML::meta_rem_id.defvalue() = vector<string>();
+		Port_cross_ph_PICML::meta_rem_sysname.name() = "rem_sysname";
+		Port_cross_ph_PICML::meta_rem_sysname.type() = "String";
+		Port_cross_ph_PICML::meta_rem_sysname.min() = 1;
+		Port_cross_ph_PICML::meta_rem_sysname.max() = 1;
+		Port_cross_ph_PICML::meta_rem_sysname.nonpersistent() = false;
+		Port_cross_ph_PICML::meta_rem_sysname.registry() = false;
+		Port_cross_ph_PICML::meta_rem_sysname.ordered() = false;
+		Port_cross_ph_PICML::meta_rem_sysname.visibility() = "";
+		Port_cross_ph_PICML::meta_rem_sysname.defvalue() = vector<string>();
 		
 	}
 	void InitAssociation0()
@@ -414,24 +414,6 @@ namespace PICML2Cadena {
 	void InitAssociation1()
 	{
 		Uml::Association ass = Uml::Association::Create(umldiagram);
-		ESSConnection_cross_ph_cadena_scenario::meta_picmlPublishConnector = Uml::AssociationRole::Create(ass);
-		ESSConnection_cross_ph_cadena_scenario::meta_picmlPublishConnector.name() = "picmlPublishConnector";
-		ESSConnection_cross_ph_cadena_scenario::meta_picmlPublishConnector.min() = 0;
-		ESSConnection_cross_ph_cadena_scenario::meta_picmlPublishConnector.max() = -1;
-		ESSConnection_cross_ph_cadena_scenario::meta_picmlPublishConnector.isNavigable() = true;
-		ESSConnection_cross_ph_cadena_scenario::meta_picmlPublishConnector.isPrimary() = false;
-		ESSConnection_cross_ph_cadena_scenario::meta_picmlPublishConnector.target() = PublishConnector_cross_ph_PICML::meta;
-		PublishConnector_cross_ph_PICML::meta_cadenaESSConnection = Uml::AssociationRole::Create(ass);
-		PublishConnector_cross_ph_PICML::meta_cadenaESSConnection.name() = "cadenaESSConnection";
-		PublishConnector_cross_ph_PICML::meta_cadenaESSConnection.min() = 1;
-		PublishConnector_cross_ph_PICML::meta_cadenaESSConnection.max() = 1;
-		PublishConnector_cross_ph_PICML::meta_cadenaESSConnection.isNavigable() = true;
-		PublishConnector_cross_ph_PICML::meta_cadenaESSConnection.isPrimary() = false;
-		PublishConnector_cross_ph_PICML::meta_cadenaESSConnection.target() = ESSConnection_cross_ph_cadena_scenario::meta;
-	};
-	void InitAssociation2()
-	{
-		Uml::Association ass = Uml::Association::Create(umldiagram);
 		ESSConnection_cross_ph_cadena_scenario::meta_picmlEmit = Uml::AssociationRole::Create(ass);
 		ESSConnection_cross_ph_cadena_scenario::meta_picmlEmit.name() = "picmlEmit";
 		ESSConnection_cross_ph_cadena_scenario::meta_picmlEmit.min() = 0;
@@ -446,6 +428,24 @@ namespace PICML2Cadena {
 		emit_cross_ph_PICML::meta_cadenaEmit.isNavigable() = true;
 		emit_cross_ph_PICML::meta_cadenaEmit.isPrimary() = false;
 		emit_cross_ph_PICML::meta_cadenaEmit.target() = ESSConnection_cross_ph_cadena_scenario::meta;
+	};
+	void InitAssociation2()
+	{
+		Uml::Association ass = Uml::Association::Create(umldiagram);
+		ESSConnection_cross_ph_cadena_scenario::meta_picmlPublishConnector = Uml::AssociationRole::Create(ass);
+		ESSConnection_cross_ph_cadena_scenario::meta_picmlPublishConnector.name() = "picmlPublishConnector";
+		ESSConnection_cross_ph_cadena_scenario::meta_picmlPublishConnector.min() = 0;
+		ESSConnection_cross_ph_cadena_scenario::meta_picmlPublishConnector.max() = -1;
+		ESSConnection_cross_ph_cadena_scenario::meta_picmlPublishConnector.isNavigable() = true;
+		ESSConnection_cross_ph_cadena_scenario::meta_picmlPublishConnector.isPrimary() = false;
+		ESSConnection_cross_ph_cadena_scenario::meta_picmlPublishConnector.target() = PublishConnector_cross_ph_PICML::meta;
+		PublishConnector_cross_ph_PICML::meta_cadenaESSConnection = Uml::AssociationRole::Create(ass);
+		PublishConnector_cross_ph_PICML::meta_cadenaESSConnection.name() = "cadenaESSConnection";
+		PublishConnector_cross_ph_PICML::meta_cadenaESSConnection.min() = 1;
+		PublishConnector_cross_ph_PICML::meta_cadenaESSConnection.max() = 1;
+		PublishConnector_cross_ph_PICML::meta_cadenaESSConnection.isNavigable() = true;
+		PublishConnector_cross_ph_PICML::meta_cadenaESSConnection.isPrimary() = false;
+		PublishConnector_cross_ph_PICML::meta_cadenaESSConnection.target() = ESSConnection_cross_ph_cadena_scenario::meta;
 	};
 	void InitAssociation3()
 	{
@@ -595,21 +595,6 @@ namespace PICML2Cadena {
 	{
 		Uml::Composition comp = Uml::Composition::Create(umldiagram);
 		comp.nonpersistent() =false;
-		emit_cross_ph_PICML::meta__gen_cont_parent = Uml::CompositionParentRole::Create(comp);
-		emit_cross_ph_PICML::meta__gen_cont_parent.name() = "_gen_cont_parent";
-		emit_cross_ph_PICML::meta__gen_cont_parent.isNavigable() = true;
-		emit_cross_ph_PICML::meta__gen_cont_parent.target() = _gen_cont::meta;
-		_gen_cont::meta_emit_cross_ph_PICML_children = Uml::CompositionChildRole::Create(comp);
-		_gen_cont::meta_emit_cross_ph_PICML_children.name() = "emit_cross_ph_PICML";
-		_gen_cont::meta_emit_cross_ph_PICML_children.min() = 0;
-		_gen_cont::meta_emit_cross_ph_PICML_children.max() = -1;
-		_gen_cont::meta_emit_cross_ph_PICML_children.isNavigable() = true;
-		_gen_cont::meta_emit_cross_ph_PICML_children.target() = emit_cross_ph_PICML::meta;
-	}
-	void InitComposition7()
-	{
-		Uml::Composition comp = Uml::Composition::Create(umldiagram);
-		comp.nonpersistent() =false;
 		PublishConnector_cross_ph_PICML::meta__gen_cont_parent = Uml::CompositionParentRole::Create(comp);
 		PublishConnector_cross_ph_PICML::meta__gen_cont_parent.name() = "_gen_cont_parent";
 		PublishConnector_cross_ph_PICML::meta__gen_cont_parent.isNavigable() = true;
@@ -620,6 +605,21 @@ namespace PICML2Cadena {
 		_gen_cont::meta_PublishConnector_cross_ph_PICML_children.max() = -1;
 		_gen_cont::meta_PublishConnector_cross_ph_PICML_children.isNavigable() = true;
 		_gen_cont::meta_PublishConnector_cross_ph_PICML_children.target() = PublishConnector_cross_ph_PICML::meta;
+	}
+	void InitComposition7()
+	{
+		Uml::Composition comp = Uml::Composition::Create(umldiagram);
+		comp.nonpersistent() =false;
+		emit_cross_ph_PICML::meta__gen_cont_parent = Uml::CompositionParentRole::Create(comp);
+		emit_cross_ph_PICML::meta__gen_cont_parent.name() = "_gen_cont_parent";
+		emit_cross_ph_PICML::meta__gen_cont_parent.isNavigable() = true;
+		emit_cross_ph_PICML::meta__gen_cont_parent.target() = _gen_cont::meta;
+		_gen_cont::meta_emit_cross_ph_PICML_children = Uml::CompositionChildRole::Create(comp);
+		_gen_cont::meta_emit_cross_ph_PICML_children.name() = "emit_cross_ph_PICML";
+		_gen_cont::meta_emit_cross_ph_PICML_children.min() = 0;
+		_gen_cont::meta_emit_cross_ph_PICML_children.max() = -1;
+		_gen_cont::meta_emit_cross_ph_PICML_children.isNavigable() = true;
+		_gen_cont::meta_emit_cross_ph_PICML_children.target() = emit_cross_ph_PICML::meta;
 	}
 	void InitComposition8()
 	{
@@ -640,21 +640,6 @@ namespace PICML2Cadena {
 	{
 		Uml::Composition comp = Uml::Composition::Create(umldiagram);
 		comp.nonpersistent() =false;
-		Port_cross_ph_PICML::meta__gen_cont_parent = Uml::CompositionParentRole::Create(comp);
-		Port_cross_ph_PICML::meta__gen_cont_parent.name() = "_gen_cont_parent";
-		Port_cross_ph_PICML::meta__gen_cont_parent.isNavigable() = true;
-		Port_cross_ph_PICML::meta__gen_cont_parent.target() = _gen_cont::meta;
-		_gen_cont::meta_Port_cross_ph_PICML_children = Uml::CompositionChildRole::Create(comp);
-		_gen_cont::meta_Port_cross_ph_PICML_children.name() = "Port_cross_ph_PICML";
-		_gen_cont::meta_Port_cross_ph_PICML_children.min() = 0;
-		_gen_cont::meta_Port_cross_ph_PICML_children.max() = -1;
-		_gen_cont::meta_Port_cross_ph_PICML_children.isNavigable() = true;
-		_gen_cont::meta_Port_cross_ph_PICML_children.target() = Port_cross_ph_PICML::meta;
-	}
-	void InitComposition10()
-	{
-		Uml::Composition comp = Uml::Composition::Create(umldiagram);
-		comp.nonpersistent() =false;
 		Component_cross_ph_PICML::meta__gen_cont_parent = Uml::CompositionParentRole::Create(comp);
 		Component_cross_ph_PICML::meta__gen_cont_parent.name() = "_gen_cont_parent";
 		Component_cross_ph_PICML::meta__gen_cont_parent.isNavigable() = true;
@@ -665,6 +650,21 @@ namespace PICML2Cadena {
 		_gen_cont::meta_Component_cross_ph_PICML_children.max() = -1;
 		_gen_cont::meta_Component_cross_ph_PICML_children.isNavigable() = true;
 		_gen_cont::meta_Component_cross_ph_PICML_children.target() = Component_cross_ph_PICML::meta;
+	}
+	void InitComposition10()
+	{
+		Uml::Composition comp = Uml::Composition::Create(umldiagram);
+		comp.nonpersistent() =false;
+		Port_cross_ph_PICML::meta__gen_cont_parent = Uml::CompositionParentRole::Create(comp);
+		Port_cross_ph_PICML::meta__gen_cont_parent.name() = "_gen_cont_parent";
+		Port_cross_ph_PICML::meta__gen_cont_parent.isNavigable() = true;
+		Port_cross_ph_PICML::meta__gen_cont_parent.target() = _gen_cont::meta;
+		_gen_cont::meta_Port_cross_ph_PICML_children = Uml::CompositionChildRole::Create(comp);
+		_gen_cont::meta_Port_cross_ph_PICML_children.name() = "Port_cross_ph_PICML";
+		_gen_cont::meta_Port_cross_ph_PICML_children.min() = 0;
+		_gen_cont::meta_Port_cross_ph_PICML_children.max() = -1;
+		_gen_cont::meta_Port_cross_ph_PICML_children.isNavigable() = true;
+		_gen_cont::meta_Port_cross_ph_PICML_children.target() = Port_cross_ph_PICML::meta;
 	}
 	 void Initialize()
 	{
@@ -735,15 +735,18 @@ namespace PICML2Cadena {
 		Uml::SetClass(invoke_cross_ph_PICML::meta, umldiagram, "invoke_cross_ph_PICML");
 		Uml::SetAttribute(invoke_cross_ph_PICML::meta_rem_id,invoke_cross_ph_PICML::meta, "rem_id");
 		Uml::SetAttribute(invoke_cross_ph_PICML::meta_rem_sysname,invoke_cross_ph_PICML::meta, "rem_sysname");
-		Uml::SetClass(emit_cross_ph_PICML::meta, umldiagram, "emit_cross_ph_PICML");
-		Uml::SetAttribute(emit_cross_ph_PICML::meta_rem_id,emit_cross_ph_PICML::meta, "rem_id");
-		Uml::SetAttribute(emit_cross_ph_PICML::meta_rem_sysname,emit_cross_ph_PICML::meta, "rem_sysname");
 		Uml::SetClass(PublishConnector_cross_ph_PICML::meta, umldiagram, "PublishConnector_cross_ph_PICML");
 		Uml::SetAttribute(PublishConnector_cross_ph_PICML::meta_rem_id,PublishConnector_cross_ph_PICML::meta, "rem_id");
 		Uml::SetAttribute(PublishConnector_cross_ph_PICML::meta_rem_sysname,PublishConnector_cross_ph_PICML::meta, "rem_sysname");
+		Uml::SetClass(emit_cross_ph_PICML::meta, umldiagram, "emit_cross_ph_PICML");
+		Uml::SetAttribute(emit_cross_ph_PICML::meta_rem_id,emit_cross_ph_PICML::meta, "rem_id");
+		Uml::SetAttribute(emit_cross_ph_PICML::meta_rem_sysname,emit_cross_ph_PICML::meta, "rem_sysname");
 		Uml::SetClass(ComponentAssembly_cross_ph_PICML::meta, umldiagram, "ComponentAssembly_cross_ph_PICML");
 		Uml::SetAttribute(ComponentAssembly_cross_ph_PICML::meta_rem_id,ComponentAssembly_cross_ph_PICML::meta, "rem_id");
 		Uml::SetAttribute(ComponentAssembly_cross_ph_PICML::meta_rem_sysname,ComponentAssembly_cross_ph_PICML::meta, "rem_sysname");
+		Uml::SetClass(Component_cross_ph_PICML::meta, umldiagram, "Component_cross_ph_PICML");
+		Uml::SetAttribute(Component_cross_ph_PICML::meta_rem_id,Component_cross_ph_PICML::meta, "rem_id");
+		Uml::SetAttribute(Component_cross_ph_PICML::meta_rem_sysname,Component_cross_ph_PICML::meta, "rem_sysname");
 		Uml::SetClass(OutEventPort_cross_ph_PICML::meta, umldiagram, "OutEventPort_cross_ph_PICML");
 		Uml::SetClass(ProvidedRequestPort_cross_ph_PICML::meta, umldiagram, "ProvidedRequestPort_cross_ph_PICML");
 		Uml::SetClass(RequiredRequestPort_cross_ph_PICML::meta, umldiagram, "RequiredRequestPort_cross_ph_PICML");
@@ -751,9 +754,6 @@ namespace PICML2Cadena {
 		Uml::SetClass(Port_cross_ph_PICML::meta, umldiagram, "Port_cross_ph_PICML");
 		Uml::SetAttribute(Port_cross_ph_PICML::meta_rem_id,Port_cross_ph_PICML::meta, "rem_id");
 		Uml::SetAttribute(Port_cross_ph_PICML::meta_rem_sysname,Port_cross_ph_PICML::meta, "rem_sysname");
-		Uml::SetClass(Component_cross_ph_PICML::meta, umldiagram, "Component_cross_ph_PICML");
-		Uml::SetAttribute(Component_cross_ph_PICML::meta_rem_id,Component_cross_ph_PICML::meta, "rem_id");
-		Uml::SetAttribute(Component_cross_ph_PICML::meta_rem_sysname,Component_cross_ph_PICML::meta, "rem_sysname");
 		Uml::SetClass(_gen_cont::meta, umldiagram, "_gen_cont");
 		//composition child roles 
 		Uml::SetParentRole(FRConnection_cross_ph_cadena_scenario::meta__gen_cont_parent,FRConnection_cross_ph_cadena_scenario::meta,_gen_cont::meta, "");
@@ -762,11 +762,11 @@ namespace PICML2Cadena {
 		Uml::SetParentRole(ComponentInstance_cross_ph_cadena_scenario::meta__gen_cont_parent,ComponentInstance_cross_ph_cadena_scenario::meta,_gen_cont::meta, "");
 		Uml::SetParentRole(RootContainer_cross_ph_PICMLCadena_Xchange_embedded_EIProperties::meta__gen_cont_parent,RootContainer_cross_ph_PICMLCadena_Xchange_embedded_EIProperties::meta,_gen_cont::meta, "");
 		Uml::SetParentRole(invoke_cross_ph_PICML::meta__gen_cont_parent,invoke_cross_ph_PICML::meta,_gen_cont::meta, "");
-		Uml::SetParentRole(emit_cross_ph_PICML::meta__gen_cont_parent,emit_cross_ph_PICML::meta,_gen_cont::meta, "");
 		Uml::SetParentRole(PublishConnector_cross_ph_PICML::meta__gen_cont_parent,PublishConnector_cross_ph_PICML::meta,_gen_cont::meta, "");
+		Uml::SetParentRole(emit_cross_ph_PICML::meta__gen_cont_parent,emit_cross_ph_PICML::meta,_gen_cont::meta, "");
 		Uml::SetParentRole(ComponentAssembly_cross_ph_PICML::meta__gen_cont_parent,ComponentAssembly_cross_ph_PICML::meta,_gen_cont::meta, "");
-		Uml::SetParentRole(Port_cross_ph_PICML::meta__gen_cont_parent,Port_cross_ph_PICML::meta,_gen_cont::meta, "");
 		Uml::SetParentRole(Component_cross_ph_PICML::meta__gen_cont_parent,Component_cross_ph_PICML::meta,_gen_cont::meta, "");
+		Uml::SetParentRole(Port_cross_ph_PICML::meta__gen_cont_parent,Port_cross_ph_PICML::meta,_gen_cont::meta, "");
 		// composition parentroles 
 		Uml::SetChildRole(_gen_cont::meta_FRConnection_cross_ph_cadena_scenario_children,_gen_cont::meta,FRConnection_cross_ph_cadena_scenario::meta, "");
 		Uml::SetChildRole(_gen_cont::meta_ESSConnection_cross_ph_cadena_scenario_children,_gen_cont::meta,ESSConnection_cross_ph_cadena_scenario::meta, "");
@@ -774,16 +774,16 @@ namespace PICML2Cadena {
 		Uml::SetChildRole(_gen_cont::meta_ComponentInstance_cross_ph_cadena_scenario_children,_gen_cont::meta,ComponentInstance_cross_ph_cadena_scenario::meta, "");
 		Uml::SetChildRole(_gen_cont::meta_RootContainer_cross_ph_PICMLCadena_Xchange_embedded_EIProperties_children,_gen_cont::meta,RootContainer_cross_ph_PICMLCadena_Xchange_embedded_EIProperties::meta, "");
 		Uml::SetChildRole(_gen_cont::meta_invoke_cross_ph_PICML_children,_gen_cont::meta,invoke_cross_ph_PICML::meta, "");
-		Uml::SetChildRole(_gen_cont::meta_emit_cross_ph_PICML_children,_gen_cont::meta,emit_cross_ph_PICML::meta, "");
 		Uml::SetChildRole(_gen_cont::meta_PublishConnector_cross_ph_PICML_children,_gen_cont::meta,PublishConnector_cross_ph_PICML::meta, "");
+		Uml::SetChildRole(_gen_cont::meta_emit_cross_ph_PICML_children,_gen_cont::meta,emit_cross_ph_PICML::meta, "");
 		Uml::SetChildRole(_gen_cont::meta_ComponentAssembly_cross_ph_PICML_children,_gen_cont::meta,ComponentAssembly_cross_ph_PICML::meta, "");
-		Uml::SetChildRole(_gen_cont::meta_Port_cross_ph_PICML_children,_gen_cont::meta,Port_cross_ph_PICML::meta, "");
 		Uml::SetChildRole(_gen_cont::meta_Component_cross_ph_PICML_children,_gen_cont::meta,Component_cross_ph_PICML::meta, "");
+		Uml::SetChildRole(_gen_cont::meta_Port_cross_ph_PICML_children,_gen_cont::meta,Port_cross_ph_PICML::meta, "");
 		// Association roles 
 		Uml::SetAssocRole(FRConnection_cross_ph_cadena_scenario::meta_picmlInvoke,FRConnection_cross_ph_cadena_scenario::meta,invoke_cross_ph_PICML::meta, "cadenaInvoke");
 
-		Uml::SetAssocRole(ESSConnection_cross_ph_cadena_scenario::meta_picmlPublishConnector,ESSConnection_cross_ph_cadena_scenario::meta,PublishConnector_cross_ph_PICML::meta, "cadenaESSConnection");
 		Uml::SetAssocRole(ESSConnection_cross_ph_cadena_scenario::meta_picmlEmit,ESSConnection_cross_ph_cadena_scenario::meta,emit_cross_ph_PICML::meta, "cadenaEmit");
+		Uml::SetAssocRole(ESSConnection_cross_ph_cadena_scenario::meta_picmlPublishConnector,ESSConnection_cross_ph_cadena_scenario::meta,PublishConnector_cross_ph_PICML::meta, "cadenaESSConnection");
 
 
 
@@ -797,19 +797,19 @@ namespace PICML2Cadena {
 
 		Uml::SetAssocRole(invoke_cross_ph_PICML::meta_cadenaInvoke,invoke_cross_ph_PICML::meta,FRConnection_cross_ph_cadena_scenario::meta, "picmlInvoke");
 
-		Uml::SetAssocRole(emit_cross_ph_PICML::meta_cadenaEmit,emit_cross_ph_PICML::meta,ESSConnection_cross_ph_cadena_scenario::meta, "picmlEmit");
-
 		Uml::SetAssocRole(PublishConnector_cross_ph_PICML::meta_cadenaESSConnection,PublishConnector_cross_ph_PICML::meta,ESSConnection_cross_ph_cadena_scenario::meta, "picmlPublishConnector");
 
+		Uml::SetAssocRole(emit_cross_ph_PICML::meta_cadenaEmit,emit_cross_ph_PICML::meta,ESSConnection_cross_ph_cadena_scenario::meta, "picmlEmit");
+
 		Uml::SetAssocRole(ComponentAssembly_cross_ph_PICML::meta_rootContainer,ComponentAssembly_cross_ph_PICML::meta,RootContainer_cross_ph_PICMLCadena_Xchange_embedded_EIProperties::meta, "componentAssembly");
+
+		Uml::SetAssocRole(Component_cross_ph_PICML::meta_cadenaComponentInstance,Component_cross_ph_PICML::meta,ComponentInstance_cross_ph_cadena_scenario::meta, "picmlComponentDef");
 
 
 
 
 
 		Uml::SetAssocRole(Port_cross_ph_PICML::meta_cadenaPort,Port_cross_ph_PICML::meta,ComponentPort_cross_ph_cadena_scenario::meta, "picmlPort");
-
-		Uml::SetAssocRole(Component_cross_ph_PICML::meta_cadenaComponentInstance,Component_cross_ph_PICML::meta,ComponentInstance_cross_ph_cadena_scenario::meta, "picmlComponentDef");
 
 
 		

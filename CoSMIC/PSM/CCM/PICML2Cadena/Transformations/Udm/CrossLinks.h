@@ -1,7 +1,7 @@
 #ifndef MOBIES_CROSSLINKS_H
 #define MOBIES_CROSSLINKS_H
 // header file CrossLinks.h generated from diagram CrossLinks
-// generated on Wed Aug 25 16:05:52 2004
+// generated on Fri Oct 08 20:10:51 2004
 
 #ifndef MOBIES_UDMBASE_H
 #include "UdmBase.h"
@@ -9,16 +9,16 @@
 
 namespace PICML
 { 
-	 class  Property;
-	 class  invoke;
+	 class  ComponentAssembly;
 	 class  emit;
 	 class  PublishConnector;
-	 class  ComponentAssembly;
-	 class  Component;
-	 class  OutEventPort;
-	 class  ProvidedRequestPort;
-	 class  RequiredRequestPort;
+	 class  invoke;
+	 class  Property;
 	 class  InEventPort;
+	 class  RequiredRequestPort;
+	 class  ProvidedRequestPort;
+	 class  OutEventPort;
+	 class  Component;
 	 class  Port;
 };
 namespace PICMLCadena_Xchange_embedded_EIProperties
@@ -27,15 +27,15 @@ namespace PICMLCadena_Xchange_embedded_EIProperties
 };
 namespace cadena_scenario
 { 
-	 class  EventSink;
 	 class  FRConnection;
+	 class  ESSConnection;
+	 class  EventSink;
 	 class  EventSource;
 	 class  Receptacle;
 	 class  Facet;
 	 class  ComponentPort;
-	 class  ComponentInstance;
 	 class  Property;
-	 class  ESSConnection;
+	 class  ComponentInstance;
 	 class  Scenario;
 };
 

@@ -1,3 +1,67 @@
+Fri Oct 08 21:16:44 2004  Gabriele Trombetti  <gtrombetti@nospam.invalid.domain>
+
+          Changed the following files:
+
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML-gr.xml
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML.mga
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML.xme
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML_Configuration.mga
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML_Configuration.xme
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena-gr.xml
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena.mga
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena.xme
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena_Configuration.mga
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena_configuration.xme
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/Cadena2PICML.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/Cadena2PICML.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/Cadena2PICML.udm
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/Cadena2PICML.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/CrossLinks.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/CrossLinks.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/CrossLinks.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML2Cadena.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML2Cadena.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML2Cadena.udm
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML2Cadena.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICMLCadena_Xchange_embedded_EIProperties.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICMLCadena_Xchange_embedded_EIProperties.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICMLCadena_Xchange_embedded_EIProperties.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/cadena_scenario.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/cadena_scenario.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/cadena_scenario.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/examples/TweakedRobotAssembly.mga
+        * PSM/CCM/PICML2Cadena/Transformations/examples/TweakedRobotAssembly.xme
+        * PSM/CCM/PICML2Cadena/Transformations/examples/TweakedRobotAssembly_afterexport.mga
+        * PSM/CCM/PICML2Cadena/Transformations/examples/TweakedRobotAssembly_afterexport.xme
+        * PSM/CCM/PICML2Cadena/Transformations/examples/TweakedRobotAssembly_reimported_from_modified.mga
+        * PSM/CCM/PICML2Cadena/Transformations/examples/TweakedRobotAssembly_reimported_from_modified.xme
+        * PSM/CCM/PICML2Cadena/Transformations/examples/exported.xml
+        * PSM/CCM/PICML2Cadena/Transformations/examples/exported_modified.xml
+        * PSM/CCM/PICML2Cadena/Transformations/examples/RobotAssembly_OriginalVersion/RobotAssembly.mga
+        * PSM/CCM/PICML2Cadena/Transformations/examples/RobotAssembly_OriginalVersion/exported.xml
+          Updated the transformations and the examples to reflect the new PICML metamodel as of today
+          (that is PICML.xme and .xmp version 1.30)
+          
+        * PSM/CCM/PICML2Cadena/paradigms/PICML/PICML-uml.xme
+        * PSM/CCM/PICML2Cadena/paradigms/PICML/PICML.xme
+        * PSM/CCM/PICML2Cadena/paradigms/PICML/PICML.xml
+        * PSM/CCM/PICML2Cadena/paradigms/PICML/PICML.xmp
+        * PSM/CCM/PICML2Cadena/paradigms/PICML/PICMLTemplate.xme
+          Updated the local copy of the PICML paradigm: this is 
+          the PICML version that the transformation is updated for.
+          Note: these files are not used by the transformation, are just kept here for reference.
+        
+
+          Removed the following files:
+          
+        * PSM/CCM/PICML2Cadena/paradigms/PICML/IDML-uml.xme
+        * PSM/CCM/PICML2Cadena/paradigms/PICML/PredefinedTypes.xme
+          These files do not belong to the new PICML paradigm anymore so they have been removed
+          also from this local copy.
+
 Mon Sep 06 17:21:30 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
           A big OCML update. The integration of OCML & PICML and the new
