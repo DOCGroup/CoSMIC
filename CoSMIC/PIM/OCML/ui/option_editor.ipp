@@ -72,4 +72,10 @@ namespace OCML
     return button_;
   }
 
+  inline void
+  Option_Editor::clear_button_clicked(Clear_Button*)
+  {
+    option()->clear();
+  }
+  
 } // namespace OCML

@@ -29,7 +29,6 @@ namespace OCML
     virtual void boolean_edit_clicked(Boolean_Edit_Control* control);
     virtual void boolean_edit_focus_gain(Boolean_Edit_Control* control);
     virtual void boolean_edit_focus_lost(Boolean_Edit_Control* control);
-    virtual void clear_button_clicked(Clear_Button* control);
 
     virtual void value_changed(bool flagged, Option_Value* value);
 

@@ -33,7 +33,6 @@ namespace OCML
     virtual void integer_edit_focus_gain(Integer_Edit_Control* control);
     virtual void integer_edit_focus_lost(Integer_Edit_Control* control);
     virtual void integer_edit_value_changed(Integer_Edit_Control* control);
-    virtual void clear_button_clicked(Clear_Button* control);
 
     virtual void value_changed(bool flagged, Option_Value* value);
 

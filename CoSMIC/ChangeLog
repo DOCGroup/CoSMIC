@@ -1,3 +1,15 @@
+Fri Mar 04 09:00:20 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/OCML/engine/constraint_engine.cpp engine/option_interface.ipp:
+        * PIM/OCML/engine/option_rules.hpp engine/option_rules.tpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLBonX.h:
+        * PIM/OCML/ui/boolean_option_editor.cpp ui/boolean_option_editor.hpp:
+        * PIM/OCML/ui/integer_option_editor.cpp ui/integer_option_editor.hpp:
+        * PIM/OCML/ui/option_editor.hpp ui/option_editor.ipp:
+        * PIM/OCML/ui/string_option_editor.cpp ui/string_option_editor.hpp:
+
+          Fixed possible sources for memory leak/invalid pointer problems.
+
 Thu Mar 03 15:52:30 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * PIM/OCML/engine/tree_parser.cpp:

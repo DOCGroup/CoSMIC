@@ -7,7 +7,8 @@
 namespace OCML
 {
 
-  class OCML_Engine_Export Option_Selection_Rule: public Basic_Rule<Option_Selection_Rule>
+  class OCML_Engine_Export Option_Selection_Rule
+    : public Basic_Rule<Option_Selection_Rule>
   {
   public:
     Option_Selection_Rule(Rule* root, Option_Reference* option);
@@ -41,8 +42,8 @@ namespace OCML
 
   public:
     Value_Equality_Rule(Rule* root,
-                      Basic_Option_Reference<option_trait>* option,
-                      value_type value);
+                        Basic_Option_Reference<option_trait>* option,
+                        value_type value);
     virtual ~Value_Equality_Rule();
 
     virtual bool test() const;

@@ -89,12 +89,6 @@ Integer_Option_Editor::integer_edit_value_changed(Integer_Edit_Control*)
 }
 
 void
-Integer_Option_Editor::clear_button_clicked(Clear_Button*)
-{
-  option()->clear();
-}
-
-void
 Integer_Option_Editor::unfocus()
 {
   integer_edit_focus_lost(0);

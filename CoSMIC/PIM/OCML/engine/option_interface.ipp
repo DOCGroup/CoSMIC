@@ -15,7 +15,7 @@ namespace OCML
       definition_(definition),
       option_(option),
       flagged_(false),
-      value_(value)
+      value_(value->duplicate())
   {
     constraint_engine_->register_listener(definition_, this);
   }
@@ -119,7 +119,7 @@ namespace OCML
   inline void
   Option_Interface::unregister_listener(listener_index index)
   {
-	listeners_.erase(index);
+    listeners_.erase(index);
   }
 
   /*

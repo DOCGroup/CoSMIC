@@ -80,18 +80,6 @@ String_Option_Editor::string_edit_value_changed(String_Edit_Control*)
 }
 
 void
-String_Option_Editor::clear_button_clicked(Clear_Button*)
-{
-  // @todo move into option_editor.
-  option()->clear();
-//  button()->Enable(false);
-
-//  Basic_Option_Definition<String_Option_Trait>* definition =
-//    dynamic_cast<Basic_Option_Definition<String_Option_Trait>*> (option()->definition());
-//  editor_->SetValue(definition->default_value().c_str());
-}
-
-void
 String_Option_Editor::unfocus()
 {
   string_edit_focus_lost(0);

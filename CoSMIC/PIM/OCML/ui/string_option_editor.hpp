@@ -34,7 +34,6 @@ namespace OCML
     virtual void string_edit_focus_gain(String_Edit_Control* control);
     virtual void string_edit_focus_lost(String_Edit_Control* control);
     virtual void string_edit_value_changed(String_Edit_Control* control);
-    virtual void clear_button_clicked(Clear_Button* control);
 
     virtual void value_changed(bool flagged, Option_Value* value);
 

@@ -67,13 +67,6 @@ Boolean_Option_Editor::boolean_edit_clicked(Boolean_Edit_Control*)
 }
 
 void
-Boolean_Option_Editor::clear_button_clicked(Clear_Button*)
-{
-  // @todo move into option_editor.
-  option()->clear();
-}
-
-void
 Boolean_Option_Editor::value_changed(bool flagged, Option_Value* value)
 {
   Boolean_Option_Value* basic_value = dynamic_cast<Boolean_Option_Value*>(value);

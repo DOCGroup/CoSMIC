@@ -42,7 +42,7 @@ namespace OCML
     if (changed)
     {
       flag_ = reference->flagged();
-      value_ = ref_value;
+      value_.reset(ref_value->duplicate());
       value_changed(flag_, value_.get());
     }
 

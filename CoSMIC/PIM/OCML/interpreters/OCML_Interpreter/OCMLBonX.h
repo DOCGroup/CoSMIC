@@ -142,7 +142,7 @@ public:
         virtual xercesc::DOMElement* xml_export(xercesc::DOMDocument* doc);
 
 protected:
-	virtual const char* get_kind_name() const { return "EnumOption"; }
+	virtual const char* get_kind_name() const { return "StringOption"; } // "EnumOption"
 	///EUP
 };
 

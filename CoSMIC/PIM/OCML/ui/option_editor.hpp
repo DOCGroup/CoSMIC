@@ -50,8 +50,7 @@ namespace OCML
 
     virtual void interface_destroyed();
 
-    // This method is remained as abstract.
-    //  virtual void clear_button_clicked(Clear_Button* control);
+    virtual void clear_button_clicked(Clear_Button*);
   protected:
     /// Getter function for the button.
     Clear_Button* button();
