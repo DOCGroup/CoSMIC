@@ -34,7 +34,7 @@ MetricEmitter<T>::generate_header_file (std::string& class_name,
 										std::string& component_name,
 										std::string& operation_name,
 										std::vector<string>& arg_list, 
-										bool create_export_macro)
+										std::string &path)
 {
 	std::string output_file = bgml_state.output_path + "\\" + class_name + ".h";
 	std::ofstream output_stream (output_file.c_str (), ios::out);
@@ -42,7 +42,7 @@ MetricEmitter<T>::generate_header_file (std::string& class_name,
 								  operation_name, 
 								  arg_list,
 								  output_stream);
-	bench_stream.generate_task_header (class_name, create_export_macro);
+	bench_stream.generate_task_header (class_name, path);
 }
 
 template <class T>
@@ -113,7 +113,11 @@ MetricEmitter<T>::generate_benchmark ()
 
 	//// Generate the Benchmarking Header
 	std::string class_name = "Benchmark_" + operation_name;
-	this->generate_header_file (class_name, component_name, operation_name, arg_list, true);
+	this->generate_header_file (class_name, 
+								component_name, 
+								operation_name, 
+								arg_list,
+								bgml_state.output_path);
 
 
 	//@@ When we have more than one task group associated, we will need to change
@@ -127,11 +131,12 @@ MetricEmitter<T>::generate_benchmark ()
 		// Add a barrier to the list of arguments
 		std::vector<std::string> temp_list (arg_list);
 		temp_list.push_back ("ACE_Barrier&");
+		std::string dummy;
 		this->generate_header_file (class_name, 
 									component_name, 
 									operation_name, 
 									temp_list, 
-									false);
+									dummy);
 
 		std::string workload_cpp_file = 
 			bgml_state.output_path + "\\" + operation_name + "_Workload.cpp";

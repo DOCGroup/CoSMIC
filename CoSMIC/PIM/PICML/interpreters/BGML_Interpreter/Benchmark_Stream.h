@@ -95,7 +95,7 @@ public:
   
   // generate a #if !defined, #defined macro
 
-  void generate_task_header (std::string& class_name, bool create_export_header);
+  void generate_task_header (std::string& class_name, std::string &path);
   // Generate the header file for the Task
 
   void gen_include_file (std::string& file_name);
@@ -132,7 +132,7 @@ public:
 							  BGML_Task_Data &data);
   // Generates the workload definition
 
-  void create_export_macro (std::string& shared_name);
+  void create_export_macro (std::string& shared_name, std::string &output_path);
   // Generate the export header file
 
   void create_build_file ();

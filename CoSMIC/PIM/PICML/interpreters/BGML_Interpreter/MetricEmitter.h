@@ -30,7 +30,7 @@ protected:
 							   std::string& component_name,
 							   std::string& operation_name,
 							   std::vector<string>& arg_list,
-							   bool generate_header_file);
+							   std::string &path);
 	// Generate the header file information
 
 	void create_build_file (std::vector<std::string>& file_list, 

@@ -167,7 +167,8 @@ this->strm_ << "//     http://www.dre.vanderbilt.edu/cosmic\n";
 }
 
 void
-BenchmarkStream::generate_task_header (std::string& header_name, bool create_export_header)
+BenchmarkStream::generate_task_header (std::string& header_name, 
+									   std::string& output_path)
 {
 	// Generate the tool description
 	this->generate_tool_description ();
@@ -184,10 +185,10 @@ BenchmarkStream::generate_task_header (std::string& header_name, bool create_exp
 	this->gen_include_file (component_exec_header);
 
 	/// Generate the export files for benchmarking
-	if (create_export_header)
-		this->create_export_macro (header_name);
+	if (output_path.size ())
+		this->create_export_macro (header_name, output_path);
 
-	std::string export_header_name =  "Bechmark_" + this->operation_name_ + "_export.h";
+	std::string export_header_name =  "Benchmark_" + this->operation_name_ + "_export.h";
 	this->gen_include_file (export_header_name);
 
 	/// Check for ACE_Barrier in the list
@@ -251,7 +252,8 @@ BenchmarkStream::generate_task_header (std::string& header_name, bool create_exp
 
 
 void
-BenchmarkStream::create_export_macro (std::string& shared_name)
+BenchmarkStream::create_export_macro (std::string& shared_name, 
+									  std::string& output_path)
 {
 	// Generate the stub export file name as well
 	std::string command = "generate_export_file.pl -s ";
@@ -272,7 +274,7 @@ BenchmarkStream::create_export_macro (std::string& shared_name)
 	// The output path should be within quotes otherwise it is going to crib if
 	// the output directory has spaces in it somewhere
 	command.append ("\"");
-	command.append (bgml_state.output_path);
+	command.append (output_path);
 	command.append ("\"");
 
 	command.append ("\\");
@@ -528,7 +530,7 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
 		this->strm_ << "{\n";
 		this->incr_indent ();
 		this->indent ();
-		this->strm_ << "ACE_hrtime sleep_time = deadline_for_call - now;\n";
+		this->strm_ << "ACE_hrtime_t sleep_time = deadline_for_call - now;\n";
 		this->indent ();
 		this->strm_ << "ACE_OS::sleep (ACE_Time_Value (0, long (to_seconds (sleep_time, gsf) * ACE_ONE_SECOND_IN_USECS)));\n";
 		this->decr_indent ();
@@ -610,13 +612,14 @@ BenchmarkStream::generate_workload_def (__int64 iterations,
 	this->gen_include_file (include_file);
 	this->nl ();
 
+	if (data.task_rate > 0)
+	{
+		include_file = "ace/High_Res_Timer.h";
+		this->gen_include_file (include_file);
+	}
+
 	this->gen_constructor_defn (macro_name);
 	this->gen_destructor_defn  (macro_name);
-
-	//// Check if this is a rate based invocation
-	if (data.task_rate > 0)
-		this->generate_rate_helper ();
-	
 
 	/// Step 2: Generate the svc hook function to run it in a thread
 	std::vector<std::string> param_list;
@@ -635,7 +638,7 @@ BenchmarkStream::generate_workload_def (__int64 iterations,
 	this->indent ();
 	this->strm_ << "this->set_priority ("
 				<< (int) data.task_priority
-			    << ")";
+			    << ");";
 	this->nl ();
 	this->nl ();
    }
@@ -724,7 +727,7 @@ BenchmarkStream::generate_workload_def (__int64 iterations,
 	   this->strm_ << "{\n";
 	   this->incr_indent ();
 	   this->indent ();
-	   this->strm_ << "ACE_hrtime sleep_time = deadline_for_call - now;\n";
+	   this->strm_ << "ACE_hrtime_t sleep_time = deadline_for_call - now;\n";
 	   this->indent ();
 	   this->strm_ << "ACE_OS::sleep (ACE_Time_Value (0, long (to_seconds (sleep_time, gsf) * ACE_ONE_SECOND_IN_USECS)));\n";
 	   this->decr_indent ();
