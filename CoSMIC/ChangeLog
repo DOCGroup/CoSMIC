@@ -1,3 +1,9 @@
+Wed Aug 25 17:01:50 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        
+          Changed XERCESROOT to XERCESCROOT.
+
 Wed Aug 25 17:39:29 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * Installer/RegisterParadigm/RegisterParadigm.def: Fixed a really

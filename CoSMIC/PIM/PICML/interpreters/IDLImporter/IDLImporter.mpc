@@ -4,10 +4,10 @@
 project(TAO_PICML_BE) : acelib, core, tao_output, crosscompile {
   after       += TAO_IDL_FE
   sharedname   = TAO_PICML_BE
-  libpaths    += $(XERCESROOT)/lib 
+  libpaths    += $(XERCESCROOT)/lib 
   libs        += TAO_IDL_FE xerces-c_2
   dynamicflags = TAO_PICML_BE_BUILD_DLL
-  includes    += $(XERCESROOT)/include $(TAO_ROOT)/TAO_IDL/include $(TAO_ROOT)/TAO_IDL/fe
+  includes    += $(XERCESCROOT)/include $(TAO_ROOT)/TAO_IDL/include $(TAO_ROOT)/TAO_IDL/fe
 
   Source_Files {
     be_global.cpp
@@ -30,8 +30,8 @@ project(TAO_PICML_EXE) : aceexe, core, tao_output, crosscompile {
   after          += TAO_PICML_BE TAO_IDL_FE
   exename         = tao_picml
   libs           += TAO_PICML_BE TAO_IDL_FE
-  includes       += . $(TAO_ROOT)/TAO_IDL/include $(TAO_ROOT)/TAO_IDL/fe $(XERCESROOT)/include 
-  libpaths       += $(TAO_ROOT)/TAO_IDL $(XERCESROOT)/lib 
+  includes       += . $(TAO_ROOT)/TAO_IDL/include $(TAO_ROOT)/TAO_IDL/fe $(XERCESCROOT)/include 
+  libpaths       += $(TAO_ROOT)/TAO_IDL $(XERCESCROOT)/lib 
   install         = $(ACE_ROOT)/bin
 
   verbatim(gnuace, local) {
