@@ -4,8 +4,8 @@ Wed Oct 27 17:10:52 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
         * OCML/interpreters/OCML_Interpreter/OCMLBON2Component.dsp:
 
           Changed the poject file according to the removed and newly
-	  inserted files. The manual extensions to the OCMLBonX.h file is
-	  copied from the old OCML_BON_Extension.h file.
+          inserted files. The manual extensions to the OCMLBonX.h file is
+          copied from the old OCML_BON_Extension.h file.
 
 Wed Oct 27 16:51:14 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
