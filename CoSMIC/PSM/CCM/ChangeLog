@@ -1,3 +1,17 @@
+Thu Oct 28 11:44:49 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * OCML/interpreters/OCMLConfiguratorLibrary/OptionEditors/IntegerOptionEditor.cpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/OptionEditors/IntegerOptionEditor.hpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/EditControls/IntegerEditControl.cpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/EditControls/IntegerEditControl.hpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/OptionEditors/StringOptionEditor.hpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/OptionEditors/StringOptionEditor.cpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/EditControls/StringEditControl.hpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/EditControls/StringEditControl.cpp: 
+
+          Fixed the bug: on focus lost -even if the value is not changed-
+          string and integer editors set the enabled of the clear button.
+
 Wed Oct 27 17:38:45 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * OCML/interpreters/OCML_Interpreter/OCMLBonExtension_Manual.cpp:

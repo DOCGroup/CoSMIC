@@ -1,3 +1,5 @@
+// $Id$
+
 #ifndef INTEGER_OPTION_EDITOR_HPP
 #define INTEGER_OPTION_EDITOR_HPP
 
@@ -14,7 +16,8 @@ public:
 };
     
 class IntegerOptionEditor: public OptionEditor,
-			   public IntegerEditControlFocusListener
+			   public IntegerEditControlFocusListener,
+                           public IntegerEditControlValueChangeListener
 {
 public:
   IntegerOptionEditor(wxWindow* parent, IntegerOption* option);
@@ -26,9 +29,13 @@ public:
     
   virtual void integer_edit_focus_gain(IntegerEditControl* control);
   virtual void integer_edit_focus_lost(IntegerEditControl* control);
+  virtual void integer_edit_value_changed(IntegerEditControl* control);
   virtual void clear_button_clicked(ClearButton* control);
 
 private:
+  bool focused_;
+  bool value_changed_;
+
   IntegerEditControl* editor_;
 
   std::list<IntegerOptionEditorFocusListener*> focus_listeners_;

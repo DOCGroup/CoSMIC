@@ -1,10 +1,14 @@
+// $Id$
+
 #include "IntegerOptionEditor.hpp"
 
 #include <sstream>
 
 IntegerOptionEditor::IntegerOptionEditor(wxWindow* parent,
                                          IntegerOption* integer_option)
-  : OptionEditor(parent, integer_option)
+  : OptionEditor(parent, integer_option),
+    focused_(false),
+    value_changed_(false)
 {
   editor_ = new IntegerEditControl(panel());
 
@@ -16,8 +20,10 @@ IntegerOptionEditor::IntegerOptionEditor(wxWindow* parent,
     }
   else
     editor_->SetValue("");
+
   editor_->Show(true);
   editor_->add_focus_listener(this);
+  editor_->add_value_change_listener(this);
   panel()->GetSizer()->Add(editor_, 1, wxALL | wxADJUST_MINSIZE | wxEXPAND, 2);
     
   panel()->GetSizer()->SetSizeHints(panel());
@@ -36,15 +42,24 @@ IntegerOptionEditor::add_focus_listener(IntegerOptionEditorFocusListener* l)
 void
 IntegerOptionEditor::integer_edit_focus_gain(IntegerEditControl*)
 {
+  if (focused_)
+    return;
+
   for (std::list<IntegerOptionEditorFocusListener*>::iterator
 	 iter = focus_listeners_.begin();
        iter != focus_listeners_.end(); ++iter)
     (*iter)->integer_editor_focused(this);
+
+  focused_ = true;
+  value_changed_ = false;
 }
 
 void
 IntegerOptionEditor::integer_edit_focus_lost(IntegerEditControl*)
 {
+  if (!focused_ || !value_changed_)
+    return;
+
   IntegerOption* integer_option = (IntegerOption*) option();
 
   std::istringstream is((const char*) editor_->GetValue());
@@ -52,7 +67,15 @@ IntegerOptionEditor::integer_edit_focus_lost(IntegerEditControl*)
   is >> val;
   integer_option->set(val);
   button()->Enable(true);
+
+  focused_ = false;
 }    
+
+void
+IntegerOptionEditor::integer_edit_value_changed(IntegerEditControl*)
+{
+  value_changed_ = true;
+}
 
 void
 IntegerOptionEditor::clear_button_clicked(ClearButton*)

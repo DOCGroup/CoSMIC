@@ -1,3 +1,5 @@
+// $Id$
+
 #ifndef STRING_OPTION_EDITOR_HPP
 #define STRING_OPTION_EDITOR_HPP
 
@@ -14,7 +16,8 @@ public:
 };
     
 class StringOptionEditor: public OptionEditor,
-			  public StringEditControlFocusListener
+			  public StringEditControlFocusListener,
+                          public StringEditControlValueChangeListener
 {
 public:
   StringOptionEditor(wxWindow* parent, StringOption* option);
@@ -26,10 +29,12 @@ public:
     
   virtual void string_edit_focus_gain(StringEditControl* control);
   virtual void string_edit_focus_lost(StringEditControl* control);
+  virtual void string_edit_value_changed(StringEditControl* control);
   virtual void clear_button_clicked(ClearButton* control);
 
 private:
   bool focused_;
+  bool value_changed_;
 
   StringEditControl* editor_;
 

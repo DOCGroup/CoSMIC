@@ -1,17 +1,23 @@
+// $Id$
+
 #include "StringOptionEditor.hpp"
 
 StringOptionEditor::StringOptionEditor(wxWindow* parent,
                                        StringOption* string_option)
   : OptionEditor(parent, string_option),
-    focused_(false)
+    focused_(false),
+    value_changed_(false)
 {
   editor_ = new StringEditControl(panel());
+
   if (option()->assigned())
     editor_->SetValue(string_option->get().c_str());
   else
     editor_->SetValue("");
+
   editor_->Show(true);
   editor_->add_focus_listener(this);
+  editor_->add_value_change_listener(this);
   panel()->GetSizer()->Add(editor_, 1, wxALL | wxADJUST_MINSIZE | wxEXPAND, 2);
     
   panel()->GetSizer()->SetSizeHints(panel());
@@ -32,23 +38,35 @@ StringOptionEditor::string_edit_focus_gain(StringEditControl*)
 {
   if (focused_)
     return;
+
   for (std::list<StringOptionEditorFocusListener*>::iterator
 	 iter = focus_listeners_.begin();
        iter != focus_listeners_.end(); ++iter)
     (*iter)->string_editor_focused(this);
+
   focused_ = true;
+  value_changed_ = false;
 }
 
 void
 StringOptionEditor::string_edit_focus_lost(StringEditControl*)
 {
-  if (!focused_)
+  if (!focused_ || !value_changed_)
     return;
+
   StringOption* string_option = (StringOption*) option();
+
   string_option->set((const char*) editor_->GetValue());
   button()->Enable(true);
+
   focused_ = false;
 }    
+
+void
+StringOptionEditor::string_edit_value_changed(StringEditControl*)
+{
+  value_changed_ = true;
+}
 
 void
 StringOptionEditor::clear_button_clicked(ClearButton*)
