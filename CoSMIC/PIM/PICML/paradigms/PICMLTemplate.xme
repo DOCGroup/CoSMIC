@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Tue Jul 27 16:03:16 2004" mdate="Tue Jul 27 17:34:03 2004" metaguid="{1D244777-DEAD-BEEF-FEED-DAD000000001}" metaname="PICML">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Wed Aug 25 16:49:53 2004" mdate="Wed Aug 25 16:49:57 2004" metaguid="{4C6178D3-DEAD-BEEF-FEED-DAD000000001}" metaname="PICML">
 	<name>PICMLTemplate</name>
 	<comment></comment>
 	<author></author>
@@ -39,7 +39,7 @@
 			<atom id="id-0066-0000000a" kind="TypeKind" relid="0xc">
 				<name>TypeKind</name>
 			</atom>
-			<atom id="id-0066-00000011" kind="GenericValueObject" relid="0x14">
+			<atom id="id-0066-0000000b" kind="GenericValueObject" relid="0x14">
 				<name>GenericValueObject</name>
 			</atom>
 		</folder>

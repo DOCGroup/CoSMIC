@@ -277,13 +277,13 @@ namespace PICML
                         refName = (ref.name());
 					}
 
-			   const std::set<ComponentType> comp_types = cg.members ();
+			   const std::set<ComponentRef> comp_types = cg.members ();
 
-			   for (std::set<ComponentType>::const_iterator comp_type_iter = comp_types.begin();
+			   for (std::set<ComponentRef>::const_iterator comp_type_iter = comp_types.begin();
 			        comp_type_iter != comp_types.end ();
 					++comp_type_iter)
 					{
-						ComponentType comp_type = *comp_type_iter;
+						ComponentRef comp_type = *comp_type_iter;
 						Component comp = comp_type.ref();
 						this->push();
                         DOMElement* ele = this->doc_->createElement (XStr ("instance"));

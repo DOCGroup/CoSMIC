@@ -118,7 +118,8 @@ namespace PICML
 
   void PackageVisitor::Visit_RootFolder(const RootFolder& rf)
   {
-    {
+    { // Extra scopes to avoid clashing for-loop counter variable names
+      // with MSVC6's compiler. Yuck!
       std::set<ComponentImplementations>
         folders = rf.ComponentImplementations_kind_children();
       for (std::set<ComponentImplementations>::iterator iter = folders.begin();
@@ -560,7 +561,7 @@ namespace PICML
   {
     this->push();
     DOMElement* ele = this->doc_->createElement (XStr ("realizes"));
-    const ComponentType cref = pi.dstPackageInterface_end();
+    const ComponentRef cref = pi.dstPackageInterface_end();
     const Component comp  = cref.ref();
     std::string refName (comp.name());
     refName += ".ccd";
@@ -611,17 +612,17 @@ namespace PICML
 
   void PackageVisitor::Visit_ComponentContainer(const ComponentContainer& cc)
   {
-    std::set<ComponentType> cts = cc.ComponentType_kind_children();
-    for (std::set<ComponentType>::iterator iter = cts.begin();
+    std::set<ComponentRef> cts = cc.ComponentRef_kind_children();
+    for (std::set<ComponentRef>::iterator iter = cts.begin();
          iter != cts.end();
          ++iter)
       {
-        ComponentType ct = *iter;
+        ComponentRef ct = *iter;
         ct.Accept (*this);
       }
   }
 
-  void PackageVisitor::Visit_ComponentType(const ComponentType& ct)
+  void PackageVisitor::Visit_ComponentRef(const ComponentRef& ct)
   {
     Component comp = ct.ref();
     comp.Accept (*this);
@@ -884,7 +885,7 @@ namespace PICML
   void PackageVisitor::Visit_Implements(const Implements& impl)
   {
     this->push();
-    const ComponentType iface = impl.dstImplements_end();
+    const ComponentRef iface = impl.dstImplements_end();
     const Component ref = iface.ref();
     std::string refName (ref.name());
     refName += ".ccd";
@@ -960,7 +961,7 @@ namespace PICML
         instance->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
         this->idMap_[std::string (comp.name())] = uniqueName;
         instance->appendChild (this->createSimpleContent ("name",
-                                                                comp.name()));
+                                                          comp.name()));
         std::string refName = comp.name();
         refName += ".cpd";
         DOMElement* refEle = this->doc_->createElement (XStr ("package"));
@@ -968,24 +969,58 @@ namespace PICML
         instance->appendChild (refEle);
         this->curr_->appendChild (instance);
       }
+    {
+      const std::set<invoke> invokes = assembly.invoke_kind_children();
+      for (std::set<invoke>::const_iterator iter = invokes.begin();
+           iter != invokes.end();
+           ++iter)
+        {
+          invoke iv = *iter;
+          iv.Accept (*this);
+        }
+    }
+    {
+      const std::set<emit> emits = assembly.emit_kind_children();
+      for (std::set<emit>::const_iterator iter = emits.begin();
+           iter != emits.end();
+           ++iter)
+        {
+          emit ev = *iter;
+          ev.Accept (*this);
+        }
+    }
+    {
+      const std::set<publish> publishers = assembly.publish_kind_children();
+      for (std::set<publish>::const_iterator iter = publishers.begin();
+           iter != publishers.end();
+           ++iter)
+        {
+          publish ev = *iter;
+          ev.Accept (*this);
+        }
+    }
+    {
+      const std::set<deliverTo> deliverTos = assembly.deliverTo_kind_children();
+      for (std::set<deliverTo>::const_iterator iter = deliverTos.begin();
+           iter != deliverTos.end();
+           ++iter)
+        {
+          deliverTo dv = *iter;
+          dv.Accept (*this);
+        }
+    }
+    {
+      const std::set<PublishConnector>
+        connectors = assembly.PublishConnector_kind_children();
+      for (std::set<PublishConnector>::const_iterator iter = connectors.begin();
+           iter != connectors.end();
+           ++iter)
+        {
+          PublishConnector conn = *iter;
+          conn.Accept (*this);
+        }
+    }
 
-    const std::set<invoke> invokes = assembly.invoke_kind_children();
-    for (std::set<invoke>::const_iterator it = invokes.begin();
-         it != invokes.end();
-         ++it)
-      {
-        invoke iv = *it;
-        iv.Accept (*this);
-      }
-
-    const std::set<emit> emits = assembly.emit_kind_children();
-    for (std::set<emit>::const_iterator it2 = emits.begin();
-         it2 != emits.end();
-         ++it2)
-      {
-        emit ev = *it2;
-        ev.Accept (*this);
-      }
     this->pop();
 
     // Dump out an ComponentImplementationDescription file
@@ -1085,14 +1120,86 @@ namespace PICML
     this->pop();
   }
 
-  void PackageVisitor::Visit_PublishConnector(const PublishConnector&)
-  {}
+  void PackageVisitor::Visit_publish(const publish& ev)
+  {
+    // Get the publisher end
+    const OutEventPort publisher = ev.srcpublish_end();
 
-  void PackageVisitor::Visit_publish(const publish&)
-  {}
+    // Get the connector end
+    const PublishConnector connector = ev.dstpublish_end();
 
-  void PackageVisitor::Visit_deliverTo(const deliverTo&)
-  {}
+    // Create an entry in the publishers_ map
+    this->publishers_[std::string (connector.name())] = publisher;
+  }
+
+  void PackageVisitor::Visit_deliverTo(const deliverTo& dv)
+  {
+    // Get the connector end
+    const  PublishConnector connector = dv.srcdeliverTo_end();
+
+    // Get the consumer end
+    const InEventPort consumer = dv.dstdeliverTo_end();
+
+    // Create an entry in the consumers_ map
+    this->consumers_.insert (make_pair (std::string (connector.name()),
+                                        consumer));
+  }
+
+  void PackageVisitor::Visit_PublishConnector(const PublishConnector& pubctor)
+  {
+    std::string ctor = pubctor.name();
+
+    // Get Publisher
+    const OutEventPort publisher = this->publishers_[ctor];
+    const Component publisher_comp = publisher.Component_parent();
+
+    for (std::multimap<std::string, InEventPort>::const_iterator
+           iter = this->consumers_.lower_bound (ctor);
+         iter != this->consumers_.upper_bound (ctor);
+         ++iter)
+      {
+        this->push();
+
+        DOMElement* ele = this->doc_->createElement (XStr ("connection"));
+        this->curr_->appendChild (ele);
+        this->curr_ = ele;
+
+        // Get Consumer
+        const InEventPort consumer = iter->second;
+        const Component consumer_comp = consumer.Component_parent();
+
+        // Create connection(s)
+        std::string connection = consumer.name();
+        connection += "_";
+        connection += publisher.name();
+        ele->appendChild (this->createSimpleContent ("name", connection));
+
+        // Publisher endPoint
+        DOMElement* endPoint
+          = this->doc_->createElement (XStr ("internalEndpoint"));
+        endPoint->appendChild (this->createSimpleContent ("portName",
+                                                          publisher.name()));
+        // Publisher instance
+        DOMElement* instance = this->doc_->createElement (XStr ("instance"));
+        instance->setAttribute (XStr ("xmi:idref"),
+                                XStr (this->idMap_[std::string (publisher_comp.name())]));
+        endPoint->appendChild (instance);
+        ele->appendChild (endPoint);
+
+        // Consumer endPoint
+        endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
+        endPoint->appendChild (this->createSimpleContent ("portName",
+                                                          consumer.name()));
+        // Consumer instance
+        instance = this->doc_->createElement (XStr ("instance"));
+        instance->setAttribute (XStr ("xmi:idref"),
+                                XStr (this->idMap_[std::string (consumer_comp.name())]));
+        endPoint->appendChild (instance);
+        ele->appendChild (endPoint);
+
+        this->pop();
+      }
+  }
 
   void PackageVisitor::Visit_MonolithExecParameter(const MonolithExecParameter&)
   {}

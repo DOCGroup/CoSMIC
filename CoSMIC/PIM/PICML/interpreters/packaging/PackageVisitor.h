@@ -108,7 +108,7 @@ namespace PICML
 
     virtual void Visit_ComponentTypes(const ComponentTypes&);
     virtual void Visit_ComponentContainer(const ComponentContainer&);
-    virtual void Visit_ComponentType(const ComponentType&);
+    virtual void Visit_ComponentRef(const ComponentRef&);
     virtual void Visit_ComponentPropertyDescription(const ComponentPropertyDescription&);
     virtual void Visit_ComponentProperty(const ComponentProperty&);
     virtual void Visit_ComponentInfoProperty(const ComponentInfoProperty&);
@@ -207,7 +207,6 @@ namespace PICML
     virtual void Visit_Event(const Event&){};
     virtual void Visit_AttributeMember(const AttributeMember&){};
     virtual void Visit_ManagesComponent(const ManagesComponent&){};
-    virtual void Visit_ComponentRef(const ComponentRef&){};
     virtual void Visit_ComponentFactory(const ComponentFactory&){};
     virtual void Visit_Object(const Udm::Object&){};
 
@@ -221,6 +220,15 @@ namespace PICML
     XMLFormatTarget*    target_;
     std::string         outputPath_;
     std::stack<DOMElement*> curr_stack_;
+
+    // Maintain association between component instances and corresponding
+    // xmi:id assigned to them.
     std::map<std::string, std::string> idMap_;
+
+    // Maintain associations between PublishConnector and event publishers
+    std::map<std::string, OutEventPort> publishers_;
+
+    // Maintain associations between PublishConnector and event consumers
+    std::multimap<std::string, InEventPort> consumers_;
   };
 }

@@ -1,7 +1,97 @@
+Wed Aug 25 17:39:29 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * Installer/RegisterParadigm/RegisterParadigm.def: Fixed a really
+          stupid bug where the paradigm unregister function was not
+          exported from the DLL. This caused all sorts of problems during
+          the creation of the PICML installer. Doh!
+
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:
+        * Installer/RegisterParadigm/RegisterParadigm.dsp:
+
+          Minor modifications to installer message outputs.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICMLTemplate.xme:
+
+          Modifications to the meta which include renaming ComponentType
+          to ComponentRef, addition of support for hierarchical component
+          assemblies, additional constraints to ensure
+          "correct-by-construction" of PICML models.
+
+        * PIM/PICML/examples/RobotAssembly.xme: Updated to reflect the
+          changes in the meta.
+
+        * PIM/PICML/interpreters/packaging/PICML.h:
+        * PIM/PICML/interpreters/packaging/PICML.cpp:
+        * PIM/PICML/interpreters/packaging/PICML.xsd:
+        * PIM/PICML/interpreters/packaging/PackageComponent.dsp:
+        * PIM/PICML/interpreters/packaging/PackageVisitor.h:
+        * PIM/PICML/interpreters/packaging/PackageVisitor.cpp:
+        * PIM/PICML/interpreters/packaging/UdmApp.cpp:
+
+          Added support for publishes keyword. Modifications to reflect
+          changes in meta.
+
+        * PIM/PICML/interpreters/plan/DeploymentPlan.dsp:
+        * PIM/PICML/interpreters/plan/PICML.h:
+        * PIM/PICML/interpreters/plan/PICML.cpp:
+        * PIM/PICML/interpreters/plan/PICML.xsd:
+        * PIM/PICML/interpreters/plan/PlanVisitor.h:
+        * PIM/PICML/interpreters/plan/PlanVisitor.cpp:
+        * PIM/PICML/interpreters/MPC/Component/Component.dsp:
+        * PIM/PICML/interpreters/MPC/Component/ComponentLib.idl:
+        * PIM/PICML/interpreters/MPC/Component/MPCStream.cpp:
+        * PIM/PICML/interpreters/MPC/Component/PICML.h:
+        * PIM/PICML/interpreters/MPC/Component/PICML.cpp:
+        * PIM/PICML/interpreters/cidl/Component/Cidlc_Visitor.h:
+        * PIM/PICML/interpreters/cidl/Component/Component.dsp:
+        * PIM/PICML/interpreters/cidl/Component/PICML.h:
+        * PIM/PICML/interpreters/cidl/Component/PICML.cpp:
+        * PIM/PICML/interpreters/domain/Domain.dsp:
+        * PIM/PICML/interpreters/domain/DomainVisitor.h:
+        * PIM/PICML/interpreters/domain/PICML.h:
+        * PIM/PICML/interpreters/domain/PICML.xsd:
+        * PIM/PICML/interpreters/domain/PICML.cpp:
+
+          Updated to reflect changes in meta-model.
+
+
+        * PIM/PICML/paradigms/IDML-uml.xme:
+        * PIM/PICML/paradigms/PredefinedTypes.xme:
+
+          Removed these files are they are no longer needed.
+
+        * PIM/PICML/interpreters/MPC/Component/Component.ncb:
+        * PIM/PICML/interpreters/MPC/Component/ComponentLib.h:
+        * PIM/PICML/interpreters/cidl/Component/Component.ncb:
+        * PIM/PICML/interpreters/cidl/Component/ComponentLib.h:
+        * PIM/PICML/interpreters/cidl/Component/ComponentLib_i.c:
+        * PSM/CCM/CADML/Component/BONComponent.ncb:
+        * PSM/CCM/CADML/Component/BONComponent.opt:
+        * PSM/CCM/CADML/Component/CADMLBONComponent.plg:
+        * PSM/CCM/EQAL/interpreters/BON2Component.ncb:
+        * PSM/CCM/EQAL/interpreters/BON2Component.opt:
+        * PSM/CCM/EQAL/interpreters/GenerateAllBON2Component.plg:
+        * PSM/CCM/MIDCESS/interpreters/BON2Component.ncb:
+        * PSM/CCM/MIDCESS/interpreters/BON2Component.opt:
+        * PSM/CCM/MIDCESS/interpreters/TargetDataMLBON2Component.plg:
+        * PSM/CCM/OCML/interpreters/Configurator/Configurator.ncb:
+        * PSM/CCM/OCML/interpreters/Configurator/Configurator.opt:
+        * PSM/CCM/OCML/interpreters/Configurator/Configurator.plg:
+        * PSM/CCM/OCML/interpreters/OCML_Interpreter/BON2Component.ncb:
+        * PSM/CCM/OCML/interpreters/OCML_Interpreter/BON2Component.opt:
+        * PSM/CCM/OCML/interpreters/OCML_Interpreter/OCMLBON2Component.plg:
+
+          Removed these crap. All these are generated files and have no
+          place in CVS.
+
 Wed Aug 25 14:43:48 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
-        
+
           Removed the trailing 'D' from the Xerces library name.
           MPC can add a 'd' for the debug version on Windows
           and it will work since Windows is case-insensitive. This
@@ -11,20 +101,20 @@ Wed Aug 25 13:52:53 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/XercesString.cpp:
         * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
-        
+
           Fixed VC6 compile errors.
 
 Wed Aug 25 12:54:51 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
-        
+
           Changed instances of XERCES_ROOT to XERCESROOT, as per
           Kitty's request.
 
 Wed Aug 18 16:02:34 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
-        
+
           Replaced an overlooked string containing "IDML" with
           the substring replaced by "PICML".
 
@@ -32,7 +122,7 @@ Wed Aug 18 15:44:59 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/paradigms/Icons/component.bmp:
         * PIM/PICML/paradigms/Icons/componentref.bmp:
-        
+
           Replaced the icons with the default icon used by GME in
           models for the metamodel element Model. The corresponding
           reference icon has the usual shortcut arrow added to the
@@ -40,7 +130,7 @@ Wed Aug 18 15:44:59 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
 Mon Aug 2 20:17:28 CDT 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/MPC
-          Project for creation and generation of MPC files to build 
+          Project for creation and generation of MPC files to build
           Components
 
         * PIM/PICML/icons/comp-proj.bmp:
@@ -66,7 +156,7 @@ Mon Aug 2 20:17:28 CDT 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/MPC/Component/ComponentDll.h:
         * PIM/PICML/MPC/Component/ComponentDll.cpp:
 
-          Interpreter files 
+          Interpreter files
 
         * PIM/PICML/MPC/Component/generate_export.pl:
           Perl script to generate the export file
@@ -76,7 +166,7 @@ Mon Aug 2 20:17:28 CDT 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 Mon Aug  2 08:56:29 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/IDML/*.*:
-        
+
           Removed the IDML directory and all its contents. Everything in it
           has been integrated into PICML.
 
@@ -84,7 +174,7 @@ Mon Aug  2 08:25:15 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/docs/Importing_IDL_PDF.pdf:
         * PIM/PICML/docs/Interface_Definitions_PDF.pdf:
-        
+
           Renamed the PDF files below. Unfortunately necessary since
           they were originally added to CVS without the -kb option
           needed for PDF files, and with CVS there's no way to go
@@ -96,7 +186,7 @@ Mon Aug  2 08:13:42 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/docs/Importing_IDL.pdf:
         * PIM/PICML/docs/Interface_Definitions.doc:
         * PIM/PICML/docs/Interface_Definitions.pdf:
-        
+
           New files, documentation/user guides for the interface
           definition part of PICML, generating and importing IDL
           from/into PICML, and references for mapping PICML interface

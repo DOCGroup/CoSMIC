@@ -61,7 +61,7 @@ InputPath=.\Debug\Domain.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	regsvr32 /c "$(TargetPath)" 
+	regsvr32 /s /c "$(TargetPath)" 
 	echo regsvr32 exec. time > "$(OutDir)\regsvr32.trg" 
 	
 # End Custom Build
@@ -98,7 +98,7 @@ InputPath=.\Release\Domain.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	regsvr32 /c "$(TargetDir)\$(TargetName)" 
+	regsvr32 /s /c "$(TargetDir)\$(TargetName)" 
 	echo regsvr32 exec. time > "$(OutDir)\regsvr32.trg" 
 	
 # End Custom Build
@@ -149,6 +149,12 @@ BuildCmds= \
 
 "ComponentLib_i.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
+
+"ComponentLib_p.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+   $(BuildCmds)
+
+"dlldata.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+   $(BuildCmds)
 # End Custom Build
 
 !ELSEIF  "$(CFG)" == "Domain - Win32 Release"
@@ -169,6 +175,12 @@ BuildCmds= \
 
 "ComponentLib_i.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
+
+"ComponentLib_p.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+   $(BuildCmds)
+
+"dlldata.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+   $(BuildCmds)
 # End Custom Build
 
 !ENDIF 
@@ -180,11 +192,11 @@ SOURCE="C:\Program Files\GME\SDK\BON\ComponentObj.cpp"
 # End Source File
 # Begin Source File
 
-SOURCE=.\PICML.cpp
+SOURCE=.\DomainVisitor.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\DomainVisitor.cpp
+SOURCE=.\PICML.cpp
 # End Source File
 # Begin Source File
 
@@ -229,15 +241,15 @@ SOURCE="C:\Program Files\GME\SDK\BON\ComponentObj.h"
 # End Source File
 # Begin Source File
 
+SOURCE=.\DomainVisitor.h
+# End Source File
+# Begin Source File
+
 SOURCE="C:\Program Files\GME\SDK\BON\GMECOM.H"
 # End Source File
 # Begin Source File
 
 SOURCE=.\PICML.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\DomainVisitor.h
 # End Source File
 # Begin Source File
 

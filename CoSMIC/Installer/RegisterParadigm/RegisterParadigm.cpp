@@ -233,7 +233,7 @@ UINT __stdcall UnRegisterParadigm (MSIHANDLE hInstall)
 
   // Initialize progress bar
   InitProgressBar(hInstall, nParadigmNum, PARADIGMCOST,
-                  "Paradigm UnInstall",
+                  "Paradigm Uninstall",
                   "UnRegistering Paradigms from GME.", "UnRegistering [1]");
   // UnRegister the PICML paradigm
   std::string svParadigmName = "PICML";

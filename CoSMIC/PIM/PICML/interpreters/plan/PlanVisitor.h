@@ -132,7 +132,6 @@ namespace PICML
     virtual void Visit_ComponentProperty(const ComponentProperty&){};
     virtual void Visit_ComponentTypes(const ComponentTypes&){};
     virtual void Visit_ComponentConfigProperty(const ComponentConfigProperty&){};
-    virtual void Visit_ComponentType(const ComponentType&){};
     virtual void Visit_Resource(const Resource&){};
     virtual void Visit_SharedResource(const SharedResource&){};
     virtual void Visit_NodeReference(const NodeReference&);

@@ -444,7 +444,7 @@ MPCStream::create_cidl_defn (PICML::ImplementationArtifact& artifact)
 				impl_iter != impls.end ();
 				impl_iter ++)
 			{
-				PICML::ComponentType type = impl_iter->dstImplements_end();
+				PICML::ComponentRef type = impl_iter->dstImplements_end();
 				
 				// Get the name of the ComponentType
 				PICML::Component comp = type.ref ();
