@@ -15,7 +15,8 @@ public:
 
   virtual bool OnInit();
   void new_instance(const char* values, size_t values_size,
-                    MainFrameValueChangeListener* l);
+                    MainFrameValueChangeListener* l,
+                    const char* tree_file);
     
   OptionCategory* initialize_options();
 

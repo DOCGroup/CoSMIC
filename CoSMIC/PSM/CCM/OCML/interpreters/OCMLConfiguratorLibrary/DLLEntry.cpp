@@ -61,13 +61,14 @@ public:
 };
 
 extern "C" OCMLConfigurator_API char*
-DLLFunction(const char* values, size_t values_size)
+DLLFunction(const char* values, size_t values_size,
+            const char* tree_file)
 {
   Listener listener;
 
   wxApp& app = wxGetApp();
   ((MainApp*)(&app))->new_instance(values, values_size,
-                                   &listener);
+                                   &listener, tree_file);
   wxGetApp().MainLoop();
 
   char* result = 0;

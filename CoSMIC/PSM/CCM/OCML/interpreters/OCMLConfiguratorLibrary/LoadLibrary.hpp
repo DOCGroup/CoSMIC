@@ -16,7 +16,7 @@ public:
   OCML_Configurator_Library();
   ~OCML_Configurator_Library();
 
-  char* call_function(std::string& values);
+  char* call_function(std::string& values, const std::string& file_name);
 
 private:
   HMODULE lib_;

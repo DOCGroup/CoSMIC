@@ -13,6 +13,6 @@
 typedef char* (*DLLFunctionPtr) (const char*, size_t);
 
 extern "C" OCMLConfigurator_API char*
-DLLFunction(const char* values, size_t values_size);
+DLLFunction(const char* values, size_t values_size, const char* tree_file);
 
 #endif // DLL_ENTRY_HPP

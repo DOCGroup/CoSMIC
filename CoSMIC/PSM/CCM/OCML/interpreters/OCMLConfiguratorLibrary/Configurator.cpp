@@ -29,7 +29,7 @@ Configurator::Configurator(const char* tree_file)
                        std::back_inserter(tree_file_path), '"');
       tree_file_path += "\\bin\\";
     }
-  tree_file_path += "orb_tree.xml";
+  tree_file_path += tree_file;
 
   try {
     // parse the options tree

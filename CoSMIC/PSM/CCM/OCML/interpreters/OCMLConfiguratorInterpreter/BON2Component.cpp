@@ -90,9 +90,12 @@ namespace BON
   void Component::invokeEx( Project& project, FCO& currentFCO,
                             const std::set<FCO>& setSelectedFCOs, long lParam )
   {
+    const char* error_message =
+      "An implementation artifact or RTEC resource factory should be selected";
+
     if (setSelectedFCOs.empty())
       {
-        AfxMessageBox("An implementation artifact should be selected");
+        AfxMessageBox(error_message);
         return;
       }
 
@@ -100,14 +103,23 @@ namespace BON
     BON::Attribute attr = selected_fco->getAttribute("configuration");
     if (!attr)
       {
-        AfxMessageBox("An implementation artifact should be selected");
+        AfxMessageBox(error_message);
         return;
       }
     
     std::string old_value = attr->getStringValue();
 
+    BON::Attribute fn_attr = selected_fco->getAttribute("tree_file_name");
+    if (!fn_attr)
+      {
+        AfxMessageBox(error_message);
+        return;
+      }
+    
+    std::string tree_file_name = attr->getStringValue();
+
     OCML_Configurator_Library lib;
-    char* new_values = lib.call_function(old_value);
+    char* new_values = lib.call_function(old_value, tree_file_name);
 
     if (new_values)
       attr->setStringValue(std::string(new_values));

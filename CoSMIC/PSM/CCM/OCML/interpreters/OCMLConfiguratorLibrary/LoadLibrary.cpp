@@ -45,7 +45,8 @@ OCML_Configurator_Library::~OCML_Configurator_Library()
   FreeLibrary(lib_);
 }
 
-char* OCML_Configurator_Library::call_function(std::string& values)
+char* OCML_Configurator_Library::call_function(std::string& values,
+                                               const std::string& tree_file)
 {
-  return (func_)(values.c_str(), values.size());
+  return (func_)(values.c_str(), values.size(), tree_file.c_str());
 }
