@@ -1,0 +1,161 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "1 TYPELIB ""DecoratorLib.tlb""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "Decorator Module\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "Decorator\0"
+            VALUE "LegalCopyright", "Copyright 2001\0"
+            VALUE "OriginalFilename", "Decorator.DLL\0"
+            VALUE "ProductName", "Decorator Module\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "OLESelfRegister", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// REGISTRY
+//
+
+IDR_DECORATOR           REGISTRY DISCARDABLE    "Decorator.rgs"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP_MEMBER       BITMAP  DISCARDABLE     "..\\paradigms\\icons\\member.bmp"
+IDB_BITMAP_STRING       BITMAP  DISCARDABLE     "..\\paradigms\\icons\\string.bmp"
+IDB_BITMAP_COLLECTIONREF BITMAP  DISCARDABLE     "..\\paradigms\\icons\\variablecollectionref.bmp"
+IDB_BITMAP_ALIASREF     BITMAP  DISCARDABLE     "..\\paradigms\\icons\\aliasref.bmp"
+IDB_BITMAP_BOOLEAN      BITMAP  DISCARDABLE     "..\\paradigms\\icons\\boolean.bmp"
+IDB_BITMAP_BOXEDREF     BITMAP  DISCARDABLE     "..\\paradigms\\icons\\boxedref.bmp"
+IDB_BITMAP_BYTE         BITMAP  DISCARDABLE     "..\\paradigms\\icons\\byte.bmp"
+IDB_BITMAP_COMPONENTREF BITMAP  DISCARDABLE     "..\\paradigms\\icons\\componentref.bmp"
+IDB_BITMAP_ENUMREF      BITMAP  DISCARDABLE     "..\\paradigms\\icons\\enumref.bmp"
+IDB_BITMAP_EVENTREF     BITMAP  DISCARDABLE     "..\\paradigms\\icons\\eventref.bmp"
+IDB_BITMAP_GENERICOBJECT BITMAP  DISCARDABLE     "..\\paradigms\\icons\\genericobject.bmp"
+IDB_BITMAP_GENERICVALUE BITMAP  DISCARDABLE     "..\\paradigms\\icons\\genericvalue.bmp"
+IDB_BITMAP_GENERICVALUEOBJECT BITMAP  DISCARDABLE     "..\\paradigms\\icons\\genericvalueobject.bmp"
+IDB_BITMAP_LONG         BITMAP  DISCARDABLE     "..\\paradigms\\icons\\long.bmp"
+IDB_BITMAP_OBJECTREF    BITMAP  DISCARDABLE     "..\\paradigms\\icons\\objectref.bmp"
+IDB_BITMAP_REALNUMBER   BITMAP  DISCARDABLE     "..\\paradigms\\icons\\realnumber.bmp"
+IDB_BITMAP_VALUEREF     BITMAP  DISCARDABLE     "..\\paradigms\\icons\\valueref.bmp"
+IDB_BITMAP_COMPONENTFACTORYREF BITMAP  DISCARDABLE     "..\\paradigms\\icons\\componentfactoryref.bmp"
+IDB_BITMAP_SWITCHEDAGGREGATEREF BITMAP  DISCARDABLE     "..\\paradigms\\icons\\switchedaggregateref.bmp"
+IDB_BITMAP_TYPEKIND     BITMAP  DISCARDABLE     "..\\paradigms\\icons\\typekind.bmp"
+IDB_BITMAP_TYPEENCODING BITMAP  DISCARDABLE     "..\\paradigms\\icons\\typeencoding.bmp"
+IDB_BITMAP_SHORTINTEGER BITMAP  DISCARDABLE     "..\\paradigms\\icons\\short.bmp"
+IDB_BITMAP_COMPONENT    BITMAP  DISCARDABLE     "..\\paradigms\\icons\\component.bmp"
+IDB_BITMAP_RECEPTACLE_RT BITMAP  DISCARDABLE     "..\\paradigms\\icons\\receptacle_rt.bmp"
+IDB_BITMAP_INEVENT_LF   BITMAP  DISCARDABLE     "..\\paradigms\\icons\\inevent_lf.bmp"
+IDB_BITMAP_INEVENT_RT   BITMAP  DISCARDABLE     "..\\paradigms\\icons\\inevent_rt.bmp"
+IDB_BITMAP_OUTEVENT_LF  BITMAP  DISCARDABLE     "..\\paradigms\\icons\\outevent_lf.bmp"
+IDB_BITMAP_OUTEVENT_RT  BITMAP  DISCARDABLE     "..\\paradigms\\icons\\outevent_rt.bmp"
+IDB_BITMAP_RECEPTACLE_LF BITMAP  DISCARDABLE     "..\\paradigms\\icons\\receptacle_lf.bmp"
+IDB_BITMAP_FACET        BITMAP  DISCARDABLE     "..\\paradigms\\icons\\providedrequestport.bmp"
+IDB_BITMAP_AGGREGATEREF BITMAP  DISCARDABLE     "..\\paradigms\\icons\\aggregateref.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PROJNAME            "Decorator"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+1 TYPELIB "DecoratorLib.tlb"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

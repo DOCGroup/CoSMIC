@@ -1,3 +1,7 @@
+Wed Jul 28 19:30:55 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * 
+
 Wed Jul 28 15:01:50 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * 
@@ -23,18 +27,31 @@ Wed Jul 28 14:51:19 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
         
           Removed these unused icons from the repository.
           
+        * PICML/decorators/CommonError.cpp:
+        * PICML/decorators/CommonError.h:
+        * PICML/decorators/CommonSmart.h:
+        * PICML/decorators/Decorator.cpp:
+        * PICML/decorators/Decorator.dsp:
+        * PICML/decorators/Decorator.dsw:
+        * PICML/decorators/Decorator.h:
         * PICML/decorators/Decorator.rc:
+        * PICML/decorators/Decorator.rgs:
+        * PICML/decorators/DecoratorApp.cpp:
+        * PICML/decorators/DecoratorApp.def:
+        * PICML/decorators/DecoratorConfig.h:
+        * PICML/decorators/DecoratorLib.idl:
         * PICML/decorators/DecoratorStd.h:
+        * PICML/decorators/DecoratorUtil.cpp:
+        * PICML/decorators/DecoratorUtil.h:
         * PICML/decorators/IDMLDecorators.cpp:
         * PICML/decorators/IDMLDecorators.h:
+        * PICML/decorators/MaskedBitmap.cpp:
+        * PICML/decorators/MaskedBitmap.h:
+        * PICML/decorators/StdAfx.cpp:
+        * PICML/decorators/StdAfx.h:
         * PICML/decorators/resource.h:
-        * PICML/decorators/Decorator.dsp:
         
-          Modified the drawing of component ports to:
-          - have a transparent background.
-          - use 5 letters instead of 3 for the displayed name.
-          - right-justify the names of ports on the right side
-            of the component.
+          New directory and files for PICML decorator.
 
 Tue Jul 27 17:38:16 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
