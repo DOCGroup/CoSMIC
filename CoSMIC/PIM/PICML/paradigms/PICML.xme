@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Thu Sep 23 14:51:05 2004" mdate="Thu Sep 23 14:51:13 2004" metaguid="{99CB7435-DEAD-BEEF-FEED-DAD000000001}" metaname="MetaGME">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Thu Sep 23 14:51:05 2004" mdate="Thu Sep 30 15:51:49 2004" metaguid="{99CB7435-DEAD-BEEF-FEED-DAD000000001}" metaname="MetaGME">
 	<name>PICML</name>
 	<comment></comment>
 	<author></author>
@@ -4779,19 +4779,19 @@
 					<value>7</value>
 				</regnode>
 				<regnode name="ComponentLibraries" isopaque="yes">
-					<value>3</value>
+					<value>9</value>
 				</regnode>
 				<regnode name="ComponentMetrics" isopaque="yes">
-					<value>8</value>
+					<value>6</value>
 				</regnode>
 				<regnode name="DataAnalysis" isopaque="yes">
-					<value>2</value>
+					<value>5</value>
 				</regnode>
 				<regnode name="InterfaceDefinition" isopaque="yes">
-					<value>1</value>
+					<value>2</value>
 				</regnode>
 				<regnode name="LibraryArtifact" isopaque="yes">
-					<value>4</value>
+					<value>3</value>
 				</regnode>
 				<regnode name="MainAspect" isopaque="yes">
 					<value>1</value>
@@ -4800,28 +4800,28 @@
 					<value>5</value>
 				</regnode>
 				<regnode name="NodeMapping" isopaque="yes">
-					<value>10</value>
+					<value>1</value>
 				</regnode>
 				<regnode name="Package" isopaque="yes">
 					<value>2</value>
 				</regnode>
 				<regnode name="Packaging" isopaque="yes">
-					<value>5</value>
+					<value>10</value>
 				</regnode>
 				<regnode name="ResourceView" isopaque="yes">
 					<value>3</value>
 				</regnode>
 				<regnode name="RtecConfigAspect" isopaque="yes">
-					<value>6</value>
+					<value>4</value>
 				</regnode>
 				<regnode name="Target" isopaque="yes">
-					<value>7</value>
+					<value>8</value>
 				</regnode>
 				<regnode name="TypeDefinintionAspect" isopaque="yes">
 					<value>1</value>
 				</regnode>
 				<regnode name="Workspace" isopaque="yes">
-					<value>9</value>
+					<value>7</value>
 				</regnode>
 			</regnode>
 		</regnode>
@@ -40891,7 +40891,7 @@ rrName = referedbyMember</value>
 				<connpoint role="src" target="id-0066-00000061"/>
 				<connpoint role="dst" target="id-0067-0000007a"/>
 			</connection>
-			<set id="id-0069-00000013" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-0000005c id-0066-0000004c id-0066-0000004d id-0067-00000001 id-0066-0000004b id-0067-00000003 id-0067-00000060 id-0066-0000005d id-0066-00000048 id-0066-00000059 id-0066-0000005b id-0066-0000005e id-0066-0000004a id-0066-00000049">
+			<set id="id-0069-00000013" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000049 id-0066-0000004a id-0066-0000005e id-0066-0000005b id-0066-00000059 id-0066-00000048 id-0066-0000005d id-0067-00000060 id-0067-00000003 id-0066-0000004b id-0067-00000001 id-0066-0000004d id-0066-0000004c id-0066-0000005c">
 				<name>NamedTypeAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -45095,7 +45095,7 @@ endif))]]></value>
 				<connpoint role="src" target="id-0066-00000085"/>
 				<connpoint role="dst" target="id-0066-00000087"/>
 			</connection>
-			<set id="id-0069-00000014" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-00000061 id-0066-00000078 id-0067-00000006 id-0067-00000007 id-0067-00000004 id-0067-00000005 id-0066-00000067 id-0066-00000071 id-0066-00000065 id-0067-00000063 id-0067-00000066 id-0066-00000077 id-0067-00000065 id-0066-00000079 id-0066-00000074 id-0066-00000075 id-0067-00000064 id-0066-0000006e id-0066-00000087 id-0066-00000066 id-0067-00000009 id-0066-00000063 id-0067-00000008 id-0066-0000006f id-0067-00000062">
+			<set id="id-0069-00000014" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-00000062 id-0066-0000006f id-0067-00000008 id-0066-00000063 id-0067-00000009 id-0066-00000066 id-0066-00000087 id-0066-0000006e id-0067-00000064 id-0066-00000075 id-0066-00000074 id-0066-00000079 id-0067-00000065 id-0066-00000077 id-0067-00000066 id-0067-00000063 id-0066-00000065 id-0066-00000071 id-0066-00000067 id-0067-00000005 id-0067-00000004 id-0067-00000007 id-0067-00000006 id-0066-00000078 id-0067-00000061">
 				<name>InheritableAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -46565,7 +46565,7 @@ rrName = referedbyReturnType</value>
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-00000008" kind="ParadigmSheet" relid="0x6" childrelidcntr="0x6c">
+		<model id="id-0065-00000008" kind="ParadigmSheet" relid="0x6" childrelidcntr="0x6e">
 			<name>ComponentType</name>
 			<regnode name="decorator" isopaque="yes">
 				<value>MGA.Decorator.IDMLDecorator</value>
@@ -47926,6 +47926,63 @@ dName = dstManagesComponent</value>
 					<value></value>
 				</attribute>
 			</reference>
+			<reference id="id-0067-0000007b" kind="ModelProxy" role="ModelProxy" relid="0x6d" referred="id-0066-0000006f">
+				<name>ReadonlyAttribute</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>148,293</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeInfoShown" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</reference>
 			<connection id="id-0068-00000104" kind="HasAttribute" role="HasAttribute" relid="0x37">
 				<name>HasAttribute</name>
 				<regnode name="autorouterPref" isopaque="yes">
@@ -48186,6 +48243,23 @@ dName = dstManagesComponent</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-000000a3"/>
 				<connpoint role="dst" target="id-0066-000000a9"/>
+			</connection>
+			<connection id="id-0068-000002fd" kind="Containment" role="Containment" relid="0x6e">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Es</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000009e"/>
+				<connpoint role="src" target="id-0067-0000007b"/>
 			</connection>
 			<set id="id-0069-00000005" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-0000000c id-0067-0000000d id-0067-0000000e id-0066-000000a4 id-0066-000000a5 id-0066-0000009f id-0066-000000a0 id-0066-0000009e id-0066-000000ad id-0066-000000a9 id-0066-000000ac">
 				<name>ComponentAspect</name>
@@ -54394,7 +54468,7 @@ rrName = referedbyComponentPackageReference</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>50,216</value>
+							<value>246,384</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -54487,7 +54561,7 @@ rrName = referedbyComponentPackageReference</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>36,27</value>
+							<value>267,160</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -54535,7 +54609,7 @@ rrName = referedbyComponentPackageReference</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>316,251</value>
+							<value>512,384</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -54628,7 +54702,7 @@ rrName = referedbyComponentPackageReference</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>470,349</value>
+							<value>666,286</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -54705,7 +54779,7 @@ dName = dstpackage</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>522,277</value>
+							<value>718,410</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -54726,7 +54800,7 @@ dName = dstpackage</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>631,251</value>
+							<value>827,384</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -67476,7 +67550,7 @@ rrName = referedbyNodeReference</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>344,69</value>
+							<value>246,167</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -67553,7 +67627,7 @@ dName = dstMetricConnection</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>561,272</value>
+							<value>925,545</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -67625,7 +67699,7 @@ dName = dstMetricConnection</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>477,412</value>
+							<value>841,685</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -67697,7 +67771,7 @@ dName = dstMetricConnection</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>575,454</value>
+							<value>939,727</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -67769,7 +67843,7 @@ dName = dstMetricConnection</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>659,447</value>
+							<value>1023,720</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -67841,7 +67915,7 @@ dName = dstMetricConnection</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>757,440</value>
+							<value>1121,713</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -67913,7 +67987,7 @@ dName = dstMetricConnection</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>619,376</value>
+							<value>983,649</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -67943,7 +68017,7 @@ dName = dstMetricConnection</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>15,237</value>
+							<value>15,398</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -68015,7 +68089,7 @@ dName = dstMetricConnection</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>120,188</value>
+							<value>155,279</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -68108,7 +68182,7 @@ dName = dstTimerConnection</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>498,174</value>
+							<value>512,230</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -68183,7 +68257,7 @@ dName = dstTimerConnection</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>617,181</value>
+							<value>617,230</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -68258,7 +68332,7 @@ dName = dstTimerConnection</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>323,335</value>
+							<value>547,734</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -68294,7 +68368,7 @@ dName = dstTimerConnection</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>267,237</value>
+							<value>666,447</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -68444,7 +68518,7 @@ dName = dstTimerConnection</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>169,13</value>
+							<value>211,13</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -68692,7 +68766,7 @@ rrName = referedbyOperationRef</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>64,419</value>
+							<value>274,748</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -68766,7 +68840,7 @@ rrName = referedbyEventRef</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>211,482</value>
+							<value>15,559</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -68933,7 +69007,7 @@ dName = dstTimerEventSinkConn</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>785,118</value>
+							<value>1107,174</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -69006,7 +69080,7 @@ mName = members</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>750,265</value>
+							<value>1114,537</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -69203,7 +69277,7 @@ dName = dstWorkloadCharacteristics</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>8,20</value>
+							<value>36,13</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -69278,7 +69352,7 @@ dName = dstWorkloadCharacteristics</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>15,328</value>
+							<value>246,566</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -69846,7 +69920,7 @@ dName = dstWorkloadCharacteristics</value>
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-00000016" kind="ParadigmSheet" relid="0x2b" childrelidcntr="0x51">
+		<model id="id-0065-00000016" kind="ParadigmSheet" relid="0x2b" childrelidcntr="0x52">
 			<name>EventChannelConfiguration</name>
 			<attribute kind="AuthorInformation" status="meta">
 				<value></value>
@@ -69857,36 +69931,6 @@ dName = dstWorkloadCharacteristics</value>
 			<attribute kind="VersionInformation" status="meta">
 				<value></value>
 			</attribute>
-			<atom id="id-0066-00000182" kind="Inheritance" role="Inheritance" relid="0x133">
-				<name>Inheritance</name>
-				<regnode name="PartRegs" isopaque="yes">
-					<value></value>
-					<regnode name="Attributes" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>192,222</value>
-						</regnode>
-					</regnode>
-					<regnode name="ClassDiagram" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>136,110</value>
-						</regnode>
-					</regnode>
-					<regnode name="Constraints" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>185,236</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>290,187</value>
-						</regnode>
-					</regnode>
-				</regnode>
-			</atom>
 			<atom id="id-0066-00000183" kind="Model" role="Model" relid="0x12f">
 				<name>RTEC_Proxy</name>
 				<regnode name="PartRegs" isopaque="yes">
@@ -69900,7 +69944,7 @@ dName = dstWorkloadCharacteristics</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>764,405</value>
+							<value>1023,335</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -70002,7 +70046,7 @@ dName = dstWorkloadCharacteristics</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>575,503</value>
+							<value>1100,524</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -70116,7 +70160,7 @@ dName = dstWorkloadCharacteristics</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>365,503</value>
+							<value>848,524</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -70203,7 +70247,7 @@ dName = dstWorkloadCharacteristics</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>528,439</value>
+							<value>1053,439</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -70386,7 +70430,7 @@ dName = dstWorkloadCharacteristics</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>939,720</value>
+							<value>729,685</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -70472,7 +70516,7 @@ dName = dstRTEC_Connection</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>561,727</value>
+							<value>428,496</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -70721,7 +70765,7 @@ dName = dstRTEC_Connection</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>330,727</value>
+							<value>1044,692</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -71217,7 +71261,7 @@ dName = dstUse_RTEC_Filter</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>834,55</value>
+							<value>645,62</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -71460,7 +71504,7 @@ dName = dstUse_RTEC_Filter</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>743,720</value>
+							<value>610,559</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -72027,7 +72071,7 @@ rrName = referedbyRTEC_Resource_Factory_Reference</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>624,13</value>
+							<value>386,13</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -73159,7 +73203,7 @@ st</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1030,111</value>
+							<value>988,104</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -73234,7 +73278,7 @@ st</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1060,208</value>
+							<value>1018,208</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -73264,7 +73308,7 @@ st</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>792,209</value>
+							<value>869,202</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -73339,7 +73383,7 @@ st</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1121,209</value>
+							<value>1121,202</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -73414,7 +73458,7 @@ st</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1129,366</value>
+							<value>1158,299</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -73444,7 +73488,7 @@ st</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>814,317</value>
+							<value>913,306</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -74346,7 +74390,7 @@ self.ECSupplierControl = "reactive"]]></value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>106,13</value>
+							<value>29,55</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -74986,23 +75030,6 @@ self.ECSupplierControl = "reactive"]]></value>
 				<connpoint role="dst" target="id-0066-00000185"/>
 				<connpoint role="src" target="id-0066-000001c2"/>
 			</connection>
-			<connection id="id-0068-000002e8" kind="Containment" role="Containment" relid="0x2f">
-				<name>Containment</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ns</value>
-				</regnode>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<attribute kind="IsPort" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="Rolename" status="meta">
-					<value></value>
-				</attribute>
-				<connpoint role="src" target="id-0066-00000183"/>
-				<connpoint role="dst" target="id-0066-00000193"/>
-			</connection>
 			<connection id="id-0068-000002e9" kind="BaseInheritance" role="BaseInheritance" relid="0x30">
 				<name>BaseInheritance</name>
 				<connpoint role="src" target="id-0066-000001bf"/>
@@ -75015,14 +75042,6 @@ self.ECSupplierControl = "reactive"]]></value>
 				</regnode>
 				<connpoint role="src" target="id-0066-000001c0"/>
 				<connpoint role="dst" target="id-0066-000001c1"/>
-			</connection>
-			<connection id="id-0068-000002eb" kind="DerivedInheritance" role="DerivedInheritance" relid="0x32">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Se</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-00000184"/>
-				<connpoint role="src" target="id-0066-000001c1"/>
 			</connection>
 			<connection id="id-0068-000002ec" kind="Containment" role="Containment" relid="0x36">
 				<name>Containment</name>
@@ -75068,30 +75087,6 @@ self.ECSupplierControl = "reactive"]]></value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-00000188"/>
 				<connpoint role="src" target="id-0067-0000003b"/>
-			</connection>
-			<connection id="id-0068-000002ef" kind="BaseInheritance" role="BaseInheritance" relid="0x3a">
-				<name>BaseInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>S</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-00000182"/>
-				<connpoint role="src" target="id-0067-0000003d"/>
-			</connection>
-			<connection id="id-0068-000002f0" kind="DerivedInheritance" role="DerivedInheritance" relid="0x3b">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-00000182"/>
-				<connpoint role="dst" target="id-0067-0000003a"/>
-			</connection>
-			<connection id="id-0068-000002f1" kind="DerivedInheritance" role="DerivedInheritance" relid="0x3c">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-00000182"/>
-				<connpoint role="dst" target="id-0067-0000003b"/>
 			</connection>
 			<connection id="id-0068-000002f2" kind="Containment" role="Containment" relid="0x3d">
 				<name>Containment</name>
@@ -75161,6 +75156,14 @@ self.ECSupplierControl = "reactive"]]></value>
 				<name>HasConstraint</name>
 				<connpoint role="dst" target="id-0066-00000194"/>
 				<connpoint role="src" target="id-0066-000001ca"/>
+			</connection>
+			<connection id="id-0068-000002fc" kind="DerivedInheritance" role="DerivedInheritance" relid="0x52">
+				<name>DerivedInheritance</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>S</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000184"/>
+				<connpoint role="src" target="id-0066-000001c1"/>
 			</connection>
 			<set id="id-0069-00000010" kind="Aspect" role="Aspect" relid="0x22" members="id-0066-00000193 id-0066-00000192 id-0066-00000183 id-0066-00000185 id-0066-00000184 id-0066-0000018d id-0066-0000018a id-0066-00000197 id-0066-00000195 id-0066-0000018e id-0066-0000018f id-0066-0000018c id-0066-00000199 id-0066-00000189 id-0066-0000019c id-0066-0000019a id-0066-00000187 id-0066-00000194 id-0067-0000003c id-0067-0000003a id-0067-0000003b">
 				<name>RtecConfigAspect</name>

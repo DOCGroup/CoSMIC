@@ -1,3 +1,23 @@
+Thu Sep 30 16:13:57 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICMLTemplate.xme:
+        
+          - In EventChannelConfiguration paradigm sheet, removed
+            duplicate inheritance that had been added to proxies.
+            
+          - In EventChannelConfiguration paradigm sheet, removed
+            containment of abstract Model RTEC_Proxy in
+            EventChannelConfiguration Model, since it was causing
+            a duplicate containment error in the metainterpreter.
+            
+          - In ComponentType, added containment of Attribute in
+            Component, since it was lost in the changes of
+            
+            Thu Sep 23 15:06:37 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
 Thu Sep 23 15:06:37 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/decorators/IDMLDecorators.cpp:
