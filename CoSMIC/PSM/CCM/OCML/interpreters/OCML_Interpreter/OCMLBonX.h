@@ -7,6 +7,7 @@
 
 ///BUP
 // add your include files/class definitions here
+#include <xercesc/dom/DOM.hpp>
 ///EUP
 
 namespace OCML_BON
@@ -93,6 +94,10 @@ public:
 
 	///BUP
 	// add your own members here
+        virtual xercesc::DOMElement* xml_export(xercesc::DOMDocument* doc);
+
+protected:
+	virtual const char* get_kind_name() const = 0;
 	///EUP
 };
 
@@ -118,6 +123,10 @@ public:
 
 	///BUP
 	// add your own members here
+        virtual xercesc::DOMElement* xml_export(xercesc::DOMDocument* doc);
+
+protected:
+	virtual const char* get_kind_name() const { return "OptionCategory"; }
 	///EUP
 };
 
@@ -137,6 +146,7 @@ public:
 
 	///BUP
 	// add your own members here
+        virtual xercesc::DOMElement* xml_export(xercesc::DOMDocument* doc);
 	///EUP
 };
 
@@ -191,6 +201,10 @@ public:
 
 	///BUP
 	// add your own members here
+        virtual xercesc::DOMElement* xml_export(xercesc::DOMDocument* doc);
+
+protected:
+	virtual const char* get_kind_name() const { return "EnumOption"; }
 	///EUP
 };
 
@@ -210,6 +224,8 @@ public:
 
 	///BUP
 	// add your own members here
+protected:
+	virtual const char* get_kind_name() const { return "FlagOption"; }
 	///EUP
 };
 
@@ -266,6 +282,8 @@ public:
 
 	///BUP
 	// add your own members here
+protected:
+	virtual const char* get_kind_name() const { return "BooleanOption"; }
 	///EUP
 };
 
@@ -282,6 +300,8 @@ public:
 
 	///BUP
 	// add your own members here
+protected:
+	virtual const char* get_kind_name() const { return "Item"; }
 	///EUP
 };
 
@@ -298,6 +318,8 @@ public:
 
 	///BUP
 	// add your own members here
+protected:
+	virtual const char* get_kind_name() const { return "Item"; }
 	///EUP
 };
 
@@ -318,6 +340,8 @@ public:
 
 	///BUP
 	// add your own members here
+protected:
+	virtual const char* get_kind_name() const { return "IntegerOption"; }
 	///EUP
 };
 
@@ -338,6 +362,8 @@ public:
 
 	///BUP
 	// add your own members here
+protected:
+	virtual const char* get_kind_name() const { return "StringOption"; }
 	///EUP
 };
 

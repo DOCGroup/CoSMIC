@@ -228,21 +228,12 @@ SOURCE="C:/Program Files/GME/sdk/BON/MONImpl.cpp"
 # End Source File
 # Begin Source File
 
-SOURCE=.\OCMLBonExtension.cpp
-
-!IF  "$(CFG)" == "OCML - Win32 Debug"
-
-!ELSEIF  "$(CFG)" == "OCML - Win32 Release"
-
+SOURCE=.\OCMLBonExtension_Manual.cpp
 # SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
-SOURCE=.\OCMLBonExtension_Manual.cpp
-# SUBTRACT CPP /YX /Yc /Yu
+SOURCE=.\OCMLBonX.cpp
 # End Source File
 # Begin Source File
 
@@ -342,7 +333,7 @@ SOURCE="C:/Program Files/GME/sdk/BON/MONImpl.h"
 # End Source File
 # Begin Source File
 
-SOURCE=.\OCMLBonExtension.h
+SOURCE=.\OCMLBonX.h
 # End Source File
 # Begin Source File
 
