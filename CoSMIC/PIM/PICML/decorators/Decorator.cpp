@@ -189,14 +189,8 @@ STDMETHODIMP CDecorator::GetPortLocation( IMgaFCO *pFCO,
 	VERIFY_INIT;
 	VERIFY_LOCSET;
 
-	PortDecorator* pPort = NULL;
-	switch ( m_pDecorator->getType() ) {
-		case OBJTYPE_MODEL :
-			pPort = ( (ComponentDecorator*) m_pDecorator )->getPort( pFCO );
-			break;
-		default :
-			break;
-	}
+	PortDecorator* pPort = m_pDecorator->getPort( pFCO );
+
 	if ( pPort ) {
 		CRect cRect = pPort->getBoxLocation();
 		*sx = cRect.left;
@@ -215,14 +209,7 @@ STDMETHODIMP CDecorator::GetPorts( IMgaFCOs **portFCOs )
 	CComPtr<IMgaFCOs> spFCOs;
 	COMTHROW( spFCOs.CoCreateInstance( OLESTR( "Mga.MgaFCOs" ) ) );
 
-	vector<PortDecorator*>	vecPorts;
-	switch ( m_pDecorator->getType() ) {
-		case OBJTYPE_MODEL :
-			vecPorts = ( (ComponentDecorator*) m_pDecorator )->getPorts();
-			break;
-		default :
-			break;
-	}
+	vector<PortDecorator*>vecPorts = m_pDecorator->getPorts();
 
 	for ( unsigned int i = 0 ; i < vecPorts.size() ; i++ )
 		COMTHROW( spFCOs->Append( vecPorts[ i ]->getFCO() ) );

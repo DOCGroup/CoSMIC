@@ -1,3 +1,13 @@
+Fri Sep  3 17:11:29 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/decorators/Decorator.cpp:
+        * PIM/PICML/decorators/IDMLDecorators.cpp:
+        * PIM/PICML/decorators/IDMLDecorators.h:
+        
+          Fixed PICML decorator so that ToolTip messages are displayed
+          for ports in referenced Component model elements the same
+          as they are in the Component model element itself.
+
 Fri Sep  3 11:23:49 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/decorators/Decorator.cpp:

@@ -133,6 +133,18 @@ DecoratorBase::getLocation() const
   return m_rect;
 }
 
+vector<PortDecorator*>
+DecoratorBase::getPorts() const
+{
+	return vector<PortDecorator*> ();
+}
+
+PortDecorator*
+DecoratorBase::getPort( CComPtr<IMgaFCO> ) const
+{
+  return NULL;
+}
+
 //########################################################
 //
 //	CLASS : MemberDecorator

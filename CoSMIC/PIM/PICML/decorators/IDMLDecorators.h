@@ -45,6 +45,8 @@ using namespace std;
 
 static const char* PREF_TYPESHOWN				= "isTypeShown";
 
+class PortDecorator;
+
 //########################################################
 //
 //	CLASS : DecoratorBase
@@ -67,6 +69,9 @@ public:
   virtual CRect     getLocation() const;
   virtual void 			draw( CDC* pDC ) = 0;
   virtual void      LoadBitmap() = 0;
+
+	virtual vector<PortDecorator*>  getPorts() const;
+	virtual PortDecorator*			    getPort( CComPtr<IMgaFCO> ) const;
 
 protected:
   DecoratorBase();
@@ -165,8 +170,8 @@ public:
   virtual void  draw( CDC* pDC );
   virtual void  LoadBitmap();
 
-	vector<PortDecorator*>  getPorts() const;
-	PortDecorator*			    getPort( CComPtr<IMgaFCO> ) const;
+	virtual vector<PortDecorator*>  getPorts() const;
+	virtual PortDecorator*			    getPort( CComPtr<IMgaFCO> ) const;
 
 private:
 	void loadPorts();
