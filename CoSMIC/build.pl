@@ -20,6 +20,7 @@ $dsp_args = "-v -s -Release"; # -rebuild
   "PSM/CCM/OCML/interpreters/OCMLConfiguratorInterpreter",
   "PSM/CCM/OCML/interpreters/TAOServiceConfExporter",
   "PSM/CCM/OCML/interpreters/TAOServiceConfExportInterpreter",
+  "PIM/PICML/interpreters/IDLGenerator"
 #  "PSM/CCM/COMPASS/interpreters",
 #  "PSM/CCM/EQAL/interpreters",
 #  "PSM/CCM/FESML/interpreters",
