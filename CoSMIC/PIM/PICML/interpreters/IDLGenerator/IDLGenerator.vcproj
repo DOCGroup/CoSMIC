@@ -53,7 +53,7 @@
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				ImportLibrary="$(OutDir)/IDLGenerator.lib"/>
+				ImportLibrary="../../lib/IDLGenerator.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
@@ -125,7 +125,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="$(OutDir)/IDLGenerator.pdb"
 				SubSystem="2"
-				ImportLibrary="$(OutDir)/IDLGenerator.lib"/>
+				ImportLibrary="../../lib/IDLGenerator.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool

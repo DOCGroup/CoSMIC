@@ -1,3 +1,11 @@
+Mon Oct 25 07:41:06 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/decorators/Decorator.dsp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.vcproj:
+        
+          Changed output directory to $PICML_ROOT/bin for DLLs and
+          $PICML_ROOT/lib for .lib and .exp files.
+
 Sun Oct 24 19:05:36 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/cidl/Component.dsp:
         * PIM/PICML/interpreters/MPC/Component.dsp:
