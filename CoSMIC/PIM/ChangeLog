@@ -1,3 +1,10 @@
+Thu Jun 24 10:57:57 2004  Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * PICML/interpreters/domain/DomainVisitor.cpp:
+        * PICML/interpreters/domain/DomainVisitor.h:
+
+          Updated the domain descriptor interpreter.
+
 Thu Jun 24 10:54:06 2004  Jaiganesh B  <jai@dre.vanderbilt.edu>
 
         * PICML/interpreters/plan/PlanVisitor.cpp:

@@ -312,32 +312,183 @@ namespace PICML
   {
   }
 
-  void DomainVisitor::Visit_Resource(const Resource&)
+  void DomainVisitor::Visit_Resource(const Resource& res)
   {
+	  this->push();
+      DOMElement* ele = this->doc_->createElement (XStr ("resource"));
+      ele->appendChild (this->createSimpleContent ("name", res.name()));
+      this->curr_->appendChild (ele);
+      this->pop();
   }
 
-  void DomainVisitor::Visit_SharedResource(const SharedResource&)
+  void DomainVisitor::Visit_SharedResource(const SharedResource& sr)
   {
+	  this->push();
+      DOMElement* ele = this->doc_->createElement (XStr ("sharedResource"));
+      ele->appendChild (this->createSimpleContent ("name", sr.name()));
+      this->curr_->appendChild (ele);
+
+      this->pop();
   }
 
-  void DomainVisitor::Visit_Bridge(const Bridge&)
+  void DomainVisitor::Visit_Bridge(const Bridge& br)
   {
+	  this->push();
+
+      DOMElement* ele = this->doc_->createElement (XStr ("bridge"));
+      ele->appendChild (this->createSimpleContent ("name", br.name()));
+      this->curr_->appendChild (ele);
+	  this->curr_ = ele;
+	  const std::set<Resource> resources = br.Resource_children();
+	  for (std::set<Resource>::const_iterator iter = resources.begin();
+           iter != resources.end();
+           ++iter)
+		{
+		  Resource br_res = *iter;
+		  DOMElement* res_ele = this->doc_->createElement (XStr ("resource"));
+		  res_ele->appendChild (this->createSimpleContent ("name", br_res.name()));
+		  this->curr_->appendChild (res_ele);
+		}
+
+	  const std::set<Bridge2Interconnect> bridge_to_ics = br.dstBridge2Interconnect();
+	  for (std::set<Bridge2Interconnect>::const_iterator bridge_to_ic_iter = bridge_to_ics.begin();
+	       bridge_to_ic_iter != bridge_to_ics.end ();
+	       ++bridge_to_ic_iter)
+		{
+		  Bridge2Interconnect bridge_to_ic = *bridge_to_ic_iter;
+		  Interconnect bridge_ic = bridge_to_ic.dstBridge2Interconnect_end();
+		}
+
+      this->pop();
   }
 
-  void DomainVisitor::Visit_Node(const Node&)
+  void DomainVisitor::Visit_Node(const Node& node)
   {
+	  this->push();
+
+      DOMElement* ele = this->doc_->createElement (XStr ("node"));
+      ele->appendChild (this->createSimpleContent ("name", node.name()));
+      this->curr_->appendChild (ele);
+	  this->curr_ = ele;
+	  const std::set<Resource> resources = node.Resource_children();
+	  for (std::set<Resource>::const_iterator iter = resources.begin();
+           iter != resources.end();
+           ++iter)
+		{
+		  Resource node_res = *iter;
+		  DOMElement* res_ele = this->doc_->createElement (XStr ("resource"));
+		  res_ele->appendChild (this->createSimpleContent ("name", node_res.name()));
+		  this->curr_->appendChild (res_ele);
+		}
+
+	  const std::set<Node2Interconnect> node_to_ics = node.dstNode2Interconnect();
+	  for (std::set<Node2Interconnect>::const_iterator node_to_ic_iter = node_to_ics.begin();
+		   node_to_ic_iter != node_to_ics.end ();
+		   ++node_to_ic_iter)
+					{
+						Node2Interconnect node_to_ic = *node_to_ic_iter;
+						Interconnect node_ic = node_to_ic.dstNode2Interconnect_end();
+					}
+      this->pop();
   }
 
-  void DomainVisitor::Visit_Interconnect(const Interconnect&)
+  void DomainVisitor::Visit_Interconnect(const Interconnect& ic)
   {
+	  this->push();
+      DOMElement* ele = this->doc_->createElement (XStr ("interconnect"));
+      ele->appendChild (this->createSimpleContent ("name", ic.name()));
+      this->curr_->appendChild (ele);
+	  this->curr_ = ele;
+	  const std::set<Resource> resources = ic.Resource_children();
+	  for (std::set<Resource>::const_iterator iter = resources.begin();
+           iter != resources.end();
+           ++iter)
+		{
+		  Resource ic_res = *iter;
+		  DOMElement* res_ele = this->doc_->createElement (XStr ("resource"));
+		  res_ele->appendChild (this->createSimpleContent ("name", ic_res.name()));
+		  this->curr_->appendChild (res_ele);
+		}
+
+	  const std::set<Interconnect2Node> ic_to_nodes = ic.dstInterconnect2Node();
+	  for (std::set<Interconnect2Node>::const_iterator ic_to_node_iter = ic_to_nodes.begin();
+		   ic_to_node_iter != ic_to_nodes.end ();
+		   ++ic_to_node_iter)
+		{
+		  Interconnect2Node ic_to_node = *ic_to_node_iter;
+		  Node ic_node = ic_to_node.dstInterconnect2Node_end();
+		}
+
+	  const std::set<Interconnect2Bridge> ic_to_bridges = ic.dstInterconnect2Bridge();
+	  for (std::set<Interconnect2Bridge>::const_iterator ic_to_bridge_iter = ic_to_bridges.begin();
+		   ic_to_bridge_iter != ic_to_bridges.end ();
+		   ++ic_to_bridge_iter)
+		{
+		  Interconnect2Bridge ic_to_bridge = *ic_to_bridge_iter;
+		  Bridge ic_bridge = ic_to_bridge.dstInterconnect2Bridge_end();
+		}
+
+      this->pop();
   }
 
-  void DomainVisitor::Visit_Domain(const Domain&)
+  void DomainVisitor::Visit_Domain(const Domain& domain)
   {
+	  AfxMessageBox ("Visiting Domain");
+	  this->push();
+      std::string name = this->outputPath_ + "\\";
+      name += domain.name();
+      name += ".cdd";
+      this->initTarget (name);
+      this->initDocument ("Deployment:Domain");
+	  this->initRootAttributes();
+
+	  const std::set<Node> domain_nodes = domain.Node_kind_children();
+
+	  for (std::set<Node>::const_iterator domain_node_iter = domain_nodes.begin();
+           domain_node_iter != domain_nodes.end();
+           ++domain_node_iter)
+		   {
+			   Node domain_node = *domain_node_iter;
+               domain_node.Accept (*this);
+		   }
+
+	  const std::set<Interconnect> domain_ics = domain.Interconnect_kind_children();
+
+	  for (std::set<Interconnect>::const_iterator domain_ic_iter = domain_ics.begin();
+           domain_ic_iter != domain_ics.end();
+           ++domain_ic_iter)
+		   {
+			   Interconnect domain_ic = *domain_ic_iter;
+               domain_ic.Accept (*this);
+		   }
+
+	  const std::set<Bridge> domain_bridges = domain.Bridge_kind_children();
+
+	  for (std::set<Bridge>::const_iterator domain_bridge_iter = domain_bridges.begin();
+           domain_bridge_iter != domain_bridges.end();
+           ++domain_bridge_iter)
+		   {
+			   Bridge domain_bridge = *domain_bridge_iter;
+               domain_bridge.Accept (*this);
+		   }
+
+      const std::set<SharedResource> domain_srs = domain.SharedResource_kind_children();
+
+	  for (std::set<SharedResource>::const_iterator domain_sr_iter = domain_srs.begin();
+           domain_sr_iter != domain_srs.end();
+           ++domain_sr_iter)
+		   {
+			   SharedResource domain_sr = *domain_sr_iter;
+               domain_sr.Accept (*this);
+		   }
+
+	  this->dumpDocument();
+      this->pop();
   }
 
   void DomainVisitor::Visit_Targets(const Targets&)
   {
+	  AfxMessageBox ("Visiting Targets");
   }
 
   void DomainVisitor::Visit_Node2Interconnect(const Node2Interconnect&)

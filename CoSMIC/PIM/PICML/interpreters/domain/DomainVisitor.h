@@ -209,5 +209,6 @@ namespace PICML
     XMLFormatTarget*    target_;
     std::string         outputPath_;
     std::stack<DOMElement*> curr_stack_;
+	std::map<std::string, std::string> idMap_;
   };
 }
