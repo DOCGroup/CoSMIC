@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{6339A04A-C0AB-4D4F-9A80-39951F469439}" cdate="Fri Nov 05 18:21:05 2004" mdate="Fri Nov 05 18:21:08 2004" version="" metaguid="{DF851054-A0B3-41EF-8FF2-8C42EE5EDD12}" metaversion="" metaname="MetaGME">
+<project guid="{E5FE844C-91C7-4BA6-9F3A-16D0F5AE14C2}" cdate="Sat Nov 06 17:53:30 2004" mdate="Sat Nov 06 18:30:08 2004" version="" metaguid="{DF851054-A0B3-41EF-8FF2-8C42EE5EDD12}" metaversion="" metaname="MetaGME">
 	<name>OCML</name>
 	<comment></comment>
 	<author></author>
@@ -918,7 +918,7 @@
 						<regnode name="ClassDiagram" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>218,223</value>
+								<value>211,229</value>
 							</regnode>
 						</regnode>
 						<regnode name="Constraints" isopaque="yes">
@@ -943,8 +943,8 @@
 					<attribute kind="GeneralPreferences" status="meta">
 						<value></value>
 					</attribute>
-					<attribute kind="Icon" status="meta">
-						<value></value>
+					<attribute kind="Icon">
+						<value>option_integer.bmp</value>
 					</attribute>
 					<attribute kind="InRootFolder" status="meta">
 						<value>false</value>
@@ -1015,8 +1015,8 @@
 					<attribute kind="GeneralPreferences" status="meta">
 						<value></value>
 					</attribute>
-					<attribute kind="Icon" status="meta">
-						<value></value>
+					<attribute kind="Icon">
+						<value>option_string.bmp</value>
 					</attribute>
 					<attribute kind="InRootFolder" status="meta">
 						<value>false</value>
@@ -1062,7 +1062,7 @@
 						<regnode name="ClassDiagram" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>22,69</value>
+								<value>8,54</value>
 							</regnode>
 						</regnode>
 						<regnode name="Constraints" isopaque="yes">
@@ -1087,8 +1087,8 @@
 					<attribute kind="GeneralPreferences" status="meta">
 						<value></value>
 					</attribute>
-					<attribute kind="Icon" status="meta">
-						<value></value>
+					<attribute kind="Icon">
+						<value>option_toggle.bmp</value>
 					</attribute>
 					<attribute kind="InRootFolder" status="meta">
 						<value>false</value>
@@ -1189,8 +1189,8 @@
 					<attribute kind="GeneralPreferences" status="meta">
 						<value></value>
 					</attribute>
-					<attribute kind="Icon" status="meta">
-						<value></value>
+					<attribute kind="Icon">
+						<value>enum_option.bmp</value>
 					</attribute>
 					<attribute kind="InRootFolder" status="meta">
 						<value>false</value>
@@ -1216,8 +1216,8 @@
 					<attribute kind="NameWrapNum" status="meta">
 						<value>0</value>
 					</attribute>
-					<attribute kind="PortIcon" status="meta">
-						<value></value>
+					<attribute kind="PortIcon">
+						<value>option_port.bmp</value>
 					</attribute>
 					<attribute kind="SubTypeIcon" status="meta">
 						<value></value>
@@ -1236,7 +1236,7 @@
 						<regnode name="ClassDiagram" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>435,258</value>
+								<value>428,258</value>
 							</regnode>
 						</regnode>
 						<regnode name="Constraints" isopaque="yes">
@@ -1261,8 +1261,8 @@
 					<attribute kind="GeneralPreferences" status="meta">
 						<value></value>
 					</attribute>
-					<attribute kind="Icon" status="meta">
-						<value></value>
+					<attribute kind="Icon">
+						<value>flag_option.bmp</value>
 					</attribute>
 					<attribute kind="InRootFolder" status="meta">
 						<value>false</value>
@@ -1288,8 +1288,8 @@
 					<attribute kind="NameWrapNum" status="meta">
 						<value>0</value>
 					</attribute>
-					<attribute kind="PortIcon" status="meta">
-						<value></value>
+					<attribute kind="PortIcon">
+						<value>option_port.bmp</value>
 					</attribute>
 					<attribute kind="SubTypeIcon" status="meta">
 						<value></value>
@@ -1333,8 +1333,8 @@
 					<attribute kind="GeneralPreferences" status="meta">
 						<value></value>
 					</attribute>
-					<attribute kind="Icon" status="meta">
-						<value></value>
+					<attribute kind="Icon">
+						<value>option_enum.bmp</value>
 					</attribute>
 					<attribute kind="InRootFolder" status="meta">
 						<value>false</value>
@@ -1408,8 +1408,8 @@
 					<attribute kind="GeneralPreferences" status="meta">
 						<value></value>
 					</attribute>
-					<attribute kind="Icon" status="meta">
-						<value></value>
+					<attribute kind="Icon">
+						<value>option_flag.bmp</value>
 					</attribute>
 					<attribute kind="InRootFolder" status="meta">
 						<value>false</value>
@@ -1953,7 +1953,7 @@
 						<regnode name="ClassDiagram" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>701,174</value>
+								<value>659,202</value>
 							</regnode>
 						</regnode>
 						<regnode name="Constraints" isopaque="yes">
@@ -2188,7 +2188,7 @@
 						<regnode name="Visualization" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>58,177</value>
+								<value>435,356</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2260,7 +2260,7 @@
 						<regnode name="Visualization" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>58,177</value>
+								<value>68,341</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2332,7 +2332,7 @@
 						<regnode name="Visualization" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>58,177</value>
+								<value>610,503</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2404,7 +2404,7 @@
 						<regnode name="Visualization" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>58,177</value>
+								<value>50,539</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2476,7 +2476,7 @@
 						<regnode name="Visualization" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>324,44</value>
+								<value>225,20</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2548,7 +2548,7 @@
 						<regnode name="Visualization" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>345,114</value>
+								<value>272,119</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2578,7 +2578,7 @@
 						<regnode name="Visualization" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>58,177</value>
+								<value>813,349</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2650,7 +2650,7 @@
 						<regnode name="Visualization" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>324,44</value>
+								<value>561,202</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2722,7 +2722,7 @@
 						<regnode name="Visualization" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>324,44</value>
+								<value>97,181</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2794,7 +2794,7 @@
 						<regnode name="Visualization" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>345,114</value>
+								<value>675,306</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2824,7 +2824,7 @@
 						<regnode name="Visualization" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>345,114</value>
+								<value>139,281</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2837,6 +2837,12 @@
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>57,468</value>
+							</regnode>
+						</regnode>
+						<regnode name="Visualization">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>806,454</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2891,6 +2897,12 @@
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>715,475</value>
+							</regnode>
+						</regnode>
+						<regnode name="Visualization">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>71,636</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2950,6 +2962,12 @@
 								<value>554,475</value>
 							</regnode>
 						</regnode>
+						<regnode name="Visualization">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>85,440</value>
+							</regnode>
+						</regnode>
 					</regnode>
 					<attribute kind="Decorator" status="meta">
 						<value></value>
@@ -3004,7 +3022,13 @@
 						<regnode name="ClassDiagram" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>183,468</value>
+								<value>239,454</value>
+							</regnode>
+						</regnode>
+						<regnode name="Visualization">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>435,454</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -3058,7 +3082,13 @@
 						<regnode name="ClassDiagram" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>295,468</value>
+								<value>365,538</value>
+							</regnode>
+						</regnode>
+						<regnode name="Visualization">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>603,622</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -3647,7 +3677,7 @@
 						<regnode name="ClassDiagram" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>456,202</value>
+								<value>596,195</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" isopaque="yes">
@@ -5015,8 +5045,8 @@
 					<attribute kind="GeneralPreferences" status="meta">
 						<value></value>
 					</attribute>
-					<attribute kind="Icon" status="meta">
-						<value></value>
+					<attribute kind="Icon">
+						<value>or.bmp</value>
 					</attribute>
 					<attribute kind="InRootFolder" status="meta">
 						<value>false</value>
@@ -5087,8 +5117,8 @@
 					<attribute kind="GeneralPreferences" status="meta">
 						<value></value>
 					</attribute>
-					<attribute kind="Icon" status="meta">
-						<value></value>
+					<attribute kind="Icon">
+						<value>and.bmp</value>
 					</attribute>
 					<attribute kind="InRootFolder" status="meta">
 						<value>false</value>
@@ -5159,8 +5189,8 @@
 					<attribute kind="GeneralPreferences" status="meta">
 						<value></value>
 					</attribute>
-					<attribute kind="Icon" status="meta">
-						<value></value>
+					<attribute kind="Icon">
+						<value>if.bmp</value>
 					</attribute>
 					<attribute kind="InRootFolder" status="meta">
 						<value>false</value>
@@ -5231,8 +5261,8 @@
 					<attribute kind="GeneralPreferences" status="meta">
 						<value></value>
 					</attribute>
-					<attribute kind="Icon" status="meta">
-						<value></value>
+					<attribute kind="Icon">
+						<value>not.bmp</value>
 					</attribute>
 					<attribute kind="InRootFolder" status="meta">
 						<value>false</value>
@@ -5303,8 +5333,8 @@
 					<attribute kind="GeneralPreferences" status="meta">
 						<value></value>
 					</attribute>
-					<attribute kind="Icon" status="meta">
-						<value></value>
+					<attribute kind="Icon">
+						<value>if2.bmp</value>
 					</attribute>
 					<attribute kind="InRootFolder" status="meta">
 						<value>false</value>
@@ -5375,8 +5405,8 @@
 					<attribute kind="GeneralPreferences" status="meta">
 						<value></value>
 					</attribute>
-					<attribute kind="Icon" status="meta">
-						<value></value>
+					<attribute kind="Icon">
+						<value>connector.bmp</value>
 					</attribute>
 					<attribute kind="InRootFolder" status="meta">
 						<value>false</value>
@@ -6020,8 +6050,8 @@
 					<attribute kind="Color" status="meta">
 						<value>0x000000</value>
 					</attribute>
-					<attribute kind="ConnLineEnd" status="meta">
-						<value>butt</value>
+					<attribute kind="ConnLineEnd">
+						<value>arrow</value>
 					</attribute>
 					<attribute kind="ConnLineStart" status="meta">
 						<value>butt</value>
@@ -6107,8 +6137,8 @@
 					<attribute kind="Color" status="meta">
 						<value>0x000000</value>
 					</attribute>
-					<attribute kind="ConnLineEnd" status="meta">
-						<value>butt</value>
+					<attribute kind="ConnLineEnd">
+						<value>arrow</value>
 					</attribute>
 					<attribute kind="ConnLineStart" status="meta">
 						<value>butt</value>
@@ -6212,8 +6242,8 @@
 					<attribute kind="Color" status="meta">
 						<value>0x000000</value>
 					</attribute>
-					<attribute kind="ConnLineEnd" status="meta">
-						<value>butt</value>
+					<attribute kind="ConnLineEnd">
+						<value>arrow</value>
 					</attribute>
 					<attribute kind="ConnLineStart" status="meta">
 						<value>butt</value>
@@ -7180,8 +7210,8 @@
 					<attribute kind="Color" status="meta">
 						<value>0x000000</value>
 					</attribute>
-					<attribute kind="ConnLineEnd" status="meta">
-						<value>butt</value>
+					<attribute kind="ConnLineEnd">
+						<value>arrow</value>
 					</attribute>
 					<attribute kind="ConnLineStart" status="meta">
 						<value>butt</value>
@@ -7285,8 +7315,8 @@
 					<attribute kind="Color" status="meta">
 						<value>0x000000</value>
 					</attribute>
-					<attribute kind="ConnLineEnd" status="meta">
-						<value>butt</value>
+					<attribute kind="ConnLineEnd">
+						<value>arrow</value>
 					</attribute>
 					<attribute kind="ConnLineStart" status="meta">
 						<value>butt</value>
@@ -7687,8 +7717,8 @@
 					<attribute kind="Color" status="meta">
 						<value>0x000000</value>
 					</attribute>
-					<attribute kind="ConnLineEnd" status="meta">
-						<value>butt</value>
+					<attribute kind="ConnLineEnd">
+						<value>arrow</value>
 					</attribute>
 					<attribute kind="ConnLineStart" status="meta">
 						<value>butt</value>
@@ -7903,8 +7933,8 @@
 					<attribute kind="Color" status="meta">
 						<value>0x000000</value>
 					</attribute>
-					<attribute kind="ConnLineEnd" status="meta">
-						<value>butt</value>
+					<attribute kind="ConnLineEnd">
+						<value>arrow</value>
 					</attribute>
 					<attribute kind="ConnLineStart" status="meta">
 						<value>butt</value>
@@ -7990,8 +8020,8 @@
 					<attribute kind="Color" status="meta">
 						<value>0x000000</value>
 					</attribute>
-					<attribute kind="ConnLineEnd" status="meta">
-						<value>butt</value>
+					<attribute kind="ConnLineEnd">
+						<value>arrow</value>
 					</attribute>
 					<attribute kind="ConnLineStart" status="meta">
 						<value>butt</value>
@@ -8077,8 +8107,8 @@
 					<attribute kind="Color" status="meta">
 						<value>0x000000</value>
 					</attribute>
-					<attribute kind="ConnLineEnd" status="meta">
-						<value>butt</value>
+					<attribute kind="ConnLineEnd">
+						<value>arrow</value>
 					</attribute>
 					<attribute kind="ConnLineStart" status="meta">
 						<value>butt</value>
