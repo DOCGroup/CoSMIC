@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Thu Aug 26 22:30:31 2004" mdate="Fri Aug 27 21:57:03 2004" metaguid="{99CB7435-DEAD-BEEF-FEED-DAD000000001}" metaname="MetaGME">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Thu Aug 26 22:30:31 2004" mdate="Sun Aug 29 22:44:23 2004" metaguid="{99CB7435-DEAD-BEEF-FEED-DAD000000001}" metaname="MetaGME">
 	<name>PICML</name>
 	<comment></comment>
 	<author></author>
@@ -4779,19 +4779,19 @@
 					<value>7</value>
 				</regnode>
 				<regnode name="ComponentLibraries" isopaque="yes">
-					<value>2</value>
+					<value>4</value>
 				</regnode>
 				<regnode name="ComponentMetrics" isopaque="yes">
-					<value>6</value>
+					<value>8</value>
 				</regnode>
 				<regnode name="DataAnalysis" isopaque="yes">
-					<value>1</value>
+					<value>2</value>
 				</regnode>
 				<regnode name="InterfaceDefinition" isopaque="yes">
-					<value>5</value>
+					<value>7</value>
 				</regnode>
 				<regnode name="LibraryArtifact" isopaque="yes">
-					<value>10</value>
+					<value>1</value>
 				</regnode>
 				<regnode name="MainAspect" isopaque="yes">
 					<value>1</value>
@@ -4800,7 +4800,7 @@
 					<value>5</value>
 				</regnode>
 				<regnode name="NodeMapping" isopaque="yes">
-					<value>9</value>
+					<value>10</value>
 				</regnode>
 				<regnode name="Package" isopaque="yes">
 					<value>2</value>
@@ -4812,16 +4812,16 @@
 					<value>3</value>
 				</regnode>
 				<regnode name="RtecConfigAspect" isopaque="yes">
-					<value>7</value>
+					<value>5</value>
 				</regnode>
 				<regnode name="Target" isopaque="yes">
-					<value>4</value>
+					<value>6</value>
 				</regnode>
 				<regnode name="TypeDefinintionAspect" isopaque="yes">
 					<value>1</value>
 				</regnode>
 				<regnode name="Workspace" isopaque="yes">
-					<value>8</value>
+					<value>9</value>
 				</regnode>
 			</regnode>
 		</regnode>
@@ -70319,8 +70319,10 @@ dName = dstWorkloadCharacteristics</value>
 				<attribute kind="DstAttrLabel2" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
+				<attribute kind="GeneralPreferences">
+					<value>
+sName = srcRTEC_Connection
+dName = dstRTEC_Connection</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -70664,8 +70666,10 @@ dName = dstWorkloadCharacteristics</value>
 				<attribute kind="DstAttrLabel2" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
+				<attribute kind="GeneralPreferences">
+					<value>
+sName = srcInclude_RTEC_Filter_Group
+dName = dstInclude_RTEC_Filter_Group</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -71057,8 +71061,10 @@ dName = dstWorkloadCharacteristics</value>
 				<attribute kind="DstAttrLabel2" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
+				<attribute kind="GeneralPreferences">
+					<value>
+sName = srcUse_RTEC_Filter
+dName = dstUse_RTEC_Filter</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -71098,7 +71104,7 @@ dName = dstWorkloadCharacteristics</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>386,20</value>
+							<value>379,13</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -71387,8 +71393,10 @@ dName = dstWorkloadCharacteristics</value>
 				<attribute kind="DstAttrLabel2" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
+				<attribute kind="GeneralPreferences">
+					<value>
+sName = srcInclude_RT_Info
+dName = dstInclude_RT_Info</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -71522,8 +71530,10 @@ dName = dstWorkloadCharacteristics</value>
 				<attribute kind="DstAttrLabel2" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
+				<attribute kind="GeneralPreferences">
+					<value>
+sName = srcUse_RT_Info
+dName = dstUse_RT_Info</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -71846,8 +71856,10 @@ dName = dstWorkloadCharacteristics</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
+				<attribute kind="GeneralPreferences">
+					<value>
+rName = ref
+rrName = referedbyRTEC_Resource_Factory_Reference</value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>rtec_resource_factory.bmp</value>
@@ -71902,7 +71914,7 @@ dName = dstWorkloadCharacteristics</value>
 					<regnode name="Constraints">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>758,2</value>
+							<value>750,13</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization">
@@ -73330,6 +73342,686 @@ st</value>
 					</regnode>
 				</regnode>
 			</atom>
+			<atom id="id-0066-000001e7" kind="Constraint" role="Constraint">
+				<name>OneRTECProxyPerSource_Constraint</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>303,387</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>An event source can only be connected to one RTEC proxy</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value><![CDATA[self.attachingConnections ( RTEC_Connection ) -> size < 2]]></value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority" status="meta">
+					<value>2</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-000001e8" kind="Constraint" role="Constraint">
+				<name>OneRTECProxyPerSink_Constraint</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>93,380</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>An event sink can only be connected to one RTEC proxy</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value><![CDATA[self.attachingConnections ( Use_RTEC_Filter ) -> size < 2]]></value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority" status="meta">
+					<value>2</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-000001e9" kind="Constraint" role="Constraint">
+				<name>OneSourcePerRTFilter_Constraint</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>65,534</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>A filter specification can only be connected to one event sink</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value><![CDATA[self.attachingConnections ( Use_RTEC_Filter ) -> size < 2]]></value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority" status="meta">
+					<value>2</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-000001ea" kind="Constraint" role="Constraint">
+				<name>ECDispatchingThreads_Constraint</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>433,951</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value><![CDATA[ECDispatchingThreads only valid with "mt" ECDispatchingStrategy]]></value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value><![CDATA[self.ECDispatchingThreads <> 1 implies
+self.ECDispatching = "mt"]]></value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority" status="meta">
+					<value>2</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-000001eb" kind="Constraint" role="Constraint">
+				<name>BasicFiltering_Constraint</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>426,1042</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>Basic filtering limits nesting of filter groups to two levels</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value>true</value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority" status="meta">
+					<value>2</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-000001ec" kind="Constraint" role="Constraint">
+				<name>ECConsumerControlPeriod_Constraint</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>429,1115</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value><![CDATA[ECConsumerControlPeriod only valid with "reactive" ECConsumerControlPolicy.]]></value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value><![CDATA[(self.ECConsumerControlPeriod <> 0 and self.ECConsumerControlPeriod <> 5000000)
+implies
+self.ECConsumerControl = "reactive"]]></value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority" status="meta">
+					<value>2</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-000001ed" kind="Constraint" role="Constraint">
+				<name>ECSupplierControlPeriod_Constraint</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>433,1294</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value><![CDATA[ECSupplierControlPeriod only valid with "reactive" ECSupplierControlPolicy]]></value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value><![CDATA[(self.ECSupplierControlPeriod <> 0 and self.ECSupplierControlPeriod <> 5000000)
+implies
+self.ECSupplierControl = "reactive"]]></value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority" status="meta">
+					<value>2</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-000001ee" kind="Constraint" role="Constraint">
+				<name>ECDispatchingThreads_Positive_Integer_Constraint</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>433,1231</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>ECDispatchingThreads must be greater than zero</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value><![CDATA[self.ECDispatchingThreads > 0]]></value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority" status="meta">
+					<value>2</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-000001ef" kind="Constraint" role="Constraint">
+				<name>PriorityDispatching_Constraint</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>426,1168</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>Priority dispatching requires priorities for all connected ports</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value>true</value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority" status="meta">
+					<value>2</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
 			<reference id="id-0067-00000077" kind="ReferenceProxy" role="ReferenceProxy" referred="id-0066-000000a5">
 				<name>InEventPort</name>
 				<regnode name="PartRegs">
@@ -73338,6 +74030,12 @@ st</value>
 						<value></value>
 						<regnode name="Position" isopaque="yes">
 							<value>8,174</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>50,286</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization">
@@ -73400,6 +74098,12 @@ st</value>
 							<value>155,174</value>
 						</regnode>
 					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>239,272</value>
+						</regnode>
+					</regnode>
 					<regnode name="Visualization">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
@@ -73460,6 +74164,12 @@ st</value>
 							<value>379,258</value>
 						</regnode>
 					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>78,83</value>
+						</regnode>
+					</regnode>
 					<regnode name="Visualization">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
@@ -73518,6 +74228,12 @@ st</value>
 						<value></value>
 						<regnode name="Position" isopaque="yes">
 							<value>106,13</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,13</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization">
@@ -73622,8 +74338,8 @@ st</value>
 				<attribute kind="Cardinality" status="meta">
 					<value>0..*</value>
 				</attribute>
-				<attribute kind="srcRolename" status="meta">
-					<value>src</value>
+				<attribute kind="srcRolename">
+					<value></value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-000001b3"/>
 				<connpoint role="src" target="id-0066-000001ba"/>
@@ -73633,8 +74349,8 @@ st</value>
 				<attribute kind="Cardinality" status="meta">
 					<value>0..*</value>
 				</attribute>
-				<attribute kind="dstRolename" status="meta">
-					<value>dst</value>
+				<attribute kind="dstRolename">
+					<value></value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-0000019b"/>
 				<connpoint role="src" target="id-0066-000001b3"/>
@@ -73678,7 +74394,7 @@ st</value>
 			<connection id="id-0068-000002b0" kind="SourceToConnector" role="SourceToConnector">
 				<name>SourceToConnector</name>
 				<attribute kind="Cardinality">
-					<value>1</value>
+					<value>0..*</value>
 				</attribute>
 				<attribute kind="srcRolename">
 					<value></value>
@@ -74274,6 +74990,58 @@ st</value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-000001a4"/>
 				<connpoint role="src" target="id-0067-0000007a"/>
+			</connection>
+			<connection id="id-0068-00000333" kind="HasConstraint" role="HasConstraint">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-000001e7"/>
+				<connpoint role="dst" target="id-0067-00000078"/>
+			</connection>
+			<connection id="id-0068-00000334" kind="HasConstraint" role="HasConstraint">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>N</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-000001e8"/>
+				<connpoint role="dst" target="id-0067-00000077"/>
+			</connection>
+			<connection id="id-0068-00000335" kind="HasConstraint" role="HasConstraint">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-0000019b"/>
+				<connpoint role="src" target="id-0066-000001e9"/>
+			</connection>
+			<connection id="id-0068-00000336" kind="HasConstraint" role="HasConstraint">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>W</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-000001aa"/>
+				<connpoint role="src" target="id-0066-000001ea"/>
+			</connection>
+			<connection id="id-0068-00000337" kind="HasConstraint" role="HasConstraint">
+				<name>HasConstraint</name>
+				<connpoint role="dst" target="id-0066-000001aa"/>
+				<connpoint role="src" target="id-0066-000001eb"/>
+			</connection>
+			<connection id="id-0068-00000338" kind="HasConstraint" role="HasConstraint">
+				<name>HasConstraint</name>
+				<connpoint role="dst" target="id-0066-000001aa"/>
+				<connpoint role="src" target="id-0066-000001ec"/>
+			</connection>
+			<connection id="id-0068-00000339" kind="HasConstraint" role="HasConstraint">
+				<name>HasConstraint</name>
+				<connpoint role="dst" target="id-0066-000001aa"/>
+				<connpoint role="src" target="id-0066-000001ed"/>
+			</connection>
+			<connection id="id-0068-0000033a" kind="HasConstraint" role="HasConstraint">
+				<name>HasConstraint</name>
+				<connpoint role="dst" target="id-0066-000001aa"/>
+				<connpoint role="src" target="id-0066-000001ee"/>
 			</connection>
 			<set id="id-0069-00000018" kind="Aspect" role="Aspect" members="id-0067-00000078 id-0067-00000077 id-0067-00000079 id-0066-000001aa id-0066-00000198 id-0066-000001bb id-0066-000001bd id-0066-0000019a id-0066-000001ba id-0066-0000019d id-0066-000001a0 id-0066-0000019f id-0066-000001b2 id-0066-000001b4 id-0066-0000019b id-0066-0000019e id-0066-0000018f id-0066-00000190 id-0066-00000189 id-0066-000001a3 id-0066-000001a4">
 				<name>RtecConfigAspect</name>
