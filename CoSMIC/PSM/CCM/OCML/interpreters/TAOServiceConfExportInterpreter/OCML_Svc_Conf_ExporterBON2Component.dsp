@@ -88,7 +88,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386
+# ADD LINK32 OCMLSvcConfExporterd.lib /nologo /subsystem:windows /dll /debug /machine:I386 /libpath:"..\TAOServiceConfExporter"
 # Begin Custom Build - Performing registration
 OutDir=.\Release
 TargetPath=.\Release\OCML_Svc_Conf_ExporterBON2Component.dll
