@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{52144056-D1C0-442C-B8F5-A89E83E590C6}" cdate="Mon Jan 24 13:26:57 2005" mdate="Wed Feb 16 09:11:34 2005" version="" metaguid="{DF851054-A0B3-41EF-8FF2-8C42EE5EDD12}" metaversion="" metaname="MetaGME">
+<project guid="{32A2A6BD-D4D8-4547-983B-2792DD4FA8F2}" cdate="Mon Jan 24 13:26:57 2005" mdate="Wed Feb 16 13:18:43 2005" version="" metaguid="{DF851054-A0B3-41EF-8FF2-8C42EE5EDD12}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment></comment>
 	<author></author>
@@ -4779,19 +4779,19 @@
 					<value>7</value>
 				</regnode>
 				<regnode name="ComponentLibraries" isopaque="yes">
-					<value>8</value>
-				</regnode>
-				<regnode name="ComponentMetrics" isopaque="yes">
 					<value>7</value>
 				</regnode>
+				<regnode name="ComponentMetrics" isopaque="yes">
+					<value>6</value>
+				</regnode>
 				<regnode name="DataAnalysis" isopaque="yes">
-					<value>5</value>
+					<value>10</value>
 				</regnode>
 				<regnode name="InterfaceDefinition" isopaque="yes">
-					<value>9</value>
+					<value>8</value>
 				</regnode>
 				<regnode name="LibraryArtifact" isopaque="yes">
-					<value>10</value>
+					<value>9</value>
 				</regnode>
 				<regnode name="MainAspect" isopaque="yes">
 					<value>1</value>
@@ -4800,7 +4800,7 @@
 					<value>5</value>
 				</regnode>
 				<regnode name="NodeMapping" isopaque="yes">
-					<value>6</value>
+					<value>5</value>
 				</regnode>
 				<regnode name="Package" isopaque="yes">
 					<value>2</value>
@@ -68798,7 +68798,7 @@ RTEventChannel</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>204,41</value>
+							<value>218,34</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -69526,8 +69526,8 @@ RTEventChannel</value>
 				<attribute kind="DataType">
 					<value>integer</value>
 				</attribute>
-				<attribute kind="FieldDefault" status="meta">
-					<value></value>
+				<attribute kind="FieldDefault">
+					<value>-1</value>
 				</attribute>
 				<attribute kind="GlobalScope" status="meta">
 					<value>true</value>
@@ -69560,7 +69560,7 @@ RTEventChannel</value>
 					<value>integer</value>
 				</attribute>
 				<attribute kind="FieldDefault">
-					<value>0</value>
+					<value>-1</value>
 				</attribute>
 				<attribute kind="GlobalScope" status="meta">
 					<value>true</value>
@@ -69757,7 +69757,7 @@ rrName = referedbyCompRef</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>50,13</value>
+							<value>36,27</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -70496,8 +70496,8 @@ rrName = referedbyCompRef</value>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>w</value>
 				</regnode>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
+				<attribute kind="Cardinality">
+					<value>0..1</value>
 				</attribute>
 				<attribute kind="dstRolename" status="meta">
 					<value>dst</value>
