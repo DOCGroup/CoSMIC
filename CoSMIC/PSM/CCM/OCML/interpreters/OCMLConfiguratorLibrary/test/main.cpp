@@ -114,7 +114,6 @@ LRESULT CALLBACK MainWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
       char* new_values = (pProc)(values.c_str(), values.size());
       if (new_values)
         {
-          // TODO: 
           std::ofstream of("values.xml");
           of << new_values;
         }
