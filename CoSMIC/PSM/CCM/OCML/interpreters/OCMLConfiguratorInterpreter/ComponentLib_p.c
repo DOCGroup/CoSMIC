@@ -2,7 +2,7 @@
 
 
 /* File created by MIDL compiler version 5.01.0164 */
-/* at Wed Sep 01 01:57:20 2004
+/* at Mon Oct 04 20:58:57 2004
  */
 /* Compiler settings for C:/Program Files/GME/sdk/BON/ComponentLib.idl:
     Os (OptLev=s), W1, Zp8, env=Win32, ms_ext, c_ext
