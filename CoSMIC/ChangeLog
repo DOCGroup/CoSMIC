@@ -1,10 +1,25 @@
+Thu Dec 02 15:05:21 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/plan/DeploymentPlan.dsp: 
+        * PIM/PICML/interpreters/packaging/PackageComponent.dsp: 
+        * PIM/PICML/interpreters/domain/Domain.dsp: 
+        * PIM/PICML/interpreters/cidl/Component.dsp:
+        * PIM/PICML/interpreters/MPC/Component.dsp: 
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.dsp: 
+        * PIM/PICML/interpreters/EQAL/EQALBON2Component.dsp:
+        * PIM/PICML/interpreters/BGML_Interpreter/Component.dsp:
+        * PIM/PICML/decorators/Decorator.dsp: 
+
+          Changed the output directory for the binaries and libraries from
+          PICML_ROOT to OCML_ROOT.
+        
 Thu Dec 02 14:45:41 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc: 
 
           Changed the output directory for the binaries and libraries from
           PICML_ROOT to OCML_ROOT.
-	
+        
 Wed Nov 24 11:18:35 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/BGML_Interter/Benchmark_Stream.h:
