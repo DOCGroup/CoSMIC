@@ -1,3 +1,11 @@
+Thu Sep 2 15:50:22 CDT 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+        * PIM/PICML/interpreters/IDL_Generator/ComponentConfig.h:
+        * PIM/PICML/interpreters/IDL_Generator/Component.ico:
+        * PIM/PICML/interpreters/IDL_Generator/IDLGenerator.vcproj:
+        * PIM/PICML/interpreters/cidl/IDL_Stream.cp:
+          
+          Fixed some bugs after the demo to the LMCO folks.
+
 Mon Aug 30 09:40:29 CDT 2004 Gan Deng <gan.deng@vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML.xml:

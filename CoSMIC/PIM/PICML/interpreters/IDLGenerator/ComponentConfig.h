@@ -32,7 +32,8 @@
 #define GME_BASE C:/Program Files/GME
 
 
-// not defined: #define BON_ICON_SUPPORT
+#define BON_ICON_SUPPORT
+
 
 // not defined: #define BON_CUSTOM_TRANSACTIONS
 

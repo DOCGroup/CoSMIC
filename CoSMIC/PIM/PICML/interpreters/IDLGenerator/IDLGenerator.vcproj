@@ -89,7 +89,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/Zm200"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(GME_ROOT)\SDK\BON,."
+				AdditionalIncludeDirectories="&quot;$(GME_ROOT)\SDK\BON&quot;,."
 				PreprocessorDefinitions="USING_PCH;_DEBUG;WIN32;_WINDOWS;_AFX_DLL;BUILDER_OBJECT_NETWORK_V2;_AFXDLL"
 				MinimalRebuild="FALSE"
 				ExceptionHandling="TRUE"
@@ -138,7 +138,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_DEBUG;_AFX_DLL;BUILDER_OBJECT_NETWORK_V2;_AFXDLL"
 				Culture="1033"
-				AdditionalIncludeDirectories="$(GME_ROOT)\SDK\BON,."/>
+				AdditionalIncludeDirectories="&quot;$(GME_ROOT)\SDK\BON&quot;,."/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -406,7 +406,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Invoking midl on $(GME_ROOT)\SDK\BON\ComponentLib.idl"
-						CommandLine="midl -I. -server none -client none $(GME_ROOT)\SDK\BON\ComponentLib.idl
+						CommandLine="midl -I. -server none -client none &quot;$(GME_ROOT)\SDK\BON\ComponentLib.idl&quot;
 "
 						Outputs=".\ComponentLib.h"/>
 				</FileConfiguration>
@@ -415,7 +415,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Invoking midl on $(GME_ROOT)\SDK\BON\ComponentLib.idl"
-						CommandLine="midl -I. -server none -client none $(GME_ROOT)\SDK\BON\ComponentLib.idl
+						CommandLine="midl -I. -server none -client none &quot;$(GME_ROOT)\SDK\BON\ComponentLib.idl&quot;
 "
 						Outputs=".\ComponentLib.h"/>
 				</FileConfiguration>

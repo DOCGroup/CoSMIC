@@ -147,7 +147,7 @@ IDLStream::gen_cidlc_home_decl (std::string &component_name)
 void
 IDLStream::gen_cidlc_implements_decl (std::string &component_name)
 {
-	this->strm_ << "implments ";
+	this->strm_ << "implements ";
 	this->strm_ << component_name;
 	this->strm_ << ";";
 	this->nl ();
