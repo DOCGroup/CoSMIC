@@ -1,3 +1,9 @@
+Thu Jun 24 10:54:06 2004  Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * PICML/interpreters/plan/PlanVisitor.cpp:
+
+          Made a change to fix a typo.
+
 Thu Jun 24 10:03:47 2004  Jaiganesh B  <jai@dre.vanderbilt.edu>
 
         * PICML/examples/RobotAssembly.xme:

@@ -288,10 +288,7 @@ namespace PICML
 						this->push();
                         DOMElement* ele = this->doc_->createElement (XStr ("instance"));
                         ele->appendChild (this->createSimpleContent ("name", comp.name()));
-						DOMElement*
-                          refEle = this->doc_->createElement (XStr ("node"));
-                        refEle->appendChild (this->createSimpleContent ("name",refName));
-						ele->appendChild (refEle);
+						ele->appendChild (this->createSimpleContent ("node", refName));
                         this->curr_->appendChild (ele);
                         this->pop();
 					}
