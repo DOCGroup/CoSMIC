@@ -1,3 +1,46 @@
+Mon Jun 14 17:56:33 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * IDML/decorators/CommonError.cpp:
+        * IDML/decorators/CommonError.h:
+        * IDML/decorators/CommonSmart.h:
+        * IDML/decorators/Decorator.cpp:
+        * IDML/decorators/Decorator.dsp:
+        * IDML/decorators/Decorator.dsw:
+        * IDML/decorators/Decorator.h:
+        * IDML/decorators/Decorator.rc:
+        * IDML/decorators/Decorator.rgs:
+        * IDML/decorators/DecoratorApp.cpp:
+        * IDML/decorators/DecoratorApp.def:
+        * IDML/decorators/DecoratorConfig.h:
+        * IDML/decorators/DecoratorLib.idl:
+        * IDML/decorators/DecoratorStd.h:
+        * IDML/decorators/DecoratorUtil.cpp
+        * IDML/decorators/DecoratorUtil.h:
+        * IDML/decorators/IDMLDecorators.cpp:
+        * IDML/decorators/IDMLDecorators.h:
+        * IDML/decorators/MaskedBitmap.cpp:
+        * IDML/decorators/MaskedBitmap.h:
+        * IDML/decorators/StdAfx.cpp:
+        * IDML/decorators/StdAfx.h:
+        * IDML/decorators/resource.h:
+
+          New files, a decorator for IDML which:
+
+          - Checks for Members and AttributeMembers to have non-null
+            references, and when they do (or when they change), replaces
+            the current icon with either the appropriate
+            PredefinedType icon or the reference version of the
+            appropriate named type icon. This will update immediately
+            when something is dragged as a reference and dropped on
+            an existing Member or AttributeMember element.
+
+          - Makes sure port icons are facing in the right direction.
+            The ProvidedRequestPort icon is symmetrical, but each of
+            the others has two mirror image icons, one of which is selected
+            by the decorator each time the screen is redrawn. Some of 
+            the code for this feature was adapted from the default
+            decorator in GME source code.
+
 Mon Jun 14 08:57:13 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PICML/interpreters/packaging/PackageVisitor.cpp:
