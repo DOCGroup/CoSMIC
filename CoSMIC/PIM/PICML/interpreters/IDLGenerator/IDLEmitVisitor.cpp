@@ -1423,6 +1423,12 @@ namespace IDML_BON
 		    if (not_first) ofs << nl;
 		    if ((*it)->getParent () != object) continue;
 		    this->visitOrderableImpl (*it);
+        // Relative IDs of derived GME ports have one of the
+        // digits in the number below added to their base value
+        // - easy way to check.
+		    long rel_id;
+		    (*it)->getFCOI ()->get_RelID (&rel_id);
+		    if (rel_id & 0x18000000) continue;
 		    not_first = true;
 		  }
   }
@@ -1887,23 +1893,37 @@ namespace IDML_BON
          i != ports.end ();
          i++)
       {
-        if (not_first) ofs << nl;
-        
-        // Relative IDs of derived GME ports have the
-        // number below added to their base value - easy
-        // way to check.
+        // Relative IDs of derived GME ports have one of the
+        // digits in the number below added to their base value
+        // - easy way to check.
 		    long rel_id;
 		    (*i)->getFCOI ()->get_RelID (&rel_id);
-		    if (rel_id & 0x08000000) continue;
+		    if (rel_id & 0x18000000) continue;
 		    
+        if (not_first) ofs << nl;
+        
 		    ofs << nl;
         this->visitReferenceImpl (*i);
         this->emitPreprocDirectives (*i);
         not_first = true;
       }
      
-    // Leave a space between the ports and the attributes, if any. 
-    if (c->ordered_children.size () > 0) ofs << nl;
+    // Leave a space between the ports and the attributes, if there
+    // are any that are not inherited.
+    if (not_first)
+      {
+        for (std::vector<Orderable>::const_iterator oci =
+               c->ordered_children.begin ();
+             oci != c->ordered_children.end ();
+             oci++)
+          {
+		        long oc_rel_id;
+		        (*oci)->getFCOI ()->get_RelID (&oc_rel_id);
+		        if (oc_rel_id & 0x18000000) continue;
+		        ofs << nl;
+		        break;
+		      }
+		  }
   }
 
   void
