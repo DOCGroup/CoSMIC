@@ -1,3 +1,18 @@
+Tue Jul 27 16:39:25 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PICML/paradigms/PICML.xme:
+        * PICML/paradigms/PICML.xmp:
+        
+          Integrated the IDML paradigm into PICML. Also added
+          elements to the PredefinedTypes folder representing
+          collections of commonly used predefined types.
+          
+        * PICML/paradigms/PICMLTemplate.xme:
+        * PICML/paradigms/PredefinedTypes.xme:
+        
+          Added the new predefined types described above to these
+          models.
+
 Fri Jul 23 15:12:09 CDT 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PICML/interpreters/cidl/Component/IDLStream.cpp:
           Fixed home executor generator for the cidl file. Thanks to Gan 
