@@ -40,6 +40,7 @@ RSC=rc.exe
 # PROP Use_Debug_Libraries 0
 # PROP Output_Dir "Release"
 # PROP Intermediate_Dir "Release"
+# PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "REGISTERPARADIGM_EXPORTS" /Yu"stdafx.h" /FD /c
 # ADD CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "REGISTERPARADIGM_EXPORTS" /Yu"stdafx.h" /FD /c
@@ -91,28 +92,25 @@ LINK32=link.exe
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
-SOURCE="..\..\..\..\Program Files\GME\Interfaces\Meta.idl"
+SOURCE="C:\Program Files\GME\Interfaces\Meta.idl"
 
 !IF  "$(CFG)" == "RegisterParadigm - Win32 Release"
 
 # PROP Ignore_Default_Tool 1
 # Begin Custom Build
-InputPath="..\..\..\..\Program Files\GME\Interfaces\Meta.idl"
+InputPath=C:\Program Files\GME\Interfaces\Meta.idl
 InputName=Meta
 
 BuildCmds= \
-	midl /server none /client none /I "$(GME_ROOT)\Interfaces" "$(GME_ROOT)\Interfaces\Meta.idl"
+	midl /server none /client none /I "C:/Progra~1/GME/Interfaces" "$(InputPath)"
 
-".\$(InputName).h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-   $(BuildCmds)
-
-"$(InputName)_i.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+"$(InputName).h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
 
 "$(InputName)_p.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
 
-"dlldata.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+"$(InputName)_i.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
 # End Custom Build
 
@@ -120,22 +118,19 @@ BuildCmds= \
 
 # PROP Ignore_Default_Tool 1
 # Begin Custom Build
-InputPath="..\..\..\..\Program Files\GME\Interfaces\Meta.idl"
+InputPath=C:\Program Files\GME\Interfaces\Meta.idl
 InputName=Meta
 
 BuildCmds= \
-	midl /server none /client none /I "$(GME_ROOT)\Interfaces" "$(GME_ROOT)\Interfaces\Meta.idl"
+	midl /server none /client none /I "C:/Progra~1/GME/Interfaces" "$(InputPath)"
 
-".\$(InputName).h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-   $(BuildCmds)
-
-"$(InputName)_i.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+"$(InputName).h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
 
 "$(InputName)_p.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
 
-"dlldata.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+"$(InputName)_i.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
 # End Custom Build
 
@@ -144,28 +139,25 @@ BuildCmds= \
 # End Source File
 # Begin Source File
 
-SOURCE="..\..\..\..\Program Files\GME\Interfaces\Mga.idl"
+SOURCE="C:\Program Files\GME\Interfaces\Mga.idl"
 
 !IF  "$(CFG)" == "RegisterParadigm - Win32 Release"
 
 # PROP Ignore_Default_Tool 1
 # Begin Custom Build
-InputPath="..\..\..\..\Program Files\GME\Interfaces\Mga.idl"
+InputPath=C:\Program Files\GME\Interfaces\Mga.idl
 InputName=Mga
 
 BuildCmds= \
-	midl /server none /client none /I "$(GME_ROOT)\Interfaces" "$(GME_ROOT)\Interfaces\Mga.idl"
+	midl /server none /client none /I "C:/Progra~1/GME/Interfaces" "$(InputPath)"
 
-".\$(InputName).h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+"$(InputName).h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
 
 "$(InputName)_i.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
 
 "$(InputName)_p.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-   $(BuildCmds)
-
-"dlldata.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
 # End Custom Build
 
@@ -173,22 +165,19 @@ BuildCmds= \
 
 # PROP Ignore_Default_Tool 1
 # Begin Custom Build
-InputPath="..\..\..\..\Program Files\GME\Interfaces\Mga.idl"
+InputPath=C:\Program Files\GME\Interfaces\Mga.idl
 InputName=Mga
 
 BuildCmds= \
-	midl /server none /client none /I "$(GME_ROOT)\Interfaces" "$(GME_ROOT)\Interfaces\Mga.idl"
+	midl /server none /client none /I "C:/Progra~1/GME/Interfaces" "$(InputPath)"
 
-".\$(InputName).h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-   $(BuildCmds)
-
-"$(InputName)_i.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+"$(InputName).h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
 
 "$(InputName)_p.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
 
-"dlldata.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+"$(InputName)_i.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
 # End Custom Build
 
@@ -197,19 +186,19 @@ BuildCmds= \
 # End Source File
 # Begin Source File
 
-SOURCE="..\..\..\..\Program Files\GME\Interfaces\MgaUtil.idl"
+SOURCE="C:\Program Files\GME\Interfaces\MgaUtil.idl"
 
 !IF  "$(CFG)" == "RegisterParadigm - Win32 Release"
 
 # PROP Ignore_Default_Tool 1
 # Begin Custom Build
-InputPath="..\..\..\..\Program Files\GME\Interfaces\MgaUtil.idl"
+InputPath=C:\Program Files\GME\Interfaces\MgaUtil.idl
 InputName=MgaUtil
 
 BuildCmds= \
-	midl /server none /client none /I "$(GME_ROOT)\Interfaces" "$(GME_ROOT)\Interfaces\MgaUtil.idl"
+	midl /server none /client none /I "C:/Progra~1/GME/Interfaces" "$(InputPath)"
 
-".\$(InputName).h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+"$(InputName).h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
 
 "$(InputName)_i.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -226,22 +215,19 @@ BuildCmds= \
 
 # PROP Ignore_Default_Tool 1
 # Begin Custom Build
-InputPath="..\..\..\..\Program Files\GME\Interfaces\MgaUtil.idl"
+InputPath=C:\Program Files\GME\Interfaces\MgaUtil.idl
 InputName=MgaUtil
 
 BuildCmds= \
-	midl /server none /client none /I "$(GME_ROOT)\Interfaces" "$(GME_ROOT)\Interfaces\MgaUtil.idl"
+	midl /server none /client none /I "C:/Progra~1/GME/Interfaces" "$(InputPath)"
 
-".\$(InputName).h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-   $(BuildCmds)
-
-"$(InputName)_i.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+"$(InputName).h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
 
 "$(InputName)_p.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
 
-"dlldata.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+"$(InputName)_i.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
 # End Custom Build
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{06BF96EC-6B08-44C3-B46F-0335680B62DD}" cdate="Wed Oct 27 14:46:09 2004" mdate="Wed Oct 27 14:46:09 2004" version="" metaguid="{3D1F1E22-DF8F-4431-9C6F-BCA74F548BBB}" metaversion="" metaname="OCML">
+<project guid="{06BF96EC-6B08-44C3-B46F-0335680B62DD}" cdate="Fri Nov 05 18:21:46 2004" mdate="Fri Nov 05 18:21:47 2004" version="" metaguid="{3D1F1E22-DF8F-4431-9C6F-BCA74F548BBB}" metaversion="" metaname="OCML">
 	<name>TAO_Options</name>
 	<comment></comment>
 	<author></author>
@@ -291,7 +291,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<name>URL</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>68,12</value>
@@ -318,7 +318,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<name>IOR</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>12,12</value>
@@ -576,7 +576,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<name>no</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>12,12</value>
@@ -603,7 +603,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<name>per-orb</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>12,103</value>
@@ -630,7 +630,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<name>global</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>12,201</value>
@@ -684,7 +684,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<name>direct</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>68,12</value>
@@ -711,7 +711,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<name>thru_poa</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>12,12</value>
@@ -915,7 +915,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<name>1</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>12,12</value>
@@ -942,7 +942,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<name>0</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>68,12</value>
@@ -996,7 +996,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<name>1</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>68,12</value>
@@ -1023,7 +1023,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<name>0</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>12,12</value>
@@ -1191,7 +1191,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<name>1</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>12,12</value>
@@ -1218,7 +1218,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<name>0</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>68,12</value>
@@ -1272,7 +1272,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<name>1</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>12,12</value>
@@ -1299,7 +1299,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<name>0</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>68,12</value>
@@ -1353,7 +1353,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<value></value>
 						</attribute>
 					</atom>
-					<atom id="id-0066-00000024" kind="String_Option" role="String_Option" relid="0x4">
+					<atom id="id-0066-00000023" kind="String_Option" role="String_Option" relid="0x4">
 						<name>ORBListenEndpoints</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -1383,7 +1383,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<value></value>
 						</attribute>
 					</atom>
-					<atom id="id-0066-00000025" kind="Integer_Option" role="Integer_Option" relid="0x5">
+					<atom id="id-0066-00000024" kind="Integer_Option" role="Integer_Option" relid="0x5">
 						<name>ORBImplRepoServicePort</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -1413,7 +1413,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<value></value>
 						</attribute>
 					</atom>
-					<atom id="id-0066-00000026" kind="String_Option" role="String_Option" relid="0x6">
+					<atom id="id-0066-00000025" kind="String_Option" role="String_Option" relid="0x6">
 						<name>ORBInitRef</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -1443,7 +1443,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<value></value>
 						</attribute>
 					</atom>
-					<atom id="id-0066-00000027" kind="String_Option" role="String_Option" relid="0x7">
+					<atom id="id-0066-00000026" kind="String_Option" role="String_Option" relid="0x7">
 						<name>ORBMulticastDiscoveryEndpoint</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -1473,7 +1473,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<value></value>
 						</attribute>
 					</atom>
-					<atom id="id-0066-00000028" kind="Integer_Option" role="Integer_Option" relid="0x8">
+					<atom id="id-0066-00000027" kind="Integer_Option" role="Integer_Option" relid="0x8">
 						<name>ORBNameServicePort</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -1503,7 +1503,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<value></value>
 						</attribute>
 					</atom>
-					<atom id="id-0066-00000029" kind="Integer_Option" role="Integer_Option" relid="0x9">
+					<atom id="id-0066-00000028" kind="Integer_Option" role="Integer_Option" relid="0x9">
 						<name>ORBTradingServicePort</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -1557,7 +1557,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 					<attribute kind="Title">
 						<value>Miscellaneous Options</value>
 					</attribute>
-					<atom id="id-0066-0000002a" kind="String_Option" role="String_Option" relid="0x1">
+					<atom id="id-0066-00000029" kind="String_Option" role="String_Option" relid="0x1">
 						<name>ORBId</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -1567,7 +1567,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value>44,31</value>
 								</regnode>
 							</regnode>
-							<regnode name="Option_Aspect">
+							<regnode name="Option_Aspect" isopaque="yes">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
 									<value>110,138</value>
@@ -1587,7 +1587,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<value></value>
 						</attribute>
 					</atom>
-					<atom id="id-0066-0000002b" kind="String_Option" role="String_Option" relid="0x2">
+					<atom id="id-0066-0000002a" kind="String_Option" role="String_Option" relid="0x2">
 						<name>ORBServerId</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -1597,7 +1597,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value>198,31</value>
 								</regnode>
 							</regnode>
-							<regnode name="Option_Aspect">
+							<regnode name="Option_Aspect" isopaque="yes">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
 									<value>166,40</value>
@@ -1617,7 +1617,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<value></value>
 						</attribute>
 					</atom>
-					<atom id="id-0066-0000002c" kind="Boolean_Option" role="Boolean_Option" relid="0x3">
+					<atom id="id-0066-0000002b" kind="Boolean_Option" role="Boolean_Option" relid="0x3">
 						<name>ORBDaemon</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -1627,7 +1627,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value>359,31</value>
 								</regnode>
 							</regnode>
-							<regnode name="Option_Aspect">
+							<regnode name="Option_Aspect" isopaque="yes">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
 									<value>47,40</value>
@@ -1705,7 +1705,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value>154,99</value>
 								</regnode>
 							</regnode>
-							<regnode name="Option_Aspect">
+							<regnode name="Option_Aspect" isopaque="yes">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
 									<value>105,140</value>
@@ -1728,7 +1728,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 										<value>37,37</value>
 									</regnode>
 								</regnode>
-								<regnode name="Option_Aspect">
+								<regnode name="Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>203,239</value>
@@ -1744,11 +1744,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<attribute kind="Title" status="meta">
 								<value></value>
 							</attribute>
-							<atom id="id-0066-0000002d" kind="Enum_Item" role="Enum_Item" relid="0x2">
+							<atom id="id-0066-0000002c" kind="Enum_Item" role="Enum_Item" relid="0x2">
 								<name>select_st</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
-									<regnode name="Model_Option_Aspect">
+									<regnode name="Model_Option_Aspect" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
 											<value>124,12</value>
@@ -1771,11 +1771,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value></value>
 								</attribute>
 							</atom>
-							<atom id="id-0066-0000002e" kind="Enum_Item" role="Enum_Item" relid="0x4">
+							<atom id="id-0066-0000002d" kind="Enum_Item" role="Enum_Item" relid="0x4">
 								<name>wfmo</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
-									<regnode name="Model_Option_Aspect">
+									<regnode name="Model_Option_Aspect" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
 											<value>68,68</value>
@@ -1798,11 +1798,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value></value>
 								</attribute>
 							</atom>
-							<atom id="id-0066-0000002f" kind="Enum_Item" role="Enum_Item" relid="0x3">
+							<atom id="id-0066-0000002e" kind="Enum_Item" role="Enum_Item" relid="0x3">
 								<name>fl</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
-									<regnode name="Model_Option_Aspect">
+									<regnode name="Model_Option_Aspect" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
 											<value>12,12</value>
@@ -1825,11 +1825,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value></value>
 								</attribute>
 							</atom>
-							<atom id="id-0066-00000030" kind="Enum_Item" role="Enum_Item" relid="0x1">
+							<atom id="id-0066-0000002f" kind="Enum_Item" role="Enum_Item" relid="0x1">
 								<name>select_mt</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
-									<regnode name="Model_Option_Aspect">
+									<regnode name="Model_Option_Aspect" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
 											<value>68,12</value>
@@ -1852,11 +1852,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value></value>
 								</attribute>
 							</atom>
-							<atom id="id-0066-00000031" kind="Enum_Item" role="Enum_Item" relid="0x6">
+							<atom id="id-0066-00000030" kind="Enum_Item" role="Enum_Item" relid="0x6">
 								<name>tp</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
-									<regnode name="Model_Option_Aspect">
+									<regnode name="Model_Option_Aspect" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
 											<value>124,68</value>
@@ -1879,11 +1879,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value></value>
 								</attribute>
 							</atom>
-							<atom id="id-0066-00000032" kind="Enum_Item" role="Enum_Item" relid="0x5">
+							<atom id="id-0066-00000031" kind="Enum_Item" role="Enum_Item" relid="0x5">
 								<name>msg_wfmo</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
-									<regnode name="Model_Option_Aspect">
+									<regnode name="Model_Option_Aspect" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
 											<value>12,68</value>
@@ -1917,7 +1917,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 										<value>569,44</value>
 									</regnode>
 								</regnode>
-								<regnode name="Option_Aspect">
+								<regnode name="Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>287,70</value>
@@ -1933,11 +1933,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<attribute kind="Title" status="meta">
 								<value></value>
 							</attribute>
-							<atom id="id-0066-00000033" kind="Enum_Item" role="Enum_Item" relid="0x1">
+							<atom id="id-0066-00000032" kind="Enum_Item" role="Enum_Item" relid="0x1">
 								<name>thread</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
-									<regnode name="Model_Option_Aspect">
+									<regnode name="Model_Option_Aspect" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
 											<value>12,12</value>
@@ -1960,11 +1960,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value></value>
 								</attribute>
 							</atom>
-							<atom id="id-0066-00000034" kind="Enum_Item" role="Enum_Item" relid="0x2">
+							<atom id="id-0066-00000033" kind="Enum_Item" role="Enum_Item" relid="0x2">
 								<name>null</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
-									<regnode name="Model_Option_Aspect">
+									<regnode name="Model_Option_Aspect" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
 											<value>68,12</value>
@@ -1998,7 +1998,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 										<value>289,44</value>
 									</regnode>
 								</regnode>
-								<regnode name="Option_Aspect">
+								<regnode name="Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>70,49</value>
@@ -2014,11 +2014,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<attribute kind="Title" status="meta">
 								<value></value>
 							</attribute>
-							<atom id="id-0066-00000035" kind="Enum_Item" role="Enum_Item" relid="0x2">
+							<atom id="id-0066-00000034" kind="Enum_Item" role="Enum_Item" relid="0x2">
 								<name>FIFO</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
-									<regnode name="Model_Option_Aspect">
+									<regnode name="Model_Option_Aspect" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
 											<value>12,12</value>
@@ -2041,11 +2041,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value></value>
 								</attribute>
 							</atom>
-							<atom id="id-0066-00000036" kind="Enum_Item" role="Enum_Item" relid="0x1">
+							<atom id="id-0066-00000035" kind="Enum_Item" role="Enum_Item" relid="0x1">
 								<name>LIFO</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
-									<regnode name="Model_Option_Aspect">
+									<regnode name="Model_Option_Aspect" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
 											<value>68,12</value>
@@ -2080,7 +2080,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value>399,99</value>
 								</regnode>
 							</regnode>
-							<regnode name="Option_Aspect">
+							<regnode name="Option_Aspect" isopaque="yes">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
 									<value>105,14</value>
@@ -2103,7 +2103,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 										<value>337,378</value>
 									</regnode>
 								</regnode>
-								<regnode name="Option_Aspect">
+								<regnode name="Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>483,21</value>
@@ -2119,7 +2119,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<attribute kind="Title" status="meta">
 								<value></value>
 							</attribute>
-							<atom id="id-0066-00000037" kind="Enum_Item" role="Enum_Item" relid="0x3">
+							<atom id="id-0066-00000036" kind="Enum_Item" role="Enum_Item" relid="0x3">
 								<name>blocking</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -2140,7 +2140,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value></value>
 								</attribute>
 							</atom>
-							<atom id="id-0066-00000038" kind="Enum_Item" role="Enum_Item" relid="0x2">
+							<atom id="id-0066-00000037" kind="Enum_Item" role="Enum_Item" relid="0x2">
 								<name>reactive</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -2161,7 +2161,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value></value>
 								</attribute>
 							</atom>
-							<atom id="id-0066-00000039" kind="Enum_Item" role="Enum_Item" relid="0x1">
+							<atom id="id-0066-00000038" kind="Enum_Item" role="Enum_Item" relid="0x1">
 								<name>leader_follower</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -2193,7 +2193,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 										<value>337,147</value>
 									</regnode>
 								</regnode>
-								<regnode name="Option_Aspect">
+								<regnode name="Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>63,126</value>
@@ -2209,11 +2209,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<attribute kind="Title" status="meta">
 								<value></value>
 							</attribute>
-							<atom id="id-0066-0000003a" kind="Enum_Item" role="Enum_Item" relid="0x4">
+							<atom id="id-0066-00000039" kind="Enum_Item" role="Enum_Item" relid="0x4">
 								<name>lfu</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
-									<regnode name="Model_Option_Aspect">
+									<regnode name="Model_Option_Aspect" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
 											<value>12,12</value>
@@ -2236,11 +2236,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value></value>
 								</attribute>
 							</atom>
-							<atom id="id-0066-0000003b" kind="Enum_Item" role="Enum_Item" relid="0x3">
+							<atom id="id-0066-0000003a" kind="Enum_Item" role="Enum_Item" relid="0x3">
 								<name>null</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
-									<regnode name="Model_Option_Aspect">
+									<regnode name="Model_Option_Aspect" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
 											<value>12,110</value>
@@ -2263,11 +2263,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value></value>
 								</attribute>
 							</atom>
-							<atom id="id-0066-0000003c" kind="Enum_Item" role="Enum_Item" relid="0x2">
+							<atom id="id-0066-0000003b" kind="Enum_Item" role="Enum_Item" relid="0x2">
 								<name>lru</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
-									<regnode name="Model_Option_Aspect">
+									<regnode name="Model_Option_Aspect" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
 											<value>68,12</value>
@@ -2290,11 +2290,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value></value>
 								</attribute>
 							</atom>
-							<atom id="id-0066-0000003d" kind="Enum_Item" role="Enum_Item" relid="0x1">
+							<atom id="id-0066-0000003c" kind="Enum_Item" role="Enum_Item" relid="0x1">
 								<name>fifo</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
-									<regnode name="Model_Option_Aspect">
+									<regnode name="Model_Option_Aspect" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
 											<value>75,117</value>
@@ -2328,7 +2328,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 										<value>589,266</value>
 									</regnode>
 								</regnode>
-								<regnode name="Option_Aspect">
+								<regnode name="Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>483,126</value>
@@ -2344,11 +2344,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<attribute kind="Title" status="meta">
 								<value></value>
 							</attribute>
-							<atom id="id-0066-0000003e" kind="Enum_Item" role="Enum_Item" relid="0x1">
+							<atom id="id-0066-0000003d" kind="Enum_Item" role="Enum_Item" relid="0x1">
 								<name>thread</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
-									<regnode name="Model_Option_Aspect">
+									<regnode name="Model_Option_Aspect" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
 											<value>68,12</value>
@@ -2371,11 +2371,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value></value>
 								</attribute>
 							</atom>
-							<atom id="id-0066-0000003f" kind="Enum_Item" role="Enum_Item" relid="0x2">
+							<atom id="id-0066-0000003e" kind="Enum_Item" role="Enum_Item" relid="0x2">
 								<name>null</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
-									<regnode name="Model_Option_Aspect">
+									<regnode name="Model_Option_Aspect" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
 											<value>12,12</value>
@@ -2409,7 +2409,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 										<value>589,147</value>
 									</regnode>
 								</regnode>
-								<regnode name="Option_Aspect">
+								<regnode name="Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>287,21</value>
@@ -2425,11 +2425,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<attribute kind="Title" status="meta">
 								<value></value>
 							</attribute>
-							<atom id="id-0066-00000040" kind="Enum_Item" role="Enum_Item" relid="0x2">
+							<atom id="id-0066-0000003f" kind="Enum_Item" role="Enum_Item" relid="0x2">
 								<name>null</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
-									<regnode name="Model_Option_Aspect">
+									<regnode name="Model_Option_Aspect" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
 											<value>12,12</value>
@@ -2452,11 +2452,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value></value>
 								</attribute>
 							</atom>
-							<atom id="id-0066-00000041" kind="Enum_Item" role="Enum_Item" relid="0x1">
+							<atom id="id-0066-00000040" kind="Enum_Item" role="Enum_Item" relid="0x1">
 								<name>thread</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
-									<regnode name="Model_Option_Aspect">
+									<regnode name="Model_Option_Aspect" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
 											<value>68,12</value>
@@ -2490,7 +2490,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 										<value>78,378</value>
 									</regnode>
 								</regnode>
-								<regnode name="Option_Aspect">
+								<regnode name="Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>63,21</value>
@@ -2506,11 +2506,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<attribute kind="Title" status="meta">
 								<value></value>
 							</attribute>
-							<atom id="id-0066-00000042" kind="Enum_Item" role="Enum_Item" relid="0x2">
+							<atom id="id-0066-00000041" kind="Enum_Item" role="Enum_Item" relid="0x2">
 								<name>null</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
-									<regnode name="Model_Option_Aspect">
+									<regnode name="Model_Option_Aspect" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
 											<value>12,12</value>
@@ -2533,11 +2533,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value></value>
 								</attribute>
 							</atom>
-							<atom id="id-0066-00000043" kind="Enum_Item" role="Enum_Item" relid="0x1">
+							<atom id="id-0066-00000042" kind="Enum_Item" role="Enum_Item" relid="0x1">
 								<name>thread</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
-									<regnode name="Model_Option_Aspect">
+									<regnode name="Model_Option_Aspect" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
 											<value>68,12</value>
@@ -2571,7 +2571,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 										<value>85,42</value>
 									</regnode>
 								</regnode>
-								<regnode name="Option_Aspect">
+								<regnode name="Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>287,126</value>
@@ -2587,11 +2587,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<attribute kind="Title" status="meta">
 								<value></value>
 							</attribute>
-							<atom id="id-0066-00000044" kind="Enum_Item" role="Enum_Item" relid="0x2">
+							<atom id="id-0066-00000043" kind="Enum_Item" role="Enum_Item" relid="0x2">
 								<name>1</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
-									<regnode name="Model_Option_Aspect">
+									<regnode name="Model_Option_Aspect" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
 											<value>68,12</value>
@@ -2614,11 +2614,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value></value>
 								</attribute>
 							</atom>
-							<atom id="id-0066-00000045" kind="Enum_Item" role="Enum_Item" relid="0x1">
+							<atom id="id-0066-00000044" kind="Enum_Item" role="Enum_Item" relid="0x1">
 								<name>0</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
-									<regnode name="Model_Option_Aspect">
+									<regnode name="Model_Option_Aspect" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
 											<value>12,12</value>
@@ -2642,7 +2642,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								</attribute>
 							</atom>
 						</model>
-						<atom id="id-0066-00000046" kind="Integer_Option" role="Integer_Option" relid="0xa">
+						<atom id="id-0066-00000045" kind="Integer_Option" role="Integer_Option" relid="0xa">
 							<name>ORBConnectionCacheMax</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -2652,7 +2652,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 										<value>86,269</value>
 									</regnode>
 								</regnode>
-								<regnode name="Option_Aspect">
+								<regnode name="Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>663,278</value>
@@ -2672,7 +2672,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-00000047" kind="Integer_Option" role="Integer_Option" relid="0xc">
+						<atom id="id-0066-00000046" kind="Integer_Option" role="Integer_Option" relid="0xc">
 							<name>ORBConnectionCachePurgePercentage</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -2682,7 +2682,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 										<value>590,45</value>
 									</regnode>
 								</regnode>
-								<regnode name="Option_Aspect">
+								<regnode name="Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>166,250</value>
@@ -2702,7 +2702,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-00000048" kind="String_Option" role="String_Option" relid="0x8">
+						<atom id="id-0066-00000047" kind="String_Option" role="String_Option" relid="0x8">
 							<name>ORBIORParser</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -2712,7 +2712,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 										<value>86,164</value>
 									</regnode>
 								</regnode>
-								<regnode name="Option_Aspect">
+								<regnode name="Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>446,327</value>
@@ -2732,7 +2732,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-00000049" kind="String_Option" role="String_Option" relid="0x7">
+						<atom id="id-0066-00000048" kind="String_Option" role="String_Option" relid="0x7">
 							<name>ORBProtocolFactory</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -2742,7 +2742,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 										<value>338,45</value>
 									</regnode>
 								</regnode>
-								<regnode name="Option_Aspect">
+								<regnode name="Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>166,334</value>
@@ -2762,7 +2762,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-0000004a" kind="Integer_Option" role="Integer_Option" relid="0xb">
+						<atom id="id-0066-00000049" kind="Integer_Option" role="Integer_Option" relid="0xb">
 							<name>ORBMuxedConnectionMax</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -2772,7 +2772,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 										<value>338,269</value>
 									</regnode>
 								</regnode>
-								<regnode name="Option_Aspect">
+								<regnode name="Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>453,243</value>
@@ -2827,7 +2827,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value>358,476</value>
 								</regnode>
 							</regnode>
-							<regnode name="Option_Aspect">
+							<regnode name="Option_Aspect" isopaque="yes">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
 									<value>924,224</value>
@@ -2843,11 +2843,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 						<attribute kind="Title" status="meta">
 							<value></value>
 						</attribute>
-						<atom id="id-0066-0000004b" kind="Enum_Item" role="Enum_Item" relid="0x1">
+						<atom id="id-0066-0000004a" kind="Enum_Item" role="Enum_Item" relid="0x1">
 							<name>thread</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>68,12</value>
@@ -2870,11 +2870,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-0000004c" kind="Enum_Item" role="Enum_Item" relid="0x2">
+						<atom id="id-0066-0000004b" kind="Enum_Item" role="Enum_Item" relid="0x2">
 							<name>null</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>12,12</value>
@@ -2908,7 +2908,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value>78,147</value>
 								</regnode>
 							</regnode>
-							<regnode name="Option_Aspect">
+							<regnode name="Option_Aspect" isopaque="yes">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
 									<value>672,126</value>
@@ -2924,11 +2924,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 						<attribute kind="Title" status="meta">
 							<value></value>
 						</attribute>
-						<atom id="id-0066-0000004d" kind="Enum_Item" role="Enum_Item" relid="0x2">
+						<atom id="id-0066-0000004c" kind="Enum_Item" role="Enum_Item" relid="0x2">
 							<name>linear</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>68,12</value>
@@ -2951,11 +2951,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-0000004e" kind="Enum_Item" role="Enum_Item" relid="0x1">
+						<atom id="id-0066-0000004d" kind="Enum_Item" role="Enum_Item" relid="0x1">
 							<name>dynamic</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>12,12</value>
@@ -2989,7 +2989,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value>603,364</value>
 								</regnode>
 							</regnode>
-							<regnode name="Option_Aspect">
+							<regnode name="Option_Aspect" isopaque="yes">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
 									<value>119,140</value>
@@ -3005,11 +3005,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 						<attribute kind="Title" status="meta">
 							<value></value>
 						</attribute>
-						<atom id="id-0066-0000004f" kind="Enum_Item" role="Enum_Item" relid="0x2">
+						<atom id="id-0066-0000004e" kind="Enum_Item" role="Enum_Item" relid="0x2">
 							<name>1</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>12,12</value>
@@ -3032,11 +3032,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-00000050" kind="Enum_Item" role="Enum_Item" relid="0x1">
+						<atom id="id-0066-0000004f" kind="Enum_Item" role="Enum_Item" relid="0x1">
 							<name>0</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>68,12</value>
@@ -3070,7 +3070,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value>79,478</value>
 								</regnode>
 							</regnode>
-							<regnode name="Option_Aspect">
+							<regnode name="Option_Aspect" isopaque="yes">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
 									<value>126,21</value>
@@ -3086,11 +3086,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 						<attribute kind="Title" status="meta">
 							<value></value>
 						</attribute>
-						<atom id="id-0066-00000051" kind="Flag_Item" role="Flag_Item" relid="0x4">
+						<atom id="id-0066-00000050" kind="Flag_Item" role="Flag_Item" relid="0x4">
 							<name>THR_SUSPENDED</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>54,138</value>
@@ -3113,11 +3113,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-00000052" kind="Flag_Item" role="Flag_Item" relid="0x2">
+						<atom id="id-0066-00000051" kind="Flag_Item" role="Flag_Item" relid="0x2">
 							<name>THR_BOUND</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>54,229</value>
@@ -3140,11 +3140,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-00000053" kind="Flag_Item" role="Flag_Item" relid="0x3">
+						<atom id="id-0066-00000052" kind="Flag_Item" role="Flag_Item" relid="0x3">
 							<name>THR_NEW_LWP</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>54,320</value>
@@ -3167,11 +3167,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-00000054" kind="Flag_Item" role="Flag_Item" relid="0x1">
+						<atom id="id-0066-00000053" kind="Flag_Item" role="Flag_Item" relid="0x1">
 							<name>THR_DETACHED</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>54,47</value>
@@ -3205,7 +3205,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value>351,364</value>
 								</regnode>
 							</regnode>
-							<regnode name="Option_Aspect">
+							<regnode name="Option_Aspect" isopaque="yes">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
 									<value>679,231</value>
@@ -3221,11 +3221,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 						<attribute kind="Title" status="meta">
 							<value></value>
 						</attribute>
-						<atom id="id-0066-00000055" kind="Enum_Item" role="Enum_Item" relid="0x3">
+						<atom id="id-0066-00000054" kind="Enum_Item" role="Enum_Item" relid="0x3">
 							<name>active</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>68,12</value>
@@ -3248,11 +3248,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-00000056" kind="Enum_Item" role="Enum_Item" relid="0x1">
+						<atom id="id-0066-00000055" kind="Enum_Item" role="Enum_Item" relid="0x1">
 							<name>dynamic</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>12,12</value>
@@ -3275,11 +3275,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-00000057" kind="Enum_Item" role="Enum_Item" relid="0x2">
+						<atom id="id-0066-00000056" kind="Enum_Item" role="Enum_Item" relid="0x2">
 							<name>linear</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>75,103</value>
@@ -3313,7 +3313,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value>78,364</value>
 								</regnode>
 							</regnode>
-							<regnode name="Option_Aspect">
+							<regnode name="Option_Aspect" isopaque="yes">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
 									<value>672,21</value>
@@ -3329,11 +3329,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 						<attribute kind="Title" status="meta">
 							<value></value>
 						</attribute>
-						<atom id="id-0066-00000058" kind="Enum_Item" role="Enum_Item" relid="0x1">
+						<atom id="id-0066-00000057" kind="Enum_Item" role="Enum_Item" relid="0x1">
 							<name>dynamic</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>68,12</value>
@@ -3356,11 +3356,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-00000059" kind="Enum_Item" role="Enum_Item" relid="0x2">
+						<atom id="id-0066-00000058" kind="Enum_Item" role="Enum_Item" relid="0x2">
 							<name>linear</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>12,12</value>
@@ -3394,7 +3394,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value>78,21</value>
 								</regnode>
 							</regnode>
-							<regnode name="Option_Aspect">
+							<regnode name="Option_Aspect" isopaque="yes">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
 									<value>917,119</value>
@@ -3410,11 +3410,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 						<attribute kind="Title" status="meta">
 							<value></value>
 						</attribute>
-						<atom id="id-0066-0000005a" kind="Enum_Item" role="Enum_Item" relid="0x2">
+						<atom id="id-0066-00000059" kind="Enum_Item" role="Enum_Item" relid="0x2">
 							<name>thread_per_connection</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>61,117</value>
@@ -3437,11 +3437,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-0000005b" kind="Enum_Item" role="Enum_Item" relid="0x1">
+						<atom id="id-0066-0000005a" kind="Enum_Item" role="Enum_Item" relid="0x1">
 							<name>reactive</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>61,12</value>
@@ -3475,7 +3475,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value>323,147</value>
 								</regnode>
 							</regnode>
-							<regnode name="Option_Aspect">
+							<regnode name="Option_Aspect" isopaque="yes">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
 									<value>392,231</value>
@@ -3491,11 +3491,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 						<attribute kind="Title" status="meta">
 							<value></value>
 						</attribute>
-						<atom id="id-0066-0000005c" kind="Enum_Item" role="Enum_Item" relid="0x1">
+						<atom id="id-0066-0000005b" kind="Enum_Item" role="Enum_Item" relid="0x1">
 							<name>dynamic</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>12,12</value>
@@ -3518,11 +3518,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-0000005d" kind="Enum_Item" role="Enum_Item" relid="0x2">
+						<atom id="id-0066-0000005c" kind="Enum_Item" role="Enum_Item" relid="0x2">
 							<name>linear</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>96,19</value>
@@ -3545,11 +3545,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-0000005e" kind="Enum_Item" role="Enum_Item" relid="0x3">
+						<atom id="id-0066-0000005d" kind="Enum_Item" role="Enum_Item" relid="0x3">
 							<name>active</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>68,131</value>
@@ -3583,7 +3583,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value>603,147</value>
 								</regnode>
 							</regnode>
-							<regnode name="Option_Aspect">
+							<regnode name="Option_Aspect" isopaque="yes">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
 									<value>392,126</value>
@@ -3599,11 +3599,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 						<attribute kind="Title" status="meta">
 							<value></value>
 						</attribute>
-						<atom id="id-0066-0000005f" kind="Enum_Item" role="Enum_Item" relid="0x1">
+						<atom id="id-0066-0000005e" kind="Enum_Item" role="Enum_Item" relid="0x1">
 							<name>dynamic</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>12,12</value>
@@ -3626,11 +3626,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-00000060" kind="Enum_Item" role="Enum_Item" relid="0x2">
+						<atom id="id-0066-0000005f" kind="Enum_Item" role="Enum_Item" relid="0x2">
 							<name>linear</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>68,12</value>
@@ -3664,7 +3664,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value>78,259</value>
 								</regnode>
 							</regnode>
-							<regnode name="Option_Aspect">
+							<regnode name="Option_Aspect" isopaque="yes">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
 									<value>392,21</value>
@@ -3680,11 +3680,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 						<attribute kind="Title" status="meta">
 							<value></value>
 						</attribute>
-						<atom id="id-0066-00000061" kind="Enum_Item" role="Enum_Item" relid="0x2">
+						<atom id="id-0066-00000060" kind="Enum_Item" role="Enum_Item" relid="0x2">
 							<name>1</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>68,12</value>
@@ -3707,11 +3707,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-00000062" kind="Enum_Item" role="Enum_Item" relid="0x1">
+						<atom id="id-0066-00000061" kind="Enum_Item" role="Enum_Item" relid="0x1">
 							<name>0</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>12,12</value>
@@ -3745,7 +3745,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value>323,259</value>
 								</regnode>
 							</regnode>
-							<regnode name="Option_Aspect">
+							<regnode name="Option_Aspect" isopaque="yes">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
 									<value>917,21</value>
@@ -3761,11 +3761,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 						<attribute kind="Title" status="meta">
 							<value></value>
 						</attribute>
-						<atom id="id-0066-00000063" kind="Enum_Item" role="Enum_Item" relid="0x1">
+						<atom id="id-0066-00000062" kind="Enum_Item" role="Enum_Item" relid="0x1">
 							<name>0</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>12,12</value>
@@ -3788,11 +3788,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-00000064" kind="Enum_Item" role="Enum_Item" relid="0x2">
+						<atom id="id-0066-00000063" kind="Enum_Item" role="Enum_Item" relid="0x2">
 							<name>1</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>68,12</value>
@@ -3816,7 +3816,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							</attribute>
 						</atom>
 					</model>
-					<atom id="id-0066-00000065" kind="Integer_Option" role="Integer_Option" relid="0x2">
+					<atom id="id-0066-00000064" kind="Integer_Option" role="Integer_Option" relid="0x2">
 						<name>ORBThreadPerConnectionTimeout</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -3826,7 +3826,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value>324,24</value>
 								</regnode>
 							</regnode>
-							<regnode name="Option_Aspect">
+							<regnode name="Option_Aspect" isopaque="yes">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
 									<value>873,341</value>
@@ -3846,7 +3846,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<value></value>
 						</attribute>
 					</atom>
-					<atom id="id-0066-00000066" kind="Integer_Option" role="Integer_Option" relid="0x9">
+					<atom id="id-0066-00000065" kind="Integer_Option" role="Integer_Option" relid="0x9">
 						<name>ORBPoaMapSize</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -3856,7 +3856,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value>604,262</value>
 								</regnode>
 							</regnode>
-							<regnode name="Option_Aspect">
+							<regnode name="Option_Aspect" isopaque="yes">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
 									<value>656,341</value>
@@ -3876,7 +3876,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 							<value></value>
 						</attribute>
 					</atom>
-					<atom id="id-0066-00000067" kind="Integer_Option" role="Integer_Option" relid="0x3">
+					<atom id="id-0066-00000066" kind="Integer_Option" role="Integer_Option" relid="0x3">
 						<name>ORBActiveObjectMapSize</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -3886,7 +3886,7 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 									<value>604,24</value>
 								</regnode>
 							</regnode>
-							<regnode name="Option_Aspect">
+							<regnode name="Option_Aspect" isopaque="yes">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
 									<value>481,341</value>
@@ -3956,11 +3956,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 						<attribute kind="Title" status="meta">
 							<value></value>
 						</attribute>
-						<atom id="id-0066-00000068" kind="Enum_Item" role="Enum_Item" relid="0x1">
+						<atom id="id-0066-00000067" kind="Enum_Item" role="Enum_Item" relid="0x1">
 							<name>leader_follower</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>61,117</value>
@@ -3983,11 +3983,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-00000069" kind="Enum_Item" role="Enum_Item" relid="0x2">
+						<atom id="id-0066-00000068" kind="Enum_Item" role="Enum_Item" relid="0x2">
 							<name>reactive</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>12,12</value>
@@ -4010,11 +4010,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-0000006a" kind="Enum_Item" role="Enum_Item" relid="0x3">
+						<atom id="id-0066-00000069" kind="Enum_Item" role="Enum_Item" relid="0x3">
 							<name>blocking</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>103,12</value>
@@ -4064,11 +4064,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 						<attribute kind="Title" status="meta">
 							<value></value>
 						</attribute>
-						<atom id="id-0066-0000006b" kind="Enum_Item" role="Enum_Item" relid="0x2">
+						<atom id="id-0066-0000006a" kind="Enum_Item" role="Enum_Item" relid="0x2">
 							<name>MUXED</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>12,12</value>
@@ -4091,11 +4091,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-0000006c" kind="Enum_Item" role="Enum_Item" relid="0x1">
+						<atom id="id-0066-0000006b" kind="Enum_Item" role="Enum_Item" relid="0x1">
 							<name>EXCLUSIVE</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>166,19</value>
@@ -4145,11 +4145,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 						<attribute kind="Title" status="meta">
 							<value></value>
 						</attribute>
-						<atom id="id-0066-0000006d" kind="Enum_Item" role="Enum_Item" relid="0x3">
+						<atom id="id-0066-0000006c" kind="Enum_Item" role="Enum_Item" relid="0x3">
 							<name>RW</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>82,117</value>
@@ -4172,11 +4172,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-0000006e" kind="Enum_Item" role="Enum_Item" relid="0x2">
+						<atom id="id-0066-0000006d" kind="Enum_Item" role="Enum_Item" relid="0x2">
 							<name>ST</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>68,12</value>
@@ -4199,11 +4199,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-0000006f" kind="Enum_Item" role="Enum_Item" relid="0x1">
+						<atom id="id-0066-0000006e" kind="Enum_Item" role="Enum_Item" relid="0x1">
 							<name>MT</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>12,12</value>
@@ -4253,11 +4253,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 						<attribute kind="Title" status="meta">
 							<value></value>
 						</attribute>
-						<atom id="id-0066-00000070" kind="Enum_Item" role="Enum_Item" relid="0x1">
+						<atom id="id-0066-0000006f" kind="Enum_Item" role="Enum_Item" relid="0x1">
 							<name>thread</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>12,12</value>
@@ -4280,11 +4280,11 @@ This section provides a detailed overview of how to configure TAO&apos;s options
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-00000071" kind="Enum_Item" role="Enum_Item" relid="0x2">
+						<atom id="id-0066-00000070" kind="Enum_Item" role="Enum_Item" relid="0x2">
 							<name>null</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
-								<regnode name="Model_Option_Aspect">
+								<regnode name="Model_Option_Aspect" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>68,12</value>

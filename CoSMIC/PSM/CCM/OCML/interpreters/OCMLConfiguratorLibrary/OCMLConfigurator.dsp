@@ -33,8 +33,8 @@ RSC=rc.exe
 
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "$(PICML_ROOT)\lib"
-# PROP Intermediate_Dir "Release\OCMLConfigurator"
+# PROP Output_Dir "..\..\..\..\..\PIM\PICML\lib"
+# PROP Intermediate_Dir "Release"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD CPP /nologo /MD /W3 /GR /GX /O2 /I "$(XERCESCROOT)\include" /I "$(WXWINDOWS_ROOT)\include" /I "$(WXWINDOWS_ROOT)\lib\mswd" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "OCML_CONFIGURATOR_DLL_ENTRY_EXPORTS" /D "_USRDLL" /D "WXMAKINGDLL" /FD /c
@@ -46,7 +46,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /machine:IX86
-# ADD LINK32 advapi32.lib user32.lib comctl32.lib wsock32.lib rpcrt4.lib xerces-c_2.lib wxmsw.lib /nologo /version:1.0 /subsystem:windows /dll /pdb:"$(PICML_ROOT)\bin\OCMLConfigurator.pdb" /machine:I386 /out:"$(PICML_ROOT)\bin\OCMLConfigurator.dll" /libpath:"$(XERCESCROOT)\lib" /libpath:"$(WXWINDOWS_ROOT)\lib"
+# ADD LINK32 shell32.lib Comdlg32.lib Advapi32.lib ole32.lib user32.lib gdi32.lib comctl32.lib wsock32.lib rpcrt4.lib xerces-c_2.lib wxmsw.lib /nologo /version:1.0 /subsystem:windows /dll /pdb:"$(PICML_ROOT)\bin\OCMLConfigurator.pdb" /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCMLConfigurator.dll" /libpath:"$(XERCESCROOT)\lib" /libpath:"$(WXWINDOWS_ROOT)\lib"
 # SUBTRACT LINK32 /pdb:none
 
 !ELSEIF  "$(CFG)" == "OCMLConfigurator - Win32 Debug"

@@ -233,20 +233,19 @@ bool UnRegister (const std::string& paradigmName)
   BSTR name = ::SysAllocString(wstr);
 
   hr = reg->UnregisterParadigm(name, REGACCESS_BOTH);
+  
+  ::SysFreeString(name);
+  reg->Release();
+  ::CoUninitialize();
+  
   if (FAILED(hr))
     return false;
 
-  ::SysFreeString(name);
-
-  reg->Release();
-
-  ::CoUninitialize();
   return true;
 }
 
 UINT __stdcall UnRegisterParadigm (MSIHANDLE hInstall)
 {
-  SendErrorMsg (hInstall, "Trying to unregister PICML from GME",1);
   // installable paradigm number
   int nParadigmNum = 1;
 

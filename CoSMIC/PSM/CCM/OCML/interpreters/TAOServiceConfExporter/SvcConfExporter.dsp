@@ -33,8 +33,8 @@ RSC=rc.exe
 
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "$(PICML_ROOT)\lib"
-# PROP Intermediate_Dir "Release\SvcConfExporter"
+# PROP Output_Dir "..\..\..\..\..\PIM\PICML\lib"
+# PROP Intermediate_Dir "Release"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD CPP /nologo /MD /W3 /GR /GX /O2 /I "$(XERCESCROOT)\include" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "SVC_CONF_EXPORTER_DLL_ENTRY_EXPORTS" /D "_USRDLL" /D "WXMAKINGDLL" /FD /c
@@ -46,14 +46,14 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo /o"$(PICML_ROOT)\lib\OCMLSvcConfExporter.bsc"
 LINK32=link.exe
 # ADD BASE LINK32 /machine:IX86
-# ADD LINK32 advapi32.lib user32.lib xerces-c_2.lib /nologo /version:1.0 /subsystem:windows /dll /pdb:"$(PICML_ROOT)\bin\OCMLSvcConfExporter.pdb" /machine:I386 /out:"$(PICML_ROOT)\bin\OCMLSvcConfExporter.dll" /libpath:"$(XERCESCROOT)\lib"
+# ADD LINK32 advapi32.lib user32.lib xerces-c_2.lib /nologo /version:1.0 /subsystem:windows /dll /pdb:"$(PICML_ROOT)\bin\OCMLSvcConfExporter.pdb" /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCMLSvcConfExporter.dll" /libpath:"$(XERCESCROOT)\lib"
 # SUBTRACT LINK32 /pdb:none
 
 !ELSEIF  "$(CFG)" == "SvcConfExporter - Win32 Debug"
 
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "$(PICML_ROOT)\lib"
+# PROP Output_Dir "..\..\..\..\..\PIM\PICML\lib"
 # PROP Intermediate_Dir "Debug\SvcConfExporter"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""

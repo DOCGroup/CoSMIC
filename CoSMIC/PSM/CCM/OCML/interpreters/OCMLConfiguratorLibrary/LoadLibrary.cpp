@@ -2,6 +2,8 @@
  * $Id$
  */
 
+
+#include "StdAfx.h"
 #include "LoadLibrary.hpp"
 #include "assert.h"
 #include <algorithm>
@@ -47,4 +49,3 @@ char* OCML_Configurator_Library::call_function(std::string& values)
 {
   return (func_)(values.c_str(), values.size());
 }
-

@@ -38,7 +38,7 @@ RSC=rc.exe
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 2
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "Debug"
+# PROP Output_Dir "..\..\..\..\..\PIM\PICML\lib"
 # PROP Intermediate_Dir "Debug"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
@@ -54,7 +54,7 @@ LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
 # ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCMLConfigurationInterpreter.dll" /pdbtype:sept
 # Begin Custom Build - Performing registration
-OutDir=.\Debug
+OutDir=.\..\..\..\..\..\PIM\PICML\lib
 TargetPath=\CoSMIC\PIM\PICML\bin\OCMLConfigurationInterpreter.dll
 InputPath=\CoSMIC\PIM\PICML\bin\OCMLConfigurationInterpreter.dll
 SOURCE="$(InputPath)"
@@ -74,12 +74,13 @@ SOURCE="$(InputPath)"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 2
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "Release"
+# PROP Output_Dir "..\..\..\..\..\PIM\PICML\lib"
 # PROP Intermediate_Dir "Release"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O1 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MD /W3 /GR /GX /Zi /O1 /I ".\\" /I "C:/Program Files/GME/sdk/BON/" /D "NDEBUG" /D "_ATL_STATIC_REGISTRY" /D "WIN32" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /D "BUILDER_OBJECT_NETWORK_V2" /Yu"stdafx.h" /FD /Zm200 /c
+# ADD CPP /nologo /MD /W3 /GR /GX /O1 /I ".\\" /I "C:/Program Files/GME/sdk/BON/" /D "NDEBUG" /D "_ATL_STATIC_REGISTRY" /D "WIN32" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /D "BUILDER_OBJECT_NETWORK_V2" /Yu"stdafx.h" /FD /Zm200 /c
+# SUBTRACT CPP /Z<none>
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
 # ADD RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
@@ -88,9 +89,10 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /nodefaultlib /out:"..\..\..\..\..\PIM\PICML\bin\OCMLConfigurationInterpreter.dll"
+# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCMLConfigurationInterpreter.dll"
+# SUBTRACT LINK32 /debug /nodefaultlib
 # Begin Custom Build - Performing registration
-OutDir=.\Release
+OutDir=.\..\..\..\..\..\PIM\PICML\lib
 TargetPath=\CoSMIC\PIM\PICML\bin\OCMLConfigurationInterpreter.dll
 InputPath=\CoSMIC\PIM\PICML\bin\OCMLConfigurationInterpreter.dll
 SOURCE="$(InputPath)"
@@ -302,6 +304,10 @@ SOURCE=.\extern_declarations.hpp
 # Begin Source File
 
 SOURCE="C:/Program Files/GME/sdk/BON/GMECOM.h"
+# End Source File
+# Begin Source File
+
+SOURCE=..\OCMLConfiguratorLibrary\LoadLibrary.hpp
 # End Source File
 # Begin Source File
 
