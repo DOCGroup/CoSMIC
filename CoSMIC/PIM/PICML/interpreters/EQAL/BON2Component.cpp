@@ -85,8 +85,19 @@ void Component::invoke( Project& project, const std::set<FCO>& setModels, long l
 
 void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>& setSelectedFCOs, long lParam )
 {
-	// ======================
-	// Insert application specific code here
+
+	EventChannelConfiguration ec_configuration (currentFCO);
+
+	if(!ec_configuration)
+    {
+		  AfxMessageBox("Interpretation must start from a event channel configuration sheet!");
+		  return;
+	  }
+
+  EventChannelConfigurationVisitor visitor; 
+
+  visitor.visitModelImpl (ec_configuration);
+
 }
 
 // ====================================================
@@ -137,6 +148,211 @@ void Component::objectEventPerformed( Object& object, unsigned long event, VARIA
 }
 
 #endif // GME_ADDON
+
+IMPLEMENT_BONEXTENSION( EventChannelConfiguration, "EventChannelConfiguration" );
+
+IMPLEMENT_BONEXTENSION( RTEC_Resource_Factory, "RTEC_Resource_Factory" );
+
+IMPLEMENT_BONEXTENSION( RTEC_Resource_Factory_Reference, "RTEC_Resource_Factory_Reference" );
+
+IMPLEMENT_BONEXTENSION( RT_Info_Param, "" );
+
+IMPLEMENT_BONEXTENSION( RTEC_Filter_Group, "" );
+
+IMPLEMENT_BONEXTENSION( RT_Info, "RT_Info" );
+
+IMPLEMENT_BONEXTENSION( Null_RT_Info, "Null_RT_Info" );
+
+IMPLEMENT_BONEXTENSION( DisjunctionGroup, "DisjunctionGroup" );
+
+IMPLEMENT_BONEXTENSION( ConjunctionGroup, "ConjunctionGroup" );
+
+IMPLEMENT_BONEXTENSION( LogicalANDGroup, "LogicalANDGroup" );
+
+IMPLEMENT_BONEXTENSION( OutEventPort_Reference, "OutEventPort_ReferenceImpl" );
+
+IMPLEMENT_BONEXTENSION( CCMComponent, "CCMComponentImpl" );
+
+//==================================================================
+// EventChannelConfiguration visitor class implementation
+//==================================================================
+
+void EventChannelConfigurationVisitor::visitModelImpl (const Model& model)
+{
+
+  this->visitRTEC_Proxy_SupplierImpl (RTEC_Proxy_Supplier (model));
+  this->visitRTEC_Proxy_ConsumerImpl (RTEC_Proxy_Consumer (model));
+
+}
+
+void EventChannelConfigurationVisitor::visitRTEC_Proxy_SupplierImpl (const RTEC_Proxy_Supplier& rtec_proxy_supp)
+{
+  if (!rtec_proxy_supp) return;
+
+	std::set<Atom> child_atoms = rtec_proxy_supp->getChildAtoms ();
+	for (std::set<Atom>::iterator atom_iter = child_atoms.begin ();
+       atom_iter != child_atoms.end ();
+       atom_iter++)
+    {
+       RTEC_Proxy_SupplierVisitor visitor; //any constructor parameter?
+       visitor.visitAtomImpl (FCO (*atom_iter));
+    }
+}
+
+void EventChannelConfigurationVisitor::visitRTEC_Proxy_ConsumerImpl (const RTEC_Proxy_Consumer& rtec_proxy_cons)
+{
+  if (!rtec_proxy_cons) return;
+
+	std::set<Atom> child_atoms = rtec_proxy_cons->getChildAtoms ();
+	for (std::set<Atom>::iterator atom_iter = child_atoms.begin ();
+       atom_iter != child_atoms.end ();
+       atom_iter++)
+    {
+       RTEC_Proxy_ConsumerVisitor visitor; //any constructor parameter?
+       visitor.visitAtomImpl (FCO (*atom_iter));
+    }
+}
+
+//==================================================================
+// RTEC_Proxy_Supplier visitor class implementation
+//==================================================================
+
+// This operation will generate the CPF file to describe the
+// QoS information on the consumer side.
+void RTEC_Proxy_SupplierVisitor::visitAtomImpl (const Atom& atom)
+{
+  this->visitRT_InfoImpl (RT_Info (atom));
+}
+
+void RTEC_Proxy_SupplierVisitor::visitRT_InfoImpl (const RT_Info& rt_info)
+{
+  // @TODO: Add implementation later.
+}
+
+//==================================================================
+// RTEC_Proxy_Consumer visitor class implementation
+//==================================================================
+
+void RTEC_Proxy_ConsumerVisitor::visitAtomImpl (const Atom& atom)
+{
+  // This operation will generate the CPF file to describe the 
+  // QoS information on the supplier side.
+  // Also the service configuration file of the event channel
+  // will be generated.
+  this->visitRT_InfoImpl (RT_Info (atom));
+}
+
+
+void RTEC_Proxy_ConsumerVisitor::visitRT_InfoImpl (const RT_Info & rt_info)
+{
+  if (!rt_info) return;
+
+  // Get the source event port reference
+  std::multiset<ConnectionEnd> source_port_list = rt_info->getInConnEnds ("RTEC_Connection");
+	std::multiset<ConnectionEnd>::iterator source_port_iter = source_port_list.begin ();
+
+  OutEventPort_Reference source_port_ref = FCO (*source_port_iter);
+  if (!source_port_ref) return;
+
+  // Get the actual source event port
+  OutEventPort source_port = source_port_ref->getReferred ();
+  if (!source_port) return;
+
+  // Get the CCMComponent 
+  CCMComponent component (FCO (source_port)->getParent ());
+  if (!component) return; //ERROR
+  std::string component_name = component->getName ();
+
+  std::string entry_point (rt_info->getAttribute("entry_point")->getStringValue());
+  std::string source_port_name (source_port->getName ());
+  std::string cpf_name (component_name);
+  cpf_name += "-" + source_port_name + "-" + entry_point;
+
+  // Write CPF file
+  rt_info->generate_CPF (cpf_name.c_str (), component_name.c_str (), source_port_name.c_str ());
+
+  // Write svc.conf
+  std::multiset<ConnectionEnd> rtec_factory_list = rt_info->getOutConnEnds ("Use_RT_Info");
+	for (std::multiset<ConnectionEnd>::iterator rtec_factory_iter = rtec_factory_list.begin ();
+       rtec_factory_iter != rtec_factory_list.end ();
+       rtec_factory_iter++)
+    {
+
+      RTEC_Resource_Factory_Reference rtec_factory_ref = FCO (*rtec_factory_iter);
+      if (!rtec_factory_ref) return;
+      
+      RTEC_Resource_Factory rtec_factory = rtec_factory_ref->getReferred ();
+      if (!rtec_factory) return;
+
+      rtec_factory->generate_SVC (rtec_factory->getName ().c_str ());
+    }
+}
+
+//==================================================================
+// RTEC_Resource_FactoryImp class implementation
+//==================================================================
+
+void RTEC_Resource_FactoryImpl::generate_SVC (const char * file_name)
+{
+
+  std::ofstream svc_file;
+  std::string svc_name (file_name);
+  svc_name += ".conf";
+  svc_file.open (svc_name.c_str ());
+
+  svc_file << "static EC_Factory \"";
+
+  std::set<Attribute> rtec_factory_attributes = this->getAttributes ();
+	for (std::set<Attribute>::iterator attribute_iter = rtec_factory_attributes.begin ();
+       attribute_iter != rtec_factory_attributes.end ();
+       attribute_iter++)
+    {
+       std::string default_value ((*attribute_iter)->getAttributeMeta ().defaultValue ());
+       if ((*attribute_iter)->getStringValue () != default_value)
+         svc_file << " -" << (*attribute_iter)->getAttributeMeta ().name () << " " << (*attribute_iter)->getStringValue ();
+    }
+
+  svc_file << "\"\n";
+  svc_file.close ();
+
+}
+
+//==================================================================
+// RT_InfoImpl class implementation
+//==================================================================
+
+void RT_InfoImpl::generate_CPF (const char * file_name, const char * component_name, const char * port_name)
+{
+
+  std::ofstream cpf_file;
+  std::string cpf_name (file_name);
+  cpf_name += ".cpf";
+  cpf_file.open (cpf_name.c_str ());
+
+  cpf_file << "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
+           << "<!DOCTYPE properties SYSTEM \"properties.dtd\">\n"
+           << "<properties>\n"
+           << "  <struct name=\"" << file_name << "\" type=\"ACEXML_RT_Info\">\n"
+           << "    <description>TAO Real-time Scheduler info for " << component_name << "::" << port_name << "</description>\n"
+           << "    <simple name=\"port\" type=\"string\">\n"
+           << "      <value>" << port_name << "</value>\n"
+           << "    </simple>\n";
+
+  std::set<Attribute> rt_info_attributes = this->getAttributes ();
+	for (std::set<Attribute>::iterator attribute_iter = rt_info_attributes.begin ();
+       attribute_iter != rt_info_attributes.end ();
+       attribute_iter++)
+    {
+       cpf_file << "    <simple name=\"" << (*attribute_iter)->getAttributeMeta ().name () << "\" type=\"string\">\n"
+                << "      <value>" << (*attribute_iter)->getStringValue () << "</value>\n"
+                << "    </simple>\n";
+    }
+  cpf_file << "  </struct>\n"
+           << "</properties>\n";
+
+  cpf_file.close ();
+
+}
 
 }; // namespace BON
 
