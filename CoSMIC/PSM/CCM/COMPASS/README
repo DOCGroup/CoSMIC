@@ -21,18 +21,17 @@ Minimum Requirements
 
 4. Xerces Library, version 2.4.0 or later available from
    http://xml.apache.org/xerces-c/download.cgi/ for building the
-   interpreter. After installation, XERCESROOT should point to the
+   interpreter. After installation, XERCESCROOT should point to the
    installation root for Xerces. The interpreter project expects
-   %XERCESROOT%\lib to contain the Xerces library and %XERCESROOT%\include
-   %to contain the header files.
+   $(XERCESCROOT)\lib to contain the Xerces library and
+   $(XERCESCROOT)\include to contain the header files. Also make sure that
+   $(XERCESCROOT)\bin is in your PATH.
 
 5. STLPort, version 4.6.0 or later, available from
-   http://www.stlport.org/download.html. Xerces library needs to be
-   compiled with STLPort to avoid introducing multiple implementations of
-   STL into the Component DLL. Builder Object Network (BON), also needs a
-   C++ standards compliant STL implementation, like the one provided by
-   STLPort. Hopefully this dependency will be revisited when support for
-   Microsoft Visual Studio .NET is added.
+   http://www.stlport.org/download.html. Builder Object Network (BON) needs
+   a C++ standards compliant STL implementation like the one provided by
+   STLPort. Hopefully this dependency on STLPort will be revisited when
+   support for Microsoft Visual Studio .NET is added.
 
 Installation instructions
 -------------------------

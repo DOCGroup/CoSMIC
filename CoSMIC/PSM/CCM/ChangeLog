@@ -1,7 +1,19 @@
+Mon Mar 22 06:13:43 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * COMPASS/README: Updated README to point out correct usage of
+          XERCESCROOT.
+
+        * COMPASS/interpreters/CompassML.dsp: Updated to use XERCESCROOT
+          instead of hardcoded path to Xerces Library and header files.
+
+        * COMPASS/interpreters/CreateDOMDocument.cpp:
+
+          Removed this file. This file should not have been checked in at all.
+
 Fri Mar 12 02:44:55 2004  Tao Lu  <lu@dre.vanderbilt.edu>
 
-	* CADML:
-	  Added this tool.
+        * CADML:
+          Added this tool.
 
 Thu Mar 11 03:18:31 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
 
