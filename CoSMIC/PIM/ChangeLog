@@ -1,3 +1,9 @@
+Thu Jun  3 12:36:40 2004  Krishnakumar B  <kitty@dre.vanderbilt.edu>
+
+        * PICML/paradigms/PICML.xme:
+        * PICML/paradigms/PICML.xmp: Checking in version which has my
+          current set of fixes so that I can work on it from BBN.
+
 Wed Jun  2 15:59:11 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * IDML/examples/new_test.xme:
@@ -5,7 +11,7 @@ Wed Jun  2 15:59:11 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
         * IDML/paradigms/IDML.xmp:
         * IDML/paradigms/IDMLTemplate.xme:
         * IDML/paradigms/PredefinedTypes.xme:
-        
+
           Added constraints to the metamodel, and updated the
           other files accordingly.
 
