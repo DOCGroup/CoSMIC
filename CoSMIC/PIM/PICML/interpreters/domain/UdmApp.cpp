@@ -174,7 +174,8 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
       XMLPlatformUtils::Initialize();
       std::string outputPath;
       std::string message = "Please specify the Output Directory";
-      getPath (message, outputPath);
+      if (!getPath (message, outputPath))
+		return;
       if (focusObject == Udm::null && selectedObjects.empty())
         {
           showUsage();
@@ -193,9 +194,9 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
               std::string kindName = (*iter).type().name();
               PICML::DomainVisitor visitor (outputPath);
               if (kindName == "Targets")
-                SetUpVisitor (DeploymentPlan, root, visitor);
+                SetUpVisitor (Targets, root, visitor);
               else if (kindName == "Domain")
-                SetUpVisitor (DeploymentPlans, root, visitor);
+                SetUpVisitor (Domain, root, visitor);
               else
                 {
                   showUsage();

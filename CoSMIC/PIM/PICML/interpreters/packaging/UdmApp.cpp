@@ -181,7 +181,8 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
         {
           std::string outputPath;
           std::string message = "Please specify the Output Directory";
-          getPath (message, outputPath);
+          if (!getPath (message, outputPath))
+			  return;
           PICML::PackageVisitor visitor (outputPath);
           if (focusObject == Udm::null && selectedObjects.empty())
             SetUpVisitor (RootFolder, p_backend->GetRootObject(), visitor);
@@ -221,6 +222,8 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
                     SetUpVisitor (PackageConfigurations, root, visitor);
                   else if (kindName == "PackageConfigurationContainer")
                     SetUpVisitor (PackageConfigurationContainer, root, visitor);
+				  else
+					SetUpVisitor (RootFolder, p_backend->GetRootObject(), visitor);
                 }
             }
         }

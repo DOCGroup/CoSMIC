@@ -174,7 +174,8 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
       XMLPlatformUtils::Initialize();
       std::string outputPath;
       std::string message = "Please specify the Output Directory";
-      getPath (message, outputPath);
+      if (!getPath (message, outputPath))
+		return;
       if (focusObject == Udm::null && selectedObjects.empty())
         {
           showUsage();

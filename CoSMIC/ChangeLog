@@ -1,26 +1,113 @@
+Thu Jul 29 12:24:29 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * Installer/CoSMIC-Installer.aip: Installer build file for
+          CoSMIC.
+
+        * Installer/MergeModules/atl.msm:
+        * Installer/MergeModules/comcat.msm:
+        * Installer/MergeModules/comct232.msm:
+        * Installer/MergeModules/comct332.msm:
+        * Installer/MergeModules/comctl32.msm:
+        * Installer/MergeModules/comdlg32.msm:
+        * Installer/MergeModules/dbgrid32.msm:
+        * Installer/MergeModules/dblist32.msm:
+        * Installer/MergeModules/mci32.msm:
+        * Installer/MergeModules/mfc42.msm:
+        * Installer/MergeModules/mfc42u.msm:
+        * Installer/MergeModules/msadodc.msm:
+        * Installer/MergeModules/msbind.msm:
+        * Installer/MergeModules/mschrt20.msm:
+        * Installer/MergeModules/mscomct2.msm:
+        * Installer/MergeModules/mscomctl.msm:
+        * Installer/MergeModules/mscomm32.msm:
+        * Installer/MergeModules/msdatgrd.msm:
+        * Installer/MergeModules/msdatlst.msm:
+        * Installer/MergeModules/msdatrep.msm:
+        * Installer/MergeModules/msdbrptr.msm:
+        * Installer/MergeModules/msderun.msm:
+        * Installer/MergeModules/msflxgrd.msm:
+        * Installer/MergeModules/mshflxgd.msm:
+        * Installer/MergeModules/mshtmpgr.msm:
+        * Installer/MergeModules/msinet.msm:
+        * Installer/MergeModules/msmapi32.msm:
+        * Installer/MergeModules/msmask32.msm:
+        * Installer/MergeModules/msrdc20.msm:
+        * Installer/MergeModules/msrdo20.msm:
+        * Installer/MergeModules/msstdfmt.msm:
+        * Installer/MergeModules/msstkprp.msm:
+        * Installer/MergeModules/msvbvm60.msm:
+        * Installer/MergeModules/msvcirt.msm:
+        * Installer/MergeModules/msvcp60.msm:
+        * Installer/MergeModules/msvcrt.msm:
+        * Installer/MergeModules/mswcrun.msm:
+        * Installer/MergeModules/mswinsck.msm:
+        * Installer/MergeModules/oareg.msm:
+        * Installer/MergeModules/oleaut32.msm:
+        * Installer/MergeModules/picclp32.msm:
+        * Installer/MergeModules/sysinfo.msm:
+        * Installer/MergeModules/tabctl32.msm:
+
+          Merge modules for shipping with the installer.
+
+        * Installer/RegisterParadigm/RegisterParadigm.def:
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:
+        * Installer/RegisterParadigm/RegisterParadigm.dsp:
+        * Installer/RegisterParadigm/RegisterParadigm.dsw:
+        * Installer/RegisterParadigm/StdAfx.h:
+        * Installer/RegisterParadigm/StdAfx.cpp:
+
+          Implementation of the custom action DLL used to register a
+          paradigm with GME when installing CoSMIC.
+
+        * PIM/PICML/License.rtf: License file under which CoSMIC is
+          distributed.
+
+        * PIM/PICML/Readme.rtf: README file for CoSMIC.
+
+        * PIM/PICML/ReleaseNotes.rtf: ReleaseNotes for CoSMIC.
+
+        * PIM/PICML/interpreters/packaging/UdmApp.cpp: Fixed a bug where
+          the return value of getPath() was being ignored, resulting in
+          the interpreter generating files even when the user cancelled
+          the action.
+
+        * PIM/PICML/interpreters/domain/DomainVisitor.cpp:
+        * PIM/PICML/interpreters/domain/UdmApp.cpp:
+
+          Fixed a bug where the DomainVisitor was not set up correctly,
+          which resulted in an "invalid cast" exception from UDM.
+          Propagated the fix above to getPath().
+
+        * PIM/PICML/interpreters/plan/UdmApp.cpp: Propagated the fix above
+          to getPath().
+
+        * PIM/ChangeLog:
+
+          Removed this file as I moved it one level up here.
+
 Thu Jul 29 10:23:14 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PICML/examples/RobotAssembly.xme:
-        
+
           Changed the name of an Aggregate member to be different
           than the name of the Aggregate. A constraint to check for
           this has been added as described below.
-          
+
         * PICML/paradigms/PICML.xme:
         * PICML/paradigms/PICML.xml:
         * PICML/paradigms/PICML.xmp:
-        
+
           - Added a constraint to check for Member names duplicating
             the name of their container.
-            
+
           - Combined the two constraints for Metrics and Timer connections
             into one, which has the intended semantics of both.
 
         * PICML/paradigms/PICMLTemplate.xme:
-        
+
           Updated the template PICML model to correspond with the
           updated meta-model.
-          
+
 Wed Jul 28 19:49:00 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PICML/interpreters/IDLGenerator/BON2Component.cpp:
@@ -43,7 +130,7 @@ Wed Jul 28 19:49:00 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PICML/interpreters/IDLGenerator/StdAfx.cpp:
         * PICML/interpreters/IDLGenerator/StdAfx.h:
         * PICML/interpreters/IDLGenerator/component.def:
-        
+
           New files, the IDL generator from IDML integrated into PICML.
           Selection of a File model element (or mutliple File elements)
           from which to start the generation is no longer necessary.
@@ -54,10 +141,10 @@ Wed Jul 28 14:51:19 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PICML/paradigms/icons/component.bmp:
         * PICML/paradigms/icons/componentref.bmp:
-        
+
           Changed these icons to be rectangular, eliminating
           aliasing problems when they are resized.
-          
+
         * PICML/paradigms/icons/boundedstring.bmp:
         * PICML/paradigms/icons/file.bmp:
         * PICML/paradigms/icons/fixedcollection.bmp:
@@ -68,9 +155,9 @@ Wed Jul 28 14:51:19 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PICML/paradigms/icons/predefined.bmp:
         * PICML/paradigms/icons/prefix.bmp:
         * PICML/paradigms/icons/version.bmp:
-        
+
           Removed these unused icons from the repository.
-          
+
         * PICML/decorators/CommonError.cpp:
         * PICML/decorators/CommonError.h:
         * PICML/decorators/CommonSmart.h:
@@ -94,7 +181,7 @@ Wed Jul 28 14:51:19 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PICML/decorators/StdAfx.cpp:
         * PICML/decorators/StdAfx.h:
         * PICML/decorators/resource.h:
-        
+
           New directory and files for PICML decorator.
 
 Tue Jul 27 17:38:16 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
@@ -104,32 +191,32 @@ Tue Jul 27 17:38:16 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PICML/paradigms/PICML.xmp:
         * PICML/paradigms/PICMLTemplate.xme:
         * PICML/paradigms/PredefinedTypes.xme:
-        
+
           Removed the collection elements added to the PredefinedTypes
           folder in
-          
+
           Tue Jul 27 16:39:25 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
- 
+
           and updated all related files.
 
 Tue Jul 27 16:39:25 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PICML/paradigms/PICML.xme:
         * PICML/paradigms/PICML.xmp:
-        
+
           Integrated the IDML paradigm into PICML. Also added
           elements to the PredefinedTypes folder representing
           collections of commonly used predefined types.
-          
+
         * PICML/paradigms/PICMLTemplate.xme:
         * PICML/paradigms/PredefinedTypes.xme:
-        
+
           Added the new predefined types described above to these
           models.
 
 Fri Jul 23 15:12:09 CDT 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PICML/interpreters/cidl/Component/IDLStream.cpp:
-          Fixed home executor generator for the cidl file. Thanks to Gan 
+          Fixed home executor generator for the cidl file. Thanks to Gan
           for pointing this out
 
 Thu Jul 22 22:15:04 CDT 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
@@ -138,7 +225,7 @@ Thu Jul 22 22:15:04 CDT 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
         * PICML/interpreters/Component:
           cidl intrepreter directory
-        
+
         * PICML/interpreters/cidl/Component/UdmApp.h:
         * PICML/interpreters/cidl/Component/UdmApp.cpp:
         * PICML/interpreters/cidl/Component/IDLStream.h:
@@ -164,12 +251,12 @@ Thu Jul 22 22:15:04 CDT 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PICML/interpreters/cidl/Component/ComHelp.h:
         * PICML/interpreters/cidl/Component/ComHelp.cpp:
           Workspace for the building the cidl intrepreter
-        
+
 Thu Jul 22 18:54:53 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * IDML/paradigms/IDML.xmp:
         * IDML/paradigms/IDML-Meta.xme:
-        
+
           Updated metamodel, fixed constraint for inheritable types that checks
           for unique contained names so it will skip the PrivateFlag atoms
           and MakeMemberPrivate connections that may appear in a valuetype
@@ -181,7 +268,7 @@ Thu Jul 22 000:56:30 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
         * IDML/decorators/Decorator.h:
         * IDML/decorators/IDMLDecorators.cpp:
         * IDML/decorators/IDMLDecorators.h:
-        
+
           Added code to generate the type name for instances of components,
           when such instances are added to a PICML model.
 
