@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{37CD4A6B-AEDC-4D48-AFDA-AC646830B97B}" cdate="Mon Nov 01 16:27:36 2004" mdate="Tue Nov 02 14:20:57 2004" version="" metaguid="{14D54C6A-A564-4A7B-B497-ED5C1DA7ED32}" metaversion="" metaname="PICML">
+<project guid="{0A85F971-E2BF-4B01-BC43-C3F42D77380B}" cdate="Mon Nov 01 16:27:36 2004" mdate="Tue Nov 02 14:20:57 2004" version="" metaguid="{C941FD13-C16B-4B04-9500-32649DC2D478}" metaversion="" metaname="PICML">
 	<name>RobotAssembly</name>
 	<comment></comment>
 	<author></author>
