@@ -11,15 +11,16 @@
     <ROW Property="CTRLS" Value="1"/>
     <ROW Property="DialogBitmap" Value="style2blue_dialog.jpg"/>
     <ROW Property="Manufacturer" Value="ISIS"/>
-    <ROW Property="ProductCode" Value="{67F7B59D-8C69-4AA6-B7B4-8AE51D1F10E0}"/>
+    <ROW Property="ProductCode" Value="{D2D6A570-23B5-4AAF-8060-440D7887744C}"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="CoSMIC"/>
-    <ROW Property="ProductVersion" Value="0.0.2"/>
+    <ROW Property="ProductVersion" Value="0.4.2"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS"/>
     <ROW Property="UpgradeCode" Value="{42C014ED-7C97-4107-94CD-2028CDBA3FD1}"/>
     <ROW Property="VIEWREADME" Value="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
+    <ROW Directory="BGML_Base_DIR" Directory_Parent="src_DIR" DefaultDir="BGML_B~1|BGML_Base"/>
     <ROW Directory="Docs" Directory_Parent="SHORTCUTDIR" DefaultDir="Docs"/>
     <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
     <ROW Directory="TARGETDIR" Directory_Parent="" DefaultDir="SourceDir"/>
@@ -29,10 +30,12 @@
     <ROW Directory="icons_DIR" Directory_Parent="paradigms" DefaultDir="icons"/>
     <ROW Directory="lib_DIR" Directory_Parent="TARGETDIR" DefaultDir="lib"/>
     <ROW Directory="paradigms" Directory_Parent="TARGETDIR" DefaultDir="paradi~1|paradigms"/>
+    <ROW Directory="src_DIR" Directory_Parent="TARGETDIR" DefaultDir="src"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="ACE.dll" ComponentId="{C38D87A4-2F7A-41F6-83D7-010A2AA1AE85}" Directory_="bin" Attributes="0" Condition="" KeyPath="ACE.dll" FullKeyPath="TARGETDIR\bin\ACE.dll"/>
     <ROW Component="BGML.dll" ComponentId="{97A5A5A1-B813-4DA5-9BC6-2C24F561DC8D}" Directory_="bin" Attributes="0" Condition="" KeyPath="BGML.dll" FullKeyPath="TARGETDIR\bin\BGML.dll"/>
+    <ROW Component="BGML_Base.mpc" ComponentId="{2D1BA077-A645-4F61-8787-E97B1E8AD71F}" Directory_="BGML_Base_DIR" Attributes="0" Condition="" KeyPath="BGML_Base.mpc" FullKeyPath="TARGETDIR\src\BGML_Base"/>
     <ROW Component="BGML_Documentation_Guide.pdf" ComponentId="{8E59EFE0-D524-4D60-A4E8-2BE0D8900D76}" Directory_="docs" Attributes="0" Condition="" KeyPath="BGML_Documentation_Guide.pdf" FullKeyPath="TARGETDIR\docs\BGML_Documentation_Guide.pdf"/>
     <ROW Component="Decorator.dll" ComponentId="{C82D9295-1E07-47A0-951D-3E2F87DFCFEF}" Directory_="bin" Attributes="0" Condition="" KeyPath="Decorator.dll" FullKeyPath="TARGETDIR\bin\Decorator.dll"/>
     <ROW Component="DeploymentPlan.dll" ComponentId="{90659367-0912-48ED-9293-D89D4AC3D7E9}" Directory_="bin" Attributes="0" Condition="" KeyPath="DeploymentPlan.dll" FullKeyPath="TARGETDIR\bin\DeploymentPlan.dll"/>
@@ -62,13 +65,14 @@
     <ROW Component="lib" ComponentId="{C608EF6D-BA05-40AD-B8D2-B635E1599423}" Directory_="lib_DIR" Attributes="0" Condition="" KeyPath="" FullKeyPath=""/>
     <ROW Component="ocml.html" ComponentId="{E2B20362-4ACB-44AC-A734-BEA76FB10515}" Directory_="docs" Attributes="0" Condition="" KeyPath="ocml.html" FullKeyPath="TARGETDIR\docs\ocml.html"/>
     <ROW Component="orb_tree.xml" ComponentId="{3121D556-560A-4E61-973F-0F1E5D2BF0FD}" Directory_="bin" Attributes="0" Condition="" KeyPath="orb_tree.xml" FullKeyPath="TARGETDIR\bin"/>
+    <ROW Component="src" ComponentId="{4E1FFB99-DCAF-4F2C-B608-5912780ED0C5}" Directory_="src_DIR" Attributes="0" Condition="" KeyPath="" FullKeyPath=""/>
     <ROW Component="stlport_vc646.dll" ComponentId="{8B90D9EF-099F-43AC-B269-B7A298FA7D0A}" Directory_="bin" Attributes="0" Condition="" KeyPath="stlport_vc646.dll" FullKeyPath="TARGETDIR\bin\stlport_vc646.dll"/>
     <ROW Component="tao_picml.exe" ComponentId="{C0ACD712-8559-4DF8-A2FF-BF4CD79618D4}" Directory_="bin" Attributes="0" Condition="" KeyPath="tao_picml.exe" FullKeyPath="TARGETDIR\bin\tao_picml.exe"/>
     <ROW Component="xerces_c_2_2_0.dll" ComponentId="{4EEBFB42-BA1B-4505-9D31-0F79E85AEC40}" Directory_="bin" Attributes="0" Condition="" KeyPath="xerces_c_2_2_0.dll" FullKeyPath="TARGETDIR\bin\xerces-c_2_2_0.dll"/>
     <ROW Component="xerces_c_2_5_0.dll" ComponentId="{CE1A4194-1994-433E-A070-B7C687E1A9C5}" Directory_="bin" Attributes="0" Condition="" KeyPath="xerces_c_2_5_0.dll" FullKeyPath="TARGETDIR\bin\xerces-c_2_5_0.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
-    <ROW Feature="MainFeature" Feature_Parent="" Title="MainFeature" Description="Description" Display="2" Level="1" Directory_="TARGETDIR" Attributes="0" Components="TargetDir IDML_uml.xme IDML_User_Manual.pdf RobotAssembly.xme ReleaseNotes.rtf aggregate.bmp TAO_PICML_BE.dll BGML.dll cidl.dll EQAL.dll IDLGenerator.dll MPC.dll OCML.dll OCMLConfigurator.dll OCMLSvcConfExporter.dll PackageComponent.dll DeploymentPlan.dll tao_picml.exe xerces_c_2_5_0.dll stlport_vc646.dll xerces_c_2_2_0.dll orb_tree.xml lib TAO_IDL_FE.dll ACE.dll Domain.dll OCMLConfigurationInterpreter.dll Importing_IDL.pdf Interface_Definitions.pdf ocml.html RegisterParadigm.dll Decorator.dll OCMLSvcConfExportInterpreter.dll BGML_Documentation_Guide.pdf EQAL_User_Guide.pdf"/>
+    <ROW Feature="MainFeature" Feature_Parent="" Title="MainFeature" Description="Description" Display="2" Level="1" Directory_="TARGETDIR" Attributes="0" Components="TargetDir IDML_uml.xme IDML_User_Manual.pdf RobotAssembly.xme ReleaseNotes.rtf aggregate.bmp TAO_PICML_BE.dll BGML.dll cidl.dll EQAL.dll IDLGenerator.dll MPC.dll OCML.dll OCMLConfigurator.dll OCMLSvcConfExporter.dll PackageComponent.dll DeploymentPlan.dll tao_picml.exe xerces_c_2_5_0.dll stlport_vc646.dll xerces_c_2_2_0.dll orb_tree.xml lib TAO_IDL_FE.dll ACE.dll Domain.dll OCMLConfigurationInterpreter.dll Importing_IDL.pdf Interface_Definitions.pdf ocml.html RegisterParadigm.dll Decorator.dll OCMLSvcConfExportInterpreter.dll BGML_Documentation_Guide.pdf EQAL_User_Guide.pdf src BGML_Base.mpc"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
     <ROW File="ACE.dll" Component_="ACE.dll" FileName="ACE.dll" Version="" Language="" Attributes="0" SourcePath="C:\ACE_wrappers\lib\ACE.dll" SelfReg="false"/>
@@ -76,7 +80,11 @@
     <ROW File="Assembly.bmp" Component_="aggregate.bmp" FileName="Assembly.bmp" Version="" Language="" Attributes="0" SourcePath="PIM\PICML\paradigms\icons\Assembly.bmp" SelfReg="false"/>
     <ROW File="Average.bmp" Component_="aggregate.bmp" FileName="Average.bmp" Version="" Language="" Attributes="0" SourcePath="PIM\PICML\paradigms\icons\Average.bmp" SelfReg="false"/>
     <ROW File="BGML.dll" Component_="BGML.dll" FileName="BGML.dll" Version="" Language="" Attributes="0" SourcePath="bin\BGML.dll" SelfReg="true"/>
+    <ROW File="BGML_Base.mpc" Component_="BGML_Base.mpc" FileName="BGML_B~1.mpc|BGML_Base.mpc" Version="" Language="" Attributes="0" SourcePath="PIM\PICML\interpreters\BGML_Base\BGML_Base.mpc" SelfReg="false"/>
     <ROW File="BGML_Documentation_Guide.pdf" Component_="BGML_Documentation_Guide.pdf" FileName="BGML_D~1.pdf|BGML_Documentation_Guide.pdf" Version="" Language="" Attributes="0" SourcePath="PIM\PICML\docs\BGML_Documentation_Guide.pdf" SelfReg="false"/>
+    <ROW File="BGML_Export.h" Component_="BGML_Base.mpc" FileName="BGML_E~1.h|BGML_Export.h" Version="" Language="" Attributes="0" SourcePath="PIM\PICML\interpreters\BGML_Base\BGML_Export.h" SelfReg="false"/>
+    <ROW File="BGML_Task_Base.cpp" Component_="BGML_Base.mpc" FileName="BGML_T~1.cpp|BGML_Task_Base.cpp" Version="" Language="" Attributes="0" SourcePath="PIM\PICML\interpreters\BGML_Base\BGML_Task_Base.cpp" SelfReg="false"/>
+    <ROW File="BGML_Task_Base.h" Component_="BGML_Base.mpc" FileName="BGML_T~1.h|BGML_Task_Base.h" Version="" Language="" Attributes="0" SourcePath="PIM\PICML\interpreters\BGML_Base\BGML_Task_Base.h" SelfReg="false"/>
     <ROW File="Bridge.bmp" Component_="aggregate.bmp" FileName="Bridge.bmp" Version="" Language="" Attributes="0" SourcePath="PIM\PICML\paradigms\icons\Bridge.bmp" SelfReg="false"/>
     <ROW File="Capability.bmp" Component_="aggregate.bmp" FileName="Capabi~1.bmp|Capability.bmp" Version="" Language="" Attributes="0" SourcePath="PIM\PICML\paradigms\icons\Capability.bmp" SelfReg="false"/>
     <ROW File="ComponentPackage.bmp" Component_="aggregate.bmp" FileName="Compon~1.bmp|ComponentPackage.bmp" Version="" Language="" Attributes="0" SourcePath="PIM\PICML\paradigms\icons\ComponentPackage.bmp" SelfReg="false"/>
@@ -121,6 +129,7 @@
     <ROW File="PackageConfigurationReference.bmp" Component_="aggregate.bmp" FileName="Packag~2.bmp|PackageConfigurationReference.bmp" Version="" Language="" Attributes="0" SourcePath="PIM\PICML\paradigms\icons\PackageConfigurationReference.bmp" SelfReg="false"/>
     <ROW File="PackageReference.bmp" Component_="aggregate.bmp" FileName="Packag~3.bmp|PackageReference.bmp" Version="" Language="" Attributes="0" SourcePath="PIM\PICML\paradigms\icons\PackageReference.bmp" SelfReg="false"/>
     <ROW File="Property.bmp" Component_="aggregate.bmp" FileName="Property.bmp" Version="" Language="" Attributes="0" SourcePath="PIM\PICML\paradigms\icons\Property.bmp" SelfReg="false"/>
+    <ROW File="README" Component_="BGML_Base.mpc" FileName="README" Version="" Language="" Attributes="0" SourcePath="PIM\PICML\interpreters\BGML_Base\README" SelfReg="false"/>
     <ROW File="Readme.rtf" Component_="IDML_User_Manual.pdf" FileName="Readme.rtf" Version="" Language="" Attributes="0" SourcePath="PIM\PICML\Readme.rtf" SelfReg="false"/>
     <ROW File="RegisterParadigm.dll" Component_="RegisterParadigm.dll" FileName="Regist~1.dll|RegisterParadigm.dll" Version="" Language="" Attributes="0" SourcePath="Installer\RegisterParadigm\Release\RegisterParadigm.dll" SelfReg="false"/>
     <ROW File="ReleaseNotes.rtf" Component_="ReleaseNotes.rtf" FileName="Releas~1.rtf|ReleaseNotes.rtf" Version="" Language="" Attributes="0" SourcePath="PIM\PICML\ReleaseNotes.rtf" SelfReg="false"/>
@@ -287,6 +296,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="lib_DIR" Component_="lib"/>
+    <ROW Directory_="src_DIR" Component_="src"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_ViewReadme" Type="194" Source="viewer.exe" Target="[#ReleaseNotes.rtf]"/>
@@ -356,7 +366,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ATTRIBUTE name="End" value="ExitDialog"/>
     <ATTRIBUTE name="Progress" value="ProgressDlg"/>
-    <ATTRIBUTE name="Start" value="WelcomeDlg ReadmeDlg LicenseAgreementDlg VerifyReadyDlg"/>
+    <ATTRIBUTE name="Start" value="WelcomeDlg ReadmeDlg LicenseAgreementDlg FolderDlg VerifyReadyDlg"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiMediaComponent">
     <ATTRIBUTE name="Compress" value="1"/>

@@ -1,3 +1,10 @@
+Tue Dec 07 17:05:48 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * Installer/CoSMIC-Installer.aip: 
+
+          Set up the correct version number.
+          Added the src and src/BGML_Base directories for the target computer.
+
 Tue Dec 7 10:40:03 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/BGML_Base/BGML_Base.mpc:
