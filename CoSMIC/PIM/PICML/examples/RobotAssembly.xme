@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Sun Jun 20 18:59:33 2004" mdate="Sun Jun 20 18:59:35 2004" metaguid="{E68E5F89-DEAD-BEEF-FEED-DAD000000001}" metaname="PICML">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Mon Jun 21 11:55:57 2004" mdate="Mon Jun 21 12:29:21 2004" metaguid="{FACC74D9-DEAD-BEEF-FEED-DAD000000001}" metaname="PICML">
 	<name>RobotAssembly</name>
 	<comment></comment>
 	<author></author>
@@ -3969,7 +3969,7 @@
 							<regnode name="Package" isopaque="yes">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>42,252</value>
+									<value>49,252</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -4536,7 +4536,7 @@
 							<regnode name="Package" isopaque="yes">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>581,49</value>
+									<value>525,35</value>
 								</regnode>
 							</regnode>
 						</regnode>

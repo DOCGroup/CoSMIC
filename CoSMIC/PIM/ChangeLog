@@ -1,3 +1,106 @@
+Mon Jun 21 13:40:51 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * IDML/decorators/Decorator.dsp:
+        * IDML/decorators/Decorator.rc: Updated decorator.rc to include the
+          right path for the icon files.
+
+        * PICML/examples/RobotAssembly.xme: Updated model to the latest
+          version.
+
+        * PICML/interpreters/domain/PICML.h:
+        * PICML/interpreters/domain/PICML.xsd:
+        * PICML/interpreters/domain/PICML.cpp:
+        * PICML/interpreters/packaging/PICML.h:
+        * PICML/interpreters/packaging/PICML.cpp:
+        * PICML/interpreters/packaging/PICML.xsd:
+        * PICML/interpreters/plan/PICML.h:
+        * PICML/interpreters/plan/PICML.xsd:
+        * PICML/interpreters/plan/PICML.cpp: Regenerated files to match
+          the updates to the meta.
+
+        * PICML/paradigms/PICML.xml: Regenerated to match changes in the
+          meta.
+
+        * PICML/paradigms/IDML-uml.xme:
+        * PICML/paradigms/PICML-uml.xme:
+        * PICML/paradigms/PICML.xme:
+        * PICML/paradigms/PICML.xmp: Updated meta to fix problems with
+          using Jeff's decorator. I changed the imported IDML.mga to
+          remove the Decorator attribute on Component inside
+          ComponentType folder of IDML.
+
+        * PICML/paradigms/icons/PackageReference.bmp:
+        * PICML/paradigms/icons/aggregate.bmp:
+        * PICML/paradigms/icons/aggregateref.bmp:
+        * PICML/paradigms/icons/alias.bmp:
+        * PICML/paradigms/icons/aliasref.bmp:
+        * PICML/paradigms/icons/attribute.bmp:
+        * PICML/paradigms/icons/boolean.bmp:
+        * PICML/paradigms/icons/boxed.bmp:
+        * PICML/paradigms/icons/boxedref.bmp:
+        * PICML/paradigms/icons/byte.bmp:
+        * PICML/paradigms/icons/component.bmp:
+        * PICML/paradigms/icons/componentfactory.bmp:
+        * PICML/paradigms/icons/componentfactoryref.bmp:
+        * PICML/paradigms/icons/componentref.bmp:
+        * PICML/paradigms/icons/const.bmp:
+        * PICML/paradigms/icons/discriminator.bmp:
+        * PICML/paradigms/icons/enum.bmp:
+        * PICML/paradigms/icons/enumref.bmp:
+        * PICML/paradigms/icons/enumvalue.bmp:
+        * PICML/paradigms/icons/event.bmp:
+        * PICML/paradigms/icons/eventref.bmp:
+        * PICML/paradigms/icons/exception.bmp:
+        * PICML/paradigms/icons/exceptionref.bmp:
+        * PICML/paradigms/icons/factory.bmp:
+        * PICML/paradigms/icons/fileref.bmp:
+        * PICML/paradigms/icons/genericobject.bmp:
+        * PICML/paradigms/icons/genericvalue.bmp:
+        * PICML/paradigms/icons/genericvalueobject.bmp:
+        * PICML/paradigms/icons/getexception.bmp:
+        * PICML/paradigms/icons/in.bmp:
+        * PICML/paradigms/icons/inevent_lf.bmp:
+        * PICML/paradigms/icons/inevent_rt.bmp:
+        * PICML/paradigms/icons/ineventport.bmp:
+        * PICML/paradigms/icons/inherits.bmp:
+        * PICML/paradigms/icons/inout.bmp:
+        * PICML/paradigms/icons/label.bmp:
+        * PICML/paradigms/icons/long.bmp:
+        * PICML/paradigms/icons/lookup.bmp:
+        * PICML/paradigms/icons/lookupkey.bmp:
+        * PICML/paradigms/icons/member.bmp:
+        * PICML/paradigms/icons/object.bmp:
+        * PICML/paradigms/icons/objectref.bmp:
+        * PICML/paradigms/icons/oneway.bmp:
+        * PICML/paradigms/icons/out.bmp:
+        * PICML/paradigms/icons/outevent_lf.bmp:
+        * PICML/paradigms/icons/outevent_rt.bmp:
+        * PICML/paradigms/icons/outeventport.bmp:
+        * PICML/paradigms/icons/package.bmp:
+        * PICML/paradigms/icons/private.bmp:
+        * PICML/paradigms/icons/providedrequestport.bmp:
+        * PICML/paradigms/icons/readonlyattribute.bmp:
+        * PICML/paradigms/icons/realnumber.bmp:
+        * PICML/paradigms/icons/receptacle_lf.bmp:
+        * PICML/paradigms/icons/receptacle_rt.bmp:
+        * PICML/paradigms/icons/requiredrequestport.bmp:
+        * PICML/paradigms/icons/return.bmp:
+        * PICML/paradigms/icons/setexception.bmp:
+        * PICML/paradigms/icons/setexceptionref.bmp:
+        * PICML/paradigms/icons/short.bmp:
+        * PICML/paradigms/icons/string.bmp:
+        * PICML/paradigms/icons/supports.bmp:
+        * PICML/paradigms/icons/switchedaggregate.bmp:
+        * PICML/paradigms/icons/switchedaggregateref.bmp:
+        * PICML/paradigms/icons/twoway.bmp:
+        * PICML/paradigms/icons/typeencoding.bmp:
+        * PICML/paradigms/icons/typekind.bmp:
+        * PICML/paradigms/icons/value.bmp:
+        * PICML/paradigms/icons/valueref.bmp:
+        * PICML/paradigms/icons/variablecollection.bmp:
+        * PICML/paradigms/icons/variablecollectionref.bmp: Updated icons
+          to match Jeff's version of the icons.
+
 Sun Jun 20 19:32:17 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PICML/README: Updated to include preliminary documentation on

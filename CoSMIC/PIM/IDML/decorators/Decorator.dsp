@@ -94,7 +94,7 @@ InputPath=.\Release\Decorator.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	regsvr32 /s /c "$(TargetPath)" 
+	regsvr32 /c "$(TargetPath)" 
 	echo regsvr32 exec. time > "$(OutDir)\regsvr32.trg" 
 	
 # End Custom Build
