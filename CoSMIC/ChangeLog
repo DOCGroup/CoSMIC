@@ -1,3 +1,13 @@
+Mon Oct 18 17:54:28 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICMLTemplate.xme:
+        
+          Changed aspect names to avoid clashes due to the stricter
+          constraint checking of GME 4.9.27. Also rearranged some of
+          the crowded paradigm sheets to make them more readable.
+
 Fri Oct  8 14:17:25 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/decorators/Decorator.cpp:
