@@ -2,6 +2,7 @@
 #include "MPCStream.h"
 #include "ctype.h"
 #include "UdmBase.h"
+#include <algorithm>
 
 NL::NL (void)
 {
@@ -332,7 +333,7 @@ MPCStream::create_stub_definition (const PICML::StubProject &stub)
 	this->stub_project_ = proj_name;
 	
 	// Write out project header
-	this->create_project_defn (proj_name, "ciao_dnc_client");
+	this->create_project_defn (proj_name, "ciao_client_dnc");
 	
 	// Obtain what libraries this depends on -- Name of dependent
 	// libraries
@@ -379,23 +380,20 @@ MPCStream::create_stub_definition (const PICML::StubProject &stub)
 	this->create_dynamic_flags_defn (shared_name);
 	
 	// Write out the IDL files
-	std::vector<std::string> idl_files;
 	std::vector<std::string> idl_c_files;
+	std::vector<std::string> idl_files;
 	
-	std::set<PICML::FileRef> idl_file_ref = stub.FileRef_children ();
-	for (std::set<PICML::FileRef>::iterator iter = idl_file_ref.begin ();
-	iter != idl_file_ref.end ();
-	iter ++)
-	{
-		PICML::File idl_file = iter->ref ();
-		std::string base;
-		iter->GetStrValue ("name", base);
-		std::string temp = base;
-		idl_files.push_back (base.append (".idl"));
+	PICML::FileRef idl_file_ref = stub.FileRef_child ();
+	PICML::File idl_file = idl_file_ref.ref ();
+	std::string base;
+	idl_file.GetStrValue ("name", base);
+	std::string temp = base;
+
+	this->idl_files_.push_back (base);
+	idl_files.push_back (base.append (".idl"));
 		
-		// Append the generated file as well
-		idl_c_files.push_back (temp.append ("C.cpp"));
-	}
+	// Append the generated file as well
+	idl_c_files.push_back (temp.append ("C.cpp"));
 	
 	// Write the IDL files and the Source_files
 	this->create_idl_file_defn (idl_files);
@@ -405,7 +403,6 @@ MPCStream::create_stub_definition (const PICML::StubProject &stub)
 	
 	//Close the project
 	this->create_close_proj_defn ();
-	
 }
 
 void
@@ -417,6 +414,32 @@ MPCStream::create_lib_path_defn (std::string& lib_path)
 	this->strm_ << lib_path;
 }
 
+
+void
+MPCStream::create_dependant_libs_defn (std::vector<std::string>& lib_list)
+{
+	// @@ The problem here could be when using static libraries, where the ordering
+	// of the libraries are needed to build the artifact. In fact the ordering needs
+	// to be preserved. Here our approach sorts the libraries, so this ordering may
+	// be lost. In fact, there may not be a way to get the ordering from the modeling
+	// tool that depicts the libraries. As there is no notion of ordering there.
+
+	this->nl ();
+	this->indent ();
+	this->strm_ << "libs += ";
+
+	/// Print out unique elements in the array
+	// 1: Step 1: Sort the elements in the array
+	std::sort (lib_list.begin (), lib_list.end ());
+
+	// 2: Remove all the unique elements from the array
+	lib_list.erase (std::unique (lib_list.begin (), lib_list.end ()), lib_list.end ());
+
+	// 3: Copy this to the output file
+	std::copy (lib_list.begin (), lib_list.end (), 
+		std::ostream_iterator<std::string> (this->strm_, " "));
+}
+
 void 
 MPCStream::create_cidl_defn (PICML::ImplementationArtifact& artifact)
 {
@@ -425,9 +448,7 @@ MPCStream::create_cidl_defn (PICML::ImplementationArtifact& artifact)
 	// foler
 	std::set<PICML::ImplementationArtifactReference> impl_refs = 
 		artifact.referedbyImplementationArtifactReference ();
-	std::string msg = "Number of refs = " + impl_refs.size ();
 	
-
 	bool entered_loop = 0;
 	for (std::set<PICML::ImplementationArtifactReference>::iterator iter = 
 		impl_refs.begin ();
@@ -507,7 +528,13 @@ MPCStream::create_skeleton_definition (const PICML::ServantProject &skel)
 	
 	this->servant_project_ = proj_name;
 	
-	this->create_project_defn (proj_name, "ciao_dnc_servant");
+	/// Check if File ref is present 
+	PICML::FileRef file_ref = skel.FileRef_child ();
+	
+	if (file_ref != Udm::null)
+		this->create_project_defn (proj_name, "ciao_servant_dnc");
+	else 
+		this->create_project_defn (proj_name, "ciao_server");
 	
 	// Obtain what libraries this depends on -- Name of dependent
 	// libraries
@@ -527,40 +554,104 @@ MPCStream::create_skeleton_definition (const PICML::ServantProject &skel)
 	// platform
 	this->create_export_macro (shared_name);
 	
-	// Add dependent library paths
-	std::string path_name;
-	artifact.GetStrValue ("libpaths", path_name);
-	if (path_name.size () != 0)
+	// Identify the dependent libraries and 
+	// generate the lib+= definition
+	std::set<PICML::ArtifactDependsOn> dep_list = 
+		artifact.dstArtifactDependsOn ();
+
+	/// Obtain the dependecy names from the list
+	std::vector<std::string> &lib_list = 
+		this->generate_dependant_libs (dep_list);
+
+	/// Add the dependency path to the list
+	// @@ Hard coded: Need to be configured via
+	// configuration files
+	if (dep_list.size ())
+	{
+		std::string path_name = "$ACE_ROOT/lib";
 		this->create_lib_path_defn (path_name);
+	}
+
+	/// Add the lib += definition to the list
+	this->create_dependant_libs_defn (lib_list);
 	
 	// Write out the dynamic flags
 	this->create_dynamic_flags_defn (shared_name);
 	
-	// Write out CIDL file definitions
-	this->create_cidl_defn (artifact);
-
-	// Write out the IDL files generated by the cidl compiler
-	std::vector<std::string> idl_file_names;
 	std::vector<std::string> source_file_names;
+	if (file_ref != Udm::null)
+	{
+		// Write out CIDL file definitions
+		this->create_cidl_defn (artifact);
 
-	for (std::vector<std::string>::iterator iter = this->cidl_file_.begin ();
-	     iter != this->cidl_file_.end ();
-		 iter ++)
-		 {
+		// Write out the IDL files generated by the cidl compiler
+		std::vector<std::string> idl_file_names;
+
+		for (std::vector<std::string>::iterator iter = this->cidl_file_.begin ();
+			 iter != this->cidl_file_.end ();
+			iter ++)
+		{
 			 idl_file_names.push_back ((*iter) + "E.idl");
 			 source_file_names.push_back ((* iter) + "EC.cpp");
 			 source_file_names.push_back ((* iter) + "S.cpp");
 			 source_file_names.push_back ((* iter) + "_svnt.cpp");
 		 }
 
-	// Write out the IDL file definitions
-	this->create_idl_file_defn (idl_file_names);
+		// Write out the IDL file definitions
+		this->create_idl_file_defn (idl_file_names);
+	}
+	else
+	{
+		// Write out the source file definitions
+	   for (size_t i = 0; i < this->idl_files_.size (); i++)
+		   source_file_names.push_back (this->idl_files_[i] + "S.cpp");
+	}
 
 	// Write out the Source file definitions
 	this->create_source_file_defn (source_file_names);
 
 	// Close Project files
 	this->create_close_proj_defn ();
+}
+
+std::vector<std::string>
+MPCStream::generate_dependant_libs (std::set<PICML::ArtifactDependsOn>& art_deps)
+{
+	std::vector<std::string> return_list;
+
+	// Stopping Criteria for the function
+	if (! art_deps.size ())
+		return return_list;
+	
+	std::set<PICML::ArtifactDependsOn>::iterator iter = 
+		art_deps.begin ();
+
+	for ( ; iter != art_deps.end (); iter ++) 
+	{
+		// Get the implementation artifact
+		PICML::ImplementationArtifactReference ref = 
+			iter->dstArtifactDependsOn_end ();
+		PICML::ImplementationArtifact artifact = ref.ref ();
+		
+		// Get the name of the Artifact -- Add to dependency list
+		std::string name;
+		artifact.GetStrValue ("name", name);
+		return_list.push_back (name);
+
+		/// Generate the dependencies of this artifact
+		std::set<PICML::ArtifactDependsOn> artifact_dependencies = 
+			artifact.dstArtifactDependsOn ();
+
+		// Get the destination reference
+		std::vector<std::string> &depends_names = 
+			this->generate_dependant_libs (artifact_dependencies);
+
+		for (size_t i =0; i < depends_names.size (); i++)
+			return_list.push_back (depends_names [i]);
+	}
+	
+	// Return dependancy list
+	return return_list;
 }
 
 void
@@ -574,7 +665,7 @@ MPCStream::create_executor_definition (const PICML::ExecutorProject& exec)
 	std::string proj_name;
 	artifact.GetStrValue ("name", proj_name);
 	
-	this->create_project_defn (proj_name, "ciao_dnc_component");
+	this->create_project_defn (proj_name, "ciao_component_dnc");
 	
 	// Write out the after += definition
 	this->create_after_defn (this->servant_project_);
@@ -593,13 +684,28 @@ MPCStream::create_executor_definition (const PICML::ExecutorProject& exec)
 	
 	// Write out the dynamic flags
 	this->create_dynamic_flags_defn (shared_name);
-	
-	// Add dependent library paths
-	std::string path_name;
-	artifact.GetStrValue ("libpaths", path_name);
-	if (path_name.size () != 0)
+
+	// Identify the dependent libraries and 
+	// generate the lib+= definition
+	std::set<PICML::ArtifactDependsOn> dep_list = 
+		artifact.dstArtifactDependsOn ();
+
+	/// Obtain the dependecy names from the list
+	std::vector<std::string> &lib_list = 
+		this->generate_dependant_libs (dep_list);
+
+	/// Add the dependency path to the list
+	// @@ Hard coded: Need to be configured via
+	// configuration files
+	if (dep_list.size ())
+	{
+		std::string path_name = "$ACE_ROOT/lib";
 		this->create_lib_path_defn (path_name);
-	
+	}
+
+	/// Add the lib += definition to the list
+	this->create_dependant_libs_defn (lib_list);
+
 	// Write out the IDL files
 	std::vector<std::string> idl_files;
 	std::vector<std::string> source_files;
@@ -633,19 +739,25 @@ MPCStream::create_project (const PICML::Project &project)
 	// Step 2: Generating the skeleton part --> Depends on stub project
 	std::set<PICML::ServantProject> skel = project.ServantProject_kind_children ();
 	
-	// There should only be one project -- Constraint checked via constraints
-	assert (skel.size () == 1);
-	std::set<PICML::ServantProject>::iterator skel_iter = skel.begin ();
-	this->create_skeleton_definition (* skel_iter);	
+	// There should be atmost one project -- Constraint checked via constraints
+	assert (skel.size () <= 1);
+	if (skel.size ())
+	{
+		std::set<PICML::ServantProject>::iterator skel_iter = skel.begin ();
+		this->create_skeleton_definition (* skel_iter);	
+	}
 	
 	// Step 3: Generating the executor part --> Depends on this skeleton and
 	// External libraries if any
 	std::set<PICML::ExecutorProject> exec = project.ExecutorProject_kind_children ();
 	
-	// There should only be one project -- Constraint checked via constraints
-	assert (exec.size () == 1);
-	std::set<PICML::ExecutorProject>::iterator exec_iter = exec.begin ();
-	this->create_executor_definition (* exec_iter);	
+	// There should be atmost one project -- Constraint checked via constraints
+	assert (exec.size () <= 1);
+	if (exec.size ())
+	{
+		std::set<PICML::ExecutorProject>::iterator exec_iter = exec.begin ();
+		this->create_executor_definition (* exec_iter);	
+	}
 	
 }
 

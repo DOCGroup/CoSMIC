@@ -90,7 +90,9 @@ public:
   void create_cidl_defn (PICML::ImplementationArtifact& artifact);
   void create_export_macro (std::string& shared_name);
   std::string skel_export_macro (PICML::Project project);
-  
+  std::vector<std::string> generate_dependant_libs (std::set<PICML::ArtifactDependsOn>& art_refs);
+  void create_dependant_libs_defn (std::vector<std::string>& list);
+
   MPCStream &operator<< (const std::string &);
   MPCStream &operator<< (const char *);
   MPCStream &operator<< (const long &);
@@ -110,6 +112,7 @@ private:
   std::string servant_project_;
   int indent_level_;
   std::vector<std::string> cidl_file_;
+  std::vector<std::string> idl_files_;
   
 private:
   void upcase (const char *);
