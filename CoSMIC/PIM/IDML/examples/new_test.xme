@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri May 21 14:31:42 2004" mdate="Sat May 22 20:18:57 2004" metaguid="{F901EB83-DEAD-BEEF-FEED-DAD000000001}" metaname="IDML">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri May 21 14:31:42 2004" mdate="Sat May 22 21:06:27 2004" metaguid="{0916BE97-DEAD-BEEF-FEED-DAD000000001}" metaname="IDML">
 	<name>new_test</name>
 	<comment></comment>
 	<author></author>
@@ -48,7 +48,7 @@
 		</folder>
 		<folder id="id-006a-00000007" relid="0x9" childrelidcntr="0x1" kind="InterfaceDefinitions">
 			<name>NewInterfaceDefinitions</name>
-			<model id="id-0065-00000001" kind="File" relid="0x1" childrelidcntr="0xa">
+			<model id="id-0065-00000001" kind="File" relid="0x1" childrelidcntr="0xd">
 				<name>FirstFile</name>
 				<attribute kind="PrefixTag" status="meta">
 					<value></value>

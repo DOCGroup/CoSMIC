@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri May 21 14:31:42 2004" mdate="Sat May 22 18:35:40 2004" metaguid="{F901EB83-DEAD-BEEF-FEED-DAD000000001}" metaname="IDML">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri May 21 14:31:42 2004" mdate="Sat May 22 20:21:48 2004" metaguid="{0916BE97-DEAD-BEEF-FEED-DAD000000001}" metaname="IDML">
 	<name>IDMLTemplate</name>
 	<comment></comment>
 	<author></author>

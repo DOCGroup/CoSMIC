@@ -4475,7 +4475,34 @@
 			</regnode>
 			<regnode name="ComponentType">
 				<value></value>
+				<regnode name="Component-2-Model">
+					<value></value>
+					<regnode name="Configs">
+						<value></value>
+						<regnode name="Default" isopaque="yes">
+							<value>true</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="ComponentDef-2-Model">
+					<value></value>
+					<regnode name="Configs">
+						<value></value>
+						<regnode name="Default" isopaque="yes">
+							<value>true</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="ComponentFactory-59-Model">
+					<value></value>
+					<regnode name="Configs">
+						<value></value>
+						<regnode name="Default" isopaque="yes">
+							<value>true</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="ComponentRef-51-Reference">
 					<value></value>
 					<regnode name="Configs">
 						<value></value>
@@ -4521,6 +4548,24 @@
 					</regnode>
 				</regnode>
 				<regnode name="InterfaceRef-14-Reference">
+					<value></value>
+					<regnode name="Configs">
+						<value></value>
+						<regnode name="Default" isopaque="yes">
+							<value>true</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="Manageable-54-FCO">
+					<value></value>
+					<regnode name="Configs">
+						<value></value>
+						<regnode name="Default" isopaque="yes">
+							<value>true</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="ManagesComponent-5a-Connection">
 					<value></value>
 					<regnode name="Configs">
 						<value></value>
@@ -4698,6 +4743,15 @@
 			<regnode name="InheritableTypes">
 				<value></value>
 				<regnode name="Attribute-48-Model">
+					<value></value>
+					<regnode name="Configs">
+						<value></value>
+						<regnode name="Default" isopaque="yes">
+							<value>true</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="AttributeMember-116-Reference">
 					<value></value>
 					<regnode name="Configs">
 						<value></value>
@@ -4970,6 +5024,15 @@
 						</regnode>
 					</regnode>
 				</regnode>
+				<regnode name="Alias-114-Reference">
+					<value></value>
+					<regnode name="Configs">
+						<value></value>
+						<regnode name="Default" isopaque="yes">
+							<value>true</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="Alias-c-Model">
 					<value></value>
 					<regnode name="Configs">
@@ -4980,6 +5043,15 @@
 					</regnode>
 				</regnode>
 				<regnode name="AliasDef-c-Model">
+					<value></value>
+					<regnode name="Configs">
+						<value></value>
+						<regnode name="Default" isopaque="yes">
+							<value>true</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="Boxed-115-Reference">
 					<value></value>
 					<regnode name="Configs">
 						<value></value>
@@ -5015,7 +5087,34 @@
 						</regnode>
 					</regnode>
 				</regnode>
+				<regnode name="Collection-113-Reference">
+					<value></value>
+					<regnode name="Configs">
+						<value></value>
+						<regnode name="Default" isopaque="yes">
+							<value>true</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="Discriminator-10b-Reference">
+					<value></value>
+					<regnode name="Configs">
+						<value></value>
+						<regnode name="Default" isopaque="yes">
+							<value>true</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="Discriminator-70-Model">
+					<value></value>
+					<regnode name="Configs">
+						<value></value>
+						<regnode name="Default" isopaque="yes">
+							<value>true</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="DiscriminatorType-104-FCO">
 					<value></value>
 					<regnode name="Configs">
 						<value></value>
@@ -5078,7 +5177,34 @@
 						</regnode>
 					</regnode>
 				</regnode>
+				<regnode name="Member-116-Reference">
+					<value></value>
+					<regnode name="Configs">
+						<value></value>
+						<regnode name="Default" isopaque="yes">
+							<value>true</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="Member-90-FCO">
+					<value></value>
+					<regnode name="Configs">
+						<value></value>
+						<regnode name="Default" isopaque="yes">
+							<value>true</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MemberType-90-FCO">
+					<value></value>
+					<regnode name="Configs">
+						<value></value>
+						<regnode name="Default" isopaque="yes">
+							<value>true</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="NamedType-10e-FCO">
 					<value></value>
 					<regnode name="Configs">
 						<value></value>
@@ -5097,6 +5223,15 @@
 					</regnode>
 				</regnode>
 				<regnode name="NamedTypeRef-28-Reference">
+					<value></value>
+					<regnode name="Configs">
+						<value></value>
+						<regnode name="Default" isopaque="yes">
+							<value>true</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="NoInheritable-132-FCO">
 					<value></value>
 					<regnode name="Configs">
 						<value></value>
@@ -5171,7 +5306,25 @@
 						</regnode>
 					</regnode>
 				</regnode>
+				<regnode name="InParameter-51-Reference">
+					<value></value>
+					<regnode name="Configs">
+						<value></value>
+						<regnode name="Default" isopaque="yes">
+							<value>true</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="InParameter-9-Model">
+					<value></value>
+					<regnode name="Configs">
+						<value></value>
+						<regnode name="Default" isopaque="yes">
+							<value>true</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="InoutParameter-52-Reference">
 					<value></value>
 					<regnode name="Configs">
 						<value></value>
@@ -5216,6 +5369,15 @@
 						</regnode>
 					</regnode>
 				</regnode>
+				<regnode name="OutParameter-53-Reference">
+					<value></value>
+					<regnode name="Configs">
+						<value></value>
+						<regnode name="Default" isopaque="yes">
+							<value>true</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="OutParameter-b-Model">
 					<value></value>
 					<regnode name="Configs">
@@ -5234,7 +5396,25 @@
 						</regnode>
 					</regnode>
 				</regnode>
+				<regnode name="Parameter-49-Reference">
+					<value></value>
+					<regnode name="Configs">
+						<value></value>
+						<regnode name="Default" isopaque="yes">
+							<value>true</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="ParameterType-11-FCO">
+					<value></value>
+					<regnode name="Configs">
+						<value></value>
+						<regnode name="Default" isopaque="yes">
+							<value>true</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="ReturnType-54-Reference">
 					<value></value>
 					<regnode name="Configs">
 						<value></value>
@@ -5412,6 +5592,15 @@
 					</regnode>
 				</regnode>
 				<regnode name="ConstantDef-74-Model">
+					<value></value>
+					<regnode name="Configs">
+						<value></value>
+						<regnode name="Default" isopaque="yes">
+							<value>true</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="ConstantType-f2-FCO">
 					<value></value>
 					<regnode name="Configs">
 						<value></value>
@@ -25464,7 +25653,7 @@
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-00000003" kind="ParadigmSheet" relid="0x3" childrelidcntr="0x13e">
+		<model id="id-0065-00000003" kind="ParadigmSheet" relid="0x3" childrelidcntr="0x140">
 			<name>NamedTypes</name>
 			<attribute kind="AuthorInformation" status="meta">
 				<value></value>
@@ -25488,7 +25677,7 @@
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1037,671</value>
+							<value>995,433</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -25563,7 +25752,7 @@
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1170,671</value>
+							<value>1128,433</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -25641,7 +25830,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>785,251</value>
+							<value>785,286</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -25716,7 +25905,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>764,398</value>
+							<value>764,433</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -26019,7 +26208,7 @@
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>171,607</value>
+							<value>171,586</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -26073,7 +26262,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>811,482</value>
+							<value>811,517</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -26148,7 +26337,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>664,412</value>
+							<value>664,447</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -26453,7 +26642,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>972,370</value>
+							<value>972,447</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -26532,7 +26721,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>139,181</value>
+							<value>111,181</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -26600,108 +26789,6 @@
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-000000de" kind="FCO" role="FCO" relid="0x104">
-				<name>DiscriminatorType</name>
-				<regnode name="PartRegs">
-					<value></value>
-					<regnode name="Attributes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>932,426</value>
-						</regnode>
-					</regnode>
-					<regnode name="ClassDiagram">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>939,573</value>
-						</regnode>
-					</regnode>
-					<regnode name="Constraints">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>974,433</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>918,503</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="Decorator" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="Icon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="InRootFolder" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="InstanceIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="IsAbstract">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsHotspotEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsNameEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsTypeShown" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NamePosition" status="meta">
-					<value>4</value>
-				</attribute>
-				<attribute kind="NameWrapNum" status="meta">
-					<value>0</value>
-				</attribute>
-				<attribute kind="PortIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="SubTypeIcon" status="meta">
-					<value></value>
-				</attribute>
-			</atom>
-			<atom id="id-0066-000000df" kind="Inheritance" role="Inheritance" relid="0x107">
-				<name>Inheritance</name>
-				<regnode name="PartRegs">
-					<value></value>
-					<regnode name="Attributes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>976,551</value>
-						</regnode>
-					</regnode>
-					<regnode name="ClassDiagram">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>983,656</value>
-						</regnode>
-					</regnode>
-					<regnode name="Constraints">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>1018,516</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>962,586</value>
-						</regnode>
-					</regnode>
-				</regnode>
-			</atom>
 			<atom id="id-0066-000000e0" kind="Reference" role="Reference" relid="0x10b">
 				<name>Discriminator</name>
 				<regnode name="PartRegs">
@@ -26715,7 +26802,7 @@
 					<regnode name="ClassDiagram">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>813,573</value>
+							<value>813,601</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints">
@@ -27141,7 +27228,7 @@
 					<regnode name="Constraints">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>811,335</value>
+							<value>811,370</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -27399,7 +27486,7 @@
 					<regnode name="ClassDiagram">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>855,671</value>
+							<value>211,622</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints">
@@ -27471,7 +27558,7 @@
 					<regnode name="ClassDiagram">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>57,671</value>
+							<value>57,622</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints">
@@ -27484,6 +27571,78 @@
 						<value></value>
 						<regnode name="Position" isopaque="yes">
 							<value>29,608</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</reference>
+			<reference id="id-0067-00000062" kind="FCOProxy" role="FCOProxy" relid="0x13f" referred="id-0066-000000d7">
+				<name>ConstantType</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>974,510</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>967,601</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>925,580</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>897,503</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -27634,38 +27793,6 @@
 				</attribute>
 				<connpoint role="dst" target="id-0066-00000022"/>
 				<connpoint role="src" target="id-0066-00000023"/>
-			</connection>
-			<connection id="id-0068-000001b6" kind="BaseInheritance" role="BaseInheritance" relid="0x108">
-				<name>BaseInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-000000de"/>
-				<connpoint role="dst" target="id-0066-000000df"/>
-			</connection>
-			<connection id="id-0068-000001b7" kind="DerivedInheritance" role="DerivedInheritance" relid="0x109">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sw</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-00000022"/>
-				<connpoint role="src" target="id-0066-000000df"/>
-			</connection>
-			<connection id="id-0068-000001b8" kind="DerivedInheritance" role="DerivedInheritance" relid="0x10a">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Se</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-000000df"/>
-				<connpoint role="dst" target="id-0067-00000051"/>
-			</connection>
-			<connection id="id-0068-000001ba" kind="ReferTo" role="ReferTo" relid="0x10d">
-				<name>ReferTo</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ew</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-000000de"/>
-				<connpoint role="src" target="id-0066-000000e0"/>
 			</connection>
 			<connection id="id-0068-000001bc" kind="DerivedInheritance" role="DerivedInheritance" relid="0x110">
 				<name>DerivedInheritance</name>
@@ -27964,7 +28091,15 @@
 				<connpoint role="dst" target="id-0066-0000002d"/>
 				<connpoint role="src" target="id-0066-000000e4"/>
 			</connection>
-			<set id="id-0069-00000006" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-00000051 id-0066-000000e0 id-0066-000000e4 id-0066-000000e5 id-0066-000000e2 id-0066-000000e3 id-0066-00000023 id-0067-00000024 id-0066-0000002b id-0066-00000029 id-0066-00000027 id-0066-00000026 id-0066-00000022">
+			<connection id="id-0068-00000212" kind="ReferTo" role="ReferTo" relid="0x140">
+				<name>ReferTo</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ew</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-000000e0"/>
+				<connpoint role="dst" target="id-0067-00000062"/>
+			</connection>
+			<set id="id-0069-00000006" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-00000051 id-0066-000000e0 id-0066-000000e4 id-0066-000000e5 id-0066-000000e2 id-0066-000000e3 id-0066-00000023 id-0067-00000024 id-0066-0000002b id-0066-00000029 id-0066-00000027 id-0066-00000026 id-0066-00000022 id-0067-00000062">
 				<name>NamedTypeAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -32000,7 +32135,7 @@ supported_set->iterate (ref; accu = Set{} |
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-00000005" kind="ParadigmSheet" relid="0x5" childrelidcntr="0x5f">
+		<model id="id-0065-00000005" kind="ParadigmSheet" relid="0x5" childrelidcntr="0x61">
 			<name>OperationTypes</name>
 			<attribute kind="AuthorInformation" status="meta">
 				<value></value>
@@ -32037,108 +32172,6 @@ supported_set->iterate (ref; accu = Set{} |
 						<value></value>
 						<regnode name="Position" isopaque="yes">
 							<value>416,152</value>
-						</regnode>
-					</regnode>
-				</regnode>
-			</atom>
-			<atom id="id-0066-0000005e" kind="FCO" role="FCO" relid="0x11">
-				<name>ParameterType</name>
-				<regnode name="PartRegs" isopaque="yes">
-					<value></value>
-					<regnode name="Attributes" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>232,83</value>
-						</regnode>
-					</regnode>
-					<regnode name="ClassDiagram" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>120,34</value>
-						</regnode>
-					</regnode>
-					<regnode name="Constraints" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>190,118</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>135,107</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="Decorator" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="Icon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="InRootFolder" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="InstanceIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="IsAbstract">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsHotspotEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsNameEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsTypeShown" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NamePosition" status="meta">
-					<value>4</value>
-				</attribute>
-				<attribute kind="NameWrapNum" status="meta">
-					<value>0</value>
-				</attribute>
-				<attribute kind="PortIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="SubTypeIcon" status="meta">
-					<value></value>
-				</attribute>
-			</atom>
-			<atom id="id-0066-0000005f" kind="Inheritance" role="Inheritance" relid="0x12">
-				<name>Inheritance</name>
-				<regnode name="PartRegs" isopaque="yes">
-					<value></value>
-					<regnode name="Attributes" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>262,173</value>
-						</regnode>
-					</regnode>
-					<regnode name="ClassDiagram" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>157,117</value>
-						</regnode>
-					</regnode>
-					<regnode name="Constraints" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>227,292</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>171,187</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -32492,7 +32525,7 @@ supported_set->iterate (ref; accu = Set{} |
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>722,398</value>
+							<value>1044,321</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -33264,32 +33297,32 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-0000004f" kind="FCOProxy" role="FCOProxy" relid="0x4b" referred="id-0066-000000c7">
-				<name>PredefinedType</name>
+			<reference id="id-0067-00000063" kind="FCOProxy" role="FCOProxy" relid="0x60" referred="id-0066-0000002d">
+				<name>MemberType</name>
 				<regnode name="PartRegs">
 					<value></value>
 					<regnode name="Attributes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>8,13</value>
+							<value>148,48</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>36,188</value>
+							<value>134,34</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>260,384</value>
+							<value>162,27</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>43,258</value>
+							<value>50,34</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -33336,80 +33369,6 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-0000005b" kind="FCOProxy" role="FCOProxy" relid="0x5d" referred="id-0066-000000e1">
-				<name>NamedType</name>
-				<regnode name="PartRegs">
-					<value></value>
-					<regnode name="ClassDiagram">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>204,188</value>
-						</regnode>
-					</regnode>
-					<regnode name="Constraints">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>120,377</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>218,258</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="Decorator" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="Icon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="InRootFolder" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="InstanceIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="IsAbstract" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="IsHotspotEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsNameEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsTypeShown" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NamePosition" status="meta">
-					<value>4</value>
-				</attribute>
-				<attribute kind="NameWrapNum" status="meta">
-					<value>0</value>
-				</attribute>
-				<attribute kind="PortIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="SubTypeIcon" status="meta">
-					<value></value>
-				</attribute>
-			</reference>
-			<connection id="id-0068-00000098" kind="BaseInheritance" role="BaseInheritance" relid="0x13">
-				<name>BaseInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-0000005e"/>
-				<connpoint role="dst" target="id-0066-0000005f"/>
-			</connection>
 			<connection id="id-0068-0000009c" kind="DerivedInheritance" role="DerivedInheritance" relid="0x1f">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
@@ -33498,22 +33457,6 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 				</regnode>
 				<connpoint role="dst" target="id-0066-00000060"/>
 				<connpoint role="src" target="id-0066-000000a2"/>
-			</connection>
-			<connection id="id-0068-000001a8" kind="ReferTo" role="ReferTo" relid="0x4a">
-				<name>ReferTo</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>We</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-0000005e"/>
-				<connpoint role="src" target="id-0066-000000d9"/>
-			</connection>
-			<connection id="id-0068-000001a9" kind="DerivedInheritance" role="DerivedInheritance" relid="0x4d">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-0000005f"/>
-				<connpoint role="dst" target="id-0067-0000004f"/>
 			</connection>
 			<connection id="id-0068-000001ac" kind="BaseInheritance" role="BaseInheritance" relid="0x50">
 				<name>BaseInheritance</name>
@@ -33623,14 +33566,6 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 				<connpoint role="dst" target="id-0066-00000064"/>
 				<connpoint role="src" target="id-0066-000000dd"/>
 			</connection>
-			<connection id="id-0068-000001d8" kind="DerivedInheritance" role="DerivedInheritance" relid="0x5e">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-0000005f"/>
-				<connpoint role="dst" target="id-0067-0000005b"/>
-			</connection>
 			<connection id="id-0068-000001d9" kind="DerivedInheritance" role="DerivedInheritance" relid="0x5f">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
@@ -33639,7 +33574,15 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 				<connpoint role="dst" target="id-0066-00000066"/>
 				<connpoint role="src" target="id-0066-00000068"/>
 			</connection>
-			<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-0000005b id-0066-000000dd id-0066-000000dc id-0066-000000db id-0067-0000004f id-0066-000000da id-0066-00000060 id-0066-00000066 id-0066-00000064 id-0067-0000000c id-0066-00000063 id-0066-00000062">
+			<connection id="id-0068-00000213" kind="ReferTo" role="ReferTo" relid="0x61">
+				<name>ReferTo</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>We</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-000000d9"/>
+				<connpoint role="dst" target="id-0067-00000063"/>
+			</connection>
+			<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000dd id-0066-000000dc id-0066-000000db id-0066-000000da id-0066-00000060 id-0066-00000066 id-0066-00000064 id-0067-0000000c id-0066-00000063 id-0066-00000062">
 				<name>OperationAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
