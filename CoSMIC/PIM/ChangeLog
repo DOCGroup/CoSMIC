@@ -1,3 +1,18 @@
+Tue Jul 27 17:38:16 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PICML/paradigms/PICML-uml.xme:
+        * PICML/paradigms/PICML.xme:
+        * PICML/paradigms/PICML.xmp:
+        * PICML/paradigms/PICMLTemplate.xme:
+        * PICML/paradigms/PredefinedTypes.xme:
+        
+          Removed the collection elements added to the PredefinedTypes
+          folder in
+          
+          Tue Jul 27 16:39:25 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+ 
+          and updated all related files.
+
 Tue Jul 27 16:39:25 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PICML/paradigms/PICML.xme:

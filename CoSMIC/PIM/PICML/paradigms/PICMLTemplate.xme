@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Tue Jul 27 16:03:16 2004" mdate="Tue Jul 27 16:03:39 2004" metaguid="{1D83603D-DEAD-BEEF-FEED-DAD000000001}" metaname="PICML">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Tue Jul 27 16:03:16 2004" mdate="Tue Jul 27 17:32:00 2004" metaguid="{1D83603D-DEAD-BEEF-FEED-DAD000000001}" metaname="PICML">
 	<name>PICMLTemplate</name>
 	<comment></comment>
 	<author></author>
-	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x1" kind="RootFolder">
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x2" kind="RootFolder">
 		<name>PICMLTemplate</name>
 		<folder id="id-006a-00000002" relid="0x1" childrelidcntr="0x15" kind="PredefinedTypes">
 			<name>PredefinedTypes</name>
@@ -39,29 +39,8 @@
 			<atom id="id-0066-0000000a" kind="TypeKind" relid="0xc">
 				<name>TypeKind</name>
 			</atom>
-			<atom id="id-0066-0000000b" kind="BooleanCollection" relid="0xd">
-				<name>BooleanCollection</name>
-			</atom>
-			<atom id="id-0066-0000000c" kind="ByteCollection" relid="0xf">
-				<name>ByteCollection</name>
-			</atom>
-			<atom id="id-0066-0000000d" kind="LongIntegerCollection" relid="0x10">
-				<name>LongIntegerCollection</name>
-			</atom>
-			<atom id="id-0066-0000000e" kind="RealNumberCollection" relid="0x11">
-				<name>RealNumberCollection</name>
-			</atom>
-			<atom id="id-0066-0000000f" kind="ShortIntegerCollection" relid="0x12">
-				<name>ShortIntegerCollection</name>
-			</atom>
-			<atom id="id-0066-00000010" kind="StringCollection" relid="0x13">
-				<name>StringCollection</name>
-			</atom>
 			<atom id="id-0066-00000011" kind="GenericValueObject" relid="0x14">
 				<name>GenericValueObject</name>
-			</atom>
-			<atom id="id-0066-00000012" kind="GenericValueCollection" relid="0x15">
-				<name>GenericValueCollection</name>
 			</atom>
 		</folder>
 	</folder>

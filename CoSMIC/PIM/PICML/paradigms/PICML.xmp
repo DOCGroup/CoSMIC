@@ -134,21 +134,7 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
       </atom>
-      <atom name = "BooleanCollection" metaref = "4097" >
-            <regnode name = "namePosition" value ="4"></regnode>
-         <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
-            <dispname>Not a valid identifier</dispname>
-         </constraint>
-      </atom>
       <atom name = "Byte" metaref = "2915" >
-            <regnode name = "namePosition" value ="4"></regnode>
-         <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
-            <dispname>Not a valid identifier</dispname>
-         </constraint>
-      </atom>
-      <atom name = "ByteCollection" metaref = "4098" >
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
             <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
@@ -187,13 +173,6 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
       </atom>
-      <atom name = "GenericValueCollection" metaref = "4099" >
-            <regnode name = "namePosition" value ="4"></regnode>
-         <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
-            <dispname>Not a valid identifier</dispname>
-         </constraint>
-      </atom>
       <atom name = "GenericValueObject" metaref = "2918" >
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
@@ -223,13 +202,6 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <regnode name = "icon" value ="label.bmp"></regnode>
       </atom>
       <atom name = "LongInteger" metaref = "2919" >
-            <regnode name = "namePosition" value ="4"></regnode>
-         <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
-            <dispname>Not a valid identifier</dispname>
-         </constraint>
-      </atom>
-      <atom name = "LongIntegerCollection" metaref = "4101" >
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
             <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
@@ -298,13 +270,6 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
       </atom>
-      <atom name = "RealNumberCollection" metaref = "4102" >
-            <regnode name = "namePosition" value ="4"></regnode>
-         <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
-            <dispname>Not a valid identifier</dispname>
-         </constraint>
-      </atom>
       <atom name = "ShortInteger" metaref = "2921" >
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
@@ -312,21 +277,7 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
       </atom>
-      <atom name = "ShortIntegerCollection" metaref = "4103" >
-            <regnode name = "namePosition" value ="4"></regnode>
-         <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
-            <dispname>Not a valid identifier</dispname>
-         </constraint>
-      </atom>
       <atom name = "String" metaref = "2922" >
-            <regnode name = "namePosition" value ="4"></regnode>
-         <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
-            <dispname>Not a valid identifier</dispname>
-         </constraint>
-      </atom>
-      <atom name = "StringCollection" metaref = "4104" >
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
             <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
@@ -1133,10 +1084,8 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
-            <pointeritem desc = "BooleanCollection"></pointeritem>
             <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
-            <pointeritem desc = "ByteCollection"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
             <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
@@ -1144,17 +1093,12 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <pointeritem desc = "Event"></pointeritem>
             <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "GenericValue"></pointeritem>
-            <pointeritem desc = "GenericValueCollection"></pointeritem>
             <pointeritem desc = "GenericValueObject"></pointeritem>
             <pointeritem desc = "LongInteger"></pointeritem>
-            <pointeritem desc = "LongIntegerCollection"></pointeritem>
             <pointeritem desc = "Object"></pointeritem>
             <pointeritem desc = "RealNumber"></pointeritem>
-            <pointeritem desc = "RealNumberCollection"></pointeritem>
             <pointeritem desc = "ShortInteger"></pointeritem>
-            <pointeritem desc = "ShortIntegerCollection"></pointeritem>
             <pointeritem desc = "String"></pointeritem>
-            <pointeritem desc = "StringCollection"></pointeritem>
             <pointeritem desc = "SwitchedAggregate"></pointeritem>
             <pointeritem desc = "TypeEncoding"></pointeritem>
             <pointeritem desc = "TypeKind"></pointeritem>
@@ -1170,10 +1114,8 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
-            <pointeritem desc = "BooleanCollection"></pointeritem>
             <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
-            <pointeritem desc = "ByteCollection"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
             <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
@@ -1181,17 +1123,12 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <pointeritem desc = "Event"></pointeritem>
             <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "GenericValue"></pointeritem>
-            <pointeritem desc = "GenericValueCollection"></pointeritem>
             <pointeritem desc = "GenericValueObject"></pointeritem>
             <pointeritem desc = "LongInteger"></pointeritem>
-            <pointeritem desc = "LongIntegerCollection"></pointeritem>
             <pointeritem desc = "Object"></pointeritem>
             <pointeritem desc = "RealNumber"></pointeritem>
-            <pointeritem desc = "RealNumberCollection"></pointeritem>
             <pointeritem desc = "ShortInteger"></pointeritem>
-            <pointeritem desc = "ShortIntegerCollection"></pointeritem>
             <pointeritem desc = "String"></pointeritem>
-            <pointeritem desc = "StringCollection"></pointeritem>
             <pointeritem desc = "SwitchedAggregate"></pointeritem>
             <pointeritem desc = "TypeEncoding"></pointeritem>
             <pointeritem desc = "TypeKind"></pointeritem>
@@ -1222,10 +1159,8 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
-            <pointeritem desc = "BooleanCollection"></pointeritem>
             <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
-            <pointeritem desc = "ByteCollection"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
             <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
@@ -1233,17 +1168,12 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <pointeritem desc = "Event"></pointeritem>
             <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "GenericValue"></pointeritem>
-            <pointeritem desc = "GenericValueCollection"></pointeritem>
             <pointeritem desc = "GenericValueObject"></pointeritem>
             <pointeritem desc = "LongInteger"></pointeritem>
-            <pointeritem desc = "LongIntegerCollection"></pointeritem>
             <pointeritem desc = "Object"></pointeritem>
             <pointeritem desc = "RealNumber"></pointeritem>
-            <pointeritem desc = "RealNumberCollection"></pointeritem>
             <pointeritem desc = "ShortInteger"></pointeritem>
-            <pointeritem desc = "ShortIntegerCollection"></pointeritem>
             <pointeritem desc = "String"></pointeritem>
-            <pointeritem desc = "StringCollection"></pointeritem>
             <pointeritem desc = "SwitchedAggregate"></pointeritem>
             <pointeritem desc = "TypeEncoding"></pointeritem>
             <pointeritem desc = "TypeKind"></pointeritem>
@@ -1269,10 +1199,8 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
-            <pointeritem desc = "BooleanCollection"></pointeritem>
             <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
-            <pointeritem desc = "ByteCollection"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
             <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
@@ -1280,17 +1208,12 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <pointeritem desc = "Event"></pointeritem>
             <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "GenericValue"></pointeritem>
-            <pointeritem desc = "GenericValueCollection"></pointeritem>
             <pointeritem desc = "GenericValueObject"></pointeritem>
             <pointeritem desc = "LongInteger"></pointeritem>
-            <pointeritem desc = "LongIntegerCollection"></pointeritem>
             <pointeritem desc = "Object"></pointeritem>
             <pointeritem desc = "RealNumber"></pointeritem>
-            <pointeritem desc = "RealNumberCollection"></pointeritem>
             <pointeritem desc = "ShortInteger"></pointeritem>
-            <pointeritem desc = "ShortIntegerCollection"></pointeritem>
             <pointeritem desc = "String"></pointeritem>
-            <pointeritem desc = "StringCollection"></pointeritem>
             <pointeritem desc = "SwitchedAggregate"></pointeritem>
             <pointeritem desc = "TypeEncoding"></pointeritem>
             <pointeritem desc = "TypeKind"></pointeritem>
@@ -1388,22 +1311,15 @@ or self.requiredUUID <> ""]]>
          <regnode name = "icon" value ="const.bmp"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "Boolean"></pointeritem>
-            <pointeritem desc = "BooleanCollection"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
-            <pointeritem desc = "ByteCollection"></pointeritem>
             <pointeritem desc = "Enum"></pointeritem>
             <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "GenericValue"></pointeritem>
-            <pointeritem desc = "GenericValueCollection"></pointeritem>
             <pointeritem desc = "GenericValueObject"></pointeritem>
             <pointeritem desc = "LongInteger"></pointeritem>
-            <pointeritem desc = "LongIntegerCollection"></pointeritem>
             <pointeritem desc = "RealNumber"></pointeritem>
-            <pointeritem desc = "RealNumberCollection"></pointeritem>
             <pointeritem desc = "ShortInteger"></pointeritem>
-            <pointeritem desc = "ShortIntegerCollection"></pointeritem>
             <pointeritem desc = "String"></pointeritem>
-            <pointeritem desc = "StringCollection"></pointeritem>
             <pointeritem desc = "TypeEncoding"></pointeritem>
             <pointeritem desc = "TypeKind"></pointeritem>
          </pointerspec>
@@ -1415,21 +1331,14 @@ or self.requiredUUID <> ""]]>
          <regnode name = "icon" value ="DataType.bmp"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "Boolean"></pointeritem>
-            <pointeritem desc = "BooleanCollection"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
-            <pointeritem desc = "ByteCollection"></pointeritem>
             <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "GenericValue"></pointeritem>
-            <pointeritem desc = "GenericValueCollection"></pointeritem>
             <pointeritem desc = "GenericValueObject"></pointeritem>
             <pointeritem desc = "LongInteger"></pointeritem>
-            <pointeritem desc = "LongIntegerCollection"></pointeritem>
             <pointeritem desc = "RealNumber"></pointeritem>
-            <pointeritem desc = "RealNumberCollection"></pointeritem>
             <pointeritem desc = "ShortInteger"></pointeritem>
-            <pointeritem desc = "ShortIntegerCollection"></pointeritem>
             <pointeritem desc = "String"></pointeritem>
-            <pointeritem desc = "StringCollection"></pointeritem>
             <pointeritem desc = "TypeEncoding"></pointeritem>
             <pointeritem desc = "TypeKind"></pointeritem>
          </pointerspec>
@@ -1444,22 +1353,15 @@ or self.requiredUUID <> ""]]>
          <regnode name = "isNameEnabled" value ="false"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "Boolean"></pointeritem>
-            <pointeritem desc = "BooleanCollection"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
-            <pointeritem desc = "ByteCollection"></pointeritem>
             <pointeritem desc = "Enum"></pointeritem>
             <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "GenericValue"></pointeritem>
-            <pointeritem desc = "GenericValueCollection"></pointeritem>
             <pointeritem desc = "GenericValueObject"></pointeritem>
             <pointeritem desc = "LongInteger"></pointeritem>
-            <pointeritem desc = "LongIntegerCollection"></pointeritem>
             <pointeritem desc = "RealNumber"></pointeritem>
-            <pointeritem desc = "RealNumberCollection"></pointeritem>
             <pointeritem desc = "ShortInteger"></pointeritem>
-            <pointeritem desc = "ShortIntegerCollection"></pointeritem>
             <pointeritem desc = "String"></pointeritem>
-            <pointeritem desc = "StringCollection"></pointeritem>
             <pointeritem desc = "TypeEncoding"></pointeritem>
             <pointeritem desc = "TypeKind"></pointeritem>
          </pointerspec>
@@ -1545,10 +1447,8 @@ or self.requiredUUID <> ""]]>
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
-            <pointeritem desc = "BooleanCollection"></pointeritem>
             <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
-            <pointeritem desc = "ByteCollection"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
             <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
@@ -1556,17 +1456,12 @@ or self.requiredUUID <> ""]]>
             <pointeritem desc = "Event"></pointeritem>
             <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "GenericValue"></pointeritem>
-            <pointeritem desc = "GenericValueCollection"></pointeritem>
             <pointeritem desc = "GenericValueObject"></pointeritem>
             <pointeritem desc = "LongInteger"></pointeritem>
-            <pointeritem desc = "LongIntegerCollection"></pointeritem>
             <pointeritem desc = "Object"></pointeritem>
             <pointeritem desc = "RealNumber"></pointeritem>
-            <pointeritem desc = "RealNumberCollection"></pointeritem>
             <pointeritem desc = "ShortInteger"></pointeritem>
-            <pointeritem desc = "ShortIntegerCollection"></pointeritem>
             <pointeritem desc = "String"></pointeritem>
-            <pointeritem desc = "StringCollection"></pointeritem>
             <pointeritem desc = "SwitchedAggregate"></pointeritem>
             <pointeritem desc = "TypeEncoding"></pointeritem>
             <pointeritem desc = "TypeKind"></pointeritem>
@@ -1596,10 +1491,8 @@ or self.requiredUUID <> ""]]>
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
-            <pointeritem desc = "BooleanCollection"></pointeritem>
             <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
-            <pointeritem desc = "ByteCollection"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
             <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
@@ -1607,17 +1500,12 @@ or self.requiredUUID <> ""]]>
             <pointeritem desc = "Event"></pointeritem>
             <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "GenericValue"></pointeritem>
-            <pointeritem desc = "GenericValueCollection"></pointeritem>
             <pointeritem desc = "GenericValueObject"></pointeritem>
             <pointeritem desc = "LongInteger"></pointeritem>
-            <pointeritem desc = "LongIntegerCollection"></pointeritem>
             <pointeritem desc = "Object"></pointeritem>
             <pointeritem desc = "RealNumber"></pointeritem>
-            <pointeritem desc = "RealNumberCollection"></pointeritem>
             <pointeritem desc = "ShortInteger"></pointeritem>
-            <pointeritem desc = "ShortIntegerCollection"></pointeritem>
             <pointeritem desc = "String"></pointeritem>
-            <pointeritem desc = "StringCollection"></pointeritem>
             <pointeritem desc = "SwitchedAggregate"></pointeritem>
             <pointeritem desc = "TypeEncoding"></pointeritem>
             <pointeritem desc = "TypeKind"></pointeritem>
@@ -1653,10 +1541,8 @@ or self.requiredUUID <> ""]]>
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
-            <pointeritem desc = "BooleanCollection"></pointeritem>
             <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
-            <pointeritem desc = "ByteCollection"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
             <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
@@ -1664,17 +1550,12 @@ or self.requiredUUID <> ""]]>
             <pointeritem desc = "Event"></pointeritem>
             <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "GenericValue"></pointeritem>
-            <pointeritem desc = "GenericValueCollection"></pointeritem>
             <pointeritem desc = "GenericValueObject"></pointeritem>
             <pointeritem desc = "LongInteger"></pointeritem>
-            <pointeritem desc = "LongIntegerCollection"></pointeritem>
             <pointeritem desc = "Object"></pointeritem>
             <pointeritem desc = "RealNumber"></pointeritem>
-            <pointeritem desc = "RealNumberCollection"></pointeritem>
             <pointeritem desc = "ShortInteger"></pointeritem>
-            <pointeritem desc = "ShortIntegerCollection"></pointeritem>
             <pointeritem desc = "String"></pointeritem>
-            <pointeritem desc = "StringCollection"></pointeritem>
             <pointeritem desc = "SwitchedAggregate"></pointeritem>
             <pointeritem desc = "TypeEncoding"></pointeritem>
             <pointeritem desc = "TypeKind"></pointeritem>
@@ -1744,10 +1625,8 @@ or self.requiredUUID <> ""]]>
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
-            <pointeritem desc = "BooleanCollection"></pointeritem>
             <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
-            <pointeritem desc = "ByteCollection"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
             <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
@@ -1755,17 +1634,12 @@ or self.requiredUUID <> ""]]>
             <pointeritem desc = "Event"></pointeritem>
             <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "GenericValue"></pointeritem>
-            <pointeritem desc = "GenericValueCollection"></pointeritem>
             <pointeritem desc = "GenericValueObject"></pointeritem>
             <pointeritem desc = "LongInteger"></pointeritem>
-            <pointeritem desc = "LongIntegerCollection"></pointeritem>
             <pointeritem desc = "Object"></pointeritem>
             <pointeritem desc = "RealNumber"></pointeritem>
-            <pointeritem desc = "RealNumberCollection"></pointeritem>
             <pointeritem desc = "ShortInteger"></pointeritem>
-            <pointeritem desc = "ShortIntegerCollection"></pointeritem>
             <pointeritem desc = "String"></pointeritem>
-            <pointeritem desc = "StringCollection"></pointeritem>
             <pointeritem desc = "SwitchedAggregate"></pointeritem>
             <pointeritem desc = "TypeEncoding"></pointeritem>
             <pointeritem desc = "TypeKind"></pointeritem>
@@ -1828,10 +1702,8 @@ or self.requiredUUID <> ""]]>
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
-            <pointeritem desc = "BooleanCollection"></pointeritem>
             <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
-            <pointeritem desc = "ByteCollection"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
             <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
@@ -1839,17 +1711,12 @@ or self.requiredUUID <> ""]]>
             <pointeritem desc = "Event"></pointeritem>
             <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "GenericValue"></pointeritem>
-            <pointeritem desc = "GenericValueCollection"></pointeritem>
             <pointeritem desc = "GenericValueObject"></pointeritem>
             <pointeritem desc = "LongInteger"></pointeritem>
-            <pointeritem desc = "LongIntegerCollection"></pointeritem>
             <pointeritem desc = "Object"></pointeritem>
             <pointeritem desc = "RealNumber"></pointeritem>
-            <pointeritem desc = "RealNumberCollection"></pointeritem>
             <pointeritem desc = "ShortInteger"></pointeritem>
-            <pointeritem desc = "ShortIntegerCollection"></pointeritem>
             <pointeritem desc = "String"></pointeritem>
-            <pointeritem desc = "StringCollection"></pointeritem>
             <pointeritem desc = "SwitchedAggregate"></pointeritem>
             <pointeritem desc = "TypeEncoding"></pointeritem>
             <pointeritem desc = "TypeKind"></pointeritem>
@@ -2809,17 +2676,17 @@ endif]]>
             <dispname>A PackageConfiguration can either specialize another PackageConfiguration, or contain a ComponentPackage, or contain a reference to a ComponentPackage</dispname>
          </constraint>
          <constraint name="ValidPackageConfigurationContainerPartCardinality100" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "PackageConfSpecializedConfig" ) -> size in
+            <![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
                      (partCount <= 1)]]>
             <dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
          </constraint>
          <constraint name="ValidPackageConfigurationContainerPartCardinality96" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
+            <![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
                      (partCount <= 1)]]>
             <dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
          </constraint>
          <constraint name="ValidPackageConfigurationContainerPartCardinality97" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
+            <![CDATA[let partCount = self.parts( "PackageConfSpecializedConfig" ) -> size in
                      (partCount <= 1)]]>
             <dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
          </constraint>
@@ -2829,7 +2696,7 @@ endif]]>
             <dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
          </constraint>
          <constraint name="ValidPackageConfigurationContainerPartCardinality99" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
+            <![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
                      (partCount <= 1)]]>
             <dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
          </constraint>
@@ -2859,12 +2726,12 @@ endif]]>
       <model name = "PackageContainer" metaref = "4116" >
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="ValidPackageContainerPartCardinality101" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
+            <![CDATA[let partCount = self.parts( "PackageInterface" ) -> size in
                      (partCount <= 1)]]>
             <dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
          </constraint>
          <constraint name="ValidPackageContainerPartCardinality102" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "PackageInterface" ) -> size in
+            <![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
                      (partCount <= 1)]]>
             <dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
          </constraint>
@@ -2993,14 +2860,14 @@ endif]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidSwitchedAggregatePartCardinality106" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
-                     (partCount = 1)]]>
-            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
-         </constraint>
-         <constraint name="ValidSwitchedAggregatePartCardinality107" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "Label" ) -> size in
                      (partCount >= 1)]]>
             <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
+         </constraint>
+         <constraint name="ValidSwitchedAggregatePartCardinality107" eventmask = "0x0" depth = "1" priority = "1">
+            <![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
+                     (partCount = 1)]]>
+            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
          </constraint>
          <constraint name="ValidSwitchedAggregatePartCardinality108" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
@@ -3045,17 +2912,17 @@ endif]]>
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="TopLevelPackageConfiguration.bmp"></regnode>
          <constraint name="ValidTopLevelPackageContainerPartCardinality109" eventmask = "0x0" depth = "1" priority = "1">
+            <![CDATA[let partCount = self.parts( "package" ) -> size in
+                     (partCount <= 1)]]>
+            <dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
+         </constraint>
+         <constraint name="ValidTopLevelPackageContainerPartCardinality110" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "PackageConfigurationReference" ) -> size in
                      (partCount = 1)]]>
             <dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 1.</dispname>
          </constraint>
-         <constraint name="ValidTopLevelPackageContainerPartCardinality110" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
-                     (partCount <= 1)]]>
-            <dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
-         </constraint>
          <constraint name="ValidTopLevelPackageContainerPartCardinality111" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "package" ) -> size in
+            <![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
                      (partCount <= 1)]]>
             <dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
          </constraint>
@@ -3225,7 +3092,7 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
       </folder>
       <folder name = "PackageConfigurations" metaref = "3669"  rootobjects = "PackageConfigurationContainer" >
       </folder>
-      <folder name = "PredefinedTypes" metaref = "3111"  rootobjects = "Boolean BooleanCollection Byte ByteCollection GenericObject GenericValue GenericValueCollection GenericValueObject LongInteger LongIntegerCollection RealNumber RealNumberCollection ShortInteger ShortIntegerCollection String StringCollection TypeEncoding TypeKind" >
+      <folder name = "PredefinedTypes" metaref = "3111"  rootobjects = "Boolean Byte GenericObject GenericValue GenericValueObject LongInteger RealNumber ShortInteger String TypeEncoding TypeKind" >
       </folder>
       <folder name = "Targets" metaref = "3710"  rootobjects = "Domain" >
       </folder>

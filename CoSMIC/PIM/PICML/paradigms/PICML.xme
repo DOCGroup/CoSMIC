@@ -4695,7 +4695,7 @@
 					<value>3</value>
 				</regnode>
 				<regnode name="InterfaceDefinition" isopaque="yes">
-					<value>5</value>
+					<value>6</value>
 				</regnode>
 				<regnode name="MainAspect" isopaque="yes">
 					<value>1</value>
@@ -4710,13 +4710,13 @@
 					<value>2</value>
 				</regnode>
 				<regnode name="Packaging" isopaque="yes">
-					<value>6</value>
+					<value>4</value>
 				</regnode>
 				<regnode name="ResourceView" isopaque="yes">
 					<value>3</value>
 				</regnode>
 				<regnode name="Target" isopaque="yes">
-					<value>4</value>
+					<value>5</value>
 				</regnode>
 				<regnode name="TypeDefinintionAspect" isopaque="yes">
 					<value>1</value>
@@ -31095,7 +31095,7 @@
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>848,13</value>
+							<value>848,97</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -31131,7 +31131,7 @@
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>540,13</value>
+							<value>540,97</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -31203,7 +31203,7 @@
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>584,96</value>
+							<value>584,180</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -31233,7 +31233,7 @@
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>561,524</value>
+							<value>134,272</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -31305,7 +31305,7 @@
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>505,363</value>
+							<value>36,237</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -31377,7 +31377,7 @@
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>715,447</value>
+							<value>414,398</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -31449,7 +31449,7 @@
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>778,531</value>
+							<value>505,454</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -31521,7 +31521,7 @@
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>673,370</value>
+							<value>309,335</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -31593,7 +31593,7 @@
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>645,293</value>
+							<value>225,293</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -31665,7 +31665,7 @@
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>834,454</value>
+							<value>617,461</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -31737,7 +31737,7 @@
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>883,384</value>
+							<value>757,454</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -31809,7 +31809,7 @@
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>946,293</value>
+							<value>932,461</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -31881,7 +31881,7 @@
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>995,209</value>
+							<value>1023,363</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -31953,7 +31953,7 @@
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1044,132</value>
+							<value>1086,258</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -31966,510 +31966,6 @@
 						<value></value>
 						<regnode name="Position" isopaque="yes">
 							<value>1135,139</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="Decorator" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="Icon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="InRootFolder" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="InstanceIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="IsAbstract" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="IsHotspotEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsNameEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsTypeShown" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NamePosition" status="meta">
-					<value>4</value>
-				</attribute>
-				<attribute kind="NameWrapNum" status="meta">
-					<value>0</value>
-				</attribute>
-				<attribute kind="PortIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="SubTypeIcon" status="meta">
-					<value></value>
-				</attribute>
-			</atom>
-			<atom id="id-0066-00000154" kind="Atom" role="Atom" relid="0xae">
-				<name>GenericValueCollection</name>
-				<regnode name="PartRegs">
-					<value></value>
-					<regnode name="Attributes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>547,489</value>
-						</regnode>
-					</regnode>
-					<regnode name="ClassDiagram">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>344,524</value>
-						</regnode>
-					</regnode>
-					<regnode name="Constraints">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>554,489</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>491,559</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="Decorator" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="Icon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="InRootFolder" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="InstanceIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="IsAbstract" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="IsHotspotEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsNameEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsTypeShown" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NamePosition" status="meta">
-					<value>4</value>
-				</attribute>
-				<attribute kind="NameWrapNum" status="meta">
-					<value>0</value>
-				</attribute>
-				<attribute kind="PortIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="SubTypeIcon" status="meta">
-					<value></value>
-				</attribute>
-			</atom>
-			<atom id="id-0066-00000155" kind="Atom" role="Atom" relid="0xb0">
-				<name>LongIntegerCollection</name>
-				<regnode name="PartRegs">
-					<value></value>
-					<regnode name="Attributes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>197,328</value>
-						</regnode>
-					</regnode>
-					<regnode name="ClassDiagram">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>197,349</value>
-						</regnode>
-					</regnode>
-					<regnode name="Constraints">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>246,335</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>260,328</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="Decorator" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="Icon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="InRootFolder" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="InstanceIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="IsAbstract" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="IsHotspotEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsNameEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsTypeShown" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NamePosition" status="meta">
-					<value>4</value>
-				</attribute>
-				<attribute kind="NameWrapNum" status="meta">
-					<value>0</value>
-				</attribute>
-				<attribute kind="PortIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="SubTypeIcon" status="meta">
-					<value></value>
-				</attribute>
-			</atom>
-			<atom id="id-0066-00000156" kind="Atom" role="Atom" relid="0xb2">
-				<name>ShortIntegerCollection</name>
-				<regnode name="PartRegs">
-					<value></value>
-					<regnode name="Attributes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>470,559</value>
-						</regnode>
-					</regnode>
-					<regnode name="ClassDiagram">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>267,419</value>
-						</regnode>
-					</regnode>
-					<regnode name="Constraints">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>484,559</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>568,482</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="Decorator" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="Icon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="InRootFolder" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="InstanceIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="IsAbstract" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="IsHotspotEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsNameEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsTypeShown" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NamePosition" status="meta">
-					<value>4</value>
-				</attribute>
-				<attribute kind="NameWrapNum" status="meta">
-					<value>0</value>
-				</attribute>
-				<attribute kind="PortIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="SubTypeIcon" status="meta">
-					<value></value>
-				</attribute>
-			</atom>
-			<atom id="id-0066-00000157" kind="Atom" role="Atom" relid="0xb4">
-				<name>RealNumberCollection</name>
-				<regnode name="PartRegs">
-					<value></value>
-					<regnode name="Attributes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>358,475</value>
-						</regnode>
-					</regnode>
-					<regnode name="ClassDiagram">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>15,139</value>
-						</regnode>
-					</regnode>
-					<regnode name="Constraints">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>386,482</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>400,482</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="Decorator" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="Icon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="InRootFolder" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="InstanceIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="IsAbstract" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="IsHotspotEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsNameEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsTypeShown" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NamePosition" status="meta">
-					<value>4</value>
-				</attribute>
-				<attribute kind="NameWrapNum" status="meta">
-					<value>0</value>
-				</attribute>
-				<attribute kind="PortIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="SubTypeIcon" status="meta">
-					<value></value>
-				</attribute>
-			</atom>
-			<atom id="id-0066-00000158" kind="Atom" role="Atom" relid="0xb6">
-				<name>StringCollection</name>
-				<regnode name="PartRegs">
-					<value></value>
-					<regnode name="Attributes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>295,398</value>
-						</regnode>
-					</regnode>
-					<regnode name="ClassDiagram">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>442,447</value>
-						</regnode>
-					</regnode>
-					<regnode name="Constraints">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>344,405</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>351,405</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="Decorator" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="Icon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="InRootFolder" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="InstanceIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="IsAbstract" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="IsHotspotEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsNameEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsTypeShown" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NamePosition" status="meta">
-					<value>4</value>
-				</attribute>
-				<attribute kind="NameWrapNum" status="meta">
-					<value>0</value>
-				</attribute>
-				<attribute kind="PortIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="SubTypeIcon" status="meta">
-					<value></value>
-				</attribute>
-			</atom>
-			<atom id="id-0066-00000159" kind="Atom" role="Atom" relid="0xb8">
-				<name>ByteCollection</name>
-				<regnode name="PartRegs">
-					<value></value>
-					<regnode name="Attributes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>134,244</value>
-						</regnode>
-					</regnode>
-					<regnode name="ClassDiagram">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>169,279</value>
-						</regnode>
-					</regnode>
-					<regnode name="Constraints">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>169,265</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>176,251</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="Decorator" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="Icon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="InRootFolder" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="InstanceIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="IsAbstract" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="IsHotspotEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsNameEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsTypeShown" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NamePosition" status="meta">
-					<value>4</value>
-				</attribute>
-				<attribute kind="NameWrapNum" status="meta">
-					<value>0</value>
-				</attribute>
-				<attribute kind="PortIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="SubTypeIcon" status="meta">
-					<value></value>
-				</attribute>
-			</atom>
-			<atom id="id-0066-0000015a" kind="Atom" role="Atom" relid="0xba">
-				<name>BooleanCollection</name>
-				<regnode name="PartRegs">
-					<value></value>
-					<regnode name="Attributes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>22,160</value>
-						</regnode>
-					</regnode>
-					<regnode name="ClassDiagram">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>92,209</value>
-						</regnode>
-					</regnode>
-					<regnode name="Constraints">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>15,230</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>50,160</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -32623,63 +32119,7 @@
 				<connpoint role="src" target="id-0066-0000001b"/>
 				<connpoint role="dst" target="id-0066-00000026"/>
 			</connection>
-			<connection id="id-0068-00000249" kind="DerivedInheritance" role="DerivedInheritance" relid="0xaf">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-0000001b"/>
-				<connpoint role="dst" target="id-0066-00000154"/>
-			</connection>
-			<connection id="id-0068-0000024a" kind="DerivedInheritance" role="DerivedInheritance" relid="0xb1">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-0000001b"/>
-				<connpoint role="dst" target="id-0066-00000155"/>
-			</connection>
-			<connection id="id-0068-0000024b" kind="DerivedInheritance" role="DerivedInheritance" relid="0xb3">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-0000001b"/>
-				<connpoint role="dst" target="id-0066-00000156"/>
-			</connection>
-			<connection id="id-0068-0000024c" kind="DerivedInheritance" role="DerivedInheritance" relid="0xb5">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-0000001b"/>
-				<connpoint role="dst" target="id-0066-00000157"/>
-			</connection>
-			<connection id="id-0068-0000024d" kind="DerivedInheritance" role="DerivedInheritance" relid="0xb7">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-0000001b"/>
-				<connpoint role="dst" target="id-0066-00000158"/>
-			</connection>
-			<connection id="id-0068-0000024e" kind="DerivedInheritance" role="DerivedInheritance" relid="0xb9">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-0000001b"/>
-				<connpoint role="dst" target="id-0066-00000159"/>
-			</connection>
-			<connection id="id-0068-0000024f" kind="DerivedInheritance" role="DerivedInheritance" relid="0xbb">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-0000001b"/>
-				<connpoint role="dst" target="id-0066-0000015a"/>
-			</connection>
-			<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000157 id-0066-00000025 id-0066-00000024 id-0066-00000026 id-0066-0000001c id-0066-0000001e id-0066-0000015a id-0066-0000001d id-0066-00000156 id-0066-00000023 id-0066-0000001f id-0066-00000021 id-0066-00000020 id-0066-00000022 id-0066-00000159 id-0066-00000154 id-0066-00000158 id-0066-00000155">
+			<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000025 id-0066-00000024 id-0066-00000026 id-0066-0000001c id-0066-0000001e id-0066-0000001d id-0066-00000023 id-0066-0000001f id-0066-00000021 id-0066-00000020 id-0066-00000022">
 				<name>PredefinedTypeAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
