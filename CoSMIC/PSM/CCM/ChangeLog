@@ -1,3 +1,25 @@
+Thu Apr 22 00:52:39 2004  Gabriele Trombetti  <gtrombetti@nospam.invalid.domain>
+
+        * PICML2Cadena/cadena-scenario.mga: Added for ease of use (can be
+          created from the .xme file)
+
+        * PICML2Cadena/cadena-scenario.xme: Added ComponentPort hierarchy to 
+          reflect facets-receptacles-eventsources-eventsinks; changed 
+          representation of connections again (now a class hierarchy), to allow
+          correlated connections.
+
+        * PICML2Cadena/cadena-scenario.xml: Added for ease of use (can be
+          created from the .xme file by running the UDM interpreter in GME)
+
+        * PICML2Cadena/cadena_scenario.h: Added for ease of use (can be created
+          running udm.exe on the .xml file). UDM classes for producing the data
+          network.
+
+        * PICML2Cadena/cadena_scenario.cpp: Likewise.
+
+        * PICML2Cadena/cadena_scenario.xsd: Likewise. XML Schema file for the
+          communication through OTIF.
+
 Wed Apr 21 23:05:06 2004  Gabriele Trombetti  <gtrombetti@nospam.invalid.domain>
 
         * PICML2Cadena/cadena-scenario.xme: Fixed inheritance and representation
