@@ -1,4 +1,4 @@
 // debug_libs.mpb
 project {
-  lit_libs += xerces-c_2D zlibD UdmDll_D
+  lit_libs += xerces-c_2D zlibD UdmGME_D UdmBase_D UdmUtil_D UdmDom_D
 }

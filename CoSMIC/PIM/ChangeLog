@@ -1,3 +1,57 @@
+Wed Jun  9 16:28:03 2004  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PICML/interpreters/Package/Package.mpc: Added PACKAGE_BUILD_DLL
+          flag to ensure that the proper export flags are set up.
+
+        * PICML/interpreters/Package/SchemaVisitor.h:
+        * PICML/interpreters/Package/SchemaVisitor.cpp: Initial check-in
+          to get the interpreter project organized.
+
+        * PICML/interpreters/PackageComponent/PackageComponent.mpc: Added
+          use of precompiled headers through StdAfx.h.
+
+        * PICML/interpreters/PackageComponent/PackageComponent.rc:
+          Removed the resource entries for Dialog boxes and Uml.xsd.
+
+        * PICML/interpreters/PackageComponent/Resource.h: New version of
+          file needed for the project to build.
+
+        * PICML/interpreters/debug_libs.mpb: Added the list of individual
+          libraries instead of UdmDll.
+
+        * PICML/interpreters/picmllib.mpb: Added /Zm200 to the project so
+          that it will compile PICML.cpp.
+
+        * PICML/interpreters/release_libs.mpb: Added a list of individual
+          libraries instead of UdmDll.
+
+
+        * PICML/interpreters/packaging/CompIcon.ico:
+        * PICML/interpreters/packaging/Component.def:
+        * PICML/interpreters/packaging/Component.rc:
+        * PICML/interpreters/packaging/ComponentConfig.h:
+        * PICML/interpreters/packaging/PICML.h:
+        * PICML/interpreters/packaging/PICML.cpp:
+        * PICML/interpreters/packaging/PICML.xsd:
+        * PICML/interpreters/packaging/PackageComponent.dsp:
+        * PICML/interpreters/packaging/PackageComponent.dsw:
+        * PICML/interpreters/packaging/RawComponent.h:
+        * PICML/interpreters/packaging/RawComponent.cpp:
+        * PICML/interpreters/packaging/SchemaVisitor.h:
+        * PICML/interpreters/packaging/SchemaVisitor.cpp:
+        * PICML/interpreters/packaging/StdAfx.h:
+        * PICML/interpreters/packaging/StdAfx.cpp:
+        * PICML/interpreters/packaging/UdmApp.h:
+        * PICML/interpreters/packaging/UdmApp.cpp:
+        * PICML/interpreters/packaging/UdmConfig.h:
+        * PICML/interpreters/packaging/resource.h:
+
+          New workspace which brings all the files together and creates a
+          single Interpreter DLL. I am taking this approach since the
+          other mechanism throws up non-trivial errors and is in general a
+          big ball of mud. We need the interpreter to work more than the
+          whole infrastructure working with MPC.
+
 Tue Jun  8 14:51:18 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * IDML/paradigms/Icons/aggregateref.bmp:

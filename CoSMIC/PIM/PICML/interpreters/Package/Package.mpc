@@ -1,6 +1,7 @@
 project(Package): picmllib {
    after += PICML
    sharedname = Package
+   macros += PACKAGE_BUILD_DLL
    includes += $(PICML_ROOT)/interpreters/PICML
    libs += PICML
    Source_Files {
