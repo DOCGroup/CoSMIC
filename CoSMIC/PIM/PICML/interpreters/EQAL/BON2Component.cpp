@@ -326,18 +326,15 @@ void RTEC_Proxy_ConsumerVisitor::visitRT_InfoImpl (const RT_Info & rt_info)
   std::string source_port_name (source_port->getName ());
 
   std::string cpf_name =  outputPath + "\\" + component_name;
-  cpf_name += "-" + source_port_name + "-" + entry_point;
+  cpf_name += "-" + source_port_name + "-SupplierQoS-" + entry_point;
 
-  // Write CPF file
+  // Write CPF file to describe the Event Supplier's QoS
   rt_info->generate_CPF (cpf_name.c_str (), component_name.c_str (), source_port_name.c_str ());
 
   // Write svc.conf
   std::multiset<ConnectionEnd> rtec_factory_list = rt_info->getInConnEnds ("Use_RT_Info");
 
-  int i;
-  
-  i = rtec_factory_list.size ();
-
+  // One event channel has only one RTEC_Resource_Factory.
 	for (std::multiset<ConnectionEnd>::iterator rtec_factory_iter = rtec_factory_list.begin ();
        rtec_factory_iter != rtec_factory_list.end ();
        rtec_factory_iter++)
