@@ -1,5 +1,5 @@
 // cpp(meta datanetwork format) source file CrossLinks.cpp generated from diagram CrossLinks
-// generated on Tue May 11 01:39:25 2004
+// generated on Mon Jun 14 01:27:11 2004
 
 #include "CrossLinks.h"
 #include "UmlExt.h"
@@ -21,12 +21,12 @@ namespace CrossLinks {
 		
 		
 	}
-	void Initialize()
+	 void Initialize()
 	{
 		static bool first = true;
 		if(!first) return;
 		first = false;
-		 Uml::Initialize();
+		Uml::Initialize();
 
 		PICMLAssembly2CadenaScenario::Initialize();
 
@@ -45,6 +45,9 @@ namespace CrossLinks {
 	void Initialize(const Uml::Diagram & dgr)
 	{
 		umldiagram = dgr;
+		//composition child roles 
+		// composition parentroles 
+		// Association roles 
 		
 	}
 	 Udm::UdmDiagram diagram = { &umldiagram, Initialize };

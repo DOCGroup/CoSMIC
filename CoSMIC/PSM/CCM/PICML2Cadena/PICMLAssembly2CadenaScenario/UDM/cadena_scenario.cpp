@@ -1,5 +1,5 @@
 // cpp(meta datanetwork format) source file cadena_scenario.cpp generated from diagram cadena_scenario
-// generated on Tue May 11 01:39:30 2004
+// generated on Mon Jun 14 01:27:17 2004
 
 #include "cadena_scenario.h"
 #include "UmlExt.h"
@@ -13,8 +13,9 @@ namespace cadena_scenario {
 
 	Uml::Diagram umldiagram;
 
-	Uml::Class FRConnection::meta;
 	Uml::Class ESSConnection::meta;
+	Uml::Class Scenarios::meta;
+	Uml::Class FRConnection::meta;
 	Uml::Class EventSink::meta;
 	Uml::Class EventSource::meta;
 	Uml::Class Receptacle::meta;
@@ -25,34 +26,41 @@ namespace cadena_scenario {
 	Uml::Class Scenario::meta;
 	Uml::Class ScenarioElement::meta;
 	Uml::Class PortConnection::meta;
-	Uml::Attribute ESSConnection::meta_Correlator;
-	Uml::Attribute ComponentPort::meta_Name;
+	Uml::Attribute ESSConnection::meta_ConnectorID;
+	Uml::Attribute ComponentPort::meta_name;
 	Uml::Attribute Property::meta_value;
 	Uml::Attribute Property::meta_name;
 	Uml::Attribute Property::meta_type;
 	Uml::Attribute ComponentInstance::meta_type;
 	Uml::Attribute ComponentInstance::meta_name;
-	Uml::AssociationRole FRConnection::meta_facets_end_;
-	Uml::AssociationRole FRConnection::meta_receptacles_end_;
 	Uml::AssociationRole ESSConnection::meta_sources;
 	Uml::AssociationRole ESSConnection::meta_sinks;
+	Uml::AssociationRole ESSConnection::meta_picmlEmit;
+	Uml::AssociationRole ESSConnection::meta_picmlPublishConnector;
+	Uml::AssociationRole FRConnection::meta_picmlInvoke;
+	Uml::AssociationRole FRConnection::meta_facets_end_;
+	Uml::AssociationRole FRConnection::meta_receptacles_end_;
 	Uml::AssociationRole EventSink::meta_sourcesConnections;
 	Uml::AssociationRole EventSource::meta_sinksConnections;
 	Uml::AssociationRole Receptacle::meta_facets, Receptacle::meta_facets_rev;
 	Uml::AssociationRole Facet::meta_receptacles, Facet::meta_receptacles_rev;
 	Uml::AssociationRole ComponentPort::meta_picmlPort;
+	Uml::AssociationRole ComponentInstance::meta_picmlComponentDef;
 	Uml::CompositionParentRole ComponentPort::meta_ComponentInstance_parent;
 	Uml::CompositionParentRole Property::meta_properties_ScenarioElement_parent;
 	Uml::CompositionParentRole ComponentInstance::meta_Scenario_parent;
+	Uml::CompositionParentRole Scenario::meta_Scenarios_parent;
 	Uml::CompositionParentRole PortConnection::meta_Scenario_parent;
+	Uml::CompositionChildRole Scenarios::meta_Scenario_children;
 	Uml::CompositionChildRole ComponentInstance::meta_ComponentPort_children;
 	Uml::CompositionChildRole Scenario::meta_ComponentInstance_children;
 	Uml::CompositionChildRole Scenario::meta_PortConnection_children;
 	Uml::CompositionChildRole ScenarioElement::meta_properties;
 	void Creates()
 	{
-		FRConnection::meta = Uml::Class::Create(umldiagram);
 		ESSConnection::meta = Uml::Class::Create(umldiagram);
+		Scenarios::meta = Uml::Class::Create(umldiagram);
+		FRConnection::meta = Uml::Class::Create(umldiagram);
 		EventSink::meta = Uml::Class::Create(umldiagram);
 		EventSource::meta = Uml::Class::Create(umldiagram);
 		Receptacle::meta = Uml::Class::Create(umldiagram);
@@ -63,8 +71,8 @@ namespace cadena_scenario {
 		Scenario::meta = Uml::Class::Create(umldiagram);
 		ScenarioElement::meta = Uml::Class::Create(umldiagram);
 		PortConnection::meta = Uml::Class::Create(umldiagram);
-		ESSConnection::meta_Correlator = Uml::Attribute::Create(ESSConnection::meta);
-		ComponentPort::meta_Name = Uml::Attribute::Create(ComponentPort::meta);
+		ESSConnection::meta_ConnectorID = Uml::Attribute::Create(ESSConnection::meta);
+		ComponentPort::meta_name = Uml::Attribute::Create(ComponentPort::meta);
 		Property::meta_value = Uml::Attribute::Create(Property::meta);
 		Property::meta_name = Uml::Attribute::Create(Property::meta);
 		Property::meta_type = Uml::Attribute::Create(Property::meta);
@@ -73,10 +81,12 @@ namespace cadena_scenario {
 	}
 	void InitClassesAttributes()
 	{
-		FRConnection::meta.name() = "FRConnection";
-		FRConnection::meta.isAbstract() = false;
 		ESSConnection::meta.name() = "ESSConnection";
 		ESSConnection::meta.isAbstract() = false;
+		Scenarios::meta.name() = "Scenarios";
+		Scenarios::meta.isAbstract() = false;
+		FRConnection::meta.name() = "FRConnection";
+		FRConnection::meta.isAbstract() = false;
 		EventSink::meta.name() = "EventSink";
 		EventSink::meta.isAbstract() = false;
 		EventSource::meta.name() = "EventSource";
@@ -86,7 +96,7 @@ namespace cadena_scenario {
 		Facet::meta.name() = "Facet";
 		Facet::meta.isAbstract() = false;
 		ComponentPort::meta.name() = "ComponentPort";
-		ComponentPort::meta.isAbstract() = false;
+		ComponentPort::meta.isAbstract() = true;
 		Property::meta.name() = "Property";
 		Property::meta.isAbstract() = false;
 		ComponentInstance::meta.name() = "ComponentInstance";
@@ -96,26 +106,26 @@ namespace cadena_scenario {
 		ScenarioElement::meta.name() = "ScenarioElement";
 		ScenarioElement::meta.isAbstract() = true;
 		PortConnection::meta.name() = "PortConnection";
-		PortConnection::meta.isAbstract() = false;
+		PortConnection::meta.isAbstract() = true;
 		
-		ESSConnection::meta_Correlator.name() = "Correlator";
-		ESSConnection::meta_Correlator.type() = "String";
-		ESSConnection::meta_Correlator.min() = 1;
-		ESSConnection::meta_Correlator.max() = 1;
-		ESSConnection::meta_Correlator.nonpersistent() = false;
-		ESSConnection::meta_Correlator.registry() = false;
-		ESSConnection::meta_Correlator.ordered() = false;
-		ESSConnection::meta_Correlator.visibility() = "public";
-		ESSConnection::meta_Correlator.defvalue() = vector<string>();
-		ComponentPort::meta_Name.name() = "Name";
-		ComponentPort::meta_Name.type() = "String";
-		ComponentPort::meta_Name.min() = 1;
-		ComponentPort::meta_Name.max() = 1;
-		ComponentPort::meta_Name.nonpersistent() = false;
-		ComponentPort::meta_Name.registry() = false;
-		ComponentPort::meta_Name.ordered() = false;
-		ComponentPort::meta_Name.visibility() = "public";
-		ComponentPort::meta_Name.defvalue() = vector<string>();
+		ESSConnection::meta_ConnectorID.name() = "ConnectorID";
+		ESSConnection::meta_ConnectorID.type() = "String";
+		ESSConnection::meta_ConnectorID.min() = 1;
+		ESSConnection::meta_ConnectorID.max() = 1;
+		ESSConnection::meta_ConnectorID.nonpersistent() = false;
+		ESSConnection::meta_ConnectorID.registry() = false;
+		ESSConnection::meta_ConnectorID.ordered() = false;
+		ESSConnection::meta_ConnectorID.visibility() = "public";
+		ESSConnection::meta_ConnectorID.defvalue() = vector<string>();
+		ComponentPort::meta_name.name() = "name";
+		ComponentPort::meta_name.type() = "String";
+		ComponentPort::meta_name.min() = 1;
+		ComponentPort::meta_name.max() = 1;
+		ComponentPort::meta_name.nonpersistent() = false;
+		ComponentPort::meta_name.registry() = false;
+		ComponentPort::meta_name.ordered() = false;
+		ComponentPort::meta_name.visibility() = "public";
+		ComponentPort::meta_name.defvalue() = vector<string>();
 		Property::meta_value.name() = "value";
 		Property::meta_value.type() = "String";
 		Property::meta_value.min() = 1;
@@ -163,12 +173,12 @@ namespace cadena_scenario {
 		ComponentInstance::meta_name.defvalue() = vector<string>();
 		
 	}
-	void Initialize()
+	 void Initialize()
 	{
 		static bool first = true;
 		if(!first) return;
 		first = false;
-		 Uml::Initialize();
+		Uml::Initialize();
 
 		PICMLAssembly2CadenaScenario::Initialize();
 
@@ -182,27 +192,6 @@ namespace cadena_scenario {
 		InitClassesAttributes();
 		Uml::InitDiagram(umldiagram, "cadena_scenario", "1.00");
 
-		{
-			Uml::Association ass = Uml::Association::Create(umldiagram);
-			ass.name() = "FRConnection";
-			ass.assocClass() = FRConnection::meta;
-			Facet::meta_receptacles = Uml::AssociationRole::Create(ass);
-			Facet::meta_receptacles.name() = "receptacles";
-			Facet::meta_receptacles.min() = 0;
-			Facet::meta_receptacles.max() = -1;
-			Facet::meta_receptacles.isNavigable() = true;
-			Facet::meta_receptacles.isPrimary() = false;
-			Facet::meta_receptacles.target() = Receptacle::meta;
-			FRConnection::meta_receptacles_end_ = Receptacle::meta_facets_rev = Facet::meta_receptacles;
-			Receptacle::meta_facets = Uml::AssociationRole::Create(ass);
-			Receptacle::meta_facets.name() = "facets";
-			Receptacle::meta_facets.min() = 0;
-			Receptacle::meta_facets.max() = -1;
-			Receptacle::meta_facets.isNavigable() = true;
-			Receptacle::meta_facets.isPrimary() = false;
-			Receptacle::meta_facets.target() = Facet::meta;
-			FRConnection::meta_facets_end_ = Facet::meta_receptacles_rev = Receptacle::meta_facets;
-		}
 		{
 			Uml::Association ass = Uml::Association::Create(umldiagram);
 			ESSConnection::meta_sources = Uml::AssociationRole::Create(ass);
@@ -237,7 +226,32 @@ namespace cadena_scenario {
 			EventSink::meta_sourcesConnections.isPrimary() = false;
 			EventSink::meta_sourcesConnections.target() = ESSConnection::meta;
 		}
+		{
+			Uml::Association ass = Uml::Association::Create(umldiagram);
+			ass.name() = "FRConnection";
+			ass.assocClass() = FRConnection::meta;
+			Facet::meta_receptacles = Uml::AssociationRole::Create(ass);
+			Facet::meta_receptacles.name() = "receptacles";
+			Facet::meta_receptacles.min() = 0;
+			Facet::meta_receptacles.max() = -1;
+			Facet::meta_receptacles.isNavigable() = true;
+			Facet::meta_receptacles.isPrimary() = false;
+			Facet::meta_receptacles.target() = Receptacle::meta;
+			FRConnection::meta_receptacles_end_ = Receptacle::meta_facets_rev = Facet::meta_receptacles;
+			Receptacle::meta_facets = Uml::AssociationRole::Create(ass);
+			Receptacle::meta_facets.name() = "facets";
+			Receptacle::meta_facets.min() = 0;
+			Receptacle::meta_facets.max() = -1;
+			Receptacle::meta_facets.isNavigable() = true;
+			Receptacle::meta_facets.isPrimary() = false;
+			Receptacle::meta_facets.target() = Facet::meta;
+			FRConnection::meta_facets_end_ = Facet::meta_receptacles_rev = Receptacle::meta_facets;
+		}
+		ESSConnection::meta_picmlEmit = PICMLAssembly2CadenaScenario::ESSConnection_cross_ph_cadena_scenario::meta_picmlEmit;
+		ESSConnection::meta_picmlPublishConnector = PICMLAssembly2CadenaScenario::ESSConnection_cross_ph_cadena_scenario::meta_picmlPublishConnector;
+		FRConnection::meta_picmlInvoke = PICMLAssembly2CadenaScenario::FRConnection_cross_ph_cadena_scenario::meta_picmlInvoke;
 		ComponentPort::meta_picmlPort = PICMLAssembly2CadenaScenario::ComponentPort_cross_ph_cadena_scenario::meta_picmlPort;
+		ComponentInstance::meta_picmlComponentDef = PICMLAssembly2CadenaScenario::ComponentInstance_cross_ph_cadena_scenario::meta_picmlComponentDef;
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
@@ -267,6 +281,21 @@ namespace cadena_scenario {
 			Scenario::meta_PortConnection_children.max() = -1;
 			Scenario::meta_PortConnection_children.isNavigable() = true;
 			Scenario::meta_PortConnection_children.target() = PortConnection::meta;
+		}
+		{
+			Uml::Composition comp = Uml::Composition::Create(umldiagram);
+			comp.nonpersistent() =false;
+		
+			Scenario::meta_Scenarios_parent = Uml::CompositionParentRole::Create(comp);
+			Scenario::meta_Scenarios_parent.name() = "Scenarios_parent";
+			Scenario::meta_Scenarios_parent.isNavigable() = true;
+			Scenario::meta_Scenarios_parent.target() = Scenarios::meta;
+			Scenarios::meta_Scenario_children = Uml::CompositionChildRole::Create(comp);
+			Scenarios::meta_Scenario_children.name() = "Scenario";
+			Scenarios::meta_Scenario_children.min() = 0;
+			Scenarios::meta_Scenario_children.max() = -1;
+			Scenarios::meta_Scenario_children.isNavigable() = true;
+			Scenarios::meta_Scenario_children.target() = Scenario::meta;
 		}
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
@@ -305,61 +334,68 @@ namespace cadena_scenario {
 		ScenarioElement::meta.subTypes() +=  ComponentInstance::meta;
 		ScenarioElement::meta.subTypes() +=  Scenario::meta;
 		ScenarioElement::meta.subTypes() +=  PortConnection::meta;
-		PortConnection::meta.subTypes() +=  FRConnection::meta;
 		PortConnection::meta.subTypes() +=  ESSConnection::meta;
+		PortConnection::meta.subTypes() +=  FRConnection::meta;
 		
 	}
 	void Initialize(const Uml::Diagram & dgr)
 	{
 		umldiagram = dgr;
-		Uml::SetClass(FRConnection::meta, umldiagram, "FRConnection");
-		FRConnection::meta_facets_end_ = Receptacle::meta_facets;
-		FRConnection::meta_receptacles_end_ = Facet::meta_receptacles;
-
 		Uml::SetClass(ESSConnection::meta, umldiagram, "ESSConnection");
-		Uml::SetAttribute(ESSConnection::meta_Correlator,ESSConnection::meta, "Correlator");
-		Uml::SetGenericRole(ESSConnection::meta_sources,EventSource::meta, "sinksConnections");
-		Uml::SetGenericRole(ESSConnection::meta_sinks,EventSink::meta, "sourcesConnections");
-
+		Uml::SetAttribute(ESSConnection::meta_ConnectorID,ESSConnection::meta, "ConnectorID");
+		Uml::SetClass(Scenarios::meta, umldiagram, "Scenarios");
+		Uml::SetClass(FRConnection::meta, umldiagram, "FRConnection");
 		Uml::SetClass(EventSink::meta, umldiagram, "EventSink");
-		Uml::SetGenericRole(EventSink::meta_sourcesConnections,ESSConnection::meta, "sinks");
-
 		Uml::SetClass(EventSource::meta, umldiagram, "EventSource");
-		Uml::SetGenericRole(EventSource::meta_sinksConnections,ESSConnection::meta, "sources");
-
 		Uml::SetClass(Receptacle::meta, umldiagram, "Receptacle");
-		Uml::SetGenericRole(Receptacle::meta_facets,Facet::meta, "receptacles");
-		Facet::meta_receptacles_rev = Receptacle::meta_facets;
-
 		Uml::SetClass(Facet::meta, umldiagram, "Facet");
-		Uml::SetGenericRole(Facet::meta_receptacles,Receptacle::meta, "facets");
-		Receptacle::meta_facets_rev = Facet::meta_receptacles;
-
 		Uml::SetClass(ComponentPort::meta, umldiagram, "ComponentPort");
-		Uml::SetAttribute(ComponentPort::meta_Name,ComponentPort::meta, "Name");
-		Uml::SetGenericRole(ComponentPort::meta_ComponentInstance_parent,ComponentPort::meta, "");
-
+		Uml::SetAttribute(ComponentPort::meta_name,ComponentPort::meta, "name");
 		Uml::SetClass(Property::meta, umldiagram, "Property");
 		Uml::SetAttribute(Property::meta_value,Property::meta, "value");
 		Uml::SetAttribute(Property::meta_name,Property::meta, "name");
 		Uml::SetAttribute(Property::meta_type,Property::meta, "type");
-		Uml::SetGenericRole(Property::meta_properties_ScenarioElement_parent,Property::meta, "properties");
-
 		Uml::SetClass(ComponentInstance::meta, umldiagram, "ComponentInstance");
 		Uml::SetAttribute(ComponentInstance::meta_type,ComponentInstance::meta, "type");
 		Uml::SetAttribute(ComponentInstance::meta_name,ComponentInstance::meta, "name");
-		Uml::SetGenericRole(ComponentInstance::meta_Scenario_parent,ComponentInstance::meta, "");
-		Uml::SetGenericRole(ComponentInstance::meta_ComponentPort_children,ComponentInstance::meta, "");
-
 		Uml::SetClass(Scenario::meta, umldiagram, "Scenario");
-		Uml::SetGenericRole(Scenario::meta_ComponentInstance_children,Scenario::meta, "");
-		Uml::SetGenericRole(Scenario::meta_PortConnection_children,Scenario::meta, "");
-
 		Uml::SetClass(ScenarioElement::meta, umldiagram, "ScenarioElement");
-		Uml::SetGenericRole(ScenarioElement::meta_properties,ScenarioElement::meta, "");
-
 		Uml::SetClass(PortConnection::meta, umldiagram, "PortConnection");
-		Uml::SetGenericRole(PortConnection::meta_Scenario_parent,PortConnection::meta, "");
+		//composition child roles 
+		Uml::SetParentRole(ComponentPort::meta_ComponentInstance_parent,ComponentPort::meta,ComponentInstance::meta, "");
+		Uml::SetParentRole(Property::meta_properties_ScenarioElement_parent,Property::meta,ScenarioElement::meta, "properties");
+		Uml::SetParentRole(ComponentInstance::meta_Scenario_parent,ComponentInstance::meta,Scenario::meta, "");
+		Uml::SetParentRole(Scenario::meta_Scenarios_parent,Scenario::meta,Scenarios::meta, "");
+		Uml::SetParentRole(PortConnection::meta_Scenario_parent,PortConnection::meta,Scenario::meta, "");
+		// composition parentroles 
+		Uml::SetChildRole(Scenarios::meta_Scenario_children,Scenarios::meta,Scenario::meta, "");
+		Uml::SetChildRole(ComponentInstance::meta_ComponentPort_children,ComponentInstance::meta,ComponentPort::meta, "");
+		Uml::SetChildRole(Scenario::meta_ComponentInstance_children,Scenario::meta,ComponentInstance::meta, "");
+		Uml::SetChildRole(Scenario::meta_PortConnection_children,Scenario::meta,PortConnection::meta, "");
+		Uml::SetChildRole(ScenarioElement::meta_properties,ScenarioElement::meta,Property::meta, "");
+		// Association roles 
+		Uml::SetAssocRole(ESSConnection::meta_sources,EventSource::meta,EventSource::meta, "sinksConnections");
+		Uml::SetAssocRole(ESSConnection::meta_sinks,EventSink::meta,EventSink::meta, "sourcesConnections");
+
+
+		FRConnection::meta_facets_end_ = Receptacle::meta_facets;
+		FRConnection::meta_receptacles_end_ = Facet::meta_receptacles;
+
+		Uml::SetAssocRole(EventSink::meta_sourcesConnections,ESSConnection::meta,ESSConnection::meta, "sinks");
+
+		Uml::SetAssocRole(EventSource::meta_sinksConnections,ESSConnection::meta,ESSConnection::meta, "sources");
+
+		Uml::SetAssocRole(Receptacle::meta_facets,Facet::meta,Facet::meta, "receptacles");
+		Facet::meta_receptacles_rev = Receptacle::meta_facets;
+
+		Uml::SetAssocRole(Facet::meta_receptacles,Receptacle::meta,Receptacle::meta, "facets");
+		Receptacle::meta_facets_rev = Facet::meta_receptacles;
+
+
+
+
+
+
 
 		
 	}

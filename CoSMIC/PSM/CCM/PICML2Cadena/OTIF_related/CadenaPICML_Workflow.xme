@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project SYSTEM "mga.dtd">
+
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri Jun 11 18:53:59 2004" mdate="Fri Jun 11 20:04:15 2004" metaguid="{4DE75030-DEAD-BEEF-FEED-DAD000000001}" metaname="WFM">
+	<name>CadenaPICML_Workflow</name>
+	<comment></comment>
+	<author></author>
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x1" kind="RootFolder">
+		<name>CadenaPICML_Workflow</name>
+		<model id="id-0065-00000001" kind="Diagram" relid="0x1" childrelidcntr="0x11">
+			<name>Diagram</name>
+			<model id="id-0065-00000002" kind="Backplane" role="Backplane" relid="0x1" childrelidcntr="0x0">
+				<name>Backplane</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Workflow">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>56,41</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="logLevel">
+					<value>5</value>
+				</attribute>
+				<attribute kind="name">
+					<value>CadenaPICML_backplane</value>
+				</attribute>
+				<attribute kind="onlyOneManager" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="translatorDocuments">
+					<value>300</value>
+				</attribute>
+				<attribute kind="umlParadigm">
+					<value>uml.xml</value>
+				</attribute>
+				<attribute kind="version">
+					<value>1.0</value>
+				</attribute>
+			</model>
+			<model id="id-0065-00000004" kind="ToolAdaptor" role="ToolAdaptor" relid="0x4" childrelidcntr="0x0">
+				<name>CadenaScenario_Receiver</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Workflow">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>434,391</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="type">
+					<value>CadenaScenario_Receiver</value>
+				</attribute>
+			</model>
+			<model id="id-0065-00000005" kind="ToolAdaptor" role="ToolAdaptor" relid="0x6" childrelidcntr="0x0">
+				<name>CadenaScenario_Publisher</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Workflow">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>434,62</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="type">
+					<value>CadenaScenario_Publisher</value>
+				</attribute>
+			</model>
+			<model id="id-0065-00000006" kind="ToolAdaptor" role="ToolAdaptor" relid="0x9" childrelidcntr="0x0">
+				<name>CadenaScenario_PICMLSide</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Workflow">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>966,125</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="type">
+					<value>CadenaScenario_PICMLSide</value>
+				</attribute>
+			</model>
+			<model id="id-0065-00000007" kind="ToolAdaptor" role="ToolAdaptor" relid="0xa" childrelidcntr="0x0">
+				<name>CadenaScenario_CadenaSide</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Workflow">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>966,286</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="type">
+					<value>CadenaScenario_CadenaSide</value>
+				</attribute>
+			</model>
+			<connection id="id-0068-00000004" kind="Link" role="Link" relid="0x8">
+				<name>Link</name>
+				<connpoint role="dst" target="id-0065-00000004"/>
+				<connpoint role="src" target="id-0065-00000005"/>
+			</connection>
+			<connection id="id-0068-00000005" kind="Link" role="Link" relid="0xb">
+				<name>Link</name>
+				<connpoint role="src" target="id-0065-00000006"/>
+				<connpoint role="dst" target="id-0065-00000007"/>
+			</connection>
+			<connection id="id-0068-00000006" kind="Link" role="Link" relid="0xc">
+				<name>Link</name>
+				<connpoint role="dst" target="id-0065-00000006"/>
+				<connpoint role="src" target="id-0065-00000007"/>
+			</connection>
+			<connection id="id-0068-00000007" kind="Link" role="Link" relid="0xe">
+				<name>Link</name>
+				<connpoint role="src" target="id-0065-00000005"/>
+				<connpoint role="dst" target="id-0065-00000006"/>
+			</connection>
+			<connection id="id-0068-00000008" kind="Link" role="Link" relid="0xf">
+				<name>Link</name>
+				<connpoint role="src" target="id-0065-00000005"/>
+				<connpoint role="dst" target="id-0065-00000007"/>
+			</connection>
+			<connection id="id-0068-00000009" kind="Link" role="Link" relid="0x10">
+				<name>Link</name>
+				<connpoint role="dst" target="id-0065-00000004"/>
+				<connpoint role="src" target="id-0065-00000006"/>
+			</connection>
+			<connection id="id-0068-0000000a" kind="Link" role="Link" relid="0x11">
+				<name>Link</name>
+				<connpoint role="dst" target="id-0065-00000004"/>
+				<connpoint role="src" target="id-0065-00000007"/>
+			</connection>
+			<set id="id-0069-00000001" kind="Paradigm" role="Paradigm" relid="0x2" members="id-0068-00000005 id-0068-00000006 id-0068-0000000a id-0068-00000009 id-0068-00000008 id-0068-00000007 id-0068-00000004">
+				<name>cadena_scenario 1.0</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Workflow">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>89,194</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="paradigmFile">
+					<value>cadena_scenario.xml</value>
+				</attribute>
+				<attribute kind="paradigmName">
+					<value>cadena_scenario</value>
+				</attribute>
+				<attribute kind="paradigmVersion">
+					<value>1.0</value>
+				</attribute>
+			</set>
+		</model>
+	</folder>
+</project>
