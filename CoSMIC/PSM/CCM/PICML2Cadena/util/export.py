@@ -13,7 +13,11 @@ if (integration_picml2cadena_fullpath=='') :
 #let's see if the user is looking for troubles...
 if (integration_picml2cadena_fullpath.find(' ')!=-1) : print 'Warning: To avoid troubles, put the PICML2Cadena directory in a path without whitespaces.\n\
 Current value is:\n'+integration_picml2cadena_fullpath+'\nGoing ahead...\n'
-integration_udm_fullpath = integration_picml2cadena_fullpath.rstrip('\\')+'\\Transformations\\Udm\\'  #this works regardless if the PICML2CADENA_PATH ends in '\' or not
+
+#let's construct all the other useful paths
+integration_picml2cadena_fullpath = integration_picml2cadena_fullpath.rstrip('\\')+'\\' #so that it works regardless if the PICML2CADENA_PATH ends in '\' or not
+transformations_fullpath = integration_picml2cadena_fullpath+'Transformations\\'
+integration_udm_fullpath = transformations_fullpath+'Udm\\'
 
 
 #fetching commandline parameters. Expected first the transformation configuration file,
@@ -25,21 +29,15 @@ if ('--help' in sys.argv or '-h' in sys.argv) :
 
 Installation:
 Please set environment variable PICML2CADENA_PATH pointing to your PICML2Cadena path. Whether ends with backslash or not is irrelevant
-Putting the directory of export.py and import.py in PATH could also be handy.
+Putting export.py and import.py somewhere in your PATH could also be handy (these scripts don't need to stay in a specific directory in order to work correctly)
 
 Launching:
-export.py ConfigFile_of_Transformation.mga PICMLMgaFile.mga CadenaScenarioXMLFile.xml [-d | -dv] : performs export
+export.py PICMLMgaFile.mga CadenaScenarioXMLFile.xml [-d | -dv] : performs export
 -d  : output debug information
 -dv : outputs more debug information
 The filenames can be relative or absolute. GRE will be invoked with absolute filenames in any case, as this avoids problems.
 
 Use ``export.py --help'' to get this extensive help'''
-    sys.exit(0)
-
-#bad invocation?
-if (len(sys.argv)<4) :
-    print 'Usage: export.py ConfigFile_of_Transformation.mga PICMLMgaFile.mga CadenaScenarioXMLFile.xml [-d | -dv]\n\
-Or: export.py --help for extensive help'
     sys.exit(0)
 
 quotes = '\"'
@@ -49,18 +47,26 @@ elif ('-d' in sys.argv) : debugflag = ' -d'
 else : debugflag = ''
 
 purifiedparams = []
-for el in sys.argv :
-    if (el!='-d' and el!='-dv') : purifiedparams.append(el)
+for param in sys.argv[1:] :
+    if (param!='-d' and param!='-dv') : purifiedparams.append(param)
 
-greinvocationcommand = 'gre.exe' + \
-                       space + quotes+os.path.abspath(purifiedparams[1])+quotes + \
-                       space + quotes+os.path.abspath(purifiedparams[2])+quotes + \
-                       debugflag
+#bad invocation?
+if (len(purifiedparams)!=2) :
+    print 'Usage: export.py PICMLMgaFile.mga CadenaScenarioXMLFile.xml [-d | -dv]\n\
+Or: export.py --help for extensive help'
+    sys.exit(0)
+
+
+greinvocationcommand = 'gre.exe'+ space +quotes+transformations_fullpath+'PICML2Cadena_Configuration.mga'+quotes
+greinvocationcommand += space+quotes+'PICML_File='+os.path.abspath(purifiedparams[0])+quotes
+greinvocationcommand += space+quotes+'CadenaScenario_File='+os.path.abspath(purifiedparams[1])+quotes
+greinvocationcommand += space+quotes+'EmbeddedDummy_File='+os.path.abspath('dummy_embedded.xml')+quotes
+greinvocationcommand += debugflag
+
 
 print 'Invoking GRE.exe with the following commandline:\n\
 _______________________________________________________________________________\n',\
 greinvocationcommand,'\n\
 -------------------------------------------------------------------------------\n'
 os.system(greinvocationcommand)
-
 
