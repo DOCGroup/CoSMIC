@@ -1,5 +1,6 @@
 import os
 import sys
+import tempfile
 
 #fetch needed environment variables
 gre_fullpathname = os.environ['GREAT_PATH'].rstrip('\\')+'\\bin\\GRE.exe'  #maybe not necessary because GReAT puts it into PATH
@@ -60,7 +61,7 @@ Or: export.py --help for extensive help'
 greinvocationcommand = 'gre.exe'+ space +quotes+transformations_fullpath+'PICML2Cadena_Configuration.mga'+quotes
 greinvocationcommand += space+quotes+'PICML_File='+os.path.abspath(purifiedparams[0])+quotes
 greinvocationcommand += space+quotes+'CadenaScenario_File='+os.path.abspath(purifiedparams[1])+quotes
-greinvocationcommand += space+quotes+'EmbeddedDummy_File='+os.path.abspath('dummy_embedded.xml')+quotes
+greinvocationcommand += space+quotes+'EmbeddedDummy_File='+tempfile.gettempdir().rstrip('\\')+'\\'+'dummy_embedded.xml'+quotes
 greinvocationcommand += debugflag
 
 
