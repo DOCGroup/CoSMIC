@@ -65,9 +65,9 @@ MetricEmitter<T>::create_build_file (std::vector<std::string>& file_list,
 	build_stream << "\n";
 	
 	// Create include definition and libs+
-	build_stream << "  includes += $BGML_HOME \n";
+	build_stream << "  includes += $(BGML_HOME) \n";
 	build_stream << "  libs     += BGML_Base \n";
-	build_stream << "  libpaths += $BGML_HOME \n";
+	build_stream << "  libpaths += $(BGML_HOME) \n";
 	
 	// Add the Benchmarking Source files
 	build_stream << "  Source_Files { \n";

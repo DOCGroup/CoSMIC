@@ -1,3 +1,10 @@
+Mon Nov 22 10:02:33 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+        
+        * PIM/PICML/interpreters/BGML_Interpreter/MetricStream.cpp:
+
+          Fixed errors in the MPC files to compile the Benchmarking files
+          generated.
+
 Fri Nov 19 17:59:36 2004  Arvind S. Krishna  <arvindk@dre.vanderbilt.edu>
 
         * PIM/PICML/docs/BGML:
