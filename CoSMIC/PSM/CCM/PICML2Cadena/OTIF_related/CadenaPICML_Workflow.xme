@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri Jun 11 18:53:59 2004" mdate="Fri Jun 11 20:04:15 2004" metaguid="{4DE75030-DEAD-BEEF-FEED-DAD000000001}" metaname="WFM">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri Jun 11 18:53:59 2004" mdate="Wed Aug 11 15:56:30 2004" metaguid="{4DE75030-DEAD-BEEF-FEED-DAD000000001}" metaname="WFM">
 	<name>CadenaPICML_Workflow</name>
 	<comment></comment>
 	<author></author>
 	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x1" kind="RootFolder">
 		<name>CadenaPICML_Workflow</name>
-		<model id="id-0065-00000001" kind="Diagram" relid="0x1" childrelidcntr="0x11">
+		<model id="id-0065-00000001" kind="Diagram" relid="0x1" childrelidcntr="0x1a">
 			<name>Diagram</name>
 			<model id="id-0065-00000002" kind="Backplane" role="Backplane" relid="0x1" childrelidcntr="0x0">
 				<name>Backplane</name>
@@ -16,7 +16,7 @@
 					<regnode name="Workflow">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>56,41</value>
+							<value>63,41</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -39,103 +39,112 @@
 					<value>1.0</value>
 				</attribute>
 			</model>
-			<model id="id-0065-00000004" kind="ToolAdaptor" role="ToolAdaptor" relid="0x4" childrelidcntr="0x0">
-				<name>CadenaScenario_Receiver</name>
+			<model id="id-0065-00000009" kind="ToolAdaptor" role="ToolAdaptor" relid="0x13" childrelidcntr="0x0">
+				<name>PICML_PublisherReceiver</name>
 				<regnode name="PartRegs">
 					<value></value>
 					<regnode name="Workflow">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>434,391</value>
+							<value>406,83</value>
 						</regnode>
 					</regnode>
 				</regnode>
 				<attribute kind="type">
-					<value>CadenaScenario_Receiver</value>
+					<value>PICML_PublisherReceiver</value>
 				</attribute>
 			</model>
-			<model id="id-0065-00000005" kind="ToolAdaptor" role="ToolAdaptor" relid="0x6" childrelidcntr="0x0">
-				<name>CadenaScenario_Publisher</name>
+			<model id="id-0065-0000000a" kind="ToolAdaptor" role="ToolAdaptor" relid="0x14" childrelidcntr="0x0">
+				<name>CadenaScenario_PublisherReceiver</name>
 				<regnode name="PartRegs">
 					<value></value>
 					<regnode name="Workflow">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>434,62</value>
+							<value>406,328</value>
 						</regnode>
 					</regnode>
 				</regnode>
 				<attribute kind="type">
-					<value>CadenaScenario_Publisher</value>
+					<value>CadenaScenario_PublisherReceiver</value>
 				</attribute>
 			</model>
-			<model id="id-0065-00000006" kind="ToolAdaptor" role="ToolAdaptor" relid="0x9" childrelidcntr="0x0">
-				<name>CadenaScenario_PICMLSide</name>
+			<model id="id-0065-0000000b" kind="Translator" role="Translator" relid="0x15" childrelidcntr="0x0">
+				<name>PICML2Cadena_Translator</name>
 				<regnode name="PartRegs">
 					<value></value>
 					<regnode name="Workflow">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>966,125</value>
+							<value>259,202</value>
 						</regnode>
 					</regnode>
 				</regnode>
-				<attribute kind="type">
-					<value>CadenaScenario_PICMLSide</value>
+				<attribute kind="name">
+					<value>PA2CS_Translator</value>
+				</attribute>
+				<attribute kind="translatorAction">
+					<value>PA2CS_TransWrap.exe</value>
+				</attribute>
+				<attribute kind="version">
+					<value>1.0</value>
 				</attribute>
 			</model>
-			<model id="id-0065-00000007" kind="ToolAdaptor" role="ToolAdaptor" relid="0xa" childrelidcntr="0x0">
-				<name>CadenaScenario_CadenaSide</name>
+			<model id="id-0065-0000000c" kind="Translator" role="Translator" relid="0x18" childrelidcntr="0x0">
+				<name>Cadena2PICML_Translator</name>
 				<regnode name="PartRegs">
 					<value></value>
 					<regnode name="Workflow">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>966,286</value>
+							<value>553,202</value>
 						</regnode>
 					</regnode>
 				</regnode>
-				<attribute kind="type">
-					<value>CadenaScenario_CadenaSide</value>
+				<attribute kind="name">
+					<value>CS2PA_Translator</value>
+				</attribute>
+				<attribute kind="translatorAction">
+					<value>CS2PA_TransWrap.exe</value>
+				</attribute>
+				<attribute kind="version">
+					<value>1.0</value>
 				</attribute>
 			</model>
-			<connection id="id-0068-00000004" kind="Link" role="Link" relid="0x8">
+			<connection id="id-0068-0000000b" kind="Link" role="Link" relid="0x16">
 				<name>Link</name>
-				<connpoint role="dst" target="id-0065-00000004"/>
-				<connpoint role="src" target="id-0065-00000005"/>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value></value>
+				</regnode>
+				<connpoint role="src" target="id-0065-00000009"/>
+				<connpoint role="dst" target="id-0065-0000000b"/>
 			</connection>
-			<connection id="id-0068-00000005" kind="Link" role="Link" relid="0xb">
+			<connection id="id-0068-0000000c" kind="Link" role="Link" relid="0x17">
 				<name>Link</name>
-				<connpoint role="src" target="id-0065-00000006"/>
-				<connpoint role="dst" target="id-0065-00000007"/>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value></value>
+				</regnode>
+				<connpoint role="dst" target="id-0065-0000000a"/>
+				<connpoint role="src" target="id-0065-0000000b"/>
 			</connection>
-			<connection id="id-0068-00000006" kind="Link" role="Link" relid="0xc">
+			<connection id="id-0068-0000000d" kind="Link" role="Link" relid="0x19">
 				<name>Link</name>
-				<connpoint role="dst" target="id-0065-00000006"/>
-				<connpoint role="src" target="id-0065-00000007"/>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value></value>
+				</regnode>
+				<connpoint role="src" target="id-0065-0000000a"/>
+				<connpoint role="dst" target="id-0065-0000000c"/>
 			</connection>
-			<connection id="id-0068-00000007" kind="Link" role="Link" relid="0xe">
+			<connection id="id-0068-0000000e" kind="Link" role="Link" relid="0x1a">
 				<name>Link</name>
-				<connpoint role="src" target="id-0065-00000005"/>
-				<connpoint role="dst" target="id-0065-00000006"/>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value></value>
+				</regnode>
+				<connpoint role="dst" target="id-0065-00000009"/>
+				<connpoint role="src" target="id-0065-0000000c"/>
 			</connection>
-			<connection id="id-0068-00000008" kind="Link" role="Link" relid="0xf">
-				<name>Link</name>
-				<connpoint role="src" target="id-0065-00000005"/>
-				<connpoint role="dst" target="id-0065-00000007"/>
-			</connection>
-			<connection id="id-0068-00000009" kind="Link" role="Link" relid="0x10">
-				<name>Link</name>
-				<connpoint role="dst" target="id-0065-00000004"/>
-				<connpoint role="src" target="id-0065-00000006"/>
-			</connection>
-			<connection id="id-0068-0000000a" kind="Link" role="Link" relid="0x11">
-				<name>Link</name>
-				<connpoint role="dst" target="id-0065-00000004"/>
-				<connpoint role="src" target="id-0065-00000007"/>
-			</connection>
-			<set id="id-0069-00000001" kind="Paradigm" role="Paradigm" relid="0x2" members="id-0068-00000005 id-0068-00000006 id-0068-0000000a id-0068-00000009 id-0068-00000008 id-0068-00000007 id-0068-00000004">
-				<name>cadena_scenario 1.0</name>
+			<set id="id-0069-00000001" kind="Paradigm" role="Paradigm" relid="0x2" members="id-0068-0000000d id-0068-0000000c">
+				<name>cadena_scenario</name>
 				<regnode name="PartRegs">
 					<value></value>
 					<regnode name="Workflow">
@@ -150,6 +159,27 @@
 				</attribute>
 				<attribute kind="paradigmName">
 					<value>cadena_scenario</value>
+				</attribute>
+				<attribute kind="paradigmVersion">
+					<value>1.0</value>
+				</attribute>
+			</set>
+			<set id="id-0069-00000002" kind="Paradigm" role="Paradigm" relid="0x12" members="id-0068-0000000e id-0068-0000000b">
+				<name>PICML</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Workflow">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>89,292</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="paradigmFile">
+					<value>PICML.xml</value>
+				</attribute>
+				<attribute kind="paradigmName">
+					<value>PICML</value>
 				</attribute>
 				<attribute kind="paradigmVersion">
 					<value>1.0</value>

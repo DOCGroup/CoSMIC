@@ -1,5 +1,5 @@
 // cpp(meta datanetwork format) source file PICMLCadena_Xchange_embedded_EIProperties.cpp generated from diagram PICMLCadena_Xchange_embedded_EIProperties
-// generated on Fri Jun 25 22:48:34 2004
+// generated on Tue Aug 10 16:34:19 2004
 
 #include "PICMLCadena_Xchange_embedded_EIProperties.h"
 #include "UmlExt.h"
@@ -7,15 +7,15 @@
 #include "UdmStatic.h"
 
 // cross-package metainformation header file
-#include "Cadena2PICML.h"
+#include "PICML2Cadena.h"
 
 namespace PICMLCadena_Xchange_embedded_EIProperties {
 
 	Uml::Diagram umldiagram;
 
 	Uml::Class Property::meta;
-	Uml::Class ConnectionSelector::meta;
 	Uml::Class RootContainer::meta;
+	Uml::Class ConnectionSelector::meta;
 	Uml::Attribute Property::meta_type;
 	Uml::Attribute Property::meta_name;
 	Uml::Attribute Property::meta_value;
@@ -25,13 +25,13 @@ namespace PICMLCadena_Xchange_embedded_EIProperties {
 	Uml::AssociationRole RootContainer::meta_componentAssembly;
 	Uml::CompositionParentRole Property::meta_ConnectionSelector_parent;
 	Uml::CompositionParentRole ConnectionSelector::meta_RootContainer_parent;
-	Uml::CompositionChildRole ConnectionSelector::meta_Property_children;
 	Uml::CompositionChildRole RootContainer::meta_ConnectionSelector_children;
+	Uml::CompositionChildRole ConnectionSelector::meta_Property_children;
 	void Creates()
 	{
 		Property::meta = Uml::Class::Create(umldiagram);
-		ConnectionSelector::meta = Uml::Class::Create(umldiagram);
 		RootContainer::meta = Uml::Class::Create(umldiagram);
+		ConnectionSelector::meta = Uml::Class::Create(umldiagram);
 		Property::meta_type = Uml::Attribute::Create(Property::meta);
 		Property::meta_name = Uml::Attribute::Create(Property::meta);
 		Property::meta_value = Uml::Attribute::Create(Property::meta);
@@ -43,10 +43,10 @@ namespace PICMLCadena_Xchange_embedded_EIProperties {
 	{
 		Property::meta.name() = "Property";
 		Property::meta.isAbstract() = false;
-		ConnectionSelector::meta.name() = "ConnectionSelector";
-		ConnectionSelector::meta.isAbstract() = false;
 		RootContainer::meta.name() = "RootContainer";
 		RootContainer::meta.isAbstract() = false;
+		ConnectionSelector::meta.name() = "ConnectionSelector";
+		ConnectionSelector::meta.isAbstract() = false;
 		
 		Property::meta_type.name() = "type";
 		Property::meta_type.type() = "String";
@@ -141,7 +141,7 @@ namespace PICMLCadena_Xchange_embedded_EIProperties {
 		first = false;
 		Uml::Initialize();
 
-		Cadena2PICML::Initialize();
+		PICML2Cadena::Initialize();
 
 		ASSERT( umldiagram == Udm::null );
 		UdmStatic::StaticDataNetwork * meta_dn = new UdmStatic::StaticDataNetwork(Uml::diagram);
@@ -153,7 +153,7 @@ namespace PICMLCadena_Xchange_embedded_EIProperties {
 		InitClassesAttributes();
 		Uml::InitDiagram(umldiagram, "PICMLCadena_Xchange_embedded_EIProperties", "1.00");
 
-		RootContainer::meta_componentAssembly = Cadena2PICML::RootContainer_cross_ph_PICMLCadena_Xchange_embedded_EIProperties::meta_componentAssembly;
+		RootContainer::meta_componentAssembly = PICML2Cadena::RootContainer_cross_ph_PICMLCadena_Xchange_embedded_EIProperties::meta_componentAssembly;
 		InitComposition0();
 		InitComposition1();
 		
@@ -165,17 +165,17 @@ namespace PICMLCadena_Xchange_embedded_EIProperties {
 		Uml::SetAttribute(Property::meta_type,Property::meta, "type");
 		Uml::SetAttribute(Property::meta_name,Property::meta, "name");
 		Uml::SetAttribute(Property::meta_value,Property::meta, "value");
+		Uml::SetClass(RootContainer::meta, umldiagram, "RootContainer");
 		Uml::SetClass(ConnectionSelector::meta, umldiagram, "ConnectionSelector");
 		Uml::SetAttribute(ConnectionSelector::meta_slaveComponentName,ConnectionSelector::meta, "slaveComponentName");
 		Uml::SetAttribute(ConnectionSelector::meta_masterPortName,ConnectionSelector::meta, "masterPortName");
 		Uml::SetAttribute(ConnectionSelector::meta_slavePortName,ConnectionSelector::meta, "slavePortName");
-		Uml::SetClass(RootContainer::meta, umldiagram, "RootContainer");
 		//composition child roles 
 		Uml::SetParentRole(Property::meta_ConnectionSelector_parent,Property::meta,ConnectionSelector::meta, "");
 		Uml::SetParentRole(ConnectionSelector::meta_RootContainer_parent,ConnectionSelector::meta,RootContainer::meta, "");
 		// composition parentroles 
-		Uml::SetChildRole(ConnectionSelector::meta_Property_children,ConnectionSelector::meta,Property::meta, "");
 		Uml::SetChildRole(RootContainer::meta_ConnectionSelector_children,RootContainer::meta,ConnectionSelector::meta, "");
+		Uml::SetChildRole(ConnectionSelector::meta_Property_children,ConnectionSelector::meta,Property::meta, "");
 		// Association roles 
 
 

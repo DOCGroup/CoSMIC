@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri Jun 25 22:45:56 2004" mdate="Fri Jun 25 22:47:48 2004" metaguid="{ED81A5AD-DEAD-BEEF-FEED-DAD000000001}" metaname="UMLModelTransformer">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri Jun 25 22:45:56 2004" mdate="Tue Aug 10 16:34:33 2004" metaguid="{ED81A5AD-DEAD-BEEF-FEED-DAD000000001}" metaname="UMLModelTransformer">
 	<name>PICML2Cadena</name>
 	<comment></comment>
 	<author></author>
@@ -173,7 +173,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="CopyPathName">
-						<value></value>
+						<value>examples\TweakedRobotAssembly_afterexport.mga</value>
 					</attribute>
 					<attribute kind="FilePathName">
 						<value>examples\TweakedRobotAssembly.mga</value>
@@ -380,15 +380,26 @@ output can output other kinds of elements
 								</regnode>
 							</regnode>
 							<attribute kind="ExpressionString">
-								<value><![CDATA[string name, type, typecontainer;
+								<value><![CDATA[string name, type, fullname;
 Component.GetStrValue("name",name);
 ComponentInstance.SetStrValue("name",name);
 
 Udm::Object arch = Component.archetype();
-arch.GetStrValue("name",type);
-arch.GetParent().GetStrValue("name", typecontainer);
+const Uml::Class &PackageClass = arch.GetParent().__impl()->type();
+arch.GetStrValue("name", fullname);
 
-ComponentInstance.SetStrValue("type",typecontainer+'/'+type);]]></value>
+
+Udm::ObjectImpl *oiptr = arch.__impl()->getParent(NULL);
+while (oiptr!=&Udm::_null && oiptr->type()==PackageClass)
+{ 
+  string namepart = oiptr->getStringAttr(Uml::Attribute::meta_name);
+  oiptr = oiptr->getParent(NULL);
+
+  fullname = namepart +"/" + fullname;
+}
+
+
+ComponentInstance.SetStrValue("type",fullname);]]></value>
 							</attribute>
 						</atom>
 						<atom id="id-0066-0000000d" kind="Out" role="Out" relid="0x1c">
@@ -7890,7 +7901,7 @@ ComponentImplementations.GetStrValue("name",ciname);
 ComponentImplementationContainer.GetStrValue("name",cicname);
 ComponentAssembly.GetStrValue("name",caname);
 
-/*TOTO: support fwd slashes (/) in names by escaping them*/
+/*TODO: support fwd slashes (/) in names by escaping them*/
 
 Property.SetStrValue("name", "PICML_pathname");
 Property.SetStrValue("value", '/' + ciname + '/' + cicname + '/' + caname);

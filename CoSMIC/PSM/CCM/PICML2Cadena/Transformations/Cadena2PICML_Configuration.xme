@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri Jun 25 22:48:42 2004" mdate="Fri Jun 25 22:48:42 2004" metaguid="{4C9A857B-DEAD-BEEF-FEED-DAD000000000}" metaname="GReATConfig">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Tue Aug 10 16:32:17 2004" mdate="Tue Aug 10 16:32:17 2004" metaguid="{4C9A857B-DEAD-BEEF-FEED-DAD000000000}" metaname="GReATConfig">
 	<name>Cadena2PICML_Configuration</name>
 	<comment></comment>
 	<author></author>
@@ -126,13 +126,13 @@
 			<atom id="id-0066-00000007" kind="InputFile" role="InputFile" relid="0x1">
 				<name></name>
 				<attribute kind="CopyName">
-					<value></value>
+					<value>examples\TweakedRobotAssembly_reimported_from_modified.mga</value>
 				</attribute>
 				<attribute kind="FileID">
 					<value>PICML_File</value>
 				</attribute>
 				<attribute kind="FileName">
-					<value>examples\TweakedRobotAssembly.mga</value>
+					<value>examples\TweakedRobotAssembly_afterexport.mga</value>
 				</attribute>
 			</atom>
 			<atom id="id-0066-00000008" kind="InputFile" role="InputFile" relid="0x2">
@@ -144,7 +144,7 @@
 					<value>CadenaScenario_File</value>
 				</attribute>
 				<attribute kind="FileName">
-					<value>examples\exported.xml</value>
+					<value>examples\exported_modified.xml</value>
 				</attribute>
 			</atom>
 			<atom id="id-0066-00000009" kind="InputFile" role="InputFile" relid="0x3">

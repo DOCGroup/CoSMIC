@@ -1,3 +1,69 @@
+Thu Aug 12 18:43:11 2004  Gabriele Trombetti  <gtrombetti@nospam.invalid.domain>
+
+          Added the following files:
+
+        * PSM/CCM/PICML2Cadena/OTIF_related/TranslatorWrappers/CS2PA_TransWrap.cpp
+        * PSM/CCM/PICML2Cadena/OTIF_related/TranslatorWrappers/CS2PA_TransWrap.dsp
+        * PSM/CCM/PICML2Cadena/OTIF_related/TranslatorWrappers/PA2CS_TransWrap.cpp
+        * PSM/CCM/PICML2Cadena/OTIF_related/TranslatorWrappers/PA2CS_TransWrap.dsp
+        * PSM/CCM/PICML2Cadena/OTIF_related/TranslatorWrappers/PICML.cpp
+        * PSM/CCM/PICML2Cadena/OTIF_related/TranslatorWrappers/PICML.h
+        * PSM/CCM/PICML2Cadena/OTIF_related/TranslatorWrappers/TranslatorWrappers.dsw
+        * PSM/CCM/PICML2Cadena/OTIF_related/TranslatorWrappers/cadena_scenario.cpp
+        * PSM/CCM/PICML2Cadena/OTIF_related/TranslatorWrappers/cadena_scenario.h
+          Added Semantic Translators (actually wrappers for the GRE.exe) for performing
+          the import/export conversions automatically on the backplane. These are the VC6.0
+          project files
+
+        * PSM/CCM/PICML2Cadena/OTIF_related/TranslatorWrappers/Release/CS2PA_TransWrap.exe
+        * PSM/CCM/PICML2Cadena/OTIF_related/TranslatorWrappers/Release/PA2CS_TransWrap.exe
+          These are the binaries for the Translators
+
+
+          Modified the following files:
+
+        * PSM/CCM/PICML2Cadena/Docs/PICMLCadena_integration_manual.doc
+          Manual updated
+
+        * PSM/CCM/PICML2Cadena/OTIF_related/CadenaPICML_Workflow.mga
+        * PSM/CCM/PICML2Cadena/OTIF_related/CadenaPICML_Workflow.xme
+          New OTIF Workflows to reflect the presence of the new Semantic Translators
+
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML-gr.xml
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML.mga
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML.xme
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML_Configuration.mga
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML_Configuration.xme
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena-gr.xml
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena.mga
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena.xme
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena_Configuration.mga
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena_configuration.xme
+          Fixed bugs; now clears more unneeded garbage when objects are deleted in Cadena;
+          added support for nested packages. For full changes, see manual
+
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/Cadena2PICML.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/Cadena2PICML.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/Cadena2PICML.udm
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/Cadena2PICML.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/CrossLinks.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/CrossLinks.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/CrossLinks.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML2Cadena.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML2Cadena.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML2Cadena.udm
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML2Cadena.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICMLCadena_Xchange_embedded_EIProperties.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICMLCadena_Xchange_embedded_EIProperties.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICMLCadena_Xchange_embedded_EIProperties.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/cadena_scenario.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/cadena_scenario.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/cadena_scenario.xsd
+
+
 Sat June 26 00:53:40 2004  Gabriele Trombetti  <gtrombetti@nospam.invalid.domain>
         
           Unfortunately I committed a few times on the HEAD by mistake between today

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri Jun 25 22:48:05 2004" mdate="Fri Jun 25 22:50:13 2004" metaguid="{ED81A5AD-DEAD-BEEF-FEED-DAD000000001}" metaname="UMLModelTransformer">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri Jun 25 22:48:05 2004" mdate="Tue Aug 10 16:32:32 2004" metaguid="{ED81A5AD-DEAD-BEEF-FEED-DAD000000001}" metaname="UMLModelTransformer">
 	<name>Cadena2PICML</name>
 	<comment></comment>
 	<author></author>
@@ -158,7 +158,7 @@
 						<value></value>
 					</attribute>
 					<attribute kind="FilePathName">
-						<value>examples\exported.xml</value>
+						<value>examples\exported_modified.xml</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-00000005" kind="File" role="File" relid="0x3">
@@ -173,10 +173,10 @@
 						</regnode>
 					</regnode>
 					<attribute kind="CopyPathName">
-						<value></value>
+						<value>examples\TweakedRobotAssembly_reimported_from_modified.mga</value>
 					</attribute>
 					<attribute kind="FilePathName">
-						<value>examples\TweakedRobotAssembly.mga</value>
+						<value>examples\TweakedRobotAssembly_afterexport.mga</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-00000006" kind="MetaInformation" role="MetaInformation" relid="0xb">
@@ -2668,7 +2668,7 @@ else return true;]]></value>
 						<regnode name="Transform" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>427,133</value>
+								<value>427,126</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2685,7 +2685,7 @@ else return true;]]></value>
 							<regnode name="Transform" isopaque="yes">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>163,93</value>
+									<value>161,91</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -2730,17 +2730,44 @@ else return true;]]></value>
 							<attribute kind="ExpressionString">
 								<value><![CDATA[string pType, pTypeContainer, pQualifiedType, cQualifiedType, pName, cName;
 
+Component.GetStrValue("name", pName);
+ComponentInstance.GetStrValue("name", cName);
+if (pName!=cName) return false;
+
+/*Now let's see if the fully qualified types are identical*/
+
+string fulltype;
+Udm::Object arch = Component.archetype();
+const Uml::Class &PackageClass = arch.GetParent().__impl()->type();
+arch.GetStrValue("name", fulltype);
+
+Udm::ObjectImpl *oiptr = arch.__impl()->getParent(NULL);
+while (oiptr!=&Udm::_null && oiptr->type()==PackageClass)
+{ 
+  string namepart = oiptr->getStringAttr(Uml::Attribute::meta_name);
+  oiptr = oiptr->getParent(NULL);
+
+  fulltype = namepart +"/" + fulltype;
+}
+
+pQualifiedType = fulltype;
+
+
+
+/* OLD:
 Udm::Object arch = Component.archetype();
 arch.GetStrValue("name", pType);
 arch.GetParent().GetStrValue("name", pTypeContainer);
 pQualifiedType = pTypeContainer+'/'+pType;
+*/
 
-Component.GetStrValue("name", pName);
+
 ComponentInstance.GetStrValue("type", cQualifiedType);
 ComponentInstance.GetStrValue("name", cName);
 
-if (pQualifiedType==cQualifiedType && pName==cName) return true;
-else return false;]]></value>
+if (pQualifiedType!=cQualifiedType) return false;
+
+return true;]]></value>
 							</attribute>
 						</atom>
 						<reference id="id-0067-00000050" kind="PatternClass" role="PatternClass" relid="0x1" referred="id-0066-000001bb">
@@ -3477,7 +3504,7 @@ return (cConnectorID==pConnectorID && pConnectorID!="");]]></value>
 						<connpoint role="src" target="id-0066-00000032"/>
 					</connection>
 				</model>
-				<model id="id-0065-00000013" kind="Block" role="Block" relid="0x5b" childrelidcntr="0x3a">
+				<model id="id-0065-00000013" kind="Block" role="Block" relid="0x5b" childrelidcntr="0x3c">
 					<name>CreateDestroy_Components_n_PublishConnectors</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3510,7 +3537,7 @@ not emit => make PublishConnector
 									<value>DefaultVisibility</value>
 								</regnode>
 								<regnode name="Transform" isopaque="yes">
-									<value>608,420</value>
+									<value>689,419</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -4460,7 +4487,7 @@ not emit => make PublishConnector
 							</regnode>
 						</atom>
 						<atom id="id-0066-00000041" kind="Guard" role="Guard" derivedfrom="id-0066-0000002b" isinstance="no" isprimary="yes" relid="0x17">
-							<name>Same_name_and_type</name>
+							<name>Same_name</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
 								<regnode name="Transform" isopaque="yes">
@@ -4470,19 +4497,13 @@ not emit => make PublishConnector
 									</regnode>
 								</regnode>
 							</regnode>
-							<attribute kind="ExpressionString" status="inherited">
-								<value><![CDATA[string pType, pTypeContainer, pQualifiedType, cQualifiedType, pName, cName;
-
-Udm::Object arch = Component.archetype();
-arch.GetStrValue("name", pType);
-arch.GetParent().GetStrValue("name", pTypeContainer);
-pQualifiedType = pTypeContainer+'/'+pType;
+							<attribute kind="ExpressionString">
+								<value><![CDATA[string pName, cName;
 
 Component.GetStrValue("name", pName);
-ComponentInstance.GetStrValue("type", cQualifiedType);
 ComponentInstance.GetStrValue("name", cName);
 
-if (pQualifiedType==cQualifiedType && pName==cName) return true;
+if (pName==cName) return true;
 else return false;]]></value>
 							</attribute>
 						</atom>
@@ -5147,14 +5168,31 @@ else return false;]]></value>
 								</regnode>
 							</regnode>
 							<attribute kind="ExpressionString">
-								<value><![CDATA[string pComponentType, pPackageName, pQualifiedComponentType, cQualifiedComponentType;
+								<value><![CDATA[string pComponentType, pQualifiedComponentType, cQualifiedComponentType, pPackageQualifiedName;
 
-Package.GetStrValue("name", pPackageName);
-Component.GetStrValue("name", pComponentType);
-pQualifiedComponentType = pPackageName+'/'+pComponentType;
+/*Fetching PICML qualified component type*/
 
+string fullname;
+const Uml::Class &PackageClass = Package.__impl()->type();
+Component.GetStrValue("name", fullname);
+
+Udm::ObjectImpl *oiptr = Package.__impl();
+while (oiptr!=&Udm::_null && oiptr->type()==PackageClass)
+{ 
+  string namepart = oiptr->getStringAttr(Uml::Attribute::meta_name);
+  oiptr = oiptr->getParent(NULL);
+
+  fullname = namepart +"/" + fullname;
+}
+
+pQualifiedComponentType = fullname;
+
+
+
+
+
+/*Fetching Cadena qualified component type*/
 ComponentInstance.GetStrValue("type", cQualifiedComponentType);
-
 
 return (pQualifiedComponentType==cQualifiedComponentType);]]></value>
 							</attribute>
@@ -5367,8 +5405,8 @@ newComponent ->setStringAttr(Uml::Attribute::meta_name, cadname);]]></value>
 							<connpoint role="dst" target="id-0067-00000077"/>
 						</connection>
 					</model>
-					<model id="id-0065-0000001b" kind="Rule" role="Rule" relid="0x29" childrelidcntr="0xc">
-						<name>DestroyPublishConnectors</name>
+					<model id="id-0065-0000001b" kind="Rule" role="Rule" relid="0x29" childrelidcntr="0xe">
+						<name>FindConnectors2BDeleted</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
 							<regnode name="Template" isopaque="yes">
@@ -5384,6 +5422,21 @@ newComponent ->setStringAttr(Uml::Attribute::meta_name, cadname);]]></value>
 								</regnode>
 							</regnode>
 						</regnode>
+						<regnode name="annotations">
+							<value></value>
+							<regnode name="PatternCardinality 0" isopaque="yes">
+								<value>0</value>
+								<regnode name="aspects" isopaque="yes">
+									<value>587,357</value>
+									<regnode name="*" isopaque="yes">
+										<value>DefaultVisibility</value>
+									</regnode>
+									<regnode name="Transform" isopaque="yes">
+										<value>229,224</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</regnode>
 						<attribute kind="ForAll" status="meta">
 							<value>true</value>
 						</attribute>
@@ -5395,6 +5448,18 @@ newComponent ->setStringAttr(Uml::Attribute::meta_name, cadname);]]></value>
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>41,62</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</atom>
+						<atom id="id-0066-0000022f" kind="Out" role="Out" relid="0xd">
+							<name>PPublishConnector</name>
+							<regnode name="PartRegs">
+								<value></value>
+								<regnode name="Transform">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>601,160</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -5458,8 +5523,8 @@ newComponent ->setStringAttr(Uml::Attribute::meta_name, cadname);]]></value>
 									</regnode>
 								</regnode>
 							</regnode>
-							<attribute kind="Action">
-								<value>Delete</value>
+							<attribute kind="Action" status="meta">
+								<value>Bound</value>
 							</attribute>
 							<attribute kind="ExcludedSubTypes" status="meta">
 								<value></value>
@@ -5477,10 +5542,10 @@ newComponent ->setStringAttr(Uml::Attribute::meta_name, cadname);]]></value>
 								<value></value>
 							</regnode>
 							<regnode name="color" isopaque="yes">
-								<value>0xff0000</value>
+								<value>0x000000</value>
 							</regnode>
-							<attribute kind="Action">
-								<value>Delete</value>
+							<attribute kind="Action" status="meta">
+								<value>Bound</value>
 							</attribute>
 							<attribute kind="PatternCardinality">
 								<value>0</value>
@@ -5514,10 +5579,10 @@ newComponent ->setStringAttr(Uml::Attribute::meta_name, cadname);]]></value>
 						<connection id="id-0068-0000008d" kind="PatternComposition" role="PatternComposition" relid="0xb">
 							<name>PatternComposition</name>
 							<regnode name="color" isopaque="yes">
-								<value>0xff0000</value>
+								<value>0x000000</value>
 							</regnode>
-							<attribute kind="Action">
-								<value>Delete</value>
+							<attribute kind="Action" status="meta">
+								<value>Bound</value>
 							</attribute>
 							<attribute kind="Cardinality" status="meta">
 								<value>0..*</value>
@@ -5529,6 +5594,14 @@ newComponent ->setStringAttr(Uml::Attribute::meta_name, cadname);]]></value>
 								<value></value>
 							</attribute>
 							<connpoint role="dst" target="id-0067-0000007a"/>
+							<connpoint role="src" target="id-0067-0000007c"/>
+						</connection>
+						<connection id="id-0068-0000045b" kind="Binding" role="Binding" relid="0xe">
+							<name>Binding</name>
+							<regnode name="color" isopaque="yes">
+								<value>0xAA00AA</value>
+							</regnode>
+							<connpoint role="dst" target="id-0066-0000022f"/>
 							<connpoint role="src" target="id-0067-0000007c"/>
 						</connection>
 					</model>
@@ -6534,7 +6607,7 @@ return (cConnectorID!="emit");]]></value>
 							<connpoint role="src" target="id-0066-00000068"/>
 						</connection>
 					</model>
-					<model id="id-0065-00000022" kind="ForBlock" role="ForBlock" relid="0x37" childrelidcntr="0xa">
+					<model id="id-0065-00000022" kind="ForBlock" role="ForBlock" relid="0x37" childrelidcntr="0xd">
 						<name>DestroyOrphanPropertiesAndDeleteComponent</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -6551,299 +6624,6 @@ return (cConnectorID!="emit");]]></value>
 								</regnode>
 							</regnode>
 						</regnode>
-						<model id="id-0065-00000023" kind="Rule" role="Rule" relid="0x1" childrelidcntr="0x21">
-							<name>DestroyOrphanProperties</name>
-							<regnode name="PartRegs" isopaque="yes">
-								<value></value>
-								<regnode name="Template" isopaque="yes">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>324,191</value>
-									</regnode>
-								</regnode>
-								<regnode name="Transform" isopaque="yes">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>259,49</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<regnode name="annotations" isopaque="yes">
-								<value></value>
-							</regnode>
-							<attribute kind="ForAll" status="meta">
-								<value>true</value>
-							</attribute>
-							<atom id="id-0066-00000069" kind="In" role="In" relid="0x2">
-								<name>PComponentToBeDeleted</name>
-								<regnode name="PartRegs" isopaque="yes">
-									<value></value>
-									<regnode name="Transform" isopaque="yes">
-										<value></value>
-										<regnode name="Position" isopaque="yes">
-											<value>41,181</value>
-										</regnode>
-									</regnode>
-								</regnode>
-							</atom>
-							<atom id="id-0066-0000006a" kind="Out" role="Out" relid="0x3">
-								<name>PComponentToBeDeleted</name>
-								<regnode name="PartRegs" isopaque="yes">
-									<value></value>
-									<regnode name="Transform" isopaque="yes">
-										<value></value>
-										<regnode name="Position" isopaque="yes">
-											<value>692,181</value>
-										</regnode>
-									</regnode>
-								</regnode>
-							</atom>
-							<atom id="id-0066-0000006b" kind="Connector" role="Connector" relid="0xd">
-								<name>Connector</name>
-								<regnode name="PartRegs" isopaque="yes">
-									<value></value>
-									<regnode name="Transform" isopaque="yes">
-										<value></value>
-										<regnode name="Position" isopaque="yes">
-											<value>187,278</value>
-										</regnode>
-									</regnode>
-								</regnode>
-							</atom>
-							<atom id="id-0066-0000006c" kind="Guard" role="Guard" relid="0x21">
-								<name>PropertyOnlyAttachedToThisComponent_and_TypeIsCadenaSupported</name>
-								<regnode name="PartRegs" isopaque="yes">
-									<value></value>
-									<regnode name="Transform" isopaque="yes">
-										<value></value>
-										<regnode name="Position" isopaque="yes">
-											<value>443,37</value>
-										</regnode>
-									</regnode>
-								</regnode>
-								<attribute kind="ExpressionString">
-									<value><![CDATA[set<Udm::Object> adjacent = Property.GetAdjacentObjects(Component.type());
-if (adjacent.size()!=1) return false;
-
-string propType;
-PredefinedType.type().GetStrValue("name", propType);
-if (propType!="LongInteger" && propType!="String" && propType!="Boolean") return false;
-else return true;]]></value>
-								</attribute>
-							</atom>
-							<reference id="id-0067-00000089" kind="PatternClass" role="PatternClass" relid="0x4" referred="id-0066-00000158">
-								<name>Component</name>
-								<regnode name="PartRegs" isopaque="yes">
-									<value></value>
-									<regnode name="Transform" isopaque="yes">
-										<value></value>
-										<regnode name="Position" isopaque="yes">
-											<value>148,145</value>
-										</regnode>
-									</regnode>
-								</regnode>
-								<attribute kind="Action" status="meta">
-									<value>Bound</value>
-								</attribute>
-								<attribute kind="ExcludedSubTypes" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="IsAbstract" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="PatternCardinality" status="meta">
-									<value>1</value>
-								</attribute>
-							</reference>
-							<reference id="id-0067-0000008a" kind="PatternClass" role="PatternClass" relid="0xb" referred="id-0066-000001d7">
-								<name>Property</name>
-								<regnode name="PartRegs" isopaque="yes">
-									<value></value>
-									<regnode name="Transform" isopaque="yes">
-										<value></value>
-										<regnode name="Position" isopaque="yes">
-											<value>135,335</value>
-										</regnode>
-									</regnode>
-								</regnode>
-								<attribute kind="Action">
-									<value>Delete</value>
-								</attribute>
-								<attribute kind="ExcludedSubTypes" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="IsAbstract" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="PatternCardinality" status="meta">
-									<value>1</value>
-								</attribute>
-							</reference>
-							<reference id="id-0067-0000008b" kind="PatternClass" role="PatternClass" relid="0xc" referred="id-0066-000001b5">
-								<name>AssemblyConfigProperty</name>
-								<regnode name="PartRegs" isopaque="yes">
-									<value></value>
-									<regnode name="Transform" isopaque="yes">
-										<value></value>
-										<regnode name="Position" isopaque="yes">
-											<value>274,251</value>
-										</regnode>
-									</regnode>
-								</regnode>
-								<attribute kind="Action" status="meta">
-									<value>Bound</value>
-								</attribute>
-								<attribute kind="ExcludedSubTypes" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="IsAbstract" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="PatternCardinality" status="meta">
-									<value>1</value>
-								</attribute>
-							</reference>
-							<reference id="id-0067-0000008c" kind="PatternClass" role="PatternClass" relid="0x18" referred="id-0066-000001d9">
-								<name>DataType</name>
-								<regnode name="PartRegs" isopaque="yes">
-									<value></value>
-									<regnode name="Transform" isopaque="yes">
-										<value></value>
-										<regnode name="Position" isopaque="yes">
-											<value>302,342</value>
-										</regnode>
-									</regnode>
-								</regnode>
-								<attribute kind="Action">
-									<value>Delete</value>
-								</attribute>
-								<attribute kind="ExcludedSubTypes" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="IsAbstract" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="PatternCardinality" status="meta">
-									<value>1</value>
-								</attribute>
-							</reference>
-							<reference id="id-0067-0000008d" kind="PatternClass" role="PatternClass" relid="0x1f" referred="id-0066-0000019d">
-								<name>PredefinedType</name>
-								<regnode name="PartRegs" isopaque="yes">
-									<value></value>
-									<regnode name="Transform" isopaque="yes">
-										<value></value>
-										<regnode name="Position" isopaque="yes">
-											<value>512,342</value>
-										</regnode>
-									</regnode>
-								</regnode>
-								<attribute kind="Action" status="meta">
-									<value>Bound</value>
-								</attribute>
-								<attribute kind="ExcludedSubTypes" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="IsAbstract" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="PatternCardinality" status="meta">
-									<value>1</value>
-								</attribute>
-							</reference>
-							<connection id="id-0068-000000a3" kind="Binding" role="Binding" relid="0x9">
-								<name>Binding</name>
-								<regnode name="color" isopaque="yes">
-									<value>0xAA00AA</value>
-								</regnode>
-								<connpoint role="dst" target="id-0066-0000006a"/>
-								<connpoint role="src" target="id-0067-00000089"/>
-							</connection>
-							<connection id="id-0068-000000a4" kind="Binding" role="Binding" relid="0xa">
-								<name>Binding</name>
-								<regnode name="color" isopaque="yes">
-									<value>0xAA00AA</value>
-								</regnode>
-								<connpoint role="src" target="id-0066-00000069"/>
-								<connpoint role="dst" target="id-0067-00000089"/>
-							</connection>
-							<connection id="id-0068-000000a5" kind="Src" role="Src" relid="0xe">
-								<name>Src</name>
-								<attribute kind="Cardinality" status="meta">
-									<value>0..*</value>
-								</attribute>
-								<attribute kind="srcRolename">
-									<value>srcAssemblyConfigProperty</value>
-								</attribute>
-								<connpoint role="dst" target="id-0066-0000006b"/>
-								<connpoint role="src" target="id-0067-00000089"/>
-							</connection>
-							<connection id="id-0068-000000a6" kind="Dst" role="Dst" relid="0xf">
-								<name>Dst</name>
-								<attribute kind="Cardinality" status="meta">
-									<value>0..*</value>
-								</attribute>
-								<attribute kind="dstRolename">
-									<value>dstAssemblyConfigProperty</value>
-								</attribute>
-								<connpoint role="src" target="id-0066-0000006b"/>
-								<connpoint role="dst" target="id-0067-0000008a"/>
-							</connection>
-							<connection id="id-0068-000000a7" kind="AssociationClass" role="AssociationClass" relid="0x10">
-								<name>AssociationClass</name>
-								<connpoint role="src" target="id-0066-0000006b"/>
-								<connpoint role="dst" target="id-0067-0000008b"/>
-							</connection>
-							<connection id="id-0068-000000a8" kind="PatternComposition" role="PatternComposition" relid="0x1d">
-								<name>PatternComposition</name>
-								<regnode name="color" isopaque="yes">
-									<value>0xff0000</value>
-								</regnode>
-								<attribute kind="Action">
-									<value>Delete</value>
-								</attribute>
-								<attribute kind="Cardinality" status="meta">
-									<value>0..*</value>
-								</attribute>
-								<attribute kind="ChildRole" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="ParentRole" status="meta">
-									<value></value>
-								</attribute>
-								<connpoint role="dst" target="id-0067-0000008a"/>
-								<connpoint role="src" target="id-0067-0000008c"/>
-							</connection>
-							<connection id="id-0068-000000a9" kind="PatternAssociation" role="PatternAssociation" relid="0x20">
-								<name>PatternAssociation</name>
-								<regnode name="color" isopaque="yes">
-									<value>0xff0000</value>
-								</regnode>
-								<attribute kind="Action">
-									<value>Delete</value>
-								</attribute>
-								<attribute kind="PatternCardinality" status="meta">
-									<value>1</value>
-								</attribute>
-								<attribute kind="Stereotype" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="dstCardinality" status="meta">
-									<value>0..*</value>
-								</attribute>
-								<attribute kind="dstRolename">
-									<value>ref</value>
-								</attribute>
-								<attribute kind="srcCardinality" status="meta">
-									<value>0..*</value>
-								</attribute>
-								<attribute kind="srcRolename">
-									<value>referedbyDataType</value>
-								</attribute>
-								<connpoint role="src" target="id-0067-0000008c"/>
-								<connpoint role="dst" target="id-0067-0000008d"/>
-							</connection>
-						</model>
 						<model id="id-0065-00000024" kind="Rule" role="Rule" relid="0x8" childrelidcntr="0x3">
 							<name>DestroyComponent</name>
 							<regnode name="PartRegs" isopaque="yes">
@@ -6857,7 +6637,7 @@ else return true;]]></value>
 								<regnode name="Transform" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>499,51</value>
+										<value>497,49</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -6909,6 +6689,385 @@ else return true;]]></value>
 								<connpoint role="dst" target="id-0067-0000008e"/>
 							</connection>
 						</model>
+						<model id="id-0065-0000006c" kind="Block" role="Block" relid="0xb" childrelidcntr="0x6">
+							<name>DestroyOrphanProperties_block</name>
+							<regnode name="PartRegs">
+								<value></value>
+								<regnode name="Template">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>261,212</value>
+									</regnode>
+								</regnode>
+								<regnode name="Transform">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>266,49</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<model id="id-0065-00000023" kind="Rule" role="Rule" relid="0x1" childrelidcntr="0x22">
+								<name>DestroyOrphanProperties</name>
+								<regnode name="PartRegs" isopaque="yes">
+									<value></value>
+									<regnode name="Template" isopaque="yes">
+										<value></value>
+										<regnode name="Position" isopaque="yes">
+											<value>324,191</value>
+										</regnode>
+									</regnode>
+									<regnode name="Transform" isopaque="yes">
+										<value></value>
+										<regnode name="Position" isopaque="yes">
+											<value>273,84</value>
+										</regnode>
+									</regnode>
+								</regnode>
+								<regnode name="annotations" isopaque="yes">
+									<value></value>
+									<regnode name="OIDPI_Workaround" isopaque="yes">
+										<value><![CDATA[Please keep DataType higher in the vertical
+axis than Property otherwise a GReAT bug
+will occur: 
+"The Object is deleted partially inaccessible"]]></value>
+										<regnode name="aspects" isopaque="yes">
+											<value>298,672</value>
+											<regnode name="*" isopaque="yes">
+												<value>DefaultVisibility</value>
+											</regnode>
+											<regnode name="Transform" isopaque="yes">
+												<value>301,412</value>
+											</regnode>
+										</regnode>
+									</regnode>
+								</regnode>
+								<attribute kind="ForAll" status="meta">
+									<value>true</value>
+								</attribute>
+								<atom id="id-0066-00000069" kind="In" role="In" relid="0x2">
+									<name>PComponentToBeDeleted</name>
+									<regnode name="PartRegs" isopaque="yes">
+										<value></value>
+										<regnode name="Transform" isopaque="yes">
+											<value></value>
+											<regnode name="Position" isopaque="yes">
+												<value>41,181</value>
+											</regnode>
+										</regnode>
+									</regnode>
+								</atom>
+								<atom id="id-0066-0000006a" kind="Out" role="Out" relid="0x3">
+									<name>PComponentToBeDeleted</name>
+									<regnode name="PartRegs" isopaque="yes">
+										<value></value>
+										<regnode name="Transform" isopaque="yes">
+											<value></value>
+											<regnode name="Position" isopaque="yes">
+												<value>692,181</value>
+											</regnode>
+										</regnode>
+									</regnode>
+								</atom>
+								<atom id="id-0066-0000006b" kind="Connector" role="Connector" relid="0xd">
+									<name>Connector</name>
+									<regnode name="PartRegs" isopaque="yes">
+										<value></value>
+										<regnode name="Transform" isopaque="yes">
+											<value></value>
+											<regnode name="Position" isopaque="yes">
+												<value>187,278</value>
+											</regnode>
+										</regnode>
+									</regnode>
+								</atom>
+								<atom id="id-0066-0000006c" kind="Guard" role="Guard" relid="0x21">
+									<name>PropertyOnlyAttachedToThisComponent_and_TypeIsCadenaSupported</name>
+									<regnode name="PartRegs" isopaque="yes">
+										<value></value>
+										<regnode name="Transform" isopaque="yes">
+											<value></value>
+											<regnode name="Position" isopaque="yes">
+												<value>443,37</value>
+											</regnode>
+										</regnode>
+									</regnode>
+									<attribute kind="ExpressionString">
+										<value><![CDATA[set<Udm::Object> adjacent = Property.GetAdjacentObjects(Component.type());
+if (adjacent.size()!=1) return false;
+
+string propType;
+PredefinedType.type().GetStrValue("name", propType);
+if (propType!="LongInteger" && propType!="String" && propType!="Boolean") return false;
+else return true;]]></value>
+									</attribute>
+								</atom>
+								<atom id="id-0066-0000022e" kind="AttributeMapping" role="AttributeMapping" derivedfrom="id-0066-0000022c" isinstance="yes" isprimary="yes" relid="0x22">
+									<name>TOIDPI_WorkaroundMarker</name>
+									<regnode name="PartRegs">
+										<value></value>
+										<regnode name="Transform">
+											<value></value>
+											<regnode name="Position" isopaque="yes">
+												<value>782,28</value>
+											</regnode>
+										</regnode>
+									</regnode>
+									<attribute kind="ExpressionString" status="inherited">
+										<value>/*The Object Is Deleted Partially Inaccessible (TOIDPI) 
+workaround marker (for GME search queries)*/</value>
+									</attribute>
+								</atom>
+								<reference id="id-0067-00000089" kind="PatternClass" role="PatternClass" relid="0x4" referred="id-0066-00000158">
+									<name>Component</name>
+									<regnode name="PartRegs" isopaque="yes">
+										<value></value>
+										<regnode name="Transform" isopaque="yes">
+											<value></value>
+											<regnode name="Position" isopaque="yes">
+												<value>148,145</value>
+											</regnode>
+										</regnode>
+									</regnode>
+									<attribute kind="Action" status="meta">
+										<value>Bound</value>
+									</attribute>
+									<attribute kind="ExcludedSubTypes" status="meta">
+										<value></value>
+									</attribute>
+									<attribute kind="IsAbstract" status="meta">
+										<value>false</value>
+									</attribute>
+									<attribute kind="PatternCardinality" status="meta">
+										<value>1</value>
+									</attribute>
+								</reference>
+								<reference id="id-0067-0000008a" kind="PatternClass" role="PatternClass" relid="0xb" referred="id-0066-000001d7">
+									<name>Property</name>
+									<regnode name="PartRegs" isopaque="yes">
+										<value></value>
+										<regnode name="Transform" isopaque="yes">
+											<value></value>
+											<regnode name="Position" isopaque="yes">
+												<value>135,426</value>
+											</regnode>
+										</regnode>
+									</regnode>
+									<attribute kind="Action">
+										<value>Delete</value>
+									</attribute>
+									<attribute kind="ExcludedSubTypes" status="meta">
+										<value></value>
+									</attribute>
+									<attribute kind="IsAbstract" status="meta">
+										<value>false</value>
+									</attribute>
+									<attribute kind="PatternCardinality" status="meta">
+										<value>1</value>
+									</attribute>
+								</reference>
+								<reference id="id-0067-0000008b" kind="PatternClass" role="PatternClass" relid="0xc" referred="id-0066-000001b5">
+									<name>AssemblyConfigProperty</name>
+									<regnode name="PartRegs" isopaque="yes">
+										<value></value>
+										<regnode name="Transform" isopaque="yes">
+											<value></value>
+											<regnode name="Position" isopaque="yes">
+												<value>274,251</value>
+											</regnode>
+										</regnode>
+									</regnode>
+									<attribute kind="Action" status="meta">
+										<value>Bound</value>
+									</attribute>
+									<attribute kind="ExcludedSubTypes" status="meta">
+										<value></value>
+									</attribute>
+									<attribute kind="IsAbstract" status="meta">
+										<value>false</value>
+									</attribute>
+									<attribute kind="PatternCardinality" status="meta">
+										<value>1</value>
+									</attribute>
+								</reference>
+								<reference id="id-0067-0000008c" kind="PatternClass" role="PatternClass" relid="0x18" referred="id-0066-000001d9">
+									<name>DataType</name>
+									<regnode name="PartRegs" isopaque="yes">
+										<value></value>
+										<regnode name="Transform" isopaque="yes">
+											<value></value>
+											<regnode name="Position" isopaque="yes">
+												<value>302,342</value>
+											</regnode>
+										</regnode>
+									</regnode>
+									<attribute kind="Action">
+										<value>Delete</value>
+									</attribute>
+									<attribute kind="ExcludedSubTypes" status="meta">
+										<value></value>
+									</attribute>
+									<attribute kind="IsAbstract" status="meta">
+										<value>false</value>
+									</attribute>
+									<attribute kind="PatternCardinality" status="meta">
+										<value>1</value>
+									</attribute>
+								</reference>
+								<reference id="id-0067-0000008d" kind="PatternClass" role="PatternClass" relid="0x1f" referred="id-0066-0000019d">
+									<name>PredefinedType</name>
+									<regnode name="PartRegs" isopaque="yes">
+										<value></value>
+										<regnode name="Transform" isopaque="yes">
+											<value></value>
+											<regnode name="Position" isopaque="yes">
+												<value>512,342</value>
+											</regnode>
+										</regnode>
+									</regnode>
+									<attribute kind="Action" status="meta">
+										<value>Bound</value>
+									</attribute>
+									<attribute kind="ExcludedSubTypes" status="meta">
+										<value></value>
+									</attribute>
+									<attribute kind="IsAbstract" status="meta">
+										<value>false</value>
+									</attribute>
+									<attribute kind="PatternCardinality" status="meta">
+										<value>1</value>
+									</attribute>
+								</reference>
+								<connection id="id-0068-000000a3" kind="Binding" role="Binding" relid="0x9">
+									<name>Binding</name>
+									<regnode name="color" isopaque="yes">
+										<value>0xAA00AA</value>
+									</regnode>
+									<connpoint role="dst" target="id-0066-0000006a"/>
+									<connpoint role="src" target="id-0067-00000089"/>
+								</connection>
+								<connection id="id-0068-000000a4" kind="Binding" role="Binding" relid="0xa">
+									<name>Binding</name>
+									<regnode name="color" isopaque="yes">
+										<value>0xAA00AA</value>
+									</regnode>
+									<connpoint role="src" target="id-0066-00000069"/>
+									<connpoint role="dst" target="id-0067-00000089"/>
+								</connection>
+								<connection id="id-0068-000000a5" kind="Src" role="Src" relid="0xe">
+									<name>Src</name>
+									<attribute kind="Cardinality" status="meta">
+										<value>0..*</value>
+									</attribute>
+									<attribute kind="srcRolename">
+										<value>srcAssemblyConfigProperty</value>
+									</attribute>
+									<connpoint role="dst" target="id-0066-0000006b"/>
+									<connpoint role="src" target="id-0067-00000089"/>
+								</connection>
+								<connection id="id-0068-000000a6" kind="Dst" role="Dst" relid="0xf">
+									<name>Dst</name>
+									<attribute kind="Cardinality" status="meta">
+										<value>0..*</value>
+									</attribute>
+									<attribute kind="dstRolename">
+										<value>dstAssemblyConfigProperty</value>
+									</attribute>
+									<connpoint role="src" target="id-0066-0000006b"/>
+									<connpoint role="dst" target="id-0067-0000008a"/>
+								</connection>
+								<connection id="id-0068-000000a7" kind="AssociationClass" role="AssociationClass" relid="0x10">
+									<name>AssociationClass</name>
+									<connpoint role="src" target="id-0066-0000006b"/>
+									<connpoint role="dst" target="id-0067-0000008b"/>
+								</connection>
+								<connection id="id-0068-000000a8" kind="PatternComposition" role="PatternComposition" relid="0x1d">
+									<name>PatternComposition</name>
+									<regnode name="color" isopaque="yes">
+										<value>0xff0000</value>
+									</regnode>
+									<attribute kind="Action">
+										<value>Delete</value>
+									</attribute>
+									<attribute kind="Cardinality" status="meta">
+										<value>0..*</value>
+									</attribute>
+									<attribute kind="ChildRole" status="meta">
+										<value></value>
+									</attribute>
+									<attribute kind="ParentRole" status="meta">
+										<value></value>
+									</attribute>
+									<connpoint role="dst" target="id-0067-0000008a"/>
+									<connpoint role="src" target="id-0067-0000008c"/>
+								</connection>
+								<connection id="id-0068-000000a9" kind="PatternAssociation" role="PatternAssociation" relid="0x20">
+									<name>PatternAssociation</name>
+									<regnode name="color" isopaque="yes">
+										<value>0xff0000</value>
+									</regnode>
+									<attribute kind="Action">
+										<value>Delete</value>
+									</attribute>
+									<attribute kind="PatternCardinality" status="meta">
+										<value>1</value>
+									</attribute>
+									<attribute kind="Stereotype" status="meta">
+										<value></value>
+									</attribute>
+									<attribute kind="dstCardinality" status="meta">
+										<value>0..*</value>
+									</attribute>
+									<attribute kind="dstRolename">
+										<value>ref</value>
+									</attribute>
+									<attribute kind="srcCardinality" status="meta">
+										<value>0..*</value>
+									</attribute>
+									<attribute kind="srcRolename">
+										<value>referedbyDataType</value>
+									</attribute>
+									<connpoint role="src" target="id-0067-0000008c"/>
+									<connpoint role="dst" target="id-0067-0000008d"/>
+								</connection>
+							</model>
+							<atom id="id-0066-00000236" kind="In" role="In" relid="0x2">
+								<name>PComponentToBeDeleted</name>
+								<regnode name="PartRegs" isopaque="yes">
+									<value></value>
+									<regnode name="Transform" isopaque="yes">
+										<value></value>
+										<regnode name="Position" isopaque="yes">
+											<value>90,111</value>
+										</regnode>
+									</regnode>
+								</regnode>
+							</atom>
+							<atom id="id-0066-00000237" kind="Out" role="Out" relid="0x3">
+								<name>PComponentToBeDeleted</name>
+								<regnode name="PartRegs">
+									<value></value>
+									<regnode name="Transform">
+										<value></value>
+										<regnode name="Position" isopaque="yes">
+											<value>552,111</value>
+										</regnode>
+									</regnode>
+								</regnode>
+							</atom>
+							<connection id="id-0068-00000466" kind="Sequence" role="Sequence" relid="0x4">
+								<name>Sequence</name>
+								<connpoint role="dst" target="id-0066-00000069"/>
+								<connpoint role="src" target="id-0066-00000236"/>
+							</connection>
+							<connection id="id-0068-0000046b" kind="Sequence" role="Sequence" relid="0x6">
+								<name>Sequence</name>
+								<regnode name="autorouterPref" isopaque="yes">
+									<value>Nn</value>
+								</regnode>
+								<connpoint role="src" target="id-0066-00000236"/>
+								<connpoint role="dst" target="id-0066-00000237"/>
+							</connection>
+						</model>
 						<atom id="id-0066-0000006e" kind="In" role="In" relid="0x3">
 							<name>PComponentToBeDeleted</name>
 							<regnode name="PartRegs" isopaque="yes">
@@ -6916,20 +7075,354 @@ else return true;]]></value>
 								<regnode name="Transform" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>83,76</value>
+										<value>76,76</value>
 									</regnode>
 								</regnode>
 							</regnode>
 						</atom>
-						<connection id="id-0068-000000ab" kind="Sequence" role="Sequence" relid="0x4">
+						<connection id="id-0068-00000468" kind="Sequence" role="Sequence" relid="0xc">
 							<name>Sequence</name>
-							<connpoint role="dst" target="id-0066-00000069"/>
 							<connpoint role="src" target="id-0066-0000006e"/>
+							<connpoint role="dst" target="id-0066-00000236"/>
 						</connection>
-						<connection id="id-0068-000000ac" kind="Sequence" role="Sequence" relid="0xa">
+						<connection id="id-0068-00000469" kind="Sequence" role="Sequence" relid="0xd">
 							<name>Sequence</name>
-							<connpoint role="src" target="id-0066-0000006a"/>
 							<connpoint role="dst" target="id-0066-0000006d"/>
+							<connpoint role="src" target="id-0066-00000237"/>
+						</connection>
+					</model>
+					<model id="id-0065-00000069" kind="Block" role="Block" relid="0x3b" childrelidcntr="0x8">
+						<name>DestroyOrphanRequirementsAndDeleteConnector</name>
+						<regnode name="PartRegs">
+							<value></value>
+							<regnode name="Template">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>366,429</value>
+								</regnode>
+							</regnode>
+							<regnode name="Transform">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>423,422</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<model id="id-0065-0000006b" kind="Rule" role="Rule" relid="0x3" childrelidcntr="0x3">
+							<name>DestroyConnector</name>
+							<regnode name="PartRegs">
+								<value></value>
+								<regnode name="Template">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>492,100</value>
+									</regnode>
+								</regnode>
+								<regnode name="Transform">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>553,98</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="ForAll" status="meta">
+								<value>true</value>
+							</attribute>
+							<atom id="id-0066-00000232" kind="In" role="In" relid="0x1">
+								<name>PPublishConnector</name>
+								<regnode name="PartRegs">
+									<value></value>
+									<regnode name="Transform">
+										<value></value>
+										<regnode name="Position" isopaque="yes">
+											<value>83,125</value>
+										</regnode>
+									</regnode>
+								</regnode>
+							</atom>
+							<reference id="id-0067-000001e0" kind="PatternClass" role="PatternClass" relid="0x2" referred="id-0066-000001b8">
+								<name>PublishConnector</name>
+								<regnode name="PartRegs" isopaque="yes">
+									<value></value>
+									<regnode name="Transform" isopaque="yes">
+										<value></value>
+										<regnode name="Position" isopaque="yes">
+											<value>267,104</value>
+										</regnode>
+									</regnode>
+								</regnode>
+								<attribute kind="Action">
+									<value>Delete</value>
+								</attribute>
+								<attribute kind="ExcludedSubTypes" status="meta">
+									<value></value>
+								</attribute>
+								<attribute kind="IsAbstract" status="meta">
+									<value>false</value>
+								</attribute>
+								<attribute kind="PatternCardinality" status="meta">
+									<value>1</value>
+								</attribute>
+							</reference>
+							<connection id="id-0068-00000462" kind="Binding" role="Binding" relid="0x3">
+								<name>Binding</name>
+								<regnode name="color" isopaque="yes">
+									<value>0xAA00AA</value>
+								</regnode>
+								<connpoint role="src" target="id-0066-00000232"/>
+								<connpoint role="dst" target="id-0067-000001e0"/>
+							</connection>
+						</model>
+						<model id="id-0065-0000006d" kind="Block" role="Block" relid="0x6" childrelidcntr="0x5">
+							<name>DestroyOrphanRequirements_block</name>
+							<regnode name="PartRegs">
+								<value></value>
+								<regnode name="Template">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>282,254</value>
+									</regnode>
+								</regnode>
+								<regnode name="Transform">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>259,98</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<model id="id-0065-0000006a" kind="Rule" role="Rule" relid="0x1" childrelidcntr="0xc">
+								<name>DestroyOrphanRequirements</name>
+								<regnode name="PartRegs">
+									<value></value>
+									<regnode name="Template">
+										<value></value>
+										<regnode name="Position" isopaque="yes">
+											<value>268,100</value>
+										</regnode>
+									</regnode>
+									<regnode name="Transform">
+										<value></value>
+										<regnode name="Position" isopaque="yes">
+											<value>245,98</value>
+										</regnode>
+									</regnode>
+								</regnode>
+								<attribute kind="ForAll" status="meta">
+									<value>true</value>
+								</attribute>
+								<atom id="id-0066-00000231" kind="In" role="In" relid="0x1">
+									<name>PPublishConnector</name>
+									<regnode name="PartRegs">
+										<value></value>
+										<regnode name="Transform">
+											<value></value>
+											<regnode name="Position" isopaque="yes">
+												<value>83,125</value>
+											</regnode>
+										</regnode>
+									</regnode>
+								</atom>
+								<atom id="id-0066-00000234" kind="Connector" role="Connector" relid="0x8">
+									<name>Connector</name>
+									<regnode name="PartRegs">
+										<value></value>
+										<regnode name="Transform">
+											<value></value>
+											<regnode name="Position" isopaque="yes">
+												<value>355,215</value>
+											</regnode>
+										</regnode>
+									</regnode>
+								</atom>
+								<atom id="id-0066-00000235" kind="Guard" role="Guard" relid="0xc">
+									<name>RequirementOnlyAttachedToThisComponent__and__ConnectorID_or_CadenaProperties</name>
+									<regnode name="PartRegs">
+										<value></value>
+										<regnode name="Transform">
+											<value></value>
+											<regnode name="Position" isopaque="yes">
+												<value>499,16</value>
+											</regnode>
+										</regnode>
+									</regnode>
+									<attribute kind="ExpressionString">
+										<value><![CDATA[set<Udm::Object> adjacent = Requirement.GetAdjacentObjects(PublishConnector.type());
+if (adjacent.size()!=1) return false;
+
+string name;
+Requirement.GetStrValue("name", name);
+if (name!="CadenaProperties" && name!="ConnectorID") return false;
+
+return true;]]></value>
+									</attribute>
+								</atom>
+								<reference id="id-0067-000001df" kind="PatternClass" role="PatternClass" relid="0x3" referred="id-0066-000001b8">
+									<name>PublishConnector</name>
+									<regnode name="PartRegs" isopaque="yes">
+										<value></value>
+										<regnode name="Transform" isopaque="yes">
+											<value></value>
+											<regnode name="Position" isopaque="yes">
+												<value>302,104</value>
+											</regnode>
+										</regnode>
+									</regnode>
+									<attribute kind="Action" status="meta">
+										<value>Bound</value>
+									</attribute>
+									<attribute kind="ExcludedSubTypes" status="meta">
+										<value></value>
+									</attribute>
+									<attribute kind="IsAbstract" status="meta">
+										<value>false</value>
+									</attribute>
+									<attribute kind="PatternCardinality" status="meta">
+										<value>1</value>
+									</attribute>
+								</reference>
+								<reference id="id-0067-000001e3" kind="PatternClass" role="PatternClass" relid="0x6" referred="id-0066-000001bd">
+									<name>AssemblyDeployRequirement</name>
+									<regnode name="PartRegs">
+										<value></value>
+										<regnode name="Transform">
+											<value></value>
+											<regnode name="Position" isopaque="yes">
+												<value>452,188</value>
+											</regnode>
+										</regnode>
+									</regnode>
+									<attribute kind="Action" status="meta">
+										<value>Bound</value>
+									</attribute>
+									<attribute kind="ExcludedSubTypes" status="meta">
+										<value></value>
+									</attribute>
+									<attribute kind="IsAbstract" status="meta">
+										<value>false</value>
+									</attribute>
+									<attribute kind="PatternCardinality" status="meta">
+										<value>1</value>
+									</attribute>
+								</reference>
+								<reference id="id-0067-000001e4" kind="PatternClass" role="PatternClass" relid="0x7" referred="id-0067-000001d4">
+									<name>Requirement</name>
+									<regnode name="PartRegs">
+										<value></value>
+										<regnode name="Transform">
+											<value></value>
+											<regnode name="Position" isopaque="yes">
+												<value>316,272</value>
+											</regnode>
+										</regnode>
+									</regnode>
+									<attribute kind="Action">
+										<value>Delete</value>
+									</attribute>
+									<attribute kind="ExcludedSubTypes" status="meta">
+										<value></value>
+									</attribute>
+									<attribute kind="IsAbstract" status="meta">
+										<value>false</value>
+									</attribute>
+									<attribute kind="PatternCardinality" status="meta">
+										<value>1</value>
+									</attribute>
+								</reference>
+								<connection id="id-0068-0000045d" kind="Binding" role="Binding" relid="0x4">
+									<name>Binding</name>
+									<regnode name="color" isopaque="yes">
+										<value>0xAA00AA</value>
+									</regnode>
+									<connpoint role="src" target="id-0066-00000231"/>
+									<connpoint role="dst" target="id-0067-000001df"/>
+								</connection>
+								<connection id="id-0068-00000463" kind="Src" role="Src" relid="0x9">
+									<name>Src</name>
+									<attribute kind="Cardinality" status="meta">
+										<value>0..*</value>
+									</attribute>
+									<attribute kind="srcRolename">
+										<value>srcAssemblyDeployRequirement</value>
+									</attribute>
+									<connpoint role="dst" target="id-0066-00000234"/>
+									<connpoint role="src" target="id-0067-000001df"/>
+								</connection>
+								<connection id="id-0068-00000464" kind="Dst" role="Dst" relid="0xa">
+									<name>Dst</name>
+									<attribute kind="Cardinality" status="meta">
+										<value>0..*</value>
+									</attribute>
+									<attribute kind="dstRolename">
+										<value>dstAssemblyDeployRequirement</value>
+									</attribute>
+									<connpoint role="src" target="id-0066-00000234"/>
+									<connpoint role="dst" target="id-0067-000001e4"/>
+								</connection>
+								<connection id="id-0068-00000465" kind="AssociationClass" role="AssociationClass" relid="0xb">
+									<name>AssociationClass</name>
+									<connpoint role="src" target="id-0066-00000234"/>
+									<connpoint role="dst" target="id-0067-000001e3"/>
+								</connection>
+							</model>
+							<atom id="id-0066-00000238" kind="In" role="In" relid="0x2">
+								<name>PPublishConnector</name>
+								<regnode name="PartRegs">
+									<value></value>
+									<regnode name="Transform">
+										<value></value>
+										<regnode name="Position" isopaque="yes">
+											<value>58,128</value>
+										</regnode>
+									</regnode>
+								</regnode>
+							</atom>
+							<atom id="id-0066-00000239" kind="Out" role="Out" relid="0x4">
+								<name>PPublishConnector</name>
+								<regnode name="PartRegs">
+									<value></value>
+									<regnode name="Transform">
+										<value></value>
+										<regnode name="Position" isopaque="yes">
+											<value>524,118</value>
+										</regnode>
+									</regnode>
+								</regnode>
+							</atom>
+							<connection id="id-0068-0000046c" kind="Sequence" role="Sequence" relid="0x3">
+								<name>Sequence</name>
+								<connpoint role="dst" target="id-0066-00000231"/>
+								<connpoint role="src" target="id-0066-00000238"/>
+							</connection>
+							<connection id="id-0068-0000046d" kind="Sequence" role="Sequence" relid="0x5">
+								<name>Sequence</name>
+								<regnode name="autorouterPref" isopaque="yes">
+									<value>Nn</value>
+								</regnode>
+								<connpoint role="src" target="id-0066-00000238"/>
+								<connpoint role="dst" target="id-0066-00000239"/>
+							</connection>
+						</model>
+						<atom id="id-0066-00000230" kind="In" role="In" relid="0x1">
+							<name>PPublishConnector</name>
+							<regnode name="PartRegs">
+								<value></value>
+								<regnode name="Transform">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>83,125</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</atom>
+						<connection id="id-0068-0000046e" kind="Sequence" role="Sequence" relid="0x7">
+							<name>Sequence</name>
+							<connpoint role="src" target="id-0066-00000230"/>
+							<connpoint role="dst" target="id-0066-00000238"/>
+						</connection>
+						<connection id="id-0068-0000046f" kind="Sequence" role="Sequence" relid="0x8">
+							<name>Sequence</name>
+							<connpoint role="dst" target="id-0066-00000232"/>
+							<connpoint role="src" target="id-0066-00000239"/>
 						</connection>
 					</model>
 					<atom id="id-0066-0000006f" kind="Out" role="Out" relid="0x4">
@@ -7155,6 +7648,11 @@ else return true;]]></value>
 						<connpoint role="src" target="id-0066-00000039"/>
 						<connpoint role="dst" target="id-0066-0000006e"/>
 					</connection>
+					<connection id="id-0068-0000045c" kind="Sequence" role="Sequence" relid="0x3c">
+						<name>Sequence</name>
+						<connpoint role="src" target="id-0066-0000022f"/>
+						<connpoint role="dst" target="id-0066-00000230"/>
+					</connection>
 				</model>
 				<model id="id-0065-00000025" kind="Block" role="Block" relid="0x5e" childrelidcntr="0x13">
 					<name>Create_Destroy_UpdateValue_Properties_n_Requirements</name>
@@ -7190,7 +7688,7 @@ else return true;]]></value>
 								</regnode>
 							</regnode>
 						</regnode>
-						<model id="id-0065-00000027" kind="Rule" role="Rule" relid="0xc" childrelidcntr="0x1d">
+						<model id="id-0065-00000027" kind="Rule" role="Rule" relid="0xc" childrelidcntr="0x1f">
 							<name>DestroyPublishConnectorProperties</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7209,6 +7707,21 @@ else return true;]]></value>
 							</regnode>
 							<regnode name="annotations" isopaque="yes">
 								<value></value>
+								<regnode name="OIDPI_Workaround" isopaque="yes">
+									<value><![CDATA[Please keep DataType higher in the vertical
+axis than PProperty otherwise a GReAT bug
+will occur: 
+"The Object is deleted partially inaccessible"]]></value>
+									<regnode name="aspects" isopaque="yes">
+										<value>298,672</value>
+										<regnode name="*" isopaque="yes">
+											<value>DefaultVisibility</value>
+										</regnode>
+										<regnode name="Transform" isopaque="yes">
+											<value>373,478</value>
+										</regnode>
+									</regnode>
+								</regnode>
 								<regnode name="Zero" isopaque="yes">
 									<value>0</value>
 									<regnode name="aspects" isopaque="yes">
@@ -7217,7 +7730,7 @@ else return true;]]></value>
 											<value>DefaultVisibility</value>
 										</regnode>
 										<regnode name="Transform" isopaque="yes">
-											<value>223,502</value>
+											<value>223,607</value>
 										</regnode>
 									</regnode>
 								</regnode>
@@ -7271,20 +7784,20 @@ if (pPropType=="LongInteger" || pPropType=="String" || pPropType=="Boolean") ret
 else return false;]]></value>
 								</attribute>
 							</atom>
-							<atom id="id-0066-0000022a" kind="AttributeMapping" role="AttributeMapping" derivedfrom="id-0066-00000079" isinstance="no" isprimary="yes" relid="0x1d">
-								<name>DeleteProperty_workaround</name>
-								<regnode name="PartRegs" isopaque="yes">
+							<atom id="id-0066-0000022d" kind="AttributeMapping" role="AttributeMapping" derivedfrom="id-0066-0000022c" isinstance="yes" isprimary="yes" relid="0x1f">
+								<name>TOIDPI_WorkaroundMarker</name>
+								<regnode name="PartRegs">
 									<value></value>
-									<regnode name="Transform" isopaque="yes">
+									<regnode name="Transform">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
-											<value>782,119</value>
+											<value>656,112</value>
 										</regnode>
 									</regnode>
 								</regnode>
 								<attribute kind="ExpressionString" status="inherited">
-									<value>/*Workaround: needed because deleting Property from the GReAT model causes an object partially inaccessible exception*/
-/*PProperty.DeleteObject();*/</value>
+									<value>/*The Object Is Deleted Partially Inaccessible (TOIDPI) 
+workaround marker (for GME search queries)*/</value>
 								</attribute>
 							</atom>
 							<reference id="id-0067-0000008f" kind="PatternClass" role="PatternClass" relid="0xd" referred="id-0066-00000138">
@@ -7294,7 +7807,7 @@ else return false;]]></value>
 									<regnode name="Transform" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
-											<value>203,565</value>
+											<value>203,670</value>
 										</regnode>
 									</regnode>
 								</regnode>
@@ -7342,7 +7855,7 @@ else return false;]]></value>
 									<regnode name="Transform" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
-											<value>191,398</value>
+											<value>191,503</value>
 										</regnode>
 									</regnode>
 								</regnode>
@@ -7633,7 +8146,7 @@ else return false;]]></value>
 								<connpoint role="dst" target="id-0067-00000096"/>
 							</connection>
 						</model>
-						<model id="id-0065-00000028" kind="Rule" role="Rule" relid="0x10" childrelidcntr="0x1b">
+						<model id="id-0065-00000028" kind="Rule" role="Rule" relid="0x10" childrelidcntr="0x1c">
 							<name>DestroyComponentProperties</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7652,6 +8165,21 @@ else return false;]]></value>
 							</regnode>
 							<regnode name="annotations" isopaque="yes">
 								<value></value>
+								<regnode name="OIDPI_Workaround" isopaque="yes">
+									<value><![CDATA[Please keep DataType higher in the vertical
+axis than PProperty otherwise a GReAT bug
+will occur: 
+"The Object is deleted partially inaccessible"]]></value>
+									<regnode name="aspects" isopaque="yes">
+										<value>298,672</value>
+										<regnode name="*" isopaque="yes">
+											<value>DefaultVisibility</value>
+										</regnode>
+										<regnode name="Transform" isopaque="yes">
+											<value>363,422</value>
+										</regnode>
+									</regnode>
+								</regnode>
 								<regnode name="Zero" isopaque="yes">
 									<value>0</value>
 									<regnode name="aspects" isopaque="yes">
@@ -7660,7 +8188,7 @@ else return false;]]></value>
 											<value>DefaultVisibility</value>
 										</regnode>
 										<regnode name="Transform" isopaque="yes">
-											<value>245,444</value>
+											<value>245,535</value>
 										</regnode>
 									</regnode>
 								</regnode>
@@ -7710,20 +8238,20 @@ if (propType!="LongInteger" && propType!="String" && propType!="Boolean") return
 else return true;]]></value>
 								</attribute>
 							</atom>
-							<atom id="id-0066-00000079" kind="AttributeMapping" role="AttributeMapping" relid="0x1b">
-								<name>DeleteProperty_workaround</name>
-								<regnode name="PartRegs" isopaque="yes">
+							<atom id="id-0066-0000022c" kind="AttributeMapping" role="AttributeMapping" relid="0x1c">
+								<name>TOIDPI_WorkaroundMarker</name>
+								<regnode name="PartRegs">
 									<value></value>
-									<regnode name="Transform" isopaque="yes">
+									<regnode name="Transform">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
-											<value>814,51</value>
+											<value>712,28</value>
 										</regnode>
 									</regnode>
 								</regnode>
 								<attribute kind="ExpressionString">
-									<value>/*Workaround: needed because deleting Property from the GReAT model causes an object partially inaccessible exception*/
-/*PProperty.DeleteObject();*/</value>
+									<value>/*The Object Is Deleted Partially Inaccessible (TOIDPI) 
+workaround marker (for GME search queries)*/</value>
 								</attribute>
 							</atom>
 							<reference id="id-0067-00000097" kind="PatternClass" role="PatternClass" relid="0x2" referred="id-0066-000001b5">
@@ -7805,7 +8333,7 @@ else return true;]]></value>
 									<regnode name="Transform" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
-											<value>203,509</value>
+											<value>203,600</value>
 										</regnode>
 									</regnode>
 								</regnode>
@@ -7829,7 +8357,7 @@ else return true;]]></value>
 									<regnode name="Transform" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
-											<value>191,342</value>
+											<value>191,433</value>
 										</regnode>
 									</regnode>
 								</regnode>

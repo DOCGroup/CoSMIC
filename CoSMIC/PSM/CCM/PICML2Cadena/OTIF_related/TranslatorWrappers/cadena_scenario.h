@@ -1,29 +1,12 @@
 #ifndef MOBIES_CADENA_SCENARIO_H
 #define MOBIES_CADENA_SCENARIO_H
 // header file cadena_scenario.h generated from diagram cadena_scenario
-// generated on Tue Aug 10 16:34:19 2004
+// generated on Thu Aug 05 20:28:24 2004
 
 #ifndef MOBIES_UDMBASE_H
 #include "UdmBase.h"
 #endif
 
-namespace PICML
-{ 
-	 class  ComponentAssembly;
-	 class  invoke;
-	 class  emit;
-	 class  PublishConnector;
-	 class  Component;
-	 class  OutEventPort;
-	 class  ProvidedRequestPort;
-	 class  RequiredRequestPort;
-	 class  InEventPort;
-	 class  Port;
-};
-namespace PICMLCadena_Xchange_embedded_EIProperties
-{ 
-	 class  RootContainer;
-};
 
 
 namespace cadena_scenario {
@@ -108,9 +91,6 @@ namespace cadena_scenario {
 
 		static Uml::Attribute meta_name;
 		Udm::StringAttr name() const { return Udm::StringAttr(impl, meta_name); }
-
-		static Uml::AssociationRole meta_picmlPort;
-		Udm::CrossPointerAttr<PICML::Port> picmlPort() const { return Udm::CrossPointerAttr<PICML::Port>(impl, meta_picmlPort); }
 
 		static Uml::CompositionParentRole meta_ComponentInstance_parent;
 		Udm::ParentAttr<cadena_scenario::ComponentInstance> ComponentInstance_parent() const { return Udm::ParentAttr<cadena_scenario::ComponentInstance>(impl, meta_ComponentInstance_parent); }
@@ -338,9 +318,6 @@ namespace cadena_scenario {
 		static Uml::Attribute meta_name;
 		Udm::StringAttr name() const { return Udm::StringAttr(impl, meta_name); }
 
-		static Uml::AssociationRole meta_picmlComponentDef;
-		Udm::CrossPointerAttr<PICML::Component> picmlComponentDef() const { return Udm::CrossPointerAttr<PICML::Component>(impl, meta_picmlComponentDef); }
-
 		static Uml::CompositionChildRole meta_ComponentPort_children;
 		Udm::ChildrenAttr<cadena_scenario::ComponentPort> ComponentPort_children() const { return Udm::ChildrenAttr<cadena_scenario::ComponentPort>(impl, meta_ComponentPort_children); }
 		 template <class Pred> Udm::ChildrenAttr<cadena_scenario::ComponentPort, Pred> ComponentPort_children_sorted(const Pred &) const { return Udm::ChildrenAttr<cadena_scenario::ComponentPort, Pred>(impl, meta_ComponentPort_children); }
@@ -389,13 +366,13 @@ namespace cadena_scenario {
 
 		Udm::ArchetypeAttr<cadena_scenario::Scenario> Archetype() { return Udm::ArchetypeAttr<cadena_scenario::Scenario>(impl);}
 
-		static Uml::CompositionChildRole meta_ComponentInstance_children;
-		Udm::ChildrenAttr<cadena_scenario::ComponentInstance> ComponentInstance_children() const { return Udm::ChildrenAttr<cadena_scenario::ComponentInstance>(impl, meta_ComponentInstance_children); }
-		 template <class Pred> Udm::ChildrenAttr<cadena_scenario::ComponentInstance, Pred> ComponentInstance_children_sorted(const Pred &) const { return Udm::ChildrenAttr<cadena_scenario::ComponentInstance, Pred>(impl, meta_ComponentInstance_children); }
-
 		static Uml::CompositionChildRole meta_PortConnection_children;
 		Udm::ChildrenAttr<cadena_scenario::PortConnection> PortConnection_children() const { return Udm::ChildrenAttr<cadena_scenario::PortConnection>(impl, meta_PortConnection_children); }
 		 template <class Pred> Udm::ChildrenAttr<cadena_scenario::PortConnection, Pred> PortConnection_children_sorted(const Pred &) const { return Udm::ChildrenAttr<cadena_scenario::PortConnection, Pred>(impl, meta_PortConnection_children); }
+
+		static Uml::CompositionChildRole meta_ComponentInstance_children;
+		Udm::ChildrenAttr<cadena_scenario::ComponentInstance> ComponentInstance_children() const { return Udm::ChildrenAttr<cadena_scenario::ComponentInstance>(impl, meta_ComponentInstance_children); }
+		 template <class Pred> Udm::ChildrenAttr<cadena_scenario::ComponentInstance, Pred> ComponentInstance_children_sorted(const Pred &) const { return Udm::ChildrenAttr<cadena_scenario::ComponentInstance, Pred>(impl, meta_ComponentInstance_children); }
 
 		Udm::ChildrenAttr<cadena_scenario::ESSConnection> ESSConnection_kind_children() const { return Udm::ChildrenAttr<cadena_scenario::ESSConnection>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<cadena_scenario::ESSConnection, Pred> ESSConnection_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<cadena_scenario::ESSConnection, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -481,14 +458,6 @@ namespace cadena_scenario {
 		Udm::AssocAttr<cadena_scenario::EventSink> sinks() const { return Udm::AssocAttr<cadena_scenario::EventSink>(impl, meta_sinks); }
 		template <class Pred> Udm::AssocAttr<cadena_scenario::EventSink, Pred > sinks_sorted(const Pred &) const { return Udm::AssocAttr<cadena_scenario::EventSink, Pred>(impl, meta_sinks); }
 
-		static Uml::AssociationRole meta_picmlEmit;
-		Udm::CrossAssocAttr<PICML::emit> picmlEmit() const { return Udm::CrossAssocAttr<PICML::emit>(impl, meta_picmlEmit); }
-		template<class Pred> Udm::CrossAssocAttr<PICML::emit, Pred> picmlEmit_sorted(const Pred &) const { return Udm::CrossAssocAttr<PICML::emit, Pred>(impl, meta_picmlEmit); }
-
-		static Uml::AssociationRole meta_picmlPublishConnector;
-		Udm::CrossAssocAttr<PICML::PublishConnector> picmlPublishConnector() const { return Udm::CrossAssocAttr<PICML::PublishConnector>(impl, meta_picmlPublishConnector); }
-		template<class Pred> Udm::CrossAssocAttr<PICML::PublishConnector, Pred> picmlPublishConnector_sorted(const Pred &) const { return Udm::CrossAssocAttr<PICML::PublishConnector, Pred>(impl, meta_picmlPublishConnector); }
-
 		Udm::ParentAttr<cadena_scenario::ScenarioElement> parent() const { return Udm::ParentAttr<cadena_scenario::ScenarioElement>(impl, Udm::NULLPARENTROLE); }
 	};
 
@@ -514,9 +483,6 @@ namespace cadena_scenario {
 		template <class Pred> Udm::DerivedAttr<cadena_scenario::FRConnection, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<cadena_scenario::FRConnection, Pred>(impl);}
 
 		Udm::ArchetypeAttr<cadena_scenario::FRConnection> Archetype() { return Udm::ArchetypeAttr<cadena_scenario::FRConnection>(impl);}
-
-		static Uml::AssociationRole meta_picmlInvoke;
-		Udm::CrossPointerAttr<PICML::invoke> picmlInvoke() const { return Udm::CrossPointerAttr<PICML::invoke>(impl, meta_picmlInvoke); }
 
 		Udm::ParentAttr<cadena_scenario::ScenarioElement> parent() const { return Udm::ParentAttr<cadena_scenario::ScenarioElement>(impl, Udm::NULLPARENTROLE); }
 		static Uml::AssociationRole meta_facets_end_;
