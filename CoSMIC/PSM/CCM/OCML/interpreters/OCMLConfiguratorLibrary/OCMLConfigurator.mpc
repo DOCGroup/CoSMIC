@@ -10,8 +10,8 @@ project: wxwindows {
   sharedName = OCMLConfigurator
   macros += OCML_CONFIGURATOR_DLL_ENTRY_EXPORTS _USRDLL WXMAKINGDLL
 
-  libout = $(OCML_ROOT)/lib
-  dllout = $(OCML_ROOT)/bin
+  libout = $(COSMIC_ROOT)/lib
+  dllout = $(COSMIC_ROOT)/bin
 
   specific(em3, nmake, vc6) {
     subsystem = windows

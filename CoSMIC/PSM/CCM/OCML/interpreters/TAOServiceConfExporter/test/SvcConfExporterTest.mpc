@@ -5,7 +5,7 @@ project {
   exename = svc_conf_exporter
 
   libs += OCMLSvcConfExporter
-  libpaths += $(OCML_ROOT)/lib $(OCML_ROOT)/bin
+  libpaths += $(COSMIC_ROOT)/lib $(COSMIC_ROOT)/bin
 
   Source_Files {
     main.cpp

@@ -4,8 +4,8 @@
 project(TAO_PICML_BE) : acedefaults, aceversion, core, crosscompile {
   after       += TAO_IDL_FE
   sharedname   = TAO_PICML_BE
-  libout       = $(OCML_ROOT)/lib
-  dllout       = $(OCML_ROOT)/bin
+  libout       = $(COSMIC_ROOT)/lib
+  dllout       = $(COSMIC_ROOT)/bin
   libpaths    += $(ACE_ROOT)/lib $(XERCESCROOT)/lib
   libs        += ACE TAO_IDL_FE xerces-c_2_5
   dynamicflags = TAO_PICML_BE_BUILD_DLL
@@ -33,8 +33,8 @@ project(TAO_PICML_EXE) : aceexe, core, crosscompile {
   exename         = tao_picml
   libs           += TAO_PICML_BE TAO_IDL_FE
   includes       += . $(TAO_ROOT)/TAO_IDL/include $(TAO_ROOT)/TAO_IDL/fe $(XERCESCROOT)/include
-  libpaths       += $(OCML_ROOT)/lib $(TAO_ROOT)/TAO_IDL $(XERCESCROOT)/lib
-  install         = $(OCML_ROOT)/bin
+  libpaths       += $(COSMIC_ROOT)/lib $(TAO_ROOT)/TAO_IDL $(XERCESCROOT)/lib
+  install         = $(COSMIC_ROOT)/bin
 
   verbatim(gnuace, local) {
     ifeq ($(TAO_IDL_PREPROCESSOR),)
