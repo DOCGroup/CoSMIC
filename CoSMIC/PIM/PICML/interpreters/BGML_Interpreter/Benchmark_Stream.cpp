@@ -590,6 +590,50 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
    this->nl ();
    this->indent ();
    this->strm_ << "history.collect_basic_stats (stats);";
+   this->nl ();
+
+   /// Check if we need to dump the data out to a file
+   if (this->bgml_state_.file_name.size ())
+   {
+	   this->nl ();
+	   this->indent ();
+	   
+	   // Dump samples to the file
+	   this->strm_ << "FILE *output_file= ACE_OS::fopen ("
+		   << this->bgml_state_.file_name 
+		   << ", \"w\");\n";
+
+	   this->indent ();
+	   this->strm_ << "// Iterate on the Samples and print them to a file";
+	   this->nl ();
+	   this->indent ();
+
+	   this->strm_ << "for (size_t j =0; j < "
+		   << (int) this->bgml_state_.benchmark_iterations
+		   << "; j++) \n";
+	   this->incr_indent ();
+	   this->indent ();
+	   this->strm_ << " { \n";
+	   this->incr_indent ();
+
+	   this->nl ();
+	   this->indent ();
+	   this->strm_ << "const ACE_UINT64 x = history.get_sample (j) / gsf; \n";
+	   this->indent ();
+	   this->strm_ << "const ACE_UINT32 val = ACE_CU64_TO_CU32 (x); \n";
+
+	   this->indent ();
+	   this->strm_ << "ACE_OS::fprintf (output_file, \"%d %u\\n\", j, val);";
+	   this->decr_indent ();
+	   
+	   this->nl ();
+	   this->indent ();
+	   this->strm_ << "}\n";
+	   this->decr_indent ();
+	   this->indent ();
+	   this->strm_ << "ACE_OS::fclose (output_file); \n";
+	   this->nl ();
+   }
 
    this->nl ();
    this->indent ();

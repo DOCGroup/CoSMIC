@@ -95,6 +95,7 @@ BGML_Visitor::Visit_BenchmarkAnalysis (const PICML::BenchmarkAnalysis& model)
 		/// Check if there is a priority or rate for the main task
 		this->bgml_state_.benchmark_priority = (* iter).priority ();
 		this->bgml_state_.benchmark_rate     = (* iter).rate ();
+		this->bgml_state_.file_name          = ( * iter).fileName ();
 		
 		// Check if there are any connections to Task Sets
 		PICML::WorkloadCharacteristics task_set = iter->dstWorkloadCharacteristics();
