@@ -90,7 +90,7 @@ PICML models.
 A Windows installer for PICML is available from the CoSMIC web page
 listed above. Just look at the first item under the Downloads header
 near the top of the page. The benchmarking capabilities are part of
-PICML. 
+PICML.
 
 \section* {Prerequisites}
 After installing PICML there are two steps that are
@@ -218,7 +218,7 @@ Figure~\ref{step1}.
 }
 \end{figure}
 
-Step 1 should create a NewComponentAnalyses folder. Rename Right click
+Step 1 should create a NewComponentAnalyses folder. Right click
 on this to insert a BenchmarkAnalysis Model. Currently there is only
 one model or one type of analysis. In future, there might be different
 analysis such as one that is specific for MatLab. In that case, there
@@ -235,22 +235,50 @@ screen as shown in Figure~\ref{step3}.
 
 If not, please go over Steps 1 and 2 to see what went wrong.  To set
 up a simple benchmark, BGML requires the signature of the IDL
-operation or an Event that has to be benchmarked. In the case of an
-operation, it is part of the provided interface of a Facet and
-required by a Receptacle.
+operation or an Event that has to be benchmarked. Either of these
+are to be modeled in the Interface Definitions aspect present in PICML.
 
 \section* {Creating Benchmarking Experiments: A Walk Through}
 In this section, I describe how to create a benchmarking experiment
 with PICML. The example discussed is a part of the RobotAssembly
 example shipped with the PICML installation present in:
-\url{$\$$COSMIC_ROOT/examples/RobotAssembly.xme}. Similar steps can be
+\url{\$COSMIC_ROOT/examples/RobotAssembly.xme}. Similar steps can be
 followed to create other benchmarks.
 
+In this scenario, a pallet (controlled by a {\tt Palette\-Manager}
+component) containing digital watches moves to a robot station
+(controlled by the {\tt Robot\-Manager} component) where its time is
+set using the current time provided by a periodic clock (controlled by
+a {\tt Watch\-Manager}).  The management for the watch setting
+facility located at a remote site can send production work orders and
+receive response to orders, ongoing work status, inventory, and other
+messages. These instructions are sent to the {\tt Watch\-Manager}
+component using {\tt Management\-Work\-Instructions} ({\tt MWI})
+component. The {\tt Watch\-Manager} component interacts with a human
+operator who using the {\tt Human\-Machine\-Interface} ({\tt HMI})
+component accepts/rejects the watch.  When the watch is accepted, the
+{\tt Watch\-Manager} component uses the {\tt Robot\-Manager} component
+to set the time.  When a watch is rejected, however, the {\tt
+Robot\-Manager} component removes the watch from the assembly line.
+Figure~\ref{fig:robotassembly} illustrates this assembly of
+components.
+
+\begin{figure}[htpb]
+\begin{center}
+\includegraphics[width=5cm]{RobotAssembly.png}
+\bfcaption{RobotAssembly Scenario}
+\label{fig:robotassembly}
+\end{center}
+\end{figure}
+
 Figure~\ref{interaction} depicts the interaction between the
-components in the RobotAssembly scenario. As shown in the figure,
-\url{HumanMachineInterface} and \url{WatchSettingManager} component
-interact via a facet(\url{DisplayResponse}) receptacle
-(\url{HumanResponse}) communication.
+components in the RobotAssembly scenario using PICML. The details on
+how to model the scenario in PICML is external to this document. More
+details should be available from the PICML documentation guide. As
+shown in the figure, \url{HumanMachineInterface} and
+\url{WatchSettingManager} component interact via a
+facet(\url{DisplayResponse}) receptacle (\url{HumanResponse})
+communication.
 
 \begin{figure}[ht]
 \sidebyside {
@@ -304,7 +332,7 @@ Figure~\ref{bgml-copy}.
  \label{bgml-copy}
 }
 {
- \includegraphics[width=4cm]{BGML-Latency.png}
+ \includegraphics[width=5cm]{BGML-Latency.png}
  \caption{Associating Round-trip Latency with Operation}
  \label{bgml-latency}
 }
@@ -314,19 +342,19 @@ Figure~\ref{bgml-copy}.
 \noindent {\bf Step 2:} Once the operation signature has been copied,
 associate either Latency or Throughput metric with this operation. In
 our case, we drag the latency icon from the palette and drop onto the
-pane. Then using the {\bf Connect Mode} provided by GME, associate the
+pane. Then using the {\em Connect Mode} provided by GME, associate the
 operation with the Latency Metric. This is done by selecting the
 source, (operation reference) and the sink (latency element) one at a
 time. Figure~\ref{bgml-latency} shows the resulting step.
 
 \begin{figure}[ht]
 \sidebyside {
- \includegraphics[width=6cm]{BGML-Task-Assoc.png}
+ \includegraphics[width=7cm]{BGML-Task-Assoc.png}
  \bfcaption{Associating Tasks with TaskSet}
  \label{task-association}
 }
 {
- \includegraphics[width=6cm]{BGML-Latency-Complete.png}
+ \includegraphics[width=7cm]{BGML-Latency-Complete.png}
  \bfcaption{Associating Task Set with Latency Metric}
  \label{task-complete}
 }
@@ -342,31 +370,33 @@ actual iterations. This can be configured using the attributes.
 with the experiment. To do this first drag a task set element from the
 palette. Next, drag and drop the required number of background tasks
 using the task element in the palette. Associate each of these tasks
-with the task set. For doing this use the {\bf Set Mode} provided in
+with the task set. For doing this use the {\em Set Mode} provided in
 GME and select the individual tasks to be part of the task set. This
-is shown in Figure~\ref{task-association}. Next using the {\bf Connect Mode}
+is shown in Figure~\ref{task-association}. Next using the {\em Connect Mode}
 connect the latency metric with the task set.
 
 \paragraph* {\bf Checking Constraints.}
-Once this is done. Please check for constraint violations. This can be done by
-choosing. File->Check-> Check All constraints from the File menu in GME. There
-should not be any constraint violations. The final experiment visually should
-look like what is shown in Figure~\ref{task-complete}. If there are any, please see if they
-pertain to the BGML paradigm and revisit steps 1-4 to ensure you have followed
-all the steps. If there are still violations, please export the GME model via
-File->Export XML and send the resulting file to arvindk@dre.vanderbilt.edu If
-there are no violations you are ready to interpret the file and look at the
-generated code. This step is discussed in the next section. Similar steps can
-be followed for events.
+Once this is done. Please check for constraint violations. This can be
+done by choosing. File$\rightarrow$Check$\rightarrow$Check All
+constraints from the File menu in GME. There should not be any
+constraint violations. The final experiment visually should look like
+what is shown in Figure~\ref{task-complete}. If there are any, please
+see if they pertain to the BGML paradigm and revisit steps 1-4 to
+ensure you have followed all the steps. If there are still violations,
+please export the GME model via File$\rightarrow$Export XML and send the
+resulting file to arvindk@dre.vanderbilt.edu If there are no
+violations you are ready to interpret the file and look at the
+generated code. This step is discussed in the next section. Similar
+steps can be followed for events.
 
 \paragraph* {\bf Associating Timer probes:}
 To associate a timer probe connection with either an operation or an
 event, follow Step 1 described earlier. Next drag and drop the Timer
 element and create a connection between the operation/event with the
-timer probe. This should be done using the {\bf Connect Mode} as
+timer probe. This should be done using the {\em Connect Mode} as
 described earlier.  A single timer atom can be connected to multiple
 operations or events. After this association, please follow
-instructions on how to check constraints via {\bf Checking
+instructions on how to check constraints via {\em Checking
 Constraints} section explained earlier.
 
 \section* {Generated Code: A Walk Through}
@@ -384,7 +414,7 @@ from \url{http://deuce.doc.wustl.edu/Download.html}. This also means
 that currently BGML generates C++ code. We do plan to generate java
 benchmarking code as well. If you are interested or need this
 functionality please email me at arvindk@dre.vanderbilt.edu. Next
-we describe the generated code from BGML model interpreters.
+a description of the generated code is provided.
 
 \subsection* {Benchmark Header \& Source Files}
 The interpreter generates header and source files that have
@@ -518,25 +548,27 @@ Benchmark_AcceptWorkOrderResponse<T>::svc (void)
 
 \end{verbatim}
 }
-\normalsize 
-As illustrated in the code snippet, the \url{svc ()} method first warms up
-the system by invoking the required number of warmup iterations. Based on the number
-of background tasks modeled, in our case 3, the interpreter generates three
-\url{AcceptWorkOrderResponse_Workload} background tasks each of which send requests
-concurrently when the actual benchmarking operation is done. The next
-step activates each of these tasks. Once the background tasks are
-activated, the actual benchmarking code to measure the round trip
-latency is generated. Finally, after computing the results, the
+\normalsize
+As illustrated in the code snippet, the \url{svc ()} method first
+warms up the system by invoking the required number of warmup
+iterations. Based on the number of background tasks modeled, in our
+case 3, the interpreter generates three
+\url{AcceptWorkOrderResponse_Workload} background tasks each of which send
+requests concurrently when the actual benchmarking operation is
+done. The next step activates each of these tasks. Once the background
+tasks are activated, the actual benchmarking code to measure the round
+trip latency is generated. Finally, after computing the results, the
 statistics are displayed.
 
 \subsection* {Build file}
-The model interpreter also generates a build file to compile the generated benchmark
-code and create a shared library that can be linked to the actual application that
-requires this functionality. The build files use MPC (Make Project Creator) which
-generates the required Makefiles or Visual C++ build files. MPC is available for
-download from OCI via \url{http://www.ociweb.com/product/mpc/}. We provide the
-build file for sake of completeness. The next section describes how one can build
-and run the benchmarks.
+The model interpreter also generates a build file to compile the
+generated benchmark code and create a shared library that can be
+linked to the actual application that requires this functionality. The
+build files use MPC (Make Project Creator) which generates the
+required Makefiles or Visual C++ build files. MPC is available for
+download from OCI via \url{http://www.ociweb.com/product/mpc/}. We
+provide the build file for sake of completeness. The next section
+describes how one can build and run the benchmarks.
 
 {
 \footnotesize
@@ -659,7 +691,7 @@ information: \url{http://www.cs.utah.edu/~regehr/hourglass/}.
 
 \section* {Summary}
 This document dealt with modeling and generation of benchmarking
-experiments using BGML. The tool automates the manual task of
+experiments using BGML. This tool automates the manual task of
 generating benchmarks from models with very less overhead. The
 generated code and the build files can be used to compile the files on
 multiple platforms with no user modifications. We have used the tool
@@ -668,6 +700,6 @@ The configuration information generated from the OCML tool (part of the
 CoSMIC tool chain). Similarly the tool can also be used to evaluate the
 deployment plan, {\em i.e.}, how components map on to target nodes. Any
 feedback, suggestion or criticism please direct to
-Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+Arvind S. Krishna arvindk@dre.vanderbilt.edu.
 
 \end{document}
