@@ -1,3 +1,38 @@
+Mon Aug 2 20:17:28 CDT 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+        * PIM/PICML/MPC
+          Project for creation and generation of MPC files to build 
+          Components
+
+        * PIM/PICML/icons/comp-proj.bmp:
+        * PIM/PICML/icons/Workspace.bmp:
+        * PIM/PICML/icons/project.bmp:
+          icons for the MPC project
+
+        * PIM/PICML/MPC/Component/Component.dsp:
+        * PIM/PICML/MPC/Component/Component.dsw:
+        * PIM/PICML/MPC/Component/compicon.ico:
+        * PIM/PICML/MPC/Component/Component.def:
+        * PIM/PICML/MPC/Component/ComHelp.cpp:
+        * PIM/PICML/MPC/Component/ComponentConfig.h:
+        * PIM/PICML/MPC/Component/ComponentLib.h:
+        * PIM/PICML/MPC/Component/ComponentObj.h:
+        * PIM/PICML/MPC/Component/GMECOM.h:
+        * PIM/PICML/MPC/Component/MPCStream.h:
+        * PIM/PICML/MPC/Component/MPCStream.cpp:
+        * PIM/PICML/MPC/Component/PICML.h:
+        * PIM/PICML/MPC/Component/PICML.cpp:
+        * PIM/PICML/MPC/Component/MPC_Visitor.h:
+        * PIM/PICML/MPC/Component/MPC_Visitor.cpp:
+        * PIM/PICML/MPC/Component/ComponentDll.h:
+        * PIM/PICML/MPC/Component/ComponentDll.cpp:
+
+          Interpreter files 
+
+        * PIM/PICML/MPC/Component/generate_export.pl:
+          Perl script to generate the export file
+
+
+
 Mon Aug  2 08:56:29 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/IDML/*.*:
