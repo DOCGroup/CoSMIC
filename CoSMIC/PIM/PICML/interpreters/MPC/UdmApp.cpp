@@ -31,7 +31,7 @@ int CUdmApp::Initialize()
 
 static void showUsage()
 {
-  AfxMessageBox ("Interpretation must start from and IDL File");
+  AfxMessageBox ("Interpretation must start from MPC (build) Paradigm");
   return;
 }
 

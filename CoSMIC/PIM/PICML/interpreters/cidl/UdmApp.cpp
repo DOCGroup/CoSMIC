@@ -163,7 +163,7 @@ void CUdmApp::UdmMain(
 		AfxMessageBox(e.what());
     }
 	
-	AfxMessageBox ("Cidl files were successfully generated!");
+	AfxMessageBox ("cidl files successfully generated!");
 	return;
 	
 #ifdef _DEBUG
@@ -192,8 +192,6 @@ void CUdmApp::UdmMain(
 	/****************************** Demo Code End *************************/
 	
 }
-
-
 
 #ifdef _DEBUG
 /*****************************************************/
