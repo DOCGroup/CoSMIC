@@ -68,13 +68,11 @@ if (os.path.splitext(cadenascenario_file)[1]!='.xml') :
     print 'Fatal: The specified filename for CadenaScenario '+quotes+cadenascenario_file+quotes+' does not have .xml extension!\nExiting.'
     sys.exit(-1)
 
-#checking existence of files
+#checking existence of files (only picml_file for the export transformation)
 if (False==os.path.isfile(picml_file)) :
     print 'Fatal: File '+quotes+picml_file+quotes+' not found.\nExiting.'
     sys.exit(-1)
-if (False==os.path.isfile(cadenascenario_file)) :
-    print 'Fatal: File '+quotes+cadenascenario_file+quotes+' not found.\nExiting.'
-    sys.exit(-1)
+
 
 
 greinvocationcommand = 'gre.exe'+ space +quotes+transformations_fullpath+'PICML2Cadena_Configuration.mga'+quotes
