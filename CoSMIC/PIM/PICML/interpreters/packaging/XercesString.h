@@ -5,7 +5,7 @@
 
 
 #include <iosfwd>
-
+#include <string>
 #include <xercesc/util/XMLString.hpp>
 
 // Utility class that provides a std::string like facade to XMLString.
@@ -45,15 +45,16 @@ namespace PICML
 
     const XMLCh operator [] (const int i) const;
 
-    operator const XMLCh* () const { return _wstr; };
-
+    operator const XMLCh* () const;
+	
+	char* c_str() const;
+	
     bool operator== (const XMLCh* wstr) const;
 
 
   private:
 
     XMLCh* _wstr; // Internal representation
-
   };
 
   bool operator== (const XStr& lhs, const XStr& rhs);

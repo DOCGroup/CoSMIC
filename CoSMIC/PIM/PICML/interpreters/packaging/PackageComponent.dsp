@@ -52,7 +52,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 xerces-c_2_5D.lib xerces-c_2D.lib ZlibD.lib UdmBase_D.lib UdmDom_D.lib UdmUtil_D.lib UdmGme_D.lib /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept /libpath:"$(XERCESCROOT)/lib" /libpath:"$(UDM_PATH)\lib" /libpath:"$(UDM_PATH)\3rdParty\zlib" /libpath:"$(UDM_PATH)\3rdParty\xerces\xerces-c2_2_0-win32\lib"
+# ADD LINK32 xerces-c_2_5D.lib xerces-c_2D.lib ZlibD.lib UdmBase_D.lib UdmDom_D.lib UdmUtil_D.lib UdmGme_D.lib rpcrt4.lib /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept /libpath:"$(XERCESCROOT)/lib" /libpath:"$(UDM_PATH)\lib" /libpath:"$(UDM_PATH)\3rdParty\zlib" /libpath:"$(UDM_PATH)\3rdParty\xerces\xerces-c2_2_0-win32\lib"
 # SUBTRACT LINK32 /pdb:none
 # Begin Custom Build - Performing registration
 OutDir=.\Debug
@@ -89,15 +89,16 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 xerces-c_2.lib Zlib.lib /nologo /subsystem:windows /dll /machine:I386 /out:"Release/Component.dll" /libpath:"$(UDM_PATH)\3rdParty\zlib" /libpath:"$(UDM_PATH)\3rdParty\xerces\xerces-c2_2_0-win32\lib"
-# ADD LINK32 xerces-c_2_5.lib xerces-c_2.lib Zlib.lib UdmBase.lib UdmDom.lib UdmUtil.lib UdmGme.lib /nologo /subsystem:windows /dll /machine:I386 /libpath:"$(XERCESCROOT)/lib" /libpath:"$(UDM_PATH)\lib" /libpath:"$(UDM_PATH)\3rdParty\zlib" /libpath:"$(UDM_PATH)\3rdParty\xerces\xerces-c2_2_0-win32\lib"
+# ADD LINK32 xerces-c_2_5.lib xerces-c_2.lib Zlib.lib UdmBase.lib UdmDom.lib UdmUtil.lib UdmGme.lib rpcrt4.lib /nologo /subsystem:windows /dll /machine:I386 /libpath:"$(XERCESCROOT)/lib" /libpath:"$(UDM_PATH)\lib" /libpath:"$(UDM_PATH)\3rdParty\zlib" /libpath:"$(UDM_PATH)\3rdParty\xerces\xerces-c2_2_0-win32\lib"
 # Begin Custom Build - Performing registration
 OutDir=.\Release
-TargetPath=.\Release\PackageComponent.dll
+TargetDir=.\Release
+TargetName=PackageComponent
 InputPath=.\Release\PackageComponent.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	regsvr32 /c "$(TargetPath)" 
+	regsvr32 /c "$(TargetDir)\$(TargetName)" 
 	echo regsvr32 exec. time > "$(OutDir)\regsvr32.trg" 
 	
 # End Custom Build
@@ -179,15 +180,15 @@ SOURCE="C:\Program Files\GME\SDK\BON\ComponentObj.cpp"
 # End Source File
 # Begin Source File
 
+SOURCE=.\PackageVisitor.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\PICML.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=.\RawComponent.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\SchemaVisitor.cpp
 # End Source File
 # Begin Source File
 
@@ -197,6 +198,10 @@ SOURCE=.\StdAfx.cpp
 # Begin Source File
 
 SOURCE=.\UdmApp.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\UuidString.cpp
 # End Source File
 # Begin Source File
 
@@ -228,6 +233,10 @@ SOURCE="C:\Program Files\GME\SDK\BON\GMECOM.H"
 # End Source File
 # Begin Source File
 
+SOURCE=.\PackageVisitor.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\PICML.h
 # End Source File
 # Begin Source File
@@ -240,10 +249,6 @@ SOURCE=.\Resource.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\SchemaVisitor.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\StdAfx.h
 # End Source File
 # Begin Source File
@@ -253,6 +258,10 @@ SOURCE=.\UdmApp.h
 # Begin Source File
 
 SOURCE=.\UdmConfig.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\UuidString.h
 # End Source File
 # Begin Source File
 

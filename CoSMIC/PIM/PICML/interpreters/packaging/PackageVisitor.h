@@ -11,19 +11,64 @@
 // Utility includes
 #include "XercesString.h"
 
+using xercesc::DOMImplementation;
+using xercesc::DOMDocument;
+using xercesc::DOMElement;
+using xercesc::DOMElement;
+using xercesc::DOMWriter;
+using xercesc::XMLFormatTarget;
+
 namespace PICML
 {
   class PackageVisitor: public Visitor
   {
   public:
 
-    PackageVisitor();
+    PackageVisitor (const std::string& path, const std::string& rootName);
     ~PackageVisitor();
-    virtual void Visit_Property(const Property&){};
-    virtual void Visit_ImplementationRequirement(const ImplementationRequirement&){};
+
+    void init();
+    void initRootAttributes();
+    void dumpDocument();
+
+    DOMElement* createSimpleContent (const std::string& name,
+                                     const std::string& value);
+
+    // Lord Of the Rings..
+    virtual void Visit_RootFolder(const RootFolder&);
+
+    // Predefined Types
+    virtual void Visit_LongInteger(const LongInteger&);
+    virtual void Visit_String(const String&);
+    virtual void Visit_Boolean(const Boolean&);
+    virtual void Visit_ShortInteger(const ShortInteger&);
+
+	virtual void Visit_GenericValue(const GenericValue&){};
+    virtual void Visit_Byte(const Byte&){};
+    virtual void Visit_TypeKind(const TypeKind&){};
+    virtual void Visit_GenericObject(const GenericObject&){};
+    virtual void Visit_RealNumber(const RealNumber&){};
+    virtual void Visit_PredefinedTypes(const PredefinedTypes&){};
+    virtual void Visit_TypeEncoding(const TypeEncoding&){};
+    virtual void Visit_GenericValueObject(const GenericValueObject&){};
+
+    // Implementation Artifact operations
+
+    virtual void Visit_ImplementationArtifacts(const ImplementationArtifacts&);
+    virtual void Visit_ArtifactContainer(const ArtifactContainer&);
+    virtual void Visit_ImplementationArtifact(const ImplementationArtifact&);
+    virtual void Visit_ArtifactDependsOn(const ArtifactDependsOn&);
+    virtual void Visit_ImplementationArtifactReference(const ImplementationArtifactReference&);
+    virtual void Visit_ArtifactExecParameter(const ArtifactExecParameter&);
+    virtual void Visit_Property(const Property&);
+    virtual void Visit_DataType(const DataType&);
+
+    virtual void Visit_ArtifactDeployRequirement(const ArtifactDeployRequirement&);
+    virtual void Visit_ArtifactInfoProperty(const ArtifactInfoProperty&);
+    virtual void Visit_ImplementationRequirement(const ImplementationRequirement&);
+
     virtual void Visit_Requirement(const Requirement&){};
     virtual void Visit_SatisfierProperty(const SatisfierProperty&){};
-    virtual void Visit_DataType(const DataType&){};
     virtual void Visit_ImplementationDependency(const ImplementationDependency&){};
     virtual void Visit_Capability(const Capability&){};
     virtual void Visit_AssemblyselectRequirement(const AssemblyselectRequirement&){};
@@ -36,7 +81,7 @@ namespace PICML
     virtual void Visit_emit(const emit&){};
     virtual void Visit_invoke(const invoke&){};
     virtual void Visit_package(const package&){};
-    virtual void Visit_TopLevelPackageFolder(const TopLevelPackageFolder&){};
+    virtual void Visit_TopLevelPackages(const TopLevelPackages&){};
     virtual void Visit_TopLevelPackageContainer(const TopLevelPackageContainer&){};
     virtual void Visit_TopLevelPackage(const TopLevelPackage&){};
     virtual void Visit_ComponentPackage(const ComponentPackage&){};
@@ -92,14 +137,6 @@ namespace PICML
     virtual void Visit_PackageConfSpecializedConfig(const PackageConfSpecializedConfig&){};
     virtual void Visit_PackageConfSelectRequirement(const PackageConfSelectRequirement&){};
     virtual void Visit_PackageConfBasePackage(const PackageConfBasePackage&){};
-    virtual void Visit_ArtifactExecParameter(const ArtifactExecParameter&){};
-    virtual void Visit_ArtifactDeployRequirement(const ArtifactDeployRequirement&){};
-    virtual void Visit_ImplementationArtifacts(const ImplementationArtifacts&){};
-    virtual void Visit_ImplementationArtifact(const ImplementationArtifact&){};
-    virtual void Visit_ArtifactInfoProperty(const ArtifactInfoProperty&){};
-    virtual void Visit_ArtifactContainer(const ArtifactContainer&){};
-    virtual void Visit_ArtifactDependsOn(const ArtifactDependsOn&){};
-    virtual void Visit_ImplementationArtifactReference(const ImplementationArtifactReference&){};
     virtual void Visit_InParameter(const InParameter&){};
     virtual void Visit_TwowayOperation(const TwowayOperation&){};
     virtual void Visit_OnewayOperation(const OnewayOperation&){};
@@ -126,18 +163,6 @@ namespace PICML
     virtual void Visit_Discriminator(const Discriminator&){};
     virtual void Visit_Enum(const Enum&){};
     virtual void Visit_LabelConnection(const LabelConnection&){};
-    virtual void Visit_Boolean(const Boolean&){};
-    virtual void Visit_GenericValue(const GenericValue&){};
-    virtual void Visit_LongInteger(const LongInteger&){};
-    virtual void Visit_Byte(const Byte&){};
-    virtual void Visit_TypeKind(const TypeKind&){};
-    virtual void Visit_GenericObject(const GenericObject&){};
-    virtual void Visit_ShortInteger(const ShortInteger&){};
-    virtual void Visit_RealNumber(const RealNumber&){};
-    virtual void Visit_PredefinedTypes(const PredefinedTypes&){};
-    virtual void Visit_String(const String&){};
-    virtual void Visit_TypeEncoding(const TypeEncoding&){};
-    virtual void Visit_GenericValueObject(const GenericValueObject&){};
     virtual void Visit_SetException(const SetException&){};
     virtual void Visit_LookupKey(const LookupKey&){};
     virtual void Visit_Attribute(const Attribute&){};
@@ -159,7 +184,15 @@ namespace PICML
     virtual void Visit_InEventPort(const InEventPort&){};
     virtual void Visit_ComponentRef(const ComponentRef&){};
     virtual void Visit_ComponentFactory(const ComponentFactory&){};
-    virtual void Visit_RootFolder(const RootFolder&){};
     virtual void Visit_Object(const Udm::Object&){};
+  private:
+
+    DOMImplementation*  impl_;
+    DOMDocument*        doc_;
+    DOMElement*         root_;
+    DOMElement*         curr_;
+    DOMWriter*          serializer_;
+    XMLFormatTarget*    target_;
+    std::string         rootName_;
   };
 }

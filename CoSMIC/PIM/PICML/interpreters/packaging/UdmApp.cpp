@@ -19,8 +19,10 @@
 // Tihamér Levendovszky 05-13-02
 
 #include "stdafx.h"
+#pragma warning( disable : 4290 )
 #include <afxdlgs.h> // For CFileDialog
 #include "resource.h"
+#include <stdlib.h>
 
 // Xerces includes
 #include <xercesc/util/PlatformUtils.hpp>
@@ -39,7 +41,11 @@
 #include "UdmConfig.h"
 
 #include "PICML.h"
+#include "PackageVisitor.h"
 
+using xercesc::XMLPlatformUtils;
+using xercesc::XMLException;
+using PICML::XStr;
 
 extern void dummy(void); // Dummy function for UDM meta initialization
 
@@ -50,169 +56,6 @@ int CUdmApp::Initialize()
 {
   return 0;
 }
-
-/*
-  Remarks to CUdmApp::UdmMain(...):
-  0. The p_backend points to an already open backend, and the framework
-     closes it automatically. DO NOT OPEN OR CLOSE IT! To commit changes
-     use p_backend->CommitEditSequence(). To abort changes use
-     p_backend->AbortEditSequence(). To save changes to a different file
-     use p_backend->SaveAs() or p_backend->CloseAs().
-
-  1. Focus is the currently open model.
-
-  2. The possible values for param (from GME DecoratorLib.h
-     component_startmode_enum):
-     GME_MAIN_START		=   0,
-     GME_BROWSER_START		=   1,
-     GME_CONTEXT_START		=   2,
-     GME_EMBEDDED_START		=   3,
-     GME_MENU_START		=  16,
-     GME_BGCONTEXT_START	=  18,
-     GME_ICON_START		=  32,
-     METAMODEL_CHECK_SYNTAX	= 101
-
-  3. The framework catches all the exceptions and reports the error in a
-     message box, clean up and close the transactions aborting the changes.
-     You can override this behavior by catching udm_exception. Use
-     udm_exception::what() to form an error message.
-*/
-
-/***********************************************/
-/* Main entry point for Udm-based Interpreter  */
-/***********************************************/
-
-void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
-                                                        // (already open!)
-                      Udm::Object focusObject,          // Focus object
-                      set<Udm::Object> selectedObjects,	// Selected objects
-                      long param)			// Parameters
-{
-  try
-    {
-      XMLPlatformUtils::Initialize();
-    }
-  catch (const XMLException& toCatch)
-    {
-      AfxMessageBox ("Error during Xerces-c Initialization.\n"
-                     "  Exception message:" + XStr (toCatch.getMessage()));
-      return;
-    }
-  std::string outputPath;
-  std::string message = "Please specify the Output Directory";
-  getPath (message, outputPath);
-
-
-  if (focusObject == Udm::null && selectedObjects.empty())
-    {
-    }
-
-  std::set<Udm::Object> mySet (setSelectedFCOs);
-  if (focusObject != Udm::null)
-    mySet.insert (currentFCO);
-
-  std::string messageText = "The following files: \n";
-
-  for (std::set<Udm::Object>::iterator iter = mySet.begin();
-       iter != mySet.end();
-       ++iter)
-    {
-      std::string fileBase;
-      std::string fileExt;
-      if ((*iter)->getFCOMeta().name() == "TopLevelPackage")
-          {
-            fileBase = "package";
-            fileExt = ".pcd";
-          }
-        else if ((*iter)->getFCOMeta().name() == "ImplementationArtifact")
-          fileExt = ".iad";
-        else if ((*iter)->getFCOMeta().name() == "ComponentInterface")
-          fileExt = ".ccd";
-        else if ((*iter)->getFCOMeta().name() == "ComponentPackage")
-          fileExt = ".cpd";
-        else if ((*iter)->getFCOMeta().name() == "ComponentImplementation")
-          fileExt = ".cid";
-        else
-          {
-            AfxMessageBox ("Interpretation must start from a TopLevelPackage, "
-                           "or an ImplementationArtifact, or a "
-                           "ComponentInterface, or a ComponentPackage, "
-                           "ComponentImplementation !");
-            return;
-          }
-
-        FCO root = (*iter);
-        // Set the name of the root element
-        std::string rootPrefix ("Deployment:");
-        std::string rootSuffix ("Description");
-        std::string rootName (root->getFCOMeta().name());
-        if (fileBase.length() == 0)
-          fileBase = root->getName();
-        rootName = rootPrefix + rootName + rootSuffix;
-        std::string fileName = fileBase + fileExt;
-        fileName = outputPath + "\\" + fileName;
-
-        Compass::SchemaVisitor* visitor = new Compass::SchemaVisitor(fileName,
-                                                                     rootName);
-        std::auto_ptr<Compass::SchemaVisitor> cleanup_visitor (visitor);
-        if ((*iter)->getFCOMeta().name() == "TopLevelPackage")
-          {
-            Compass::TopLevelPackage start
-              = Compass::TopLevelPackage ((*iter));
-            start->accept(visitor);
-          }
-        else if ((*iter)->getFCOMeta().name() == "ImplementationArtifact")
-          {
-            Compass::ImplementationArtifact start
-              = Compass::ImplementationArtifact ((*iter));
-            start->accept(visitor);
-          }
-        else if ((*iter)->getFCOMeta().name() == "ComponentInterface")
-          {
-            Compass::ComponentInterface start
-              = Compass::ComponentInterface ((*iter));
-            start->accept(visitor);
-          }
-        else if ((*iter)->getFCOMeta().name() == "ComponentPackage")
-          {
-            Compass::ComponentPackage start
-              = Compass::ComponentPackage ((*iter));
-            start->accept(visitor);
-          }
-        else if ((*iter)->getFCOMeta().name() == "ComponentImplementation")
-          {
-            Compass::ComponentImplementation start
-              = Compass::ComponentImplementation ((*iter));
-            start->accept(visitor);
-          }
-        visitor->printDocument();
-        messageText += fileName + "\n";
-      }
-    try
-      {
-        XMLPlatformUtils::Terminate();
-      }
-    catch (const XMLException& toCatch)
-      {
-        AfxMessageBox ("Error during Xerces-c Finalization.\n"
-                       "  Exception message:" + XStr (toCatch.getMessage()));
-        return;
-      }
-    AfxMessageBox (messageText.c_str() + CString(" were successfully generated ! "));    return;
-
-    try
-    {
-
-
-
-    }
-
-  catch(udm_exception &e)
-    {
-      AfxMessageBox(e.what());
-    }
-}
-
 
 // This method prompts a dialog to allow the user to specify a folder
 bool getPath (const std::string& description, std::string& path)
@@ -263,6 +106,193 @@ bool getPath (const std::string& description, std::string& path)
         }
     }
   return true;
+}
+
+/*
+  Remarks to CUdmApp::UdmMain(...):
+  0. The p_backend points to an already open backend, and the framework
+  closes it automatically. DO NOT OPEN OR CLOSE IT! To commit changes
+  use p_backend->CommitEditSequence(). To abort changes use
+  p_backend->AbortEditSequence(). To save changes to a different file
+  use p_backend->SaveAs() or p_backend->CloseAs().
+
+  1. Focus is the currently open model.
+
+  2. The possible values for param (from GME DecoratorLib.h
+  component_startmode_enum):
+  GME_MAIN_START		=   0,
+  GME_BROWSER_START		=   1,
+  GME_CONTEXT_START		=   2,
+  GME_EMBEDDED_START		=   3,
+  GME_MENU_START		=  16,
+  GME_BGCONTEXT_START	=  18,
+  GME_ICON_START		=  32,
+  METAMODEL_CHECK_SYNTAX	= 101
+
+  3. The framework catches all the exceptions and reports the error in a
+  message box, clean up and close the transactions aborting the changes.
+  You can override this behavior by catching udm_exception. Use
+  udm_exception::what() to form an error message.
+*/
+
+/***********************************************/
+/* Main entry point for Udm-based Interpreter  */
+/***********************************************/
+
+void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
+                                                        // (already open!)
+                      Udm::Object focusObject,          // Focus object
+                      set<Udm::Object> selectedObjects,	// Selected objects
+                      long param)			// Parameters
+{
+  try
+    {
+      XMLPlatformUtils::Initialize();
+    }
+  catch (const XMLException& toCatch)
+    {
+      AfxMessageBox ("Error during Xerces-c Initialization.\n"
+                     "  Exception message:" + CString (XStr (toCatch.getMessage())));
+      return;
+    }
+  std::string outputPath;
+  std::string message = "Please specify the Output Directory";
+  getPath (message, outputPath);
+  std::string messageText = "The following files: \n";
+
+  try
+    {
+      if (focusObject == Udm::null && selectedObjects.empty())
+        {
+
+        }
+      else
+        {
+          std::set<Udm::Object> mySet (selectedObjects);
+          if (focusObject != Udm::null)
+            mySet.insert (focusObject);
+
+
+          for (std::set<Udm::Object>::iterator iter = mySet.begin();
+               iter != mySet.end();
+               ++iter)
+            {
+              std::string fileBase;
+              std::string fileExt;
+              std::string kindName = (*iter).type().name();
+              const char* name = kindName.c_str();
+              AfxMessageBox ("Iter's name is " + CString (name));
+              if (strcmp (name, "TopLevelPackages") == 0
+                  || strcmp (name, "TopLevelPackageContainer") == 0)
+                {
+                  fileBase = "package";
+                  fileExt = ".tpd";
+                }
+              else if (strcmp (name, "ImplementationArtifacts") == 0 ||
+                       strcmp (name, "ImplementationArtifactContainer") == 0)
+                fileExt = ".iad";
+              else if (strcmp (name, "ComponentTypes") == 0
+                       || strcmp (name, "ComponentContainer") == 0)
+                fileExt = ".ccd";
+              else if (strcmp (name, "ComponentPackages") == 0
+                       || strcmp (name, "PackageContainer") == 0)
+                fileExt = ".cpd";
+              else if (strcmp (name, "ComponentImplementations") == 0 ||
+                       strcmp (name, "ComponentImplementationContainer") == 0)
+                fileExt = ".cid";
+              else if (strcmp (name, "PackageConfigurations") == 0 ||
+                       strcmp (name, "PackageConfigurationContainer") == 0)
+                fileExt = ".pcd";
+              else
+                {
+                  AfxMessageBox ("Interpretation must start from either \n"
+                                 "TopLevelPackages/TopLevelPackageContainer, \n"
+                                 "ComponentTypes/ComponentContainer, \n"
+                                 "ComponentPackages/ComponentPackageContainer, \n"
+                                 "ComponentImplementations/ComponentImplementationContainer, \n"
+                                 "ImplementationArtifacts/ImplementationArtifactContainer, \n"
+                                 "PackageConfigurations/PackageConfigurationContainer.");
+                  return;
+                }
+
+              Udm::Object root = *iter;
+              // Set the name of the root element
+              std::string rootPrefix ("Deployment:");
+              std::string rootSuffix ("Description");
+              std::string rootName (root.type().name());
+              if (fileBase.length() == 0)
+                fileBase = rootName;
+              rootName = rootPrefix + rootName + rootSuffix;
+              std::string fileName = fileBase + fileExt;
+              fileName = outputPath + "\\" + fileName;
+
+              PICML::PackageVisitor visitor (fileName, rootName);
+              if (strcmp (name, "TopLevelPackages") == 0)
+                {
+                  PICML::TopLevelPackages start
+                    = PICML::TopLevelPackages::Cast (root);
+                  start.Accept(visitor);
+                }
+              else if (strcmp (name, "ImplementationArtifacts") == 0)
+                {
+                  PICML::ImplementationArtifacts start
+                    = PICML::ImplementationArtifacts::Cast (root);
+                  start.Accept(visitor);
+                }
+              else if (strcmp (name, "ComponentTypes") == 0)
+                {
+                  PICML::ComponentTypes start
+                    = PICML::ComponentTypes::Cast (root);
+                  start.Accept(visitor);
+                }
+              else if (strcmp (name, "ComponentPackages") == 0)
+                {
+                  PICML::ComponentPackages start
+                    = PICML::ComponentPackages::Cast (root);
+                  start.Accept(visitor);
+                }
+              else if (strcmp (name, "ComponentImplementations") == 0)
+                {
+                  PICML::ComponentImplementations start
+                    = PICML::ComponentImplementations::Cast (root);
+                  start.Accept(visitor);
+                }
+              else if (strcmp (name, "PackageConfigurations") == 0)
+                {
+                  PICML::PackageConfigurations start
+                    = PICML::PackageConfigurations::Cast (root);
+                  start.Accept (visitor);
+                }
+              else if (strcmp (name, "PackageConfigurationContainer") == 0)
+                {
+                  PICML::PackageConfigurationContainer start
+                    = PICML::PackageConfigurationContainer::Cast (root);
+				  std::string mesg = start.name();
+				  AfxMessageBox ("My name is " + CString (mesg.c_str()));
+                  start.Accept (visitor);
+                }
+              visitor.dumpDocument();
+              messageText += fileName + "\n";
+            }
+        }
+    }
+
+  catch(udm_exception &e)
+    {
+      AfxMessageBox(e.what());
+    }
+  try
+    {
+      XMLPlatformUtils::Terminate();
+    }
+  catch (const XMLException& toCatch)
+    {
+      AfxMessageBox ("Error during Xerces-c Finalization.\n"
+                     "  Exception message:" + CString (XStr (toCatch.getMessage())));
+      return;
+    }
+  AfxMessageBox (messageText.c_str() + CString(" were successfully generated ! "));
+  return;
 }
 
 #ifdef _DEBUG

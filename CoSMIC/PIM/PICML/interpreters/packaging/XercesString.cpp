@@ -3,6 +3,7 @@
 #include <ostream>
 #include <memory>
 
+
 #include "XercesString.h"
 
 using xercesc::XMLString;
@@ -132,16 +133,21 @@ namespace PICML
     return !operator==(lhs, rhs);
   }
 
+  char* XStr::c_str() const
+  { 
+	return XMLString::transcode (_wstr);
+  }
 
+  XStr::operator const XMLCh* () const
+  {
+	return _wstr;
+  };
+  
   std::ostream&
   operator<< (std::ostream& o, XStr const& str)
   {
-    char* s = XMLString::transcode (str);
-
-    o << s;
-
-    XMLString::release (&s); // idiots?
+    std::string conv (XMLString::transcode (str));
+    o << conv;
     return o;
   }
-
 }

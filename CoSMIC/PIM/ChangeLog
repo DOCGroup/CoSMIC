@@ -1,3 +1,32 @@
+Sun Jun 13 18:45:52 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PICML/examples/RobotAssembly.xme: Updated to match Robert's
+          latest version.
+
+        * PICML/paradigms/PICML.xml:
+        * PICML/interpreters/packaging/PICML.h:
+        * PICML/interpreters/packaging/PICML.xsd:
+        * PICML/interpreters/packaging/PICML.cpp: Regenerated after minor
+          changes to PICML.
+
+        * PICML/interpreters/packaging/UuidString.h:
+        * PICML/interpreters/packaging/UuidString.cpp: New files which
+          will generate UUIDs.
+
+        * PICML/interpreters/packaging/PackageComponent.dsp:
+        * PICML/interpreters/packaging/PackageVisitor.h:
+        * PICML/interpreters/packaging/PackageVisitor.cpp:
+        * PICML/interpreters/packaging/UdmApp.cpp:
+        * PICML/interpreters/packaging/XercesString.h:
+        * PICML/interpreters/packaging/XercesString.cpp: Closer to
+          getting the interpreter working.
+
+        * PICML/paradigms/IDML-uml.xme:
+        * PICML/paradigms/PICML-uml.xme:
+        * PICML/paradigms/PICML.xme:
+        * PICML/paradigms/PICML.xmp: Updated to reflect changes in the
+          meta.
+
 Fri Jun 11 16:07:48 2004  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * PICML/interpreters/packaging/PackageComponent.dsp: Removed the
