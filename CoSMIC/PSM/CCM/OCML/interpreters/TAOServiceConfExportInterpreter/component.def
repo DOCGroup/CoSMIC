@@ -1,6 +1,6 @@
 ; Interpreter.def : Declares the module parameters.
 
-LIBRARY      "OCML_Svc_Conf_Exporter.DLL"
+LIBRARY      "OCMLSvcConfExportInterpreter.DLL"
 
 EXPORTS
 	DllCanUnloadNow     PRIVATE

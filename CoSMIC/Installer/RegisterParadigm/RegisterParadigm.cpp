@@ -234,13 +234,15 @@ bool UnRegister (const std::string& paradigmName)
 
   hr = reg->UnregisterParadigm(name, REGACCESS_BOTH);
   
-  ::SysFreeString(name);
-  reg->Release();
-  ::CoUninitialize();
-  
   if (FAILED(hr))
     return false;
 
+  ::SysFreeString(name);
+  
+  reg->Release();
+  
+  ::CoUninitialize();
+  
   return true;
 }
 

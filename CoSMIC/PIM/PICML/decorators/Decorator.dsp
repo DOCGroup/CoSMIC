@@ -73,7 +73,7 @@ SOURCE="$(InputPath)"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 2
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "../../lib"
+# PROP Output_Dir "../lib"
 # PROP Intermediate_Dir "Release"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
@@ -86,11 +86,11 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"../../bin/Decorator.dll"
+# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"../bin/Decorator.dll"
 # Begin Custom Build - Performing registration
-OutDir=.\../../lib
-TargetPath=\CoSMIC\PIM\bin\Decorator.dll
-InputPath=\CoSMIC\PIM\bin\Decorator.dll
+OutDir=.\../lib
+TargetPath=\CoSMIC\PIM\PICML\bin\Decorator.dll
+InputPath=\CoSMIC\PIM\PICML\bin\Decorator.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"

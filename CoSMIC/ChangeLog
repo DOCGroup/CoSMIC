@@ -1,3 +1,17 @@
+Mon Nov 15 12:45:06 2004  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * Installer/CoSMIC-Installer.aip: Updated to fix the change in
+          name of some OCML interpreters.
+
+        * Installer/RegisterParadigm/RegisterParadigm.cpp: Reverted some
+          previous changes in the UnRegister().
+
+        * PIM/PICML/decorators/Decorator.dsp: Fixed incorrect output
+          directories in the project file.
+
+        * PSM/CCM/OCML/interpreters/TAOServiceConfExportInterpreter/component.def:
+          Fixed the name of the library in the export file.
+
 Mon Nov 15 11:42:03 2004  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * PIM/PICML/examples/BasicSP.xme: New example developed during
