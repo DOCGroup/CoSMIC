@@ -1,22 +1,55 @@
+Fri Nov 19 17:59:36 2004  Arvind S. Krishna  <arvindk@dre.vanderbilt.edu>
+
+        * PIM/PICML/docs/BGML:
+          Created directory for BGML documentation
+
+        * PIM/PICML/docs/BGML/Average.png:
+        * PIM/PICML/docs/BGML/BGML_Documentation_Guide.tex:
+        * PIM/PICML/docs/BGML/BGML-Latency-Complete.png:
+        * PIM/PICML/docs/BGML/BGML-Latency.png:
+        * PIM/PICML/docs/BGML/BGML-Task-Assoc.png:
+        * PIM/PICML/docs/BGML/eventref.png:
+        * PIM/PICML/docs/BGML/Insert-Benchmark.png:
+        * PIM/PICML/docs/BGML/InsertFolder.png:
+        * PIM/PICML/docs/BGML/Latency.png:
+        * PIM/PICML/docs/BGML/Makefile:
+        * PIM/PICML/docs/BGML/Max.png:
+        * PIM/PICML/docs/BGML/New_Paradigm.png:
+        * PIM/PICML/docs/BGML/operationref.png:
+        * PIM/PICML/docs/BGML/RobotAssembly-Intr.png:
+        * PIM/PICML/docs/BGML/RobotAssembly-OperationArgs.png:
+        * PIM/PICML/docs/BGML/RobotAssembly-OperationCopy.png:
+        * PIM/PICML/docs/BGML/RobotAssembly-Operations.png:
+        * PIM/PICML/docs/BGML/task.png:
+        * PIM/PICML/docs/BGML/taskset.png:
+        * PIM/PICML/docs/BGML/Throughput.png:
+        * PIM/PICML/docs/BGML/timer.png:
+
+          BGML documentation guide first version committed.
+
 Tue Nov 16 19:28:57 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+
         * PIM/PICML/interpreters/BGML_Interpreter/MPCStream.h:
         * PIM/PICML/interpreters/BGML_Interpreter/MPCStream.cpp:
         * PIM/PICML/interpreters/BGML_Interpreter/BenchmarkStream.h:
         * PIM/PICML/interpreters/BGML_Interpreter/BenchmarkStream.cpp:
+
           Updated the BGML_Interpreter to fix the following issues:
           (1) All tasks synchronize via a barrier a barrier before starting
-              to generate background load. Thanks to 
+              to generate background load. Thanks to
               Andy <gokhale@dre.vanderbilt.edu> for pointing this out.
           (2) Along with the benchmarking files, there is now a mpc build
               file generated to build the benchmark files generated. Thanks
               to Andy for pointing this out.
           (3) Export files are also generated along with the benchmark files
-              to ensure smooth working on Windows platforms. 
+              to ensure smooth working on Windows platforms.
 
 Tue Nov 16 11:14:30 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+
         * PIM/PICML/paradigms/PICML.me:
-	  * PIM/PICML/paradigms/PICML.xml:
-	  * PIM/PICML/paradigms/PICML-uml.xme:
+	* PIM/PICML/paradigms/PICML.xml:
+	* PIM/PICML/paradigms/PICML-uml.xme:
+
           Updated the meta model, in particular, the MPC paradigm. This was
           required to fix the bug in the generated MPC file from the model and
           the need to differentiate between servant projects, which are either
@@ -24,7 +57,8 @@ Tue Nov 16 11:14:30 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
         * PIM/PICML/examples/RobotAssembly.xme:
         * PIM/PICML/examples/BasicSP.xme:
-          Updated the MPC paradigms in each of the examples to generate the 
+
+          Updated the MPC paradigms in each of the examples to generate the
           required MPC files. Also updated the implementation artifacts to reflect
           right set of dependencies between the artifacts so that the build
           paradigm generates the right MPC file
@@ -34,16 +68,18 @@ Tue Nov 16 11:14:30 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/MPC/PICML.h:
         * PIM/PICML/interpreters/MPC/PICML.cpp:
 
-          Fixed the MPC interpreter generation. The fixes were the following: 
-          (1) generation of libpaths += in the MPC file
-          (2) generation of libs += i.e. generation of dependant libraries
-          (3) generation of component servant and normal CORBA servant project
-         These should fix bugs pointed out by Theckla <theckla.louchious@lmco.com>
+          Fixed the MPC interpreter generation. The fixes were the
+          following: (1) generation of libpaths += in the MPC file (2)
+          generation of libs += i.e. generation of dependant libraries (3)
+          generation of component servant and normal CORBA servant project
+          These should fix bugs pointed out by Theckla
+          <theckla.louchious@lmco.com>
 
         * PIM/PICML/interpreters/*/Picml.h:
         * PIM/PICML/interpreters/*/Picml.cpp:
         * PIM/PICML/interpreters/*/Picml.xsd:
-	    Updated changes to the meta in all the interpreter directories. 
+	  Updated changes to the meta in all the interpreter
+          directories.
 
 Mon Nov 15 12:45:06 2004  Krishnakumar B  <kitty@spam.invalid.domain>
 
