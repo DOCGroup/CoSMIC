@@ -1,6 +1,11 @@
+// $Id$
+
 project {
   sharedName = OCMLSvcConfExporter
   macros += SVC_CONF_EXPORTER_DLL_ENTRY_EXPORTS _USRDLL WXMAKINGDLL
+
+  libout = $(PICML_ROOT)/lib
+  dllout = $(PICML_ROOT)/bin
 
   includes += $(XERCESCROOT)/include
   libpaths += $(XERCESCROOT)/lib
