@@ -2,7 +2,7 @@
 
 
 /* File created by MIDL compiler version 5.01.0164 */
-/* at Sun Dec 07 17:15:33 2003
+/* at Sun Dec 05 09:25:11 2004
  */
 /* Compiler settings for C:/Program Files/GME/sdk/BON/ComponentLib.idl:
     Os (OptLev=s), W1, Zp8, env=Win32, ms_ext, c_ext
@@ -259,6 +259,12 @@ typedef interface IMgaComponentEx IMgaComponentEx;
 #endif 	/* __IMgaComponentEx_FWD_DEFINED__ */
 
 
+#ifndef __IMgaClient_FWD_DEFINED__
+#define __IMgaClient_FWD_DEFINED__
+typedef interface IMgaClient IMgaClient;
+#endif 	/* __IMgaClient_FWD_DEFINED__ */
+
+
 #ifndef __IMgaComponentDispatch_FWD_DEFINED__
 #define __IMgaComponentDispatch_FWD_DEFINED__
 typedef interface IMgaComponentDispatch IMgaComponentDispatch;
@@ -409,6 +415,12 @@ typedef interface IMgaComponents IMgaComponents;
 #endif 	/* __IMgaComponents_FWD_DEFINED__ */
 
 
+#ifndef __IMgaClients_FWD_DEFINED__
+#define __IMgaClients_FWD_DEFINED__
+typedef interface IMgaClients IMgaClients;
+#endif 	/* __IMgaClients_FWD_DEFINED__ */
+
+
 #ifndef __IMgaObjects_FWD_DEFINED__
 #define __IMgaObjects_FWD_DEFINED__
 typedef interface IMgaObjects IMgaObjects;
@@ -451,10 +463,58 @@ typedef interface IMgaComponentProxy IMgaComponentProxy;
 #endif 	/* __IMgaComponentProxy_FWD_DEFINED__ */
 
 
+#ifndef __IMgaXsltFileSel_FWD_DEFINED__
+#define __IMgaXsltFileSel_FWD_DEFINED__
+typedef interface IMgaXsltFileSel IMgaXsltFileSel;
+#endif 	/* __IMgaXsltFileSel_FWD_DEFINED__ */
+
+
+#ifndef __IMgaClosure_FWD_DEFINED__
+#define __IMgaClosure_FWD_DEFINED__
+typedef interface IMgaClosure IMgaClosure;
+#endif 	/* __IMgaClosure_FWD_DEFINED__ */
+
+
+#ifndef __IMgaEventLogger_FWD_DEFINED__
+#define __IMgaEventLogger_FWD_DEFINED__
+typedef interface IMgaEventLogger IMgaEventLogger;
+#endif 	/* __IMgaEventLogger_FWD_DEFINED__ */
+
+
 #ifndef __IMgaDataSource_FWD_DEFINED__
 #define __IMgaDataSource_FWD_DEFINED__
 typedef interface IMgaDataSource IMgaDataSource;
 #endif 	/* __IMgaDataSource_FWD_DEFINED__ */
+
+
+#ifndef __IGMEOLEApp_FWD_DEFINED__
+#define __IGMEOLEApp_FWD_DEFINED__
+typedef interface IGMEOLEApp IGMEOLEApp;
+#endif 	/* __IGMEOLEApp_FWD_DEFINED__ */
+
+
+#ifndef __IGMEOLEModel_FWD_DEFINED__
+#define __IGMEOLEModel_FWD_DEFINED__
+typedef interface IGMEOLEModel IGMEOLEModel;
+#endif 	/* __IGMEOLEModel_FWD_DEFINED__ */
+
+
+#ifndef __IGMEOLEAspect_FWD_DEFINED__
+#define __IGMEOLEAspect_FWD_DEFINED__
+typedef interface IGMEOLEAspect IGMEOLEAspect;
+#endif 	/* __IGMEOLEAspect_FWD_DEFINED__ */
+
+
+#ifndef __IGMEOLEPanel_FWD_DEFINED__
+#define __IGMEOLEPanel_FWD_DEFINED__
+typedef interface IGMEOLEPanel IGMEOLEPanel;
+#endif 	/* __IGMEOLEPanel_FWD_DEFINED__ */
+
+
+#ifndef __IGMEOLEColl_FWD_DEFINED__
+#define __IGMEOLEColl_FWD_DEFINED__
+typedef interface IGMEOLEColl IGMEOLEColl;
+#endif 	/* __IGMEOLEColl_FWD_DEFINED__ */
 
 
 #ifndef __IMgaVersionInfo_FWD_DEFINED__
@@ -463,10 +523,28 @@ typedef interface IMgaVersionInfo IMgaVersionInfo;
 #endif 	/* __IMgaVersionInfo_FWD_DEFINED__ */
 
 
-#ifndef __IGMEAppl_FWD_DEFINED__
-#define __IGMEAppl_FWD_DEFINED__
-typedef interface IGMEAppl IGMEAppl;
-#endif 	/* __IGMEAppl_FWD_DEFINED__ */
+#ifndef __IMetaParser_FWD_DEFINED__
+#define __IMetaParser_FWD_DEFINED__
+typedef interface IMetaParser IMetaParser;
+#endif 	/* __IMetaParser_FWD_DEFINED__ */
+
+
+#ifndef __IMgaDumper_FWD_DEFINED__
+#define __IMgaDumper_FWD_DEFINED__
+typedef interface IMgaDumper IMgaDumper;
+#endif 	/* __IMgaDumper_FWD_DEFINED__ */
+
+
+#ifndef __IMgaParser_FWD_DEFINED__
+#define __IMgaParser_FWD_DEFINED__
+typedef interface IMgaParser IMgaParser;
+#endif 	/* __IMgaParser_FWD_DEFINED__ */
+
+
+#ifndef __IMgaXslt_FWD_DEFINED__
+#define __IMgaXslt_FWD_DEFINED__
+typedef interface IMgaXslt IMgaXslt;
+#endif 	/* __IMgaXslt_FWD_DEFINED__ */
 
 
 #ifndef __MgaComponent_FWD_DEFINED__
@@ -510,7 +588,7 @@ extern "C++"
 #define TYPENAME_ELEM2COLL(ELEM) ::TypeName_MgaElem2Coll<ELEM>::collection_type
 #endif
 #ifndef INTERFACE_VERSION
-#define INTERFACE_VERSION 0x0002000F
+#define INTERFACE_VERSION 0x00020049
 #endif //INTERFACE_VERSION
 typedef long metaref_type;
 
@@ -1387,8 +1465,14 @@ EXTERN_C const IID IID_IMgaMetaProject;
         virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_CreatedAt( 
             /* [retval][out] */ BSTR __RPC_FAR *p) = 0;
         
+        virtual /* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE put_CreatedAt( 
+            /* [in] */ BSTR p) = 0;
+        
         virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_ModifiedAt( 
             /* [retval][out] */ BSTR __RPC_FAR *p) = 0;
+        
+        virtual /* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE put_ModifiedAt( 
+            /* [in] */ BSTR p) = 0;
         
         virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_RootFolder( 
             /* [retval][out] */ IMgaMetaFolder __RPC_FAR *__RPC_FAR *p) = 0;
@@ -1517,9 +1601,17 @@ EXTERN_C const IID IID_IMgaMetaProject;
             IMgaMetaProject __RPC_FAR * This,
             /* [retval][out] */ BSTR __RPC_FAR *p);
         
+        /* [helpstring][propput] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *put_CreatedAt )( 
+            IMgaMetaProject __RPC_FAR * This,
+            /* [in] */ BSTR p);
+        
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_ModifiedAt )( 
             IMgaMetaProject __RPC_FAR * This,
             /* [retval][out] */ BSTR __RPC_FAR *p);
+        
+        /* [helpstring][propput] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *put_ModifiedAt )( 
+            IMgaMetaProject __RPC_FAR * This,
+            /* [in] */ BSTR p);
         
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_RootFolder )( 
             IMgaMetaProject __RPC_FAR * This,
@@ -1623,8 +1715,14 @@ EXTERN_C const IID IID_IMgaMetaProject;
 #define IMgaMetaProject_get_CreatedAt(This,p)	\
     (This)->lpVtbl -> get_CreatedAt(This,p)
 
+#define IMgaMetaProject_put_CreatedAt(This,p)	\
+    (This)->lpVtbl -> put_CreatedAt(This,p)
+
 #define IMgaMetaProject_get_ModifiedAt(This,p)	\
     (This)->lpVtbl -> get_ModifiedAt(This,p)
+
+#define IMgaMetaProject_put_ModifiedAt(This,p)	\
+    (This)->lpVtbl -> put_ModifiedAt(This,p)
 
 #define IMgaMetaProject_get_RootFolder(This,p)	\
     (This)->lpVtbl -> get_RootFolder(This,p)
@@ -1863,12 +1961,36 @@ void __RPC_STUB IMgaMetaProject_get_CreatedAt_Stub(
     DWORD *_pdwStubPhase);
 
 
+/* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE IMgaMetaProject_put_CreatedAt_Proxy( 
+    IMgaMetaProject __RPC_FAR * This,
+    /* [in] */ BSTR p);
+
+
+void __RPC_STUB IMgaMetaProject_put_CreatedAt_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
 /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE IMgaMetaProject_get_ModifiedAt_Proxy( 
     IMgaMetaProject __RPC_FAR * This,
     /* [retval][out] */ BSTR __RPC_FAR *p);
 
 
 void __RPC_STUB IMgaMetaProject_get_ModifiedAt_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE IMgaMetaProject_put_ModifiedAt_Proxy( 
+    IMgaMetaProject __RPC_FAR * This,
+    /* [in] */ BSTR p);
+
+
+void __RPC_STUB IMgaMetaProject_put_ModifiedAt_Stub(
     IRpcStubBuffer *This,
     IRpcChannelBuffer *_pRpcChannelBuffer,
     PRPC_MESSAGE _pRpcMessage,
@@ -8317,10 +8439,13 @@ void __RPC_STUB IMgaMetaAspects_Remove_Stub(
 /* [local] */ 
 
 #ifdef __cplusplus
+extern "C++"    
+{            
 template<> struct ::TypeName_MgaColl2Elem<IMgaMetaAspects>
 { typedef IMgaMetaAspects collection_type; typedef IMgaMetaAspect element_type; };
 template<> struct ::TypeName_MgaElem2Coll<IMgaMetaAspect>
 { typedef IMgaMetaAspects collection_type; typedef IMgaMetaAspect element_type; };
+}            
 #endif
 
 
@@ -8632,10 +8757,13 @@ void __RPC_STUB IMgaMetaRoles_Remove_Stub(
 /* [local] */ 
 
 #ifdef __cplusplus
+extern "C++"    
+{            
 template<> struct ::TypeName_MgaColl2Elem<IMgaMetaRoles>
 { typedef IMgaMetaRoles collection_type; typedef IMgaMetaRole element_type; };
 template<> struct ::TypeName_MgaElem2Coll<IMgaMetaRole>
 { typedef IMgaMetaRoles collection_type; typedef IMgaMetaRole element_type; };
+}            
 #endif
 
 
@@ -8947,10 +9075,13 @@ void __RPC_STUB IMgaMetaFCOs_Remove_Stub(
 /* [local] */ 
 
 #ifdef __cplusplus
+extern "C++"    
+{            
 template<> struct ::TypeName_MgaColl2Elem<IMgaMetaFCOs>
 { typedef IMgaMetaFCOs collection_type; typedef IMgaMetaFCO element_type; };
 template<> struct ::TypeName_MgaElem2Coll<IMgaMetaFCO>
 { typedef IMgaMetaFCOs collection_type; typedef IMgaMetaFCO element_type; };
+}            
 #endif
 
 
@@ -9262,10 +9393,13 @@ void __RPC_STUB IMgaMetaAttributes_Remove_Stub(
 /* [local] */ 
 
 #ifdef __cplusplus
+extern "C++"    
+{            
 template<> struct ::TypeName_MgaColl2Elem<IMgaMetaAttributes>
 { typedef IMgaMetaAttributes collection_type; typedef IMgaMetaAttribute element_type; };
 template<> struct ::TypeName_MgaElem2Coll<IMgaMetaAttribute>
 { typedef IMgaMetaAttributes collection_type; typedef IMgaMetaAttribute element_type; };
+}            
 #endif
 
 
@@ -9577,10 +9711,13 @@ void __RPC_STUB IMgaMetaFolders_Remove_Stub(
 /* [local] */ 
 
 #ifdef __cplusplus
+extern "C++"    
+{            
 template<> struct ::TypeName_MgaColl2Elem<IMgaMetaFolders>
 { typedef IMgaMetaFolders collection_type; typedef IMgaMetaFolder element_type; };
 template<> struct ::TypeName_MgaElem2Coll<IMgaMetaFolder>
 { typedef IMgaMetaFolders collection_type; typedef IMgaMetaFolder element_type; };
+}            
 #endif
 
 
@@ -9892,10 +10029,13 @@ void __RPC_STUB IMgaMetaPointerSpecs_Remove_Stub(
 /* [local] */ 
 
 #ifdef __cplusplus
+extern "C++"    
+{            
 template<> struct ::TypeName_MgaColl2Elem<IMgaMetaPointerSpecs>
 { typedef IMgaMetaPointerSpecs collection_type; typedef IMgaMetaPointerSpec element_type; };
 template<> struct ::TypeName_MgaElem2Coll<IMgaMetaPointerSpec>
 { typedef IMgaMetaPointerSpecs collection_type; typedef IMgaMetaPointerSpec element_type; };
+}            
 #endif
 
 
@@ -10207,10 +10347,13 @@ void __RPC_STUB IMgaMetaRegNodes_Remove_Stub(
 /* [local] */ 
 
 #ifdef __cplusplus
+extern "C++"    
+{            
 template<> struct ::TypeName_MgaColl2Elem<IMgaMetaRegNodes>
 { typedef IMgaMetaRegNodes collection_type; typedef IMgaMetaRegNode element_type; };
 template<> struct ::TypeName_MgaElem2Coll<IMgaMetaRegNode>
 { typedef IMgaMetaRegNodes collection_type; typedef IMgaMetaRegNode element_type; };
+}            
 #endif
 
 
@@ -10522,10 +10665,13 @@ void __RPC_STUB IMgaConstraints_Remove_Stub(
 /* [local] */ 
 
 #ifdef __cplusplus
+extern "C++"    
+{            
 template<> struct ::TypeName_MgaColl2Elem<IMgaConstraints>
 { typedef IMgaConstraints collection_type; typedef IMgaConstraint element_type; };
 template<> struct ::TypeName_MgaElem2Coll<IMgaConstraint>
 { typedef IMgaConstraints collection_type; typedef IMgaConstraint element_type; };
+}            
 #endif
 
 
@@ -10837,10 +10983,13 @@ void __RPC_STUB IMgaMetaParts_Remove_Stub(
 /* [local] */ 
 
 #ifdef __cplusplus
+extern "C++"    
+{            
 template<> struct ::TypeName_MgaColl2Elem<IMgaMetaParts>
 { typedef IMgaMetaParts collection_type; typedef IMgaMetaPart element_type; };
 template<> struct ::TypeName_MgaElem2Coll<IMgaMetaPart>
 { typedef IMgaMetaParts collection_type; typedef IMgaMetaPart element_type; };
+}            
 #endif
 
 
@@ -11152,10 +11301,13 @@ void __RPC_STUB IMgaMetaModels_Remove_Stub(
 /* [local] */ 
 
 #ifdef __cplusplus
+extern "C++"    
+{            
 template<> struct ::TypeName_MgaColl2Elem<IMgaMetaModels>
 { typedef IMgaMetaModels collection_type; typedef IMgaMetaModel element_type; };
 template<> struct ::TypeName_MgaElem2Coll<IMgaMetaModel>
 { typedef IMgaMetaModels collection_type; typedef IMgaMetaModel element_type; };
+}            
 #endif
 
 
@@ -11467,10 +11619,13 @@ void __RPC_STUB IMgaMetaConnJoints_Remove_Stub(
 /* [local] */ 
 
 #ifdef __cplusplus
+extern "C++"    
+{            
 template<> struct ::TypeName_MgaColl2Elem<IMgaMetaConnJoints>
 { typedef IMgaMetaConnJoints collection_type; typedef IMgaMetaConnJoint element_type; };
 template<> struct ::TypeName_MgaElem2Coll<IMgaMetaConnJoint>
 { typedef IMgaMetaConnJoints collection_type; typedef IMgaMetaConnJoint element_type; };
+}            
 #endif
 
 
@@ -11782,10 +11937,13 @@ void __RPC_STUB IMgaMetaPointerItems_Remove_Stub(
 /* [local] */ 
 
 #ifdef __cplusplus
+extern "C++"    
+{            
 template<> struct ::TypeName_MgaColl2Elem<IMgaMetaPointerItems>
 { typedef IMgaMetaPointerItems collection_type; typedef IMgaMetaPointerItem element_type; };
 template<> struct ::TypeName_MgaElem2Coll<IMgaMetaPointerItem>
 { typedef IMgaMetaPointerItems collection_type; typedef IMgaMetaPointerItem element_type; };
+}            
 #endif
 
 
@@ -12097,11 +12255,16 @@ void __RPC_STUB IMgaMetaEnumItems_Remove_Stub(
 /* [local] */ 
 
 #ifdef __cplusplus
+extern "C++"    
+{            
 template<> struct ::TypeName_MgaColl2Elem<IMgaMetaEnumItems>
 { typedef IMgaMetaEnumItems collection_type; typedef IMgaMetaEnumItem element_type; };
 template<> struct ::TypeName_MgaElem2Coll<IMgaMetaEnumItem>
 { typedef IMgaMetaEnumItems collection_type; typedef IMgaMetaEnumItem element_type; };
+}            
 #endif
+
+
 
 
 
@@ -12177,7 +12340,9 @@ enum globalevent_enum
 	GLOBALEVENT_UNDO	= GLOBALEVENT_ABORT_TRANSACTION + 1,
 	GLOBALEVENT_REDO	= GLOBALEVENT_UNDO + 1,
 	GLOBALEVENT_PROJECT_PROPERTIES	= GLOBALEVENT_REDO + 1,
-	GLOBALEVENT_NOTIFICATION_READY	= GLOBALEVENT_PROJECT_PROPERTIES + 1
+	GLOBALEVENT_NOTIFICATION_READY	= GLOBALEVENT_PROJECT_PROPERTIES + 1,
+	APPEVENT_XML_IMPORT_BEGIN	= 0xff,
+	APPEVENT_XML_IMPORT_END	= APPEVENT_XML_IMPORT_BEGIN + 1
     }	globalevent_enum;
 
 #define	RELID_BASE_MAX	( 0x7ffffff )
@@ -12266,7 +12431,8 @@ enum component_startmode_enum
 	GME_BGCONTEXT_START	= 18,
 	GME_ICON_START	= 32,
 	METAMODEL_CHECK_SYNTAX	= 101,
-	CONSTMGR_SHOW_CONSTRAINTS	= 102
+	CONSTMGR_SHOW_CONSTRAINTS	= 102,
+	GME_SILENT_MODE	= 128
     }	component_startmode_enum;
 
 typedef 
@@ -12428,7 +12594,7 @@ EXTERN_C const IID IID_IMgaProject;
             /* [retval][out] */ long __RPC_FAR *stat) = 0;
         
         virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE Notify( 
-            /* [in] */ long priority) = 0;
+            /* [in] */ globalevent_enum event) = 0;
         
         virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE CommitTransaction( void) = 0;
         
@@ -12493,8 +12659,20 @@ EXTERN_C const IID IID_IMgaProject;
         virtual /* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE put_Name( 
             /* [in] */ BSTR newval) = 0;
         
+        virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_Version( 
+            /* [retval][out] */ BSTR __RPC_FAR *pVal) = 0;
+        
+        virtual /* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE put_Version( 
+            /* [in] */ BSTR newval) = 0;
+        
+        virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_MetaName( 
+            /* [retval][out] */ BSTR __RPC_FAR *pVal) = 0;
+        
         virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_MetaGUID( 
             /* [retval][out] */ VARIANT __RPC_FAR *pVal) = 0;
+        
+        virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_MetaVersion( 
+            /* [retval][out] */ BSTR __RPC_FAR *pVal) = 0;
         
         virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_GUID( 
             /* [retval][out] */ VARIANT __RPC_FAR *pVal) = 0;
@@ -12534,8 +12712,21 @@ EXTERN_C const IID IID_IMgaProject;
             /* [in] */ BSTR projectname,
             /* [out] */ long __RPC_FAR *mgaversion,
             /* [out] */ BSTR __RPC_FAR *paradigmname,
+            /* [out] */ BSTR __RPC_FAR *paradigmversion,
             /* [out] */ VARIANT __RPC_FAR *paradigmGUID,
             /* [out] */ VARIANT_BOOL __RPC_FAR *ro_mode) = 0;
+        
+        virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_Clients( 
+            /* [retval][out] */ IMgaClients __RPC_FAR *__RPC_FAR *clients) = 0;
+        
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE RegisterClient( 
+            /* [in] */ BSTR name,
+            /* [in] */ IDispatch __RPC_FAR *OLEServer,
+            /* [retval][out] */ IMgaClient __RPC_FAR *__RPC_FAR *client) = 0;
+        
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE GetClientByName( 
+            /* [in] */ BSTR name,
+            /* [retval][out] */ IMgaClient __RPC_FAR *__RPC_FAR *client) = 0;
         
     };
     
@@ -12679,7 +12870,7 @@ EXTERN_C const IID IID_IMgaProject;
         
         /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Notify )( 
             IMgaProject __RPC_FAR * This,
-            /* [in] */ long priority);
+            /* [in] */ globalevent_enum event);
         
         /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *CommitTransaction )( 
             IMgaProject __RPC_FAR * This);
@@ -12764,9 +12955,25 @@ EXTERN_C const IID IID_IMgaProject;
             IMgaProject __RPC_FAR * This,
             /* [in] */ BSTR newval);
         
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Version )( 
+            IMgaProject __RPC_FAR * This,
+            /* [retval][out] */ BSTR __RPC_FAR *pVal);
+        
+        /* [helpstring][propput] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *put_Version )( 
+            IMgaProject __RPC_FAR * This,
+            /* [in] */ BSTR newval);
+        
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_MetaName )( 
+            IMgaProject __RPC_FAR * This,
+            /* [retval][out] */ BSTR __RPC_FAR *pVal);
+        
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_MetaGUID )( 
             IMgaProject __RPC_FAR * This,
             /* [retval][out] */ VARIANT __RPC_FAR *pVal);
+        
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_MetaVersion )( 
+            IMgaProject __RPC_FAR * This,
+            /* [retval][out] */ BSTR __RPC_FAR *pVal);
         
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_GUID )( 
             IMgaProject __RPC_FAR * This,
@@ -12818,8 +13025,24 @@ EXTERN_C const IID IID_IMgaProject;
             /* [in] */ BSTR projectname,
             /* [out] */ long __RPC_FAR *mgaversion,
             /* [out] */ BSTR __RPC_FAR *paradigmname,
+            /* [out] */ BSTR __RPC_FAR *paradigmversion,
             /* [out] */ VARIANT __RPC_FAR *paradigmGUID,
             /* [out] */ VARIANT_BOOL __RPC_FAR *ro_mode);
+        
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Clients )( 
+            IMgaProject __RPC_FAR * This,
+            /* [retval][out] */ IMgaClients __RPC_FAR *__RPC_FAR *clients);
+        
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *RegisterClient )( 
+            IMgaProject __RPC_FAR * This,
+            /* [in] */ BSTR name,
+            /* [in] */ IDispatch __RPC_FAR *OLEServer,
+            /* [retval][out] */ IMgaClient __RPC_FAR *__RPC_FAR *client);
+        
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetClientByName )( 
+            IMgaProject __RPC_FAR * This,
+            /* [in] */ BSTR name,
+            /* [retval][out] */ IMgaClient __RPC_FAR *__RPC_FAR *client);
         
         END_INTERFACE
     } IMgaProjectVtbl;
@@ -12917,8 +13140,8 @@ EXTERN_C const IID IID_IMgaProject;
 #define IMgaProject_get_ProjectStatus(This,stat)	\
     (This)->lpVtbl -> get_ProjectStatus(This,stat)
 
-#define IMgaProject_Notify(This,priority)	\
-    (This)->lpVtbl -> Notify(This,priority)
+#define IMgaProject_Notify(This,event)	\
+    (This)->lpVtbl -> Notify(This,event)
 
 #define IMgaProject_CommitTransaction(This)	\
     (This)->lpVtbl -> CommitTransaction(This)
@@ -12980,8 +13203,20 @@ EXTERN_C const IID IID_IMgaProject;
 #define IMgaProject_put_Name(This,newval)	\
     (This)->lpVtbl -> put_Name(This,newval)
 
+#define IMgaProject_get_Version(This,pVal)	\
+    (This)->lpVtbl -> get_Version(This,pVal)
+
+#define IMgaProject_put_Version(This,newval)	\
+    (This)->lpVtbl -> put_Version(This,newval)
+
+#define IMgaProject_get_MetaName(This,pVal)	\
+    (This)->lpVtbl -> get_MetaName(This,pVal)
+
 #define IMgaProject_get_MetaGUID(This,pVal)	\
     (This)->lpVtbl -> get_MetaGUID(This,pVal)
+
+#define IMgaProject_get_MetaVersion(This,pVal)	\
+    (This)->lpVtbl -> get_MetaVersion(This,pVal)
 
 #define IMgaProject_get_GUID(This,pVal)	\
     (This)->lpVtbl -> get_GUID(This,pVal)
@@ -13016,8 +13251,17 @@ EXTERN_C const IID IID_IMgaProject;
 #define IMgaProject_get_MetaObj(This,mref,pVal)	\
     (This)->lpVtbl -> get_MetaObj(This,mref,pVal)
 
-#define IMgaProject_QueryProjectInfo(This,projectname,mgaversion,paradigmname,paradigmGUID,ro_mode)	\
-    (This)->lpVtbl -> QueryProjectInfo(This,projectname,mgaversion,paradigmname,paradigmGUID,ro_mode)
+#define IMgaProject_QueryProjectInfo(This,projectname,mgaversion,paradigmname,paradigmversion,paradigmGUID,ro_mode)	\
+    (This)->lpVtbl -> QueryProjectInfo(This,projectname,mgaversion,paradigmname,paradigmversion,paradigmGUID,ro_mode)
+
+#define IMgaProject_get_Clients(This,clients)	\
+    (This)->lpVtbl -> get_Clients(This,clients)
+
+#define IMgaProject_RegisterClient(This,name,OLEServer,client)	\
+    (This)->lpVtbl -> RegisterClient(This,name,OLEServer,client)
+
+#define IMgaProject_GetClientByName(This,name,client)	\
+    (This)->lpVtbl -> GetClientByName(This,name,client)
 
 #endif /* COBJMACROS */
 
@@ -13280,7 +13524,7 @@ void __RPC_STUB IMgaProject_get_ProjectStatus_Stub(
 
 /* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaProject_Notify_Proxy( 
     IMgaProject __RPC_FAR * This,
-    /* [in] */ long priority);
+    /* [in] */ globalevent_enum event);
 
 
 void __RPC_STUB IMgaProject_Notify_Stub(
@@ -13533,12 +13777,60 @@ void __RPC_STUB IMgaProject_put_Name_Stub(
     DWORD *_pdwStubPhase);
 
 
+/* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE IMgaProject_get_Version_Proxy( 
+    IMgaProject __RPC_FAR * This,
+    /* [retval][out] */ BSTR __RPC_FAR *pVal);
+
+
+void __RPC_STUB IMgaProject_get_Version_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE IMgaProject_put_Version_Proxy( 
+    IMgaProject __RPC_FAR * This,
+    /* [in] */ BSTR newval);
+
+
+void __RPC_STUB IMgaProject_put_Version_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE IMgaProject_get_MetaName_Proxy( 
+    IMgaProject __RPC_FAR * This,
+    /* [retval][out] */ BSTR __RPC_FAR *pVal);
+
+
+void __RPC_STUB IMgaProject_get_MetaName_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
 /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE IMgaProject_get_MetaGUID_Proxy( 
     IMgaProject __RPC_FAR * This,
     /* [retval][out] */ VARIANT __RPC_FAR *pVal);
 
 
 void __RPC_STUB IMgaProject_get_MetaGUID_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE IMgaProject_get_MetaVersion_Proxy( 
+    IMgaProject __RPC_FAR * This,
+    /* [retval][out] */ BSTR __RPC_FAR *pVal);
+
+
+void __RPC_STUB IMgaProject_get_MetaVersion_Stub(
     IRpcStubBuffer *This,
     IRpcChannelBuffer *_pRpcChannelBuffer,
     PRPC_MESSAGE _pRpcMessage,
@@ -13683,11 +13975,51 @@ void __RPC_STUB IMgaProject_get_MetaObj_Stub(
     /* [in] */ BSTR projectname,
     /* [out] */ long __RPC_FAR *mgaversion,
     /* [out] */ BSTR __RPC_FAR *paradigmname,
+    /* [out] */ BSTR __RPC_FAR *paradigmversion,
     /* [out] */ VARIANT __RPC_FAR *paradigmGUID,
     /* [out] */ VARIANT_BOOL __RPC_FAR *ro_mode);
 
 
 void __RPC_STUB IMgaProject_QueryProjectInfo_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE IMgaProject_get_Clients_Proxy( 
+    IMgaProject __RPC_FAR * This,
+    /* [retval][out] */ IMgaClients __RPC_FAR *__RPC_FAR *clients);
+
+
+void __RPC_STUB IMgaProject_get_Clients_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaProject_RegisterClient_Proxy( 
+    IMgaProject __RPC_FAR * This,
+    /* [in] */ BSTR name,
+    /* [in] */ IDispatch __RPC_FAR *OLEServer,
+    /* [retval][out] */ IMgaClient __RPC_FAR *__RPC_FAR *client);
+
+
+void __RPC_STUB IMgaProject_RegisterClient_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaProject_GetClientByName_Proxy( 
+    IMgaProject __RPC_FAR * This,
+    /* [in] */ BSTR name,
+    /* [retval][out] */ IMgaClient __RPC_FAR *__RPC_FAR *client);
+
+
+void __RPC_STUB IMgaProject_GetClientByName_Stub(
     IRpcStubBuffer *This,
     IRpcChannelBuffer *_pRpcChannelBuffer,
     PRPC_MESSAGE _pRpcMessage,
@@ -14566,6 +14898,201 @@ void __RPC_STUB IMgaComponentEx_get_ComponentParameter_Stub(
 #endif 	/* __IMgaComponentEx_INTERFACE_DEFINED__ */
 
 
+#ifndef __IMgaClient_INTERFACE_DEFINED__
+#define __IMgaClient_INTERFACE_DEFINED__
+
+/* interface IMgaClient */
+/* [unique][helpstring][dual][uuid][object] */ 
+
+
+EXTERN_C const IID IID_IMgaClient;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("F07EE1A2-2D53-449b-A2DA-45A1A9110E53")
+    IMgaClient : public IDispatch
+    {
+    public:
+        virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_Name( 
+            /* [retval][out] */ BSTR __RPC_FAR *pName) = 0;
+        
+        virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_OLEServer( 
+            /* [retval][out] */ IDispatch __RPC_FAR *__RPC_FAR *pServer) = 0;
+        
+        virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_Project( 
+            /* [retval][out] */ IMgaProject __RPC_FAR *__RPC_FAR *pVal) = 0;
+        
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE Destroy( void) = 0;
+        
+    };
+    
+#else 	/* C style interface */
+
+    typedef struct IMgaClientVtbl
+    {
+        BEGIN_INTERFACE
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *QueryInterface )( 
+            IMgaClient __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [iid_is][out] */ void __RPC_FAR *__RPC_FAR *ppvObject);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *AddRef )( 
+            IMgaClient __RPC_FAR * This);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *Release )( 
+            IMgaClient __RPC_FAR * This);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetTypeInfoCount )( 
+            IMgaClient __RPC_FAR * This,
+            /* [out] */ UINT __RPC_FAR *pctinfo);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetTypeInfo )( 
+            IMgaClient __RPC_FAR * This,
+            /* [in] */ UINT iTInfo,
+            /* [in] */ LCID lcid,
+            /* [out] */ ITypeInfo __RPC_FAR *__RPC_FAR *ppTInfo);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetIDsOfNames )( 
+            IMgaClient __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [size_is][in] */ LPOLESTR __RPC_FAR *rgszNames,
+            /* [in] */ UINT cNames,
+            /* [in] */ LCID lcid,
+            /* [size_is][out] */ DISPID __RPC_FAR *rgDispId);
+        
+        /* [local] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Invoke )( 
+            IMgaClient __RPC_FAR * This,
+            /* [in] */ DISPID dispIdMember,
+            /* [in] */ REFIID riid,
+            /* [in] */ LCID lcid,
+            /* [in] */ WORD wFlags,
+            /* [out][in] */ DISPPARAMS __RPC_FAR *pDispParams,
+            /* [out] */ VARIANT __RPC_FAR *pVarResult,
+            /* [out] */ EXCEPINFO __RPC_FAR *pExcepInfo,
+            /* [out] */ UINT __RPC_FAR *puArgErr);
+        
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Name )( 
+            IMgaClient __RPC_FAR * This,
+            /* [retval][out] */ BSTR __RPC_FAR *pName);
+        
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_OLEServer )( 
+            IMgaClient __RPC_FAR * This,
+            /* [retval][out] */ IDispatch __RPC_FAR *__RPC_FAR *pServer);
+        
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Project )( 
+            IMgaClient __RPC_FAR * This,
+            /* [retval][out] */ IMgaProject __RPC_FAR *__RPC_FAR *pVal);
+        
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Destroy )( 
+            IMgaClient __RPC_FAR * This);
+        
+        END_INTERFACE
+    } IMgaClientVtbl;
+
+    interface IMgaClient
+    {
+        CONST_VTBL struct IMgaClientVtbl __RPC_FAR *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IMgaClient_QueryInterface(This,riid,ppvObject)	\
+    (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
+
+#define IMgaClient_AddRef(This)	\
+    (This)->lpVtbl -> AddRef(This)
+
+#define IMgaClient_Release(This)	\
+    (This)->lpVtbl -> Release(This)
+
+
+#define IMgaClient_GetTypeInfoCount(This,pctinfo)	\
+    (This)->lpVtbl -> GetTypeInfoCount(This,pctinfo)
+
+#define IMgaClient_GetTypeInfo(This,iTInfo,lcid,ppTInfo)	\
+    (This)->lpVtbl -> GetTypeInfo(This,iTInfo,lcid,ppTInfo)
+
+#define IMgaClient_GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)	\
+    (This)->lpVtbl -> GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)
+
+#define IMgaClient_Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)	\
+    (This)->lpVtbl -> Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)
+
+
+#define IMgaClient_get_Name(This,pName)	\
+    (This)->lpVtbl -> get_Name(This,pName)
+
+#define IMgaClient_get_OLEServer(This,pServer)	\
+    (This)->lpVtbl -> get_OLEServer(This,pServer)
+
+#define IMgaClient_get_Project(This,pVal)	\
+    (This)->lpVtbl -> get_Project(This,pVal)
+
+#define IMgaClient_Destroy(This)	\
+    (This)->lpVtbl -> Destroy(This)
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+/* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE IMgaClient_get_Name_Proxy( 
+    IMgaClient __RPC_FAR * This,
+    /* [retval][out] */ BSTR __RPC_FAR *pName);
+
+
+void __RPC_STUB IMgaClient_get_Name_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE IMgaClient_get_OLEServer_Proxy( 
+    IMgaClient __RPC_FAR * This,
+    /* [retval][out] */ IDispatch __RPC_FAR *__RPC_FAR *pServer);
+
+
+void __RPC_STUB IMgaClient_get_OLEServer_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE IMgaClient_get_Project_Proxy( 
+    IMgaClient __RPC_FAR * This,
+    /* [retval][out] */ IMgaProject __RPC_FAR *__RPC_FAR *pVal);
+
+
+void __RPC_STUB IMgaClient_get_Project_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaClient_Destroy_Proxy( 
+    IMgaClient __RPC_FAR * This);
+
+
+void __RPC_STUB IMgaClient_Destroy_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+
+#endif 	/* __IMgaClient_INTERFACE_DEFINED__ */
+
+
 #ifndef __IMgaTerritory_INTERFACE_DEFINED__
 #define __IMgaTerritory_INTERFACE_DEFINED__
 
@@ -14954,6 +15481,9 @@ EXTERN_C const IID IID_IMgaObject;
         virtual /* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE put_Name( 
             /* [in] */ BSTR newVal) = 0;
         
+        virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_AbsPath( 
+            /* [retval][out] */ BSTR __RPC_FAR *pVal) = 0;
+        
         virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_MetaBase( 
             /* [retval][out] */ IMgaMetaBase __RPC_FAR *__RPC_FAR *pVal) = 0;
         
@@ -15090,6 +15620,10 @@ EXTERN_C const IID IID_IMgaObject;
         /* [helpstring][propput] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *put_Name )( 
             IMgaObject __RPC_FAR * This,
             /* [in] */ BSTR newVal);
+        
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_AbsPath )( 
+            IMgaObject __RPC_FAR * This,
+            /* [retval][out] */ BSTR __RPC_FAR *pVal);
         
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_MetaBase )( 
             IMgaObject __RPC_FAR * This,
@@ -15234,6 +15768,9 @@ EXTERN_C const IID IID_IMgaObject;
 #define IMgaObject_put_Name(This,newVal)	\
     (This)->lpVtbl -> put_Name(This,newVal)
 
+#define IMgaObject_get_AbsPath(This,pVal)	\
+    (This)->lpVtbl -> get_AbsPath(This,pVal)
+
 #define IMgaObject_get_MetaBase(This,pVal)	\
     (This)->lpVtbl -> get_MetaBase(This,pVal)
 
@@ -15364,6 +15901,18 @@ void __RPC_STUB IMgaObject_get_Name_Stub(
 
 
 void __RPC_STUB IMgaObject_put_Name_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE IMgaObject_get_AbsPath_Proxy( 
+    IMgaObject __RPC_FAR * This,
+    /* [retval][out] */ BSTR __RPC_FAR *pVal);
+
+
+void __RPC_STUB IMgaObject_get_AbsPath_Stub(
     IRpcStubBuffer *This,
     IRpcChannelBuffer *_pRpcChannelBuffer,
     PRPC_MESSAGE _pRpcMessage,
@@ -15893,6 +16442,10 @@ EXTERN_C const IID IID_IMgaFCO;
             IMgaFCO __RPC_FAR * This,
             /* [in] */ BSTR newVal);
         
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_AbsPath )( 
+            IMgaFCO __RPC_FAR * This,
+            /* [retval][out] */ BSTR __RPC_FAR *pVal);
+        
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_MetaBase )( 
             IMgaFCO __RPC_FAR * This,
             /* [retval][out] */ IMgaMetaBase __RPC_FAR *__RPC_FAR *pVal);
@@ -16240,6 +16793,9 @@ EXTERN_C const IID IID_IMgaFCO;
 
 #define IMgaFCO_put_Name(This,newVal)	\
     (This)->lpVtbl -> put_Name(This,newVal)
+
+#define IMgaFCO_get_AbsPath(This,pVal)	\
+    (This)->lpVtbl -> get_AbsPath(This,pVal)
 
 #define IMgaFCO_get_MetaBase(This,pVal)	\
     (This)->lpVtbl -> get_MetaBase(This,pVal)
@@ -17096,6 +17652,17 @@ EXTERN_C const IID IID_IMgaFolder;
             /* [in] */ IMgaFCOs __RPC_FAR *to_move,
             /* [out] */ IMgaFCOs __RPC_FAR *__RPC_FAR *objs) = 0;
         
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE MoveFolders( 
+            /* [in] */ IMgaFolders __RPC_FAR *to_copy,
+            /* [out] */ IMgaFolders __RPC_FAR *__RPC_FAR *objs) = 0;
+        
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE CopyFolders( 
+            /* [in] */ IMgaFolders __RPC_FAR *to_move,
+            /* [out] */ IMgaFolders __RPC_FAR *__RPC_FAR *objs) = 0;
+        
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE RefreshParent( 
+            /* [in] */ IMgaFolder __RPC_FAR *folder) = 0;
+        
         virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_ChildFCOs( 
             /* [retval][out] */ IMgaFCOs __RPC_FAR *__RPC_FAR *pVal) = 0;
         
@@ -17197,6 +17764,10 @@ EXTERN_C const IID IID_IMgaFolder;
         /* [helpstring][propput] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *put_Name )( 
             IMgaFolder __RPC_FAR * This,
             /* [in] */ BSTR newVal);
+        
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_AbsPath )( 
+            IMgaFolder __RPC_FAR * This,
+            /* [retval][out] */ BSTR __RPC_FAR *pVal);
         
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_MetaBase )( 
             IMgaFolder __RPC_FAR * This,
@@ -17364,6 +17935,20 @@ EXTERN_C const IID IID_IMgaFolder;
             /* [in] */ IMgaFCOs __RPC_FAR *to_move,
             /* [out] */ IMgaFCOs __RPC_FAR *__RPC_FAR *objs);
         
+        /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *MoveFolders )( 
+            IMgaFolder __RPC_FAR * This,
+            /* [in] */ IMgaFolders __RPC_FAR *to_copy,
+            /* [out] */ IMgaFolders __RPC_FAR *__RPC_FAR *objs);
+        
+        /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *CopyFolders )( 
+            IMgaFolder __RPC_FAR * This,
+            /* [in] */ IMgaFolders __RPC_FAR *to_move,
+            /* [out] */ IMgaFolders __RPC_FAR *__RPC_FAR *objs);
+        
+        /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *RefreshParent )( 
+            IMgaFolder __RPC_FAR * This,
+            /* [in] */ IMgaFolder __RPC_FAR *folder);
+        
         /* [helpstring][propget][id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_ChildFCOs )( 
             IMgaFolder __RPC_FAR * This,
             /* [retval][out] */ IMgaFCOs __RPC_FAR *__RPC_FAR *pVal);
@@ -17458,6 +18043,9 @@ EXTERN_C const IID IID_IMgaFolder;
 
 #define IMgaFolder_put_Name(This,newVal)	\
     (This)->lpVtbl -> put_Name(This,newVal)
+
+#define IMgaFolder_get_AbsPath(This,pVal)	\
+    (This)->lpVtbl -> get_AbsPath(This,pVal)
 
 #define IMgaFolder_get_MetaBase(This,pVal)	\
     (This)->lpVtbl -> get_MetaBase(This,pVal)
@@ -17573,6 +18161,15 @@ EXTERN_C const IID IID_IMgaFolder;
 
 #define IMgaFolder_CopyFCOs(This,to_move,objs)	\
     (This)->lpVtbl -> CopyFCOs(This,to_move,objs)
+
+#define IMgaFolder_MoveFolders(This,to_copy,objs)	\
+    (This)->lpVtbl -> MoveFolders(This,to_copy,objs)
+
+#define IMgaFolder_CopyFolders(This,to_move,objs)	\
+    (This)->lpVtbl -> CopyFolders(This,to_move,objs)
+
+#define IMgaFolder_RefreshParent(This,folder)	\
+    (This)->lpVtbl -> RefreshParent(This,folder)
 
 #define IMgaFolder_get_ChildFCOs(This,pVal)	\
     (This)->lpVtbl -> get_ChildFCOs(This,pVal)
@@ -17799,6 +18396,44 @@ void __RPC_STUB IMgaFolder_MoveFCOs_Stub(
 
 
 void __RPC_STUB IMgaFolder_CopyFCOs_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][id] */ HRESULT STDMETHODCALLTYPE IMgaFolder_MoveFolders_Proxy( 
+    IMgaFolder __RPC_FAR * This,
+    /* [in] */ IMgaFolders __RPC_FAR *to_copy,
+    /* [out] */ IMgaFolders __RPC_FAR *__RPC_FAR *objs);
+
+
+void __RPC_STUB IMgaFolder_MoveFolders_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][id] */ HRESULT STDMETHODCALLTYPE IMgaFolder_CopyFolders_Proxy( 
+    IMgaFolder __RPC_FAR * This,
+    /* [in] */ IMgaFolders __RPC_FAR *to_move,
+    /* [out] */ IMgaFolders __RPC_FAR *__RPC_FAR *objs);
+
+
+void __RPC_STUB IMgaFolder_CopyFolders_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][id] */ HRESULT STDMETHODCALLTYPE IMgaFolder_RefreshParent_Proxy( 
+    IMgaFolder __RPC_FAR * This,
+    /* [in] */ IMgaFolder __RPC_FAR *folder);
+
+
+void __RPC_STUB IMgaFolder_RefreshParent_Stub(
     IRpcStubBuffer *This,
     IRpcChannelBuffer *_pRpcChannelBuffer,
     PRPC_MESSAGE _pRpcMessage,
@@ -18082,6 +18717,10 @@ EXTERN_C const IID IID_IMgaModel;
         /* [helpstring][propput] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *put_Name )( 
             IMgaModel __RPC_FAR * This,
             /* [in] */ BSTR newVal);
+        
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_AbsPath )( 
+            IMgaModel __RPC_FAR * This,
+            /* [retval][out] */ BSTR __RPC_FAR *pVal);
         
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_MetaBase )( 
             IMgaModel __RPC_FAR * This,
@@ -18512,6 +19151,9 @@ EXTERN_C const IID IID_IMgaModel;
 
 #define IMgaModel_put_Name(This,newVal)	\
     (This)->lpVtbl -> put_Name(This,newVal)
+
+#define IMgaModel_get_AbsPath(This,pVal)	\
+    (This)->lpVtbl -> get_AbsPath(This,pVal)
 
 #define IMgaModel_get_MetaBase(This,pVal)	\
     (This)->lpVtbl -> get_MetaBase(This,pVal)
@@ -19060,6 +19702,10 @@ EXTERN_C const IID IID_IMgaAtom;
             IMgaAtom __RPC_FAR * This,
             /* [in] */ BSTR newVal);
         
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_AbsPath )( 
+            IMgaAtom __RPC_FAR * This,
+            /* [retval][out] */ BSTR __RPC_FAR *pVal);
+        
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_MetaBase )( 
             IMgaAtom __RPC_FAR * This,
             /* [retval][out] */ IMgaMetaBase __RPC_FAR *__RPC_FAR *pVal);
@@ -19407,6 +20053,9 @@ EXTERN_C const IID IID_IMgaAtom;
 
 #define IMgaAtom_put_Name(This,newVal)	\
     (This)->lpVtbl -> put_Name(This,newVal)
+
+#define IMgaAtom_get_AbsPath(This,pVal)	\
+    (This)->lpVtbl -> get_AbsPath(This,pVal)
 
 #define IMgaAtom_get_MetaBase(This,pVal)	\
     (This)->lpVtbl -> get_MetaBase(This,pVal)
@@ -20170,6 +20819,10 @@ EXTERN_C const IID IID_IMgaReference;
             IMgaReference __RPC_FAR * This,
             /* [in] */ BSTR newVal);
         
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_AbsPath )( 
+            IMgaReference __RPC_FAR * This,
+            /* [retval][out] */ BSTR __RPC_FAR *pVal);
+        
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_MetaBase )( 
             IMgaReference __RPC_FAR * This,
             /* [retval][out] */ IMgaMetaBase __RPC_FAR *__RPC_FAR *pVal);
@@ -20544,6 +21197,9 @@ EXTERN_C const IID IID_IMgaReference;
 
 #define IMgaReference_put_Name(This,newVal)	\
     (This)->lpVtbl -> put_Name(This,newVal)
+
+#define IMgaReference_get_AbsPath(This,pVal)	\
+    (This)->lpVtbl -> get_AbsPath(This,pVal)
 
 #define IMgaReference_get_MetaBase(This,pVal)	\
     (This)->lpVtbl -> get_MetaBase(This,pVal)
@@ -20969,6 +21625,10 @@ EXTERN_C const IID IID_IMgaSet;
             IMgaSet __RPC_FAR * This,
             /* [in] */ BSTR newVal);
         
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_AbsPath )( 
+            IMgaSet __RPC_FAR * This,
+            /* [retval][out] */ BSTR __RPC_FAR *pVal);
+        
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_MetaBase )( 
             IMgaSet __RPC_FAR * This,
             /* [retval][out] */ IMgaMetaBase __RPC_FAR *__RPC_FAR *pVal);
@@ -21343,6 +22003,9 @@ EXTERN_C const IID IID_IMgaSet;
 
 #define IMgaSet_put_Name(This,newVal)	\
     (This)->lpVtbl -> put_Name(This,newVal)
+
+#define IMgaSet_get_AbsPath(This,pVal)	\
+    (This)->lpVtbl -> get_AbsPath(This,pVal)
 
 #define IMgaSet_get_MetaBase(This,pVal)	\
     (This)->lpVtbl -> get_MetaBase(This,pVal)
@@ -21765,6 +22428,10 @@ EXTERN_C const IID IID_IMgaConnection;
             IMgaConnection __RPC_FAR * This,
             /* [in] */ BSTR newVal);
         
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_AbsPath )( 
+            IMgaConnection __RPC_FAR * This,
+            /* [retval][out] */ BSTR __RPC_FAR *pVal);
+        
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_MetaBase )( 
             IMgaConnection __RPC_FAR * This,
             /* [retval][out] */ IMgaMetaBase __RPC_FAR *__RPC_FAR *pVal);
@@ -22133,6 +22800,9 @@ EXTERN_C const IID IID_IMgaConnection;
 
 #define IMgaConnection_put_Name(This,newVal)	\
     (This)->lpVtbl -> put_Name(This,newVal)
+
+#define IMgaConnection_get_AbsPath(This,pVal)	\
+    (This)->lpVtbl -> get_AbsPath(This,pVal)
 
 #define IMgaConnection_get_MetaBase(This,pVal)	\
     (This)->lpVtbl -> get_MetaBase(This,pVal)
@@ -22518,6 +23188,10 @@ EXTERN_C const IID IID_IMgaSimpleConnection;
         /* [helpstring][propput] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *put_Name )( 
             IMgaSimpleConnection __RPC_FAR * This,
             /* [in] */ BSTR newVal);
+        
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_AbsPath )( 
+            IMgaSimpleConnection __RPC_FAR * This,
+            /* [retval][out] */ BSTR __RPC_FAR *pVal);
         
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_MetaBase )( 
             IMgaSimpleConnection __RPC_FAR * This,
@@ -22913,6 +23587,9 @@ EXTERN_C const IID IID_IMgaSimpleConnection;
 
 #define IMgaSimpleConnection_put_Name(This,newVal)	\
     (This)->lpVtbl -> put_Name(This,newVal)
+
+#define IMgaSimpleConnection_get_AbsPath(This,pVal)	\
+    (This)->lpVtbl -> get_AbsPath(This,pVal)
 
 #define IMgaSimpleConnection_get_MetaBase(This,pVal)	\
     (This)->lpVtbl -> get_MetaBase(This,pVal)
@@ -25149,19 +25826,22 @@ void __RPC_STUB IMgaFolders_Remove_Stub(
 #endif 	/* __IMgaFolders_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_ComponentLib_0264 */
+/* interface __MIDL_itf_ComponentLib_0265 */
 /* [local] */ 
 
 #ifdef __cplusplus
+extern "C++"    
+{            
 template<> struct ::TypeName_MgaColl2Elem<IMgaFolders>
 { typedef IMgaFolders collection_type; typedef IMgaFolder element_type; };
 template<> struct ::TypeName_MgaElem2Coll<IMgaFolder>
 { typedef IMgaFolders collection_type; typedef IMgaFolder element_type; };
+}            
 #endif
 
 
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0264_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0264_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0265_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0265_v0_0_s_ifspec;
 
 #ifndef __IMgaFCOs_INTERFACE_DEFINED__
 #define __IMgaFCOs_INTERFACE_DEFINED__
@@ -25464,19 +26144,22 @@ void __RPC_STUB IMgaFCOs_Remove_Stub(
 #endif 	/* __IMgaFCOs_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_ComponentLib_0265 */
+/* interface __MIDL_itf_ComponentLib_0266 */
 /* [local] */ 
 
 #ifdef __cplusplus
+extern "C++"    
+{            
 template<> struct ::TypeName_MgaColl2Elem<IMgaFCOs>
 { typedef IMgaFCOs collection_type; typedef IMgaFCO element_type; };
 template<> struct ::TypeName_MgaElem2Coll<IMgaFCO>
 { typedef IMgaFCOs collection_type; typedef IMgaFCO element_type; };
+}            
 #endif
 
 
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0265_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0265_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0266_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0266_v0_0_s_ifspec;
 
 #ifndef __IMgaAttributes_INTERFACE_DEFINED__
 #define __IMgaAttributes_INTERFACE_DEFINED__
@@ -25779,19 +26462,22 @@ void __RPC_STUB IMgaAttributes_Remove_Stub(
 #endif 	/* __IMgaAttributes_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_ComponentLib_0266 */
+/* interface __MIDL_itf_ComponentLib_0267 */
 /* [local] */ 
 
 #ifdef __cplusplus
+extern "C++"    
+{            
 template<> struct ::TypeName_MgaColl2Elem<IMgaAttributes>
 { typedef IMgaAttributes collection_type; typedef IMgaAttribute element_type; };
 template<> struct ::TypeName_MgaElem2Coll<IMgaAttribute>
 { typedef IMgaAttributes collection_type; typedef IMgaAttribute element_type; };
+}            
 #endif
 
 
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0266_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0266_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0267_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0267_v0_0_s_ifspec;
 
 #ifndef __IMgaParts_INTERFACE_DEFINED__
 #define __IMgaParts_INTERFACE_DEFINED__
@@ -26094,19 +26780,22 @@ void __RPC_STUB IMgaParts_Remove_Stub(
 #endif 	/* __IMgaParts_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_ComponentLib_0267 */
+/* interface __MIDL_itf_ComponentLib_0268 */
 /* [local] */ 
 
 #ifdef __cplusplus
+extern "C++"    
+{            
 template<> struct ::TypeName_MgaColl2Elem<IMgaParts>
 { typedef IMgaParts collection_type; typedef IMgaPart element_type; };
 template<> struct ::TypeName_MgaElem2Coll<IMgaPart>
 { typedef IMgaParts collection_type; typedef IMgaPart element_type; };
+}            
 #endif
 
 
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0267_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0267_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0268_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0268_v0_0_s_ifspec;
 
 #ifndef __IMgaConnPoints_INTERFACE_DEFINED__
 #define __IMgaConnPoints_INTERFACE_DEFINED__
@@ -26409,19 +27098,22 @@ void __RPC_STUB IMgaConnPoints_Remove_Stub(
 #endif 	/* __IMgaConnPoints_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_ComponentLib_0268 */
+/* interface __MIDL_itf_ComponentLib_0269 */
 /* [local] */ 
 
 #ifdef __cplusplus
+extern "C++"    
+{            
 template<> struct ::TypeName_MgaColl2Elem<IMgaConnPoints>
 { typedef IMgaConnPoints collection_type; typedef IMgaConnPoint element_type; };
 template<> struct ::TypeName_MgaElem2Coll<IMgaConnPoint>
 { typedef IMgaConnPoints collection_type; typedef IMgaConnPoint element_type; };
+}            
 #endif
 
 
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0268_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0268_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0269_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0269_v0_0_s_ifspec;
 
 #ifndef __IMgaRegNodes_INTERFACE_DEFINED__
 #define __IMgaRegNodes_INTERFACE_DEFINED__
@@ -26724,19 +27416,22 @@ void __RPC_STUB IMgaRegNodes_Remove_Stub(
 #endif 	/* __IMgaRegNodes_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_ComponentLib_0269 */
+/* interface __MIDL_itf_ComponentLib_0270 */
 /* [local] */ 
 
 #ifdef __cplusplus
+extern "C++"    
+{            
 template<> struct ::TypeName_MgaColl2Elem<IMgaRegNodes>
 { typedef IMgaRegNodes collection_type; typedef IMgaRegNode element_type; };
 template<> struct ::TypeName_MgaElem2Coll<IMgaRegNode>
 { typedef IMgaRegNodes collection_type; typedef IMgaRegNode element_type; };
+}            
 #endif
 
 
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0269_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0269_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0270_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0270_v0_0_s_ifspec;
 
 #ifndef __IMgaAddOns_INTERFACE_DEFINED__
 #define __IMgaAddOns_INTERFACE_DEFINED__
@@ -27039,19 +27734,22 @@ void __RPC_STUB IMgaAddOns_Remove_Stub(
 #endif 	/* __IMgaAddOns_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_ComponentLib_0270 */
+/* interface __MIDL_itf_ComponentLib_0271 */
 /* [local] */ 
 
 #ifdef __cplusplus
+extern "C++"    
+{            
 template<> struct ::TypeName_MgaColl2Elem<IMgaAddOns>
 { typedef IMgaAddOns collection_type; typedef IMgaAddOn element_type; };
 template<> struct ::TypeName_MgaElem2Coll<IMgaAddOn>
 { typedef IMgaAddOns collection_type; typedef IMgaAddOn element_type; };
+}            
 #endif
 
 
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0270_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0270_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0271_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0271_v0_0_s_ifspec;
 
 #ifndef __IMgaTerritories_INTERFACE_DEFINED__
 #define __IMgaTerritories_INTERFACE_DEFINED__
@@ -27354,19 +28052,22 @@ void __RPC_STUB IMgaTerritories_Remove_Stub(
 #endif 	/* __IMgaTerritories_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_ComponentLib_0271 */
+/* interface __MIDL_itf_ComponentLib_0272 */
 /* [local] */ 
 
 #ifdef __cplusplus
+extern "C++"    
+{            
 template<> struct ::TypeName_MgaColl2Elem<IMgaTerritories>
 { typedef IMgaTerritories collection_type; typedef IMgaTerritory element_type; };
 template<> struct ::TypeName_MgaElem2Coll<IMgaTerritory>
 { typedef IMgaTerritories collection_type; typedef IMgaTerritory element_type; };
+}            
 #endif
 
 
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0271_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0271_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0272_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0272_v0_0_s_ifspec;
 
 #ifndef __IMgaComponents_INTERFACE_DEFINED__
 #define __IMgaComponents_INTERFACE_DEFINED__
@@ -27669,19 +28370,340 @@ void __RPC_STUB IMgaComponents_Remove_Stub(
 #endif 	/* __IMgaComponents_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_ComponentLib_0272 */
+/* interface __MIDL_itf_ComponentLib_0273 */
 /* [local] */ 
 
 #ifdef __cplusplus
+extern "C++"    
+{            
 template<> struct ::TypeName_MgaColl2Elem<IMgaComponents>
 { typedef IMgaComponents collection_type; typedef IMgaComponent element_type; };
 template<> struct ::TypeName_MgaElem2Coll<IMgaComponent>
 { typedef IMgaComponents collection_type; typedef IMgaComponent element_type; };
+}            
 #endif
 
 
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0272_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0272_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0273_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0273_v0_0_s_ifspec;
+
+#ifndef __IMgaClients_INTERFACE_DEFINED__
+#define __IMgaClients_INTERFACE_DEFINED__
+
+/* interface IMgaClients */
+/* [unique][helpstring][dual][uuid][object] */ 
+
+
+EXTERN_C const IID IID_IMgaClients;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("c9d8df93-c1fd-11d3-9ad2-00aa00b6fe26")
+    IMgaClients : public IDispatch
+    {
+    public:
+        virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_Count( 
+            /* [retval][out] */ long __RPC_FAR *p) = 0;
+        
+        virtual /* [helpstring][id][propget] */ HRESULT STDMETHODCALLTYPE get_Item( 
+            /* [in] */ long n,
+            /* [retval][out] */ IMgaClient __RPC_FAR *__RPC_FAR *p) = 0;
+        
+        virtual /* [helpstring][id][propget] */ HRESULT STDMETHODCALLTYPE get__NewEnum( 
+            /* [retval][out] */ IUnknown __RPC_FAR *__RPC_FAR *p) = 0;
+        
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE GetAll( 
+            /* [in] */ long count,
+            /* [size_is][out] */ IMgaClient __RPC_FAR *__RPC_FAR *p) = 0;
+        
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE Insert( 
+            /* [in] */ IMgaClient __RPC_FAR *p,
+            /* [in] */ long at) = 0;
+        
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE Append( 
+            /* [in] */ IMgaClient __RPC_FAR *p) = 0;
+        
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE Find( 
+            /* [in] */ IMgaClient __RPC_FAR *p,
+            /* [in] */ long start,
+            /* [retval][out] */ long __RPC_FAR *res) = 0;
+        
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE Remove( 
+            /* [in] */ long n) = 0;
+        
+    };
+    
+#else 	/* C style interface */
+
+    typedef struct IMgaClientsVtbl
+    {
+        BEGIN_INTERFACE
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *QueryInterface )( 
+            IMgaClients __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [iid_is][out] */ void __RPC_FAR *__RPC_FAR *ppvObject);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *AddRef )( 
+            IMgaClients __RPC_FAR * This);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *Release )( 
+            IMgaClients __RPC_FAR * This);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetTypeInfoCount )( 
+            IMgaClients __RPC_FAR * This,
+            /* [out] */ UINT __RPC_FAR *pctinfo);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetTypeInfo )( 
+            IMgaClients __RPC_FAR * This,
+            /* [in] */ UINT iTInfo,
+            /* [in] */ LCID lcid,
+            /* [out] */ ITypeInfo __RPC_FAR *__RPC_FAR *ppTInfo);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetIDsOfNames )( 
+            IMgaClients __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [size_is][in] */ LPOLESTR __RPC_FAR *rgszNames,
+            /* [in] */ UINT cNames,
+            /* [in] */ LCID lcid,
+            /* [size_is][out] */ DISPID __RPC_FAR *rgDispId);
+        
+        /* [local] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Invoke )( 
+            IMgaClients __RPC_FAR * This,
+            /* [in] */ DISPID dispIdMember,
+            /* [in] */ REFIID riid,
+            /* [in] */ LCID lcid,
+            /* [in] */ WORD wFlags,
+            /* [out][in] */ DISPPARAMS __RPC_FAR *pDispParams,
+            /* [out] */ VARIANT __RPC_FAR *pVarResult,
+            /* [out] */ EXCEPINFO __RPC_FAR *pExcepInfo,
+            /* [out] */ UINT __RPC_FAR *puArgErr);
+        
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Count )( 
+            IMgaClients __RPC_FAR * This,
+            /* [retval][out] */ long __RPC_FAR *p);
+        
+        /* [helpstring][id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Item )( 
+            IMgaClients __RPC_FAR * This,
+            /* [in] */ long n,
+            /* [retval][out] */ IMgaClient __RPC_FAR *__RPC_FAR *p);
+        
+        /* [helpstring][id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get__NewEnum )( 
+            IMgaClients __RPC_FAR * This,
+            /* [retval][out] */ IUnknown __RPC_FAR *__RPC_FAR *p);
+        
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetAll )( 
+            IMgaClients __RPC_FAR * This,
+            /* [in] */ long count,
+            /* [size_is][out] */ IMgaClient __RPC_FAR *__RPC_FAR *p);
+        
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Insert )( 
+            IMgaClients __RPC_FAR * This,
+            /* [in] */ IMgaClient __RPC_FAR *p,
+            /* [in] */ long at);
+        
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Append )( 
+            IMgaClients __RPC_FAR * This,
+            /* [in] */ IMgaClient __RPC_FAR *p);
+        
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Find )( 
+            IMgaClients __RPC_FAR * This,
+            /* [in] */ IMgaClient __RPC_FAR *p,
+            /* [in] */ long start,
+            /* [retval][out] */ long __RPC_FAR *res);
+        
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Remove )( 
+            IMgaClients __RPC_FAR * This,
+            /* [in] */ long n);
+        
+        END_INTERFACE
+    } IMgaClientsVtbl;
+
+    interface IMgaClients
+    {
+        CONST_VTBL struct IMgaClientsVtbl __RPC_FAR *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IMgaClients_QueryInterface(This,riid,ppvObject)	\
+    (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
+
+#define IMgaClients_AddRef(This)	\
+    (This)->lpVtbl -> AddRef(This)
+
+#define IMgaClients_Release(This)	\
+    (This)->lpVtbl -> Release(This)
+
+
+#define IMgaClients_GetTypeInfoCount(This,pctinfo)	\
+    (This)->lpVtbl -> GetTypeInfoCount(This,pctinfo)
+
+#define IMgaClients_GetTypeInfo(This,iTInfo,lcid,ppTInfo)	\
+    (This)->lpVtbl -> GetTypeInfo(This,iTInfo,lcid,ppTInfo)
+
+#define IMgaClients_GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)	\
+    (This)->lpVtbl -> GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)
+
+#define IMgaClients_Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)	\
+    (This)->lpVtbl -> Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)
+
+
+#define IMgaClients_get_Count(This,p)	\
+    (This)->lpVtbl -> get_Count(This,p)
+
+#define IMgaClients_get_Item(This,n,p)	\
+    (This)->lpVtbl -> get_Item(This,n,p)
+
+#define IMgaClients_get__NewEnum(This,p)	\
+    (This)->lpVtbl -> get__NewEnum(This,p)
+
+#define IMgaClients_GetAll(This,count,p)	\
+    (This)->lpVtbl -> GetAll(This,count,p)
+
+#define IMgaClients_Insert(This,p,at)	\
+    (This)->lpVtbl -> Insert(This,p,at)
+
+#define IMgaClients_Append(This,p)	\
+    (This)->lpVtbl -> Append(This,p)
+
+#define IMgaClients_Find(This,p,start,res)	\
+    (This)->lpVtbl -> Find(This,p,start,res)
+
+#define IMgaClients_Remove(This,n)	\
+    (This)->lpVtbl -> Remove(This,n)
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+/* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE IMgaClients_get_Count_Proxy( 
+    IMgaClients __RPC_FAR * This,
+    /* [retval][out] */ long __RPC_FAR *p);
+
+
+void __RPC_STUB IMgaClients_get_Count_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][id][propget] */ HRESULT STDMETHODCALLTYPE IMgaClients_get_Item_Proxy( 
+    IMgaClients __RPC_FAR * This,
+    /* [in] */ long n,
+    /* [retval][out] */ IMgaClient __RPC_FAR *__RPC_FAR *p);
+
+
+void __RPC_STUB IMgaClients_get_Item_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][id][propget] */ HRESULT STDMETHODCALLTYPE IMgaClients_get__NewEnum_Proxy( 
+    IMgaClients __RPC_FAR * This,
+    /* [retval][out] */ IUnknown __RPC_FAR *__RPC_FAR *p);
+
+
+void __RPC_STUB IMgaClients_get__NewEnum_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaClients_GetAll_Proxy( 
+    IMgaClients __RPC_FAR * This,
+    /* [in] */ long count,
+    /* [size_is][out] */ IMgaClient __RPC_FAR *__RPC_FAR *p);
+
+
+void __RPC_STUB IMgaClients_GetAll_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaClients_Insert_Proxy( 
+    IMgaClients __RPC_FAR * This,
+    /* [in] */ IMgaClient __RPC_FAR *p,
+    /* [in] */ long at);
+
+
+void __RPC_STUB IMgaClients_Insert_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaClients_Append_Proxy( 
+    IMgaClients __RPC_FAR * This,
+    /* [in] */ IMgaClient __RPC_FAR *p);
+
+
+void __RPC_STUB IMgaClients_Append_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaClients_Find_Proxy( 
+    IMgaClients __RPC_FAR * This,
+    /* [in] */ IMgaClient __RPC_FAR *p,
+    /* [in] */ long start,
+    /* [retval][out] */ long __RPC_FAR *res);
+
+
+void __RPC_STUB IMgaClients_Find_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaClients_Remove_Proxy( 
+    IMgaClients __RPC_FAR * This,
+    /* [in] */ long n);
+
+
+void __RPC_STUB IMgaClients_Remove_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+
+#endif 	/* __IMgaClients_INTERFACE_DEFINED__ */
+
+
+/* interface __MIDL_itf_ComponentLib_0274 */
+/* [local] */ 
+
+#ifdef __cplusplus
+extern "C++"    
+{            
+template<> struct ::TypeName_MgaColl2Elem<IMgaClients>
+{ typedef IMgaClients collection_type; typedef IMgaClient element_type; };
+template<> struct ::TypeName_MgaElem2Coll<IMgaClient>
+{ typedef IMgaClients collection_type; typedef IMgaClient element_type; };
+}            
+#endif
+
+
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0274_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0274_v0_0_s_ifspec;
 
 #ifndef __IMgaObjects_INTERFACE_DEFINED__
 #define __IMgaObjects_INTERFACE_DEFINED__
@@ -27984,19 +29006,22 @@ void __RPC_STUB IMgaObjects_Remove_Stub(
 #endif 	/* __IMgaObjects_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_ComponentLib_0273 */
+/* interface __MIDL_itf_ComponentLib_0275 */
 /* [local] */ 
 
 #ifdef __cplusplus
+extern "C++"    
+{            
 template<> struct ::TypeName_MgaColl2Elem<IMgaObjects>
 { typedef IMgaObjects collection_type; typedef IMgaObject element_type; };
 template<> struct ::TypeName_MgaElem2Coll<IMgaObject>
 { typedef IMgaObjects collection_type; typedef IMgaObject element_type; };
+}            
 #endif
 
 
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0273_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0273_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0275_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0275_v0_0_s_ifspec;
 
 #ifndef __IMgaO_INTERFACE_DEFINED__
 #define __IMgaO_INTERFACE_DEFINED__
@@ -28108,7 +29133,7 @@ EXTERN_C const IID IID_IMgaO;
 #endif 	/* __IMgaO_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_ComponentLib_0274 */
+/* interface __MIDL_itf_ComponentLib_0276 */
 /* [local] */ 
 
 typedef 
@@ -28118,8 +29143,8 @@ enum mgautil_error
 
 
 
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0274_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0274_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0276_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0276_v0_0_s_ifspec;
 
 #ifndef __IMgaResolver_INTERFACE_DEFINED__
 #define __IMgaResolver_INTERFACE_DEFINED__
@@ -28604,7 +29629,7 @@ void __RPC_STUB IMgaResolver_get_RolesByMetas_Stub(
 #endif 	/* __IMgaResolver_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_ComponentLib_0277 */
+/* interface __MIDL_itf_ComponentLib_0279 */
 /* [local] */ 
 
 typedef 
@@ -28619,8 +29644,8 @@ enum regaccessmode_enum
 
 
 
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0277_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0277_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0279_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0279_v0_0_s_ifspec;
 
 #ifndef __IMgaRegistrar_INTERFACE_DEFINED__
 #define __IMgaRegistrar_INTERFACE_DEFINED__
@@ -28653,6 +29678,70 @@ EXTERN_C const IID IID_IMgaRegistrar;
             /* [in] */ regaccessmode_enum mode,
             /* [in] */ VARIANT_BOOL enabled) = 0;
         
+        virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_EventLoggingEnabled( 
+            /* [in] */ regaccessmode_enum mode,
+            /* [retval][out] */ VARIANT_BOOL __RPC_FAR *enabled) = 0;
+        
+        virtual /* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE put_EventLoggingEnabled( 
+            /* [in] */ regaccessmode_enum mode,
+            /* [in] */ VARIANT_BOOL enabled) = 0;
+        
+        virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_AutosaveEnabled( 
+            /* [in] */ regaccessmode_enum mode,
+            /* [retval][out] */ VARIANT_BOOL __RPC_FAR *enabled) = 0;
+        
+        virtual /* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE put_AutosaveEnabled( 
+            /* [in] */ regaccessmode_enum mode,
+            /* [in] */ VARIANT_BOOL enabled) = 0;
+        
+        virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_AutosaveFreq( 
+            /* [in] */ regaccessmode_enum mode,
+            /* [retval][out] */ long __RPC_FAR *secs) = 0;
+        
+        virtual /* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE put_AutosaveFreq( 
+            /* [in] */ regaccessmode_enum mode,
+            /* [in] */ long secs) = 0;
+        
+        virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_AutosaveUseDir( 
+            /* [in] */ regaccessmode_enum mode,
+            /* [retval][out] */ VARIANT_BOOL __RPC_FAR *use) = 0;
+        
+        virtual /* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE put_AutosaveUseDir( 
+            /* [in] */ regaccessmode_enum mode,
+            /* [in] */ VARIANT_BOOL use) = 0;
+        
+        virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_AutosaveDir( 
+            /* [in] */ regaccessmode_enum mode,
+            /* [retval][out] */ BSTR __RPC_FAR *dir) = 0;
+        
+        virtual /* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE put_AutosaveDir( 
+            /* [in] */ regaccessmode_enum mode,
+            /* [in] */ BSTR dir) = 0;
+        
+        virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_ExternalEditorEnabled( 
+            /* [in] */ regaccessmode_enum mode,
+            /* [retval][out] */ VARIANT_BOOL __RPC_FAR *enabled) = 0;
+        
+        virtual /* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE put_ExternalEditorEnabled( 
+            /* [in] */ regaccessmode_enum mode,
+            /* [in] */ VARIANT_BOOL enabled) = 0;
+        
+        virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_ExternalEditor( 
+            /* [in] */ regaccessmode_enum mode,
+            /* [retval][out] */ BSTR __RPC_FAR *path) = 0;
+        
+        virtual /* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE put_ExternalEditor( 
+            /* [in] */ regaccessmode_enum mode,
+            /* [in] */ BSTR path) = 0;
+        
+        virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_LabelAvoidance( 
+            /* [in] */ regaccessmode_enum mode,
+            /* [retval][out] */ VARIANT_BOOL __RPC_FAR *enabled) = 0;
+        
+        virtual /* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE put_LabelAvoidance( 
+            /* [in] */ regaccessmode_enum mode,
+            /* [in] */ VARIANT_BOOL enabled) = 0;
+        
         virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_Paradigms( 
             /* [in] */ regaccessmode_enum mode,
             /* [retval][out] */ VARIANT __RPC_FAR *names) = 0;
@@ -28665,6 +29754,7 @@ EXTERN_C const IID IID_IMgaRegistrar;
         virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE RegisterParadigm( 
             /* [in] */ BSTR name,
             /* [in] */ BSTR connstr,
+            /* [in] */ BSTR ver,
             /* [in] */ VARIANT guid,
             /* [in] */ regaccessmode_enum mode) = 0;
         
@@ -28691,6 +29781,18 @@ EXTERN_C const IID IID_IMgaRegistrar;
         virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE UnregisterParadigmGUID( 
             /* [in] */ BSTR name,
             /* [in] */ VARIANT guid,
+            /* [in] */ regaccessmode_enum mode) = 0;
+        
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE VersionFromGUID( 
+            /* [in] */ BSTR name,
+            /* [in] */ VARIANT guid,
+            /* [out] */ BSTR __RPC_FAR *ver,
+            /* [in] */ regaccessmode_enum mode) = 0;
+        
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE GUIDFromVersion( 
+            /* [in] */ BSTR name,
+            /* [in] */ BSTR ver,
+            /* [out] */ VARIANT __RPC_FAR *guid,
             /* [in] */ regaccessmode_enum mode) = 0;
         
         virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_Components( 
@@ -28833,6 +29935,86 @@ EXTERN_C const IID IID_IMgaRegistrar;
             /* [in] */ regaccessmode_enum mode,
             /* [in] */ VARIANT_BOOL enabled);
         
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_EventLoggingEnabled )( 
+            IMgaRegistrar __RPC_FAR * This,
+            /* [in] */ regaccessmode_enum mode,
+            /* [retval][out] */ VARIANT_BOOL __RPC_FAR *enabled);
+        
+        /* [helpstring][propput] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *put_EventLoggingEnabled )( 
+            IMgaRegistrar __RPC_FAR * This,
+            /* [in] */ regaccessmode_enum mode,
+            /* [in] */ VARIANT_BOOL enabled);
+        
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_AutosaveEnabled )( 
+            IMgaRegistrar __RPC_FAR * This,
+            /* [in] */ regaccessmode_enum mode,
+            /* [retval][out] */ VARIANT_BOOL __RPC_FAR *enabled);
+        
+        /* [helpstring][propput] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *put_AutosaveEnabled )( 
+            IMgaRegistrar __RPC_FAR * This,
+            /* [in] */ regaccessmode_enum mode,
+            /* [in] */ VARIANT_BOOL enabled);
+        
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_AutosaveFreq )( 
+            IMgaRegistrar __RPC_FAR * This,
+            /* [in] */ regaccessmode_enum mode,
+            /* [retval][out] */ long __RPC_FAR *secs);
+        
+        /* [helpstring][propput] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *put_AutosaveFreq )( 
+            IMgaRegistrar __RPC_FAR * This,
+            /* [in] */ regaccessmode_enum mode,
+            /* [in] */ long secs);
+        
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_AutosaveUseDir )( 
+            IMgaRegistrar __RPC_FAR * This,
+            /* [in] */ regaccessmode_enum mode,
+            /* [retval][out] */ VARIANT_BOOL __RPC_FAR *use);
+        
+        /* [helpstring][propput] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *put_AutosaveUseDir )( 
+            IMgaRegistrar __RPC_FAR * This,
+            /* [in] */ regaccessmode_enum mode,
+            /* [in] */ VARIANT_BOOL use);
+        
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_AutosaveDir )( 
+            IMgaRegistrar __RPC_FAR * This,
+            /* [in] */ regaccessmode_enum mode,
+            /* [retval][out] */ BSTR __RPC_FAR *dir);
+        
+        /* [helpstring][propput] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *put_AutosaveDir )( 
+            IMgaRegistrar __RPC_FAR * This,
+            /* [in] */ regaccessmode_enum mode,
+            /* [in] */ BSTR dir);
+        
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_ExternalEditorEnabled )( 
+            IMgaRegistrar __RPC_FAR * This,
+            /* [in] */ regaccessmode_enum mode,
+            /* [retval][out] */ VARIANT_BOOL __RPC_FAR *enabled);
+        
+        /* [helpstring][propput] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *put_ExternalEditorEnabled )( 
+            IMgaRegistrar __RPC_FAR * This,
+            /* [in] */ regaccessmode_enum mode,
+            /* [in] */ VARIANT_BOOL enabled);
+        
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_ExternalEditor )( 
+            IMgaRegistrar __RPC_FAR * This,
+            /* [in] */ regaccessmode_enum mode,
+            /* [retval][out] */ BSTR __RPC_FAR *path);
+        
+        /* [helpstring][propput] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *put_ExternalEditor )( 
+            IMgaRegistrar __RPC_FAR * This,
+            /* [in] */ regaccessmode_enum mode,
+            /* [in] */ BSTR path);
+        
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_LabelAvoidance )( 
+            IMgaRegistrar __RPC_FAR * This,
+            /* [in] */ regaccessmode_enum mode,
+            /* [retval][out] */ VARIANT_BOOL __RPC_FAR *enabled);
+        
+        /* [helpstring][propput] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *put_LabelAvoidance )( 
+            IMgaRegistrar __RPC_FAR * This,
+            /* [in] */ regaccessmode_enum mode,
+            /* [in] */ VARIANT_BOOL enabled);
+        
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Paradigms )( 
             IMgaRegistrar __RPC_FAR * This,
             /* [in] */ regaccessmode_enum mode,
@@ -28848,6 +30030,7 @@ EXTERN_C const IID IID_IMgaRegistrar;
             IMgaRegistrar __RPC_FAR * This,
             /* [in] */ BSTR name,
             /* [in] */ BSTR connstr,
+            /* [in] */ BSTR ver,
             /* [in] */ VARIANT guid,
             /* [in] */ regaccessmode_enum mode);
         
@@ -28879,6 +30062,20 @@ EXTERN_C const IID IID_IMgaRegistrar;
             IMgaRegistrar __RPC_FAR * This,
             /* [in] */ BSTR name,
             /* [in] */ VARIANT guid,
+            /* [in] */ regaccessmode_enum mode);
+        
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *VersionFromGUID )( 
+            IMgaRegistrar __RPC_FAR * This,
+            /* [in] */ BSTR name,
+            /* [in] */ VARIANT guid,
+            /* [out] */ BSTR __RPC_FAR *ver,
+            /* [in] */ regaccessmode_enum mode);
+        
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GUIDFromVersion )( 
+            IMgaRegistrar __RPC_FAR * This,
+            /* [in] */ BSTR name,
+            /* [in] */ BSTR ver,
+            /* [out] */ VARIANT __RPC_FAR *guid,
             /* [in] */ regaccessmode_enum mode);
         
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Components )( 
@@ -29015,14 +30212,62 @@ EXTERN_C const IID IID_IMgaRegistrar;
 #define IMgaRegistrar_put_ShowMultipleView(This,mode,enabled)	\
     (This)->lpVtbl -> put_ShowMultipleView(This,mode,enabled)
 
+#define IMgaRegistrar_get_EventLoggingEnabled(This,mode,enabled)	\
+    (This)->lpVtbl -> get_EventLoggingEnabled(This,mode,enabled)
+
+#define IMgaRegistrar_put_EventLoggingEnabled(This,mode,enabled)	\
+    (This)->lpVtbl -> put_EventLoggingEnabled(This,mode,enabled)
+
+#define IMgaRegistrar_get_AutosaveEnabled(This,mode,enabled)	\
+    (This)->lpVtbl -> get_AutosaveEnabled(This,mode,enabled)
+
+#define IMgaRegistrar_put_AutosaveEnabled(This,mode,enabled)	\
+    (This)->lpVtbl -> put_AutosaveEnabled(This,mode,enabled)
+
+#define IMgaRegistrar_get_AutosaveFreq(This,mode,secs)	\
+    (This)->lpVtbl -> get_AutosaveFreq(This,mode,secs)
+
+#define IMgaRegistrar_put_AutosaveFreq(This,mode,secs)	\
+    (This)->lpVtbl -> put_AutosaveFreq(This,mode,secs)
+
+#define IMgaRegistrar_get_AutosaveUseDir(This,mode,use)	\
+    (This)->lpVtbl -> get_AutosaveUseDir(This,mode,use)
+
+#define IMgaRegistrar_put_AutosaveUseDir(This,mode,use)	\
+    (This)->lpVtbl -> put_AutosaveUseDir(This,mode,use)
+
+#define IMgaRegistrar_get_AutosaveDir(This,mode,dir)	\
+    (This)->lpVtbl -> get_AutosaveDir(This,mode,dir)
+
+#define IMgaRegistrar_put_AutosaveDir(This,mode,dir)	\
+    (This)->lpVtbl -> put_AutosaveDir(This,mode,dir)
+
+#define IMgaRegistrar_get_ExternalEditorEnabled(This,mode,enabled)	\
+    (This)->lpVtbl -> get_ExternalEditorEnabled(This,mode,enabled)
+
+#define IMgaRegistrar_put_ExternalEditorEnabled(This,mode,enabled)	\
+    (This)->lpVtbl -> put_ExternalEditorEnabled(This,mode,enabled)
+
+#define IMgaRegistrar_get_ExternalEditor(This,mode,path)	\
+    (This)->lpVtbl -> get_ExternalEditor(This,mode,path)
+
+#define IMgaRegistrar_put_ExternalEditor(This,mode,path)	\
+    (This)->lpVtbl -> put_ExternalEditor(This,mode,path)
+
+#define IMgaRegistrar_get_LabelAvoidance(This,mode,enabled)	\
+    (This)->lpVtbl -> get_LabelAvoidance(This,mode,enabled)
+
+#define IMgaRegistrar_put_LabelAvoidance(This,mode,enabled)	\
+    (This)->lpVtbl -> put_LabelAvoidance(This,mode,enabled)
+
 #define IMgaRegistrar_get_Paradigms(This,mode,names)	\
     (This)->lpVtbl -> get_Paradigms(This,mode,names)
 
 #define IMgaRegistrar_RegisterParadigmFromData(This,connstr,newname,mode)	\
     (This)->lpVtbl -> RegisterParadigmFromData(This,connstr,newname,mode)
 
-#define IMgaRegistrar_RegisterParadigm(This,name,connstr,guid,mode)	\
-    (This)->lpVtbl -> RegisterParadigm(This,name,connstr,guid,mode)
+#define IMgaRegistrar_RegisterParadigm(This,name,connstr,ver,guid,mode)	\
+    (This)->lpVtbl -> RegisterParadigm(This,name,connstr,ver,guid,mode)
 
 #define IMgaRegistrar_QueryParadigm(This,name,connstr,guid,mode)	\
     (This)->lpVtbl -> QueryParadigm(This,name,connstr,guid,mode)
@@ -29038,6 +30283,12 @@ EXTERN_C const IID IID_IMgaRegistrar;
 
 #define IMgaRegistrar_UnregisterParadigmGUID(This,name,guid,mode)	\
     (This)->lpVtbl -> UnregisterParadigmGUID(This,name,guid,mode)
+
+#define IMgaRegistrar_VersionFromGUID(This,name,guid,ver,mode)	\
+    (This)->lpVtbl -> VersionFromGUID(This,name,guid,ver,mode)
+
+#define IMgaRegistrar_GUIDFromVersion(This,name,ver,guid,mode)	\
+    (This)->lpVtbl -> GUIDFromVersion(This,name,ver,guid,mode)
 
 #define IMgaRegistrar_get_Components(This,mode,progids)	\
     (This)->lpVtbl -> get_Components(This,mode,progids)
@@ -29140,6 +30391,214 @@ void __RPC_STUB IMgaRegistrar_put_ShowMultipleView_Stub(
     DWORD *_pdwStubPhase);
 
 
+/* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE IMgaRegistrar_get_EventLoggingEnabled_Proxy( 
+    IMgaRegistrar __RPC_FAR * This,
+    /* [in] */ regaccessmode_enum mode,
+    /* [retval][out] */ VARIANT_BOOL __RPC_FAR *enabled);
+
+
+void __RPC_STUB IMgaRegistrar_get_EventLoggingEnabled_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE IMgaRegistrar_put_EventLoggingEnabled_Proxy( 
+    IMgaRegistrar __RPC_FAR * This,
+    /* [in] */ regaccessmode_enum mode,
+    /* [in] */ VARIANT_BOOL enabled);
+
+
+void __RPC_STUB IMgaRegistrar_put_EventLoggingEnabled_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE IMgaRegistrar_get_AutosaveEnabled_Proxy( 
+    IMgaRegistrar __RPC_FAR * This,
+    /* [in] */ regaccessmode_enum mode,
+    /* [retval][out] */ VARIANT_BOOL __RPC_FAR *enabled);
+
+
+void __RPC_STUB IMgaRegistrar_get_AutosaveEnabled_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE IMgaRegistrar_put_AutosaveEnabled_Proxy( 
+    IMgaRegistrar __RPC_FAR * This,
+    /* [in] */ regaccessmode_enum mode,
+    /* [in] */ VARIANT_BOOL enabled);
+
+
+void __RPC_STUB IMgaRegistrar_put_AutosaveEnabled_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE IMgaRegistrar_get_AutosaveFreq_Proxy( 
+    IMgaRegistrar __RPC_FAR * This,
+    /* [in] */ regaccessmode_enum mode,
+    /* [retval][out] */ long __RPC_FAR *secs);
+
+
+void __RPC_STUB IMgaRegistrar_get_AutosaveFreq_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE IMgaRegistrar_put_AutosaveFreq_Proxy( 
+    IMgaRegistrar __RPC_FAR * This,
+    /* [in] */ regaccessmode_enum mode,
+    /* [in] */ long secs);
+
+
+void __RPC_STUB IMgaRegistrar_put_AutosaveFreq_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE IMgaRegistrar_get_AutosaveUseDir_Proxy( 
+    IMgaRegistrar __RPC_FAR * This,
+    /* [in] */ regaccessmode_enum mode,
+    /* [retval][out] */ VARIANT_BOOL __RPC_FAR *use);
+
+
+void __RPC_STUB IMgaRegistrar_get_AutosaveUseDir_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE IMgaRegistrar_put_AutosaveUseDir_Proxy( 
+    IMgaRegistrar __RPC_FAR * This,
+    /* [in] */ regaccessmode_enum mode,
+    /* [in] */ VARIANT_BOOL use);
+
+
+void __RPC_STUB IMgaRegistrar_put_AutosaveUseDir_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE IMgaRegistrar_get_AutosaveDir_Proxy( 
+    IMgaRegistrar __RPC_FAR * This,
+    /* [in] */ regaccessmode_enum mode,
+    /* [retval][out] */ BSTR __RPC_FAR *dir);
+
+
+void __RPC_STUB IMgaRegistrar_get_AutosaveDir_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE IMgaRegistrar_put_AutosaveDir_Proxy( 
+    IMgaRegistrar __RPC_FAR * This,
+    /* [in] */ regaccessmode_enum mode,
+    /* [in] */ BSTR dir);
+
+
+void __RPC_STUB IMgaRegistrar_put_AutosaveDir_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE IMgaRegistrar_get_ExternalEditorEnabled_Proxy( 
+    IMgaRegistrar __RPC_FAR * This,
+    /* [in] */ regaccessmode_enum mode,
+    /* [retval][out] */ VARIANT_BOOL __RPC_FAR *enabled);
+
+
+void __RPC_STUB IMgaRegistrar_get_ExternalEditorEnabled_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE IMgaRegistrar_put_ExternalEditorEnabled_Proxy( 
+    IMgaRegistrar __RPC_FAR * This,
+    /* [in] */ regaccessmode_enum mode,
+    /* [in] */ VARIANT_BOOL enabled);
+
+
+void __RPC_STUB IMgaRegistrar_put_ExternalEditorEnabled_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE IMgaRegistrar_get_ExternalEditor_Proxy( 
+    IMgaRegistrar __RPC_FAR * This,
+    /* [in] */ regaccessmode_enum mode,
+    /* [retval][out] */ BSTR __RPC_FAR *path);
+
+
+void __RPC_STUB IMgaRegistrar_get_ExternalEditor_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE IMgaRegistrar_put_ExternalEditor_Proxy( 
+    IMgaRegistrar __RPC_FAR * This,
+    /* [in] */ regaccessmode_enum mode,
+    /* [in] */ BSTR path);
+
+
+void __RPC_STUB IMgaRegistrar_put_ExternalEditor_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE IMgaRegistrar_get_LabelAvoidance_Proxy( 
+    IMgaRegistrar __RPC_FAR * This,
+    /* [in] */ regaccessmode_enum mode,
+    /* [retval][out] */ VARIANT_BOOL __RPC_FAR *enabled);
+
+
+void __RPC_STUB IMgaRegistrar_get_LabelAvoidance_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE IMgaRegistrar_put_LabelAvoidance_Proxy( 
+    IMgaRegistrar __RPC_FAR * This,
+    /* [in] */ regaccessmode_enum mode,
+    /* [in] */ VARIANT_BOOL enabled);
+
+
+void __RPC_STUB IMgaRegistrar_put_LabelAvoidance_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
 /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE IMgaRegistrar_get_Paradigms_Proxy( 
     IMgaRegistrar __RPC_FAR * This,
     /* [in] */ regaccessmode_enum mode,
@@ -29171,6 +30630,7 @@ void __RPC_STUB IMgaRegistrar_RegisterParadigmFromData_Stub(
     IMgaRegistrar __RPC_FAR * This,
     /* [in] */ BSTR name,
     /* [in] */ BSTR connstr,
+    /* [in] */ BSTR ver,
     /* [in] */ VARIANT guid,
     /* [in] */ regaccessmode_enum mode);
 
@@ -29246,6 +30706,36 @@ void __RPC_STUB IMgaRegistrar_UnregisterParadigm_Stub(
 
 
 void __RPC_STUB IMgaRegistrar_UnregisterParadigmGUID_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaRegistrar_VersionFromGUID_Proxy( 
+    IMgaRegistrar __RPC_FAR * This,
+    /* [in] */ BSTR name,
+    /* [in] */ VARIANT guid,
+    /* [out] */ BSTR __RPC_FAR *ver,
+    /* [in] */ regaccessmode_enum mode);
+
+
+void __RPC_STUB IMgaRegistrar_VersionFromGUID_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaRegistrar_GUIDFromVersion_Proxy( 
+    IMgaRegistrar __RPC_FAR * This,
+    /* [in] */ BSTR name,
+    /* [in] */ BSTR ver,
+    /* [out] */ VARIANT __RPC_FAR *guid,
+    /* [in] */ regaccessmode_enum mode);
+
+
+void __RPC_STUB IMgaRegistrar_GUIDFromVersion_Stub(
     IRpcStubBuffer *This,
     IRpcChannelBuffer *_pRpcChannelBuffer,
     PRPC_MESSAGE _pRpcMessage,
@@ -29454,7 +30944,7 @@ void __RPC_STUB IMgaRegistrar_UnregisterComponentLibrary_Stub(
 #endif 	/* __IMgaRegistrar_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_ComponentLib_0278 */
+/* interface __MIDL_itf_ComponentLib_0280 */
 /* [local] */ 
 
 typedef 
@@ -29472,8 +30962,8 @@ enum componentdlg_enum
 
 
 
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0278_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0278_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0280_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0280_v0_0_s_ifspec;
 
 #ifndef __IMgaLauncher_INTERFACE_DEFINED__
 #define __IMgaLauncher_INTERFACE_DEFINED__
@@ -30242,6 +31732,374 @@ void __RPC_STUB IMgaComponentProxy_put_DispatchComponent_Stub(
 #endif 	/* __IMgaComponentProxy_INTERFACE_DEFINED__ */
 
 
+#ifndef __IMgaXsltFileSel_INTERFACE_DEFINED__
+#define __IMgaXsltFileSel_INTERFACE_DEFINED__
+
+/* interface IMgaXsltFileSel */
+/* [unique][helpstring][uuid][object] */ 
+
+
+EXTERN_C const IID IID_IMgaXsltFileSel;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("4B3E98D4-96AF-4640-B947-7555E2E6A60B")
+    IMgaXsltFileSel : public IUnknown
+    {
+    public:
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE StartXslt( 
+            /* [in] */ BSTR in_f,
+            /* [out] */ BSTR __RPC_FAR *out_f) = 0;
+        
+    };
+    
+#else 	/* C style interface */
+
+    typedef struct IMgaXsltFileSelVtbl
+    {
+        BEGIN_INTERFACE
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *QueryInterface )( 
+            IMgaXsltFileSel __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [iid_is][out] */ void __RPC_FAR *__RPC_FAR *ppvObject);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *AddRef )( 
+            IMgaXsltFileSel __RPC_FAR * This);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *Release )( 
+            IMgaXsltFileSel __RPC_FAR * This);
+        
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *StartXslt )( 
+            IMgaXsltFileSel __RPC_FAR * This,
+            /* [in] */ BSTR in_f,
+            /* [out] */ BSTR __RPC_FAR *out_f);
+        
+        END_INTERFACE
+    } IMgaXsltFileSelVtbl;
+
+    interface IMgaXsltFileSel
+    {
+        CONST_VTBL struct IMgaXsltFileSelVtbl __RPC_FAR *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IMgaXsltFileSel_QueryInterface(This,riid,ppvObject)	\
+    (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
+
+#define IMgaXsltFileSel_AddRef(This)	\
+    (This)->lpVtbl -> AddRef(This)
+
+#define IMgaXsltFileSel_Release(This)	\
+    (This)->lpVtbl -> Release(This)
+
+
+#define IMgaXsltFileSel_StartXslt(This,in_f,out_f)	\
+    (This)->lpVtbl -> StartXslt(This,in_f,out_f)
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaXsltFileSel_StartXslt_Proxy( 
+    IMgaXsltFileSel __RPC_FAR * This,
+    /* [in] */ BSTR in_f,
+    /* [out] */ BSTR __RPC_FAR *out_f);
+
+
+void __RPC_STUB IMgaXsltFileSel_StartXslt_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+
+#endif 	/* __IMgaXsltFileSel_INTERFACE_DEFINED__ */
+
+
+#ifndef __IMgaClosure_INTERFACE_DEFINED__
+#define __IMgaClosure_INTERFACE_DEFINED__
+
+/* interface IMgaClosure */
+/* [unique][helpstring][uuid][object] */ 
+
+
+EXTERN_C const IID IID_IMgaClosure;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("74348E5A-C76D-4c2e-88D5-D968C01CE432")
+    IMgaClosure : public IUnknown
+    {
+    public:
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE SelectiveClosure( 
+            /* [in] */ IMgaFCOs __RPC_FAR *init_sel_fcos,
+            /* [in] */ IMgaFolders __RPC_FAR *init_sel_folders,
+            /* [out] */ IMgaFCOs __RPC_FAR *__RPC_FAR *sel_fcos,
+            /* [out] */ IMgaFolders __RPC_FAR *__RPC_FAR *sel_folders,
+            /* [out] */ IMgaFCOs __RPC_FAR *__RPC_FAR *root_fcos,
+            /* [out] */ IMgaFolders __RPC_FAR *__RPC_FAR *root_folders,
+            /* [in] */ int folder_containment,
+            /* [out] */ long __RPC_FAR *options) = 0;
+        
+    };
+    
+#else 	/* C style interface */
+
+    typedef struct IMgaClosureVtbl
+    {
+        BEGIN_INTERFACE
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *QueryInterface )( 
+            IMgaClosure __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [iid_is][out] */ void __RPC_FAR *__RPC_FAR *ppvObject);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *AddRef )( 
+            IMgaClosure __RPC_FAR * This);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *Release )( 
+            IMgaClosure __RPC_FAR * This);
+        
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *SelectiveClosure )( 
+            IMgaClosure __RPC_FAR * This,
+            /* [in] */ IMgaFCOs __RPC_FAR *init_sel_fcos,
+            /* [in] */ IMgaFolders __RPC_FAR *init_sel_folders,
+            /* [out] */ IMgaFCOs __RPC_FAR *__RPC_FAR *sel_fcos,
+            /* [out] */ IMgaFolders __RPC_FAR *__RPC_FAR *sel_folders,
+            /* [out] */ IMgaFCOs __RPC_FAR *__RPC_FAR *root_fcos,
+            /* [out] */ IMgaFolders __RPC_FAR *__RPC_FAR *root_folders,
+            /* [in] */ int folder_containment,
+            /* [out] */ long __RPC_FAR *options);
+        
+        END_INTERFACE
+    } IMgaClosureVtbl;
+
+    interface IMgaClosure
+    {
+        CONST_VTBL struct IMgaClosureVtbl __RPC_FAR *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IMgaClosure_QueryInterface(This,riid,ppvObject)	\
+    (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
+
+#define IMgaClosure_AddRef(This)	\
+    (This)->lpVtbl -> AddRef(This)
+
+#define IMgaClosure_Release(This)	\
+    (This)->lpVtbl -> Release(This)
+
+
+#define IMgaClosure_SelectiveClosure(This,init_sel_fcos,init_sel_folders,sel_fcos,sel_folders,root_fcos,root_folders,folder_containment,options)	\
+    (This)->lpVtbl -> SelectiveClosure(This,init_sel_fcos,init_sel_folders,sel_fcos,sel_folders,root_fcos,root_folders,folder_containment,options)
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaClosure_SelectiveClosure_Proxy( 
+    IMgaClosure __RPC_FAR * This,
+    /* [in] */ IMgaFCOs __RPC_FAR *init_sel_fcos,
+    /* [in] */ IMgaFolders __RPC_FAR *init_sel_folders,
+    /* [out] */ IMgaFCOs __RPC_FAR *__RPC_FAR *sel_fcos,
+    /* [out] */ IMgaFolders __RPC_FAR *__RPC_FAR *sel_folders,
+    /* [out] */ IMgaFCOs __RPC_FAR *__RPC_FAR *root_fcos,
+    /* [out] */ IMgaFolders __RPC_FAR *__RPC_FAR *root_folders,
+    /* [in] */ int folder_containment,
+    /* [out] */ long __RPC_FAR *options);
+
+
+void __RPC_STUB IMgaClosure_SelectiveClosure_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+
+#endif 	/* __IMgaClosure_INTERFACE_DEFINED__ */
+
+
+#ifndef __IMgaEventLogger_INTERFACE_DEFINED__
+#define __IMgaEventLogger_INTERFACE_DEFINED__
+
+/* interface IMgaEventLogger */
+/* [unique][helpstring][dual][uuid][object] */ 
+
+
+EXTERN_C const IID IID_IMgaEventLogger;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("9D46C230-31A5-4248-B61E-4223FA6A7F7A")
+    IMgaEventLogger : public IUnknown
+    {
+    public:
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE LogEvent( 
+            /* [in] */ BSTR eventMsg) = 0;
+        
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE StartLogging( void) = 0;
+        
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE StopLogging( void) = 0;
+        
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE EmergencyEvent( void) = 0;
+        
+    };
+    
+#else 	/* C style interface */
+
+    typedef struct IMgaEventLoggerVtbl
+    {
+        BEGIN_INTERFACE
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *QueryInterface )( 
+            IMgaEventLogger __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [iid_is][out] */ void __RPC_FAR *__RPC_FAR *ppvObject);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *AddRef )( 
+            IMgaEventLogger __RPC_FAR * This);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *Release )( 
+            IMgaEventLogger __RPC_FAR * This);
+        
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *LogEvent )( 
+            IMgaEventLogger __RPC_FAR * This,
+            /* [in] */ BSTR eventMsg);
+        
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *StartLogging )( 
+            IMgaEventLogger __RPC_FAR * This);
+        
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *StopLogging )( 
+            IMgaEventLogger __RPC_FAR * This);
+        
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *EmergencyEvent )( 
+            IMgaEventLogger __RPC_FAR * This);
+        
+        END_INTERFACE
+    } IMgaEventLoggerVtbl;
+
+    interface IMgaEventLogger
+    {
+        CONST_VTBL struct IMgaEventLoggerVtbl __RPC_FAR *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IMgaEventLogger_QueryInterface(This,riid,ppvObject)	\
+    (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
+
+#define IMgaEventLogger_AddRef(This)	\
+    (This)->lpVtbl -> AddRef(This)
+
+#define IMgaEventLogger_Release(This)	\
+    (This)->lpVtbl -> Release(This)
+
+
+#define IMgaEventLogger_LogEvent(This,eventMsg)	\
+    (This)->lpVtbl -> LogEvent(This,eventMsg)
+
+#define IMgaEventLogger_StartLogging(This)	\
+    (This)->lpVtbl -> StartLogging(This)
+
+#define IMgaEventLogger_StopLogging(This)	\
+    (This)->lpVtbl -> StopLogging(This)
+
+#define IMgaEventLogger_EmergencyEvent(This)	\
+    (This)->lpVtbl -> EmergencyEvent(This)
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaEventLogger_LogEvent_Proxy( 
+    IMgaEventLogger __RPC_FAR * This,
+    /* [in] */ BSTR eventMsg);
+
+
+void __RPC_STUB IMgaEventLogger_LogEvent_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaEventLogger_StartLogging_Proxy( 
+    IMgaEventLogger __RPC_FAR * This);
+
+
+void __RPC_STUB IMgaEventLogger_StartLogging_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaEventLogger_StopLogging_Proxy( 
+    IMgaEventLogger __RPC_FAR * This);
+
+
+void __RPC_STUB IMgaEventLogger_StopLogging_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaEventLogger_EmergencyEvent_Proxy( 
+    IMgaEventLogger __RPC_FAR * This);
+
+
+void __RPC_STUB IMgaEventLogger_EmergencyEvent_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+
+#endif 	/* __IMgaEventLogger_INTERFACE_DEFINED__ */
+
+
+/* interface __MIDL_itf_ComponentLib_0286 */
+/* [local] */ 
+
+
+typedef 
+enum msgtype_enum
+    {	MSG_NORMAL	= 0,
+	MSG_INFO	= 1,
+	MSG_WARNING	= 2,
+	MSG_ERROR	= 3
+    }	msgtype_enum;
+
+
+
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0286_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0286_v0_0_s_ifspec;
+
 #ifndef __IMgaDataSource_INTERFACE_DEFINED__
 #define __IMgaDataSource_INTERFACE_DEFINED__
 
@@ -30258,6 +32116,9 @@ EXTERN_C const IID IID_IMgaDataSource;
     {
     public:
         virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_Data( 
+            /* [retval][out] */ IUnknown __RPC_FAR *__RPC_FAR *p) = 0;
+        
+        virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_Folders( 
             /* [retval][out] */ IUnknown __RPC_FAR *__RPC_FAR *p) = 0;
         
         virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_RegistryData( 
@@ -30286,6 +32147,10 @@ EXTERN_C const IID IID_IMgaDataSource;
             IMgaDataSource __RPC_FAR * This);
         
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Data )( 
+            IMgaDataSource __RPC_FAR * This,
+            /* [retval][out] */ IUnknown __RPC_FAR *__RPC_FAR *p);
+        
+        /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Folders )( 
             IMgaDataSource __RPC_FAR * This,
             /* [retval][out] */ IUnknown __RPC_FAR *__RPC_FAR *p);
         
@@ -30323,6 +32188,9 @@ EXTERN_C const IID IID_IMgaDataSource;
 #define IMgaDataSource_get_Data(This,p)	\
     (This)->lpVtbl -> get_Data(This,p)
 
+#define IMgaDataSource_get_Folders(This,p)	\
+    (This)->lpVtbl -> get_Folders(This,p)
+
 #define IMgaDataSource_get_RegistryData(This,p)	\
     (This)->lpVtbl -> get_RegistryData(This,p)
 
@@ -30342,6 +32210,18 @@ EXTERN_C const IID IID_IMgaDataSource;
 
 
 void __RPC_STUB IMgaDataSource_get_Data_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE IMgaDataSource_get_Folders_Proxy( 
+    IMgaDataSource __RPC_FAR * This,
+    /* [retval][out] */ IUnknown __RPC_FAR *__RPC_FAR *p);
+
+
+void __RPC_STUB IMgaDataSource_get_Folders_Stub(
     IRpcStubBuffer *This,
     IRpcChannelBuffer *_pRpcChannelBuffer,
     PRPC_MESSAGE _pRpcMessage,
@@ -30376,21 +32256,1975 @@ void __RPC_STUB IMgaDataSource_get_Project_Stub(
 #endif 	/* __IMgaDataSource_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_ComponentLib_0284 */
+#ifndef __IGMEOLEApp_INTERFACE_DEFINED__
+#define __IGMEOLEApp_INTERFACE_DEFINED__
+
+/* interface IGMEOLEApp */
+/* [object][dual][oleautomation][uuid] */ 
+
+
+EXTERN_C const IID IID_IGMEOLEApp;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("81191A44-B898-4143-BF8B-CA7501FEC19A")
+    IGMEOLEApp : public IDispatch
+    {
+    public:
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_Visible( 
+            /* [in] */ VARIANT_BOOL isVisible) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_Visible( 
+            /* [retval][out] */ VARIANT_BOOL __RPC_FAR *isVisible) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_Version( 
+            /* [retval][out] */ BSTR __RPC_FAR *versionStr) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_VersionMajor( 
+            /* [retval][out] */ short __RPC_FAR *n) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_VersionMinor( 
+            /* [retval][out] */ short __RPC_FAR *n) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_VersionPatchLevel( 
+            /* [retval][out] */ short __RPC_FAR *n) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_Models( 
+            /* [retval][out] */ IGMEOLEColl __RPC_FAR *__RPC_FAR *coll) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_MgaProject( 
+            /* [retval][out] */ IMgaProject __RPC_FAR *__RPC_FAR *project) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_Panels( 
+            /* [retval][out] */ IGMEOLEColl __RPC_FAR *__RPC_FAR *coll) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_ConsoleContents( 
+            /* [in] */ BSTR contents) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_ConsoleContents( 
+            /* [retval][out] */ BSTR __RPC_FAR *contents) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE CreateProject( 
+            /* [in] */ BSTR metaname,
+            /* [in] */ BSTR connstr) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE OpenProject( 
+            /* [in] */ BSTR connstr) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE CreateProjectDialog( void) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE OpenProjectDialog( void) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE CloseProject( 
+            /* [in] */ VARIANT_BOOL saveOnClose) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE SaveProject( void) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE SaveProjectAs( 
+            /* [in] */ BSTR connstr) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE SaveProjectAsDialog( void) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE ExportProject( 
+            /* [in] */ BSTR connstr) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE ImportProject( 
+            /* [in] */ BSTR connstr) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE ConstraintsDialog( void) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE CheckAllConstraints( void) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE RegisterParagimsDialog( void) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE RegisterComponentsDialog( void) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE RunComponent( 
+            /* [in] */ BSTR progID) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE RunComponentDialog( void) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE SettingsDialog( void) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE Undo( void) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE Redo( void) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE ClearUndoQueue( void) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE ProjectPropertiesDialog( void) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE ShowHelpContents( void) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE ShowAbout( void) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE ShowFCO( 
+            /* [in] */ IMgaFCO __RPC_FAR *mgaFCO) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE ConsoleMessage( 
+            /* [in] */ BSTR msg,
+            /* [in] */ msgtype_enum type) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE ConsoleClear( void) = 0;
+        
+    };
+    
+#else 	/* C style interface */
+
+    typedef struct IGMEOLEAppVtbl
+    {
+        BEGIN_INTERFACE
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *QueryInterface )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [iid_is][out] */ void __RPC_FAR *__RPC_FAR *ppvObject);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *AddRef )( 
+            IGMEOLEApp __RPC_FAR * This);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *Release )( 
+            IGMEOLEApp __RPC_FAR * This);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetTypeInfoCount )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [out] */ UINT __RPC_FAR *pctinfo);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetTypeInfo )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [in] */ UINT iTInfo,
+            /* [in] */ LCID lcid,
+            /* [out] */ ITypeInfo __RPC_FAR *__RPC_FAR *ppTInfo);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetIDsOfNames )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [size_is][in] */ LPOLESTR __RPC_FAR *rgszNames,
+            /* [in] */ UINT cNames,
+            /* [in] */ LCID lcid,
+            /* [size_is][out] */ DISPID __RPC_FAR *rgDispId);
+        
+        /* [local] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Invoke )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [in] */ DISPID dispIdMember,
+            /* [in] */ REFIID riid,
+            /* [in] */ LCID lcid,
+            /* [in] */ WORD wFlags,
+            /* [out][in] */ DISPPARAMS __RPC_FAR *pDispParams,
+            /* [out] */ VARIANT __RPC_FAR *pVarResult,
+            /* [out] */ EXCEPINFO __RPC_FAR *pExcepInfo,
+            /* [out] */ UINT __RPC_FAR *puArgErr);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *put_Visible )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [in] */ VARIANT_BOOL isVisible);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Visible )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [retval][out] */ VARIANT_BOOL __RPC_FAR *isVisible);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Version )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [retval][out] */ BSTR __RPC_FAR *versionStr);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_VersionMajor )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [retval][out] */ short __RPC_FAR *n);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_VersionMinor )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [retval][out] */ short __RPC_FAR *n);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_VersionPatchLevel )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [retval][out] */ short __RPC_FAR *n);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Models )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [retval][out] */ IGMEOLEColl __RPC_FAR *__RPC_FAR *coll);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_MgaProject )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [retval][out] */ IMgaProject __RPC_FAR *__RPC_FAR *project);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Panels )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [retval][out] */ IGMEOLEColl __RPC_FAR *__RPC_FAR *coll);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *put_ConsoleContents )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [in] */ BSTR contents);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_ConsoleContents )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [retval][out] */ BSTR __RPC_FAR *contents);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *CreateProject )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [in] */ BSTR metaname,
+            /* [in] */ BSTR connstr);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *OpenProject )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [in] */ BSTR connstr);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *CreateProjectDialog )( 
+            IGMEOLEApp __RPC_FAR * This);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *OpenProjectDialog )( 
+            IGMEOLEApp __RPC_FAR * This);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *CloseProject )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [in] */ VARIANT_BOOL saveOnClose);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *SaveProject )( 
+            IGMEOLEApp __RPC_FAR * This);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *SaveProjectAs )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [in] */ BSTR connstr);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *SaveProjectAsDialog )( 
+            IGMEOLEApp __RPC_FAR * This);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *ExportProject )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [in] */ BSTR connstr);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *ImportProject )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [in] */ BSTR connstr);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *ConstraintsDialog )( 
+            IGMEOLEApp __RPC_FAR * This);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *CheckAllConstraints )( 
+            IGMEOLEApp __RPC_FAR * This);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *RegisterParagimsDialog )( 
+            IGMEOLEApp __RPC_FAR * This);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *RegisterComponentsDialog )( 
+            IGMEOLEApp __RPC_FAR * This);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *RunComponent )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [in] */ BSTR progID);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *RunComponentDialog )( 
+            IGMEOLEApp __RPC_FAR * This);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *SettingsDialog )( 
+            IGMEOLEApp __RPC_FAR * This);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Undo )( 
+            IGMEOLEApp __RPC_FAR * This);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Redo )( 
+            IGMEOLEApp __RPC_FAR * This);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *ClearUndoQueue )( 
+            IGMEOLEApp __RPC_FAR * This);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *ProjectPropertiesDialog )( 
+            IGMEOLEApp __RPC_FAR * This);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *ShowHelpContents )( 
+            IGMEOLEApp __RPC_FAR * This);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *ShowAbout )( 
+            IGMEOLEApp __RPC_FAR * This);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *ShowFCO )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [in] */ IMgaFCO __RPC_FAR *mgaFCO);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *ConsoleMessage )( 
+            IGMEOLEApp __RPC_FAR * This,
+            /* [in] */ BSTR msg,
+            /* [in] */ msgtype_enum type);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *ConsoleClear )( 
+            IGMEOLEApp __RPC_FAR * This);
+        
+        END_INTERFACE
+    } IGMEOLEAppVtbl;
+
+    interface IGMEOLEApp
+    {
+        CONST_VTBL struct IGMEOLEAppVtbl __RPC_FAR *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IGMEOLEApp_QueryInterface(This,riid,ppvObject)	\
+    (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
+
+#define IGMEOLEApp_AddRef(This)	\
+    (This)->lpVtbl -> AddRef(This)
+
+#define IGMEOLEApp_Release(This)	\
+    (This)->lpVtbl -> Release(This)
+
+
+#define IGMEOLEApp_GetTypeInfoCount(This,pctinfo)	\
+    (This)->lpVtbl -> GetTypeInfoCount(This,pctinfo)
+
+#define IGMEOLEApp_GetTypeInfo(This,iTInfo,lcid,ppTInfo)	\
+    (This)->lpVtbl -> GetTypeInfo(This,iTInfo,lcid,ppTInfo)
+
+#define IGMEOLEApp_GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)	\
+    (This)->lpVtbl -> GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)
+
+#define IGMEOLEApp_Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)	\
+    (This)->lpVtbl -> Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)
+
+
+#define IGMEOLEApp_put_Visible(This,isVisible)	\
+    (This)->lpVtbl -> put_Visible(This,isVisible)
+
+#define IGMEOLEApp_get_Visible(This,isVisible)	\
+    (This)->lpVtbl -> get_Visible(This,isVisible)
+
+#define IGMEOLEApp_get_Version(This,versionStr)	\
+    (This)->lpVtbl -> get_Version(This,versionStr)
+
+#define IGMEOLEApp_get_VersionMajor(This,n)	\
+    (This)->lpVtbl -> get_VersionMajor(This,n)
+
+#define IGMEOLEApp_get_VersionMinor(This,n)	\
+    (This)->lpVtbl -> get_VersionMinor(This,n)
+
+#define IGMEOLEApp_get_VersionPatchLevel(This,n)	\
+    (This)->lpVtbl -> get_VersionPatchLevel(This,n)
+
+#define IGMEOLEApp_get_Models(This,coll)	\
+    (This)->lpVtbl -> get_Models(This,coll)
+
+#define IGMEOLEApp_get_MgaProject(This,project)	\
+    (This)->lpVtbl -> get_MgaProject(This,project)
+
+#define IGMEOLEApp_get_Panels(This,coll)	\
+    (This)->lpVtbl -> get_Panels(This,coll)
+
+#define IGMEOLEApp_put_ConsoleContents(This,contents)	\
+    (This)->lpVtbl -> put_ConsoleContents(This,contents)
+
+#define IGMEOLEApp_get_ConsoleContents(This,contents)	\
+    (This)->lpVtbl -> get_ConsoleContents(This,contents)
+
+#define IGMEOLEApp_CreateProject(This,metaname,connstr)	\
+    (This)->lpVtbl -> CreateProject(This,metaname,connstr)
+
+#define IGMEOLEApp_OpenProject(This,connstr)	\
+    (This)->lpVtbl -> OpenProject(This,connstr)
+
+#define IGMEOLEApp_CreateProjectDialog(This)	\
+    (This)->lpVtbl -> CreateProjectDialog(This)
+
+#define IGMEOLEApp_OpenProjectDialog(This)	\
+    (This)->lpVtbl -> OpenProjectDialog(This)
+
+#define IGMEOLEApp_CloseProject(This,saveOnClose)	\
+    (This)->lpVtbl -> CloseProject(This,saveOnClose)
+
+#define IGMEOLEApp_SaveProject(This)	\
+    (This)->lpVtbl -> SaveProject(This)
+
+#define IGMEOLEApp_SaveProjectAs(This,connstr)	\
+    (This)->lpVtbl -> SaveProjectAs(This,connstr)
+
+#define IGMEOLEApp_SaveProjectAsDialog(This)	\
+    (This)->lpVtbl -> SaveProjectAsDialog(This)
+
+#define IGMEOLEApp_ExportProject(This,connstr)	\
+    (This)->lpVtbl -> ExportProject(This,connstr)
+
+#define IGMEOLEApp_ImportProject(This,connstr)	\
+    (This)->lpVtbl -> ImportProject(This,connstr)
+
+#define IGMEOLEApp_ConstraintsDialog(This)	\
+    (This)->lpVtbl -> ConstraintsDialog(This)
+
+#define IGMEOLEApp_CheckAllConstraints(This)	\
+    (This)->lpVtbl -> CheckAllConstraints(This)
+
+#define IGMEOLEApp_RegisterParagimsDialog(This)	\
+    (This)->lpVtbl -> RegisterParagimsDialog(This)
+
+#define IGMEOLEApp_RegisterComponentsDialog(This)	\
+    (This)->lpVtbl -> RegisterComponentsDialog(This)
+
+#define IGMEOLEApp_RunComponent(This,progID)	\
+    (This)->lpVtbl -> RunComponent(This,progID)
+
+#define IGMEOLEApp_RunComponentDialog(This)	\
+    (This)->lpVtbl -> RunComponentDialog(This)
+
+#define IGMEOLEApp_SettingsDialog(This)	\
+    (This)->lpVtbl -> SettingsDialog(This)
+
+#define IGMEOLEApp_Undo(This)	\
+    (This)->lpVtbl -> Undo(This)
+
+#define IGMEOLEApp_Redo(This)	\
+    (This)->lpVtbl -> Redo(This)
+
+#define IGMEOLEApp_ClearUndoQueue(This)	\
+    (This)->lpVtbl -> ClearUndoQueue(This)
+
+#define IGMEOLEApp_ProjectPropertiesDialog(This)	\
+    (This)->lpVtbl -> ProjectPropertiesDialog(This)
+
+#define IGMEOLEApp_ShowHelpContents(This)	\
+    (This)->lpVtbl -> ShowHelpContents(This)
+
+#define IGMEOLEApp_ShowAbout(This)	\
+    (This)->lpVtbl -> ShowAbout(This)
+
+#define IGMEOLEApp_ShowFCO(This,mgaFCO)	\
+    (This)->lpVtbl -> ShowFCO(This,mgaFCO)
+
+#define IGMEOLEApp_ConsoleMessage(This,msg,type)	\
+    (This)->lpVtbl -> ConsoleMessage(This,msg,type)
+
+#define IGMEOLEApp_ConsoleClear(This)	\
+    (This)->lpVtbl -> ConsoleClear(This)
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+/* [id][propput] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_put_Visible_Proxy( 
+    IGMEOLEApp __RPC_FAR * This,
+    /* [in] */ VARIANT_BOOL isVisible);
+
+
+void __RPC_STUB IGMEOLEApp_put_Visible_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id][propget] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_get_Visible_Proxy( 
+    IGMEOLEApp __RPC_FAR * This,
+    /* [retval][out] */ VARIANT_BOOL __RPC_FAR *isVisible);
+
+
+void __RPC_STUB IGMEOLEApp_get_Visible_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id][propget] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_get_Version_Proxy( 
+    IGMEOLEApp __RPC_FAR * This,
+    /* [retval][out] */ BSTR __RPC_FAR *versionStr);
+
+
+void __RPC_STUB IGMEOLEApp_get_Version_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id][propget] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_get_VersionMajor_Proxy( 
+    IGMEOLEApp __RPC_FAR * This,
+    /* [retval][out] */ short __RPC_FAR *n);
+
+
+void __RPC_STUB IGMEOLEApp_get_VersionMajor_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id][propget] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_get_VersionMinor_Proxy( 
+    IGMEOLEApp __RPC_FAR * This,
+    /* [retval][out] */ short __RPC_FAR *n);
+
+
+void __RPC_STUB IGMEOLEApp_get_VersionMinor_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id][propget] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_get_VersionPatchLevel_Proxy( 
+    IGMEOLEApp __RPC_FAR * This,
+    /* [retval][out] */ short __RPC_FAR *n);
+
+
+void __RPC_STUB IGMEOLEApp_get_VersionPatchLevel_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id][propget] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_get_Models_Proxy( 
+    IGMEOLEApp __RPC_FAR * This,
+    /* [retval][out] */ IGMEOLEColl __RPC_FAR *__RPC_FAR *coll);
+
+
+void __RPC_STUB IGMEOLEApp_get_Models_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id][propget] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_get_MgaProject_Proxy( 
+    IGMEOLEApp __RPC_FAR * This,
+    /* [retval][out] */ IMgaProject __RPC_FAR *__RPC_FAR *project);
+
+
+void __RPC_STUB IGMEOLEApp_get_MgaProject_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id][propget] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_get_Panels_Proxy( 
+    IGMEOLEApp __RPC_FAR * This,
+    /* [retval][out] */ IGMEOLEColl __RPC_FAR *__RPC_FAR *coll);
+
+
+void __RPC_STUB IGMEOLEApp_get_Panels_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id][propput] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_put_ConsoleContents_Proxy( 
+    IGMEOLEApp __RPC_FAR * This,
+    /* [in] */ BSTR contents);
+
+
+void __RPC_STUB IGMEOLEApp_put_ConsoleContents_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id][propget] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_get_ConsoleContents_Proxy( 
+    IGMEOLEApp __RPC_FAR * This,
+    /* [retval][out] */ BSTR __RPC_FAR *contents);
+
+
+void __RPC_STUB IGMEOLEApp_get_ConsoleContents_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_CreateProject_Proxy( 
+    IGMEOLEApp __RPC_FAR * This,
+    /* [in] */ BSTR metaname,
+    /* [in] */ BSTR connstr);
+
+
+void __RPC_STUB IGMEOLEApp_CreateProject_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_OpenProject_Proxy( 
+    IGMEOLEApp __RPC_FAR * This,
+    /* [in] */ BSTR connstr);
+
+
+void __RPC_STUB IGMEOLEApp_OpenProject_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_CreateProjectDialog_Proxy( 
+    IGMEOLEApp __RPC_FAR * This);
+
+
+void __RPC_STUB IGMEOLEApp_CreateProjectDialog_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_OpenProjectDialog_Proxy( 
+    IGMEOLEApp __RPC_FAR * This);
+
+
+void __RPC_STUB IGMEOLEApp_OpenProjectDialog_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_CloseProject_Proxy( 
+    IGMEOLEApp __RPC_FAR * This,
+    /* [in] */ VARIANT_BOOL saveOnClose);
+
+
+void __RPC_STUB IGMEOLEApp_CloseProject_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_SaveProject_Proxy( 
+    IGMEOLEApp __RPC_FAR * This);
+
+
+void __RPC_STUB IGMEOLEApp_SaveProject_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_SaveProjectAs_Proxy( 
+    IGMEOLEApp __RPC_FAR * This,
+    /* [in] */ BSTR connstr);
+
+
+void __RPC_STUB IGMEOLEApp_SaveProjectAs_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_SaveProjectAsDialog_Proxy( 
+    IGMEOLEApp __RPC_FAR * This);
+
+
+void __RPC_STUB IGMEOLEApp_SaveProjectAsDialog_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_ExportProject_Proxy( 
+    IGMEOLEApp __RPC_FAR * This,
+    /* [in] */ BSTR connstr);
+
+
+void __RPC_STUB IGMEOLEApp_ExportProject_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_ImportProject_Proxy( 
+    IGMEOLEApp __RPC_FAR * This,
+    /* [in] */ BSTR connstr);
+
+
+void __RPC_STUB IGMEOLEApp_ImportProject_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_ConstraintsDialog_Proxy( 
+    IGMEOLEApp __RPC_FAR * This);
+
+
+void __RPC_STUB IGMEOLEApp_ConstraintsDialog_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_CheckAllConstraints_Proxy( 
+    IGMEOLEApp __RPC_FAR * This);
+
+
+void __RPC_STUB IGMEOLEApp_CheckAllConstraints_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_RegisterParagimsDialog_Proxy( 
+    IGMEOLEApp __RPC_FAR * This);
+
+
+void __RPC_STUB IGMEOLEApp_RegisterParagimsDialog_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_RegisterComponentsDialog_Proxy( 
+    IGMEOLEApp __RPC_FAR * This);
+
+
+void __RPC_STUB IGMEOLEApp_RegisterComponentsDialog_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_RunComponent_Proxy( 
+    IGMEOLEApp __RPC_FAR * This,
+    /* [in] */ BSTR progID);
+
+
+void __RPC_STUB IGMEOLEApp_RunComponent_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_RunComponentDialog_Proxy( 
+    IGMEOLEApp __RPC_FAR * This);
+
+
+void __RPC_STUB IGMEOLEApp_RunComponentDialog_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_SettingsDialog_Proxy( 
+    IGMEOLEApp __RPC_FAR * This);
+
+
+void __RPC_STUB IGMEOLEApp_SettingsDialog_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_Undo_Proxy( 
+    IGMEOLEApp __RPC_FAR * This);
+
+
+void __RPC_STUB IGMEOLEApp_Undo_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_Redo_Proxy( 
+    IGMEOLEApp __RPC_FAR * This);
+
+
+void __RPC_STUB IGMEOLEApp_Redo_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_ClearUndoQueue_Proxy( 
+    IGMEOLEApp __RPC_FAR * This);
+
+
+void __RPC_STUB IGMEOLEApp_ClearUndoQueue_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_ProjectPropertiesDialog_Proxy( 
+    IGMEOLEApp __RPC_FAR * This);
+
+
+void __RPC_STUB IGMEOLEApp_ProjectPropertiesDialog_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_ShowHelpContents_Proxy( 
+    IGMEOLEApp __RPC_FAR * This);
+
+
+void __RPC_STUB IGMEOLEApp_ShowHelpContents_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_ShowAbout_Proxy( 
+    IGMEOLEApp __RPC_FAR * This);
+
+
+void __RPC_STUB IGMEOLEApp_ShowAbout_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_ShowFCO_Proxy( 
+    IGMEOLEApp __RPC_FAR * This,
+    /* [in] */ IMgaFCO __RPC_FAR *mgaFCO);
+
+
+void __RPC_STUB IGMEOLEApp_ShowFCO_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_ConsoleMessage_Proxy( 
+    IGMEOLEApp __RPC_FAR * This,
+    /* [in] */ BSTR msg,
+    /* [in] */ msgtype_enum type);
+
+
+void __RPC_STUB IGMEOLEApp_ConsoleMessage_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEApp_ConsoleClear_Proxy( 
+    IGMEOLEApp __RPC_FAR * This);
+
+
+void __RPC_STUB IGMEOLEApp_ConsoleClear_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+
+#endif 	/* __IGMEOLEApp_INTERFACE_DEFINED__ */
+
+
+#ifndef __IGMEOLEModel_INTERFACE_DEFINED__
+#define __IGMEOLEModel_INTERFACE_DEFINED__
+
+/* interface IGMEOLEModel */
+/* [object][dual][oleautomation][uuid] */ 
+
+
+EXTERN_C const IID IID_IGMEOLEModel;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("399A16A0-D209-4d00-9BDF-858D87EC4641")
+    IGMEOLEModel : public IDispatch
+    {
+    public:
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_Active( 
+            /* [in] */ VARIANT_BOOL isActive) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_Active( 
+            /* [retval][out] */ VARIANT_BOOL __RPC_FAR *isActive) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_Aspects( 
+            /* [retval][out] */ IGMEOLEColl __RPC_FAR *__RPC_FAR *coll) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_MgaModel( 
+            /* [retval][out] */ IMgaModel __RPC_FAR *__RPC_FAR *model) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_Valid( 
+            /* [retval][out] */ VARIANT_BOOL __RPC_FAR *isValid) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE Print( void) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE PrintDialog( void) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE DumpWindowsMetaFile( 
+            /* [in] */ BSTR filePath) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE CheckConstraints( void) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE RunComponent( 
+            /* [in] */ BSTR appID) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE RunComponentDialog( void) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE Close( void) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE GrayOutFCO( 
+            /* [in] */ VARIANT_BOOL bGray,
+            /* [in] */ VARIANT_BOOL bNeighbours,
+            /* [in] */ IMgaFCOs __RPC_FAR *mgaFCO) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE GrayOutAll( 
+            /* [in] */ VARIANT_BOOL bGray) = 0;
+        
+    };
+    
+#else 	/* C style interface */
+
+    typedef struct IGMEOLEModelVtbl
+    {
+        BEGIN_INTERFACE
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *QueryInterface )( 
+            IGMEOLEModel __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [iid_is][out] */ void __RPC_FAR *__RPC_FAR *ppvObject);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *AddRef )( 
+            IGMEOLEModel __RPC_FAR * This);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *Release )( 
+            IGMEOLEModel __RPC_FAR * This);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetTypeInfoCount )( 
+            IGMEOLEModel __RPC_FAR * This,
+            /* [out] */ UINT __RPC_FAR *pctinfo);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetTypeInfo )( 
+            IGMEOLEModel __RPC_FAR * This,
+            /* [in] */ UINT iTInfo,
+            /* [in] */ LCID lcid,
+            /* [out] */ ITypeInfo __RPC_FAR *__RPC_FAR *ppTInfo);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetIDsOfNames )( 
+            IGMEOLEModel __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [size_is][in] */ LPOLESTR __RPC_FAR *rgszNames,
+            /* [in] */ UINT cNames,
+            /* [in] */ LCID lcid,
+            /* [size_is][out] */ DISPID __RPC_FAR *rgDispId);
+        
+        /* [local] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Invoke )( 
+            IGMEOLEModel __RPC_FAR * This,
+            /* [in] */ DISPID dispIdMember,
+            /* [in] */ REFIID riid,
+            /* [in] */ LCID lcid,
+            /* [in] */ WORD wFlags,
+            /* [out][in] */ DISPPARAMS __RPC_FAR *pDispParams,
+            /* [out] */ VARIANT __RPC_FAR *pVarResult,
+            /* [out] */ EXCEPINFO __RPC_FAR *pExcepInfo,
+            /* [out] */ UINT __RPC_FAR *puArgErr);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *put_Active )( 
+            IGMEOLEModel __RPC_FAR * This,
+            /* [in] */ VARIANT_BOOL isActive);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Active )( 
+            IGMEOLEModel __RPC_FAR * This,
+            /* [retval][out] */ VARIANT_BOOL __RPC_FAR *isActive);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Aspects )( 
+            IGMEOLEModel __RPC_FAR * This,
+            /* [retval][out] */ IGMEOLEColl __RPC_FAR *__RPC_FAR *coll);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_MgaModel )( 
+            IGMEOLEModel __RPC_FAR * This,
+            /* [retval][out] */ IMgaModel __RPC_FAR *__RPC_FAR *model);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Valid )( 
+            IGMEOLEModel __RPC_FAR * This,
+            /* [retval][out] */ VARIANT_BOOL __RPC_FAR *isValid);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Print )( 
+            IGMEOLEModel __RPC_FAR * This);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *PrintDialog )( 
+            IGMEOLEModel __RPC_FAR * This);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *DumpWindowsMetaFile )( 
+            IGMEOLEModel __RPC_FAR * This,
+            /* [in] */ BSTR filePath);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *CheckConstraints )( 
+            IGMEOLEModel __RPC_FAR * This);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *RunComponent )( 
+            IGMEOLEModel __RPC_FAR * This,
+            /* [in] */ BSTR appID);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *RunComponentDialog )( 
+            IGMEOLEModel __RPC_FAR * This);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Close )( 
+            IGMEOLEModel __RPC_FAR * This);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GrayOutFCO )( 
+            IGMEOLEModel __RPC_FAR * This,
+            /* [in] */ VARIANT_BOOL bGray,
+            /* [in] */ VARIANT_BOOL bNeighbours,
+            /* [in] */ IMgaFCOs __RPC_FAR *mgaFCO);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GrayOutAll )( 
+            IGMEOLEModel __RPC_FAR * This,
+            /* [in] */ VARIANT_BOOL bGray);
+        
+        END_INTERFACE
+    } IGMEOLEModelVtbl;
+
+    interface IGMEOLEModel
+    {
+        CONST_VTBL struct IGMEOLEModelVtbl __RPC_FAR *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IGMEOLEModel_QueryInterface(This,riid,ppvObject)	\
+    (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
+
+#define IGMEOLEModel_AddRef(This)	\
+    (This)->lpVtbl -> AddRef(This)
+
+#define IGMEOLEModel_Release(This)	\
+    (This)->lpVtbl -> Release(This)
+
+
+#define IGMEOLEModel_GetTypeInfoCount(This,pctinfo)	\
+    (This)->lpVtbl -> GetTypeInfoCount(This,pctinfo)
+
+#define IGMEOLEModel_GetTypeInfo(This,iTInfo,lcid,ppTInfo)	\
+    (This)->lpVtbl -> GetTypeInfo(This,iTInfo,lcid,ppTInfo)
+
+#define IGMEOLEModel_GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)	\
+    (This)->lpVtbl -> GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)
+
+#define IGMEOLEModel_Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)	\
+    (This)->lpVtbl -> Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)
+
+
+#define IGMEOLEModel_put_Active(This,isActive)	\
+    (This)->lpVtbl -> put_Active(This,isActive)
+
+#define IGMEOLEModel_get_Active(This,isActive)	\
+    (This)->lpVtbl -> get_Active(This,isActive)
+
+#define IGMEOLEModel_get_Aspects(This,coll)	\
+    (This)->lpVtbl -> get_Aspects(This,coll)
+
+#define IGMEOLEModel_get_MgaModel(This,model)	\
+    (This)->lpVtbl -> get_MgaModel(This,model)
+
+#define IGMEOLEModel_get_Valid(This,isValid)	\
+    (This)->lpVtbl -> get_Valid(This,isValid)
+
+#define IGMEOLEModel_Print(This)	\
+    (This)->lpVtbl -> Print(This)
+
+#define IGMEOLEModel_PrintDialog(This)	\
+    (This)->lpVtbl -> PrintDialog(This)
+
+#define IGMEOLEModel_DumpWindowsMetaFile(This,filePath)	\
+    (This)->lpVtbl -> DumpWindowsMetaFile(This,filePath)
+
+#define IGMEOLEModel_CheckConstraints(This)	\
+    (This)->lpVtbl -> CheckConstraints(This)
+
+#define IGMEOLEModel_RunComponent(This,appID)	\
+    (This)->lpVtbl -> RunComponent(This,appID)
+
+#define IGMEOLEModel_RunComponentDialog(This)	\
+    (This)->lpVtbl -> RunComponentDialog(This)
+
+#define IGMEOLEModel_Close(This)	\
+    (This)->lpVtbl -> Close(This)
+
+#define IGMEOLEModel_GrayOutFCO(This,bGray,bNeighbours,mgaFCO)	\
+    (This)->lpVtbl -> GrayOutFCO(This,bGray,bNeighbours,mgaFCO)
+
+#define IGMEOLEModel_GrayOutAll(This,bGray)	\
+    (This)->lpVtbl -> GrayOutAll(This,bGray)
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+/* [id][propput] */ HRESULT STDMETHODCALLTYPE IGMEOLEModel_put_Active_Proxy( 
+    IGMEOLEModel __RPC_FAR * This,
+    /* [in] */ VARIANT_BOOL isActive);
+
+
+void __RPC_STUB IGMEOLEModel_put_Active_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id][propget] */ HRESULT STDMETHODCALLTYPE IGMEOLEModel_get_Active_Proxy( 
+    IGMEOLEModel __RPC_FAR * This,
+    /* [retval][out] */ VARIANT_BOOL __RPC_FAR *isActive);
+
+
+void __RPC_STUB IGMEOLEModel_get_Active_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id][propget] */ HRESULT STDMETHODCALLTYPE IGMEOLEModel_get_Aspects_Proxy( 
+    IGMEOLEModel __RPC_FAR * This,
+    /* [retval][out] */ IGMEOLEColl __RPC_FAR *__RPC_FAR *coll);
+
+
+void __RPC_STUB IGMEOLEModel_get_Aspects_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id][propget] */ HRESULT STDMETHODCALLTYPE IGMEOLEModel_get_MgaModel_Proxy( 
+    IGMEOLEModel __RPC_FAR * This,
+    /* [retval][out] */ IMgaModel __RPC_FAR *__RPC_FAR *model);
+
+
+void __RPC_STUB IGMEOLEModel_get_MgaModel_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id][propget] */ HRESULT STDMETHODCALLTYPE IGMEOLEModel_get_Valid_Proxy( 
+    IGMEOLEModel __RPC_FAR * This,
+    /* [retval][out] */ VARIANT_BOOL __RPC_FAR *isValid);
+
+
+void __RPC_STUB IGMEOLEModel_get_Valid_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEModel_Print_Proxy( 
+    IGMEOLEModel __RPC_FAR * This);
+
+
+void __RPC_STUB IGMEOLEModel_Print_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEModel_PrintDialog_Proxy( 
+    IGMEOLEModel __RPC_FAR * This);
+
+
+void __RPC_STUB IGMEOLEModel_PrintDialog_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEModel_DumpWindowsMetaFile_Proxy( 
+    IGMEOLEModel __RPC_FAR * This,
+    /* [in] */ BSTR filePath);
+
+
+void __RPC_STUB IGMEOLEModel_DumpWindowsMetaFile_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEModel_CheckConstraints_Proxy( 
+    IGMEOLEModel __RPC_FAR * This);
+
+
+void __RPC_STUB IGMEOLEModel_CheckConstraints_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEModel_RunComponent_Proxy( 
+    IGMEOLEModel __RPC_FAR * This,
+    /* [in] */ BSTR appID);
+
+
+void __RPC_STUB IGMEOLEModel_RunComponent_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEModel_RunComponentDialog_Proxy( 
+    IGMEOLEModel __RPC_FAR * This);
+
+
+void __RPC_STUB IGMEOLEModel_RunComponentDialog_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEModel_Close_Proxy( 
+    IGMEOLEModel __RPC_FAR * This);
+
+
+void __RPC_STUB IGMEOLEModel_Close_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEModel_GrayOutFCO_Proxy( 
+    IGMEOLEModel __RPC_FAR * This,
+    /* [in] */ VARIANT_BOOL bGray,
+    /* [in] */ VARIANT_BOOL bNeighbours,
+    /* [in] */ IMgaFCOs __RPC_FAR *mgaFCO);
+
+
+void __RPC_STUB IGMEOLEModel_GrayOutFCO_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEModel_GrayOutAll_Proxy( 
+    IGMEOLEModel __RPC_FAR * This,
+    /* [in] */ VARIANT_BOOL bGray);
+
+
+void __RPC_STUB IGMEOLEModel_GrayOutAll_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+
+#endif 	/* __IGMEOLEModel_INTERFACE_DEFINED__ */
+
+
+#ifndef __IGMEOLEAspect_INTERFACE_DEFINED__
+#define __IGMEOLEAspect_INTERFACE_DEFINED__
+
+/* interface IGMEOLEAspect */
+/* [object][dual][oleautomation][uuid] */ 
+
+
+EXTERN_C const IID IID_IGMEOLEAspect;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("EDEEB1F8-BC44-40d2-BE91-83E8CCD59845")
+    IGMEOLEAspect : public IDispatch
+    {
+    public:
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_MgaAspect( 
+            /* [retval][out] */ IMgaMetaAspect __RPC_FAR *__RPC_FAR *aspect) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_Active( 
+            /* [in] */ VARIANT_BOOL isActive) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_Active( 
+            /* [retval][out] */ VARIANT_BOOL __RPC_FAR *isActive) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_Valid( 
+            /* [retval][out] */ VARIANT_BOOL __RPC_FAR *isValid) = 0;
+        
+    };
+    
+#else 	/* C style interface */
+
+    typedef struct IGMEOLEAspectVtbl
+    {
+        BEGIN_INTERFACE
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *QueryInterface )( 
+            IGMEOLEAspect __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [iid_is][out] */ void __RPC_FAR *__RPC_FAR *ppvObject);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *AddRef )( 
+            IGMEOLEAspect __RPC_FAR * This);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *Release )( 
+            IGMEOLEAspect __RPC_FAR * This);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetTypeInfoCount )( 
+            IGMEOLEAspect __RPC_FAR * This,
+            /* [out] */ UINT __RPC_FAR *pctinfo);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetTypeInfo )( 
+            IGMEOLEAspect __RPC_FAR * This,
+            /* [in] */ UINT iTInfo,
+            /* [in] */ LCID lcid,
+            /* [out] */ ITypeInfo __RPC_FAR *__RPC_FAR *ppTInfo);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetIDsOfNames )( 
+            IGMEOLEAspect __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [size_is][in] */ LPOLESTR __RPC_FAR *rgszNames,
+            /* [in] */ UINT cNames,
+            /* [in] */ LCID lcid,
+            /* [size_is][out] */ DISPID __RPC_FAR *rgDispId);
+        
+        /* [local] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Invoke )( 
+            IGMEOLEAspect __RPC_FAR * This,
+            /* [in] */ DISPID dispIdMember,
+            /* [in] */ REFIID riid,
+            /* [in] */ LCID lcid,
+            /* [in] */ WORD wFlags,
+            /* [out][in] */ DISPPARAMS __RPC_FAR *pDispParams,
+            /* [out] */ VARIANT __RPC_FAR *pVarResult,
+            /* [out] */ EXCEPINFO __RPC_FAR *pExcepInfo,
+            /* [out] */ UINT __RPC_FAR *puArgErr);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_MgaAspect )( 
+            IGMEOLEAspect __RPC_FAR * This,
+            /* [retval][out] */ IMgaMetaAspect __RPC_FAR *__RPC_FAR *aspect);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *put_Active )( 
+            IGMEOLEAspect __RPC_FAR * This,
+            /* [in] */ VARIANT_BOOL isActive);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Active )( 
+            IGMEOLEAspect __RPC_FAR * This,
+            /* [retval][out] */ VARIANT_BOOL __RPC_FAR *isActive);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Valid )( 
+            IGMEOLEAspect __RPC_FAR * This,
+            /* [retval][out] */ VARIANT_BOOL __RPC_FAR *isValid);
+        
+        END_INTERFACE
+    } IGMEOLEAspectVtbl;
+
+    interface IGMEOLEAspect
+    {
+        CONST_VTBL struct IGMEOLEAspectVtbl __RPC_FAR *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IGMEOLEAspect_QueryInterface(This,riid,ppvObject)	\
+    (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
+
+#define IGMEOLEAspect_AddRef(This)	\
+    (This)->lpVtbl -> AddRef(This)
+
+#define IGMEOLEAspect_Release(This)	\
+    (This)->lpVtbl -> Release(This)
+
+
+#define IGMEOLEAspect_GetTypeInfoCount(This,pctinfo)	\
+    (This)->lpVtbl -> GetTypeInfoCount(This,pctinfo)
+
+#define IGMEOLEAspect_GetTypeInfo(This,iTInfo,lcid,ppTInfo)	\
+    (This)->lpVtbl -> GetTypeInfo(This,iTInfo,lcid,ppTInfo)
+
+#define IGMEOLEAspect_GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)	\
+    (This)->lpVtbl -> GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)
+
+#define IGMEOLEAspect_Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)	\
+    (This)->lpVtbl -> Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)
+
+
+#define IGMEOLEAspect_get_MgaAspect(This,aspect)	\
+    (This)->lpVtbl -> get_MgaAspect(This,aspect)
+
+#define IGMEOLEAspect_put_Active(This,isActive)	\
+    (This)->lpVtbl -> put_Active(This,isActive)
+
+#define IGMEOLEAspect_get_Active(This,isActive)	\
+    (This)->lpVtbl -> get_Active(This,isActive)
+
+#define IGMEOLEAspect_get_Valid(This,isValid)	\
+    (This)->lpVtbl -> get_Valid(This,isValid)
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+/* [id][propget] */ HRESULT STDMETHODCALLTYPE IGMEOLEAspect_get_MgaAspect_Proxy( 
+    IGMEOLEAspect __RPC_FAR * This,
+    /* [retval][out] */ IMgaMetaAspect __RPC_FAR *__RPC_FAR *aspect);
+
+
+void __RPC_STUB IGMEOLEAspect_get_MgaAspect_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id][propput] */ HRESULT STDMETHODCALLTYPE IGMEOLEAspect_put_Active_Proxy( 
+    IGMEOLEAspect __RPC_FAR * This,
+    /* [in] */ VARIANT_BOOL isActive);
+
+
+void __RPC_STUB IGMEOLEAspect_put_Active_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id][propget] */ HRESULT STDMETHODCALLTYPE IGMEOLEAspect_get_Active_Proxy( 
+    IGMEOLEAspect __RPC_FAR * This,
+    /* [retval][out] */ VARIANT_BOOL __RPC_FAR *isActive);
+
+
+void __RPC_STUB IGMEOLEAspect_get_Active_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id][propget] */ HRESULT STDMETHODCALLTYPE IGMEOLEAspect_get_Valid_Proxy( 
+    IGMEOLEAspect __RPC_FAR * This,
+    /* [retval][out] */ VARIANT_BOOL __RPC_FAR *isValid);
+
+
+void __RPC_STUB IGMEOLEAspect_get_Valid_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+
+#endif 	/* __IGMEOLEAspect_INTERFACE_DEFINED__ */
+
+
+#ifndef __IGMEOLEPanel_INTERFACE_DEFINED__
+#define __IGMEOLEPanel_INTERFACE_DEFINED__
+
+/* interface IGMEOLEPanel */
+/* [object][dual][oleautomation][uuid] */ 
+
+
+EXTERN_C const IID IID_IGMEOLEPanel;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("C047FAEB-7AE7-40fb-8C5C-90C73DAD4BC6")
+    IGMEOLEPanel : public IDispatch
+    {
+    public:
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_Name( 
+            /* [retval][out] */ BSTR __RPC_FAR *name) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_Visible( 
+            /* [in] */ VARIANT_BOOL isVisible) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_Visible( 
+            /* [retval][out] */ VARIANT_BOOL __RPC_FAR *isVisible) = 0;
+        
+    };
+    
+#else 	/* C style interface */
+
+    typedef struct IGMEOLEPanelVtbl
+    {
+        BEGIN_INTERFACE
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *QueryInterface )( 
+            IGMEOLEPanel __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [iid_is][out] */ void __RPC_FAR *__RPC_FAR *ppvObject);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *AddRef )( 
+            IGMEOLEPanel __RPC_FAR * This);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *Release )( 
+            IGMEOLEPanel __RPC_FAR * This);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetTypeInfoCount )( 
+            IGMEOLEPanel __RPC_FAR * This,
+            /* [out] */ UINT __RPC_FAR *pctinfo);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetTypeInfo )( 
+            IGMEOLEPanel __RPC_FAR * This,
+            /* [in] */ UINT iTInfo,
+            /* [in] */ LCID lcid,
+            /* [out] */ ITypeInfo __RPC_FAR *__RPC_FAR *ppTInfo);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetIDsOfNames )( 
+            IGMEOLEPanel __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [size_is][in] */ LPOLESTR __RPC_FAR *rgszNames,
+            /* [in] */ UINT cNames,
+            /* [in] */ LCID lcid,
+            /* [size_is][out] */ DISPID __RPC_FAR *rgDispId);
+        
+        /* [local] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Invoke )( 
+            IGMEOLEPanel __RPC_FAR * This,
+            /* [in] */ DISPID dispIdMember,
+            /* [in] */ REFIID riid,
+            /* [in] */ LCID lcid,
+            /* [in] */ WORD wFlags,
+            /* [out][in] */ DISPPARAMS __RPC_FAR *pDispParams,
+            /* [out] */ VARIANT __RPC_FAR *pVarResult,
+            /* [out] */ EXCEPINFO __RPC_FAR *pExcepInfo,
+            /* [out] */ UINT __RPC_FAR *puArgErr);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Name )( 
+            IGMEOLEPanel __RPC_FAR * This,
+            /* [retval][out] */ BSTR __RPC_FAR *name);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *put_Visible )( 
+            IGMEOLEPanel __RPC_FAR * This,
+            /* [in] */ VARIANT_BOOL isVisible);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Visible )( 
+            IGMEOLEPanel __RPC_FAR * This,
+            /* [retval][out] */ VARIANT_BOOL __RPC_FAR *isVisible);
+        
+        END_INTERFACE
+    } IGMEOLEPanelVtbl;
+
+    interface IGMEOLEPanel
+    {
+        CONST_VTBL struct IGMEOLEPanelVtbl __RPC_FAR *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IGMEOLEPanel_QueryInterface(This,riid,ppvObject)	\
+    (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
+
+#define IGMEOLEPanel_AddRef(This)	\
+    (This)->lpVtbl -> AddRef(This)
+
+#define IGMEOLEPanel_Release(This)	\
+    (This)->lpVtbl -> Release(This)
+
+
+#define IGMEOLEPanel_GetTypeInfoCount(This,pctinfo)	\
+    (This)->lpVtbl -> GetTypeInfoCount(This,pctinfo)
+
+#define IGMEOLEPanel_GetTypeInfo(This,iTInfo,lcid,ppTInfo)	\
+    (This)->lpVtbl -> GetTypeInfo(This,iTInfo,lcid,ppTInfo)
+
+#define IGMEOLEPanel_GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)	\
+    (This)->lpVtbl -> GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)
+
+#define IGMEOLEPanel_Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)	\
+    (This)->lpVtbl -> Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)
+
+
+#define IGMEOLEPanel_get_Name(This,name)	\
+    (This)->lpVtbl -> get_Name(This,name)
+
+#define IGMEOLEPanel_put_Visible(This,isVisible)	\
+    (This)->lpVtbl -> put_Visible(This,isVisible)
+
+#define IGMEOLEPanel_get_Visible(This,isVisible)	\
+    (This)->lpVtbl -> get_Visible(This,isVisible)
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+/* [id][propget] */ HRESULT STDMETHODCALLTYPE IGMEOLEPanel_get_Name_Proxy( 
+    IGMEOLEPanel __RPC_FAR * This,
+    /* [retval][out] */ BSTR __RPC_FAR *name);
+
+
+void __RPC_STUB IGMEOLEPanel_get_Name_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id][propput] */ HRESULT STDMETHODCALLTYPE IGMEOLEPanel_put_Visible_Proxy( 
+    IGMEOLEPanel __RPC_FAR * This,
+    /* [in] */ VARIANT_BOOL isVisible);
+
+
+void __RPC_STUB IGMEOLEPanel_put_Visible_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id][propget] */ HRESULT STDMETHODCALLTYPE IGMEOLEPanel_get_Visible_Proxy( 
+    IGMEOLEPanel __RPC_FAR * This,
+    /* [retval][out] */ VARIANT_BOOL __RPC_FAR *isVisible);
+
+
+void __RPC_STUB IGMEOLEPanel_get_Visible_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+
+#endif 	/* __IGMEOLEPanel_INTERFACE_DEFINED__ */
+
+
+#ifndef __IGMEOLEColl_INTERFACE_DEFINED__
+#define __IGMEOLEColl_INTERFACE_DEFINED__
+
+/* interface IGMEOLEColl */
+/* [object][dual][oleautomation][uuid] */ 
+
+
+EXTERN_C const IID IID_IGMEOLEColl;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("36C7B797-6BDE-46d0-8870-70189000EDF9")
+    IGMEOLEColl : public IDispatch
+    {
+    public:
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_Count( 
+            /* [retval][out] */ long __RPC_FAR *cnt) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE Add( 
+            IDispatch __RPC_FAR *newValue) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE Find( 
+            IDispatch __RPC_FAR *findValue,
+            /* [retval][out] */ long __RPC_FAR *cnt) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE Remove( 
+            VARIANT removeValue) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE RemoveAll( void) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_Item( 
+            long nIndex,
+            /* [retval][out] */ IDispatch __RPC_FAR *__RPC_FAR *val) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_Item( 
+            long nIndex,
+            IDispatch __RPC_FAR *newValue) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get__NewEnum( 
+            /* [retval][out] */ IUnknown __RPC_FAR *__RPC_FAR *e) = 0;
+        
+    };
+    
+#else 	/* C style interface */
+
+    typedef struct IGMEOLECollVtbl
+    {
+        BEGIN_INTERFACE
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *QueryInterface )( 
+            IGMEOLEColl __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [iid_is][out] */ void __RPC_FAR *__RPC_FAR *ppvObject);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *AddRef )( 
+            IGMEOLEColl __RPC_FAR * This);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *Release )( 
+            IGMEOLEColl __RPC_FAR * This);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetTypeInfoCount )( 
+            IGMEOLEColl __RPC_FAR * This,
+            /* [out] */ UINT __RPC_FAR *pctinfo);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetTypeInfo )( 
+            IGMEOLEColl __RPC_FAR * This,
+            /* [in] */ UINT iTInfo,
+            /* [in] */ LCID lcid,
+            /* [out] */ ITypeInfo __RPC_FAR *__RPC_FAR *ppTInfo);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetIDsOfNames )( 
+            IGMEOLEColl __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [size_is][in] */ LPOLESTR __RPC_FAR *rgszNames,
+            /* [in] */ UINT cNames,
+            /* [in] */ LCID lcid,
+            /* [size_is][out] */ DISPID __RPC_FAR *rgDispId);
+        
+        /* [local] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Invoke )( 
+            IGMEOLEColl __RPC_FAR * This,
+            /* [in] */ DISPID dispIdMember,
+            /* [in] */ REFIID riid,
+            /* [in] */ LCID lcid,
+            /* [in] */ WORD wFlags,
+            /* [out][in] */ DISPPARAMS __RPC_FAR *pDispParams,
+            /* [out] */ VARIANT __RPC_FAR *pVarResult,
+            /* [out] */ EXCEPINFO __RPC_FAR *pExcepInfo,
+            /* [out] */ UINT __RPC_FAR *puArgErr);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Count )( 
+            IGMEOLEColl __RPC_FAR * This,
+            /* [retval][out] */ long __RPC_FAR *cnt);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Add )( 
+            IGMEOLEColl __RPC_FAR * This,
+            IDispatch __RPC_FAR *newValue);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Find )( 
+            IGMEOLEColl __RPC_FAR * This,
+            IDispatch __RPC_FAR *findValue,
+            /* [retval][out] */ long __RPC_FAR *cnt);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Remove )( 
+            IGMEOLEColl __RPC_FAR * This,
+            VARIANT removeValue);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *RemoveAll )( 
+            IGMEOLEColl __RPC_FAR * This);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Item )( 
+            IGMEOLEColl __RPC_FAR * This,
+            long nIndex,
+            /* [retval][out] */ IDispatch __RPC_FAR *__RPC_FAR *val);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *put_Item )( 
+            IGMEOLEColl __RPC_FAR * This,
+            long nIndex,
+            IDispatch __RPC_FAR *newValue);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get__NewEnum )( 
+            IGMEOLEColl __RPC_FAR * This,
+            /* [retval][out] */ IUnknown __RPC_FAR *__RPC_FAR *e);
+        
+        END_INTERFACE
+    } IGMEOLECollVtbl;
+
+    interface IGMEOLEColl
+    {
+        CONST_VTBL struct IGMEOLECollVtbl __RPC_FAR *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IGMEOLEColl_QueryInterface(This,riid,ppvObject)	\
+    (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
+
+#define IGMEOLEColl_AddRef(This)	\
+    (This)->lpVtbl -> AddRef(This)
+
+#define IGMEOLEColl_Release(This)	\
+    (This)->lpVtbl -> Release(This)
+
+
+#define IGMEOLEColl_GetTypeInfoCount(This,pctinfo)	\
+    (This)->lpVtbl -> GetTypeInfoCount(This,pctinfo)
+
+#define IGMEOLEColl_GetTypeInfo(This,iTInfo,lcid,ppTInfo)	\
+    (This)->lpVtbl -> GetTypeInfo(This,iTInfo,lcid,ppTInfo)
+
+#define IGMEOLEColl_GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)	\
+    (This)->lpVtbl -> GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)
+
+#define IGMEOLEColl_Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)	\
+    (This)->lpVtbl -> Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)
+
+
+#define IGMEOLEColl_get_Count(This,cnt)	\
+    (This)->lpVtbl -> get_Count(This,cnt)
+
+#define IGMEOLEColl_Add(This,newValue)	\
+    (This)->lpVtbl -> Add(This,newValue)
+
+#define IGMEOLEColl_Find(This,findValue,cnt)	\
+    (This)->lpVtbl -> Find(This,findValue,cnt)
+
+#define IGMEOLEColl_Remove(This,removeValue)	\
+    (This)->lpVtbl -> Remove(This,removeValue)
+
+#define IGMEOLEColl_RemoveAll(This)	\
+    (This)->lpVtbl -> RemoveAll(This)
+
+#define IGMEOLEColl_get_Item(This,nIndex,val)	\
+    (This)->lpVtbl -> get_Item(This,nIndex,val)
+
+#define IGMEOLEColl_put_Item(This,nIndex,newValue)	\
+    (This)->lpVtbl -> put_Item(This,nIndex,newValue)
+
+#define IGMEOLEColl_get__NewEnum(This,e)	\
+    (This)->lpVtbl -> get__NewEnum(This,e)
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+/* [id][propget] */ HRESULT STDMETHODCALLTYPE IGMEOLEColl_get_Count_Proxy( 
+    IGMEOLEColl __RPC_FAR * This,
+    /* [retval][out] */ long __RPC_FAR *cnt);
+
+
+void __RPC_STUB IGMEOLEColl_get_Count_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEColl_Add_Proxy( 
+    IGMEOLEColl __RPC_FAR * This,
+    IDispatch __RPC_FAR *newValue);
+
+
+void __RPC_STUB IGMEOLEColl_Add_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEColl_Find_Proxy( 
+    IGMEOLEColl __RPC_FAR * This,
+    IDispatch __RPC_FAR *findValue,
+    /* [retval][out] */ long __RPC_FAR *cnt);
+
+
+void __RPC_STUB IGMEOLEColl_Find_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEColl_Remove_Proxy( 
+    IGMEOLEColl __RPC_FAR * This,
+    VARIANT removeValue);
+
+
+void __RPC_STUB IGMEOLEColl_Remove_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id] */ HRESULT STDMETHODCALLTYPE IGMEOLEColl_RemoveAll_Proxy( 
+    IGMEOLEColl __RPC_FAR * This);
+
+
+void __RPC_STUB IGMEOLEColl_RemoveAll_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id][propget] */ HRESULT STDMETHODCALLTYPE IGMEOLEColl_get_Item_Proxy( 
+    IGMEOLEColl __RPC_FAR * This,
+    long nIndex,
+    /* [retval][out] */ IDispatch __RPC_FAR *__RPC_FAR *val);
+
+
+void __RPC_STUB IGMEOLEColl_get_Item_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id][propput] */ HRESULT STDMETHODCALLTYPE IGMEOLEColl_put_Item_Proxy( 
+    IGMEOLEColl __RPC_FAR * This,
+    long nIndex,
+    IDispatch __RPC_FAR *newValue);
+
+
+void __RPC_STUB IGMEOLEColl_put_Item_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [id][propget] */ HRESULT STDMETHODCALLTYPE IGMEOLEColl_get__NewEnum_Proxy( 
+    IGMEOLEColl __RPC_FAR * This,
+    /* [retval][out] */ IUnknown __RPC_FAR *__RPC_FAR *e);
+
+
+void __RPC_STUB IGMEOLEColl_get__NewEnum_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+
+#endif 	/* __IGMEOLEColl_INTERFACE_DEFINED__ */
+
+
+/* interface __MIDL_itf_ComponentLib_0294 */
 /* [local] */ 
 
 typedef 
 enum MgaInterfaceVersion_enum
     {	MgaInterfaceVersion_None	= 0,
 	MgaInterfaceVersion_Legacy	= 4,
-	MgaInterfaceVersion_Current	= 0x2000f
+	MgaInterfaceVersion_Current	= 0x20049
     }	MgaInterfaceVersion_enum;
 
 #define MgaInterfaceVersion MgaInterfaceVersion_enum
 
 
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0284_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0284_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0294_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ComponentLib_0294_v0_0_s_ifspec;
 
 #ifndef __IMgaVersionInfo_INTERFACE_DEFINED__
 #define __IMgaVersionInfo_INTERFACE_DEFINED__
@@ -30482,63 +34316,56 @@ void __RPC_STUB IMgaVersionInfo_get_version_Stub(
 #endif 	/* __IMgaVersionInfo_INTERFACE_DEFINED__ */
 
 
-#ifndef __IGMEAppl_INTERFACE_DEFINED__
-#define __IGMEAppl_INTERFACE_DEFINED__
+#ifndef __IMetaParser_INTERFACE_DEFINED__
+#define __IMetaParser_INTERFACE_DEFINED__
 
-/* interface IGMEAppl */
+/* interface IMetaParser */
 /* [unique][helpstring][dual][uuid][object] */ 
 
 
-EXTERN_C const IID IID_IGMEAppl;
+EXTERN_C const IID IID_IMetaParser;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
-    MIDL_INTERFACE("32D1F995-D276-11D3-9AD5-00AA00B6FE44")
-    IGMEAppl : public IDispatch
+    MIDL_INTERFACE("70C41B24-E3CE-11D3-B37A-005004D38590")
+    IMetaParser : public IDispatch
     {
     public:
-        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE OpenProject( 
-            /* [in] */ BSTR connstring) = 0;
-        
-        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE CloseProject( void) = 0;
-        
-        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE OpenModel( 
-            /* [in] */ IMgaFCO __RPC_FAR *model) = 0;
-        
-        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE CloseModel( 
-            /* [in] */ IMgaFCO __RPC_FAR *model) = 0;
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE Parse( 
+            /* [in] */ BSTR xmlfile,
+            /* [in] */ BSTR connection) = 0;
         
     };
     
 #else 	/* C style interface */
 
-    typedef struct IGMEApplVtbl
+    typedef struct IMetaParserVtbl
     {
         BEGIN_INTERFACE
         
         HRESULT ( STDMETHODCALLTYPE __RPC_FAR *QueryInterface )( 
-            IGMEAppl __RPC_FAR * This,
+            IMetaParser __RPC_FAR * This,
             /* [in] */ REFIID riid,
             /* [iid_is][out] */ void __RPC_FAR *__RPC_FAR *ppvObject);
         
         ULONG ( STDMETHODCALLTYPE __RPC_FAR *AddRef )( 
-            IGMEAppl __RPC_FAR * This);
+            IMetaParser __RPC_FAR * This);
         
         ULONG ( STDMETHODCALLTYPE __RPC_FAR *Release )( 
-            IGMEAppl __RPC_FAR * This);
+            IMetaParser __RPC_FAR * This);
         
         HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetTypeInfoCount )( 
-            IGMEAppl __RPC_FAR * This,
+            IMetaParser __RPC_FAR * This,
             /* [out] */ UINT __RPC_FAR *pctinfo);
         
         HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetTypeInfo )( 
-            IGMEAppl __RPC_FAR * This,
+            IMetaParser __RPC_FAR * This,
             /* [in] */ UINT iTInfo,
             /* [in] */ LCID lcid,
             /* [out] */ ITypeInfo __RPC_FAR *__RPC_FAR *ppTInfo);
         
         HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetIDsOfNames )( 
-            IGMEAppl __RPC_FAR * This,
+            IMetaParser __RPC_FAR * This,
             /* [in] */ REFIID riid,
             /* [size_is][in] */ LPOLESTR __RPC_FAR *rgszNames,
             /* [in] */ UINT cNames,
@@ -30546,7 +34373,7 @@ EXTERN_C const IID IID_IGMEAppl;
             /* [size_is][out] */ DISPID __RPC_FAR *rgDispId);
         
         /* [local] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Invoke )( 
-            IGMEAppl __RPC_FAR * This,
+            IMetaParser __RPC_FAR * This,
             /* [in] */ DISPID dispIdMember,
             /* [in] */ REFIID riid,
             /* [in] */ LCID lcid,
@@ -30556,27 +34383,17 @@ EXTERN_C const IID IID_IGMEAppl;
             /* [out] */ EXCEPINFO __RPC_FAR *pExcepInfo,
             /* [out] */ UINT __RPC_FAR *puArgErr);
         
-        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *OpenProject )( 
-            IGMEAppl __RPC_FAR * This,
-            /* [in] */ BSTR connstring);
-        
-        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *CloseProject )( 
-            IGMEAppl __RPC_FAR * This);
-        
-        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *OpenModel )( 
-            IGMEAppl __RPC_FAR * This,
-            /* [in] */ IMgaFCO __RPC_FAR *model);
-        
-        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *CloseModel )( 
-            IGMEAppl __RPC_FAR * This,
-            /* [in] */ IMgaFCO __RPC_FAR *model);
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Parse )( 
+            IMetaParser __RPC_FAR * This,
+            /* [in] */ BSTR xmlfile,
+            /* [in] */ BSTR connection);
         
         END_INTERFACE
-    } IGMEApplVtbl;
+    } IMetaParserVtbl;
 
-    interface IGMEAppl
+    interface IMetaParser
     {
-        CONST_VTBL struct IGMEApplVtbl __RPC_FAR *lpVtbl;
+        CONST_VTBL struct IMetaParserVtbl __RPC_FAR *lpVtbl;
     };
 
     
@@ -30584,40 +34401,31 @@ EXTERN_C const IID IID_IGMEAppl;
 #ifdef COBJMACROS
 
 
-#define IGMEAppl_QueryInterface(This,riid,ppvObject)	\
+#define IMetaParser_QueryInterface(This,riid,ppvObject)	\
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IGMEAppl_AddRef(This)	\
+#define IMetaParser_AddRef(This)	\
     (This)->lpVtbl -> AddRef(This)
 
-#define IGMEAppl_Release(This)	\
+#define IMetaParser_Release(This)	\
     (This)->lpVtbl -> Release(This)
 
 
-#define IGMEAppl_GetTypeInfoCount(This,pctinfo)	\
+#define IMetaParser_GetTypeInfoCount(This,pctinfo)	\
     (This)->lpVtbl -> GetTypeInfoCount(This,pctinfo)
 
-#define IGMEAppl_GetTypeInfo(This,iTInfo,lcid,ppTInfo)	\
+#define IMetaParser_GetTypeInfo(This,iTInfo,lcid,ppTInfo)	\
     (This)->lpVtbl -> GetTypeInfo(This,iTInfo,lcid,ppTInfo)
 
-#define IGMEAppl_GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)	\
+#define IMetaParser_GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)	\
     (This)->lpVtbl -> GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)
 
-#define IGMEAppl_Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)	\
+#define IMetaParser_Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)	\
     (This)->lpVtbl -> Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)
 
 
-#define IGMEAppl_OpenProject(This,connstring)	\
-    (This)->lpVtbl -> OpenProject(This,connstring)
-
-#define IGMEAppl_CloseProject(This)	\
-    (This)->lpVtbl -> CloseProject(This)
-
-#define IGMEAppl_OpenModel(This,model)	\
-    (This)->lpVtbl -> OpenModel(This,model)
-
-#define IGMEAppl_CloseModel(This,model)	\
-    (This)->lpVtbl -> CloseModel(This,model)
+#define IMetaParser_Parse(This,xmlfile,connection)	\
+    (This)->lpVtbl -> Parse(This,xmlfile,connection)
 
 #endif /* COBJMACROS */
 
@@ -30626,47 +34434,13 @@ EXTERN_C const IID IID_IGMEAppl;
 
 
 
-/* [helpstring] */ HRESULT STDMETHODCALLTYPE IGMEAppl_OpenProject_Proxy( 
-    IGMEAppl __RPC_FAR * This,
-    /* [in] */ BSTR connstring);
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMetaParser_Parse_Proxy( 
+    IMetaParser __RPC_FAR * This,
+    /* [in] */ BSTR xmlfile,
+    /* [in] */ BSTR connection);
 
 
-void __RPC_STUB IGMEAppl_OpenProject_Stub(
-    IRpcStubBuffer *This,
-    IRpcChannelBuffer *_pRpcChannelBuffer,
-    PRPC_MESSAGE _pRpcMessage,
-    DWORD *_pdwStubPhase);
-
-
-/* [helpstring] */ HRESULT STDMETHODCALLTYPE IGMEAppl_CloseProject_Proxy( 
-    IGMEAppl __RPC_FAR * This);
-
-
-void __RPC_STUB IGMEAppl_CloseProject_Stub(
-    IRpcStubBuffer *This,
-    IRpcChannelBuffer *_pRpcChannelBuffer,
-    PRPC_MESSAGE _pRpcMessage,
-    DWORD *_pdwStubPhase);
-
-
-/* [helpstring] */ HRESULT STDMETHODCALLTYPE IGMEAppl_OpenModel_Proxy( 
-    IGMEAppl __RPC_FAR * This,
-    /* [in] */ IMgaFCO __RPC_FAR *model);
-
-
-void __RPC_STUB IGMEAppl_OpenModel_Stub(
-    IRpcStubBuffer *This,
-    IRpcChannelBuffer *_pRpcChannelBuffer,
-    PRPC_MESSAGE _pRpcMessage,
-    DWORD *_pdwStubPhase);
-
-
-/* [helpstring] */ HRESULT STDMETHODCALLTYPE IGMEAppl_CloseModel_Proxy( 
-    IGMEAppl __RPC_FAR * This,
-    /* [in] */ IMgaFCO __RPC_FAR *model);
-
-
-void __RPC_STUB IGMEAppl_CloseModel_Stub(
+void __RPC_STUB IMetaParser_Parse_Stub(
     IRpcStubBuffer *This,
     IRpcChannelBuffer *_pRpcChannelBuffer,
     PRPC_MESSAGE _pRpcMessage,
@@ -30674,7 +34448,598 @@ void __RPC_STUB IGMEAppl_CloseModel_Stub(
 
 
 
-#endif 	/* __IGMEAppl_INTERFACE_DEFINED__ */
+#endif 	/* __IMetaParser_INTERFACE_DEFINED__ */
+
+
+#ifndef __IMgaDumper_INTERFACE_DEFINED__
+#define __IMgaDumper_INTERFACE_DEFINED__
+
+/* interface IMgaDumper */
+/* [unique][helpstring][dual][uuid][object] */ 
+
+
+EXTERN_C const IID IID_IMgaDumper;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("A5D0DAE6-16EE-11D4-B3C2-005004D38590")
+    IMgaDumper : public IDispatch
+    {
+    public:
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE DumpProject( 
+            /* [in] */ IMgaProject __RPC_FAR *p,
+            /* [in] */ BSTR xmlfile) = 0;
+        
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE DumpFCOs( 
+            /* [in] */ IMgaFCOs __RPC_FAR *p,
+            /* [in] */ IMgaFolders __RPC_FAR *f,
+            /* [in] */ BSTR xmlfile) = 0;
+        
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE DumpClos( 
+            /* [in] */ IMgaFCOs __RPC_FAR *fc,
+            /* [in] */ IMgaFolders __RPC_FAR *f,
+            /* [in] */ BSTR xmlfile,
+            /* [in] */ int libr_stub) = 0;
+        
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE DumpClosR( 
+            /* [in] */ IMgaFCOs __RPC_FAR *fc,
+            /* [in] */ IMgaFolders __RPC_FAR *f,
+            /* [in] */ BSTR xmlfile,
+            /* [in] */ IMgaFCOs __RPC_FAR *rfc,
+            /* [in] */ IMgaFolders __RPC_FAR *rf,
+            /* [in] */ int libr_stub) = 0;
+        
+        virtual /* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE put_FormatVersion( 
+            /* [in] */ long p) = 0;
+        
+    };
+    
+#else 	/* C style interface */
+
+    typedef struct IMgaDumperVtbl
+    {
+        BEGIN_INTERFACE
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *QueryInterface )( 
+            IMgaDumper __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [iid_is][out] */ void __RPC_FAR *__RPC_FAR *ppvObject);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *AddRef )( 
+            IMgaDumper __RPC_FAR * This);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *Release )( 
+            IMgaDumper __RPC_FAR * This);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetTypeInfoCount )( 
+            IMgaDumper __RPC_FAR * This,
+            /* [out] */ UINT __RPC_FAR *pctinfo);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetTypeInfo )( 
+            IMgaDumper __RPC_FAR * This,
+            /* [in] */ UINT iTInfo,
+            /* [in] */ LCID lcid,
+            /* [out] */ ITypeInfo __RPC_FAR *__RPC_FAR *ppTInfo);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetIDsOfNames )( 
+            IMgaDumper __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [size_is][in] */ LPOLESTR __RPC_FAR *rgszNames,
+            /* [in] */ UINT cNames,
+            /* [in] */ LCID lcid,
+            /* [size_is][out] */ DISPID __RPC_FAR *rgDispId);
+        
+        /* [local] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Invoke )( 
+            IMgaDumper __RPC_FAR * This,
+            /* [in] */ DISPID dispIdMember,
+            /* [in] */ REFIID riid,
+            /* [in] */ LCID lcid,
+            /* [in] */ WORD wFlags,
+            /* [out][in] */ DISPPARAMS __RPC_FAR *pDispParams,
+            /* [out] */ VARIANT __RPC_FAR *pVarResult,
+            /* [out] */ EXCEPINFO __RPC_FAR *pExcepInfo,
+            /* [out] */ UINT __RPC_FAR *puArgErr);
+        
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *DumpProject )( 
+            IMgaDumper __RPC_FAR * This,
+            /* [in] */ IMgaProject __RPC_FAR *p,
+            /* [in] */ BSTR xmlfile);
+        
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *DumpFCOs )( 
+            IMgaDumper __RPC_FAR * This,
+            /* [in] */ IMgaFCOs __RPC_FAR *p,
+            /* [in] */ IMgaFolders __RPC_FAR *f,
+            /* [in] */ BSTR xmlfile);
+        
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *DumpClos )( 
+            IMgaDumper __RPC_FAR * This,
+            /* [in] */ IMgaFCOs __RPC_FAR *fc,
+            /* [in] */ IMgaFolders __RPC_FAR *f,
+            /* [in] */ BSTR xmlfile,
+            /* [in] */ int libr_stub);
+        
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *DumpClosR )( 
+            IMgaDumper __RPC_FAR * This,
+            /* [in] */ IMgaFCOs __RPC_FAR *fc,
+            /* [in] */ IMgaFolders __RPC_FAR *f,
+            /* [in] */ BSTR xmlfile,
+            /* [in] */ IMgaFCOs __RPC_FAR *rfc,
+            /* [in] */ IMgaFolders __RPC_FAR *rf,
+            /* [in] */ int libr_stub);
+        
+        /* [helpstring][propput] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *put_FormatVersion )( 
+            IMgaDumper __RPC_FAR * This,
+            /* [in] */ long p);
+        
+        END_INTERFACE
+    } IMgaDumperVtbl;
+
+    interface IMgaDumper
+    {
+        CONST_VTBL struct IMgaDumperVtbl __RPC_FAR *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IMgaDumper_QueryInterface(This,riid,ppvObject)	\
+    (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
+
+#define IMgaDumper_AddRef(This)	\
+    (This)->lpVtbl -> AddRef(This)
+
+#define IMgaDumper_Release(This)	\
+    (This)->lpVtbl -> Release(This)
+
+
+#define IMgaDumper_GetTypeInfoCount(This,pctinfo)	\
+    (This)->lpVtbl -> GetTypeInfoCount(This,pctinfo)
+
+#define IMgaDumper_GetTypeInfo(This,iTInfo,lcid,ppTInfo)	\
+    (This)->lpVtbl -> GetTypeInfo(This,iTInfo,lcid,ppTInfo)
+
+#define IMgaDumper_GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)	\
+    (This)->lpVtbl -> GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)
+
+#define IMgaDumper_Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)	\
+    (This)->lpVtbl -> Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)
+
+
+#define IMgaDumper_DumpProject(This,p,xmlfile)	\
+    (This)->lpVtbl -> DumpProject(This,p,xmlfile)
+
+#define IMgaDumper_DumpFCOs(This,p,f,xmlfile)	\
+    (This)->lpVtbl -> DumpFCOs(This,p,f,xmlfile)
+
+#define IMgaDumper_DumpClos(This,fc,f,xmlfile,libr_stub)	\
+    (This)->lpVtbl -> DumpClos(This,fc,f,xmlfile,libr_stub)
+
+#define IMgaDumper_DumpClosR(This,fc,f,xmlfile,rfc,rf,libr_stub)	\
+    (This)->lpVtbl -> DumpClosR(This,fc,f,xmlfile,rfc,rf,libr_stub)
+
+#define IMgaDumper_put_FormatVersion(This,p)	\
+    (This)->lpVtbl -> put_FormatVersion(This,p)
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaDumper_DumpProject_Proxy( 
+    IMgaDumper __RPC_FAR * This,
+    /* [in] */ IMgaProject __RPC_FAR *p,
+    /* [in] */ BSTR xmlfile);
+
+
+void __RPC_STUB IMgaDumper_DumpProject_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaDumper_DumpFCOs_Proxy( 
+    IMgaDumper __RPC_FAR * This,
+    /* [in] */ IMgaFCOs __RPC_FAR *p,
+    /* [in] */ IMgaFolders __RPC_FAR *f,
+    /* [in] */ BSTR xmlfile);
+
+
+void __RPC_STUB IMgaDumper_DumpFCOs_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaDumper_DumpClos_Proxy( 
+    IMgaDumper __RPC_FAR * This,
+    /* [in] */ IMgaFCOs __RPC_FAR *fc,
+    /* [in] */ IMgaFolders __RPC_FAR *f,
+    /* [in] */ BSTR xmlfile,
+    /* [in] */ int libr_stub);
+
+
+void __RPC_STUB IMgaDumper_DumpClos_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaDumper_DumpClosR_Proxy( 
+    IMgaDumper __RPC_FAR * This,
+    /* [in] */ IMgaFCOs __RPC_FAR *fc,
+    /* [in] */ IMgaFolders __RPC_FAR *f,
+    /* [in] */ BSTR xmlfile,
+    /* [in] */ IMgaFCOs __RPC_FAR *rfc,
+    /* [in] */ IMgaFolders __RPC_FAR *rf,
+    /* [in] */ int libr_stub);
+
+
+void __RPC_STUB IMgaDumper_DumpClosR_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE IMgaDumper_put_FormatVersion_Proxy( 
+    IMgaDumper __RPC_FAR * This,
+    /* [in] */ long p);
+
+
+void __RPC_STUB IMgaDumper_put_FormatVersion_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+
+#endif 	/* __IMgaDumper_INTERFACE_DEFINED__ */
+
+
+#ifndef __IMgaParser_INTERFACE_DEFINED__
+#define __IMgaParser_INTERFACE_DEFINED__
+
+/* interface IMgaParser */
+/* [unique][helpstring][dual][uuid][object] */ 
+
+
+EXTERN_C const IID IID_IMgaParser;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("94D6FB53-1F7C-11D4-B3D0-005004D38590")
+    IMgaParser : public IDispatch
+    {
+    public:
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE GetXMLInfo( 
+            /* [in] */ BSTR xmlfile,
+            /* [out] */ BSTR __RPC_FAR *paradigm,
+            /* [out] */ BSTR __RPC_FAR *parversion,
+            /* [out] */ VARIANT __RPC_FAR *parguid,
+            /* [out] */ BSTR __RPC_FAR *basename,
+            /* [out] */ BSTR __RPC_FAR *ver) = 0;
+        
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE ParseProject( 
+            /* [in] */ IMgaProject __RPC_FAR *p,
+            /* [in] */ BSTR xmlfile) = 0;
+        
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE ParseFCOs( 
+            /* [in] */ IMgaObject __RPC_FAR *here,
+            /* [in] */ BSTR xmlfile) = 0;
+        
+    };
+    
+#else 	/* C style interface */
+
+    typedef struct IMgaParserVtbl
+    {
+        BEGIN_INTERFACE
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *QueryInterface )( 
+            IMgaParser __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [iid_is][out] */ void __RPC_FAR *__RPC_FAR *ppvObject);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *AddRef )( 
+            IMgaParser __RPC_FAR * This);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *Release )( 
+            IMgaParser __RPC_FAR * This);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetTypeInfoCount )( 
+            IMgaParser __RPC_FAR * This,
+            /* [out] */ UINT __RPC_FAR *pctinfo);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetTypeInfo )( 
+            IMgaParser __RPC_FAR * This,
+            /* [in] */ UINT iTInfo,
+            /* [in] */ LCID lcid,
+            /* [out] */ ITypeInfo __RPC_FAR *__RPC_FAR *ppTInfo);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetIDsOfNames )( 
+            IMgaParser __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [size_is][in] */ LPOLESTR __RPC_FAR *rgszNames,
+            /* [in] */ UINT cNames,
+            /* [in] */ LCID lcid,
+            /* [size_is][out] */ DISPID __RPC_FAR *rgDispId);
+        
+        /* [local] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Invoke )( 
+            IMgaParser __RPC_FAR * This,
+            /* [in] */ DISPID dispIdMember,
+            /* [in] */ REFIID riid,
+            /* [in] */ LCID lcid,
+            /* [in] */ WORD wFlags,
+            /* [out][in] */ DISPPARAMS __RPC_FAR *pDispParams,
+            /* [out] */ VARIANT __RPC_FAR *pVarResult,
+            /* [out] */ EXCEPINFO __RPC_FAR *pExcepInfo,
+            /* [out] */ UINT __RPC_FAR *puArgErr);
+        
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetXMLInfo )( 
+            IMgaParser __RPC_FAR * This,
+            /* [in] */ BSTR xmlfile,
+            /* [out] */ BSTR __RPC_FAR *paradigm,
+            /* [out] */ BSTR __RPC_FAR *parversion,
+            /* [out] */ VARIANT __RPC_FAR *parguid,
+            /* [out] */ BSTR __RPC_FAR *basename,
+            /* [out] */ BSTR __RPC_FAR *ver);
+        
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *ParseProject )( 
+            IMgaParser __RPC_FAR * This,
+            /* [in] */ IMgaProject __RPC_FAR *p,
+            /* [in] */ BSTR xmlfile);
+        
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *ParseFCOs )( 
+            IMgaParser __RPC_FAR * This,
+            /* [in] */ IMgaObject __RPC_FAR *here,
+            /* [in] */ BSTR xmlfile);
+        
+        END_INTERFACE
+    } IMgaParserVtbl;
+
+    interface IMgaParser
+    {
+        CONST_VTBL struct IMgaParserVtbl __RPC_FAR *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IMgaParser_QueryInterface(This,riid,ppvObject)	\
+    (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
+
+#define IMgaParser_AddRef(This)	\
+    (This)->lpVtbl -> AddRef(This)
+
+#define IMgaParser_Release(This)	\
+    (This)->lpVtbl -> Release(This)
+
+
+#define IMgaParser_GetTypeInfoCount(This,pctinfo)	\
+    (This)->lpVtbl -> GetTypeInfoCount(This,pctinfo)
+
+#define IMgaParser_GetTypeInfo(This,iTInfo,lcid,ppTInfo)	\
+    (This)->lpVtbl -> GetTypeInfo(This,iTInfo,lcid,ppTInfo)
+
+#define IMgaParser_GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)	\
+    (This)->lpVtbl -> GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)
+
+#define IMgaParser_Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)	\
+    (This)->lpVtbl -> Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)
+
+
+#define IMgaParser_GetXMLInfo(This,xmlfile,paradigm,parversion,parguid,basename,ver)	\
+    (This)->lpVtbl -> GetXMLInfo(This,xmlfile,paradigm,parversion,parguid,basename,ver)
+
+#define IMgaParser_ParseProject(This,p,xmlfile)	\
+    (This)->lpVtbl -> ParseProject(This,p,xmlfile)
+
+#define IMgaParser_ParseFCOs(This,here,xmlfile)	\
+    (This)->lpVtbl -> ParseFCOs(This,here,xmlfile)
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaParser_GetXMLInfo_Proxy( 
+    IMgaParser __RPC_FAR * This,
+    /* [in] */ BSTR xmlfile,
+    /* [out] */ BSTR __RPC_FAR *paradigm,
+    /* [out] */ BSTR __RPC_FAR *parversion,
+    /* [out] */ VARIANT __RPC_FAR *parguid,
+    /* [out] */ BSTR __RPC_FAR *basename,
+    /* [out] */ BSTR __RPC_FAR *ver);
+
+
+void __RPC_STUB IMgaParser_GetXMLInfo_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaParser_ParseProject_Proxy( 
+    IMgaParser __RPC_FAR * This,
+    /* [in] */ IMgaProject __RPC_FAR *p,
+    /* [in] */ BSTR xmlfile);
+
+
+void __RPC_STUB IMgaParser_ParseProject_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaParser_ParseFCOs_Proxy( 
+    IMgaParser __RPC_FAR * This,
+    /* [in] */ IMgaObject __RPC_FAR *here,
+    /* [in] */ BSTR xmlfile);
+
+
+void __RPC_STUB IMgaParser_ParseFCOs_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+
+#endif 	/* __IMgaParser_INTERFACE_DEFINED__ */
+
+
+#ifndef __IMgaXslt_INTERFACE_DEFINED__
+#define __IMgaXslt_INTERFACE_DEFINED__
+
+/* interface IMgaXslt */
+/* [unique][helpstring][uuid][object] */ 
+
+
+EXTERN_C const IID IID_IMgaXslt;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("FDE29236-8F66-489d-AE5A-CC789A6E51D6")
+    IMgaXslt : public IDispatch
+    {
+    public:
+        virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE ApplyXslt( 
+            /* [in] */ BSTR stylesheet,
+            /* [in] */ BSTR infile,
+            /* [in] */ BSTR outfile,
+            /* [out] */ BSTR __RPC_FAR *error) = 0;
+        
+    };
+    
+#else 	/* C style interface */
+
+    typedef struct IMgaXsltVtbl
+    {
+        BEGIN_INTERFACE
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *QueryInterface )( 
+            IMgaXslt __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [iid_is][out] */ void __RPC_FAR *__RPC_FAR *ppvObject);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *AddRef )( 
+            IMgaXslt __RPC_FAR * This);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *Release )( 
+            IMgaXslt __RPC_FAR * This);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetTypeInfoCount )( 
+            IMgaXslt __RPC_FAR * This,
+            /* [out] */ UINT __RPC_FAR *pctinfo);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetTypeInfo )( 
+            IMgaXslt __RPC_FAR * This,
+            /* [in] */ UINT iTInfo,
+            /* [in] */ LCID lcid,
+            /* [out] */ ITypeInfo __RPC_FAR *__RPC_FAR *ppTInfo);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetIDsOfNames )( 
+            IMgaXslt __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [size_is][in] */ LPOLESTR __RPC_FAR *rgszNames,
+            /* [in] */ UINT cNames,
+            /* [in] */ LCID lcid,
+            /* [size_is][out] */ DISPID __RPC_FAR *rgDispId);
+        
+        /* [local] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Invoke )( 
+            IMgaXslt __RPC_FAR * This,
+            /* [in] */ DISPID dispIdMember,
+            /* [in] */ REFIID riid,
+            /* [in] */ LCID lcid,
+            /* [in] */ WORD wFlags,
+            /* [out][in] */ DISPPARAMS __RPC_FAR *pDispParams,
+            /* [out] */ VARIANT __RPC_FAR *pVarResult,
+            /* [out] */ EXCEPINFO __RPC_FAR *pExcepInfo,
+            /* [out] */ UINT __RPC_FAR *puArgErr);
+        
+        /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *ApplyXslt )( 
+            IMgaXslt __RPC_FAR * This,
+            /* [in] */ BSTR stylesheet,
+            /* [in] */ BSTR infile,
+            /* [in] */ BSTR outfile,
+            /* [out] */ BSTR __RPC_FAR *error);
+        
+        END_INTERFACE
+    } IMgaXsltVtbl;
+
+    interface IMgaXslt
+    {
+        CONST_VTBL struct IMgaXsltVtbl __RPC_FAR *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IMgaXslt_QueryInterface(This,riid,ppvObject)	\
+    (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
+
+#define IMgaXslt_AddRef(This)	\
+    (This)->lpVtbl -> AddRef(This)
+
+#define IMgaXslt_Release(This)	\
+    (This)->lpVtbl -> Release(This)
+
+
+#define IMgaXslt_GetTypeInfoCount(This,pctinfo)	\
+    (This)->lpVtbl -> GetTypeInfoCount(This,pctinfo)
+
+#define IMgaXslt_GetTypeInfo(This,iTInfo,lcid,ppTInfo)	\
+    (This)->lpVtbl -> GetTypeInfo(This,iTInfo,lcid,ppTInfo)
+
+#define IMgaXslt_GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)	\
+    (This)->lpVtbl -> GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)
+
+#define IMgaXslt_Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)	\
+    (This)->lpVtbl -> Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)
+
+
+#define IMgaXslt_ApplyXslt(This,stylesheet,infile,outfile,error)	\
+    (This)->lpVtbl -> ApplyXslt(This,stylesheet,infile,outfile,error)
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+/* [helpstring] */ HRESULT STDMETHODCALLTYPE IMgaXslt_ApplyXslt_Proxy( 
+    IMgaXslt __RPC_FAR * This,
+    /* [in] */ BSTR stylesheet,
+    /* [in] */ BSTR infile,
+    /* [in] */ BSTR outfile,
+    /* [out] */ BSTR __RPC_FAR *error);
+
+
+void __RPC_STUB IMgaXslt_ApplyXslt_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+
+#endif 	/* __IMgaXslt_INTERFACE_DEFINED__ */
 
 
 
