@@ -1,3 +1,11 @@
+Mon Nov 8 22:39:21 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.cpp:
+          Changes to the intrepreter generated code to remove errors
+
+        * PIM/PICML/examples/RobotAssembly.xme: Previous commit did not 
+          get the changes!
+
 Mon Nov  8 20:02:25 2004  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * Installer/CoSMIC-Installer.aip: Updated to include

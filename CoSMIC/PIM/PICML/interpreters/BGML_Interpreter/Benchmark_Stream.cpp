@@ -95,7 +95,7 @@ BenchmarkStream::gen_constructor_decl (std::string& name)
 	this->incr_indent ();
 	this->indent ();
 	this->strm_ << name.c_str ();
-	this->strm_ << " (T remote_ref";
+	this->strm_ << " (T* remote_ref";
 	if (this->arg_list_.size ())
 		for (size_t i=0; i < this->arg_list_.size (); i++)
 		{
@@ -132,7 +132,7 @@ BenchmarkStream::gen_private_mem_decl ()
 		this->nl ();
 		this->incr_indent ();
 		this->indent ();
-		this->strm_ << "T remote_ref_;";
+		this->strm_ << "T* remote_ref_;";
 		this->nl ();
 		
 		for (size_t i = 0; i < this->arg_list_.size (); i++)
@@ -169,7 +169,7 @@ BenchmarkStream::generate_task_header (std::string& header_name)
 	this->nl ();
 	this->strm_ << "class ";
 	this->strm_ << header_name.c_str ();
-	this->strm_ << " : BGML_Task_Base";
+	this->strm_ << " : public BGML_Task_Base";
 	this->nl ();
 	this->strm_ << "{";
 	this->nl ();
@@ -266,8 +266,7 @@ BenchmarkStream::gen_warmup_iterations (__int64 iterations)
 	{
 		if (i)
 			this->strm_ << ",";
-		this->strm_ << "arg";
-		this->strm_ << i;
+		this->strm_ << "arg" << i << "_";
 	}
 	this->strm_ << " ACE_ENV_ARG_PARAMETER";
 	this->strm_ << ");";
@@ -297,15 +296,21 @@ BenchmarkStream::gen_background_load (std::string& class_name)
 		{
 			if (arg_flag)
 				this->strm_ << ",";
-			this->strm_ << " arg" << t;
+			this->strm_ << " arg" << t << "_";
 			arg_flag = 1;
 		}
 
-		/// Add the priority of the task
+
+		/// Add the priority of the task -- TO DO
+		/*
 		if (arg_flag)
 			this->strm_ << ", " << (long) this->task_priorities_ [i] << ");";
 		else
 			this->strm_ << " " << (long) this->task_priorities_ [i] << ");";
+		this->nl ();
+		*/
+
+		this->strm_ << ");";
 		this->nl ();
 	}
 
@@ -350,7 +355,7 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
    this->nl ();
 
    this->indent ();
-   this->strm_ << "for (i = 0; ";
+   this->strm_ << "for (int i = 0; ";
    this->strm_ << "i < ";
    this->strm_ << (long) iter;
    this->strm_ << "; i++)\n";
@@ -367,13 +372,14 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
    this->strm_ << "(void)this->remote_ref_->";
    this->strm_ << this->operation_name_;
    this->strm_ << " (";
+   
    for (size_t i =0; i < this->arg_list_.size (); i++)
 	{
 		if (i)
 			this->strm_ << ",";
-		this->strm_ << "arg";
-		this->strm_ << i;
+		this->strm_ << "arg" << i << "_";
 	}
+
    this->strm_ << " ACE_ENV_ARG_PARAMETER";
    this->strm_ << ");\n";
 
@@ -462,7 +468,7 @@ BenchmarkStream::generate_workload_def (__int64 iterations)
    this->incr_indent ();
    this->indent ();
 
-   this->strm_ << "for (i = 0; ";
+   this->strm_ << "for (int i = 0; ";
    this->strm_ << "i < ";
    __int64 iter = (iterations) ? iterations : BGML_DEFAULT_BENCH_ITER;
    this->strm_ << (long) iter;
@@ -483,6 +489,7 @@ BenchmarkStream::generate_workload_def (__int64 iterations)
 			this->strm_ << ",";
 		this->strm_ << "arg";
 		this->strm_ << i;
+		this->strm_ << "_";
 	}
    this->strm_ << " ACE_ENV_ARG_PARAMETER";
    this->strm_ << ");\n";
@@ -503,8 +510,8 @@ BenchmarkStream::generate_workload_def (__int64 iterations)
    this->decr_indent ();
    this->strm_ << "}\n";
 
-	//// Step 5: Generate the endif macro to close the cpp file
-	this->gen_endifc (macro_name);
+   //// Step 5: Generate the endif macro to close the cpp file
+   this->gen_endifc (macro_name);
 	
 }
 
@@ -516,7 +523,7 @@ BenchmarkStream::gen_constructor_defn (std::string& name)
 	this->strm_ << name.c_str ();
 	this->strm_ << "<T>::";
 	this->strm_ << name.c_str ();
-	this->strm_ << " (T remote_ref";
+	this->strm_ << " (T* remote_ref";
 	
 	if (this->arg_list_.size ())
 		for (size_t i=0; i < this->arg_list_.size (); i++)
