@@ -31,8 +31,11 @@ public:
   /// Thread entry point
 
 protected:
-  void set_priority ();
+  int set_priority ();
   // Set the Scheduling parameters for this thread
+
+  int set_priority (int priority);
+  // Change the priority to @a priority
 
   int priority_;
   // Priority Level of the task
