@@ -1,3 +1,13 @@
+Mon Mar 14 14:50:39 2005  Arvind S. Krishna  <arvindk@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.cpp:
+
+          Provide a standard interface get_stats () operation to access
+          the Benchmark data generated from the experiment. Users now will
+          be able to interface the data with external tools to analyze the
+          statistics.
+
 Sat Mar 05 15:08:24 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * PIM/OCML/engine/option_rules.tpp:

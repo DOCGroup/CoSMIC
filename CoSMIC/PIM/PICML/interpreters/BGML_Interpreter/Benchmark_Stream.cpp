@@ -125,7 +125,7 @@ BenchmarkStream::gen_destructor_decl (std::string& name)
 }
 
 void
-BenchmarkStream::gen_private_mem_decl ()
+BenchmarkStream::gen_private_mem_decl (bool is_main)
 {
 	this->nl ();
 	this->strm_ << "protected:";
@@ -142,6 +142,14 @@ BenchmarkStream::gen_private_mem_decl ()
 		this->strm_ << " ";
 		this->strm_ << "arg";
 		this->strm_ << i << "_;";
+		this->nl ();
+	}
+
+	/// If this is the main task add the interface to fetch data
+	if (is_main)
+	{
+		this->indent ();
+		this->strm_ << "BGML_Data benchmark_data_;";
 		this->nl ();
 	}
 
@@ -232,11 +240,23 @@ BenchmarkStream::generate_task_header (std::string& header_name,
 	this->nl ();
 	this->indent ();
 	this->strm_ << "int svc (void);";
+	
+	// If main task generate the get_stats operation
+	if (output_path.size ())
+	{
+		this->nl ();
+		this->indent ();
+		this->strm_ << "BGML_Data& get_stats (void);";
+	}
+
 	this->decr_indent ();
 	this->nl ();
 	
 	//// Step 6: Write out the private members
-	this->gen_private_mem_decl ();
+	if (output_path.size ())
+		this->gen_private_mem_decl (1);
+	else
+		this->gen_private_mem_decl (0);
 
 	/// Step 7: Write out the close the class
 	this->nl ();
@@ -600,7 +620,9 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
 	   
 	   // Dump samples to the file
 	   this->strm_ << "FILE *output_file= ACE_OS::fopen ("
+		   << "\""
 		   << this->bgml_state_.file_name 
+		   << "\""
 		   << ", \"w\");\n";
 
 	   this->indent ();
@@ -644,6 +666,22 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
    this->strm_ << "ACE_Throughput_Stats::dump_throughput (\"Total\", gsf, test_end - test_start, stats.samples_count ());\n";
 
    this->nl ();
+
+   /// Populate the results in BGML_Data
+   this->indent ();
+   this->strm_ << "// Store Benchmark Data for future retrieval \n";
+
+   this->indent ();
+   this->strm_ << "this->benchmark_data_.min_ = stats.min_ / gsf;\n";
+   this->indent ();
+   this->strm_ << "this->benchmark_data_.max_ = stats.max_ / gsf; \n";
+   
+   this->indent ();
+   this->strm_ << "this->benchmark_data_.average_ = stats.sum_ / stats.samples_count_; \n";
+   this->indent ();
+   this->strm_ << "this->benchmark_data_.average_ /= gsf; \n"; 
+   this->nl ();
+   
 
    // Return success status
    this->indent ();
@@ -954,6 +992,19 @@ BenchmarkStream::generate_task_def (std::string& metrics,
 	/// Step 4: Generate the code for benchmarking
 	this->gen_bench_def (this->bgml_state_.benchmark_iterations);
 
+	/// Step 5: Implement the get_stats operation
+	this->gen_template_function_def ("get_stats",
+									 header_name,
+									 "BGML_Data&",
+									 param_list);
+
+	this->incr_indent ();
+	this->indent ();
+	this->strm_ << "return this->benchmark_data_;\n";
+	this->decr_indent ();
+	this->indent ();
+	this->strm_ << "}\n";
+	
 	//// Step 5: Generate the endif macro to close the cpp file
 	this->gen_endifc (header_name);
 }

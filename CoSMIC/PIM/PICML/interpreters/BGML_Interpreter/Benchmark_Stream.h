@@ -108,7 +108,7 @@ public:
   void gen_destructor_defn (std::string& name);
   // Generate the Constructor/Destructor for the Task classes
 
-  void gen_private_mem_decl ();
+  void gen_private_mem_decl (bool is_main);
   // Generate the private members of the Task_Base class
 
   void generate_task_def (std::string &metric, BGML_Data &data);
