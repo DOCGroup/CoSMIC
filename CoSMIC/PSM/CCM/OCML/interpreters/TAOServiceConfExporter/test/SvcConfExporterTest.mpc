@@ -1,8 +1,11 @@
+// $Id$
+
 project {
   after += OCMLSvcConfExporter
   exename = svc_conf_exporter
 
   libs += OCMLSvcConfExporter
+  libpaths += $(PICML_ROOT)/lib $(PICML_ROOT)/bin
 
   Source_Files {
     main.cpp
