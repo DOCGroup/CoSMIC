@@ -1,3 +1,12 @@
+Tue Feb 15 22:43:34 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.cpp:
+
+          Fixed bug involving non generation of remote reference data 
+          member within a benchmarking class if the operation takes in
+          no arguments. Thanks to Diana Ukleja <diana@raytheon.com> for 
+          pointing this out.
+
 Mon Feb 14 16:34:19 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
  
         * PIM/PICML/examples/BasicSP.xme:
