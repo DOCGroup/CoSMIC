@@ -96,6 +96,7 @@ BGML_Visitor::Visit_BenchmarkAnalysis (const PICML::BenchmarkAnalysis& model)
 		// Check if there are any connections to Task Sets
 		PICML::WorkloadCharacteristics task_set = iter->dstWorkloadCharacteristics();
 		std::vector<__int64> task_priorities;
+		std::vector<__int64> task_rates;
 
 		if (task_set != Udm::null)
 		{
@@ -106,8 +107,16 @@ BGML_Visitor::Visit_BenchmarkAnalysis (const PICML::BenchmarkAnalysis& model)
 				 iter != tasks.end ();
 				 iter ++)
 			{
-				__int64 temp = (*iter).priority();
-				task_priorities.push_back (temp);
+				__int64 priority = (*iter).priority();
+				__int64 rate     = (*iter).rate ();
+
+				if (! priority || ! rate)
+				{
+				  //AfxMessageBox ("Error: Priority and rate should be > 0");
+				}
+
+				task_priorities.push_back (priority);
+				task_rates.push_back (rate);
 			}
 			
 		}
@@ -124,10 +133,11 @@ BGML_Visitor::Visit_BenchmarkAnalysis (const PICML::BenchmarkAnalysis& model)
 			// Write out the Latency information for this guy
 			PICML::Latency latency = PICML::Latency::Cast (* iter);
 			MetricEmitter<PICML::Latency> emitter (operation, 
-													latency, 
-													this->outputPath_,
-													task_priorities,
-													kindName);
+												   latency, 
+												   this->outputPath_,
+												   task_priorities,
+												   task_rates,
+												   kindName);
 			emitter.generate_benchmark ();
 		
 		 }
@@ -140,11 +150,13 @@ BGML_Visitor::Visit_BenchmarkAnalysis (const PICML::BenchmarkAnalysis& model)
 														  thr, 
 														  this->outputPath_,
 														  task_priorities,
+														  task_rates,
 														  kindName);
 			thr_emitter.generate_benchmark ();
 		  }
 	}
 
+	// Generate timining information for all the timer elements
 	std::set<PICML::TimeProbe> timers = model.TimeProbe_children();
 	for (std::set<PICML::TimeProbe>::iterator iter2 = timers.begin ();
 	     iter2 != timers.end ();

@@ -25,12 +25,14 @@ BenchmarkStream::BenchmarkStream (std::string& component_name,
 								  std::string& operation_name, 
 								  std::vector<std::string>& arg_list,
 								  std::ostream& strm,
-								  std::vector<__int64>& task_priorities)
+								  std::vector<__int64>& task_priorities,
+								  std::vector<__int64>& task_rates)
 : component_name_ (component_name),
   operation_name_ (operation_name),
   arg_list_ (arg_list),
   strm_ (strm),
   task_priorities_ (task_priorities),
+  task_rates_ (task_rates),
   indent_level_ (0)
 {
 	
@@ -284,7 +286,7 @@ BenchmarkStream::gen_background_load (std::string& class_name)
 	{
 		this->indent ();
 		this->strm_ << class_name.c_str ();
-		this->strm_ << " load";
+		this->strm_ << " task";
 		this->strm_ << i << " (this->remote_ref_,";
 		bool arg_flag = 0;
 		for (size_t t = 0; t < this->arg_list_.size (); t++)
@@ -337,6 +339,11 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
    this->nl ();
    this->indent ();
    this->strm_ << "ACE_hrtime_t test_start = ACE_OS::gethrtime ();\n";
+
+   this->nl ();
+   this->indent ();
+   this->strm_ << "ACE_UINT32 gsf = ACE_High_Res_Timer::global_scale_factor ();";
+   this->nl ();
 
    this->indent ();
    this->strm_ << "for (i = 0; ";
@@ -396,10 +403,6 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
 
    this->nl ();
    this->indent ();
-   this->strm_ << "ACE_UINT32 gsf = ACE_High_Res_Timer::global_scale_factor ();";
-
-   this->nl ();
-   this->indent ();
    this->strm_ << "ACE_DEBUG ((LM_DEBUG, \"done\"));";
 
    this->nl ();
@@ -447,6 +450,9 @@ BenchmarkStream::generate_workload_def (__int64 iterations)
 									 param_list);
    this->incr_indent ();
    this->indent ();
+
+   /// If rate 
+
    this->strm_ << "for (i = 0; ";
    this->strm_ << "i < ";
    __int64 iter = (iterations) ? iterations : BGML_DEFAULT_BENCH_ITER;

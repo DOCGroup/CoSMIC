@@ -1,3 +1,39 @@
+Tue Nov 2 14:30:48 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML-uml.xme:
+          Added a rate attribute to the tasks in the BGML paradigm
+
+        * PIM/PICML/interpreters/plan/Picml.h:
+        * PIM/PICML/interpreters/plan/Picml.cpp:
+        * PIM/PICML/interpreters/plan/Picml.xsd:
+        * PIM/PICML/interpreters/package/Picml.h:
+        * PIM/PICML/interpreters/package/Picml.cpp:
+        * PIM/PICML/interpreters/package/Picml.xsd:
+        * PIM/PICML/interpreters/domain/Picml.h:
+        * PIM/PICML/interpreters/domain/Picml.cpp:
+        * PIM/PICML/interpreters/domain/Picml.xsd:
+        * PIM/PICML/interpreters/MPC/Picml.h:
+        * PIM/PICML/interpreters/MPC/Picml.cpp:
+        * PIM/PICML/interpreters/MPC/Picml.xsd:
+        * PIM/PICML/interpreters/cidl/Picml.h:
+        * PIM/PICML/interpreters/cidl/Picml.cpp:
+        * PIM/PICML/interpreters/cidl/Picml.xsd:
+        * PIM/PICML/interpreters/BGML/Picml.xsd:
+        * PIM/PICML/interpreters/BGML/Picml.h:
+        * PIM/PICML/interpreters/BGML/Picml.cpp:
+          Updated all the interpreters to reflect the change in the meta model
+
+        * PIM/PICML/examples/RobotAssembly.xme:
+          Updated the example to reflect this change
+
+        * PIM/PICML/interpreters/BGML/Benchmark_Stream.h:
+        * PIM/PICML/interpreters/BGML/Benchmark_Stream.cpp:
+        * PIM/PICML/interpreters/BGML/Metric_Emitter.h:
+        * PIM/PICML/interpreters/BGML/Metric_Emitter.cpp:
+          BGML intrepter was generating unncesssary Workload source files even when
+          no workload elements were modeled. This bug was fixed with this change.
+
 Mon Nov 1 10:40:39 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/MPC/MPCStream.cpp:

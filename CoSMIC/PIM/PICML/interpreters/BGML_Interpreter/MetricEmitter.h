@@ -14,6 +14,7 @@ public:
 				   T& latency,
 			       std::string& output_path,
 			       std::vector<__int64>& task_priorities,
+				   std::vector<__int64>& task_rates,
 				   std::string& metric);
 	~MetricEmitter ();
 	
@@ -39,6 +40,7 @@ private:
 	T& latency_;
 	std::string& output_path_;
 	std::vector<__int64>& task_priorities_;
+	std::vector<__int64>& task_rates_;
 	std::string& metric_;
 		
 };

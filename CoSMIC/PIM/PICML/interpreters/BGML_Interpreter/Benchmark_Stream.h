@@ -49,7 +49,8 @@ public:
 				   std::string& operation_name, 
 				   std::vector<std::string>& arg_list,
 				   std::ostream& strm,
-				   std::vector<__int64>& task_priorities_);
+				   std::vector<__int64>& task_priorities_,
+				   std::vector<__int64>& task_rates_);
   // constructor.
 
   virtual ~BenchmarkStream (void);
@@ -139,6 +140,7 @@ private:
   std::vector<std::string>& arg_list_;
   std::ostream& strm_;
   std::vector<__int64> task_priorities_;
+  std::vector<__int64> task_rates_;
   int indent_level_;
   
 private:

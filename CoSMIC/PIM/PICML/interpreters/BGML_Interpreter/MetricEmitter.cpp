@@ -12,11 +12,13 @@ MetricEmitter<T>::MetricEmitter (PICML::OperationBase &base,
 								 T& latency,
 								 std::string& output_path,
 								 std::vector<__int64>& task_priorities,
+								 std::vector<__int64>& task_rates,
 								 std::string& metric)
 : operation_ (base), 
   latency_ (latency), 
   output_path_ (output_path),
   task_priorities_ (task_priorities),
+  task_rates_ (task_rates),
   metric_ (metric)
 {
 	
@@ -42,7 +44,8 @@ MetricEmitter<T>::generate_header_file (std::string& class_name,
 								  operation_name, 
 								  arg_list,
 								  output_stream,
-								  this->task_priorities_);
+								  this->task_priorities_,
+								  this->task_rates_);
 	bench_stream.generate_task_header (class_name);
 }
 
@@ -68,40 +71,43 @@ MetricEmitter<T>::generate_benchmark ()
 	//// Generate the Header file /////////////////////////////////
 	std::string class_name = "Benchmark_" + operation_name;
 	this->generate_header_file (class_name, component_name, operation_name, arg_list);
+
 	if (this->task_priorities_.size ())
 	{
 		class_name = operation_name + "_Workload";
 		this->generate_header_file (class_name, component_name, operation_name, arg_list);
+
+		std::string workload_cpp_file = 
+			this->output_path_ + "\\" + operation_name + "_Workload.cpp";
+		std::ofstream workload_stream (workload_cpp_file.c_str (), ios::out);
+
+		BenchmarkStream workload_cpp_stream (component_name, 
+											 operation_name, 
+											 arg_list,
+											 workload_stream,
+											 this->task_priorities_,
+											 this->task_rates_);
+
+		workload_cpp_stream.generate_workload_def (iterations);
 	}
 	
 
 	///// Generate .cpp file for the task ///////////////////////////
 	std::string cpp_file = this->output_path_ + "\\" + "Benchmark_" + operation_name + ".cpp";
-	std::string workload_cpp_file = this->output_path_ + "\\" + operation_name + "_Workload.cpp";
-
 	std::ofstream cpp_stream (cpp_file.c_str (), ios::out);
-	std::ofstream workload_stream (workload_cpp_file.c_str (), ios::out);
+	
 	
 	BenchmarkStream bench_cpp_stream (component_name, 
 									  operation_name, 
 									  arg_list,
 									  cpp_stream,
-									  this->task_priorities_);
+									  this->task_priorities_,
+									  this->task_rates_);
 	
 	bench_cpp_stream.generate_task_def (warmup, 
 										iterations, 
 										file_name,
 										this->metric_);
-
-	BenchmarkStream workload_cpp_stream (component_name, 
-										 operation_name, 
-										 arg_list,
-										 workload_stream,
-										 this->task_priorities_);
-
-	workload_cpp_stream.generate_workload_def (iterations);
-
-	////////////////////////////////////////////////////////////////////////
 }
 
 #endif // METRIC_EMITTER_C
