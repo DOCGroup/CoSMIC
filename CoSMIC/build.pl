@@ -3,7 +3,7 @@ eval '(exit $?0)' && eval 'exec perl -S $0 ${1+"$@"}'  # -*- PERL -*-
     if 0;
 
 $dsp_builder = "$ENV{'ACE_ROOT'}/bin/msvc_mpc_auto_compile.pl";
-$dsp_args = "-v -s -rebuild -Release";
+$dsp_args = "-v -s -Release"; # -rebuild
 
 @projects = (
   "PIM/PICML/decorators",
@@ -15,18 +15,18 @@ $dsp_args = "-v -s -rebuild -Release";
   "PIM/PICML/interpreters/packaging",
   "PIM/PICML/interpreters/plan",
 # "PSM/CCM/CADML/Component",
-  "PSM/CCM/OCML/interpreters/OCMLConfiguratorInterpreter",
-  "PSM/CCM/OCML/interpreters/OCMLConfiguratorLibrary",
   "PSM/CCM/OCML/interpreters/OCML_Interpreter",
+  "PSM/CCM/OCML/interpreters/OCMLConfiguratorLibrary",
+  "PSM/CCM/OCML/interpreters/OCMLConfiguratorInterpreter",
   "PSM/CCM/OCML/interpreters/TAOServiceConfExporter",
   "PSM/CCM/OCML/interpreters/TAOServiceConfExportInterpreter",
-  "PSM/CCM/COMPASS/interpreters",
-  "PSM/CCM/EQAL/interpreters",
-  "PSM/CCM/FESML/interpreters",
-  "PSM/CCM/MIDCESS/interpreters"
+#  "PSM/CCM/COMPASS/interpreters",
+#  "PSM/CCM/EQAL/interpreters",
+#  "PSM/CCM/FESML/interpreters",
+#  "PSM/CCM/MIDCESS/interpreters"
 );
 
-$dsp_args_no_env = "-v -s -u -rebuild -Release";
+$dsp_args_no_env = "-v -s -u -Release"; # -rebuild
 @projects_no_env = (
   "PIM/PICML/interpreters/IDLGenerator",
   "Installer/RegisterParadigm/RegisterParadigm"
