@@ -81,7 +81,7 @@ static bool getPath (const std::string& description, std::string& path)
 
 static void showUsage()
 {
-  AfxMessageBox ("Interpretation must start from and IDL File");
+  AfxMessageBox ("Interpretation must start from an IDL File");
   return;
 }
 

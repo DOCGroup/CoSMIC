@@ -1,3 +1,9 @@
+Sun Nov 7 16:10:16 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+        * PIM/PICML/interpreters/cidl/UdmApp.cpp:
+          
+          Fixed error message when intrepretation starts from the wrong
+          aspect
+
 Sat Nov  6 19:18:00 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * PIM/PICML/docs/ocml_sample_rule.png: 
