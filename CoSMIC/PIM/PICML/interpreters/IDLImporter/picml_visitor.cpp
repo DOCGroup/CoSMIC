@@ -1335,78 +1335,90 @@ picml_visitor::add_predefined_types (DOMElement *root_folder)
 }
 
 void
-picml_visitor::add_predefined_sequences (DOMElement *parent, AST_Root *node)
+picml_visitor::add_predefined_sequences (DOMElement *parent, 
+                                         AST_Root *node)
 {
   this->set_n_basic_seqs ();
   unsigned long slot = 1UL;
     
-  if (ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                       idl_global->decls_seen_masks.string_seq_seen_)
-      || ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                          idl_global->decls_seen_masks.wstring_seq_seen_))
+  if (idl_global->string_seq_seen_
+      || idl_global->wstring_seq_seen_)
     {
-      this->add_one_predefined_sequence (parent, node, "String", slot, 2UL);
+      this->add_one_predefined_sequence (parent, node, 
+                                         "String",
+                                         slot,
+                                         2UL);
     }
     
-  if (ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                       idl_global->decls_seen_masks.long_seq_seen_)
-      || ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                          idl_global->decls_seen_masks.ulong_seq_seen_)
-      || ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                          idl_global->decls_seen_masks.longlong_seq_seen_)
-      || ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                          idl_global->decls_seen_masks.ulonglong_seq_seen_))
+  if (idl_global->long_seq_seen_
+      || idl_global->ulong_seq_seen_
+      || idl_global->longlong_seq_seen_
+      || idl_global->ulonglong_seq_seen_)
     {
-      this->add_one_predefined_sequence (parent, node, "LongInteger", slot, 6UL);
+      this->add_one_predefined_sequence (parent,
+                                         node,
+                                         "LongInteger",
+                                         slot,
+                                         6UL);
     }
     
-  if (ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                       idl_global->decls_seen_masks.float_seq_seen_)
-      || ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                          idl_global->decls_seen_masks.double_seq_seen_)
-      || ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                          idl_global->decls_seen_masks.longdouble_seq_seen_))
+  if (idl_global->float_seq_seen_
+      || idl_global->double_seq_seen_
+      || idl_global->longdouble_seq_seen_)
     {
-      this->add_one_predefined_sequence (parent, node, "RealNumber", slot, 5UL);
+      this->add_one_predefined_sequence (parent,
+                                         node,
+                                         "RealNumber",
+                                         slot,
+                                         5UL);
     }
     
-  if (ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                       idl_global->decls_seen_masks.short_seq_seen_)
-      || ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                          idl_global->decls_seen_masks.ushort_seq_seen_))
+  if (idl_global->short_seq_seen_
+      || idl_global->ushort_seq_seen_)
     {
-      this->add_one_predefined_sequence (parent, node, "ShortInteger", slot, 4UL);
+      this->add_one_predefined_sequence (parent,
+                                         node,
+                                         "ShortInteger",
+                                         slot,
+                                         4UL);
     }  
     
-  if (ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                       idl_global->decls_seen_masks.char_seq_seen_)
-      || ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                          idl_global->decls_seen_masks.wchar_seq_seen_)
-      || ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                          idl_global->decls_seen_masks.octet_seq_seen_))
+  if (idl_global->char_seq_seen_
+      || idl_global->wchar_seq_seen_
+      || idl_global->octet_seq_seen_)
     {
-      this->add_one_predefined_sequence (parent, node, "Byte", slot, 10UL);
+      this->add_one_predefined_sequence (parent,
+                                         node,
+                                         "Byte",
+                                         slot,
+                                         10UL);
     }
     
-  if (ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                       idl_global->decls_seen_masks.boolean_seq_seen_))
+  if (idl_global->boolean_seq_seen_)
     {
-      this->add_one_predefined_sequence (parent, node, "Boolean", slot, 3UL);
+      this->add_one_predefined_sequence (parent,
+                                         node,
+                                         "Boolean",
+                                         slot,
+                                         3UL);
     }  
     
-  if (ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                       idl_global->decls_seen_masks.any_seq_seen_))
+  if (idl_global->any_seq_seen_)
     {
-      this->add_one_predefined_sequence (parent, node, "GenericValue", slot, 8UL);
+      this->add_one_predefined_sequence (parent,
+                                         node,
+                                         "GenericValue",
+                                         slot,
+                                         8UL);
     }  
 }
 
 void
 picml_visitor::add_one_predefined_sequence (DOMElement *parent,
-                                           AST_Root *node,
-                                           const char *type,
-                                           unsigned long &model_slot,
-                                           unsigned long pdt_slot)
+                                            AST_Root *node,
+                                            const char *type,
+                                            unsigned long &model_slot,
+                                            unsigned long pdt_slot)
 {
   // Can't create a basic type sequence more than once in a project.
   // A processed basic type sequence is stored by its GME id.
@@ -2888,62 +2900,46 @@ picml_visitor::set_n_basic_seqs (void)
 {
   const char **pdts = be_global->pdt_names ();
   
-  if (ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                       idl_global->decls_seen_masks.string_seq_seen_)
-      || ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                          idl_global->decls_seen_masks.wstring_seq_seen_))
+  if (idl_global->string_seq_seen_
+      || idl_global->wstring_seq_seen_)
     {
       this->set_one_basic_seq (pdts[2UL]);
     }
     
-  if (ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                       idl_global->decls_seen_masks.short_seq_seen_)
-      || ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                          idl_global->decls_seen_masks.ushort_seq_seen_))
+  if (idl_global->short_seq_seen_
+      || idl_global->ushort_seq_seen_)
     {
       this->set_one_basic_seq (pdts[4UL]);
     }
     
-  if (ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                       idl_global->decls_seen_masks.long_seq_seen_)
-      || ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                          idl_global->decls_seen_masks.ulong_seq_seen_)
-      || ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                          idl_global->decls_seen_masks.longlong_seq_seen_)
-      || ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                          idl_global->decls_seen_masks.ulonglong_seq_seen_))
+  if (idl_global->long_seq_seen_
+      || idl_global->ulong_seq_seen_
+      || idl_global->longlong_seq_seen_
+      || idl_global->ulonglong_seq_seen_)
     {
       this->set_one_basic_seq (pdts[6UL]);
     }
     
-  if (ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                       idl_global->decls_seen_masks.float_seq_seen_)
-      || ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                          idl_global->decls_seen_masks.double_seq_seen_)
-      || ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                          idl_global->decls_seen_masks.longdouble_seq_seen_))
+  if (idl_global->float_seq_seen_
+      || idl_global->double_seq_seen_
+      || idl_global->longdouble_seq_seen_)
     {
       this->set_one_basic_seq (pdts[5UL]);
     }
     
-  if (ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                       idl_global->decls_seen_masks.char_seq_seen_)
-      || ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                          idl_global->decls_seen_masks.wchar_seq_seen_)
-      || ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                          idl_global->decls_seen_masks.octet_seq_seen_))
+  if (idl_global->char_seq_seen_
+      || idl_global->wchar_seq_seen_
+      || idl_global->octet_seq_seen_)
     {
       this->set_one_basic_seq (pdts[10UL]);
     }
     
-  if (ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                       idl_global->decls_seen_masks.boolean_seq_seen_))
+  if (idl_global->boolean_seq_seen_)
     {
       this->set_one_basic_seq (pdts[3UL]);
     }
     
-  if (ACE_BIT_ENABLED (idl_global->decls_seen_info_,
-                       idl_global->decls_seen_masks.any_seq_seen_))
+  if (idl_global->any_seq_seen_)
     {
       this->set_one_basic_seq (pdts[8UL]);
     }
