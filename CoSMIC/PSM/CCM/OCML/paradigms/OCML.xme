@@ -1,0 +1,5517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project SYSTEM "mga.dtd">
+
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Thu Nov 13 18:44:53 2003" mdate="Wed Dec 17 13:51:09 2003" metaguid="{6DB38F67-DEAD-BEEF-FEED-DAD000000001}" metaname="MetaGME">
+	<name>OCML</name>
+	<comment>Options Configuration Modeling Language</comment>
+	<author></author>
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x5" kind="RootFolder">
+		<name>OCML</name>
+		<model id="id-0065-00000002" kind="ParadigmSheet" relid="0x2" childrelidcntr="0x286">
+			<name>OptionSheet</name>
+			<attribute kind="AuthorInformation" status="meta">
+				<value></value>
+			</attribute>
+			<attribute kind="VersionInformation" status="meta">
+				<value></value>
+			</attribute>
+			<attribute kind="DisplayedName" status="meta">
+				<value></value>
+			</attribute>
+			<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000040 id-0066-00000046 id-0066-00000039">
+				<name>OptionAspect</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>148,13</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value></value>
+					<regnode name="set_option" isopaque="yes">
+						<value>1416</value>
+					</regnode>
+					<regnode name="OptionCategory" isopaque="yes">
+						<value>1251</value>
+					</regnode>
+					<regnode name="BaseModel" isopaque="yes">
+						<value>1098</value>
+					</regnode>
+					<regnode name="string_option" isopaque="yes">
+						<value>1020</value>
+					</regnode>
+					<regnode name="integer_option" isopaque="yes">
+						<value>1019</value>
+					</regnode>
+					<regnode name="flag_option" isopaque="yes">
+						<value>1018</value>
+					</regnode>
+					<regnode name="enum_option" isopaque="yes">
+						<value>1017</value>
+					</regnode>
+					<regnode name="option_class" isopaque="yes">
+						<value>1004</value>
+					</regnode>
+				</regnode>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+			</set>
+			<connection id="id-0068-000000b0" kind="HasAttribute" role="HasAttribute" relid="0x286">
+				<name>HasAttribute</name>
+				<connpoint role="dst" target="id-0066-00000064"/>
+				<connpoint role="src" target="id-0066-00000065"/>
+			</connection>
+			<connection id="id-0068-000000af" kind="DerivedInheritance" role="DerivedInheritance" relid="0x284">
+				<name>DerivedInheritance</name>
+				<connpoint role="dst" target="id-0066-00000064"/>
+				<connpoint role="src" target="id-0066-0000003a"/>
+			</connection>
+			<connection id="id-0068-00000067" kind="BaseInheritance" role="BaseInheritance" relid="0xa">
+				<name>BaseInheritance</name>
+				<connpoint role="src" target="id-0066-00000046"/>
+				<connpoint role="dst" target="id-0066-00000045"/>
+			</connection>
+			<connection id="id-0068-00000066" kind="Containment" role="Containment" relid="0x2c">
+				<name>Containment</name>
+				<attribute kind="IsPort">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="src" target="id-0066-00000042"/>
+				<connpoint role="dst" target="id-0066-00000044"/>
+			</connection>
+			<connection id="id-0068-00000065" kind="Containment" role="Containment" relid="0x2e">
+				<name>Containment</name>
+				<attribute kind="IsPort">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="src" target="id-0066-00000041"/>
+				<connpoint role="dst" target="id-0066-00000043"/>
+			</connection>
+			<connection id="id-0068-00000064" kind="BaseInheritance" role="BaseInheritance" relid="0x10d">
+				<name>BaseInheritance</name>
+				<connpoint role="src" target="id-0066-0000003d"/>
+				<connpoint role="dst" target="id-0066-0000003c"/>
+			</connection>
+			<connection id="id-0068-00000063" kind="DerivedInheritance" role="DerivedInheritance" relid="0x10e">
+				<name>DerivedInheritance</name>
+				<connpoint role="src" target="id-0066-0000003c"/>
+				<connpoint role="dst" target="id-0066-00000044"/>
+			</connection>
+			<connection id="id-0068-00000062" kind="DerivedInheritance" role="DerivedInheritance" relid="0x10f">
+				<name>DerivedInheritance</name>
+				<connpoint role="src" target="id-0066-0000003c"/>
+				<connpoint role="dst" target="id-0066-00000043"/>
+			</connection>
+			<connection id="id-0068-00000061" kind="DerivedInheritance" role="DerivedInheritance" relid="0x110">
+				<name>DerivedInheritance</name>
+				<connpoint role="src" target="id-0066-00000045"/>
+				<connpoint role="dst" target="id-0066-0000003d"/>
+			</connection>
+			<connection id="id-0068-00000060" kind="BaseInheritance" role="BaseInheritance" relid="0x134">
+				<name>BaseInheritance</name>
+				<connpoint role="src" target="id-0066-0000003b"/>
+				<connpoint role="dst" target="id-0066-0000003a"/>
+			</connection>
+			<connection id="id-0068-0000005f" kind="DerivedInheritance" role="DerivedInheritance" relid="0x135">
+				<name>DerivedInheritance</name>
+				<connpoint role="src" target="id-0066-0000003a"/>
+				<connpoint role="dst" target="id-0066-0000003f"/>
+			</connection>
+			<connection id="id-0068-0000005e" kind="DerivedInheritance" role="DerivedInheritance" relid="0x136">
+				<name>DerivedInheritance</name>
+				<connpoint role="src" target="id-0066-0000003a"/>
+				<connpoint role="dst" target="id-0066-0000003e"/>
+			</connection>
+			<connection id="id-0068-0000005d" kind="DerivedInheritance" role="DerivedInheritance" relid="0x137">
+				<name>DerivedInheritance</name>
+				<connpoint role="src" target="id-0066-00000045"/>
+				<connpoint role="dst" target="id-0066-0000003b"/>
+			</connection>
+			<connection id="id-0068-0000005c" kind="BaseInheritance" role="BaseInheritance" relid="0x13b">
+				<name>BaseInheritance</name>
+				<connpoint role="src" target="id-0066-00000039"/>
+				<connpoint role="dst" target="id-0066-00000038"/>
+			</connection>
+			<connection id="id-0068-0000005b" kind="DerivedInheritance" role="DerivedInheritance" relid="0x13c">
+				<name>DerivedInheritance</name>
+				<connpoint role="src" target="id-0066-00000038"/>
+				<connpoint role="dst" target="id-0066-00000042"/>
+			</connection>
+			<connection id="id-0068-0000005a" kind="DerivedInheritance" role="DerivedInheritance" relid="0x13d">
+				<name>DerivedInheritance</name>
+				<connpoint role="src" target="id-0066-00000038"/>
+				<connpoint role="dst" target="id-0066-00000041"/>
+			</connection>
+			<connection id="id-0068-00000059" kind="Containment" role="Containment" relid="0x162">
+				<name>Containment</name>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="src" target="id-0066-00000046"/>
+				<connpoint role="dst" target="id-0066-00000040"/>
+			</connection>
+			<connection id="id-0068-00000058" kind="HasAspect" role="HasAspect" relid="0x186">
+				<name>HasAspect</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>n</value>
+				</regnode>
+				<connpoint role="src" target="id-0069-00000001"/>
+				<connpoint role="dst" target="id-0066-00000043"/>
+			</connection>
+			<connection id="id-0068-00000057" kind="HasAspect" role="HasAspect" relid="0x187">
+				<name>HasAspect</name>
+				<connpoint role="src" target="id-0069-00000001"/>
+				<connpoint role="dst" target="id-0066-00000044"/>
+			</connection>
+			<connection id="id-0068-00000056" kind="HasAspect" role="HasAspect" relid="0x188">
+				<name>HasAspect</name>
+				<connpoint role="src" target="id-0069-00000001"/>
+				<connpoint role="dst" target="id-0066-00000040"/>
+			</connection>
+			<connection id="id-0068-0000004f" kind="HasAttribute" role="HasAttribute" relid="0x244">
+				<name>HasAttribute</name>
+				<connpoint role="src" target="id-0066-00000033"/>
+				<connpoint role="dst" target="id-0066-0000003f"/>
+			</connection>
+			<connection id="id-0068-0000004e" kind="HasAttribute" role="HasAttribute" relid="0x245">
+				<name>HasAttribute</name>
+				<connpoint role="src" target="id-0066-00000032"/>
+				<connpoint role="dst" target="id-0066-0000003f"/>
+			</connection>
+			<connection id="id-0068-0000004d" kind="HasAttribute" role="HasAttribute" relid="0x247">
+				<name>HasAttribute</name>
+				<connpoint role="src" target="id-0066-00000031"/>
+				<connpoint role="dst" target="id-0066-0000003e"/>
+			</connection>
+			<connection id="id-0068-0000004c" kind="HasAttribute" role="HasAttribute" relid="0x249">
+				<name>HasAttribute</name>
+				<connpoint role="src" target="id-0066-00000030"/>
+				<connpoint role="dst" target="id-0066-0000003f"/>
+			</connection>
+			<connection id="id-0068-0000004b" kind="HasAttribute" role="HasAttribute" relid="0x24b">
+				<name>HasAttribute</name>
+				<connpoint role="src" target="id-0066-0000002f"/>
+				<connpoint role="dst" target="id-0066-0000003e"/>
+			</connection>
+			<connection id="id-0068-0000004a" kind="BaseInheritance" role="BaseInheritance" relid="0x265">
+				<name>BaseInheritance</name>
+				<connpoint role="src" target="id-0066-0000002d"/>
+				<connpoint role="dst" target="id-0066-0000002c"/>
+			</connection>
+			<connection id="id-0068-00000049" kind="DerivedInheritance" role="DerivedInheritance" relid="0x266">
+				<name>DerivedInheritance</name>
+				<connpoint role="src" target="id-0066-0000002c"/>
+				<connpoint role="dst" target="id-0066-00000046"/>
+			</connection>
+			<connection id="id-0068-00000048" kind="DerivedInheritance" role="DerivedInheritance" relid="0x267">
+				<name>DerivedInheritance</name>
+				<connpoint role="src" target="id-0066-0000002c"/>
+				<connpoint role="dst" target="id-0066-00000039"/>
+			</connection>
+			<connection id="id-0068-00000047" kind="HasAttribute" role="HasAttribute" relid="0x268">
+				<name>HasAttribute</name>
+				<connpoint role="src" target="id-0066-0000002e"/>
+				<connpoint role="dst" target="id-0066-0000002d"/>
+			</connection>
+			<connection id="id-0068-00000046" kind="DerivedInheritance" role="DerivedInheritance" relid="0x26c">
+				<name>DerivedInheritance</name>
+				<connpoint role="src" target="id-0066-0000002c"/>
+				<connpoint role="dst" target="id-0066-00000040"/>
+			</connection>
+			<connection id="id-0068-00000045" kind="HasAttribute" role="HasAttribute" relid="0x281">
+				<name>HasAttribute</name>
+				<connpoint role="src" target="id-0066-0000002b"/>
+				<connpoint role="dst" target="id-0066-00000039"/>
+			</connection>
+			<connection id="id-0068-00000044" kind="Containment" role="Containment" relid="0x282">
+				<name>Containment</name>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="src" target="id-0066-00000040"/>
+				<connpoint role="dst" target="id-0066-00000040"/>
+			</connection>
+			<atom id="id-0066-00000065" kind="BooleanAttribute" role="BooleanAttribute" relid="0x285">
+				<name>flag_option_default</name>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1409</value>
+				</regnode>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>932,692</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="BooleanDefault" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000064" kind="Atom" role="Atom" relid="0x283">
+				<name>flag_option</name>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1410</value>
+					<regnode name="Rule">
+						<value></value>
+						<regnode name="flag_option" isopaque="yes">
+							<value>1419</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1424</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="OptionCategory">
+						<value></value>
+						<regnode name="flag_option" isopaque="yes">
+							<value>1411</value>
+							<regnode name="OptionAspect" isopaque="yes">
+								<value>1413</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects">
+					<value></value>
+					<regnode name="OptionCategory:flag_option">
+						<value></value>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Rule:flag_option">
+						<value></value>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>561,579</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>414,593</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>366,681</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>414,579</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000046" kind="FCO" role="FCO" relid="0x5">
+				<name>option</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>323,244</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>134,125</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>323,244</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>435,174</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000045" kind="Inheritance" role="Inheritance" relid="0x9">
+				<name>Inheritance</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>346,313</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>80,166</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>346,313</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>458,271</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</atom>
+			<atom id="id-0066-00000044" kind="Model" role="Model" relid="0xf">
+				<name>enum_option</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>113,482</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>358,202</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>113,468</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>190,482</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="KindAspects" isopaque="yes">
+					<value></value>
+					<regnode name="Rule:enum_option" isopaque="yes">
+						<value></value>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>RuleGroupAspect</value>
+						</regnode>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>OptionAspect</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>OptionAspect</value>
+						</regnode>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>Aspect1</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>Aspect</value>
+						</regnode>
+					</regnode>
+					<regnode name="Model:enum_option" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>Aspect1</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>Aspect</value>
+						</regnode>
+					</regnode>
+					<regnode name="OptionCategory:enum_option" isopaque="yes">
+						<value></value>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>RuleGroupAspect</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>RuleAspect</value>
+						</regnode>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>OptionAspect</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>Aspect</value>
+						</regnode>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>Aspect1</value>
+						</regnode>
+					</regnode>
+					<regnode name="BaseModel:enum_option" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>Aspect1</value>
+						</regnode>
+						<regnode name="Aspect2" isopaque="yes">
+							<value>Aspect2</value>
+						</regnode>
+					</regnode>
+					<regnode name="rule_class:enum_option" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>Aspect1</value>
+						</regnode>
+						<regnode name="Aspect2" isopaque="yes">
+							<value>Aspect2</value>
+						</regnode>
+					</regnode>
+					<regnode name="option_class:enum_option" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>Aspect1</value>
+						</regnode>
+						<regnode name="Aspect2" isopaque="yes">
+							<value>Aspect2</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>Aspect</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" isopaque="yes">
+					<value></value>
+					<regnode name="Rule:enum_option" isopaque="yes">
+						<value></value>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Model:enum_option" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="OptionCategory:enum_option" isopaque="yes">
+						<value></value>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>no</value>
+						</regnode>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="BaseModel:enum_option" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect2" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="rule_class:enum_option" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect2" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="option_class:enum_option" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect2" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1005</value>
+					<regnode name="Rule" isopaque="yes">
+						<value></value>
+						<regnode name="enum_option" isopaque="yes">
+							<value>1283</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1342</value>
+							</regnode>
+							<regnode name="Aspect" isopaque="yes">
+								<value>1288</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="Model" isopaque="yes">
+						<value></value>
+						<regnode name="enum_option" isopaque="yes">
+							<value>1272</value>
+							<regnode name="Aspect" isopaque="yes">
+								<value>1277</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="OptionCategory" isopaque="yes">
+						<value></value>
+						<regnode name="enum_option" isopaque="yes">
+							<value>1236</value>
+							<regnode name="OptionAspect" isopaque="yes">
+								<value>1348</value>
+							</regnode>
+							<regnode name="Aspect1" isopaque="yes">
+								<value>1267</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="BaseModel" isopaque="yes">
+						<value></value>
+						<regnode name="enum_option" isopaque="yes">
+							<value>1108</value>
+							<regnode name="Aspect2" isopaque="yes">
+								<value>1135</value>
+							</regnode>
+							<regnode name="Aspect1" isopaque="yes">
+								<value>1120</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="rule_class" isopaque="yes">
+						<value></value>
+						<regnode name="enum_option" isopaque="yes">
+							<value>1065</value>
+							<regnode name="Aspect2" isopaque="yes">
+								<value>1083</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="option_class" isopaque="yes">
+						<value></value>
+						<regnode name="enum_option" isopaque="yes">
+							<value>1008</value>
+							<regnode name="Aspect1" isopaque="yes">
+								<value>1045</value>
+							</regnode>
+							<regnode name="Aspect" isopaque="yes">
+								<value>1012</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon">
+					<value>option_enum.bmp</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeInfoShown" status="meta">
+					<value>true</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000043" kind="Model" role="Model" relid="0x10">
+				<name>set_option</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>232,482</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>386,279</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>232,468</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>309,482</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="KindAspects" isopaque="yes">
+					<value></value>
+					<regnode name="OptionCategory:set_option">
+						<value></value>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>RuleAspect</value>
+						</regnode>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>OptionAspect</value>
+						</regnode>
+					</regnode>
+					<regnode name="Rule:set_option">
+						<value></value>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>OptionAspect</value>
+						</regnode>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>OptionAspect</value>
+						</regnode>
+					</regnode>
+					<regnode name="Rule:flag_option" isopaque="yes">
+						<value></value>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>RuleGroupAspect</value>
+						</regnode>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>OptionAspect</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>RuleAspect</value>
+						</regnode>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>Aspect1</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>Aspect</value>
+						</regnode>
+					</regnode>
+					<regnode name="Model:flag_option" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>Aspect1</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>Aspect</value>
+						</regnode>
+					</regnode>
+					<regnode name="OptionCategory:flag_option" isopaque="yes">
+						<value></value>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>RuleGroupAspect</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>RuleAspect</value>
+						</regnode>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>OptionAspect</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>Aspect</value>
+						</regnode>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>Aspect1</value>
+						</regnode>
+					</regnode>
+					<regnode name="BaseModel:flag_option" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>Aspect1</value>
+						</regnode>
+						<regnode name="Aspect2" isopaque="yes">
+							<value>Aspect2</value>
+						</regnode>
+					</regnode>
+					<regnode name="rule_class:flag_option" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>Aspect1</value>
+						</regnode>
+						<regnode name="Aspect2" isopaque="yes">
+							<value>Aspect2</value>
+						</regnode>
+					</regnode>
+					<regnode name="option_class:flag_option" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>Aspect1</value>
+						</regnode>
+						<regnode name="Aspect2" isopaque="yes">
+							<value>Aspect2</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>Aspect</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" isopaque="yes">
+					<value></value>
+					<regnode name="OptionCategory:set_option">
+						<value></value>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Rule:set_option">
+						<value></value>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Rule:flag_option" isopaque="yes">
+						<value></value>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Model:flag_option" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="OptionCategory:flag_option" isopaque="yes">
+						<value></value>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>no</value>
+						</regnode>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="BaseModel:flag_option" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect2" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="rule_class:flag_option" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect2" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="option_class:flag_option" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect2" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1006</value>
+					<regnode name="Rule" isopaque="yes">
+						<value></value>
+						<regnode name="set_option" isopaque="yes">
+							<value>1421</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1425</value>
+							</regnode>
+						</regnode>
+						<regnode name="flag_option" isopaque="yes">
+							<value>1284</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1344</value>
+							</regnode>
+							<regnode name="Aspect" isopaque="yes">
+								<value>1289</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="Model" isopaque="yes">
+						<value></value>
+						<regnode name="flag_option" isopaque="yes">
+							<value>1273</value>
+							<regnode name="Aspect" isopaque="yes">
+								<value>1278</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="OptionCategory" isopaque="yes">
+						<value></value>
+						<regnode name="set_option" isopaque="yes">
+							<value>1412</value>
+							<regnode name="OptionAspect" isopaque="yes">
+								<value>1414</value>
+							</regnode>
+						</regnode>
+						<regnode name="flag_option" isopaque="yes">
+							<value>1239</value>
+							<regnode name="OptionAspect" isopaque="yes">
+								<value>1349</value>
+							</regnode>
+							<regnode name="Aspect1" isopaque="yes">
+								<value>1268</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="BaseModel" isopaque="yes">
+						<value></value>
+						<regnode name="flag_option" isopaque="yes">
+							<value>1110</value>
+							<regnode name="Aspect2" isopaque="yes">
+								<value>1137</value>
+							</regnode>
+							<regnode name="Aspect1" isopaque="yes">
+								<value>1122</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="rule_class" isopaque="yes">
+						<value></value>
+						<regnode name="flag_option" isopaque="yes">
+							<value>1067</value>
+							<regnode name="Aspect2" isopaque="yes">
+								<value>1085</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="option_class" isopaque="yes">
+						<value></value>
+						<regnode name="flag_option" isopaque="yes">
+							<value>1009</value>
+							<regnode name="Aspect1" isopaque="yes">
+								<value>1046</value>
+							</regnode>
+							<regnode name="Aspect" isopaque="yes">
+								<value>1013</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon">
+					<value>option_flag.bmp</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeInfoShown" status="meta">
+					<value>true</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000042" kind="Atom" role="Atom" relid="0x2b">
+				<name>enum_values</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,601</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>267,377</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,601</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,615</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" isopaque="yes">
+					<value></value>
+					<regnode name="Rule:enum_values" isopaque="yes">
+						<value></value>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Model:enum_values" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="BaseModel:enum_values" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect2" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="rule_class:enum_values" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect2" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="enum_option:enum_values" isopaque="yes">
+						<value></value>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect2" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1024</value>
+					<regnode name="Rule" isopaque="yes">
+						<value></value>
+						<regnode name="enum_values" isopaque="yes">
+							<value>1314</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1343</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="Model" isopaque="yes">
+						<value></value>
+						<regnode name="enum_values" isopaque="yes">
+							<value>1299</value>
+							<regnode name="Aspect" isopaque="yes">
+								<value>1306</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="BaseModel" isopaque="yes">
+						<value></value>
+						<regnode name="enum_values" isopaque="yes">
+							<value>1109</value>
+							<regnode name="Aspect2" isopaque="yes">
+								<value>1136</value>
+							</regnode>
+							<regnode name="Aspect1" isopaque="yes">
+								<value>1121</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="rule_class" isopaque="yes">
+						<value></value>
+						<regnode name="enum_values" isopaque="yes">
+							<value>1066</value>
+							<regnode name="Aspect2" isopaque="yes">
+								<value>1084</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="enum_option" isopaque="yes">
+						<value></value>
+						<regnode name="enum_values" isopaque="yes">
+							<value>1026</value>
+							<regnode name="OptionAspect" isopaque="yes">
+								<value>1352</value>
+							</regnode>
+							<regnode name="Aspect1" isopaque="yes">
+								<value>1041</value>
+							</regnode>
+							<regnode name="Aspect" isopaque="yes">
+								<value>1027</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon">
+					<value>enum_option.bmp</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon">
+					<value>option_port.bmp</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000041" kind="Atom" role="Atom" relid="0x2d">
+				<name>set_values</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>113,601</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>365,419</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>127,601</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>127,615</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" isopaque="yes">
+					<value></value>
+					<regnode name="Rule:set_values">
+						<value></value>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="set_option:set_values">
+						<value></value>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Rule:flag_values" isopaque="yes">
+						<value></value>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Model:flag_values" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="BaseModel:flag_values" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect2" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="rule_class:flag_values" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect2" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="flag_option:flag_values" isopaque="yes">
+						<value></value>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect2" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1025</value>
+					<regnode name="set_option">
+						<value></value>
+						<regnode name="set_values" isopaque="yes">
+							<value>1415</value>
+							<regnode name="OptionAspect" isopaque="yes">
+								<value>1417</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="Rule" isopaque="yes">
+						<value></value>
+						<regnode name="set_values" isopaque="yes">
+							<value>1431</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1433</value>
+							</regnode>
+						</regnode>
+						<regnode name="flag_values" isopaque="yes">
+							<value>1317</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1345</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="Model" isopaque="yes">
+						<value></value>
+						<regnode name="flag_values" isopaque="yes">
+							<value>1300</value>
+							<regnode name="Aspect" isopaque="yes">
+								<value>1307</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="BaseModel" isopaque="yes">
+						<value></value>
+						<regnode name="flag_values" isopaque="yes">
+							<value>1111</value>
+							<regnode name="Aspect2" isopaque="yes">
+								<value>1138</value>
+							</regnode>
+							<regnode name="Aspect1" isopaque="yes">
+								<value>1123</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="rule_class" isopaque="yes">
+						<value></value>
+						<regnode name="flag_values" isopaque="yes">
+							<value>1068</value>
+							<regnode name="Aspect2" isopaque="yes">
+								<value>1086</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="flag_option" isopaque="yes">
+						<value></value>
+						<regnode name="flag_values" isopaque="yes">
+							<value>1028</value>
+							<regnode name="OptionAspect" isopaque="yes">
+								<value>1353</value>
+							</regnode>
+							<regnode name="Aspect1" isopaque="yes">
+								<value>1042</value>
+							</regnode>
+							<regnode name="Aspect" isopaque="yes">
+								<value>1029</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon">
+					<value>flag_option.bmp</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon">
+					<value>option_port.bmp</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000040" kind="Model" role="Model" relid="0xc2">
+				<name>OptionCategory</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,13</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>415,16</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,13</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,13</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1095</value>
+					<regnode name="OptionCategory" isopaque="yes">
+						<value></value>
+						<regnode name="OptionCategory" isopaque="yes">
+							<value>1356</value>
+							<regnode name="OptionAspect" isopaque="yes">
+								<value>1357</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="Rule" isopaque="yes">
+						<value></value>
+						<regnode name="OptionCategory" isopaque="yes">
+							<value>1292</value>
+							<regnode name="Aspect" isopaque="yes">
+								<value>1293</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="BaseModel" isopaque="yes">
+						<value></value>
+						<regnode name="BaseModel" isopaque="yes">
+							<value>1101</value>
+							<regnode name="Aspect2" isopaque="yes">
+								<value>1128</value>
+							</regnode>
+							<regnode name="Aspect1" isopaque="yes">
+								<value>1119</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="KindAspects" isopaque="yes">
+					<value></value>
+					<regnode name="OptionCategory:OptionCategory" isopaque="yes">
+						<value></value>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>OptionAspect</value>
+						</regnode>
+					</regnode>
+					<regnode name="Rule:OptionCategory" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect" isopaque="yes">
+							<value>Aspect</value>
+						</regnode>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>Aspect1</value>
+						</regnode>
+					</regnode>
+					<regnode name="BaseModel:BaseModel" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>Aspect1</value>
+						</regnode>
+						<regnode name="Aspect2" isopaque="yes">
+							<value>Aspect2</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" isopaque="yes">
+					<value></value>
+					<regnode name="OptionCategory:OptionCategory" isopaque="yes">
+						<value></value>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Rule:OptionCategory" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="BaseModel:BaseModel" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect2" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder">
+					<value>true</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeInfoShown" status="meta">
+					<value>true</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000003f" kind="Atom" role="Atom" relid="0x105">
+				<name>integer_option</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>505,459</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>92,193</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>505,445</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>652,459</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" isopaque="yes">
+					<value></value>
+					<regnode name="Rule:integer_option" isopaque="yes">
+						<value></value>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Model:integer_option" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="OptionCategory:integer_option" isopaque="yes">
+						<value></value>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>no</value>
+						</regnode>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="BaseModel:integer_option" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1144</value>
+					<regnode name="Rule" isopaque="yes">
+						<value></value>
+						<regnode name="integer_option" isopaque="yes">
+							<value>1285</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1327</value>
+							</regnode>
+							<regnode name="Aspect" isopaque="yes">
+								<value>1290</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="Model" isopaque="yes">
+						<value></value>
+						<regnode name="integer_option" isopaque="yes">
+							<value>1274</value>
+							<regnode name="Aspect" isopaque="yes">
+								<value>1279</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="OptionCategory" isopaque="yes">
+						<value></value>
+						<regnode name="integer_option" isopaque="yes">
+							<value>1240</value>
+							<regnode name="OptionAspect" isopaque="yes">
+								<value>1350</value>
+							</regnode>
+							<regnode name="Aspect1" isopaque="yes">
+								<value>1269</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="BaseModel" isopaque="yes">
+						<value></value>
+						<regnode name="integer_option" isopaque="yes">
+							<value>1146</value>
+							<regnode name="Aspect1" isopaque="yes">
+								<value>1148</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon">
+					<value>option_integer.bmp</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000003e" kind="Atom" role="Atom" relid="0x109">
+				<name>string_option</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>323,467</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>149,296</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>323,453</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>470,467</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" isopaque="yes">
+					<value></value>
+					<regnode name="Rule:string_option" isopaque="yes">
+						<value></value>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Model:string_option" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="OptionCategory:string_option" isopaque="yes">
+						<value></value>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="OptionAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Aspect" isopaque="yes">
+							<value>no</value>
+						</regnode>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="BaseModel:string_option" isopaque="yes">
+						<value></value>
+						<regnode name="Aspect1" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1145</value>
+					<regnode name="Rule" isopaque="yes">
+						<value></value>
+						<regnode name="string_option" isopaque="yes">
+							<value>1286</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1328</value>
+							</regnode>
+							<regnode name="Aspect" isopaque="yes">
+								<value>1291</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="Model" isopaque="yes">
+						<value></value>
+						<regnode name="string_option" isopaque="yes">
+							<value>1275</value>
+							<regnode name="Aspect" isopaque="yes">
+								<value>1280</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="OptionCategory" isopaque="yes">
+						<value></value>
+						<regnode name="string_option" isopaque="yes">
+							<value>1249</value>
+							<regnode name="OptionAspect" isopaque="yes">
+								<value>1351</value>
+							</regnode>
+							<regnode name="Aspect1" isopaque="yes">
+								<value>1270</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="BaseModel" isopaque="yes">
+						<value></value>
+						<regnode name="string_option" isopaque="yes">
+							<value>1147</value>
+							<regnode name="Aspect1" isopaque="yes">
+								<value>1149</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon">
+					<value>option_string.bmp</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000003d" kind="FCO" role="FCO" relid="0x10b">
+				<name>model_option</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>176,349</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>261,177</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>176,349</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>253,349</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000003c" kind="Inheritance" role="Inheritance" relid="0x10c">
+				<name>Inheritance</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>213,425</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>282,261</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>213,418</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>290,425</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</atom>
+			<atom id="id-0066-0000003b" kind="FCO" role="FCO" relid="0x132">
+				<name>atom_option</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>449,349</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>631,489</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>449,349</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>596,349</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000003a" kind="Inheritance" role="Inheritance" relid="0x133">
+				<name>Inheritance</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>479,418</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>79,352</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>479,418</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>626,418</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</atom>
+			<atom id="id-0066-00000039" kind="FCO" role="FCO" relid="0x139">
+				<name>option_value</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>15,243</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>435,349</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>15,243</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>15,348</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000038" kind="Inheritance" role="Inheritance" relid="0x13a">
+				<name>Inheritance</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>87,551</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>500,488</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>87,537</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>87,425</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</atom>
+			<atom id="id-0066-00000033" kind="FieldAttribute" role="FieldAttribute" relid="0x242">
+				<name>int_option_minimum</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>211,797</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1222</value>
+				</regnode>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Prompt">
+					<value>minimum</value>
+				</attribute>
+				<attribute kind="DataType">
+					<value>integer</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000032" kind="FieldAttribute" role="FieldAttribute" relid="0x243">
+				<name>int_option_maximum</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>22,671</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1221</value>
+				</regnode>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Prompt">
+					<value>maximum</value>
+				</attribute>
+				<attribute kind="DataType">
+					<value>integer</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000031" kind="FieldAttribute" role="FieldAttribute" relid="0x246">
+				<name>length</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>421,790</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1223</value>
+				</regnode>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DataType" status="meta">
+					<value>string</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000030" kind="FieldAttribute" role="FieldAttribute" relid="0x248">
+				<name>int_option_default</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>22,741</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1220</value>
+				</regnode>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Prompt">
+					<value>default</value>
+				</attribute>
+				<attribute kind="DataType">
+					<value>integer</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000002f" kind="FieldAttribute" role="FieldAttribute" relid="0x24a">
+				<name>str_option_default</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>610,692</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1230</value>
+				</regnode>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Prompt">
+					<value>default</value>
+				</attribute>
+				<attribute kind="DataType">
+					<value>integer</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000002e" kind="FieldAttribute" role="FieldAttribute" relid="0x261">
+				<name>description</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>204,34</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1231</value>
+				</regnode>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DataType" status="meta">
+					<value>string</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000002d" kind="FCO" role="FCO" relid="0x263">
+				<name>hasdescription</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>43,124</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>15,47</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>43,124</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>239,12</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000002c" kind="Inheritance" role="Inheritance" relid="0x264">
+				<name>Inheritance</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>87,201</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>79,121</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>87,201</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>283,131</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</atom>
+			<atom id="id-0066-0000002b" kind="BooleanAttribute" role="BooleanAttribute" relid="0x280">
+				<name>option_value_default</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>862,377</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1354</value>
+				</regnode>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Prompt">
+					<value>default</value>
+				</attribute>
+				<attribute kind="BooleanDefault" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+		</model>
+		<model id="id-0065-00000001" kind="ParadigmSheet" relid="0x3" childrelidcntr="0x269">
+			<name>RuleSheet</name>
+			<attribute kind="AuthorInformation" status="meta">
+				<value></value>
+			</attribute>
+			<attribute kind="VersionInformation" status="meta">
+				<value></value>
+			</attribute>
+			<attribute kind="DisplayedName" status="meta">
+				<value></value>
+			</attribute>
+			<connection id="id-0068-0000012a" kind="Containment" role="Containment" relid="0x269">
+				<name>Containment</name>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000005e"/>
+				<connpoint role="src" target="id-0066-0000009b"/>
+			</connection>
+			<connection id="id-0068-00000129" kind="AssociationClass" role="AssociationClass" relid="0x268">
+				<name>AssociationClass</name>
+				<connpoint role="dst" target="id-0066-0000009c"/>
+				<connpoint role="src" target="id-0066-0000009b"/>
+			</connection>
+			<connection id="id-0068-00000128" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x267">
+				<name>ConnectorToDestination</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>E</value>
+				</regnode>
+				<attribute kind="dstRolename">
+					<value></value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000004d"/>
+				<connpoint role="src" target="id-0066-0000009c"/>
+			</connection>
+			<connection id="id-0068-00000127" kind="SourceToConnector" role="SourceToConnector" relid="0x266">
+				<name>SourceToConnector</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>w</value>
+				</regnode>
+				<attribute kind="srcRolename">
+					<value></value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000009c"/>
+				<connpoint role="src" target="id-0067-00000010"/>
+			</connection>
+			<connection id="id-0068-00000126" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x262">
+				<name>ConnectorToDestination</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>S</value>
+				</regnode>
+				<attribute kind="dstRolename" status="meta">
+					<value>dst</value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000004d"/>
+				<connpoint role="src" target="id-0066-00000093"/>
+			</connection>
+			<connection id="id-0068-00000125" kind="SourceToConnector" role="SourceToConnector" relid="0x261">
+				<name>SourceToConnector</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>e</value>
+				</regnode>
+				<attribute kind="srcRolename" status="meta">
+					<value>src</value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000093"/>
+				<connpoint role="src" target="id-0067-0000000f"/>
+			</connection>
+			<connection id="id-0068-00000124" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x260">
+				<name>ConnectorToDestination</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>S</value>
+				</regnode>
+				<attribute kind="dstRolename" status="meta">
+					<value>dst</value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000004d"/>
+				<connpoint role="src" target="id-0066-0000008e"/>
+			</connection>
+			<connection id="id-0068-00000123" kind="SourceToConnector" role="SourceToConnector" relid="0x25f">
+				<name>SourceToConnector</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>e</value>
+				</regnode>
+				<attribute kind="srcRolename" status="meta">
+					<value>src</value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000008e"/>
+				<connpoint role="src" target="id-0067-0000000e"/>
+			</connection>
+			<connection id="id-0068-00000120" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x25c">
+				<name>ConnectorToDestination</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>S</value>
+				</regnode>
+				<attribute kind="dstRolename">
+					<value></value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000004d"/>
+				<connpoint role="src" target="id-0066-00000094"/>
+			</connection>
+			<connection id="id-0068-0000011f" kind="AssociationClass" role="AssociationClass" relid="0x25b">
+				<name>AssociationClass</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>S</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000088"/>
+				<connpoint role="src" target="id-0066-0000008a"/>
+			</connection>
+			<connection id="id-0068-0000011e" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x25a">
+				<name>ConnectorToDestination</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>E</value>
+				</regnode>
+				<attribute kind="dstRolename">
+					<value></value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000047"/>
+				<connpoint role="src" target="id-0066-0000008a"/>
+			</connection>
+			<connection id="id-0068-0000011d" kind="SourceToConnector" role="SourceToConnector" relid="0x259">
+				<name>SourceToConnector</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>w</value>
+				</regnode>
+				<attribute kind="srcRolename">
+					<value></value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000008a"/>
+				<connpoint role="src" target="id-0067-0000000d"/>
+			</connection>
+			<connection id="id-0068-0000011b" kind="AssociationClass" role="AssociationClass" relid="0x257">
+				<name>AssociationClass</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>n</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000093"/>
+				<connpoint role="src" target="id-0066-00000092"/>
+			</connection>
+			<connection id="id-0068-00000118" kind="AssociationClass" role="AssociationClass" relid="0x254">
+				<name>AssociationClass</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>n</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000099"/>
+				<connpoint role="src" target="id-0066-0000004f"/>
+			</connection>
+			<connection id="id-0068-00000117" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x253">
+				<name>ConnectorToDestination</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>W</value>
+				</regnode>
+				<attribute kind="dstRolename" status="meta">
+					<value>dst</value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000098"/>
+				<connpoint role="src" target="id-0066-00000099"/>
+			</connection>
+			<connection id="id-0068-00000116" kind="SourceToConnector" role="SourceToConnector" relid="0x252">
+				<name>SourceToConnector</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>e</value>
+				</regnode>
+				<attribute kind="srcRolename" status="meta">
+					<value>src</value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000099"/>
+				<connpoint role="src" target="id-0066-00000098"/>
+			</connection>
+			<connection id="id-0068-00000115" kind="DerivedInheritance" role="DerivedInheritance" relid="0x251">
+				<name>DerivedInheritance</name>
+				<connpoint role="dst" target="id-0066-0000004d"/>
+				<connpoint role="src" target="id-0066-0000009a"/>
+			</connection>
+			<connection id="id-0068-00000114" kind="DerivedInheritance" role="DerivedInheritance" relid="0x250">
+				<name>DerivedInheritance</name>
+				<connpoint role="dst" target="id-0066-00000084"/>
+				<connpoint role="src" target="id-0066-0000009a"/>
+			</connection>
+			<connection id="id-0068-00000113" kind="DerivedInheritance" role="DerivedInheritance" relid="0x24f">
+				<name>DerivedInheritance</name>
+				<connpoint role="dst" target="id-0066-00000047"/>
+				<connpoint role="src" target="id-0066-0000009a"/>
+			</connection>
+			<connection id="id-0068-00000112" kind="BaseInheritance" role="BaseInheritance" relid="0x24e">
+				<name>BaseInheritance</name>
+				<connpoint role="dst" target="id-0066-0000009a"/>
+				<connpoint role="src" target="id-0066-00000098"/>
+			</connection>
+			<connection id="id-0068-0000010d" kind="AssociationClass" role="AssociationClass" relid="0x243">
+				<name>AssociationClass</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>N</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000051"/>
+				<connpoint role="src" target="id-0066-00000094"/>
+			</connection>
+			<connection id="id-0068-0000010b" kind="SourceToConnector" role="SourceToConnector" relid="0x241">
+				<name>SourceToConnector</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>e</value>
+				</regnode>
+				<attribute kind="srcRolename">
+					<value></value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000094"/>
+				<connpoint role="src" target="id-0067-0000000e"/>
+			</connection>
+			<connection id="id-0068-0000010a" kind="Containment" role="Containment" relid="0x23f">
+				<name>Containment</name>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000005e"/>
+				<connpoint role="src" target="id-0066-00000092"/>
+			</connection>
+			<connection id="id-0068-00000109" kind="AssociationClass" role="AssociationClass" relid="0x23e">
+				<name>AssociationClass</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>n</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-0000008e"/>
+				<connpoint role="src" target="id-0066-0000008d"/>
+			</connection>
+			<set id="id-0069-00000002" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-0000009b id-0066-00000088 id-0066-0000008d id-0066-00000092 id-0066-00000098 id-0066-0000004f id-0066-00000051">
+				<name>RuleAspect</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>246,69</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value></value>
+					<regnode name="Rule" isopaque="yes">
+						<value>1287</value>
+					</regnode>
+					<regnode name="BaseModel" isopaque="yes">
+						<value>1282</value>
+					</regnode>
+					<regnode name="Model" isopaque="yes">
+						<value>1276</value>
+					</regnode>
+				</regnode>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+			</set>
+			<connection id="id-0068-00000101" kind="Containment" role="Containment" relid="0x234">
+				<name>Containment</name>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000005e"/>
+				<connpoint role="src" target="id-0066-0000008d"/>
+			</connection>
+			<connection id="id-0068-000000fa" kind="Containment" role="Containment" relid="0x22a">
+				<name>Containment</name>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000005e"/>
+				<connpoint role="src" target="id-0066-00000047"/>
+			</connection>
+			<connection id="id-0068-000000f7" kind="Containment" role="Containment" relid="0x222">
+				<name>Containment</name>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000005e"/>
+				<connpoint role="src" target="id-0066-00000084"/>
+			</connection>
+			<connection id="id-0068-000000f6" kind="Containment" role="Containment" relid="0x221">
+				<name>Containment</name>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000005e"/>
+				<connpoint role="src" target="id-0066-00000088"/>
+			</connection>
+			<connection id="id-0068-000000eb" kind="DerivedInheritance" role="DerivedInheritance" relid="0x20f">
+				<name>DerivedInheritance</name>
+				<connpoint role="dst" target="id-0066-0000005e"/>
+				<connpoint role="src" target="id-0066-00000085"/>
+			</connection>
+			<connection id="id-0068-000000ea" kind="DerivedInheritance" role="DerivedInheritance" relid="0x20e">
+				<name>DerivedInheritance</name>
+				<connpoint role="dst" target="id-0067-0000000c"/>
+				<connpoint role="src" target="id-0066-00000085"/>
+			</connection>
+			<connection id="id-0068-000000e9" kind="DerivedInheritance" role="DerivedInheritance" relid="0x20d">
+				<name>DerivedInheritance</name>
+				<connpoint role="dst" target="id-0067-00000007"/>
+				<connpoint role="src" target="id-0066-00000085"/>
+			</connection>
+			<connection id="id-0068-000000e8" kind="BaseInheritance" role="BaseInheritance" relid="0x20c">
+				<name>BaseInheritance</name>
+				<connpoint role="dst" target="id-0066-00000085"/>
+				<connpoint role="src" target="id-0066-00000084"/>
+			</connection>
+			<connection id="id-0068-000000e5" kind="Containment" role="Containment" relid="0x205">
+				<name>Containment</name>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000005e"/>
+				<connpoint role="src" target="id-0066-00000051"/>
+			</connection>
+			<connection id="id-0068-000000e3" kind="Containment" role="Containment" relid="0x203">
+				<name>Containment</name>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000005e"/>
+				<connpoint role="src" target="id-0066-0000004f"/>
+			</connection>
+			<connection id="id-0068-000000e2" kind="Containment" role="Containment" relid="0x202">
+				<name>Containment</name>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000005e"/>
+				<connpoint role="src" target="id-0066-0000004d"/>
+			</connection>
+			<connection id="id-0068-000000a9" kind="HasAspect" role="HasAspect" relid="0x1b1">
+				<name>HasAspect</name>
+				<connpoint role="dst" target="id-0066-0000005e"/>
+				<connpoint role="src" target="id-0069-00000002"/>
+			</connection>
+			<connection id="id-0068-0000006e" kind="DerivedInheritance" role="DerivedInheritance" relid="0x160">
+				<name>DerivedInheritance</name>
+				<connpoint role="dst" target="id-0066-0000004c"/>
+				<connpoint role="src" target="id-0066-0000004e"/>
+			</connection>
+			<connection id="id-0068-0000006d" kind="DerivedInheritance" role="DerivedInheritance" relid="0x15f">
+				<name>DerivedInheritance</name>
+				<connpoint role="dst" target="id-0066-0000004b"/>
+				<connpoint role="src" target="id-0066-0000004e"/>
+			</connection>
+			<connection id="id-0068-0000006c" kind="DerivedInheritance" role="DerivedInheritance" relid="0x15e">
+				<name>DerivedInheritance</name>
+				<connpoint role="dst" target="id-0066-0000004a"/>
+				<connpoint role="src" target="id-0066-0000004e"/>
+			</connection>
+			<connection id="id-0068-0000006b" kind="DerivedInheritance" role="DerivedInheritance" relid="0x15d">
+				<name>DerivedInheritance</name>
+				<connpoint role="dst" target="id-0066-00000049"/>
+				<connpoint role="src" target="id-0066-0000004e"/>
+			</connection>
+			<connection id="id-0068-0000006a" kind="DerivedInheritance" role="DerivedInheritance" relid="0x15c">
+				<name>DerivedInheritance</name>
+				<connpoint role="dst" target="id-0066-00000048"/>
+				<connpoint role="src" target="id-0066-0000004e"/>
+			</connection>
+			<connection id="id-0068-00000068" kind="BaseInheritance" role="BaseInheritance" relid="0x15a">
+				<name>BaseInheritance</name>
+				<connpoint role="dst" target="id-0066-0000004e"/>
+				<connpoint role="src" target="id-0066-0000004d"/>
+			</connection>
+			<reference id="id-0067-00000010" kind="AtomProxy" role="AtomProxy" relid="0x265" referred="id-0066-00000064">
+				<name>flag_option</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>302,118</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>414,433</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>414,433</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</reference>
+			<reference id="id-0067-0000000f" kind="AtomProxy" role="AtomProxy" relid="0x227" referred="id-0066-0000003e">
+				<name>string_option</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,194</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>771,341</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>302,12</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>771,341</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</reference>
+			<reference id="id-0067-0000000e" kind="AtomProxy" role="AtomProxy" relid="0x226" referred="id-0066-0000003f">
+				<name>integer_option</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>78,82</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>771,201</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>120,12</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>771,201</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</reference>
+			<reference id="id-0067-0000000d" kind="FCOProxy" role="FCOProxy" relid="0x223" referred="id-0066-0000003b">
+				<name>atom_option</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,13</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>15,398</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>120,132</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>15,398</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</reference>
+			<reference id="id-0067-0000000c" kind="FCOProxy" role="FCOProxy" relid="0x207" referred="id-0066-00000039">
+				<name>option_value</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>15,566</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>764,111</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>99,594</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>99,594</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</reference>
+			<reference id="id-0067-00000007" kind="FCOProxy" role="FCOProxy" relid="0x161" referred="id-0066-00000046">
+				<name>option</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>540,391</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>204,573</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>288,601</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>288,601</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</reference>
+			<atom id="id-0066-0000009c" kind="Connector" role="Connector" relid="0x264">
+				<name>Connector</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>562,373</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>557,368</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</atom>
+			<atom id="id-0066-0000009b" kind="Connection" role="Connection" relid="0x263">
+				<name>flag_value_eq</name>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1437</value>
+					<regnode name="Rule">
+						<value></value>
+						<regnode name="flag_value_eq" isopaque="yes">
+							<value>1438</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1439</value>
+							</regnode>
+						</regnode>
+						<regnode name="str_value_eq" isopaque="yes">
+							<value></value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value></value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects">
+					<value></value>
+					<regnode name="Rule:flag_value_eq">
+						<value></value>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Rule:str_value_eq">
+						<value></value>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>505,279</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>946,230</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>505,279</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>652,13</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="Color" status="meta">
+					<value>0x000000</value>
+				</attribute>
+				<attribute kind="ConnLineType" status="meta">
+					<value>solid</value>
+				</attribute>
+				<attribute kind="ConnLineStart" status="meta">
+					<value>butt</value>
+				</attribute>
+				<attribute kind="ConnLineEnd">
+					<value>arrow</value>
+				</attribute>
+				<attribute kind="SrcAttrLabel1" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SrcAttrLabel2" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DstAttrLabel1" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DstAttrLabel2" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000009a" kind="Inheritance" role="Inheritance" relid="0x24d">
+				<name>Inheritance</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>241,257</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>241,257</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>296,331</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>255,320</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</atom>
+			<atom id="id-0066-00000099" kind="Connector" role="Connector" relid="0x24c">
+				<name>Connector</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>249,151</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>249,151</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</atom>
+			<atom id="id-0066-00000098" kind="FCO" role="FCO" relid="0x24b">
+				<name>Anything</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>218,174</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>218,174</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>268,289</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>232,237</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000094" kind="Connector" role="Connector" relid="0x240">
+				<name>Connector</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>711,270</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>711,270</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</atom>
+			<atom id="id-0066-00000093" kind="Connector" role="Connector" relid="0x239">
+				<name>Connector</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>648,382</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>648,382</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</atom>
+			<atom id="id-0066-00000092" kind="Connection" role="Connection" relid="0x238">
+				<name>str_value_eq</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>652,13</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>505,167</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>946,160</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>505,167</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects">
+					<value></value>
+					<regnode name="Rule:str_value_eq">
+						<value></value>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1428</value>
+					<regnode name="Rule">
+						<value></value>
+						<regnode name="str_value_eq" isopaque="yes">
+							<value>1432</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1436</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="Color" status="meta">
+					<value>0x000000</value>
+				</attribute>
+				<attribute kind="ConnLineType" status="meta">
+					<value>solid</value>
+				</attribute>
+				<attribute kind="ConnLineStart" status="meta">
+					<value>butt</value>
+				</attribute>
+				<attribute kind="ConnLineEnd">
+					<value>arrow</value>
+				</attribute>
+				<attribute kind="SrcAttrLabel1" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SrcAttrLabel2" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DstAttrLabel1" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DstAttrLabel2" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000008e" kind="Connector" role="Connector" relid="0x229">
+				<name>Connector</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>676,249</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>676,249</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</atom>
+			<atom id="id-0066-0000008d" kind="Connection" role="Connection" relid="0x228">
+				<name>int_value_eq</name>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1370</value>
+					<regnode name="Rule">
+						<value></value>
+						<regnode name="int_value_eq" isopaque="yes">
+							<value>1429</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1434</value>
+							</regnode>
+						</regnode>
+						<regnode name="str_value_eq" isopaque="yes">
+							<value>1392</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1399</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects">
+					<value></value>
+					<regnode name="Rule:int_value_eq">
+						<value></value>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Rule:str_value_eq">
+						<value></value>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>624,97</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>946,370</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>652,13</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>624,97</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="Color" status="meta">
+					<value>0x000000</value>
+				</attribute>
+				<attribute kind="ConnLineType" status="meta">
+					<value>solid</value>
+				</attribute>
+				<attribute kind="ConnLineStart" status="meta">
+					<value>butt</value>
+				</attribute>
+				<attribute kind="ConnLineEnd">
+					<value>arrow</value>
+				</attribute>
+				<attribute kind="SrcAttrLabel1" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SrcAttrLabel2" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DstAttrLabel1" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DstAttrLabel2" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000008a" kind="Connector" role="Connector" relid="0x214">
+				<name>Connector</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value></value>
+				</regnode>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>144,424</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>144,424</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</atom>
+			<atom id="id-0066-00000088" kind="Connection" role="Connection" relid="0x212">
+				<name>option_equality</name>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1367</value>
+					<regnode name="Rule">
+						<value></value>
+						<regnode name="option_equality" isopaque="yes">
+							<value>1430</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1435</value>
+							</regnode>
+						</regnode>
+						<regnode name="value_eq" isopaque="yes">
+							<value>1422</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1427</value>
+							</regnode>
+						</regnode>
+						<regnode name="int_value_eq" isopaque="yes">
+							<value>1389</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1396</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,482</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,482</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>946,90</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>659,461</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects">
+					<value></value>
+					<regnode name="Rule:option_equality">
+						<value></value>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Rule:int_value_eq">
+						<value></value>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Rule:value_eq">
+						<value></value>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="Color" status="meta">
+					<value>0x000000</value>
+				</attribute>
+				<attribute kind="ConnLineType" status="meta">
+					<value>solid</value>
+				</attribute>
+				<attribute kind="ConnLineStart" status="meta">
+					<value>butt</value>
+				</attribute>
+				<attribute kind="ConnLineEnd">
+					<value>arrow</value>
+				</attribute>
+				<attribute kind="SrcAttrLabel1" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SrcAttrLabel2" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DstAttrLabel1" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DstAttrLabel2" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000085" kind="Inheritance" role="Inheritance" relid="0x20a">
+				<name>Inheritance</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>325,299</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>325,537</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>325,537</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>38,481</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</atom>
+			<atom id="id-0066-00000084" kind="FCO" role="FCO" relid="0x209">
+				<name>Operand</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>302,335</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>302,335</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>121,569</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>15,328</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000005e" kind="Model" role="Model" relid="0x18e">
+				<name>Rule</name>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1371</value>
+					<regnode name="RuleGroup">
+						<value></value>
+						<regnode name="Rule" isopaque="yes">
+							<value>1406</value>
+							<regnode name="RuleGroupAspect" isopaque="yes">
+								<value>1408</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="Rule">
+						<value></value>
+						<regnode name="Rule" isopaque="yes">
+							<value>1378</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1385</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects">
+					<value></value>
+					<regnode name="RuleGroup:Rule">
+						<value></value>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Rule:Rule">
+						<value></value>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="KindAspects">
+					<value></value>
+					<regnode name="RuleGroup:Rule">
+						<value></value>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>RuleGroupAspect</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>RuleAspect</value>
+						</regnode>
+					</regnode>
+					<regnode name="Rule:Rule">
+						<value></value>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>RuleAspect</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>421,20</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>421,20</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>15,391</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,13</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder">
+					<value>true</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeInfoShown" status="meta">
+					<value>true</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000051" kind="Connection" role="Connection" relid="0x164">
+				<name>range</name>
+				<regnode name="PrimaryAspects">
+					<value></value>
+					<regnode name="Rule:range">
+						<value></value>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1368</value>
+					<regnode name="Rule">
+						<value></value>
+						<regnode name="range" isopaque="yes">
+							<value>1390</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1397</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>771,96</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>757,278</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>946,300</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>771,96</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName">
+					<value>bool</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="Color" status="meta">
+					<value>0x000000</value>
+				</attribute>
+				<attribute kind="ConnLineType" status="meta">
+					<value>solid</value>
+				</attribute>
+				<attribute kind="ConnLineStart" status="meta">
+					<value>butt</value>
+				</attribute>
+				<attribute kind="ConnLineEnd">
+					<value>arrow</value>
+				</attribute>
+				<attribute kind="SrcAttrLabel1" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SrcAttrLabel2" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DstAttrLabel1" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DstAttrLabel2" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000004f" kind="Connection" role="Connection" relid="0x162">
+				<name>logic_conn</name>
+				<regnode name="PrimaryAspects">
+					<value></value>
+					<regnode name="Rule:logic_conn">
+						<value></value>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Rule:LogicBool">
+						<value></value>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Rule:Bool">
+						<value></value>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1364</value>
+					<regnode name="Rule">
+						<value></value>
+						<regnode name="logic_conn" isopaque="yes">
+							<value>1420</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1426</value>
+							</regnode>
+						</regnode>
+						<regnode name="LogicBool" isopaque="yes">
+							<value>1402</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1404</value>
+							</regnode>
+						</regnode>
+						<regnode name="Bool" isopaque="yes">
+							<value>1386</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1393</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>15,20</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>15,20</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>764,202</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>946,20</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="Color">
+					<value>0x0000ff</value>
+				</attribute>
+				<attribute kind="ConnLineType" status="meta">
+					<value>solid</value>
+				</attribute>
+				<attribute kind="ConnLineStart" status="meta">
+					<value>butt</value>
+				</attribute>
+				<attribute kind="ConnLineEnd">
+					<value>arrow</value>
+				</attribute>
+				<attribute kind="SrcAttrLabel1" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SrcAttrLabel2" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DstAttrLabel1" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DstAttrLabel2" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000004e" kind="Inheritance" role="Inheritance" relid="0x159">
+				<name>Inheritance</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>682,551</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>682,551</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>353,313</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>549,544</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</atom>
+			<atom id="id-0066-0000004d" kind="FCO" role="FCO" relid="0x158">
+				<name>Logic_Operator</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>645,454</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>645,454</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>330,230</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>512,447</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000004c" kind="Atom" role="Atom" relid="0x157">
+				<name>IF2</name>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1361</value>
+					<regnode name="Rule">
+						<value></value>
+						<regnode name="IF2" isopaque="yes">
+							<value>1375</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1382</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects">
+					<value></value>
+					<regnode name="Rule:IF2">
+						<value></value>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>827,608</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>827,608</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>449,391</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>694,601</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon">
+					<value>if2.bmp</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000004b" kind="Atom" role="Atom" relid="0x156">
+				<name>IF</name>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1360</value>
+					<regnode name="Rule">
+						<value></value>
+						<regnode name="IF" isopaque="yes">
+							<value>1374</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1381</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects">
+					<value></value>
+					<regnode name="Rule:IF">
+						<value></value>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>743,608</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>743,608</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>372,391</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>610,601</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon">
+					<value>if.bmp</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000004a" kind="Atom" role="Atom" relid="0x155">
+				<name>NOT</name>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1362</value>
+					<regnode name="Rule">
+						<value></value>
+						<regnode name="NOT" isopaque="yes">
+							<value>1376</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1383</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects">
+					<value></value>
+					<regnode name="Rule:NOT">
+						<value></value>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>659,608</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>659,608</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>281,391</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>526,601</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon">
+					<value>not.bmp</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000049" kind="Atom" role="Atom" relid="0x154">
+				<name>OR</name>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1363</value>
+					<regnode name="Rule">
+						<value></value>
+						<regnode name="OR" isopaque="yes">
+							<value>1377</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1384</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects">
+					<value></value>
+					<regnode name="Rule:OR">
+						<value></value>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>575,608</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>575,608</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>197,391</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>442,601</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon">
+					<value>or.bmp</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000048" kind="Atom" role="Atom" relid="0x153">
+				<name>AND</name>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1358</value>
+					<regnode name="Rule">
+						<value></value>
+						<regnode name="AND" isopaque="yes">
+							<value>1372</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1379</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects">
+					<value></value>
+					<regnode name="Rule:AND">
+						<value></value>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>491,608</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>491,608</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>113,391</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>358,601</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon">
+					<value>and.bmp</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000047" kind="Atom" role="Atom" relid="0x152">
+				<name>Equal</name>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1359</value>
+					<regnode name="Rule">
+						<value></value>
+						<regnode name="Equal" isopaque="yes">
+							<value>1418</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1423</value>
+							</regnode>
+						</regnode>
+						<regnode name="Connector" isopaque="yes">
+							<value>1373</value>
+							<regnode name="RuleAspect" isopaque="yes">
+								<value>1380</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects">
+					<value></value>
+					<regnode name="Rule:Equal">
+						<value></value>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Rule:Connector">
+						<value></value>
+						<regnode name="RuleGroupAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="RuleAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="ClassDiagram">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>134,335</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>134,335</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>652,391</value>
+						</regnode>
+					</regnode>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>232,461</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Icon">
+					<value>connector.bmp</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="IsNameEnabled">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000004" kind="FieldAttribute" role="FieldAttribute" relid="0x142">
+				<name>equal_str_value</name>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1219</value>
+				</regnode>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>680,181</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Prompt">
+					<value>value</value>
+				</attribute>
+				<attribute kind="DataType" status="meta">
+					<value>string</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000003" kind="FieldAttribute" role="FieldAttribute" relid="0x143">
+				<name>equal_int_value</name>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1218</value>
+				</regnode>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>680,34</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Prompt">
+					<value>value</value>
+				</attribute>
+				<attribute kind="DataType">
+					<value>integer</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000002" kind="FieldAttribute" role="FieldAttribute" relid="0x144">
+				<name>range_maximum</name>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1226</value>
+				</regnode>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>680,251</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Prompt">
+					<value>maximum</value>
+				</attribute>
+				<attribute kind="DataType">
+					<value>integer</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000001" kind="FieldAttribute" role="FieldAttribute" relid="0x145">
+				<name>range_minimum</name>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1227</value>
+				</regnode>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>680,104</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Prompt">
+					<value>minimum</value>
+				</attribute>
+				<attribute kind="DataType">
+					<value>integer</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+			</atom>
+		</model>
+	</folder>
+</project>

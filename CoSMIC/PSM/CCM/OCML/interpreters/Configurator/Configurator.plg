@@ -1,0 +1,83 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Configurator - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\EMRETU~1\LOCALS~1\Temp\RSP98B.bat" with contents
+[
+@echo off
+%QTDIR%\bin\moc.exe options_view.h -o moc_options_view.cpp
+]
+Creating command line "C:\DOCUME~1\EMRETU~1\LOCALS~1\Temp\RSP98B.bat"
+Creating temporary file "C:\DOCUME~1\EMRETU~1\LOCALS~1\Temp\RSP98C.tmp" with contents
+[
+/nologo /MD /W3 /Gm /GR /GX /ZI /Od /I "c:\qt\include" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "QT_DLL" /D "QT_THREAD_SUPPORT" /FR"Debug/" /Fp"Debug/Configurator.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"E:\OCML\Configurator\configuratordialog.cpp"
+"E:\OCML\Configurator\main.cpp"
+"E:\OCML\Configurator\moc_category_list_view.cpp"
+"E:\OCML\Configurator\moc_configuratordialog.cpp"
+"E:\OCML\Configurator\moc_help_view.cpp"
+"E:\OCML\Configurator\moc_options_view.cpp"
+"E:\OCML\Configurator\options.cpp"
+"E:\OCML\Configurator\rule.cpp"
+"E:\OCML\Configurator\rule_validator.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\EMRETU~1\LOCALS~1\Temp\RSP98C.tmp" 
+Performing Custom Build Step on .\options_view.h
+Creating temporary file "C:\DOCUME~1\EMRETU~1\LOCALS~1\Temp\RSP98D.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib imm32.lib wsock32.lib c:\qt\lib\qt-mt230nc.lib c:\qt\lib\qtmain.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/Configurator.pdb" /debug /machine:I386 /out:"Debug/Configurator.exe" /pdbtype:sept 
+.\Debug\configuratordialog.obj
+.\Debug\main.obj
+.\Debug\moc_category_list_view.obj
+.\Debug\moc_configuratordialog.obj
+.\Debug\moc_help_view.obj
+.\Debug\moc_options_view.obj
+.\Debug\options.obj
+.\Debug\rule.obj
+.\Debug\rule_validator.obj
+]
+Creating command line "link.exe @C:\DOCUME~1\EMRETU~1\LOCALS~1\Temp\RSP98D.tmp"
+<h3>Output Window</h3>
+Compiling...
+configuratordialog.cpp
+main.cpp
+e:\ocml\configurator\initialize_tree.i(15) : warning C4101: 'flag_option' : unreferenced local variable
+e:\ocml\configurator\initialize_tree.i(11) : warning C4101: 'set_option' : unreferenced local variable
+e:\ocml\configurator\initialize_tree.i(13) : warning C4101: 'string_option' : unreferenced local variable
+e:\ocml\configurator\initialize_tree.i(14) : warning C4101: 'integer_option' : unreferenced local variable
+moc_category_list_view.cpp
+moc_configuratordialog.cpp
+moc_options_view.cpp
+Skipping... (no relevant changes detected)
+moc_help_view.cpp
+options.cpp
+rule.cpp
+rule_validator.cpp
+Linking...
+Creating temporary file "C:\DOCUME~1\EMRETU~1\LOCALS~1\Temp\RSP98E.tmp" with contents
+[
+/nologo /o"Debug/Configurator.bsc" 
+.\Debug\configuratordialog.sbr
+.\Debug\main.sbr
+.\Debug\moc_category_list_view.sbr
+.\Debug\moc_configuratordialog.sbr
+.\Debug\moc_help_view.sbr
+.\Debug\moc_options_view.sbr
+.\Debug\options.sbr
+.\Debug\rule.sbr
+.\Debug\rule_validator.sbr]
+Creating command line "bscmake.exe @C:\DOCUME~1\EMRETU~1\LOCALS~1\Temp\RSP98E.tmp"
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+Configurator.exe - 0 error(s), 4 warning(s)
+</pre>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: OCML - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\turkaye\LOCALS~1\Temp\RSP53B.tmp" with contents
+[
+/nologo /MD /W3 /GR /GX /Zi /O1 /I ".\\" /I "C:/Program Files/GME/sdk/BON/" /D "NDEBUG" /D "_ATL_STATIC_REGISTRY" /D "WIN32" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /D "BUILDER_OBJECT_NETWORK_V2" /FR"Release/" /Fp"Release/OCMLBON2Component.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /Zm200 /c 
+"C:\Documents and Settings\turkaye\My Documents\Work\OCML\Interpreter\OCML_Application.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\turkaye\LOCALS~1\Temp\RSP53B.tmp" 
+Creating temporary file "C:\DOCUME~1\turkaye\LOCALS~1\Temp\RSP53C.tmp" with contents
+[
+/nologo /MD /W3 /GR /GX /Zi /O1 /I ".\\" /I "C:/Program Files/GME/sdk/BON/" /D "NDEBUG" /D "_ATL_STATIC_REGISTRY" /D "WIN32" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /D "BUILDER_OBJECT_NETWORK_V2" /FR"Release/" /Fo"Release/" /Fd"Release/" /FD /Zm200 /c 
+"C:\Documents and Settings\turkaye\My Documents\Work\OCML\Interpreter\OCML_BON_Extension.cpp"
+"C:\Documents and Settings\turkaye\My Documents\Work\OCML\Interpreter\visitor.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\turkaye\LOCALS~1\Temp\RSP53C.tmp" 
+Creating temporary file "C:\DOCUME~1\turkaye\LOCALS~1\Temp\RSP53D.tmp" with contents
+[
+/nologo /subsystem:windows /dll /incremental:no /pdb:"Release/OCMLBON2Component.pdb" /debug /machine:I386 /def:".\Component.def" /out:"Release/OCMLBON2Component.dll" /implib:"Release/OCMLBON2Component.lib" 
+".\Release\BON.obj"
+".\Release\BON2Component.obj"
+".\Release\BONImpl.obj"
+".\Release\ComHelp.obj"
+".\Release\Common.obj"
+".\Release\ComponentDll.obj"
+".\Release\ComponentObj.obj"
+".\Release\Exceptions.obj"
+".\Release\Extensions.obj"
+".\Release\MON.obj"
+".\Release\MONImpl.obj"
+".\Release\OCML_Application.obj"
+".\Release\OCML_BON_Extension.obj"
+".\Release\OCML_Utility.obj"
+".\Release\StdAfx.obj"
+".\Release\Utils.obj"
+".\Release\visitor.obj"
+".\Release\Component.res"
+]
+Creating command line "link.exe @C:\DOCUME~1\turkaye\LOCALS~1\Temp\RSP53D.tmp"
+Creating temporary file "C:\DOCUME~1\turkaye\LOCALS~1\Temp\RSP53E.bat" with contents
+[
+@echo off
+regsvr32 /s /c ".\Release\OCMLBON2Component.dll"
+echo regsvr32 exec. time > ".\Release\regsvr32.trg"
+]
+Creating command line "C:\DOCUME~1\turkaye\LOCALS~1\Temp\RSP53E.bat"
+Compiling...
+OCML_Application.cpp
+Compiling...
+OCML_BON_Extension.cpp
+visitor.cpp
+Generating Code...
+Linking...
+   Creating library Release/OCMLBON2Component.lib and object Release/OCMLBON2Component.exp
+OCMLBON2Component.exp : warning LNK4070: /OUT:OCML.DLL directive in .EXP differs from output filename "Release/OCMLBON2Component.dll"; ignoring directive
+<h3>Output Window</h3>
+Performing registration
+Creating temporary file "C:\DOCUME~1\turkaye\LOCALS~1\Temp\RSP542.tmp" with contents
+[
+/nologo /o"Release/OCMLBON2Component.bsc" 
+".\Release\StdAfx.sbr"
+".\Release\BON.sbr"
+".\Release\BON2Component.sbr"
+".\Release\BONImpl.sbr"
+".\Release\ComHelp.sbr"
+".\Release\Common.sbr"
+".\Release\ComponentDll.sbr"
+".\Release\ComponentObj.sbr"
+".\Release\Exceptions.sbr"
+".\Release\Extensions.sbr"
+".\Release\MON.sbr"
+".\Release\MONImpl.sbr"
+".\Release\OCML_Application.sbr"
+".\Release\OCML_BON_Extension.sbr"
+".\Release\OCML_Utility.sbr"
+".\Release\Utils.sbr"
+".\Release\visitor.sbr"]
+Creating command line "bscmake.exe @C:\DOCUME~1\turkaye\LOCALS~1\Temp\RSP542.tmp"
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+OCMLBON2Component.dll - 0 error(s), 1 warning(s)
+</pre>
+</body>
+</html>
