@@ -565,7 +565,7 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
 			this->indent ();
 			this->strm_ << "task"
 				     	<< (int) inner_counter
-				        << ".thr_mgr ()->wait ();";
+				        << ".wait ();";
 			this->nl ();
 		  }
    }

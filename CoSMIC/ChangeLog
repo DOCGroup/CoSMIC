@@ -1,3 +1,15 @@
+Mon Feb 14 16:34:19 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+ 
+        * PIM/PICML/examples/BasicSP.xme:
+ 
+          Updated the BasicSP example to include a benchmark example as 
+          well.
+
+        * PIM/PICML/interpreters/BGML_Interpreter/BenchmarkStream.cpp:
+          Fixed a wait on thread manager to the corresponding wait call
+          on a ACE_Task. Thus preventing a task waiting on itself to 
+          finish.
+
 Mon Feb  7 20:37:13 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
