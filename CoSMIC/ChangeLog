@@ -1,3 +1,23 @@
+Mon Nov 08 18:28:11 2004  Gan Deng  <dengg@dre.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML.xme:
+
+          Added "out_event_port_type" attribute to the OutEventPort atom.
+
+        * PIM/PICML/interpreters/packaging/PackageVisitor.cpp:
+
+          Handled changes in metamodel to generate write XML code for
+          the "out_event_port_type".
+
+        * PIM/PICML/paradigms/PICML.xml
+        * PIM/PICML/paradigms/PICML.xmp
+        * PIM/PICML/interpreters/domain/PICML.h:
+        * PIM/PICML/interpreters/domain/PICML.cpp:
+        * PIM/PICML/interpreters/packaging/PICML.h:
+        * PIM/PICML/interpreters/packaging/PICML.cpp:
+
+          Reflect changes in the metamodel.
+
 Mon Nov 08 15:02:43 CST 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
         * PIM/PICML/examples/RobotAssemly.xme:

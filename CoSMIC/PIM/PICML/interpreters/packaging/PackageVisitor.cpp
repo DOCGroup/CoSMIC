@@ -713,8 +713,24 @@ namespace PICML
     ele->appendChild (this->createSimpleContent ("optional",
                                                  oep.optional() ? "true" : "false"));
     ele->appendChild (this->createSimpleContent ("provider", "true"));
-    ele->appendChild (this->createSimpleContent ("kind",
-                                                 oep.exclusiveProvider() ? "EventEmitter" : "EventPublisher"));
+
+    // Check whether it is a RT_Event_Channel out port
+    std::string out_port_type = oep.out_event_port_type ();
+    if (oep.exclusiveProvider())
+    {
+      if (out_port_type == "Direct_Connect")
+        ele->appendChild (this->createSimpleContent ("kind", "EventEmitter"));
+      else // must be RT Event Channel
+        ele->appendChild (this->createSimpleContent ("kind", "rtecEventEmitter"));
+    }
+    else
+    {
+      if (out_port_type == "Direct_Connect")
+        ele->appendChild (this->createSimpleContent ("kind", "EventPublisher"));
+      else // must be RT Event Channel
+        ele->appendChild (this->createSimpleContent ("kind", "rtecEventPublisher"));
+    }
+
     this->curr_->appendChild (ele);
     this->pop();
   }
