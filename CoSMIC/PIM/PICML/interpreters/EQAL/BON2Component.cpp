@@ -156,6 +156,8 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
 
   visitor.visitModelImpl (ec_configuration);
 
+  AfxMessageBox("Event channel configuration interpretation completed!");
+
 }
 
 // ====================================================
