@@ -43,10 +43,10 @@ RSC=rc.exe
 # ADD BASE RSC /l 0x409
 # ADD RSC /l 0x409 /i "$(XERCESCROOT)\include" /d "NDEBUG" /d "SVC_CONF_EXPORTER_DLL_ENTRY_EXPORTS" /d "_USRDLL" /d "WXMAKINGDLL"
 BSC32=bscmake.exe
-# ADD BSC32 /nologo /o"$(PICML_ROOT)\lib\OCMLSvcConfExporter.bsc"
+# ADD BSC32 /nologo /o"$(COSMIC_ROOT)\lib\OCMLSvcConfExporter.bsc"
 LINK32=link.exe
 # ADD BASE LINK32 /machine:IX86
-# ADD LINK32 advapi32.lib user32.lib xerces-c_2.lib /nologo /version:1.0 /subsystem:windows /dll /pdb:"$(PICML_ROOT)\bin\OCMLSvcConfExporter.pdb" /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCMLSvcConfExporter.dll" /libpath:"$(XERCESCROOT)\lib"
+# ADD LINK32 advapi32.lib user32.lib xerces-c_2.lib /nologo /version:1.0 /subsystem:windows /dll /pdb:"$(COSMIC_ROOT)\bin\OCMLSvcConfExporter.pdb" /machine:I386 /out:"..\..\..\..\..\bin\OCMLSvcConfExporter.dll" /libpath:"$(XERCESCROOT)\lib"
 # SUBTRACT LINK32 /pdb:none
 
 !ELSEIF  "$(CFG)" == "SvcConfExporter - Win32 Debug"
@@ -63,10 +63,10 @@ LINK32=link.exe
 # ADD BASE RSC /l 0x409
 # ADD RSC /l 0x409 /i "$(XERCESCROOT)\include" /d "_DEBUG" /d "SVC_CONF_EXPORTER_DLL_ENTRY_EXPORTS" /d "_USRDLL" /d "WXMAKINGDLL"
 BSC32=bscmake.exe
-# ADD BSC32 /nologo /o"$(PICML_ROOT)\lib\OCMLSvcConfExporter.bsc"
+# ADD BSC32 /nologo /o"$(COSMIC_ROOT)\lib\OCMLSvcConfExporter.bsc"
 LINK32=link.exe
 # ADD BASE LINK32 /machine:IX86
-# ADD LINK32 advapi32.lib user32.lib xerces-c_2d.lib /nologo /version:1.0 /subsystem:windows /dll /incremental:no /pdb:"$(PICML_ROOT)\bin\OCMLSvcConfExporterd.pdb" /debug /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCMLSvcConfExporterd.dll" /libpath:"$(XERCESCROOT)\lib"
+# ADD LINK32 advapi32.lib user32.lib xerces-c_2d.lib /nologo /version:1.0 /subsystem:windows /dll /incremental:no /pdb:"$(COSMIC_ROOT)\bin\OCMLSvcConfExporterd.pdb" /debug /machine:I386 /out:"..\..\..\..\..\bin\OCMLSvcConfExporterd.dll" /libpath:"$(XERCESCROOT)\lib"
 # SUBTRACT LINK32 /pdb:none
 
 !ENDIF 

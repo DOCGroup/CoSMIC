@@ -58,8 +58,8 @@ LINK32=link.exe
 # SUBTRACT LINK32 /pdb:none
 # Begin Custom Build - Performing registration
 OutDir=.\../../bin/
-TargetPath=\CoSMIC\PIM\PICML\bin\BGML.dll
-InputPath=\CoSMIC\PIM\PICML\bin\BGML.dll
+TargetPath=\CoSMIC\bin\BGML.dll
+InputPath=\CoSMIC\bin\BGML.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -94,8 +94,8 @@ LINK32=link.exe
 # ADD LINK32 mfcs42.lib MSVCRT.lib xerces-c_2.lib Zlib.lib UdmBase.lib UdmDom.lib UdmUtil.lib UdmGme.lib /nologo /subsystem:windows /dll /machine:I386 /nodefaultlib:"MSVCRT.lib" /nodefaultlib:"mfcs42.lib" /out:"../../bin/BGML.dll" /libpath:"C:\Program Files\ISIS\UDM\lib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\zlib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib"
 # Begin Custom Build - Performing registration
 OutDir=.\../../bin/
-TargetPath=\CoSMIC\PIM\PICML\bin\BGML.dll
-InputPath=\CoSMIC\PIM\PICML\bin\BGML.dll
+TargetPath=\CoSMIC\bin\BGML.dll
+InputPath=\CoSMIC\bin\BGML.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -130,8 +130,8 @@ LINK32=link.exe
 # ADD LINK32 mfcs42.lib MSVCRT.lib xerces-c_2.lib zlib.lib UdmBase.lib UdmGme.lib UdmUtil.lib UdmDom.lib /nologo /subsystem:windows /dll /machine:I386 /nodefaultlib:"MSVCRT.lib" /nodefaultlib:"mfcs42.lib" /out:"../../bin/BGML.dll" /libpath:"C:\Program Files\ISIS\UDM\Lib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib" /libpath:"C:\Program Files\ISIS\UDM\3rdparty\zlib"
 # Begin Custom Build - Performing registration
 OutDir=.\../../bin/
-TargetPath=\CoSMIC\PIM\PICML\bin\BGML.dll
-InputPath=\CoSMIC\PIM\PICML\bin\BGML.dll
+TargetPath=\CoSMIC\bin\BGML.dll
+InputPath=\CoSMIC\bin\BGML.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"

@@ -56,8 +56,8 @@ LINK32=link.exe
 # SUBTRACT LINK32 /pdb:none
 # Begin Custom Build - Performing registration
 OutDir=.\../../bin
-TargetPath=\CoSMIC\PIM\PICML\bin\Domain.dll
-InputPath=\CoSMIC\PIM\PICML\bin\Domain.dll
+TargetPath=\CoSMIC\bin\Domain.dll
+InputPath=\CoSMIC\bin\Domain.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -92,9 +92,9 @@ LINK32=link.exe
 # ADD LINK32 xerces-c_2_5.lib xerces-c_2.lib Zlib.lib UdmBase.lib UdmDom.lib UdmUtil.lib UdmGme.lib rpcrt4.lib /nologo /subsystem:windows /dll /machine:I386 /libpath:"$(XERCESCROOT)/lib" /libpath:"$(UDM_PATH)\lib" /libpath:"$(UDM_PATH)\3rdParty\zlib" /libpath:"$(UDM_PATH)\3rdParty\xerces\xerces-c2_2_0-win32\lib"
 # Begin Custom Build - Performing registration
 OutDir=.\../../bin
-TargetDir=\CoSMIC\PIM\PICML\bin
+TargetDir=\CoSMIC\bin
 TargetName=Domain
-InputPath=\CoSMIC\PIM\PICML\bin\Domain.dll
+InputPath=\CoSMIC\bin\Domain.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"

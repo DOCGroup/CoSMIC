@@ -55,8 +55,8 @@ LINK32=link.exe
 # ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"../../bin/EQAL.dll" /pdbtype:sept
 # Begin Custom Build - Performing registration
 OutDir=.\../../bin
-TargetPath=\CoSMIC\PIM\PICML\bin\EQAL.dll
-InputPath=\CoSMIC\PIM\PICML\bin\EQAL.dll
+TargetPath=\CoSMIC\bin\EQAL.dll
+InputPath=\CoSMIC\bin\EQAL.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -91,8 +91,8 @@ LINK32=link.exe
 # ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"../../bin/EQAL.dll"
 # Begin Custom Build - Performing registration
 OutDir=.\../../bin
-TargetPath=\CoSMIC\PIM\PICML\bin\EQAL.dll
-InputPath=\CoSMIC\PIM\PICML\bin\EQAL.dll
+TargetPath=\CoSMIC\bin\EQAL.dll
+InputPath=\CoSMIC\bin\EQAL.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"

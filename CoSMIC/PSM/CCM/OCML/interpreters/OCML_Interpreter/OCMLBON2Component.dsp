@@ -52,11 +52,11 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 xerces-c_2D.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCML.dll" /pdbtype:sept /libpath:"$(XERCESCROOT)\lib"
+# ADD LINK32 xerces-c_2D.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\..\..\..\..\bin\OCML.dll" /pdbtype:sept /libpath:"$(XERCESCROOT)\lib"
 # Begin Custom Build - Performing registration
-OutDir=.\..\..\..\..\..\PIM\PICML\lib
-TargetPath=\CoSMIC\PIM\PICML\bin\OCML.dll
-InputPath=\CoSMIC\PIM\PICML\bin\OCML.dll
+OutDir=.\..\..\..\..\..\lib
+TargetPath=\CoSMIC\bin\OCML.dll
+InputPath=\CoSMIC\bin\OCML.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -88,12 +88,12 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 xerces-c_2.lib /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCML.dll" /libpath:"$(XERCESCROOT)\lib"
+# ADD LINK32 xerces-c_2.lib /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\..\..\..\bin\OCML.dll" /libpath:"$(XERCESCROOT)\lib"
 # SUBTRACT LINK32 /debug
 # Begin Custom Build - Performing registration
-OutDir=.\..\..\..\..\..\PIM\PICML\lib
-TargetPath=\CoSMIC\PIM\PICML\bin\OCML.dll
-InputPath=\CoSMIC\PIM\PICML\bin\OCML.dll
+OutDir=.\..\..\..\..\..\lib
+TargetPath=\CoSMIC\bin\OCML.dll
+InputPath=\CoSMIC\bin\OCML.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"

@@ -54,8 +54,8 @@ LINK32=link.exe
 # ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"../bin/Decorator.dll" /pdbtype:sept
 # Begin Custom Build - Performing registration
 OutDir=.\../lib
-TargetPath=\CoSMIC\PIM\PICML\bin\Decorator.dll
-InputPath=\CoSMIC\PIM\PICML\bin\Decorator.dll
+TargetPath=\CoSMIC\bin\Decorator.dll
+InputPath=\CoSMIC\bin\Decorator.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -89,8 +89,8 @@ LINK32=link.exe
 # ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"../bin/Decorator.dll"
 # Begin Custom Build - Performing registration
 OutDir=.\../lib
-TargetPath=\CoSMIC\PIM\PICML\bin\Decorator.dll
-InputPath=\CoSMIC\PIM\PICML\bin\Decorator.dll
+TargetPath=\CoSMIC\bin\Decorator.dll
+InputPath=\CoSMIC\bin\Decorator.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"

@@ -55,8 +55,8 @@ LINK32=link.exe
 # ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
 # Begin Custom Build - Performing registration
 OutDir=.\../../bin
-TargetPath=\CoSMIC\PIM\PICML\bin\IDLGenerator.dll
-InputPath=\CoSMIC\PIM\PICML\bin\IDLGenerator.dll
+TargetPath=\CoSMIC\bin\IDLGenerator.dll
+InputPath=\CoSMIC\bin\IDLGenerator.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -91,8 +91,8 @@ LINK32=link.exe
 # ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386
 # Begin Custom Build - Performing registration
 OutDir=.\../../bin
-TargetPath=\CoSMIC\PIM\PICML\bin\IDLGenerator.dll
-InputPath=\CoSMIC\PIM\PICML\bin\IDLGenerator.dll
+TargetPath=\CoSMIC\bin\IDLGenerator.dll
+InputPath=\CoSMIC\bin\IDLGenerator.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"

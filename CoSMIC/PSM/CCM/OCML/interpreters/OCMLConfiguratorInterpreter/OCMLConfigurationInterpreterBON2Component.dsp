@@ -52,11 +52,11 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCMLConfigurationInterpreter.dll" /pdbtype:sept
+# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\..\..\..\..\bin\OCMLConfigurationInterpreter.dll" /pdbtype:sept
 # Begin Custom Build - Performing registration
-OutDir=.\..\..\..\..\..\PIM\PICML\lib
-TargetPath=\CoSMIC\PIM\PICML\bin\OCMLConfigurationInterpreter.dll
-InputPath=\CoSMIC\PIM\PICML\bin\OCMLConfigurationInterpreter.dll
+OutDir=.\..\..\..\..\..\lib
+TargetPath=\CoSMIC\bin\OCMLConfigurationInterpreter.dll
+InputPath=\CoSMIC\bin\OCMLConfigurationInterpreter.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -88,12 +88,12 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCMLConfigurationInterpreter.dll"
+# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\..\..\..\bin\OCMLConfigurationInterpreter.dll"
 # SUBTRACT LINK32 /debug /nodefaultlib
 # Begin Custom Build - Performing registration
-OutDir=.\..\..\..\..\..\PIM\PICML\lib
-TargetPath=\CoSMIC\PIM\PICML\bin\OCMLConfigurationInterpreter.dll
-InputPath=\CoSMIC\PIM\PICML\bin\OCMLConfigurationInterpreter.dll
+OutDir=.\..\..\..\..\..\lib
+TargetPath=\CoSMIC\bin\OCMLConfigurationInterpreter.dll
+InputPath=\CoSMIC\bin\OCMLConfigurationInterpreter.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
