@@ -1,3 +1,22 @@
+Mon Nov 08 14:01:47 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+        * PIM/PICML/interpreters/MPC/ComponentConfig.h:
+        * PIM/PICML/interpreters/cidl/ComponentConfig.h:
+        * PIM/PICML/interpreters/BGML/ComponentConfig.h:
+
+          Added tool tip text for the interpreters
+
+        * PIM/PICML/interpreters/BGML/BGML_Visitor.cpp:
+        * PIM/PICML/interpreters/BGML/Benchmark_Stream.cpp:
+        * PIM/PICML/interpreters/BGML/IDL_Util.h:
+        * PIM/PICML/interpreters/BGML/IDL_Util.cpp:
+        * PIM/PICML/interpreters/BGML/MetricEmitter.cpp:
+        * PIM/PICML/interpreters/BGML/MetricEmitter.h:
+        * PIM/PICML/interpreters/BGML/TypeEmitter.cpp:
+
+          Intrepreter changes so that now things work fine. These changes were
+          necessitated as a different code path was tested and errors cropped
+          up. Fixed this. So things should work.
+
 Mon Nov 08 11:51:11 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML.xme: 
