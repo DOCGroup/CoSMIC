@@ -91,7 +91,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 xerces-c_2.lib Zlib.lib /nologo /subsystem:windows /dll /machine:I386 /out:"Release/Component.dll" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\zlib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib"
-# ADD LINK32 xerces-c_2.lib Zlib.lib UdmBase.lib UdmDom.lib UdmUtil.lib UdmGme.lib /nologo /subsystem:windows /dll /machine:I386 /out:"../../bin/BGML.dll" /libpath:"C:\Program Files\ISIS\UDM\lib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\zlib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib"
+# ADD LINK32 mfcs42.lib MSVCRT.lib xerces-c_2.lib Zlib.lib UdmBase.lib UdmDom.lib UdmUtil.lib UdmGme.lib /nologo /subsystem:windows /dll /machine:I386 /nodefaultlib:"MSVCRT.lib" /nodefaultlib:"mfcs42.lib" /out:"../../bin/BGML.dll" /libpath:"C:\Program Files\ISIS\UDM\lib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\zlib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib"
 # Begin Custom Build - Performing registration
 OutDir=.\../../bin/
 TargetPath=\CoSMIC\PIM\PICML\bin\BGML.dll
