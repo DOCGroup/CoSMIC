@@ -1,3 +1,20 @@
+Tue Jul 20 15:47:25 2004  Arvind S. Krishna  <arvindk@dre.vanderbilt.edu>
+
+        * PICML/paradigms/PICML.xmp:
+          Added the Benchmark generation paradigm into PICML. As of now
+          only the xmp file has been modified
+
+        * PICML/paradigms/icons/Average.bmp:
+        * PICML/paradigms/icons/Min.bmp:
+        * PICML/paradigms/icons/Max.bmp:
+        * PICML/paradigms/icons/Max.bmp:
+        * PICML/paradigms/icons/Jitter.bmp:
+        * PICML/paradigms/icons/Latency.bmp:
+        * PICML/paradigms/icons/Throughput.bmp:
+        * PICML/paradigms/icons/timer.bmp:
+        * PICML/paradigms/icons/operationref.bmp:
+          Icons used in the paradigm
+
 Thu Jul 15 18:03:06 2004  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * PICML/paradigms/PICML.xmp:
