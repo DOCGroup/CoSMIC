@@ -54,6 +54,10 @@ public:
 
   virtual void      initialize( IMgaFCO *obj, CComPtr<IMgaMetaFCO>& metaFco );
   virtual void      destroy();
+	CComPtr<IMgaFCO>	getFCO() const;
+	objtype_enum			getType() const;
+	CRect			        getBoxLocation( bool bWithBorder = false ) const;
+	long					    getBorderWidth( bool bActive = true ) const;
 	virtual CSize			getPreferredSize() const;
   virtual void      setLocation( const CRect& cRect );
   virtual CRect     getLocation() const;
@@ -69,7 +73,9 @@ protected:
 	CComPtr<IMgaMetaFCO>	m_metaFco;
 	CString		            m_name;
   CString               m_metaName;
+	objtype_enum					m_eType;
 	CMaskedBitmap         m_bitmap;
+	long							    m_lBorderWidth;
 
 	COLORREF	            m_color;
 	COLORREF	            m_nameColor;
@@ -138,6 +144,9 @@ public:
   virtual void  setLocation( const CRect& cRect );
   virtual void  draw( CDC* pDC );
   virtual void  LoadBitmap();
+
+	vector<PortDecorator*>  getPorts() const;
+	PortDecorator*			    getPort( CComPtr<IMgaFCO> ) const;
 
 private:
 	void loadPorts();

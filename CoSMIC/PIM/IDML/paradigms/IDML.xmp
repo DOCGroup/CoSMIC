@@ -1365,14 +1365,14 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
             <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
          </constraint>
          <constraint name="ValidSwitchedAggregatePartCardinality11" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "Label" ) -> size in
-                     (partCount >= 1)]]>
-            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
-         </constraint>
-         <constraint name="ValidSwitchedAggregatePartCardinality12" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
                      (partCount = 1)]]>
             <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
+         </constraint>
+         <constraint name="ValidSwitchedAggregatePartCardinality12" eventmask = "0x0" depth = "1" priority = "1">
+            <![CDATA[let partCount = self.parts( "Label" ) -> size in
+                     (partCount >= 1)]]>
+            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
             <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>

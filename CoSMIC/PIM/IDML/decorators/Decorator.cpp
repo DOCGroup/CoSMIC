@@ -160,26 +160,51 @@ STDMETHODIMP CDecorator::GetLabelLocation(long *sx, long *sy, long *ex, long *ey
 	return S_OK;
 }
 
-STDMETHODIMP CDecorator::GetPortLocation(IMgaFCO *fco, long *sx, long *sy, long *ex, long *ey)
+STDMETHODIMP CDecorator::GetPortLocation(IMgaFCO *pFCO, long *sx, long *sy, long *ex, long *ey)
 {
-	//
-	// TODO: Return the location of the specified port if ports are supported in the decorator
-	//
 	VERIFY_INIT;
 	VERIFY_LOCSET;
+
+	PortDecorator* pPort = NULL;
+	switch ( m_pDecorator->getType() ) {
+		case OBJTYPE_MODEL :
+			pPort = ( (ComponentDecorator*) m_pDecorator )->getPort( pFCO );
+			break;
+		default :
+			break;
+	}
+	if ( pPort ) {
+		CRect cRect = pPort->getBoxLocation();
+		*sx = cRect.left;
+		*sy = cRect.top;
+		*ex = cRect.right;
+		*ey = cRect.bottom;
+		return S_OK;
+	}
 
 	return E_DECORATOR_PORTNOTFOUND;
 }
 
 STDMETHODIMP CDecorator::GetPorts(IMgaFCOs **portFCOs)
 {
-	//
-	// TODO: Return a collection of mga objects represented as ports.
-	//
 	VERIFY_INIT;
-	CComPtr<IMgaFCOs> coll;
-	COMTHROW(coll.CoCreateInstance(OLESTR("Mga.MgaFCOs")));
-	*portFCOs = coll.Detach();
+	CComPtr<IMgaFCOs> spFCOs;
+	COMTHROW(spFCOs.CoCreateInstance(OLESTR("Mga.MgaFCOs")));
+
+	vector<PortDecorator*>	vecPorts;
+	switch ( m_pDecorator->getType() ) {
+		case OBJTYPE_MODEL :
+			vecPorts = ( (ComponentDecorator*) m_pDecorator )->getPorts();
+			break;
+		default :
+			break;
+	}
+
+	for ( unsigned int i = 0 ; i < vecPorts.size() ; i++ )
+		COMTHROW( spFCOs->Append( vecPorts[ i ]->getFCO() ) );
+
+	*portFCOs = spFCOs.Detach();
+
 	return S_OK;
 }
 

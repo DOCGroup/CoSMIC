@@ -154,6 +154,15 @@ SOURCE=.\DecoratorLib.idl
 # Begin Source File
 
 SOURCE=.\DecoratorUtil.cpp
+
+!IF  "$(CFG)" == "Decorator - Win32 Debug"
+
+# ADD CPP /YX
+
+!ELSEIF  "$(CFG)" == "Decorator - Win32 Release"
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 

@@ -34,6 +34,7 @@ static const int HEIGHT_MODEL = 71;
 DecoratorBase::DecoratorBase() 
   : m_mgaFco( 0 ),
     m_metaFco( 0 ),
+    m_lBorderWidth( 0 ),
     m_color( GME_BLACK_COLOR ),
     m_nameColor( GME_BLACK_COLOR )
 {
@@ -63,6 +64,7 @@ DecoratorBase::initialize( IMgaFCO *obj, CComPtr<IMgaMetaFCO>& metaFco )
 		CComBSTR bstr;
 		COMTHROW( m_mgaFco->get_Name( &bstr ) );
 		m_name = bstr;
+		COMTHROW( m_mgaFco->get_ObjType( &m_eType ) );
 	}
 	else {
 		CComBSTR bstr;
@@ -70,6 +72,7 @@ DecoratorBase::initialize( IMgaFCO *obj, CComPtr<IMgaMetaFCO>& metaFco )
 		if ( bstr.Length() == 0 ) {
 			bstr.Empty();
 			COMTHROW( m_metaFco->get_Name( &bstr ) );
+		  COMTHROW( m_metaFco->get_ObjType( &m_eType ) );
 		}
 		m_name = bstr;
 	}
@@ -80,6 +83,37 @@ DecoratorBase::destroy()
 {
   m_metaFco = NULL;
   m_mgaFco = NULL;
+}
+
+CComPtr<IMgaFCO>
+DecoratorBase::getFCO() const
+{
+	return m_mgaFco;
+}
+
+objtype_enum
+DecoratorBase::getType() const
+{
+	return m_eType;
+}
+
+CRect
+DecoratorBase::getBoxLocation( bool bWithBorder ) const
+{
+	if ( bWithBorder )
+		return m_rect;
+	CRect cRect = m_rect;
+	cRect.DeflateRect( getBorderWidth( false ), getBorderWidth( false ) );
+	return cRect;
+}
+
+long
+DecoratorBase::getBorderWidth( bool bActive ) const
+{
+	long lBorderWidth = m_lBorderWidth;
+//	if ( ( m_bActive || bActive ) && m_bHasViolation )
+//		lBorderWidth += WIDTH_BORDERVIOLATION + 1;
+	return lBorderWidth;
 }
 
 CSize
@@ -463,6 +497,29 @@ ComponentDecorator::draw(CDC* pDC)
 		m_vecRightPorts[ i ]->draw( pDC );
   }
 	pDC->SetViewportOrg( ptOrigin );
+}
+
+vector<PortDecorator*>
+ComponentDecorator::getPorts() const
+{
+	vector<PortDecorator*> vecPorts( m_vecLeftPorts );
+	for ( unsigned int i = 0 ; i < m_vecRightPorts.size() ; i++ )
+			vecPorts.push_back( m_vecRightPorts[ i ] );
+	return vecPorts;
+}
+
+PortDecorator*
+ComponentDecorator::getPort( CComPtr<IMgaFCO> spFCO ) const
+{
+  unsigned int i;
+
+	for ( i = 0 ; i < m_vecLeftPorts.size() ; i++ )
+		if ( m_vecLeftPorts[ i ]->getFCO() == spFCO )
+			return m_vecLeftPorts[ i ];
+	for ( i = 0 ; i < m_vecRightPorts.size() ; i++ )
+		if ( m_vecRightPorts[ i ]->getFCO() == spFCO )
+			return m_vecRightPorts[ i ];
+	return NULL;
 }
 
 void
