@@ -1,0 +1,1561 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project SYSTEM "mga.dtd">
+
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri May 07 18:04:05 2004" mdate="Tue May 11 00:43:08 2004" metaguid="{4B81A39E-DEAD-BEEF-FEED-DAD000000001}" metaname="PICML">
+	<name>picml_instance_mmv20040505_gme4</name>
+	<comment></comment>
+	<author></author>
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x22" kind="RootFolder">
+		<name>picml_instance_mmv20040505_gme4</name>
+		<folder id="id-006a-00000002" relid="0x3" childrelidcntr="0x1" kind="ComponentImplementations">
+			<name>NewComponentImplementations</name>
+			<model id="id-0065-00000001" kind="ComponentImplementationContainer" relid="0x1" childrelidcntr="0x1">
+				<name>NewComponentImplementationContainer</name>
+				<model id="id-0065-00000002" kind="ComponentAssembly" role="ComponentAssembly" relid="0x1" childrelidcntr="0x1f">
+					<name>ComponentAssembly1</name>
+					<regnode name="PartRegs" isopaque="yes">
+						<value></value>
+						<regnode name="Package" isopaque="yes">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>53,25</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="UUID" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="label" status="meta">
+						<value></value>
+					</attribute>
+					<model id="id-0065-00000003" kind="Requirement" role="Requirement" relid="0x16" childrelidcntr="0x1">
+						<name>Correlator</name>
+						<regnode name="PartRegs" isopaque="yes">
+							<value></value>
+							<regnode name="Package" isopaque="yes">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>613,46</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="resourceType" status="meta">
+							<value></value>
+						</attribute>
+						<model id="id-0065-00000034" kind="Property" role="Property" relid="0x1" childrelidcntr="0x1">
+							<name>Correlator</name>
+							<regnode name="PartRegs">
+								<value></value>
+								<regnode name="Package">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>32,32</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<model id="id-0065-00000035" kind="Any" role="Any" relid="0x1" childrelidcntr="0x1">
+								<name>Correlator</name>
+								<regnode name="PartRegs">
+									<value></value>
+									<regnode name="Package">
+										<value></value>
+										<regnode name="Position" isopaque="yes">
+											<value>25,18</value>
+										</regnode>
+									</regnode>
+								</regnode>
+								<attribute kind="DataValue">
+									<value>My correlator string</value>
+								</attribute>
+								<model id="id-0065-00000036" kind="DataType" role="DataType" relid="0x1" childrelidcntr="0x1">
+									<name>Correlator</name>
+									<regnode name="PartRegs">
+										<value></value>
+										<regnode name="Package">
+											<value></value>
+											<regnode name="Position" isopaque="yes">
+												<value>42,28</value>
+											</regnode>
+										</regnode>
+									</regnode>
+									<atom id="id-0066-00000003" kind="PredefinedType" role="PredefinedType" relid="0x1">
+										<name>Correlator</name>
+										<regnode name="PartRegs">
+											<value></value>
+											<regnode name="Package">
+												<value></value>
+												<regnode name="Position" isopaque="yes">
+													<value>34,23</value>
+												</regnode>
+											</regnode>
+										</regnode>
+										<attribute kind="which_type">
+											<value>STRING</value>
+										</attribute>
+									</atom>
+								</model>
+							</model>
+						</model>
+					</model>
+					<model id="id-0065-00000010" kind="ComponentDef" role="ComponentDef" derivedfrom="id-0065-00000005" isinstance="yes" isprimary="yes" relid="0x7" childrelidcntr="0x0">
+						<name>MyComponentDef1_Inst2</name>
+						<regnode name="PartRegs" isopaque="yes">
+							<value></value>
+							<regnode name="Package" isopaque="yes">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>336,78</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="UUID" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="label" status="meta">
+							<value></value>
+						</attribute>
+						<model id="id-0065-00000011" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0065-00000006" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>RequiredRequestPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="multiple_connections" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000012" kind="InEventPort" role="InEventPort" derivedfrom="id-0065-00000007" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>InEventPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000013" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0065-00000008" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>ProvidedRequestPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000014" kind="InEventPort" role="InEventPort" derivedfrom="id-0065-00000009" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>InEventPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000015" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0065-0000000a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>ProvidedRequestPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000016" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0065-0000000b" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>RequiredRequestPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="multiple_connections" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000017" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0065-0000000c" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>OutEventPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="single_destination" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000018" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0065-0000000d" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>OutEventPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="single_destination" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+					</model>
+					<model id="id-0065-00000019" kind="ComponentDef" role="ComponentDef" derivedfrom="id-0065-00000005" isinstance="yes" isprimary="yes" relid="0x6" childrelidcntr="0x0">
+						<name>MyComponentDef1_Inst1</name>
+						<regnode name="PartRegs" isopaque="yes">
+							<value></value>
+							<regnode name="Package" isopaque="yes">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>56,78</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="UUID" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="label" status="meta">
+							<value></value>
+						</attribute>
+						<model id="id-0065-0000001a" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0065-00000006" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>RequiredRequestPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="multiple_connections" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-0000001b" kind="InEventPort" role="InEventPort" derivedfrom="id-0065-00000007" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>InEventPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-0000001c" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0065-00000008" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>ProvidedRequestPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-0000001d" kind="InEventPort" role="InEventPort" derivedfrom="id-0065-00000009" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>InEventPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-0000001e" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0065-0000000a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>ProvidedRequestPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-0000001f" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0065-0000000b" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>RequiredRequestPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="multiple_connections" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000020" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0065-0000000c" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>OutEventPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="single_destination" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000021" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0065-0000000d" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>OutEventPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="single_destination" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+					</model>
+					<model id="id-0065-00000022" kind="ComponentDef" role="ComponentDef" derivedfrom="id-0065-00000005" isinstance="yes" isprimary="yes" relid="0x8" childrelidcntr="0x0">
+						<name>MyComponentDef1_Inst3</name>
+						<regnode name="PartRegs" isopaque="yes">
+							<value></value>
+							<regnode name="Package" isopaque="yes">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>49,288</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="UUID" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="label" status="meta">
+							<value></value>
+						</attribute>
+						<model id="id-0065-00000023" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0065-00000006" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>RequiredRequestPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="multiple_connections" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000024" kind="InEventPort" role="InEventPort" derivedfrom="id-0065-00000007" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>InEventPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000025" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0065-00000008" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>ProvidedRequestPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000026" kind="InEventPort" role="InEventPort" derivedfrom="id-0065-00000009" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>InEventPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000027" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0065-0000000a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>ProvidedRequestPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000028" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0065-0000000b" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>RequiredRequestPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="multiple_connections" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000029" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0065-0000000c" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>OutEventPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="single_destination" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-0000002a" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0065-0000000d" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>OutEventPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="single_destination" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+					</model>
+					<model id="id-0065-0000002b" kind="ComponentDef" role="ComponentDef" derivedfrom="id-0065-00000005" isinstance="yes" isprimary="yes" relid="0x9" childrelidcntr="0x0">
+						<name>MyComponentDef1_Inst4</name>
+						<regnode name="PartRegs" isopaque="yes">
+							<value></value>
+							<regnode name="Package" isopaque="yes">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>336,288</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="UUID" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="label" status="meta">
+							<value></value>
+						</attribute>
+						<model id="id-0065-0000002c" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0065-00000006" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>RequiredRequestPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="multiple_connections" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-0000002d" kind="InEventPort" role="InEventPort" derivedfrom="id-0065-00000007" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>InEventPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-0000002e" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0065-00000008" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>ProvidedRequestPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-0000002f" kind="InEventPort" role="InEventPort" derivedfrom="id-0065-00000009" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>InEventPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000030" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0065-0000000a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>ProvidedRequestPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000031" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0065-0000000b" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>RequiredRequestPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="multiple_connections" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000032" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0065-0000000c" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>OutEventPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="single_destination" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000033" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0065-0000000d" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>OutEventPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="single_destination" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+					</model>
+					<model id="id-0065-00000037" kind="Requirement" role="Requirement" relid="0x1e" childrelidcntr="0x0">
+						<name>Requirement</name>
+						<regnode name="PartRegs">
+							<value></value>
+							<regnode name="Package">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>900,284</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="resourceType" status="meta">
+							<value></value>
+						</attribute>
+					</model>
+					<atom id="id-0066-00000001" kind="PublishConnector" role="PublishConnector" relid="0xe">
+						<name>PublishConnector</name>
+						<regnode name="PartRegs" isopaque="yes">
+							<value></value>
+							<regnode name="Package" isopaque="yes">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>266,203</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</atom>
+					<connection id="id-0068-00000001" kind="EmitConnector" role="EmitConnector" relid="0xf">
+						<name>EmitConnector</name>
+						<connpoint role="dst" target="id-0065-00000012"/>
+						<connpoint role="src" target="id-0065-00000020"/>
+					</connection>
+					<connection id="id-0068-00000002" kind="Invocation" role="Invocation" relid="0x12">
+						<name>Invocation</name>
+						<connpoint role="src" target="id-0065-00000011"/>
+						<connpoint role="dst" target="id-0065-0000001c"/>
+					</connection>
+					<connection id="id-0068-00000003" kind="OutEventPortPublish" role="OutEventPortPublish" relid="0x13">
+						<name>OutEventPortPublish</name>
+						<connpoint role="src" target="id-0065-00000021"/>
+						<connpoint role="dst" target="id-0066-00000001"/>
+					</connection>
+					<connection id="id-0068-00000004" kind="InEventPortConsume" role="InEventPortConsume" relid="0x14">
+						<name>InEventPortConsume</name>
+						<connpoint role="dst" target="id-0065-00000014"/>
+						<connpoint role="src" target="id-0066-00000001"/>
+					</connection>
+					<connection id="id-0068-00000005" kind="InEventPortConsume" role="InEventPortConsume" relid="0x15">
+						<name>InEventPortConsume</name>
+						<connpoint role="dst" target="id-0065-0000002d"/>
+						<connpoint role="src" target="id-0066-00000001"/>
+					</connection>
+					<connection id="id-0068-00000006" kind="ConnectionRequirements" role="ConnectionRequirements" relid="0x17">
+						<name>ConnectionRequirements</name>
+						<connpoint role="dst" target="id-0065-00000003"/>
+						<connpoint role="src" target="id-0066-00000001"/>
+					</connection>
+					<connection id="id-0068-00000007" kind="InEventPortConsume" role="InEventPortConsume" relid="0x18">
+						<name>InEventPortConsume</name>
+						<connpoint role="dst" target="id-0065-0000002f"/>
+						<connpoint role="src" target="id-0066-00000001"/>
+					</connection>
+					<connection id="id-0068-00000008" kind="Invocation" role="Invocation" relid="0x19">
+						<name>Invocation</name>
+						<connpoint role="dst" target="id-0065-00000025"/>
+						<connpoint role="src" target="id-0065-0000002c"/>
+					</connection>
+					<connection id="id-0068-00000009" kind="Invocation" role="Invocation" relid="0x1b">
+						<name>Invocation</name>
+						<connpoint role="dst" target="id-0065-00000025"/>
+						<connpoint role="src" target="id-0065-00000031"/>
+					</connection>
+					<connection id="id-0068-0000000a" kind="Invocation" role="Invocation" relid="0x1c">
+						<name>Invocation</name>
+						<connpoint role="src" target="id-0065-00000011"/>
+						<connpoint role="dst" target="id-0065-0000001e"/>
+					</connection>
+					<connection id="id-0068-0000000c" kind="ConnectionRequirements" role="ConnectionRequirements" relid="0x1f">
+						<name>ConnectionRequirements</name>
+						<connpoint role="dst" target="id-0065-00000037"/>
+						<connpoint role="src" target="id-0066-00000001"/>
+					</connection>
+				</model>
+			</model>
+		</folder>
+		<folder id="id-006a-00000003" relid="0x4" childrelidcntr="0x1" kind="IDLFiles">
+			<name>NewIDLFiles</name>
+			<model id="id-0065-00000004" kind="IDLFile" relid="0x1" childrelidcntr="0x1">
+				<name>NewIDLFile</name>
+				<model id="id-0065-00000005" kind="ComponentDef" role="ComponentDef" relid="0x1" childrelidcntr="0xa">
+					<name>MyComponentDef1</name>
+					<regnode name="PartRegs" isopaque="yes">
+						<value></value>
+						<regnode name="InterfaceDefinition" isopaque="yes">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>93,57</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="UUID" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="label" status="meta">
+						<value></value>
+					</attribute>
+					<model id="id-0065-00000006" kind="RequiredRequestPort" role="RequiredRequestPort" relid="0x3" childrelidcntr="0x0">
+						<name>RequiredRequestPort1</name>
+						<regnode name="PartRegs" isopaque="yes">
+							<value></value>
+							<regnode name="InterfaceDefinition" isopaque="yes">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>80,29</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="exclusiveProvider" status="meta">
+							<value>false</value>
+						</attribute>
+						<attribute kind="exclusiveUser" status="meta">
+							<value>false</value>
+						</attribute>
+						<attribute kind="multiple_connections" status="meta">
+							<value>false</value>
+						</attribute>
+						<attribute kind="optional" status="meta">
+							<value>false</value>
+						</attribute>
+					</model>
+					<model id="id-0065-00000007" kind="InEventPort" role="InEventPort" relid="0x5" childrelidcntr="0x0">
+						<name>InEventPort1</name>
+						<regnode name="PartRegs" isopaque="yes">
+							<value></value>
+							<regnode name="InterfaceDefinition" isopaque="yes">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>80,192</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="exclusiveProvider" status="meta">
+							<value>false</value>
+						</attribute>
+						<attribute kind="exclusiveUser" status="meta">
+							<value>false</value>
+						</attribute>
+						<attribute kind="optional" status="meta">
+							<value>false</value>
+						</attribute>
+					</model>
+					<model id="id-0065-00000008" kind="ProvidedRequestPort" role="ProvidedRequestPort" relid="0x1" childrelidcntr="0x0">
+						<name>ProvidedRequestPort1</name>
+						<regnode name="PartRegs" isopaque="yes">
+							<value></value>
+							<regnode name="InterfaceDefinition" isopaque="yes">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>591,31</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="exclusiveProvider" status="meta">
+							<value>false</value>
+						</attribute>
+						<attribute kind="exclusiveUser" status="meta">
+							<value>false</value>
+						</attribute>
+						<attribute kind="optional" status="meta">
+							<value>false</value>
+						</attribute>
+					</model>
+					<model id="id-0065-00000009" kind="InEventPort" role="InEventPort" relid="0x6" childrelidcntr="0x0">
+						<name>InEventPort2</name>
+						<regnode name="PartRegs" isopaque="yes">
+							<value></value>
+							<regnode name="InterfaceDefinition" isopaque="yes">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>80,276</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="exclusiveProvider" status="meta">
+							<value>false</value>
+						</attribute>
+						<attribute kind="exclusiveUser" status="meta">
+							<value>false</value>
+						</attribute>
+						<attribute kind="optional" status="meta">
+							<value>false</value>
+						</attribute>
+					</model>
+					<model id="id-0065-0000000a" kind="ProvidedRequestPort" role="ProvidedRequestPort" relid="0x2" childrelidcntr="0x0">
+						<name>ProvidedRequestPort2</name>
+						<regnode name="PartRegs" isopaque="yes">
+							<value></value>
+							<regnode name="InterfaceDefinition" isopaque="yes">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>591,108</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="exclusiveProvider" status="meta">
+							<value>false</value>
+						</attribute>
+						<attribute kind="exclusiveUser" status="meta">
+							<value>false</value>
+						</attribute>
+						<attribute kind="optional" status="meta">
+							<value>false</value>
+						</attribute>
+					</model>
+					<model id="id-0065-0000000b" kind="RequiredRequestPort" role="RequiredRequestPort" relid="0x4" childrelidcntr="0x0">
+						<name>RequiredRequestPort2</name>
+						<regnode name="PartRegs" isopaque="yes">
+							<value></value>
+							<regnode name="InterfaceDefinition" isopaque="yes">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>80,106</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="exclusiveProvider" status="meta">
+							<value>false</value>
+						</attribute>
+						<attribute kind="exclusiveUser" status="meta">
+							<value>false</value>
+						</attribute>
+						<attribute kind="multiple_connections" status="meta">
+							<value>false</value>
+						</attribute>
+						<attribute kind="optional" status="meta">
+							<value>false</value>
+						</attribute>
+					</model>
+					<model id="id-0065-0000000c" kind="OutEventPort" role="OutEventPort" relid="0x9" childrelidcntr="0x0">
+						<name>OutEventPort1</name>
+						<regnode name="PartRegs" isopaque="yes">
+							<value></value>
+							<regnode name="InterfaceDefinition" isopaque="yes">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>589,183</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="exclusiveProvider" status="meta">
+							<value>false</value>
+						</attribute>
+						<attribute kind="exclusiveUser" status="meta">
+							<value>false</value>
+						</attribute>
+						<attribute kind="optional" status="meta">
+							<value>false</value>
+						</attribute>
+						<attribute kind="single_destination" status="meta">
+							<value>false</value>
+						</attribute>
+					</model>
+					<model id="id-0065-0000000d" kind="OutEventPort" role="OutEventPort" relid="0xa" childrelidcntr="0x0">
+						<name>OutEventPort2</name>
+						<regnode name="PartRegs" isopaque="yes">
+							<value></value>
+							<regnode name="InterfaceDefinition" isopaque="yes">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>589,281</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="exclusiveProvider" status="meta">
+							<value>false</value>
+						</attribute>
+						<attribute kind="exclusiveUser" status="meta">
+							<value>false</value>
+						</attribute>
+						<attribute kind="optional" status="meta">
+							<value>false</value>
+						</attribute>
+						<attribute kind="single_destination" status="meta">
+							<value>false</value>
+						</attribute>
+					</model>
+				</model>
+			</model>
+		</folder>
+		<folder id="id-006a-00000004" relid="0x2" childrelidcntr="0x1" kind="TopLevelPackageFolder">
+			<name>NewTopLevelPackageFolder</name>
+			<model id="id-0065-0000000e" kind="TopLevelPackageContainer" relid="0x1" childrelidcntr="0x2">
+				<name>NewTopLevelPackageContainer</name>
+				<atom id="id-0066-00000002" kind="TopLevelPackage" role="TopLevelPackage" relid="0x1">
+					<name>TopLevelPackage</name>
+					<regnode name="PartRegs" isopaque="yes">
+						<value></value>
+						<regnode name="Package" isopaque="yes">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>198,184</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</atom>
+				<reference id="id-0067-00000001" kind="PackageConfigurationReference" role="PackageConfigurationReference" relid="0x2">
+					<name>PackageConfigurationReference</name>
+					<regnode name="PartRegs" isopaque="yes">
+						<value></value>
+						<regnode name="Package" isopaque="yes">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>466,151</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</reference>
+			</model>
+		</folder>
+		<folder id="id-006a-00000005" relid="0x1" childrelidcntr="0x1" kind="ComponentTypes">
+			<name>NewComponentTypes</name>
+			<model id="id-0065-0000000f" kind="ComponentContainer" relid="0x1" childrelidcntr="0x6">
+				<name>NewComponentContainer</name>
+			</model>
+		</folder>
+		<folder id="id-006a-00000006" relid="0x22" childrelidcntr="0x1" kind="ComponentImplementations">
+			<name>ImportedComponentImplementations</name>
+			<model id="id-0065-00000038" kind="ComponentImplementationContainer" relid="0x1" childrelidcntr="0x1">
+				<name>ImportedComponentImplementationContainer</name>
+				<model id="id-0065-00000039" kind="ComponentAssembly" role="ComponentAssembly" relid="0x1" childrelidcntr="0x12">
+					<name>ImportedComponentAssembly</name>
+					<attribute kind="UUID" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="label" status="meta">
+						<value></value>
+					</attribute>
+					<model id="id-0065-0000003a" kind="ComponentDef" role="ComponentDef" derivedfrom="id-0065-00000005" isinstance="yes" isprimary="yes" relid="0x1" childrelidcntr="0x0">
+						<name>MyComponentDef1_Inst1</name>
+						<regnode name="PartRegs">
+							<value></value>
+							<regnode name="Package">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>63,70</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="UUID" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="label" status="meta">
+							<value></value>
+						</attribute>
+						<model id="id-0065-0000003b" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0065-0000000d" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>OutEventPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="single_destination" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-0000003c" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0065-0000000c" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>OutEventPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="single_destination" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-0000003d" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0065-0000000b" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>RequiredRequestPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="multiple_connections" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-0000003e" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0065-0000000a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>ProvidedRequestPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-0000003f" kind="InEventPort" role="InEventPort" derivedfrom="id-0065-00000009" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>InEventPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000040" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0065-00000008" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>ProvidedRequestPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000041" kind="InEventPort" role="InEventPort" derivedfrom="id-0065-00000007" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>InEventPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000042" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0065-00000006" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>RequiredRequestPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="multiple_connections" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+					</model>
+					<model id="id-0065-00000043" kind="ComponentDef" role="ComponentDef" derivedfrom="id-0065-00000005" isinstance="yes" isprimary="yes" relid="0x2" childrelidcntr="0x0">
+						<name>MyComponentDef1_Inst2</name>
+						<regnode name="PartRegs">
+							<value></value>
+							<regnode name="Package">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>434,70</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="UUID" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="label" status="meta">
+							<value></value>
+						</attribute>
+						<model id="id-0065-00000044" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0065-0000000b" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>RequiredRequestPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="multiple_connections" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000045" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0065-0000000c" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>OutEventPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="single_destination" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000046" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0065-0000000d" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>OutEventPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="single_destination" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000047" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0065-0000000a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>ProvidedRequestPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000048" kind="InEventPort" role="InEventPort" derivedfrom="id-0065-00000009" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>InEventPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000049" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0065-00000008" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>ProvidedRequestPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-0000004a" kind="InEventPort" role="InEventPort" derivedfrom="id-0065-00000007" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>InEventPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-0000004b" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0065-00000006" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>RequiredRequestPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="multiple_connections" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+					</model>
+					<model id="id-0065-0000004c" kind="ComponentDef" role="ComponentDef" derivedfrom="id-0065-00000005" isinstance="yes" isprimary="yes" relid="0x3" childrelidcntr="0x0">
+						<name>MyComponentDef1_Inst3</name>
+						<regnode name="PartRegs">
+							<value></value>
+							<regnode name="Package">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>70,350</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="UUID" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="label" status="meta">
+							<value></value>
+						</attribute>
+						<model id="id-0065-0000004d" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0065-0000000b" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>RequiredRequestPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="multiple_connections" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-0000004e" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0065-0000000c" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>OutEventPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="single_destination" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-0000004f" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0065-0000000d" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>OutEventPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="single_destination" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000050" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0065-0000000a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>ProvidedRequestPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000051" kind="InEventPort" role="InEventPort" derivedfrom="id-0065-00000009" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>InEventPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000052" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0065-00000008" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>ProvidedRequestPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000053" kind="InEventPort" role="InEventPort" derivedfrom="id-0065-00000007" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>InEventPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000054" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0065-00000006" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>RequiredRequestPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="multiple_connections" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+					</model>
+					<model id="id-0065-00000055" kind="ComponentDef" role="ComponentDef" derivedfrom="id-0065-00000005" isinstance="yes" isprimary="yes" relid="0x4" childrelidcntr="0x0">
+						<name>MyComponentDef1_Inst4</name>
+						<regnode name="PartRegs">
+							<value></value>
+							<regnode name="Package">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>434,350</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="UUID" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="label" status="meta">
+							<value></value>
+						</attribute>
+						<model id="id-0065-00000056" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0065-0000000b" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>RequiredRequestPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="multiple_connections" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000057" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0065-0000000c" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>OutEventPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="single_destination" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000058" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0065-0000000d" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>OutEventPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="single_destination" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-00000059" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0065-0000000a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>ProvidedRequestPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-0000005a" kind="InEventPort" role="InEventPort" derivedfrom="id-0065-00000009" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>InEventPort2</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-0000005b" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0065-00000008" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>ProvidedRequestPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-0000005c" kind="InEventPort" role="InEventPort" derivedfrom="id-0065-00000007" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>InEventPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+						<model id="id-0065-0000005d" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0065-00000006" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>RequiredRequestPort1</name>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="multiple_connections" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</model>
+					</model>
+					<model id="id-0065-0000005e" kind="Requirement" role="Requirement" relid="0x9" childrelidcntr="0x1">
+						<name>Correlator</name>
+						<regnode name="PartRegs">
+							<value></value>
+							<regnode name="Package">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>732,39</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="resourceType" status="meta">
+							<value></value>
+						</attribute>
+						<model id="id-0065-0000005f" kind="Property" role="Property" relid="0x1" childrelidcntr="0x1">
+							<name>Correlator</name>
+							<model id="id-0065-00000060" kind="Any" role="Any" relid="0x1" childrelidcntr="0x1">
+								<name>Correlator</name>
+								<attribute kind="DataValue" status="meta">
+									<value></value>
+								</attribute>
+								<model id="id-0065-00000061" kind="DataType" role="DataType" relid="0x1" childrelidcntr="0x1">
+									<name>Correlator</name>
+									<atom id="id-0066-00000006" kind="PredefinedType" role="PredefinedType" relid="0x1">
+										<name>Correlator</name>
+										<attribute kind="which_type" status="meta">
+											<value>UNSIGNED_LONG</value>
+										</attribute>
+									</atom>
+								</model>
+							</model>
+						</model>
+					</model>
+					<atom id="id-0066-00000004" kind="PublishConnector" role="PublishConnector" relid="0x5">
+						<name>PublishConnector</name>
+						<regnode name="PartRegs">
+							<value></value>
+							<regnode name="Package">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>294,105</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</atom>
+					<atom id="id-0066-00000005" kind="PublishConnector" role="PublishConnector" relid="0x6">
+						<name>PublishConnector</name>
+						<regnode name="PartRegs">
+							<value></value>
+							<regnode name="Package">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>336,238</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</atom>
+					<connection id="id-0068-0000000d" kind="OutEventPortPublish" role="OutEventPortPublish" relid="0x7">
+						<name>OutEventPortPublish</name>
+						<connpoint role="src" target="id-0065-0000003c"/>
+						<connpoint role="dst" target="id-0066-00000004"/>
+					</connection>
+					<connection id="id-0068-0000000e" kind="OutEventPortPublish" role="OutEventPortPublish" relid="0x8">
+						<name>OutEventPortPublish</name>
+						<connpoint role="src" target="id-0065-0000003b"/>
+						<connpoint role="dst" target="id-0066-00000005"/>
+					</connection>
+					<connection id="id-0068-0000000f" kind="ConnectionRequirements" role="ConnectionRequirements" relid="0xa">
+						<name>ConnectionRequirements</name>
+						<connpoint role="dst" target="id-0065-0000005e"/>
+						<connpoint role="src" target="id-0066-00000005"/>
+					</connection>
+					<connection id="id-0068-00000010" kind="InEventPortConsume" role="InEventPortConsume" relid="0xb">
+						<name>InEventPortConsume</name>
+						<connpoint role="dst" target="id-0065-0000004a"/>
+						<connpoint role="src" target="id-0066-00000004"/>
+					</connection>
+					<connection id="id-0068-00000011" kind="InEventPortConsume" role="InEventPortConsume" relid="0xc">
+						<name>InEventPortConsume</name>
+						<connpoint role="dst" target="id-0065-00000048"/>
+						<connpoint role="src" target="id-0066-00000005"/>
+					</connection>
+					<connection id="id-0068-00000012" kind="InEventPortConsume" role="InEventPortConsume" relid="0xd">
+						<name>InEventPortConsume</name>
+						<connpoint role="dst" target="id-0065-0000005a"/>
+						<connpoint role="src" target="id-0066-00000005"/>
+					</connection>
+					<connection id="id-0068-00000013" kind="InEventPortConsume" role="InEventPortConsume" relid="0xe">
+						<name>InEventPortConsume</name>
+						<connpoint role="dst" target="id-0065-0000005c"/>
+						<connpoint role="src" target="id-0066-00000005"/>
+					</connection>
+					<connection id="id-0068-00000014" kind="Invocation" role="Invocation" relid="0xf">
+						<name>Invocation</name>
+						<connpoint role="dst" target="id-0065-0000003e"/>
+						<connpoint role="src" target="id-0065-0000004b"/>
+					</connection>
+					<connection id="id-0068-00000015" kind="Invocation" role="Invocation" relid="0x10">
+						<name>Invocation</name>
+						<connpoint role="dst" target="id-0065-00000040"/>
+						<connpoint role="src" target="id-0065-0000004b"/>
+					</connection>
+					<connection id="id-0068-00000016" kind="Invocation" role="Invocation" relid="0x11">
+						<name>Invocation</name>
+						<connpoint role="dst" target="id-0065-00000052"/>
+						<connpoint role="src" target="id-0065-00000056"/>
+					</connection>
+					<connection id="id-0068-00000017" kind="Invocation" role="Invocation" relid="0x12">
+						<name>Invocation</name>
+						<connpoint role="dst" target="id-0065-00000052"/>
+						<connpoint role="src" target="id-0065-0000005d"/>
+					</connection>
+				</model>
+			</model>
+		</folder>
+	</folder>
+</project>

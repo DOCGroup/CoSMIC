@@ -1,3 +1,97 @@
+Tue May 11 03:10:55 2004  Gabriele Trombetti  <gtrombetti@nospam.invalid.domain>
+
+          Added the following files:
+
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/CadenaScenario2PICMLAssembly.mga:
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/CadenaScenario2PICMLAssembly.xme:
+          GReAT transformation files (import) [GReAT 1.2.4, GME 4.3.17]
+
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/Gen/GenCS2PA.h:
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/Gen/GenCS2PA.cpp:
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/Gen/GenCS2PA_main.cpp:
+          Generated C++ code for building stand-alone translators (import)
+
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/CadenaScenario2PICMLAssembly.h:
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/CadenaScenario2PICMLAssembly.udm:
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/CadenaScenario2PICMLAssembly.xsd:
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/CadenaScenario2PICMLAssembly.cpp:
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/CrossLinks.h:
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/CrossLinks.xsd:
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/CrossLinks.cpp:
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/PICML.h:
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/PICML.cpp:
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/PICML.xsd:
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/cadena_scenario.h:
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/cadena_scenario.xsd:
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/cadena_scenario.cpp:
+          GReAT/UDM related files (import)
+
+        * PICML2Cadena/PICMLAssembly2CadenaScenario/Gen/GenPA2CS.h:
+        * PICML2Cadena/PICMLAssembly2CadenaScenario/Gen/GenPA2CS.cpp:
+        * PICML2Cadena/PICMLAssembly2CadenaScenario/Gen/GenPA2CS_main.cpp:
+          Generated C++ code for building stand-alone translators (export)
+
+        * PICML2Cadena/PICMLAssembly2CadenaScenario/PICMLAssembly2CadenaScenario.mga:
+        * PICML2Cadena/PICMLAssembly2CadenaScenario/PICMLAssembly2CadenaScenario.xme:
+          GReAT transformation files (export) [GReAT 1.2.4, GME 4.3.17]
+
+        * PICML2Cadena/PICMLAssembly2CadenaScenario/UDM/CrossLinks.h:
+        * PICML2Cadena/PICMLAssembly2CadenaScenario/UDM/CrossLinks.xsd:
+        * PICML2Cadena/PICMLAssembly2CadenaScenario/UDM/CrossLinks.cpp:
+        * PICML2Cadena/PICMLAssembly2CadenaScenario/UDM/PICML.h:
+        * PICML2Cadena/PICMLAssembly2CadenaScenario/UDM/PICML.cpp:
+        * PICML2Cadena/PICMLAssembly2CadenaScenario/UDM/PICML.xsd:
+        * PICML2Cadena/PICMLAssembly2CadenaScenario/UDM/PICMLAssembly2CadenaScenario.h:
+        * PICML2Cadena/PICMLAssembly2CadenaScenario/UDM/PICMLAssembly2CadenaScenario.udm:
+        * PICML2Cadena/PICMLAssembly2CadenaScenario/UDM/PICMLAssembly2CadenaScenario.xsd:
+        * PICML2Cadena/PICMLAssembly2CadenaScenario/UDM/PICMLAssembly2CadenaScenario.cpp:
+        * PICML2Cadena/PICMLAssembly2CadenaScenario/UDM/cadena_scenario.h:
+        * PICML2Cadena/PICMLAssembly2CadenaScenario/UDM/cadena_scenario.xsd:
+        * PICML2Cadena/PICMLAssembly2CadenaScenario/UDM/cadena_scenario.cpp:
+          GReAT/UDM related files (export)
+
+        * PICML2Cadena/examples/example1.mga:
+        * PICML2Cadena/examples/example1.xme:
+        * PICML2Cadena/examples/example1_exported.xml:
+        * PICML2Cadena/examples/example1_exported_reimported.mga:
+        * PICML2Cadena/examples/example1_exported_reimported.xme:
+          Example files of an export and reimport
+
+        * PICML2Cadena/paradigms/PICML/IDML.mga:
+        * PICML2Cadena/paradigms/PICML/IDML.xme:
+        * PICML2Cadena/paradigms/PICML/IDML.xmp:
+        * PICML2Cadena/paradigms/PICML/PICML.mga:
+        * PICML2Cadena/paradigms/PICML/PICML.xme:
+        * PICML2Cadena/paradigms/PICML/PICML.xmp:
+          Paradigm files for PICML and IDML that this GReAT transformation
+          corresponds to.
+          These are basically the versions committed by Kitty on date 2004-05-05 
+          but I ported them to GME4. IDML also needed to be run through UMT.
+
+        * PICML2Cadena/paradigms/cadena_scenario/cadena_scenario.h:
+        * PICML2Cadena/paradigms/cadena_scenario/cadena_scenario.mga:
+        * PICML2Cadena/paradigms/cadena_scenario/cadena_scenario.xme:
+        * PICML2Cadena/paradigms/cadena_scenario/cadena_scenario.xml:
+        * PICML2Cadena/paradigms/cadena_scenario/cadena_scenario.xsd:
+        * PICML2Cadena/paradigms/cadena_scenario/cadena_scenario.cpp:
+          Cadena scenario UML diagram and schema. Slightly modified: 
+          some leading underscores in the .xsd due to the new UDM, and
+          meta-name changed for the mga file (dash to underscore).
+
+
+          Removed the following files:
+
+        * PICML2Cadena/cadena-scenario.mga:
+        * PICML2Cadena/cadena-scenario.xme:
+        * PICML2Cadena/cadena-scenario.xml:
+        * PICML2Cadena/cadena_scenario.h:
+        * PICML2Cadena/cadena_scenario.xsd:
+        * PICML2Cadena/cadena_scenario.cpp:
+          Older versions. Newer versions moved to
+          PICML2Cadena/paradigms/cadena_scenario/
+
+          End of removed files.
+
 Mon Apr 26 10:43:10 2004  Jaiganesh B  <jai@dre.vanderbilt.edu>
 
         * MIDCESS/interpreters/BON2Component.cpp:

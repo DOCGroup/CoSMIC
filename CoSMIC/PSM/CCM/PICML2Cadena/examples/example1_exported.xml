@@ -1,0 +1,50 @@
+<Scenario _id="id11ea" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cadena_scenario.xsd">
+	<ComponentInstance _id="id1203" name="MyComponentDef1_Inst2" type="MyComponentDef1">
+		<EventSink _id="id1230" Name="InEventPort1" sourcesConnections="id12d1"/>
+		<EventSink _id="id1231" Name="InEventPort2" sourcesConnections="id1271"/>
+		<EventSource _id="id1214" Name="OutEventPort1"/>
+		<EventSource _id="id1222" Name="OutEventPort2"/>
+		<Facet _id="id123f" Name="ProvidedRequestPort1"/>
+		<Facet _id="id1240" Name="ProvidedRequestPort2"/>
+		<Receptacle _id="id124e" Name="RequiredRequestPort1" facets="id12bc id12c0"/>
+		<Receptacle _id="id124f" Name="RequiredRequestPort2"/>
+	</ComponentInstance>
+	<ComponentInstance _id="id1206" name="MyComponentDef1_Inst1" type="MyComponentDef1">
+		<EventSink _id="id1232" Name="InEventPort1"/>
+		<EventSink _id="id1233" Name="InEventPort2"/>
+		<EventSource _id="id1223" Name="OutEventPort1" sinksConnections="id12d1"/>
+		<EventSource _id="id1224" Name="OutEventPort2" sinksConnections="id1271"/>
+		<Facet _id="id1241" Name="ProvidedRequestPort1" receptacles="id12bc"/>
+		<Facet _id="id1242" Name="ProvidedRequestPort2" receptacles="id12c0"/>
+		<Receptacle _id="id1250" Name="RequiredRequestPort1"/>
+		<Receptacle _id="id1251" Name="RequiredRequestPort2"/>
+	</ComponentInstance>
+	<ComponentInstance _id="id1207" name="MyComponentDef1_Inst3" type="MyComponentDef1">
+		<EventSink _id="id1234" Name="InEventPort1"/>
+		<EventSink _id="id1235" Name="InEventPort2"/>
+		<EventSource _id="id1225" Name="OutEventPort1"/>
+		<EventSource _id="id1226" Name="OutEventPort2"/>
+		<Facet _id="id1243" Name="ProvidedRequestPort1" receptacles="id12c1 id12c2"/>
+		<Facet _id="id1244" Name="ProvidedRequestPort2"/>
+		<Receptacle _id="id1252" Name="RequiredRequestPort1"/>
+		<Receptacle _id="id1253" Name="RequiredRequestPort2"/>
+	</ComponentInstance>
+	<ComponentInstance _id="id1208" name="MyComponentDef1_Inst4" type="MyComponentDef1">
+		<EventSink _id="id1236" Name="InEventPort1" sourcesConnections="id1271"/>
+		<EventSink _id="id1237" Name="InEventPort2" sourcesConnections="id1271"/>
+		<EventSource _id="id1227" Name="OutEventPort1"/>
+		<EventSource _id="id1228" Name="OutEventPort2"/>
+		<Facet _id="id1245" Name="ProvidedRequestPort1"/>
+		<Facet _id="id1246" Name="ProvidedRequestPort2"/>
+		<Receptacle _id="id1254" Name="RequiredRequestPort1" facets="id12c1"/>
+		<Receptacle _id="id1255" Name="RequiredRequestPort2" facets="id12c2"/>
+	</ComponentInstance>
+	<ESSConnection _id="id1271" sinks="id1231 id1236 id1237" sources="id1224" Correlator="correlator mapping not yet implemented"/>
+	<ESSConnection _id="id12d1" sinks="id1230" sources="id1223" Correlator=""/>
+	<FRConnection _id="id12bc" facets_end_="id1241" receptacles_end_="id124e"/>
+	<FRConnection _id="id12c0" facets_end_="id1242" receptacles_end_="id124e"/>
+	<FRConnection _id="id12c1" facets_end_="id1243" receptacles_end_="id1254"/>
+	<FRConnection _id="id12c2" facets_end_="id1243" receptacles_end_="id1255"/>
+</Scenario>
+
+
