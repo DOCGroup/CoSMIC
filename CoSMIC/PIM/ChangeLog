@@ -1,3 +1,30 @@
+Thu May 20 11:53:28 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * IDML/*:
+        * IDML/paradigms/IDML-Meta.xme:
+        * IDML/paradigms/IDML.xmp:
+        * IDML/paradimgs/Icons/*.bmp:
+
+          Moved all the IDML files to their own directory. Also
+          made minor changes to constraints and turned off name
+          display on a couple of icons.
+          
+        * IDML/examples/new_test.xme:
+        
+          Example model.
+          
+        * IDML/paradigms/Icons/file.bmp:
+        * IDML/paradigms/Icons/prefix.bmp:
+        * IDML/paradigms/Icons/id.bmp:
+        * IDML/paradigms/Icons/version.bmp:
+        
+          Removed these icons - no longer used.
+          
+        * IDML/paradigms/Icons/getexception.bmp:
+        * IDML/paradigms/Icons/setexception.bmp:
+        
+          Swapped these, they had been saved to the wrong file.
+
 Sun May 16 23:14:49 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PICML/paradifms/IDML-Meta.xme:

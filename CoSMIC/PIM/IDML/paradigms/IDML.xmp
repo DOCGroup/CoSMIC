@@ -431,6 +431,7 @@ endif]]>
             <dispname>A reference cannot be null</dispname>
          </constraint>
          <regnode name = "icon" value ="lookupkey.bmp"></regnode>
+         <regnode name = "isNameEnabled" value ="false"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "ValueDef"></pointeritem>
          </pointerspec>
@@ -667,7 +668,7 @@ endif]]>
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="boxed.bmp"></regnode>
          <constraint name="NoBoxedValueDef" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[let boxedref = parts ("NamedTypeRef") in
+            <![CDATA[let boxedref = parts ("SingleNamedTypeRef") in
 boxedref->size > 0 implies boxedref->forAll (
     x : gme::Reference | let ref = x.refersTo () in
     ref.kindName <> "ValueDef" and ref.kindName <> "EventDef"
@@ -713,6 +714,10 @@ boxedref->size > 0 implies boxedref->forAll (
          <constraint name="NoDuplicateImmediateParents" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[self.referenceParts (Inherits)->forAll (x, y : gme::Reference | x <> y implies x.refersTo () <> y.refersTo ())]]>
             <dispname>Immediate parents must all be unique</dispname>
+         </constraint>
+         <constraint name="NoInheritsAndSupports" eventmask = "0x0" depth = "1" priority = "2">
+            <![CDATA[parts ("Inherits")->size () > 0 implies parts ("Supports")->size () = 0]]>
+            <dispname>A component that has a base component may not also support interfaces</dispname>
          </constraint>
          <constraint name="NoRecursiveInheritance" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[self.inheritsRecursive (self)->forAll (x : gme::Model | x <> self)]]>
@@ -956,6 +961,10 @@ endif]]>
          <constraint name="NoRecursiveInheritance" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[self.inheritsRecursive (self)->forAll (x : gme::Model | x <> self)]]>
             <dispname>There is a cycle in the inheritance graph</dispname>
+         </constraint>
+         <constraint name="NotTruncatableAndCustom" eventmask = "0x0" depth = "1" priority = "2">
+            <![CDATA[custom implies not truncatable]]>
+            <dispname>An EventDef or a ValueDef cannot be both custom and truncatable</dispname>
          </constraint>
          <constraint name="UniqueInheritableDeclNames" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[(parts () - parts ("Inherits") - parts ("Supports"))->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
@@ -1402,6 +1411,7 @@ endif]]>
       <model name = "ReturnType" metaref = "1640" >
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="return.bmp"></regnode>
+            <regnode name = "isNameEnabled" value ="false"></regnode>
          <constraint name="ValidParameterPartCardinality19" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "ParameterType" ) -> size + self.parts( "SinglePredefinedType" ) -> size + self.parts( "SingleNamedTypeRef" ) -> size in
                      (partCount = 1)]]>
@@ -1582,7 +1592,8 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="value.bmp"></regnode>
          <constraint name="ConcreteValueParent" eventmask = "0x0" depth = "1" priority = "2">
-            <![CDATA[let concrete_parents = self.parts ("Inherits")->select (x : gme::Model | x.oclAsType (ValueDef).abstract = false)
+            <![CDATA[let concrete_parents = 
+  self.parts ("Inherits")->select (x : gme::Reference | x.refersTo ().oclAsType (ValueDef).abstract = false)
   in
 if (self.abstract = true) then
   concrete_parents->size = 0
@@ -1602,6 +1613,10 @@ endif]]>
          <constraint name="NoRecursiveInheritance" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[self.inheritsRecursive (self)->forAll (x : gme::Model | x <> self)]]>
             <dispname>There is a cycle in the inheritance graph</dispname>
+         </constraint>
+         <constraint name="NotTruncatableAndCustom" eventmask = "0x0" depth = "1" priority = "2">
+            <![CDATA[custom implies not truncatable]]>
+            <dispname>An EventDef or a ValueDef cannot be both custom and truncatable</dispname>
          </constraint>
          <constraint name="UniqueInheritableDeclNames" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[(parts () - parts ("Inherits") - parts ("Supports"))->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>

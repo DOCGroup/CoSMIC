@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Sun Apr 04 15:38:09 2004" mdate="Sun May 16 18:54:06 2004" metaguid="{66BBE690-DEAD-BEEF-FEED-DAD000000001}" metaname="MetaGME">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Sun Apr 04 15:38:09 2004" mdate="Tue May 18 21:45:34 2004" metaguid="{66BBE690-DEAD-BEEF-FEED-DAD000000001}" metaname="MetaGME">
 	<name>IDML</name>
 	<comment></comment>
 	<author></author>
@@ -20718,7 +20718,7 @@ endif]]></value>
 				<connpoint role="dst" target="id-0066-00000009"/>
 				<connpoint role="src" target="id-0067-0000003e"/>
 			</connection>
-			<set id="id-0069-00000004" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-0000009d id-0067-00000021 id-0066-0000000a id-0067-0000001d id-0067-0000001c id-0067-00000019 id-0066-00000002 id-0066-00000001 id-0066-00000004 id-0066-00000009 id-0066-00000007 id-0067-00000031 id-0067-0000003e id-0067-0000003a id-0067-0000003f id-0067-00000040 id-0067-00000030">
+			<set id="id-0069-00000004" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-00000030 id-0067-00000031 id-0067-0000003a id-0067-0000003f id-0067-0000003e id-0067-00000040 id-0066-0000009d id-0067-00000021 id-0066-0000000a id-0067-0000001d id-0067-0000001c id-0067-00000019 id-0066-00000002 id-0066-00000001 id-0066-00000004 id-0066-00000009 id-0066-00000007">
 				<name>InterfaceDefinition</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -22792,7 +22792,7 @@ TYPE_KIND</value>
 				<connpoint role="dst" target="id-0066-000000bb"/>
 				<connpoint role="src" target="id-0069-00000005"/>
 			</connection>
-			<set id="id-0069-00000005" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000012 id-0066-00000010 id-0066-00000016 id-0066-0000001a id-0066-00000013 id-0066-000000bd id-0066-000000b8 id-0066-000000b7 id-0066-000000bc id-0066-000000b9">
+			<set id="id-0069-00000005" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000bc id-0066-000000bd id-0066-000000b9 id-0066-000000b8 id-0066-000000b7 id-0066-0000001a id-0066-00000013 id-0066-00000012 id-0066-00000010 id-0066-00000016">
 				<name>AnonymousAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -24330,7 +24330,7 @@ self.parts ("FixedSizeCollection") + self.parts ("VariableSizeCollection")]]></v
 					<value>It is redundant and illegal to box a ValueDef or an EventDef</value>
 				</attribute>
 				<attribute kind="ConstraintEqn">
-					<value><![CDATA[let boxedref = parts ("NamedTypeRef") in
+					<value><![CDATA[let boxedref = parts ("SingleNamedTypeRef") in
 boxedref->size > 0 implies boxedref->forAll (
     x : gme::Reference | let ref = x.refersTo () in
     ref.kindName <> "ValueDef" and ref.kindName <> "EventDef"
@@ -25515,7 +25515,7 @@ boxedref->size > 0 implies boxedref->forAll (
 				<connpoint role="dst" target="id-0066-0000002a"/>
 				<connpoint role="src" target="id-0067-0000003d"/>
 			</connection>
-			<set id="id-0069-00000006" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000030 id-0067-00000024 id-0066-0000002b id-0066-0000002a id-0066-00000023 id-0066-00000029 id-0066-00000028 id-0066-00000027 id-0066-00000026 id-0067-00000001 id-0066-00000025 id-0066-00000024 id-0066-00000022 id-0066-000000b5 id-0067-0000003d id-0067-0000003b">
+			<set id="id-0069-00000006" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-0000003b id-0067-0000003d id-0066-000000b5 id-0066-00000023 id-0066-00000030 id-0067-00000024 id-0066-0000002b id-0066-0000002a id-0066-00000029 id-0066-00000028 id-0066-00000027 id-0066-00000026 id-0067-00000001 id-0066-00000025 id-0066-00000024 id-0066-00000022">
 				<name>TypeDefinintionAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -25531,7 +25531,7 @@ boxedref->size > 0 implies boxedref->forAll (
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-00000004" kind="ParadigmSheet" relid="0x4" childrelidcntr="0xff">
+		<model id="id-0065-00000004" kind="ParadigmSheet" relid="0x4" childrelidcntr="0x101">
 			<name>InheritableTypes</name>
 			<attribute kind="AuthorInformation" status="meta">
 				<value></value>
@@ -25561,7 +25561,7 @@ boxedref->size > 0 implies boxedref->forAll (
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>505,488</value>
+							<value>491,516</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -25813,7 +25813,7 @@ boxedref->size > 0 implies boxedref->forAll (
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>624,643</value>
+							<value>610,643</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -25888,7 +25888,7 @@ boxedref->size > 0 implies boxedref->forAll (
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>743,643</value>
+							<value>729,643</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -25963,7 +25963,7 @@ boxedref->size > 0 implies boxedref->forAll (
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>682,593</value>
+							<value>668,593</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -26645,8 +26645,8 @@ boxedref->size > 0 implies boxedref->forAll (
 				<attribute kind="IsHotspotEnabled" status="meta">
 					<value>true</value>
 				</attribute>
-				<attribute kind="IsNameEnabled" status="meta">
-					<value>true</value>
+				<attribute kind="IsNameEnabled">
+					<value>false</value>
 				</attribute>
 				<attribute kind="IsTypeShown" status="meta">
 					<value>false</value>
@@ -26683,7 +26683,7 @@ boxedref->size > 0 implies boxedref->forAll (
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>281,510</value>
+							<value>253,510</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -26827,7 +26827,7 @@ boxedref->size > 0 implies boxedref->forAll (
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>638,480</value>
+							<value>624,480</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -27338,7 +27338,7 @@ boxedref->size > 0 implies boxedref->forAll (
 					<regnode name="Constraints">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>405,510</value>
+							<value>405,538</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -27493,7 +27493,7 @@ endif]]></value>
 					<regnode name="Constraints">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>895,657</value>
+							<value>881,657</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -27519,7 +27519,8 @@ endif]]></value>
 					<value>An abstract ValueDef can have no concrete parent, if it is concrete it can have at most one.</value>
 				</attribute>
 				<attribute kind="ConstraintEqn">
-					<value><![CDATA[let concrete_parents = self.parts ("Inherits")->select (x : gme::Model | x.oclAsType (ValueDef).abstract = false)
+					<value><![CDATA[let concrete_parents = 
+  self.parts ("Inherits")->select (x : gme::Reference | x.refersTo ().oclAsType (ValueDef).abstract = false)
   in
 if (self.abstract = true) then
   concrete_parents->size = 0
@@ -27758,7 +27759,7 @@ self.parts ("FactoryOperation") + self.parts ("LookupOperation")]]></value>
 					<regnode name="Constraints">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>811,566</value>
+							<value>818,573</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -28158,7 +28159,7 @@ supported_set->iterate (ref; accu = Set{} |
 					<regnode name="Constraints">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>538,608</value>
+							<value>524,608</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -28185,6 +28186,81 @@ supported_set->iterate (ref; accu = Set{} |
 				</attribute>
 				<attribute kind="ConstraintEqn">
 					<value>not local or not abstract</value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority" status="meta">
+					<value>2</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-000000bf" kind="Constraint" role="Constraint" relid="0x100">
+				<name>NotTruncatableAndCustom</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>804,510</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>An EventDef or a ValueDef cannot be both custom and truncatable</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value>custom implies not truncatable</value>
 				</attribute>
 				<attribute kind="ConstraintParam" status="meta">
 					<value></value>
@@ -29876,7 +29952,15 @@ supported_set->iterate (ref; accu = Set{} |
 				<connpoint role="dst" target="id-0066-00000040"/>
 				<connpoint role="src" target="id-0066-0000009f"/>
 			</connection>
-			<set id="id-0069-00000007" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000a5 id-0067-00000005 id-0067-00000006 id-0066-00000054 id-0066-00000041 id-0067-00000004 id-0066-0000004a id-0066-00000049 id-0066-00000040 id-0066-00000042 id-0067-00000009 id-0067-00000008 id-0067-00000007 id-0066-00000057 id-0066-0000003e id-0066-0000003d id-0066-00000056 id-0066-00000052 id-0066-00000051 id-0066-00000050 id-0067-00000025 id-0066-0000004c id-0067-00000029 id-0067-00000026 id-0067-00000027 id-0067-00000028">
+			<connection id="id-0068-0000016c" kind="HasConstraint" role="HasConstraint" relid="0x101">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>We</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000053"/>
+				<connpoint role="src" target="id-0066-000000bf"/>
+			</connection>
+			<set id="id-0069-00000007" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000a5 id-0067-00000005 id-0067-00000006 id-0066-00000054 id-0066-00000041 id-0066-0000003e id-0066-0000003d id-0066-00000056 id-0066-00000052 id-0066-00000051 id-0066-00000050 id-0067-00000025 id-0066-0000004c id-0067-00000029 id-0067-00000026 id-0067-00000027 id-0067-00000028 id-0067-00000004 id-0066-0000004a id-0066-00000049 id-0066-00000040 id-0066-00000042 id-0067-00000009 id-0067-00000008 id-0067-00000007 id-0066-00000057">
 				<name>InheritableAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -29986,8 +30070,8 @@ supported_set->iterate (ref; accu = Set{} |
 				<attribute kind="IsHotspotEnabled" status="meta">
 					<value>true</value>
 				</attribute>
-				<attribute kind="IsNameEnabled" status="meta">
-					<value>true</value>
+				<attribute kind="IsNameEnabled">
+					<value>false</value>
 				</attribute>
 				<attribute kind="IsTypeInfoShown" status="meta">
 					<value>true</value>
@@ -31551,7 +31635,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 				<connpoint role="src" target="id-0066-0000005f"/>
 				<connpoint role="dst" target="id-0067-0000003c"/>
 			</connection>
-			<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-0000005c id-0066-0000005b id-0066-00000060 id-0066-0000005e id-0066-00000066 id-0066-00000064 id-0067-0000000c id-0066-00000063 id-0066-00000062 id-0066-0000005a id-0066-0000005d id-0067-00000039 id-0066-00000065">
+			<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-00000039 id-0066-0000005a id-0066-0000005d id-0066-0000005c id-0066-0000005b id-0066-00000060 id-0066-0000005e id-0066-00000066 id-0066-00000064 id-0067-0000000c id-0066-00000063 id-0066-00000062 id-0066-00000065">
 				<name>OperationAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -31567,7 +31651,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-00000006" kind="ParadigmSheet" relid="0x6" childrelidcntr="0x4c">
+		<model id="id-0065-00000006" kind="ParadigmSheet" relid="0x6" childrelidcntr="0x50">
 			<name>ComponentType</name>
 			<attribute kind="AuthorInformation" status="meta">
 				<value></value>
@@ -31858,7 +31942,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<regnode name="Constraints">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>650,538</value>
+							<value>643,538</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -32172,6 +32256,81 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					</regnode>
 				</regnode>
 			</atom>
+			<atom id="id-0066-000000c0" kind="Constraint" role="Constraint" relid="0x4d">
+				<name>NoInheritsAndSupports</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>804,97</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>A component that has a base component may not also support interfaces</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value><![CDATA[parts ("Inherits")->size () > 0 implies parts ("Supports")->size () = 0]]></value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority" status="meta">
+					<value>2</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
 			<reference id="id-0067-0000000d" kind="ModelProxy" role="ModelProxy" relid="0xf" referred="id-0066-00000041">
 				<name>EventDef</name>
 				<regnode name="PartRegs" isopaque="yes">
@@ -32378,22 +32537,6 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 				<connpoint role="src" target="id-0066-000000a8"/>
 				<connpoint role="dst" target="id-0067-0000000d"/>
 			</connection>
-			<connection id="id-0068-00000111" kind="HasConstraint" role="HasConstraint" relid="0x41">
-				<name>HasConstraint</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ws</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-0000006e"/>
-				<connpoint role="src" target="id-0066-000000a0"/>
-			</connection>
-			<connection id="id-0068-00000112" kind="HasConstraint" role="HasConstraint" relid="0x42">
-				<name>HasConstraint</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ns</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-000000a0"/>
-				<connpoint role="dst" target="id-0066-000000a7"/>
-			</connection>
 			<connection id="id-0068-00000113" kind="HasConstraint" role="HasConstraint" relid="0x43">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
@@ -32467,7 +32610,31 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 				<connpoint role="dst" target="id-0066-00000069"/>
 				<connpoint role="src" target="id-0066-000000a9"/>
 			</connection>
-			<set id="id-0069-00000002" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-0000006d id-0066-000000a8 id-0066-00000069 id-0066-0000006e id-0066-000000a7">
+			<connection id="id-0068-0000016d" kind="HasConstraint" role="HasConstraint" relid="0x4e">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>We</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000069"/>
+				<connpoint role="src" target="id-0066-000000c0"/>
+			</connection>
+			<connection id="id-0068-0000016e" kind="HasConstraint" role="HasConstraint" relid="0x4f">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-000000a0"/>
+				<connpoint role="dst" target="id-0066-000000a7"/>
+			</connection>
+			<connection id="id-0068-0000016f" kind="HasConstraint" role="HasConstraint" relid="0x50">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ws</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-0000006e"/>
+				<connpoint role="src" target="id-0066-000000a0"/>
+			</connection>
+			<set id="id-0069-00000002" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000a7 id-0066-000000a8 id-0066-0000006d id-0066-0000006e id-0066-00000069">
 				<name>ComponentAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
