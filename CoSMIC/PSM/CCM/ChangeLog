@@ -1,3 +1,9 @@
+Wed Oct 27 15:20:43 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * OCML/paradigms/TAO_Options.xme: 
+
+          The default values for TAO options OCML model is entered.
+
 Wed Oct 27 14:44:35 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * OCML/paradigms/OCML.xme:
