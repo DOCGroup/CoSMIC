@@ -1,3 +1,21 @@
+Wed Mar 30 22:51:19 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.h:
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:  Fixed bug
+          which required users to uniquely name multiple instances of a
+          single component within the same assembly.  Fixed bug where the
+          top-level exploded assembly didn't contain connections between
+          components in sub-assemblies.  Thanks to Steven D Baker
+          <steven_d_baker@raytheon.com>  for reporting these.
+
+        * PIM/PICML/interpreters/picmllib.mpb:  Added current directory,
+          .\ explicitly to the include path.
+
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.h:
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.cpp:
+
+          Removed these leftover erroneous files.
+
 Mon Mar 14 14:50:39 2005  Arvind S. Krishna  <arvindk@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.h:

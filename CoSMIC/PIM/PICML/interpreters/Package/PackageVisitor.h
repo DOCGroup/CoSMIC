@@ -225,10 +225,6 @@ namespace PICML
     std::string         outputPath_;
     std::stack<DOMElement*> curr_stack_;
 
-    // Maintain association between component instances and corresponding
-    // xmi:id assigned to them.
-    std::map<std::string, std::string> idMap_;
-
     // Maintain associations between PublishConnector and event publishers
     std::map<std::string, OutEventPort> publishers_;
 

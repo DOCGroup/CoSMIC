@@ -987,9 +987,12 @@ namespace PICML
 
     std::set<Component> comps = assembly.Component_kind_children();
     std::vector<ComponentAssembly> nasms = assembly.ComponentAssembly_kind_children();
+    std::vector<ComponentAssembly> assemblies;
+    assemblies.push_back (assembly);
     while (!nasms.empty())
       {
         ComponentAssembly rassembly = nasms.back();
+        assemblies.push_back (rassembly);
         nasms.pop_back();
         std::set<Component> rcomps = rassembly.Component_kind_children();
         comps.insert (rcomps.begin(), rcomps.end());
@@ -1005,9 +1008,8 @@ namespace PICML
         DOMElement* instance = this->doc_->createElement (XStr ("instance"));
         std::string uniqueName = comp.getPath ("/",false,true);
         instance->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
-        this->idMap_[std::string (comp.name())] = uniqueName;
         instance->appendChild (this->createSimpleContent ("name",
-                                                          comp.name()));
+                                                          uniqueName));
         std::string refName = comp.name();
         refName += ".cpd";
         DOMElement* refEle = this->doc_->createElement (XStr ("package"));
@@ -1015,57 +1017,53 @@ namespace PICML
         instance->appendChild (refEle);
         this->curr_->appendChild (instance);
       }
-    {
-      const std::set<invoke> invokes = assembly.invoke_kind_children();
-      for (std::set<invoke>::const_iterator iter = invokes.begin();
-           iter != invokes.end();
-           ++iter)
-        {
-          invoke iv = *iter;
-          iv.Accept (*this);
-        }
-    }
-    {
-      const std::set<emit> emits = assembly.emit_kind_children();
-      for (std::set<emit>::const_iterator iter = emits.begin();
-           iter != emits.end();
-           ++iter)
-        {
-          emit ev = *iter;
-          ev.Accept (*this);
-        }
-    }
-    {
-      const std::set<publish> publishers = assembly.publish_kind_children();
-      for (std::set<publish>::const_iterator iter = publishers.begin();
-           iter != publishers.end();
-           ++iter)
-        {
-          publish ev = *iter;
-          ev.Accept (*this);
-        }
-    }
-    {
-      const std::set<deliverTo> deliverTos = assembly.deliverTo_kind_children();
-      for (std::set<deliverTo>::const_iterator iter = deliverTos.begin();
-           iter != deliverTos.end();
-           ++iter)
-        {
-          deliverTo dv = *iter;
-          dv.Accept (*this);
-        }
-    }
-    {
-      const std::set<PublishConnector>
-        connectors = assembly.PublishConnector_kind_children();
-      for (std::set<PublishConnector>::const_iterator iter = connectors.begin();
-           iter != connectors.end();
-           ++iter)
-        {
-          PublishConnector conn = *iter;
-          conn.Accept (*this);
-        }
-    }
+    for (std::vector<ComponentAssembly>::iterator iter = assemblies.begin();
+         iter != assemblies.end();
+         ++iter)
+      {
+        ComponentAssembly subasm = *iter;
+        const std::set<invoke> invokes = subasm.invoke_kind_children();
+        for (std::set<invoke>::const_iterator iter = invokes.begin();
+             iter != invokes.end();
+             ++iter)
+          {
+            invoke iv = *iter;
+            iv.Accept (*this);
+          }
+        const std::set<emit> emits = subasm.emit_kind_children();
+        for (std::set<emit>::const_iterator iter = emits.begin();
+             iter != emits.end();
+             ++iter)
+          {
+            emit ev = *iter;
+            ev.Accept (*this);
+          }
+        const std::set<publish> publishers = subasm.publish_kind_children();
+        for (std::set<publish>::const_iterator iter = publishers.begin();
+             iter != publishers.end();
+             ++iter)
+          {
+            publish ev = *iter;
+            ev.Accept (*this);
+          }
+        const std::set<deliverTo> deliverTos = subasm.deliverTo_kind_children();
+        for (std::set<deliverTo>::const_iterator iter = deliverTos.begin();
+             iter != deliverTos.end();
+             ++iter)
+          {
+            deliverTo dv = *iter;
+            dv.Accept (*this);
+          }
+        const std::set<PublishConnector>
+          connectors = subasm.PublishConnector_kind_children();
+        for (std::set<PublishConnector>::const_iterator iter = connectors.begin();
+             iter != connectors.end();
+             ++iter)
+          {
+            PublishConnector conn = *iter;
+            conn.Accept (*this);
+          }
+      }
 
     this->pop();
 
@@ -1144,7 +1142,7 @@ namespace PICML
     // Facet instance
     DOMElement* instance = this->doc_->createElement (XStr ("instance"));
     instance->setAttribute (XStr ("xmi:idref"),
-                            XStr (this->idMap_[std::string (facet_comp.name())]));
+                            XStr (facet_comp.getPath ("/", false, true)));
     endPoint->appendChild (instance);
     ele->appendChild (endPoint);
 
@@ -1155,7 +1153,7 @@ namespace PICML
     // Receptacle instance
     instance = this->doc_->createElement (XStr ("instance"));
     instance->setAttribute (XStr ("xmi:idref"),
-                            XStr (this->idMap_[std::string (recep_comp.name())]));
+                            XStr (recep_comp.getPath ("/", false, true)));
     endPoint->appendChild (instance);
     ele->appendChild (endPoint);
 
@@ -1232,7 +1230,7 @@ namespace PICML
     // Emitter instance
     DOMElement* instance = this->doc_->createElement (XStr ("instance"));
     instance->setAttribute (XStr ("xmi:idref"),
-                            XStr (this->idMap_[std::string (emitter_comp.name())]));
+                            XStr (emitter_comp.getPath ("/", false, true)));
     endPoint->appendChild (instance);
     ele->appendChild (endPoint);
 
@@ -1243,7 +1241,7 @@ namespace PICML
     // Consumer instance
     instance = this->doc_->createElement (XStr ("instance"));
     instance->setAttribute (XStr ("xmi:idref"),
-                            XStr (this->idMap_[std::string (consumer_comp.name())]));
+                            XStr (consumer_comp.getPath ("/", false, true)));
     endPoint->appendChild (instance);
     ele->appendChild (endPoint);
 
@@ -1354,7 +1352,8 @@ namespace PICML
         // Publisher instance
         DOMElement* instance = this->doc_->createElement (XStr ("instance"));
         instance->setAttribute (XStr ("xmi:idref"),
-                                XStr (this->idMap_[std::string (publisher_comp.name())]));
+                                XStr (publisher_comp.getPath ("/", false,
+                                                              true)));
         endPoint->appendChild (instance);
         ele->appendChild (endPoint);
 
@@ -1365,7 +1364,8 @@ namespace PICML
         // Consumer instance
         instance = this->doc_->createElement (XStr ("instance"));
         instance->setAttribute (XStr ("xmi:idref"),
-                                XStr (this->idMap_[std::string (consumer_comp.name())]));
+                                XStr (consumer_comp.getPath ("/", false,
+                                                             true)));
         endPoint->appendChild (instance);
         ele->appendChild (endPoint);
 
