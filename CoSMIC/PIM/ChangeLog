@@ -1,3 +1,15 @@
+Sat Jun 19 18:12:05 2004  Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * PICML/interpreters/plan/CompIcon.ico:
+        * PICML/interpreters/plan/ComponentConfig.h:
+        * PICML/interpreters/plan/DeploymentPlan.dsp:
+        * PICML/interpreters/plan/DeploymentPlan.dsw:
+        * PICML/interpreters/plan/PlanVisitor.cpp:
+        * PICML/interpreters/plan/PlanVisitor.h:
+        * PICML/interpreters/plan/UdmApp.cpp:
+
+          Made changes to the DeploymentPlan interpreters.
+
 Sat Jun 19 16:50:05 2004  Jaiganesh B  <jai@dre.vanderbilt.edu>
 
         * PICML/interpreters/plan/CompIcon.ico:

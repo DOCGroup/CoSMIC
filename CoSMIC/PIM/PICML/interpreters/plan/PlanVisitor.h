@@ -22,11 +22,11 @@ using xercesc::LocalFileFormatTarget;
 
 namespace PICML
 {
-  class PackageVisitor: public Visitor
+  class PlanVisitor: public Visitor
   {
   public:
-    PackageVisitor (const std::string& outputPath);
-    ~PackageVisitor();
+    PlanVisitor (const std::string& outputPath);
+    ~PlanVisitor();
 
     void init();
     void initTarget (const std::string& fileName);

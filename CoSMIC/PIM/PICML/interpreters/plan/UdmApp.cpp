@@ -42,7 +42,7 @@
 #include "UdmConfig.h"
 
 #include "PICML.h"
-#include "PackageVisitor.h"
+#include "PlanVisitor.h"
 
 using xercesc::XMLPlatformUtils;
 using xercesc::XMLException;
@@ -196,7 +196,7 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
             {
               Udm::Object root = *iter;
               std::string kindName = (*iter).type().name();
-              PICML::PackageVisitor visitor (outputPath);
+              PICML::PlanVisitor visitor (outputPath);
               if (kindName == "TopLevelPackages")
                 SetUpVisitor (TopLevelPackages, root, visitor);
               else if (kindName == "TopLevelPackageContainer")

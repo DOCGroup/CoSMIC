@@ -1,24 +1,24 @@
-# Microsoft Developer Studio Project File - Name="PackageComponent" - Package Owner=<4>
+# Microsoft Developer Studio Project File - Name="DeploymentPlan" - Package Owner=<4>
 # Microsoft Developer Studio Generated Build File, Format Version 6.00
 # ** DO NOT EDIT **
 
 # TARGTYPE "Win32 (x86) Dynamic-Link Library" 0x0102
 
-CFG=PackageComponent - WIN32 DEBUG
+CFG=DeploymentPlan - WIN32 DEBUG
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
 !MESSAGE 
-!MESSAGE NMAKE /f "PackageComponent.mak".
+!MESSAGE NMAKE /f "DeploymentPlan.mak".
 !MESSAGE 
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "PackageComponent.mak" CFG="PackageComponent - WIN32 DEBUG"
+!MESSAGE NMAKE /f "DeploymentPlan.mak" CFG="DeploymentPlan - WIN32 DEBUG"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
-!MESSAGE "PackageComponent - Win32 Debug" (based on "Win32 (x86) Dynamic-Link Library")
-!MESSAGE "PackageComponent - Win32 Release" (based on "Win32 (x86) Dynamic-Link Library")
+!MESSAGE "DeploymentPlan - Win32 Debug" (based on "Win32 (x86) Dynamic-Link Library")
+!MESSAGE "DeploymentPlan - Win32 Release" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE 
 
 # Begin Project
@@ -29,7 +29,7 @@ CPP=cl.exe
 MTL=midl.exe
 RSC=rc.exe
 
-!IF  "$(CFG)" == "PackageComponent - Win32 Debug"
+!IF  "$(CFG)" == "DeploymentPlan - Win32 Debug"
 
 # PROP BASE Use_MFC 2
 # PROP BASE Use_Debug_Libraries 1
@@ -56,8 +56,8 @@ LINK32=link.exe
 # SUBTRACT LINK32 /pdb:none
 # Begin Custom Build - Performing registration
 OutDir=.\Debug
-TargetPath=.\Debug\PackageComponent.dll
-InputPath=.\Debug\PackageComponent.dll
+TargetPath=.\Debug\DeploymentPlan.dll
+InputPath=.\Debug\DeploymentPlan.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -66,12 +66,12 @@ SOURCE="$(InputPath)"
 	
 # End Custom Build
 
-!ELSEIF  "$(CFG)" == "PackageComponent - Win32 Release"
+!ELSEIF  "$(CFG)" == "DeploymentPlan - Win32 Release"
 
 # PROP BASE Use_MFC 2
 # PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "PackageComponent___Win32_Release"
-# PROP BASE Intermediate_Dir "PackageComponent___Win32_Release"
+# PROP BASE Output_Dir "DeploymentPlan___Win32_Release"
+# PROP BASE Intermediate_Dir "DeploymentPlan___Win32_Release"
 # PROP BASE Ignore_Export_Lib 0
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 2
@@ -93,8 +93,8 @@ LINK32=link.exe
 # Begin Custom Build - Performing registration
 OutDir=.\Release
 TargetDir=.\Release
-TargetName=PackageComponent
-InputPath=.\Release\PackageComponent.dll
+TargetName=DeploymentPlan
+InputPath=.\Release\DeploymentPlan.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -107,8 +107,8 @@ SOURCE="$(InputPath)"
 
 # Begin Target
 
-# Name "PackageComponent - Win32 Debug"
-# Name "PackageComponent - Win32 Release"
+# Name "DeploymentPlan - Win32 Debug"
+# Name "DeploymentPlan - Win32 Release"
 # Begin Group "Source Files"
 
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
@@ -132,7 +132,7 @@ SOURCE="c:\Program Files\GME\SDK\BON\ComponentDll.cpp"
 
 SOURCE="C:\Program Files\GME\SDK\BON\ComponentLib.idl"
 
-!IF  "$(CFG)" == "PackageComponent - Win32 Debug"
+!IF  "$(CFG)" == "DeploymentPlan - Win32 Debug"
 
 # PROP Ignore_Default_Tool 1
 # Begin Custom Build - MIDL $(InputPath))
@@ -151,7 +151,7 @@ BuildCmds= \
    $(BuildCmds)
 # End Custom Build
 
-!ELSEIF  "$(CFG)" == "PackageComponent - Win32 Release"
+!ELSEIF  "$(CFG)" == "DeploymentPlan - Win32 Release"
 
 # PROP BASE Ignore_Default_Tool 1
 # PROP Ignore_Default_Tool 1
@@ -180,7 +180,7 @@ SOURCE="C:\Program Files\GME\SDK\BON\ComponentObj.cpp"
 # End Source File
 # Begin Source File
 
-SOURCE=.\PackageVisitor.cpp
+SOURCE=.\PlanVisitor.cpp
 # End Source File
 # Begin Source File
 
@@ -233,7 +233,7 @@ SOURCE="C:\Program Files\GME\SDK\BON\GMECOM.H"
 # End Source File
 # Begin Source File
 
-SOURCE=.\PackageVisitor.h
+SOURCE=.\PlanVisitor.h
 # End Source File
 # Begin Source File
 
