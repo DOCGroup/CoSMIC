@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{35D79525-5F3D-43E5-9AC3-8C19281ACF51}" cdate="Fri Nov 05 20:29:01 2004" mdate="Fri Nov 05 20:35:48 2004" version="" metaguid="{202EAFF1-3911-42FF-9A73-28DAA4A2DC44}" metaversion="" metaname="PICML">
+<project guid="{35D79525-5F3D-43E5-9AC3-8C19281ACF51}" cdate="Mon Nov 08 15:05:23 2004" mdate="Mon Nov 08 15:05:24 2004" version="" metaguid="{CB397221-2DCF-40C3-8397-893C9D3EDCD3}" metaversion="" metaname="PICML">
 	<name>RobotAssembly</name>
 	<comment></comment>
 	<author></author>
@@ -3723,11 +3723,11 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-00000037" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-0000002d" isinstance="yes" isprimary="no" referred="id-0065-00000019" isbound="yes">
+							<reference id="id-0067-00000038" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-0000002d" isinstance="yes" isprimary="no" referred="id-0065-00000019" isbound="yes">
 								<name>AttributeMember</name>
 							</reference>
 						</model>
-						<reference id="id-0067-00000038" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-0000002e" isinstance="yes" isprimary="no" referred="id-0065-0000000a" isbound="yes">
+						<reference id="id-0067-00000037" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-0000002e" isinstance="yes" isprimary="no" referred="id-0065-0000000a" isbound="yes">
 							<name>HumanResponse</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -3748,25 +3748,7 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000039" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000030" isinstance="yes" isprimary="no" referred="id-0065-0000001d" isbound="yes">
-							<name>Controller</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional">
-								<value>true</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-0000003a" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-0000002f" isinstance="yes" isprimary="no" referred="id-0065-00000009" isbound="yes">
+						<reference id="id-0067-00000039" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-0000002f" isinstance="yes" isprimary="no" referred="id-0065-00000009" isbound="yes">
 							<name>WorkDisplayUpdate</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -3782,6 +3764,24 @@
 							</attribute>
 							<attribute kind="optional" status="meta">
 								<value>false</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-0000003a" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000030" isinstance="yes" isprimary="no" referred="id-0065-0000001d" isbound="yes">
+							<name>Controller</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional">
+								<value>true</value>
 							</attribute>
 						</reference>
 					</model>
@@ -3901,28 +3901,7 @@
 						<attribute kind="label" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-0000003e" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000025" isinstance="yes" isprimary="no" referred="id-0065-00000009" isbound="yes">
-							<name>Display</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="inherited">
-								<value>true</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="single_destination" status="inherited">
-								<value>true</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-0000003f" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000026" isinstance="yes" isprimary="no" referred="id-0065-00000011" isbound="yes">
+						<reference id="id-0067-0000003e" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000026" isinstance="yes" isprimary="no" referred="id-0065-00000011" isbound="yes">
 							<name>ProductionControl</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -3943,28 +3922,25 @@
 								<value>true</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000040" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000027" isinstance="yes" isprimary="no" referred="id-0065-00000016" isbound="yes">
-							<name>MovePallet</name>
+						<reference id="id-0067-0000003f" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-0000002c" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+							<name>recvWorkOrder</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
 							</attribute>
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<attribute kind="exclusiveProvider" status="inherited">
-								<value>true</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
+							<attribute kind="exclusiveProvider" status="meta">
 								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="inherited">
+								<value>true</value>
 							</attribute>
 							<attribute kind="optional" status="meta">
 								<value>false</value>
 							</attribute>
-							<attribute kind="single_destination" status="inherited">
-								<value>true</value>
-							</attribute>
 						</reference>
-						<reference id="id-0067-00000041" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000028" isinstance="yes" isprimary="no" referred="id-0065-00000018" isbound="yes">
+						<reference id="id-0067-00000040" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000028" isinstance="yes" isprimary="no" referred="id-0065-00000018" isbound="yes">
 							<name>ProductionReport</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -3985,7 +3961,7 @@
 								<value>true</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000042" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000029" isinstance="yes" isprimary="no" referred="id-0065-0000000a" isbound="yes">
+						<reference id="id-0067-00000041" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000029" isinstance="yes" isprimary="no" referred="id-0065-0000000a" isbound="yes">
 							<name>DisplayResponse</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -4003,7 +3979,7 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000043" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-0000002a" isinstance="yes" isprimary="no" referred="id-0065-00000013" isbound="yes">
+						<reference id="id-0067-00000042" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-0000002a" isinstance="yes" isprimary="no" referred="id-0065-00000013" isbound="yes">
 							<name>ProcessingStatus</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -4019,6 +3995,27 @@
 							</attribute>
 							<attribute kind="optional" status="meta">
 								<value>false</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000043" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000027" isinstance="yes" isprimary="no" referred="id-0065-00000016" isbound="yes">
+							<name>MovePallet</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="inherited">
+								<value>true</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="single_destination" status="inherited">
+								<value>true</value>
 							</attribute>
 						</reference>
 						<reference id="id-0067-00000044" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-0000002b" isinstance="yes" isprimary="no" referred="id-0065-00000014" isbound="yes">
@@ -4039,22 +4036,25 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000045" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-0000002c" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
-							<name>recvWorkOrder</name>
+						<reference id="id-0067-00000045" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000025" isinstance="yes" isprimary="no" referred="id-0065-00000009" isbound="yes">
+							<name>Display</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
 							</attribute>
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="inherited">
+							<attribute kind="exclusiveProvider" status="inherited">
 								<value>true</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
 							</attribute>
 							<attribute kind="optional" status="meta">
 								<value>false</value>
+							</attribute>
+							<attribute kind="single_destination" status="inherited">
+								<value>true</value>
 							</attribute>
 						</reference>
 					</model>
@@ -4105,7 +4105,25 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000047" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000035" isinstance="yes" isprimary="no" referred="id-0065-00000014" isbound="yes">
+						<reference id="id-0067-00000047" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000036" isinstance="yes" isprimary="no" referred="id-0065-0000002c" isbound="yes">
+							<name>Controller</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional">
+								<value>true</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000048" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000035" isinstance="yes" isprimary="no" referred="id-0065-00000014" isbound="yes">
 							<name>PalletStatus</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -4123,24 +4141,6 @@
 								<value>false</value>
 							</attribute>
 							<attribute kind="single_destination" status="inherited">
-								<value>true</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000048" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000036" isinstance="yes" isprimary="no" referred="id-0065-0000002c" isbound="yes">
-							<name>Controller</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional">
 								<value>true</value>
 							</attribute>
 						</reference>
@@ -4192,7 +4192,25 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-0000004a" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000032" isinstance="yes" isprimary="no" referred="id-0065-00000013" isbound="yes">
+						<reference id="id-0067-0000004a" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000033" isinstance="yes" isprimary="no" referred="id-0065-00000038" isbound="yes">
+							<name>Controller</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional">
+								<value>true</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-0000004b" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000032" isinstance="yes" isprimary="no" referred="id-0065-00000013" isbound="yes">
 							<name>ProcessingStatus</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -4213,64 +4231,46 @@
 								<value>true</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-0000004b" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000033" isinstance="yes" isprimary="no" referred="id-0065-00000038" isbound="yes">
-							<name>Controller</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional">
-								<value>true</value>
-							</attribute>
-						</reference>
 					</model>
 					<connection id="id-0068-00000006" kind="emit" role="emit" relid="0x6">
 						<name>emit</name>
 						<connpoint role="src" target="id-0067-0000003c"/>
-						<connpoint role="dst" target="id-0067-00000045"/>
+						<connpoint role="dst" target="id-0067-0000003f"/>
 					</connection>
 					<connection id="id-0068-00000007" kind="emit" role="emit" relid="0x7">
 						<name>emit</name>
 						<connpoint role="dst" target="id-0067-0000003b"/>
-						<connpoint role="src" target="id-0067-00000041"/>
+						<connpoint role="src" target="id-0067-00000040"/>
 					</connection>
 					<connection id="id-0068-00000008" kind="emit" role="emit" relid="0x8">
 						<name>emit</name>
-						<connpoint role="src" target="id-0067-00000040"/>
+						<connpoint role="src" target="id-0067-00000043"/>
 						<connpoint role="dst" target="id-0067-00000046"/>
 					</connection>
 					<connection id="id-0068-00000009" kind="emit" role="emit" relid="0xa">
 						<name>emit</name>
 						<connpoint role="dst" target="id-0067-00000044"/>
-						<connpoint role="src" target="id-0067-00000047"/>
+						<connpoint role="src" target="id-0067-00000048"/>
 					</connection>
 					<connection id="id-0068-0000000a" kind="invoke" role="invoke" relid="0xf">
 						<name>invoke</name>
-						<connpoint role="src" target="id-0067-00000038"/>
-						<connpoint role="dst" target="id-0067-00000042"/>
+						<connpoint role="src" target="id-0067-00000037"/>
+						<connpoint role="dst" target="id-0067-00000041"/>
 					</connection>
 					<connection id="id-0068-0000000b" kind="emit" role="emit" relid="0x10">
 						<name>emit</name>
-						<connpoint role="dst" target="id-0067-0000003a"/>
-						<connpoint role="src" target="id-0067-0000003e"/>
+						<connpoint role="dst" target="id-0067-00000039"/>
+						<connpoint role="src" target="id-0067-00000045"/>
 					</connection>
 					<connection id="id-0068-0000000c" kind="emit" role="emit" relid="0x2c">
 						<name>emit</name>
-						<connpoint role="src" target="id-0067-0000003f"/>
+						<connpoint role="src" target="id-0067-0000003e"/>
 						<connpoint role="dst" target="id-0067-00000049"/>
 					</connection>
 					<connection id="id-0068-0000000d" kind="emit" role="emit" relid="0x2d">
 						<name>emit</name>
-						<connpoint role="dst" target="id-0067-00000043"/>
-						<connpoint role="src" target="id-0067-0000004a"/>
+						<connpoint role="dst" target="id-0067-00000042"/>
+						<connpoint role="src" target="id-0067-0000004b"/>
 					</connection>
 				</model>
 			</model>
@@ -5140,7 +5140,7 @@
 					<connpoint role="dst" target="id-0067-00000051"/>
 					<connpoint role="src" target="id-0069-00000002"/>
 				</connection>
-				<set id="id-0069-00000001" kind="CollocationGroup" role="CollocationGroup" relid="0x9" members="id-0067-00000054 id-0067-00000056 id-0067-00000053 id-0067-00000055">
+				<set id="id-0069-00000001" kind="CollocationGroup" role="CollocationGroup" relid="0x9" members="id-0067-00000055 id-0067-00000053 id-0067-00000056 id-0067-00000054">
 					<name>Group1</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -5669,7 +5669,7 @@
 								<value>39,186</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>88,11</value>
@@ -5702,7 +5702,7 @@
 								<value>44,37</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>774,242</value>
@@ -5735,7 +5735,7 @@
 								<value>298,193</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>88,165</value>
@@ -5754,6 +5754,9 @@
 					<attribute kind="location">
 						<value>RobotManager_exec</value>
 					</attribute>
+					<attribute kind="tree_file_name" status="meta">
+						<value>orb_tree.xml</value>
+					</attribute>
 				</atom>
 				<atom id="id-0066-00000037" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
 					<name>RobotManager_stub</name>
@@ -5765,7 +5768,7 @@
 								<value>298,340</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>284,32</value>
@@ -5784,6 +5787,9 @@
 					<attribute kind="location">
 						<value>RobotManager_stub</value>
 					</attribute>
+					<attribute kind="tree_file_name" status="meta">
+						<value>orb_tree.xml</value>
+					</attribute>
 				</atom>
 				<atom id="id-0066-00000038" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
 					<name>RobotManager_svnt</name>
@@ -5795,7 +5801,7 @@
 								<value>298,46</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>473,256</value>
@@ -5814,6 +5820,9 @@
 					<attribute kind="location">
 						<value>RobotManager_svnt</value>
 					</attribute>
+					<attribute kind="tree_file_name" status="meta">
+						<value>orb_tree.xml</value>
+					</attribute>
 				</atom>
 				<reference id="id-0067-00000068" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-00000037">
 					<name>RobotManager_stub</name>
@@ -5825,7 +5834,7 @@
 								<value>634,81</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>256,256</value>
@@ -5843,7 +5852,7 @@
 								<value>641,522</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>529,11</value>
@@ -5861,7 +5870,7 @@
 								<value>641,263</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>508,116</value>
@@ -5879,7 +5888,7 @@
 								<value>641,396</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>655,74</value>
@@ -5947,7 +5956,7 @@
 								<value>86,135</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>11,11</value>
@@ -5966,6 +5975,9 @@
 					<attribute kind="location">
 						<value>libACE</value>
 					</attribute>
+					<attribute kind="tree_file_name" status="meta">
+						<value>orb_tree.xml</value>
+					</attribute>
 				</atom>
 				<atom id="id-0066-0000003a" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
 					<name>TAO</name>
@@ -5977,7 +5989,7 @@
 								<value>242,109</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>214,18</value>
@@ -5996,6 +6008,9 @@
 					<attribute kind="location">
 						<value>libTAO</value>
 					</attribute>
+					<attribute kind="tree_file_name" status="meta">
+						<value>orb_tree.xml</value>
+					</attribute>
 				</atom>
 				<atom id="id-0066-0000003b" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x4">
 					<name>CIAO</name>
@@ -6007,7 +6022,7 @@
 								<value>417,109</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>130,186</value>
@@ -6026,6 +6041,9 @@
 					<attribute kind="location">
 						<value>libCIAO_Container</value>
 					</attribute>
+					<attribute kind="tree_file_name" status="meta">
+						<value>orb_tree.xml</value>
+					</attribute>
 				</atom>
 			</model>
 			<model id="id-0065-0000007b" kind="ArtifactContainer" relid="0x3" childrelidcntr="0x10">
@@ -6040,7 +6058,7 @@
 								<value>44,37</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>32,158</value>
@@ -6073,7 +6091,7 @@
 								<value>39,277</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>81,11</value>
@@ -6106,7 +6124,7 @@
 								<value>228,130</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>193,242</value>
@@ -6125,6 +6143,9 @@
 					<attribute kind="location">
 						<value>PalletConveyorManager_svnt</value>
 					</attribute>
+					<attribute kind="tree_file_name" status="meta">
+						<value>orb_tree.xml</value>
+					</attribute>
 				</atom>
 				<atom id="id-0066-0000003d" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
 					<name>PalletConveyorManager_stub</name>
@@ -6136,7 +6157,7 @@
 								<value>116,410</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>599,109</value>
@@ -6155,6 +6176,9 @@
 					<attribute kind="location">
 						<value>PalletConveyorManager_stub</value>
 					</attribute>
+					<attribute kind="tree_file_name" status="meta">
+						<value>orb_tree.xml</value>
+					</attribute>
 				</atom>
 				<atom id="id-0066-0000003e" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
 					<name>PalletConveyorManager_exec</name>
@@ -6166,7 +6190,7 @@
 								<value>235,256</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>312,67</value>
@@ -6185,6 +6209,9 @@
 					<attribute kind="location">
 						<value>PalletConveyorManager_exec</value>
 					</attribute>
+					<attribute kind="tree_file_name" status="meta">
+						<value>orb_tree.xml</value>
+					</attribute>
 				</atom>
 				<reference id="id-0067-00000069" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-0000003d">
 					<name>PalletConveyorManager_stub</name>
@@ -6196,7 +6223,7 @@
 								<value>634,137</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>389,235</value>
@@ -6214,7 +6241,7 @@
 								<value>634,529</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>711,25</value>
@@ -6232,7 +6259,7 @@
 								<value>634,298</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>732,277</value>
@@ -6250,7 +6277,7 @@
 								<value>634,410</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>732,144</value>
@@ -6318,7 +6345,7 @@
 								<value>44,37</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>669,249</value>
@@ -6351,7 +6378,7 @@
 								<value>46,256</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>774,25</value>
@@ -6384,7 +6411,7 @@
 								<value>228,130</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>445,270</value>
@@ -6403,6 +6430,9 @@
 					<attribute kind="location">
 						<value>ManagementWorkInstructions_svnt</value>
 					</attribute>
+					<attribute kind="tree_file_name" status="meta">
+						<value>orb_tree.xml</value>
+					</attribute>
 				</atom>
 				<atom id="id-0066-00000040" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
 					<name>ManagementWorkInstructions_stub</name>
@@ -6414,7 +6444,7 @@
 								<value>214,417</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>102,137</value>
@@ -6433,6 +6463,9 @@
 					<attribute kind="location">
 						<value>ManagementWorkInstructions_stub</value>
 					</attribute>
+					<attribute kind="tree_file_name" status="meta">
+						<value>orb_tree.xml</value>
+					</attribute>
 				</atom>
 				<atom id="id-0066-00000041" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
 					<name>ManagementWorkInstructions_exec</name>
@@ -6444,7 +6477,7 @@
 								<value>228,263</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>599,18</value>
@@ -6463,6 +6496,9 @@
 					<attribute kind="location">
 						<value>ManagementWorkInstructions_exec</value>
 					</attribute>
+					<attribute kind="tree_file_name" status="meta">
+						<value>orb_tree.xml</value>
+					</attribute>
 				</atom>
 				<reference id="id-0067-0000006d" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-00000040">
 					<name>ManagementWorkInstructions_stub</name>
@@ -6474,7 +6510,7 @@
 								<value>634,137</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>592,137</value>
@@ -6492,7 +6528,7 @@
 								<value>634,515</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>263,116</value>
@@ -6510,7 +6546,7 @@
 								<value>634,312</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>242,284</value>
@@ -6528,7 +6564,7 @@
 								<value>634,417</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>242,11</value>
@@ -6681,6 +6717,9 @@
 					<attribute kind="location">
 						<value>WatchSettingManager_svnt</value>
 					</attribute>
+					<attribute kind="tree_file_name" status="meta">
+						<value>orb_tree.xml</value>
+					</attribute>
 				</atom>
 				<atom id="id-0066-00000043" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
 					<name>WatchSettingManager_stub</name>
@@ -6711,6 +6750,9 @@
 					<attribute kind="location">
 						<value>WatchSettingManager_stub</value>
 					</attribute>
+					<attribute kind="tree_file_name" status="meta">
+						<value>orb_tree.xml</value>
+					</attribute>
 				</atom>
 				<atom id="id-0066-00000044" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
 					<name>WatchSettingManager_exec</name>
@@ -6740,6 +6782,9 @@
 					</attribute>
 					<attribute kind="location">
 						<value>WatchSettingManager_exec</value>
+					</attribute>
+					<attribute kind="tree_file_name" status="meta">
+						<value>orb_tree.xml</value>
 					</attribute>
 				</atom>
 				<reference id="id-0067-00000071" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-00000043">
@@ -6959,6 +7004,9 @@
 					<attribute kind="location">
 						<value>HumanMachineInterface_svnt</value>
 					</attribute>
+					<attribute kind="tree_file_name" status="meta">
+						<value>orb_tree.xml</value>
+					</attribute>
 				</atom>
 				<atom id="id-0066-00000046" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
 					<name>HumanMachineInterface_stub</name>
@@ -6989,6 +7037,9 @@
 					<attribute kind="location">
 						<value>HumanMachineInterface_stub</value>
 					</attribute>
+					<attribute kind="tree_file_name" status="meta">
+						<value>orb_tree.xml</value>
+					</attribute>
 				</atom>
 				<atom id="id-0066-00000047" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
 					<name>HumanMachineInterface_exec</name>
@@ -7018,6 +7069,9 @@
 					</attribute>
 					<attribute kind="location">
 						<value>HumanMachineInterface_exec</value>
+					</attribute>
+					<attribute kind="tree_file_name" status="meta">
+						<value>orb_tree.xml</value>
 					</attribute>
 				</atom>
 				<reference id="id-0067-00000075" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-00000046">
@@ -7828,7 +7882,7 @@
 						</reference>
 					</model>
 				</model>
-				<set id="id-0069-00000003" kind="Workspaces" role="Workspaces" relid="0x8" members="id-0065-00000095 id-0065-0000008d id-0065-00000089 id-0065-00000099 id-0065-00000091">
+				<set id="id-0069-00000003" kind="Workspaces" role="Workspaces" relid="0x8" members="id-0065-00000099 id-0065-00000089 id-0065-0000008d id-0065-00000095 id-0065-00000091">
 					<name>RobotAssembly</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -8013,7 +8067,7 @@
 					<connpoint role="dst" target="id-0066-00000056"/>
 					<connpoint role="src" target="id-0067-00000090"/>
 				</connection>
-				<set id="id-0069-00000004" kind="TaskSet" role="TaskSet" relid="0x7" members="id-0066-00000054 id-0066-00000055 id-0066-00000053">
+				<set id="id-0069-00000004" kind="TaskSet" role="TaskSet" relid="0x7" members="id-0066-00000054 id-0066-00000053 id-0066-00000055">
 					<name>TaskSet</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -8284,12 +8338,12 @@
 				<connection id="id-0068-0000005f" kind="RTEC_Connection" role="RTEC_Connection" relid="0x6">
 					<name>RTEC_Connection</name>
 					<connpoint role="dst" target="id-0066-00000057"/>
-					<connpoint role="src" target="id-0067-0000004a" refs="id-0067-00000091"/>
+					<connpoint role="src" target="id-0067-0000004b" refs="id-0067-00000091"/>
 				</connection>
 				<connection id="id-0068-00000060" kind="Use_RTEC_Filter" role="Use_RTEC_Filter" relid="0xb">
 					<name>Use_RTEC_Filter</name>
 					<connpoint role="src" target="id-0066-00000059"/>
-					<connpoint role="dst" target="id-0067-00000043" refs="id-0067-00000092"/>
+					<connpoint role="dst" target="id-0067-00000042" refs="id-0067-00000092"/>
 				</connection>
 				<connection id="id-0068-00000061" kind="Use_RT_Info" role="Use_RT_Info" relid="0xc">
 					<name>Use_RT_Info</name>

@@ -1,3 +1,10 @@
+Mon Nov 08 15:02:43 CST 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+
+        * PIM/PICML/examples/RobotAssemly.xme:
+
+          Example updated to reflect implementation changes. Added an 
+          operation AcceptWorkOrder in the WorkOrderResponses interface.
+          
 Mon Nov 08 14:01:47 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/MPC/ComponentConfig.h:
         * PIM/PICML/interpreters/cidl/ComponentConfig.h:
