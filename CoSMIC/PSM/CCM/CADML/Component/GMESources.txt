@@ -1,0 +1,10 @@
+Builder.cpp
+Builder.h
+ComHelp.cpp
+ComHelp.h
+GMECOM.h
+ComponentDll.cpp
+ComponentDll.h
+ComponentObj.cpp
+ComponentObj.h
+ComponentLib.idl
