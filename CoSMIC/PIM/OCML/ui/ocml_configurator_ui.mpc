@@ -1,0 +1,58 @@
+project (ocml_configurator_ui): acelib, wxwindows, xerces {
+  sharedname = ocml_configurator_ui
+  includes += ../ ./
+  macros += _USRDLL WXMAKINGDLL
+  dynamicflags += CONFIGURATOR_UI_BUILD_DLL
+
+  specific (em3, nmake, vc6) {
+    subsystem = windows
+  }
+
+  specific (vc7, vc71, vc8) {
+    subsystem = 2
+  }
+
+  includes += $(WXWINDOWS_ROOT)/include $(WXWINDOWS_ROOT)/lib/mswd
+  libpaths += $(WXWINDOWS_ROOT)/lib
+  libs     += wxmsw ocml_engine ocml_common
+  lit_libs += comctl32 wsock32 rpcrt4
+
+  Source_Files {
+    configurator_ui.cpp
+    main_app.cpp
+    main_frame.cpp
+
+    edit_controls/boolean_edit_control.cpp
+    edit_controls/clear_button.cpp
+    edit_controls/integer_edit_control.cpp
+    edit_controls/string_edit_control.cpp
+
+    option_editors/boolean_option_editor.cpp
+    option_editors/editor_panel.cpp
+    option_editors/integer_option_editor.cpp
+    option_editors/string_option_editor.cpp
+  }
+
+  Header_Files {
+    CONFIGURATOR_UI_Export.h
+    configurator_ui.hpp
+    main_app.hpp
+    main_frame.hpp
+
+    edit_controls/boolean_edit_control.hpp
+    edit_controls/clear_button.hpp
+    edit_controls/integer_edit_control.hpp
+    edit_controls/string_edit_control.hpp
+
+    option_editors/boolean_option_editor.hpp
+    option_editors/editor_panel.hpp
+    option_editors/integer_option_editor.hpp
+    option_editors/option_editor.hpp
+    option_editors/string_option_editor.hpp
+  }
+
+  Inline_Files {
+    option_editors/option_editor.ipp
+  }
+}
+

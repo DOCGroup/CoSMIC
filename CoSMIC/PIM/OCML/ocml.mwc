@@ -1,0 +1,7 @@
+workspace {
+  common
+  engine
+  ui
+  test
+  text
+}
