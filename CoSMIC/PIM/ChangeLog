@@ -1,3 +1,8 @@
+Mon Jun 21 15:50:02 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PICML/examples/RobotAssembly.xme: Fixed a couple of typos in
+          the model which caused exceptions in the run-time.
+
 Mon Jun 21 13:40:51 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * IDML/decorators/Decorator.dsp:

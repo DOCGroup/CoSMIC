@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Mon Jun 21 11:55:57 2004" mdate="Mon Jun 21 12:29:21 2004" metaguid="{FACC74D9-DEAD-BEEF-FEED-DAD000000001}" metaname="PICML">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Mon Jun 21 11:55:57 2004" mdate="Mon Jun 21 15:47:48 2004" metaguid="{FACC74D9-DEAD-BEEF-FEED-DAD000000001}" metaname="PICML">
 	<name>RobotAssembly</name>
 	<comment></comment>
 	<author></author>
@@ -5301,7 +5301,7 @@
 					</regnode>
 				</reference>
 				<reference id="id-0067-000000c7" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x3" referred="id-0066-0000003d">
-					<name>PalletConveryorManager_stub</name>
+					<name>PalletConveyorManager_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
 						<regnode name="Package" isopaque="yes">
@@ -6088,7 +6088,7 @@
 						<value>Robot Manager Executor</value>
 					</attribute>
 					<attribute kind="location">
-						<value>RobotManager_exec.so</value>
+						<value>RobotManager_exec</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-00000037" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
@@ -6109,7 +6109,7 @@
 						<value>RobotManager  Stub library</value>
 					</attribute>
 					<attribute kind="location">
-						<value>RobotManager_stub.so</value>
+						<value>RobotManager_stub</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-00000038" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
@@ -6130,7 +6130,7 @@
 						<value>RobotManager Servant Library</value>
 					</attribute>
 					<attribute kind="location">
-						<value>RobotManager_svnt.so</value>
+						<value>RobotManager_svnt</value>
 					</attribute>
 				</atom>
 				<reference id="id-0067-0000007c" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-00000037">
@@ -6249,7 +6249,7 @@
 						<value>ACE Library</value>
 					</attribute>
 					<attribute kind="location">
-						<value>libACE.so</value>
+						<value>libACE</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-0000003a" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
@@ -6270,7 +6270,7 @@
 						<value>TAO Library</value>
 					</attribute>
 					<attribute kind="location">
-						<value>libTAO.so</value>
+						<value>libTAO</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-0000003b" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x4">
@@ -6291,7 +6291,7 @@
 						<value>CIAO Library</value>
 					</attribute>
 					<attribute kind="location">
-						<value>libCIAO_Container.so</value>
+						<value>libCIAO_Container</value>
 					</attribute>
 				</atom>
 			</model>
@@ -6369,11 +6369,11 @@
 						<value>PalletConveyorManager Servant Library</value>
 					</attribute>
 					<attribute kind="location">
-						<value>PalletConveyorManager_svnt.so</value>
+						<value>PalletConveyorManager_svnt</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-0000003d" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
-					<name>PalletConveryorManager_stub</name>
+					<name>PalletConveyorManager_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
 						<regnode name="Package" isopaque="yes">
@@ -6390,7 +6390,7 @@
 						<value>PalletConveyorManager  Stub library</value>
 					</attribute>
 					<attribute kind="location">
-						<value>PalletConveyorManager_stub.so</value>
+						<value>PalletConveyorManager_stub</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-0000003e" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
@@ -6411,7 +6411,7 @@
 						<value>PalletConveyorManager Executor</value>
 					</attribute>
 					<attribute kind="location">
-						<value>PalletConveyorManager_exec.so</value>
+						<value>PalletConveyorManager_exec</value>
 					</attribute>
 				</atom>
 				<reference id="id-0067-0000007d" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-0000003d">
@@ -6584,7 +6584,7 @@
 						<value>ManagementWorkInstructions Servant Library</value>
 					</attribute>
 					<attribute kind="location">
-						<value>ManagementWorkInstructions_svnt.so</value>
+						<value>ManagementWorkInstructions_svnt</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-00000040" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
@@ -6605,7 +6605,7 @@
 						<value>ManagementWorkInstructions Stub library</value>
 					</attribute>
 					<attribute kind="location">
-						<value>ManagementWorkInstructions_stub.so</value>
+						<value>ManagementWorkInstructions_stub</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-00000041" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
@@ -6626,7 +6626,7 @@
 						<value>ManagementWorkInstructions Executor</value>
 					</attribute>
 					<attribute kind="location">
-						<value>ManagementWorkInstructions_exec.so</value>
+						<value>ManagementWorkInstructions_exec</value>
 					</attribute>
 				</atom>
 				<reference id="id-0067-00000081" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-00000040">
@@ -6799,7 +6799,7 @@
 						<value>WatchSettingManager Servant Library</value>
 					</attribute>
 					<attribute kind="location">
-						<value>WatchSettingManager_svnt.so</value>
+						<value>WatchSettingManager_svnt</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-00000043" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
@@ -6820,7 +6820,7 @@
 						<value>WatchSettingManager Stub library</value>
 					</attribute>
 					<attribute kind="location">
-						<value>WatchSettingManager_stub.so</value>
+						<value>WatchSettingManager_stub</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-00000044" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
@@ -6841,7 +6841,7 @@
 						<value>WatchSettingManager Executor</value>
 					</attribute>
 					<attribute kind="location">
-						<value>WatchSettingManager_exec.so</value>
+						<value>WatchSettingManager_exec</value>
 					</attribute>
 				</atom>
 				<reference id="id-0067-00000085" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-00000043">
@@ -7014,7 +7014,7 @@
 						<value>HumanMachineInterface Servant Library</value>
 					</attribute>
 					<attribute kind="location">
-						<value>HumanMachineInterface_svnt.so</value>
+						<value>HumanMachineInterface_svnt</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-00000046" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
@@ -7035,7 +7035,7 @@
 						<value>HumanMachineInterface Stub library</value>
 					</attribute>
 					<attribute kind="location">
-						<value>HumanMachineInterface_stub.so</value>
+						<value>HumanMachineInterface_stub</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-00000047" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
@@ -7056,7 +7056,7 @@
 						<value>HumanMachineInterface Executor</value>
 					</attribute>
 					<attribute kind="location">
-						<value>HumanMachineInterface_exec.so</value>
+						<value>HumanMachineInterface_exec</value>
 					</attribute>
 				</atom>
 				<reference id="id-0067-00000089" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-00000046">
