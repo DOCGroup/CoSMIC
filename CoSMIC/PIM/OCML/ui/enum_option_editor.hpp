@@ -2,7 +2,7 @@
 #define ENUM_OPTION_EDITOR_HPP
 
 #include "Option_Editor.hpp"
-#include <edit_controls/enum_edit_control.hpp>
+#include <enum_edit_control.hpp>
 
 namespace OCML
 {

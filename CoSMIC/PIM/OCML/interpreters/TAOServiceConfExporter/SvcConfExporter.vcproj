@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="7.10"
 	Name="SvcConfExporter"
-	ProjectGUID="{2EB28420-FECA-1BAD-0BA2-F10C2A53D696}"
+	ProjectGUID="{2EB28420-FECA-1BAD-0BA2-F10C31C4EB6E}"
 	SccProjectName=""
 	SccLocalPath="">
 	<Platforms>
@@ -54,6 +54,8 @@
 				ImportLibrary="$(COSMIC_ROOT)\lib\OCMLSvcConfExporter.lib"
 				TargetMachine="1"/>
 			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
 				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
@@ -67,7 +69,13 @@
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
 				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
@@ -80,7 +88,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(XERCESCROOT)\include"
+				AdditionalIncludeDirectories="..\..;&quot;$(XERCESCROOT)\include&quot;"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;SVC_CONF_EXPORTER_DLL_ENTRY_EXPORTS;_USRDLL;WXMAKINGDLL"
 				MinimalRebuild="FALSE"
 				ExceptionHandling="TRUE"
@@ -111,6 +119,8 @@
 				ImportLibrary="$(COSMIC_ROOT)\lib\OCMLSvcConfExporterd.lib"
 				TargetMachine="1"/>
 			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
 				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
@@ -124,23 +134,34 @@
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
 				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 	</Configurations>
+	<References>
+	</References>
 	<Files>
 		<Filter
 			Name="Source Files"
 			Filter="cpp;cxx;cc;C;c">
 			<File
-				RelativePath="..\Common\XercesHelpers.cpp">
+				RelativePath="SvcConfExporter.cpp">
 			</File>
 			<File
-				RelativePath="SvcConfExporter.cpp">
+				RelativePath="..\Common\XercesHelpers.cpp">
 			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hh">
+			<File
+				RelativePath="extern_declarations.hpp">
+			</File>
 			<File
 				RelativePath="..\Common\StringUtils.hpp">
 			</File>
@@ -148,16 +169,13 @@
 				RelativePath="..\Common\StringUtils.ipp">
 			</File>
 			<File
+				RelativePath="SvcConfExporter.hpp">
+			</File>
+			<File
 				RelativePath="..\Common\XercesHelpers.hpp">
 			</File>
 			<File
 				RelativePath="..\Common\XercesHelpers.ipp">
-			</File>
-			<File
-				RelativePath="extern_declarations.hpp">
-			</File>
-			<File
-				RelativePath="SvcConfExporter.hpp">
 			</File>
 		</Filter>
 	</Files>

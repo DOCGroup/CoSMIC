@@ -4,7 +4,7 @@
 #define INTEGER_OPTION_EDITOR_HPP
 
 #include "option_editor.hpp"
-#include <edit_controls/integer_edit_control.hpp>
+#include <integer_edit_control.hpp>
 #include <engine/option_interface.hpp>
 
 namespace OCML

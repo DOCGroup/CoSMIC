@@ -3,5 +3,4 @@ workspace {
   engine
   ui
   test
-  text
 }

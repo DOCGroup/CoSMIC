@@ -1,7 +1,7 @@
 #include "SvcConfExporter.hpp"
 
-#include "../Common/XercesHelpers.hpp"
-#include "../Common/StringUtils.hpp"
+#include <common/XercesHelpers.hpp>
+#include <common/StringUtils.hpp>
 
 #include <string.h>
 

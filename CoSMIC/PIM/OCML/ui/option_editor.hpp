@@ -13,7 +13,7 @@
 
 #include <wx/wx.h>
 #include <engine/option_interface.hpp>
-#include <edit_controls/clear_button.hpp>
+#include <clear_button.hpp>
 
 namespace OCML
 {

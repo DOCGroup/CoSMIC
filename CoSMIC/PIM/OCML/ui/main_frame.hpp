@@ -6,7 +6,7 @@
 #include <wx/html/htmlwin.h>
 
 // #include "extern_declarations.hpp"
-#include "option_editors/editor_panel.hpp"
+#include "editor_panel.hpp"
 #include <engine/configurator.hpp>
 #include <engine/definitions.hpp>
 

@@ -2,7 +2,7 @@
 #define BOOLEAN_OPTION_EDITOR_HPP
 
 #include "Option_Editor.hpp"
-#include <edit_controls/boolean_edit_control.hpp>
+#include <boolean_edit_control.hpp>
 #include <engine/option_interface.hpp>
 
 namespace OCML
