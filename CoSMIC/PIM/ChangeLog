@@ -1,3 +1,100 @@
+Wed Apr 28 23:32:21 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PICML/paradigms/IDML-Meta.xme:
+        * PICML/paradigms/IDML.mga:
+        * PICML/paradigms/IDML.xmp:
+
+          Added new meta-model of Interface Definition Modeling Language
+          (IDML).
+
+
+        * PICML/paradigms/PICML.mga:
+        * PICML/paradigms/PICML.xmp:
+
+          Added binary mga files and XML exported paradigm so that users
+          need not run the interpreter on the PICML meta-model. This file
+          can just be registered using File->Register Paradigms, so that
+          one can use the paradigm to make models without dealing with the
+          complex steps involving aspect mapping.
+
+        * PICML/paradigms/PICML.xme:
+
+          Updated to reflect icons, changes in IDML and some minor changes
+          in the connections.
+
+        * PICML/paradigms/icons/Any.bmp:
+        * PICML/paradigms/icons/Assembly.bmp:
+        * PICML/paradigms/icons/Capability.bmp:
+        * PICML/paradigms/icons/ComponentPackage.bmp:
+        * PICML/paradigms/icons/ComponentProperty.bmp:
+        * PICML/paradigms/icons/Connector.bmp:
+        * PICML/paradigms/icons/ImplementationArtifact.bmp:
+        * PICML/paradigms/icons/ImplementationArtifactReference.bmp:
+        * PICML/paradigms/icons/ImplementationDependency.bmp:
+        * PICML/paradigms/icons/ImplementationReference.bmp:
+        * PICML/paradigms/icons/ImplementationRequirement.bmp:
+        * PICML/paradigms/icons/MonolithicImplementation.bmp:
+        * PICML/paradigms/icons/PackageConfiguration.bmp:
+        * PICML/paradigms/icons/PackageConfigurationReference.bmp:
+        * PICML/paradigms/icons/PackageReference.bmp:
+        * PICML/paradigms/icons/Property.bmp:
+        * PICML/paradigms/icons/Requirement.bmp:
+        * PICML/paradigms/icons/SatisfierProperty.bmp:
+        * PICML/paradigms/icons/TopLevelPackage.bmp:
+        * PICML/paradigms/icons/aggregate.bmp:
+        * PICML/paradigms/icons/alias.bmp:
+        * PICML/paradigms/icons/attribute.bmp:
+        * PICML/paradigms/icons/boundedstring.bmp:
+        * PICML/paradigms/icons/boxed.bmp:
+        * PICML/paradigms/icons/component.bmp:
+        * PICML/paradigms/icons/componentfactory.bmp:
+        * PICML/paradigms/icons/const.bmp:
+        * PICML/paradigms/icons/discriminator.bmp:
+        * PICML/paradigms/icons/enum.bmp:
+        * PICML/paradigms/icons/enumref.bmp:
+        * PICML/paradigms/icons/enumvalue.bmp:
+        * PICML/paradigms/icons/event.bmp:
+        * PICML/paradigms/icons/eventref.bmp:
+        * PICML/paradigms/icons/exception.bmp:
+        * PICML/paradigms/icons/exceptionref.bmp:
+        * PICML/paradigms/icons/factory.bmp:
+        * PICML/paradigms/icons/fileref.bmp:
+        * PICML/paradigms/icons/fixedcollection.bmp:
+        * PICML/paradigms/icons/fixedpoint.bmp:
+        * PICML/paradigms/icons/getexception.bmp:
+        * PICML/paradigms/icons/id.bmp:
+        * PICML/paradigms/icons/in.bmp:
+        * PICML/paradigms/icons/ineventport.bmp:
+        * PICML/paradigms/icons/inherits.bmp:
+        * PICML/paradigms/icons/inout.bmp:
+        * PICML/paradigms/icons/inrequestport.bmp:
+        * PICML/paradigms/icons/label.bmp:
+        * PICML/paradigms/icons/lookup.bmp:
+        * PICML/paradigms/icons/lookupkey.bmp:
+        * PICML/paradigms/icons/manages.bmp:
+        * PICML/paradigms/icons/namedtyperef.bmp:
+        * PICML/paradigms/icons/object.bmp:
+        * PICML/paradigms/icons/objectref.bmp:
+        * PICML/paradigms/icons/oneway.bmp:
+        * PICML/paradigms/icons/out.bmp:
+        * PICML/paradigms/icons/outeventport.bmp:
+        * PICML/paradigms/icons/outrequestport.bmp:
+        * PICML/paradigms/icons/package.bmp:
+        * PICML/paradigms/icons/predefined.bmp:
+        * PICML/paradigms/icons/prefix.bmp:
+        * PICML/paradigms/icons/private.bmp:
+        * PICML/paradigms/icons/readonlyattribute.bmp:
+        * PICML/paradigms/icons/return.bmp:
+        * PICML/paradigms/icons/setexception.bmp:
+        * PICML/paradigms/icons/supports.bmp:
+        * PICML/paradigms/icons/switchedaggregate.bmp:
+        * PICML/paradigms/icons/twoway.bmp:
+        * PICML/paradigms/icons/value.bmp:
+        * PICML/paradigms/icons/variablecollection.bmp:
+        * PICML/paradigms/icons/version.bmp:
+
+          Icons for IDML and PICML.
+
 Tue Apr 27 14:21:09 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PICML/README: Preliminary version of the README file.
