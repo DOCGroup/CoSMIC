@@ -13,6 +13,9 @@
 
 using namespace xercesc;
 
+/**
+ * Reads the options file from $COSMIC_ROOT/tree_file.
+ */
 Configurator::Configurator(const char* tree_file)
 {
   system_.initialize();
@@ -75,5 +78,12 @@ Configurator::write()
   XMLUnicodeString result;
   if (node)
     result = writer->writeToString(*node);
+
   return result.str();
+}
+
+OptionCategory*
+Configurator::root_category()
+{
+  return root_.get();
 }
