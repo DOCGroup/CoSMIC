@@ -90,7 +90,7 @@ PICML models.
 A Windows installer for PICML is available from the CoSMIC web page
 listed above. Just look at the first item under the Downloads header
 near the top of the page. The benchmarking capabilities are part of
-PICML.
+PICML. 
 
 \section* {Prerequisites}
 After installing PICML there are two steps that are
@@ -104,11 +104,17 @@ include:
 components.
 \end{enumerate}
 
+\noindent The BGML generated code uses several capabilities provided
+by the ACE framework. ACE can be downloaded from
+\url{http://deuce.doc.wustl.edu/Download.html}. Currently, all
+generated code from BGML has been tested using the CIAO open-source
+component middleware framework that runs atop ACE and TAO open-source
+CORBA middleware. These can be downloaded from the url provided above.
+
 \noindent The first step is provided via ComponentImplementation aspect in
 PICML. In this view, the user can drag and drop components and draw
 the component interactions. For more information please refer to the
-user guide dealing with PICML. This is available from the same place
-where this user guide was present. The second step is accomplished via
+user guide exclusively dealing with PICML. The second step is accomplished via
 the ComponentTypes aspect in PICML. This aspect deals with specifying
 the interfaces of the ports. Please refer to the Interfaced
 Definitions manual present with the installation of PICML.
@@ -344,7 +350,7 @@ connect the latency metric with the task set.
 \paragraph* {\bf Checking Constraints.}
 Once this is done. Please check for constraint violations. This can be done by
 choosing. File->Check-> Check All constraints from the File menu in GME. There
-should not be any constraint violations. The final experiement visually should
+should not be any constraint violations. The final experiment visually should
 look like what is shown in Figure~\ref{task-complete}. If there are any, please see if they
 pertain to the BGML paradigm and revisit steps 1-4 to ensure you have followed
 all the steps. If there are still violations, please export the GME model via
@@ -455,25 +461,6 @@ class.
 #include "ace/Stats.h"
 #include "ace/Sample_History.h"
 #include "AcceptWorkOrderResponse_Workload.h"
-
-template<typename T>
-Benchmark_AcceptWorkOrderResponse<T>::
-Benchmark_AcceptWorkOrderResponse (T* remote_ref,
-                                   const RobotAssembly::WorkOrder& arg0,
-                                   RobotAssembly::StatusType arg1)
-: remote_ref_ (remote_ref),
-  arg0_ (arg0),
-  arg1_ (arg1)
-{
-
-}
-
-template<typename T>
-Benchmark_AcceptWorkOrderResponse<T>::
-~Benchmark_AcceptWorkOrderResponse ()
-{
-
-}
 
 template <typename T>
 int
