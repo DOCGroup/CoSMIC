@@ -1,3 +1,10 @@
+Sun Oct 24 19:05:36 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+        * PIM/PICML/interpreters/cidl/Component.dsp:
+        * PIM/PICML/interpreters/MPC/Component.dsp:
+        * PIM/PICML/interpreters/BGML/Componenent.dsp:
+          Output directory changed to $(PICML_ROOT)/bin/ for the 
+          interpreter DLLs
+
 Sun Oct 24 17:32:10 2004  Gan Deng  <gan.deng@vanderbilt.edu>
 
         * PIM/PICML/interpreters/EQAL/EQALBON2Component.dsp:
