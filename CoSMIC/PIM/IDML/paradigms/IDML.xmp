@@ -16,39 +16,56 @@
   if (closure->size < 1) then
     Set{}
   else
-    closure->iterate (x ; accu = Set{} | accu + x.parts () - x.parts ("FileRef") )
+    closure->iterate (x ; accu = Set{} | accu 
+                                                                     + x.parts () 
+                                                                     - x.parts ("FileRef") 
+                                                                     - x.parts ("ComponentRef") 
+                                                                     - x.parts ("ManagesComponent"))
   endif]]>
       </constraint>
+      <constraint type="function" name="allOps">
+         <![CDATA[method;gme::Model;top: gme::Model;ocl::Set;
+         let ret = localOps () + inheritedOps (top) + supportedOps () + inheritedSupportedOps () in
+  ret]]>
+      </constraint>
       <constraint type="function" name="inheritedOps">
+         <![CDATA[method;gme::Model;top : gme::Model;ocl::Set;
+         let parents = self.referenceParts ("Inherits") in
+parents->iterate (ref; accu = Set{} | accu + 
+(let parent = ref.refersTo ().oclAsType (gme::Model) in
+if (parent == top) then Set{}
+else
+parent.localOps () + parent.inheritedOps (top)
+endif))]]>
+      </constraint>
+      <constraint type="function" name="inheritedSupportedOps">
          <![CDATA[method;gme::Model;;ocl::Set;
-         let ancestors = self.inheritsRecursive (self) in
-ancestors->iterate (ancestor; accu = Set{} | accu + ancestor.oclAsType (gme::Model).localOps ())]]>
+         let parents= referenceParts ("Inherits") in
+parents->iterate (ref; accu = Set{} | accu +
+(let parent = ref.refersTo ().oclAsType (gme::Model) in
+parent.supportedOps () + parent.inheritedSupportedOps ()))]]>
       </constraint>
       <constraint type="function" name="inheritsRecursive">
          <![CDATA[method;gme::Model;top : gme::Model;ocl::Set;
-         let closure = self.referenceParts (Inherits)->collect (x : gme::Reference | x.refersTo ().oclAsType (gme::Model))->asSet () in
-  if (closure->size < 1) then
-    Set{}
-  else
-    closure->iterate (rec; accu = Set{} | accu + 
-      if (rec = top) then
-        Set{top}
-      else
-        rec.inheritsRecursive (top)
-      endif)
-  endif]]>
+         let inherits = referenceParts ("Inherits") in
+inherits->iterate (ref; accu = Set{} | accu +
+(let parent = ref.refersTo ().oclAsType (gme::Model) in
+Set {parent} + 
+(if (parent != top) then parent.inheritsRecursive (top)
+else Set {}
+endif)))]]>
       </constraint>
       <constraint type="function" name="localOps">
          <![CDATA[method;gme::Model;;ocl::Set;
          self.parts ("OnewayOperation") + self.parts ("TwowayOperation") +
 self.parts ("FactoryOperation") + self.parts ("LookupOperation")]]>
       </constraint>
-      <constraint type="function" name="supportedWithAncestors">
+      <constraint type="function" name="supportedOps">
          <![CDATA[method;gme::Model;;ocl::Set;
-         let supported_set = self.referenceParts (Supports) in
-supported_set->iterate (ref; accu = Set{} | 
-  let supported = ref.refersTo ().oclAsType (gme::Model) in
-  accu + supported.inheritsRecursive (supported))]]>
+         let supported_set = referenceParts ("Supports") in
+supported_set->iterate (ref; accu = Set{} | accu +
+(let supported = ref.refersTo ().oclAsType (gme::Model) in
+supported.localOps () + supported.inheritedOps (supported)))]]>
       </constraint>
       <attrdef name="PrefixTag" metaref = "2748" valuetype = "string" defvalue = "">
       </attrdef>
@@ -363,6 +380,17 @@ supported_set->iterate (ref; accu = Set{} |
       </reference>
       <reference name = "Constant" metaref = "3112" attributes = "VersionTag SpecifyIdTag value">
             <regnode name = "namePosition" value ="4"></regnode>
+         <constraint name="LegalConstantType" eventmask = "0x400" depth = "1" priority = "1">
+            <![CDATA[let x = refersTo () in
+  x.isTypeOf (String) or
+  x.isTypeOf (LongInteger) or
+  x.isTypeOf (Enum) or
+  x.isTypeOf (ShortInteger) or
+  x.isTypeOf (RealNumber) or
+  x.isTypeOf (Byte) or
+  x.isTypeOf (Boolean)]]>
+            <dispname>A Constant must be a Boolean, Byte, ShortInteger, LongInteger, RealNumber, String or Enum</dispname>
+         </constraint>
          <constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -766,6 +794,10 @@ supported_set->iterate (ref; accu = Set{} |
             <![CDATA[self.referenceParts (Inherits)->forAll (x : gme::Reference | x.refersTo ().type () = self.type ())]]>
             <dispname>A parent must have the same type as its child</dispname>
          </constraint>
+         <constraint name="NoDeriveAndSupport" eventmask = "0x0" depth = "1" priority = "2">
+            <![CDATA[referenceParts ("Inherits")->size > 0 implies referenceParts ("Supports")->size = 0]]>
+            <dispname>A derived Component or ComponentFactory may not directly support an Object</dispname>
+         </constraint>
          <constraint name="NoDuplicateImmediateParents" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[self.referenceParts (Inherits)->forAll (x, y : gme::Reference | x <> y implies x.refersTo () <> y.refersTo ())]]>
             <dispname>Immediate parents must all be unique</dispname>
@@ -774,7 +806,7 @@ supported_set->iterate (ref; accu = Set{} |
             <![CDATA[parts ("Inherits")->size () > 0 implies parts ("Supports")->size () = 0]]>
             <dispname>A component that has a base component may not also support interfaces</dispname>
          </constraint>
-         <constraint name="NoRecursiveInheritance" eventmask = "0x0" depth = "1" priority = "2">
+         <constraint name="NoRecursiveInheritance" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[self.inheritsRecursive (self)->forAll (x : gme::Model | x <> self)]]>
             <dispname>There is a cycle in the inheritance graph</dispname>
          </constraint>
@@ -785,6 +817,12 @@ supported_set->iterate (ref; accu = Set{} |
          <constraint name="UniqueInheritableDeclNames" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[(parts () - parts ("Inherits") - parts ("Supports"))->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
             <dispname>Declarations in a scope must have unique names</dispname>
+         </constraint>
+         <constraint name="UniqueOperationNames" eventmask = "0x0" depth = "1" priority = "2">
+            <![CDATA[
+allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
+]]>
+            <dispname>Local, inherited and supported operations must all have unique names</dispname>
          </constraint>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
             <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
@@ -820,11 +858,15 @@ supported_set->iterate (ref; accu = Set{} |
             <![CDATA[self.referenceParts (Inherits)->forAll (x : gme::Reference | x.refersTo ().type () = self.type ())]]>
             <dispname>A parent must have the same type as its child</dispname>
          </constraint>
+         <constraint name="NoDeriveAndSupport" eventmask = "0x0" depth = "1" priority = "2">
+            <![CDATA[referenceParts ("Inherits")->size > 0 implies referenceParts ("Supports")->size = 0]]>
+            <dispname>A derived Component or ComponentFactory may not directly support an Object</dispname>
+         </constraint>
          <constraint name="NoDuplicateImmediateParents" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[self.referenceParts (Inherits)->forAll (x, y : gme::Reference | x <> y implies x.refersTo () <> y.refersTo ())]]>
             <dispname>Immediate parents must all be unique</dispname>
          </constraint>
-         <constraint name="NoRecursiveInheritance" eventmask = "0x0" depth = "1" priority = "2">
+         <constraint name="NoRecursiveInheritance" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[self.inheritsRecursive (self)->forAll (x : gme::Model | x <> self)]]>
             <dispname>There is a cycle in the inheritance graph</dispname>
          </constraint>
@@ -835,6 +877,12 @@ supported_set->iterate (ref; accu = Set{} |
          <constraint name="UniqueInheritableDeclNames" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[(parts () - parts ("Inherits") - parts ("Supports"))->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
             <dispname>Declarations in a scope must have unique names</dispname>
+         </constraint>
+         <constraint name="UniqueOperationNames" eventmask = "0x0" depth = "1" priority = "2">
+            <![CDATA[
+allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
+]]>
+            <dispname>Local, inherited and supported operations must all have unique names</dispname>
          </constraint>
          <constraint name="ValidComponentFactoryPartCardinality7" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "LookupKey" ) -> size in
@@ -935,13 +983,19 @@ endif]]>
             <![CDATA[self.referenceParts (Inherits)->forAll (x, y : gme::Reference | x <> y implies x.refersTo () <> y.refersTo ())]]>
             <dispname>Immediate parents must all be unique</dispname>
          </constraint>
-         <constraint name="NoRecursiveInheritance" eventmask = "0x0" depth = "1" priority = "2">
+         <constraint name="NoRecursiveInheritance" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[self.inheritsRecursive (self)->forAll (x : gme::Model | x <> self)]]>
             <dispname>There is a cycle in the inheritance graph</dispname>
          </constraint>
          <constraint name="UniqueInheritableDeclNames" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[(parts () - parts ("Inherits") - parts ("Supports"))->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
             <dispname>Declarations in a scope must have unique names</dispname>
+         </constraint>
+         <constraint name="UniqueOperationNames" eventmask = "0x0" depth = "1" priority = "2">
+            <![CDATA[
+allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
+]]>
+            <dispname>Local, inherited and supported operations must all have unique names</dispname>
          </constraint>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
             <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
@@ -1113,7 +1167,7 @@ else
 endif]]>
             <dispname>A non-local Object cannot inherit from a local one</dispname>
          </constraint>
-         <constraint name="NoRecursiveInheritance" eventmask = "0x0" depth = "1" priority = "2">
+         <constraint name="NoRecursiveInheritance" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[self.inheritsRecursive (self)->forAll (x : gme::Model | x <> self)]]>
             <dispname>There is a cycle in the inheritance graph</dispname>
          </constraint>
@@ -1124,6 +1178,12 @@ endif]]>
          <constraint name="UniqueInheritableDeclNames" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[(parts () - parts ("Inherits") - parts ("Supports"))->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
             <dispname>Declarations in a scope must have unique names</dispname>
+         </constraint>
+         <constraint name="UniqueOperationNames" eventmask = "0x0" depth = "1" priority = "2">
+            <![CDATA[
+allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
+]]>
+            <dispname>Local, inherited and supported operations must all have unique names</dispname>
          </constraint>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
             <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
@@ -1189,7 +1249,9 @@ endif]]>
          </constraint>
          <constraint name="UniquePackageDeclNames" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[parts ()->forAll (
-    x, y : gme::FCO | x <> y and (not x.isTypeOf (Package) or not y.isTypeOf (Package)) implies x.name <> y.name
+    x, y : gme::FCO | x.name == y.name implies (x == y or
+                                                                                        (x.oclIsTypeOf (Package) and y.oclIsTypeOf (Package)) or
+                                                                                        (x.oclIsTypeOf (gme::Connection) or y.oclIsTypeOf (gme::Connection)))
   )
   ]]>
             <dispname>Declarations in a Package must have unique names unless they are themselves Packages</dispname>
@@ -1284,19 +1346,19 @@ endif]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidSwitchedAggregatePartCardinality10" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
-                     (partCount = 1)]]>
-            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
-         </constraint>
-         <constraint name="ValidSwitchedAggregatePartCardinality11" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
                      (partCount >= 1)]]>
             <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
          </constraint>
-         <constraint name="ValidSwitchedAggregatePartCardinality12" eventmask = "0x0" depth = "1" priority = "1">
+         <constraint name="ValidSwitchedAggregatePartCardinality11" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "Label" ) -> size in
                      (partCount >= 1)]]>
             <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
+         </constraint>
+         <constraint name="ValidSwitchedAggregatePartCardinality12" eventmask = "0x0" depth = "1" priority = "1">
+            <![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
+                     (partCount = 1)]]>
+            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
             <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
@@ -1370,13 +1432,19 @@ endif]]>
             <![CDATA[self.referenceParts (Inherits)->forAll (x, y : gme::Reference | x <> y implies x.refersTo () <> y.refersTo ())]]>
             <dispname>Immediate parents must all be unique</dispname>
          </constraint>
-         <constraint name="NoRecursiveInheritance" eventmask = "0x0" depth = "1" priority = "2">
+         <constraint name="NoRecursiveInheritance" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[self.inheritsRecursive (self)->forAll (x : gme::Model | x <> self)]]>
             <dispname>There is a cycle in the inheritance graph</dispname>
          </constraint>
          <constraint name="UniqueInheritableDeclNames" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[(parts () - parts ("Inherits") - parts ("Supports"))->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
             <dispname>Declarations in a scope must have unique names</dispname>
+         </constraint>
+         <constraint name="UniqueOperationNames" eventmask = "0x0" depth = "1" priority = "2">
+            <![CDATA[
+allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
+]]>
+            <dispname>Local, inherited and supported operations must all have unique names</dispname>
          </constraint>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
             <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>

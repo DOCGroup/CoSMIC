@@ -1,3 +1,14 @@
+Wed Jun  2 15:59:11 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * IDML/examples/new_test.xme:
+        * IDML/paradigms/IDML-Meta.xme:
+        * IDML/paradigms/IDML.xmp:
+        * IDML/paradigms/IDMLTemplate.xme:
+        * IDML/paradigms/PredefinedTypes.xme:
+        
+          Added constraints to the metamodel, and updated the
+          other files accordingly.
+
 Wed Jun  2 15:47:05 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * IDML/interpreters/IDLGenerator/BON2Component.cpp:
