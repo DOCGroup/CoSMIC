@@ -1,3 +1,13 @@
+Wed Aug 18 15:44:59 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/paradigms/Icons/component.bmp:
+        * PIM/PICML/paradigms/Icons/componentref.bmp:
+        
+          Replaced the icons with the default icon used by GME in
+          models for the metamodel element Model. The corresponding
+          reference icon has the usual shortcut arrow added to the
+          lower left corner.
+
 Mon Aug 2 20:17:28 CDT 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/MPC
           Project for creation and generation of MPC files to build 
