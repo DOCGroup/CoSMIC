@@ -1,3 +1,32 @@
+Fri Oct 22 23:35:57 2004  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/interpreters/packaging/CompIcon.ico: Updated icon
+          based on Doug's suggestion.
+
+        * PIM/PICML/interpreters/packaging/UdmApp.cpp: Fixed bug where all
+          the descriptor files were generated instead of the ones
+          corresponding to the currently focused object in the model
+          editor.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp: Updated as a sanity check. No
+          modifications were made to the meta-model.
+
+        * PIM/PICML/examples/RobotAssembly.xme:
+        * PIM/PICML/interpreters/domain/PICML.h:
+        * PIM/PICML/interpreters/domain/PICML.xsd:
+        * PIM/PICML/interpreters/domain/PICML.cpp:
+        * PIM/PICML/interpreters/packaging/PICML.h:
+        * PIM/PICML/interpreters/packaging/PICML.xsd:
+        * PIM/PICML/interpreters/packaging/PICML.cpp:
+        * PIM/PICML/interpreters/plan/PICML.h:
+        * PIM/PICML/interpreters/plan/PICML.xsd:
+        * PIM/PICML/interpreters/plan/PICML.cpp:
+
+          Updated the files to reflect updates to PICML.xml.
+
 Fri Oct 22 10:45:10 2004  Gan Deng  <gan.deng@vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
@@ -6,10 +35,10 @@ Fri Oct 22 10:45:10 2004  Gan Deng  <gan.deng@vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xmp:
 
           Updated to get rid of the constraint violation in meta.
-          
-        * PIM/PICML/examples/RobotAssembly.xme: 
-        
-          Updated to relex changes in EQAL. 
+
+        * PIM/PICML/examples/RobotAssembly.xme:
+
+          Updated to relex changes in EQAL.
 
 Fri Oct 22 10:04:13 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/cidl/Component/*:
@@ -21,7 +50,7 @@ Fri Oct 22 10:04:13 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
           Deleted all interpreter files from this directory
         * PIM/PICML/interpreters/MPC/*:
           Added all interpreter files to the top level directory
- 
+
         * PIM/PICML/interpreters/BGML_Interpreter/Component/*:
           Deleted all interpreter files from this directory
         * PIM/PICML/interpreters/BGML_Interpreter/*:
@@ -29,10 +58,10 @@ Fri Oct 22 10:04:13 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
           This Changelog is a succinct version, as all this is about moving
           a bunch of files around. The main motivation being: to have all the
-          intrepreter files in the top level directory rather than having a 
-          Component directory (one level indirection). The culprit being 
+          intrepreter files in the top level directory rather than having a
+          Component directory (one level indirection). The culprit being
           the UDM wizard that added this indirection. This change also includes
-          renaming the DLLs (intpreters) generated to "Foo.dll" rather than 
+          renaming the DLLs (intpreters) generated to "Foo.dll" rather than
           "Component.dll" to make more sense to all.
 
 Thu Oct 21 23:50:24 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
@@ -42,11 +71,11 @@ Thu Oct 21 23:50:24 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
 
-          Corrected the BGML Meta model for constraint errors. Still there are 
+          Corrected the BGML Meta model for constraint errors. Still there are
           errors from the EQAL meta-model
-          
-        * PIM/PICML/examples/RobotAssembly.xme: 
-        
+
+        * PIM/PICML/examples/RobotAssembly.xme:
+
           Added BGML capabilities to Example
 
 Thu Oct 21 21:59:10 2004  Gan Deng  <gan.deng@vanderbilt.edu>
@@ -57,10 +86,10 @@ Thu Oct 21 21:59:10 2004  Gan Deng  <gan.deng@vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xmp:
 
           Updated to have a minor change of the EQAL metamodel.
-          
-        * PIM/PICML/examples/RobotAssembly.xme: 
-        
-          Updated to relex changes in EQAL. 
+
+        * PIM/PICML/examples/RobotAssembly.xme:
+
+          Updated to relex changes in EQAL.
 
 Thu Oct 21 21:28:10 2004  Gan Deng  <gan.deng@vanderbilt.edu>
 
@@ -71,14 +100,14 @@ Thu Oct 21 21:28:10 2004  Gan Deng  <gan.deng@vanderbilt.edu>
         * PIM/PICML/interpreters/EQAL/dlldata.c
         * PIM/PICML/interpreters/EQAL/GMESources.txt
         * PIM/PICML/interpreters/EQAL/BON2Component.dsw
-        
+
           Removed those files. Either because they are automatically
           generated or no longer used.
-          
+
         * PIM/PICML/interpreters/EQAL/EQALInterpreter.dsw
-        
+
           Added this file.
-          
+
         * PIM/PICML/interpreters/EQAL/BON2Component.cpp
 
           Updated to add a message box statement only.
@@ -89,9 +118,9 @@ Thu Oct 21 21:28:10 2004  Gan Deng  <gan.deng@vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xmp:
 
           Updated to have a minor change of the EQAL metamodel.
-        
-                
-Thu Oct 21 14:55:21 2004  Krishnakumar B  <kitty@dre.vanderbilt.edu>
+
+
+Thu Oct 21 14:55:21 2004  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * PIM/PICML/examples/RobotAssembly.xme: Updated to work after
           Jeff's modifications which caused problems.

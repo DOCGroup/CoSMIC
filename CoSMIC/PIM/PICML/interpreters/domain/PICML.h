@@ -1,7 +1,7 @@
 #ifndef MOBIES_PICML_H
 #define MOBIES_PICML_H
 // header file PICML.h generated from diagram PICML
-// generated on Fri Oct 08 11:05:00 2004
+// generated on Fri Oct 22 23:34:01 2004
 
 #ifndef MOBIES_UDMBASE_H
 #include "UdmBase.h"
@@ -11,419 +11,417 @@
 
 namespace PICML {
 
-	class  Use_RT_Info_Members_Base;
+	class  Proxy_Supplier;
 	class  Include_RTEC_Filter_Group_Members_Base;
-	class  Include_RT_Info_Members_Base;
-	class  RTEC_Proxy_Consumer;
-	class  RT_Info;
-	class  RTEC_Connection;
-	class  RTEC_Proxy;
-	class  RTEC_Proxy_Supplier;
 	class  Proxy_Consumer;
-	class  Use_RTEC_Filter;
-	class  RTEC_Resource_Factory;
-	class  EventChannelConfiguration;
-	class  Use_RT_Info;
-	class  RTEC_Filter_Group;
-	class  Include_RT_Info;
-	class  ConjunctionGroup;
-	class  DisjunctionGroup;
+	class  Proxy;
 	class  EventChannelConfig;
 	class  RTEC_Resource_Factory_Reference;
-	class  RT_Info_Param;
-	class  Proxy;
 	class  Null_RT_Info;
-	class  Proxy_Supplier;
+	class  RT_Info_Param;
+	class  Use_RT_Info;
+	class  Include_RT_Info;
+	class  RTEC_Resource_Factory;
+	class  EventChannelConfiguration;
+	class  Use_RTEC_Filter;
+	class  ConjunctionGroup;
+	class  DisjunctionGroup;
 	class  Include_RTEC_Filter_Group;
 	class  LogicalANDGroup;
-	class  TimerEventSinkConn;
-	class  Maximum;
-	class  Task;
-	class  ComponentAnalyses;
-	class  MetricsBase;
-	class  Average;
-	class  TaskSet;
-	class  BenchmarkAnalysis;
-	class  TimerConnection;
-	class  Throughput;
-	class  MetricConnection;
-	class  EventRef;
-	class  Minimum;
-	class  Latency;
-	class  TimeProbe;
-	class  DataAnalysisBase;
+	class  RTEC_Filter_Group;
+	class  RTEC_Connection;
+	class  RT_Info;
+	class  RTEC_Proxy_Consumer;
+	class  RTEC_Proxy_Supplier;
+	class  RTEC_Proxy;
 	class  WorkloadCharacteristics;
+	class  Task;
+	class  TaskSet;
+	class  TimerEventSinkConn;
+	class  EventRef;
 	class  OperationRef;
+	class  MetricsBase;
+	class  BenchmarkAnalysis;
+	class  ComponentAnalyses;
+	class  Throughput;
+	class  Latency;
+	class  TimerConnection;
+	class  TimeProbe;
 	class  Jitter;
+	class  Maximum;
+	class  Minimum;
+	class  Average;
+	class  DataAnalysisBase;
+	class  MetricConnection;
 	class  Resource;
 	class  SharedResource;
+	class  NodeReference;
 	class  Node;
 	class  Interconnect;
 	class  Bridge;
-	class  NodeReference;
-	class  DeploymentPlan;
 	class  CollocationGroup;
 	class  DeploymentPlans;
 	class  InstanceMapping;
-	class  ExternalReferenceEndPoint;
-	class  FacetDelegate;
+	class  DeploymentPlan;
 	class  ExternalDelegate;
+	class  ExternalReferenceEndPoint;
+	class  EventSinkDelegate;
+	class  EventSourceDelegate;
+	class  FacetDelegate;
+	class  ReceptacleDelegate;
+	class  emit;
+	class  AssemblyDeployRequirement;
 	class  deliverTo;
 	class  publish;
-	class  emit;
-	class  EventSourceDelegate;
-	class  AssemblyConfigProperty;
-	class  ComponentAssembly;
-	class  invoke;
-	class  ReceptacleDelegate;
-	class  AssemblyDeployRequirement;
 	class  PublishConnector;
+	class  AssemblyConfigProperty;
 	class  AssemblyselectRequirement;
-	class  EventSinkDelegate;
-	class  ComponentImplementations;
-	class  ConfigProperty;
-	class  InfoProperty;
-	class  MonolithprimaryArtifact;
-	class  MonolithDeployRequirement;
-	class  MonolithExecParameter;
+	class  invoke;
+	class  ComponentAssembly;
 	class  MonolithicImplementation;
-	class  ComponentImplementation;
+	class  MonolithExecParameter;
 	class  ComponentImplementationContainer;
+	class  ComponentImplementation;
+	class  MonolithDeployRequirement;
+	class  MonolithprimaryArtifact;
+	class  InfoProperty;
+	class  ConfigProperty;
 	class  ComponentImplementationReference;
-	class  ImplementationCapability;
+	class  ComponentImplementations;
 	class  Implements;
 	class  ImplementationDependsOn;
-	class  PackageConfigurationReference;
-	class  PackageConfigurations;
+	class  ImplementationCapability;
+	class  PackageConfiguration;
+	class  PackageConfSpecializedConfig;
+	class  PackageConfSelectRequirement;
 	class  PackageConfigurationContainer;
+	class  PackageConfigurations;
+	class  PackageConfigurationReference;
+	class  PackageConfReference;
 	class  PackageConfBasePackage;
 	class  PackageConfConfigProperty;
-	class  PackageConfiguration;
-	class  PackageConfSelectRequirement;
-	class  PackageConfSpecializedConfig;
-	class  PackageConfReference;
-	class  ImplementationArtifactReference;
 	class  ImplementationArtifact;
-	class  ArtifactDeployRequirement;
-	class  ImplementationArtifacts;
 	class  ArtifactInfoProperty;
-	class  ArtifactContainer;
-	class  ArtifactDependsOn;
 	class  ArtifactExecParameter;
+	class  ArtifactContainer;
+	class  ArtifactDeployRequirement;
+	class  ArtifactDependsOn;
+	class  ImplementationArtifactReference;
+	class  ImplementationArtifacts;
 	class  CommonPortAttrs;
 	class  ComponentInfoProperty;
+	class  ComponentConfigProperty;
 	class  ComponentContainer;
 	class  ComponentProperty;
 	class  ComponentPropertyDescription;
-	class  ComponentConfigProperty;
 	class  ComponentTypes;
-	class  TopLevelPackageContainer;
+	class  package;
 	class  TopLevelPackage;
 	class  TopLevelPackages;
-	class  package;
+	class  TopLevelPackageContainer;
 	class  ComponentPackageReference;
 	class  ComponentPackage;
+	class  PackageInfoProperty;
+	class  PackageConfigProperty;
+	class  PackageContainer;
+	class  Implementation;
 	class  PackageInterface;
 	class  ComponentPackages;
-	class  Implementation;
-	class  PackageConfigProperty;
-	class  PackageInfoProperty;
-	class  PackageContainer;
-	class  Requirement;
+	class  DataType;
 	class  ImplementationRequirement;
 	class  RequirementBase;
-	class  RequirementSatisfier;
+	class  Capability;
 	class  SatisfierProperty;
 	class  Property;
 	class  ImplementationDependency;
-	class  Capability;
-	class  DataType;
+	class  Requirement;
+	class  RequirementSatisfier;
 	class  Interconnect2Bridge;
-	class  Node2Interconnect;
-	class  Targets;
-	class  Shares;
-	class  Domain;
 	class  Interconnect2Node;
 	class  Bridge2Interconnect;
+	class  Node2Interconnect;
+	class  Shares;
+	class  Targets;
+	class  Domain;
 	class  Elements;
 	class  Taggable;
 	class  Prefixable;
-	class  Manageable;
 	class  Provideable;
-	class  Component;
-	class  RequiredRequestPort;
-	class  ProvidedRequestPort;
-	class  ComponentFactory;
 	class  ManagesComponent;
+	class  ComponentFactory;
+	class  Manageable;
 	class  ComponentRef;
 	class  Port;
-	class  OutEventPort;
 	class  InEventPort;
-	class  TwowayOperation;
-	class  FactoryOperation;
+	class  RequiredRequestPort;
+	class  ProvidedRequestPort;
+	class  OutEventPort;
+	class  Component;
 	class  ReturnType;
 	class  OutParameter;
-	class  OnewayOperation;
-	class  OperationBase;
-	class  InParameter;
 	class  InoutParameter;
-	class  LookupOperation;
+	class  InParameter;
 	class  HasExceptions;
-	class  Event;
+	class  OnewayOperation;
+	class  TwowayOperation;
+	class  LookupOperation;
+	class  FactoryOperation;
+	class  OperationBase;
+	class  AttributeMember;
+	class  MakeMemberPrivate;
+	class  PrivateFlag;
+	class  GetException;
+	class  ObjectByValue;
+	class  SetException;
+	class  LookupKey;
 	class  Attribute;
+	class  ReadonlyAttribute;
 	class  Supports;
 	class  SupportsInterfaces;
-	class  Object;
-	class  ValueObject;
-	class  Inheritable;
-	class  AttributeMember;
 	class  HasOperations;
-	class  PrivateFlag;
-	class  MakeMemberPrivate;
-	class  ReadonlyAttribute;
+	class  Inheritable;
+	class  ValueObject;
+	class  Event;
 	class  Inherits;
-	class  LookupKey;
-	class  SetException;
-	class  ObjectByValue;
-	class  GetException;
-	class  Alias;
+	class  Object;
+	class  NoInheritable;
+	class  Member;
 	class  Boxed;
+	class  Alias;
+	class  Collection;
+	class  NamedType;
 	class  Discriminator;
 	class  MemberType;
-	class  Label;
-	class  Collection;
-	class  EnumValue;
 	class  LabelConnection;
-	class  Aggregate;
-	class  NoInheritable;
+	class  Label;
 	class  SwitchedAggregate;
-	class  Member;
-	class  NamedType;
+	class  Aggregate;
+	class  EnumValue;
 	class  Enum;
-	class  Byte;
-	class  PredefinedTypes;
-	class  GenericValueObject;
-	class  RealNumber;
-	class  String;
-	class  GenericObject;
-	class  GenericValue;
 	class  TypeKind;
 	class  TypeEncoding;
-	class  Boolean;
-	class  PredefinedType;
+	class  GenericValue;
+	class  GenericValueObject;
+	class  GenericObject;
+	class  String;
+	class  RealNumber;
 	class  LongInteger;
 	class  ShortInteger;
-	class  ConstantType;
+	class  Boolean;
+	class  Byte;
+	class  PredefinedType;
+	class  PredefinedTypes;
 	class  Constant;
+	class  ConstantType;
 	class  InterfaceDefinitions;
-	class  Package;
-	class  File;
-	class  Exception;
 	class  FileRef;
 	class  ExceptionRef;
-	class  StubProject;
-	class  ComponentBuild;
-	class  Workspace;
-	class  MPC;
-	class  Project;
-	class  ComponentLib;
-	class  ExternalResources;
-	class  ServantProject;
-	class  ExtResourceConn;
+	class  Exception;
+	class  File;
+	class  Package;
+	class  Workspaces;
 	class  ExecutorProject;
+	class  ServantProject;
+	class  StubProject;
+	class  MPC;
+	class  ComponentLib;
+	class  ExtResourceConn;
+	class  ExternalResources;
+	class  ComponentBuild;
+	class  Project;
 	class  RootFolder;
 	class  MgaObject;
 
 	class  Visitor : public Udm::BaseVisitor 
 	{
 	public:
-		virtual void Visit_RTEC_Proxy_Consumer(const RTEC_Proxy_Consumer&){};
-		virtual void Visit_RT_Info(const RT_Info&){};
-		virtual void Visit_RTEC_Connection(const RTEC_Connection&){};
-		virtual void Visit_RTEC_Proxy_Supplier(const RTEC_Proxy_Supplier&){};
-		virtual void Visit_Use_RTEC_Filter(const Use_RTEC_Filter&){};
-		virtual void Visit_RTEC_Resource_Factory(const RTEC_Resource_Factory&){};
-		virtual void Visit_EventChannelConfiguration(const EventChannelConfiguration&){};
-		virtual void Visit_Use_RT_Info(const Use_RT_Info&){};
-		virtual void Visit_Include_RT_Info(const Include_RT_Info&){};
-		virtual void Visit_ConjunctionGroup(const ConjunctionGroup&){};
-		virtual void Visit_DisjunctionGroup(const DisjunctionGroup&){};
 		virtual void Visit_EventChannelConfig(const EventChannelConfig&){};
 		virtual void Visit_RTEC_Resource_Factory_Reference(const RTEC_Resource_Factory_Reference&){};
 		virtual void Visit_Null_RT_Info(const Null_RT_Info&){};
+		virtual void Visit_Use_RT_Info(const Use_RT_Info&){};
+		virtual void Visit_Include_RT_Info(const Include_RT_Info&){};
+		virtual void Visit_RTEC_Resource_Factory(const RTEC_Resource_Factory&){};
+		virtual void Visit_EventChannelConfiguration(const EventChannelConfiguration&){};
+		virtual void Visit_Use_RTEC_Filter(const Use_RTEC_Filter&){};
+		virtual void Visit_ConjunctionGroup(const ConjunctionGroup&){};
+		virtual void Visit_DisjunctionGroup(const DisjunctionGroup&){};
 		virtual void Visit_Include_RTEC_Filter_Group(const Include_RTEC_Filter_Group&){};
 		virtual void Visit_LogicalANDGroup(const LogicalANDGroup&){};
-		virtual void Visit_TimerEventSinkConn(const TimerEventSinkConn&){};
-		virtual void Visit_Maximum(const Maximum&){};
-		virtual void Visit_Task(const Task&){};
-		virtual void Visit_ComponentAnalyses(const ComponentAnalyses&){};
-		virtual void Visit_Average(const Average&){};
-		virtual void Visit_TaskSet(const TaskSet&){};
-		virtual void Visit_BenchmarkAnalysis(const BenchmarkAnalysis&){};
-		virtual void Visit_TimerConnection(const TimerConnection&){};
-		virtual void Visit_Throughput(const Throughput&){};
-		virtual void Visit_MetricConnection(const MetricConnection&){};
-		virtual void Visit_EventRef(const EventRef&){};
-		virtual void Visit_Minimum(const Minimum&){};
-		virtual void Visit_Latency(const Latency&){};
-		virtual void Visit_TimeProbe(const TimeProbe&){};
+		virtual void Visit_RTEC_Connection(const RTEC_Connection&){};
+		virtual void Visit_RT_Info(const RT_Info&){};
+		virtual void Visit_RTEC_Proxy_Consumer(const RTEC_Proxy_Consumer&){};
+		virtual void Visit_RTEC_Proxy_Supplier(const RTEC_Proxy_Supplier&){};
 		virtual void Visit_WorkloadCharacteristics(const WorkloadCharacteristics&){};
+		virtual void Visit_Task(const Task&){};
+		virtual void Visit_TaskSet(const TaskSet&){};
+		virtual void Visit_TimerEventSinkConn(const TimerEventSinkConn&){};
+		virtual void Visit_EventRef(const EventRef&){};
 		virtual void Visit_OperationRef(const OperationRef&){};
+		virtual void Visit_BenchmarkAnalysis(const BenchmarkAnalysis&){};
+		virtual void Visit_ComponentAnalyses(const ComponentAnalyses&){};
+		virtual void Visit_Throughput(const Throughput&){};
+		virtual void Visit_Latency(const Latency&){};
+		virtual void Visit_TimerConnection(const TimerConnection&){};
+		virtual void Visit_TimeProbe(const TimeProbe&){};
 		virtual void Visit_Jitter(const Jitter&){};
+		virtual void Visit_Maximum(const Maximum&){};
+		virtual void Visit_Minimum(const Minimum&){};
+		virtual void Visit_Average(const Average&){};
+		virtual void Visit_MetricConnection(const MetricConnection&){};
 		virtual void Visit_Resource(const Resource&){};
 		virtual void Visit_SharedResource(const SharedResource&){};
+		virtual void Visit_NodeReference(const NodeReference&){};
 		virtual void Visit_Node(const Node&){};
 		virtual void Visit_Interconnect(const Interconnect&){};
 		virtual void Visit_Bridge(const Bridge&){};
-		virtual void Visit_NodeReference(const NodeReference&){};
-		virtual void Visit_DeploymentPlan(const DeploymentPlan&){};
 		virtual void Visit_CollocationGroup(const CollocationGroup&){};
 		virtual void Visit_DeploymentPlans(const DeploymentPlans&){};
 		virtual void Visit_InstanceMapping(const InstanceMapping&){};
-		virtual void Visit_ExternalReferenceEndPoint(const ExternalReferenceEndPoint&){};
-		virtual void Visit_FacetDelegate(const FacetDelegate&){};
+		virtual void Visit_DeploymentPlan(const DeploymentPlan&){};
 		virtual void Visit_ExternalDelegate(const ExternalDelegate&){};
+		virtual void Visit_ExternalReferenceEndPoint(const ExternalReferenceEndPoint&){};
+		virtual void Visit_EventSinkDelegate(const EventSinkDelegate&){};
+		virtual void Visit_EventSourceDelegate(const EventSourceDelegate&){};
+		virtual void Visit_FacetDelegate(const FacetDelegate&){};
+		virtual void Visit_ReceptacleDelegate(const ReceptacleDelegate&){};
+		virtual void Visit_emit(const emit&){};
+		virtual void Visit_AssemblyDeployRequirement(const AssemblyDeployRequirement&){};
 		virtual void Visit_deliverTo(const deliverTo&){};
 		virtual void Visit_publish(const publish&){};
-		virtual void Visit_emit(const emit&){};
-		virtual void Visit_EventSourceDelegate(const EventSourceDelegate&){};
-		virtual void Visit_AssemblyConfigProperty(const AssemblyConfigProperty&){};
-		virtual void Visit_ComponentAssembly(const ComponentAssembly&){};
-		virtual void Visit_invoke(const invoke&){};
-		virtual void Visit_ReceptacleDelegate(const ReceptacleDelegate&){};
-		virtual void Visit_AssemblyDeployRequirement(const AssemblyDeployRequirement&){};
 		virtual void Visit_PublishConnector(const PublishConnector&){};
+		virtual void Visit_AssemblyConfigProperty(const AssemblyConfigProperty&){};
 		virtual void Visit_AssemblyselectRequirement(const AssemblyselectRequirement&){};
-		virtual void Visit_EventSinkDelegate(const EventSinkDelegate&){};
-		virtual void Visit_ComponentImplementations(const ComponentImplementations&){};
-		virtual void Visit_ConfigProperty(const ConfigProperty&){};
-		virtual void Visit_InfoProperty(const InfoProperty&){};
-		virtual void Visit_MonolithprimaryArtifact(const MonolithprimaryArtifact&){};
-		virtual void Visit_MonolithDeployRequirement(const MonolithDeployRequirement&){};
-		virtual void Visit_MonolithExecParameter(const MonolithExecParameter&){};
+		virtual void Visit_invoke(const invoke&){};
+		virtual void Visit_ComponentAssembly(const ComponentAssembly&){};
 		virtual void Visit_MonolithicImplementation(const MonolithicImplementation&){};
+		virtual void Visit_MonolithExecParameter(const MonolithExecParameter&){};
 		virtual void Visit_ComponentImplementationContainer(const ComponentImplementationContainer&){};
+		virtual void Visit_MonolithDeployRequirement(const MonolithDeployRequirement&){};
+		virtual void Visit_MonolithprimaryArtifact(const MonolithprimaryArtifact&){};
+		virtual void Visit_InfoProperty(const InfoProperty&){};
+		virtual void Visit_ConfigProperty(const ConfigProperty&){};
 		virtual void Visit_ComponentImplementationReference(const ComponentImplementationReference&){};
-		virtual void Visit_ImplementationCapability(const ImplementationCapability&){};
+		virtual void Visit_ComponentImplementations(const ComponentImplementations&){};
 		virtual void Visit_Implements(const Implements&){};
 		virtual void Visit_ImplementationDependsOn(const ImplementationDependsOn&){};
-		virtual void Visit_PackageConfigurationReference(const PackageConfigurationReference&){};
-		virtual void Visit_PackageConfigurations(const PackageConfigurations&){};
+		virtual void Visit_ImplementationCapability(const ImplementationCapability&){};
+		virtual void Visit_PackageConfiguration(const PackageConfiguration&){};
+		virtual void Visit_PackageConfSpecializedConfig(const PackageConfSpecializedConfig&){};
+		virtual void Visit_PackageConfSelectRequirement(const PackageConfSelectRequirement&){};
 		virtual void Visit_PackageConfigurationContainer(const PackageConfigurationContainer&){};
+		virtual void Visit_PackageConfigurations(const PackageConfigurations&){};
+		virtual void Visit_PackageConfigurationReference(const PackageConfigurationReference&){};
+		virtual void Visit_PackageConfReference(const PackageConfReference&){};
 		virtual void Visit_PackageConfBasePackage(const PackageConfBasePackage&){};
 		virtual void Visit_PackageConfConfigProperty(const PackageConfConfigProperty&){};
-		virtual void Visit_PackageConfiguration(const PackageConfiguration&){};
-		virtual void Visit_PackageConfSelectRequirement(const PackageConfSelectRequirement&){};
-		virtual void Visit_PackageConfSpecializedConfig(const PackageConfSpecializedConfig&){};
-		virtual void Visit_PackageConfReference(const PackageConfReference&){};
-		virtual void Visit_ImplementationArtifactReference(const ImplementationArtifactReference&){};
 		virtual void Visit_ImplementationArtifact(const ImplementationArtifact&){};
-		virtual void Visit_ArtifactDeployRequirement(const ArtifactDeployRequirement&){};
-		virtual void Visit_ImplementationArtifacts(const ImplementationArtifacts&){};
 		virtual void Visit_ArtifactInfoProperty(const ArtifactInfoProperty&){};
-		virtual void Visit_ArtifactContainer(const ArtifactContainer&){};
-		virtual void Visit_ArtifactDependsOn(const ArtifactDependsOn&){};
 		virtual void Visit_ArtifactExecParameter(const ArtifactExecParameter&){};
+		virtual void Visit_ArtifactContainer(const ArtifactContainer&){};
+		virtual void Visit_ArtifactDeployRequirement(const ArtifactDeployRequirement&){};
+		virtual void Visit_ArtifactDependsOn(const ArtifactDependsOn&){};
+		virtual void Visit_ImplementationArtifactReference(const ImplementationArtifactReference&){};
+		virtual void Visit_ImplementationArtifacts(const ImplementationArtifacts&){};
 		virtual void Visit_ComponentInfoProperty(const ComponentInfoProperty&){};
+		virtual void Visit_ComponentConfigProperty(const ComponentConfigProperty&){};
 		virtual void Visit_ComponentContainer(const ComponentContainer&){};
 		virtual void Visit_ComponentProperty(const ComponentProperty&){};
 		virtual void Visit_ComponentPropertyDescription(const ComponentPropertyDescription&){};
-		virtual void Visit_ComponentConfigProperty(const ComponentConfigProperty&){};
 		virtual void Visit_ComponentTypes(const ComponentTypes&){};
-		virtual void Visit_TopLevelPackageContainer(const TopLevelPackageContainer&){};
+		virtual void Visit_package(const package&){};
 		virtual void Visit_TopLevelPackage(const TopLevelPackage&){};
 		virtual void Visit_TopLevelPackages(const TopLevelPackages&){};
-		virtual void Visit_package(const package&){};
+		virtual void Visit_TopLevelPackageContainer(const TopLevelPackageContainer&){};
 		virtual void Visit_ComponentPackageReference(const ComponentPackageReference&){};
 		virtual void Visit_ComponentPackage(const ComponentPackage&){};
+		virtual void Visit_PackageInfoProperty(const PackageInfoProperty&){};
+		virtual void Visit_PackageConfigProperty(const PackageConfigProperty&){};
+		virtual void Visit_PackageContainer(const PackageContainer&){};
+		virtual void Visit_Implementation(const Implementation&){};
 		virtual void Visit_PackageInterface(const PackageInterface&){};
 		virtual void Visit_ComponentPackages(const ComponentPackages&){};
-		virtual void Visit_Implementation(const Implementation&){};
-		virtual void Visit_PackageConfigProperty(const PackageConfigProperty&){};
-		virtual void Visit_PackageInfoProperty(const PackageInfoProperty&){};
-		virtual void Visit_PackageContainer(const PackageContainer&){};
-		virtual void Visit_Requirement(const Requirement&){};
+		virtual void Visit_DataType(const DataType&){};
 		virtual void Visit_ImplementationRequirement(const ImplementationRequirement&){};
+		virtual void Visit_Capability(const Capability&){};
 		virtual void Visit_SatisfierProperty(const SatisfierProperty&){};
 		virtual void Visit_Property(const Property&){};
 		virtual void Visit_ImplementationDependency(const ImplementationDependency&){};
-		virtual void Visit_Capability(const Capability&){};
-		virtual void Visit_DataType(const DataType&){};
+		virtual void Visit_Requirement(const Requirement&){};
 		virtual void Visit_Interconnect2Bridge(const Interconnect2Bridge&){};
-		virtual void Visit_Node2Interconnect(const Node2Interconnect&){};
-		virtual void Visit_Targets(const Targets&){};
-		virtual void Visit_Shares(const Shares&){};
-		virtual void Visit_Domain(const Domain&){};
 		virtual void Visit_Interconnect2Node(const Interconnect2Node&){};
 		virtual void Visit_Bridge2Interconnect(const Bridge2Interconnect&){};
-		virtual void Visit_Component(const Component&){};
+		virtual void Visit_Node2Interconnect(const Node2Interconnect&){};
+		virtual void Visit_Shares(const Shares&){};
+		virtual void Visit_Targets(const Targets&){};
+		virtual void Visit_Domain(const Domain&){};
+		virtual void Visit_ManagesComponent(const ManagesComponent&){};
+		virtual void Visit_ComponentFactory(const ComponentFactory&){};
+		virtual void Visit_ComponentRef(const ComponentRef&){};
+		virtual void Visit_InEventPort(const InEventPort&){};
 		virtual void Visit_RequiredRequestPort(const RequiredRequestPort&){};
 		virtual void Visit_ProvidedRequestPort(const ProvidedRequestPort&){};
-		virtual void Visit_ComponentFactory(const ComponentFactory&){};
-		virtual void Visit_ManagesComponent(const ManagesComponent&){};
-		virtual void Visit_ComponentRef(const ComponentRef&){};
 		virtual void Visit_OutEventPort(const OutEventPort&){};
-		virtual void Visit_InEventPort(const InEventPort&){};
-		virtual void Visit_TwowayOperation(const TwowayOperation&){};
-		virtual void Visit_FactoryOperation(const FactoryOperation&){};
+		virtual void Visit_Component(const Component&){};
 		virtual void Visit_ReturnType(const ReturnType&){};
 		virtual void Visit_OutParameter(const OutParameter&){};
-		virtual void Visit_OnewayOperation(const OnewayOperation&){};
-		virtual void Visit_InParameter(const InParameter&){};
 		virtual void Visit_InoutParameter(const InoutParameter&){};
+		virtual void Visit_InParameter(const InParameter&){};
+		virtual void Visit_OnewayOperation(const OnewayOperation&){};
+		virtual void Visit_TwowayOperation(const TwowayOperation&){};
 		virtual void Visit_LookupOperation(const LookupOperation&){};
-		virtual void Visit_Event(const Event&){};
-		virtual void Visit_Attribute(const Attribute&){};
-		virtual void Visit_Supports(const Supports&){};
-		virtual void Visit_Object(const Object&){};
-		virtual void Visit_ValueObject(const ValueObject&){};
+		virtual void Visit_FactoryOperation(const FactoryOperation&){};
 		virtual void Visit_AttributeMember(const AttributeMember&){};
-		virtual void Visit_PrivateFlag(const PrivateFlag&){};
 		virtual void Visit_MakeMemberPrivate(const MakeMemberPrivate&){};
-		virtual void Visit_ReadonlyAttribute(const ReadonlyAttribute&){};
-		virtual void Visit_Inherits(const Inherits&){};
-		virtual void Visit_LookupKey(const LookupKey&){};
-		virtual void Visit_SetException(const SetException&){};
+		virtual void Visit_PrivateFlag(const PrivateFlag&){};
 		virtual void Visit_GetException(const GetException&){};
-		virtual void Visit_Alias(const Alias&){};
-		virtual void Visit_Boxed(const Boxed&){};
-		virtual void Visit_Discriminator(const Discriminator&){};
-		virtual void Visit_Label(const Label&){};
-		virtual void Visit_Collection(const Collection&){};
-		virtual void Visit_EnumValue(const EnumValue&){};
-		virtual void Visit_LabelConnection(const LabelConnection&){};
-		virtual void Visit_Aggregate(const Aggregate&){};
-		virtual void Visit_SwitchedAggregate(const SwitchedAggregate&){};
+		virtual void Visit_SetException(const SetException&){};
+		virtual void Visit_LookupKey(const LookupKey&){};
+		virtual void Visit_Attribute(const Attribute&){};
+		virtual void Visit_ReadonlyAttribute(const ReadonlyAttribute&){};
+		virtual void Visit_Supports(const Supports&){};
+		virtual void Visit_ValueObject(const ValueObject&){};
+		virtual void Visit_Event(const Event&){};
+		virtual void Visit_Inherits(const Inherits&){};
+		virtual void Visit_Object(const Object&){};
 		virtual void Visit_Member(const Member&){};
+		virtual void Visit_Boxed(const Boxed&){};
+		virtual void Visit_Alias(const Alias&){};
+		virtual void Visit_Collection(const Collection&){};
+		virtual void Visit_Discriminator(const Discriminator&){};
+		virtual void Visit_LabelConnection(const LabelConnection&){};
+		virtual void Visit_Label(const Label&){};
+		virtual void Visit_SwitchedAggregate(const SwitchedAggregate&){};
+		virtual void Visit_Aggregate(const Aggregate&){};
+		virtual void Visit_EnumValue(const EnumValue&){};
 		virtual void Visit_Enum(const Enum&){};
-		virtual void Visit_Byte(const Byte&){};
-		virtual void Visit_PredefinedTypes(const PredefinedTypes&){};
-		virtual void Visit_GenericValueObject(const GenericValueObject&){};
-		virtual void Visit_RealNumber(const RealNumber&){};
-		virtual void Visit_String(const String&){};
-		virtual void Visit_GenericObject(const GenericObject&){};
-		virtual void Visit_GenericValue(const GenericValue&){};
 		virtual void Visit_TypeKind(const TypeKind&){};
 		virtual void Visit_TypeEncoding(const TypeEncoding&){};
-		virtual void Visit_Boolean(const Boolean&){};
+		virtual void Visit_GenericValue(const GenericValue&){};
+		virtual void Visit_GenericValueObject(const GenericValueObject&){};
+		virtual void Visit_GenericObject(const GenericObject&){};
+		virtual void Visit_String(const String&){};
+		virtual void Visit_RealNumber(const RealNumber&){};
 		virtual void Visit_LongInteger(const LongInteger&){};
 		virtual void Visit_ShortInteger(const ShortInteger&){};
+		virtual void Visit_Boolean(const Boolean&){};
+		virtual void Visit_Byte(const Byte&){};
+		virtual void Visit_PredefinedTypes(const PredefinedTypes&){};
 		virtual void Visit_Constant(const Constant&){};
 		virtual void Visit_InterfaceDefinitions(const InterfaceDefinitions&){};
-		virtual void Visit_Package(const Package&){};
-		virtual void Visit_File(const File&){};
-		virtual void Visit_Exception(const Exception&){};
 		virtual void Visit_FileRef(const FileRef&){};
 		virtual void Visit_ExceptionRef(const ExceptionRef&){};
-		virtual void Visit_StubProject(const StubProject&){};
-		virtual void Visit_ComponentBuild(const ComponentBuild&){};
-		virtual void Visit_Workspace(const Workspace&){};
-		virtual void Visit_MPC(const MPC&){};
-		virtual void Visit_Project(const Project&){};
-		virtual void Visit_ExternalResources(const ExternalResources&){};
-		virtual void Visit_ServantProject(const ServantProject&){};
-		virtual void Visit_ExtResourceConn(const ExtResourceConn&){};
+		virtual void Visit_Exception(const Exception&){};
+		virtual void Visit_File(const File&){};
+		virtual void Visit_Package(const Package&){};
+		virtual void Visit_Workspaces(const Workspaces&){};
 		virtual void Visit_ExecutorProject(const ExecutorProject&){};
+		virtual void Visit_ServantProject(const ServantProject&){};
+		virtual void Visit_StubProject(const StubProject&){};
+		virtual void Visit_MPC(const MPC&){};
+		virtual void Visit_ExtResourceConn(const ExtResourceConn&){};
+		virtual void Visit_ExternalResources(const ExternalResources&){};
+		virtual void Visit_ComponentBuild(const ComponentBuild&){};
+		virtual void Visit_Project(const Project&){};
 		virtual void Visit_RootFolder(const RootFolder&){};
 		virtual void Visit_Object(const Udm::Object&){};
 		virtual ~Visitor(){};
@@ -433,40 +431,6 @@ namespace PICML {
 
 	  void Initialize(const Uml::Diagram &dgr);
 	extern  Udm::UdmDiagram diagram;
-
-	class  Use_RT_Info_Members_Base :  virtual public Udm::Object {
-	 public:
-		static Uml::Class meta;
-
-		Use_RT_Info_Members_Base() { }
-		Use_RT_Info_Members_Base(Udm::ObjectImpl *impl) : Object(impl) { }
-		Use_RT_Info_Members_Base(const Use_RT_Info_Members_Base &master) : Object(master) { }
-		static Use_RT_Info_Members_Base Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static Use_RT_Info_Members_Base Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		Use_RT_Info_Members_Base CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		Use_RT_Info_Members_Base CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<Use_RT_Info_Members_Base> Instances() { return Udm::InstantiatedAttr<PICML::Use_RT_Info_Members_Base>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Use_RT_Info_Members_Base, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Use_RT_Info_Members_Base, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::Use_RT_Info_Members_Base> Derived() { return Udm::DerivedAttr<PICML::Use_RT_Info_Members_Base>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Use_RT_Info_Members_Base, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Use_RT_Info_Members_Base, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::Use_RT_Info_Members_Base> Archetype() { return Udm::ArchetypeAttr<PICML::Use_RT_Info_Members_Base>(impl);}
-
-		static Uml::AssociationRole meta_srcUse_RT_Info, meta_srcUse_RT_Info_rev;
-		Udm::AClassAssocAttr<PICML::Use_RT_Info, PICML::Use_RT_Info_Members_Base> srcUse_RT_Info() const { return Udm::AClassAssocAttr<PICML::Use_RT_Info, PICML::Use_RT_Info_Members_Base>(impl, meta_srcUse_RT_Info, meta_srcUse_RT_Info_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::Use_RT_Info, PICML::Use_RT_Info_Members_Base, Pred> srcUse_RT_Info_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::Use_RT_Info, PICML::Use_RT_Info_Members_Base, Pred>(impl, meta_srcUse_RT_Info, meta_srcUse_RT_Info_rev); }
-
-		static Uml::AssociationRole meta_dstUse_RT_Info, meta_dstUse_RT_Info_rev;
-		Udm::AClassAssocAttr<PICML::Use_RT_Info, PICML::Use_RT_Info_Members_Base> dstUse_RT_Info() const { return Udm::AClassAssocAttr<PICML::Use_RT_Info, PICML::Use_RT_Info_Members_Base>(impl, meta_dstUse_RT_Info, meta_dstUse_RT_Info_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::Use_RT_Info, PICML::Use_RT_Info_Members_Base, Pred> dstUse_RT_Info_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::Use_RT_Info, PICML::Use_RT_Info_Members_Base, Pred>(impl, meta_dstUse_RT_Info, meta_dstUse_RT_Info_rev); }
-
-		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
-	};
 
 	class  Include_RTEC_Filter_Group_Members_Base :  virtual public Udm::Object {
 	 public:
@@ -498,40 +462,6 @@ namespace PICML {
 		static Uml::AssociationRole meta_dstInclude_RTEC_Filter_Group, meta_dstInclude_RTEC_Filter_Group_rev;
 		Udm::AClassAssocAttr<PICML::Include_RTEC_Filter_Group, PICML::Include_RTEC_Filter_Group_Members_Base> dstInclude_RTEC_Filter_Group() const { return Udm::AClassAssocAttr<PICML::Include_RTEC_Filter_Group, PICML::Include_RTEC_Filter_Group_Members_Base>(impl, meta_dstInclude_RTEC_Filter_Group, meta_dstInclude_RTEC_Filter_Group_rev); }
 		template<class Pred> Udm::AClassAssocAttr<PICML::Include_RTEC_Filter_Group, PICML::Include_RTEC_Filter_Group_Members_Base, Pred> dstInclude_RTEC_Filter_Group_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::Include_RTEC_Filter_Group, PICML::Include_RTEC_Filter_Group_Members_Base, Pred>(impl, meta_dstInclude_RTEC_Filter_Group, meta_dstInclude_RTEC_Filter_Group_rev); }
-
-		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
-	};
-
-	class  Include_RT_Info_Members_Base :  virtual public Udm::Object {
-	 public:
-		static Uml::Class meta;
-
-		Include_RT_Info_Members_Base() { }
-		Include_RT_Info_Members_Base(Udm::ObjectImpl *impl) : Object(impl) { }
-		Include_RT_Info_Members_Base(const Include_RT_Info_Members_Base &master) : Object(master) { }
-		static Include_RT_Info_Members_Base Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static Include_RT_Info_Members_Base Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		Include_RT_Info_Members_Base CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		Include_RT_Info_Members_Base CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<Include_RT_Info_Members_Base> Instances() { return Udm::InstantiatedAttr<PICML::Include_RT_Info_Members_Base>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Include_RT_Info_Members_Base, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Include_RT_Info_Members_Base, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::Include_RT_Info_Members_Base> Derived() { return Udm::DerivedAttr<PICML::Include_RT_Info_Members_Base>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Include_RT_Info_Members_Base, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Include_RT_Info_Members_Base, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::Include_RT_Info_Members_Base> Archetype() { return Udm::ArchetypeAttr<PICML::Include_RT_Info_Members_Base>(impl);}
-
-		static Uml::AssociationRole meta_srcInclude_RT_Info, meta_srcInclude_RT_Info_rev;
-		Udm::AClassAssocAttr<PICML::Include_RT_Info, PICML::Include_RT_Info_Members_Base> srcInclude_RT_Info() const { return Udm::AClassAssocAttr<PICML::Include_RT_Info, PICML::Include_RT_Info_Members_Base>(impl, meta_srcInclude_RT_Info, meta_srcInclude_RT_Info_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::Include_RT_Info, PICML::Include_RT_Info_Members_Base, Pred> srcInclude_RT_Info_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::Include_RT_Info, PICML::Include_RT_Info_Members_Base, Pred>(impl, meta_srcInclude_RT_Info, meta_srcInclude_RT_Info_rev); }
-
-		static Uml::AssociationRole meta_dstInclude_RT_Info, meta_dstInclude_RT_Info_rev;
-		Udm::AClassAssocAttr<PICML::Include_RT_Info, PICML::Include_RT_Info_Members_Base> dstInclude_RT_Info() const { return Udm::AClassAssocAttr<PICML::Include_RT_Info, PICML::Include_RT_Info_Members_Base>(impl, meta_dstInclude_RT_Info, meta_dstInclude_RT_Info_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::Include_RT_Info, PICML::Include_RT_Info_Members_Base, Pred> dstInclude_RT_Info_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::Include_RT_Info, PICML::Include_RT_Info_Members_Base, Pred>(impl, meta_dstInclude_RT_Info, meta_dstInclude_RT_Info_rev); }
 
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 	};
@@ -999,41 +929,41 @@ namespace PICML {
 		Udm::ChildrenAttr<PICML::MemberType> MemberType_kind_children() const { return Udm::ChildrenAttr<PICML::MemberType>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::MemberType, Pred> MemberType_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MemberType, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::Byte> Byte_kind_children() const { return Udm::ChildrenAttr<PICML::Byte>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Byte, Pred> Byte_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Byte, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::GenericValueObject> GenericValueObject_kind_children() const { return Udm::ChildrenAttr<PICML::GenericValueObject>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::GenericValueObject, Pred> GenericValueObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::GenericValueObject, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::RealNumber> RealNumber_kind_children() const { return Udm::ChildrenAttr<PICML::RealNumber>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::RealNumber, Pred> RealNumber_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RealNumber, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::String> String_kind_children() const { return Udm::ChildrenAttr<PICML::String>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::String, Pred> String_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::String, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::GenericObject> GenericObject_kind_children() const { return Udm::ChildrenAttr<PICML::GenericObject>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::GenericObject, Pred> GenericObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::GenericObject, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::GenericValue> GenericValue_kind_children() const { return Udm::ChildrenAttr<PICML::GenericValue>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::GenericValue, Pred> GenericValue_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::GenericValue, Pred>(impl, Udm::NULLCHILDROLE); }
-
 		Udm::ChildrenAttr<PICML::TypeKind> TypeKind_kind_children() const { return Udm::ChildrenAttr<PICML::TypeKind>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::TypeKind, Pred> TypeKind_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TypeKind, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::TypeEncoding> TypeEncoding_kind_children() const { return Udm::ChildrenAttr<PICML::TypeEncoding>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::TypeEncoding, Pred> TypeEncoding_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TypeEncoding, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::Boolean> Boolean_kind_children() const { return Udm::ChildrenAttr<PICML::Boolean>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Boolean, Pred> Boolean_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Boolean, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ChildrenAttr<PICML::GenericValue> GenericValue_kind_children() const { return Udm::ChildrenAttr<PICML::GenericValue>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::GenericValue, Pred> GenericValue_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::GenericValue, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::PredefinedType> PredefinedType_kind_children() const { return Udm::ChildrenAttr<PICML::PredefinedType>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::PredefinedType, Pred> PredefinedType_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PredefinedType, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ChildrenAttr<PICML::GenericValueObject> GenericValueObject_kind_children() const { return Udm::ChildrenAttr<PICML::GenericValueObject>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::GenericValueObject, Pred> GenericValueObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::GenericValueObject, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::GenericObject> GenericObject_kind_children() const { return Udm::ChildrenAttr<PICML::GenericObject>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::GenericObject, Pred> GenericObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::GenericObject, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::String> String_kind_children() const { return Udm::ChildrenAttr<PICML::String>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::String, Pred> String_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::String, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::RealNumber> RealNumber_kind_children() const { return Udm::ChildrenAttr<PICML::RealNumber>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::RealNumber, Pred> RealNumber_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RealNumber, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::LongInteger> LongInteger_kind_children() const { return Udm::ChildrenAttr<PICML::LongInteger>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::LongInteger, Pred> LongInteger_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::LongInteger, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::ShortInteger> ShortInteger_kind_children() const { return Udm::ChildrenAttr<PICML::ShortInteger>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::ShortInteger, Pred> ShortInteger_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ShortInteger, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Boolean> Boolean_kind_children() const { return Udm::ChildrenAttr<PICML::Boolean>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Boolean, Pred> Boolean_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Boolean, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Byte> Byte_kind_children() const { return Udm::ChildrenAttr<PICML::Byte>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Byte, Pred> Byte_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Byte, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::PredefinedType> PredefinedType_kind_children() const { return Udm::ChildrenAttr<PICML::PredefinedType>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::PredefinedType, Pred> PredefinedType_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PredefinedType, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::ConstantType> ConstantType_kind_children() const { return Udm::ChildrenAttr<PICML::ConstantType>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::ConstantType, Pred> ConstantType_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ConstantType, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -1300,124 +1230,265 @@ namespace PICML {
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 	};
 
-	class  RTEC_Connection :  public MgaObject {
+	class  Proxy :  virtual public MgaObject {
 	 public:
 		static Uml::Class meta;
 
-		RTEC_Connection() { }
-		RTEC_Connection(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		RTEC_Connection(const RTEC_Connection &master) : MgaObject(master), Object(master) { }
-		static RTEC_Connection Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		Proxy() { }
+		Proxy(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		Proxy(const Proxy &master) : MgaObject(master), Object(master) { }
+		static Proxy Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static RTEC_Connection Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		static Proxy Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		RTEC_Connection CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		Proxy CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		RTEC_Connection CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+		Proxy CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::InstantiatedAttr<RTEC_Connection> Instances() { return Udm::InstantiatedAttr<PICML::RTEC_Connection>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<RTEC_Connection, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::RTEC_Connection, Pred>(impl);}
+		Udm::InstantiatedAttr<Proxy> Instances() { return Udm::InstantiatedAttr<PICML::Proxy>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Proxy, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Proxy, Pred>(impl);}
 
-		Udm::DerivedAttr<PICML::RTEC_Connection> Derived() { return Udm::DerivedAttr<PICML::RTEC_Connection>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::RTEC_Connection, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::RTEC_Connection, Pred>(impl);}
+		Udm::DerivedAttr<PICML::Proxy> Derived() { return Udm::DerivedAttr<PICML::Proxy>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Proxy, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Proxy, Pred>(impl);}
 
-		Udm::ArchetypeAttr<PICML::RTEC_Connection> Archetype() { return Udm::ArchetypeAttr<PICML::RTEC_Connection>(impl);}
+		Udm::ArchetypeAttr<PICML::Proxy> Archetype() { return Udm::ArchetypeAttr<PICML::Proxy>(impl);}
 
 		static Uml::CompositionParentRole meta_EventChannelConfiguration_parent;
 		Udm::ParentAttr<PICML::EventChannelConfiguration> EventChannelConfiguration_parent() const { return Udm::ParentAttr<PICML::EventChannelConfiguration>(impl, meta_EventChannelConfiguration_parent); }
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_dstRTEC_Connection_end_;
-		Udm::AssocEndAttr<PICML::RT_Info_Param> dstRTEC_Connection_end() const { return Udm::AssocEndAttr<PICML::RT_Info_Param>(impl, meta_dstRTEC_Connection_end_); }
-
-		static Uml::AssociationRole meta_srcRTEC_Connection_end_;
-		Udm::AssocEndAttr<PICML::OutEventPort> srcRTEC_Connection_end() const { return Udm::AssocEndAttr<PICML::OutEventPort>(impl, meta_srcRTEC_Connection_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_RTEC_Connection(*this);};
 	};
 
-	class  RTEC_Proxy :  virtual public MgaObject {
+	class  Proxy_Supplier :  public Proxy {
 	 public:
 		static Uml::Class meta;
 
-		RTEC_Proxy() { }
-		RTEC_Proxy(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		RTEC_Proxy(const RTEC_Proxy &master) : MgaObject(master), Object(master) { }
-		static RTEC_Proxy Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		Proxy_Supplier() { }
+		Proxy_Supplier(Udm::ObjectImpl *impl) : Proxy(impl), MgaObject(impl), Object(impl) { }
+		Proxy_Supplier(const Proxy_Supplier &master) : Proxy(master), MgaObject(master), Object(master) { }
+		static Proxy_Supplier Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static RTEC_Proxy Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		static Proxy_Supplier Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		RTEC_Proxy CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		Proxy_Supplier CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		RTEC_Proxy CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+		Proxy_Supplier CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::InstantiatedAttr<RTEC_Proxy> Instances() { return Udm::InstantiatedAttr<PICML::RTEC_Proxy>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<RTEC_Proxy, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::RTEC_Proxy, Pred>(impl);}
+		Udm::InstantiatedAttr<Proxy_Supplier> Instances() { return Udm::InstantiatedAttr<PICML::Proxy_Supplier>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Proxy_Supplier, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Proxy_Supplier, Pred>(impl);}
 
-		Udm::DerivedAttr<PICML::RTEC_Proxy> Derived() { return Udm::DerivedAttr<PICML::RTEC_Proxy>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::RTEC_Proxy, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::RTEC_Proxy, Pred>(impl);}
+		Udm::DerivedAttr<PICML::Proxy_Supplier> Derived() { return Udm::DerivedAttr<PICML::Proxy_Supplier>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Proxy_Supplier, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Proxy_Supplier, Pred>(impl);}
 
-		Udm::ArchetypeAttr<PICML::RTEC_Proxy> Archetype() { return Udm::ArchetypeAttr<PICML::RTEC_Proxy>(impl);}
+		Udm::ArchetypeAttr<PICML::Proxy_Supplier> Archetype() { return Udm::ArchetypeAttr<PICML::Proxy_Supplier>(impl);}
 
-		static Uml::CompositionChildRole meta_RT_Info_Param_children;
-		Udm::ChildrenAttr<PICML::RT_Info_Param> RT_Info_Param_children() const { return Udm::ChildrenAttr<PICML::RT_Info_Param>(impl, meta_RT_Info_Param_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::RT_Info_Param, Pred> RT_Info_Param_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RT_Info_Param, Pred>(impl, meta_RT_Info_Param_children); }
-
-		Udm::ChildrenAttr<PICML::Use_RT_Info_Members_Base> Use_RT_Info_Members_Base_kind_children() const { return Udm::ChildrenAttr<PICML::Use_RT_Info_Members_Base>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Use_RT_Info_Members_Base, Pred> Use_RT_Info_Members_Base_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Use_RT_Info_Members_Base, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Include_RT_Info_Members_Base> Include_RT_Info_Members_Base_kind_children() const { return Udm::ChildrenAttr<PICML::Include_RT_Info_Members_Base>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Include_RT_Info_Members_Base, Pred> Include_RT_Info_Members_Base_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Include_RT_Info_Members_Base, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::RT_Info> RT_Info_kind_children() const { return Udm::ChildrenAttr<PICML::RT_Info>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::RT_Info, Pred> RT_Info_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RT_Info, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::RT_Info_Param> RT_Info_Param_kind_children() const { return Udm::ChildrenAttr<PICML::RT_Info_Param>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::RT_Info_Param, Pred> RT_Info_Param_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RT_Info_Param, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Null_RT_Info> Null_RT_Info_kind_children() const { return Udm::ChildrenAttr<PICML::Null_RT_Info>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Null_RT_Info, Pred> Null_RT_Info_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Null_RT_Info, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 	};
 
-	class  Use_RTEC_Filter :  public MgaObject {
+	class  Proxy_Consumer :  public Proxy {
 	 public:
 		static Uml::Class meta;
 
-		Use_RTEC_Filter() { }
-		Use_RTEC_Filter(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		Use_RTEC_Filter(const Use_RTEC_Filter &master) : MgaObject(master), Object(master) { }
-		static Use_RTEC_Filter Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		Proxy_Consumer() { }
+		Proxy_Consumer(Udm::ObjectImpl *impl) : Proxy(impl), MgaObject(impl), Object(impl) { }
+		Proxy_Consumer(const Proxy_Consumer &master) : Proxy(master), MgaObject(master), Object(master) { }
+		static Proxy_Consumer Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static Use_RTEC_Filter Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		static Proxy_Consumer Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		Use_RTEC_Filter CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		Proxy_Consumer CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		Use_RTEC_Filter CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+		Proxy_Consumer CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::InstantiatedAttr<Use_RTEC_Filter> Instances() { return Udm::InstantiatedAttr<PICML::Use_RTEC_Filter>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Use_RTEC_Filter, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Use_RTEC_Filter, Pred>(impl);}
+		Udm::InstantiatedAttr<Proxy_Consumer> Instances() { return Udm::InstantiatedAttr<PICML::Proxy_Consumer>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Proxy_Consumer, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Proxy_Consumer, Pred>(impl);}
 
-		Udm::DerivedAttr<PICML::Use_RTEC_Filter> Derived() { return Udm::DerivedAttr<PICML::Use_RTEC_Filter>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Use_RTEC_Filter, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Use_RTEC_Filter, Pred>(impl);}
+		Udm::DerivedAttr<PICML::Proxy_Consumer> Derived() { return Udm::DerivedAttr<PICML::Proxy_Consumer>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Proxy_Consumer, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Proxy_Consumer, Pred>(impl);}
 
-		Udm::ArchetypeAttr<PICML::Use_RTEC_Filter> Archetype() { return Udm::ArchetypeAttr<PICML::Use_RTEC_Filter>(impl);}
+		Udm::ArchetypeAttr<PICML::Proxy_Consumer> Archetype() { return Udm::ArchetypeAttr<PICML::Proxy_Consumer>(impl);}
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+	};
+
+	class  RTEC_Resource_Factory_Reference :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		RTEC_Resource_Factory_Reference() { }
+		RTEC_Resource_Factory_Reference(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		RTEC_Resource_Factory_Reference(const RTEC_Resource_Factory_Reference &master) : MgaObject(master), Object(master) { }
+		static RTEC_Resource_Factory_Reference Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static RTEC_Resource_Factory_Reference Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		RTEC_Resource_Factory_Reference CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		RTEC_Resource_Factory_Reference CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<RTEC_Resource_Factory_Reference> Instances() { return Udm::InstantiatedAttr<PICML::RTEC_Resource_Factory_Reference>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<RTEC_Resource_Factory_Reference, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::RTEC_Resource_Factory_Reference, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::RTEC_Resource_Factory_Reference> Derived() { return Udm::DerivedAttr<PICML::RTEC_Resource_Factory_Reference>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::RTEC_Resource_Factory_Reference, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::RTEC_Resource_Factory_Reference, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::RTEC_Resource_Factory_Reference> Archetype() { return Udm::ArchetypeAttr<PICML::RTEC_Resource_Factory_Reference>(impl);}
+
+		static Uml::AssociationRole meta_srcUse_RT_Info, meta_srcUse_RT_Info_rev;
+		Udm::AClassAssocAttr<PICML::Use_RT_Info, PICML::RT_Info_Param> srcUse_RT_Info() const { return Udm::AClassAssocAttr<PICML::Use_RT_Info, PICML::RT_Info_Param>(impl, meta_srcUse_RT_Info, meta_srcUse_RT_Info_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::Use_RT_Info, PICML::RT_Info_Param, Pred> srcUse_RT_Info_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::Use_RT_Info, PICML::RT_Info_Param, Pred>(impl, meta_srcUse_RT_Info, meta_srcUse_RT_Info_rev); }
+
+		static Uml::AssociationRole meta_ref;
+		Udm::PointerAttr<PICML::RTEC_Resource_Factory> ref() const { return Udm::PointerAttr<PICML::RTEC_Resource_Factory>(impl, meta_ref); }
+
+		static Uml::CompositionParentRole meta_RTEC_Proxy_Consumer_parent;
+		Udm::ParentAttr<PICML::RTEC_Proxy_Consumer> RTEC_Proxy_Consumer_parent() const { return Udm::ParentAttr<PICML::RTEC_Proxy_Consumer>(impl, meta_RTEC_Proxy_Consumer_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_RTEC_Resource_Factory_Reference(*this);};
+	};
+
+	class  RT_Info_Param :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		RT_Info_Param() { }
+		RT_Info_Param(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		RT_Info_Param(const RT_Info_Param &master) : MgaObject(master), Object(master) { }
+		static RT_Info_Param Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static RT_Info_Param Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		RT_Info_Param CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		RT_Info_Param CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<RT_Info_Param> Instances() { return Udm::InstantiatedAttr<PICML::RT_Info_Param>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<RT_Info_Param, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::RT_Info_Param, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::RT_Info_Param> Derived() { return Udm::DerivedAttr<PICML::RT_Info_Param>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::RT_Info_Param, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::RT_Info_Param, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::RT_Info_Param> Archetype() { return Udm::ArchetypeAttr<PICML::RT_Info_Param>(impl);}
+
+		static Uml::AssociationRole meta_dstUse_RT_Info, meta_dstUse_RT_Info_rev;
+		Udm::AClassAssocAttr<PICML::Use_RT_Info, PICML::RTEC_Resource_Factory_Reference> dstUse_RT_Info() const { return Udm::AClassAssocAttr<PICML::Use_RT_Info, PICML::RTEC_Resource_Factory_Reference>(impl, meta_dstUse_RT_Info, meta_dstUse_RT_Info_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::Use_RT_Info, PICML::RTEC_Resource_Factory_Reference, Pred> dstUse_RT_Info_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::Use_RT_Info, PICML::RTEC_Resource_Factory_Reference, Pred>(impl, meta_dstUse_RT_Info, meta_dstUse_RT_Info_rev); }
+
+		static Uml::AssociationRole meta_dstInclude_RT_Info, meta_dstInclude_RT_Info_rev;
+		Udm::AClassAssocAttr<PICML::Include_RT_Info, PICML::RTEC_Filter_Group> dstInclude_RT_Info() const { return Udm::AClassAssocAttr<PICML::Include_RT_Info, PICML::RTEC_Filter_Group>(impl, meta_dstInclude_RT_Info, meta_dstInclude_RT_Info_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::Include_RT_Info, PICML::RTEC_Filter_Group, Pred> dstInclude_RT_Info_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::Include_RT_Info, PICML::RTEC_Filter_Group, Pred>(impl, meta_dstInclude_RT_Info, meta_dstInclude_RT_Info_rev); }
+
+		static Uml::AssociationRole meta_srcRTEC_Connection, meta_srcRTEC_Connection_rev;
+		Udm::AClassAssocAttr<PICML::RTEC_Connection, PICML::OutEventPort> srcRTEC_Connection() const { return Udm::AClassAssocAttr<PICML::RTEC_Connection, PICML::OutEventPort>(impl, meta_srcRTEC_Connection, meta_srcRTEC_Connection_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::RTEC_Connection, PICML::OutEventPort, Pred> srcRTEC_Connection_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::RTEC_Connection, PICML::OutEventPort, Pred>(impl, meta_srcRTEC_Connection, meta_srcRTEC_Connection_rev); }
+
+		static Uml::CompositionParentRole meta_RTEC_Proxy_parent;
+		Udm::ParentAttr<PICML::RTEC_Proxy> RTEC_Proxy_parent() const { return Udm::ParentAttr<PICML::RTEC_Proxy>(impl, meta_RTEC_Proxy_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+	};
+
+	class  Null_RT_Info :  public RT_Info_Param {
+	 public:
+		static Uml::Class meta;
+
+		Null_RT_Info() { }
+		Null_RT_Info(Udm::ObjectImpl *impl) : RT_Info_Param(impl), Object(impl) { }
+		Null_RT_Info(const Null_RT_Info &master) : RT_Info_Param(master), Object(master) { }
+		static Null_RT_Info Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static Null_RT_Info Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		Null_RT_Info CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		Null_RT_Info CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<Null_RT_Info> Instances() { return Udm::InstantiatedAttr<PICML::Null_RT_Info>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Null_RT_Info, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Null_RT_Info, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::Null_RT_Info> Derived() { return Udm::DerivedAttr<PICML::Null_RT_Info>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Null_RT_Info, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Null_RT_Info, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::Null_RT_Info> Archetype() { return Udm::ArchetypeAttr<PICML::Null_RT_Info>(impl);}
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_Null_RT_Info(*this);};
+	};
+
+	class  Use_RT_Info :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		Use_RT_Info() { }
+		Use_RT_Info(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		Use_RT_Info(const Use_RT_Info &master) : MgaObject(master), Object(master) { }
+		static Use_RT_Info Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static Use_RT_Info Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		Use_RT_Info CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		Use_RT_Info CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<Use_RT_Info> Instances() { return Udm::InstantiatedAttr<PICML::Use_RT_Info>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Use_RT_Info, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Use_RT_Info, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::Use_RT_Info> Derived() { return Udm::DerivedAttr<PICML::Use_RT_Info>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Use_RT_Info, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Use_RT_Info, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::Use_RT_Info> Archetype() { return Udm::ArchetypeAttr<PICML::Use_RT_Info>(impl);}
+
+		static Uml::CompositionParentRole meta_RTEC_Proxy_Consumer_parent;
+		Udm::ParentAttr<PICML::RTEC_Proxy_Consumer> RTEC_Proxy_Consumer_parent() const { return Udm::ParentAttr<PICML::RTEC_Proxy_Consumer>(impl, meta_RTEC_Proxy_Consumer_parent); }
 
 		static Uml::CompositionParentRole meta_EventChannelConfiguration_parent;
 		Udm::ParentAttr<PICML::EventChannelConfiguration> EventChannelConfiguration_parent() const { return Udm::ParentAttr<PICML::EventChannelConfiguration>(impl, meta_EventChannelConfiguration_parent); }
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_dstUse_RTEC_Filter_end_;
-		Udm::AssocEndAttr<PICML::InEventPort> dstUse_RTEC_Filter_end() const { return Udm::AssocEndAttr<PICML::InEventPort>(impl, meta_dstUse_RTEC_Filter_end_); }
+		static Uml::AssociationRole meta_dstUse_RT_Info_end_;
+		Udm::AssocEndAttr<PICML::RTEC_Resource_Factory_Reference> dstUse_RT_Info_end() const { return Udm::AssocEndAttr<PICML::RTEC_Resource_Factory_Reference>(impl, meta_dstUse_RT_Info_end_); }
 
-		static Uml::AssociationRole meta_srcUse_RTEC_Filter_end_;
-		Udm::AssocEndAttr<PICML::RTEC_Filter_Group> srcUse_RTEC_Filter_end() const { return Udm::AssocEndAttr<PICML::RTEC_Filter_Group>(impl, meta_srcUse_RTEC_Filter_end_); }
+		static Uml::AssociationRole meta_srcUse_RT_Info_end_;
+		Udm::AssocEndAttr<PICML::RT_Info_Param> srcUse_RT_Info_end() const { return Udm::AssocEndAttr<PICML::RT_Info_Param>(impl, meta_srcUse_RT_Info_end_); }
 
-		virtual void Accept(Visitor &v){v.Visit_Use_RTEC_Filter(*this);};
+		virtual void Accept(Visitor &v){v.Visit_Use_RT_Info(*this);};
+	};
+
+	class  Include_RT_Info :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		Include_RT_Info() { }
+		Include_RT_Info(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		Include_RT_Info(const Include_RT_Info &master) : MgaObject(master), Object(master) { }
+		static Include_RT_Info Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static Include_RT_Info Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		Include_RT_Info CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		Include_RT_Info CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<Include_RT_Info> Instances() { return Udm::InstantiatedAttr<PICML::Include_RT_Info>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Include_RT_Info, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Include_RT_Info, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::Include_RT_Info> Derived() { return Udm::DerivedAttr<PICML::Include_RT_Info>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Include_RT_Info, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Include_RT_Info, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::Include_RT_Info> Archetype() { return Udm::ArchetypeAttr<PICML::Include_RT_Info>(impl);}
+
+		static Uml::CompositionParentRole meta_RTEC_Proxy_Supplier_parent;
+		Udm::ParentAttr<PICML::RTEC_Proxy_Supplier> RTEC_Proxy_Supplier_parent() const { return Udm::ParentAttr<PICML::RTEC_Proxy_Supplier>(impl, meta_RTEC_Proxy_Supplier_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_srcInclude_RT_Info_end_;
+		Udm::AssocEndAttr<PICML::RT_Info_Param> srcInclude_RT_Info_end() const { return Udm::AssocEndAttr<PICML::RT_Info_Param>(impl, meta_srcInclude_RT_Info_end_); }
+
+		static Uml::AssociationRole meta_dstInclude_RT_Info_end_;
+		Udm::AssocEndAttr<PICML::RTEC_Filter_Group> dstInclude_RT_Info_end() const { return Udm::AssocEndAttr<PICML::RTEC_Filter_Group>(impl, meta_dstInclude_RT_Info_end_); }
+
+		virtual void Accept(Visitor &v){v.Visit_Include_RT_Info(*this);};
 	};
 
 	class  RTEC_Resource_Factory :  public MgaObject {
@@ -1537,60 +1608,60 @@ namespace PICML {
 
 		Udm::ArchetypeAttr<PICML::EventChannelConfiguration> Archetype() { return Udm::ArchetypeAttr<PICML::EventChannelConfiguration>(impl);}
 
-		static Uml::CompositionChildRole meta_RTEC_Connection_children;
-		Udm::ChildrenAttr<PICML::RTEC_Connection> RTEC_Connection_children() const { return Udm::ChildrenAttr<PICML::RTEC_Connection>(impl, meta_RTEC_Connection_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::RTEC_Connection, Pred> RTEC_Connection_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RTEC_Connection, Pred>(impl, meta_RTEC_Connection_children); }
-
 		static Uml::CompositionChildRole meta_ComponentRef_children;
 		Udm::ChildrenAttr<PICML::ComponentRef> ComponentRef_children() const { return Udm::ChildrenAttr<PICML::ComponentRef>(impl, meta_ComponentRef_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentRef, Pred> ComponentRef_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentRef, Pred>(impl, meta_ComponentRef_children); }
-
-		static Uml::CompositionChildRole meta_Use_RT_Info_children;
-		Udm::ChildrenAttr<PICML::Use_RT_Info> Use_RT_Info_children() const { return Udm::ChildrenAttr<PICML::Use_RT_Info>(impl, meta_Use_RT_Info_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Use_RT_Info, Pred> Use_RT_Info_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Use_RT_Info, Pred>(impl, meta_Use_RT_Info_children); }
-
-		static Uml::CompositionChildRole meta_Proxy_children;
-		Udm::ChildrenAttr<PICML::Proxy> Proxy_children() const { return Udm::ChildrenAttr<PICML::Proxy>(impl, meta_Proxy_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Proxy, Pred> Proxy_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Proxy, Pred>(impl, meta_Proxy_children); }
 
 		static Uml::CompositionChildRole meta_Port_children;
 		Udm::ChildrenAttr<PICML::Port> Port_children() const { return Udm::ChildrenAttr<PICML::Port>(impl, meta_Port_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML::Port, Pred> Port_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Port, Pred>(impl, meta_Port_children); }
 
-		static Uml::CompositionChildRole meta_RTEC_Resource_Factory_children;
-		Udm::ChildrenAttr<PICML::RTEC_Resource_Factory> RTEC_Resource_Factory_children() const { return Udm::ChildrenAttr<PICML::RTEC_Resource_Factory>(impl, meta_RTEC_Resource_Factory_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::RTEC_Resource_Factory, Pred> RTEC_Resource_Factory_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RTEC_Resource_Factory, Pred>(impl, meta_RTEC_Resource_Factory_children); }
+		static Uml::CompositionChildRole meta_Proxy_children;
+		Udm::ChildrenAttr<PICML::Proxy> Proxy_children() const { return Udm::ChildrenAttr<PICML::Proxy>(impl, meta_Proxy_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Proxy, Pred> Proxy_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Proxy, Pred>(impl, meta_Proxy_children); }
+
+		static Uml::CompositionChildRole meta_RTEC_Connection_children;
+		Udm::ChildrenAttr<PICML::RTEC_Connection> RTEC_Connection_children() const { return Udm::ChildrenAttr<PICML::RTEC_Connection>(impl, meta_RTEC_Connection_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::RTEC_Connection, Pred> RTEC_Connection_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RTEC_Connection, Pred>(impl, meta_RTEC_Connection_children); }
 
 		static Uml::CompositionChildRole meta_Use_RTEC_Filter_children;
 		Udm::ChildrenAttr<PICML::Use_RTEC_Filter> Use_RTEC_Filter_children() const { return Udm::ChildrenAttr<PICML::Use_RTEC_Filter>(impl, meta_Use_RTEC_Filter_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML::Use_RTEC_Filter, Pred> Use_RTEC_Filter_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Use_RTEC_Filter, Pred>(impl, meta_Use_RTEC_Filter_children); }
 
-		Udm::ChildrenAttr<PICML::RTEC_Proxy_Consumer> RTEC_Proxy_Consumer_kind_children() const { return Udm::ChildrenAttr<PICML::RTEC_Proxy_Consumer>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::RTEC_Proxy_Consumer, Pred> RTEC_Proxy_Consumer_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RTEC_Proxy_Consumer, Pred>(impl, Udm::NULLCHILDROLE); }
+		static Uml::CompositionChildRole meta_RTEC_Resource_Factory_children;
+		Udm::ChildrenAttr<PICML::RTEC_Resource_Factory> RTEC_Resource_Factory_children() const { return Udm::ChildrenAttr<PICML::RTEC_Resource_Factory>(impl, meta_RTEC_Resource_Factory_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::RTEC_Resource_Factory, Pred> RTEC_Resource_Factory_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RTEC_Resource_Factory, Pred>(impl, meta_RTEC_Resource_Factory_children); }
 
-		Udm::ChildrenAttr<PICML::RTEC_Connection> RTEC_Connection_kind_children() const { return Udm::ChildrenAttr<PICML::RTEC_Connection>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::RTEC_Connection, Pred> RTEC_Connection_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RTEC_Connection, Pred>(impl, Udm::NULLCHILDROLE); }
+		static Uml::CompositionChildRole meta_Use_RT_Info_children;
+		Udm::ChildrenAttr<PICML::Use_RT_Info> Use_RT_Info_children() const { return Udm::ChildrenAttr<PICML::Use_RT_Info>(impl, meta_Use_RT_Info_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Use_RT_Info, Pred> Use_RT_Info_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Use_RT_Info, Pred>(impl, meta_Use_RT_Info_children); }
 
-		Udm::ChildrenAttr<PICML::RTEC_Proxy_Supplier> RTEC_Proxy_Supplier_kind_children() const { return Udm::ChildrenAttr<PICML::RTEC_Proxy_Supplier>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::RTEC_Proxy_Supplier, Pred> RTEC_Proxy_Supplier_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RTEC_Proxy_Supplier, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ChildrenAttr<PICML::Proxy_Supplier> Proxy_Supplier_kind_children() const { return Udm::ChildrenAttr<PICML::Proxy_Supplier>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Proxy_Supplier, Pred> Proxy_Supplier_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Proxy_Supplier, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::Proxy_Consumer> Proxy_Consumer_kind_children() const { return Udm::ChildrenAttr<PICML::Proxy_Consumer>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::Proxy_Consumer, Pred> Proxy_Consumer_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Proxy_Consumer, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::Use_RTEC_Filter> Use_RTEC_Filter_kind_children() const { return Udm::ChildrenAttr<PICML::Use_RTEC_Filter>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Use_RTEC_Filter, Pred> Use_RTEC_Filter_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Use_RTEC_Filter, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::RTEC_Resource_Factory> RTEC_Resource_Factory_kind_children() const { return Udm::ChildrenAttr<PICML::RTEC_Resource_Factory>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::RTEC_Resource_Factory, Pred> RTEC_Resource_Factory_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RTEC_Resource_Factory, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ChildrenAttr<PICML::Proxy> Proxy_kind_children() const { return Udm::ChildrenAttr<PICML::Proxy>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Proxy, Pred> Proxy_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Proxy, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::Use_RT_Info> Use_RT_Info_kind_children() const { return Udm::ChildrenAttr<PICML::Use_RT_Info>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::Use_RT_Info, Pred> Use_RT_Info_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Use_RT_Info, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::Proxy> Proxy_kind_children() const { return Udm::ChildrenAttr<PICML::Proxy>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Proxy, Pred> Proxy_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Proxy, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ChildrenAttr<PICML::RTEC_Resource_Factory> RTEC_Resource_Factory_kind_children() const { return Udm::ChildrenAttr<PICML::RTEC_Resource_Factory>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::RTEC_Resource_Factory, Pred> RTEC_Resource_Factory_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RTEC_Resource_Factory, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::Proxy_Supplier> Proxy_Supplier_kind_children() const { return Udm::ChildrenAttr<PICML::Proxy_Supplier>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Proxy_Supplier, Pred> Proxy_Supplier_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Proxy_Supplier, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ChildrenAttr<PICML::Use_RTEC_Filter> Use_RTEC_Filter_kind_children() const { return Udm::ChildrenAttr<PICML::Use_RTEC_Filter>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Use_RTEC_Filter, Pred> Use_RTEC_Filter_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Use_RTEC_Filter, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::RTEC_Connection> RTEC_Connection_kind_children() const { return Udm::ChildrenAttr<PICML::RTEC_Connection>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::RTEC_Connection, Pred> RTEC_Connection_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RTEC_Connection, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::RTEC_Proxy_Consumer> RTEC_Proxy_Consumer_kind_children() const { return Udm::ChildrenAttr<PICML::RTEC_Proxy_Consumer>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::RTEC_Proxy_Consumer, Pred> RTEC_Proxy_Consumer_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RTEC_Proxy_Consumer, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::RTEC_Proxy_Supplier> RTEC_Proxy_Supplier_kind_children() const { return Udm::ChildrenAttr<PICML::RTEC_Proxy_Supplier>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::RTEC_Proxy_Supplier, Pred> RTEC_Proxy_Supplier_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RTEC_Proxy_Supplier, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::CommonPortAttrs> CommonPortAttrs_kind_children() const { return Udm::ChildrenAttr<PICML::CommonPortAttrs>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::CommonPortAttrs, Pred> CommonPortAttrs_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::CommonPortAttrs, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -1601,23 +1672,23 @@ namespace PICML {
 		Udm::ChildrenAttr<PICML::Manageable> Manageable_kind_children() const { return Udm::ChildrenAttr<PICML::Manageable>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::Manageable, Pred> Manageable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Manageable, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::RequiredRequestPort> RequiredRequestPort_kind_children() const { return Udm::ChildrenAttr<PICML::RequiredRequestPort>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::RequiredRequestPort, Pred> RequiredRequestPort_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RequiredRequestPort, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ProvidedRequestPort> ProvidedRequestPort_kind_children() const { return Udm::ChildrenAttr<PICML::ProvidedRequestPort>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ProvidedRequestPort, Pred> ProvidedRequestPort_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ProvidedRequestPort, Pred>(impl, Udm::NULLCHILDROLE); }
-
 		Udm::ChildrenAttr<PICML::ComponentRef> ComponentRef_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentRef>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::ComponentRef, Pred> ComponentRef_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentRef, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::Port> Port_kind_children() const { return Udm::ChildrenAttr<PICML::Port>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::Port, Pred> Port_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Port, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::OutEventPort> OutEventPort_kind_children() const { return Udm::ChildrenAttr<PICML::OutEventPort>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::OutEventPort, Pred> OutEventPort_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OutEventPort, Pred>(impl, Udm::NULLCHILDROLE); }
-
 		Udm::ChildrenAttr<PICML::InEventPort> InEventPort_kind_children() const { return Udm::ChildrenAttr<PICML::InEventPort>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::InEventPort, Pred> InEventPort_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::InEventPort, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::RequiredRequestPort> RequiredRequestPort_kind_children() const { return Udm::ChildrenAttr<PICML::RequiredRequestPort>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::RequiredRequestPort, Pred> RequiredRequestPort_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RequiredRequestPort, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ProvidedRequestPort> ProvidedRequestPort_kind_children() const { return Udm::ChildrenAttr<PICML::ProvidedRequestPort>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ProvidedRequestPort, Pred> ProvidedRequestPort_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ProvidedRequestPort, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::OutEventPort> OutEventPort_kind_children() const { return Udm::ChildrenAttr<PICML::OutEventPort>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::OutEventPort, Pred> OutEventPort_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OutEventPort, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -1629,52 +1700,85 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_EventChannelConfiguration(*this);};
 	};
 
-	class  Use_RT_Info :  public MgaObject {
+	class  Use_RTEC_Filter :  public MgaObject {
 	 public:
 		static Uml::Class meta;
 
-		Use_RT_Info() { }
-		Use_RT_Info(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		Use_RT_Info(const Use_RT_Info &master) : MgaObject(master), Object(master) { }
-		static Use_RT_Info Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		Use_RTEC_Filter() { }
+		Use_RTEC_Filter(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		Use_RTEC_Filter(const Use_RTEC_Filter &master) : MgaObject(master), Object(master) { }
+		static Use_RTEC_Filter Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static Use_RT_Info Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		static Use_RTEC_Filter Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		Use_RT_Info CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		Use_RTEC_Filter CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		Use_RT_Info CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+		Use_RTEC_Filter CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::InstantiatedAttr<Use_RT_Info> Instances() { return Udm::InstantiatedAttr<PICML::Use_RT_Info>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Use_RT_Info, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Use_RT_Info, Pred>(impl);}
+		Udm::InstantiatedAttr<Use_RTEC_Filter> Instances() { return Udm::InstantiatedAttr<PICML::Use_RTEC_Filter>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Use_RTEC_Filter, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Use_RTEC_Filter, Pred>(impl);}
 
-		Udm::DerivedAttr<PICML::Use_RT_Info> Derived() { return Udm::DerivedAttr<PICML::Use_RT_Info>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Use_RT_Info, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Use_RT_Info, Pred>(impl);}
+		Udm::DerivedAttr<PICML::Use_RTEC_Filter> Derived() { return Udm::DerivedAttr<PICML::Use_RTEC_Filter>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Use_RTEC_Filter, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Use_RTEC_Filter, Pred>(impl);}
 
-		Udm::ArchetypeAttr<PICML::Use_RT_Info> Archetype() { return Udm::ArchetypeAttr<PICML::Use_RT_Info>(impl);}
-
-		static Uml::CompositionParentRole meta_RTEC_Proxy_Consumer_parent;
-		Udm::ParentAttr<PICML::RTEC_Proxy_Consumer> RTEC_Proxy_Consumer_parent() const { return Udm::ParentAttr<PICML::RTEC_Proxy_Consumer>(impl, meta_RTEC_Proxy_Consumer_parent); }
+		Udm::ArchetypeAttr<PICML::Use_RTEC_Filter> Archetype() { return Udm::ArchetypeAttr<PICML::Use_RTEC_Filter>(impl);}
 
 		static Uml::CompositionParentRole meta_EventChannelConfiguration_parent;
 		Udm::ParentAttr<PICML::EventChannelConfiguration> EventChannelConfiguration_parent() const { return Udm::ParentAttr<PICML::EventChannelConfiguration>(impl, meta_EventChannelConfiguration_parent); }
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_dstUse_RT_Info_end_;
-		Udm::AssocEndAttr<PICML::Use_RT_Info_Members_Base> dstUse_RT_Info_end() const { return Udm::AssocEndAttr<PICML::Use_RT_Info_Members_Base>(impl, meta_dstUse_RT_Info_end_); }
+		static Uml::AssociationRole meta_srcUse_RTEC_Filter_end_;
+		Udm::AssocEndAttr<PICML::RTEC_Filter_Group> srcUse_RTEC_Filter_end() const { return Udm::AssocEndAttr<PICML::RTEC_Filter_Group>(impl, meta_srcUse_RTEC_Filter_end_); }
 
-		static Uml::AssociationRole meta_srcUse_RT_Info_end_;
-		Udm::AssocEndAttr<PICML::Use_RT_Info_Members_Base> srcUse_RT_Info_end() const { return Udm::AssocEndAttr<PICML::Use_RT_Info_Members_Base>(impl, meta_srcUse_RT_Info_end_); }
+		static Uml::AssociationRole meta_dstUse_RTEC_Filter_end_;
+		Udm::AssocEndAttr<PICML::InEventPort> dstUse_RTEC_Filter_end() const { return Udm::AssocEndAttr<PICML::InEventPort>(impl, meta_dstUse_RTEC_Filter_end_); }
 
-		virtual void Accept(Visitor &v){v.Visit_Use_RT_Info(*this);};
+		virtual void Accept(Visitor &v){v.Visit_Use_RTEC_Filter(*this);};
 	};
 
-	class  RTEC_Filter_Group :  public Include_RTEC_Filter_Group_Members_Base, public Include_RT_Info_Members_Base, public MgaObject {
+	class  Include_RTEC_Filter_Group :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		Include_RTEC_Filter_Group() { }
+		Include_RTEC_Filter_Group(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		Include_RTEC_Filter_Group(const Include_RTEC_Filter_Group &master) : MgaObject(master), Object(master) { }
+		static Include_RTEC_Filter_Group Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static Include_RTEC_Filter_Group Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		Include_RTEC_Filter_Group CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		Include_RTEC_Filter_Group CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<Include_RTEC_Filter_Group> Instances() { return Udm::InstantiatedAttr<PICML::Include_RTEC_Filter_Group>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Include_RTEC_Filter_Group, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Include_RTEC_Filter_Group, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::Include_RTEC_Filter_Group> Derived() { return Udm::DerivedAttr<PICML::Include_RTEC_Filter_Group>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Include_RTEC_Filter_Group, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Include_RTEC_Filter_Group, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::Include_RTEC_Filter_Group> Archetype() { return Udm::ArchetypeAttr<PICML::Include_RTEC_Filter_Group>(impl);}
+
+		static Uml::CompositionParentRole meta_RTEC_Proxy_Supplier_parent;
+		Udm::ParentAttr<PICML::RTEC_Proxy_Supplier> RTEC_Proxy_Supplier_parent() const { return Udm::ParentAttr<PICML::RTEC_Proxy_Supplier>(impl, meta_RTEC_Proxy_Supplier_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_dstInclude_RTEC_Filter_Group_end_;
+		Udm::AssocEndAttr<PICML::Include_RTEC_Filter_Group_Members_Base> dstInclude_RTEC_Filter_Group_end() const { return Udm::AssocEndAttr<PICML::Include_RTEC_Filter_Group_Members_Base>(impl, meta_dstInclude_RTEC_Filter_Group_end_); }
+
+		static Uml::AssociationRole meta_srcInclude_RTEC_Filter_Group_end_;
+		Udm::AssocEndAttr<PICML::Include_RTEC_Filter_Group_Members_Base> srcInclude_RTEC_Filter_Group_end() const { return Udm::AssocEndAttr<PICML::Include_RTEC_Filter_Group_Members_Base>(impl, meta_srcInclude_RTEC_Filter_Group_end_); }
+
+		virtual void Accept(Visitor &v){v.Visit_Include_RTEC_Filter_Group(*this);};
+	};
+
+	class  RTEC_Filter_Group :  public Include_RTEC_Filter_Group_Members_Base, public MgaObject {
 	 public:
 		static Uml::Class meta;
 
 		RTEC_Filter_Group() { }
-		RTEC_Filter_Group(Udm::ObjectImpl *impl) : Include_RTEC_Filter_Group_Members_Base(impl),Include_RT_Info_Members_Base(impl),MgaObject(impl), Object(impl) { }
-		RTEC_Filter_Group(const RTEC_Filter_Group &master) : Include_RTEC_Filter_Group_Members_Base(master),Include_RT_Info_Members_Base(master),MgaObject(master), Object(master) { }
+		RTEC_Filter_Group(Udm::ObjectImpl *impl) : Include_RTEC_Filter_Group_Members_Base(impl),MgaObject(impl), Object(impl) { }
+		RTEC_Filter_Group(const RTEC_Filter_Group &master) : Include_RTEC_Filter_Group_Members_Base(master),MgaObject(master), Object(master) { }
 		static RTEC_Filter_Group Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
 		static RTEC_Filter_Group Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
@@ -1691,6 +1795,10 @@ namespace PICML {
 
 		Udm::ArchetypeAttr<PICML::RTEC_Filter_Group> Archetype() { return Udm::ArchetypeAttr<PICML::RTEC_Filter_Group>(impl);}
 
+		static Uml::AssociationRole meta_srcInclude_RT_Info, meta_srcInclude_RT_Info_rev;
+		Udm::AClassAssocAttr<PICML::Include_RT_Info, PICML::RT_Info_Param> srcInclude_RT_Info() const { return Udm::AClassAssocAttr<PICML::Include_RT_Info, PICML::RT_Info_Param>(impl, meta_srcInclude_RT_Info, meta_srcInclude_RT_Info_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::Include_RT_Info, PICML::RT_Info_Param, Pred> srcInclude_RT_Info_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::Include_RT_Info, PICML::RT_Info_Param, Pred>(impl, meta_srcInclude_RT_Info, meta_srcInclude_RT_Info_rev); }
+
 		static Uml::AssociationRole meta_dstUse_RTEC_Filter, meta_dstUse_RTEC_Filter_rev;
 		Udm::AClassAssocAttr<PICML::Use_RTEC_Filter, PICML::InEventPort> dstUse_RTEC_Filter() const { return Udm::AClassAssocAttr<PICML::Use_RTEC_Filter, PICML::InEventPort>(impl, meta_dstUse_RTEC_Filter, meta_dstUse_RTEC_Filter_rev); }
 		template<class Pred> Udm::AClassAssocAttr<PICML::Use_RTEC_Filter, PICML::InEventPort, Pred> dstUse_RTEC_Filter_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::Use_RTEC_Filter, PICML::InEventPort, Pred>(impl, meta_dstUse_RTEC_Filter, meta_dstUse_RTEC_Filter_rev); }
@@ -1699,42 +1807,6 @@ namespace PICML {
 		Udm::ParentAttr<PICML::RTEC_Proxy_Supplier> RTEC_Proxy_Supplier_parent() const { return Udm::ParentAttr<PICML::RTEC_Proxy_Supplier>(impl, meta_RTEC_Proxy_Supplier_parent); }
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-	};
-
-	class  Include_RT_Info :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		Include_RT_Info() { }
-		Include_RT_Info(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		Include_RT_Info(const Include_RT_Info &master) : MgaObject(master), Object(master) { }
-		static Include_RT_Info Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static Include_RT_Info Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		Include_RT_Info CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		Include_RT_Info CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<Include_RT_Info> Instances() { return Udm::InstantiatedAttr<PICML::Include_RT_Info>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Include_RT_Info, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Include_RT_Info, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::Include_RT_Info> Derived() { return Udm::DerivedAttr<PICML::Include_RT_Info>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Include_RT_Info, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Include_RT_Info, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::Include_RT_Info> Archetype() { return Udm::ArchetypeAttr<PICML::Include_RT_Info>(impl);}
-
-		static Uml::CompositionParentRole meta_RTEC_Proxy_Supplier_parent;
-		Udm::ParentAttr<PICML::RTEC_Proxy_Supplier> RTEC_Proxy_Supplier_parent() const { return Udm::ParentAttr<PICML::RTEC_Proxy_Supplier>(impl, meta_RTEC_Proxy_Supplier_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_dstInclude_RT_Info_end_;
-		Udm::AssocEndAttr<PICML::Include_RT_Info_Members_Base> dstInclude_RT_Info_end() const { return Udm::AssocEndAttr<PICML::Include_RT_Info_Members_Base>(impl, meta_dstInclude_RT_Info_end_); }
-
-		static Uml::AssociationRole meta_srcInclude_RT_Info_end_;
-		Udm::AssocEndAttr<PICML::Include_RT_Info_Members_Base> srcInclude_RT_Info_end() const { return Udm::AssocEndAttr<PICML::Include_RT_Info_Members_Base>(impl, meta_srcInclude_RT_Info_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_Include_RT_Info(*this);};
 	};
 
 	class  ConjunctionGroup :  public RTEC_Filter_Group {
@@ -1791,70 +1863,67 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_DisjunctionGroup(*this);};
 	};
 
-	class  RTEC_Resource_Factory_Reference :  public Use_RT_Info_Members_Base, public MgaObject {
+	class  LogicalANDGroup :  public RTEC_Filter_Group {
 	 public:
 		static Uml::Class meta;
 
-		RTEC_Resource_Factory_Reference() { }
-		RTEC_Resource_Factory_Reference(Udm::ObjectImpl *impl) : Use_RT_Info_Members_Base(impl),MgaObject(impl), Object(impl) { }
-		RTEC_Resource_Factory_Reference(const RTEC_Resource_Factory_Reference &master) : Use_RT_Info_Members_Base(master),MgaObject(master), Object(master) { }
-		static RTEC_Resource_Factory_Reference Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		LogicalANDGroup() { }
+		LogicalANDGroup(Udm::ObjectImpl *impl) : RTEC_Filter_Group(impl), Object(impl) { }
+		LogicalANDGroup(const LogicalANDGroup &master) : RTEC_Filter_Group(master), Object(master) { }
+		static LogicalANDGroup Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static RTEC_Resource_Factory_Reference Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		static LogicalANDGroup Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		RTEC_Resource_Factory_Reference CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		LogicalANDGroup CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		RTEC_Resource_Factory_Reference CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+		LogicalANDGroup CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::InstantiatedAttr<RTEC_Resource_Factory_Reference> Instances() { return Udm::InstantiatedAttr<PICML::RTEC_Resource_Factory_Reference>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<RTEC_Resource_Factory_Reference, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::RTEC_Resource_Factory_Reference, Pred>(impl);}
+		Udm::InstantiatedAttr<LogicalANDGroup> Instances() { return Udm::InstantiatedAttr<PICML::LogicalANDGroup>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<LogicalANDGroup, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::LogicalANDGroup, Pred>(impl);}
 
-		Udm::DerivedAttr<PICML::RTEC_Resource_Factory_Reference> Derived() { return Udm::DerivedAttr<PICML::RTEC_Resource_Factory_Reference>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::RTEC_Resource_Factory_Reference, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::RTEC_Resource_Factory_Reference, Pred>(impl);}
+		Udm::DerivedAttr<PICML::LogicalANDGroup> Derived() { return Udm::DerivedAttr<PICML::LogicalANDGroup>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::LogicalANDGroup, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::LogicalANDGroup, Pred>(impl);}
 
-		Udm::ArchetypeAttr<PICML::RTEC_Resource_Factory_Reference> Archetype() { return Udm::ArchetypeAttr<PICML::RTEC_Resource_Factory_Reference>(impl);}
-
-		static Uml::AssociationRole meta_ref;
-		Udm::PointerAttr<PICML::RTEC_Resource_Factory> ref() const { return Udm::PointerAttr<PICML::RTEC_Resource_Factory>(impl, meta_ref); }
-
-		static Uml::CompositionParentRole meta_RTEC_Proxy_Consumer_parent;
-		Udm::ParentAttr<PICML::RTEC_Proxy_Consumer> RTEC_Proxy_Consumer_parent() const { return Udm::ParentAttr<PICML::RTEC_Proxy_Consumer>(impl, meta_RTEC_Proxy_Consumer_parent); }
+		Udm::ArchetypeAttr<PICML::LogicalANDGroup> Archetype() { return Udm::ArchetypeAttr<PICML::LogicalANDGroup>(impl);}
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_RTEC_Resource_Factory_Reference(*this);};
+		virtual void Accept(Visitor &v){v.Visit_LogicalANDGroup(*this);};
 	};
 
-	class  RT_Info_Param :  public Use_RT_Info_Members_Base, public Include_RT_Info_Members_Base, public MgaObject {
+	class  RTEC_Connection :  public MgaObject {
 	 public:
 		static Uml::Class meta;
 
-		RT_Info_Param() { }
-		RT_Info_Param(Udm::ObjectImpl *impl) : Use_RT_Info_Members_Base(impl),Include_RT_Info_Members_Base(impl),MgaObject(impl), Object(impl) { }
-		RT_Info_Param(const RT_Info_Param &master) : Use_RT_Info_Members_Base(master),Include_RT_Info_Members_Base(master),MgaObject(master), Object(master) { }
-		static RT_Info_Param Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		RTEC_Connection() { }
+		RTEC_Connection(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		RTEC_Connection(const RTEC_Connection &master) : MgaObject(master), Object(master) { }
+		static RTEC_Connection Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static RT_Info_Param Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		static RTEC_Connection Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		RT_Info_Param CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		RTEC_Connection CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		RT_Info_Param CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+		RTEC_Connection CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::InstantiatedAttr<RT_Info_Param> Instances() { return Udm::InstantiatedAttr<PICML::RT_Info_Param>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<RT_Info_Param, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::RT_Info_Param, Pred>(impl);}
+		Udm::InstantiatedAttr<RTEC_Connection> Instances() { return Udm::InstantiatedAttr<PICML::RTEC_Connection>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<RTEC_Connection, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::RTEC_Connection, Pred>(impl);}
 
-		Udm::DerivedAttr<PICML::RT_Info_Param> Derived() { return Udm::DerivedAttr<PICML::RT_Info_Param>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::RT_Info_Param, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::RT_Info_Param, Pred>(impl);}
+		Udm::DerivedAttr<PICML::RTEC_Connection> Derived() { return Udm::DerivedAttr<PICML::RTEC_Connection>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::RTEC_Connection, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::RTEC_Connection, Pred>(impl);}
 
-		Udm::ArchetypeAttr<PICML::RT_Info_Param> Archetype() { return Udm::ArchetypeAttr<PICML::RT_Info_Param>(impl);}
+		Udm::ArchetypeAttr<PICML::RTEC_Connection> Archetype() { return Udm::ArchetypeAttr<PICML::RTEC_Connection>(impl);}
 
-		static Uml::AssociationRole meta_srcRTEC_Connection, meta_srcRTEC_Connection_rev;
-		Udm::AClassAssocAttr<PICML::RTEC_Connection, PICML::OutEventPort> srcRTEC_Connection() const { return Udm::AClassAssocAttr<PICML::RTEC_Connection, PICML::OutEventPort>(impl, meta_srcRTEC_Connection, meta_srcRTEC_Connection_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::RTEC_Connection, PICML::OutEventPort, Pred> srcRTEC_Connection_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::RTEC_Connection, PICML::OutEventPort, Pred>(impl, meta_srcRTEC_Connection, meta_srcRTEC_Connection_rev); }
-
-		static Uml::CompositionParentRole meta_RTEC_Proxy_parent;
-		Udm::ParentAttr<PICML::RTEC_Proxy> RTEC_Proxy_parent() const { return Udm::ParentAttr<PICML::RTEC_Proxy>(impl, meta_RTEC_Proxy_parent); }
+		static Uml::CompositionParentRole meta_EventChannelConfiguration_parent;
+		Udm::ParentAttr<PICML::EventChannelConfiguration> EventChannelConfiguration_parent() const { return Udm::ParentAttr<PICML::EventChannelConfiguration>(impl, meta_EventChannelConfiguration_parent); }
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_dstRTEC_Connection_end_;
+		Udm::AssocEndAttr<PICML::RT_Info_Param> dstRTEC_Connection_end() const { return Udm::AssocEndAttr<PICML::RT_Info_Param>(impl, meta_dstRTEC_Connection_end_); }
+
+		static Uml::AssociationRole meta_srcRTEC_Connection_end_;
+		Udm::AssocEndAttr<PICML::OutEventPort> srcRTEC_Connection_end() const { return Udm::AssocEndAttr<PICML::OutEventPort>(impl, meta_srcRTEC_Connection_end_); }
+
+		virtual void Accept(Visitor &v){v.Visit_RTEC_Connection(*this);};
 	};
 
 	class  RT_Info :  public RT_Info_Param {
@@ -1917,68 +1986,55 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_RT_Info(*this);};
 	};
 
-	class  Proxy :  virtual public MgaObject {
+	class  RTEC_Proxy :  virtual public MgaObject {
 	 public:
 		static Uml::Class meta;
 
-		Proxy() { }
-		Proxy(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		Proxy(const Proxy &master) : MgaObject(master), Object(master) { }
-		static Proxy Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		RTEC_Proxy() { }
+		RTEC_Proxy(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		RTEC_Proxy(const RTEC_Proxy &master) : MgaObject(master), Object(master) { }
+		static RTEC_Proxy Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static Proxy Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		static RTEC_Proxy Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		Proxy CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		RTEC_Proxy CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		Proxy CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+		RTEC_Proxy CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::InstantiatedAttr<Proxy> Instances() { return Udm::InstantiatedAttr<PICML::Proxy>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Proxy, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Proxy, Pred>(impl);}
+		Udm::InstantiatedAttr<RTEC_Proxy> Instances() { return Udm::InstantiatedAttr<PICML::RTEC_Proxy>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<RTEC_Proxy, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::RTEC_Proxy, Pred>(impl);}
 
-		Udm::DerivedAttr<PICML::Proxy> Derived() { return Udm::DerivedAttr<PICML::Proxy>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Proxy, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Proxy, Pred>(impl);}
+		Udm::DerivedAttr<PICML::RTEC_Proxy> Derived() { return Udm::DerivedAttr<PICML::RTEC_Proxy>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::RTEC_Proxy, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::RTEC_Proxy, Pred>(impl);}
 
-		Udm::ArchetypeAttr<PICML::Proxy> Archetype() { return Udm::ArchetypeAttr<PICML::Proxy>(impl);}
+		Udm::ArchetypeAttr<PICML::RTEC_Proxy> Archetype() { return Udm::ArchetypeAttr<PICML::RTEC_Proxy>(impl);}
 
-		static Uml::CompositionParentRole meta_EventChannelConfiguration_parent;
-		Udm::ParentAttr<PICML::EventChannelConfiguration> EventChannelConfiguration_parent() const { return Udm::ParentAttr<PICML::EventChannelConfiguration>(impl, meta_EventChannelConfiguration_parent); }
+		static Uml::CompositionChildRole meta_RT_Info_Param_children;
+		Udm::ChildrenAttr<PICML::RT_Info_Param> RT_Info_Param_children() const { return Udm::ChildrenAttr<PICML::RT_Info_Param>(impl, meta_RT_Info_Param_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::RT_Info_Param, Pred> RT_Info_Param_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RT_Info_Param, Pred>(impl, meta_RT_Info_Param_children); }
 
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		Udm::ChildrenAttr<PICML::Null_RT_Info> Null_RT_Info_kind_children() const { return Udm::ChildrenAttr<PICML::Null_RT_Info>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Null_RT_Info, Pred> Null_RT_Info_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Null_RT_Info, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::RT_Info_Param> RT_Info_Param_kind_children() const { return Udm::ChildrenAttr<PICML::RT_Info_Param>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::RT_Info_Param, Pred> RT_Info_Param_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RT_Info_Param, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::RT_Info> RT_Info_kind_children() const { return Udm::ChildrenAttr<PICML::RT_Info>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::RT_Info, Pred> RT_Info_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RT_Info, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 	};
 
-	class  Proxy_Consumer :  public Proxy {
-	 public:
-		static Uml::Class meta;
-
-		Proxy_Consumer() { }
-		Proxy_Consumer(Udm::ObjectImpl *impl) : Proxy(impl), MgaObject(impl), Object(impl) { }
-		Proxy_Consumer(const Proxy_Consumer &master) : Proxy(master), MgaObject(master), Object(master) { }
-		static Proxy_Consumer Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static Proxy_Consumer Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		Proxy_Consumer CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		Proxy_Consumer CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<Proxy_Consumer> Instances() { return Udm::InstantiatedAttr<PICML::Proxy_Consumer>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Proxy_Consumer, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Proxy_Consumer, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::Proxy_Consumer> Derived() { return Udm::DerivedAttr<PICML::Proxy_Consumer>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Proxy_Consumer, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Proxy_Consumer, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::Proxy_Consumer> Archetype() { return Udm::ArchetypeAttr<PICML::Proxy_Consumer>(impl);}
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-	};
-
-	class  RTEC_Proxy_Consumer :  public RTEC_Proxy, public Proxy_Consumer {
+	class  RTEC_Proxy_Consumer :  public Proxy_Consumer, public RTEC_Proxy {
 	 public:
 		static Uml::Class meta;
 
 		RTEC_Proxy_Consumer() { }
-		RTEC_Proxy_Consumer(Udm::ObjectImpl *impl) : RTEC_Proxy(impl),Proxy_Consumer(impl), MgaObject(impl), Object(impl) { }
-		RTEC_Proxy_Consumer(const RTEC_Proxy_Consumer &master) : RTEC_Proxy(master),Proxy_Consumer(master), MgaObject(master), Object(master) { }
+		RTEC_Proxy_Consumer(Udm::ObjectImpl *impl) : Proxy_Consumer(impl),RTEC_Proxy(impl), MgaObject(impl), Object(impl) { }
+		RTEC_Proxy_Consumer(const RTEC_Proxy_Consumer &master) : Proxy_Consumer(master),RTEC_Proxy(master), MgaObject(master), Object(master) { }
 		static RTEC_Proxy_Consumer Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
 		static RTEC_Proxy_Consumer Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
@@ -2002,14 +2058,11 @@ namespace PICML {
 		static Uml::CompositionChildRole meta_RTEC_Resource_Factory_Reference_child;
 		Udm::ChildAttr<PICML::RTEC_Resource_Factory_Reference> RTEC_Resource_Factory_Reference_child() const { return Udm::ChildAttr<PICML::RTEC_Resource_Factory_Reference>(impl, meta_RTEC_Resource_Factory_Reference_child); }
 
-		Udm::ChildrenAttr<PICML::Use_RT_Info_Members_Base> Use_RT_Info_Members_Base_kind_children() const { return Udm::ChildrenAttr<PICML::Use_RT_Info_Members_Base>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Use_RT_Info_Members_Base, Pred> Use_RT_Info_Members_Base_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Use_RT_Info_Members_Base, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ChildrenAttr<PICML::RTEC_Resource_Factory_Reference> RTEC_Resource_Factory_Reference_kind_children() const { return Udm::ChildrenAttr<PICML::RTEC_Resource_Factory_Reference>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::RTEC_Resource_Factory_Reference, Pred> RTEC_Resource_Factory_Reference_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RTEC_Resource_Factory_Reference, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::Use_RT_Info> Use_RT_Info_kind_children() const { return Udm::ChildrenAttr<PICML::Use_RT_Info>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::Use_RT_Info, Pred> Use_RT_Info_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Use_RT_Info, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::RTEC_Resource_Factory_Reference> RTEC_Resource_Factory_Reference_kind_children() const { return Udm::ChildrenAttr<PICML::RTEC_Resource_Factory_Reference>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::RTEC_Resource_Factory_Reference, Pred> RTEC_Resource_Factory_Reference_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RTEC_Resource_Factory_Reference, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -2018,66 +2071,13 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_RTEC_Proxy_Consumer(*this);};
 	};
 
-	class  Null_RT_Info :  public RT_Info_Param {
-	 public:
-		static Uml::Class meta;
-
-		Null_RT_Info() { }
-		Null_RT_Info(Udm::ObjectImpl *impl) : RT_Info_Param(impl), Object(impl) { }
-		Null_RT_Info(const Null_RT_Info &master) : RT_Info_Param(master), Object(master) { }
-		static Null_RT_Info Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static Null_RT_Info Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		Null_RT_Info CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		Null_RT_Info CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<Null_RT_Info> Instances() { return Udm::InstantiatedAttr<PICML::Null_RT_Info>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Null_RT_Info, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Null_RT_Info, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::Null_RT_Info> Derived() { return Udm::DerivedAttr<PICML::Null_RT_Info>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Null_RT_Info, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Null_RT_Info, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::Null_RT_Info> Archetype() { return Udm::ArchetypeAttr<PICML::Null_RT_Info>(impl);}
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_Null_RT_Info(*this);};
-	};
-
-	class  Proxy_Supplier :  public Proxy {
-	 public:
-		static Uml::Class meta;
-
-		Proxy_Supplier() { }
-		Proxy_Supplier(Udm::ObjectImpl *impl) : Proxy(impl), MgaObject(impl), Object(impl) { }
-		Proxy_Supplier(const Proxy_Supplier &master) : Proxy(master), MgaObject(master), Object(master) { }
-		static Proxy_Supplier Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static Proxy_Supplier Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		Proxy_Supplier CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		Proxy_Supplier CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<Proxy_Supplier> Instances() { return Udm::InstantiatedAttr<PICML::Proxy_Supplier>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Proxy_Supplier, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Proxy_Supplier, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::Proxy_Supplier> Derived() { return Udm::DerivedAttr<PICML::Proxy_Supplier>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Proxy_Supplier, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Proxy_Supplier, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::Proxy_Supplier> Archetype() { return Udm::ArchetypeAttr<PICML::Proxy_Supplier>(impl);}
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-	};
-
-	class  RTEC_Proxy_Supplier :  public RTEC_Proxy, public Proxy_Supplier {
+	class  RTEC_Proxy_Supplier :  public Proxy_Supplier, public RTEC_Proxy {
 	 public:
 		static Uml::Class meta;
 
 		RTEC_Proxy_Supplier() { }
-		RTEC_Proxy_Supplier(Udm::ObjectImpl *impl) : RTEC_Proxy(impl),Proxy_Supplier(impl), MgaObject(impl), Object(impl) { }
-		RTEC_Proxy_Supplier(const RTEC_Proxy_Supplier &master) : RTEC_Proxy(master),Proxy_Supplier(master), MgaObject(master), Object(master) { }
+		RTEC_Proxy_Supplier(Udm::ObjectImpl *impl) : Proxy_Supplier(impl),RTEC_Proxy(impl), MgaObject(impl), Object(impl) { }
+		RTEC_Proxy_Supplier(const RTEC_Proxy_Supplier &master) : Proxy_Supplier(master),RTEC_Proxy(master), MgaObject(master), Object(master) { }
 		static RTEC_Proxy_Supplier Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
 		static RTEC_Proxy_Supplier Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
@@ -2094,26 +2094,20 @@ namespace PICML {
 
 		Udm::ArchetypeAttr<PICML::RTEC_Proxy_Supplier> Archetype() { return Udm::ArchetypeAttr<PICML::RTEC_Proxy_Supplier>(impl);}
 
-		static Uml::CompositionChildRole meta_Include_RTEC_Filter_Group_children;
-		Udm::ChildrenAttr<PICML::Include_RTEC_Filter_Group> Include_RTEC_Filter_Group_children() const { return Udm::ChildrenAttr<PICML::Include_RTEC_Filter_Group>(impl, meta_Include_RTEC_Filter_Group_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Include_RTEC_Filter_Group, Pred> Include_RTEC_Filter_Group_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Include_RTEC_Filter_Group, Pred>(impl, meta_Include_RTEC_Filter_Group_children); }
+		static Uml::CompositionChildRole meta_Include_RT_Info_children;
+		Udm::ChildrenAttr<PICML::Include_RT_Info> Include_RT_Info_children() const { return Udm::ChildrenAttr<PICML::Include_RT_Info>(impl, meta_Include_RT_Info_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Include_RT_Info, Pred> Include_RT_Info_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Include_RT_Info, Pred>(impl, meta_Include_RT_Info_children); }
 
 		static Uml::CompositionChildRole meta_RTEC_Filter_Group_children;
 		Udm::ChildrenAttr<PICML::RTEC_Filter_Group> RTEC_Filter_Group_children() const { return Udm::ChildrenAttr<PICML::RTEC_Filter_Group>(impl, meta_RTEC_Filter_Group_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML::RTEC_Filter_Group, Pred> RTEC_Filter_Group_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RTEC_Filter_Group, Pred>(impl, meta_RTEC_Filter_Group_children); }
 
-		static Uml::CompositionChildRole meta_Include_RT_Info_children;
-		Udm::ChildrenAttr<PICML::Include_RT_Info> Include_RT_Info_children() const { return Udm::ChildrenAttr<PICML::Include_RT_Info>(impl, meta_Include_RT_Info_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Include_RT_Info, Pred> Include_RT_Info_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Include_RT_Info, Pred>(impl, meta_Include_RT_Info_children); }
+		static Uml::CompositionChildRole meta_Include_RTEC_Filter_Group_children;
+		Udm::ChildrenAttr<PICML::Include_RTEC_Filter_Group> Include_RTEC_Filter_Group_children() const { return Udm::ChildrenAttr<PICML::Include_RTEC_Filter_Group>(impl, meta_Include_RTEC_Filter_Group_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Include_RTEC_Filter_Group, Pred> Include_RTEC_Filter_Group_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Include_RTEC_Filter_Group, Pred>(impl, meta_Include_RTEC_Filter_Group_children); }
 
 		Udm::ChildrenAttr<PICML::Include_RTEC_Filter_Group_Members_Base> Include_RTEC_Filter_Group_Members_Base_kind_children() const { return Udm::ChildrenAttr<PICML::Include_RTEC_Filter_Group_Members_Base>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::Include_RTEC_Filter_Group_Members_Base, Pred> Include_RTEC_Filter_Group_Members_Base_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Include_RTEC_Filter_Group_Members_Base, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Include_RT_Info_Members_Base> Include_RT_Info_Members_Base_kind_children() const { return Udm::ChildrenAttr<PICML::Include_RT_Info_Members_Base>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Include_RT_Info_Members_Base, Pred> Include_RT_Info_Members_Base_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Include_RT_Info_Members_Base, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::RTEC_Filter_Group> RTEC_Filter_Group_kind_children() const { return Udm::ChildrenAttr<PICML::RTEC_Filter_Group>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::RTEC_Filter_Group, Pred> RTEC_Filter_Group_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RTEC_Filter_Group, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::Include_RT_Info> Include_RT_Info_kind_children() const { return Udm::ChildrenAttr<PICML::Include_RT_Info>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::Include_RT_Info, Pred> Include_RT_Info_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Include_RT_Info, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -2130,6 +2124,9 @@ namespace PICML {
 		Udm::ChildrenAttr<PICML::LogicalANDGroup> LogicalANDGroup_kind_children() const { return Udm::ChildrenAttr<PICML::LogicalANDGroup>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::LogicalANDGroup, Pred> LogicalANDGroup_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::LogicalANDGroup, Pred>(impl, Udm::NULLCHILDROLE); }
 
+		Udm::ChildrenAttr<PICML::RTEC_Filter_Group> RTEC_Filter_Group_kind_children() const { return Udm::ChildrenAttr<PICML::RTEC_Filter_Group>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::RTEC_Filter_Group, Pred> RTEC_Filter_Group_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RTEC_Filter_Group, Pred>(impl, Udm::NULLCHILDROLE); }
+
 		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 
@@ -2137,103 +2134,40 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_RTEC_Proxy_Supplier(*this);};
 	};
 
-	class  Include_RTEC_Filter_Group :  public MgaObject {
+	class  WorkloadCharacteristics :  public MgaObject {
 	 public:
 		static Uml::Class meta;
 
-		Include_RTEC_Filter_Group() { }
-		Include_RTEC_Filter_Group(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		Include_RTEC_Filter_Group(const Include_RTEC_Filter_Group &master) : MgaObject(master), Object(master) { }
-		static Include_RTEC_Filter_Group Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		WorkloadCharacteristics() { }
+		WorkloadCharacteristics(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		WorkloadCharacteristics(const WorkloadCharacteristics &master) : MgaObject(master), Object(master) { }
+		static WorkloadCharacteristics Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static Include_RTEC_Filter_Group Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		static WorkloadCharacteristics Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		Include_RTEC_Filter_Group CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		WorkloadCharacteristics CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		Include_RTEC_Filter_Group CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+		WorkloadCharacteristics CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::InstantiatedAttr<Include_RTEC_Filter_Group> Instances() { return Udm::InstantiatedAttr<PICML::Include_RTEC_Filter_Group>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Include_RTEC_Filter_Group, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Include_RTEC_Filter_Group, Pred>(impl);}
+		Udm::InstantiatedAttr<WorkloadCharacteristics> Instances() { return Udm::InstantiatedAttr<PICML::WorkloadCharacteristics>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<WorkloadCharacteristics, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::WorkloadCharacteristics, Pred>(impl);}
 
-		Udm::DerivedAttr<PICML::Include_RTEC_Filter_Group> Derived() { return Udm::DerivedAttr<PICML::Include_RTEC_Filter_Group>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Include_RTEC_Filter_Group, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Include_RTEC_Filter_Group, Pred>(impl);}
+		Udm::DerivedAttr<PICML::WorkloadCharacteristics> Derived() { return Udm::DerivedAttr<PICML::WorkloadCharacteristics>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::WorkloadCharacteristics, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::WorkloadCharacteristics, Pred>(impl);}
 
-		Udm::ArchetypeAttr<PICML::Include_RTEC_Filter_Group> Archetype() { return Udm::ArchetypeAttr<PICML::Include_RTEC_Filter_Group>(impl);}
-
-		static Uml::CompositionParentRole meta_RTEC_Proxy_Supplier_parent;
-		Udm::ParentAttr<PICML::RTEC_Proxy_Supplier> RTEC_Proxy_Supplier_parent() const { return Udm::ParentAttr<PICML::RTEC_Proxy_Supplier>(impl, meta_RTEC_Proxy_Supplier_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_dstInclude_RTEC_Filter_Group_end_;
-		Udm::AssocEndAttr<PICML::Include_RTEC_Filter_Group_Members_Base> dstInclude_RTEC_Filter_Group_end() const { return Udm::AssocEndAttr<PICML::Include_RTEC_Filter_Group_Members_Base>(impl, meta_dstInclude_RTEC_Filter_Group_end_); }
-
-		static Uml::AssociationRole meta_srcInclude_RTEC_Filter_Group_end_;
-		Udm::AssocEndAttr<PICML::Include_RTEC_Filter_Group_Members_Base> srcInclude_RTEC_Filter_Group_end() const { return Udm::AssocEndAttr<PICML::Include_RTEC_Filter_Group_Members_Base>(impl, meta_srcInclude_RTEC_Filter_Group_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_Include_RTEC_Filter_Group(*this);};
-	};
-
-	class  LogicalANDGroup :  public RTEC_Filter_Group {
-	 public:
-		static Uml::Class meta;
-
-		LogicalANDGroup() { }
-		LogicalANDGroup(Udm::ObjectImpl *impl) : RTEC_Filter_Group(impl), Object(impl) { }
-		LogicalANDGroup(const LogicalANDGroup &master) : RTEC_Filter_Group(master), Object(master) { }
-		static LogicalANDGroup Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static LogicalANDGroup Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		LogicalANDGroup CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		LogicalANDGroup CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<LogicalANDGroup> Instances() { return Udm::InstantiatedAttr<PICML::LogicalANDGroup>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<LogicalANDGroup, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::LogicalANDGroup, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::LogicalANDGroup> Derived() { return Udm::DerivedAttr<PICML::LogicalANDGroup>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::LogicalANDGroup, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::LogicalANDGroup, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::LogicalANDGroup> Archetype() { return Udm::ArchetypeAttr<PICML::LogicalANDGroup>(impl);}
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_LogicalANDGroup(*this);};
-	};
-
-	class  TimerEventSinkConn :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		TimerEventSinkConn() { }
-		TimerEventSinkConn(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		TimerEventSinkConn(const TimerEventSinkConn &master) : MgaObject(master), Object(master) { }
-		static TimerEventSinkConn Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static TimerEventSinkConn Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		TimerEventSinkConn CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		TimerEventSinkConn CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<TimerEventSinkConn> Instances() { return Udm::InstantiatedAttr<PICML::TimerEventSinkConn>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<TimerEventSinkConn, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::TimerEventSinkConn, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::TimerEventSinkConn> Derived() { return Udm::DerivedAttr<PICML::TimerEventSinkConn>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::TimerEventSinkConn, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::TimerEventSinkConn, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::TimerEventSinkConn> Archetype() { return Udm::ArchetypeAttr<PICML::TimerEventSinkConn>(impl);}
+		Udm::ArchetypeAttr<PICML::WorkloadCharacteristics> Archetype() { return Udm::ArchetypeAttr<PICML::WorkloadCharacteristics>(impl);}
 
 		static Uml::CompositionParentRole meta_BenchmarkAnalysis_parent;
 		Udm::ParentAttr<PICML::BenchmarkAnalysis> BenchmarkAnalysis_parent() const { return Udm::ParentAttr<PICML::BenchmarkAnalysis>(impl, meta_BenchmarkAnalysis_parent); }
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_srcTimerEventSinkConn_end_;
-		Udm::AssocEndAttr<PICML::EventRef> srcTimerEventSinkConn_end() const { return Udm::AssocEndAttr<PICML::EventRef>(impl, meta_srcTimerEventSinkConn_end_); }
+		static Uml::AssociationRole meta_dstWorkloadCharacteristics_end_;
+		Udm::AssocEndAttr<PICML::TaskSet> dstWorkloadCharacteristics_end() const { return Udm::AssocEndAttr<PICML::TaskSet>(impl, meta_dstWorkloadCharacteristics_end_); }
 
-		static Uml::AssociationRole meta_dstTimerEventSinkConn_end_;
-		Udm::AssocEndAttr<PICML::TimeProbe> dstTimerEventSinkConn_end() const { return Udm::AssocEndAttr<PICML::TimeProbe>(impl, meta_dstTimerEventSinkConn_end_); }
+		static Uml::AssociationRole meta_srcWorkloadCharacteristics_end_;
+		Udm::AssocEndAttr<PICML::MetricsBase> srcWorkloadCharacteristics_end() const { return Udm::AssocEndAttr<PICML::MetricsBase>(impl, meta_srcWorkloadCharacteristics_end_); }
 
-		virtual void Accept(Visitor &v){v.Visit_TimerEventSinkConn(*this);};
+		virtual void Accept(Visitor &v){v.Visit_WorkloadCharacteristics(*this);};
 	};
 
 	class  Task :  public MgaObject {
@@ -2262,81 +2196,15 @@ namespace PICML {
 		static Uml::Attribute meta_priority;
 		Udm::IntegerAttr priority() const { return Udm::IntegerAttr(impl, meta_priority); }
 
-		static Uml::AssociationRole meta_TaskSet;
-		Udm::AssocAttr<PICML::TaskSet> TaskSet() const { return Udm::AssocAttr<PICML::TaskSet>(impl, meta_TaskSet); }
-		template <class Pred> Udm::AssocAttr<PICML::TaskSet, Pred > TaskSet_sorted(const Pred &) const { return Udm::AssocAttr<PICML::TaskSet, Pred>(impl, meta_TaskSet); }
+		static Uml::AssociationRole meta_setTaskSet;
+		Udm::AssocAttr<PICML::TaskSet> setTaskSet() const { return Udm::AssocAttr<PICML::TaskSet>(impl, meta_setTaskSet); }
+		template <class Pred> Udm::AssocAttr<PICML::TaskSet, Pred > setTaskSet_sorted(const Pred &) const { return Udm::AssocAttr<PICML::TaskSet, Pred>(impl, meta_setTaskSet); }
 
 		static Uml::CompositionParentRole meta_BenchmarkAnalysis_parent;
 		Udm::ParentAttr<PICML::BenchmarkAnalysis> BenchmarkAnalysis_parent() const { return Udm::ParentAttr<PICML::BenchmarkAnalysis>(impl, meta_BenchmarkAnalysis_parent); }
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		virtual void Accept(Visitor &v){v.Visit_Task(*this);};
-	};
-
-	class  MetricsBase :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		MetricsBase() { }
-		MetricsBase(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		MetricsBase(const MetricsBase &master) : MgaObject(master), Object(master) { }
-		static MetricsBase Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static MetricsBase Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		MetricsBase CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		MetricsBase CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<MetricsBase> Instances() { return Udm::InstantiatedAttr<PICML::MetricsBase>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<MetricsBase, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::MetricsBase, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::MetricsBase> Derived() { return Udm::DerivedAttr<PICML::MetricsBase>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::MetricsBase, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::MetricsBase, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::MetricsBase> Archetype() { return Udm::ArchetypeAttr<PICML::MetricsBase>(impl);}
-
-		static Uml::Attribute meta_warmup;
-		Udm::IntegerAttr warmup() const { return Udm::IntegerAttr(impl, meta_warmup); }
-
-		static Uml::Attribute meta_fileName;
-		Udm::StringAttr fileName() const { return Udm::StringAttr(impl, meta_fileName); }
-
-		static Uml::Attribute meta_iterations;
-		Udm::IntegerAttr iterations() const { return Udm::IntegerAttr(impl, meta_iterations); }
-
-		static Uml::AssociationRole meta_srcMetricConnection, meta_srcMetricConnection_rev;
-		Udm::AClassPointerAttr<PICML::MetricConnection, PICML::OperationRef> srcMetricConnection() const { return Udm::AClassPointerAttr<PICML::MetricConnection, PICML::OperationRef>(impl, meta_srcMetricConnection, meta_srcMetricConnection_rev); }
-
-		static Uml::AssociationRole meta_dstWorkloadCharacteristics, meta_dstWorkloadCharacteristics_rev;
-		Udm::AClassPointerAttr<PICML::WorkloadCharacteristics, PICML::TaskSet> dstWorkloadCharacteristics() const { return Udm::AClassPointerAttr<PICML::WorkloadCharacteristics, PICML::TaskSet>(impl, meta_dstWorkloadCharacteristics, meta_dstWorkloadCharacteristics_rev); }
-
-		static Uml::CompositionChildRole meta_DataAnalysisBase_children;
-		Udm::ChildrenAttr<PICML::DataAnalysisBase> DataAnalysisBase_children() const { return Udm::ChildrenAttr<PICML::DataAnalysisBase>(impl, meta_DataAnalysisBase_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::DataAnalysisBase, Pred> DataAnalysisBase_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::DataAnalysisBase, Pred>(impl, meta_DataAnalysisBase_children); }
-
-		Udm::ChildrenAttr<PICML::Maximum> Maximum_kind_children() const { return Udm::ChildrenAttr<PICML::Maximum>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Maximum, Pred> Maximum_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Maximum, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Average> Average_kind_children() const { return Udm::ChildrenAttr<PICML::Average>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Average, Pred> Average_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Average, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Minimum> Minimum_kind_children() const { return Udm::ChildrenAttr<PICML::Minimum>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Minimum, Pred> Minimum_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Minimum, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::DataAnalysisBase> DataAnalysisBase_kind_children() const { return Udm::ChildrenAttr<PICML::DataAnalysisBase>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::DataAnalysisBase, Pred> DataAnalysisBase_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::DataAnalysisBase, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Jitter> Jitter_kind_children() const { return Udm::ChildrenAttr<PICML::Jitter>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Jitter, Pred> Jitter_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Jitter, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		static Uml::CompositionParentRole meta_BenchmarkAnalysis_parent;
-		Udm::ParentAttr<PICML::BenchmarkAnalysis> BenchmarkAnalysis_parent() const { return Udm::ParentAttr<PICML::BenchmarkAnalysis>(impl, meta_BenchmarkAnalysis_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 	};
 
 	class  TaskSet :  public MgaObject {
@@ -2376,284 +2244,40 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_TaskSet(*this);};
 	};
 
-	class  BenchmarkAnalysis :  public MgaObject {
+	class  TimerEventSinkConn :  public MgaObject {
 	 public:
 		static Uml::Class meta;
 
-		BenchmarkAnalysis() { }
-		BenchmarkAnalysis(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		BenchmarkAnalysis(const BenchmarkAnalysis &master) : MgaObject(master), Object(master) { }
-		static BenchmarkAnalysis Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		TimerEventSinkConn() { }
+		TimerEventSinkConn(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		TimerEventSinkConn(const TimerEventSinkConn &master) : MgaObject(master), Object(master) { }
+		static TimerEventSinkConn Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static BenchmarkAnalysis Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		static TimerEventSinkConn Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		BenchmarkAnalysis CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		TimerEventSinkConn CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		BenchmarkAnalysis CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+		TimerEventSinkConn CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::InstantiatedAttr<BenchmarkAnalysis> Instances() { return Udm::InstantiatedAttr<PICML::BenchmarkAnalysis>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<BenchmarkAnalysis, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::BenchmarkAnalysis, Pred>(impl);}
+		Udm::InstantiatedAttr<TimerEventSinkConn> Instances() { return Udm::InstantiatedAttr<PICML::TimerEventSinkConn>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<TimerEventSinkConn, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::TimerEventSinkConn, Pred>(impl);}
 
-		Udm::DerivedAttr<PICML::BenchmarkAnalysis> Derived() { return Udm::DerivedAttr<PICML::BenchmarkAnalysis>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::BenchmarkAnalysis, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::BenchmarkAnalysis, Pred>(impl);}
+		Udm::DerivedAttr<PICML::TimerEventSinkConn> Derived() { return Udm::DerivedAttr<PICML::TimerEventSinkConn>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::TimerEventSinkConn, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::TimerEventSinkConn, Pred>(impl);}
 
-		Udm::ArchetypeAttr<PICML::BenchmarkAnalysis> Archetype() { return Udm::ArchetypeAttr<PICML::BenchmarkAnalysis>(impl);}
-
-		static Uml::CompositionChildRole meta_Event_children;
-		Udm::ChildrenAttr<PICML::Event> Event_children() const { return Udm::ChildrenAttr<PICML::Event>(impl, meta_Event_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Event, Pred> Event_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Event, Pred>(impl, meta_Event_children); }
-
-		static Uml::CompositionChildRole meta_TaskSet_children;
-		Udm::ChildrenAttr<PICML::TaskSet> TaskSet_children() const { return Udm::ChildrenAttr<PICML::TaskSet>(impl, meta_TaskSet_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::TaskSet, Pred> TaskSet_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TaskSet, Pred>(impl, meta_TaskSet_children); }
-
-		static Uml::CompositionChildRole meta_MetricsBase_children;
-		Udm::ChildrenAttr<PICML::MetricsBase> MetricsBase_children() const { return Udm::ChildrenAttr<PICML::MetricsBase>(impl, meta_MetricsBase_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::MetricsBase, Pred> MetricsBase_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MetricsBase, Pred>(impl, meta_MetricsBase_children); }
-
-		static Uml::CompositionChildRole meta_Task_children;
-		Udm::ChildrenAttr<PICML::Task> Task_children() const { return Udm::ChildrenAttr<PICML::Task>(impl, meta_Task_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Task, Pred> Task_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Task, Pred>(impl, meta_Task_children); }
-
-		static Uml::CompositionChildRole meta_TimeProbe_children;
-		Udm::ChildrenAttr<PICML::TimeProbe> TimeProbe_children() const { return Udm::ChildrenAttr<PICML::TimeProbe>(impl, meta_TimeProbe_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::TimeProbe, Pred> TimeProbe_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TimeProbe, Pred>(impl, meta_TimeProbe_children); }
-
-		static Uml::CompositionChildRole meta_OperationBase_children;
-		Udm::ChildrenAttr<PICML::OperationBase> OperationBase_children() const { return Udm::ChildrenAttr<PICML::OperationBase>(impl, meta_OperationBase_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::OperationBase, Pred> OperationBase_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OperationBase, Pred>(impl, meta_OperationBase_children); }
-
-		static Uml::CompositionChildRole meta_TimerEventSinkConn_children;
-		Udm::ChildrenAttr<PICML::TimerEventSinkConn> TimerEventSinkConn_children() const { return Udm::ChildrenAttr<PICML::TimerEventSinkConn>(impl, meta_TimerEventSinkConn_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::TimerEventSinkConn, Pred> TimerEventSinkConn_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TimerEventSinkConn, Pred>(impl, meta_TimerEventSinkConn_children); }
-
-		static Uml::CompositionChildRole meta_EventRef_children;
-		Udm::ChildrenAttr<PICML::EventRef> EventRef_children() const { return Udm::ChildrenAttr<PICML::EventRef>(impl, meta_EventRef_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::EventRef, Pred> EventRef_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::EventRef, Pred>(impl, meta_EventRef_children); }
-
-		static Uml::CompositionChildRole meta_WorkloadCharacteristics_children;
-		Udm::ChildrenAttr<PICML::WorkloadCharacteristics> WorkloadCharacteristics_children() const { return Udm::ChildrenAttr<PICML::WorkloadCharacteristics>(impl, meta_WorkloadCharacteristics_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::WorkloadCharacteristics, Pred> WorkloadCharacteristics_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::WorkloadCharacteristics, Pred>(impl, meta_WorkloadCharacteristics_children); }
-
-		static Uml::CompositionChildRole meta_OperationRef_children;
-		Udm::ChildrenAttr<PICML::OperationRef> OperationRef_children() const { return Udm::ChildrenAttr<PICML::OperationRef>(impl, meta_OperationRef_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::OperationRef, Pred> OperationRef_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OperationRef, Pred>(impl, meta_OperationRef_children); }
-
-		static Uml::CompositionChildRole meta_DataAnalysisBase_children;
-		Udm::ChildrenAttr<PICML::DataAnalysisBase> DataAnalysisBase_children() const { return Udm::ChildrenAttr<PICML::DataAnalysisBase>(impl, meta_DataAnalysisBase_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::DataAnalysisBase, Pred> DataAnalysisBase_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::DataAnalysisBase, Pred>(impl, meta_DataAnalysisBase_children); }
-
-		static Uml::CompositionChildRole meta_MetricConnection_children;
-		Udm::ChildrenAttr<PICML::MetricConnection> MetricConnection_children() const { return Udm::ChildrenAttr<PICML::MetricConnection>(impl, meta_MetricConnection_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::MetricConnection, Pred> MetricConnection_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MetricConnection, Pred>(impl, meta_MetricConnection_children); }
-
-		static Uml::CompositionChildRole meta_TimerConnection_children;
-		Udm::ChildrenAttr<PICML::TimerConnection> TimerConnection_children() const { return Udm::ChildrenAttr<PICML::TimerConnection>(impl, meta_TimerConnection_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::TimerConnection, Pred> TimerConnection_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TimerConnection, Pred>(impl, meta_TimerConnection_children); }
-
-		Udm::ChildrenAttr<PICML::TimerEventSinkConn> TimerEventSinkConn_kind_children() const { return Udm::ChildrenAttr<PICML::TimerEventSinkConn>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::TimerEventSinkConn, Pred> TimerEventSinkConn_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TimerEventSinkConn, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Maximum> Maximum_kind_children() const { return Udm::ChildrenAttr<PICML::Maximum>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Maximum, Pred> Maximum_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Maximum, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Task> Task_kind_children() const { return Udm::ChildrenAttr<PICML::Task>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Task, Pred> Task_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Task, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::MetricsBase> MetricsBase_kind_children() const { return Udm::ChildrenAttr<PICML::MetricsBase>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MetricsBase, Pred> MetricsBase_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MetricsBase, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Average> Average_kind_children() const { return Udm::ChildrenAttr<PICML::Average>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Average, Pred> Average_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Average, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::TaskSet> TaskSet_kind_children() const { return Udm::ChildrenAttr<PICML::TaskSet>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::TaskSet, Pred> TaskSet_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TaskSet, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::TimerConnection> TimerConnection_kind_children() const { return Udm::ChildrenAttr<PICML::TimerConnection>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::TimerConnection, Pred> TimerConnection_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TimerConnection, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Throughput> Throughput_kind_children() const { return Udm::ChildrenAttr<PICML::Throughput>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Throughput, Pred> Throughput_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Throughput, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::MetricConnection> MetricConnection_kind_children() const { return Udm::ChildrenAttr<PICML::MetricConnection>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MetricConnection, Pred> MetricConnection_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MetricConnection, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::EventRef> EventRef_kind_children() const { return Udm::ChildrenAttr<PICML::EventRef>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::EventRef, Pred> EventRef_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::EventRef, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Minimum> Minimum_kind_children() const { return Udm::ChildrenAttr<PICML::Minimum>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Minimum, Pred> Minimum_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Minimum, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Latency> Latency_kind_children() const { return Udm::ChildrenAttr<PICML::Latency>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Latency, Pred> Latency_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Latency, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::TimeProbe> TimeProbe_kind_children() const { return Udm::ChildrenAttr<PICML::TimeProbe>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::TimeProbe, Pred> TimeProbe_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TimeProbe, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::DataAnalysisBase> DataAnalysisBase_kind_children() const { return Udm::ChildrenAttr<PICML::DataAnalysisBase>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::DataAnalysisBase, Pred> DataAnalysisBase_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::DataAnalysisBase, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::WorkloadCharacteristics> WorkloadCharacteristics_kind_children() const { return Udm::ChildrenAttr<PICML::WorkloadCharacteristics>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::WorkloadCharacteristics, Pred> WorkloadCharacteristics_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::WorkloadCharacteristics, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::OperationRef> OperationRef_kind_children() const { return Udm::ChildrenAttr<PICML::OperationRef>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::OperationRef, Pred> OperationRef_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OperationRef, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Jitter> Jitter_kind_children() const { return Udm::ChildrenAttr<PICML::Jitter>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Jitter, Pred> Jitter_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Jitter, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Taggable> Taggable_kind_children() const { return Udm::ChildrenAttr<PICML::Taggable>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Taggable, Pred> Taggable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Taggable, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Prefixable> Prefixable_kind_children() const { return Udm::ChildrenAttr<PICML::Prefixable>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Prefixable, Pred> Prefixable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Prefixable, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::TwowayOperation> TwowayOperation_kind_children() const { return Udm::ChildrenAttr<PICML::TwowayOperation>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::TwowayOperation, Pred> TwowayOperation_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TwowayOperation, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::FactoryOperation> FactoryOperation_kind_children() const { return Udm::ChildrenAttr<PICML::FactoryOperation>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::FactoryOperation, Pred> FactoryOperation_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::FactoryOperation, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::OnewayOperation> OnewayOperation_kind_children() const { return Udm::ChildrenAttr<PICML::OnewayOperation>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::OnewayOperation, Pred> OnewayOperation_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OnewayOperation, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::OperationBase> OperationBase_kind_children() const { return Udm::ChildrenAttr<PICML::OperationBase>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::OperationBase, Pred> OperationBase_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OperationBase, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::LookupOperation> LookupOperation_kind_children() const { return Udm::ChildrenAttr<PICML::LookupOperation>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::LookupOperation, Pred> LookupOperation_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::LookupOperation, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::HasExceptions> HasExceptions_kind_children() const { return Udm::ChildrenAttr<PICML::HasExceptions>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::HasExceptions, Pred> HasExceptions_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::HasExceptions, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Event> Event_kind_children() const { return Udm::ChildrenAttr<PICML::Event>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Event, Pred> Event_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Event, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::SupportsInterfaces> SupportsInterfaces_kind_children() const { return Udm::ChildrenAttr<PICML::SupportsInterfaces>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::SupportsInterfaces, Pred> SupportsInterfaces_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::SupportsInterfaces, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Inheritable> Inheritable_kind_children() const { return Udm::ChildrenAttr<PICML::Inheritable>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Inheritable, Pred> Inheritable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Inheritable, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::HasOperations> HasOperations_kind_children() const { return Udm::ChildrenAttr<PICML::HasOperations>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::HasOperations, Pred> HasOperations_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::HasOperations, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ObjectByValue> ObjectByValue_kind_children() const { return Udm::ChildrenAttr<PICML::ObjectByValue>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ObjectByValue, Pred> ObjectByValue_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ObjectByValue, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::MemberType> MemberType_kind_children() const { return Udm::ChildrenAttr<PICML::MemberType>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MemberType, Pred> MemberType_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MemberType, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::NamedType> NamedType_kind_children() const { return Udm::ChildrenAttr<PICML::NamedType>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::NamedType, Pred> NamedType_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::NamedType, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		static Uml::CompositionParentRole meta_ComponentAnalyses_parent;
-		Udm::ParentAttr<PICML::ComponentAnalyses> ComponentAnalyses_parent() const { return Udm::ParentAttr<PICML::ComponentAnalyses>(impl, meta_ComponentAnalyses_parent); }
-
-		Udm::ParentAttr<PICML::ComponentAnalyses> parent() const { return Udm::ParentAttr<PICML::ComponentAnalyses>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_BenchmarkAnalysis(*this);};
-	};
-
-	class  TimerConnection :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		TimerConnection() { }
-		TimerConnection(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		TimerConnection(const TimerConnection &master) : MgaObject(master), Object(master) { }
-		static TimerConnection Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static TimerConnection Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		TimerConnection CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		TimerConnection CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<TimerConnection> Instances() { return Udm::InstantiatedAttr<PICML::TimerConnection>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<TimerConnection, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::TimerConnection, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::TimerConnection> Derived() { return Udm::DerivedAttr<PICML::TimerConnection>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::TimerConnection, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::TimerConnection, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::TimerConnection> Archetype() { return Udm::ArchetypeAttr<PICML::TimerConnection>(impl);}
+		Udm::ArchetypeAttr<PICML::TimerEventSinkConn> Archetype() { return Udm::ArchetypeAttr<PICML::TimerEventSinkConn>(impl);}
 
 		static Uml::CompositionParentRole meta_BenchmarkAnalysis_parent;
 		Udm::ParentAttr<PICML::BenchmarkAnalysis> BenchmarkAnalysis_parent() const { return Udm::ParentAttr<PICML::BenchmarkAnalysis>(impl, meta_BenchmarkAnalysis_parent); }
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_dstTimerConnection_end_;
-		Udm::AssocEndAttr<PICML::TimeProbe> dstTimerConnection_end() const { return Udm::AssocEndAttr<PICML::TimeProbe>(impl, meta_dstTimerConnection_end_); }
+		static Uml::AssociationRole meta_srcTimerEventSinkConn_end_;
+		Udm::AssocEndAttr<PICML::EventRef> srcTimerEventSinkConn_end() const { return Udm::AssocEndAttr<PICML::EventRef>(impl, meta_srcTimerEventSinkConn_end_); }
 
-		static Uml::AssociationRole meta_srcTimerConnection_end_;
-		Udm::AssocEndAttr<PICML::OperationRef> srcTimerConnection_end() const { return Udm::AssocEndAttr<PICML::OperationRef>(impl, meta_srcTimerConnection_end_); }
+		static Uml::AssociationRole meta_dstTimerEventSinkConn_end_;
+		Udm::AssocEndAttr<PICML::TimeProbe> dstTimerEventSinkConn_end() const { return Udm::AssocEndAttr<PICML::TimeProbe>(impl, meta_dstTimerEventSinkConn_end_); }
 
-		virtual void Accept(Visitor &v){v.Visit_TimerConnection(*this);};
-	};
-
-	class  Throughput :  public MetricsBase {
-	 public:
-		static Uml::Class meta;
-
-		Throughput() { }
-		Throughput(Udm::ObjectImpl *impl) : MetricsBase(impl), Object(impl) { }
-		Throughput(const Throughput &master) : MetricsBase(master), Object(master) { }
-		static Throughput Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static Throughput Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		Throughput CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		Throughput CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<Throughput> Instances() { return Udm::InstantiatedAttr<PICML::Throughput>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Throughput, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Throughput, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::Throughput> Derived() { return Udm::DerivedAttr<PICML::Throughput>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Throughput, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Throughput, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::Throughput> Archetype() { return Udm::ArchetypeAttr<PICML::Throughput>(impl);}
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_Throughput(*this);};
-	};
-
-	class  MetricConnection :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		MetricConnection() { }
-		MetricConnection(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		MetricConnection(const MetricConnection &master) : MgaObject(master), Object(master) { }
-		static MetricConnection Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static MetricConnection Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		MetricConnection CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		MetricConnection CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<MetricConnection> Instances() { return Udm::InstantiatedAttr<PICML::MetricConnection>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<MetricConnection, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::MetricConnection, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::MetricConnection> Derived() { return Udm::DerivedAttr<PICML::MetricConnection>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::MetricConnection, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::MetricConnection, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::MetricConnection> Archetype() { return Udm::ArchetypeAttr<PICML::MetricConnection>(impl);}
-
-		static Uml::CompositionParentRole meta_BenchmarkAnalysis_parent;
-		Udm::ParentAttr<PICML::BenchmarkAnalysis> BenchmarkAnalysis_parent() const { return Udm::ParentAttr<PICML::BenchmarkAnalysis>(impl, meta_BenchmarkAnalysis_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_dstMetricConnection_end_;
-		Udm::AssocEndAttr<PICML::MetricsBase> dstMetricConnection_end() const { return Udm::AssocEndAttr<PICML::MetricsBase>(impl, meta_dstMetricConnection_end_); }
-
-		static Uml::AssociationRole meta_srcMetricConnection_end_;
-		Udm::AssocEndAttr<PICML::OperationRef> srcMetricConnection_end() const { return Udm::AssocEndAttr<PICML::OperationRef>(impl, meta_srcMetricConnection_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_MetricConnection(*this);};
+		virtual void Accept(Visitor &v){v.Visit_TimerEventSinkConn(*this);};
 	};
 
 	class  EventRef :  public MgaObject {
@@ -2693,6 +2317,319 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_EventRef(*this);};
 	};
 
+	class  OperationRef :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		OperationRef() { }
+		OperationRef(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		OperationRef(const OperationRef &master) : MgaObject(master), Object(master) { }
+		static OperationRef Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static OperationRef Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		OperationRef CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		OperationRef CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<OperationRef> Instances() { return Udm::InstantiatedAttr<PICML::OperationRef>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<OperationRef, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::OperationRef, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::OperationRef> Derived() { return Udm::DerivedAttr<PICML::OperationRef>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::OperationRef, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::OperationRef, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::OperationRef> Archetype() { return Udm::ArchetypeAttr<PICML::OperationRef>(impl);}
+
+		static Uml::AssociationRole meta_dstMetricConnection, meta_dstMetricConnection_rev;
+		Udm::AClassPointerAttr<PICML::MetricConnection, PICML::MetricsBase> dstMetricConnection() const { return Udm::AClassPointerAttr<PICML::MetricConnection, PICML::MetricsBase>(impl, meta_dstMetricConnection, meta_dstMetricConnection_rev); }
+
+		static Uml::AssociationRole meta_dstTimerConnection, meta_dstTimerConnection_rev;
+		Udm::AClassPointerAttr<PICML::TimerConnection, PICML::TimeProbe> dstTimerConnection() const { return Udm::AClassPointerAttr<PICML::TimerConnection, PICML::TimeProbe>(impl, meta_dstTimerConnection, meta_dstTimerConnection_rev); }
+
+		static Uml::AssociationRole meta_ref;
+		Udm::PointerAttr<PICML::OperationBase> ref() const { return Udm::PointerAttr<PICML::OperationBase>(impl, meta_ref); }
+
+		static Uml::CompositionParentRole meta_BenchmarkAnalysis_parent;
+		Udm::ParentAttr<PICML::BenchmarkAnalysis> BenchmarkAnalysis_parent() const { return Udm::ParentAttr<PICML::BenchmarkAnalysis>(impl, meta_BenchmarkAnalysis_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_OperationRef(*this);};
+	};
+
+	class  MetricsBase :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		MetricsBase() { }
+		MetricsBase(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		MetricsBase(const MetricsBase &master) : MgaObject(master), Object(master) { }
+		static MetricsBase Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static MetricsBase Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		MetricsBase CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		MetricsBase CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<MetricsBase> Instances() { return Udm::InstantiatedAttr<PICML::MetricsBase>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<MetricsBase, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::MetricsBase, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::MetricsBase> Derived() { return Udm::DerivedAttr<PICML::MetricsBase>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::MetricsBase, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::MetricsBase, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::MetricsBase> Archetype() { return Udm::ArchetypeAttr<PICML::MetricsBase>(impl);}
+
+		static Uml::Attribute meta_warmup;
+		Udm::IntegerAttr warmup() const { return Udm::IntegerAttr(impl, meta_warmup); }
+
+		static Uml::Attribute meta_fileName;
+		Udm::StringAttr fileName() const { return Udm::StringAttr(impl, meta_fileName); }
+
+		static Uml::Attribute meta_iterations;
+		Udm::IntegerAttr iterations() const { return Udm::IntegerAttr(impl, meta_iterations); }
+
+		static Uml::AssociationRole meta_dstWorkloadCharacteristics, meta_dstWorkloadCharacteristics_rev;
+		Udm::AClassPointerAttr<PICML::WorkloadCharacteristics, PICML::TaskSet> dstWorkloadCharacteristics() const { return Udm::AClassPointerAttr<PICML::WorkloadCharacteristics, PICML::TaskSet>(impl, meta_dstWorkloadCharacteristics, meta_dstWorkloadCharacteristics_rev); }
+
+		static Uml::AssociationRole meta_srcMetricConnection, meta_srcMetricConnection_rev;
+		Udm::AClassPointerAttr<PICML::MetricConnection, PICML::OperationRef> srcMetricConnection() const { return Udm::AClassPointerAttr<PICML::MetricConnection, PICML::OperationRef>(impl, meta_srcMetricConnection, meta_srcMetricConnection_rev); }
+
+		static Uml::CompositionChildRole meta_DataAnalysisBase_children;
+		Udm::ChildrenAttr<PICML::DataAnalysisBase> DataAnalysisBase_children() const { return Udm::ChildrenAttr<PICML::DataAnalysisBase>(impl, meta_DataAnalysisBase_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::DataAnalysisBase, Pred> DataAnalysisBase_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::DataAnalysisBase, Pred>(impl, meta_DataAnalysisBase_children); }
+
+		Udm::ChildrenAttr<PICML::Jitter> Jitter_kind_children() const { return Udm::ChildrenAttr<PICML::Jitter>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Jitter, Pred> Jitter_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Jitter, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Maximum> Maximum_kind_children() const { return Udm::ChildrenAttr<PICML::Maximum>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Maximum, Pred> Maximum_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Maximum, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Minimum> Minimum_kind_children() const { return Udm::ChildrenAttr<PICML::Minimum>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Minimum, Pred> Minimum_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Minimum, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Average> Average_kind_children() const { return Udm::ChildrenAttr<PICML::Average>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Average, Pred> Average_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Average, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::DataAnalysisBase> DataAnalysisBase_kind_children() const { return Udm::ChildrenAttr<PICML::DataAnalysisBase>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::DataAnalysisBase, Pred> DataAnalysisBase_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::DataAnalysisBase, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		static Uml::CompositionParentRole meta_BenchmarkAnalysis_parent;
+		Udm::ParentAttr<PICML::BenchmarkAnalysis> BenchmarkAnalysis_parent() const { return Udm::ParentAttr<PICML::BenchmarkAnalysis>(impl, meta_BenchmarkAnalysis_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+	};
+
+	class  BenchmarkAnalysis :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		BenchmarkAnalysis() { }
+		BenchmarkAnalysis(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		BenchmarkAnalysis(const BenchmarkAnalysis &master) : MgaObject(master), Object(master) { }
+		static BenchmarkAnalysis Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static BenchmarkAnalysis Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		BenchmarkAnalysis CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		BenchmarkAnalysis CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<BenchmarkAnalysis> Instances() { return Udm::InstantiatedAttr<PICML::BenchmarkAnalysis>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<BenchmarkAnalysis, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::BenchmarkAnalysis, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::BenchmarkAnalysis> Derived() { return Udm::DerivedAttr<PICML::BenchmarkAnalysis>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::BenchmarkAnalysis, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::BenchmarkAnalysis, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::BenchmarkAnalysis> Archetype() { return Udm::ArchetypeAttr<PICML::BenchmarkAnalysis>(impl);}
+
+		static Uml::CompositionChildRole meta_Task_children;
+		Udm::ChildrenAttr<PICML::Task> Task_children() const { return Udm::ChildrenAttr<PICML::Task>(impl, meta_Task_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Task, Pred> Task_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Task, Pred>(impl, meta_Task_children); }
+
+		static Uml::CompositionChildRole meta_WorkloadCharacteristics_children;
+		Udm::ChildrenAttr<PICML::WorkloadCharacteristics> WorkloadCharacteristics_children() const { return Udm::ChildrenAttr<PICML::WorkloadCharacteristics>(impl, meta_WorkloadCharacteristics_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::WorkloadCharacteristics, Pred> WorkloadCharacteristics_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::WorkloadCharacteristics, Pred>(impl, meta_WorkloadCharacteristics_children); }
+
+		static Uml::CompositionChildRole meta_TaskSet_children;
+		Udm::ChildrenAttr<PICML::TaskSet> TaskSet_children() const { return Udm::ChildrenAttr<PICML::TaskSet>(impl, meta_TaskSet_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::TaskSet, Pred> TaskSet_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TaskSet, Pred>(impl, meta_TaskSet_children); }
+
+		static Uml::CompositionChildRole meta_TimerEventSinkConn_children;
+		Udm::ChildrenAttr<PICML::TimerEventSinkConn> TimerEventSinkConn_children() const { return Udm::ChildrenAttr<PICML::TimerEventSinkConn>(impl, meta_TimerEventSinkConn_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::TimerEventSinkConn, Pred> TimerEventSinkConn_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TimerEventSinkConn, Pred>(impl, meta_TimerEventSinkConn_children); }
+
+		static Uml::CompositionChildRole meta_Event_children;
+		Udm::ChildrenAttr<PICML::Event> Event_children() const { return Udm::ChildrenAttr<PICML::Event>(impl, meta_Event_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Event, Pred> Event_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Event, Pred>(impl, meta_Event_children); }
+
+		static Uml::CompositionChildRole meta_EventRef_children;
+		Udm::ChildrenAttr<PICML::EventRef> EventRef_children() const { return Udm::ChildrenAttr<PICML::EventRef>(impl, meta_EventRef_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::EventRef, Pred> EventRef_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::EventRef, Pred>(impl, meta_EventRef_children); }
+
+		static Uml::CompositionChildRole meta_OperationRef_children;
+		Udm::ChildrenAttr<PICML::OperationRef> OperationRef_children() const { return Udm::ChildrenAttr<PICML::OperationRef>(impl, meta_OperationRef_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::OperationRef, Pred> OperationRef_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OperationRef, Pred>(impl, meta_OperationRef_children); }
+
+		static Uml::CompositionChildRole meta_TimeProbe_children;
+		Udm::ChildrenAttr<PICML::TimeProbe> TimeProbe_children() const { return Udm::ChildrenAttr<PICML::TimeProbe>(impl, meta_TimeProbe_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::TimeProbe, Pred> TimeProbe_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TimeProbe, Pred>(impl, meta_TimeProbe_children); }
+
+		static Uml::CompositionChildRole meta_MetricsBase_children;
+		Udm::ChildrenAttr<PICML::MetricsBase> MetricsBase_children() const { return Udm::ChildrenAttr<PICML::MetricsBase>(impl, meta_MetricsBase_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::MetricsBase, Pred> MetricsBase_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MetricsBase, Pred>(impl, meta_MetricsBase_children); }
+
+		static Uml::CompositionChildRole meta_DataAnalysisBase_children;
+		Udm::ChildrenAttr<PICML::DataAnalysisBase> DataAnalysisBase_children() const { return Udm::ChildrenAttr<PICML::DataAnalysisBase>(impl, meta_DataAnalysisBase_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::DataAnalysisBase, Pred> DataAnalysisBase_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::DataAnalysisBase, Pred>(impl, meta_DataAnalysisBase_children); }
+
+		static Uml::CompositionChildRole meta_MetricConnection_children;
+		Udm::ChildrenAttr<PICML::MetricConnection> MetricConnection_children() const { return Udm::ChildrenAttr<PICML::MetricConnection>(impl, meta_MetricConnection_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::MetricConnection, Pred> MetricConnection_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MetricConnection, Pred>(impl, meta_MetricConnection_children); }
+
+		static Uml::CompositionChildRole meta_TimerConnection_children;
+		Udm::ChildrenAttr<PICML::TimerConnection> TimerConnection_children() const { return Udm::ChildrenAttr<PICML::TimerConnection>(impl, meta_TimerConnection_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::TimerConnection, Pred> TimerConnection_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TimerConnection, Pred>(impl, meta_TimerConnection_children); }
+
+		static Uml::CompositionChildRole meta_OperationBase_children;
+		Udm::ChildrenAttr<PICML::OperationBase> OperationBase_children() const { return Udm::ChildrenAttr<PICML::OperationBase>(impl, meta_OperationBase_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::OperationBase, Pred> OperationBase_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OperationBase, Pred>(impl, meta_OperationBase_children); }
+
+		Udm::ChildrenAttr<PICML::WorkloadCharacteristics> WorkloadCharacteristics_kind_children() const { return Udm::ChildrenAttr<PICML::WorkloadCharacteristics>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::WorkloadCharacteristics, Pred> WorkloadCharacteristics_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::WorkloadCharacteristics, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Task> Task_kind_children() const { return Udm::ChildrenAttr<PICML::Task>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Task, Pred> Task_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Task, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::TaskSet> TaskSet_kind_children() const { return Udm::ChildrenAttr<PICML::TaskSet>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::TaskSet, Pred> TaskSet_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TaskSet, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::TimerEventSinkConn> TimerEventSinkConn_kind_children() const { return Udm::ChildrenAttr<PICML::TimerEventSinkConn>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::TimerEventSinkConn, Pred> TimerEventSinkConn_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TimerEventSinkConn, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::EventRef> EventRef_kind_children() const { return Udm::ChildrenAttr<PICML::EventRef>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::EventRef, Pred> EventRef_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::EventRef, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::OperationRef> OperationRef_kind_children() const { return Udm::ChildrenAttr<PICML::OperationRef>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::OperationRef, Pred> OperationRef_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OperationRef, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MetricsBase> MetricsBase_kind_children() const { return Udm::ChildrenAttr<PICML::MetricsBase>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MetricsBase, Pred> MetricsBase_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MetricsBase, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Throughput> Throughput_kind_children() const { return Udm::ChildrenAttr<PICML::Throughput>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Throughput, Pred> Throughput_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Throughput, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Latency> Latency_kind_children() const { return Udm::ChildrenAttr<PICML::Latency>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Latency, Pred> Latency_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Latency, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::TimerConnection> TimerConnection_kind_children() const { return Udm::ChildrenAttr<PICML::TimerConnection>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::TimerConnection, Pred> TimerConnection_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TimerConnection, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::TimeProbe> TimeProbe_kind_children() const { return Udm::ChildrenAttr<PICML::TimeProbe>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::TimeProbe, Pred> TimeProbe_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TimeProbe, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Jitter> Jitter_kind_children() const { return Udm::ChildrenAttr<PICML::Jitter>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Jitter, Pred> Jitter_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Jitter, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Maximum> Maximum_kind_children() const { return Udm::ChildrenAttr<PICML::Maximum>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Maximum, Pred> Maximum_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Maximum, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Minimum> Minimum_kind_children() const { return Udm::ChildrenAttr<PICML::Minimum>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Minimum, Pred> Minimum_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Minimum, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Average> Average_kind_children() const { return Udm::ChildrenAttr<PICML::Average>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Average, Pred> Average_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Average, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::DataAnalysisBase> DataAnalysisBase_kind_children() const { return Udm::ChildrenAttr<PICML::DataAnalysisBase>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::DataAnalysisBase, Pred> DataAnalysisBase_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::DataAnalysisBase, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MetricConnection> MetricConnection_kind_children() const { return Udm::ChildrenAttr<PICML::MetricConnection>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MetricConnection, Pred> MetricConnection_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MetricConnection, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Taggable> Taggable_kind_children() const { return Udm::ChildrenAttr<PICML::Taggable>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Taggable, Pred> Taggable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Taggable, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Prefixable> Prefixable_kind_children() const { return Udm::ChildrenAttr<PICML::Prefixable>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Prefixable, Pred> Prefixable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Prefixable, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::HasExceptions> HasExceptions_kind_children() const { return Udm::ChildrenAttr<PICML::HasExceptions>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::HasExceptions, Pred> HasExceptions_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::HasExceptions, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::OnewayOperation> OnewayOperation_kind_children() const { return Udm::ChildrenAttr<PICML::OnewayOperation>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::OnewayOperation, Pred> OnewayOperation_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OnewayOperation, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::TwowayOperation> TwowayOperation_kind_children() const { return Udm::ChildrenAttr<PICML::TwowayOperation>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::TwowayOperation, Pred> TwowayOperation_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TwowayOperation, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::LookupOperation> LookupOperation_kind_children() const { return Udm::ChildrenAttr<PICML::LookupOperation>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::LookupOperation, Pred> LookupOperation_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::LookupOperation, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::FactoryOperation> FactoryOperation_kind_children() const { return Udm::ChildrenAttr<PICML::FactoryOperation>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::FactoryOperation, Pred> FactoryOperation_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::FactoryOperation, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::OperationBase> OperationBase_kind_children() const { return Udm::ChildrenAttr<PICML::OperationBase>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::OperationBase, Pred> OperationBase_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OperationBase, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ObjectByValue> ObjectByValue_kind_children() const { return Udm::ChildrenAttr<PICML::ObjectByValue>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ObjectByValue, Pred> ObjectByValue_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ObjectByValue, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::SupportsInterfaces> SupportsInterfaces_kind_children() const { return Udm::ChildrenAttr<PICML::SupportsInterfaces>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::SupportsInterfaces, Pred> SupportsInterfaces_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::SupportsInterfaces, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::HasOperations> HasOperations_kind_children() const { return Udm::ChildrenAttr<PICML::HasOperations>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::HasOperations, Pred> HasOperations_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::HasOperations, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Inheritable> Inheritable_kind_children() const { return Udm::ChildrenAttr<PICML::Inheritable>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Inheritable, Pred> Inheritable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Inheritable, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Event> Event_kind_children() const { return Udm::ChildrenAttr<PICML::Event>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Event, Pred> Event_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Event, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::NamedType> NamedType_kind_children() const { return Udm::ChildrenAttr<PICML::NamedType>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::NamedType, Pred> NamedType_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::NamedType, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MemberType> MemberType_kind_children() const { return Udm::ChildrenAttr<PICML::MemberType>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MemberType, Pred> MemberType_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MemberType, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		static Uml::CompositionParentRole meta_ComponentAnalyses_parent;
+		Udm::ParentAttr<PICML::ComponentAnalyses> ComponentAnalyses_parent() const { return Udm::ParentAttr<PICML::ComponentAnalyses>(impl, meta_ComponentAnalyses_parent); }
+
+		Udm::ParentAttr<PICML::ComponentAnalyses> parent() const { return Udm::ParentAttr<PICML::ComponentAnalyses>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_BenchmarkAnalysis(*this);};
+	};
+
+	class  Throughput :  public MetricsBase {
+	 public:
+		static Uml::Class meta;
+
+		Throughput() { }
+		Throughput(Udm::ObjectImpl *impl) : MetricsBase(impl), Object(impl) { }
+		Throughput(const Throughput &master) : MetricsBase(master), Object(master) { }
+		static Throughput Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static Throughput Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		Throughput CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		Throughput CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<Throughput> Instances() { return Udm::InstantiatedAttr<PICML::Throughput>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Throughput, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Throughput, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::Throughput> Derived() { return Udm::DerivedAttr<PICML::Throughput>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Throughput, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Throughput, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::Throughput> Archetype() { return Udm::ArchetypeAttr<PICML::Throughput>(impl);}
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_Throughput(*this);};
+	};
+
 	class  Latency :  public MetricsBase {
 	 public:
 		static Uml::Class meta;
@@ -2720,6 +2657,42 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_Latency(*this);};
 	};
 
+	class  TimerConnection :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		TimerConnection() { }
+		TimerConnection(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		TimerConnection(const TimerConnection &master) : MgaObject(master), Object(master) { }
+		static TimerConnection Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static TimerConnection Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		TimerConnection CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		TimerConnection CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<TimerConnection> Instances() { return Udm::InstantiatedAttr<PICML::TimerConnection>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<TimerConnection, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::TimerConnection, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::TimerConnection> Derived() { return Udm::DerivedAttr<PICML::TimerConnection>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::TimerConnection, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::TimerConnection, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::TimerConnection> Archetype() { return Udm::ArchetypeAttr<PICML::TimerConnection>(impl);}
+
+		static Uml::CompositionParentRole meta_BenchmarkAnalysis_parent;
+		Udm::ParentAttr<PICML::BenchmarkAnalysis> BenchmarkAnalysis_parent() const { return Udm::ParentAttr<PICML::BenchmarkAnalysis>(impl, meta_BenchmarkAnalysis_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_srcTimerConnection_end_;
+		Udm::AssocEndAttr<PICML::OperationRef> srcTimerConnection_end() const { return Udm::AssocEndAttr<PICML::OperationRef>(impl, meta_srcTimerConnection_end_); }
+
+		static Uml::AssociationRole meta_dstTimerConnection_end_;
+		Udm::AssocEndAttr<PICML::TimeProbe> dstTimerConnection_end() const { return Udm::AssocEndAttr<PICML::TimeProbe>(impl, meta_dstTimerConnection_end_); }
+
+		virtual void Accept(Visitor &v){v.Visit_TimerConnection(*this);};
+	};
+
 	class  TimeProbe :  public MgaObject {
 	 public:
 		static Uml::Class meta;
@@ -2744,8 +2717,7 @@ namespace PICML {
 		Udm::ArchetypeAttr<PICML::TimeProbe> Archetype() { return Udm::ArchetypeAttr<PICML::TimeProbe>(impl);}
 
 		static Uml::AssociationRole meta_srcTimerEventSinkConn, meta_srcTimerEventSinkConn_rev;
-		Udm::AClassAssocAttr<PICML::TimerEventSinkConn, PICML::EventRef> srcTimerEventSinkConn() const { return Udm::AClassAssocAttr<PICML::TimerEventSinkConn, PICML::EventRef>(impl, meta_srcTimerEventSinkConn, meta_srcTimerEventSinkConn_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::TimerEventSinkConn, PICML::EventRef, Pred> srcTimerEventSinkConn_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::TimerEventSinkConn, PICML::EventRef, Pred>(impl, meta_srcTimerEventSinkConn, meta_srcTimerEventSinkConn_rev); }
+		Udm::AClassPointerAttr<PICML::TimerEventSinkConn, PICML::EventRef> srcTimerEventSinkConn() const { return Udm::AClassPointerAttr<PICML::TimerEventSinkConn, PICML::EventRef>(impl, meta_srcTimerEventSinkConn, meta_srcTimerEventSinkConn_rev); }
 
 		static Uml::AssociationRole meta_srcTimerConnection, meta_srcTimerConnection_rev;
 		Udm::AClassPointerAttr<PICML::TimerConnection, PICML::OperationRef> srcTimerConnection() const { return Udm::AClassPointerAttr<PICML::TimerConnection, PICML::OperationRef>(impl, meta_srcTimerConnection, meta_srcTimerConnection_rev); }
@@ -2789,6 +2761,33 @@ namespace PICML {
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 	};
 
+	class  Jitter :  public DataAnalysisBase {
+	 public:
+		static Uml::Class meta;
+
+		Jitter() { }
+		Jitter(Udm::ObjectImpl *impl) : DataAnalysisBase(impl), Object(impl) { }
+		Jitter(const Jitter &master) : DataAnalysisBase(master), Object(master) { }
+		static Jitter Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static Jitter Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		Jitter CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		Jitter CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<Jitter> Instances() { return Udm::InstantiatedAttr<PICML::Jitter>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Jitter, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Jitter, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::Jitter> Derived() { return Udm::DerivedAttr<PICML::Jitter>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Jitter, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Jitter, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::Jitter> Archetype() { return Udm::ArchetypeAttr<PICML::Jitter>(impl);}
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_Jitter(*this);};
+	};
+
 	class  Maximum :  public DataAnalysisBase {
 	 public:
 		static Uml::Class meta;
@@ -2814,33 +2813,6 @@ namespace PICML {
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		virtual void Accept(Visitor &v){v.Visit_Maximum(*this);};
-	};
-
-	class  Average :  public DataAnalysisBase {
-	 public:
-		static Uml::Class meta;
-
-		Average() { }
-		Average(Udm::ObjectImpl *impl) : DataAnalysisBase(impl), Object(impl) { }
-		Average(const Average &master) : DataAnalysisBase(master), Object(master) { }
-		static Average Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static Average Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		Average CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		Average CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<Average> Instances() { return Udm::InstantiatedAttr<PICML::Average>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Average, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Average, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::Average> Derived() { return Udm::DerivedAttr<PICML::Average>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Average, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Average, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::Average> Archetype() { return Udm::ArchetypeAttr<PICML::Average>(impl);}
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_Average(*this);};
 	};
 
 	class  Minimum :  public DataAnalysisBase {
@@ -2870,106 +2842,67 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_Minimum(*this);};
 	};
 
-	class  WorkloadCharacteristics :  public MgaObject {
+	class  Average :  public DataAnalysisBase {
 	 public:
 		static Uml::Class meta;
 
-		WorkloadCharacteristics() { }
-		WorkloadCharacteristics(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		WorkloadCharacteristics(const WorkloadCharacteristics &master) : MgaObject(master), Object(master) { }
-		static WorkloadCharacteristics Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		Average() { }
+		Average(Udm::ObjectImpl *impl) : DataAnalysisBase(impl), Object(impl) { }
+		Average(const Average &master) : DataAnalysisBase(master), Object(master) { }
+		static Average Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static WorkloadCharacteristics Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		static Average Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		WorkloadCharacteristics CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		Average CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		WorkloadCharacteristics CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+		Average CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::InstantiatedAttr<WorkloadCharacteristics> Instances() { return Udm::InstantiatedAttr<PICML::WorkloadCharacteristics>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<WorkloadCharacteristics, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::WorkloadCharacteristics, Pred>(impl);}
+		Udm::InstantiatedAttr<Average> Instances() { return Udm::InstantiatedAttr<PICML::Average>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Average, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Average, Pred>(impl);}
 
-		Udm::DerivedAttr<PICML::WorkloadCharacteristics> Derived() { return Udm::DerivedAttr<PICML::WorkloadCharacteristics>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::WorkloadCharacteristics, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::WorkloadCharacteristics, Pred>(impl);}
+		Udm::DerivedAttr<PICML::Average> Derived() { return Udm::DerivedAttr<PICML::Average>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Average, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Average, Pred>(impl);}
 
-		Udm::ArchetypeAttr<PICML::WorkloadCharacteristics> Archetype() { return Udm::ArchetypeAttr<PICML::WorkloadCharacteristics>(impl);}
+		Udm::ArchetypeAttr<PICML::Average> Archetype() { return Udm::ArchetypeAttr<PICML::Average>(impl);}
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_Average(*this);};
+	};
+
+	class  MetricConnection :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		MetricConnection() { }
+		MetricConnection(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		MetricConnection(const MetricConnection &master) : MgaObject(master), Object(master) { }
+		static MetricConnection Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static MetricConnection Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		MetricConnection CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		MetricConnection CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<MetricConnection> Instances() { return Udm::InstantiatedAttr<PICML::MetricConnection>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<MetricConnection, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::MetricConnection, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::MetricConnection> Derived() { return Udm::DerivedAttr<PICML::MetricConnection>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::MetricConnection, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::MetricConnection, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::MetricConnection> Archetype() { return Udm::ArchetypeAttr<PICML::MetricConnection>(impl);}
 
 		static Uml::CompositionParentRole meta_BenchmarkAnalysis_parent;
 		Udm::ParentAttr<PICML::BenchmarkAnalysis> BenchmarkAnalysis_parent() const { return Udm::ParentAttr<PICML::BenchmarkAnalysis>(impl, meta_BenchmarkAnalysis_parent); }
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_srcWorkloadCharacteristics_end_;
-		Udm::AssocEndAttr<PICML::MetricsBase> srcWorkloadCharacteristics_end() const { return Udm::AssocEndAttr<PICML::MetricsBase>(impl, meta_srcWorkloadCharacteristics_end_); }
+		static Uml::AssociationRole meta_srcMetricConnection_end_;
+		Udm::AssocEndAttr<PICML::OperationRef> srcMetricConnection_end() const { return Udm::AssocEndAttr<PICML::OperationRef>(impl, meta_srcMetricConnection_end_); }
 
-		static Uml::AssociationRole meta_dstWorkloadCharacteristics_end_;
-		Udm::AssocEndAttr<PICML::TaskSet> dstWorkloadCharacteristics_end() const { return Udm::AssocEndAttr<PICML::TaskSet>(impl, meta_dstWorkloadCharacteristics_end_); }
+		static Uml::AssociationRole meta_dstMetricConnection_end_;
+		Udm::AssocEndAttr<PICML::MetricsBase> dstMetricConnection_end() const { return Udm::AssocEndAttr<PICML::MetricsBase>(impl, meta_dstMetricConnection_end_); }
 
-		virtual void Accept(Visitor &v){v.Visit_WorkloadCharacteristics(*this);};
-	};
-
-	class  OperationRef :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		OperationRef() { }
-		OperationRef(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		OperationRef(const OperationRef &master) : MgaObject(master), Object(master) { }
-		static OperationRef Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static OperationRef Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		OperationRef CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		OperationRef CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<OperationRef> Instances() { return Udm::InstantiatedAttr<PICML::OperationRef>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<OperationRef, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::OperationRef, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::OperationRef> Derived() { return Udm::DerivedAttr<PICML::OperationRef>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::OperationRef, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::OperationRef, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::OperationRef> Archetype() { return Udm::ArchetypeAttr<PICML::OperationRef>(impl);}
-
-		static Uml::AssociationRole meta_dstMetricConnection, meta_dstMetricConnection_rev;
-		Udm::AClassPointerAttr<PICML::MetricConnection, PICML::MetricsBase> dstMetricConnection() const { return Udm::AClassPointerAttr<PICML::MetricConnection, PICML::MetricsBase>(impl, meta_dstMetricConnection, meta_dstMetricConnection_rev); }
-
-		static Uml::AssociationRole meta_dstTimerConnection, meta_dstTimerConnection_rev;
-		Udm::AClassPointerAttr<PICML::TimerConnection, PICML::TimeProbe> dstTimerConnection() const { return Udm::AClassPointerAttr<PICML::TimerConnection, PICML::TimeProbe>(impl, meta_dstTimerConnection, meta_dstTimerConnection_rev); }
-
-		static Uml::AssociationRole meta_ref;
-		Udm::PointerAttr<PICML::OperationBase> ref() const { return Udm::PointerAttr<PICML::OperationBase>(impl, meta_ref); }
-
-		static Uml::CompositionParentRole meta_BenchmarkAnalysis_parent;
-		Udm::ParentAttr<PICML::BenchmarkAnalysis> BenchmarkAnalysis_parent() const { return Udm::ParentAttr<PICML::BenchmarkAnalysis>(impl, meta_BenchmarkAnalysis_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_OperationRef(*this);};
-	};
-
-	class  Jitter :  public DataAnalysisBase {
-	 public:
-		static Uml::Class meta;
-
-		Jitter() { }
-		Jitter(Udm::ObjectImpl *impl) : DataAnalysisBase(impl), Object(impl) { }
-		Jitter(const Jitter &master) : DataAnalysisBase(master), Object(master) { }
-		static Jitter Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static Jitter Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		Jitter CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		Jitter CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<Jitter> Instances() { return Udm::InstantiatedAttr<PICML::Jitter>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Jitter, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Jitter, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::Jitter> Derived() { return Udm::DerivedAttr<PICML::Jitter>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Jitter, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Jitter, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::Jitter> Archetype() { return Udm::ArchetypeAttr<PICML::Jitter>(impl);}
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_Jitter(*this);};
+		virtual void Accept(Visitor &v){v.Visit_MetricConnection(*this);};
 	};
 
 	class  Resource :  public MgaObject {
@@ -3044,85 +2977,18 @@ namespace PICML {
 
 		Udm::ArchetypeAttr<PICML::NodeReference> Archetype() { return Udm::ArchetypeAttr<PICML::NodeReference>(impl);}
 
-		static Uml::AssociationRole meta_ref;
-		Udm::PointerAttr<PICML::Node> ref() const { return Udm::PointerAttr<PICML::Node>(impl, meta_ref); }
-
 		static Uml::AssociationRole meta_srcInstanceMapping, meta_srcInstanceMapping_rev;
 		Udm::AClassAssocAttr<PICML::InstanceMapping, PICML::CollocationGroup> srcInstanceMapping() const { return Udm::AClassAssocAttr<PICML::InstanceMapping, PICML::CollocationGroup>(impl, meta_srcInstanceMapping, meta_srcInstanceMapping_rev); }
 		template<class Pred> Udm::AClassAssocAttr<PICML::InstanceMapping, PICML::CollocationGroup, Pred> srcInstanceMapping_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::InstanceMapping, PICML::CollocationGroup, Pred>(impl, meta_srcInstanceMapping, meta_srcInstanceMapping_rev); }
+
+		static Uml::AssociationRole meta_ref;
+		Udm::PointerAttr<PICML::Node> ref() const { return Udm::PointerAttr<PICML::Node>(impl, meta_ref); }
 
 		static Uml::CompositionParentRole meta_DeploymentPlan_parent;
 		Udm::ParentAttr<PICML::DeploymentPlan> DeploymentPlan_parent() const { return Udm::ParentAttr<PICML::DeploymentPlan>(impl, meta_DeploymentPlan_parent); }
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		virtual void Accept(Visitor &v){v.Visit_NodeReference(*this);};
-	};
-
-	class  DeploymentPlan :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		DeploymentPlan() { }
-		DeploymentPlan(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		DeploymentPlan(const DeploymentPlan &master) : MgaObject(master), Object(master) { }
-		static DeploymentPlan Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static DeploymentPlan Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		DeploymentPlan CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		DeploymentPlan CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<DeploymentPlan> Instances() { return Udm::InstantiatedAttr<PICML::DeploymentPlan>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<DeploymentPlan, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::DeploymentPlan, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::DeploymentPlan> Derived() { return Udm::DerivedAttr<PICML::DeploymentPlan>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::DeploymentPlan, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::DeploymentPlan, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::DeploymentPlan> Archetype() { return Udm::ArchetypeAttr<PICML::DeploymentPlan>(impl);}
-
-		static Uml::Attribute meta_label;
-		Udm::StringAttr label() const { return Udm::StringAttr(impl, meta_label); }
-
-		static Uml::CompositionChildRole meta_NodeReference_children;
-		Udm::ChildrenAttr<PICML::NodeReference> NodeReference_children() const { return Udm::ChildrenAttr<PICML::NodeReference>(impl, meta_NodeReference_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::NodeReference, Pred> NodeReference_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::NodeReference, Pred>(impl, meta_NodeReference_children); }
-
-		static Uml::CompositionChildRole meta_ComponentRef_children;
-		Udm::ChildrenAttr<PICML::ComponentRef> ComponentRef_children() const { return Udm::ChildrenAttr<PICML::ComponentRef>(impl, meta_ComponentRef_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentRef, Pred> ComponentRef_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentRef, Pred>(impl, meta_ComponentRef_children); }
-
-		static Uml::CompositionChildRole meta_CollocationGroup_children;
-		Udm::ChildrenAttr<PICML::CollocationGroup> CollocationGroup_children() const { return Udm::ChildrenAttr<PICML::CollocationGroup>(impl, meta_CollocationGroup_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::CollocationGroup, Pred> CollocationGroup_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::CollocationGroup, Pred>(impl, meta_CollocationGroup_children); }
-
-		static Uml::CompositionChildRole meta_InstanceMapping_children;
-		Udm::ChildrenAttr<PICML::InstanceMapping> InstanceMapping_children() const { return Udm::ChildrenAttr<PICML::InstanceMapping>(impl, meta_InstanceMapping_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::InstanceMapping, Pred> InstanceMapping_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::InstanceMapping, Pred>(impl, meta_InstanceMapping_children); }
-
-		Udm::ChildrenAttr<PICML::NodeReference> NodeReference_kind_children() const { return Udm::ChildrenAttr<PICML::NodeReference>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::NodeReference, Pred> NodeReference_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::NodeReference, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::CollocationGroup> CollocationGroup_kind_children() const { return Udm::ChildrenAttr<PICML::CollocationGroup>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::CollocationGroup, Pred> CollocationGroup_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::CollocationGroup, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::InstanceMapping> InstanceMapping_kind_children() const { return Udm::ChildrenAttr<PICML::InstanceMapping>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::InstanceMapping, Pred> InstanceMapping_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::InstanceMapping, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Manageable> Manageable_kind_children() const { return Udm::ChildrenAttr<PICML::Manageable>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Manageable, Pred> Manageable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Manageable, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ComponentRef> ComponentRef_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentRef>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ComponentRef, Pred> ComponentRef_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentRef, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		static Uml::CompositionParentRole meta_DeploymentPlans_parent;
-		Udm::ParentAttr<PICML::DeploymentPlans> DeploymentPlans_parent() const { return Udm::ParentAttr<PICML::DeploymentPlans>(impl, meta_DeploymentPlans_parent); }
-
-		Udm::ParentAttr<PICML::DeploymentPlans> parent() const { return Udm::ParentAttr<PICML::DeploymentPlans>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_DeploymentPlan(*this);};
 	};
 
 	class  CollocationGroup :  public MgaObject {
@@ -3199,6 +3065,109 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_InstanceMapping(*this);};
 	};
 
+	class  DeploymentPlan :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		DeploymentPlan() { }
+		DeploymentPlan(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		DeploymentPlan(const DeploymentPlan &master) : MgaObject(master), Object(master) { }
+		static DeploymentPlan Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static DeploymentPlan Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		DeploymentPlan CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		DeploymentPlan CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<DeploymentPlan> Instances() { return Udm::InstantiatedAttr<PICML::DeploymentPlan>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<DeploymentPlan, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::DeploymentPlan, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::DeploymentPlan> Derived() { return Udm::DerivedAttr<PICML::DeploymentPlan>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::DeploymentPlan, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::DeploymentPlan, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::DeploymentPlan> Archetype() { return Udm::ArchetypeAttr<PICML::DeploymentPlan>(impl);}
+
+		static Uml::Attribute meta_label;
+		Udm::StringAttr label() const { return Udm::StringAttr(impl, meta_label); }
+
+		static Uml::CompositionChildRole meta_CollocationGroup_children;
+		Udm::ChildrenAttr<PICML::CollocationGroup> CollocationGroup_children() const { return Udm::ChildrenAttr<PICML::CollocationGroup>(impl, meta_CollocationGroup_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::CollocationGroup, Pred> CollocationGroup_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::CollocationGroup, Pred>(impl, meta_CollocationGroup_children); }
+
+		static Uml::CompositionChildRole meta_ComponentRef_children;
+		Udm::ChildrenAttr<PICML::ComponentRef> ComponentRef_children() const { return Udm::ChildrenAttr<PICML::ComponentRef>(impl, meta_ComponentRef_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentRef, Pred> ComponentRef_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentRef, Pred>(impl, meta_ComponentRef_children); }
+
+		static Uml::CompositionChildRole meta_InstanceMapping_children;
+		Udm::ChildrenAttr<PICML::InstanceMapping> InstanceMapping_children() const { return Udm::ChildrenAttr<PICML::InstanceMapping>(impl, meta_InstanceMapping_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::InstanceMapping, Pred> InstanceMapping_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::InstanceMapping, Pred>(impl, meta_InstanceMapping_children); }
+
+		static Uml::CompositionChildRole meta_NodeReference_children;
+		Udm::ChildrenAttr<PICML::NodeReference> NodeReference_children() const { return Udm::ChildrenAttr<PICML::NodeReference>(impl, meta_NodeReference_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::NodeReference, Pred> NodeReference_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::NodeReference, Pred>(impl, meta_NodeReference_children); }
+
+		Udm::ChildrenAttr<PICML::NodeReference> NodeReference_kind_children() const { return Udm::ChildrenAttr<PICML::NodeReference>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::NodeReference, Pred> NodeReference_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::NodeReference, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::CollocationGroup> CollocationGroup_kind_children() const { return Udm::ChildrenAttr<PICML::CollocationGroup>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::CollocationGroup, Pred> CollocationGroup_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::CollocationGroup, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::InstanceMapping> InstanceMapping_kind_children() const { return Udm::ChildrenAttr<PICML::InstanceMapping>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::InstanceMapping, Pred> InstanceMapping_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::InstanceMapping, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Manageable> Manageable_kind_children() const { return Udm::ChildrenAttr<PICML::Manageable>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Manageable, Pred> Manageable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Manageable, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ComponentRef> ComponentRef_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentRef>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ComponentRef, Pred> ComponentRef_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentRef, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		static Uml::CompositionParentRole meta_DeploymentPlans_parent;
+		Udm::ParentAttr<PICML::DeploymentPlans> DeploymentPlans_parent() const { return Udm::ParentAttr<PICML::DeploymentPlans>(impl, meta_DeploymentPlans_parent); }
+
+		Udm::ParentAttr<PICML::DeploymentPlans> parent() const { return Udm::ParentAttr<PICML::DeploymentPlans>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_DeploymentPlan(*this);};
+	};
+
+	class  ExternalDelegate :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		ExternalDelegate() { }
+		ExternalDelegate(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		ExternalDelegate(const ExternalDelegate &master) : MgaObject(master), Object(master) { }
+		static ExternalDelegate Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static ExternalDelegate Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		ExternalDelegate CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		ExternalDelegate CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<ExternalDelegate> Instances() { return Udm::InstantiatedAttr<PICML::ExternalDelegate>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<ExternalDelegate, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ExternalDelegate, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::ExternalDelegate> Derived() { return Udm::DerivedAttr<PICML::ExternalDelegate>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::ExternalDelegate, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ExternalDelegate, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::ExternalDelegate> Archetype() { return Udm::ArchetypeAttr<PICML::ExternalDelegate>(impl);}
+
+		static Uml::CompositionParentRole meta_ComponentAssembly_parent;
+		Udm::ParentAttr<PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr<PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_dstExternalDelegate_end_;
+		Udm::AssocEndAttr<PICML::ExternalReferenceEndPoint> dstExternalDelegate_end() const { return Udm::AssocEndAttr<PICML::ExternalReferenceEndPoint>(impl, meta_dstExternalDelegate_end_); }
+
+		static Uml::AssociationRole meta_srcExternalDelegate_end_;
+		Udm::AssocEndAttr<PICML::Component> srcExternalDelegate_end() const { return Udm::AssocEndAttr<PICML::Component>(impl, meta_srcExternalDelegate_end_); }
+
+		virtual void Accept(Visitor &v){v.Visit_ExternalDelegate(*this);};
+	};
+
 	class  ExternalReferenceEndPoint :  public MgaObject {
 	 public:
 		static Uml::Class meta;
@@ -3234,6 +3203,78 @@ namespace PICML {
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		virtual void Accept(Visitor &v){v.Visit_ExternalReferenceEndPoint(*this);};
+	};
+
+	class  EventSinkDelegate :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		EventSinkDelegate() { }
+		EventSinkDelegate(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		EventSinkDelegate(const EventSinkDelegate &master) : MgaObject(master), Object(master) { }
+		static EventSinkDelegate Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static EventSinkDelegate Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		EventSinkDelegate CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		EventSinkDelegate CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<EventSinkDelegate> Instances() { return Udm::InstantiatedAttr<PICML::EventSinkDelegate>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<EventSinkDelegate, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::EventSinkDelegate, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::EventSinkDelegate> Derived() { return Udm::DerivedAttr<PICML::EventSinkDelegate>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::EventSinkDelegate, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::EventSinkDelegate, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::EventSinkDelegate> Archetype() { return Udm::ArchetypeAttr<PICML::EventSinkDelegate>(impl);}
+
+		static Uml::CompositionParentRole meta_ComponentAssembly_parent;
+		Udm::ParentAttr<PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr<PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_srcEventSinkDelegate_end_;
+		Udm::AssocEndAttr<PICML::InEventPort> srcEventSinkDelegate_end() const { return Udm::AssocEndAttr<PICML::InEventPort>(impl, meta_srcEventSinkDelegate_end_); }
+
+		static Uml::AssociationRole meta_dstEventSinkDelegate_end_;
+		Udm::AssocEndAttr<PICML::InEventPort> dstEventSinkDelegate_end() const { return Udm::AssocEndAttr<PICML::InEventPort>(impl, meta_dstEventSinkDelegate_end_); }
+
+		virtual void Accept(Visitor &v){v.Visit_EventSinkDelegate(*this);};
+	};
+
+	class  EventSourceDelegate :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		EventSourceDelegate() { }
+		EventSourceDelegate(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		EventSourceDelegate(const EventSourceDelegate &master) : MgaObject(master), Object(master) { }
+		static EventSourceDelegate Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static EventSourceDelegate Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		EventSourceDelegate CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		EventSourceDelegate CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<EventSourceDelegate> Instances() { return Udm::InstantiatedAttr<PICML::EventSourceDelegate>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<EventSourceDelegate, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::EventSourceDelegate, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::EventSourceDelegate> Derived() { return Udm::DerivedAttr<PICML::EventSourceDelegate>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::EventSourceDelegate, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::EventSourceDelegate, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::EventSourceDelegate> Archetype() { return Udm::ArchetypeAttr<PICML::EventSourceDelegate>(impl);}
+
+		static Uml::CompositionParentRole meta_ComponentAssembly_parent;
+		Udm::ParentAttr<PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr<PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_srcEventSourceDelegate_end_;
+		Udm::AssocEndAttr<PICML::OutEventPort> srcEventSourceDelegate_end() const { return Udm::AssocEndAttr<PICML::OutEventPort>(impl, meta_srcEventSourceDelegate_end_); }
+
+		static Uml::AssociationRole meta_dstEventSourceDelegate_end_;
+		Udm::AssocEndAttr<PICML::OutEventPort> dstEventSourceDelegate_end() const { return Udm::AssocEndAttr<PICML::OutEventPort>(impl, meta_dstEventSourceDelegate_end_); }
+
+		virtual void Accept(Visitor &v){v.Visit_EventSourceDelegate(*this);};
 	};
 
 	class  FacetDelegate :  public MgaObject {
@@ -3272,40 +3313,112 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_FacetDelegate(*this);};
 	};
 
-	class  ExternalDelegate :  public MgaObject {
+	class  ReceptacleDelegate :  public MgaObject {
 	 public:
 		static Uml::Class meta;
 
-		ExternalDelegate() { }
-		ExternalDelegate(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		ExternalDelegate(const ExternalDelegate &master) : MgaObject(master), Object(master) { }
-		static ExternalDelegate Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		ReceptacleDelegate() { }
+		ReceptacleDelegate(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		ReceptacleDelegate(const ReceptacleDelegate &master) : MgaObject(master), Object(master) { }
+		static ReceptacleDelegate Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static ExternalDelegate Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		static ReceptacleDelegate Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		ExternalDelegate CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		ReceptacleDelegate CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		ExternalDelegate CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+		ReceptacleDelegate CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::InstantiatedAttr<ExternalDelegate> Instances() { return Udm::InstantiatedAttr<PICML::ExternalDelegate>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<ExternalDelegate, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ExternalDelegate, Pred>(impl);}
+		Udm::InstantiatedAttr<ReceptacleDelegate> Instances() { return Udm::InstantiatedAttr<PICML::ReceptacleDelegate>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<ReceptacleDelegate, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ReceptacleDelegate, Pred>(impl);}
 
-		Udm::DerivedAttr<PICML::ExternalDelegate> Derived() { return Udm::DerivedAttr<PICML::ExternalDelegate>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::ExternalDelegate, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ExternalDelegate, Pred>(impl);}
+		Udm::DerivedAttr<PICML::ReceptacleDelegate> Derived() { return Udm::DerivedAttr<PICML::ReceptacleDelegate>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::ReceptacleDelegate, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ReceptacleDelegate, Pred>(impl);}
 
-		Udm::ArchetypeAttr<PICML::ExternalDelegate> Archetype() { return Udm::ArchetypeAttr<PICML::ExternalDelegate>(impl);}
+		Udm::ArchetypeAttr<PICML::ReceptacleDelegate> Archetype() { return Udm::ArchetypeAttr<PICML::ReceptacleDelegate>(impl);}
 
 		static Uml::CompositionParentRole meta_ComponentAssembly_parent;
 		Udm::ParentAttr<PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr<PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_dstExternalDelegate_end_;
-		Udm::AssocEndAttr<PICML::ExternalReferenceEndPoint> dstExternalDelegate_end() const { return Udm::AssocEndAttr<PICML::ExternalReferenceEndPoint>(impl, meta_dstExternalDelegate_end_); }
+		static Uml::AssociationRole meta_srcReceptacleDelegate_end_;
+		Udm::AssocEndAttr<PICML::RequiredRequestPort> srcReceptacleDelegate_end() const { return Udm::AssocEndAttr<PICML::RequiredRequestPort>(impl, meta_srcReceptacleDelegate_end_); }
 
-		static Uml::AssociationRole meta_srcExternalDelegate_end_;
-		Udm::AssocEndAttr<PICML::Component> srcExternalDelegate_end() const { return Udm::AssocEndAttr<PICML::Component>(impl, meta_srcExternalDelegate_end_); }
+		static Uml::AssociationRole meta_dstReceptacleDelegate_end_;
+		Udm::AssocEndAttr<PICML::RequiredRequestPort> dstReceptacleDelegate_end() const { return Udm::AssocEndAttr<PICML::RequiredRequestPort>(impl, meta_dstReceptacleDelegate_end_); }
 
-		virtual void Accept(Visitor &v){v.Visit_ExternalDelegate(*this);};
+		virtual void Accept(Visitor &v){v.Visit_ReceptacleDelegate(*this);};
+	};
+
+	class  emit :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		emit() { }
+		emit(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		emit(const emit &master) : MgaObject(master), Object(master) { }
+		static emit Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static emit Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		emit CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		emit CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<emit> Instances() { return Udm::InstantiatedAttr<PICML::emit>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<emit, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::emit, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::emit> Derived() { return Udm::DerivedAttr<PICML::emit>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::emit, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::emit, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::emit> Archetype() { return Udm::ArchetypeAttr<PICML::emit>(impl);}
+
+		static Uml::CompositionParentRole meta_ComponentAssembly_parent;
+		Udm::ParentAttr<PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr<PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_dstemit_end_;
+		Udm::AssocEndAttr<PICML::InEventPort> dstemit_end() const { return Udm::AssocEndAttr<PICML::InEventPort>(impl, meta_dstemit_end_); }
+
+		static Uml::AssociationRole meta_srcemit_end_;
+		Udm::AssocEndAttr<PICML::OutEventPort> srcemit_end() const { return Udm::AssocEndAttr<PICML::OutEventPort>(impl, meta_srcemit_end_); }
+
+		virtual void Accept(Visitor &v){v.Visit_emit(*this);};
+	};
+
+	class  AssemblyDeployRequirement :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		AssemblyDeployRequirement() { }
+		AssemblyDeployRequirement(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		AssemblyDeployRequirement(const AssemblyDeployRequirement &master) : MgaObject(master), Object(master) { }
+		static AssemblyDeployRequirement Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static AssemblyDeployRequirement Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		AssemblyDeployRequirement CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		AssemblyDeployRequirement CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<AssemblyDeployRequirement> Instances() { return Udm::InstantiatedAttr<PICML::AssemblyDeployRequirement>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<AssemblyDeployRequirement, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::AssemblyDeployRequirement, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::AssemblyDeployRequirement> Derived() { return Udm::DerivedAttr<PICML::AssemblyDeployRequirement>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::AssemblyDeployRequirement, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::AssemblyDeployRequirement, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::AssemblyDeployRequirement> Archetype() { return Udm::ArchetypeAttr<PICML::AssemblyDeployRequirement>(impl);}
+
+		static Uml::CompositionParentRole meta_ComponentAssembly_parent;
+		Udm::ParentAttr<PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr<PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_srcAssemblyDeployRequirement_end_;
+		Udm::AssocEndAttr<PICML::PublishConnector> srcAssemblyDeployRequirement_end() const { return Udm::AssocEndAttr<PICML::PublishConnector>(impl, meta_srcAssemblyDeployRequirement_end_); }
+
+		static Uml::AssociationRole meta_dstAssemblyDeployRequirement_end_;
+		Udm::AssocEndAttr<PICML::Requirement> dstAssemblyDeployRequirement_end() const { return Udm::AssocEndAttr<PICML::Requirement>(impl, meta_dstAssemblyDeployRequirement_end_); }
+
+		virtual void Accept(Visitor &v){v.Visit_AssemblyDeployRequirement(*this);};
 	};
 
 	class  deliverTo :  public MgaObject {
@@ -3380,222 +3493,6 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_publish(*this);};
 	};
 
-	class  emit :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		emit() { }
-		emit(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		emit(const emit &master) : MgaObject(master), Object(master) { }
-		static emit Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static emit Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		emit CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		emit CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<emit> Instances() { return Udm::InstantiatedAttr<PICML::emit>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<emit, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::emit, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::emit> Derived() { return Udm::DerivedAttr<PICML::emit>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::emit, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::emit, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::emit> Archetype() { return Udm::ArchetypeAttr<PICML::emit>(impl);}
-
-		static Uml::CompositionParentRole meta_ComponentAssembly_parent;
-		Udm::ParentAttr<PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr<PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_srcemit_end_;
-		Udm::AssocEndAttr<PICML::OutEventPort> srcemit_end() const { return Udm::AssocEndAttr<PICML::OutEventPort>(impl, meta_srcemit_end_); }
-
-		static Uml::AssociationRole meta_dstemit_end_;
-		Udm::AssocEndAttr<PICML::InEventPort> dstemit_end() const { return Udm::AssocEndAttr<PICML::InEventPort>(impl, meta_dstemit_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_emit(*this);};
-	};
-
-	class  EventSourceDelegate :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		EventSourceDelegate() { }
-		EventSourceDelegate(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		EventSourceDelegate(const EventSourceDelegate &master) : MgaObject(master), Object(master) { }
-		static EventSourceDelegate Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static EventSourceDelegate Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		EventSourceDelegate CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		EventSourceDelegate CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<EventSourceDelegate> Instances() { return Udm::InstantiatedAttr<PICML::EventSourceDelegate>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<EventSourceDelegate, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::EventSourceDelegate, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::EventSourceDelegate> Derived() { return Udm::DerivedAttr<PICML::EventSourceDelegate>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::EventSourceDelegate, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::EventSourceDelegate, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::EventSourceDelegate> Archetype() { return Udm::ArchetypeAttr<PICML::EventSourceDelegate>(impl);}
-
-		static Uml::CompositionParentRole meta_ComponentAssembly_parent;
-		Udm::ParentAttr<PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr<PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_srcEventSourceDelegate_end_;
-		Udm::AssocEndAttr<PICML::OutEventPort> srcEventSourceDelegate_end() const { return Udm::AssocEndAttr<PICML::OutEventPort>(impl, meta_srcEventSourceDelegate_end_); }
-
-		static Uml::AssociationRole meta_dstEventSourceDelegate_end_;
-		Udm::AssocEndAttr<PICML::OutEventPort> dstEventSourceDelegate_end() const { return Udm::AssocEndAttr<PICML::OutEventPort>(impl, meta_dstEventSourceDelegate_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_EventSourceDelegate(*this);};
-	};
-
-	class  AssemblyConfigProperty :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		AssemblyConfigProperty() { }
-		AssemblyConfigProperty(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		AssemblyConfigProperty(const AssemblyConfigProperty &master) : MgaObject(master), Object(master) { }
-		static AssemblyConfigProperty Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static AssemblyConfigProperty Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		AssemblyConfigProperty CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		AssemblyConfigProperty CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<AssemblyConfigProperty> Instances() { return Udm::InstantiatedAttr<PICML::AssemblyConfigProperty>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<AssemblyConfigProperty, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::AssemblyConfigProperty, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::AssemblyConfigProperty> Derived() { return Udm::DerivedAttr<PICML::AssemblyConfigProperty>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::AssemblyConfigProperty, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::AssemblyConfigProperty, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::AssemblyConfigProperty> Archetype() { return Udm::ArchetypeAttr<PICML::AssemblyConfigProperty>(impl);}
-
-		static Uml::CompositionParentRole meta_ComponentAssembly_parent;
-		Udm::ParentAttr<PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr<PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_dstAssemblyConfigProperty_end_;
-		Udm::AssocEndAttr<PICML::Property> dstAssemblyConfigProperty_end() const { return Udm::AssocEndAttr<PICML::Property>(impl, meta_dstAssemblyConfigProperty_end_); }
-
-		static Uml::AssociationRole meta_srcAssemblyConfigProperty_end_;
-		Udm::AssocEndAttr<PICML::Component> srcAssemblyConfigProperty_end() const { return Udm::AssocEndAttr<PICML::Component>(impl, meta_srcAssemblyConfigProperty_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_AssemblyConfigProperty(*this);};
-	};
-
-	class  invoke :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		invoke() { }
-		invoke(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		invoke(const invoke &master) : MgaObject(master), Object(master) { }
-		static invoke Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static invoke Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		invoke CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		invoke CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<invoke> Instances() { return Udm::InstantiatedAttr<PICML::invoke>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<invoke, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::invoke, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::invoke> Derived() { return Udm::DerivedAttr<PICML::invoke>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::invoke, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::invoke, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::invoke> Archetype() { return Udm::ArchetypeAttr<PICML::invoke>(impl);}
-
-		static Uml::CompositionParentRole meta_ComponentAssembly_parent;
-		Udm::ParentAttr<PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr<PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_srcinvoke_end_;
-		Udm::AssocEndAttr<PICML::RequiredRequestPort> srcinvoke_end() const { return Udm::AssocEndAttr<PICML::RequiredRequestPort>(impl, meta_srcinvoke_end_); }
-
-		static Uml::AssociationRole meta_dstinvoke_end_;
-		Udm::AssocEndAttr<PICML::ProvidedRequestPort> dstinvoke_end() const { return Udm::AssocEndAttr<PICML::ProvidedRequestPort>(impl, meta_dstinvoke_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_invoke(*this);};
-	};
-
-	class  ReceptacleDelegate :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		ReceptacleDelegate() { }
-		ReceptacleDelegate(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		ReceptacleDelegate(const ReceptacleDelegate &master) : MgaObject(master), Object(master) { }
-		static ReceptacleDelegate Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static ReceptacleDelegate Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		ReceptacleDelegate CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		ReceptacleDelegate CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<ReceptacleDelegate> Instances() { return Udm::InstantiatedAttr<PICML::ReceptacleDelegate>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<ReceptacleDelegate, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ReceptacleDelegate, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::ReceptacleDelegate> Derived() { return Udm::DerivedAttr<PICML::ReceptacleDelegate>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::ReceptacleDelegate, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ReceptacleDelegate, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::ReceptacleDelegate> Archetype() { return Udm::ArchetypeAttr<PICML::ReceptacleDelegate>(impl);}
-
-		static Uml::CompositionParentRole meta_ComponentAssembly_parent;
-		Udm::ParentAttr<PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr<PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_srcReceptacleDelegate_end_;
-		Udm::AssocEndAttr<PICML::RequiredRequestPort> srcReceptacleDelegate_end() const { return Udm::AssocEndAttr<PICML::RequiredRequestPort>(impl, meta_srcReceptacleDelegate_end_); }
-
-		static Uml::AssociationRole meta_dstReceptacleDelegate_end_;
-		Udm::AssocEndAttr<PICML::RequiredRequestPort> dstReceptacleDelegate_end() const { return Udm::AssocEndAttr<PICML::RequiredRequestPort>(impl, meta_dstReceptacleDelegate_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_ReceptacleDelegate(*this);};
-	};
-
-	class  AssemblyDeployRequirement :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		AssemblyDeployRequirement() { }
-		AssemblyDeployRequirement(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		AssemblyDeployRequirement(const AssemblyDeployRequirement &master) : MgaObject(master), Object(master) { }
-		static AssemblyDeployRequirement Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static AssemblyDeployRequirement Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		AssemblyDeployRequirement CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		AssemblyDeployRequirement CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<AssemblyDeployRequirement> Instances() { return Udm::InstantiatedAttr<PICML::AssemblyDeployRequirement>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<AssemblyDeployRequirement, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::AssemblyDeployRequirement, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::AssemblyDeployRequirement> Derived() { return Udm::DerivedAttr<PICML::AssemblyDeployRequirement>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::AssemblyDeployRequirement, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::AssemblyDeployRequirement, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::AssemblyDeployRequirement> Archetype() { return Udm::ArchetypeAttr<PICML::AssemblyDeployRequirement>(impl);}
-
-		static Uml::CompositionParentRole meta_ComponentAssembly_parent;
-		Udm::ParentAttr<PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr<PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_srcAssemblyDeployRequirement_end_;
-		Udm::AssocEndAttr<PICML::PublishConnector> srcAssemblyDeployRequirement_end() const { return Udm::AssocEndAttr<PICML::PublishConnector>(impl, meta_srcAssemblyDeployRequirement_end_); }
-
-		static Uml::AssociationRole meta_dstAssemblyDeployRequirement_end_;
-		Udm::AssocEndAttr<PICML::Requirement> dstAssemblyDeployRequirement_end() const { return Udm::AssocEndAttr<PICML::Requirement>(impl, meta_dstAssemblyDeployRequirement_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_AssemblyDeployRequirement(*this);};
-	};
-
 	class  PublishConnector :  public MgaObject {
 	 public:
 		static Uml::Class meta;
@@ -3637,6 +3534,42 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_PublishConnector(*this);};
 	};
 
+	class  AssemblyConfigProperty :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		AssemblyConfigProperty() { }
+		AssemblyConfigProperty(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		AssemblyConfigProperty(const AssemblyConfigProperty &master) : MgaObject(master), Object(master) { }
+		static AssemblyConfigProperty Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static AssemblyConfigProperty Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		AssemblyConfigProperty CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		AssemblyConfigProperty CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<AssemblyConfigProperty> Instances() { return Udm::InstantiatedAttr<PICML::AssemblyConfigProperty>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<AssemblyConfigProperty, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::AssemblyConfigProperty, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::AssemblyConfigProperty> Derived() { return Udm::DerivedAttr<PICML::AssemblyConfigProperty>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::AssemblyConfigProperty, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::AssemblyConfigProperty, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::AssemblyConfigProperty> Archetype() { return Udm::ArchetypeAttr<PICML::AssemblyConfigProperty>(impl);}
+
+		static Uml::CompositionParentRole meta_ComponentAssembly_parent;
+		Udm::ParentAttr<PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr<PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_dstAssemblyConfigProperty_end_;
+		Udm::AssocEndAttr<PICML::Property> dstAssemblyConfigProperty_end() const { return Udm::AssocEndAttr<PICML::Property>(impl, meta_dstAssemblyConfigProperty_end_); }
+
+		static Uml::AssociationRole meta_srcAssemblyConfigProperty_end_;
+		Udm::AssocEndAttr<PICML::Component> srcAssemblyConfigProperty_end() const { return Udm::AssocEndAttr<PICML::Component>(impl, meta_srcAssemblyConfigProperty_end_); }
+
+		virtual void Accept(Visitor &v){v.Visit_AssemblyConfigProperty(*this);};
+	};
+
 	class  AssemblyselectRequirement :  public MgaObject {
 	 public:
 		static Uml::Class meta;
@@ -3673,184 +3606,40 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_AssemblyselectRequirement(*this);};
 	};
 
-	class  EventSinkDelegate :  public MgaObject {
+	class  invoke :  public MgaObject {
 	 public:
 		static Uml::Class meta;
 
-		EventSinkDelegate() { }
-		EventSinkDelegate(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		EventSinkDelegate(const EventSinkDelegate &master) : MgaObject(master), Object(master) { }
-		static EventSinkDelegate Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		invoke() { }
+		invoke(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		invoke(const invoke &master) : MgaObject(master), Object(master) { }
+		static invoke Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static EventSinkDelegate Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		static invoke Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		EventSinkDelegate CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		invoke CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		EventSinkDelegate CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+		invoke CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::InstantiatedAttr<EventSinkDelegate> Instances() { return Udm::InstantiatedAttr<PICML::EventSinkDelegate>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<EventSinkDelegate, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::EventSinkDelegate, Pred>(impl);}
+		Udm::InstantiatedAttr<invoke> Instances() { return Udm::InstantiatedAttr<PICML::invoke>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<invoke, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::invoke, Pred>(impl);}
 
-		Udm::DerivedAttr<PICML::EventSinkDelegate> Derived() { return Udm::DerivedAttr<PICML::EventSinkDelegate>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::EventSinkDelegate, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::EventSinkDelegate, Pred>(impl);}
+		Udm::DerivedAttr<PICML::invoke> Derived() { return Udm::DerivedAttr<PICML::invoke>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::invoke, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::invoke, Pred>(impl);}
 
-		Udm::ArchetypeAttr<PICML::EventSinkDelegate> Archetype() { return Udm::ArchetypeAttr<PICML::EventSinkDelegate>(impl);}
+		Udm::ArchetypeAttr<PICML::invoke> Archetype() { return Udm::ArchetypeAttr<PICML::invoke>(impl);}
 
 		static Uml::CompositionParentRole meta_ComponentAssembly_parent;
 		Udm::ParentAttr<PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr<PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_srcEventSinkDelegate_end_;
-		Udm::AssocEndAttr<PICML::InEventPort> srcEventSinkDelegate_end() const { return Udm::AssocEndAttr<PICML::InEventPort>(impl, meta_srcEventSinkDelegate_end_); }
+		static Uml::AssociationRole meta_srcinvoke_end_;
+		Udm::AssocEndAttr<PICML::RequiredRequestPort> srcinvoke_end() const { return Udm::AssocEndAttr<PICML::RequiredRequestPort>(impl, meta_srcinvoke_end_); }
 
-		static Uml::AssociationRole meta_dstEventSinkDelegate_end_;
-		Udm::AssocEndAttr<PICML::InEventPort> dstEventSinkDelegate_end() const { return Udm::AssocEndAttr<PICML::InEventPort>(impl, meta_dstEventSinkDelegate_end_); }
+		static Uml::AssociationRole meta_dstinvoke_end_;
+		Udm::AssocEndAttr<PICML::ProvidedRequestPort> dstinvoke_end() const { return Udm::AssocEndAttr<PICML::ProvidedRequestPort>(impl, meta_dstinvoke_end_); }
 
-		virtual void Accept(Visitor &v){v.Visit_EventSinkDelegate(*this);};
-	};
-
-	class  ConfigProperty :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		ConfigProperty() { }
-		ConfigProperty(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		ConfigProperty(const ConfigProperty &master) : MgaObject(master), Object(master) { }
-		static ConfigProperty Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static ConfigProperty Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		ConfigProperty CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		ConfigProperty CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<ConfigProperty> Instances() { return Udm::InstantiatedAttr<PICML::ConfigProperty>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<ConfigProperty, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ConfigProperty, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::ConfigProperty> Derived() { return Udm::DerivedAttr<PICML::ConfigProperty>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::ConfigProperty, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ConfigProperty, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::ConfigProperty> Archetype() { return Udm::ArchetypeAttr<PICML::ConfigProperty>(impl);}
-
-		static Uml::CompositionParentRole meta_ComponentImplementationContainer_parent;
-		Udm::ParentAttr<PICML::ComponentImplementationContainer> ComponentImplementationContainer_parent() const { return Udm::ParentAttr<PICML::ComponentImplementationContainer>(impl, meta_ComponentImplementationContainer_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_srcConfigProperty_end_;
-		Udm::AssocEndAttr<PICML::ComponentImplementation> srcConfigProperty_end() const { return Udm::AssocEndAttr<PICML::ComponentImplementation>(impl, meta_srcConfigProperty_end_); }
-
-		static Uml::AssociationRole meta_dstConfigProperty_end_;
-		Udm::AssocEndAttr<PICML::Property> dstConfigProperty_end() const { return Udm::AssocEndAttr<PICML::Property>(impl, meta_dstConfigProperty_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_ConfigProperty(*this);};
-	};
-
-	class  InfoProperty :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		InfoProperty() { }
-		InfoProperty(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		InfoProperty(const InfoProperty &master) : MgaObject(master), Object(master) { }
-		static InfoProperty Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static InfoProperty Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		InfoProperty CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		InfoProperty CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<InfoProperty> Instances() { return Udm::InstantiatedAttr<PICML::InfoProperty>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<InfoProperty, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::InfoProperty, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::InfoProperty> Derived() { return Udm::DerivedAttr<PICML::InfoProperty>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::InfoProperty, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::InfoProperty, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::InfoProperty> Archetype() { return Udm::ArchetypeAttr<PICML::InfoProperty>(impl);}
-
-		static Uml::CompositionParentRole meta_ComponentImplementationContainer_parent;
-		Udm::ParentAttr<PICML::ComponentImplementationContainer> ComponentImplementationContainer_parent() const { return Udm::ParentAttr<PICML::ComponentImplementationContainer>(impl, meta_ComponentImplementationContainer_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_srcInfoProperty_end_;
-		Udm::AssocEndAttr<PICML::ComponentImplementation> srcInfoProperty_end() const { return Udm::AssocEndAttr<PICML::ComponentImplementation>(impl, meta_srcInfoProperty_end_); }
-
-		static Uml::AssociationRole meta_dstInfoProperty_end_;
-		Udm::AssocEndAttr<PICML::Property> dstInfoProperty_end() const { return Udm::AssocEndAttr<PICML::Property>(impl, meta_dstInfoProperty_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_InfoProperty(*this);};
-	};
-
-	class  MonolithprimaryArtifact :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		MonolithprimaryArtifact() { }
-		MonolithprimaryArtifact(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		MonolithprimaryArtifact(const MonolithprimaryArtifact &master) : MgaObject(master), Object(master) { }
-		static MonolithprimaryArtifact Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static MonolithprimaryArtifact Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		MonolithprimaryArtifact CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		MonolithprimaryArtifact CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<MonolithprimaryArtifact> Instances() { return Udm::InstantiatedAttr<PICML::MonolithprimaryArtifact>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<MonolithprimaryArtifact, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::MonolithprimaryArtifact, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::MonolithprimaryArtifact> Derived() { return Udm::DerivedAttr<PICML::MonolithprimaryArtifact>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::MonolithprimaryArtifact, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::MonolithprimaryArtifact, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::MonolithprimaryArtifact> Archetype() { return Udm::ArchetypeAttr<PICML::MonolithprimaryArtifact>(impl);}
-
-		static Uml::CompositionParentRole meta_ComponentImplementationContainer_parent;
-		Udm::ParentAttr<PICML::ComponentImplementationContainer> ComponentImplementationContainer_parent() const { return Udm::ParentAttr<PICML::ComponentImplementationContainer>(impl, meta_ComponentImplementationContainer_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_srcMonolithprimaryArtifact_end_;
-		Udm::AssocEndAttr<PICML::MonolithicImplementation> srcMonolithprimaryArtifact_end() const { return Udm::AssocEndAttr<PICML::MonolithicImplementation>(impl, meta_srcMonolithprimaryArtifact_end_); }
-
-		static Uml::AssociationRole meta_dstMonolithprimaryArtifact_end_;
-		Udm::AssocEndAttr<PICML::ImplementationArtifactReference> dstMonolithprimaryArtifact_end() const { return Udm::AssocEndAttr<PICML::ImplementationArtifactReference>(impl, meta_dstMonolithprimaryArtifact_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_MonolithprimaryArtifact(*this);};
-	};
-
-	class  MonolithDeployRequirement :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		MonolithDeployRequirement() { }
-		MonolithDeployRequirement(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		MonolithDeployRequirement(const MonolithDeployRequirement &master) : MgaObject(master), Object(master) { }
-		static MonolithDeployRequirement Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static MonolithDeployRequirement Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		MonolithDeployRequirement CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		MonolithDeployRequirement CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<MonolithDeployRequirement> Instances() { return Udm::InstantiatedAttr<PICML::MonolithDeployRequirement>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<MonolithDeployRequirement, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::MonolithDeployRequirement, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::MonolithDeployRequirement> Derived() { return Udm::DerivedAttr<PICML::MonolithDeployRequirement>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::MonolithDeployRequirement, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::MonolithDeployRequirement, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::MonolithDeployRequirement> Archetype() { return Udm::ArchetypeAttr<PICML::MonolithDeployRequirement>(impl);}
-
-		static Uml::CompositionParentRole meta_ComponentImplementationContainer_parent;
-		Udm::ParentAttr<PICML::ComponentImplementationContainer> ComponentImplementationContainer_parent() const { return Udm::ParentAttr<PICML::ComponentImplementationContainer>(impl, meta_ComponentImplementationContainer_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_srcMonolithDeployRequirement_end_;
-		Udm::AssocEndAttr<PICML::MonolithicImplementation> srcMonolithDeployRequirement_end() const { return Udm::AssocEndAttr<PICML::MonolithicImplementation>(impl, meta_srcMonolithDeployRequirement_end_); }
-
-		static Uml::AssociationRole meta_dstMonolithDeployRequirement_end_;
-		Udm::AssocEndAttr<PICML::ImplementationRequirement> dstMonolithDeployRequirement_end() const { return Udm::AssocEndAttr<PICML::ImplementationRequirement>(impl, meta_dstMonolithDeployRequirement_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_MonolithDeployRequirement(*this);};
+		virtual void Accept(Visitor &v){v.Visit_invoke(*this);};
 	};
 
 	class  MonolithExecParameter :  public MgaObject {
@@ -3889,6 +3678,158 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_MonolithExecParameter(*this);};
 	};
 
+	class  ComponentImplementationContainer :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		ComponentImplementationContainer() { }
+		ComponentImplementationContainer(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		ComponentImplementationContainer(const ComponentImplementationContainer &master) : MgaObject(master), Object(master) { }
+		static ComponentImplementationContainer Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static ComponentImplementationContainer Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		ComponentImplementationContainer CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		ComponentImplementationContainer CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<ComponentImplementationContainer> Instances() { return Udm::InstantiatedAttr<PICML::ComponentImplementationContainer>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<ComponentImplementationContainer, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ComponentImplementationContainer, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::ComponentImplementationContainer> Derived() { return Udm::DerivedAttr<PICML::ComponentImplementationContainer>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::ComponentImplementationContainer, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ComponentImplementationContainer, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::ComponentImplementationContainer> Archetype() { return Udm::ArchetypeAttr<PICML::ComponentImplementationContainer>(impl);}
+
+		static Uml::CompositionChildRole meta_ImplementationRequirement_children;
+		Udm::ChildrenAttr<PICML::ImplementationRequirement> ImplementationRequirement_children() const { return Udm::ChildrenAttr<PICML::ImplementationRequirement>(impl, meta_ImplementationRequirement_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ImplementationRequirement, Pred> ImplementationRequirement_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationRequirement, Pred>(impl, meta_ImplementationRequirement_children); }
+
+		static Uml::CompositionChildRole meta_ImplementationArtifactReference_children;
+		Udm::ChildrenAttr<PICML::ImplementationArtifactReference> ImplementationArtifactReference_children() const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference>(impl, meta_ImplementationArtifactReference_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred> ImplementationArtifactReference_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred>(impl, meta_ImplementationArtifactReference_children); }
+
+		static Uml::CompositionChildRole meta_Capability_children;
+		Udm::ChildrenAttr<PICML::Capability> Capability_children() const { return Udm::ChildrenAttr<PICML::Capability>(impl, meta_Capability_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Capability, Pred> Capability_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Capability, Pred>(impl, meta_Capability_children); }
+
+		static Uml::CompositionChildRole meta_Property_children;
+		Udm::ChildrenAttr<PICML::Property> Property_children() const { return Udm::ChildrenAttr<PICML::Property>(impl, meta_Property_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Property, Pred> Property_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Property, Pred>(impl, meta_Property_children); }
+
+		static Uml::CompositionChildRole meta_InfoProperty_children;
+		Udm::ChildrenAttr<PICML::InfoProperty> InfoProperty_children() const { return Udm::ChildrenAttr<PICML::InfoProperty>(impl, meta_InfoProperty_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::InfoProperty, Pred> InfoProperty_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::InfoProperty, Pred>(impl, meta_InfoProperty_children); }
+
+		static Uml::CompositionChildRole meta_ImplementationCapability_children;
+		Udm::ChildrenAttr<PICML::ImplementationCapability> ImplementationCapability_children() const { return Udm::ChildrenAttr<PICML::ImplementationCapability>(impl, meta_ImplementationCapability_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ImplementationCapability, Pred> ImplementationCapability_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationCapability, Pred>(impl, meta_ImplementationCapability_children); }
+
+		static Uml::CompositionChildRole meta_ConfigProperty_children;
+		Udm::ChildrenAttr<PICML::ConfigProperty> ConfigProperty_children() const { return Udm::ChildrenAttr<PICML::ConfigProperty>(impl, meta_ConfigProperty_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ConfigProperty, Pred> ConfigProperty_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ConfigProperty, Pred>(impl, meta_ConfigProperty_children); }
+
+		static Uml::CompositionChildRole meta_ImplementationDependency_children;
+		Udm::ChildrenAttr<PICML::ImplementationDependency> ImplementationDependency_children() const { return Udm::ChildrenAttr<PICML::ImplementationDependency>(impl, meta_ImplementationDependency_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ImplementationDependency, Pred> ImplementationDependency_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationDependency, Pred>(impl, meta_ImplementationDependency_children); }
+
+		static Uml::CompositionChildRole meta_MonolithExecParameter_children;
+		Udm::ChildrenAttr<PICML::MonolithExecParameter> MonolithExecParameter_children() const { return Udm::ChildrenAttr<PICML::MonolithExecParameter>(impl, meta_MonolithExecParameter_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::MonolithExecParameter, Pred> MonolithExecParameter_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MonolithExecParameter, Pred>(impl, meta_MonolithExecParameter_children); }
+
+		static Uml::CompositionChildRole meta_MonolithprimaryArtifact_children;
+		Udm::ChildrenAttr<PICML::MonolithprimaryArtifact> MonolithprimaryArtifact_children() const { return Udm::ChildrenAttr<PICML::MonolithprimaryArtifact>(impl, meta_MonolithprimaryArtifact_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::MonolithprimaryArtifact, Pred> MonolithprimaryArtifact_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MonolithprimaryArtifact, Pred>(impl, meta_MonolithprimaryArtifact_children); }
+
+		static Uml::CompositionChildRole meta_MonolithDeployRequirement_children;
+		Udm::ChildrenAttr<PICML::MonolithDeployRequirement> MonolithDeployRequirement_children() const { return Udm::ChildrenAttr<PICML::MonolithDeployRequirement>(impl, meta_MonolithDeployRequirement_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::MonolithDeployRequirement, Pred> MonolithDeployRequirement_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MonolithDeployRequirement, Pred>(impl, meta_MonolithDeployRequirement_children); }
+
+		static Uml::CompositionChildRole meta_ComponentRef_children;
+		Udm::ChildrenAttr<PICML::ComponentRef> ComponentRef_children() const { return Udm::ChildrenAttr<PICML::ComponentRef>(impl, meta_ComponentRef_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentRef, Pred> ComponentRef_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentRef, Pred>(impl, meta_ComponentRef_children); }
+
+		static Uml::CompositionChildRole meta_Implements_children;
+		Udm::ChildrenAttr<PICML::Implements> Implements_children() const { return Udm::ChildrenAttr<PICML::Implements>(impl, meta_Implements_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Implements, Pred> Implements_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Implements, Pred>(impl, meta_Implements_children); }
+
+		static Uml::CompositionChildRole meta_ImplementationDependsOn_children;
+		Udm::ChildrenAttr<PICML::ImplementationDependsOn> ImplementationDependsOn_children() const { return Udm::ChildrenAttr<PICML::ImplementationDependsOn>(impl, meta_ImplementationDependsOn_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ImplementationDependsOn, Pred> ImplementationDependsOn_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationDependsOn, Pred>(impl, meta_ImplementationDependsOn_children); }
+
+		static Uml::CompositionChildRole meta_ComponentImplementation_child;
+		Udm::ChildAttr<PICML::ComponentImplementation> ComponentImplementation_child() const { return Udm::ChildAttr<PICML::ComponentImplementation>(impl, meta_ComponentImplementation_child); }
+
+		Udm::ChildrenAttr<PICML::ComponentAssembly> ComponentAssembly_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentAssembly>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ComponentAssembly, Pred> ComponentAssembly_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentAssembly, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MonolithicImplementation> MonolithicImplementation_kind_children() const { return Udm::ChildrenAttr<PICML::MonolithicImplementation>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MonolithicImplementation, Pred> MonolithicImplementation_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MonolithicImplementation, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MonolithExecParameter> MonolithExecParameter_kind_children() const { return Udm::ChildrenAttr<PICML::MonolithExecParameter>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MonolithExecParameter, Pred> MonolithExecParameter_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MonolithExecParameter, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ComponentImplementation> ComponentImplementation_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentImplementation>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ComponentImplementation, Pred> ComponentImplementation_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentImplementation, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MonolithDeployRequirement> MonolithDeployRequirement_kind_children() const { return Udm::ChildrenAttr<PICML::MonolithDeployRequirement>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MonolithDeployRequirement, Pred> MonolithDeployRequirement_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MonolithDeployRequirement, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MonolithprimaryArtifact> MonolithprimaryArtifact_kind_children() const { return Udm::ChildrenAttr<PICML::MonolithprimaryArtifact>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MonolithprimaryArtifact, Pred> MonolithprimaryArtifact_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MonolithprimaryArtifact, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::InfoProperty> InfoProperty_kind_children() const { return Udm::ChildrenAttr<PICML::InfoProperty>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::InfoProperty, Pred> InfoProperty_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::InfoProperty, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ConfigProperty> ConfigProperty_kind_children() const { return Udm::ChildrenAttr<PICML::ConfigProperty>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ConfigProperty, Pred> ConfigProperty_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ConfigProperty, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Implements> Implements_kind_children() const { return Udm::ChildrenAttr<PICML::Implements>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Implements, Pred> Implements_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Implements, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ImplementationDependsOn> ImplementationDependsOn_kind_children() const { return Udm::ChildrenAttr<PICML::ImplementationDependsOn>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ImplementationDependsOn, Pred> ImplementationDependsOn_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationDependsOn, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ImplementationCapability> ImplementationCapability_kind_children() const { return Udm::ChildrenAttr<PICML::ImplementationCapability>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ImplementationCapability, Pred> ImplementationCapability_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationCapability, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ImplementationArtifactReference> ImplementationArtifactReference_kind_children() const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred> ImplementationArtifactReference_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ImplementationRequirement> ImplementationRequirement_kind_children() const { return Udm::ChildrenAttr<PICML::ImplementationRequirement>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ImplementationRequirement, Pred> ImplementationRequirement_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationRequirement, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::RequirementBase> RequirementBase_kind_children() const { return Udm::ChildrenAttr<PICML::RequirementBase>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::RequirementBase, Pred> RequirementBase_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RequirementBase, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Capability> Capability_kind_children() const { return Udm::ChildrenAttr<PICML::Capability>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Capability, Pred> Capability_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Capability, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Property> Property_kind_children() const { return Udm::ChildrenAttr<PICML::Property>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Property, Pred> Property_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Property, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ImplementationDependency> ImplementationDependency_kind_children() const { return Udm::ChildrenAttr<PICML::ImplementationDependency>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ImplementationDependency, Pred> ImplementationDependency_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationDependency, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::RequirementSatisfier> RequirementSatisfier_kind_children() const { return Udm::ChildrenAttr<PICML::RequirementSatisfier>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::RequirementSatisfier, Pred> RequirementSatisfier_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RequirementSatisfier, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Manageable> Manageable_kind_children() const { return Udm::ChildrenAttr<PICML::Manageable>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Manageable, Pred> Manageable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Manageable, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ComponentRef> ComponentRef_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentRef>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ComponentRef, Pred> ComponentRef_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentRef, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		static Uml::CompositionParentRole meta_ComponentImplementations_parent;
+		Udm::ParentAttr<PICML::ComponentImplementations> ComponentImplementations_parent() const { return Udm::ParentAttr<PICML::ComponentImplementations>(impl, meta_ComponentImplementations_parent); }
+
+		Udm::ParentAttr<PICML::ComponentImplementations> parent() const { return Udm::ParentAttr<PICML::ComponentImplementations>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_ComponentImplementationContainer(*this);};
+	};
+
 	class  ComponentImplementation :  public MgaObject {
 	 public:
 		static Uml::Class meta;
@@ -3918,25 +3859,25 @@ namespace PICML {
 		static Uml::Attribute meta_label;
 		Udm::StringAttr label() const { return Udm::StringAttr(impl, meta_label); }
 
-		static Uml::AssociationRole meta_dstInfoProperty, meta_dstInfoProperty_rev;
-		Udm::AClassAssocAttr<PICML::InfoProperty, PICML::Property> dstInfoProperty() const { return Udm::AClassAssocAttr<PICML::InfoProperty, PICML::Property>(impl, meta_dstInfoProperty, meta_dstInfoProperty_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::InfoProperty, PICML::Property, Pred> dstInfoProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::InfoProperty, PICML::Property, Pred>(impl, meta_dstInfoProperty, meta_dstInfoProperty_rev); }
-
 		static Uml::AssociationRole meta_dstConfigProperty, meta_dstConfigProperty_rev;
 		Udm::AClassAssocAttr<PICML::ConfigProperty, PICML::Property> dstConfigProperty() const { return Udm::AClassAssocAttr<PICML::ConfigProperty, PICML::Property>(impl, meta_dstConfigProperty, meta_dstConfigProperty_rev); }
 		template<class Pred> Udm::AClassAssocAttr<PICML::ConfigProperty, PICML::Property, Pred> dstConfigProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ConfigProperty, PICML::Property, Pred>(impl, meta_dstConfigProperty, meta_dstConfigProperty_rev); }
 
-		static Uml::AssociationRole meta_dstImplementationCapability, meta_dstImplementationCapability_rev;
-		Udm::AClassAssocAttr<PICML::ImplementationCapability, PICML::Capability> dstImplementationCapability() const { return Udm::AClassAssocAttr<PICML::ImplementationCapability, PICML::Capability>(impl, meta_dstImplementationCapability, meta_dstImplementationCapability_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::ImplementationCapability, PICML::Capability, Pred> dstImplementationCapability_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ImplementationCapability, PICML::Capability, Pred>(impl, meta_dstImplementationCapability, meta_dstImplementationCapability_rev); }
+		static Uml::AssociationRole meta_dstInfoProperty, meta_dstInfoProperty_rev;
+		Udm::AClassAssocAttr<PICML::InfoProperty, PICML::Property> dstInfoProperty() const { return Udm::AClassAssocAttr<PICML::InfoProperty, PICML::Property>(impl, meta_dstInfoProperty, meta_dstInfoProperty_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::InfoProperty, PICML::Property, Pred> dstInfoProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::InfoProperty, PICML::Property, Pred>(impl, meta_dstInfoProperty, meta_dstInfoProperty_rev); }
+
+		static Uml::AssociationRole meta_dstImplements, meta_dstImplements_rev;
+		Udm::AClassAssocAttr<PICML::Implements, PICML::ComponentRef> dstImplements() const { return Udm::AClassAssocAttr<PICML::Implements, PICML::ComponentRef>(impl, meta_dstImplements, meta_dstImplements_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::Implements, PICML::ComponentRef, Pred> dstImplements_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::Implements, PICML::ComponentRef, Pred>(impl, meta_dstImplements, meta_dstImplements_rev); }
 
 		static Uml::AssociationRole meta_dstImplementationDependsOn, meta_dstImplementationDependsOn_rev;
 		Udm::AClassAssocAttr<PICML::ImplementationDependsOn, PICML::ImplementationDependency> dstImplementationDependsOn() const { return Udm::AClassAssocAttr<PICML::ImplementationDependsOn, PICML::ImplementationDependency>(impl, meta_dstImplementationDependsOn, meta_dstImplementationDependsOn_rev); }
 		template<class Pred> Udm::AClassAssocAttr<PICML::ImplementationDependsOn, PICML::ImplementationDependency, Pred> dstImplementationDependsOn_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ImplementationDependsOn, PICML::ImplementationDependency, Pred>(impl, meta_dstImplementationDependsOn, meta_dstImplementationDependsOn_rev); }
 
-		static Uml::AssociationRole meta_dstImplements, meta_dstImplements_rev;
-		Udm::AClassAssocAttr<PICML::Implements, PICML::ComponentRef> dstImplements() const { return Udm::AClassAssocAttr<PICML::Implements, PICML::ComponentRef>(impl, meta_dstImplements, meta_dstImplements_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::Implements, PICML::ComponentRef, Pred> dstImplements_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::Implements, PICML::ComponentRef, Pred>(impl, meta_dstImplements, meta_dstImplements_rev); }
+		static Uml::AssociationRole meta_dstImplementationCapability, meta_dstImplementationCapability_rev;
+		Udm::AClassAssocAttr<PICML::ImplementationCapability, PICML::Capability> dstImplementationCapability() const { return Udm::AClassAssocAttr<PICML::ImplementationCapability, PICML::Capability>(impl, meta_dstImplementationCapability, meta_dstImplementationCapability_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::ImplementationCapability, PICML::Capability, Pred> dstImplementationCapability_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ImplementationCapability, PICML::Capability, Pred>(impl, meta_dstImplementationCapability, meta_dstImplementationCapability_rev); }
 
 		static Uml::AssociationRole meta_referedbyComponentImplementationReference;
 		Udm::AssocAttr<PICML::ComponentImplementationReference> referedbyComponentImplementationReference() const { return Udm::AssocAttr<PICML::ComponentImplementationReference>(impl, meta_referedbyComponentImplementationReference); }
@@ -3971,69 +3912,61 @@ namespace PICML {
 
 		Udm::ArchetypeAttr<PICML::ComponentAssembly> Archetype() { return Udm::ArchetypeAttr<PICML::ComponentAssembly>(impl);}
 
-		static Uml::CompositionChildRole meta_ReceptacleDelegate_children;
-		Udm::ChildrenAttr<PICML::ReceptacleDelegate> ReceptacleDelegate_children() const { return Udm::ChildrenAttr<PICML::ReceptacleDelegate>(impl, meta_ReceptacleDelegate_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ReceptacleDelegate, Pred> ReceptacleDelegate_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ReceptacleDelegate, Pred>(impl, meta_ReceptacleDelegate_children); }
-
-		static Uml::CompositionChildRole meta_AssemblyConfigProperty_children;
-		Udm::ChildrenAttr<PICML::AssemblyConfigProperty> AssemblyConfigProperty_children() const { return Udm::ChildrenAttr<PICML::AssemblyConfigProperty>(impl, meta_AssemblyConfigProperty_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::AssemblyConfigProperty, Pred> AssemblyConfigProperty_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::AssemblyConfigProperty, Pred>(impl, meta_AssemblyConfigProperty_children); }
-
-		static Uml::CompositionChildRole meta_ComponentPackage_children;
-		Udm::ChildrenAttr<PICML::ComponentPackage> ComponentPackage_children() const { return Udm::ChildrenAttr<PICML::ComponentPackage>(impl, meta_ComponentPackage_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentPackage, Pred> ComponentPackage_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentPackage, Pred>(impl, meta_ComponentPackage_children); }
-
-		static Uml::CompositionChildRole meta_ProvidedRequestPort_children;
-		Udm::ChildrenAttr<PICML::ProvidedRequestPort> ProvidedRequestPort_children() const { return Udm::ChildrenAttr<PICML::ProvidedRequestPort>(impl, meta_ProvidedRequestPort_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ProvidedRequestPort, Pred> ProvidedRequestPort_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ProvidedRequestPort, Pred>(impl, meta_ProvidedRequestPort_children); }
-
-		static Uml::CompositionChildRole meta_EventSinkDelegate_children;
-		Udm::ChildrenAttr<PICML::EventSinkDelegate> EventSinkDelegate_children() const { return Udm::ChildrenAttr<PICML::EventSinkDelegate>(impl, meta_EventSinkDelegate_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::EventSinkDelegate, Pred> EventSinkDelegate_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::EventSinkDelegate, Pred>(impl, meta_EventSinkDelegate_children); }
-
-		static Uml::CompositionChildRole meta_EventSourceDelegate_children;
-		Udm::ChildrenAttr<PICML::EventSourceDelegate> EventSourceDelegate_children() const { return Udm::ChildrenAttr<PICML::EventSourceDelegate>(impl, meta_EventSourceDelegate_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::EventSourceDelegate, Pred> EventSourceDelegate_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::EventSourceDelegate, Pred>(impl, meta_EventSourceDelegate_children); }
-
-		static Uml::CompositionChildRole meta_RequiredRequestPort_children;
-		Udm::ChildrenAttr<PICML::RequiredRequestPort> RequiredRequestPort_children() const { return Udm::ChildrenAttr<PICML::RequiredRequestPort>(impl, meta_RequiredRequestPort_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::RequiredRequestPort, Pred> RequiredRequestPort_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RequiredRequestPort, Pred>(impl, meta_RequiredRequestPort_children); }
-
-		static Uml::CompositionChildRole meta_AssemblyselectRequirement_children;
-		Udm::ChildrenAttr<PICML::AssemblyselectRequirement> AssemblyselectRequirement_children() const { return Udm::ChildrenAttr<PICML::AssemblyselectRequirement>(impl, meta_AssemblyselectRequirement_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::AssemblyselectRequirement, Pred> AssemblyselectRequirement_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::AssemblyselectRequirement, Pred>(impl, meta_AssemblyselectRequirement_children); }
-
-		static Uml::CompositionChildRole meta_Property_children;
-		Udm::ChildrenAttr<PICML::Property> Property_children() const { return Udm::ChildrenAttr<PICML::Property>(impl, meta_Property_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Property, Pred> Property_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Property, Pred>(impl, meta_Property_children); }
-
-		static Uml::CompositionChildRole meta_Component_children;
-		Udm::ChildrenAttr<PICML::Component> Component_children() const { return Udm::ChildrenAttr<PICML::Component>(impl, meta_Component_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Component, Pred> Component_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Component, Pred>(impl, meta_Component_children); }
-
-		static Uml::CompositionChildRole meta_FacetDelegate_children;
-		Udm::ChildrenAttr<PICML::FacetDelegate> FacetDelegate_children() const { return Udm::ChildrenAttr<PICML::FacetDelegate>(impl, meta_FacetDelegate_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::FacetDelegate, Pred> FacetDelegate_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::FacetDelegate, Pred>(impl, meta_FacetDelegate_children); }
-
-		static Uml::CompositionChildRole meta_deliverTo_children;
-		Udm::ChildrenAttr<PICML::deliverTo> deliverTo_children() const { return Udm::ChildrenAttr<PICML::deliverTo>(impl, meta_deliverTo_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::deliverTo, Pred> deliverTo_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::deliverTo, Pred>(impl, meta_deliverTo_children); }
-
-		static Uml::CompositionChildRole meta_ComponentAssembly_children;
-		Udm::ChildrenAttr<PICML::ComponentAssembly> ComponentAssembly_children() const { return Udm::ChildrenAttr<PICML::ComponentAssembly>(impl, meta_ComponentAssembly_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentAssembly, Pred> ComponentAssembly_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentAssembly, Pred>(impl, meta_ComponentAssembly_children); }
+		static Uml::CompositionChildRole meta_ExternalReferenceEndPoint_children;
+		Udm::ChildrenAttr<PICML::ExternalReferenceEndPoint> ExternalReferenceEndPoint_children() const { return Udm::ChildrenAttr<PICML::ExternalReferenceEndPoint>(impl, meta_ExternalReferenceEndPoint_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ExternalReferenceEndPoint, Pred> ExternalReferenceEndPoint_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ExternalReferenceEndPoint, Pred>(impl, meta_ExternalReferenceEndPoint_children); }
 
 		static Uml::CompositionChildRole meta_ExternalDelegate_children;
 		Udm::ChildrenAttr<PICML::ExternalDelegate> ExternalDelegate_children() const { return Udm::ChildrenAttr<PICML::ExternalDelegate>(impl, meta_ExternalDelegate_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML::ExternalDelegate, Pred> ExternalDelegate_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ExternalDelegate, Pred>(impl, meta_ExternalDelegate_children); }
 
-		static Uml::CompositionChildRole meta_ExternalReferenceEndPoint_children;
-		Udm::ChildrenAttr<PICML::ExternalReferenceEndPoint> ExternalReferenceEndPoint_children() const { return Udm::ChildrenAttr<PICML::ExternalReferenceEndPoint>(impl, meta_ExternalReferenceEndPoint_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ExternalReferenceEndPoint, Pred> ExternalReferenceEndPoint_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ExternalReferenceEndPoint, Pred>(impl, meta_ExternalReferenceEndPoint_children); }
+		static Uml::CompositionChildRole meta_ReceptacleDelegate_children;
+		Udm::ChildrenAttr<PICML::ReceptacleDelegate> ReceptacleDelegate_children() const { return Udm::ChildrenAttr<PICML::ReceptacleDelegate>(impl, meta_ReceptacleDelegate_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ReceptacleDelegate, Pred> ReceptacleDelegate_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ReceptacleDelegate, Pred>(impl, meta_ReceptacleDelegate_children); }
 
-		static Uml::CompositionChildRole meta_Requirement_children;
-		Udm::ChildrenAttr<PICML::Requirement> Requirement_children() const { return Udm::ChildrenAttr<PICML::Requirement>(impl, meta_Requirement_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Requirement, Pred> Requirement_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Requirement, Pred>(impl, meta_Requirement_children); }
+		static Uml::CompositionChildRole meta_FacetDelegate_children;
+		Udm::ChildrenAttr<PICML::FacetDelegate> FacetDelegate_children() const { return Udm::ChildrenAttr<PICML::FacetDelegate>(impl, meta_FacetDelegate_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::FacetDelegate, Pred> FacetDelegate_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::FacetDelegate, Pred>(impl, meta_FacetDelegate_children); }
+
+		static Uml::CompositionChildRole meta_EventSourceDelegate_children;
+		Udm::ChildrenAttr<PICML::EventSourceDelegate> EventSourceDelegate_children() const { return Udm::ChildrenAttr<PICML::EventSourceDelegate>(impl, meta_EventSourceDelegate_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::EventSourceDelegate, Pred> EventSourceDelegate_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::EventSourceDelegate, Pred>(impl, meta_EventSourceDelegate_children); }
+
+		static Uml::CompositionChildRole meta_EventSinkDelegate_children;
+		Udm::ChildrenAttr<PICML::EventSinkDelegate> EventSinkDelegate_children() const { return Udm::ChildrenAttr<PICML::EventSinkDelegate>(impl, meta_EventSinkDelegate_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::EventSinkDelegate, Pred> EventSinkDelegate_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::EventSinkDelegate, Pred>(impl, meta_EventSinkDelegate_children); }
+
+		static Uml::CompositionChildRole meta_OutEventPort_children;
+		Udm::ChildrenAttr<PICML::OutEventPort> OutEventPort_children() const { return Udm::ChildrenAttr<PICML::OutEventPort>(impl, meta_OutEventPort_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::OutEventPort, Pred> OutEventPort_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OutEventPort, Pred>(impl, meta_OutEventPort_children); }
+
+		static Uml::CompositionChildRole meta_InEventPort_children;
+		Udm::ChildrenAttr<PICML::InEventPort> InEventPort_children() const { return Udm::ChildrenAttr<PICML::InEventPort>(impl, meta_InEventPort_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::InEventPort, Pred> InEventPort_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::InEventPort, Pred>(impl, meta_InEventPort_children); }
+
+		static Uml::CompositionChildRole meta_RequiredRequestPort_children;
+		Udm::ChildrenAttr<PICML::RequiredRequestPort> RequiredRequestPort_children() const { return Udm::ChildrenAttr<PICML::RequiredRequestPort>(impl, meta_RequiredRequestPort_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::RequiredRequestPort, Pred> RequiredRequestPort_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RequiredRequestPort, Pred>(impl, meta_RequiredRequestPort_children); }
+
+		static Uml::CompositionChildRole meta_ProvidedRequestPort_children;
+		Udm::ChildrenAttr<PICML::ProvidedRequestPort> ProvidedRequestPort_children() const { return Udm::ChildrenAttr<PICML::ProvidedRequestPort>(impl, meta_ProvidedRequestPort_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ProvidedRequestPort, Pred> ProvidedRequestPort_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ProvidedRequestPort, Pred>(impl, meta_ProvidedRequestPort_children); }
+
+		static Uml::CompositionChildRole meta_ComponentAssembly_children;
+		Udm::ChildrenAttr<PICML::ComponentAssembly> ComponentAssembly_children() const { return Udm::ChildrenAttr<PICML::ComponentAssembly>(impl, meta_ComponentAssembly_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentAssembly, Pred> ComponentAssembly_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentAssembly, Pred>(impl, meta_ComponentAssembly_children); }
+
+		static Uml::CompositionChildRole meta_AssemblyConfigProperty_children;
+		Udm::ChildrenAttr<PICML::AssemblyConfigProperty> AssemblyConfigProperty_children() const { return Udm::ChildrenAttr<PICML::AssemblyConfigProperty>(impl, meta_AssemblyConfigProperty_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::AssemblyConfigProperty, Pred> AssemblyConfigProperty_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::AssemblyConfigProperty, Pred>(impl, meta_AssemblyConfigProperty_children); }
+
+		static Uml::CompositionChildRole meta_Component_children;
+		Udm::ChildrenAttr<PICML::Component> Component_children() const { return Udm::ChildrenAttr<PICML::Component>(impl, meta_Component_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Component, Pred> Component_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Component, Pred>(impl, meta_Component_children); }
+
+		static Uml::CompositionChildRole meta_emit_children;
+		Udm::ChildrenAttr<PICML::emit> emit_children() const { return Udm::ChildrenAttr<PICML::emit>(impl, meta_emit_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::emit, Pred> emit_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::emit, Pred>(impl, meta_emit_children); }
 
 		static Uml::CompositionChildRole meta_PublishConnector_children;
 		Udm::ChildrenAttr<PICML::PublishConnector> PublishConnector_children() const { return Udm::ChildrenAttr<PICML::PublishConnector>(impl, meta_PublishConnector_children); }
@@ -4043,38 +3976,61 @@ namespace PICML {
 		Udm::ChildrenAttr<PICML::publish> publish_children() const { return Udm::ChildrenAttr<PICML::publish>(impl, meta_publish_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML::publish, Pred> publish_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::publish, Pred>(impl, meta_publish_children); }
 
-		static Uml::CompositionChildRole meta_invoke_children;
-		Udm::ChildrenAttr<PICML::invoke> invoke_children() const { return Udm::ChildrenAttr<PICML::invoke>(impl, meta_invoke_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::invoke, Pred> invoke_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::invoke, Pred>(impl, meta_invoke_children); }
-
-		static Uml::CompositionChildRole meta_InEventPort_children;
-		Udm::ChildrenAttr<PICML::InEventPort> InEventPort_children() const { return Udm::ChildrenAttr<PICML::InEventPort>(impl, meta_InEventPort_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::InEventPort, Pred> InEventPort_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::InEventPort, Pred>(impl, meta_InEventPort_children); }
-
-		static Uml::CompositionChildRole meta_ComponentPackageReference_children;
-		Udm::ChildrenAttr<PICML::ComponentPackageReference> ComponentPackageReference_children() const { return Udm::ChildrenAttr<PICML::ComponentPackageReference>(impl, meta_ComponentPackageReference_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentPackageReference, Pred> ComponentPackageReference_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentPackageReference, Pred>(impl, meta_ComponentPackageReference_children); }
+		static Uml::CompositionChildRole meta_Requirement_children;
+		Udm::ChildrenAttr<PICML::Requirement> Requirement_children() const { return Udm::ChildrenAttr<PICML::Requirement>(impl, meta_Requirement_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Requirement, Pred> Requirement_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Requirement, Pred>(impl, meta_Requirement_children); }
 
 		static Uml::CompositionChildRole meta_AssemblyDeployRequirement_children;
 		Udm::ChildrenAttr<PICML::AssemblyDeployRequirement> AssemblyDeployRequirement_children() const { return Udm::ChildrenAttr<PICML::AssemblyDeployRequirement>(impl, meta_AssemblyDeployRequirement_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML::AssemblyDeployRequirement, Pred> AssemblyDeployRequirement_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::AssemblyDeployRequirement, Pred>(impl, meta_AssemblyDeployRequirement_children); }
 
-		static Uml::CompositionChildRole meta_emit_children;
-		Udm::ChildrenAttr<PICML::emit> emit_children() const { return Udm::ChildrenAttr<PICML::emit>(impl, meta_emit_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::emit, Pred> emit_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::emit, Pred>(impl, meta_emit_children); }
+		static Uml::CompositionChildRole meta_deliverTo_children;
+		Udm::ChildrenAttr<PICML::deliverTo> deliverTo_children() const { return Udm::ChildrenAttr<PICML::deliverTo>(impl, meta_deliverTo_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::deliverTo, Pred> deliverTo_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::deliverTo, Pred>(impl, meta_deliverTo_children); }
 
-		static Uml::CompositionChildRole meta_OutEventPort_children;
-		Udm::ChildrenAttr<PICML::OutEventPort> OutEventPort_children() const { return Udm::ChildrenAttr<PICML::OutEventPort>(impl, meta_OutEventPort_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::OutEventPort, Pred> OutEventPort_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OutEventPort, Pred>(impl, meta_OutEventPort_children); }
+		static Uml::CompositionChildRole meta_ComponentPackageReference_children;
+		Udm::ChildrenAttr<PICML::ComponentPackageReference> ComponentPackageReference_children() const { return Udm::ChildrenAttr<PICML::ComponentPackageReference>(impl, meta_ComponentPackageReference_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentPackageReference, Pred> ComponentPackageReference_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentPackageReference, Pred>(impl, meta_ComponentPackageReference_children); }
+
+		static Uml::CompositionChildRole meta_Property_children;
+		Udm::ChildrenAttr<PICML::Property> Property_children() const { return Udm::ChildrenAttr<PICML::Property>(impl, meta_Property_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Property, Pred> Property_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Property, Pred>(impl, meta_Property_children); }
+
+		static Uml::CompositionChildRole meta_AssemblyselectRequirement_children;
+		Udm::ChildrenAttr<PICML::AssemblyselectRequirement> AssemblyselectRequirement_children() const { return Udm::ChildrenAttr<PICML::AssemblyselectRequirement>(impl, meta_AssemblyselectRequirement_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::AssemblyselectRequirement, Pred> AssemblyselectRequirement_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::AssemblyselectRequirement, Pred>(impl, meta_AssemblyselectRequirement_children); }
+
+		static Uml::CompositionChildRole meta_invoke_children;
+		Udm::ChildrenAttr<PICML::invoke> invoke_children() const { return Udm::ChildrenAttr<PICML::invoke>(impl, meta_invoke_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::invoke, Pred> invoke_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::invoke, Pred>(impl, meta_invoke_children); }
+
+		static Uml::CompositionChildRole meta_ComponentPackage_children;
+		Udm::ChildrenAttr<PICML::ComponentPackage> ComponentPackage_children() const { return Udm::ChildrenAttr<PICML::ComponentPackage>(impl, meta_ComponentPackage_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentPackage, Pred> ComponentPackage_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentPackage, Pred>(impl, meta_ComponentPackage_children); }
+
+		Udm::ChildrenAttr<PICML::ExternalDelegate> ExternalDelegate_kind_children() const { return Udm::ChildrenAttr<PICML::ExternalDelegate>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ExternalDelegate, Pred> ExternalDelegate_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ExternalDelegate, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::ExternalReferenceEndPoint> ExternalReferenceEndPoint_kind_children() const { return Udm::ChildrenAttr<PICML::ExternalReferenceEndPoint>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::ExternalReferenceEndPoint, Pred> ExternalReferenceEndPoint_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ExternalReferenceEndPoint, Pred>(impl, Udm::NULLCHILDROLE); }
 
+		Udm::ChildrenAttr<PICML::EventSinkDelegate> EventSinkDelegate_kind_children() const { return Udm::ChildrenAttr<PICML::EventSinkDelegate>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::EventSinkDelegate, Pred> EventSinkDelegate_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::EventSinkDelegate, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::EventSourceDelegate> EventSourceDelegate_kind_children() const { return Udm::ChildrenAttr<PICML::EventSourceDelegate>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::EventSourceDelegate, Pred> EventSourceDelegate_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::EventSourceDelegate, Pred>(impl, Udm::NULLCHILDROLE); }
+
 		Udm::ChildrenAttr<PICML::FacetDelegate> FacetDelegate_kind_children() const { return Udm::ChildrenAttr<PICML::FacetDelegate>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::FacetDelegate, Pred> FacetDelegate_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::FacetDelegate, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::ExternalDelegate> ExternalDelegate_kind_children() const { return Udm::ChildrenAttr<PICML::ExternalDelegate>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ExternalDelegate, Pred> ExternalDelegate_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ExternalDelegate, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ChildrenAttr<PICML::ReceptacleDelegate> ReceptacleDelegate_kind_children() const { return Udm::ChildrenAttr<PICML::ReceptacleDelegate>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ReceptacleDelegate, Pred> ReceptacleDelegate_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ReceptacleDelegate, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::emit> emit_kind_children() const { return Udm::ChildrenAttr<PICML::emit>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::emit, Pred> emit_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::emit, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::AssemblyDeployRequirement> AssemblyDeployRequirement_kind_children() const { return Udm::ChildrenAttr<PICML::AssemblyDeployRequirement>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::AssemblyDeployRequirement, Pred> AssemblyDeployRequirement_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::AssemblyDeployRequirement, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::deliverTo> deliverTo_kind_children() const { return Udm::ChildrenAttr<PICML::deliverTo>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::deliverTo, Pred> deliverTo_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::deliverTo, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -4082,35 +4038,20 @@ namespace PICML {
 		Udm::ChildrenAttr<PICML::publish> publish_kind_children() const { return Udm::ChildrenAttr<PICML::publish>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::publish, Pred> publish_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::publish, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::emit> emit_kind_children() const { return Udm::ChildrenAttr<PICML::emit>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::emit, Pred> emit_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::emit, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::EventSourceDelegate> EventSourceDelegate_kind_children() const { return Udm::ChildrenAttr<PICML::EventSourceDelegate>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::EventSourceDelegate, Pred> EventSourceDelegate_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::EventSourceDelegate, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ChildrenAttr<PICML::PublishConnector> PublishConnector_kind_children() const { return Udm::ChildrenAttr<PICML::PublishConnector>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::PublishConnector, Pred> PublishConnector_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PublishConnector, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::AssemblyConfigProperty> AssemblyConfigProperty_kind_children() const { return Udm::ChildrenAttr<PICML::AssemblyConfigProperty>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::AssemblyConfigProperty, Pred> AssemblyConfigProperty_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::AssemblyConfigProperty, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::ComponentAssembly> ComponentAssembly_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentAssembly>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ComponentAssembly, Pred> ComponentAssembly_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentAssembly, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ChildrenAttr<PICML::AssemblyselectRequirement> AssemblyselectRequirement_kind_children() const { return Udm::ChildrenAttr<PICML::AssemblyselectRequirement>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::AssemblyselectRequirement, Pred> AssemblyselectRequirement_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::AssemblyselectRequirement, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::invoke> invoke_kind_children() const { return Udm::ChildrenAttr<PICML::invoke>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::invoke, Pred> invoke_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::invoke, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::ReceptacleDelegate> ReceptacleDelegate_kind_children() const { return Udm::ChildrenAttr<PICML::ReceptacleDelegate>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ReceptacleDelegate, Pred> ReceptacleDelegate_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ReceptacleDelegate, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::AssemblyDeployRequirement> AssemblyDeployRequirement_kind_children() const { return Udm::ChildrenAttr<PICML::AssemblyDeployRequirement>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::AssemblyDeployRequirement, Pred> AssemblyDeployRequirement_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::AssemblyDeployRequirement, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::PublishConnector> PublishConnector_kind_children() const { return Udm::ChildrenAttr<PICML::PublishConnector>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::PublishConnector, Pred> PublishConnector_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PublishConnector, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::AssemblyselectRequirement> AssemblyselectRequirement_kind_children() const { return Udm::ChildrenAttr<PICML::AssemblyselectRequirement>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::AssemblyselectRequirement, Pred> AssemblyselectRequirement_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::AssemblyselectRequirement, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::EventSinkDelegate> EventSinkDelegate_kind_children() const { return Udm::ChildrenAttr<PICML::EventSinkDelegate>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::EventSinkDelegate, Pred> EventSinkDelegate_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::EventSinkDelegate, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ChildrenAttr<PICML::ComponentAssembly> ComponentAssembly_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentAssembly>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ComponentAssembly, Pred> ComponentAssembly_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentAssembly, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::ComponentImplementation> ComponentImplementation_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentImplementation>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::ComponentImplementation, Pred> ComponentImplementation_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentImplementation, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -4124,14 +4065,14 @@ namespace PICML {
 		Udm::ChildrenAttr<PICML::ComponentPackage> ComponentPackage_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentPackage>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::ComponentPackage, Pred> ComponentPackage_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentPackage, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::Requirement> Requirement_kind_children() const { return Udm::ChildrenAttr<PICML::Requirement>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Requirement, Pred> Requirement_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Requirement, Pred>(impl, Udm::NULLCHILDROLE); }
-
 		Udm::ChildrenAttr<PICML::RequirementBase> RequirementBase_kind_children() const { return Udm::ChildrenAttr<PICML::RequirementBase>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::RequirementBase, Pred> RequirementBase_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RequirementBase, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::Property> Property_kind_children() const { return Udm::ChildrenAttr<PICML::Property>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::Property, Pred> Property_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Property, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Requirement> Requirement_kind_children() const { return Udm::ChildrenAttr<PICML::Requirement>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Requirement, Pred> Requirement_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Requirement, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::Taggable> Taggable_kind_children() const { return Udm::ChildrenAttr<PICML::Taggable>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::Taggable, Pred> Taggable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Taggable, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -4139,8 +4080,11 @@ namespace PICML {
 		Udm::ChildrenAttr<PICML::Manageable> Manageable_kind_children() const { return Udm::ChildrenAttr<PICML::Manageable>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::Manageable, Pred> Manageable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Manageable, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::Component> Component_kind_children() const { return Udm::ChildrenAttr<PICML::Component>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Component, Pred> Component_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Component, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ChildrenAttr<PICML::Port> Port_kind_children() const { return Udm::ChildrenAttr<PICML::Port>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Port, Pred> Port_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Port, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::InEventPort> InEventPort_kind_children() const { return Udm::ChildrenAttr<PICML::InEventPort>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::InEventPort, Pred> InEventPort_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::InEventPort, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::RequiredRequestPort> RequiredRequestPort_kind_children() const { return Udm::ChildrenAttr<PICML::RequiredRequestPort>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::RequiredRequestPort, Pred> RequiredRequestPort_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RequiredRequestPort, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -4148,23 +4092,20 @@ namespace PICML {
 		Udm::ChildrenAttr<PICML::ProvidedRequestPort> ProvidedRequestPort_kind_children() const { return Udm::ChildrenAttr<PICML::ProvidedRequestPort>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::ProvidedRequestPort, Pred> ProvidedRequestPort_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ProvidedRequestPort, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::Port> Port_kind_children() const { return Udm::ChildrenAttr<PICML::Port>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Port, Pred> Port_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Port, Pred>(impl, Udm::NULLCHILDROLE); }
-
 		Udm::ChildrenAttr<PICML::OutEventPort> OutEventPort_kind_children() const { return Udm::ChildrenAttr<PICML::OutEventPort>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::OutEventPort, Pred> OutEventPort_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OutEventPort, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::InEventPort> InEventPort_kind_children() const { return Udm::ChildrenAttr<PICML::InEventPort>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::InEventPort, Pred> InEventPort_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::InEventPort, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ChildrenAttr<PICML::Component> Component_kind_children() const { return Udm::ChildrenAttr<PICML::Component>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Component, Pred> Component_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Component, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::SupportsInterfaces> SupportsInterfaces_kind_children() const { return Udm::ChildrenAttr<PICML::SupportsInterfaces>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::SupportsInterfaces, Pred> SupportsInterfaces_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::SupportsInterfaces, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::MemberType> MemberType_kind_children() const { return Udm::ChildrenAttr<PICML::MemberType>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MemberType, Pred> MemberType_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MemberType, Pred>(impl, Udm::NULLCHILDROLE); }
-
 		Udm::ChildrenAttr<PICML::NamedType> NamedType_kind_children() const { return Udm::ChildrenAttr<PICML::NamedType>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::NamedType, Pred> NamedType_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::NamedType, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MemberType> MemberType_kind_children() const { return Udm::ChildrenAttr<PICML::MemberType>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MemberType, Pred> MemberType_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MemberType, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -4199,13 +4140,13 @@ namespace PICML {
 
 		Udm::ArchetypeAttr<PICML::MonolithicImplementation> Archetype() { return Udm::ArchetypeAttr<PICML::MonolithicImplementation>(impl);}
 
-		static Uml::AssociationRole meta_dstMonolithExecParameter, meta_dstMonolithExecParameter_rev;
-		Udm::AClassAssocAttr<PICML::MonolithExecParameter, PICML::Property> dstMonolithExecParameter() const { return Udm::AClassAssocAttr<PICML::MonolithExecParameter, PICML::Property>(impl, meta_dstMonolithExecParameter, meta_dstMonolithExecParameter_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::MonolithExecParameter, PICML::Property, Pred> dstMonolithExecParameter_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::MonolithExecParameter, PICML::Property, Pred>(impl, meta_dstMonolithExecParameter, meta_dstMonolithExecParameter_rev); }
-
 		static Uml::AssociationRole meta_dstMonolithDeployRequirement, meta_dstMonolithDeployRequirement_rev;
 		Udm::AClassAssocAttr<PICML::MonolithDeployRequirement, PICML::ImplementationRequirement> dstMonolithDeployRequirement() const { return Udm::AClassAssocAttr<PICML::MonolithDeployRequirement, PICML::ImplementationRequirement>(impl, meta_dstMonolithDeployRequirement, meta_dstMonolithDeployRequirement_rev); }
 		template<class Pred> Udm::AClassAssocAttr<PICML::MonolithDeployRequirement, PICML::ImplementationRequirement, Pred> dstMonolithDeployRequirement_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::MonolithDeployRequirement, PICML::ImplementationRequirement, Pred>(impl, meta_dstMonolithDeployRequirement, meta_dstMonolithDeployRequirement_rev); }
+
+		static Uml::AssociationRole meta_dstMonolithExecParameter, meta_dstMonolithExecParameter_rev;
+		Udm::AClassAssocAttr<PICML::MonolithExecParameter, PICML::Property> dstMonolithExecParameter() const { return Udm::AClassAssocAttr<PICML::MonolithExecParameter, PICML::Property>(impl, meta_dstMonolithExecParameter, meta_dstMonolithExecParameter_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::MonolithExecParameter, PICML::Property, Pred> dstMonolithExecParameter_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::MonolithExecParameter, PICML::Property, Pred>(impl, meta_dstMonolithExecParameter, meta_dstMonolithExecParameter_rev); }
 
 		static Uml::AssociationRole meta_dstMonolithprimaryArtifact, meta_dstMonolithprimaryArtifact_rev;
 		Udm::AClassAssocAttr<PICML::MonolithprimaryArtifact, PICML::ImplementationArtifactReference> dstMonolithprimaryArtifact() const { return Udm::AClassAssocAttr<PICML::MonolithprimaryArtifact, PICML::ImplementationArtifactReference>(impl, meta_dstMonolithprimaryArtifact, meta_dstMonolithprimaryArtifact_rev); }
@@ -4215,156 +4156,148 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_MonolithicImplementation(*this);};
 	};
 
-	class  ComponentImplementationContainer :  public MgaObject {
+	class  MonolithDeployRequirement :  public MgaObject {
 	 public:
 		static Uml::Class meta;
 
-		ComponentImplementationContainer() { }
-		ComponentImplementationContainer(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		ComponentImplementationContainer(const ComponentImplementationContainer &master) : MgaObject(master), Object(master) { }
-		static ComponentImplementationContainer Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		MonolithDeployRequirement() { }
+		MonolithDeployRequirement(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		MonolithDeployRequirement(const MonolithDeployRequirement &master) : MgaObject(master), Object(master) { }
+		static MonolithDeployRequirement Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static ComponentImplementationContainer Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		static MonolithDeployRequirement Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		ComponentImplementationContainer CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		MonolithDeployRequirement CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		ComponentImplementationContainer CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+		MonolithDeployRequirement CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::InstantiatedAttr<ComponentImplementationContainer> Instances() { return Udm::InstantiatedAttr<PICML::ComponentImplementationContainer>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<ComponentImplementationContainer, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ComponentImplementationContainer, Pred>(impl);}
+		Udm::InstantiatedAttr<MonolithDeployRequirement> Instances() { return Udm::InstantiatedAttr<PICML::MonolithDeployRequirement>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<MonolithDeployRequirement, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::MonolithDeployRequirement, Pred>(impl);}
 
-		Udm::DerivedAttr<PICML::ComponentImplementationContainer> Derived() { return Udm::DerivedAttr<PICML::ComponentImplementationContainer>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::ComponentImplementationContainer, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ComponentImplementationContainer, Pred>(impl);}
+		Udm::DerivedAttr<PICML::MonolithDeployRequirement> Derived() { return Udm::DerivedAttr<PICML::MonolithDeployRequirement>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::MonolithDeployRequirement, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::MonolithDeployRequirement, Pred>(impl);}
 
-		Udm::ArchetypeAttr<PICML::ComponentImplementationContainer> Archetype() { return Udm::ArchetypeAttr<PICML::ComponentImplementationContainer>(impl);}
+		Udm::ArchetypeAttr<PICML::MonolithDeployRequirement> Archetype() { return Udm::ArchetypeAttr<PICML::MonolithDeployRequirement>(impl);}
 
-		static Uml::CompositionChildRole meta_ImplementationRequirement_children;
-		Udm::ChildrenAttr<PICML::ImplementationRequirement> ImplementationRequirement_children() const { return Udm::ChildrenAttr<PICML::ImplementationRequirement>(impl, meta_ImplementationRequirement_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ImplementationRequirement, Pred> ImplementationRequirement_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationRequirement, Pred>(impl, meta_ImplementationRequirement_children); }
+		static Uml::CompositionParentRole meta_ComponentImplementationContainer_parent;
+		Udm::ParentAttr<PICML::ComponentImplementationContainer> ComponentImplementationContainer_parent() const { return Udm::ParentAttr<PICML::ComponentImplementationContainer>(impl, meta_ComponentImplementationContainer_parent); }
 
-		static Uml::CompositionChildRole meta_Capability_children;
-		Udm::ChildrenAttr<PICML::Capability> Capability_children() const { return Udm::ChildrenAttr<PICML::Capability>(impl, meta_Capability_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Capability, Pred> Capability_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Capability, Pred>(impl, meta_Capability_children); }
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_srcMonolithDeployRequirement_end_;
+		Udm::AssocEndAttr<PICML::MonolithicImplementation> srcMonolithDeployRequirement_end() const { return Udm::AssocEndAttr<PICML::MonolithicImplementation>(impl, meta_srcMonolithDeployRequirement_end_); }
 
-		static Uml::CompositionChildRole meta_ConfigProperty_children;
-		Udm::ChildrenAttr<PICML::ConfigProperty> ConfigProperty_children() const { return Udm::ChildrenAttr<PICML::ConfigProperty>(impl, meta_ConfigProperty_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ConfigProperty, Pred> ConfigProperty_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ConfigProperty, Pred>(impl, meta_ConfigProperty_children); }
+		static Uml::AssociationRole meta_dstMonolithDeployRequirement_end_;
+		Udm::AssocEndAttr<PICML::ImplementationRequirement> dstMonolithDeployRequirement_end() const { return Udm::AssocEndAttr<PICML::ImplementationRequirement>(impl, meta_dstMonolithDeployRequirement_end_); }
 
-		static Uml::CompositionChildRole meta_ComponentImplementation_child;
-		Udm::ChildAttr<PICML::ComponentImplementation> ComponentImplementation_child() const { return Udm::ChildAttr<PICML::ComponentImplementation>(impl, meta_ComponentImplementation_child); }
+		virtual void Accept(Visitor &v){v.Visit_MonolithDeployRequirement(*this);};
+	};
 
-		static Uml::CompositionChildRole meta_Implements_children;
-		Udm::ChildrenAttr<PICML::Implements> Implements_children() const { return Udm::ChildrenAttr<PICML::Implements>(impl, meta_Implements_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Implements, Pred> Implements_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Implements, Pred>(impl, meta_Implements_children); }
+	class  MonolithprimaryArtifact :  public MgaObject {
+	 public:
+		static Uml::Class meta;
 
-		static Uml::CompositionChildRole meta_ComponentRef_children;
-		Udm::ChildrenAttr<PICML::ComponentRef> ComponentRef_children() const { return Udm::ChildrenAttr<PICML::ComponentRef>(impl, meta_ComponentRef_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentRef, Pred> ComponentRef_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentRef, Pred>(impl, meta_ComponentRef_children); }
+		MonolithprimaryArtifact() { }
+		MonolithprimaryArtifact(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		MonolithprimaryArtifact(const MonolithprimaryArtifact &master) : MgaObject(master), Object(master) { }
+		static MonolithprimaryArtifact Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static Uml::CompositionChildRole meta_ImplementationDependsOn_children;
-		Udm::ChildrenAttr<PICML::ImplementationDependsOn> ImplementationDependsOn_children() const { return Udm::ChildrenAttr<PICML::ImplementationDependsOn>(impl, meta_ImplementationDependsOn_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ImplementationDependsOn, Pred> ImplementationDependsOn_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationDependsOn, Pred>(impl, meta_ImplementationDependsOn_children); }
+		static MonolithprimaryArtifact Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		static Uml::CompositionChildRole meta_MonolithDeployRequirement_children;
-		Udm::ChildrenAttr<PICML::MonolithDeployRequirement> MonolithDeployRequirement_children() const { return Udm::ChildrenAttr<PICML::MonolithDeployRequirement>(impl, meta_MonolithDeployRequirement_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::MonolithDeployRequirement, Pred> MonolithDeployRequirement_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MonolithDeployRequirement, Pred>(impl, meta_MonolithDeployRequirement_children); }
+		MonolithprimaryArtifact CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		static Uml::CompositionChildRole meta_MonolithprimaryArtifact_children;
-		Udm::ChildrenAttr<PICML::MonolithprimaryArtifact> MonolithprimaryArtifact_children() const { return Udm::ChildrenAttr<PICML::MonolithprimaryArtifact>(impl, meta_MonolithprimaryArtifact_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::MonolithprimaryArtifact, Pred> MonolithprimaryArtifact_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MonolithprimaryArtifact, Pred>(impl, meta_MonolithprimaryArtifact_children); }
+		MonolithprimaryArtifact CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		static Uml::CompositionChildRole meta_MonolithExecParameter_children;
-		Udm::ChildrenAttr<PICML::MonolithExecParameter> MonolithExecParameter_children() const { return Udm::ChildrenAttr<PICML::MonolithExecParameter>(impl, meta_MonolithExecParameter_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::MonolithExecParameter, Pred> MonolithExecParameter_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MonolithExecParameter, Pred>(impl, meta_MonolithExecParameter_children); }
+		Udm::InstantiatedAttr<MonolithprimaryArtifact> Instances() { return Udm::InstantiatedAttr<PICML::MonolithprimaryArtifact>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<MonolithprimaryArtifact, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::MonolithprimaryArtifact, Pred>(impl);}
 
-		static Uml::CompositionChildRole meta_InfoProperty_children;
-		Udm::ChildrenAttr<PICML::InfoProperty> InfoProperty_children() const { return Udm::ChildrenAttr<PICML::InfoProperty>(impl, meta_InfoProperty_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::InfoProperty, Pred> InfoProperty_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::InfoProperty, Pred>(impl, meta_InfoProperty_children); }
+		Udm::DerivedAttr<PICML::MonolithprimaryArtifact> Derived() { return Udm::DerivedAttr<PICML::MonolithprimaryArtifact>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::MonolithprimaryArtifact, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::MonolithprimaryArtifact, Pred>(impl);}
 
-		static Uml::CompositionChildRole meta_ImplementationCapability_children;
-		Udm::ChildrenAttr<PICML::ImplementationCapability> ImplementationCapability_children() const { return Udm::ChildrenAttr<PICML::ImplementationCapability>(impl, meta_ImplementationCapability_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ImplementationCapability, Pred> ImplementationCapability_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationCapability, Pred>(impl, meta_ImplementationCapability_children); }
+		Udm::ArchetypeAttr<PICML::MonolithprimaryArtifact> Archetype() { return Udm::ArchetypeAttr<PICML::MonolithprimaryArtifact>(impl);}
 
-		static Uml::CompositionChildRole meta_ImplementationArtifactReference_children;
-		Udm::ChildrenAttr<PICML::ImplementationArtifactReference> ImplementationArtifactReference_children() const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference>(impl, meta_ImplementationArtifactReference_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred> ImplementationArtifactReference_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred>(impl, meta_ImplementationArtifactReference_children); }
+		static Uml::CompositionParentRole meta_ComponentImplementationContainer_parent;
+		Udm::ParentAttr<PICML::ComponentImplementationContainer> ComponentImplementationContainer_parent() const { return Udm::ParentAttr<PICML::ComponentImplementationContainer>(impl, meta_ComponentImplementationContainer_parent); }
 
-		static Uml::CompositionChildRole meta_Property_children;
-		Udm::ChildrenAttr<PICML::Property> Property_children() const { return Udm::ChildrenAttr<PICML::Property>(impl, meta_Property_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Property, Pred> Property_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Property, Pred>(impl, meta_Property_children); }
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_srcMonolithprimaryArtifact_end_;
+		Udm::AssocEndAttr<PICML::MonolithicImplementation> srcMonolithprimaryArtifact_end() const { return Udm::AssocEndAttr<PICML::MonolithicImplementation>(impl, meta_srcMonolithprimaryArtifact_end_); }
 
-		static Uml::CompositionChildRole meta_ImplementationDependency_children;
-		Udm::ChildrenAttr<PICML::ImplementationDependency> ImplementationDependency_children() const { return Udm::ChildrenAttr<PICML::ImplementationDependency>(impl, meta_ImplementationDependency_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ImplementationDependency, Pred> ImplementationDependency_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationDependency, Pred>(impl, meta_ImplementationDependency_children); }
+		static Uml::AssociationRole meta_dstMonolithprimaryArtifact_end_;
+		Udm::AssocEndAttr<PICML::ImplementationArtifactReference> dstMonolithprimaryArtifact_end() const { return Udm::AssocEndAttr<PICML::ImplementationArtifactReference>(impl, meta_dstMonolithprimaryArtifact_end_); }
 
-		Udm::ChildrenAttr<PICML::ComponentAssembly> ComponentAssembly_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentAssembly>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ComponentAssembly, Pred> ComponentAssembly_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentAssembly, Pred>(impl, Udm::NULLCHILDROLE); }
+		virtual void Accept(Visitor &v){v.Visit_MonolithprimaryArtifact(*this);};
+	};
 
-		Udm::ChildrenAttr<PICML::ConfigProperty> ConfigProperty_kind_children() const { return Udm::ChildrenAttr<PICML::ConfigProperty>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ConfigProperty, Pred> ConfigProperty_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ConfigProperty, Pred>(impl, Udm::NULLCHILDROLE); }
+	class  InfoProperty :  public MgaObject {
+	 public:
+		static Uml::Class meta;
 
-		Udm::ChildrenAttr<PICML::InfoProperty> InfoProperty_kind_children() const { return Udm::ChildrenAttr<PICML::InfoProperty>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::InfoProperty, Pred> InfoProperty_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::InfoProperty, Pred>(impl, Udm::NULLCHILDROLE); }
+		InfoProperty() { }
+		InfoProperty(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		InfoProperty(const InfoProperty &master) : MgaObject(master), Object(master) { }
+		static InfoProperty Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		Udm::ChildrenAttr<PICML::MonolithprimaryArtifact> MonolithprimaryArtifact_kind_children() const { return Udm::ChildrenAttr<PICML::MonolithprimaryArtifact>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MonolithprimaryArtifact, Pred> MonolithprimaryArtifact_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MonolithprimaryArtifact, Pred>(impl, Udm::NULLCHILDROLE); }
+		static InfoProperty Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		Udm::ChildrenAttr<PICML::MonolithDeployRequirement> MonolithDeployRequirement_kind_children() const { return Udm::ChildrenAttr<PICML::MonolithDeployRequirement>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MonolithDeployRequirement, Pred> MonolithDeployRequirement_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MonolithDeployRequirement, Pred>(impl, Udm::NULLCHILDROLE); }
+		InfoProperty CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		Udm::ChildrenAttr<PICML::MonolithExecParameter> MonolithExecParameter_kind_children() const { return Udm::ChildrenAttr<PICML::MonolithExecParameter>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MonolithExecParameter, Pred> MonolithExecParameter_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MonolithExecParameter, Pred>(impl, Udm::NULLCHILDROLE); }
+		InfoProperty CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::ChildrenAttr<PICML::MonolithicImplementation> MonolithicImplementation_kind_children() const { return Udm::ChildrenAttr<PICML::MonolithicImplementation>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MonolithicImplementation, Pred> MonolithicImplementation_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MonolithicImplementation, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::InstantiatedAttr<InfoProperty> Instances() { return Udm::InstantiatedAttr<PICML::InfoProperty>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<InfoProperty, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::InfoProperty, Pred>(impl);}
 
-		Udm::ChildrenAttr<PICML::ComponentImplementation> ComponentImplementation_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentImplementation>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ComponentImplementation, Pred> ComponentImplementation_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentImplementation, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::DerivedAttr<PICML::InfoProperty> Derived() { return Udm::DerivedAttr<PICML::InfoProperty>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::InfoProperty, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::InfoProperty, Pred>(impl);}
 
-		Udm::ChildrenAttr<PICML::ImplementationCapability> ImplementationCapability_kind_children() const { return Udm::ChildrenAttr<PICML::ImplementationCapability>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ImplementationCapability, Pred> ImplementationCapability_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationCapability, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ArchetypeAttr<PICML::InfoProperty> Archetype() { return Udm::ArchetypeAttr<PICML::InfoProperty>(impl);}
 
-		Udm::ChildrenAttr<PICML::Implements> Implements_kind_children() const { return Udm::ChildrenAttr<PICML::Implements>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Implements, Pred> Implements_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Implements, Pred>(impl, Udm::NULLCHILDROLE); }
+		static Uml::CompositionParentRole meta_ComponentImplementationContainer_parent;
+		Udm::ParentAttr<PICML::ComponentImplementationContainer> ComponentImplementationContainer_parent() const { return Udm::ParentAttr<PICML::ComponentImplementationContainer>(impl, meta_ComponentImplementationContainer_parent); }
 
-		Udm::ChildrenAttr<PICML::ImplementationDependsOn> ImplementationDependsOn_kind_children() const { return Udm::ChildrenAttr<PICML::ImplementationDependsOn>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ImplementationDependsOn, Pred> ImplementationDependsOn_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationDependsOn, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_srcInfoProperty_end_;
+		Udm::AssocEndAttr<PICML::ComponentImplementation> srcInfoProperty_end() const { return Udm::AssocEndAttr<PICML::ComponentImplementation>(impl, meta_srcInfoProperty_end_); }
 
-		Udm::ChildrenAttr<PICML::ImplementationArtifactReference> ImplementationArtifactReference_kind_children() const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred> ImplementationArtifactReference_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred>(impl, Udm::NULLCHILDROLE); }
+		static Uml::AssociationRole meta_dstInfoProperty_end_;
+		Udm::AssocEndAttr<PICML::Property> dstInfoProperty_end() const { return Udm::AssocEndAttr<PICML::Property>(impl, meta_dstInfoProperty_end_); }
 
-		Udm::ChildrenAttr<PICML::ImplementationRequirement> ImplementationRequirement_kind_children() const { return Udm::ChildrenAttr<PICML::ImplementationRequirement>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ImplementationRequirement, Pred> ImplementationRequirement_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationRequirement, Pred>(impl, Udm::NULLCHILDROLE); }
+		virtual void Accept(Visitor &v){v.Visit_InfoProperty(*this);};
+	};
 
-		Udm::ChildrenAttr<PICML::RequirementBase> RequirementBase_kind_children() const { return Udm::ChildrenAttr<PICML::RequirementBase>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::RequirementBase, Pred> RequirementBase_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RequirementBase, Pred>(impl, Udm::NULLCHILDROLE); }
+	class  ConfigProperty :  public MgaObject {
+	 public:
+		static Uml::Class meta;
 
-		Udm::ChildrenAttr<PICML::RequirementSatisfier> RequirementSatisfier_kind_children() const { return Udm::ChildrenAttr<PICML::RequirementSatisfier>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::RequirementSatisfier, Pred> RequirementSatisfier_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RequirementSatisfier, Pred>(impl, Udm::NULLCHILDROLE); }
+		ConfigProperty() { }
+		ConfigProperty(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		ConfigProperty(const ConfigProperty &master) : MgaObject(master), Object(master) { }
+		static ConfigProperty Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		Udm::ChildrenAttr<PICML::Property> Property_kind_children() const { return Udm::ChildrenAttr<PICML::Property>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Property, Pred> Property_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Property, Pred>(impl, Udm::NULLCHILDROLE); }
+		static ConfigProperty Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		Udm::ChildrenAttr<PICML::ImplementationDependency> ImplementationDependency_kind_children() const { return Udm::ChildrenAttr<PICML::ImplementationDependency>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ImplementationDependency, Pred> ImplementationDependency_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationDependency, Pred>(impl, Udm::NULLCHILDROLE); }
+		ConfigProperty CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		Udm::ChildrenAttr<PICML::Capability> Capability_kind_children() const { return Udm::ChildrenAttr<PICML::Capability>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Capability, Pred> Capability_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Capability, Pred>(impl, Udm::NULLCHILDROLE); }
+		ConfigProperty CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::ChildrenAttr<PICML::Manageable> Manageable_kind_children() const { return Udm::ChildrenAttr<PICML::Manageable>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Manageable, Pred> Manageable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Manageable, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::InstantiatedAttr<ConfigProperty> Instances() { return Udm::InstantiatedAttr<PICML::ConfigProperty>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<ConfigProperty, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ConfigProperty, Pred>(impl);}
 
-		Udm::ChildrenAttr<PICML::ComponentRef> ComponentRef_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentRef>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ComponentRef, Pred> ComponentRef_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentRef, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::DerivedAttr<PICML::ConfigProperty> Derived() { return Udm::DerivedAttr<PICML::ConfigProperty>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::ConfigProperty, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ConfigProperty, Pred>(impl);}
 
-		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ArchetypeAttr<PICML::ConfigProperty> Archetype() { return Udm::ArchetypeAttr<PICML::ConfigProperty>(impl);}
 
-		static Uml::CompositionParentRole meta_ComponentImplementations_parent;
-		Udm::ParentAttr<PICML::ComponentImplementations> ComponentImplementations_parent() const { return Udm::ParentAttr<PICML::ComponentImplementations>(impl, meta_ComponentImplementations_parent); }
+		static Uml::CompositionParentRole meta_ComponentImplementationContainer_parent;
+		Udm::ParentAttr<PICML::ComponentImplementationContainer> ComponentImplementationContainer_parent() const { return Udm::ParentAttr<PICML::ComponentImplementationContainer>(impl, meta_ComponentImplementationContainer_parent); }
 
-		Udm::ParentAttr<PICML::ComponentImplementations> parent() const { return Udm::ParentAttr<PICML::ComponentImplementations>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_ComponentImplementationContainer(*this);};
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_srcConfigProperty_end_;
+		Udm::AssocEndAttr<PICML::ComponentImplementation> srcConfigProperty_end() const { return Udm::AssocEndAttr<PICML::ComponentImplementation>(impl, meta_srcConfigProperty_end_); }
+
+		static Uml::AssociationRole meta_dstConfigProperty_end_;
+		Udm::AssocEndAttr<PICML::Property> dstConfigProperty_end() const { return Udm::AssocEndAttr<PICML::Property>(impl, meta_dstConfigProperty_end_); }
+
+		virtual void Accept(Visitor &v){v.Visit_ConfigProperty(*this);};
 	};
 
 	class  ComponentImplementationReference :  public MgaObject {
@@ -4402,42 +4335,6 @@ namespace PICML {
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		virtual void Accept(Visitor &v){v.Visit_ComponentImplementationReference(*this);};
-	};
-
-	class  ImplementationCapability :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		ImplementationCapability() { }
-		ImplementationCapability(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		ImplementationCapability(const ImplementationCapability &master) : MgaObject(master), Object(master) { }
-		static ImplementationCapability Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static ImplementationCapability Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		ImplementationCapability CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		ImplementationCapability CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<ImplementationCapability> Instances() { return Udm::InstantiatedAttr<PICML::ImplementationCapability>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<ImplementationCapability, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ImplementationCapability, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::ImplementationCapability> Derived() { return Udm::DerivedAttr<PICML::ImplementationCapability>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::ImplementationCapability, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ImplementationCapability, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::ImplementationCapability> Archetype() { return Udm::ArchetypeAttr<PICML::ImplementationCapability>(impl);}
-
-		static Uml::CompositionParentRole meta_ComponentImplementationContainer_parent;
-		Udm::ParentAttr<PICML::ComponentImplementationContainer> ComponentImplementationContainer_parent() const { return Udm::ParentAttr<PICML::ComponentImplementationContainer>(impl, meta_ComponentImplementationContainer_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_srcImplementationCapability_end_;
-		Udm::AssocEndAttr<PICML::ComponentImplementation> srcImplementationCapability_end() const { return Udm::AssocEndAttr<PICML::ComponentImplementation>(impl, meta_srcImplementationCapability_end_); }
-
-		static Uml::AssociationRole meta_dstImplementationCapability_end_;
-		Udm::AssocEndAttr<PICML::Capability> dstImplementationCapability_end() const { return Udm::AssocEndAttr<PICML::Capability>(impl, meta_dstImplementationCapability_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_ImplementationCapability(*this);};
 	};
 
 	class  Implements :  public MgaObject {
@@ -4512,6 +4409,272 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_ImplementationDependsOn(*this);};
 	};
 
+	class  ImplementationCapability :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		ImplementationCapability() { }
+		ImplementationCapability(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		ImplementationCapability(const ImplementationCapability &master) : MgaObject(master), Object(master) { }
+		static ImplementationCapability Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static ImplementationCapability Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		ImplementationCapability CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		ImplementationCapability CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<ImplementationCapability> Instances() { return Udm::InstantiatedAttr<PICML::ImplementationCapability>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<ImplementationCapability, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ImplementationCapability, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::ImplementationCapability> Derived() { return Udm::DerivedAttr<PICML::ImplementationCapability>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::ImplementationCapability, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ImplementationCapability, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::ImplementationCapability> Archetype() { return Udm::ArchetypeAttr<PICML::ImplementationCapability>(impl);}
+
+		static Uml::CompositionParentRole meta_ComponentImplementationContainer_parent;
+		Udm::ParentAttr<PICML::ComponentImplementationContainer> ComponentImplementationContainer_parent() const { return Udm::ParentAttr<PICML::ComponentImplementationContainer>(impl, meta_ComponentImplementationContainer_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_srcImplementationCapability_end_;
+		Udm::AssocEndAttr<PICML::ComponentImplementation> srcImplementationCapability_end() const { return Udm::AssocEndAttr<PICML::ComponentImplementation>(impl, meta_srcImplementationCapability_end_); }
+
+		static Uml::AssociationRole meta_dstImplementationCapability_end_;
+		Udm::AssocEndAttr<PICML::Capability> dstImplementationCapability_end() const { return Udm::AssocEndAttr<PICML::Capability>(impl, meta_dstImplementationCapability_end_); }
+
+		virtual void Accept(Visitor &v){v.Visit_ImplementationCapability(*this);};
+	};
+
+	class  PackageConfiguration :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		PackageConfiguration() { }
+		PackageConfiguration(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		PackageConfiguration(const PackageConfiguration &master) : MgaObject(master), Object(master) { }
+		static PackageConfiguration Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static PackageConfiguration Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		PackageConfiguration CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		PackageConfiguration CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<PackageConfiguration> Instances() { return Udm::InstantiatedAttr<PICML::PackageConfiguration>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<PackageConfiguration, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::PackageConfiguration, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::PackageConfiguration> Derived() { return Udm::DerivedAttr<PICML::PackageConfiguration>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::PackageConfiguration, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::PackageConfiguration, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::PackageConfiguration> Archetype() { return Udm::ArchetypeAttr<PICML::PackageConfiguration>(impl);}
+
+		static Uml::Attribute meta_UUID;
+		Udm::StringAttr UUID() const { return Udm::StringAttr(impl, meta_UUID); }
+
+		static Uml::Attribute meta_label;
+		Udm::StringAttr label() const { return Udm::StringAttr(impl, meta_label); }
+
+		static Uml::AssociationRole meta_dstPackageConfConfigProperty, meta_dstPackageConfConfigProperty_rev;
+		Udm::AClassAssocAttr<PICML::PackageConfConfigProperty, PICML::Property> dstPackageConfConfigProperty() const { return Udm::AClassAssocAttr<PICML::PackageConfConfigProperty, PICML::Property>(impl, meta_dstPackageConfConfigProperty, meta_dstPackageConfConfigProperty_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::PackageConfConfigProperty, PICML::Property, Pred> dstPackageConfConfigProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::PackageConfConfigProperty, PICML::Property, Pred>(impl, meta_dstPackageConfConfigProperty, meta_dstPackageConfConfigProperty_rev); }
+
+		static Uml::AssociationRole meta_dstPackageConfSpecializedConfig, meta_dstPackageConfSpecializedConfig_rev;
+		Udm::AClassPointerAttr<PICML::PackageConfSpecializedConfig, PICML::PackageConfigurationReference> dstPackageConfSpecializedConfig() const { return Udm::AClassPointerAttr<PICML::PackageConfSpecializedConfig, PICML::PackageConfigurationReference>(impl, meta_dstPackageConfSpecializedConfig, meta_dstPackageConfSpecializedConfig_rev); }
+
+		static Uml::AssociationRole meta_dstPackageConfSelectRequirement, meta_dstPackageConfSelectRequirement_rev;
+		Udm::AClassAssocAttr<PICML::PackageConfSelectRequirement, PICML::Requirement> dstPackageConfSelectRequirement() const { return Udm::AClassAssocAttr<PICML::PackageConfSelectRequirement, PICML::Requirement>(impl, meta_dstPackageConfSelectRequirement, meta_dstPackageConfSelectRequirement_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::PackageConfSelectRequirement, PICML::Requirement, Pred> dstPackageConfSelectRequirement_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::PackageConfSelectRequirement, PICML::Requirement, Pred>(impl, meta_dstPackageConfSelectRequirement, meta_dstPackageConfSelectRequirement_rev); }
+
+		static Uml::AssociationRole meta_dstPackageConfReference, meta_dstPackageConfReference_rev;
+		Udm::AClassPointerAttr<PICML::PackageConfReference, PICML::ComponentPackageReference> dstPackageConfReference() const { return Udm::AClassPointerAttr<PICML::PackageConfReference, PICML::ComponentPackageReference>(impl, meta_dstPackageConfReference, meta_dstPackageConfReference_rev); }
+
+		static Uml::AssociationRole meta_dstPackageConfBasePackage, meta_dstPackageConfBasePackage_rev;
+		Udm::AClassPointerAttr<PICML::PackageConfBasePackage, PICML::ComponentPackage> dstPackageConfBasePackage() const { return Udm::AClassPointerAttr<PICML::PackageConfBasePackage, PICML::ComponentPackage>(impl, meta_dstPackageConfBasePackage, meta_dstPackageConfBasePackage_rev); }
+
+		static Uml::AssociationRole meta_referedbyPackageConfigurationReference;
+		Udm::AssocAttr<PICML::PackageConfigurationReference> referedbyPackageConfigurationReference() const { return Udm::AssocAttr<PICML::PackageConfigurationReference>(impl, meta_referedbyPackageConfigurationReference); }
+		template <class Pred> Udm::AssocAttr<PICML::PackageConfigurationReference, Pred > referedbyPackageConfigurationReference_sorted(const Pred &) const { return Udm::AssocAttr<PICML::PackageConfigurationReference, Pred>(impl, meta_referedbyPackageConfigurationReference); }
+
+		static Uml::CompositionParentRole meta_PackageConfigurationContainer_parent;
+		Udm::ParentAttr<PICML::PackageConfigurationContainer> PackageConfigurationContainer_parent() const { return Udm::ParentAttr<PICML::PackageConfigurationContainer>(impl, meta_PackageConfigurationContainer_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_PackageConfiguration(*this);};
+	};
+
+	class  PackageConfSpecializedConfig :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		PackageConfSpecializedConfig() { }
+		PackageConfSpecializedConfig(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		PackageConfSpecializedConfig(const PackageConfSpecializedConfig &master) : MgaObject(master), Object(master) { }
+		static PackageConfSpecializedConfig Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static PackageConfSpecializedConfig Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		PackageConfSpecializedConfig CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		PackageConfSpecializedConfig CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<PackageConfSpecializedConfig> Instances() { return Udm::InstantiatedAttr<PICML::PackageConfSpecializedConfig>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<PackageConfSpecializedConfig, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::PackageConfSpecializedConfig, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::PackageConfSpecializedConfig> Derived() { return Udm::DerivedAttr<PICML::PackageConfSpecializedConfig>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::PackageConfSpecializedConfig, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::PackageConfSpecializedConfig, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::PackageConfSpecializedConfig> Archetype() { return Udm::ArchetypeAttr<PICML::PackageConfSpecializedConfig>(impl);}
+
+		static Uml::CompositionParentRole meta_PackageConfigurationContainer_parent;
+		Udm::ParentAttr<PICML::PackageConfigurationContainer> PackageConfigurationContainer_parent() const { return Udm::ParentAttr<PICML::PackageConfigurationContainer>(impl, meta_PackageConfigurationContainer_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_srcPackageConfSpecializedConfig_end_;
+		Udm::AssocEndAttr<PICML::PackageConfiguration> srcPackageConfSpecializedConfig_end() const { return Udm::AssocEndAttr<PICML::PackageConfiguration>(impl, meta_srcPackageConfSpecializedConfig_end_); }
+
+		static Uml::AssociationRole meta_dstPackageConfSpecializedConfig_end_;
+		Udm::AssocEndAttr<PICML::PackageConfigurationReference> dstPackageConfSpecializedConfig_end() const { return Udm::AssocEndAttr<PICML::PackageConfigurationReference>(impl, meta_dstPackageConfSpecializedConfig_end_); }
+
+		virtual void Accept(Visitor &v){v.Visit_PackageConfSpecializedConfig(*this);};
+	};
+
+	class  PackageConfSelectRequirement :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		PackageConfSelectRequirement() { }
+		PackageConfSelectRequirement(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		PackageConfSelectRequirement(const PackageConfSelectRequirement &master) : MgaObject(master), Object(master) { }
+		static PackageConfSelectRequirement Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static PackageConfSelectRequirement Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		PackageConfSelectRequirement CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		PackageConfSelectRequirement CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<PackageConfSelectRequirement> Instances() { return Udm::InstantiatedAttr<PICML::PackageConfSelectRequirement>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<PackageConfSelectRequirement, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::PackageConfSelectRequirement, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::PackageConfSelectRequirement> Derived() { return Udm::DerivedAttr<PICML::PackageConfSelectRequirement>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::PackageConfSelectRequirement, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::PackageConfSelectRequirement, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::PackageConfSelectRequirement> Archetype() { return Udm::ArchetypeAttr<PICML::PackageConfSelectRequirement>(impl);}
+
+		static Uml::CompositionParentRole meta_PackageConfigurationContainer_parent;
+		Udm::ParentAttr<PICML::PackageConfigurationContainer> PackageConfigurationContainer_parent() const { return Udm::ParentAttr<PICML::PackageConfigurationContainer>(impl, meta_PackageConfigurationContainer_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_srcPackageConfSelectRequirement_end_;
+		Udm::AssocEndAttr<PICML::PackageConfiguration> srcPackageConfSelectRequirement_end() const { return Udm::AssocEndAttr<PICML::PackageConfiguration>(impl, meta_srcPackageConfSelectRequirement_end_); }
+
+		static Uml::AssociationRole meta_dstPackageConfSelectRequirement_end_;
+		Udm::AssocEndAttr<PICML::Requirement> dstPackageConfSelectRequirement_end() const { return Udm::AssocEndAttr<PICML::Requirement>(impl, meta_dstPackageConfSelectRequirement_end_); }
+
+		virtual void Accept(Visitor &v){v.Visit_PackageConfSelectRequirement(*this);};
+	};
+
+	class  PackageConfigurationContainer :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		PackageConfigurationContainer() { }
+		PackageConfigurationContainer(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		PackageConfigurationContainer(const PackageConfigurationContainer &master) : MgaObject(master), Object(master) { }
+		static PackageConfigurationContainer Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static PackageConfigurationContainer Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		PackageConfigurationContainer CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		PackageConfigurationContainer CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<PackageConfigurationContainer> Instances() { return Udm::InstantiatedAttr<PICML::PackageConfigurationContainer>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<PackageConfigurationContainer, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::PackageConfigurationContainer, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::PackageConfigurationContainer> Derived() { return Udm::DerivedAttr<PICML::PackageConfigurationContainer>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::PackageConfigurationContainer, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::PackageConfigurationContainer, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::PackageConfigurationContainer> Archetype() { return Udm::ArchetypeAttr<PICML::PackageConfigurationContainer>(impl);}
+
+		static Uml::CompositionChildRole meta_PackageConfSpecializedConfig_child;
+		Udm::ChildAttr<PICML::PackageConfSpecializedConfig> PackageConfSpecializedConfig_child() const { return Udm::ChildAttr<PICML::PackageConfSpecializedConfig>(impl, meta_PackageConfSpecializedConfig_child); }
+
+		static Uml::CompositionChildRole meta_PackageConfiguration_children;
+		Udm::ChildrenAttr<PICML::PackageConfiguration> PackageConfiguration_children() const { return Udm::ChildrenAttr<PICML::PackageConfiguration>(impl, meta_PackageConfiguration_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::PackageConfiguration, Pred> PackageConfiguration_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageConfiguration, Pred>(impl, meta_PackageConfiguration_children); }
+
+		static Uml::CompositionChildRole meta_Property_children;
+		Udm::ChildrenAttr<PICML::Property> Property_children() const { return Udm::ChildrenAttr<PICML::Property>(impl, meta_Property_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Property, Pred> Property_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Property, Pred>(impl, meta_Property_children); }
+
+		static Uml::CompositionChildRole meta_Requirement_children;
+		Udm::ChildrenAttr<PICML::Requirement> Requirement_children() const { return Udm::ChildrenAttr<PICML::Requirement>(impl, meta_Requirement_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Requirement, Pred> Requirement_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Requirement, Pred>(impl, meta_Requirement_children); }
+
+		static Uml::CompositionChildRole meta_PackageConfSelectRequirement_children;
+		Udm::ChildrenAttr<PICML::PackageConfSelectRequirement> PackageConfSelectRequirement_children() const { return Udm::ChildrenAttr<PICML::PackageConfSelectRequirement>(impl, meta_PackageConfSelectRequirement_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::PackageConfSelectRequirement, Pred> PackageConfSelectRequirement_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageConfSelectRequirement, Pred>(impl, meta_PackageConfSelectRequirement_children); }
+
+		static Uml::CompositionChildRole meta_PackageConfConfigProperty_children;
+		Udm::ChildrenAttr<PICML::PackageConfConfigProperty> PackageConfConfigProperty_children() const { return Udm::ChildrenAttr<PICML::PackageConfConfigProperty>(impl, meta_PackageConfConfigProperty_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::PackageConfConfigProperty, Pred> PackageConfConfigProperty_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageConfConfigProperty, Pred>(impl, meta_PackageConfConfigProperty_children); }
+
+		static Uml::CompositionChildRole meta_ComponentPackageReference_child;
+		Udm::ChildAttr<PICML::ComponentPackageReference> ComponentPackageReference_child() const { return Udm::ChildAttr<PICML::ComponentPackageReference>(impl, meta_ComponentPackageReference_child); }
+
+		static Uml::CompositionChildRole meta_ComponentPackage_child;
+		Udm::ChildAttr<PICML::ComponentPackage> ComponentPackage_child() const { return Udm::ChildAttr<PICML::ComponentPackage>(impl, meta_ComponentPackage_child); }
+
+		static Uml::CompositionChildRole meta_PackageConfReference_child;
+		Udm::ChildAttr<PICML::PackageConfReference> PackageConfReference_child() const { return Udm::ChildAttr<PICML::PackageConfReference>(impl, meta_PackageConfReference_child); }
+
+		static Uml::CompositionChildRole meta_PackageConfBasePackage_child;
+		Udm::ChildAttr<PICML::PackageConfBasePackage> PackageConfBasePackage_child() const { return Udm::ChildAttr<PICML::PackageConfBasePackage>(impl, meta_PackageConfBasePackage_child); }
+
+		Udm::ChildrenAttr<PICML::PackageConfiguration> PackageConfiguration_kind_children() const { return Udm::ChildrenAttr<PICML::PackageConfiguration>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::PackageConfiguration, Pred> PackageConfiguration_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageConfiguration, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::PackageConfSpecializedConfig> PackageConfSpecializedConfig_kind_children() const { return Udm::ChildrenAttr<PICML::PackageConfSpecializedConfig>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::PackageConfSpecializedConfig, Pred> PackageConfSpecializedConfig_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageConfSpecializedConfig, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::PackageConfSelectRequirement> PackageConfSelectRequirement_kind_children() const { return Udm::ChildrenAttr<PICML::PackageConfSelectRequirement>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::PackageConfSelectRequirement, Pred> PackageConfSelectRequirement_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageConfSelectRequirement, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::PackageConfReference> PackageConfReference_kind_children() const { return Udm::ChildrenAttr<PICML::PackageConfReference>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::PackageConfReference, Pred> PackageConfReference_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageConfReference, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::PackageConfBasePackage> PackageConfBasePackage_kind_children() const { return Udm::ChildrenAttr<PICML::PackageConfBasePackage>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::PackageConfBasePackage, Pred> PackageConfBasePackage_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageConfBasePackage, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::PackageConfConfigProperty> PackageConfConfigProperty_kind_children() const { return Udm::ChildrenAttr<PICML::PackageConfConfigProperty>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::PackageConfConfigProperty, Pred> PackageConfConfigProperty_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageConfConfigProperty, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ComponentPackageReference> ComponentPackageReference_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentPackageReference>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ComponentPackageReference, Pred> ComponentPackageReference_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentPackageReference, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ComponentPackage> ComponentPackage_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentPackage>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ComponentPackage, Pred> ComponentPackage_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentPackage, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::RequirementBase> RequirementBase_kind_children() const { return Udm::ChildrenAttr<PICML::RequirementBase>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::RequirementBase, Pred> RequirementBase_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RequirementBase, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Property> Property_kind_children() const { return Udm::ChildrenAttr<PICML::Property>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Property, Pred> Property_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Property, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Requirement> Requirement_kind_children() const { return Udm::ChildrenAttr<PICML::Requirement>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Requirement, Pred> Requirement_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Requirement, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		static Uml::CompositionParentRole meta_PackageConfigurations_parent;
+		Udm::ParentAttr<PICML::PackageConfigurations> PackageConfigurations_parent() const { return Udm::ParentAttr<PICML::PackageConfigurations>(impl, meta_PackageConfigurations_parent); }
+
+		Udm::ParentAttr<PICML::PackageConfigurations> parent() const { return Udm::ParentAttr<PICML::PackageConfigurations>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_PackageConfigurationContainer(*this);};
+	};
+
 	class  PackageConfigurationReference :  public MgaObject {
 	 public:
 		static Uml::Class meta;
@@ -4552,105 +4715,40 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_PackageConfigurationReference(*this);};
 	};
 
-	class  PackageConfigurationContainer :  public MgaObject {
+	class  PackageConfReference :  public MgaObject {
 	 public:
 		static Uml::Class meta;
 
-		PackageConfigurationContainer() { }
-		PackageConfigurationContainer(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		PackageConfigurationContainer(const PackageConfigurationContainer &master) : MgaObject(master), Object(master) { }
-		static PackageConfigurationContainer Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		PackageConfReference() { }
+		PackageConfReference(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		PackageConfReference(const PackageConfReference &master) : MgaObject(master), Object(master) { }
+		static PackageConfReference Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static PackageConfigurationContainer Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		static PackageConfReference Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		PackageConfigurationContainer CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		PackageConfReference CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		PackageConfigurationContainer CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+		PackageConfReference CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::InstantiatedAttr<PackageConfigurationContainer> Instances() { return Udm::InstantiatedAttr<PICML::PackageConfigurationContainer>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<PackageConfigurationContainer, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::PackageConfigurationContainer, Pred>(impl);}
+		Udm::InstantiatedAttr<PackageConfReference> Instances() { return Udm::InstantiatedAttr<PICML::PackageConfReference>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<PackageConfReference, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::PackageConfReference, Pred>(impl);}
 
-		Udm::DerivedAttr<PICML::PackageConfigurationContainer> Derived() { return Udm::DerivedAttr<PICML::PackageConfigurationContainer>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::PackageConfigurationContainer, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::PackageConfigurationContainer, Pred>(impl);}
+		Udm::DerivedAttr<PICML::PackageConfReference> Derived() { return Udm::DerivedAttr<PICML::PackageConfReference>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::PackageConfReference, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::PackageConfReference, Pred>(impl);}
 
-		Udm::ArchetypeAttr<PICML::PackageConfigurationContainer> Archetype() { return Udm::ArchetypeAttr<PICML::PackageConfigurationContainer>(impl);}
+		Udm::ArchetypeAttr<PICML::PackageConfReference> Archetype() { return Udm::ArchetypeAttr<PICML::PackageConfReference>(impl);}
 
-		static Uml::CompositionChildRole meta_PackageConfBasePackage_child;
-		Udm::ChildAttr<PICML::PackageConfBasePackage> PackageConfBasePackage_child() const { return Udm::ChildAttr<PICML::PackageConfBasePackage>(impl, meta_PackageConfBasePackage_child); }
+		static Uml::CompositionParentRole meta_PackageConfigurationContainer_parent;
+		Udm::ParentAttr<PICML::PackageConfigurationContainer> PackageConfigurationContainer_parent() const { return Udm::ParentAttr<PICML::PackageConfigurationContainer>(impl, meta_PackageConfigurationContainer_parent); }
 
-		static Uml::CompositionChildRole meta_ComponentPackageReference_child;
-		Udm::ChildAttr<PICML::ComponentPackageReference> ComponentPackageReference_child() const { return Udm::ChildAttr<PICML::ComponentPackageReference>(impl, meta_ComponentPackageReference_child); }
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_srcPackageConfReference_end_;
+		Udm::AssocEndAttr<PICML::PackageConfiguration> srcPackageConfReference_end() const { return Udm::AssocEndAttr<PICML::PackageConfiguration>(impl, meta_srcPackageConfReference_end_); }
 
-		static Uml::CompositionChildRole meta_PackageConfReference_child;
-		Udm::ChildAttr<PICML::PackageConfReference> PackageConfReference_child() const { return Udm::ChildAttr<PICML::PackageConfReference>(impl, meta_PackageConfReference_child); }
+		static Uml::AssociationRole meta_dstPackageConfReference_end_;
+		Udm::AssocEndAttr<PICML::ComponentPackageReference> dstPackageConfReference_end() const { return Udm::AssocEndAttr<PICML::ComponentPackageReference>(impl, meta_dstPackageConfReference_end_); }
 
-		static Uml::CompositionChildRole meta_ComponentPackage_child;
-		Udm::ChildAttr<PICML::ComponentPackage> ComponentPackage_child() const { return Udm::ChildAttr<PICML::ComponentPackage>(impl, meta_ComponentPackage_child); }
-
-		static Uml::CompositionChildRole meta_PackageConfSpecializedConfig_child;
-		Udm::ChildAttr<PICML::PackageConfSpecializedConfig> PackageConfSpecializedConfig_child() const { return Udm::ChildAttr<PICML::PackageConfSpecializedConfig>(impl, meta_PackageConfSpecializedConfig_child); }
-
-		static Uml::CompositionChildRole meta_Requirement_children;
-		Udm::ChildrenAttr<PICML::Requirement> Requirement_children() const { return Udm::ChildrenAttr<PICML::Requirement>(impl, meta_Requirement_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Requirement, Pred> Requirement_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Requirement, Pred>(impl, meta_Requirement_children); }
-
-		static Uml::CompositionChildRole meta_PackageConfSelectRequirement_children;
-		Udm::ChildrenAttr<PICML::PackageConfSelectRequirement> PackageConfSelectRequirement_children() const { return Udm::ChildrenAttr<PICML::PackageConfSelectRequirement>(impl, meta_PackageConfSelectRequirement_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::PackageConfSelectRequirement, Pred> PackageConfSelectRequirement_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageConfSelectRequirement, Pred>(impl, meta_PackageConfSelectRequirement_children); }
-
-		static Uml::CompositionChildRole meta_Property_children;
-		Udm::ChildrenAttr<PICML::Property> Property_children() const { return Udm::ChildrenAttr<PICML::Property>(impl, meta_Property_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Property, Pred> Property_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Property, Pred>(impl, meta_Property_children); }
-
-		static Uml::CompositionChildRole meta_PackageConfConfigProperty_children;
-		Udm::ChildrenAttr<PICML::PackageConfConfigProperty> PackageConfConfigProperty_children() const { return Udm::ChildrenAttr<PICML::PackageConfConfigProperty>(impl, meta_PackageConfConfigProperty_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::PackageConfConfigProperty, Pred> PackageConfConfigProperty_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageConfConfigProperty, Pred>(impl, meta_PackageConfConfigProperty_children); }
-
-		static Uml::CompositionChildRole meta_PackageConfiguration_children;
-		Udm::ChildrenAttr<PICML::PackageConfiguration> PackageConfiguration_children() const { return Udm::ChildrenAttr<PICML::PackageConfiguration>(impl, meta_PackageConfiguration_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::PackageConfiguration, Pred> PackageConfiguration_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageConfiguration, Pred>(impl, meta_PackageConfiguration_children); }
-
-		Udm::ChildrenAttr<PICML::PackageConfBasePackage> PackageConfBasePackage_kind_children() const { return Udm::ChildrenAttr<PICML::PackageConfBasePackage>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::PackageConfBasePackage, Pred> PackageConfBasePackage_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageConfBasePackage, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::PackageConfConfigProperty> PackageConfConfigProperty_kind_children() const { return Udm::ChildrenAttr<PICML::PackageConfConfigProperty>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::PackageConfConfigProperty, Pred> PackageConfConfigProperty_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageConfConfigProperty, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::PackageConfiguration> PackageConfiguration_kind_children() const { return Udm::ChildrenAttr<PICML::PackageConfiguration>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::PackageConfiguration, Pred> PackageConfiguration_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageConfiguration, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::PackageConfSelectRequirement> PackageConfSelectRequirement_kind_children() const { return Udm::ChildrenAttr<PICML::PackageConfSelectRequirement>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::PackageConfSelectRequirement, Pred> PackageConfSelectRequirement_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageConfSelectRequirement, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::PackageConfSpecializedConfig> PackageConfSpecializedConfig_kind_children() const { return Udm::ChildrenAttr<PICML::PackageConfSpecializedConfig>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::PackageConfSpecializedConfig, Pred> PackageConfSpecializedConfig_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageConfSpecializedConfig, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::PackageConfReference> PackageConfReference_kind_children() const { return Udm::ChildrenAttr<PICML::PackageConfReference>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::PackageConfReference, Pred> PackageConfReference_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageConfReference, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ComponentPackageReference> ComponentPackageReference_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentPackageReference>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ComponentPackageReference, Pred> ComponentPackageReference_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentPackageReference, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ComponentPackage> ComponentPackage_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentPackage>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ComponentPackage, Pred> ComponentPackage_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentPackage, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Requirement> Requirement_kind_children() const { return Udm::ChildrenAttr<PICML::Requirement>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Requirement, Pred> Requirement_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Requirement, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::RequirementBase> RequirementBase_kind_children() const { return Udm::ChildrenAttr<PICML::RequirementBase>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::RequirementBase, Pred> RequirementBase_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RequirementBase, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Property> Property_kind_children() const { return Udm::ChildrenAttr<PICML::Property>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Property, Pred> Property_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Property, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		static Uml::CompositionParentRole meta_PackageConfigurations_parent;
-		Udm::ParentAttr<PICML::PackageConfigurations> PackageConfigurations_parent() const { return Udm::ParentAttr<PICML::PackageConfigurations>(impl, meta_PackageConfigurations_parent); }
-
-		Udm::ParentAttr<PICML::PackageConfigurations> parent() const { return Udm::ParentAttr<PICML::PackageConfigurations>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_PackageConfigurationContainer(*this);};
+		virtual void Accept(Visitor &v){v.Visit_PackageConfReference(*this);};
 	};
 
 	class  PackageConfBasePackage :  public MgaObject {
@@ -4725,224 +4823,6 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_PackageConfConfigProperty(*this);};
 	};
 
-	class  PackageConfiguration :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		PackageConfiguration() { }
-		PackageConfiguration(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		PackageConfiguration(const PackageConfiguration &master) : MgaObject(master), Object(master) { }
-		static PackageConfiguration Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static PackageConfiguration Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		PackageConfiguration CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		PackageConfiguration CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<PackageConfiguration> Instances() { return Udm::InstantiatedAttr<PICML::PackageConfiguration>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<PackageConfiguration, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::PackageConfiguration, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::PackageConfiguration> Derived() { return Udm::DerivedAttr<PICML::PackageConfiguration>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::PackageConfiguration, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::PackageConfiguration, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::PackageConfiguration> Archetype() { return Udm::ArchetypeAttr<PICML::PackageConfiguration>(impl);}
-
-		static Uml::Attribute meta_UUID;
-		Udm::StringAttr UUID() const { return Udm::StringAttr(impl, meta_UUID); }
-
-		static Uml::Attribute meta_label;
-		Udm::StringAttr label() const { return Udm::StringAttr(impl, meta_label); }
-
-		static Uml::AssociationRole meta_dstPackageConfSpecializedConfig, meta_dstPackageConfSpecializedConfig_rev;
-		Udm::AClassPointerAttr<PICML::PackageConfSpecializedConfig, PICML::PackageConfigurationReference> dstPackageConfSpecializedConfig() const { return Udm::AClassPointerAttr<PICML::PackageConfSpecializedConfig, PICML::PackageConfigurationReference>(impl, meta_dstPackageConfSpecializedConfig, meta_dstPackageConfSpecializedConfig_rev); }
-
-		static Uml::AssociationRole meta_referedbyPackageConfigurationReference;
-		Udm::AssocAttr<PICML::PackageConfigurationReference> referedbyPackageConfigurationReference() const { return Udm::AssocAttr<PICML::PackageConfigurationReference>(impl, meta_referedbyPackageConfigurationReference); }
-		template <class Pred> Udm::AssocAttr<PICML::PackageConfigurationReference, Pred > referedbyPackageConfigurationReference_sorted(const Pred &) const { return Udm::AssocAttr<PICML::PackageConfigurationReference, Pred>(impl, meta_referedbyPackageConfigurationReference); }
-
-		static Uml::AssociationRole meta_dstPackageConfSelectRequirement, meta_dstPackageConfSelectRequirement_rev;
-		Udm::AClassAssocAttr<PICML::PackageConfSelectRequirement, PICML::Requirement> dstPackageConfSelectRequirement() const { return Udm::AClassAssocAttr<PICML::PackageConfSelectRequirement, PICML::Requirement>(impl, meta_dstPackageConfSelectRequirement, meta_dstPackageConfSelectRequirement_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::PackageConfSelectRequirement, PICML::Requirement, Pred> dstPackageConfSelectRequirement_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::PackageConfSelectRequirement, PICML::Requirement, Pred>(impl, meta_dstPackageConfSelectRequirement, meta_dstPackageConfSelectRequirement_rev); }
-
-		static Uml::AssociationRole meta_dstPackageConfBasePackage, meta_dstPackageConfBasePackage_rev;
-		Udm::AClassPointerAttr<PICML::PackageConfBasePackage, PICML::ComponentPackage> dstPackageConfBasePackage() const { return Udm::AClassPointerAttr<PICML::PackageConfBasePackage, PICML::ComponentPackage>(impl, meta_dstPackageConfBasePackage, meta_dstPackageConfBasePackage_rev); }
-
-		static Uml::AssociationRole meta_dstPackageConfConfigProperty, meta_dstPackageConfConfigProperty_rev;
-		Udm::AClassAssocAttr<PICML::PackageConfConfigProperty, PICML::Property> dstPackageConfConfigProperty() const { return Udm::AClassAssocAttr<PICML::PackageConfConfigProperty, PICML::Property>(impl, meta_dstPackageConfConfigProperty, meta_dstPackageConfConfigProperty_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::PackageConfConfigProperty, PICML::Property, Pred> dstPackageConfConfigProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::PackageConfConfigProperty, PICML::Property, Pred>(impl, meta_dstPackageConfConfigProperty, meta_dstPackageConfConfigProperty_rev); }
-
-		static Uml::AssociationRole meta_dstPackageConfReference, meta_dstPackageConfReference_rev;
-		Udm::AClassPointerAttr<PICML::PackageConfReference, PICML::ComponentPackageReference> dstPackageConfReference() const { return Udm::AClassPointerAttr<PICML::PackageConfReference, PICML::ComponentPackageReference>(impl, meta_dstPackageConfReference, meta_dstPackageConfReference_rev); }
-
-		static Uml::CompositionParentRole meta_PackageConfigurationContainer_parent;
-		Udm::ParentAttr<PICML::PackageConfigurationContainer> PackageConfigurationContainer_parent() const { return Udm::ParentAttr<PICML::PackageConfigurationContainer>(impl, meta_PackageConfigurationContainer_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_PackageConfiguration(*this);};
-	};
-
-	class  PackageConfSelectRequirement :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		PackageConfSelectRequirement() { }
-		PackageConfSelectRequirement(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		PackageConfSelectRequirement(const PackageConfSelectRequirement &master) : MgaObject(master), Object(master) { }
-		static PackageConfSelectRequirement Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static PackageConfSelectRequirement Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		PackageConfSelectRequirement CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		PackageConfSelectRequirement CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<PackageConfSelectRequirement> Instances() { return Udm::InstantiatedAttr<PICML::PackageConfSelectRequirement>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<PackageConfSelectRequirement, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::PackageConfSelectRequirement, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::PackageConfSelectRequirement> Derived() { return Udm::DerivedAttr<PICML::PackageConfSelectRequirement>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::PackageConfSelectRequirement, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::PackageConfSelectRequirement, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::PackageConfSelectRequirement> Archetype() { return Udm::ArchetypeAttr<PICML::PackageConfSelectRequirement>(impl);}
-
-		static Uml::CompositionParentRole meta_PackageConfigurationContainer_parent;
-		Udm::ParentAttr<PICML::PackageConfigurationContainer> PackageConfigurationContainer_parent() const { return Udm::ParentAttr<PICML::PackageConfigurationContainer>(impl, meta_PackageConfigurationContainer_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_srcPackageConfSelectRequirement_end_;
-		Udm::AssocEndAttr<PICML::PackageConfiguration> srcPackageConfSelectRequirement_end() const { return Udm::AssocEndAttr<PICML::PackageConfiguration>(impl, meta_srcPackageConfSelectRequirement_end_); }
-
-		static Uml::AssociationRole meta_dstPackageConfSelectRequirement_end_;
-		Udm::AssocEndAttr<PICML::Requirement> dstPackageConfSelectRequirement_end() const { return Udm::AssocEndAttr<PICML::Requirement>(impl, meta_dstPackageConfSelectRequirement_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_PackageConfSelectRequirement(*this);};
-	};
-
-	class  PackageConfSpecializedConfig :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		PackageConfSpecializedConfig() { }
-		PackageConfSpecializedConfig(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		PackageConfSpecializedConfig(const PackageConfSpecializedConfig &master) : MgaObject(master), Object(master) { }
-		static PackageConfSpecializedConfig Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static PackageConfSpecializedConfig Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		PackageConfSpecializedConfig CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		PackageConfSpecializedConfig CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<PackageConfSpecializedConfig> Instances() { return Udm::InstantiatedAttr<PICML::PackageConfSpecializedConfig>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<PackageConfSpecializedConfig, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::PackageConfSpecializedConfig, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::PackageConfSpecializedConfig> Derived() { return Udm::DerivedAttr<PICML::PackageConfSpecializedConfig>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::PackageConfSpecializedConfig, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::PackageConfSpecializedConfig, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::PackageConfSpecializedConfig> Archetype() { return Udm::ArchetypeAttr<PICML::PackageConfSpecializedConfig>(impl);}
-
-		static Uml::CompositionParentRole meta_PackageConfigurationContainer_parent;
-		Udm::ParentAttr<PICML::PackageConfigurationContainer> PackageConfigurationContainer_parent() const { return Udm::ParentAttr<PICML::PackageConfigurationContainer>(impl, meta_PackageConfigurationContainer_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_dstPackageConfSpecializedConfig_end_;
-		Udm::AssocEndAttr<PICML::PackageConfigurationReference> dstPackageConfSpecializedConfig_end() const { return Udm::AssocEndAttr<PICML::PackageConfigurationReference>(impl, meta_dstPackageConfSpecializedConfig_end_); }
-
-		static Uml::AssociationRole meta_srcPackageConfSpecializedConfig_end_;
-		Udm::AssocEndAttr<PICML::PackageConfiguration> srcPackageConfSpecializedConfig_end() const { return Udm::AssocEndAttr<PICML::PackageConfiguration>(impl, meta_srcPackageConfSpecializedConfig_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_PackageConfSpecializedConfig(*this);};
-	};
-
-	class  PackageConfReference :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		PackageConfReference() { }
-		PackageConfReference(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		PackageConfReference(const PackageConfReference &master) : MgaObject(master), Object(master) { }
-		static PackageConfReference Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static PackageConfReference Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		PackageConfReference CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		PackageConfReference CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<PackageConfReference> Instances() { return Udm::InstantiatedAttr<PICML::PackageConfReference>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<PackageConfReference, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::PackageConfReference, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::PackageConfReference> Derived() { return Udm::DerivedAttr<PICML::PackageConfReference>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::PackageConfReference, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::PackageConfReference, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::PackageConfReference> Archetype() { return Udm::ArchetypeAttr<PICML::PackageConfReference>(impl);}
-
-		static Uml::CompositionParentRole meta_PackageConfigurationContainer_parent;
-		Udm::ParentAttr<PICML::PackageConfigurationContainer> PackageConfigurationContainer_parent() const { return Udm::ParentAttr<PICML::PackageConfigurationContainer>(impl, meta_PackageConfigurationContainer_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_srcPackageConfReference_end_;
-		Udm::AssocEndAttr<PICML::PackageConfiguration> srcPackageConfReference_end() const { return Udm::AssocEndAttr<PICML::PackageConfiguration>(impl, meta_srcPackageConfReference_end_); }
-
-		static Uml::AssociationRole meta_dstPackageConfReference_end_;
-		Udm::AssocEndAttr<PICML::ComponentPackageReference> dstPackageConfReference_end() const { return Udm::AssocEndAttr<PICML::ComponentPackageReference>(impl, meta_dstPackageConfReference_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_PackageConfReference(*this);};
-	};
-
-	class  ImplementationArtifactReference :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		ImplementationArtifactReference() { }
-		ImplementationArtifactReference(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		ImplementationArtifactReference(const ImplementationArtifactReference &master) : MgaObject(master), Object(master) { }
-		static ImplementationArtifactReference Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static ImplementationArtifactReference Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		ImplementationArtifactReference CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		ImplementationArtifactReference CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<ImplementationArtifactReference> Instances() { return Udm::InstantiatedAttr<PICML::ImplementationArtifactReference>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<ImplementationArtifactReference, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ImplementationArtifactReference, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::ImplementationArtifactReference> Derived() { return Udm::DerivedAttr<PICML::ImplementationArtifactReference>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::ImplementationArtifactReference, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ImplementationArtifactReference, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::ImplementationArtifactReference> Archetype() { return Udm::ArchetypeAttr<PICML::ImplementationArtifactReference>(impl);}
-
-		static Uml::AssociationRole meta_srcMonolithprimaryArtifact, meta_srcMonolithprimaryArtifact_rev;
-		Udm::AClassAssocAttr<PICML::MonolithprimaryArtifact, PICML::MonolithicImplementation> srcMonolithprimaryArtifact() const { return Udm::AClassAssocAttr<PICML::MonolithprimaryArtifact, PICML::MonolithicImplementation>(impl, meta_srcMonolithprimaryArtifact, meta_srcMonolithprimaryArtifact_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::MonolithprimaryArtifact, PICML::MonolithicImplementation, Pred> srcMonolithprimaryArtifact_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::MonolithprimaryArtifact, PICML::MonolithicImplementation, Pred>(impl, meta_srcMonolithprimaryArtifact, meta_srcMonolithprimaryArtifact_rev); }
-
-		static Uml::AssociationRole meta_ref;
-		Udm::PointerAttr<PICML::ImplementationArtifact> ref() const { return Udm::PointerAttr<PICML::ImplementationArtifact>(impl, meta_ref); }
-
-		static Uml::AssociationRole meta_srcArtifactDependsOn, meta_srcArtifactDependsOn_rev;
-		Udm::AClassAssocAttr<PICML::ArtifactDependsOn, PICML::ImplementationArtifact> srcArtifactDependsOn() const { return Udm::AClassAssocAttr<PICML::ArtifactDependsOn, PICML::ImplementationArtifact>(impl, meta_srcArtifactDependsOn, meta_srcArtifactDependsOn_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::ArtifactDependsOn, PICML::ImplementationArtifact, Pred> srcArtifactDependsOn_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ArtifactDependsOn, PICML::ImplementationArtifact, Pred>(impl, meta_srcArtifactDependsOn, meta_srcArtifactDependsOn_rev); }
-
-		static Uml::CompositionParentRole meta_ComponentImplementationContainer_parent;
-		Udm::ParentAttr<PICML::ComponentImplementationContainer> ComponentImplementationContainer_parent() const { return Udm::ParentAttr<PICML::ComponentImplementationContainer>(impl, meta_ComponentImplementationContainer_parent); }
-
-		static Uml::CompositionParentRole meta_ArtifactContainer_parent;
-		Udm::ParentAttr<PICML::ArtifactContainer> ArtifactContainer_parent() const { return Udm::ParentAttr<PICML::ArtifactContainer>(impl, meta_ArtifactContainer_parent); }
-
-		static Uml::CompositionParentRole meta_StubProject_parent;
-		Udm::ParentAttr<PICML::StubProject> StubProject_parent() const { return Udm::ParentAttr<PICML::StubProject>(impl, meta_StubProject_parent); }
-
-		static Uml::CompositionParentRole meta_ServantProject_parent;
-		Udm::ParentAttr<PICML::ServantProject> ServantProject_parent() const { return Udm::ParentAttr<PICML::ServantProject>(impl, meta_ServantProject_parent); }
-
-		static Uml::CompositionParentRole meta_ExecutorProject_parent;
-		Udm::ParentAttr<PICML::ExecutorProject> ExecutorProject_parent() const { return Udm::ParentAttr<PICML::ExecutorProject>(impl, meta_ExecutorProject_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_ImplementationArtifactReference(*this);};
-	};
-
 	class  ImplementationArtifact :  public MgaObject {
 	 public:
 		static Uml::Class meta;
@@ -4978,25 +4858,25 @@ namespace PICML {
 		static Uml::Attribute meta_location;
 		Udm::StringAttr location() const { return Udm::StringAttr(impl, meta_location); }
 
-		static Uml::AssociationRole meta_referedbyImplementationArtifactReference;
-		Udm::AssocAttr<PICML::ImplementationArtifactReference> referedbyImplementationArtifactReference() const { return Udm::AssocAttr<PICML::ImplementationArtifactReference>(impl, meta_referedbyImplementationArtifactReference); }
-		template <class Pred> Udm::AssocAttr<PICML::ImplementationArtifactReference, Pred > referedbyImplementationArtifactReference_sorted(const Pred &) const { return Udm::AssocAttr<PICML::ImplementationArtifactReference, Pred>(impl, meta_referedbyImplementationArtifactReference); }
-
-		static Uml::AssociationRole meta_dstArtifactDependsOn, meta_dstArtifactDependsOn_rev;
-		Udm::AClassAssocAttr<PICML::ArtifactDependsOn, PICML::ImplementationArtifactReference> dstArtifactDependsOn() const { return Udm::AClassAssocAttr<PICML::ArtifactDependsOn, PICML::ImplementationArtifactReference>(impl, meta_dstArtifactDependsOn, meta_dstArtifactDependsOn_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::ArtifactDependsOn, PICML::ImplementationArtifactReference, Pred> dstArtifactDependsOn_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ArtifactDependsOn, PICML::ImplementationArtifactReference, Pred>(impl, meta_dstArtifactDependsOn, meta_dstArtifactDependsOn_rev); }
-
 		static Uml::AssociationRole meta_dstArtifactExecParameter, meta_dstArtifactExecParameter_rev;
 		Udm::AClassAssocAttr<PICML::ArtifactExecParameter, PICML::Property> dstArtifactExecParameter() const { return Udm::AClassAssocAttr<PICML::ArtifactExecParameter, PICML::Property>(impl, meta_dstArtifactExecParameter, meta_dstArtifactExecParameter_rev); }
 		template<class Pred> Udm::AClassAssocAttr<PICML::ArtifactExecParameter, PICML::Property, Pred> dstArtifactExecParameter_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ArtifactExecParameter, PICML::Property, Pred>(impl, meta_dstArtifactExecParameter, meta_dstArtifactExecParameter_rev); }
+
+		static Uml::AssociationRole meta_dstArtifactInfoProperty, meta_dstArtifactInfoProperty_rev;
+		Udm::AClassAssocAttr<PICML::ArtifactInfoProperty, PICML::Property> dstArtifactInfoProperty() const { return Udm::AClassAssocAttr<PICML::ArtifactInfoProperty, PICML::Property>(impl, meta_dstArtifactInfoProperty, meta_dstArtifactInfoProperty_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::ArtifactInfoProperty, PICML::Property, Pred> dstArtifactInfoProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ArtifactInfoProperty, PICML::Property, Pred>(impl, meta_dstArtifactInfoProperty, meta_dstArtifactInfoProperty_rev); }
 
 		static Uml::AssociationRole meta_dstArtifactDeployRequirement, meta_dstArtifactDeployRequirement_rev;
 		Udm::AClassAssocAttr<PICML::ArtifactDeployRequirement, PICML::Requirement> dstArtifactDeployRequirement() const { return Udm::AClassAssocAttr<PICML::ArtifactDeployRequirement, PICML::Requirement>(impl, meta_dstArtifactDeployRequirement, meta_dstArtifactDeployRequirement_rev); }
 		template<class Pred> Udm::AClassAssocAttr<PICML::ArtifactDeployRequirement, PICML::Requirement, Pred> dstArtifactDeployRequirement_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ArtifactDeployRequirement, PICML::Requirement, Pred>(impl, meta_dstArtifactDeployRequirement, meta_dstArtifactDeployRequirement_rev); }
 
-		static Uml::AssociationRole meta_dstArtifactInfoProperty, meta_dstArtifactInfoProperty_rev;
-		Udm::AClassAssocAttr<PICML::ArtifactInfoProperty, PICML::Property> dstArtifactInfoProperty() const { return Udm::AClassAssocAttr<PICML::ArtifactInfoProperty, PICML::Property>(impl, meta_dstArtifactInfoProperty, meta_dstArtifactInfoProperty_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::ArtifactInfoProperty, PICML::Property, Pred> dstArtifactInfoProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ArtifactInfoProperty, PICML::Property, Pred>(impl, meta_dstArtifactInfoProperty, meta_dstArtifactInfoProperty_rev); }
+		static Uml::AssociationRole meta_dstArtifactDependsOn, meta_dstArtifactDependsOn_rev;
+		Udm::AClassAssocAttr<PICML::ArtifactDependsOn, PICML::ImplementationArtifactReference> dstArtifactDependsOn() const { return Udm::AClassAssocAttr<PICML::ArtifactDependsOn, PICML::ImplementationArtifactReference>(impl, meta_dstArtifactDependsOn, meta_dstArtifactDependsOn_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::ArtifactDependsOn, PICML::ImplementationArtifactReference, Pred> dstArtifactDependsOn_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ArtifactDependsOn, PICML::ImplementationArtifactReference, Pred>(impl, meta_dstArtifactDependsOn, meta_dstArtifactDependsOn_rev); }
+
+		static Uml::AssociationRole meta_referedbyImplementationArtifactReference;
+		Udm::AssocAttr<PICML::ImplementationArtifactReference> referedbyImplementationArtifactReference() const { return Udm::AssocAttr<PICML::ImplementationArtifactReference>(impl, meta_referedbyImplementationArtifactReference); }
+		template <class Pred> Udm::AssocAttr<PICML::ImplementationArtifactReference, Pred > referedbyImplementationArtifactReference_sorted(const Pred &) const { return Udm::AssocAttr<PICML::ImplementationArtifactReference, Pred>(impl, meta_referedbyImplementationArtifactReference); }
 
 		static Uml::AssociationRole meta_referedbyExternalResources;
 		Udm::AssocAttr<PICML::ExternalResources> referedbyExternalResources() const { return Udm::AssocAttr<PICML::ExternalResources>(impl, meta_referedbyExternalResources); }
@@ -5010,42 +4890,6 @@ namespace PICML {
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		virtual void Accept(Visitor &v){v.Visit_ImplementationArtifact(*this);};
-	};
-
-	class  ArtifactDeployRequirement :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		ArtifactDeployRequirement() { }
-		ArtifactDeployRequirement(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		ArtifactDeployRequirement(const ArtifactDeployRequirement &master) : MgaObject(master), Object(master) { }
-		static ArtifactDeployRequirement Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static ArtifactDeployRequirement Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		ArtifactDeployRequirement CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		ArtifactDeployRequirement CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<ArtifactDeployRequirement> Instances() { return Udm::InstantiatedAttr<PICML::ArtifactDeployRequirement>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<ArtifactDeployRequirement, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ArtifactDeployRequirement, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::ArtifactDeployRequirement> Derived() { return Udm::DerivedAttr<PICML::ArtifactDeployRequirement>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::ArtifactDeployRequirement, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ArtifactDeployRequirement, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::ArtifactDeployRequirement> Archetype() { return Udm::ArchetypeAttr<PICML::ArtifactDeployRequirement>(impl);}
-
-		static Uml::CompositionParentRole meta_ArtifactContainer_parent;
-		Udm::ParentAttr<PICML::ArtifactContainer> ArtifactContainer_parent() const { return Udm::ParentAttr<PICML::ArtifactContainer>(impl, meta_ArtifactContainer_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_srcArtifactDeployRequirement_end_;
-		Udm::AssocEndAttr<PICML::ImplementationArtifact> srcArtifactDeployRequirement_end() const { return Udm::AssocEndAttr<PICML::ImplementationArtifact>(impl, meta_srcArtifactDeployRequirement_end_); }
-
-		static Uml::AssociationRole meta_dstArtifactDeployRequirement_end_;
-		Udm::AssocEndAttr<PICML::Requirement> dstArtifactDeployRequirement_end() const { return Udm::AssocEndAttr<PICML::Requirement>(impl, meta_dstArtifactDeployRequirement_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_ArtifactDeployRequirement(*this);};
 	};
 
 	class  ArtifactInfoProperty :  public MgaObject {
@@ -5084,134 +4928,6 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_ArtifactInfoProperty(*this);};
 	};
 
-	class  ArtifactContainer :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		ArtifactContainer() { }
-		ArtifactContainer(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		ArtifactContainer(const ArtifactContainer &master) : MgaObject(master), Object(master) { }
-		static ArtifactContainer Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static ArtifactContainer Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		ArtifactContainer CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		ArtifactContainer CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<ArtifactContainer> Instances() { return Udm::InstantiatedAttr<PICML::ArtifactContainer>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<ArtifactContainer, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ArtifactContainer, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::ArtifactContainer> Derived() { return Udm::DerivedAttr<PICML::ArtifactContainer>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::ArtifactContainer, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ArtifactContainer, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::ArtifactContainer> Archetype() { return Udm::ArchetypeAttr<PICML::ArtifactContainer>(impl);}
-
-		static Uml::CompositionChildRole meta_ImplementationArtifactReference_children;
-		Udm::ChildrenAttr<PICML::ImplementationArtifactReference> ImplementationArtifactReference_children() const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference>(impl, meta_ImplementationArtifactReference_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred> ImplementationArtifactReference_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred>(impl, meta_ImplementationArtifactReference_children); }
-
-		static Uml::CompositionChildRole meta_ArtifactDependsOn_children;
-		Udm::ChildrenAttr<PICML::ArtifactDependsOn> ArtifactDependsOn_children() const { return Udm::ChildrenAttr<PICML::ArtifactDependsOn>(impl, meta_ArtifactDependsOn_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ArtifactDependsOn, Pred> ArtifactDependsOn_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ArtifactDependsOn, Pred>(impl, meta_ArtifactDependsOn_children); }
-
-		static Uml::CompositionChildRole meta_Requirement_children;
-		Udm::ChildrenAttr<PICML::Requirement> Requirement_children() const { return Udm::ChildrenAttr<PICML::Requirement>(impl, meta_Requirement_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Requirement, Pred> Requirement_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Requirement, Pred>(impl, meta_Requirement_children); }
-
-		static Uml::CompositionChildRole meta_Property_children;
-		Udm::ChildrenAttr<PICML::Property> Property_children() const { return Udm::ChildrenAttr<PICML::Property>(impl, meta_Property_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Property, Pred> Property_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Property, Pred>(impl, meta_Property_children); }
-
-		static Uml::CompositionChildRole meta_ArtifactInfoProperty_children;
-		Udm::ChildrenAttr<PICML::ArtifactInfoProperty> ArtifactInfoProperty_children() const { return Udm::ChildrenAttr<PICML::ArtifactInfoProperty>(impl, meta_ArtifactInfoProperty_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ArtifactInfoProperty, Pred> ArtifactInfoProperty_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ArtifactInfoProperty, Pred>(impl, meta_ArtifactInfoProperty_children); }
-
-		static Uml::CompositionChildRole meta_ImplementationArtifact_children;
-		Udm::ChildrenAttr<PICML::ImplementationArtifact> ImplementationArtifact_children() const { return Udm::ChildrenAttr<PICML::ImplementationArtifact>(impl, meta_ImplementationArtifact_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ImplementationArtifact, Pred> ImplementationArtifact_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationArtifact, Pred>(impl, meta_ImplementationArtifact_children); }
-
-		static Uml::CompositionChildRole meta_ArtifactDeployRequirement_children;
-		Udm::ChildrenAttr<PICML::ArtifactDeployRequirement> ArtifactDeployRequirement_children() const { return Udm::ChildrenAttr<PICML::ArtifactDeployRequirement>(impl, meta_ArtifactDeployRequirement_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ArtifactDeployRequirement, Pred> ArtifactDeployRequirement_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ArtifactDeployRequirement, Pred>(impl, meta_ArtifactDeployRequirement_children); }
-
-		static Uml::CompositionChildRole meta_ArtifactExecParameter_children;
-		Udm::ChildrenAttr<PICML::ArtifactExecParameter> ArtifactExecParameter_children() const { return Udm::ChildrenAttr<PICML::ArtifactExecParameter>(impl, meta_ArtifactExecParameter_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ArtifactExecParameter, Pred> ArtifactExecParameter_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ArtifactExecParameter, Pred>(impl, meta_ArtifactExecParameter_children); }
-
-		Udm::ChildrenAttr<PICML::ImplementationArtifactReference> ImplementationArtifactReference_kind_children() const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred> ImplementationArtifactReference_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ImplementationArtifact> ImplementationArtifact_kind_children() const { return Udm::ChildrenAttr<PICML::ImplementationArtifact>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ImplementationArtifact, Pred> ImplementationArtifact_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationArtifact, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ArtifactDeployRequirement> ArtifactDeployRequirement_kind_children() const { return Udm::ChildrenAttr<PICML::ArtifactDeployRequirement>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ArtifactDeployRequirement, Pred> ArtifactDeployRequirement_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ArtifactDeployRequirement, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ArtifactInfoProperty> ArtifactInfoProperty_kind_children() const { return Udm::ChildrenAttr<PICML::ArtifactInfoProperty>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ArtifactInfoProperty, Pred> ArtifactInfoProperty_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ArtifactInfoProperty, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ArtifactDependsOn> ArtifactDependsOn_kind_children() const { return Udm::ChildrenAttr<PICML::ArtifactDependsOn>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ArtifactDependsOn, Pred> ArtifactDependsOn_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ArtifactDependsOn, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ArtifactExecParameter> ArtifactExecParameter_kind_children() const { return Udm::ChildrenAttr<PICML::ArtifactExecParameter>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ArtifactExecParameter, Pred> ArtifactExecParameter_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ArtifactExecParameter, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Requirement> Requirement_kind_children() const { return Udm::ChildrenAttr<PICML::Requirement>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Requirement, Pred> Requirement_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Requirement, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::RequirementBase> RequirementBase_kind_children() const { return Udm::ChildrenAttr<PICML::RequirementBase>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::RequirementBase, Pred> RequirementBase_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RequirementBase, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Property> Property_kind_children() const { return Udm::ChildrenAttr<PICML::Property>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Property, Pred> Property_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Property, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		static Uml::CompositionParentRole meta_ImplementationArtifacts_parent;
-		Udm::ParentAttr<PICML::ImplementationArtifacts> ImplementationArtifacts_parent() const { return Udm::ParentAttr<PICML::ImplementationArtifacts>(impl, meta_ImplementationArtifacts_parent); }
-
-		Udm::ParentAttr<PICML::ImplementationArtifacts> parent() const { return Udm::ParentAttr<PICML::ImplementationArtifacts>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_ArtifactContainer(*this);};
-	};
-
-	class  ArtifactDependsOn :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		ArtifactDependsOn() { }
-		ArtifactDependsOn(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		ArtifactDependsOn(const ArtifactDependsOn &master) : MgaObject(master), Object(master) { }
-		static ArtifactDependsOn Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static ArtifactDependsOn Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		ArtifactDependsOn CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		ArtifactDependsOn CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<ArtifactDependsOn> Instances() { return Udm::InstantiatedAttr<PICML::ArtifactDependsOn>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<ArtifactDependsOn, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ArtifactDependsOn, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::ArtifactDependsOn> Derived() { return Udm::DerivedAttr<PICML::ArtifactDependsOn>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::ArtifactDependsOn, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ArtifactDependsOn, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::ArtifactDependsOn> Archetype() { return Udm::ArchetypeAttr<PICML::ArtifactDependsOn>(impl);}
-
-		static Uml::CompositionParentRole meta_ArtifactContainer_parent;
-		Udm::ParentAttr<PICML::ArtifactContainer> ArtifactContainer_parent() const { return Udm::ParentAttr<PICML::ArtifactContainer>(impl, meta_ArtifactContainer_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_dstArtifactDependsOn_end_;
-		Udm::AssocEndAttr<PICML::ImplementationArtifactReference> dstArtifactDependsOn_end() const { return Udm::AssocEndAttr<PICML::ImplementationArtifactReference>(impl, meta_dstArtifactDependsOn_end_); }
-
-		static Uml::AssociationRole meta_srcArtifactDependsOn_end_;
-		Udm::AssocEndAttr<PICML::ImplementationArtifact> srcArtifactDependsOn_end() const { return Udm::AssocEndAttr<PICML::ImplementationArtifact>(impl, meta_srcArtifactDependsOn_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_ArtifactDependsOn(*this);};
-	};
-
 	class  ArtifactExecParameter :  public MgaObject {
 	 public:
 		static Uml::Class meta;
@@ -5246,6 +4962,223 @@ namespace PICML {
 		Udm::AssocEndAttr<PICML::Property> dstArtifactExecParameter_end() const { return Udm::AssocEndAttr<PICML::Property>(impl, meta_dstArtifactExecParameter_end_); }
 
 		virtual void Accept(Visitor &v){v.Visit_ArtifactExecParameter(*this);};
+	};
+
+	class  ArtifactContainer :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		ArtifactContainer() { }
+		ArtifactContainer(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		ArtifactContainer(const ArtifactContainer &master) : MgaObject(master), Object(master) { }
+		static ArtifactContainer Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static ArtifactContainer Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		ArtifactContainer CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		ArtifactContainer CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<ArtifactContainer> Instances() { return Udm::InstantiatedAttr<PICML::ArtifactContainer>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<ArtifactContainer, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ArtifactContainer, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::ArtifactContainer> Derived() { return Udm::DerivedAttr<PICML::ArtifactContainer>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::ArtifactContainer, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ArtifactContainer, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::ArtifactContainer> Archetype() { return Udm::ArchetypeAttr<PICML::ArtifactContainer>(impl);}
+
+		static Uml::CompositionChildRole meta_Property_children;
+		Udm::ChildrenAttr<PICML::Property> Property_children() const { return Udm::ChildrenAttr<PICML::Property>(impl, meta_Property_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Property, Pred> Property_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Property, Pred>(impl, meta_Property_children); }
+
+		static Uml::CompositionChildRole meta_ImplementationArtifact_children;
+		Udm::ChildrenAttr<PICML::ImplementationArtifact> ImplementationArtifact_children() const { return Udm::ChildrenAttr<PICML::ImplementationArtifact>(impl, meta_ImplementationArtifact_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ImplementationArtifact, Pred> ImplementationArtifact_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationArtifact, Pred>(impl, meta_ImplementationArtifact_children); }
+
+		static Uml::CompositionChildRole meta_ArtifactInfoProperty_children;
+		Udm::ChildrenAttr<PICML::ArtifactInfoProperty> ArtifactInfoProperty_children() const { return Udm::ChildrenAttr<PICML::ArtifactInfoProperty>(impl, meta_ArtifactInfoProperty_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ArtifactInfoProperty, Pred> ArtifactInfoProperty_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ArtifactInfoProperty, Pred>(impl, meta_ArtifactInfoProperty_children); }
+
+		static Uml::CompositionChildRole meta_ArtifactExecParameter_children;
+		Udm::ChildrenAttr<PICML::ArtifactExecParameter> ArtifactExecParameter_children() const { return Udm::ChildrenAttr<PICML::ArtifactExecParameter>(impl, meta_ArtifactExecParameter_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ArtifactExecParameter, Pred> ArtifactExecParameter_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ArtifactExecParameter, Pred>(impl, meta_ArtifactExecParameter_children); }
+
+		static Uml::CompositionChildRole meta_Requirement_children;
+		Udm::ChildrenAttr<PICML::Requirement> Requirement_children() const { return Udm::ChildrenAttr<PICML::Requirement>(impl, meta_Requirement_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Requirement, Pred> Requirement_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Requirement, Pred>(impl, meta_Requirement_children); }
+
+		static Uml::CompositionChildRole meta_ArtifactDeployRequirement_children;
+		Udm::ChildrenAttr<PICML::ArtifactDeployRequirement> ArtifactDeployRequirement_children() const { return Udm::ChildrenAttr<PICML::ArtifactDeployRequirement>(impl, meta_ArtifactDeployRequirement_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ArtifactDeployRequirement, Pred> ArtifactDeployRequirement_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ArtifactDeployRequirement, Pred>(impl, meta_ArtifactDeployRequirement_children); }
+
+		static Uml::CompositionChildRole meta_ImplementationArtifactReference_children;
+		Udm::ChildrenAttr<PICML::ImplementationArtifactReference> ImplementationArtifactReference_children() const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference>(impl, meta_ImplementationArtifactReference_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred> ImplementationArtifactReference_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred>(impl, meta_ImplementationArtifactReference_children); }
+
+		static Uml::CompositionChildRole meta_ArtifactDependsOn_children;
+		Udm::ChildrenAttr<PICML::ArtifactDependsOn> ArtifactDependsOn_children() const { return Udm::ChildrenAttr<PICML::ArtifactDependsOn>(impl, meta_ArtifactDependsOn_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ArtifactDependsOn, Pred> ArtifactDependsOn_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ArtifactDependsOn, Pred>(impl, meta_ArtifactDependsOn_children); }
+
+		Udm::ChildrenAttr<PICML::ImplementationArtifact> ImplementationArtifact_kind_children() const { return Udm::ChildrenAttr<PICML::ImplementationArtifact>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ImplementationArtifact, Pred> ImplementationArtifact_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationArtifact, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ArtifactInfoProperty> ArtifactInfoProperty_kind_children() const { return Udm::ChildrenAttr<PICML::ArtifactInfoProperty>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ArtifactInfoProperty, Pred> ArtifactInfoProperty_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ArtifactInfoProperty, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ArtifactExecParameter> ArtifactExecParameter_kind_children() const { return Udm::ChildrenAttr<PICML::ArtifactExecParameter>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ArtifactExecParameter, Pred> ArtifactExecParameter_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ArtifactExecParameter, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ArtifactDeployRequirement> ArtifactDeployRequirement_kind_children() const { return Udm::ChildrenAttr<PICML::ArtifactDeployRequirement>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ArtifactDeployRequirement, Pred> ArtifactDeployRequirement_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ArtifactDeployRequirement, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ArtifactDependsOn> ArtifactDependsOn_kind_children() const { return Udm::ChildrenAttr<PICML::ArtifactDependsOn>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ArtifactDependsOn, Pred> ArtifactDependsOn_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ArtifactDependsOn, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ImplementationArtifactReference> ImplementationArtifactReference_kind_children() const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred> ImplementationArtifactReference_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::RequirementBase> RequirementBase_kind_children() const { return Udm::ChildrenAttr<PICML::RequirementBase>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::RequirementBase, Pred> RequirementBase_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RequirementBase, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Property> Property_kind_children() const { return Udm::ChildrenAttr<PICML::Property>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Property, Pred> Property_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Property, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Requirement> Requirement_kind_children() const { return Udm::ChildrenAttr<PICML::Requirement>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Requirement, Pred> Requirement_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Requirement, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		static Uml::CompositionParentRole meta_ImplementationArtifacts_parent;
+		Udm::ParentAttr<PICML::ImplementationArtifacts> ImplementationArtifacts_parent() const { return Udm::ParentAttr<PICML::ImplementationArtifacts>(impl, meta_ImplementationArtifacts_parent); }
+
+		Udm::ParentAttr<PICML::ImplementationArtifacts> parent() const { return Udm::ParentAttr<PICML::ImplementationArtifacts>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_ArtifactContainer(*this);};
+	};
+
+	class  ArtifactDeployRequirement :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		ArtifactDeployRequirement() { }
+		ArtifactDeployRequirement(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		ArtifactDeployRequirement(const ArtifactDeployRequirement &master) : MgaObject(master), Object(master) { }
+		static ArtifactDeployRequirement Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static ArtifactDeployRequirement Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		ArtifactDeployRequirement CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		ArtifactDeployRequirement CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<ArtifactDeployRequirement> Instances() { return Udm::InstantiatedAttr<PICML::ArtifactDeployRequirement>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<ArtifactDeployRequirement, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ArtifactDeployRequirement, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::ArtifactDeployRequirement> Derived() { return Udm::DerivedAttr<PICML::ArtifactDeployRequirement>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::ArtifactDeployRequirement, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ArtifactDeployRequirement, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::ArtifactDeployRequirement> Archetype() { return Udm::ArchetypeAttr<PICML::ArtifactDeployRequirement>(impl);}
+
+		static Uml::CompositionParentRole meta_ArtifactContainer_parent;
+		Udm::ParentAttr<PICML::ArtifactContainer> ArtifactContainer_parent() const { return Udm::ParentAttr<PICML::ArtifactContainer>(impl, meta_ArtifactContainer_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_srcArtifactDeployRequirement_end_;
+		Udm::AssocEndAttr<PICML::ImplementationArtifact> srcArtifactDeployRequirement_end() const { return Udm::AssocEndAttr<PICML::ImplementationArtifact>(impl, meta_srcArtifactDeployRequirement_end_); }
+
+		static Uml::AssociationRole meta_dstArtifactDeployRequirement_end_;
+		Udm::AssocEndAttr<PICML::Requirement> dstArtifactDeployRequirement_end() const { return Udm::AssocEndAttr<PICML::Requirement>(impl, meta_dstArtifactDeployRequirement_end_); }
+
+		virtual void Accept(Visitor &v){v.Visit_ArtifactDeployRequirement(*this);};
+	};
+
+	class  ArtifactDependsOn :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		ArtifactDependsOn() { }
+		ArtifactDependsOn(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		ArtifactDependsOn(const ArtifactDependsOn &master) : MgaObject(master), Object(master) { }
+		static ArtifactDependsOn Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static ArtifactDependsOn Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		ArtifactDependsOn CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		ArtifactDependsOn CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<ArtifactDependsOn> Instances() { return Udm::InstantiatedAttr<PICML::ArtifactDependsOn>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<ArtifactDependsOn, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ArtifactDependsOn, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::ArtifactDependsOn> Derived() { return Udm::DerivedAttr<PICML::ArtifactDependsOn>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::ArtifactDependsOn, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ArtifactDependsOn, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::ArtifactDependsOn> Archetype() { return Udm::ArchetypeAttr<PICML::ArtifactDependsOn>(impl);}
+
+		static Uml::CompositionParentRole meta_ArtifactContainer_parent;
+		Udm::ParentAttr<PICML::ArtifactContainer> ArtifactContainer_parent() const { return Udm::ParentAttr<PICML::ArtifactContainer>(impl, meta_ArtifactContainer_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_srcArtifactDependsOn_end_;
+		Udm::AssocEndAttr<PICML::ImplementationArtifact> srcArtifactDependsOn_end() const { return Udm::AssocEndAttr<PICML::ImplementationArtifact>(impl, meta_srcArtifactDependsOn_end_); }
+
+		static Uml::AssociationRole meta_dstArtifactDependsOn_end_;
+		Udm::AssocEndAttr<PICML::ImplementationArtifactReference> dstArtifactDependsOn_end() const { return Udm::AssocEndAttr<PICML::ImplementationArtifactReference>(impl, meta_dstArtifactDependsOn_end_); }
+
+		virtual void Accept(Visitor &v){v.Visit_ArtifactDependsOn(*this);};
+	};
+
+	class  ImplementationArtifactReference :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		ImplementationArtifactReference() { }
+		ImplementationArtifactReference(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		ImplementationArtifactReference(const ImplementationArtifactReference &master) : MgaObject(master), Object(master) { }
+		static ImplementationArtifactReference Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static ImplementationArtifactReference Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		ImplementationArtifactReference CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		ImplementationArtifactReference CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<ImplementationArtifactReference> Instances() { return Udm::InstantiatedAttr<PICML::ImplementationArtifactReference>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<ImplementationArtifactReference, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ImplementationArtifactReference, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::ImplementationArtifactReference> Derived() { return Udm::DerivedAttr<PICML::ImplementationArtifactReference>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::ImplementationArtifactReference, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ImplementationArtifactReference, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::ImplementationArtifactReference> Archetype() { return Udm::ArchetypeAttr<PICML::ImplementationArtifactReference>(impl);}
+
+		static Uml::AssociationRole meta_srcMonolithprimaryArtifact, meta_srcMonolithprimaryArtifact_rev;
+		Udm::AClassAssocAttr<PICML::MonolithprimaryArtifact, PICML::MonolithicImplementation> srcMonolithprimaryArtifact() const { return Udm::AClassAssocAttr<PICML::MonolithprimaryArtifact, PICML::MonolithicImplementation>(impl, meta_srcMonolithprimaryArtifact, meta_srcMonolithprimaryArtifact_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::MonolithprimaryArtifact, PICML::MonolithicImplementation, Pred> srcMonolithprimaryArtifact_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::MonolithprimaryArtifact, PICML::MonolithicImplementation, Pred>(impl, meta_srcMonolithprimaryArtifact, meta_srcMonolithprimaryArtifact_rev); }
+
+		static Uml::AssociationRole meta_srcArtifactDependsOn, meta_srcArtifactDependsOn_rev;
+		Udm::AClassAssocAttr<PICML::ArtifactDependsOn, PICML::ImplementationArtifact> srcArtifactDependsOn() const { return Udm::AClassAssocAttr<PICML::ArtifactDependsOn, PICML::ImplementationArtifact>(impl, meta_srcArtifactDependsOn, meta_srcArtifactDependsOn_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::ArtifactDependsOn, PICML::ImplementationArtifact, Pred> srcArtifactDependsOn_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ArtifactDependsOn, PICML::ImplementationArtifact, Pred>(impl, meta_srcArtifactDependsOn, meta_srcArtifactDependsOn_rev); }
+
+		static Uml::AssociationRole meta_ref;
+		Udm::PointerAttr<PICML::ImplementationArtifact> ref() const { return Udm::PointerAttr<PICML::ImplementationArtifact>(impl, meta_ref); }
+
+		static Uml::CompositionParentRole meta_ComponentImplementationContainer_parent;
+		Udm::ParentAttr<PICML::ComponentImplementationContainer> ComponentImplementationContainer_parent() const { return Udm::ParentAttr<PICML::ComponentImplementationContainer>(impl, meta_ComponentImplementationContainer_parent); }
+
+		static Uml::CompositionParentRole meta_ArtifactContainer_parent;
+		Udm::ParentAttr<PICML::ArtifactContainer> ArtifactContainer_parent() const { return Udm::ParentAttr<PICML::ArtifactContainer>(impl, meta_ArtifactContainer_parent); }
+
+		static Uml::CompositionParentRole meta_ExecutorProject_parent;
+		Udm::ParentAttr<PICML::ExecutorProject> ExecutorProject_parent() const { return Udm::ParentAttr<PICML::ExecutorProject>(impl, meta_ExecutorProject_parent); }
+
+		static Uml::CompositionParentRole meta_ServantProject_parent;
+		Udm::ParentAttr<PICML::ServantProject> ServantProject_parent() const { return Udm::ParentAttr<PICML::ServantProject>(impl, meta_ServantProject_parent); }
+
+		static Uml::CompositionParentRole meta_StubProject_parent;
+		Udm::ParentAttr<PICML::StubProject> StubProject_parent() const { return Udm::ParentAttr<PICML::StubProject>(impl, meta_StubProject_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_ImplementationArtifactReference(*this);};
 	};
 
 	class  CommonPortAttrs :  virtual public MgaObject {
@@ -5319,6 +5252,42 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_ComponentInfoProperty(*this);};
 	};
 
+	class  ComponentConfigProperty :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		ComponentConfigProperty() { }
+		ComponentConfigProperty(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		ComponentConfigProperty(const ComponentConfigProperty &master) : MgaObject(master), Object(master) { }
+		static ComponentConfigProperty Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static ComponentConfigProperty Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		ComponentConfigProperty CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		ComponentConfigProperty CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<ComponentConfigProperty> Instances() { return Udm::InstantiatedAttr<PICML::ComponentConfigProperty>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<ComponentConfigProperty, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ComponentConfigProperty, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::ComponentConfigProperty> Derived() { return Udm::DerivedAttr<PICML::ComponentConfigProperty>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::ComponentConfigProperty, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ComponentConfigProperty, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::ComponentConfigProperty> Archetype() { return Udm::ArchetypeAttr<PICML::ComponentConfigProperty>(impl);}
+
+		static Uml::CompositionParentRole meta_ComponentContainer_parent;
+		Udm::ParentAttr<PICML::ComponentContainer> ComponentContainer_parent() const { return Udm::ParentAttr<PICML::ComponentContainer>(impl, meta_ComponentContainer_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_dstComponentConfigProperty_end_;
+		Udm::AssocEndAttr<PICML::Property> dstComponentConfigProperty_end() const { return Udm::AssocEndAttr<PICML::Property>(impl, meta_dstComponentConfigProperty_end_); }
+
+		static Uml::AssociationRole meta_srcComponentConfigProperty_end_;
+		Udm::AssocEndAttr<PICML::ComponentRef> srcComponentConfigProperty_end() const { return Udm::AssocEndAttr<PICML::ComponentRef>(impl, meta_srcComponentConfigProperty_end_); }
+
+		virtual void Accept(Visitor &v){v.Visit_ComponentConfigProperty(*this);};
+	};
+
 	class  ComponentContainer :  public MgaObject {
 	 public:
 		static Uml::Class meta;
@@ -5342,24 +5311,24 @@ namespace PICML {
 
 		Udm::ArchetypeAttr<PICML::ComponentContainer> Archetype() { return Udm::ArchetypeAttr<PICML::ComponentContainer>(impl);}
 
-		static Uml::CompositionChildRole meta_ComponentConfigProperty_children;
-		Udm::ChildrenAttr<PICML::ComponentConfigProperty> ComponentConfigProperty_children() const { return Udm::ChildrenAttr<PICML::ComponentConfigProperty>(impl, meta_ComponentConfigProperty_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentConfigProperty, Pred> ComponentConfigProperty_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentConfigProperty, Pred>(impl, meta_ComponentConfigProperty_children); }
+		static Uml::CompositionChildRole meta_ComponentPropertyDescription_children;
+		Udm::ChildrenAttr<PICML::ComponentPropertyDescription> ComponentPropertyDescription_children() const { return Udm::ChildrenAttr<PICML::ComponentPropertyDescription>(impl, meta_ComponentPropertyDescription_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentPropertyDescription, Pred> ComponentPropertyDescription_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentPropertyDescription, Pred>(impl, meta_ComponentPropertyDescription_children); }
 
 		static Uml::CompositionChildRole meta_ComponentRef_child;
 		Udm::ChildAttr<PICML::ComponentRef> ComponentRef_child() const { return Udm::ChildAttr<PICML::ComponentRef>(impl, meta_ComponentRef_child); }
+
+		static Uml::CompositionChildRole meta_ComponentProperty_children;
+		Udm::ChildrenAttr<PICML::ComponentProperty> ComponentProperty_children() const { return Udm::ChildrenAttr<PICML::ComponentProperty>(impl, meta_ComponentProperty_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentProperty, Pred> ComponentProperty_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentProperty, Pred>(impl, meta_ComponentProperty_children); }
 
 		static Uml::CompositionChildRole meta_ComponentInfoProperty_children;
 		Udm::ChildrenAttr<PICML::ComponentInfoProperty> ComponentInfoProperty_children() const { return Udm::ChildrenAttr<PICML::ComponentInfoProperty>(impl, meta_ComponentInfoProperty_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentInfoProperty, Pred> ComponentInfoProperty_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentInfoProperty, Pred>(impl, meta_ComponentInfoProperty_children); }
 
-		static Uml::CompositionChildRole meta_ComponentPropertyDescription_children;
-		Udm::ChildrenAttr<PICML::ComponentPropertyDescription> ComponentPropertyDescription_children() const { return Udm::ChildrenAttr<PICML::ComponentPropertyDescription>(impl, meta_ComponentPropertyDescription_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentPropertyDescription, Pred> ComponentPropertyDescription_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentPropertyDescription, Pred>(impl, meta_ComponentPropertyDescription_children); }
-
-		static Uml::CompositionChildRole meta_ComponentProperty_children;
-		Udm::ChildrenAttr<PICML::ComponentProperty> ComponentProperty_children() const { return Udm::ChildrenAttr<PICML::ComponentProperty>(impl, meta_ComponentProperty_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentProperty, Pred> ComponentProperty_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentProperty, Pred>(impl, meta_ComponentProperty_children); }
+		static Uml::CompositionChildRole meta_ComponentConfigProperty_children;
+		Udm::ChildrenAttr<PICML::ComponentConfigProperty> ComponentConfigProperty_children() const { return Udm::ChildrenAttr<PICML::ComponentConfigProperty>(impl, meta_ComponentConfigProperty_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentConfigProperty, Pred> ComponentConfigProperty_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentConfigProperty, Pred>(impl, meta_ComponentConfigProperty_children); }
 
 		static Uml::CompositionChildRole meta_Property_children;
 		Udm::ChildrenAttr<PICML::Property> Property_children() const { return Udm::ChildrenAttr<PICML::Property>(impl, meta_Property_children); }
@@ -5368,14 +5337,14 @@ namespace PICML {
 		Udm::ChildrenAttr<PICML::ComponentInfoProperty> ComponentInfoProperty_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentInfoProperty>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::ComponentInfoProperty, Pred> ComponentInfoProperty_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentInfoProperty, Pred>(impl, Udm::NULLCHILDROLE); }
 
+		Udm::ChildrenAttr<PICML::ComponentConfigProperty> ComponentConfigProperty_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentConfigProperty>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ComponentConfigProperty, Pred> ComponentConfigProperty_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentConfigProperty, Pred>(impl, Udm::NULLCHILDROLE); }
+
 		Udm::ChildrenAttr<PICML::ComponentProperty> ComponentProperty_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentProperty>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::ComponentProperty, Pred> ComponentProperty_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentProperty, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::ComponentPropertyDescription> ComponentPropertyDescription_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentPropertyDescription>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::ComponentPropertyDescription, Pred> ComponentPropertyDescription_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentPropertyDescription, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ComponentConfigProperty> ComponentConfigProperty_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentConfigProperty>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ComponentConfigProperty, Pred> ComponentConfigProperty_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentConfigProperty, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::Property> Property_kind_children() const { return Udm::ChildrenAttr<PICML::Property>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::Property, Pred> Property_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Property, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -5475,91 +5444,40 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_ComponentPropertyDescription(*this);};
 	};
 
-	class  ComponentConfigProperty :  public MgaObject {
+	class  package :  public MgaObject {
 	 public:
 		static Uml::Class meta;
 
-		ComponentConfigProperty() { }
-		ComponentConfigProperty(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		ComponentConfigProperty(const ComponentConfigProperty &master) : MgaObject(master), Object(master) { }
-		static ComponentConfigProperty Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		package() { }
+		package(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		package(const package &master) : MgaObject(master), Object(master) { }
+		static package Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static ComponentConfigProperty Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		static package Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		ComponentConfigProperty CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		package CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		ComponentConfigProperty CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+		package CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::InstantiatedAttr<ComponentConfigProperty> Instances() { return Udm::InstantiatedAttr<PICML::ComponentConfigProperty>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<ComponentConfigProperty, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ComponentConfigProperty, Pred>(impl);}
+		Udm::InstantiatedAttr<package> Instances() { return Udm::InstantiatedAttr<PICML::package>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<package, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::package, Pred>(impl);}
 
-		Udm::DerivedAttr<PICML::ComponentConfigProperty> Derived() { return Udm::DerivedAttr<PICML::ComponentConfigProperty>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::ComponentConfigProperty, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ComponentConfigProperty, Pred>(impl);}
+		Udm::DerivedAttr<PICML::package> Derived() { return Udm::DerivedAttr<PICML::package>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::package, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::package, Pred>(impl);}
 
-		Udm::ArchetypeAttr<PICML::ComponentConfigProperty> Archetype() { return Udm::ArchetypeAttr<PICML::ComponentConfigProperty>(impl);}
+		Udm::ArchetypeAttr<PICML::package> Archetype() { return Udm::ArchetypeAttr<PICML::package>(impl);}
 
-		static Uml::CompositionParentRole meta_ComponentContainer_parent;
-		Udm::ParentAttr<PICML::ComponentContainer> ComponentContainer_parent() const { return Udm::ParentAttr<PICML::ComponentContainer>(impl, meta_ComponentContainer_parent); }
+		static Uml::CompositionParentRole meta_TopLevelPackageContainer_parent;
+		Udm::ParentAttr<PICML::TopLevelPackageContainer> TopLevelPackageContainer_parent() const { return Udm::ParentAttr<PICML::TopLevelPackageContainer>(impl, meta_TopLevelPackageContainer_parent); }
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_dstComponentConfigProperty_end_;
-		Udm::AssocEndAttr<PICML::Property> dstComponentConfigProperty_end() const { return Udm::AssocEndAttr<PICML::Property>(impl, meta_dstComponentConfigProperty_end_); }
+		static Uml::AssociationRole meta_dstpackage_end_;
+		Udm::AssocEndAttr<PICML::PackageConfigurationReference> dstpackage_end() const { return Udm::AssocEndAttr<PICML::PackageConfigurationReference>(impl, meta_dstpackage_end_); }
 
-		static Uml::AssociationRole meta_srcComponentConfigProperty_end_;
-		Udm::AssocEndAttr<PICML::ComponentRef> srcComponentConfigProperty_end() const { return Udm::AssocEndAttr<PICML::ComponentRef>(impl, meta_srcComponentConfigProperty_end_); }
+		static Uml::AssociationRole meta_srcpackage_end_;
+		Udm::AssocEndAttr<PICML::TopLevelPackage> srcpackage_end() const { return Udm::AssocEndAttr<PICML::TopLevelPackage>(impl, meta_srcpackage_end_); }
 
-		virtual void Accept(Visitor &v){v.Visit_ComponentConfigProperty(*this);};
-	};
-
-	class  TopLevelPackageContainer :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		TopLevelPackageContainer() { }
-		TopLevelPackageContainer(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		TopLevelPackageContainer(const TopLevelPackageContainer &master) : MgaObject(master), Object(master) { }
-		static TopLevelPackageContainer Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static TopLevelPackageContainer Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		TopLevelPackageContainer CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		TopLevelPackageContainer CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<TopLevelPackageContainer> Instances() { return Udm::InstantiatedAttr<PICML::TopLevelPackageContainer>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<TopLevelPackageContainer, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::TopLevelPackageContainer, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::TopLevelPackageContainer> Derived() { return Udm::DerivedAttr<PICML::TopLevelPackageContainer>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::TopLevelPackageContainer, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::TopLevelPackageContainer, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::TopLevelPackageContainer> Archetype() { return Udm::ArchetypeAttr<PICML::TopLevelPackageContainer>(impl);}
-
-		static Uml::CompositionChildRole meta_PackageConfigurationReference_child;
-		Udm::ChildAttr<PICML::PackageConfigurationReference> PackageConfigurationReference_child() const { return Udm::ChildAttr<PICML::PackageConfigurationReference>(impl, meta_PackageConfigurationReference_child); }
-
-		static Uml::CompositionChildRole meta_TopLevelPackage_child;
-		Udm::ChildAttr<PICML::TopLevelPackage> TopLevelPackage_child() const { return Udm::ChildAttr<PICML::TopLevelPackage>(impl, meta_TopLevelPackage_child); }
-
-		static Uml::CompositionChildRole meta_package_child;
-		Udm::ChildAttr<PICML::package> package_child() const { return Udm::ChildAttr<PICML::package>(impl, meta_package_child); }
-
-		Udm::ChildrenAttr<PICML::PackageConfigurationReference> PackageConfigurationReference_kind_children() const { return Udm::ChildrenAttr<PICML::PackageConfigurationReference>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::PackageConfigurationReference, Pred> PackageConfigurationReference_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageConfigurationReference, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::TopLevelPackage> TopLevelPackage_kind_children() const { return Udm::ChildrenAttr<PICML::TopLevelPackage>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::TopLevelPackage, Pred> TopLevelPackage_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TopLevelPackage, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::package> package_kind_children() const { return Udm::ChildrenAttr<PICML::package>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::package, Pred> package_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::package, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		static Uml::CompositionParentRole meta_TopLevelPackages_parent;
-		Udm::ParentAttr<PICML::TopLevelPackages> TopLevelPackages_parent() const { return Udm::ParentAttr<PICML::TopLevelPackages>(impl, meta_TopLevelPackages_parent); }
-
-		Udm::ParentAttr<PICML::TopLevelPackages> parent() const { return Udm::ParentAttr<PICML::TopLevelPackages>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_TopLevelPackageContainer(*this);};
+		virtual void Accept(Visitor &v){v.Visit_package(*this);};
 	};
 
 	class  TopLevelPackage :  public MgaObject {
@@ -5595,40 +5513,55 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_TopLevelPackage(*this);};
 	};
 
-	class  package :  public MgaObject {
+	class  TopLevelPackageContainer :  public MgaObject {
 	 public:
 		static Uml::Class meta;
 
-		package() { }
-		package(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		package(const package &master) : MgaObject(master), Object(master) { }
-		static package Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		TopLevelPackageContainer() { }
+		TopLevelPackageContainer(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		TopLevelPackageContainer(const TopLevelPackageContainer &master) : MgaObject(master), Object(master) { }
+		static TopLevelPackageContainer Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static package Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		static TopLevelPackageContainer Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		package CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		TopLevelPackageContainer CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		package CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+		TopLevelPackageContainer CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::InstantiatedAttr<package> Instances() { return Udm::InstantiatedAttr<PICML::package>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<package, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::package, Pred>(impl);}
+		Udm::InstantiatedAttr<TopLevelPackageContainer> Instances() { return Udm::InstantiatedAttr<PICML::TopLevelPackageContainer>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<TopLevelPackageContainer, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::TopLevelPackageContainer, Pred>(impl);}
 
-		Udm::DerivedAttr<PICML::package> Derived() { return Udm::DerivedAttr<PICML::package>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::package, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::package, Pred>(impl);}
+		Udm::DerivedAttr<PICML::TopLevelPackageContainer> Derived() { return Udm::DerivedAttr<PICML::TopLevelPackageContainer>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::TopLevelPackageContainer, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::TopLevelPackageContainer, Pred>(impl);}
 
-		Udm::ArchetypeAttr<PICML::package> Archetype() { return Udm::ArchetypeAttr<PICML::package>(impl);}
+		Udm::ArchetypeAttr<PICML::TopLevelPackageContainer> Archetype() { return Udm::ArchetypeAttr<PICML::TopLevelPackageContainer>(impl);}
 
-		static Uml::CompositionParentRole meta_TopLevelPackageContainer_parent;
-		Udm::ParentAttr<PICML::TopLevelPackageContainer> TopLevelPackageContainer_parent() const { return Udm::ParentAttr<PICML::TopLevelPackageContainer>(impl, meta_TopLevelPackageContainer_parent); }
+		static Uml::CompositionChildRole meta_TopLevelPackage_child;
+		Udm::ChildAttr<PICML::TopLevelPackage> TopLevelPackage_child() const { return Udm::ChildAttr<PICML::TopLevelPackage>(impl, meta_TopLevelPackage_child); }
 
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_dstpackage_end_;
-		Udm::AssocEndAttr<PICML::PackageConfigurationReference> dstpackage_end() const { return Udm::AssocEndAttr<PICML::PackageConfigurationReference>(impl, meta_dstpackage_end_); }
+		static Uml::CompositionChildRole meta_package_child;
+		Udm::ChildAttr<PICML::package> package_child() const { return Udm::ChildAttr<PICML::package>(impl, meta_package_child); }
 
-		static Uml::AssociationRole meta_srcpackage_end_;
-		Udm::AssocEndAttr<PICML::TopLevelPackage> srcpackage_end() const { return Udm::AssocEndAttr<PICML::TopLevelPackage>(impl, meta_srcpackage_end_); }
+		static Uml::CompositionChildRole meta_PackageConfigurationReference_child;
+		Udm::ChildAttr<PICML::PackageConfigurationReference> PackageConfigurationReference_child() const { return Udm::ChildAttr<PICML::PackageConfigurationReference>(impl, meta_PackageConfigurationReference_child); }
 
-		virtual void Accept(Visitor &v){v.Visit_package(*this);};
+		Udm::ChildrenAttr<PICML::PackageConfigurationReference> PackageConfigurationReference_kind_children() const { return Udm::ChildrenAttr<PICML::PackageConfigurationReference>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::PackageConfigurationReference, Pred> PackageConfigurationReference_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageConfigurationReference, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::package> package_kind_children() const { return Udm::ChildrenAttr<PICML::package>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::package, Pred> package_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::package, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::TopLevelPackage> TopLevelPackage_kind_children() const { return Udm::ChildrenAttr<PICML::TopLevelPackage>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::TopLevelPackage, Pred> TopLevelPackage_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TopLevelPackage, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		static Uml::CompositionParentRole meta_TopLevelPackages_parent;
+		Udm::ParentAttr<PICML::TopLevelPackages> TopLevelPackages_parent() const { return Udm::ParentAttr<PICML::TopLevelPackages>(impl, meta_TopLevelPackages_parent); }
+
+		Udm::ParentAttr<PICML::TopLevelPackages> parent() const { return Udm::ParentAttr<PICML::TopLevelPackages>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_TopLevelPackageContainer(*this);};
 	};
 
 	class  ComponentPackageReference :  public MgaObject {
@@ -5721,13 +5654,13 @@ namespace PICML {
 		Udm::AssocAttr<PICML::ComponentPackageReference> referedbyComponentPackageReference() const { return Udm::AssocAttr<PICML::ComponentPackageReference>(impl, meta_referedbyComponentPackageReference); }
 		template <class Pred> Udm::AssocAttr<PICML::ComponentPackageReference, Pred > referedbyComponentPackageReference_sorted(const Pred &) const { return Udm::AssocAttr<PICML::ComponentPackageReference, Pred>(impl, meta_referedbyComponentPackageReference); }
 
-		static Uml::AssociationRole meta_dstPackageInfoProperty, meta_dstPackageInfoProperty_rev;
-		Udm::AClassAssocAttr<PICML::PackageInfoProperty, PICML::Property> dstPackageInfoProperty() const { return Udm::AClassAssocAttr<PICML::PackageInfoProperty, PICML::Property>(impl, meta_dstPackageInfoProperty, meta_dstPackageInfoProperty_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::PackageInfoProperty, PICML::Property, Pred> dstPackageInfoProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::PackageInfoProperty, PICML::Property, Pred>(impl, meta_dstPackageInfoProperty, meta_dstPackageInfoProperty_rev); }
-
 		static Uml::AssociationRole meta_dstPackageConfigProperty, meta_dstPackageConfigProperty_rev;
 		Udm::AClassAssocAttr<PICML::PackageConfigProperty, PICML::Property> dstPackageConfigProperty() const { return Udm::AClassAssocAttr<PICML::PackageConfigProperty, PICML::Property>(impl, meta_dstPackageConfigProperty, meta_dstPackageConfigProperty_rev); }
 		template<class Pred> Udm::AClassAssocAttr<PICML::PackageConfigProperty, PICML::Property, Pred> dstPackageConfigProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::PackageConfigProperty, PICML::Property, Pred>(impl, meta_dstPackageConfigProperty, meta_dstPackageConfigProperty_rev); }
+
+		static Uml::AssociationRole meta_dstPackageInfoProperty, meta_dstPackageInfoProperty_rev;
+		Udm::AClassAssocAttr<PICML::PackageInfoProperty, PICML::Property> dstPackageInfoProperty() const { return Udm::AClassAssocAttr<PICML::PackageInfoProperty, PICML::Property>(impl, meta_dstPackageInfoProperty, meta_dstPackageInfoProperty_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::PackageInfoProperty, PICML::Property, Pred> dstPackageInfoProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::PackageInfoProperty, PICML::Property, Pred>(impl, meta_dstPackageInfoProperty, meta_dstPackageInfoProperty_rev); }
 
 		static Uml::AssociationRole meta_dstPackageInterface, meta_dstPackageInterface_rev;
 		Udm::AClassPointerAttr<PICML::PackageInterface, PICML::ComponentRef> dstPackageInterface() const { return Udm::AClassPointerAttr<PICML::PackageInterface, PICML::ComponentRef>(impl, meta_dstPackageInterface, meta_dstPackageInterface_rev); }
@@ -5743,114 +5676,6 @@ namespace PICML {
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		virtual void Accept(Visitor &v){v.Visit_ComponentPackage(*this);};
-	};
-
-	class  PackageInterface :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		PackageInterface() { }
-		PackageInterface(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		PackageInterface(const PackageInterface &master) : MgaObject(master), Object(master) { }
-		static PackageInterface Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static PackageInterface Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		PackageInterface CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		PackageInterface CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<PackageInterface> Instances() { return Udm::InstantiatedAttr<PICML::PackageInterface>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<PackageInterface, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::PackageInterface, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::PackageInterface> Derived() { return Udm::DerivedAttr<PICML::PackageInterface>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::PackageInterface, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::PackageInterface, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::PackageInterface> Archetype() { return Udm::ArchetypeAttr<PICML::PackageInterface>(impl);}
-
-		static Uml::CompositionParentRole meta_PackageContainer_parent;
-		Udm::ParentAttr<PICML::PackageContainer> PackageContainer_parent() const { return Udm::ParentAttr<PICML::PackageContainer>(impl, meta_PackageContainer_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_srcPackageInterface_end_;
-		Udm::AssocEndAttr<PICML::ComponentPackage> srcPackageInterface_end() const { return Udm::AssocEndAttr<PICML::ComponentPackage>(impl, meta_srcPackageInterface_end_); }
-
-		static Uml::AssociationRole meta_dstPackageInterface_end_;
-		Udm::AssocEndAttr<PICML::ComponentRef> dstPackageInterface_end() const { return Udm::AssocEndAttr<PICML::ComponentRef>(impl, meta_dstPackageInterface_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_PackageInterface(*this);};
-	};
-
-	class  Implementation :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		Implementation() { }
-		Implementation(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		Implementation(const Implementation &master) : MgaObject(master), Object(master) { }
-		static Implementation Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static Implementation Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		Implementation CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		Implementation CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<Implementation> Instances() { return Udm::InstantiatedAttr<PICML::Implementation>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Implementation, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Implementation, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::Implementation> Derived() { return Udm::DerivedAttr<PICML::Implementation>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Implementation, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Implementation, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::Implementation> Archetype() { return Udm::ArchetypeAttr<PICML::Implementation>(impl);}
-
-		static Uml::CompositionParentRole meta_PackageContainer_parent;
-		Udm::ParentAttr<PICML::PackageContainer> PackageContainer_parent() const { return Udm::ParentAttr<PICML::PackageContainer>(impl, meta_PackageContainer_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_dstImplementation_end_;
-		Udm::AssocEndAttr<PICML::ComponentImplementationReference> dstImplementation_end() const { return Udm::AssocEndAttr<PICML::ComponentImplementationReference>(impl, meta_dstImplementation_end_); }
-
-		static Uml::AssociationRole meta_srcImplementation_end_;
-		Udm::AssocEndAttr<PICML::ComponentPackage> srcImplementation_end() const { return Udm::AssocEndAttr<PICML::ComponentPackage>(impl, meta_srcImplementation_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_Implementation(*this);};
-	};
-
-	class  PackageConfigProperty :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		PackageConfigProperty() { }
-		PackageConfigProperty(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		PackageConfigProperty(const PackageConfigProperty &master) : MgaObject(master), Object(master) { }
-		static PackageConfigProperty Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static PackageConfigProperty Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		PackageConfigProperty CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		PackageConfigProperty CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<PackageConfigProperty> Instances() { return Udm::InstantiatedAttr<PICML::PackageConfigProperty>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<PackageConfigProperty, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::PackageConfigProperty, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::PackageConfigProperty> Derived() { return Udm::DerivedAttr<PICML::PackageConfigProperty>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::PackageConfigProperty, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::PackageConfigProperty, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::PackageConfigProperty> Archetype() { return Udm::ArchetypeAttr<PICML::PackageConfigProperty>(impl);}
-
-		static Uml::CompositionParentRole meta_PackageContainer_parent;
-		Udm::ParentAttr<PICML::PackageContainer> PackageContainer_parent() const { return Udm::ParentAttr<PICML::PackageContainer>(impl, meta_PackageContainer_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_srcPackageConfigProperty_end_;
-		Udm::AssocEndAttr<PICML::ComponentPackage> srcPackageConfigProperty_end() const { return Udm::AssocEndAttr<PICML::ComponentPackage>(impl, meta_srcPackageConfigProperty_end_); }
-
-		static Uml::AssociationRole meta_dstPackageConfigProperty_end_;
-		Udm::AssocEndAttr<PICML::Property> dstPackageConfigProperty_end() const { return Udm::AssocEndAttr<PICML::Property>(impl, meta_dstPackageConfigProperty_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_PackageConfigProperty(*this);};
 	};
 
 	class  PackageInfoProperty :  public MgaObject {
@@ -5889,6 +5714,42 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_PackageInfoProperty(*this);};
 	};
 
+	class  PackageConfigProperty :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		PackageConfigProperty() { }
+		PackageConfigProperty(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		PackageConfigProperty(const PackageConfigProperty &master) : MgaObject(master), Object(master) { }
+		static PackageConfigProperty Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static PackageConfigProperty Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		PackageConfigProperty CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		PackageConfigProperty CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<PackageConfigProperty> Instances() { return Udm::InstantiatedAttr<PICML::PackageConfigProperty>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<PackageConfigProperty, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::PackageConfigProperty, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::PackageConfigProperty> Derived() { return Udm::DerivedAttr<PICML::PackageConfigProperty>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::PackageConfigProperty, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::PackageConfigProperty, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::PackageConfigProperty> Archetype() { return Udm::ArchetypeAttr<PICML::PackageConfigProperty>(impl);}
+
+		static Uml::CompositionParentRole meta_PackageContainer_parent;
+		Udm::ParentAttr<PICML::PackageContainer> PackageContainer_parent() const { return Udm::ParentAttr<PICML::PackageContainer>(impl, meta_PackageContainer_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_srcPackageConfigProperty_end_;
+		Udm::AssocEndAttr<PICML::ComponentPackage> srcPackageConfigProperty_end() const { return Udm::AssocEndAttr<PICML::ComponentPackage>(impl, meta_srcPackageConfigProperty_end_); }
+
+		static Uml::AssociationRole meta_dstPackageConfigProperty_end_;
+		Udm::AssocEndAttr<PICML::Property> dstPackageConfigProperty_end() const { return Udm::AssocEndAttr<PICML::Property>(impl, meta_dstPackageConfigProperty_end_); }
+
+		virtual void Accept(Visitor &v){v.Visit_PackageConfigProperty(*this);};
+	};
+
 	class  PackageContainer :  public MgaObject {
 	 public:
 		static Uml::Class meta;
@@ -5916,31 +5777,31 @@ namespace PICML {
 		Udm::ChildrenAttr<PICML::PackageInfoProperty> PackageInfoProperty_children() const { return Udm::ChildrenAttr<PICML::PackageInfoProperty>(impl, meta_PackageInfoProperty_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML::PackageInfoProperty, Pred> PackageInfoProperty_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageInfoProperty, Pred>(impl, meta_PackageInfoProperty_children); }
 
+		static Uml::CompositionChildRole meta_ComponentPackage_child;
+		Udm::ChildAttr<PICML::ComponentPackage> ComponentPackage_child() const { return Udm::ChildAttr<PICML::ComponentPackage>(impl, meta_ComponentPackage_child); }
+
 		static Uml::CompositionChildRole meta_Property_children;
 		Udm::ChildrenAttr<PICML::Property> Property_children() const { return Udm::ChildrenAttr<PICML::Property>(impl, meta_Property_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML::Property, Pred> Property_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Property, Pred>(impl, meta_Property_children); }
 
-		static Uml::CompositionChildRole meta_ComponentPackage_child;
-		Udm::ChildAttr<PICML::ComponentPackage> ComponentPackage_child() const { return Udm::ChildAttr<PICML::ComponentPackage>(impl, meta_ComponentPackage_child); }
-
-		static Uml::CompositionChildRole meta_Implementation_children;
-		Udm::ChildrenAttr<PICML::Implementation> Implementation_children() const { return Udm::ChildrenAttr<PICML::Implementation>(impl, meta_Implementation_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Implementation, Pred> Implementation_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Implementation, Pred>(impl, meta_Implementation_children); }
-
-		static Uml::CompositionChildRole meta_ComponentImplementationReference_children;
-		Udm::ChildrenAttr<PICML::ComponentImplementationReference> ComponentImplementationReference_children() const { return Udm::ChildrenAttr<PICML::ComponentImplementationReference>(impl, meta_ComponentImplementationReference_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentImplementationReference, Pred> ComponentImplementationReference_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentImplementationReference, Pred>(impl, meta_ComponentImplementationReference_children); }
+		static Uml::CompositionChildRole meta_PackageConfigProperty_children;
+		Udm::ChildrenAttr<PICML::PackageConfigProperty> PackageConfigProperty_children() const { return Udm::ChildrenAttr<PICML::PackageConfigProperty>(impl, meta_PackageConfigProperty_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::PackageConfigProperty, Pred> PackageConfigProperty_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageConfigProperty, Pred>(impl, meta_PackageConfigProperty_children); }
 
 		static Uml::CompositionChildRole meta_ComponentRef_children;
 		Udm::ChildrenAttr<PICML::ComponentRef> ComponentRef_children() const { return Udm::ChildrenAttr<PICML::ComponentRef>(impl, meta_ComponentRef_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentRef, Pred> ComponentRef_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentRef, Pred>(impl, meta_ComponentRef_children); }
 
+		static Uml::CompositionChildRole meta_ComponentImplementationReference_children;
+		Udm::ChildrenAttr<PICML::ComponentImplementationReference> ComponentImplementationReference_children() const { return Udm::ChildrenAttr<PICML::ComponentImplementationReference>(impl, meta_ComponentImplementationReference_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentImplementationReference, Pred> ComponentImplementationReference_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentImplementationReference, Pred>(impl, meta_ComponentImplementationReference_children); }
+
+		static Uml::CompositionChildRole meta_Implementation_children;
+		Udm::ChildrenAttr<PICML::Implementation> Implementation_children() const { return Udm::ChildrenAttr<PICML::Implementation>(impl, meta_Implementation_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Implementation, Pred> Implementation_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Implementation, Pred>(impl, meta_Implementation_children); }
+
 		static Uml::CompositionChildRole meta_PackageInterface_child;
 		Udm::ChildAttr<PICML::PackageInterface> PackageInterface_child() const { return Udm::ChildAttr<PICML::PackageInterface>(impl, meta_PackageInterface_child); }
-
-		static Uml::CompositionChildRole meta_PackageConfigProperty_children;
-		Udm::ChildrenAttr<PICML::PackageConfigProperty> PackageConfigProperty_children() const { return Udm::ChildrenAttr<PICML::PackageConfigProperty>(impl, meta_PackageConfigProperty_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::PackageConfigProperty, Pred> PackageConfigProperty_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageConfigProperty, Pred>(impl, meta_PackageConfigProperty_children); }
 
 		Udm::ChildrenAttr<PICML::ComponentImplementationReference> ComponentImplementationReference_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentImplementationReference>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::ComponentImplementationReference, Pred> ComponentImplementationReference_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentImplementationReference, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -5948,17 +5809,17 @@ namespace PICML {
 		Udm::ChildrenAttr<PICML::ComponentPackage> ComponentPackage_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentPackage>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::ComponentPackage, Pred> ComponentPackage_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentPackage, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::PackageInterface> PackageInterface_kind_children() const { return Udm::ChildrenAttr<PICML::PackageInterface>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::PackageInterface, Pred> PackageInterface_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageInterface, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Implementation> Implementation_kind_children() const { return Udm::ChildrenAttr<PICML::Implementation>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Implementation, Pred> Implementation_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Implementation, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ChildrenAttr<PICML::PackageInfoProperty> PackageInfoProperty_kind_children() const { return Udm::ChildrenAttr<PICML::PackageInfoProperty>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::PackageInfoProperty, Pred> PackageInfoProperty_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageInfoProperty, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::PackageConfigProperty> PackageConfigProperty_kind_children() const { return Udm::ChildrenAttr<PICML::PackageConfigProperty>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::PackageConfigProperty, Pred> PackageConfigProperty_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageConfigProperty, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::PackageInfoProperty> PackageInfoProperty_kind_children() const { return Udm::ChildrenAttr<PICML::PackageInfoProperty>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::PackageInfoProperty, Pred> PackageInfoProperty_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageInfoProperty, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ChildrenAttr<PICML::Implementation> Implementation_kind_children() const { return Udm::ChildrenAttr<PICML::Implementation>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Implementation, Pred> Implementation_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Implementation, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::PackageInterface> PackageInterface_kind_children() const { return Udm::ChildrenAttr<PICML::PackageInterface>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::PackageInterface, Pred> PackageInterface_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PackageInterface, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::Property> Property_kind_children() const { return Udm::ChildrenAttr<PICML::Property>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::Property, Pred> Property_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Property, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -5977,6 +5838,117 @@ namespace PICML {
 
 		Udm::ParentAttr<PICML::ComponentPackages> parent() const { return Udm::ParentAttr<PICML::ComponentPackages>(impl, Udm::NULLPARENTROLE); }
 		virtual void Accept(Visitor &v){v.Visit_PackageContainer(*this);};
+	};
+
+	class  Implementation :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		Implementation() { }
+		Implementation(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		Implementation(const Implementation &master) : MgaObject(master), Object(master) { }
+		static Implementation Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static Implementation Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		Implementation CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		Implementation CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<Implementation> Instances() { return Udm::InstantiatedAttr<PICML::Implementation>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Implementation, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Implementation, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::Implementation> Derived() { return Udm::DerivedAttr<PICML::Implementation>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Implementation, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Implementation, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::Implementation> Archetype() { return Udm::ArchetypeAttr<PICML::Implementation>(impl);}
+
+		static Uml::CompositionParentRole meta_PackageContainer_parent;
+		Udm::ParentAttr<PICML::PackageContainer> PackageContainer_parent() const { return Udm::ParentAttr<PICML::PackageContainer>(impl, meta_PackageContainer_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_dstImplementation_end_;
+		Udm::AssocEndAttr<PICML::ComponentImplementationReference> dstImplementation_end() const { return Udm::AssocEndAttr<PICML::ComponentImplementationReference>(impl, meta_dstImplementation_end_); }
+
+		static Uml::AssociationRole meta_srcImplementation_end_;
+		Udm::AssocEndAttr<PICML::ComponentPackage> srcImplementation_end() const { return Udm::AssocEndAttr<PICML::ComponentPackage>(impl, meta_srcImplementation_end_); }
+
+		virtual void Accept(Visitor &v){v.Visit_Implementation(*this);};
+	};
+
+	class  PackageInterface :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		PackageInterface() { }
+		PackageInterface(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		PackageInterface(const PackageInterface &master) : MgaObject(master), Object(master) { }
+		static PackageInterface Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static PackageInterface Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		PackageInterface CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		PackageInterface CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<PackageInterface> Instances() { return Udm::InstantiatedAttr<PICML::PackageInterface>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<PackageInterface, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::PackageInterface, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::PackageInterface> Derived() { return Udm::DerivedAttr<PICML::PackageInterface>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::PackageInterface, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::PackageInterface, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::PackageInterface> Archetype() { return Udm::ArchetypeAttr<PICML::PackageInterface>(impl);}
+
+		static Uml::CompositionParentRole meta_PackageContainer_parent;
+		Udm::ParentAttr<PICML::PackageContainer> PackageContainer_parent() const { return Udm::ParentAttr<PICML::PackageContainer>(impl, meta_PackageContainer_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_srcPackageInterface_end_;
+		Udm::AssocEndAttr<PICML::ComponentPackage> srcPackageInterface_end() const { return Udm::AssocEndAttr<PICML::ComponentPackage>(impl, meta_srcPackageInterface_end_); }
+
+		static Uml::AssociationRole meta_dstPackageInterface_end_;
+		Udm::AssocEndAttr<PICML::ComponentRef> dstPackageInterface_end() const { return Udm::AssocEndAttr<PICML::ComponentRef>(impl, meta_dstPackageInterface_end_); }
+
+		virtual void Accept(Visitor &v){v.Visit_PackageInterface(*this);};
+	};
+
+	class  DataType :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		DataType() { }
+		DataType(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		DataType(const DataType &master) : MgaObject(master), Object(master) { }
+		static DataType Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static DataType Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		DataType CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		DataType CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<DataType> Instances() { return Udm::InstantiatedAttr<PICML::DataType>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<DataType, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::DataType, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::DataType> Derived() { return Udm::DerivedAttr<PICML::DataType>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::DataType, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::DataType, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::DataType> Archetype() { return Udm::ArchetypeAttr<PICML::DataType>(impl);}
+
+		static Uml::AssociationRole meta_ref;
+		Udm::PointerAttr<PICML::PredefinedType> ref() const { return Udm::PointerAttr<PICML::PredefinedType>(impl, meta_ref); }
+
+		static Uml::CompositionParentRole meta_ComponentPropertyDescription_parent;
+		Udm::ParentAttr<PICML::ComponentPropertyDescription> ComponentPropertyDescription_parent() const { return Udm::ParentAttr<PICML::ComponentPropertyDescription>(impl, meta_ComponentPropertyDescription_parent); }
+
+		static Uml::CompositionParentRole meta_SatisfierProperty_parent;
+		Udm::ParentAttr<PICML::SatisfierProperty> SatisfierProperty_parent() const { return Udm::ParentAttr<PICML::SatisfierProperty>(impl, meta_SatisfierProperty_parent); }
+
+		static Uml::CompositionParentRole meta_Property_parent;
+		Udm::ParentAttr<PICML::Property> Property_parent() const { return Udm::ParentAttr<PICML::Property>(impl, meta_Property_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_DataType(*this);};
 	};
 
 	class  RequirementBase :  public MgaObject {
@@ -6016,58 +5988,6 @@ namespace PICML {
 		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
-	};
-
-	class  Requirement :  public RequirementBase {
-	 public:
-		static Uml::Class meta;
-
-		Requirement() { }
-		Requirement(Udm::ObjectImpl *impl) : RequirementBase(impl), Object(impl) { }
-		Requirement(const Requirement &master) : RequirementBase(master), Object(master) { }
-		static Requirement Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static Requirement Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		Requirement CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		Requirement CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<Requirement> Instances() { return Udm::InstantiatedAttr<PICML::Requirement>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Requirement, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Requirement, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::Requirement> Derived() { return Udm::DerivedAttr<PICML::Requirement>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Requirement, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Requirement, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::Requirement> Archetype() { return Udm::ArchetypeAttr<PICML::Requirement>(impl);}
-
-		static Uml::AssociationRole meta_srcAssemblyDeployRequirement, meta_srcAssemblyDeployRequirement_rev;
-		Udm::AClassAssocAttr<PICML::AssemblyDeployRequirement, PICML::PublishConnector> srcAssemblyDeployRequirement() const { return Udm::AClassAssocAttr<PICML::AssemblyDeployRequirement, PICML::PublishConnector>(impl, meta_srcAssemblyDeployRequirement, meta_srcAssemblyDeployRequirement_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::AssemblyDeployRequirement, PICML::PublishConnector, Pred> srcAssemblyDeployRequirement_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::AssemblyDeployRequirement, PICML::PublishConnector, Pred>(impl, meta_srcAssemblyDeployRequirement, meta_srcAssemblyDeployRequirement_rev); }
-
-		static Uml::AssociationRole meta_srcPackageConfSelectRequirement, meta_srcPackageConfSelectRequirement_rev;
-		Udm::AClassAssocAttr<PICML::PackageConfSelectRequirement, PICML::PackageConfiguration> srcPackageConfSelectRequirement() const { return Udm::AClassAssocAttr<PICML::PackageConfSelectRequirement, PICML::PackageConfiguration>(impl, meta_srcPackageConfSelectRequirement, meta_srcPackageConfSelectRequirement_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::PackageConfSelectRequirement, PICML::PackageConfiguration, Pred> srcPackageConfSelectRequirement_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::PackageConfSelectRequirement, PICML::PackageConfiguration, Pred>(impl, meta_srcPackageConfSelectRequirement, meta_srcPackageConfSelectRequirement_rev); }
-
-		static Uml::AssociationRole meta_srcArtifactDeployRequirement, meta_srcArtifactDeployRequirement_rev;
-		Udm::AClassAssocAttr<PICML::ArtifactDeployRequirement, PICML::ImplementationArtifact> srcArtifactDeployRequirement() const { return Udm::AClassAssocAttr<PICML::ArtifactDeployRequirement, PICML::ImplementationArtifact>(impl, meta_srcArtifactDeployRequirement, meta_srcArtifactDeployRequirement_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::ArtifactDeployRequirement, PICML::ImplementationArtifact, Pred> srcArtifactDeployRequirement_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ArtifactDeployRequirement, PICML::ImplementationArtifact, Pred>(impl, meta_srcArtifactDeployRequirement, meta_srcArtifactDeployRequirement_rev); }
-
-		static Uml::AssociationRole meta_srcAssemblyselectRequirement, meta_srcAssemblyselectRequirement_rev;
-		Udm::AClassAssocAttr<PICML::AssemblyselectRequirement, PICML::Component> srcAssemblyselectRequirement() const { return Udm::AClassAssocAttr<PICML::AssemblyselectRequirement, PICML::Component>(impl, meta_srcAssemblyselectRequirement, meta_srcAssemblyselectRequirement_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::AssemblyselectRequirement, PICML::Component, Pred> srcAssemblyselectRequirement_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::AssemblyselectRequirement, PICML::Component, Pred>(impl, meta_srcAssemblyselectRequirement, meta_srcAssemblyselectRequirement_rev); }
-
-		static Uml::CompositionParentRole meta_ComponentAssembly_parent;
-		Udm::ParentAttr<PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr<PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
-
-		static Uml::CompositionParentRole meta_PackageConfigurationContainer_parent;
-		Udm::ParentAttr<PICML::PackageConfigurationContainer> PackageConfigurationContainer_parent() const { return Udm::ParentAttr<PICML::PackageConfigurationContainer>(impl, meta_PackageConfigurationContainer_parent); }
-
-		static Uml::CompositionParentRole meta_ArtifactContainer_parent;
-		Udm::ParentAttr<PICML::ArtifactContainer> ArtifactContainer_parent() const { return Udm::ParentAttr<PICML::ArtifactContainer>(impl, meta_ArtifactContainer_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_Requirement(*this);};
 	};
 
 	class  ImplementationRequirement :  public RequirementBase {
@@ -6111,45 +6031,6 @@ namespace PICML {
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		virtual void Accept(Visitor &v){v.Visit_ImplementationRequirement(*this);};
-	};
-
-	class  RequirementSatisfier :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		RequirementSatisfier() { }
-		RequirementSatisfier(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		RequirementSatisfier(const RequirementSatisfier &master) : MgaObject(master), Object(master) { }
-		static RequirementSatisfier Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static RequirementSatisfier Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		RequirementSatisfier CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		RequirementSatisfier CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<RequirementSatisfier> Instances() { return Udm::InstantiatedAttr<PICML::RequirementSatisfier>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<RequirementSatisfier, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::RequirementSatisfier, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::RequirementSatisfier> Derived() { return Udm::DerivedAttr<PICML::RequirementSatisfier>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::RequirementSatisfier, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::RequirementSatisfier, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::RequirementSatisfier> Archetype() { return Udm::ArchetypeAttr<PICML::RequirementSatisfier>(impl);}
-
-		static Uml::Attribute meta_resourceType;
-		Udm::StringAttr resourceType() const { return Udm::StringAttr(impl, meta_resourceType); }
-
-		static Uml::CompositionChildRole meta_SatisfierProperty_children;
-		Udm::ChildrenAttr<PICML::SatisfierProperty> SatisfierProperty_children() const { return Udm::ChildrenAttr<PICML::SatisfierProperty>(impl, meta_SatisfierProperty_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::SatisfierProperty, Pred> SatisfierProperty_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::SatisfierProperty, Pred>(impl, meta_SatisfierProperty_children); }
-
-		Udm::ChildrenAttr<PICML::SatisfierProperty> SatisfierProperty_kind_children() const { return Udm::ChildrenAttr<PICML::SatisfierProperty>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::SatisfierProperty, Pred> SatisfierProperty_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::SatisfierProperty, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 	};
 
 	class  SatisfierProperty :  public MgaObject {
@@ -6233,13 +6114,13 @@ namespace PICML {
 		Udm::AClassAssocAttr<PICML::MonolithExecParameter, PICML::MonolithicImplementation> srcMonolithExecParameter() const { return Udm::AClassAssocAttr<PICML::MonolithExecParameter, PICML::MonolithicImplementation>(impl, meta_srcMonolithExecParameter, meta_srcMonolithExecParameter_rev); }
 		template<class Pred> Udm::AClassAssocAttr<PICML::MonolithExecParameter, PICML::MonolithicImplementation, Pred> srcMonolithExecParameter_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::MonolithExecParameter, PICML::MonolithicImplementation, Pred>(impl, meta_srcMonolithExecParameter, meta_srcMonolithExecParameter_rev); }
 
-		static Uml::AssociationRole meta_srcInfoProperty, meta_srcInfoProperty_rev;
-		Udm::AClassAssocAttr<PICML::InfoProperty, PICML::ComponentImplementation> srcInfoProperty() const { return Udm::AClassAssocAttr<PICML::InfoProperty, PICML::ComponentImplementation>(impl, meta_srcInfoProperty, meta_srcInfoProperty_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::InfoProperty, PICML::ComponentImplementation, Pred> srcInfoProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::InfoProperty, PICML::ComponentImplementation, Pred>(impl, meta_srcInfoProperty, meta_srcInfoProperty_rev); }
-
 		static Uml::AssociationRole meta_srcConfigProperty, meta_srcConfigProperty_rev;
 		Udm::AClassAssocAttr<PICML::ConfigProperty, PICML::ComponentImplementation> srcConfigProperty() const { return Udm::AClassAssocAttr<PICML::ConfigProperty, PICML::ComponentImplementation>(impl, meta_srcConfigProperty, meta_srcConfigProperty_rev); }
 		template<class Pred> Udm::AClassAssocAttr<PICML::ConfigProperty, PICML::ComponentImplementation, Pred> srcConfigProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ConfigProperty, PICML::ComponentImplementation, Pred>(impl, meta_srcConfigProperty, meta_srcConfigProperty_rev); }
+
+		static Uml::AssociationRole meta_srcInfoProperty, meta_srcInfoProperty_rev;
+		Udm::AClassAssocAttr<PICML::InfoProperty, PICML::ComponentImplementation> srcInfoProperty() const { return Udm::AClassAssocAttr<PICML::InfoProperty, PICML::ComponentImplementation>(impl, meta_srcInfoProperty, meta_srcInfoProperty_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::InfoProperty, PICML::ComponentImplementation, Pred> srcInfoProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::InfoProperty, PICML::ComponentImplementation, Pred>(impl, meta_srcInfoProperty, meta_srcInfoProperty_rev); }
 
 		static Uml::AssociationRole meta_srcPackageConfConfigProperty, meta_srcPackageConfConfigProperty_rev;
 		Udm::AClassAssocAttr<PICML::PackageConfConfigProperty, PICML::PackageConfiguration> srcPackageConfConfigProperty() const { return Udm::AClassAssocAttr<PICML::PackageConfConfigProperty, PICML::PackageConfiguration>(impl, meta_srcPackageConfConfigProperty, meta_srcPackageConfConfigProperty_rev); }
@@ -6253,25 +6134,25 @@ namespace PICML {
 		Udm::AClassAssocAttr<PICML::ArtifactInfoProperty, PICML::ImplementationArtifact> srcArtifactInfoProperty() const { return Udm::AClassAssocAttr<PICML::ArtifactInfoProperty, PICML::ImplementationArtifact>(impl, meta_srcArtifactInfoProperty, meta_srcArtifactInfoProperty_rev); }
 		template<class Pred> Udm::AClassAssocAttr<PICML::ArtifactInfoProperty, PICML::ImplementationArtifact, Pred> srcArtifactInfoProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ArtifactInfoProperty, PICML::ImplementationArtifact, Pred>(impl, meta_srcArtifactInfoProperty, meta_srcArtifactInfoProperty_rev); }
 
-		static Uml::AssociationRole meta_srcPackageInfoProperty, meta_srcPackageInfoProperty_rev;
-		Udm::AClassAssocAttr<PICML::PackageInfoProperty, PICML::ComponentPackage> srcPackageInfoProperty() const { return Udm::AClassAssocAttr<PICML::PackageInfoProperty, PICML::ComponentPackage>(impl, meta_srcPackageInfoProperty, meta_srcPackageInfoProperty_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::PackageInfoProperty, PICML::ComponentPackage, Pred> srcPackageInfoProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::PackageInfoProperty, PICML::ComponentPackage, Pred>(impl, meta_srcPackageInfoProperty, meta_srcPackageInfoProperty_rev); }
-
 		static Uml::AssociationRole meta_srcPackageConfigProperty, meta_srcPackageConfigProperty_rev;
 		Udm::AClassAssocAttr<PICML::PackageConfigProperty, PICML::ComponentPackage> srcPackageConfigProperty() const { return Udm::AClassAssocAttr<PICML::PackageConfigProperty, PICML::ComponentPackage>(impl, meta_srcPackageConfigProperty, meta_srcPackageConfigProperty_rev); }
 		template<class Pred> Udm::AClassAssocAttr<PICML::PackageConfigProperty, PICML::ComponentPackage, Pred> srcPackageConfigProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::PackageConfigProperty, PICML::ComponentPackage, Pred>(impl, meta_srcPackageConfigProperty, meta_srcPackageConfigProperty_rev); }
 
-		static Uml::AssociationRole meta_srcAssemblyConfigProperty, meta_srcAssemblyConfigProperty_rev;
-		Udm::AClassAssocAttr<PICML::AssemblyConfigProperty, PICML::Component> srcAssemblyConfigProperty() const { return Udm::AClassAssocAttr<PICML::AssemblyConfigProperty, PICML::Component>(impl, meta_srcAssemblyConfigProperty, meta_srcAssemblyConfigProperty_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::AssemblyConfigProperty, PICML::Component, Pred> srcAssemblyConfigProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::AssemblyConfigProperty, PICML::Component, Pred>(impl, meta_srcAssemblyConfigProperty, meta_srcAssemblyConfigProperty_rev); }
+		static Uml::AssociationRole meta_srcPackageInfoProperty, meta_srcPackageInfoProperty_rev;
+		Udm::AClassAssocAttr<PICML::PackageInfoProperty, PICML::ComponentPackage> srcPackageInfoProperty() const { return Udm::AClassAssocAttr<PICML::PackageInfoProperty, PICML::ComponentPackage>(impl, meta_srcPackageInfoProperty, meta_srcPackageInfoProperty_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::PackageInfoProperty, PICML::ComponentPackage, Pred> srcPackageInfoProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::PackageInfoProperty, PICML::ComponentPackage, Pred>(impl, meta_srcPackageInfoProperty, meta_srcPackageInfoProperty_rev); }
+
+		static Uml::AssociationRole meta_srcComponentInfoProperty, meta_srcComponentInfoProperty_rev;
+		Udm::AClassAssocAttr<PICML::ComponentInfoProperty, PICML::ComponentRef> srcComponentInfoProperty() const { return Udm::AClassAssocAttr<PICML::ComponentInfoProperty, PICML::ComponentRef>(impl, meta_srcComponentInfoProperty, meta_srcComponentInfoProperty_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::ComponentInfoProperty, PICML::ComponentRef, Pred> srcComponentInfoProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ComponentInfoProperty, PICML::ComponentRef, Pred>(impl, meta_srcComponentInfoProperty, meta_srcComponentInfoProperty_rev); }
 
 		static Uml::AssociationRole meta_srcComponentConfigProperty, meta_srcComponentConfigProperty_rev;
 		Udm::AClassAssocAttr<PICML::ComponentConfigProperty, PICML::ComponentRef> srcComponentConfigProperty() const { return Udm::AClassAssocAttr<PICML::ComponentConfigProperty, PICML::ComponentRef>(impl, meta_srcComponentConfigProperty, meta_srcComponentConfigProperty_rev); }
 		template<class Pred> Udm::AClassAssocAttr<PICML::ComponentConfigProperty, PICML::ComponentRef, Pred> srcComponentConfigProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ComponentConfigProperty, PICML::ComponentRef, Pred>(impl, meta_srcComponentConfigProperty, meta_srcComponentConfigProperty_rev); }
 
-		static Uml::AssociationRole meta_srcComponentInfoProperty, meta_srcComponentInfoProperty_rev;
-		Udm::AClassAssocAttr<PICML::ComponentInfoProperty, PICML::ComponentRef> srcComponentInfoProperty() const { return Udm::AClassAssocAttr<PICML::ComponentInfoProperty, PICML::ComponentRef>(impl, meta_srcComponentInfoProperty, meta_srcComponentInfoProperty_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::ComponentInfoProperty, PICML::ComponentRef, Pred> srcComponentInfoProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ComponentInfoProperty, PICML::ComponentRef, Pred>(impl, meta_srcComponentInfoProperty, meta_srcComponentInfoProperty_rev); }
+		static Uml::AssociationRole meta_srcAssemblyConfigProperty, meta_srcAssemblyConfigProperty_rev;
+		Udm::AClassAssocAttr<PICML::AssemblyConfigProperty, PICML::Component> srcAssemblyConfigProperty() const { return Udm::AClassAssocAttr<PICML::AssemblyConfigProperty, PICML::Component>(impl, meta_srcAssemblyConfigProperty, meta_srcAssemblyConfigProperty_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::AssemblyConfigProperty, PICML::Component, Pred> srcAssemblyConfigProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::AssemblyConfigProperty, PICML::Component, Pred>(impl, meta_srcAssemblyConfigProperty, meta_srcAssemblyConfigProperty_rev); }
 
 		static Uml::CompositionChildRole meta_DataType_child;
 		Udm::ChildAttr<PICML::DataType> DataType_child() const { return Udm::ChildAttr<PICML::DataType>(impl, meta_DataType_child); }
@@ -6347,6 +6228,97 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_ImplementationDependency(*this);};
 	};
 
+	class  Requirement :  public RequirementBase {
+	 public:
+		static Uml::Class meta;
+
+		Requirement() { }
+		Requirement(Udm::ObjectImpl *impl) : RequirementBase(impl), Object(impl) { }
+		Requirement(const Requirement &master) : RequirementBase(master), Object(master) { }
+		static Requirement Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static Requirement Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		Requirement CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		Requirement CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<Requirement> Instances() { return Udm::InstantiatedAttr<PICML::Requirement>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Requirement, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Requirement, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::Requirement> Derived() { return Udm::DerivedAttr<PICML::Requirement>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Requirement, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Requirement, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::Requirement> Archetype() { return Udm::ArchetypeAttr<PICML::Requirement>(impl);}
+
+		static Uml::AssociationRole meta_srcAssemblyDeployRequirement, meta_srcAssemblyDeployRequirement_rev;
+		Udm::AClassAssocAttr<PICML::AssemblyDeployRequirement, PICML::PublishConnector> srcAssemblyDeployRequirement() const { return Udm::AClassAssocAttr<PICML::AssemblyDeployRequirement, PICML::PublishConnector>(impl, meta_srcAssemblyDeployRequirement, meta_srcAssemblyDeployRequirement_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::AssemblyDeployRequirement, PICML::PublishConnector, Pred> srcAssemblyDeployRequirement_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::AssemblyDeployRequirement, PICML::PublishConnector, Pred>(impl, meta_srcAssemblyDeployRequirement, meta_srcAssemblyDeployRequirement_rev); }
+
+		static Uml::AssociationRole meta_srcPackageConfSelectRequirement, meta_srcPackageConfSelectRequirement_rev;
+		Udm::AClassAssocAttr<PICML::PackageConfSelectRequirement, PICML::PackageConfiguration> srcPackageConfSelectRequirement() const { return Udm::AClassAssocAttr<PICML::PackageConfSelectRequirement, PICML::PackageConfiguration>(impl, meta_srcPackageConfSelectRequirement, meta_srcPackageConfSelectRequirement_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::PackageConfSelectRequirement, PICML::PackageConfiguration, Pred> srcPackageConfSelectRequirement_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::PackageConfSelectRequirement, PICML::PackageConfiguration, Pred>(impl, meta_srcPackageConfSelectRequirement, meta_srcPackageConfSelectRequirement_rev); }
+
+		static Uml::AssociationRole meta_srcArtifactDeployRequirement, meta_srcArtifactDeployRequirement_rev;
+		Udm::AClassAssocAttr<PICML::ArtifactDeployRequirement, PICML::ImplementationArtifact> srcArtifactDeployRequirement() const { return Udm::AClassAssocAttr<PICML::ArtifactDeployRequirement, PICML::ImplementationArtifact>(impl, meta_srcArtifactDeployRequirement, meta_srcArtifactDeployRequirement_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::ArtifactDeployRequirement, PICML::ImplementationArtifact, Pred> srcArtifactDeployRequirement_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ArtifactDeployRequirement, PICML::ImplementationArtifact, Pred>(impl, meta_srcArtifactDeployRequirement, meta_srcArtifactDeployRequirement_rev); }
+
+		static Uml::AssociationRole meta_srcAssemblyselectRequirement, meta_srcAssemblyselectRequirement_rev;
+		Udm::AClassAssocAttr<PICML::AssemblyselectRequirement, PICML::Component> srcAssemblyselectRequirement() const { return Udm::AClassAssocAttr<PICML::AssemblyselectRequirement, PICML::Component>(impl, meta_srcAssemblyselectRequirement, meta_srcAssemblyselectRequirement_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::AssemblyselectRequirement, PICML::Component, Pred> srcAssemblyselectRequirement_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::AssemblyselectRequirement, PICML::Component, Pred>(impl, meta_srcAssemblyselectRequirement, meta_srcAssemblyselectRequirement_rev); }
+
+		static Uml::CompositionParentRole meta_ComponentAssembly_parent;
+		Udm::ParentAttr<PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr<PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
+
+		static Uml::CompositionParentRole meta_PackageConfigurationContainer_parent;
+		Udm::ParentAttr<PICML::PackageConfigurationContainer> PackageConfigurationContainer_parent() const { return Udm::ParentAttr<PICML::PackageConfigurationContainer>(impl, meta_PackageConfigurationContainer_parent); }
+
+		static Uml::CompositionParentRole meta_ArtifactContainer_parent;
+		Udm::ParentAttr<PICML::ArtifactContainer> ArtifactContainer_parent() const { return Udm::ParentAttr<PICML::ArtifactContainer>(impl, meta_ArtifactContainer_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_Requirement(*this);};
+	};
+
+	class  RequirementSatisfier :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		RequirementSatisfier() { }
+		RequirementSatisfier(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		RequirementSatisfier(const RequirementSatisfier &master) : MgaObject(master), Object(master) { }
+		static RequirementSatisfier Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static RequirementSatisfier Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		RequirementSatisfier CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		RequirementSatisfier CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<RequirementSatisfier> Instances() { return Udm::InstantiatedAttr<PICML::RequirementSatisfier>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<RequirementSatisfier, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::RequirementSatisfier, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::RequirementSatisfier> Derived() { return Udm::DerivedAttr<PICML::RequirementSatisfier>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::RequirementSatisfier, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::RequirementSatisfier, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::RequirementSatisfier> Archetype() { return Udm::ArchetypeAttr<PICML::RequirementSatisfier>(impl);}
+
+		static Uml::Attribute meta_resourceType;
+		Udm::StringAttr resourceType() const { return Udm::StringAttr(impl, meta_resourceType); }
+
+		static Uml::CompositionChildRole meta_SatisfierProperty_children;
+		Udm::ChildrenAttr<PICML::SatisfierProperty> SatisfierProperty_children() const { return Udm::ChildrenAttr<PICML::SatisfierProperty>(impl, meta_SatisfierProperty_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::SatisfierProperty, Pred> SatisfierProperty_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::SatisfierProperty, Pred>(impl, meta_SatisfierProperty_children); }
+
+		Udm::ChildrenAttr<PICML::SatisfierProperty> SatisfierProperty_kind_children() const { return Udm::ChildrenAttr<PICML::SatisfierProperty>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::SatisfierProperty, Pred> SatisfierProperty_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::SatisfierProperty, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
+	};
+
 	class  Capability :  public RequirementSatisfier {
 	 public:
 		static Uml::Class meta;
@@ -6379,45 +6351,6 @@ namespace PICML {
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		virtual void Accept(Visitor &v){v.Visit_Capability(*this);};
-	};
-
-	class  DataType :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		DataType() { }
-		DataType(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		DataType(const DataType &master) : MgaObject(master), Object(master) { }
-		static DataType Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static DataType Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		DataType CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		DataType CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<DataType> Instances() { return Udm::InstantiatedAttr<PICML::DataType>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<DataType, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::DataType, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::DataType> Derived() { return Udm::DerivedAttr<PICML::DataType>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::DataType, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::DataType, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::DataType> Archetype() { return Udm::ArchetypeAttr<PICML::DataType>(impl);}
-
-		static Uml::AssociationRole meta_ref;
-		Udm::PointerAttr<PICML::PredefinedType> ref() const { return Udm::PointerAttr<PICML::PredefinedType>(impl, meta_ref); }
-
-		static Uml::CompositionParentRole meta_ComponentPropertyDescription_parent;
-		Udm::ParentAttr<PICML::ComponentPropertyDescription> ComponentPropertyDescription_parent() const { return Udm::ParentAttr<PICML::ComponentPropertyDescription>(impl, meta_ComponentPropertyDescription_parent); }
-
-		static Uml::CompositionParentRole meta_SatisfierProperty_parent;
-		Udm::ParentAttr<PICML::SatisfierProperty> SatisfierProperty_parent() const { return Udm::ParentAttr<PICML::SatisfierProperty>(impl, meta_SatisfierProperty_parent); }
-
-		static Uml::CompositionParentRole meta_Property_parent;
-		Udm::ParentAttr<PICML::Property> Property_parent() const { return Udm::ParentAttr<PICML::Property>(impl, meta_Property_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_DataType(*this);};
 	};
 
 	class  Interconnect2Bridge :  public MgaObject {
@@ -6454,6 +6387,78 @@ namespace PICML {
 		Udm::AssocEndAttr<PICML::Bridge> dstInterconnect2Bridge_end() const { return Udm::AssocEndAttr<PICML::Bridge>(impl, meta_dstInterconnect2Bridge_end_); }
 
 		virtual void Accept(Visitor &v){v.Visit_Interconnect2Bridge(*this);};
+	};
+
+	class  Interconnect2Node :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		Interconnect2Node() { }
+		Interconnect2Node(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		Interconnect2Node(const Interconnect2Node &master) : MgaObject(master), Object(master) { }
+		static Interconnect2Node Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static Interconnect2Node Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		Interconnect2Node CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		Interconnect2Node CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<Interconnect2Node> Instances() { return Udm::InstantiatedAttr<PICML::Interconnect2Node>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Interconnect2Node, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Interconnect2Node, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::Interconnect2Node> Derived() { return Udm::DerivedAttr<PICML::Interconnect2Node>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Interconnect2Node, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Interconnect2Node, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::Interconnect2Node> Archetype() { return Udm::ArchetypeAttr<PICML::Interconnect2Node>(impl);}
+
+		static Uml::CompositionParentRole meta_Domain_parent;
+		Udm::ParentAttr<PICML::Domain> Domain_parent() const { return Udm::ParentAttr<PICML::Domain>(impl, meta_Domain_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_dstInterconnect2Node_end_;
+		Udm::AssocEndAttr<PICML::Node> dstInterconnect2Node_end() const { return Udm::AssocEndAttr<PICML::Node>(impl, meta_dstInterconnect2Node_end_); }
+
+		static Uml::AssociationRole meta_srcInterconnect2Node_end_;
+		Udm::AssocEndAttr<PICML::Interconnect> srcInterconnect2Node_end() const { return Udm::AssocEndAttr<PICML::Interconnect>(impl, meta_srcInterconnect2Node_end_); }
+
+		virtual void Accept(Visitor &v){v.Visit_Interconnect2Node(*this);};
+	};
+
+	class  Bridge2Interconnect :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		Bridge2Interconnect() { }
+		Bridge2Interconnect(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		Bridge2Interconnect(const Bridge2Interconnect &master) : MgaObject(master), Object(master) { }
+		static Bridge2Interconnect Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static Bridge2Interconnect Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		Bridge2Interconnect CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		Bridge2Interconnect CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<Bridge2Interconnect> Instances() { return Udm::InstantiatedAttr<PICML::Bridge2Interconnect>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Bridge2Interconnect, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Bridge2Interconnect, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::Bridge2Interconnect> Derived() { return Udm::DerivedAttr<PICML::Bridge2Interconnect>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Bridge2Interconnect, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Bridge2Interconnect, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::Bridge2Interconnect> Archetype() { return Udm::ArchetypeAttr<PICML::Bridge2Interconnect>(impl);}
+
+		static Uml::CompositionParentRole meta_Domain_parent;
+		Udm::ParentAttr<PICML::Domain> Domain_parent() const { return Udm::ParentAttr<PICML::Domain>(impl, meta_Domain_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_dstBridge2Interconnect_end_;
+		Udm::AssocEndAttr<PICML::Interconnect> dstBridge2Interconnect_end() const { return Udm::AssocEndAttr<PICML::Interconnect>(impl, meta_dstBridge2Interconnect_end_); }
+
+		static Uml::AssociationRole meta_srcBridge2Interconnect_end_;
+		Udm::AssocEndAttr<PICML::Bridge> srcBridge2Interconnect_end() const { return Udm::AssocEndAttr<PICML::Bridge>(impl, meta_srcBridge2Interconnect_end_); }
+
+		virtual void Accept(Visitor &v){v.Visit_Bridge2Interconnect(*this);};
 	};
 
 	class  Node2Interconnect :  public MgaObject {
@@ -6557,13 +6562,17 @@ namespace PICML {
 		static Uml::Attribute meta_UUID;
 		Udm::StringAttr UUID() const { return Udm::StringAttr(impl, meta_UUID); }
 
-		static Uml::CompositionChildRole meta_Property_children;
-		Udm::ChildrenAttr<PICML::Property> Property_children() const { return Udm::ChildrenAttr<PICML::Property>(impl, meta_Property_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Property, Pred> Property_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Property, Pred>(impl, meta_Property_children); }
-
 		static Uml::CompositionChildRole meta_Interconnect2Bridge_children;
 		Udm::ChildrenAttr<PICML::Interconnect2Bridge> Interconnect2Bridge_children() const { return Udm::ChildrenAttr<PICML::Interconnect2Bridge>(impl, meta_Interconnect2Bridge_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML::Interconnect2Bridge, Pred> Interconnect2Bridge_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Interconnect2Bridge, Pred>(impl, meta_Interconnect2Bridge_children); }
+
+		static Uml::CompositionChildRole meta_Bridge2Interconnect_children;
+		Udm::ChildrenAttr<PICML::Bridge2Interconnect> Bridge2Interconnect_children() const { return Udm::ChildrenAttr<PICML::Bridge2Interconnect>(impl, meta_Bridge2Interconnect_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Bridge2Interconnect, Pred> Bridge2Interconnect_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Bridge2Interconnect, Pred>(impl, meta_Bridge2Interconnect_children); }
+
+		static Uml::CompositionChildRole meta_Node2Interconnect_children;
+		Udm::ChildrenAttr<PICML::Node2Interconnect> Node2Interconnect_children() const { return Udm::ChildrenAttr<PICML::Node2Interconnect>(impl, meta_Node2Interconnect_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Node2Interconnect, Pred> Node2Interconnect_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Node2Interconnect, Pred>(impl, meta_Node2Interconnect_children); }
 
 		static Uml::CompositionChildRole meta_Interconnect2Node_children;
 		Udm::ChildrenAttr<PICML::Interconnect2Node> Interconnect2Node_children() const { return Udm::ChildrenAttr<PICML::Interconnect2Node>(impl, meta_Interconnect2Node_children); }
@@ -6573,17 +6582,13 @@ namespace PICML {
 		Udm::ChildrenAttr<PICML::Shares> Shares_children() const { return Udm::ChildrenAttr<PICML::Shares>(impl, meta_Shares_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML::Shares, Pred> Shares_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Shares, Pred>(impl, meta_Shares_children); }
 
+		static Uml::CompositionChildRole meta_Property_children;
+		Udm::ChildrenAttr<PICML::Property> Property_children() const { return Udm::ChildrenAttr<PICML::Property>(impl, meta_Property_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Property, Pred> Property_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Property, Pred>(impl, meta_Property_children); }
+
 		static Uml::CompositionChildRole meta_Elements_children;
 		Udm::ChildrenAttr<PICML::Elements> Elements_children() const { return Udm::ChildrenAttr<PICML::Elements>(impl, meta_Elements_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML::Elements, Pred> Elements_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Elements, Pred>(impl, meta_Elements_children); }
-
-		static Uml::CompositionChildRole meta_Node2Interconnect_children;
-		Udm::ChildrenAttr<PICML::Node2Interconnect> Node2Interconnect_children() const { return Udm::ChildrenAttr<PICML::Node2Interconnect>(impl, meta_Node2Interconnect_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Node2Interconnect, Pred> Node2Interconnect_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Node2Interconnect, Pred>(impl, meta_Node2Interconnect_children); }
-
-		static Uml::CompositionChildRole meta_Bridge2Interconnect_children;
-		Udm::ChildrenAttr<PICML::Bridge2Interconnect> Bridge2Interconnect_children() const { return Udm::ChildrenAttr<PICML::Bridge2Interconnect>(impl, meta_Bridge2Interconnect_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Bridge2Interconnect, Pred> Bridge2Interconnect_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Bridge2Interconnect, Pred>(impl, meta_Bridge2Interconnect_children); }
 
 		Udm::ChildrenAttr<PICML::SharedResource> SharedResource_kind_children() const { return Udm::ChildrenAttr<PICML::SharedResource>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::SharedResource, Pred> SharedResource_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::SharedResource, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -6603,17 +6608,17 @@ namespace PICML {
 		Udm::ChildrenAttr<PICML::Interconnect2Bridge> Interconnect2Bridge_kind_children() const { return Udm::ChildrenAttr<PICML::Interconnect2Bridge>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::Interconnect2Bridge, Pred> Interconnect2Bridge_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Interconnect2Bridge, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::Node2Interconnect> Node2Interconnect_kind_children() const { return Udm::ChildrenAttr<PICML::Node2Interconnect>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Node2Interconnect, Pred> Node2Interconnect_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Node2Interconnect, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Shares> Shares_kind_children() const { return Udm::ChildrenAttr<PICML::Shares>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Shares, Pred> Shares_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Shares, Pred>(impl, Udm::NULLCHILDROLE); }
-
 		Udm::ChildrenAttr<PICML::Interconnect2Node> Interconnect2Node_kind_children() const { return Udm::ChildrenAttr<PICML::Interconnect2Node>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::Interconnect2Node, Pred> Interconnect2Node_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Interconnect2Node, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::Bridge2Interconnect> Bridge2Interconnect_kind_children() const { return Udm::ChildrenAttr<PICML::Bridge2Interconnect>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::Bridge2Interconnect, Pred> Bridge2Interconnect_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Bridge2Interconnect, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Node2Interconnect> Node2Interconnect_kind_children() const { return Udm::ChildrenAttr<PICML::Node2Interconnect>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Node2Interconnect, Pred> Node2Interconnect_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Node2Interconnect, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Shares> Shares_kind_children() const { return Udm::ChildrenAttr<PICML::Shares>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Shares, Pred> Shares_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Shares, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::Elements> Elements_kind_children() const { return Udm::ChildrenAttr<PICML::Elements>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::Elements, Pred> Elements_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Elements, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -6626,78 +6631,6 @@ namespace PICML {
 
 		Udm::ParentAttr<PICML::Targets> parent() const { return Udm::ParentAttr<PICML::Targets>(impl, Udm::NULLPARENTROLE); }
 		virtual void Accept(Visitor &v){v.Visit_Domain(*this);};
-	};
-
-	class  Interconnect2Node :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		Interconnect2Node() { }
-		Interconnect2Node(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		Interconnect2Node(const Interconnect2Node &master) : MgaObject(master), Object(master) { }
-		static Interconnect2Node Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static Interconnect2Node Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		Interconnect2Node CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		Interconnect2Node CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<Interconnect2Node> Instances() { return Udm::InstantiatedAttr<PICML::Interconnect2Node>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Interconnect2Node, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Interconnect2Node, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::Interconnect2Node> Derived() { return Udm::DerivedAttr<PICML::Interconnect2Node>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Interconnect2Node, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Interconnect2Node, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::Interconnect2Node> Archetype() { return Udm::ArchetypeAttr<PICML::Interconnect2Node>(impl);}
-
-		static Uml::CompositionParentRole meta_Domain_parent;
-		Udm::ParentAttr<PICML::Domain> Domain_parent() const { return Udm::ParentAttr<PICML::Domain>(impl, meta_Domain_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_dstInterconnect2Node_end_;
-		Udm::AssocEndAttr<PICML::Node> dstInterconnect2Node_end() const { return Udm::AssocEndAttr<PICML::Node>(impl, meta_dstInterconnect2Node_end_); }
-
-		static Uml::AssociationRole meta_srcInterconnect2Node_end_;
-		Udm::AssocEndAttr<PICML::Interconnect> srcInterconnect2Node_end() const { return Udm::AssocEndAttr<PICML::Interconnect>(impl, meta_srcInterconnect2Node_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_Interconnect2Node(*this);};
-	};
-
-	class  Bridge2Interconnect :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		Bridge2Interconnect() { }
-		Bridge2Interconnect(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		Bridge2Interconnect(const Bridge2Interconnect &master) : MgaObject(master), Object(master) { }
-		static Bridge2Interconnect Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static Bridge2Interconnect Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		Bridge2Interconnect CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		Bridge2Interconnect CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<Bridge2Interconnect> Instances() { return Udm::InstantiatedAttr<PICML::Bridge2Interconnect>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Bridge2Interconnect, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Bridge2Interconnect, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::Bridge2Interconnect> Derived() { return Udm::DerivedAttr<PICML::Bridge2Interconnect>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Bridge2Interconnect, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Bridge2Interconnect, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::Bridge2Interconnect> Archetype() { return Udm::ArchetypeAttr<PICML::Bridge2Interconnect>(impl);}
-
-		static Uml::CompositionParentRole meta_Domain_parent;
-		Udm::ParentAttr<PICML::Domain> Domain_parent() const { return Udm::ParentAttr<PICML::Domain>(impl, meta_Domain_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_dstBridge2Interconnect_end_;
-		Udm::AssocEndAttr<PICML::Interconnect> dstBridge2Interconnect_end() const { return Udm::AssocEndAttr<PICML::Interconnect>(impl, meta_dstBridge2Interconnect_end_); }
-
-		static Uml::AssociationRole meta_srcBridge2Interconnect_end_;
-		Udm::AssocEndAttr<PICML::Bridge> srcBridge2Interconnect_end() const { return Udm::AssocEndAttr<PICML::Bridge>(impl, meta_srcBridge2Interconnect_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_Bridge2Interconnect(*this);};
 	};
 
 	class  Elements :  public MgaObject {
@@ -6803,6 +6736,10 @@ namespace PICML {
 		Udm::AClassAssocAttr<PICML::Shares, PICML::SharedResource> dstShares() const { return Udm::AClassAssocAttr<PICML::Shares, PICML::SharedResource>(impl, meta_dstShares, meta_dstShares_rev); }
 		template<class Pred> Udm::AClassAssocAttr<PICML::Shares, PICML::SharedResource, Pred> dstShares_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::Shares, PICML::SharedResource, Pred>(impl, meta_dstShares, meta_dstShares_rev); }
 
+		static Uml::AssociationRole meta_referedbyNodeReference;
+		Udm::AssocAttr<PICML::NodeReference> referedbyNodeReference() const { return Udm::AssocAttr<PICML::NodeReference>(impl, meta_referedbyNodeReference); }
+		template <class Pred> Udm::AssocAttr<PICML::NodeReference, Pred > referedbyNodeReference_sorted(const Pred &) const { return Udm::AssocAttr<PICML::NodeReference, Pred>(impl, meta_referedbyNodeReference); }
+
 		static Uml::AssociationRole meta_dstNode2Interconnect, meta_dstNode2Interconnect_rev;
 		Udm::AClassAssocAttr<PICML::Node2Interconnect, PICML::Interconnect> dstNode2Interconnect() const { return Udm::AClassAssocAttr<PICML::Node2Interconnect, PICML::Interconnect>(impl, meta_dstNode2Interconnect, meta_dstNode2Interconnect_rev); }
 		template<class Pred> Udm::AClassAssocAttr<PICML::Node2Interconnect, PICML::Interconnect, Pred> dstNode2Interconnect_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::Node2Interconnect, PICML::Interconnect, Pred>(impl, meta_dstNode2Interconnect, meta_dstNode2Interconnect_rev); }
@@ -6810,10 +6747,6 @@ namespace PICML {
 		static Uml::AssociationRole meta_srcInterconnect2Node, meta_srcInterconnect2Node_rev;
 		Udm::AClassAssocAttr<PICML::Interconnect2Node, PICML::Interconnect> srcInterconnect2Node() const { return Udm::AClassAssocAttr<PICML::Interconnect2Node, PICML::Interconnect>(impl, meta_srcInterconnect2Node, meta_srcInterconnect2Node_rev); }
 		template<class Pred> Udm::AClassAssocAttr<PICML::Interconnect2Node, PICML::Interconnect, Pred> srcInterconnect2Node_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::Interconnect2Node, PICML::Interconnect, Pred>(impl, meta_srcInterconnect2Node, meta_srcInterconnect2Node_rev); }
-
-		static Uml::AssociationRole meta_referedbyNodeReference;
-		Udm::AssocAttr<PICML::NodeReference> referedbyNodeReference() const { return Udm::AssocAttr<PICML::NodeReference>(impl, meta_referedbyNodeReference); }
-		template <class Pred> Udm::AssocAttr<PICML::NodeReference, Pred > referedbyNodeReference_sorted(const Pred &) const { return Udm::AssocAttr<PICML::NodeReference, Pred>(impl, meta_referedbyNodeReference); }
 
 		static Uml::CompositionChildRole meta_Resource_children;
 		Udm::ChildrenAttr<PICML::Resource> Resource_children() const { return Udm::ChildrenAttr<PICML::Resource>(impl, meta_Resource_children); }
@@ -6994,36 +6927,6 @@ namespace PICML {
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 	};
 
-	class  Manageable :  virtual public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		Manageable() { }
-		Manageable(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		Manageable(const Manageable &master) : MgaObject(master), Object(master) { }
-		static Manageable Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static Manageable Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		Manageable CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		Manageable CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<Manageable> Instances() { return Udm::InstantiatedAttr<PICML::Manageable>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Manageable, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Manageable, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::Manageable> Derived() { return Udm::DerivedAttr<PICML::Manageable>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Manageable, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Manageable, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::Manageable> Archetype() { return Udm::ArchetypeAttr<PICML::Manageable>(impl);}
-
-		static Uml::AssociationRole meta_srcManagesComponent, meta_srcManagesComponent_rev;
-		Udm::AClassAssocAttr<PICML::ManagesComponent, PICML::ComponentFactory> srcManagesComponent() const { return Udm::AClassAssocAttr<PICML::ManagesComponent, PICML::ComponentFactory>(impl, meta_srcManagesComponent, meta_srcManagesComponent_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::ManagesComponent, PICML::ComponentFactory, Pred> srcManagesComponent_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ManagesComponent, PICML::ComponentFactory, Pred>(impl, meta_srcManagesComponent, meta_srcManagesComponent_rev); }
-
-		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
-	};
-
 	class  Provideable :  virtual public MgaObject {
 	 public:
 		static Uml::Class meta;
@@ -7081,11 +6984,11 @@ namespace PICML {
 
 		Udm::ArchetypeAttr<PICML::ManagesComponent> Archetype() { return Udm::ArchetypeAttr<PICML::ManagesComponent>(impl);}
 
-		static Uml::CompositionParentRole meta_File_parent;
-		Udm::ParentAttr<PICML::File> File_parent() const { return Udm::ParentAttr<PICML::File>(impl, meta_File_parent); }
-
 		static Uml::CompositionParentRole meta_Package_parent;
 		Udm::ParentAttr<PICML::Package> Package_parent() const { return Udm::ParentAttr<PICML::Package>(impl, meta_Package_parent); }
+
+		static Uml::CompositionParentRole meta_File_parent;
+		Udm::ParentAttr<PICML::File> File_parent() const { return Udm::ParentAttr<PICML::File>(impl, meta_File_parent); }
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		static Uml::AssociationRole meta_dstManagesComponent_end_;
@@ -7095,6 +6998,36 @@ namespace PICML {
 		Udm::AssocEndAttr<PICML::ComponentFactory> srcManagesComponent_end() const { return Udm::AssocEndAttr<PICML::ComponentFactory>(impl, meta_srcManagesComponent_end_); }
 
 		virtual void Accept(Visitor &v){v.Visit_ManagesComponent(*this);};
+	};
+
+	class  Manageable :  virtual public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		Manageable() { }
+		Manageable(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		Manageable(const Manageable &master) : MgaObject(master), Object(master) { }
+		static Manageable Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static Manageable Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		Manageable CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		Manageable CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<Manageable> Instances() { return Udm::InstantiatedAttr<PICML::Manageable>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Manageable, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Manageable, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::Manageable> Derived() { return Udm::DerivedAttr<PICML::Manageable>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Manageable, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Manageable, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::Manageable> Archetype() { return Udm::ArchetypeAttr<PICML::Manageable>(impl);}
+
+		static Uml::AssociationRole meta_srcManagesComponent, meta_srcManagesComponent_rev;
+		Udm::AClassAssocAttr<PICML::ManagesComponent, PICML::ComponentFactory> srcManagesComponent() const { return Udm::AClassAssocAttr<PICML::ManagesComponent, PICML::ComponentFactory>(impl, meta_srcManagesComponent, meta_srcManagesComponent_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::ManagesComponent, PICML::ComponentFactory, Pred> srcManagesComponent_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ManagesComponent, PICML::ComponentFactory, Pred>(impl, meta_srcManagesComponent, meta_srcManagesComponent_rev); }
+
+		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 	};
 
 	class  ComponentRef :  public Manageable {
@@ -7120,9 +7053,9 @@ namespace PICML {
 
 		Udm::ArchetypeAttr<PICML::ComponentRef> Archetype() { return Udm::ArchetypeAttr<PICML::ComponentRef>(impl);}
 
-		static Uml::AssociationRole meta_CollocationGroup;
-		Udm::AssocAttr<PICML::CollocationGroup> CollocationGroup() const { return Udm::AssocAttr<PICML::CollocationGroup>(impl, meta_CollocationGroup); }
-		template <class Pred> Udm::AssocAttr<PICML::CollocationGroup, Pred > CollocationGroup_sorted(const Pred &) const { return Udm::AssocAttr<PICML::CollocationGroup, Pred>(impl, meta_CollocationGroup); }
+		static Uml::AssociationRole meta_setCollocationGroup;
+		Udm::AssocAttr<PICML::CollocationGroup> setCollocationGroup() const { return Udm::AssocAttr<PICML::CollocationGroup>(impl, meta_setCollocationGroup); }
+		template <class Pred> Udm::AssocAttr<PICML::CollocationGroup, Pred > setCollocationGroup_sorted(const Pred &) const { return Udm::AssocAttr<PICML::CollocationGroup, Pred>(impl, meta_setCollocationGroup); }
 
 		static Uml::AssociationRole meta_srcImplements, meta_srcImplements_rev;
 		Udm::AClassAssocAttr<PICML::Implements, PICML::ComponentImplementation> srcImplements() const { return Udm::AClassAssocAttr<PICML::Implements, PICML::ComponentImplementation>(impl, meta_srcImplements, meta_srcImplements_rev); }
@@ -7135,13 +7068,13 @@ namespace PICML {
 		static Uml::AssociationRole meta_srcPackageInterface, meta_srcPackageInterface_rev;
 		Udm::AClassPointerAttr<PICML::PackageInterface, PICML::ComponentPackage> srcPackageInterface() const { return Udm::AClassPointerAttr<PICML::PackageInterface, PICML::ComponentPackage>(impl, meta_srcPackageInterface, meta_srcPackageInterface_rev); }
 
-		static Uml::AssociationRole meta_dstComponentConfigProperty, meta_dstComponentConfigProperty_rev;
-		Udm::AClassAssocAttr<PICML::ComponentConfigProperty, PICML::Property> dstComponentConfigProperty() const { return Udm::AClassAssocAttr<PICML::ComponentConfigProperty, PICML::Property>(impl, meta_dstComponentConfigProperty, meta_dstComponentConfigProperty_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::ComponentConfigProperty, PICML::Property, Pred> dstComponentConfigProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ComponentConfigProperty, PICML::Property, Pred>(impl, meta_dstComponentConfigProperty, meta_dstComponentConfigProperty_rev); }
-
 		static Uml::AssociationRole meta_dstComponentInfoProperty, meta_dstComponentInfoProperty_rev;
 		Udm::AClassAssocAttr<PICML::ComponentInfoProperty, PICML::Property> dstComponentInfoProperty() const { return Udm::AClassAssocAttr<PICML::ComponentInfoProperty, PICML::Property>(impl, meta_dstComponentInfoProperty, meta_dstComponentInfoProperty_rev); }
 		template<class Pred> Udm::AClassAssocAttr<PICML::ComponentInfoProperty, PICML::Property, Pred> dstComponentInfoProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ComponentInfoProperty, PICML::Property, Pred>(impl, meta_dstComponentInfoProperty, meta_dstComponentInfoProperty_rev); }
+
+		static Uml::AssociationRole meta_dstComponentConfigProperty, meta_dstComponentConfigProperty_rev;
+		Udm::AClassAssocAttr<PICML::ComponentConfigProperty, PICML::Property> dstComponentConfigProperty() const { return Udm::AClassAssocAttr<PICML::ComponentConfigProperty, PICML::Property>(impl, meta_dstComponentConfigProperty, meta_dstComponentConfigProperty_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::ComponentConfigProperty, PICML::Property, Pred> dstComponentConfigProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ComponentConfigProperty, PICML::Property, Pred>(impl, meta_dstComponentConfigProperty, meta_dstComponentConfigProperty_rev); }
 
 		static Uml::AssociationRole meta_ref;
 		Udm::PointerAttr<PICML::Component> ref() const { return Udm::PointerAttr<PICML::Component>(impl, meta_ref); }
@@ -7161,11 +7094,11 @@ namespace PICML {
 		static Uml::CompositionParentRole meta_PackageContainer_parent;
 		Udm::ParentAttr<PICML::PackageContainer> PackageContainer_parent() const { return Udm::ParentAttr<PICML::PackageContainer>(impl, meta_PackageContainer_parent); }
 
-		static Uml::CompositionParentRole meta_Package_parent;
-		Udm::ParentAttr<PICML::Package> Package_parent() const { return Udm::ParentAttr<PICML::Package>(impl, meta_Package_parent); }
-
 		static Uml::CompositionParentRole meta_File_parent;
 		Udm::ParentAttr<PICML::File> File_parent() const { return Udm::ParentAttr<PICML::File>(impl, meta_File_parent); }
+
+		static Uml::CompositionParentRole meta_Package_parent;
+		Udm::ParentAttr<PICML::Package> Package_parent() const { return Udm::ParentAttr<PICML::Package>(impl, meta_Package_parent); }
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		virtual void Accept(Visitor &v){v.Visit_ComponentRef(*this);};
@@ -7201,6 +7134,57 @@ namespace PICML {
 		Udm::ParentAttr<PICML::Component> Component_parent() const { return Udm::ParentAttr<PICML::Component>(impl, meta_Component_parent); }
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+	};
+
+	class  InEventPort :  public Port {
+	 public:
+		static Uml::Class meta;
+
+		InEventPort() { }
+		InEventPort(Udm::ObjectImpl *impl) : Port(impl), MgaObject(impl), Object(impl) { }
+		InEventPort(const InEventPort &master) : Port(master), MgaObject(master), Object(master) { }
+		static InEventPort Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static InEventPort Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		InEventPort CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		InEventPort CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<InEventPort> Instances() { return Udm::InstantiatedAttr<PICML::InEventPort>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<InEventPort, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::InEventPort, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::InEventPort> Derived() { return Udm::DerivedAttr<PICML::InEventPort>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::InEventPort, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::InEventPort, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::InEventPort> Archetype() { return Udm::ArchetypeAttr<PICML::InEventPort>(impl);}
+
+		static Uml::AssociationRole meta_srcUse_RTEC_Filter, meta_srcUse_RTEC_Filter_rev;
+		Udm::AClassAssocAttr<PICML::Use_RTEC_Filter, PICML::RTEC_Filter_Group> srcUse_RTEC_Filter() const { return Udm::AClassAssocAttr<PICML::Use_RTEC_Filter, PICML::RTEC_Filter_Group>(impl, meta_srcUse_RTEC_Filter, meta_srcUse_RTEC_Filter_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::Use_RTEC_Filter, PICML::RTEC_Filter_Group, Pred> srcUse_RTEC_Filter_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::Use_RTEC_Filter, PICML::RTEC_Filter_Group, Pred>(impl, meta_srcUse_RTEC_Filter, meta_srcUse_RTEC_Filter_rev); }
+
+		static Uml::AssociationRole meta_srcdeliverTo, meta_srcdeliverTo_rev;
+		Udm::AClassPointerAttr<PICML::deliverTo, PICML::PublishConnector> srcdeliverTo() const { return Udm::AClassPointerAttr<PICML::deliverTo, PICML::PublishConnector>(impl, meta_srcdeliverTo, meta_srcdeliverTo_rev); }
+
+		static Uml::AssociationRole meta_dstEventSinkDelegate, meta_dstEventSinkDelegate_rev;
+		Udm::AClassAssocAttr<PICML::EventSinkDelegate, PICML::InEventPort> dstEventSinkDelegate() const { return Udm::AClassAssocAttr<PICML::EventSinkDelegate, PICML::InEventPort>(impl, meta_dstEventSinkDelegate, meta_dstEventSinkDelegate_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::EventSinkDelegate, PICML::InEventPort, Pred> dstEventSinkDelegate_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::EventSinkDelegate, PICML::InEventPort, Pred>(impl, meta_dstEventSinkDelegate, meta_dstEventSinkDelegate_rev); }
+
+		static Uml::AssociationRole meta_ref;
+		Udm::PointerAttr<PICML::Event> ref() const { return Udm::PointerAttr<PICML::Event>(impl, meta_ref); }
+
+		static Uml::AssociationRole meta_srcEventSinkDelegate, meta_srcEventSinkDelegate_rev;
+		Udm::AClassAssocAttr<PICML::EventSinkDelegate, PICML::InEventPort> srcEventSinkDelegate() const { return Udm::AClassAssocAttr<PICML::EventSinkDelegate, PICML::InEventPort>(impl, meta_srcEventSinkDelegate, meta_srcEventSinkDelegate_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::EventSinkDelegate, PICML::InEventPort, Pred> srcEventSinkDelegate_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::EventSinkDelegate, PICML::InEventPort, Pred>(impl, meta_srcEventSinkDelegate, meta_srcEventSinkDelegate_rev); }
+
+		static Uml::AssociationRole meta_srcemit, meta_srcemit_rev;
+		Udm::AClassPointerAttr<PICML::emit, PICML::OutEventPort> srcemit() const { return Udm::AClassPointerAttr<PICML::emit, PICML::OutEventPort>(impl, meta_srcemit, meta_srcemit_rev); }
+
+		static Uml::CompositionParentRole meta_ComponentAssembly_parent;
+		Udm::ParentAttr<PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr<PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_InEventPort(*this);};
 	};
 
 	class  RequiredRequestPort :  public Port {
@@ -7329,15 +7313,15 @@ namespace PICML {
 		static Uml::AssociationRole meta_dstpublish, meta_dstpublish_rev;
 		Udm::AClassPointerAttr<PICML::publish, PICML::PublishConnector> dstpublish() const { return Udm::AClassPointerAttr<PICML::publish, PICML::PublishConnector>(impl, meta_dstpublish, meta_dstpublish_rev); }
 
+		static Uml::AssociationRole meta_dstemit, meta_dstemit_rev;
+		Udm::AClassPointerAttr<PICML::emit, PICML::InEventPort> dstemit() const { return Udm::AClassPointerAttr<PICML::emit, PICML::InEventPort>(impl, meta_dstemit, meta_dstemit_rev); }
+
 		static Uml::AssociationRole meta_ref;
 		Udm::PointerAttr<PICML::Event> ref() const { return Udm::PointerAttr<PICML::Event>(impl, meta_ref); }
 
 		static Uml::AssociationRole meta_dstEventSourceDelegate, meta_dstEventSourceDelegate_rev;
 		Udm::AClassAssocAttr<PICML::EventSourceDelegate, PICML::OutEventPort> dstEventSourceDelegate() const { return Udm::AClassAssocAttr<PICML::EventSourceDelegate, PICML::OutEventPort>(impl, meta_dstEventSourceDelegate, meta_dstEventSourceDelegate_rev); }
 		template<class Pred> Udm::AClassAssocAttr<PICML::EventSourceDelegate, PICML::OutEventPort, Pred> dstEventSourceDelegate_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::EventSourceDelegate, PICML::OutEventPort, Pred>(impl, meta_dstEventSourceDelegate, meta_dstEventSourceDelegate_rev); }
-
-		static Uml::AssociationRole meta_dstemit, meta_dstemit_rev;
-		Udm::AClassPointerAttr<PICML::emit, PICML::InEventPort> dstemit() const { return Udm::AClassPointerAttr<PICML::emit, PICML::InEventPort>(impl, meta_dstemit, meta_dstemit_rev); }
 
 		static Uml::AssociationRole meta_srcEventSourceDelegate, meta_srcEventSourceDelegate_rev;
 		Udm::AClassAssocAttr<PICML::EventSourceDelegate, PICML::OutEventPort> srcEventSourceDelegate() const { return Udm::AClassAssocAttr<PICML::EventSourceDelegate, PICML::OutEventPort>(impl, meta_srcEventSourceDelegate, meta_srcEventSourceDelegate_rev); }
@@ -7348,57 +7332,6 @@ namespace PICML {
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		virtual void Accept(Visitor &v){v.Visit_OutEventPort(*this);};
-	};
-
-	class  InEventPort :  public Port {
-	 public:
-		static Uml::Class meta;
-
-		InEventPort() { }
-		InEventPort(Udm::ObjectImpl *impl) : Port(impl), MgaObject(impl), Object(impl) { }
-		InEventPort(const InEventPort &master) : Port(master), MgaObject(master), Object(master) { }
-		static InEventPort Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static InEventPort Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		InEventPort CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		InEventPort CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<InEventPort> Instances() { return Udm::InstantiatedAttr<PICML::InEventPort>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<InEventPort, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::InEventPort, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::InEventPort> Derived() { return Udm::DerivedAttr<PICML::InEventPort>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::InEventPort, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::InEventPort, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::InEventPort> Archetype() { return Udm::ArchetypeAttr<PICML::InEventPort>(impl);}
-
-		static Uml::AssociationRole meta_srcUse_RTEC_Filter, meta_srcUse_RTEC_Filter_rev;
-		Udm::AClassAssocAttr<PICML::Use_RTEC_Filter, PICML::RTEC_Filter_Group> srcUse_RTEC_Filter() const { return Udm::AClassAssocAttr<PICML::Use_RTEC_Filter, PICML::RTEC_Filter_Group>(impl, meta_srcUse_RTEC_Filter, meta_srcUse_RTEC_Filter_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::Use_RTEC_Filter, PICML::RTEC_Filter_Group, Pred> srcUse_RTEC_Filter_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::Use_RTEC_Filter, PICML::RTEC_Filter_Group, Pred>(impl, meta_srcUse_RTEC_Filter, meta_srcUse_RTEC_Filter_rev); }
-
-		static Uml::AssociationRole meta_srcdeliverTo, meta_srcdeliverTo_rev;
-		Udm::AClassPointerAttr<PICML::deliverTo, PICML::PublishConnector> srcdeliverTo() const { return Udm::AClassPointerAttr<PICML::deliverTo, PICML::PublishConnector>(impl, meta_srcdeliverTo, meta_srcdeliverTo_rev); }
-
-		static Uml::AssociationRole meta_srcemit, meta_srcemit_rev;
-		Udm::AClassPointerAttr<PICML::emit, PICML::OutEventPort> srcemit() const { return Udm::AClassPointerAttr<PICML::emit, PICML::OutEventPort>(impl, meta_srcemit, meta_srcemit_rev); }
-
-		static Uml::AssociationRole meta_dstEventSinkDelegate, meta_dstEventSinkDelegate_rev;
-		Udm::AClassAssocAttr<PICML::EventSinkDelegate, PICML::InEventPort> dstEventSinkDelegate() const { return Udm::AClassAssocAttr<PICML::EventSinkDelegate, PICML::InEventPort>(impl, meta_dstEventSinkDelegate, meta_dstEventSinkDelegate_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::EventSinkDelegate, PICML::InEventPort, Pred> dstEventSinkDelegate_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::EventSinkDelegate, PICML::InEventPort, Pred>(impl, meta_dstEventSinkDelegate, meta_dstEventSinkDelegate_rev); }
-
-		static Uml::AssociationRole meta_ref;
-		Udm::PointerAttr<PICML::Event> ref() const { return Udm::PointerAttr<PICML::Event>(impl, meta_ref); }
-
-		static Uml::AssociationRole meta_srcEventSinkDelegate, meta_srcEventSinkDelegate_rev;
-		Udm::AClassAssocAttr<PICML::EventSinkDelegate, PICML::InEventPort> srcEventSinkDelegate() const { return Udm::AClassAssocAttr<PICML::EventSinkDelegate, PICML::InEventPort>(impl, meta_srcEventSinkDelegate, meta_srcEventSinkDelegate_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::EventSinkDelegate, PICML::InEventPort, Pred> srcEventSinkDelegate_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::EventSinkDelegate, PICML::InEventPort, Pred>(impl, meta_srcEventSinkDelegate, meta_srcEventSinkDelegate_rev); }
-
-		static Uml::CompositionParentRole meta_ComponentAssembly_parent;
-		Udm::ParentAttr<PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr<PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_InEventPort(*this);};
 	};
 
 	class  ReturnType :  public MgaObject {
@@ -7467,6 +7400,72 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_OutParameter(*this);};
 	};
 
+	class  InoutParameter :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		InoutParameter() { }
+		InoutParameter(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		InoutParameter(const InoutParameter &master) : MgaObject(master), Object(master) { }
+		static InoutParameter Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static InoutParameter Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		InoutParameter CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		InoutParameter CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<InoutParameter> Instances() { return Udm::InstantiatedAttr<PICML::InoutParameter>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<InoutParameter, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::InoutParameter, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::InoutParameter> Derived() { return Udm::DerivedAttr<PICML::InoutParameter>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::InoutParameter, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::InoutParameter, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::InoutParameter> Archetype() { return Udm::ArchetypeAttr<PICML::InoutParameter>(impl);}
+
+		static Uml::AssociationRole meta_ref;
+		Udm::PointerAttr<PICML::MemberType> ref() const { return Udm::PointerAttr<PICML::MemberType>(impl, meta_ref); }
+
+		static Uml::CompositionParentRole meta_TwowayOperation_parent;
+		Udm::ParentAttr<PICML::TwowayOperation> TwowayOperation_parent() const { return Udm::ParentAttr<PICML::TwowayOperation>(impl, meta_TwowayOperation_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_InoutParameter(*this);};
+	};
+
+	class  InParameter :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		InParameter() { }
+		InParameter(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		InParameter(const InParameter &master) : MgaObject(master), Object(master) { }
+		static InParameter Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static InParameter Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		InParameter CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		InParameter CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<InParameter> Instances() { return Udm::InstantiatedAttr<PICML::InParameter>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<InParameter, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::InParameter, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::InParameter> Derived() { return Udm::DerivedAttr<PICML::InParameter>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::InParameter, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::InParameter, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::InParameter> Archetype() { return Udm::ArchetypeAttr<PICML::InParameter>(impl);}
+
+		static Uml::AssociationRole meta_ref;
+		Udm::PointerAttr<PICML::MemberType> ref() const { return Udm::PointerAttr<PICML::MemberType>(impl, meta_ref); }
+
+		static Uml::CompositionParentRole meta_OperationBase_parent;
+		Udm::ParentAttr<PICML::OperationBase> OperationBase_parent() const { return Udm::ParentAttr<PICML::OperationBase>(impl, meta_OperationBase_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_InParameter(*this);};
+	};
+
 	class  OperationBase :  public Taggable {
 	 public:
 		static Uml::Class meta;
@@ -7510,102 +7509,6 @@ namespace PICML {
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 	};
 
-	class  OnewayOperation :  public OperationBase {
-	 public:
-		static Uml::Class meta;
-
-		OnewayOperation() { }
-		OnewayOperation(Udm::ObjectImpl *impl) : OperationBase(impl), MgaObject(impl), Object(impl) { }
-		OnewayOperation(const OnewayOperation &master) : OperationBase(master), MgaObject(master), Object(master) { }
-		static OnewayOperation Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static OnewayOperation Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		OnewayOperation CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		OnewayOperation CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<OnewayOperation> Instances() { return Udm::InstantiatedAttr<PICML::OnewayOperation>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<OnewayOperation, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::OnewayOperation, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::OnewayOperation> Derived() { return Udm::DerivedAttr<PICML::OnewayOperation>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::OnewayOperation, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::OnewayOperation, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::OnewayOperation> Archetype() { return Udm::ArchetypeAttr<PICML::OnewayOperation>(impl);}
-
-		static Uml::CompositionParentRole meta_HasOperations_parent;
-		Udm::ParentAttr<PICML::HasOperations> HasOperations_parent() const { return Udm::ParentAttr<PICML::HasOperations>(impl, meta_HasOperations_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_OnewayOperation(*this);};
-	};
-
-	class  InParameter :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		InParameter() { }
-		InParameter(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		InParameter(const InParameter &master) : MgaObject(master), Object(master) { }
-		static InParameter Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static InParameter Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		InParameter CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		InParameter CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<InParameter> Instances() { return Udm::InstantiatedAttr<PICML::InParameter>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<InParameter, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::InParameter, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::InParameter> Derived() { return Udm::DerivedAttr<PICML::InParameter>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::InParameter, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::InParameter, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::InParameter> Archetype() { return Udm::ArchetypeAttr<PICML::InParameter>(impl);}
-
-		static Uml::AssociationRole meta_ref;
-		Udm::PointerAttr<PICML::MemberType> ref() const { return Udm::PointerAttr<PICML::MemberType>(impl, meta_ref); }
-
-		static Uml::CompositionParentRole meta_OperationBase_parent;
-		Udm::ParentAttr<PICML::OperationBase> OperationBase_parent() const { return Udm::ParentAttr<PICML::OperationBase>(impl, meta_OperationBase_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_InParameter(*this);};
-	};
-
-	class  InoutParameter :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		InoutParameter() { }
-		InoutParameter(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		InoutParameter(const InoutParameter &master) : MgaObject(master), Object(master) { }
-		static InoutParameter Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static InoutParameter Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		InoutParameter CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		InoutParameter CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<InoutParameter> Instances() { return Udm::InstantiatedAttr<PICML::InoutParameter>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<InoutParameter, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::InoutParameter, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::InoutParameter> Derived() { return Udm::DerivedAttr<PICML::InoutParameter>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::InoutParameter, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::InoutParameter, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::InoutParameter> Archetype() { return Udm::ArchetypeAttr<PICML::InoutParameter>(impl);}
-
-		static Uml::AssociationRole meta_ref;
-		Udm::PointerAttr<PICML::MemberType> ref() const { return Udm::PointerAttr<PICML::MemberType>(impl, meta_ref); }
-
-		static Uml::CompositionParentRole meta_TwowayOperation_parent;
-		Udm::ParentAttr<PICML::TwowayOperation> TwowayOperation_parent() const { return Udm::ParentAttr<PICML::TwowayOperation>(impl, meta_TwowayOperation_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_InoutParameter(*this);};
-	};
-
 	class  HasExceptions :  public OperationBase {
 	 public:
 		static Uml::Class meta;
@@ -7642,6 +7545,36 @@ namespace PICML {
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 	};
 
+	class  OnewayOperation :  public OperationBase {
+	 public:
+		static Uml::Class meta;
+
+		OnewayOperation() { }
+		OnewayOperation(Udm::ObjectImpl *impl) : OperationBase(impl), MgaObject(impl), Object(impl) { }
+		OnewayOperation(const OnewayOperation &master) : OperationBase(master), MgaObject(master), Object(master) { }
+		static OnewayOperation Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static OnewayOperation Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		OnewayOperation CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		OnewayOperation CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<OnewayOperation> Instances() { return Udm::InstantiatedAttr<PICML::OnewayOperation>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<OnewayOperation, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::OnewayOperation, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::OnewayOperation> Derived() { return Udm::DerivedAttr<PICML::OnewayOperation>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::OnewayOperation, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::OnewayOperation, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::OnewayOperation> Archetype() { return Udm::ArchetypeAttr<PICML::OnewayOperation>(impl);}
+
+		static Uml::CompositionParentRole meta_HasOperations_parent;
+		Udm::ParentAttr<PICML::HasOperations> HasOperations_parent() const { return Udm::ParentAttr<PICML::HasOperations>(impl, meta_HasOperations_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_OnewayOperation(*this);};
+	};
+
 	class  TwowayOperation :  public HasExceptions {
 	 public:
 		static Uml::Class meta;
@@ -7665,16 +7598,16 @@ namespace PICML {
 
 		Udm::ArchetypeAttr<PICML::TwowayOperation> Archetype() { return Udm::ArchetypeAttr<PICML::TwowayOperation>(impl);}
 
+		static Uml::CompositionChildRole meta_OutParameter_children;
+		Udm::ChildrenAttr<PICML::OutParameter> OutParameter_children() const { return Udm::ChildrenAttr<PICML::OutParameter>(impl, meta_OutParameter_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::OutParameter, Pred> OutParameter_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OutParameter, Pred>(impl, meta_OutParameter_children); }
+
 		static Uml::CompositionChildRole meta_ReturnType_child;
 		Udm::ChildAttr<PICML::ReturnType> ReturnType_child() const { return Udm::ChildAttr<PICML::ReturnType>(impl, meta_ReturnType_child); }
 
 		static Uml::CompositionChildRole meta_InoutParameter_children;
 		Udm::ChildrenAttr<PICML::InoutParameter> InoutParameter_children() const { return Udm::ChildrenAttr<PICML::InoutParameter>(impl, meta_InoutParameter_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML::InoutParameter, Pred> InoutParameter_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::InoutParameter, Pred>(impl, meta_InoutParameter_children); }
-
-		static Uml::CompositionChildRole meta_OutParameter_children;
-		Udm::ChildrenAttr<PICML::OutParameter> OutParameter_children() const { return Udm::ChildrenAttr<PICML::OutParameter>(impl, meta_OutParameter_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::OutParameter, Pred> OutParameter_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OutParameter, Pred>(impl, meta_OutParameter_children); }
 
 		Udm::ChildrenAttr<PICML::ReturnType> ReturnType_kind_children() const { return Udm::ChildrenAttr<PICML::ReturnType>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::ReturnType, Pred> ReturnType_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ReturnType, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -7693,6 +7626,36 @@ namespace PICML {
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		virtual void Accept(Visitor &v){v.Visit_TwowayOperation(*this);};
+	};
+
+	class  LookupOperation :  public HasExceptions {
+	 public:
+		static Uml::Class meta;
+
+		LookupOperation() { }
+		LookupOperation(Udm::ObjectImpl *impl) : HasExceptions(impl), MgaObject(impl), Object(impl) { }
+		LookupOperation(const LookupOperation &master) : HasExceptions(master), MgaObject(master), Object(master) { }
+		static LookupOperation Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static LookupOperation Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		LookupOperation CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		LookupOperation CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<LookupOperation> Instances() { return Udm::InstantiatedAttr<PICML::LookupOperation>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<LookupOperation, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::LookupOperation, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::LookupOperation> Derived() { return Udm::DerivedAttr<PICML::LookupOperation>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::LookupOperation, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::LookupOperation, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::LookupOperation> Archetype() { return Udm::ArchetypeAttr<PICML::LookupOperation>(impl);}
+
+		static Uml::CompositionParentRole meta_ComponentFactory_parent;
+		Udm::ParentAttr<PICML::ComponentFactory> ComponentFactory_parent() const { return Udm::ParentAttr<PICML::ComponentFactory>(impl, meta_ComponentFactory_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_LookupOperation(*this);};
 	};
 
 	class  FactoryOperation :  public HasExceptions {
@@ -7728,105 +7691,6 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_FactoryOperation(*this);};
 	};
 
-	class  LookupOperation :  public HasExceptions {
-	 public:
-		static Uml::Class meta;
-
-		LookupOperation() { }
-		LookupOperation(Udm::ObjectImpl *impl) : HasExceptions(impl), MgaObject(impl), Object(impl) { }
-		LookupOperation(const LookupOperation &master) : HasExceptions(master), MgaObject(master), Object(master) { }
-		static LookupOperation Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static LookupOperation Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		LookupOperation CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		LookupOperation CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<LookupOperation> Instances() { return Udm::InstantiatedAttr<PICML::LookupOperation>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<LookupOperation, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::LookupOperation, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::LookupOperation> Derived() { return Udm::DerivedAttr<PICML::LookupOperation>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::LookupOperation, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::LookupOperation, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::LookupOperation> Archetype() { return Udm::ArchetypeAttr<PICML::LookupOperation>(impl);}
-
-		static Uml::CompositionParentRole meta_ComponentFactory_parent;
-		Udm::ParentAttr<PICML::ComponentFactory> ComponentFactory_parent() const { return Udm::ParentAttr<PICML::ComponentFactory>(impl, meta_ComponentFactory_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_LookupOperation(*this);};
-	};
-
-	class  Supports :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		Supports() { }
-		Supports(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		Supports(const Supports &master) : MgaObject(master), Object(master) { }
-		static Supports Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static Supports Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		Supports CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		Supports CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<Supports> Instances() { return Udm::InstantiatedAttr<PICML::Supports>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Supports, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Supports, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::Supports> Derived() { return Udm::DerivedAttr<PICML::Supports>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Supports, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Supports, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::Supports> Archetype() { return Udm::ArchetypeAttr<PICML::Supports>(impl);}
-
-		static Uml::AssociationRole meta_ref;
-		Udm::PointerAttr<PICML::Object> ref() const { return Udm::PointerAttr<PICML::Object>(impl, meta_ref); }
-
-		static Uml::CompositionParentRole meta_SupportsInterfaces_parent;
-		Udm::ParentAttr<PICML::SupportsInterfaces> SupportsInterfaces_parent() const { return Udm::ParentAttr<PICML::SupportsInterfaces>(impl, meta_SupportsInterfaces_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_Supports(*this);};
-	};
-
-	class  SupportsInterfaces :  virtual public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		SupportsInterfaces() { }
-		SupportsInterfaces(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		SupportsInterfaces(const SupportsInterfaces &master) : MgaObject(master), Object(master) { }
-		static SupportsInterfaces Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static SupportsInterfaces Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		SupportsInterfaces CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		SupportsInterfaces CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<SupportsInterfaces> Instances() { return Udm::InstantiatedAttr<PICML::SupportsInterfaces>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<SupportsInterfaces, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::SupportsInterfaces, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::SupportsInterfaces> Derived() { return Udm::DerivedAttr<PICML::SupportsInterfaces>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::SupportsInterfaces, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::SupportsInterfaces, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::SupportsInterfaces> Archetype() { return Udm::ArchetypeAttr<PICML::SupportsInterfaces>(impl);}
-
-		static Uml::CompositionChildRole meta_Supports_children;
-		Udm::ChildrenAttr<PICML::Supports> Supports_children() const { return Udm::ChildrenAttr<PICML::Supports>(impl, meta_Supports_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Supports, Pred> Supports_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Supports, Pred>(impl, meta_Supports_children); }
-
-		Udm::ChildrenAttr<PICML::Supports> Supports_kind_children() const { return Udm::ChildrenAttr<PICML::Supports>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Supports, Pred> Supports_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Supports, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
-	};
-
 	class  AttributeMember :  public MgaObject {
 	 public:
 		static Uml::Class meta;
@@ -7858,39 +7722,6 @@ namespace PICML {
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		virtual void Accept(Visitor &v){v.Visit_AttributeMember(*this);};
-	};
-
-	class  PrivateFlag :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		PrivateFlag() { }
-		PrivateFlag(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		PrivateFlag(const PrivateFlag &master) : MgaObject(master), Object(master) { }
-		static PrivateFlag Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static PrivateFlag Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		PrivateFlag CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		PrivateFlag CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<PrivateFlag> Instances() { return Udm::InstantiatedAttr<PICML::PrivateFlag>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<PrivateFlag, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::PrivateFlag, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::PrivateFlag> Derived() { return Udm::DerivedAttr<PICML::PrivateFlag>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::PrivateFlag, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::PrivateFlag, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::PrivateFlag> Archetype() { return Udm::ArchetypeAttr<PICML::PrivateFlag>(impl);}
-
-		static Uml::AssociationRole meta_srcMakeMemberPrivate, meta_srcMakeMemberPrivate_rev;
-		Udm::AClassPointerAttr<PICML::MakeMemberPrivate, PICML::Member> srcMakeMemberPrivate() const { return Udm::AClassPointerAttr<PICML::MakeMemberPrivate, PICML::Member>(impl, meta_srcMakeMemberPrivate, meta_srcMakeMemberPrivate_rev); }
-
-		static Uml::CompositionParentRole meta_ObjectByValue_parent;
-		Udm::ParentAttr<PICML::ObjectByValue> ObjectByValue_parent() const { return Udm::ParentAttr<PICML::ObjectByValue>(impl, meta_ObjectByValue_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_PrivateFlag(*this);};
 	};
 
 	class  MakeMemberPrivate :  public MgaObject {
@@ -7927,6 +7758,138 @@ namespace PICML {
 		Udm::AssocEndAttr<PICML::Member> srcMakeMemberPrivate_end() const { return Udm::AssocEndAttr<PICML::Member>(impl, meta_srcMakeMemberPrivate_end_); }
 
 		virtual void Accept(Visitor &v){v.Visit_MakeMemberPrivate(*this);};
+	};
+
+	class  PrivateFlag :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		PrivateFlag() { }
+		PrivateFlag(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		PrivateFlag(const PrivateFlag &master) : MgaObject(master), Object(master) { }
+		static PrivateFlag Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static PrivateFlag Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		PrivateFlag CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		PrivateFlag CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<PrivateFlag> Instances() { return Udm::InstantiatedAttr<PICML::PrivateFlag>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<PrivateFlag, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::PrivateFlag, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::PrivateFlag> Derived() { return Udm::DerivedAttr<PICML::PrivateFlag>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::PrivateFlag, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::PrivateFlag, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::PrivateFlag> Archetype() { return Udm::ArchetypeAttr<PICML::PrivateFlag>(impl);}
+
+		static Uml::AssociationRole meta_srcMakeMemberPrivate, meta_srcMakeMemberPrivate_rev;
+		Udm::AClassPointerAttr<PICML::MakeMemberPrivate, PICML::Member> srcMakeMemberPrivate() const { return Udm::AClassPointerAttr<PICML::MakeMemberPrivate, PICML::Member>(impl, meta_srcMakeMemberPrivate, meta_srcMakeMemberPrivate_rev); }
+
+		static Uml::CompositionParentRole meta_ObjectByValue_parent;
+		Udm::ParentAttr<PICML::ObjectByValue> ObjectByValue_parent() const { return Udm::ParentAttr<PICML::ObjectByValue>(impl, meta_ObjectByValue_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_PrivateFlag(*this);};
+	};
+
+	class  GetException :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		GetException() { }
+		GetException(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		GetException(const GetException &master) : MgaObject(master), Object(master) { }
+		static GetException Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static GetException Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		GetException CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		GetException CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<GetException> Instances() { return Udm::InstantiatedAttr<PICML::GetException>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<GetException, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::GetException, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::GetException> Derived() { return Udm::DerivedAttr<PICML::GetException>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::GetException, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::GetException, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::GetException> Archetype() { return Udm::ArchetypeAttr<PICML::GetException>(impl);}
+
+		static Uml::AssociationRole meta_ref;
+		Udm::PointerAttr<PICML::Exception> ref() const { return Udm::PointerAttr<PICML::Exception>(impl, meta_ref); }
+
+		static Uml::CompositionParentRole meta_ReadonlyAttribute_parent;
+		Udm::ParentAttr<PICML::ReadonlyAttribute> ReadonlyAttribute_parent() const { return Udm::ParentAttr<PICML::ReadonlyAttribute>(impl, meta_ReadonlyAttribute_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_GetException(*this);};
+	};
+
+	class  SetException :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		SetException() { }
+		SetException(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		SetException(const SetException &master) : MgaObject(master), Object(master) { }
+		static SetException Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static SetException Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		SetException CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		SetException CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<SetException> Instances() { return Udm::InstantiatedAttr<PICML::SetException>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<SetException, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::SetException, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::SetException> Derived() { return Udm::DerivedAttr<PICML::SetException>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::SetException, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::SetException, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::SetException> Archetype() { return Udm::ArchetypeAttr<PICML::SetException>(impl);}
+
+		static Uml::AssociationRole meta_ref;
+		Udm::PointerAttr<PICML::Exception> ref() const { return Udm::PointerAttr<PICML::Exception>(impl, meta_ref); }
+
+		static Uml::CompositionParentRole meta_Attribute_parent;
+		Udm::ParentAttr<PICML::Attribute> Attribute_parent() const { return Udm::ParentAttr<PICML::Attribute>(impl, meta_Attribute_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_SetException(*this);};
+	};
+
+	class  LookupKey :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		LookupKey() { }
+		LookupKey(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		LookupKey(const LookupKey &master) : MgaObject(master), Object(master) { }
+		static LookupKey Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static LookupKey Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		LookupKey CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		LookupKey CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<LookupKey> Instances() { return Udm::InstantiatedAttr<PICML::LookupKey>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<LookupKey, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::LookupKey, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::LookupKey> Derived() { return Udm::DerivedAttr<PICML::LookupKey>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::LookupKey, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::LookupKey, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::LookupKey> Archetype() { return Udm::ArchetypeAttr<PICML::LookupKey>(impl);}
+
+		static Uml::AssociationRole meta_ref;
+		Udm::PointerAttr<PICML::ValueObject> ref() const { return Udm::PointerAttr<PICML::ValueObject>(impl, meta_ref); }
+
+		static Uml::CompositionParentRole meta_ComponentFactory_parent;
+		Udm::ParentAttr<PICML::ComponentFactory> ComponentFactory_parent() const { return Udm::ParentAttr<PICML::ComponentFactory>(impl, meta_ComponentFactory_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_LookupKey(*this);};
 	};
 
 	class  ReadonlyAttribute :  public Taggable {
@@ -8015,6 +7978,75 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_Attribute(*this);};
 	};
 
+	class  Supports :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		Supports() { }
+		Supports(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		Supports(const Supports &master) : MgaObject(master), Object(master) { }
+		static Supports Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static Supports Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		Supports CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		Supports CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<Supports> Instances() { return Udm::InstantiatedAttr<PICML::Supports>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Supports, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Supports, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::Supports> Derived() { return Udm::DerivedAttr<PICML::Supports>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Supports, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Supports, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::Supports> Archetype() { return Udm::ArchetypeAttr<PICML::Supports>(impl);}
+
+		static Uml::AssociationRole meta_ref;
+		Udm::PointerAttr<PICML::Object> ref() const { return Udm::PointerAttr<PICML::Object>(impl, meta_ref); }
+
+		static Uml::CompositionParentRole meta_SupportsInterfaces_parent;
+		Udm::ParentAttr<PICML::SupportsInterfaces> SupportsInterfaces_parent() const { return Udm::ParentAttr<PICML::SupportsInterfaces>(impl, meta_SupportsInterfaces_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_Supports(*this);};
+	};
+
+	class  SupportsInterfaces :  virtual public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		SupportsInterfaces() { }
+		SupportsInterfaces(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		SupportsInterfaces(const SupportsInterfaces &master) : MgaObject(master), Object(master) { }
+		static SupportsInterfaces Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static SupportsInterfaces Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		SupportsInterfaces CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		SupportsInterfaces CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<SupportsInterfaces> Instances() { return Udm::InstantiatedAttr<PICML::SupportsInterfaces>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<SupportsInterfaces, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::SupportsInterfaces, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::SupportsInterfaces> Derived() { return Udm::DerivedAttr<PICML::SupportsInterfaces>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::SupportsInterfaces, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::SupportsInterfaces, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::SupportsInterfaces> Archetype() { return Udm::ArchetypeAttr<PICML::SupportsInterfaces>(impl);}
+
+		static Uml::CompositionChildRole meta_Supports_children;
+		Udm::ChildrenAttr<PICML::Supports> Supports_children() const { return Udm::ChildrenAttr<PICML::Supports>(impl, meta_Supports_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Supports, Pred> Supports_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Supports, Pred>(impl, meta_Supports_children); }
+
+		Udm::ChildrenAttr<PICML::Supports> Supports_kind_children() const { return Udm::ChildrenAttr<PICML::Supports>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Supports, Pred> Supports_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Supports, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
+	};
+
 	class  Inherits :  public MgaObject {
 	 public:
 		static Uml::Class meta;
@@ -8048,103 +8080,53 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_Inherits(*this);};
 	};
 
-	class  LookupKey :  public MgaObject {
+	class  Member :  public MgaObject {
 	 public:
 		static Uml::Class meta;
 
-		LookupKey() { }
-		LookupKey(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		LookupKey(const LookupKey &master) : MgaObject(master), Object(master) { }
-		static LookupKey Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		Member() { }
+		Member(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		Member(const Member &master) : MgaObject(master), Object(master) { }
+		static Member Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static LookupKey Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		static Member Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		LookupKey CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		Member CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		LookupKey CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+		Member CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::InstantiatedAttr<LookupKey> Instances() { return Udm::InstantiatedAttr<PICML::LookupKey>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<LookupKey, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::LookupKey, Pred>(impl);}
+		Udm::InstantiatedAttr<Member> Instances() { return Udm::InstantiatedAttr<PICML::Member>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Member, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Member, Pred>(impl);}
 
-		Udm::DerivedAttr<PICML::LookupKey> Derived() { return Udm::DerivedAttr<PICML::LookupKey>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::LookupKey, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::LookupKey, Pred>(impl);}
+		Udm::DerivedAttr<PICML::Member> Derived() { return Udm::DerivedAttr<PICML::Member>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Member, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Member, Pred>(impl);}
 
-		Udm::ArchetypeAttr<PICML::LookupKey> Archetype() { return Udm::ArchetypeAttr<PICML::LookupKey>(impl);}
+		Udm::ArchetypeAttr<PICML::Member> Archetype() { return Udm::ArchetypeAttr<PICML::Member>(impl);}
 
-		static Uml::AssociationRole meta_ref;
-		Udm::PointerAttr<PICML::ValueObject> ref() const { return Udm::PointerAttr<PICML::ValueObject>(impl, meta_ref); }
-
-		static Uml::CompositionParentRole meta_ComponentFactory_parent;
-		Udm::ParentAttr<PICML::ComponentFactory> ComponentFactory_parent() const { return Udm::ParentAttr<PICML::ComponentFactory>(impl, meta_ComponentFactory_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_LookupKey(*this);};
-	};
-
-	class  SetException :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		SetException() { }
-		SetException(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		SetException(const SetException &master) : MgaObject(master), Object(master) { }
-		static SetException Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static SetException Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		SetException CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		SetException CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<SetException> Instances() { return Udm::InstantiatedAttr<PICML::SetException>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<SetException, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::SetException, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::SetException> Derived() { return Udm::DerivedAttr<PICML::SetException>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::SetException, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::SetException, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::SetException> Archetype() { return Udm::ArchetypeAttr<PICML::SetException>(impl);}
+		static Uml::AssociationRole meta_dstMakeMemberPrivate, meta_dstMakeMemberPrivate_rev;
+		Udm::AClassPointerAttr<PICML::MakeMemberPrivate, PICML::PrivateFlag> dstMakeMemberPrivate() const { return Udm::AClassPointerAttr<PICML::MakeMemberPrivate, PICML::PrivateFlag>(impl, meta_dstMakeMemberPrivate, meta_dstMakeMemberPrivate_rev); }
 
 		static Uml::AssociationRole meta_ref;
-		Udm::PointerAttr<PICML::Exception> ref() const { return Udm::PointerAttr<PICML::Exception>(impl, meta_ref); }
+		Udm::PointerAttr<PICML::MemberType> ref() const { return Udm::PointerAttr<PICML::MemberType>(impl, meta_ref); }
 
-		static Uml::CompositionParentRole meta_Attribute_parent;
-		Udm::ParentAttr<PICML::Attribute> Attribute_parent() const { return Udm::ParentAttr<PICML::Attribute>(impl, meta_Attribute_parent); }
+		static Uml::AssociationRole meta_dstLabelConnection, meta_dstLabelConnection_rev;
+		Udm::AClassAssocAttr<PICML::LabelConnection, PICML::Label> dstLabelConnection() const { return Udm::AClassAssocAttr<PICML::LabelConnection, PICML::Label>(impl, meta_dstLabelConnection, meta_dstLabelConnection_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::LabelConnection, PICML::Label, Pred> dstLabelConnection_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::LabelConnection, PICML::Label, Pred>(impl, meta_dstLabelConnection, meta_dstLabelConnection_rev); }
 
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_SetException(*this);};
-	};
+		static Uml::CompositionParentRole meta_ObjectByValue_parent;
+		Udm::ParentAttr<PICML::ObjectByValue> ObjectByValue_parent() const { return Udm::ParentAttr<PICML::ObjectByValue>(impl, meta_ObjectByValue_parent); }
 
-	class  GetException :  public MgaObject {
-	 public:
-		static Uml::Class meta;
+		static Uml::CompositionParentRole meta_SwitchedAggregate_parent;
+		Udm::ParentAttr<PICML::SwitchedAggregate> SwitchedAggregate_parent() const { return Udm::ParentAttr<PICML::SwitchedAggregate>(impl, meta_SwitchedAggregate_parent); }
 
-		GetException() { }
-		GetException(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		GetException(const GetException &master) : MgaObject(master), Object(master) { }
-		static GetException Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		static Uml::CompositionParentRole meta_Aggregate_parent;
+		Udm::ParentAttr<PICML::Aggregate> Aggregate_parent() const { return Udm::ParentAttr<PICML::Aggregate>(impl, meta_Aggregate_parent); }
 
-		static GetException Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		GetException CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		GetException CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<GetException> Instances() { return Udm::InstantiatedAttr<PICML::GetException>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<GetException, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::GetException, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::GetException> Derived() { return Udm::DerivedAttr<PICML::GetException>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::GetException, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::GetException, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::GetException> Archetype() { return Udm::ArchetypeAttr<PICML::GetException>(impl);}
-
-		static Uml::AssociationRole meta_ref;
-		Udm::PointerAttr<PICML::Exception> ref() const { return Udm::PointerAttr<PICML::Exception>(impl, meta_ref); }
-
-		static Uml::CompositionParentRole meta_ReadonlyAttribute_parent;
-		Udm::ParentAttr<PICML::ReadonlyAttribute> ReadonlyAttribute_parent() const { return Udm::ParentAttr<PICML::ReadonlyAttribute>(impl, meta_ReadonlyAttribute_parent); }
+		static Uml::CompositionParentRole meta_Exception_parent;
+		Udm::ParentAttr<PICML::Exception> Exception_parent() const { return Udm::ParentAttr<PICML::Exception>(impl, meta_Exception_parent); }
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_GetException(*this);};
+		virtual void Accept(Visitor &v){v.Visit_Member(*this);};
 	};
 
 	class  Discriminator :  public MgaObject {
@@ -8211,183 +8193,35 @@ namespace PICML {
 		Udm::AssocAttr<PICML::OutParameter> referedbyOutParameter() const { return Udm::AssocAttr<PICML::OutParameter>(impl, meta_referedbyOutParameter); }
 		template <class Pred> Udm::AssocAttr<PICML::OutParameter, Pred > referedbyOutParameter_sorted(const Pred &) const { return Udm::AssocAttr<PICML::OutParameter, Pred>(impl, meta_referedbyOutParameter); }
 
-		static Uml::AssociationRole meta_referedbyInParameter;
-		Udm::AssocAttr<PICML::InParameter> referedbyInParameter() const { return Udm::AssocAttr<PICML::InParameter>(impl, meta_referedbyInParameter); }
-		template <class Pred> Udm::AssocAttr<PICML::InParameter, Pred > referedbyInParameter_sorted(const Pred &) const { return Udm::AssocAttr<PICML::InParameter, Pred>(impl, meta_referedbyInParameter); }
-
 		static Uml::AssociationRole meta_referedbyInoutParameter;
 		Udm::AssocAttr<PICML::InoutParameter> referedbyInoutParameter() const { return Udm::AssocAttr<PICML::InoutParameter>(impl, meta_referedbyInoutParameter); }
 		template <class Pred> Udm::AssocAttr<PICML::InoutParameter, Pred > referedbyInoutParameter_sorted(const Pred &) const { return Udm::AssocAttr<PICML::InoutParameter, Pred>(impl, meta_referedbyInoutParameter); }
+
+		static Uml::AssociationRole meta_referedbyInParameter;
+		Udm::AssocAttr<PICML::InParameter> referedbyInParameter() const { return Udm::AssocAttr<PICML::InParameter>(impl, meta_referedbyInParameter); }
+		template <class Pred> Udm::AssocAttr<PICML::InParameter, Pred > referedbyInParameter_sorted(const Pred &) const { return Udm::AssocAttr<PICML::InParameter, Pred>(impl, meta_referedbyInParameter); }
 
 		static Uml::AssociationRole meta_referedbyAttributeMember;
 		Udm::AssocAttr<PICML::AttributeMember> referedbyAttributeMember() const { return Udm::AssocAttr<PICML::AttributeMember>(impl, meta_referedbyAttributeMember); }
 		template <class Pred> Udm::AssocAttr<PICML::AttributeMember, Pred > referedbyAttributeMember_sorted(const Pred &) const { return Udm::AssocAttr<PICML::AttributeMember, Pred>(impl, meta_referedbyAttributeMember); }
 
-		static Uml::AssociationRole meta_referedbyAlias;
-		Udm::AssocAttr<PICML::Alias> referedbyAlias() const { return Udm::AssocAttr<PICML::Alias>(impl, meta_referedbyAlias); }
-		template <class Pred> Udm::AssocAttr<PICML::Alias, Pred > referedbyAlias_sorted(const Pred &) const { return Udm::AssocAttr<PICML::Alias, Pred>(impl, meta_referedbyAlias); }
+		static Uml::AssociationRole meta_referedbyMember;
+		Udm::AssocAttr<PICML::Member> referedbyMember() const { return Udm::AssocAttr<PICML::Member>(impl, meta_referedbyMember); }
+		template <class Pred> Udm::AssocAttr<PICML::Member, Pred > referedbyMember_sorted(const Pred &) const { return Udm::AssocAttr<PICML::Member, Pred>(impl, meta_referedbyMember); }
 
 		static Uml::AssociationRole meta_referedbyBoxed;
 		Udm::AssocAttr<PICML::Boxed> referedbyBoxed() const { return Udm::AssocAttr<PICML::Boxed>(impl, meta_referedbyBoxed); }
 		template <class Pred> Udm::AssocAttr<PICML::Boxed, Pred > referedbyBoxed_sorted(const Pred &) const { return Udm::AssocAttr<PICML::Boxed, Pred>(impl, meta_referedbyBoxed); }
 
+		static Uml::AssociationRole meta_referedbyAlias;
+		Udm::AssocAttr<PICML::Alias> referedbyAlias() const { return Udm::AssocAttr<PICML::Alias>(impl, meta_referedbyAlias); }
+		template <class Pred> Udm::AssocAttr<PICML::Alias, Pred > referedbyAlias_sorted(const Pred &) const { return Udm::AssocAttr<PICML::Alias, Pred>(impl, meta_referedbyAlias); }
+
 		static Uml::AssociationRole meta_referedbyCollection;
 		Udm::AssocAttr<PICML::Collection> referedbyCollection() const { return Udm::AssocAttr<PICML::Collection>(impl, meta_referedbyCollection); }
 		template <class Pred> Udm::AssocAttr<PICML::Collection, Pred > referedbyCollection_sorted(const Pred &) const { return Udm::AssocAttr<PICML::Collection, Pred>(impl, meta_referedbyCollection); }
 
-		static Uml::AssociationRole meta_referedbyMember;
-		Udm::AssocAttr<PICML::Member> referedbyMember() const { return Udm::AssocAttr<PICML::Member>(impl, meta_referedbyMember); }
-		template <class Pred> Udm::AssocAttr<PICML::Member, Pred > referedbyMember_sorted(const Pred &) const { return Udm::AssocAttr<PICML::Member, Pred>(impl, meta_referedbyMember); }
-
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
-	};
-
-	class  Label :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		Label() { }
-		Label(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		Label(const Label &master) : MgaObject(master), Object(master) { }
-		static Label Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static Label Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		Label CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		Label CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<Label> Instances() { return Udm::InstantiatedAttr<PICML::Label>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Label, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Label, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::Label> Derived() { return Udm::DerivedAttr<PICML::Label>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Label, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Label, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::Label> Archetype() { return Udm::ArchetypeAttr<PICML::Label>(impl);}
-
-		static Uml::AssociationRole meta_srcLabelConnection, meta_srcLabelConnection_rev;
-		Udm::AClassPointerAttr<PICML::LabelConnection, PICML::Member> srcLabelConnection() const { return Udm::AClassPointerAttr<PICML::LabelConnection, PICML::Member>(impl, meta_srcLabelConnection, meta_srcLabelConnection_rev); }
-
-		static Uml::CompositionParentRole meta_SwitchedAggregate_parent;
-		Udm::ParentAttr<PICML::SwitchedAggregate> SwitchedAggregate_parent() const { return Udm::ParentAttr<PICML::SwitchedAggregate>(impl, meta_SwitchedAggregate_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_Label(*this);};
-	};
-
-	class  EnumValue :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		EnumValue() { }
-		EnumValue(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		EnumValue(const EnumValue &master) : MgaObject(master), Object(master) { }
-		static EnumValue Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static EnumValue Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		EnumValue CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		EnumValue CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<EnumValue> Instances() { return Udm::InstantiatedAttr<PICML::EnumValue>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<EnumValue, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::EnumValue, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::EnumValue> Derived() { return Udm::DerivedAttr<PICML::EnumValue>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::EnumValue, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::EnumValue, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::EnumValue> Archetype() { return Udm::ArchetypeAttr<PICML::EnumValue>(impl);}
-
-		static Uml::CompositionParentRole meta_Enum_parent;
-		Udm::ParentAttr<PICML::Enum> Enum_parent() const { return Udm::ParentAttr<PICML::Enum>(impl, meta_Enum_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_EnumValue(*this);};
-	};
-
-	class  LabelConnection :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		LabelConnection() { }
-		LabelConnection(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		LabelConnection(const LabelConnection &master) : MgaObject(master), Object(master) { }
-		static LabelConnection Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static LabelConnection Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		LabelConnection CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		LabelConnection CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<LabelConnection> Instances() { return Udm::InstantiatedAttr<PICML::LabelConnection>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<LabelConnection, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::LabelConnection, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::LabelConnection> Derived() { return Udm::DerivedAttr<PICML::LabelConnection>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::LabelConnection, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::LabelConnection, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::LabelConnection> Archetype() { return Udm::ArchetypeAttr<PICML::LabelConnection>(impl);}
-
-		static Uml::CompositionParentRole meta_SwitchedAggregate_parent;
-		Udm::ParentAttr<PICML::SwitchedAggregate> SwitchedAggregate_parent() const { return Udm::ParentAttr<PICML::SwitchedAggregate>(impl, meta_SwitchedAggregate_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_dstLabelConnection_end_;
-		Udm::AssocEndAttr<PICML::Label> dstLabelConnection_end() const { return Udm::AssocEndAttr<PICML::Label>(impl, meta_dstLabelConnection_end_); }
-
-		static Uml::AssociationRole meta_srcLabelConnection_end_;
-		Udm::AssocEndAttr<PICML::Member> srcLabelConnection_end() const { return Udm::AssocEndAttr<PICML::Member>(impl, meta_srcLabelConnection_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_LabelConnection(*this);};
-	};
-
-	class  Member :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		Member() { }
-		Member(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		Member(const Member &master) : MgaObject(master), Object(master) { }
-		static Member Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static Member Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		Member CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		Member CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<Member> Instances() { return Udm::InstantiatedAttr<PICML::Member>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Member, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Member, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::Member> Derived() { return Udm::DerivedAttr<PICML::Member>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Member, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Member, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::Member> Archetype() { return Udm::ArchetypeAttr<PICML::Member>(impl);}
-
-		static Uml::AssociationRole meta_dstMakeMemberPrivate, meta_dstMakeMemberPrivate_rev;
-		Udm::AClassPointerAttr<PICML::MakeMemberPrivate, PICML::PrivateFlag> dstMakeMemberPrivate() const { return Udm::AClassPointerAttr<PICML::MakeMemberPrivate, PICML::PrivateFlag>(impl, meta_dstMakeMemberPrivate, meta_dstMakeMemberPrivate_rev); }
-
-		static Uml::AssociationRole meta_ref;
-		Udm::PointerAttr<PICML::MemberType> ref() const { return Udm::PointerAttr<PICML::MemberType>(impl, meta_ref); }
-
-		static Uml::AssociationRole meta_dstLabelConnection, meta_dstLabelConnection_rev;
-		Udm::AClassAssocAttr<PICML::LabelConnection, PICML::Label> dstLabelConnection() const { return Udm::AClassAssocAttr<PICML::LabelConnection, PICML::Label>(impl, meta_dstLabelConnection, meta_dstLabelConnection_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::LabelConnection, PICML::Label, Pred> dstLabelConnection_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::LabelConnection, PICML::Label, Pred>(impl, meta_dstLabelConnection, meta_dstLabelConnection_rev); }
-
-		static Uml::CompositionParentRole meta_ObjectByValue_parent;
-		Udm::ParentAttr<PICML::ObjectByValue> ObjectByValue_parent() const { return Udm::ParentAttr<PICML::ObjectByValue>(impl, meta_ObjectByValue_parent); }
-
-		static Uml::CompositionParentRole meta_Aggregate_parent;
-		Udm::ParentAttr<PICML::Aggregate> Aggregate_parent() const { return Udm::ParentAttr<PICML::Aggregate>(impl, meta_Aggregate_parent); }
-
-		static Uml::CompositionParentRole meta_SwitchedAggregate_parent;
-		Udm::ParentAttr<PICML::SwitchedAggregate> SwitchedAggregate_parent() const { return Udm::ParentAttr<PICML::SwitchedAggregate>(impl, meta_SwitchedAggregate_parent); }
-
-		static Uml::CompositionParentRole meta_Exception_parent;
-		Udm::ParentAttr<PICML::Exception> Exception_parent() const { return Udm::ParentAttr<PICML::Exception>(impl, meta_Exception_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_Member(*this);};
 	};
 
 	class  NamedType :  public Taggable, public MemberType {
@@ -8413,11 +8247,11 @@ namespace PICML {
 
 		Udm::ArchetypeAttr<PICML::NamedType> Archetype() { return Udm::ArchetypeAttr<PICML::NamedType>(impl);}
 
-		static Uml::CompositionParentRole meta_File_parent;
-		Udm::ParentAttr<PICML::File> File_parent() const { return Udm::ParentAttr<PICML::File>(impl, meta_File_parent); }
-
 		static Uml::CompositionParentRole meta_Package_parent;
 		Udm::ParentAttr<PICML::Package> Package_parent() const { return Udm::ParentAttr<PICML::Package>(impl, meta_Package_parent); }
+
+		static Uml::CompositionParentRole meta_File_parent;
+		Udm::ParentAttr<PICML::File> File_parent() const { return Udm::ParentAttr<PICML::File>(impl, meta_File_parent); }
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 	};
@@ -8455,25 +8289,25 @@ namespace PICML {
 		Udm::AClassAssocAttr<PICML::ExternalDelegate, PICML::ExternalReferenceEndPoint> dstExternalDelegate() const { return Udm::AClassAssocAttr<PICML::ExternalDelegate, PICML::ExternalReferenceEndPoint>(impl, meta_dstExternalDelegate, meta_dstExternalDelegate_rev); }
 		template<class Pred> Udm::AClassAssocAttr<PICML::ExternalDelegate, PICML::ExternalReferenceEndPoint, Pred> dstExternalDelegate_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::ExternalDelegate, PICML::ExternalReferenceEndPoint, Pred>(impl, meta_dstExternalDelegate, meta_dstExternalDelegate_rev); }
 
-		static Uml::AssociationRole meta_dstAssemblyselectRequirement, meta_dstAssemblyselectRequirement_rev;
-		Udm::AClassAssocAttr<PICML::AssemblyselectRequirement, PICML::Requirement> dstAssemblyselectRequirement() const { return Udm::AClassAssocAttr<PICML::AssemblyselectRequirement, PICML::Requirement>(impl, meta_dstAssemblyselectRequirement, meta_dstAssemblyselectRequirement_rev); }
-		template<class Pred> Udm::AClassAssocAttr<PICML::AssemblyselectRequirement, PICML::Requirement, Pred> dstAssemblyselectRequirement_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::AssemblyselectRequirement, PICML::Requirement, Pred>(impl, meta_dstAssemblyselectRequirement, meta_dstAssemblyselectRequirement_rev); }
-
 		static Uml::AssociationRole meta_dstAssemblyConfigProperty, meta_dstAssemblyConfigProperty_rev;
 		Udm::AClassAssocAttr<PICML::AssemblyConfigProperty, PICML::Property> dstAssemblyConfigProperty() const { return Udm::AClassAssocAttr<PICML::AssemblyConfigProperty, PICML::Property>(impl, meta_dstAssemblyConfigProperty, meta_dstAssemblyConfigProperty_rev); }
 		template<class Pred> Udm::AClassAssocAttr<PICML::AssemblyConfigProperty, PICML::Property, Pred> dstAssemblyConfigProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::AssemblyConfigProperty, PICML::Property, Pred>(impl, meta_dstAssemblyConfigProperty, meta_dstAssemblyConfigProperty_rev); }
+
+		static Uml::AssociationRole meta_dstAssemblyselectRequirement, meta_dstAssemblyselectRequirement_rev;
+		Udm::AClassAssocAttr<PICML::AssemblyselectRequirement, PICML::Requirement> dstAssemblyselectRequirement() const { return Udm::AClassAssocAttr<PICML::AssemblyselectRequirement, PICML::Requirement>(impl, meta_dstAssemblyselectRequirement, meta_dstAssemblyselectRequirement_rev); }
+		template<class Pred> Udm::AClassAssocAttr<PICML::AssemblyselectRequirement, PICML::Requirement, Pred> dstAssemblyselectRequirement_sorted(const Pred &) const { return Udm::AClassAssocAttr<PICML::AssemblyselectRequirement, PICML::Requirement, Pred>(impl, meta_dstAssemblyselectRequirement, meta_dstAssemblyselectRequirement_rev); }
 
 		static Uml::AssociationRole meta_referedbyComponentRef;
 		Udm::AssocAttr<PICML::ComponentRef> referedbyComponentRef() const { return Udm::AssocAttr<PICML::ComponentRef>(impl, meta_referedbyComponentRef); }
 		template <class Pred> Udm::AssocAttr<PICML::ComponentRef, Pred > referedbyComponentRef_sorted(const Pred &) const { return Udm::AssocAttr<PICML::ComponentRef, Pred>(impl, meta_referedbyComponentRef); }
 
-		static Uml::CompositionChildRole meta_ReadonlyAttribute_children;
-		Udm::ChildrenAttr<PICML::ReadonlyAttribute> ReadonlyAttribute_children() const { return Udm::ChildrenAttr<PICML::ReadonlyAttribute>(impl, meta_ReadonlyAttribute_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ReadonlyAttribute, Pred> ReadonlyAttribute_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ReadonlyAttribute, Pred>(impl, meta_ReadonlyAttribute_children); }
-
 		static Uml::CompositionChildRole meta_Port_children;
 		Udm::ChildrenAttr<PICML::Port> Port_children() const { return Udm::ChildrenAttr<PICML::Port>(impl, meta_Port_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML::Port, Pred> Port_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Port, Pred>(impl, meta_Port_children); }
+
+		static Uml::CompositionChildRole meta_ReadonlyAttribute_children;
+		Udm::ChildrenAttr<PICML::ReadonlyAttribute> ReadonlyAttribute_children() const { return Udm::ChildrenAttr<PICML::ReadonlyAttribute>(impl, meta_ReadonlyAttribute_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ReadonlyAttribute, Pred> ReadonlyAttribute_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ReadonlyAttribute, Pred>(impl, meta_ReadonlyAttribute_children); }
 
 		Udm::ChildrenAttr<PICML::CommonPortAttrs> CommonPortAttrs_kind_children() const { return Udm::ChildrenAttr<PICML::CommonPortAttrs>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::CommonPortAttrs, Pred> CommonPortAttrs_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::CommonPortAttrs, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -8481,20 +8315,20 @@ namespace PICML {
 		Udm::ChildrenAttr<PICML::Taggable> Taggable_kind_children() const { return Udm::ChildrenAttr<PICML::Taggable>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::Taggable, Pred> Taggable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Taggable, Pred>(impl, Udm::NULLCHILDROLE); }
 
+		Udm::ChildrenAttr<PICML::Port> Port_kind_children() const { return Udm::ChildrenAttr<PICML::Port>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Port, Pred> Port_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Port, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::InEventPort> InEventPort_kind_children() const { return Udm::ChildrenAttr<PICML::InEventPort>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::InEventPort, Pred> InEventPort_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::InEventPort, Pred>(impl, Udm::NULLCHILDROLE); }
+
 		Udm::ChildrenAttr<PICML::RequiredRequestPort> RequiredRequestPort_kind_children() const { return Udm::ChildrenAttr<PICML::RequiredRequestPort>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::RequiredRequestPort, Pred> RequiredRequestPort_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::RequiredRequestPort, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::ProvidedRequestPort> ProvidedRequestPort_kind_children() const { return Udm::ChildrenAttr<PICML::ProvidedRequestPort>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::ProvidedRequestPort, Pred> ProvidedRequestPort_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ProvidedRequestPort, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::Port> Port_kind_children() const { return Udm::ChildrenAttr<PICML::Port>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Port, Pred> Port_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Port, Pred>(impl, Udm::NULLCHILDROLE); }
-
 		Udm::ChildrenAttr<PICML::OutEventPort> OutEventPort_kind_children() const { return Udm::ChildrenAttr<PICML::OutEventPort>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::OutEventPort, Pred> OutEventPort_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OutEventPort, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::InEventPort> InEventPort_kind_children() const { return Udm::ChildrenAttr<PICML::InEventPort>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::InEventPort, Pred> InEventPort_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::InEventPort, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::Attribute> Attribute_kind_children() const { return Udm::ChildrenAttr<PICML::Attribute>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::Attribute, Pred> Attribute_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Attribute, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -8539,13 +8373,13 @@ namespace PICML {
 		Udm::AssocAttr<PICML::Inherits> referedbyInherits() const { return Udm::AssocAttr<PICML::Inherits>(impl, meta_referedbyInherits); }
 		template <class Pred> Udm::AssocAttr<PICML::Inherits, Pred > referedbyInherits_sorted(const Pred &) const { return Udm::AssocAttr<PICML::Inherits, Pred>(impl, meta_referedbyInherits); }
 
-		static Uml::CompositionChildRole meta_ReadonlyAttribute_children;
-		Udm::ChildrenAttr<PICML::ReadonlyAttribute> ReadonlyAttribute_children() const { return Udm::ChildrenAttr<PICML::ReadonlyAttribute>(impl, meta_ReadonlyAttribute_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ReadonlyAttribute, Pred> ReadonlyAttribute_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ReadonlyAttribute, Pred>(impl, meta_ReadonlyAttribute_children); }
-
 		static Uml::CompositionChildRole meta_Inherits_children;
 		Udm::ChildrenAttr<PICML::Inherits> Inherits_children() const { return Udm::ChildrenAttr<PICML::Inherits>(impl, meta_Inherits_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML::Inherits, Pred> Inherits_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Inherits, Pred>(impl, meta_Inherits_children); }
+
+		static Uml::CompositionChildRole meta_ReadonlyAttribute_children;
+		Udm::ChildrenAttr<PICML::ReadonlyAttribute> ReadonlyAttribute_children() const { return Udm::ChildrenAttr<PICML::ReadonlyAttribute>(impl, meta_ReadonlyAttribute_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ReadonlyAttribute, Pred> ReadonlyAttribute_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ReadonlyAttribute, Pred>(impl, meta_ReadonlyAttribute_children); }
 
 		Udm::ChildrenAttr<PICML::Taggable> Taggable_kind_children() const { return Udm::ChildrenAttr<PICML::Taggable>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::Taggable, Pred> Taggable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Taggable, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -8588,61 +8422,61 @@ namespace PICML {
 
 		Udm::ArchetypeAttr<PICML::HasOperations> Archetype() { return Udm::ArchetypeAttr<PICML::HasOperations>(impl);}
 
-		static Uml::CompositionChildRole meta_OnewayOperation_children;
-		Udm::ChildrenAttr<PICML::OnewayOperation> OnewayOperation_children() const { return Udm::ChildrenAttr<PICML::OnewayOperation>(impl, meta_OnewayOperation_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::OnewayOperation, Pred> OnewayOperation_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OnewayOperation, Pred>(impl, meta_OnewayOperation_children); }
-
-		static Uml::CompositionChildRole meta_NoInheritable_children;
-		Udm::ChildrenAttr<PICML::NoInheritable> NoInheritable_children() const { return Udm::ChildrenAttr<PICML::NoInheritable>(impl, meta_NoInheritable_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::NoInheritable, Pred> NoInheritable_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::NoInheritable, Pred>(impl, meta_NoInheritable_children); }
-
 		static Uml::CompositionChildRole meta_Exception_children;
 		Udm::ChildrenAttr<PICML::Exception> Exception_children() const { return Udm::ChildrenAttr<PICML::Exception>(impl, meta_Exception_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML::Exception, Pred> Exception_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Exception, Pred>(impl, meta_Exception_children); }
-
-		static Uml::CompositionChildRole meta_TwowayOperation_children;
-		Udm::ChildrenAttr<PICML::TwowayOperation> TwowayOperation_children() const { return Udm::ChildrenAttr<PICML::TwowayOperation>(impl, meta_TwowayOperation_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::TwowayOperation, Pred> TwowayOperation_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TwowayOperation, Pred>(impl, meta_TwowayOperation_children); }
 
 		static Uml::CompositionChildRole meta_Constant_children;
 		Udm::ChildrenAttr<PICML::Constant> Constant_children() const { return Udm::ChildrenAttr<PICML::Constant>(impl, meta_Constant_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML::Constant, Pred> Constant_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Constant, Pred>(impl, meta_Constant_children); }
 
+		static Uml::CompositionChildRole meta_NoInheritable_children;
+		Udm::ChildrenAttr<PICML::NoInheritable> NoInheritable_children() const { return Udm::ChildrenAttr<PICML::NoInheritable>(impl, meta_NoInheritable_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::NoInheritable, Pred> NoInheritable_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::NoInheritable, Pred>(impl, meta_NoInheritable_children); }
+
+		static Uml::CompositionChildRole meta_TwowayOperation_children;
+		Udm::ChildrenAttr<PICML::TwowayOperation> TwowayOperation_children() const { return Udm::ChildrenAttr<PICML::TwowayOperation>(impl, meta_TwowayOperation_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::TwowayOperation, Pred> TwowayOperation_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TwowayOperation, Pred>(impl, meta_TwowayOperation_children); }
+
+		static Uml::CompositionChildRole meta_OnewayOperation_children;
+		Udm::ChildrenAttr<PICML::OnewayOperation> OnewayOperation_children() const { return Udm::ChildrenAttr<PICML::OnewayOperation>(impl, meta_OnewayOperation_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::OnewayOperation, Pred> OnewayOperation_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OnewayOperation, Pred>(impl, meta_OnewayOperation_children); }
+
 		Udm::ChildrenAttr<PICML::Taggable> Taggable_kind_children() const { return Udm::ChildrenAttr<PICML::Taggable>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::Taggable, Pred> Taggable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Taggable, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::TwowayOperation> TwowayOperation_kind_children() const { return Udm::ChildrenAttr<PICML::TwowayOperation>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::TwowayOperation, Pred> TwowayOperation_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TwowayOperation, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::OnewayOperation> OnewayOperation_kind_children() const { return Udm::ChildrenAttr<PICML::OnewayOperation>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::OnewayOperation, Pred> OnewayOperation_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OnewayOperation, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::OperationBase> OperationBase_kind_children() const { return Udm::ChildrenAttr<PICML::OperationBase>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::OperationBase, Pred> OperationBase_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OperationBase, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::HasExceptions> HasExceptions_kind_children() const { return Udm::ChildrenAttr<PICML::HasExceptions>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::HasExceptions, Pred> HasExceptions_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::HasExceptions, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::Alias> Alias_kind_children() const { return Udm::ChildrenAttr<PICML::Alias>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Alias, Pred> Alias_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Alias, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ChildrenAttr<PICML::OnewayOperation> OnewayOperation_kind_children() const { return Udm::ChildrenAttr<PICML::OnewayOperation>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::OnewayOperation, Pred> OnewayOperation_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OnewayOperation, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::MemberType> MemberType_kind_children() const { return Udm::ChildrenAttr<PICML::MemberType>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MemberType, Pred> MemberType_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MemberType, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ChildrenAttr<PICML::TwowayOperation> TwowayOperation_kind_children() const { return Udm::ChildrenAttr<PICML::TwowayOperation>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::TwowayOperation, Pred> TwowayOperation_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::TwowayOperation, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::Collection> Collection_kind_children() const { return Udm::ChildrenAttr<PICML::Collection>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Collection, Pred> Collection_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Collection, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Aggregate> Aggregate_kind_children() const { return Udm::ChildrenAttr<PICML::Aggregate>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Aggregate, Pred> Aggregate_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Aggregate, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ChildrenAttr<PICML::OperationBase> OperationBase_kind_children() const { return Udm::ChildrenAttr<PICML::OperationBase>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::OperationBase, Pred> OperationBase_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OperationBase, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::NoInheritable> NoInheritable_kind_children() const { return Udm::ChildrenAttr<PICML::NoInheritable>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::NoInheritable, Pred> NoInheritable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::NoInheritable, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ChildrenAttr<PICML::SwitchedAggregate> SwitchedAggregate_kind_children() const { return Udm::ChildrenAttr<PICML::SwitchedAggregate>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::SwitchedAggregate, Pred> SwitchedAggregate_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::SwitchedAggregate, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ChildrenAttr<PICML::Alias> Alias_kind_children() const { return Udm::ChildrenAttr<PICML::Alias>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Alias, Pred> Alias_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Alias, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Collection> Collection_kind_children() const { return Udm::ChildrenAttr<PICML::Collection>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Collection, Pred> Collection_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Collection, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::NamedType> NamedType_kind_children() const { return Udm::ChildrenAttr<PICML::NamedType>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::NamedType, Pred> NamedType_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::NamedType, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MemberType> MemberType_kind_children() const { return Udm::ChildrenAttr<PICML::MemberType>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MemberType, Pred> MemberType_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MemberType, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::SwitchedAggregate> SwitchedAggregate_kind_children() const { return Udm::ChildrenAttr<PICML::SwitchedAggregate>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::SwitchedAggregate, Pred> SwitchedAggregate_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::SwitchedAggregate, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Aggregate> Aggregate_kind_children() const { return Udm::ChildrenAttr<PICML::Aggregate>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Aggregate, Pred> Aggregate_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Aggregate, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::Enum> Enum_kind_children() const { return Udm::ChildrenAttr<PICML::Enum>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::Enum, Pred> Enum_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Enum, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -8685,10 +8519,6 @@ namespace PICML {
 		static Uml::AssociationRole meta_dstManagesComponent, meta_dstManagesComponent_rev;
 		Udm::AClassPointerAttr<PICML::ManagesComponent, PICML::Manageable> dstManagesComponent() const { return Udm::AClassPointerAttr<PICML::ManagesComponent, PICML::Manageable>(impl, meta_dstManagesComponent, meta_dstManagesComponent_rev); }
 
-		static Uml::CompositionChildRole meta_FactoryOperation_children;
-		Udm::ChildrenAttr<PICML::FactoryOperation> FactoryOperation_children() const { return Udm::ChildrenAttr<PICML::FactoryOperation>(impl, meta_FactoryOperation_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::FactoryOperation, Pred> FactoryOperation_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::FactoryOperation, Pred>(impl, meta_FactoryOperation_children); }
-
 		static Uml::CompositionChildRole meta_LookupKey_child;
 		Udm::ChildAttr<PICML::LookupKey> LookupKey_child() const { return Udm::ChildAttr<PICML::LookupKey>(impl, meta_LookupKey_child); }
 
@@ -8696,20 +8526,24 @@ namespace PICML {
 		Udm::ChildrenAttr<PICML::LookupOperation> LookupOperation_children() const { return Udm::ChildrenAttr<PICML::LookupOperation>(impl, meta_LookupOperation_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML::LookupOperation, Pred> LookupOperation_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::LookupOperation, Pred>(impl, meta_LookupOperation_children); }
 
+		static Uml::CompositionChildRole meta_FactoryOperation_children;
+		Udm::ChildrenAttr<PICML::FactoryOperation> FactoryOperation_children() const { return Udm::ChildrenAttr<PICML::FactoryOperation>(impl, meta_FactoryOperation_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::FactoryOperation, Pred> FactoryOperation_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::FactoryOperation, Pred>(impl, meta_FactoryOperation_children); }
+
 		Udm::ChildrenAttr<PICML::Taggable> Taggable_kind_children() const { return Udm::ChildrenAttr<PICML::Taggable>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::Taggable, Pred> Taggable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Taggable, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::HasExceptions> HasExceptions_kind_children() const { return Udm::ChildrenAttr<PICML::HasExceptions>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::HasExceptions, Pred> HasExceptions_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::HasExceptions, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::LookupOperation> LookupOperation_kind_children() const { return Udm::ChildrenAttr<PICML::LookupOperation>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::LookupOperation, Pred> LookupOperation_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::LookupOperation, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::FactoryOperation> FactoryOperation_kind_children() const { return Udm::ChildrenAttr<PICML::FactoryOperation>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::FactoryOperation, Pred> FactoryOperation_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::FactoryOperation, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::OperationBase> OperationBase_kind_children() const { return Udm::ChildrenAttr<PICML::OperationBase>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::OperationBase, Pred> OperationBase_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OperationBase, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::LookupOperation> LookupOperation_kind_children() const { return Udm::ChildrenAttr<PICML::LookupOperation>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::LookupOperation, Pred> LookupOperation_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::LookupOperation, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::HasExceptions> HasExceptions_kind_children() const { return Udm::ChildrenAttr<PICML::HasExceptions>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::HasExceptions, Pred> HasExceptions_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::HasExceptions, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::LookupKey> LookupKey_kind_children() const { return Udm::ChildrenAttr<PICML::LookupKey>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::LookupKey, Pred> LookupKey_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::LookupKey, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -8719,6 +8553,148 @@ namespace PICML {
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		virtual void Accept(Visitor &v){v.Visit_ComponentFactory(*this);};
+	};
+
+	class  ObjectByValue :  public Prefixable, public SupportsInterfaces, public HasOperations {
+	 public:
+		static Uml::Class meta;
+
+		ObjectByValue() { }
+		ObjectByValue(Udm::ObjectImpl *impl) : Prefixable(impl),SupportsInterfaces(impl),HasOperations(impl), MgaObject(impl), Object(impl) { }
+		ObjectByValue(const ObjectByValue &master) : Prefixable(master),SupportsInterfaces(master),HasOperations(master), MgaObject(master), Object(master) { }
+		static ObjectByValue Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static ObjectByValue Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		ObjectByValue CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		ObjectByValue CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<ObjectByValue> Instances() { return Udm::InstantiatedAttr<PICML::ObjectByValue>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<ObjectByValue, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ObjectByValue, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::ObjectByValue> Derived() { return Udm::DerivedAttr<PICML::ObjectByValue>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::ObjectByValue, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ObjectByValue, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::ObjectByValue> Archetype() { return Udm::ArchetypeAttr<PICML::ObjectByValue>(impl);}
+
+		static Uml::Attribute meta_abstract;
+		Udm::BooleanAttr abstract() const { return Udm::BooleanAttr(impl, meta_abstract); }
+
+		static Uml::CompositionChildRole meta_MakeMemberPrivate_children;
+		Udm::ChildrenAttr<PICML::MakeMemberPrivate> MakeMemberPrivate_children() const { return Udm::ChildrenAttr<PICML::MakeMemberPrivate>(impl, meta_MakeMemberPrivate_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::MakeMemberPrivate, Pred> MakeMemberPrivate_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MakeMemberPrivate, Pred>(impl, meta_MakeMemberPrivate_children); }
+
+		static Uml::CompositionChildRole meta_Member_children;
+		Udm::ChildrenAttr<PICML::Member> Member_children() const { return Udm::ChildrenAttr<PICML::Member>(impl, meta_Member_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Member, Pred> Member_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Member, Pred>(impl, meta_Member_children); }
+
+		static Uml::CompositionChildRole meta_PrivateFlag_children;
+		Udm::ChildrenAttr<PICML::PrivateFlag> PrivateFlag_children() const { return Udm::ChildrenAttr<PICML::PrivateFlag>(impl, meta_PrivateFlag_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::PrivateFlag, Pred> PrivateFlag_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PrivateFlag, Pred>(impl, meta_PrivateFlag_children); }
+
+		static Uml::CompositionChildRole meta_FactoryOperation_children;
+		Udm::ChildrenAttr<PICML::FactoryOperation> FactoryOperation_children() const { return Udm::ChildrenAttr<PICML::FactoryOperation>(impl, meta_FactoryOperation_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::FactoryOperation, Pred> FactoryOperation_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::FactoryOperation, Pred>(impl, meta_FactoryOperation_children); }
+
+		Udm::ChildrenAttr<PICML::Taggable> Taggable_kind_children() const { return Udm::ChildrenAttr<PICML::Taggable>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Taggable, Pred> Taggable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Taggable, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::HasExceptions> HasExceptions_kind_children() const { return Udm::ChildrenAttr<PICML::HasExceptions>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::HasExceptions, Pred> HasExceptions_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::HasExceptions, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::FactoryOperation> FactoryOperation_kind_children() const { return Udm::ChildrenAttr<PICML::FactoryOperation>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::FactoryOperation, Pred> FactoryOperation_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::FactoryOperation, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::OperationBase> OperationBase_kind_children() const { return Udm::ChildrenAttr<PICML::OperationBase>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::OperationBase, Pred> OperationBase_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OperationBase, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MakeMemberPrivate> MakeMemberPrivate_kind_children() const { return Udm::ChildrenAttr<PICML::MakeMemberPrivate>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MakeMemberPrivate, Pred> MakeMemberPrivate_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MakeMemberPrivate, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::PrivateFlag> PrivateFlag_kind_children() const { return Udm::ChildrenAttr<PICML::PrivateFlag>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::PrivateFlag, Pred> PrivateFlag_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PrivateFlag, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Member> Member_kind_children() const { return Udm::ChildrenAttr<PICML::Member>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Member, Pred> Member_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Member, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+	};
+
+	class  ValueObject :  public ObjectByValue {
+	 public:
+		static Uml::Class meta;
+
+		ValueObject() { }
+		ValueObject(Udm::ObjectImpl *impl) : ObjectByValue(impl), MgaObject(impl), Object(impl) { }
+		ValueObject(const ValueObject &master) : ObjectByValue(master), MgaObject(master), Object(master) { }
+		static ValueObject Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static ValueObject Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		ValueObject CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		ValueObject CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<ValueObject> Instances() { return Udm::InstantiatedAttr<PICML::ValueObject>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<ValueObject, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ValueObject, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::ValueObject> Derived() { return Udm::DerivedAttr<PICML::ValueObject>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::ValueObject, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ValueObject, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::ValueObject> Archetype() { return Udm::ArchetypeAttr<PICML::ValueObject>(impl);}
+
+		static Uml::AssociationRole meta_referedbyLookupKey;
+		Udm::AssocAttr<PICML::LookupKey> referedbyLookupKey() const { return Udm::AssocAttr<PICML::LookupKey>(impl, meta_referedbyLookupKey); }
+		template <class Pred> Udm::AssocAttr<PICML::LookupKey, Pred > referedbyLookupKey_sorted(const Pred &) const { return Udm::AssocAttr<PICML::LookupKey, Pred>(impl, meta_referedbyLookupKey); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_ValueObject(*this);};
+	};
+
+	class  Event :  public ObjectByValue {
+	 public:
+		static Uml::Class meta;
+
+		Event() { }
+		Event(Udm::ObjectImpl *impl) : ObjectByValue(impl), MgaObject(impl), Object(impl) { }
+		Event(const Event &master) : ObjectByValue(master), MgaObject(master), Object(master) { }
+		static Event Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static Event Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		Event CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		Event CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<Event> Instances() { return Udm::InstantiatedAttr<PICML::Event>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Event, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Event, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::Event> Derived() { return Udm::DerivedAttr<PICML::Event>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Event, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Event, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::Event> Archetype() { return Udm::ArchetypeAttr<PICML::Event>(impl);}
+
+		static Uml::AssociationRole meta_referedbyEventRef;
+		Udm::AssocAttr<PICML::EventRef> referedbyEventRef() const { return Udm::AssocAttr<PICML::EventRef>(impl, meta_referedbyEventRef); }
+		template <class Pred> Udm::AssocAttr<PICML::EventRef, Pred > referedbyEventRef_sorted(const Pred &) const { return Udm::AssocAttr<PICML::EventRef, Pred>(impl, meta_referedbyEventRef); }
+
+		static Uml::AssociationRole meta_referedbyInEventPort;
+		Udm::AssocAttr<PICML::InEventPort> referedbyInEventPort() const { return Udm::AssocAttr<PICML::InEventPort>(impl, meta_referedbyInEventPort); }
+		template <class Pred> Udm::AssocAttr<PICML::InEventPort, Pred > referedbyInEventPort_sorted(const Pred &) const { return Udm::AssocAttr<PICML::InEventPort, Pred>(impl, meta_referedbyInEventPort); }
+
+		static Uml::AssociationRole meta_referedbyOutEventPort;
+		Udm::AssocAttr<PICML::OutEventPort> referedbyOutEventPort() const { return Udm::AssocAttr<PICML::OutEventPort>(impl, meta_referedbyOutEventPort); }
+		template <class Pred> Udm::AssocAttr<PICML::OutEventPort, Pred > referedbyOutEventPort_sorted(const Pred &) const { return Udm::AssocAttr<PICML::OutEventPort, Pred>(impl, meta_referedbyOutEventPort); }
+
+		static Uml::CompositionParentRole meta_BenchmarkAnalysis_parent;
+		Udm::ParentAttr<PICML::BenchmarkAnalysis> BenchmarkAnalysis_parent() const { return Udm::ParentAttr<PICML::BenchmarkAnalysis>(impl, meta_BenchmarkAnalysis_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_Event(*this);};
 	};
 
 	class  Object :  public Prefixable, public Provideable, public HasOperations {
@@ -8758,146 +8734,33 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_Object(*this);};
 	};
 
-	class  ObjectByValue :  public Prefixable, public SupportsInterfaces, public HasOperations {
+	class  NoInheritable :  public NamedType {
 	 public:
 		static Uml::Class meta;
 
-		ObjectByValue() { }
-		ObjectByValue(Udm::ObjectImpl *impl) : Prefixable(impl),SupportsInterfaces(impl),HasOperations(impl), MgaObject(impl), Object(impl) { }
-		ObjectByValue(const ObjectByValue &master) : Prefixable(master),SupportsInterfaces(master),HasOperations(master), MgaObject(master), Object(master) { }
-		static ObjectByValue Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		NoInheritable() { }
+		NoInheritable(Udm::ObjectImpl *impl) : NamedType(impl), MgaObject(impl), Object(impl) { }
+		NoInheritable(const NoInheritable &master) : NamedType(master), MgaObject(master), Object(master) { }
+		static NoInheritable Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static ObjectByValue Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		static NoInheritable Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		ObjectByValue CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		NoInheritable CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		ObjectByValue CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+		NoInheritable CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::InstantiatedAttr<ObjectByValue> Instances() { return Udm::InstantiatedAttr<PICML::ObjectByValue>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<ObjectByValue, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ObjectByValue, Pred>(impl);}
+		Udm::InstantiatedAttr<NoInheritable> Instances() { return Udm::InstantiatedAttr<PICML::NoInheritable>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<NoInheritable, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::NoInheritable, Pred>(impl);}
 
-		Udm::DerivedAttr<PICML::ObjectByValue> Derived() { return Udm::DerivedAttr<PICML::ObjectByValue>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::ObjectByValue, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ObjectByValue, Pred>(impl);}
+		Udm::DerivedAttr<PICML::NoInheritable> Derived() { return Udm::DerivedAttr<PICML::NoInheritable>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::NoInheritable, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::NoInheritable, Pred>(impl);}
 
-		Udm::ArchetypeAttr<PICML::ObjectByValue> Archetype() { return Udm::ArchetypeAttr<PICML::ObjectByValue>(impl);}
+		Udm::ArchetypeAttr<PICML::NoInheritable> Archetype() { return Udm::ArchetypeAttr<PICML::NoInheritable>(impl);}
 
-		static Uml::Attribute meta_abstract;
-		Udm::BooleanAttr abstract() const { return Udm::BooleanAttr(impl, meta_abstract); }
-
-		static Uml::CompositionChildRole meta_MakeMemberPrivate_children;
-		Udm::ChildrenAttr<PICML::MakeMemberPrivate> MakeMemberPrivate_children() const { return Udm::ChildrenAttr<PICML::MakeMemberPrivate>(impl, meta_MakeMemberPrivate_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::MakeMemberPrivate, Pred> MakeMemberPrivate_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MakeMemberPrivate, Pred>(impl, meta_MakeMemberPrivate_children); }
-
-		static Uml::CompositionChildRole meta_PrivateFlag_children;
-		Udm::ChildrenAttr<PICML::PrivateFlag> PrivateFlag_children() const { return Udm::ChildrenAttr<PICML::PrivateFlag>(impl, meta_PrivateFlag_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::PrivateFlag, Pred> PrivateFlag_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PrivateFlag, Pred>(impl, meta_PrivateFlag_children); }
-
-		static Uml::CompositionChildRole meta_FactoryOperation_children;
-		Udm::ChildrenAttr<PICML::FactoryOperation> FactoryOperation_children() const { return Udm::ChildrenAttr<PICML::FactoryOperation>(impl, meta_FactoryOperation_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::FactoryOperation, Pred> FactoryOperation_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::FactoryOperation, Pred>(impl, meta_FactoryOperation_children); }
-
-		static Uml::CompositionChildRole meta_Member_children;
-		Udm::ChildrenAttr<PICML::Member> Member_children() const { return Udm::ChildrenAttr<PICML::Member>(impl, meta_Member_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Member, Pred> Member_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Member, Pred>(impl, meta_Member_children); }
-
-		Udm::ChildrenAttr<PICML::Taggable> Taggable_kind_children() const { return Udm::ChildrenAttr<PICML::Taggable>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Taggable, Pred> Taggable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Taggable, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::FactoryOperation> FactoryOperation_kind_children() const { return Udm::ChildrenAttr<PICML::FactoryOperation>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::FactoryOperation, Pred> FactoryOperation_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::FactoryOperation, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::OperationBase> OperationBase_kind_children() const { return Udm::ChildrenAttr<PICML::OperationBase>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::OperationBase, Pred> OperationBase_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::OperationBase, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::HasExceptions> HasExceptions_kind_children() const { return Udm::ChildrenAttr<PICML::HasExceptions>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::HasExceptions, Pred> HasExceptions_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::HasExceptions, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::PrivateFlag> PrivateFlag_kind_children() const { return Udm::ChildrenAttr<PICML::PrivateFlag>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::PrivateFlag, Pred> PrivateFlag_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::PrivateFlag, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::MakeMemberPrivate> MakeMemberPrivate_kind_children() const { return Udm::ChildrenAttr<PICML::MakeMemberPrivate>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MakeMemberPrivate, Pred> MakeMemberPrivate_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MakeMemberPrivate, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Member> Member_kind_children() const { return Udm::ChildrenAttr<PICML::Member>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Member, Pred> Member_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Member, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
+		static Uml::CompositionParentRole meta_HasOperations_parent;
+		Udm::ParentAttr<PICML::HasOperations> HasOperations_parent() const { return Udm::ParentAttr<PICML::HasOperations>(impl, meta_HasOperations_parent); }
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-	};
-
-	class  Event :  public ObjectByValue {
-	 public:
-		static Uml::Class meta;
-
-		Event() { }
-		Event(Udm::ObjectImpl *impl) : ObjectByValue(impl), MgaObject(impl), Object(impl) { }
-		Event(const Event &master) : ObjectByValue(master), MgaObject(master), Object(master) { }
-		static Event Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static Event Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		Event CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		Event CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<Event> Instances() { return Udm::InstantiatedAttr<PICML::Event>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Event, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Event, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::Event> Derived() { return Udm::DerivedAttr<PICML::Event>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Event, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Event, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::Event> Archetype() { return Udm::ArchetypeAttr<PICML::Event>(impl);}
-
-		static Uml::AssociationRole meta_referedbyEventRef;
-		Udm::AssocAttr<PICML::EventRef> referedbyEventRef() const { return Udm::AssocAttr<PICML::EventRef>(impl, meta_referedbyEventRef); }
-		template <class Pred> Udm::AssocAttr<PICML::EventRef, Pred > referedbyEventRef_sorted(const Pred &) const { return Udm::AssocAttr<PICML::EventRef, Pred>(impl, meta_referedbyEventRef); }
-
-		static Uml::AssociationRole meta_referedbyOutEventPort;
-		Udm::AssocAttr<PICML::OutEventPort> referedbyOutEventPort() const { return Udm::AssocAttr<PICML::OutEventPort>(impl, meta_referedbyOutEventPort); }
-		template <class Pred> Udm::AssocAttr<PICML::OutEventPort, Pred > referedbyOutEventPort_sorted(const Pred &) const { return Udm::AssocAttr<PICML::OutEventPort, Pred>(impl, meta_referedbyOutEventPort); }
-
-		static Uml::AssociationRole meta_referedbyInEventPort;
-		Udm::AssocAttr<PICML::InEventPort> referedbyInEventPort() const { return Udm::AssocAttr<PICML::InEventPort>(impl, meta_referedbyInEventPort); }
-		template <class Pred> Udm::AssocAttr<PICML::InEventPort, Pred > referedbyInEventPort_sorted(const Pred &) const { return Udm::AssocAttr<PICML::InEventPort, Pred>(impl, meta_referedbyInEventPort); }
-
-		static Uml::CompositionParentRole meta_BenchmarkAnalysis_parent;
-		Udm::ParentAttr<PICML::BenchmarkAnalysis> BenchmarkAnalysis_parent() const { return Udm::ParentAttr<PICML::BenchmarkAnalysis>(impl, meta_BenchmarkAnalysis_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_Event(*this);};
-	};
-
-	class  ValueObject :  public ObjectByValue {
-	 public:
-		static Uml::Class meta;
-
-		ValueObject() { }
-		ValueObject(Udm::ObjectImpl *impl) : ObjectByValue(impl), MgaObject(impl), Object(impl) { }
-		ValueObject(const ValueObject &master) : ObjectByValue(master), MgaObject(master), Object(master) { }
-		static ValueObject Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static ValueObject Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		ValueObject CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		ValueObject CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<ValueObject> Instances() { return Udm::InstantiatedAttr<PICML::ValueObject>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<ValueObject, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ValueObject, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::ValueObject> Derived() { return Udm::DerivedAttr<PICML::ValueObject>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::ValueObject, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ValueObject, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::ValueObject> Archetype() { return Udm::ArchetypeAttr<PICML::ValueObject>(impl);}
-
-		static Uml::AssociationRole meta_referedbyLookupKey;
-		Udm::AssocAttr<PICML::LookupKey> referedbyLookupKey() const { return Udm::AssocAttr<PICML::LookupKey>(impl, meta_referedbyLookupKey); }
-		template <class Pred> Udm::AssocAttr<PICML::LookupKey, Pred > referedbyLookupKey_sorted(const Pred &) const { return Udm::AssocAttr<PICML::LookupKey, Pred>(impl, meta_referedbyLookupKey); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_ValueObject(*this);};
 	};
 
 	class  Boxed :  public NamedType {
@@ -8928,35 +8791,6 @@ namespace PICML {
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		virtual void Accept(Visitor &v){v.Visit_Boxed(*this);};
-	};
-
-	class  NoInheritable :  public NamedType {
-	 public:
-		static Uml::Class meta;
-
-		NoInheritable() { }
-		NoInheritable(Udm::ObjectImpl *impl) : NamedType(impl), MgaObject(impl), Object(impl) { }
-		NoInheritable(const NoInheritable &master) : NamedType(master), MgaObject(master), Object(master) { }
-		static NoInheritable Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static NoInheritable Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		NoInheritable CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		NoInheritable CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<NoInheritable> Instances() { return Udm::InstantiatedAttr<PICML::NoInheritable>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<NoInheritable, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::NoInheritable, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::NoInheritable> Derived() { return Udm::DerivedAttr<PICML::NoInheritable>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::NoInheritable, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::NoInheritable, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::NoInheritable> Archetype() { return Udm::ArchetypeAttr<PICML::NoInheritable>(impl);}
-
-		static Uml::CompositionParentRole meta_HasOperations_parent;
-		Udm::ParentAttr<PICML::HasOperations> HasOperations_parent() const { return Udm::ParentAttr<PICML::HasOperations>(impl, meta_HasOperations_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 	};
 
 	class  Alias :  public NoInheritable {
@@ -9019,6 +8853,132 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_Collection(*this);};
 	};
 
+	class  LabelConnection :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		LabelConnection() { }
+		LabelConnection(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		LabelConnection(const LabelConnection &master) : MgaObject(master), Object(master) { }
+		static LabelConnection Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static LabelConnection Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		LabelConnection CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		LabelConnection CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<LabelConnection> Instances() { return Udm::InstantiatedAttr<PICML::LabelConnection>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<LabelConnection, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::LabelConnection, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::LabelConnection> Derived() { return Udm::DerivedAttr<PICML::LabelConnection>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::LabelConnection, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::LabelConnection, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::LabelConnection> Archetype() { return Udm::ArchetypeAttr<PICML::LabelConnection>(impl);}
+
+		static Uml::CompositionParentRole meta_SwitchedAggregate_parent;
+		Udm::ParentAttr<PICML::SwitchedAggregate> SwitchedAggregate_parent() const { return Udm::ParentAttr<PICML::SwitchedAggregate>(impl, meta_SwitchedAggregate_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_srcLabelConnection_end_;
+		Udm::AssocEndAttr<PICML::Member> srcLabelConnection_end() const { return Udm::AssocEndAttr<PICML::Member>(impl, meta_srcLabelConnection_end_); }
+
+		static Uml::AssociationRole meta_dstLabelConnection_end_;
+		Udm::AssocEndAttr<PICML::Label> dstLabelConnection_end() const { return Udm::AssocEndAttr<PICML::Label>(impl, meta_dstLabelConnection_end_); }
+
+		virtual void Accept(Visitor &v){v.Visit_LabelConnection(*this);};
+	};
+
+	class  Label :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		Label() { }
+		Label(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		Label(const Label &master) : MgaObject(master), Object(master) { }
+		static Label Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static Label Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		Label CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		Label CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<Label> Instances() { return Udm::InstantiatedAttr<PICML::Label>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Label, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Label, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::Label> Derived() { return Udm::DerivedAttr<PICML::Label>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Label, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Label, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::Label> Archetype() { return Udm::ArchetypeAttr<PICML::Label>(impl);}
+
+		static Uml::AssociationRole meta_srcLabelConnection, meta_srcLabelConnection_rev;
+		Udm::AClassPointerAttr<PICML::LabelConnection, PICML::Member> srcLabelConnection() const { return Udm::AClassPointerAttr<PICML::LabelConnection, PICML::Member>(impl, meta_srcLabelConnection, meta_srcLabelConnection_rev); }
+
+		static Uml::CompositionParentRole meta_SwitchedAggregate_parent;
+		Udm::ParentAttr<PICML::SwitchedAggregate> SwitchedAggregate_parent() const { return Udm::ParentAttr<PICML::SwitchedAggregate>(impl, meta_SwitchedAggregate_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_Label(*this);};
+	};
+
+	class  SwitchedAggregate :  public NoInheritable {
+	 public:
+		static Uml::Class meta;
+
+		SwitchedAggregate() { }
+		SwitchedAggregate(Udm::ObjectImpl *impl) : NoInheritable(impl), MgaObject(impl), Object(impl) { }
+		SwitchedAggregate(const SwitchedAggregate &master) : NoInheritable(master), MgaObject(master), Object(master) { }
+		static SwitchedAggregate Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static SwitchedAggregate Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		SwitchedAggregate CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		SwitchedAggregate CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<SwitchedAggregate> Instances() { return Udm::InstantiatedAttr<PICML::SwitchedAggregate>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<SwitchedAggregate, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::SwitchedAggregate, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::SwitchedAggregate> Derived() { return Udm::DerivedAttr<PICML::SwitchedAggregate>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::SwitchedAggregate, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::SwitchedAggregate, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::SwitchedAggregate> Archetype() { return Udm::ArchetypeAttr<PICML::SwitchedAggregate>(impl);}
+
+		static Uml::CompositionChildRole meta_Member_children;
+		Udm::ChildrenAttr<PICML::Member> Member_children() const { return Udm::ChildrenAttr<PICML::Member>(impl, meta_Member_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Member, Pred> Member_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Member, Pred>(impl, meta_Member_children); }
+
+		static Uml::CompositionChildRole meta_Discriminator_child;
+		Udm::ChildAttr<PICML::Discriminator> Discriminator_child() const { return Udm::ChildAttr<PICML::Discriminator>(impl, meta_Discriminator_child); }
+
+		static Uml::CompositionChildRole meta_Label_children;
+		Udm::ChildrenAttr<PICML::Label> Label_children() const { return Udm::ChildrenAttr<PICML::Label>(impl, meta_Label_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Label, Pred> Label_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Label, Pred>(impl, meta_Label_children); }
+
+		static Uml::CompositionChildRole meta_LabelConnection_children;
+		Udm::ChildrenAttr<PICML::LabelConnection> LabelConnection_children() const { return Udm::ChildrenAttr<PICML::LabelConnection>(impl, meta_LabelConnection_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::LabelConnection, Pred> LabelConnection_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::LabelConnection, Pred>(impl, meta_LabelConnection_children); }
+
+		Udm::ChildrenAttr<PICML::Member> Member_kind_children() const { return Udm::ChildrenAttr<PICML::Member>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Member, Pred> Member_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Member, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Discriminator> Discriminator_kind_children() const { return Udm::ChildrenAttr<PICML::Discriminator>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Discriminator, Pred> Discriminator_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Discriminator, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::LabelConnection> LabelConnection_kind_children() const { return Udm::ChildrenAttr<PICML::LabelConnection>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::LabelConnection, Pred> LabelConnection_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::LabelConnection, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Label> Label_kind_children() const { return Udm::ChildrenAttr<PICML::Label>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Label, Pred> Label_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Label, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_SwitchedAggregate(*this);};
+	};
+
 	class  Aggregate :  public NoInheritable {
 	 public:
 		static Uml::Class meta;
@@ -9056,61 +9016,76 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_Aggregate(*this);};
 	};
 
-	class  SwitchedAggregate :  public NoInheritable {
+	class  EnumValue :  public MgaObject {
 	 public:
 		static Uml::Class meta;
 
-		SwitchedAggregate() { }
-		SwitchedAggregate(Udm::ObjectImpl *impl) : NoInheritable(impl), MgaObject(impl), Object(impl) { }
-		SwitchedAggregate(const SwitchedAggregate &master) : NoInheritable(master), MgaObject(master), Object(master) { }
-		static SwitchedAggregate Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		EnumValue() { }
+		EnumValue(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		EnumValue(const EnumValue &master) : MgaObject(master), Object(master) { }
+		static EnumValue Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static SwitchedAggregate Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		static EnumValue Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		SwitchedAggregate CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		EnumValue CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		SwitchedAggregate CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+		EnumValue CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::InstantiatedAttr<SwitchedAggregate> Instances() { return Udm::InstantiatedAttr<PICML::SwitchedAggregate>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<SwitchedAggregate, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::SwitchedAggregate, Pred>(impl);}
+		Udm::InstantiatedAttr<EnumValue> Instances() { return Udm::InstantiatedAttr<PICML::EnumValue>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<EnumValue, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::EnumValue, Pred>(impl);}
 
-		Udm::DerivedAttr<PICML::SwitchedAggregate> Derived() { return Udm::DerivedAttr<PICML::SwitchedAggregate>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::SwitchedAggregate, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::SwitchedAggregate, Pred>(impl);}
+		Udm::DerivedAttr<PICML::EnumValue> Derived() { return Udm::DerivedAttr<PICML::EnumValue>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::EnumValue, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::EnumValue, Pred>(impl);}
 
-		Udm::ArchetypeAttr<PICML::SwitchedAggregate> Archetype() { return Udm::ArchetypeAttr<PICML::SwitchedAggregate>(impl);}
+		Udm::ArchetypeAttr<PICML::EnumValue> Archetype() { return Udm::ArchetypeAttr<PICML::EnumValue>(impl);}
 
-		static Uml::CompositionChildRole meta_Member_children;
-		Udm::ChildrenAttr<PICML::Member> Member_children() const { return Udm::ChildrenAttr<PICML::Member>(impl, meta_Member_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Member, Pred> Member_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Member, Pred>(impl, meta_Member_children); }
-
-		static Uml::CompositionChildRole meta_LabelConnection_children;
-		Udm::ChildrenAttr<PICML::LabelConnection> LabelConnection_children() const { return Udm::ChildrenAttr<PICML::LabelConnection>(impl, meta_LabelConnection_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::LabelConnection, Pred> LabelConnection_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::LabelConnection, Pred>(impl, meta_LabelConnection_children); }
-
-		static Uml::CompositionChildRole meta_Discriminator_child;
-		Udm::ChildAttr<PICML::Discriminator> Discriminator_child() const { return Udm::ChildAttr<PICML::Discriminator>(impl, meta_Discriminator_child); }
-
-		static Uml::CompositionChildRole meta_Label_children;
-		Udm::ChildrenAttr<PICML::Label> Label_children() const { return Udm::ChildrenAttr<PICML::Label>(impl, meta_Label_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Label, Pred> Label_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Label, Pred>(impl, meta_Label_children); }
-
-		Udm::ChildrenAttr<PICML::Discriminator> Discriminator_kind_children() const { return Udm::ChildrenAttr<PICML::Discriminator>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Discriminator, Pred> Discriminator_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Discriminator, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Label> Label_kind_children() const { return Udm::ChildrenAttr<PICML::Label>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Label, Pred> Label_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Label, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::LabelConnection> LabelConnection_kind_children() const { return Udm::ChildrenAttr<PICML::LabelConnection>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::LabelConnection, Pred> LabelConnection_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::LabelConnection, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Member> Member_kind_children() const { return Udm::ChildrenAttr<PICML::Member>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Member, Pred> Member_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Member, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
+		static Uml::CompositionParentRole meta_Enum_parent;
+		Udm::ParentAttr<PICML::Enum> Enum_parent() const { return Udm::ParentAttr<PICML::Enum>(impl, meta_Enum_parent); }
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_SwitchedAggregate(*this);};
+		virtual void Accept(Visitor &v){v.Visit_EnumValue(*this);};
+	};
+
+	class  Constant :  public Taggable {
+	 public:
+		static Uml::Class meta;
+
+		Constant() { }
+		Constant(Udm::ObjectImpl *impl) : Taggable(impl), MgaObject(impl), Object(impl) { }
+		Constant(const Constant &master) : Taggable(master), MgaObject(master), Object(master) { }
+		static Constant Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static Constant Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		Constant CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		Constant CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<Constant> Instances() { return Udm::InstantiatedAttr<PICML::Constant>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Constant, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Constant, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::Constant> Derived() { return Udm::DerivedAttr<PICML::Constant>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Constant, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Constant, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::Constant> Archetype() { return Udm::ArchetypeAttr<PICML::Constant>(impl);}
+
+		static Uml::Attribute meta_value;
+		Udm::StringAttr value() const { return Udm::StringAttr(impl, meta_value); }
+
+		static Uml::AssociationRole meta_ref;
+		Udm::PointerAttr<PICML::ConstantType> ref() const { return Udm::PointerAttr<PICML::ConstantType>(impl, meta_ref); }
+
+		static Uml::CompositionParentRole meta_HasOperations_parent;
+		Udm::ParentAttr<PICML::HasOperations> HasOperations_parent() const { return Udm::ParentAttr<PICML::HasOperations>(impl, meta_HasOperations_parent); }
+
+		static Uml::CompositionParentRole meta_File_parent;
+		Udm::ParentAttr<PICML::File> File_parent() const { return Udm::ParentAttr<PICML::File>(impl, meta_File_parent); }
+
+		static Uml::CompositionParentRole meta_Package_parent;
+		Udm::ParentAttr<PICML::Package> Package_parent() const { return Udm::ParentAttr<PICML::Package>(impl, meta_Package_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_Constant(*this);};
 	};
 
 	class  ConstantType :  virtual public MgaObject {
@@ -9217,168 +9192,6 @@ namespace PICML {
 		Udm::ParentAttr<PICML::PredefinedTypes> parent() const { return Udm::ParentAttr<PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
 	};
 
-	class  Byte :  public PredefinedType {
-	 public:
-		static Uml::Class meta;
-
-		Byte() { }
-		Byte(Udm::ObjectImpl *impl) : PredefinedType(impl), MgaObject(impl), Object(impl) { }
-		Byte(const Byte &master) : PredefinedType(master), MgaObject(master), Object(master) { }
-		static Byte Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static Byte Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		Byte CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		Byte CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<Byte> Instances() { return Udm::InstantiatedAttr<PICML::Byte>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Byte, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Byte, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::Byte> Derived() { return Udm::DerivedAttr<PICML::Byte>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Byte, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Byte, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::Byte> Archetype() { return Udm::ArchetypeAttr<PICML::Byte>(impl);}
-
-		Udm::ParentAttr<PICML::PredefinedTypes> parent() const { return Udm::ParentAttr<PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_Byte(*this);};
-	};
-
-	class  GenericValueObject :  public PredefinedType {
-	 public:
-		static Uml::Class meta;
-
-		GenericValueObject() { }
-		GenericValueObject(Udm::ObjectImpl *impl) : PredefinedType(impl), MgaObject(impl), Object(impl) { }
-		GenericValueObject(const GenericValueObject &master) : PredefinedType(master), MgaObject(master), Object(master) { }
-		static GenericValueObject Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static GenericValueObject Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		GenericValueObject CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		GenericValueObject CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<GenericValueObject> Instances() { return Udm::InstantiatedAttr<PICML::GenericValueObject>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<GenericValueObject, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::GenericValueObject, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::GenericValueObject> Derived() { return Udm::DerivedAttr<PICML::GenericValueObject>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::GenericValueObject, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::GenericValueObject, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::GenericValueObject> Archetype() { return Udm::ArchetypeAttr<PICML::GenericValueObject>(impl);}
-
-		Udm::ParentAttr<PICML::PredefinedTypes> parent() const { return Udm::ParentAttr<PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_GenericValueObject(*this);};
-	};
-
-	class  RealNumber :  public PredefinedType {
-	 public:
-		static Uml::Class meta;
-
-		RealNumber() { }
-		RealNumber(Udm::ObjectImpl *impl) : PredefinedType(impl), MgaObject(impl), Object(impl) { }
-		RealNumber(const RealNumber &master) : PredefinedType(master), MgaObject(master), Object(master) { }
-		static RealNumber Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static RealNumber Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		RealNumber CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		RealNumber CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<RealNumber> Instances() { return Udm::InstantiatedAttr<PICML::RealNumber>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<RealNumber, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::RealNumber, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::RealNumber> Derived() { return Udm::DerivedAttr<PICML::RealNumber>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::RealNumber, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::RealNumber, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::RealNumber> Archetype() { return Udm::ArchetypeAttr<PICML::RealNumber>(impl);}
-
-		Udm::ParentAttr<PICML::PredefinedTypes> parent() const { return Udm::ParentAttr<PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_RealNumber(*this);};
-	};
-
-	class  String :  public PredefinedType {
-	 public:
-		static Uml::Class meta;
-
-		String() { }
-		String(Udm::ObjectImpl *impl) : PredefinedType(impl), MgaObject(impl), Object(impl) { }
-		String(const String &master) : PredefinedType(master), MgaObject(master), Object(master) { }
-		static String Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static String Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		String CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		String CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<String> Instances() { return Udm::InstantiatedAttr<PICML::String>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<String, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::String, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::String> Derived() { return Udm::DerivedAttr<PICML::String>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::String, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::String, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::String> Archetype() { return Udm::ArchetypeAttr<PICML::String>(impl);}
-
-		Udm::ParentAttr<PICML::PredefinedTypes> parent() const { return Udm::ParentAttr<PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_String(*this);};
-	};
-
-	class  GenericObject :  public Provideable, public PredefinedType {
-	 public:
-		static Uml::Class meta;
-
-		GenericObject() { }
-		GenericObject(Udm::ObjectImpl *impl) : Provideable(impl),PredefinedType(impl), MgaObject(impl), Object(impl) { }
-		GenericObject(const GenericObject &master) : Provideable(master),PredefinedType(master), MgaObject(master), Object(master) { }
-		static GenericObject Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static GenericObject Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		GenericObject CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		GenericObject CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<GenericObject> Instances() { return Udm::InstantiatedAttr<PICML::GenericObject>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<GenericObject, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::GenericObject, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::GenericObject> Derived() { return Udm::DerivedAttr<PICML::GenericObject>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::GenericObject, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::GenericObject, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::GenericObject> Archetype() { return Udm::ArchetypeAttr<PICML::GenericObject>(impl);}
-
-		Udm::ParentAttr<PICML::PredefinedTypes> parent() const { return Udm::ParentAttr<PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_GenericObject(*this);};
-	};
-
-	class  GenericValue :  public PredefinedType {
-	 public:
-		static Uml::Class meta;
-
-		GenericValue() { }
-		GenericValue(Udm::ObjectImpl *impl) : PredefinedType(impl), MgaObject(impl), Object(impl) { }
-		GenericValue(const GenericValue &master) : PredefinedType(master), MgaObject(master), Object(master) { }
-		static GenericValue Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static GenericValue Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		GenericValue CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		GenericValue CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<GenericValue> Instances() { return Udm::InstantiatedAttr<PICML::GenericValue>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<GenericValue, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::GenericValue, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::GenericValue> Derived() { return Udm::DerivedAttr<PICML::GenericValue>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::GenericValue, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::GenericValue, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::GenericValue> Archetype() { return Udm::ArchetypeAttr<PICML::GenericValue>(impl);}
-
-		Udm::ParentAttr<PICML::PredefinedTypes> parent() const { return Udm::ParentAttr<PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_GenericValue(*this);};
-	};
-
 	class  TypeKind :  public PredefinedType {
 	 public:
 		static Uml::Class meta;
@@ -9433,31 +9246,139 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_TypeEncoding(*this);};
 	};
 
-	class  Boolean :  public PredefinedType {
+	class  GenericValue :  public PredefinedType {
 	 public:
 		static Uml::Class meta;
 
-		Boolean() { }
-		Boolean(Udm::ObjectImpl *impl) : PredefinedType(impl), MgaObject(impl), Object(impl) { }
-		Boolean(const Boolean &master) : PredefinedType(master), MgaObject(master), Object(master) { }
-		static Boolean Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		GenericValue() { }
+		GenericValue(Udm::ObjectImpl *impl) : PredefinedType(impl), MgaObject(impl), Object(impl) { }
+		GenericValue(const GenericValue &master) : PredefinedType(master), MgaObject(master), Object(master) { }
+		static GenericValue Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static Boolean Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		static GenericValue Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		Boolean CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		GenericValue CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		Boolean CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+		GenericValue CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::InstantiatedAttr<Boolean> Instances() { return Udm::InstantiatedAttr<PICML::Boolean>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Boolean, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Boolean, Pred>(impl);}
+		Udm::InstantiatedAttr<GenericValue> Instances() { return Udm::InstantiatedAttr<PICML::GenericValue>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<GenericValue, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::GenericValue, Pred>(impl);}
 
-		Udm::DerivedAttr<PICML::Boolean> Derived() { return Udm::DerivedAttr<PICML::Boolean>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Boolean, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Boolean, Pred>(impl);}
+		Udm::DerivedAttr<PICML::GenericValue> Derived() { return Udm::DerivedAttr<PICML::GenericValue>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::GenericValue, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::GenericValue, Pred>(impl);}
 
-		Udm::ArchetypeAttr<PICML::Boolean> Archetype() { return Udm::ArchetypeAttr<PICML::Boolean>(impl);}
+		Udm::ArchetypeAttr<PICML::GenericValue> Archetype() { return Udm::ArchetypeAttr<PICML::GenericValue>(impl);}
 
 		Udm::ParentAttr<PICML::PredefinedTypes> parent() const { return Udm::ParentAttr<PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_Boolean(*this);};
+		virtual void Accept(Visitor &v){v.Visit_GenericValue(*this);};
+	};
+
+	class  GenericValueObject :  public PredefinedType {
+	 public:
+		static Uml::Class meta;
+
+		GenericValueObject() { }
+		GenericValueObject(Udm::ObjectImpl *impl) : PredefinedType(impl), MgaObject(impl), Object(impl) { }
+		GenericValueObject(const GenericValueObject &master) : PredefinedType(master), MgaObject(master), Object(master) { }
+		static GenericValueObject Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static GenericValueObject Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		GenericValueObject CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		GenericValueObject CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<GenericValueObject> Instances() { return Udm::InstantiatedAttr<PICML::GenericValueObject>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<GenericValueObject, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::GenericValueObject, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::GenericValueObject> Derived() { return Udm::DerivedAttr<PICML::GenericValueObject>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::GenericValueObject, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::GenericValueObject, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::GenericValueObject> Archetype() { return Udm::ArchetypeAttr<PICML::GenericValueObject>(impl);}
+
+		Udm::ParentAttr<PICML::PredefinedTypes> parent() const { return Udm::ParentAttr<PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_GenericValueObject(*this);};
+	};
+
+	class  GenericObject :  public Provideable, public PredefinedType {
+	 public:
+		static Uml::Class meta;
+
+		GenericObject() { }
+		GenericObject(Udm::ObjectImpl *impl) : Provideable(impl),PredefinedType(impl), MgaObject(impl), Object(impl) { }
+		GenericObject(const GenericObject &master) : Provideable(master),PredefinedType(master), MgaObject(master), Object(master) { }
+		static GenericObject Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static GenericObject Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		GenericObject CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		GenericObject CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<GenericObject> Instances() { return Udm::InstantiatedAttr<PICML::GenericObject>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<GenericObject, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::GenericObject, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::GenericObject> Derived() { return Udm::DerivedAttr<PICML::GenericObject>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::GenericObject, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::GenericObject, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::GenericObject> Archetype() { return Udm::ArchetypeAttr<PICML::GenericObject>(impl);}
+
+		Udm::ParentAttr<PICML::PredefinedTypes> parent() const { return Udm::ParentAttr<PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_GenericObject(*this);};
+	};
+
+	class  String :  public PredefinedType {
+	 public:
+		static Uml::Class meta;
+
+		String() { }
+		String(Udm::ObjectImpl *impl) : PredefinedType(impl), MgaObject(impl), Object(impl) { }
+		String(const String &master) : PredefinedType(master), MgaObject(master), Object(master) { }
+		static String Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static String Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		String CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		String CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<String> Instances() { return Udm::InstantiatedAttr<PICML::String>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<String, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::String, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::String> Derived() { return Udm::DerivedAttr<PICML::String>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::String, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::String, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::String> Archetype() { return Udm::ArchetypeAttr<PICML::String>(impl);}
+
+		Udm::ParentAttr<PICML::PredefinedTypes> parent() const { return Udm::ParentAttr<PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_String(*this);};
+	};
+
+	class  RealNumber :  public PredefinedType {
+	 public:
+		static Uml::Class meta;
+
+		RealNumber() { }
+		RealNumber(Udm::ObjectImpl *impl) : PredefinedType(impl), MgaObject(impl), Object(impl) { }
+		RealNumber(const RealNumber &master) : PredefinedType(master), MgaObject(master), Object(master) { }
+		static RealNumber Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static RealNumber Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		RealNumber CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		RealNumber CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<RealNumber> Instances() { return Udm::InstantiatedAttr<PICML::RealNumber>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<RealNumber, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::RealNumber, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::RealNumber> Derived() { return Udm::DerivedAttr<PICML::RealNumber>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::RealNumber, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::RealNumber, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::RealNumber> Archetype() { return Udm::ArchetypeAttr<PICML::RealNumber>(impl);}
+
+		Udm::ParentAttr<PICML::PredefinedTypes> parent() const { return Udm::ParentAttr<PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_RealNumber(*this);};
 	};
 
 	class  LongInteger :  public PredefinedType {
@@ -9514,382 +9435,58 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_ShortInteger(*this);};
 	};
 
-	class  Constant :  public Taggable {
+	class  Boolean :  public PredefinedType {
 	 public:
 		static Uml::Class meta;
 
-		Constant() { }
-		Constant(Udm::ObjectImpl *impl) : Taggable(impl), MgaObject(impl), Object(impl) { }
-		Constant(const Constant &master) : Taggable(master), MgaObject(master), Object(master) { }
-		static Constant Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		Boolean() { }
+		Boolean(Udm::ObjectImpl *impl) : PredefinedType(impl), MgaObject(impl), Object(impl) { }
+		Boolean(const Boolean &master) : PredefinedType(master), MgaObject(master), Object(master) { }
+		static Boolean Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static Constant Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		static Boolean Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		Constant CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		Boolean CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		Constant CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+		Boolean CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::InstantiatedAttr<Constant> Instances() { return Udm::InstantiatedAttr<PICML::Constant>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Constant, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Constant, Pred>(impl);}
+		Udm::InstantiatedAttr<Boolean> Instances() { return Udm::InstantiatedAttr<PICML::Boolean>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Boolean, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Boolean, Pred>(impl);}
 
-		Udm::DerivedAttr<PICML::Constant> Derived() { return Udm::DerivedAttr<PICML::Constant>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Constant, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Constant, Pred>(impl);}
+		Udm::DerivedAttr<PICML::Boolean> Derived() { return Udm::DerivedAttr<PICML::Boolean>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Boolean, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Boolean, Pred>(impl);}
 
-		Udm::ArchetypeAttr<PICML::Constant> Archetype() { return Udm::ArchetypeAttr<PICML::Constant>(impl);}
+		Udm::ArchetypeAttr<PICML::Boolean> Archetype() { return Udm::ArchetypeAttr<PICML::Boolean>(impl);}
 
-		static Uml::Attribute meta_value;
-		Udm::StringAttr value() const { return Udm::StringAttr(impl, meta_value); }
-
-		static Uml::AssociationRole meta_ref;
-		Udm::PointerAttr<PICML::ConstantType> ref() const { return Udm::PointerAttr<PICML::ConstantType>(impl, meta_ref); }
-
-		static Uml::CompositionParentRole meta_HasOperations_parent;
-		Udm::ParentAttr<PICML::HasOperations> HasOperations_parent() const { return Udm::ParentAttr<PICML::HasOperations>(impl, meta_HasOperations_parent); }
-
-		static Uml::CompositionParentRole meta_Package_parent;
-		Udm::ParentAttr<PICML::Package> Package_parent() const { return Udm::ParentAttr<PICML::Package>(impl, meta_Package_parent); }
-
-		static Uml::CompositionParentRole meta_File_parent;
-		Udm::ParentAttr<PICML::File> File_parent() const { return Udm::ParentAttr<PICML::File>(impl, meta_File_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_Constant(*this);};
+		Udm::ParentAttr<PICML::PredefinedTypes> parent() const { return Udm::ParentAttr<PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_Boolean(*this);};
 	};
 
-	class  Package :  public Taggable, public Prefixable {
+	class  Byte :  public PredefinedType {
 	 public:
 		static Uml::Class meta;
 
-		Package() { }
-		Package(Udm::ObjectImpl *impl) : Taggable(impl),Prefixable(impl), MgaObject(impl), Object(impl) { }
-		Package(const Package &master) : Taggable(master),Prefixable(master), MgaObject(master), Object(master) { }
-		static Package Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		Byte() { }
+		Byte(Udm::ObjectImpl *impl) : PredefinedType(impl), MgaObject(impl), Object(impl) { }
+		Byte(const Byte &master) : PredefinedType(master), MgaObject(master), Object(master) { }
+		static Byte Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static Package Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		static Byte Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		Package CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		Byte CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		Package CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+		Byte CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::InstantiatedAttr<Package> Instances() { return Udm::InstantiatedAttr<PICML::Package>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Package, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Package, Pred>(impl);}
+		Udm::InstantiatedAttr<Byte> Instances() { return Udm::InstantiatedAttr<PICML::Byte>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Byte, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Byte, Pred>(impl);}
 
-		Udm::DerivedAttr<PICML::Package> Derived() { return Udm::DerivedAttr<PICML::Package>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Package, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Package, Pred>(impl);}
+		Udm::DerivedAttr<PICML::Byte> Derived() { return Udm::DerivedAttr<PICML::Byte>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Byte, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Byte, Pred>(impl);}
 
-		Udm::ArchetypeAttr<PICML::Package> Archetype() { return Udm::ArchetypeAttr<PICML::Package>(impl);}
+		Udm::ArchetypeAttr<PICML::Byte> Archetype() { return Udm::ArchetypeAttr<PICML::Byte>(impl);}
 
-		static Uml::CompositionChildRole meta_ComponentRef_children;
-		Udm::ChildrenAttr<PICML::ComponentRef> ComponentRef_children() const { return Udm::ChildrenAttr<PICML::ComponentRef>(impl, meta_ComponentRef_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentRef, Pred> ComponentRef_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentRef, Pred>(impl, meta_ComponentRef_children); }
-
-		static Uml::CompositionChildRole meta_ManagesComponent_children;
-		Udm::ChildrenAttr<PICML::ManagesComponent> ManagesComponent_children() const { return Udm::ChildrenAttr<PICML::ManagesComponent>(impl, meta_ManagesComponent_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ManagesComponent, Pred> ManagesComponent_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ManagesComponent, Pred>(impl, meta_ManagesComponent_children); }
-
-		static Uml::CompositionChildRole meta_Constant_children;
-		Udm::ChildrenAttr<PICML::Constant> Constant_children() const { return Udm::ChildrenAttr<PICML::Constant>(impl, meta_Constant_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Constant, Pred> Constant_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Constant, Pred>(impl, meta_Constant_children); }
-
-		static Uml::CompositionChildRole meta_NamedType_children;
-		Udm::ChildrenAttr<PICML::NamedType> NamedType_children() const { return Udm::ChildrenAttr<PICML::NamedType>(impl, meta_NamedType_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::NamedType, Pred> NamedType_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::NamedType, Pred>(impl, meta_NamedType_children); }
-
-		static Uml::CompositionChildRole meta_Package_children;
-		Udm::ChildrenAttr<PICML::Package> Package_children() const { return Udm::ChildrenAttr<PICML::Package>(impl, meta_Package_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Package, Pred> Package_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Package, Pred>(impl, meta_Package_children); }
-
-		static Uml::CompositionChildRole meta_Exception_children;
-		Udm::ChildrenAttr<PICML::Exception> Exception_children() const { return Udm::ChildrenAttr<PICML::Exception>(impl, meta_Exception_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Exception, Pred> Exception_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Exception, Pred>(impl, meta_Exception_children); }
-
-		Udm::ChildrenAttr<PICML::Taggable> Taggable_kind_children() const { return Udm::ChildrenAttr<PICML::Taggable>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Taggable, Pred> Taggable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Taggable, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Prefixable> Prefixable_kind_children() const { return Udm::ChildrenAttr<PICML::Prefixable>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Prefixable, Pred> Prefixable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Prefixable, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Manageable> Manageable_kind_children() const { return Udm::ChildrenAttr<PICML::Manageable>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Manageable, Pred> Manageable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Manageable, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Component> Component_kind_children() const { return Udm::ChildrenAttr<PICML::Component>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Component, Pred> Component_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Component, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ComponentFactory> ComponentFactory_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentFactory>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ComponentFactory, Pred> ComponentFactory_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentFactory, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ManagesComponent> ManagesComponent_kind_children() const { return Udm::ChildrenAttr<PICML::ManagesComponent>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ManagesComponent, Pred> ManagesComponent_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ManagesComponent, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ComponentRef> ComponentRef_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentRef>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ComponentRef, Pred> ComponentRef_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentRef, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Event> Event_kind_children() const { return Udm::ChildrenAttr<PICML::Event>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Event, Pred> Event_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Event, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Object> Object_kind_children() const { return Udm::ChildrenAttr<PICML::Object>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Object, Pred> Object_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Object, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ValueObject> ValueObject_kind_children() const { return Udm::ChildrenAttr<PICML::ValueObject>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ValueObject, Pred> ValueObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ValueObject, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Inheritable> Inheritable_kind_children() const { return Udm::ChildrenAttr<PICML::Inheritable>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Inheritable, Pred> Inheritable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Inheritable, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::HasOperations> HasOperations_kind_children() const { return Udm::ChildrenAttr<PICML::HasOperations>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::HasOperations, Pred> HasOperations_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::HasOperations, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ObjectByValue> ObjectByValue_kind_children() const { return Udm::ChildrenAttr<PICML::ObjectByValue>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ObjectByValue, Pred> ObjectByValue_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ObjectByValue, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Alias> Alias_kind_children() const { return Udm::ChildrenAttr<PICML::Alias>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Alias, Pred> Alias_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Alias, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Boxed> Boxed_kind_children() const { return Udm::ChildrenAttr<PICML::Boxed>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Boxed, Pred> Boxed_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Boxed, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::MemberType> MemberType_kind_children() const { return Udm::ChildrenAttr<PICML::MemberType>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MemberType, Pred> MemberType_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MemberType, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Collection> Collection_kind_children() const { return Udm::ChildrenAttr<PICML::Collection>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Collection, Pred> Collection_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Collection, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Aggregate> Aggregate_kind_children() const { return Udm::ChildrenAttr<PICML::Aggregate>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Aggregate, Pred> Aggregate_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Aggregate, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::NoInheritable> NoInheritable_kind_children() const { return Udm::ChildrenAttr<PICML::NoInheritable>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::NoInheritable, Pred> NoInheritable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::NoInheritable, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::SwitchedAggregate> SwitchedAggregate_kind_children() const { return Udm::ChildrenAttr<PICML::SwitchedAggregate>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::SwitchedAggregate, Pred> SwitchedAggregate_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::SwitchedAggregate, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::NamedType> NamedType_kind_children() const { return Udm::ChildrenAttr<PICML::NamedType>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::NamedType, Pred> NamedType_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::NamedType, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Enum> Enum_kind_children() const { return Udm::ChildrenAttr<PICML::Enum>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Enum, Pred> Enum_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Enum, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Constant> Constant_kind_children() const { return Udm::ChildrenAttr<PICML::Constant>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Constant, Pred> Constant_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Constant, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Package> Package_kind_children() const { return Udm::ChildrenAttr<PICML::Package>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Package, Pred> Package_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Package, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Exception> Exception_kind_children() const { return Udm::ChildrenAttr<PICML::Exception>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Exception, Pred> Exception_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Exception, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		static Uml::CompositionParentRole meta_Package_parent;
-		Udm::ParentAttr<PICML::Package> Package_parent() const { return Udm::ParentAttr<PICML::Package>(impl, meta_Package_parent); }
-
-		static Uml::CompositionParentRole meta_File_parent;
-		Udm::ParentAttr<PICML::File> File_parent() const { return Udm::ParentAttr<PICML::File>(impl, meta_File_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_Package(*this);};
-	};
-
-	class  File :  public Prefixable {
-	 public:
-		static Uml::Class meta;
-
-		File() { }
-		File(Udm::ObjectImpl *impl) : Prefixable(impl), MgaObject(impl), Object(impl) { }
-		File(const File &master) : Prefixable(master), MgaObject(master), Object(master) { }
-		static File Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static File Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		File CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		File CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<File> Instances() { return Udm::InstantiatedAttr<PICML::File>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<File, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::File, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::File> Derived() { return Udm::DerivedAttr<PICML::File>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::File, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::File, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::File> Archetype() { return Udm::ArchetypeAttr<PICML::File>(impl);}
-
-		static Uml::AssociationRole meta_referedbyFileRef;
-		Udm::AssocAttr<PICML::FileRef> referedbyFileRef() const { return Udm::AssocAttr<PICML::FileRef>(impl, meta_referedbyFileRef); }
-		template <class Pred> Udm::AssocAttr<PICML::FileRef, Pred > referedbyFileRef_sorted(const Pred &) const { return Udm::AssocAttr<PICML::FileRef, Pred>(impl, meta_referedbyFileRef); }
-
-		static Uml::CompositionChildRole meta_NamedType_children;
-		Udm::ChildrenAttr<PICML::NamedType> NamedType_children() const { return Udm::ChildrenAttr<PICML::NamedType>(impl, meta_NamedType_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::NamedType, Pred> NamedType_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::NamedType, Pred>(impl, meta_NamedType_children); }
-
-		static Uml::CompositionChildRole meta_ManagesComponent_children;
-		Udm::ChildrenAttr<PICML::ManagesComponent> ManagesComponent_children() const { return Udm::ChildrenAttr<PICML::ManagesComponent>(impl, meta_ManagesComponent_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ManagesComponent, Pred> ManagesComponent_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ManagesComponent, Pred>(impl, meta_ManagesComponent_children); }
-
-		static Uml::CompositionChildRole meta_ComponentRef_children;
-		Udm::ChildrenAttr<PICML::ComponentRef> ComponentRef_children() const { return Udm::ChildrenAttr<PICML::ComponentRef>(impl, meta_ComponentRef_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentRef, Pred> ComponentRef_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentRef, Pred>(impl, meta_ComponentRef_children); }
-
-		static Uml::CompositionChildRole meta_Exception_children;
-		Udm::ChildrenAttr<PICML::Exception> Exception_children() const { return Udm::ChildrenAttr<PICML::Exception>(impl, meta_Exception_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Exception, Pred> Exception_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Exception, Pred>(impl, meta_Exception_children); }
-
-		static Uml::CompositionChildRole meta_Constant_children;
-		Udm::ChildrenAttr<PICML::Constant> Constant_children() const { return Udm::ChildrenAttr<PICML::Constant>(impl, meta_Constant_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Constant, Pred> Constant_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Constant, Pred>(impl, meta_Constant_children); }
-
-		static Uml::CompositionChildRole meta_FileRef_children;
-		Udm::ChildrenAttr<PICML::FileRef> FileRef_children() const { return Udm::ChildrenAttr<PICML::FileRef>(impl, meta_FileRef_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::FileRef, Pred> FileRef_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::FileRef, Pred>(impl, meta_FileRef_children); }
-
-		static Uml::CompositionChildRole meta_Package_children;
-		Udm::ChildrenAttr<PICML::Package> Package_children() const { return Udm::ChildrenAttr<PICML::Package>(impl, meta_Package_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Package, Pred> Package_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Package, Pred>(impl, meta_Package_children); }
-
-		Udm::ChildrenAttr<PICML::Taggable> Taggable_kind_children() const { return Udm::ChildrenAttr<PICML::Taggable>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Taggable, Pred> Taggable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Taggable, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Prefixable> Prefixable_kind_children() const { return Udm::ChildrenAttr<PICML::Prefixable>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Prefixable, Pred> Prefixable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Prefixable, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Manageable> Manageable_kind_children() const { return Udm::ChildrenAttr<PICML::Manageable>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Manageable, Pred> Manageable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Manageable, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Component> Component_kind_children() const { return Udm::ChildrenAttr<PICML::Component>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Component, Pred> Component_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Component, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ComponentFactory> ComponentFactory_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentFactory>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ComponentFactory, Pred> ComponentFactory_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentFactory, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ManagesComponent> ManagesComponent_kind_children() const { return Udm::ChildrenAttr<PICML::ManagesComponent>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ManagesComponent, Pred> ManagesComponent_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ManagesComponent, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ComponentRef> ComponentRef_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentRef>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ComponentRef, Pred> ComponentRef_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentRef, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Event> Event_kind_children() const { return Udm::ChildrenAttr<PICML::Event>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Event, Pred> Event_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Event, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Object> Object_kind_children() const { return Udm::ChildrenAttr<PICML::Object>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Object, Pred> Object_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Object, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ValueObject> ValueObject_kind_children() const { return Udm::ChildrenAttr<PICML::ValueObject>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ValueObject, Pred> ValueObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ValueObject, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Inheritable> Inheritable_kind_children() const { return Udm::ChildrenAttr<PICML::Inheritable>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Inheritable, Pred> Inheritable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Inheritable, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::HasOperations> HasOperations_kind_children() const { return Udm::ChildrenAttr<PICML::HasOperations>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::HasOperations, Pred> HasOperations_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::HasOperations, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ObjectByValue> ObjectByValue_kind_children() const { return Udm::ChildrenAttr<PICML::ObjectByValue>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ObjectByValue, Pred> ObjectByValue_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ObjectByValue, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Alias> Alias_kind_children() const { return Udm::ChildrenAttr<PICML::Alias>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Alias, Pred> Alias_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Alias, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Boxed> Boxed_kind_children() const { return Udm::ChildrenAttr<PICML::Boxed>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Boxed, Pred> Boxed_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Boxed, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::MemberType> MemberType_kind_children() const { return Udm::ChildrenAttr<PICML::MemberType>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MemberType, Pred> MemberType_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MemberType, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Collection> Collection_kind_children() const { return Udm::ChildrenAttr<PICML::Collection>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Collection, Pred> Collection_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Collection, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Aggregate> Aggregate_kind_children() const { return Udm::ChildrenAttr<PICML::Aggregate>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Aggregate, Pred> Aggregate_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Aggregate, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::NoInheritable> NoInheritable_kind_children() const { return Udm::ChildrenAttr<PICML::NoInheritable>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::NoInheritable, Pred> NoInheritable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::NoInheritable, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::SwitchedAggregate> SwitchedAggregate_kind_children() const { return Udm::ChildrenAttr<PICML::SwitchedAggregate>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::SwitchedAggregate, Pred> SwitchedAggregate_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::SwitchedAggregate, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::NamedType> NamedType_kind_children() const { return Udm::ChildrenAttr<PICML::NamedType>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::NamedType, Pred> NamedType_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::NamedType, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Enum> Enum_kind_children() const { return Udm::ChildrenAttr<PICML::Enum>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Enum, Pred> Enum_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Enum, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Constant> Constant_kind_children() const { return Udm::ChildrenAttr<PICML::Constant>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Constant, Pred> Constant_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Constant, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Package> Package_kind_children() const { return Udm::ChildrenAttr<PICML::Package>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Package, Pred> Package_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Package, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::Exception> Exception_kind_children() const { return Udm::ChildrenAttr<PICML::Exception>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Exception, Pred> Exception_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Exception, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::FileRef> FileRef_kind_children() const { return Udm::ChildrenAttr<PICML::FileRef>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::FileRef, Pred> FileRef_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::FileRef, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		static Uml::CompositionParentRole meta_InterfaceDefinitions_parent;
-		Udm::ParentAttr<PICML::InterfaceDefinitions> InterfaceDefinitions_parent() const { return Udm::ParentAttr<PICML::InterfaceDefinitions>(impl, meta_InterfaceDefinitions_parent); }
-
-		Udm::ParentAttr<PICML::InterfaceDefinitions> parent() const { return Udm::ParentAttr<PICML::InterfaceDefinitions>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_File(*this);};
-	};
-
-	class  Exception :  public Taggable {
-	 public:
-		static Uml::Class meta;
-
-		Exception() { }
-		Exception(Udm::ObjectImpl *impl) : Taggable(impl), MgaObject(impl), Object(impl) { }
-		Exception(const Exception &master) : Taggable(master), MgaObject(master), Object(master) { }
-		static Exception Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static Exception Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		Exception CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		Exception CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<Exception> Instances() { return Udm::InstantiatedAttr<PICML::Exception>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Exception, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Exception, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::Exception> Derived() { return Udm::DerivedAttr<PICML::Exception>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Exception, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Exception, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::Exception> Archetype() { return Udm::ArchetypeAttr<PICML::Exception>(impl);}
-
-		static Uml::AssociationRole meta_referedbySetException;
-		Udm::AssocAttr<PICML::SetException> referedbySetException() const { return Udm::AssocAttr<PICML::SetException>(impl, meta_referedbySetException); }
-		template <class Pred> Udm::AssocAttr<PICML::SetException, Pred > referedbySetException_sorted(const Pred &) const { return Udm::AssocAttr<PICML::SetException, Pred>(impl, meta_referedbySetException); }
-
-		static Uml::AssociationRole meta_referedbyGetException;
-		Udm::AssocAttr<PICML::GetException> referedbyGetException() const { return Udm::AssocAttr<PICML::GetException>(impl, meta_referedbyGetException); }
-		template <class Pred> Udm::AssocAttr<PICML::GetException, Pred > referedbyGetException_sorted(const Pred &) const { return Udm::AssocAttr<PICML::GetException, Pred>(impl, meta_referedbyGetException); }
-
-		static Uml::AssociationRole meta_referedbyExceptionRef;
-		Udm::AssocAttr<PICML::ExceptionRef> referedbyExceptionRef() const { return Udm::AssocAttr<PICML::ExceptionRef>(impl, meta_referedbyExceptionRef); }
-		template <class Pred> Udm::AssocAttr<PICML::ExceptionRef, Pred > referedbyExceptionRef_sorted(const Pred &) const { return Udm::AssocAttr<PICML::ExceptionRef, Pred>(impl, meta_referedbyExceptionRef); }
-
-		static Uml::CompositionChildRole meta_Member_children;
-		Udm::ChildrenAttr<PICML::Member> Member_children() const { return Udm::ChildrenAttr<PICML::Member>(impl, meta_Member_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Member, Pred> Member_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Member, Pred>(impl, meta_Member_children); }
-
-		Udm::ChildrenAttr<PICML::Member> Member_kind_children() const { return Udm::ChildrenAttr<PICML::Member>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Member, Pred> Member_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Member, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		static Uml::CompositionParentRole meta_HasOperations_parent;
-		Udm::ParentAttr<PICML::HasOperations> HasOperations_parent() const { return Udm::ParentAttr<PICML::HasOperations>(impl, meta_HasOperations_parent); }
-
-		static Uml::CompositionParentRole meta_Package_parent;
-		Udm::ParentAttr<PICML::Package> Package_parent() const { return Udm::ParentAttr<PICML::Package>(impl, meta_Package_parent); }
-
-		static Uml::CompositionParentRole meta_File_parent;
-		Udm::ParentAttr<PICML::File> File_parent() const { return Udm::ParentAttr<PICML::File>(impl, meta_File_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_Exception(*this);};
+		Udm::ParentAttr<PICML::PredefinedTypes> parent() const { return Udm::ParentAttr<PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_Byte(*this);};
 	};
 
 	class  FileRef :  public MgaObject {
@@ -9918,11 +9515,11 @@ namespace PICML {
 		static Uml::AssociationRole meta_ref;
 		Udm::PointerAttr<PICML::File> ref() const { return Udm::PointerAttr<PICML::File>(impl, meta_ref); }
 
-		static Uml::CompositionParentRole meta_File_parent;
-		Udm::ParentAttr<PICML::File> File_parent() const { return Udm::ParentAttr<PICML::File>(impl, meta_File_parent); }
-
 		static Uml::CompositionParentRole meta_StubProject_parent;
 		Udm::ParentAttr<PICML::StubProject> StubProject_parent() const { return Udm::ParentAttr<PICML::StubProject>(impl, meta_StubProject_parent); }
+
+		static Uml::CompositionParentRole meta_File_parent;
+		Udm::ParentAttr<PICML::File> File_parent() const { return Udm::ParentAttr<PICML::File>(impl, meta_File_parent); }
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		virtual void Accept(Visitor &v){v.Visit_FileRef(*this);};
@@ -9961,28 +9558,364 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_ExceptionRef(*this);};
 	};
 
-	class  Workspace :  public MgaObject {
+	class  Exception :  public Taggable {
 	 public:
 		static Uml::Class meta;
 
-		Workspace() { }
-		Workspace(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		Workspace(const Workspace &master) : MgaObject(master), Object(master) { }
-		static Workspace Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		Exception() { }
+		Exception(Udm::ObjectImpl *impl) : Taggable(impl), MgaObject(impl), Object(impl) { }
+		Exception(const Exception &master) : Taggable(master), MgaObject(master), Object(master) { }
+		static Exception Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static Workspace Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		static Exception Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		Workspace CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		Exception CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		Workspace CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+		Exception CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::InstantiatedAttr<Workspace> Instances() { return Udm::InstantiatedAttr<PICML::Workspace>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Workspace, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Workspace, Pred>(impl);}
+		Udm::InstantiatedAttr<Exception> Instances() { return Udm::InstantiatedAttr<PICML::Exception>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Exception, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Exception, Pred>(impl);}
 
-		Udm::DerivedAttr<PICML::Workspace> Derived() { return Udm::DerivedAttr<PICML::Workspace>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Workspace, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Workspace, Pred>(impl);}
+		Udm::DerivedAttr<PICML::Exception> Derived() { return Udm::DerivedAttr<PICML::Exception>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Exception, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Exception, Pred>(impl);}
 
-		Udm::ArchetypeAttr<PICML::Workspace> Archetype() { return Udm::ArchetypeAttr<PICML::Workspace>(impl);}
+		Udm::ArchetypeAttr<PICML::Exception> Archetype() { return Udm::ArchetypeAttr<PICML::Exception>(impl);}
+
+		static Uml::AssociationRole meta_referedbyGetException;
+		Udm::AssocAttr<PICML::GetException> referedbyGetException() const { return Udm::AssocAttr<PICML::GetException>(impl, meta_referedbyGetException); }
+		template <class Pred> Udm::AssocAttr<PICML::GetException, Pred > referedbyGetException_sorted(const Pred &) const { return Udm::AssocAttr<PICML::GetException, Pred>(impl, meta_referedbyGetException); }
+
+		static Uml::AssociationRole meta_referedbySetException;
+		Udm::AssocAttr<PICML::SetException> referedbySetException() const { return Udm::AssocAttr<PICML::SetException>(impl, meta_referedbySetException); }
+		template <class Pred> Udm::AssocAttr<PICML::SetException, Pred > referedbySetException_sorted(const Pred &) const { return Udm::AssocAttr<PICML::SetException, Pred>(impl, meta_referedbySetException); }
+
+		static Uml::AssociationRole meta_referedbyExceptionRef;
+		Udm::AssocAttr<PICML::ExceptionRef> referedbyExceptionRef() const { return Udm::AssocAttr<PICML::ExceptionRef>(impl, meta_referedbyExceptionRef); }
+		template <class Pred> Udm::AssocAttr<PICML::ExceptionRef, Pred > referedbyExceptionRef_sorted(const Pred &) const { return Udm::AssocAttr<PICML::ExceptionRef, Pred>(impl, meta_referedbyExceptionRef); }
+
+		static Uml::CompositionChildRole meta_Member_children;
+		Udm::ChildrenAttr<PICML::Member> Member_children() const { return Udm::ChildrenAttr<PICML::Member>(impl, meta_Member_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Member, Pred> Member_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Member, Pred>(impl, meta_Member_children); }
+
+		Udm::ChildrenAttr<PICML::Member> Member_kind_children() const { return Udm::ChildrenAttr<PICML::Member>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Member, Pred> Member_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Member, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		static Uml::CompositionParentRole meta_HasOperations_parent;
+		Udm::ParentAttr<PICML::HasOperations> HasOperations_parent() const { return Udm::ParentAttr<PICML::HasOperations>(impl, meta_HasOperations_parent); }
+
+		static Uml::CompositionParentRole meta_File_parent;
+		Udm::ParentAttr<PICML::File> File_parent() const { return Udm::ParentAttr<PICML::File>(impl, meta_File_parent); }
+
+		static Uml::CompositionParentRole meta_Package_parent;
+		Udm::ParentAttr<PICML::Package> Package_parent() const { return Udm::ParentAttr<PICML::Package>(impl, meta_Package_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_Exception(*this);};
+	};
+
+	class  File :  public Prefixable {
+	 public:
+		static Uml::Class meta;
+
+		File() { }
+		File(Udm::ObjectImpl *impl) : Prefixable(impl), MgaObject(impl), Object(impl) { }
+		File(const File &master) : Prefixable(master), MgaObject(master), Object(master) { }
+		static File Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static File Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		File CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		File CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<File> Instances() { return Udm::InstantiatedAttr<PICML::File>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<File, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::File, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::File> Derived() { return Udm::DerivedAttr<PICML::File>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::File, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::File, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::File> Archetype() { return Udm::ArchetypeAttr<PICML::File>(impl);}
+
+		static Uml::AssociationRole meta_referedbyFileRef;
+		Udm::AssocAttr<PICML::FileRef> referedbyFileRef() const { return Udm::AssocAttr<PICML::FileRef>(impl, meta_referedbyFileRef); }
+		template <class Pred> Udm::AssocAttr<PICML::FileRef, Pred > referedbyFileRef_sorted(const Pred &) const { return Udm::AssocAttr<PICML::FileRef, Pred>(impl, meta_referedbyFileRef); }
+
+		static Uml::CompositionChildRole meta_ComponentRef_children;
+		Udm::ChildrenAttr<PICML::ComponentRef> ComponentRef_children() const { return Udm::ChildrenAttr<PICML::ComponentRef>(impl, meta_ComponentRef_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentRef, Pred> ComponentRef_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentRef, Pred>(impl, meta_ComponentRef_children); }
+
+		static Uml::CompositionChildRole meta_ManagesComponent_children;
+		Udm::ChildrenAttr<PICML::ManagesComponent> ManagesComponent_children() const { return Udm::ChildrenAttr<PICML::ManagesComponent>(impl, meta_ManagesComponent_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ManagesComponent, Pred> ManagesComponent_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ManagesComponent, Pred>(impl, meta_ManagesComponent_children); }
+
+		static Uml::CompositionChildRole meta_NamedType_children;
+		Udm::ChildrenAttr<PICML::NamedType> NamedType_children() const { return Udm::ChildrenAttr<PICML::NamedType>(impl, meta_NamedType_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::NamedType, Pred> NamedType_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::NamedType, Pred>(impl, meta_NamedType_children); }
+
+		static Uml::CompositionChildRole meta_Constant_children;
+		Udm::ChildrenAttr<PICML::Constant> Constant_children() const { return Udm::ChildrenAttr<PICML::Constant>(impl, meta_Constant_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Constant, Pred> Constant_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Constant, Pred>(impl, meta_Constant_children); }
+
+		static Uml::CompositionChildRole meta_FileRef_children;
+		Udm::ChildrenAttr<PICML::FileRef> FileRef_children() const { return Udm::ChildrenAttr<PICML::FileRef>(impl, meta_FileRef_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::FileRef, Pred> FileRef_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::FileRef, Pred>(impl, meta_FileRef_children); }
+
+		static Uml::CompositionChildRole meta_Exception_children;
+		Udm::ChildrenAttr<PICML::Exception> Exception_children() const { return Udm::ChildrenAttr<PICML::Exception>(impl, meta_Exception_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Exception, Pred> Exception_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Exception, Pred>(impl, meta_Exception_children); }
+
+		static Uml::CompositionChildRole meta_Package_children;
+		Udm::ChildrenAttr<PICML::Package> Package_children() const { return Udm::ChildrenAttr<PICML::Package>(impl, meta_Package_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Package, Pred> Package_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Package, Pred>(impl, meta_Package_children); }
+
+		Udm::ChildrenAttr<PICML::Taggable> Taggable_kind_children() const { return Udm::ChildrenAttr<PICML::Taggable>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Taggable, Pred> Taggable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Taggable, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Prefixable> Prefixable_kind_children() const { return Udm::ChildrenAttr<PICML::Prefixable>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Prefixable, Pred> Prefixable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Prefixable, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ManagesComponent> ManagesComponent_kind_children() const { return Udm::ChildrenAttr<PICML::ManagesComponent>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ManagesComponent, Pred> ManagesComponent_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ManagesComponent, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ComponentFactory> ComponentFactory_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentFactory>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ComponentFactory, Pred> ComponentFactory_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentFactory, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Manageable> Manageable_kind_children() const { return Udm::ChildrenAttr<PICML::Manageable>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Manageable, Pred> Manageable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Manageable, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ComponentRef> ComponentRef_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentRef>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ComponentRef, Pred> ComponentRef_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentRef, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Component> Component_kind_children() const { return Udm::ChildrenAttr<PICML::Component>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Component, Pred> Component_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Component, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ObjectByValue> ObjectByValue_kind_children() const { return Udm::ChildrenAttr<PICML::ObjectByValue>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ObjectByValue, Pred> ObjectByValue_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ObjectByValue, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::HasOperations> HasOperations_kind_children() const { return Udm::ChildrenAttr<PICML::HasOperations>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::HasOperations, Pred> HasOperations_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::HasOperations, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Inheritable> Inheritable_kind_children() const { return Udm::ChildrenAttr<PICML::Inheritable>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Inheritable, Pred> Inheritable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Inheritable, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ValueObject> ValueObject_kind_children() const { return Udm::ChildrenAttr<PICML::ValueObject>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ValueObject, Pred> ValueObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ValueObject, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Event> Event_kind_children() const { return Udm::ChildrenAttr<PICML::Event>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Event, Pred> Event_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Event, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Object> Object_kind_children() const { return Udm::ChildrenAttr<PICML::Object>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Object, Pred> Object_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Object, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::NoInheritable> NoInheritable_kind_children() const { return Udm::ChildrenAttr<PICML::NoInheritable>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::NoInheritable, Pred> NoInheritable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::NoInheritable, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Boxed> Boxed_kind_children() const { return Udm::ChildrenAttr<PICML::Boxed>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Boxed, Pred> Boxed_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Boxed, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Alias> Alias_kind_children() const { return Udm::ChildrenAttr<PICML::Alias>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Alias, Pred> Alias_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Alias, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Collection> Collection_kind_children() const { return Udm::ChildrenAttr<PICML::Collection>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Collection, Pred> Collection_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Collection, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::NamedType> NamedType_kind_children() const { return Udm::ChildrenAttr<PICML::NamedType>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::NamedType, Pred> NamedType_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::NamedType, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MemberType> MemberType_kind_children() const { return Udm::ChildrenAttr<PICML::MemberType>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MemberType, Pred> MemberType_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MemberType, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::SwitchedAggregate> SwitchedAggregate_kind_children() const { return Udm::ChildrenAttr<PICML::SwitchedAggregate>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::SwitchedAggregate, Pred> SwitchedAggregate_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::SwitchedAggregate, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Aggregate> Aggregate_kind_children() const { return Udm::ChildrenAttr<PICML::Aggregate>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Aggregate, Pred> Aggregate_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Aggregate, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Enum> Enum_kind_children() const { return Udm::ChildrenAttr<PICML::Enum>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Enum, Pred> Enum_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Enum, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Constant> Constant_kind_children() const { return Udm::ChildrenAttr<PICML::Constant>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Constant, Pred> Constant_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Constant, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::FileRef> FileRef_kind_children() const { return Udm::ChildrenAttr<PICML::FileRef>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::FileRef, Pred> FileRef_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::FileRef, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Exception> Exception_kind_children() const { return Udm::ChildrenAttr<PICML::Exception>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Exception, Pred> Exception_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Exception, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Package> Package_kind_children() const { return Udm::ChildrenAttr<PICML::Package>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Package, Pred> Package_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Package, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		static Uml::CompositionParentRole meta_InterfaceDefinitions_parent;
+		Udm::ParentAttr<PICML::InterfaceDefinitions> InterfaceDefinitions_parent() const { return Udm::ParentAttr<PICML::InterfaceDefinitions>(impl, meta_InterfaceDefinitions_parent); }
+
+		Udm::ParentAttr<PICML::InterfaceDefinitions> parent() const { return Udm::ParentAttr<PICML::InterfaceDefinitions>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_File(*this);};
+	};
+
+	class  Package :  public Taggable, public Prefixable {
+	 public:
+		static Uml::Class meta;
+
+		Package() { }
+		Package(Udm::ObjectImpl *impl) : Taggable(impl),Prefixable(impl), MgaObject(impl), Object(impl) { }
+		Package(const Package &master) : Taggable(master),Prefixable(master), MgaObject(master), Object(master) { }
+		static Package Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static Package Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		Package CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		Package CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<Package> Instances() { return Udm::InstantiatedAttr<PICML::Package>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Package, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Package, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::Package> Derived() { return Udm::DerivedAttr<PICML::Package>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Package, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Package, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::Package> Archetype() { return Udm::ArchetypeAttr<PICML::Package>(impl);}
+
+		static Uml::CompositionChildRole meta_ComponentRef_children;
+		Udm::ChildrenAttr<PICML::ComponentRef> ComponentRef_children() const { return Udm::ChildrenAttr<PICML::ComponentRef>(impl, meta_ComponentRef_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentRef, Pred> ComponentRef_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentRef, Pred>(impl, meta_ComponentRef_children); }
+
+		static Uml::CompositionChildRole meta_ManagesComponent_children;
+		Udm::ChildrenAttr<PICML::ManagesComponent> ManagesComponent_children() const { return Udm::ChildrenAttr<PICML::ManagesComponent>(impl, meta_ManagesComponent_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ManagesComponent, Pred> ManagesComponent_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ManagesComponent, Pred>(impl, meta_ManagesComponent_children); }
+
+		static Uml::CompositionChildRole meta_NamedType_children;
+		Udm::ChildrenAttr<PICML::NamedType> NamedType_children() const { return Udm::ChildrenAttr<PICML::NamedType>(impl, meta_NamedType_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::NamedType, Pred> NamedType_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::NamedType, Pred>(impl, meta_NamedType_children); }
+
+		static Uml::CompositionChildRole meta_Constant_children;
+		Udm::ChildrenAttr<PICML::Constant> Constant_children() const { return Udm::ChildrenAttr<PICML::Constant>(impl, meta_Constant_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Constant, Pred> Constant_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Constant, Pred>(impl, meta_Constant_children); }
+
+		static Uml::CompositionChildRole meta_Exception_children;
+		Udm::ChildrenAttr<PICML::Exception> Exception_children() const { return Udm::ChildrenAttr<PICML::Exception>(impl, meta_Exception_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Exception, Pred> Exception_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Exception, Pred>(impl, meta_Exception_children); }
+
+		static Uml::CompositionChildRole meta_Package_children;
+		Udm::ChildrenAttr<PICML::Package> Package_children() const { return Udm::ChildrenAttr<PICML::Package>(impl, meta_Package_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Package, Pred> Package_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Package, Pred>(impl, meta_Package_children); }
+
+		Udm::ChildrenAttr<PICML::Taggable> Taggable_kind_children() const { return Udm::ChildrenAttr<PICML::Taggable>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Taggable, Pred> Taggable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Taggable, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Prefixable> Prefixable_kind_children() const { return Udm::ChildrenAttr<PICML::Prefixable>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Prefixable, Pred> Prefixable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Prefixable, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ManagesComponent> ManagesComponent_kind_children() const { return Udm::ChildrenAttr<PICML::ManagesComponent>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ManagesComponent, Pred> ManagesComponent_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ManagesComponent, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ComponentFactory> ComponentFactory_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentFactory>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ComponentFactory, Pred> ComponentFactory_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentFactory, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Manageable> Manageable_kind_children() const { return Udm::ChildrenAttr<PICML::Manageable>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Manageable, Pred> Manageable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Manageable, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ComponentRef> ComponentRef_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentRef>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ComponentRef, Pred> ComponentRef_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentRef, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Component> Component_kind_children() const { return Udm::ChildrenAttr<PICML::Component>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Component, Pred> Component_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Component, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ObjectByValue> ObjectByValue_kind_children() const { return Udm::ChildrenAttr<PICML::ObjectByValue>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ObjectByValue, Pred> ObjectByValue_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ObjectByValue, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::HasOperations> HasOperations_kind_children() const { return Udm::ChildrenAttr<PICML::HasOperations>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::HasOperations, Pred> HasOperations_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::HasOperations, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Inheritable> Inheritable_kind_children() const { return Udm::ChildrenAttr<PICML::Inheritable>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Inheritable, Pred> Inheritable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Inheritable, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ValueObject> ValueObject_kind_children() const { return Udm::ChildrenAttr<PICML::ValueObject>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ValueObject, Pred> ValueObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ValueObject, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Event> Event_kind_children() const { return Udm::ChildrenAttr<PICML::Event>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Event, Pred> Event_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Event, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Object> Object_kind_children() const { return Udm::ChildrenAttr<PICML::Object>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Object, Pred> Object_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Object, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::NoInheritable> NoInheritable_kind_children() const { return Udm::ChildrenAttr<PICML::NoInheritable>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::NoInheritable, Pred> NoInheritable_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::NoInheritable, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Boxed> Boxed_kind_children() const { return Udm::ChildrenAttr<PICML::Boxed>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Boxed, Pred> Boxed_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Boxed, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Alias> Alias_kind_children() const { return Udm::ChildrenAttr<PICML::Alias>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Alias, Pred> Alias_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Alias, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Collection> Collection_kind_children() const { return Udm::ChildrenAttr<PICML::Collection>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Collection, Pred> Collection_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Collection, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::NamedType> NamedType_kind_children() const { return Udm::ChildrenAttr<PICML::NamedType>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::NamedType, Pred> NamedType_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::NamedType, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MemberType> MemberType_kind_children() const { return Udm::ChildrenAttr<PICML::MemberType>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MemberType, Pred> MemberType_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MemberType, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::SwitchedAggregate> SwitchedAggregate_kind_children() const { return Udm::ChildrenAttr<PICML::SwitchedAggregate>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::SwitchedAggregate, Pred> SwitchedAggregate_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::SwitchedAggregate, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Aggregate> Aggregate_kind_children() const { return Udm::ChildrenAttr<PICML::Aggregate>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Aggregate, Pred> Aggregate_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Aggregate, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Enum> Enum_kind_children() const { return Udm::ChildrenAttr<PICML::Enum>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Enum, Pred> Enum_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Enum, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Constant> Constant_kind_children() const { return Udm::ChildrenAttr<PICML::Constant>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Constant, Pred> Constant_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Constant, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Exception> Exception_kind_children() const { return Udm::ChildrenAttr<PICML::Exception>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Exception, Pred> Exception_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Exception, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::Package> Package_kind_children() const { return Udm::ChildrenAttr<PICML::Package>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Package, Pred> Package_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Package, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		static Uml::CompositionParentRole meta_File_parent;
+		Udm::ParentAttr<PICML::File> File_parent() const { return Udm::ParentAttr<PICML::File>(impl, meta_File_parent); }
+
+		static Uml::CompositionParentRole meta_Package_parent;
+		Udm::ParentAttr<PICML::Package> Package_parent() const { return Udm::ParentAttr<PICML::Package>(impl, meta_Package_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_Package(*this);};
+	};
+
+	class  Workspaces :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		Workspaces() { }
+		Workspaces(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		Workspaces(const Workspaces &master) : MgaObject(master), Object(master) { }
+		static Workspaces Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static Workspaces Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		Workspaces CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		Workspaces CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<Workspaces> Instances() { return Udm::InstantiatedAttr<PICML::Workspaces>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Workspaces, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Workspaces, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::Workspaces> Derived() { return Udm::DerivedAttr<PICML::Workspaces>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Workspaces, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Workspaces, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::Workspaces> Archetype() { return Udm::ArchetypeAttr<PICML::Workspaces>(impl);}
 
 		static Uml::AssociationRole meta_members;
 		Udm::AssocAttr<PICML::Project> members() const { return Udm::AssocAttr<PICML::Project>(impl, meta_members); }
@@ -9992,7 +9925,7 @@ namespace PICML {
 		Udm::ParentAttr<PICML::MPC> MPC_parent() const { return Udm::ParentAttr<PICML::MPC>(impl, meta_MPC_parent); }
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_Workspace(*this);};
+		virtual void Accept(Visitor &v){v.Visit_Workspaces(*this);};
 	};
 
 	class  MPC :  public MgaObject {
@@ -10018,16 +9951,16 @@ namespace PICML {
 
 		Udm::ArchetypeAttr<PICML::MPC> Archetype() { return Udm::ArchetypeAttr<PICML::MPC>(impl);}
 
+		static Uml::CompositionChildRole meta_Workspaces_children;
+		Udm::ChildrenAttr<PICML::Workspaces> Workspaces_children() const { return Udm::ChildrenAttr<PICML::Workspaces>(impl, meta_Workspaces_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::Workspaces, Pred> Workspaces_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Workspaces, Pred>(impl, meta_Workspaces_children); }
+
 		static Uml::CompositionChildRole meta_Project_children;
 		Udm::ChildrenAttr<PICML::Project> Project_children() const { return Udm::ChildrenAttr<PICML::Project>(impl, meta_Project_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML::Project, Pred> Project_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Project, Pred>(impl, meta_Project_children); }
 
-		static Uml::CompositionChildRole meta_Workspace_children;
-		Udm::ChildrenAttr<PICML::Workspace> Workspace_children() const { return Udm::ChildrenAttr<PICML::Workspace>(impl, meta_Workspace_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::Workspace, Pred> Workspace_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Workspace, Pred>(impl, meta_Workspace_children); }
-
-		Udm::ChildrenAttr<PICML::Workspace> Workspace_kind_children() const { return Udm::ChildrenAttr<PICML::Workspace>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::Workspace, Pred> Workspace_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Workspace, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ChildrenAttr<PICML::Workspaces> Workspaces_kind_children() const { return Udm::ChildrenAttr<PICML::Workspaces>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::Workspaces, Pred> Workspaces_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Workspaces, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::Project> Project_kind_children() const { return Udm::ChildrenAttr<PICML::Project>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::Project, Pred> Project_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::Project, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -10040,80 +9973,6 @@ namespace PICML {
 
 		Udm::ParentAttr<PICML::ComponentBuild> parent() const { return Udm::ParentAttr<PICML::ComponentBuild>(impl, Udm::NULLPARENTROLE); }
 		virtual void Accept(Visitor &v){v.Visit_MPC(*this);};
-	};
-
-	class  Project :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		Project() { }
-		Project(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		Project(const Project &master) : MgaObject(master), Object(master) { }
-		static Project Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static Project Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		Project CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		Project CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<Project> Instances() { return Udm::InstantiatedAttr<PICML::Project>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<Project, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Project, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::Project> Derived() { return Udm::DerivedAttr<PICML::Project>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::Project, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Project, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::Project> Archetype() { return Udm::ArchetypeAttr<PICML::Project>(impl);}
-
-		static Uml::AssociationRole meta_Workspace;
-		Udm::AssocAttr<PICML::Workspace> Workspace() const { return Udm::AssocAttr<PICML::Workspace>(impl, meta_Workspace); }
-		template <class Pred> Udm::AssocAttr<PICML::Workspace, Pred > Workspace_sorted(const Pred &) const { return Udm::AssocAttr<PICML::Workspace, Pred>(impl, meta_Workspace); }
-
-		static Uml::CompositionChildRole meta_ImplementationArtifact_children;
-		Udm::ChildrenAttr<PICML::ImplementationArtifact> ImplementationArtifact_children() const { return Udm::ChildrenAttr<PICML::ImplementationArtifact>(impl, meta_ImplementationArtifact_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ImplementationArtifact, Pred> ImplementationArtifact_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationArtifact, Pred>(impl, meta_ImplementationArtifact_children); }
-
-		static Uml::CompositionChildRole meta_ExtResourceConn_children;
-		Udm::ChildrenAttr<PICML::ExtResourceConn> ExtResourceConn_children() const { return Udm::ChildrenAttr<PICML::ExtResourceConn>(impl, meta_ExtResourceConn_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ExtResourceConn, Pred> ExtResourceConn_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ExtResourceConn, Pred>(impl, meta_ExtResourceConn_children); }
-
-		static Uml::CompositionChildRole meta_ExternalResources_children;
-		Udm::ChildrenAttr<PICML::ExternalResources> ExternalResources_children() const { return Udm::ChildrenAttr<PICML::ExternalResources>(impl, meta_ExternalResources_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ExternalResources, Pred> ExternalResources_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ExternalResources, Pred>(impl, meta_ExternalResources_children); }
-
-		static Uml::CompositionChildRole meta_ComponentLib_children;
-		Udm::ChildrenAttr<PICML::ComponentLib> ComponentLib_children() const { return Udm::ChildrenAttr<PICML::ComponentLib>(impl, meta_ComponentLib_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentLib, Pred> ComponentLib_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentLib, Pred>(impl, meta_ComponentLib_children); }
-
-		Udm::ChildrenAttr<PICML::ImplementationArtifact> ImplementationArtifact_kind_children() const { return Udm::ChildrenAttr<PICML::ImplementationArtifact>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ImplementationArtifact, Pred> ImplementationArtifact_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationArtifact, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::StubProject> StubProject_kind_children() const { return Udm::ChildrenAttr<PICML::StubProject>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::StubProject, Pred> StubProject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::StubProject, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ComponentLib> ComponentLib_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentLib>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ComponentLib, Pred> ComponentLib_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentLib, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ExternalResources> ExternalResources_kind_children() const { return Udm::ChildrenAttr<PICML::ExternalResources>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ExternalResources, Pred> ExternalResources_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ExternalResources, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ServantProject> ServantProject_kind_children() const { return Udm::ChildrenAttr<PICML::ServantProject>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ServantProject, Pred> ServantProject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ServantProject, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ExtResourceConn> ExtResourceConn_kind_children() const { return Udm::ChildrenAttr<PICML::ExtResourceConn>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ExtResourceConn, Pred> ExtResourceConn_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ExtResourceConn, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::ExecutorProject> ExecutorProject_kind_children() const { return Udm::ChildrenAttr<PICML::ExecutorProject>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ExecutorProject, Pred> ExecutorProject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ExecutorProject, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		static Uml::CompositionParentRole meta_MPC_parent;
-		Udm::ParentAttr<PICML::MPC> MPC_parent() const { return Udm::ParentAttr<PICML::MPC>(impl, meta_MPC_parent); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_Project(*this);};
 	};
 
 	class  ComponentLib :  public MgaObject {
@@ -10158,6 +10017,78 @@ namespace PICML {
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 	};
 
+	class  ExecutorProject :  public ComponentLib {
+	 public:
+		static Uml::Class meta;
+
+		ExecutorProject() { }
+		ExecutorProject(Udm::ObjectImpl *impl) : ComponentLib(impl), Object(impl) { }
+		ExecutorProject(const ExecutorProject &master) : ComponentLib(master), Object(master) { }
+		static ExecutorProject Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static ExecutorProject Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		ExecutorProject CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		ExecutorProject CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<ExecutorProject> Instances() { return Udm::InstantiatedAttr<PICML::ExecutorProject>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<ExecutorProject, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ExecutorProject, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::ExecutorProject> Derived() { return Udm::DerivedAttr<PICML::ExecutorProject>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::ExecutorProject, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ExecutorProject, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::ExecutorProject> Archetype() { return Udm::ArchetypeAttr<PICML::ExecutorProject>(impl);}
+
+		static Uml::CompositionChildRole meta_ImplementationArtifactReference_child;
+		Udm::ChildAttr<PICML::ImplementationArtifactReference> ImplementationArtifactReference_child() const { return Udm::ChildAttr<PICML::ImplementationArtifactReference>(impl, meta_ImplementationArtifactReference_child); }
+
+		Udm::ChildrenAttr<PICML::ImplementationArtifactReference> ImplementationArtifactReference_kind_children() const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred> ImplementationArtifactReference_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_ExecutorProject(*this);};
+	};
+
+	class  ServantProject :  public ComponentLib {
+	 public:
+		static Uml::Class meta;
+
+		ServantProject() { }
+		ServantProject(Udm::ObjectImpl *impl) : ComponentLib(impl), Object(impl) { }
+		ServantProject(const ServantProject &master) : ComponentLib(master), Object(master) { }
+		static ServantProject Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static ServantProject Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		ServantProject CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		ServantProject CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<ServantProject> Instances() { return Udm::InstantiatedAttr<PICML::ServantProject>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<ServantProject, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ServantProject, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::ServantProject> Derived() { return Udm::DerivedAttr<PICML::ServantProject>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::ServantProject, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ServantProject, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::ServantProject> Archetype() { return Udm::ArchetypeAttr<PICML::ServantProject>(impl);}
+
+		static Uml::CompositionChildRole meta_ImplementationArtifactReference_child;
+		Udm::ChildAttr<PICML::ImplementationArtifactReference> ImplementationArtifactReference_child() const { return Udm::ChildAttr<PICML::ImplementationArtifactReference>(impl, meta_ImplementationArtifactReference_child); }
+
+		Udm::ChildrenAttr<PICML::ImplementationArtifactReference> ImplementationArtifactReference_kind_children() const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred> ImplementationArtifactReference_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		virtual void Accept(Visitor &v){v.Visit_ServantProject(*this);};
+	};
+
 	class  StubProject :  public ComponentLib {
 	 public:
 		static Uml::Class meta;
@@ -10181,12 +10112,12 @@ namespace PICML {
 
 		Udm::ArchetypeAttr<PICML::StubProject> Archetype() { return Udm::ArchetypeAttr<PICML::StubProject>(impl);}
 
+		static Uml::CompositionChildRole meta_ImplementationArtifactReference_child;
+		Udm::ChildAttr<PICML::ImplementationArtifactReference> ImplementationArtifactReference_child() const { return Udm::ChildAttr<PICML::ImplementationArtifactReference>(impl, meta_ImplementationArtifactReference_child); }
+
 		static Uml::CompositionChildRole meta_FileRef_children;
 		Udm::ChildrenAttr<PICML::FileRef> FileRef_children() const { return Udm::ChildrenAttr<PICML::FileRef>(impl, meta_FileRef_children); }
 		 template <class Pred> Udm::ChildrenAttr<PICML::FileRef, Pred> FileRef_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::FileRef, Pred>(impl, meta_FileRef_children); }
-
-		static Uml::CompositionChildRole meta_ImplementationArtifactReference_child;
-		Udm::ChildAttr<PICML::ImplementationArtifactReference> ImplementationArtifactReference_child() const { return Udm::ChildAttr<PICML::ImplementationArtifactReference>(impl, meta_ImplementationArtifactReference_child); }
 
 		Udm::ChildrenAttr<PICML::ImplementationArtifactReference> ImplementationArtifactReference_kind_children() const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred> ImplementationArtifactReference_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred>(impl, Udm::NULLCHILDROLE); }
@@ -10199,6 +10130,42 @@ namespace PICML {
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		virtual void Accept(Visitor &v){v.Visit_StubProject(*this);};
+	};
+
+	class  ExtResourceConn :  public MgaObject {
+	 public:
+		static Uml::Class meta;
+
+		ExtResourceConn() { }
+		ExtResourceConn(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		ExtResourceConn(const ExtResourceConn &master) : MgaObject(master), Object(master) { }
+		static ExtResourceConn Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static ExtResourceConn Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		ExtResourceConn CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		ExtResourceConn CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<ExtResourceConn> Instances() { return Udm::InstantiatedAttr<PICML::ExtResourceConn>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<ExtResourceConn, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ExtResourceConn, Pred>(impl);}
+
+		Udm::DerivedAttr<PICML::ExtResourceConn> Derived() { return Udm::DerivedAttr<PICML::ExtResourceConn>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::ExtResourceConn, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ExtResourceConn, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICML::ExtResourceConn> Archetype() { return Udm::ArchetypeAttr<PICML::ExtResourceConn>(impl);}
+
+		static Uml::CompositionParentRole meta_Project_parent;
+		Udm::ParentAttr<PICML::Project> Project_parent() const { return Udm::ParentAttr<PICML::Project>(impl, meta_Project_parent); }
+
+		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		static Uml::AssociationRole meta_dstExtResourceConn_end_;
+		Udm::AssocEndAttr<PICML::ExternalResources> dstExtResourceConn_end() const { return Udm::AssocEndAttr<PICML::ExternalResources>(impl, meta_dstExtResourceConn_end_); }
+
+		static Uml::AssociationRole meta_srcExtResourceConn_end_;
+		Udm::AssocEndAttr<PICML::ComponentLib> srcExtResourceConn_end() const { return Udm::AssocEndAttr<PICML::ComponentLib>(impl, meta_srcExtResourceConn_end_); }
+
+		virtual void Accept(Visitor &v){v.Visit_ExtResourceConn(*this);};
 	};
 
 	class  ExternalResources :  public MgaObject {
@@ -10238,112 +10205,78 @@ namespace PICML {
 		virtual void Accept(Visitor &v){v.Visit_ExternalResources(*this);};
 	};
 
-	class  ServantProject :  public ComponentLib {
+	class  Project :  public MgaObject {
 	 public:
 		static Uml::Class meta;
 
-		ServantProject() { }
-		ServantProject(Udm::ObjectImpl *impl) : ComponentLib(impl), Object(impl) { }
-		ServantProject(const ServantProject &master) : ComponentLib(master), Object(master) { }
-		static ServantProject Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		Project() { }
+		Project(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
+		Project(const Project &master) : MgaObject(master), Object(master) { }
+		static Project Cast(const Udm::Object &a) { return __Cast(a, meta); }
 
-		static ServantProject Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		static Project Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
 
-		ServantProject CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		Project CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
 
-		ServantProject CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+		Project CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
 
-		Udm::InstantiatedAttr<ServantProject> Instances() { return Udm::InstantiatedAttr<PICML::ServantProject>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<ServantProject, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ServantProject, Pred>(impl);}
+		Udm::InstantiatedAttr<Project> Instances() { return Udm::InstantiatedAttr<PICML::Project>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<Project, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::Project, Pred>(impl);}
 
-		Udm::DerivedAttr<PICML::ServantProject> Derived() { return Udm::DerivedAttr<PICML::ServantProject>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::ServantProject, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ServantProject, Pred>(impl);}
+		Udm::DerivedAttr<PICML::Project> Derived() { return Udm::DerivedAttr<PICML::Project>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICML::Project, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::Project, Pred>(impl);}
 
-		Udm::ArchetypeAttr<PICML::ServantProject> Archetype() { return Udm::ArchetypeAttr<PICML::ServantProject>(impl);}
+		Udm::ArchetypeAttr<PICML::Project> Archetype() { return Udm::ArchetypeAttr<PICML::Project>(impl);}
 
-		static Uml::CompositionChildRole meta_ImplementationArtifactReference_child;
-		Udm::ChildAttr<PICML::ImplementationArtifactReference> ImplementationArtifactReference_child() const { return Udm::ChildAttr<PICML::ImplementationArtifactReference>(impl, meta_ImplementationArtifactReference_child); }
+		static Uml::AssociationRole meta_setWorkspace;
+		Udm::AssocAttr<PICML::Workspaces> setWorkspace() const { return Udm::AssocAttr<PICML::Workspaces>(impl, meta_setWorkspace); }
+		template <class Pred> Udm::AssocAttr<PICML::Workspaces, Pred > setWorkspace_sorted(const Pred &) const { return Udm::AssocAttr<PICML::Workspaces, Pred>(impl, meta_setWorkspace); }
 
-		Udm::ChildrenAttr<PICML::ImplementationArtifactReference> ImplementationArtifactReference_kind_children() const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred> ImplementationArtifactReference_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred>(impl, Udm::NULLCHILDROLE); }
+		static Uml::CompositionChildRole meta_ComponentLib_children;
+		Udm::ChildrenAttr<PICML::ComponentLib> ComponentLib_children() const { return Udm::ChildrenAttr<PICML::ComponentLib>(impl, meta_ComponentLib_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ComponentLib, Pred> ComponentLib_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentLib, Pred>(impl, meta_ComponentLib_children); }
+
+		static Uml::CompositionChildRole meta_ImplementationArtifact_children;
+		Udm::ChildrenAttr<PICML::ImplementationArtifact> ImplementationArtifact_children() const { return Udm::ChildrenAttr<PICML::ImplementationArtifact>(impl, meta_ImplementationArtifact_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ImplementationArtifact, Pred> ImplementationArtifact_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationArtifact, Pred>(impl, meta_ImplementationArtifact_children); }
+
+		static Uml::CompositionChildRole meta_ExtResourceConn_children;
+		Udm::ChildrenAttr<PICML::ExtResourceConn> ExtResourceConn_children() const { return Udm::ChildrenAttr<PICML::ExtResourceConn>(impl, meta_ExtResourceConn_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ExtResourceConn, Pred> ExtResourceConn_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ExtResourceConn, Pred>(impl, meta_ExtResourceConn_children); }
+
+		static Uml::CompositionChildRole meta_ExternalResources_children;
+		Udm::ChildrenAttr<PICML::ExternalResources> ExternalResources_children() const { return Udm::ChildrenAttr<PICML::ExternalResources>(impl, meta_ExternalResources_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICML::ExternalResources, Pred> ExternalResources_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ExternalResources, Pred>(impl, meta_ExternalResources_children); }
+
+		Udm::ChildrenAttr<PICML::ImplementationArtifact> ImplementationArtifact_kind_children() const { return Udm::ChildrenAttr<PICML::ImplementationArtifact>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ImplementationArtifact, Pred> ImplementationArtifact_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationArtifact, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ExecutorProject> ExecutorProject_kind_children() const { return Udm::ChildrenAttr<PICML::ExecutorProject>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ExecutorProject, Pred> ExecutorProject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ExecutorProject, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ServantProject> ServantProject_kind_children() const { return Udm::ChildrenAttr<PICML::ServantProject>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ServantProject, Pred> ServantProject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ServantProject, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::StubProject> StubProject_kind_children() const { return Udm::ChildrenAttr<PICML::StubProject>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::StubProject, Pred> StubProject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::StubProject, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ComponentLib> ComponentLib_kind_children() const { return Udm::ChildrenAttr<PICML::ComponentLib>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ComponentLib, Pred> ComponentLib_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ComponentLib, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ExtResourceConn> ExtResourceConn_kind_children() const { return Udm::ChildrenAttr<PICML::ExtResourceConn>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ExtResourceConn, Pred> ExtResourceConn_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ExtResourceConn, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ChildrenAttr<PICML::ExternalResources> ExternalResources_kind_children() const { return Udm::ChildrenAttr<PICML::ExternalResources>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICML::ExternalResources, Pred> ExternalResources_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ExternalResources, Pred>(impl, Udm::NULLCHILDROLE); }
 
 		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
 		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_ServantProject(*this);};
-	};
-
-	class  ExtResourceConn :  public MgaObject {
-	 public:
-		static Uml::Class meta;
-
-		ExtResourceConn() { }
-		ExtResourceConn(Udm::ObjectImpl *impl) : MgaObject(impl), Object(impl) { }
-		ExtResourceConn(const ExtResourceConn &master) : MgaObject(master), Object(master) { }
-		static ExtResourceConn Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static ExtResourceConn Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		ExtResourceConn CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		ExtResourceConn CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<ExtResourceConn> Instances() { return Udm::InstantiatedAttr<PICML::ExtResourceConn>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<ExtResourceConn, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ExtResourceConn, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::ExtResourceConn> Derived() { return Udm::DerivedAttr<PICML::ExtResourceConn>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::ExtResourceConn, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ExtResourceConn, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::ExtResourceConn> Archetype() { return Udm::ArchetypeAttr<PICML::ExtResourceConn>(impl);}
-
-		static Uml::CompositionParentRole meta_Project_parent;
-		Udm::ParentAttr<PICML::Project> Project_parent() const { return Udm::ParentAttr<PICML::Project>(impl, meta_Project_parent); }
+		static Uml::CompositionParentRole meta_MPC_parent;
+		Udm::ParentAttr<PICML::MPC> MPC_parent() const { return Udm::ParentAttr<PICML::MPC>(impl, meta_MPC_parent); }
 
 		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		static Uml::AssociationRole meta_dstExtResourceConn_end_;
-		Udm::AssocEndAttr<PICML::ExternalResources> dstExtResourceConn_end() const { return Udm::AssocEndAttr<PICML::ExternalResources>(impl, meta_dstExtResourceConn_end_); }
-
-		static Uml::AssociationRole meta_srcExtResourceConn_end_;
-		Udm::AssocEndAttr<PICML::ComponentLib> srcExtResourceConn_end() const { return Udm::AssocEndAttr<PICML::ComponentLib>(impl, meta_srcExtResourceConn_end_); }
-
-		virtual void Accept(Visitor &v){v.Visit_ExtResourceConn(*this);};
-	};
-
-	class  ExecutorProject :  public ComponentLib {
-	 public:
-		static Uml::Class meta;
-
-		ExecutorProject() { }
-		ExecutorProject(Udm::ObjectImpl *impl) : ComponentLib(impl), Object(impl) { }
-		ExecutorProject(const ExecutorProject &master) : ComponentLib(master), Object(master) { }
-		static ExecutorProject Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static ExecutorProject Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		ExecutorProject CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		ExecutorProject CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<ExecutorProject> Instances() { return Udm::InstantiatedAttr<PICML::ExecutorProject>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<ExecutorProject, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICML::ExecutorProject, Pred>(impl);}
-
-		Udm::DerivedAttr<PICML::ExecutorProject> Derived() { return Udm::DerivedAttr<PICML::ExecutorProject>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICML::ExecutorProject, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICML::ExecutorProject, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICML::ExecutorProject> Archetype() { return Udm::ArchetypeAttr<PICML::ExecutorProject>(impl);}
-
-		static Uml::CompositionChildRole meta_ImplementationArtifactReference_child;
-		Udm::ChildAttr<PICML::ImplementationArtifactReference> ImplementationArtifactReference_child() const { return Udm::ChildAttr<PICML::ImplementationArtifactReference>(impl, meta_ImplementationArtifactReference_child); }
-
-		Udm::ChildrenAttr<PICML::ImplementationArtifactReference> ImplementationArtifactReference_kind_children() const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred> ImplementationArtifactReference_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::ImplementationArtifactReference, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ChildrenAttr<PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr<PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ParentAttr<PICML::MgaObject> parent() const { return Udm::ParentAttr<PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		virtual void Accept(Visitor &v){v.Visit_ExecutorProject(*this);};
+		virtual void Accept(Visitor &v){v.Visit_Project(*this);};
 	};
 
 }

@@ -51,19 +51,12 @@ using xercesc::XMLString;
 using PICML::XStr;
 
 
-// #define SetUpVisitor(type, root, visitor)                       \
-//   do                                                            \
-//     {                                                           \
-//       PICML:: ## type start = PICML:: ## type ## ::Cast (root); \
-//       start.Accept (visitor);                                   \
-//     } while (0)
-
-template <class T>
-void SetUpVisitor(Udm::Object& root, PICML::PackageVisitor& visitor)
-{
-  T start = T::Cast (root);
-  start.Accept (visitor);
-}
+#define SetUpVisitor(type, root, visitor)       \
+do                                              \
+  {                                             \
+    type start = type ## ::Cast (root);         \
+    start.Accept (visitor);                     \
+  } while (0)
 
 extern void dummy(void); // Dummy function for UDM meta initialization
 
@@ -186,8 +179,8 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
             return;
           PICML::PackageVisitor visitor (outputPath);
           if (focusObject == Udm::null && selectedObjects.empty())
-            SetUpVisitor<PICML::RootFolder> (p_backend->GetRootObject(),
-                                             visitor);
+            SetUpVisitor (PICML::RootFolder, p_backend->GetRootObject(),
+                          visitor);
           else
             {
               std::set<Udm::Object> mySet (selectedObjects);
@@ -200,38 +193,37 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
                   Udm::Object root = *iter;
                   std::string kindName = (*iter).type().name();
                   if (kindName == "TopLevelPackages")
-                    SetUpVisitor<PICML::TopLevelPackages> (root, visitor);
+                    SetUpVisitor (PICML::TopLevelPackages, root, visitor);
                   else if (kindName == "TopLevelPackageContainer")
-                    SetUpVisitor<PICML::TopLevelPackageContainer> (root,
-                                                                   visitor);
+                    SetUpVisitor (PICML::TopLevelPackageContainer, root,
+                                  visitor);
                   else if (kindName == "ImplementationArtifacts")
-                    SetUpVisitor<PICML::ImplementationArtifacts> (root,
-                                                                  visitor);
+                    SetUpVisitor (PICML::ImplementationArtifacts, root,
+                                  visitor);
                   else if (kindName == "ArtifactContainer")
-                    SetUpVisitor<PICML::ArtifactContainer> (root,
-                                                            visitor);
+                    SetUpVisitor (PICML::ArtifactContainer, root, visitor);
                   else if (kindName == "ComponentTypes")
-                    SetUpVisitor<PICML::ComponentTypes> (root, visitor);
+                    SetUpVisitor (PICML::ComponentTypes, root, visitor);
                   else if (kindName == "ComponentContainer")
-                    SetUpVisitor<PICML::ComponentContainer> (root, visitor);
+                    SetUpVisitor (PICML::ComponentContainer, root, visitor);
                   else if (kindName == "ComponentPackages")
-                    SetUpVisitor<PICML::ComponentPackages> (root, visitor);
+                    SetUpVisitor (PICML::ComponentPackages, root, visitor);
                   else if (kindName == "PackageContainer")
-                    SetUpVisitor<PICML::PackageContainer> (root, visitor);
+                    SetUpVisitor (PICML::PackageContainer, root, visitor);
                   else if (kindName == "ComponentImplementations")
-                    SetUpVisitor<PICML::ComponentImplementations> (root,
-                                                                   visitor);
+                    SetUpVisitor (PICML::ComponentImplementations, root,
+                                  visitor);
                   else if (kindName == "ComponentImplementationContainer")
-                    SetUpVisitor<PICML::ComponentImplementationContainer> (root,
-                                                                           visitor);
+                    SetUpVisitor (PICML::ComponentImplementationContainer, root,
+                                  visitor);
                   else if (kindName == "PackageConfigurations")
-                    SetUpVisitor<PICML::PackageConfigurations> (root, visitor);
+                    SetUpVisitor (PICML::PackageConfigurations, root, visitor);
                   else if (kindName == "PackageConfigurationContainer")
-                    SetUpVisitor<PICML::PackageConfigurationContainer> (root,
-                                                                        visitor);
+                    SetUpVisitor (PICML::PackageConfigurationContainer, root,
+                                  visitor);
                   else
-                    SetUpVisitor<PICML::RootFolder> (p_backend->GetRootObject(),
-                                                     visitor);
+                    SetUpVisitor (PICML::RootFolder, p_backend->GetRootObject(),
+                                  visitor);
                 }
             }
         }
