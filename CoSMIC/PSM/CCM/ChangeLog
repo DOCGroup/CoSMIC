@@ -1,3 +1,9 @@
+Wed Oct 27 14:44:35 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * OCML/paradigms/OCML.xme:
+
+          Added "default" values for options to the OCML metamodel.
+
 Tue Oct 26 14:46:24 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * OCML/interpreters/OCMLConfiguratorLibrary/OptionEditors/StringOptionEditor.hpp: 

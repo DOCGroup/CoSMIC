@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri Jun 11 16:35:27 2004" mdate="Thu Aug 19 18:28:31 2004" metaguid="{99CB7435-DEAD-BEEF-FEED-DAD000000001}" metaname="MetaGME">
+<project guid="{3D1F1E22-DF8F-4431-9C6F-BCA74F548BBB}" cdate="Wed Oct 27 14:38:24 2004" mdate="Wed Oct 27 14:38:24 2004" version="" metaguid="{FEFF5A03-BF64-4567-A10E-EBFCBDD5C475}" metaversion="" metaname="MetaGME">
 	<name>OCML</name>
 	<comment></comment>
 	<author></author>
@@ -191,7 +191,7 @@
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1092</value>
-							<regnode name="Rule">
+							<regnode name="Rule" isopaque="yes">
 								<value></value>
 								<regnode name="Boolean_Option_Reference" isopaque="yes">
 									<value>1093</value>
@@ -206,7 +206,7 @@
 									</regnode>
 								</regnode>
 							</regnode>
-							<regnode name="Rule2">
+							<regnode name="Rule2" isopaque="yes">
 								<value></value>
 								<regnode name="Boolean_Option_Reference" isopaque="yes">
 									<value>1160</value>
@@ -263,7 +263,7 @@
 						</regnode>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1080</value>
-							<regnode name="Rule">
+							<regnode name="Rule" isopaque="yes">
 								<value></value>
 								<regnode name="Enum_Option_Reference" isopaque="yes">
 									<value>1084</value>
@@ -278,7 +278,7 @@
 									</regnode>
 								</regnode>
 							</regnode>
-							<regnode name="Rule2">
+							<regnode name="Rule2" isopaque="yes">
 								<value></value>
 								<regnode name="Enum_Option_Reference" isopaque="yes">
 									<value>1161</value>
@@ -335,7 +335,7 @@
 						</regnode>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1081</value>
-							<regnode name="Rule">
+							<regnode name="Rule" isopaque="yes">
 								<value></value>
 								<regnode name="Flag_Option_Reference" isopaque="yes">
 									<value>1085</value>
@@ -350,7 +350,7 @@
 									</regnode>
 								</regnode>
 							</regnode>
-							<regnode name="Rule2">
+							<regnode name="Rule2" isopaque="yes">
 								<value></value>
 								<regnode name="Flag_Option_Reference" isopaque="yes">
 									<value>1162</value>
@@ -383,7 +383,7 @@
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1082</value>
-							<regnode name="Rule">
+							<regnode name="Rule" isopaque="yes">
 								<value></value>
 								<regnode name="Integer_Option_Reference" isopaque="yes">
 									<value>1086</value>
@@ -398,7 +398,7 @@
 									</regnode>
 								</regnode>
 							</regnode>
-							<regnode name="Rule2">
+							<regnode name="Rule2" isopaque="yes">
 								<value></value>
 								<regnode name="Integer_Option_Reference" isopaque="yes">
 									<value>1163</value>
@@ -431,7 +431,7 @@
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1083</value>
-							<regnode name="Rule">
+							<regnode name="Rule" isopaque="yes">
 								<value></value>
 								<regnode name="String_Option_Reference" isopaque="yes">
 									<value>1087</value>
@@ -446,7 +446,7 @@
 									</regnode>
 								</regnode>
 							</regnode>
-							<regnode name="Rule2">
+							<regnode name="Rule2" isopaque="yes">
 								<value></value>
 								<regnode name="String_Option_Reference" isopaque="yes">
 									<value>1164</value>
@@ -482,7 +482,7 @@
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1001</value>
-							<regnode name="Option_Category">
+							<regnode name="Option_Category" isopaque="yes">
 								<value></value>
 								<regnode name="Boolean_Option" isopaque="yes">
 									<value>1008</value>
@@ -524,7 +524,7 @@
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1014</value>
-							<regnode name="Enum_Option">
+							<regnode name="Enum_Option" isopaque="yes">
 								<value></value>
 								<regnode name="Enum_Item" isopaque="yes">
 									<value>1017</value>
@@ -560,7 +560,7 @@
 						</regnode>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1016</value>
-							<regnode name="Option_Category">
+							<regnode name="Option_Category" isopaque="yes">
 								<value></value>
 								<regnode name="Enum_Option" isopaque="yes">
 									<value>1020</value>
@@ -590,7 +590,7 @@
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1015</value>
-							<regnode name="Flag_Option">
+							<regnode name="Flag_Option" isopaque="yes">
 								<value></value>
 								<regnode name="Flag_Item" isopaque="yes">
 									<value>1019</value>
@@ -626,7 +626,7 @@
 						</regnode>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1018</value>
-							<regnode name="Option_Category">
+							<regnode name="Option_Category" isopaque="yes">
 								<value></value>
 								<regnode name="Flag_Option" isopaque="yes">
 									<value>1021</value>
@@ -767,7 +767,7 @@
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1003</value>
-							<regnode name="Option_Category">
+							<regnode name="Option_Category" isopaque="yes">
 								<value></value>
 								<regnode name="String_Option" isopaque="yes">
 									<value>1010</value>
@@ -807,17 +807,8 @@
 					</regnode>
 				</regnode>
 			</regnode>
-			<model id="id-0065-00000001" kind="ParadigmSheet" relid="0x1" childrelidcntr="0x5b">
+			<model id="id-0065-00000001" kind="ParadigmSheet" relid="0x1" childrelidcntr="0x64">
 				<name>Options</name>
-				<attribute kind="AuthorInformation" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="VersionInformation" status="meta">
-					<value></value>
-				</attribute>
 				<atom id="id-0066-00000001" kind="FCO" role="FCO" relid="0x1">
 					<name>Option</name>
 					<regnode name="PartRegs" isopaque="yes">
@@ -825,7 +816,7 @@
 						<regnode name="Attributes" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>190,12</value>
+								<value>267,19</value>
 							</regnode>
 						</regnode>
 						<regnode name="ClassDiagram" isopaque="yes">
@@ -897,7 +888,7 @@
 						<regnode name="Attributes" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>218,223</value>
+								<value>260,285</value>
 							</regnode>
 						</regnode>
 						<regnode name="ClassDiagram" isopaque="yes">
@@ -969,7 +960,7 @@
 						<regnode name="Attributes" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>92,160</value>
+								<value>99,173</value>
 							</regnode>
 						</regnode>
 						<regnode name="ClassDiagram" isopaque="yes">
@@ -1041,7 +1032,7 @@
 						<regnode name="Attributes" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>22,69</value>
+								<value>8,75</value>
 							</regnode>
 						</regnode>
 						<regnode name="ClassDiagram" isopaque="yes">
@@ -1113,7 +1104,7 @@
 						<regnode name="Attributes" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>255,110</value>
+								<value>332,117</value>
 							</regnode>
 						</regnode>
 						<regnode name="ClassDiagram" isopaque="yes">
@@ -1143,7 +1134,7 @@
 						<regnode name="Attributes" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>288,405</value>
+								<value>1072,258</value>
 							</regnode>
 						</regnode>
 						<regnode name="ClassDiagram" isopaque="yes">
@@ -1215,7 +1206,7 @@
 						<regnode name="Attributes" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>190,405</value>
+								<value>932,258</value>
 							</regnode>
 						</regnode>
 						<regnode name="ClassDiagram" isopaque="yes">
@@ -1287,7 +1278,7 @@
 						<regnode name="Attributes" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>323,160</value>
+								<value>407,174</value>
 							</regnode>
 						</regnode>
 						<regnode name="ClassDiagram" isopaque="yes">
@@ -1362,7 +1353,7 @@
 						<regnode name="Attributes" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>428,69</value>
+								<value>477,76</value>
 							</regnode>
 						</regnode>
 						<regnode name="ClassDiagram" isopaque="yes">
@@ -1437,7 +1428,7 @@
 						<regnode name="Attributes" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>232,307</value>
+								<value>960,145</value>
 							</regnode>
 						</regnode>
 						<regnode name="ClassDiagram" isopaque="yes">
@@ -1509,7 +1500,7 @@
 						<regnode name="Attributes" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>262,383</value>
+								<value>1025,236</value>
 							</regnode>
 						</regnode>
 						<regnode name="ClassDiagram" isopaque="yes">
@@ -1539,7 +1530,7 @@
 						<regnode name="Attributes" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>575,159</value>
+								<value>610,208</value>
 							</regnode>
 						</regnode>
 						<regnode name="ClassDiagram" isopaque="yes">
@@ -1611,7 +1602,7 @@
 						<regnode name="Attributes" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>750,146</value>
+								<value>764,181</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -1644,7 +1635,7 @@
 						<regnode name="Attributes" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>619,257</value>
+								<value>654,306</value>
 							</regnode>
 						</regnode>
 						<regnode name="ClassDiagram" isopaque="yes">
@@ -1674,7 +1665,7 @@
 						<regnode name="Attributes" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>750,216</value>
+								<value>764,251</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -1707,7 +1698,7 @@
 						<regnode name="Attributes" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>540,13</value>
+								<value>652,20</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -1733,6 +1724,126 @@
 						<value></value>
 					</attribute>
 				</atom>
+				<atom id="id-0066-00000048" kind="BooleanAttribute" role="BooleanAttribute" relid="0x5c">
+					<name>Boolean_Default_Value</name>
+					<regnode name="PartRegs">
+						<value></value>
+						<regnode name="Attributes">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>22,286</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="BooleanDefault" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="GlobalScope" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="Help" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="IsViewable" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="Prompt">
+						<value>Default</value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-00000049" kind="FieldAttribute" role="FieldAttribute" relid="0x5d">
+					<name>String_Default_Value</name>
+					<regnode name="PartRegs">
+						<value></value>
+						<regnode name="Attributes">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>113,384</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="DataType" status="meta">
+						<value>string</value>
+					</attribute>
+					<attribute kind="FieldDefault" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="GlobalScope" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="Help" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="IsViewable" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="Multiline" status="meta">
+						<value>1</value>
+					</attribute>
+					<attribute kind="Prompt">
+						<value>Default</value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-0000004b" kind="FieldAttribute" role="FieldAttribute" relid="0x5e">
+					<name>Integer_Default_Value</name>
+					<regnode name="PartRegs">
+						<value></value>
+						<regnode name="Attributes">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>274,447</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="DataType" status="meta">
+						<value>string</value>
+					</attribute>
+					<attribute kind="FieldDefault" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="GlobalScope" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="Help" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="IsViewable" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="Multiline" status="meta">
+						<value>1</value>
+					</attribute>
+					<attribute kind="Prompt">
+						<value>Default</value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-0000004c" kind="BooleanAttribute" role="BooleanAttribute" relid="0x63">
+					<name>Item_Default_Value</name>
+					<regnode name="PartRegs">
+						<value></value>
+						<regnode name="Attributes">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>1149,146</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="BooleanDefault" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="GlobalScope" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="Help" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="IsViewable" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="Prompt">
+						<value>Default</value>
+					</attribute>
+				</atom>
 				<reference id="id-0067-00000001" kind="FCOProxy" role="FCOProxy" relid="0x54" referred="id-0066-00000001">
 					<name>Option</name>
 					<regnode name="PartRegs" isopaque="yes">
@@ -1740,7 +1851,7 @@
 						<regnode name="Attributes" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>624,307</value>
+								<value>687,349</value>
 							</regnode>
 						</regnode>
 						<regnode name="ClassDiagram" isopaque="yes">
@@ -1812,7 +1923,7 @@
 						<regnode name="Attributes" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>519,307</value>
+								<value>484,349</value>
 							</regnode>
 						</regnode>
 						<regnode name="ClassDiagram" isopaque="yes">
@@ -1990,7 +2101,27 @@
 					<connpoint role="dst" target="id-0066-00000001"/>
 					<connpoint role="src" target="id-0066-00000010"/>
 				</connection>
-				<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0x1a" members="id-0066-00000007 id-0066-00000006 id-0066-00000009 id-0066-00000008">
+				<connection id="id-0068-00000068" kind="HasAttribute" role="HasAttribute" relid="0x5f">
+					<name>HasAttribute</name>
+					<connpoint role="dst" target="id-0066-00000004"/>
+					<connpoint role="src" target="id-0066-00000048"/>
+				</connection>
+				<connection id="id-0068-00000069" kind="HasAttribute" role="HasAttribute" relid="0x60">
+					<name>HasAttribute</name>
+					<connpoint role="dst" target="id-0066-00000003"/>
+					<connpoint role="src" target="id-0066-00000049"/>
+				</connection>
+				<connection id="id-0068-0000006b" kind="HasAttribute" role="HasAttribute" relid="0x62">
+					<name>HasAttribute</name>
+					<connpoint role="dst" target="id-0066-00000002"/>
+					<connpoint role="src" target="id-0066-0000004b"/>
+				</connection>
+				<connection id="id-0068-0000006c" kind="HasAttribute" role="HasAttribute" relid="0x64">
+					<name>HasAttribute</name>
+					<connpoint role="dst" target="id-0066-0000000a"/>
+					<connpoint role="src" target="id-0066-0000004c"/>
+				</connection>
+				<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0x1a" members="id-0066-00000008 id-0066-00000009 id-0066-00000006 id-0066-00000007">
 					<name>Model_Option_Aspect</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2008,15 +2139,6 @@
 			</model>
 			<model id="id-0065-00000002" kind="ParadigmSheet" relid="0x3" childrelidcntr="0x27">
 				<name>Option_References</name>
-				<attribute kind="AuthorInformation" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="VersionInformation" status="meta">
-					<value></value>
-				</attribute>
 				<atom id="id-0066-00000011" kind="Reference" role="Reference" relid="0x7">
 					<name>Integer_Option_Reference</name>
 					<regnode name="PartRegs" isopaque="yes">
@@ -3094,7 +3216,7 @@
 						</regnode>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1035</value>
-							<regnode name="Option_Category">
+							<regnode name="Option_Category" isopaque="yes">
 								<value></value>
 								<regnode name="Option_Category" isopaque="yes">
 									<value>1177</value>
@@ -3133,15 +3255,6 @@
 			</regnode>
 			<model id="id-0065-00000003" kind="ParadigmSheet" relid="0x1" childrelidcntr="0x11">
 				<name>Options_Paradigm</name>
-				<attribute kind="AuthorInformation" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="VersionInformation" status="meta">
-					<value></value>
-				</attribute>
 				<atom id="id-0066-0000001c" kind="Model" role="Model" relid="0x2">
 					<name>Option_Category</name>
 					<regnode name="PartRegs" isopaque="yes">
@@ -3407,8 +3520,8 @@
 					<attribute kind="Rolename" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="src" target="id-0066-0000001c"/>
 					<connpoint role="dst" target="id-0066-0000001c"/>
+					<connpoint role="src" target="id-0066-0000001c"/>
 				</connection>
 				<set id="id-0069-00000002" kind="Aspect" role="Aspect" relid="0x5" members="id-0067-00000008 id-0066-0000001c">
 					<name>Option_Aspect</name>
@@ -3428,15 +3541,6 @@
 			</model>
 			<model id="id-0065-00000004" kind="ParadigmSheet" relid="0x2" childrelidcntr="0x1a">
 				<name>Rules_Paradigm</name>
-				<attribute kind="AuthorInformation" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="VersionInformation" status="meta">
-					<value></value>
-				</attribute>
 				<atom id="id-0066-0000001e" kind="Model" role="Model" relid="0x1">
 					<name>Rule</name>
 					<regnode name="PartRegs" isopaque="yes">
@@ -4126,7 +4230,7 @@
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1109</value>
-							<regnode name="Rule">
+							<regnode name="Rule" isopaque="yes">
 								<value></value>
 								<regnode name="Comparison_Association" isopaque="yes">
 									<value>1116</value>
@@ -4189,7 +4293,7 @@
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1111</value>
-							<regnode name="Rule">
+							<regnode name="Rule" isopaque="yes">
 								<value></value>
 								<regnode name="Logical_Association" isopaque="yes">
 									<value>1118</value>
@@ -4219,7 +4323,7 @@
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1115</value>
-							<regnode name="Rule">
+							<regnode name="Rule" isopaque="yes">
 								<value></value>
 								<regnode name="Select_Association" isopaque="yes">
 									<value>1122</value>
@@ -4252,7 +4356,7 @@
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1098</value>
-							<regnode name="Rule">
+							<regnode name="Rule" isopaque="yes">
 								<value></value>
 								<regnode name="Boolean_Equality_Association" isopaque="yes">
 									<value>1101</value>
@@ -4288,7 +4392,7 @@
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1099</value>
-							<regnode name="Rule">
+							<regnode name="Rule" isopaque="yes">
 								<value></value>
 								<regnode name="Integer_Equality_Association" isopaque="yes">
 									<value>1102</value>
@@ -4324,7 +4428,7 @@
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1100</value>
-							<regnode name="Rule">
+							<regnode name="Rule" isopaque="yes">
 								<value></value>
 								<regnode name="String_Equality_Association" isopaque="yes">
 									<value>1103</value>
@@ -4363,7 +4467,7 @@
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1040</value>
-							<regnode name="Rule">
+							<regnode name="Rule" isopaque="yes">
 								<value></value>
 								<regnode name="AND" isopaque="yes">
 									<value>1046</value>
@@ -4393,7 +4497,7 @@
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1041</value>
-							<regnode name="Rule">
+							<regnode name="Rule" isopaque="yes">
 								<value></value>
 								<regnode name="Equal" isopaque="yes">
 									<value>1047</value>
@@ -4423,7 +4527,7 @@
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1042</value>
-							<regnode name="Rule">
+							<regnode name="Rule" isopaque="yes">
 								<value></value>
 								<regnode name="IF" isopaque="yes">
 									<value>1048</value>
@@ -4453,7 +4557,7 @@
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1043</value>
-							<regnode name="Rule">
+							<regnode name="Rule" isopaque="yes">
 								<value></value>
 								<regnode name="IFF" isopaque="yes">
 									<value>1049</value>
@@ -4483,7 +4587,7 @@
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1044</value>
-							<regnode name="Rule">
+							<regnode name="Rule" isopaque="yes">
 								<value></value>
 								<regnode name="NOT" isopaque="yes">
 									<value>1050</value>
@@ -4513,7 +4617,7 @@
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1045</value>
-							<regnode name="Rule">
+							<regnode name="Rule" isopaque="yes">
 								<value></value>
 								<regnode name="OR" isopaque="yes">
 									<value>1051</value>
@@ -4546,7 +4650,7 @@
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1112</value>
-							<regnode name="Rule">
+							<regnode name="Rule" isopaque="yes">
 								<value></value>
 								<regnode name="Max_Association" isopaque="yes">
 									<value>1119</value>
@@ -4582,7 +4686,7 @@
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1113</value>
-							<regnode name="Rule">
+							<regnode name="Rule" isopaque="yes">
 								<value></value>
 								<regnode name="Min_Association" isopaque="yes">
 									<value>1120</value>
@@ -4618,7 +4722,7 @@
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1114</value>
-							<regnode name="Rule">
+							<regnode name="Rule" isopaque="yes">
 								<value></value>
 								<regnode name="Range_Association" isopaque="yes">
 									<value>1121</value>
@@ -4747,15 +4851,6 @@
 			</regnode>
 			<model id="id-0065-00000005" kind="ParadigmSheet" relid="0x1" childrelidcntr="0x15">
 				<name>Expressions</name>
-				<attribute kind="AuthorInformation" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="VersionInformation" status="meta">
-					<value></value>
-				</attribute>
 				<atom id="id-0066-0000001f" kind="FCO" role="FCO" relid="0x1">
 					<name>Logical_Expression</name>
 					<regnode name="PartRegs" isopaque="yes">
@@ -5440,15 +5535,6 @@
 			</model>
 			<model id="id-0065-00000006" kind="ParadigmSheet" relid="0x2" childrelidcntr="0x52">
 				<name>Associations</name>
-				<attribute kind="AuthorInformation" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="VersionInformation" status="meta">
-					<value></value>
-				</attribute>
 				<atom id="id-0066-00000029" kind="FCO" role="FCO" relid="0x7">
 					<name>Association</name>
 					<regnode name="PartRegs" isopaque="yes">
@@ -5776,15 +5862,6 @@
 			</model>
 			<model id="id-0065-00000007" kind="ParadigmSheet" relid="0x3" childrelidcntr="0x29">
 				<name>Equality_Associations</name>
-				<attribute kind="AuthorInformation" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="VersionInformation" status="meta">
-					<value></value>
-				</attribute>
 				<atom id="id-0066-0000002b" kind="Inheritance" role="Inheritance" relid="0x1">
 					<name>Inheritance</name>
 					<regnode name="PartRegs" isopaque="yes">
@@ -6819,15 +6896,6 @@
 			</model>
 			<model id="id-0065-00000008" kind="ParadigmSheet" relid="0x4" childrelidcntr="0x7">
 				<name>Associated_Options</name>
-				<attribute kind="AuthorInformation" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="VersionInformation" status="meta">
-					<value></value>
-				</attribute>
 				<atom id="id-0066-00000036" kind="FCO" role="FCO" relid="0x3">
 					<name>Associated_Option</name>
 					<regnode name="PartRegs" isopaque="yes">
@@ -7056,15 +7124,6 @@
 			</model>
 			<model id="id-0065-00000009" kind="ParadigmSheet" relid="0x5" childrelidcntr="0x15">
 				<name>Default_Assocications</name>
-				<attribute kind="AuthorInformation" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="VersionInformation" status="meta">
-					<value></value>
-				</attribute>
 				<atom id="id-0066-00000038" kind="Connection" role="Connection" relid="0xa">
 					<name>Logical_Association</name>
 					<regnode name="PartRegs" isopaque="yes">
@@ -7554,15 +7613,6 @@
 			</model>
 			<model id="id-0065-0000000a" kind="ParadigmSheet" relid="0x6" childrelidcntr="0x24">
 				<name>Comparison_Associations</name>
-				<attribute kind="AuthorInformation" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="VersionInformation" status="meta">
-					<value></value>
-				</attribute>
 				<atom id="id-0066-0000003c" kind="Connector" role="Connector" relid="0x20">
 					<name>Connector</name>
 					<regnode name="PartRegs" isopaque="yes">
@@ -7797,15 +7847,6 @@
 			</model>
 			<model id="id-0065-0000000b" kind="ParadigmSheet" relid="0x7" childrelidcntr="0x2b">
 				<name>Numeric_Associations</name>
-				<attribute kind="AuthorInformation" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="VersionInformation" status="meta">
-					<value></value>
-				</attribute>
 				<atom id="id-0066-0000003e" kind="Connection" role="Connection" relid="0x8">
 					<name>Range_Association</name>
 					<regnode name="PartRegs" isopaque="yes">
@@ -8808,7 +8849,7 @@
 				</regnode>
 				<regnode name="Model_Option_Aspect" isopaque="yes">
 					<value></value>
-					<regnode name="MetaRef">
+					<regnode name="MetaRef" isopaque="yes">
 						<value></value>
 						<regnode name="Enum_Option" isopaque="yes">
 							<value>1024</value>
@@ -8820,7 +8861,7 @@
 				</regnode>
 				<regnode name="Option_Aspect" isopaque="yes">
 					<value></value>
-					<regnode name="MetaRef">
+					<regnode name="MetaRef" isopaque="yes">
 						<value></value>
 						<regnode name="Option_Category" isopaque="yes">
 							<value>1028</value>
@@ -8829,7 +8870,7 @@
 				</regnode>
 				<regnode name="Rule_Aspect" isopaque="yes">
 					<value></value>
-					<regnode name="MetaRef">
+					<regnode name="MetaRef" isopaque="yes">
 						<value></value>
 						<regnode name="Rule" isopaque="yes">
 							<value>1038</value>
