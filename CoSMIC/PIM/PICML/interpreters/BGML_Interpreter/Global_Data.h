@@ -9,7 +9,6 @@ struct BGML_Task_Data
 	__int64 task_rate;
 	__int64 task_priority;
 	__int64 number_of_tasks;
-
 };
 
 struct BGML_Data
@@ -22,7 +21,7 @@ struct BGML_Data
 	std::vector<BGML_Task_Data> task_group_data;
 	/// Task information, their rates, 
 	/// priorities and number of tasks
-	
+
 	std::string file_name;
 	// A File to dump data to
 	
@@ -37,8 +36,5 @@ struct BGML_Data
 	// Directory path were the generated data should
 	// be written out
 };
-
-// Struct Definition
-static BGML_Data bgml_state;
 
 #endif /* _GLOBAL_DATA_H */

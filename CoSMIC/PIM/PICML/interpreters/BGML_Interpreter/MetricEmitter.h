@@ -6,13 +6,16 @@
 #include <string>
 #include <vector>
 
+#include "Global_Data.h"
+
 template <class T>
 class MetricEmitter 
 {
 public:
 	MetricEmitter (PICML::OperationBase &base, 
 				   T& latency,
-			       std::string& metric);
+			       std::string& metric,
+				   BGML_Data &state);
 	~MetricEmitter ();
 	
 	void generate_benchmark ();
@@ -42,6 +45,7 @@ private:
 	PICML::OperationBase &operation_;
 	T& latency_;
 	std::string& metric_;
+	BGML_Data &bgml_state_;
 		
 };
 

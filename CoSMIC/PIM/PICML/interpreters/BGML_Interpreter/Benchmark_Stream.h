@@ -49,7 +49,8 @@ public:
   BenchmarkStream (std::string& component_name, 
 				   std::string& operation_name, 
 				   std::vector<std::string>& arg_list,
-				   std::ostream& strm);
+				   std::ostream& strm, 
+				   BGML_Data &state);
   // constructor.for generating workloads
 
   ~BenchmarkStream (void);
@@ -110,7 +111,7 @@ public:
   void gen_private_mem_decl ();
   // Generate the private members of the Task_Base class
 
-  void generate_task_def (std::string &metric);
+  void generate_task_def (std::string &metric, BGML_Data &data);
   // Generate the .cpp file required by the task
 
   void gen_template_function_def (const std::string& name,
@@ -147,6 +148,7 @@ private:
   std::vector<std::string>& arg_list_;
   std::ostream& strm_;
   int indent_level_;
+  BGML_Data &bgml_state_;
   
   void upcase (const char *);
   void generate_rate_helper ();

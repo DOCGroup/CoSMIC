@@ -6,6 +6,8 @@
 #include "PICML.h"
 #include <string>
 
+#include "Global_Data.h"
+
 class BGML_Visitor: public PICML::Visitor
 {
 public:
@@ -18,6 +20,9 @@ public:
 	
 private:
     void write_timer_information (std::string& file_name);
+
+	BGML_Data bgml_state_;
+	// BGML Data to hold the information
 };
 
 #endif // BGML_VISITOR_H

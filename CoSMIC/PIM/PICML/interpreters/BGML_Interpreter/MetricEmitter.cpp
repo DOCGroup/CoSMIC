@@ -8,15 +8,16 @@
 #include "IDL_Util.h"
 #include "Benchmark_Stream.h"
 #include <algorithm>
-#include "Global_Data.h"
 
 template <class T>
 MetricEmitter<T>::MetricEmitter (PICML::OperationBase &base, 
 								 T& latency,
-								 std::string& metric)
+								 std::string& metric,
+								 BGML_Data& state)
 : operation_ (base), 
   latency_ (latency), 
-  metric_ (metric)
+  metric_ (metric),
+  bgml_state_ (state)
 {
 	
 }
@@ -36,12 +37,13 @@ MetricEmitter<T>::generate_header_file (std::string& class_name,
 										std::vector<string>& arg_list, 
 										std::string &path)
 {
-	std::string output_file = bgml_state.output_path + "\\" + class_name + ".h";
+	std::string output_file = this->bgml_state_.output_path + "\\" + class_name + ".h";
 	std::ofstream output_stream (output_file.c_str (), ios::out);
 	BenchmarkStream bench_stream (component_name, 
 								  operation_name, 
 								  arg_list,
-								  output_stream);
+								  output_stream,
+								  this->bgml_state_);
 	bench_stream.generate_task_header (class_name, path);
 }
 
@@ -52,7 +54,7 @@ MetricEmitter<T>::create_build_file (std::vector<std::string>& file_list,
 									 std::string& dependant_list)
 {
 	// Open the build stream
-	std::string build_file = bgml_state.output_path + "\\" + project_name + ".mpc";
+	std::string build_file = this->bgml_state_.output_path + "\\" + project_name + ".mpc";
 	std::ofstream build_stream (build_file.c_str (), ios::out);
 	
 	// Create project
@@ -97,9 +99,9 @@ void
 MetricEmitter<T>::generate_benchmark ()
 {
 	// First obtain the file_name, warmup and iterations
-	bgml_state.warmup_iterations = latency_.warmup(); 
-	bgml_state.file_name = latency_.fileName(); 
-	bgml_state.benchmark_iterations = latency_.iterations ();
+	this->bgml_state_.warmup_iterations = latency_.warmup(); 
+	this->bgml_state_.file_name = latency_.fileName(); 
+	this->bgml_state_.benchmark_iterations = latency_.iterations ();
 	
 	// Use the operation Name to get the name of the Component
 	// This is necessary to get the signature of the remote operation
@@ -117,14 +119,16 @@ MetricEmitter<T>::generate_benchmark ()
 								component_name, 
 								operation_name, 
 								arg_list,
-								bgml_state.output_path);
+								this->bgml_state_.output_path);
 
 
 	//@@ When we have more than one task group associated, we will need to change
 	// this code to make it more generalizable
 	std::vector<std::string> source_file_list;
 	
-	for (size_t i =0; i < bgml_state.task_group_data.size (); i++)
+	for (size_t i =0; 
+		 i < this->bgml_state_.task_group_data.size (); 
+		 i++)
 	{
 		class_name = operation_name + "_Workload";
 
@@ -139,35 +143,37 @@ MetricEmitter<T>::generate_benchmark ()
 									dummy);
 
 		std::string workload_cpp_file = 
-			bgml_state.output_path + "\\" + operation_name + "_Workload.cpp";
+			this->bgml_state_.output_path + "\\" + operation_name + "_Workload.cpp";
 		source_file_list.push_back (operation_name + "_Workload.cpp");
 
 		std::ofstream workload_stream (workload_cpp_file.c_str (), ios::out);
 		BenchmarkStream workload_cpp_stream (component_name, 
 											 operation_name, 
 											 temp_list,
-											 workload_stream);
+											 workload_stream,
+											 this->bgml_state_);
 
-		workload_cpp_stream.generate_workload_def (bgml_state.benchmark_iterations,
-												   bgml_state.task_group_data[i]);
+		workload_cpp_stream.generate_workload_def (this->bgml_state_.benchmark_iterations,
+												   this->bgml_state_.task_group_data[i]);
 
 	}
 
 	///// Generate .cpp file for the task ///////////////////////////
-	std::string cpp_file = bgml_state.output_path + "\\" + "Benchmark_" + operation_name + ".cpp";
+	std::string cpp_file = this->bgml_state_.output_path + "\\" + "Benchmark_" + operation_name + ".cpp";
 	source_file_list.push_back ("Benchmark_" + operation_name + ".cpp");
 
 	std::ofstream cpp_stream (cpp_file.c_str (), ios::out);
 
-	bgml_state.benchmark_rate = (bgml_state.benchmark_rate <= 0) ? -1 : bgml_state.benchmark_rate;
-	bgml_state.benchmark_priority = (bgml_state.benchmark_priority < 0) ? -1 : bgml_state.benchmark_priority;
+	this->bgml_state_.benchmark_rate = (this->bgml_state_.benchmark_rate <= 0) ? -1 : this->bgml_state_.benchmark_rate;
+	this->bgml_state_.benchmark_priority = (this->bgml_state_.benchmark_priority < 0) ? -1 : this->bgml_state_.benchmark_priority;
 
 	BenchmarkStream bench_cpp_stream (component_name, 
 									  operation_name, 
 									  arg_list,
-									  cpp_stream);
+									  cpp_stream,
+									  this->bgml_state_);
 	
-	bench_cpp_stream.generate_task_def (this->metric_);
+	bench_cpp_stream.generate_task_def (this->metric_, this->bgml_state_);
 
 	// Create the mpc file for building the benchmarks
 	std::string project_name = "Benchmark_" + operation_name;

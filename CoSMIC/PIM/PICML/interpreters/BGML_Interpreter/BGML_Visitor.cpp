@@ -2,11 +2,10 @@
 #include "MetricEmitter.h"
 #include "Timer_Stream.h"
 #include "Uml.h"
-#include "Global_Data.h"
 
 BGML_Visitor::BGML_Visitor (std::string &outputPath)
 {
-	bgml_state.output_path = outputPath;
+	this->bgml_state_.output_path = outputPath;
 }
 
 BGML_Visitor::~BGML_Visitor ()
@@ -44,7 +43,7 @@ BGML_Visitor::Visit_TimeProbe (const PICML::TimeProbe& probe)
 			op_base.GetStrValue ("name", name);
 
 			// Write out the Timer information 
-			file_name = bgml_state.output_path + "\\" + name + "_Timer.h";
+			file_name = this->bgml_state_.output_path + "\\" + name + "_Timer.h";
 		}
 	}
 
@@ -61,7 +60,7 @@ BGML_Visitor::Visit_TimeProbe (const PICML::TimeProbe& probe)
 			event.GetStrValue ("name", name);
 			
 			// Write out the Timer information 
-			file_name = bgml_state.output_path + "\\" + name + "_Timer.h";
+			file_name = this->bgml_state_.output_path + "\\" + name + "_Timer.h";
 		
 		}
 	}
@@ -94,8 +93,8 @@ BGML_Visitor::Visit_BenchmarkAnalysis (const PICML::BenchmarkAnalysis& model)
 		PICML::OperationBase operation = op_ref.ref ();
 
 		/// Check if there is a priority or rate for the main task
-		bgml_state.benchmark_priority = (* iter).priority ();
-		bgml_state.benchmark_rate     = (* iter).rate ();
+		this->bgml_state_.benchmark_priority = (* iter).priority ();
+		this->bgml_state_.benchmark_rate     = (* iter).rate ();
 		
 		// Check if there are any connections to Task Sets
 		PICML::WorkloadCharacteristics task_set = iter->dstWorkloadCharacteristics();
@@ -108,9 +107,9 @@ BGML_Visitor::Visit_BenchmarkAnalysis (const PICML::BenchmarkAnalysis& model)
 			BGML_Task_Data this_task;
 			std::set<PICML::Task> tasks = set.members ();
 			this_task.number_of_tasks = tasks.size ();
-			this_task.task_priority = ((*iter).priority());
-			this_task.task_rate = ((*iter).rate ());
-			bgml_state.task_group_data.push_back (this_task);
+			this_task.task_priority = set.priority();
+			this_task.task_rate = set.rate ();
+			this->bgml_state_.task_group_data.push_back (this_task);
 		}
 		
 		// If the metrics is a latencyMetric
@@ -126,7 +125,8 @@ BGML_Visitor::Visit_BenchmarkAnalysis (const PICML::BenchmarkAnalysis& model)
 			PICML::Latency latency = PICML::Latency::Cast (* iter);
 			MetricEmitter<PICML::Latency> emitter (operation, 
 												   latency, 
-												   kindName);
+												   kindName,
+												   this->bgml_state_);
 			emitter.generate_benchmark ();		
 		 }
 		 else if (kindName == "Throughput" &&
@@ -136,7 +136,8 @@ BGML_Visitor::Visit_BenchmarkAnalysis (const PICML::BenchmarkAnalysis& model)
 			PICML::Throughput thr = PICML::Throughput::Cast (* iter);
 			MetricEmitter<PICML::Throughput> thr_emitter (operation, 
 														  thr, 
-														  kindName);
+														  kindName,
+														  this->bgml_state_);
 			thr_emitter.generate_benchmark ();
 		  }
 	}
@@ -150,4 +151,3 @@ BGML_Visitor::Visit_BenchmarkAnalysis (const PICML::BenchmarkAnalysis& model)
 	   this->Visit_TimeProbe (* iter2);
 	}
 }
-

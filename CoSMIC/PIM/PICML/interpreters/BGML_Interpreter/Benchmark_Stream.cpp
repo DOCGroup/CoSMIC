@@ -1,5 +1,6 @@
 #include "Benchmark_Stream.h"
 #include "ctype.h"
+#include "Global_Data.h"
 
 
 NL::NL (void)
@@ -25,12 +26,14 @@ const UNINDENT uidt_nl (1);
 BenchmarkStream::BenchmarkStream (std::string& component_name, 
 								  std::string& operation_name, 
 								  std::vector<std::string>& arg_list,
-								  std::ostream& strm)
+								  std::ostream& strm, 
+								  BGML_Data &state)
 								  
 : component_name_ (component_name),
   operation_name_ (operation_name),
   arg_list_ (arg_list),
   strm_ (strm),
+  bgml_state_ (state),
   indent_level_ (0)
 {
 	
@@ -403,15 +406,6 @@ BenchmarkStream::gen_background_load (std::string& class_name, int task_set_size
 		}
 
 
-		/// Add the priority of the task -- TO DO
-		/*
-		if (arg_flag)
-			this->strm_ << ", " << (long) this->task_priorities_ [i] << ");";
-		else
-			this->strm_ << " " << (long) this->task_priorities_ [i] << ");";
-		this->nl ();
-		*/
-
 		// Insert barrier code
 		this->strm_ << ", barrier";
 		this->strm_ << ");";
@@ -455,13 +449,13 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
    this->nl ();
 
    // Check if the tasks have to perform benchmarking at a given rate
-   if (bgml_state.benchmark_rate != -1)
+   if (this->bgml_state_.benchmark_rate != -1)
    {
 	   this->indent ();
 	   this->strm_ << "ACE_hrtime_t deadline_for_call = 0;\n";
 	   this->indent ();
 	   this->strm_ << "ACE_hrtime_t interval_between_calls = 1/double ("
-				   << (int) bgml_state.benchmark_rate
+				   << (int) this->bgml_state_.benchmark_rate
 				   << ") * gsf * ACE_HR_SCALE_CONVERSION; \n";
    }
    
@@ -484,7 +478,7 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
    
 
    // Check for rate based events
-   if (bgml_state.benchmark_rate != -1)
+   if (this->bgml_state_.benchmark_rate != -1)
    {
 	  this->nl ();
 	  this->indent ();
@@ -521,7 +515,7 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
    this->strm_ << "history.sample (now - start);";
 
    // Check if this is a rate based invocation
-   if (bgml_state.benchmark_rate != -1)
+   if (this->bgml_state_.benchmark_rate != -1)
    {
 		this->nl ();
 		this->indent ();
@@ -549,26 +543,40 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
    this->nl ();
 
    // If there were workloads asociated , then wait for them to finish
-   if (bgml_state.task_group_data.size ())
+   if (this->bgml_state_.task_group_data.size ())
    {
 	   this->nl ();
 	   this->indent ();
 	   this->strm_ << "// Wait for tasks to finish\n";
-	   this->indent ();
-	   this->strm_ << "this->thr_mgr ()->wait ();\n";
-	   this->nl ();
+   }
+
+   for (__int64 counter = 0; 
+		counter < this->bgml_state_.task_group_data.size (); 
+		counter++)
+   {
+	  for (__int64 inner_counter = 0; 
+	       inner_counter < this->bgml_state_.task_group_data[counter].number_of_tasks;
+		   inner_counter ++)
+		 {
+			this->indent ();
+			this->strm_ << "task"
+				     	<< (int) inner_counter
+				        << ".thr_mgr ()->wait ();";
+			this->nl ();
+		  }
    }
    
+   this->nl ();
    this->indent ();
-   this->strm_ << "ACE_DEBUG ((LM_DEBUG, \"test finished\"));";
+   this->strm_ << "ACE_DEBUG ((LM_DEBUG, \"test finished \\n\"));";
 
    this->nl ();
    this->indent ();
-   this->strm_ << "ACE_DEBUG ((LM_DEBUG, \"High resolution timer calibration....\"));";
+   this->strm_ << "ACE_DEBUG ((LM_DEBUG, \"High resolution timer calibration.... \"));";
 
    this->nl ();
    this->indent ();
-   this->strm_ << "ACE_DEBUG ((LM_DEBUG, \"done\"));";
+   this->strm_ << "ACE_DEBUG ((LM_DEBUG, \"done \\n\"));";
 
    this->nl ();
    this->indent ();
@@ -833,7 +841,8 @@ BenchmarkStream::generate_rate_helper ()
 }
 
 void
-BenchmarkStream::generate_task_def (std::string& metrics)
+BenchmarkStream::generate_task_def (std::string& metrics,
+									BGML_Data &bgml_state)
 {
 	/// Step 1: Generate the ifdef macros
 	std::string header_name = "Benchmark_" + this->operation_name_;
@@ -852,10 +861,14 @@ BenchmarkStream::generate_task_def (std::string& metrics)
 	include_file = "ace/Sample_History.h";
 	this->gen_include_file (include_file);
 
-	if (bgml_state.task_group_data.size ())
+	if (this->bgml_state_.task_group_data.size ())
 	{
 		std::string workload_name = this->operation_name_ + "_Workload.h";
 		this->gen_include_file (workload_name);
+
+		/// Generate the header file
+		include_file = "ace/Barrier.h";
+		this->gen_include_file (include_file);
 	}
 	
 	this->nl ();
@@ -864,7 +877,7 @@ BenchmarkStream::generate_task_def (std::string& metrics)
 	this->gen_destructor_defn (header_name);
 
 	/// Check if the invocations are rate based
-	if (bgml_state.benchmark_rate != -1)
+	if (this->bgml_state_.benchmark_rate != -1)
 	{
 		this->generate_rate_helper ();
 	}
@@ -877,22 +890,19 @@ BenchmarkStream::generate_task_def (std::string& metrics)
 									 param_list);
 
 	/// Step 3: Generate the warm_up iterations
-	this->gen_warmup_iterations (bgml_state.warmup_iterations, 
-								 bgml_state.benchmark_priority);
+	this->gen_warmup_iterations (this->bgml_state_.warmup_iterations, 
+								 this->bgml_state_.benchmark_priority);
 
-	if (bgml_state.task_group_data.size ())
+	/// For each of the data generate the load
+	for (size_t i = 0; i < this->bgml_state_.task_group_data.size (); i++)
 	{
-		/// For each of the data generate the load
-		for (size_t i = 0; i < bgml_state.task_group_data.size (); i++)
-		{
-			std::string class_name = this->operation_name_ + "_Workload";
-			this->gen_background_load (class_name, 
-									   bgml_state.task_group_data[i].number_of_tasks);
-		}
+		std::string class_name = this->operation_name_ + "_Workload";
+		this->gen_background_load (class_name, 
+								   this->bgml_state_.task_group_data[i].number_of_tasks);
 	}
 
 	/// Step 4: Generate the code for benchmarking
-	this->gen_bench_def (bgml_state.benchmark_iterations);
+	this->gen_bench_def (this->bgml_state_.benchmark_iterations);
 
 	//// Step 5: Generate the endif macro to close the cpp file
 	this->gen_endifc (header_name);
