@@ -1,3 +1,8 @@
+Sun Jun 20 19:32:17 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PICML/README: Updated to include preliminary documentation on
+          building the PICML interpreter.
+
 Sun Jun 20 18:12:55 2004  Jaiganesh B  <jai@dre.vanderbilt.edu>
 
         * PICML/interpreters/domain/CompIcon.ico:
