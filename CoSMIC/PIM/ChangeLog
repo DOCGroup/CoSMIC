@@ -1,3 +1,13 @@
+Thu Jun 10 18:53:00 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * IDML/paradigms/Icons/ineventport.bmp:
+        * IDML/paradigms/Icons/member.bmp:
+        * IDML/paradigms/Icons/outeventport.bmp:
+        * IDML/paradigms/Icons/requiredrequestport.bmp:
+        
+          Resized these icons to 64x64 pixels. They got overlooked
+          when I resized all icons the first time.
+
 Wed Jun  9 16:28:03 2004  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * PICML/interpreters/Package/Package.mpc: Added PACKAGE_BUILD_DLL
