@@ -1,3 +1,15 @@
+Fri Apr 30 18:29:04 2004  Jeff Parsons  <j.parsons@vanderbilt.edu>
+
+        * PICML/paradigms/icons/component.bmp:
+        
+          Made the icon more elongated, to hopefully make a better-looking
+          display when used as a reference.
+          
+        * PICML/paradigms/icons/manages.bmp:
+        
+          Changed the 'component' piece of this icon to match the change
+          to the icon above.
+
 Wed Apr 28 23:32:21 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PICML/paradigms/IDML-Meta.xme:
