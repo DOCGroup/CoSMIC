@@ -4,87 +4,87 @@
 
 namespace BON
 {
-IMPLEMENT_ABSTRACT_BONEXTENSION( IDML_BON::Orderable );
-IMPLEMENT_BONEXTENSION( IDML_BON::InterfaceDefinitions, "InterfaceDefinitions" );
-IMPLEMENT_BONEXTENSION( IDML_BON::PredefinedTypes, "PredefinedTypes" );
-IMPLEMENT_ABSTRACT_BONEXTENSION( IDML_BON::Prefixable );
-IMPLEMENT_ABSTRACT_BONEXTENSION( IDML_BON::ConstantType );
-IMPLEMENT_ABSTRACT_BONEXTENSION( IDML_BON::Manageable );
-IMPLEMENT_ABSTRACT_BONEXTENSION( IDML_BON::MemberType );
-IMPLEMENT_ABSTRACT_BONEXTENSION( IDML_BON::Provideable );
-IMPLEMENT_ABSTRACT_BONEXTENSION( IDML_BON::Taggable );
-IMPLEMENT_BONEXTENSION( IDML_BON::Exception, "Exception" );
-IMPLEMENT_BONEXTENSION( IDML_BON::File, "File" );
-IMPLEMENT_ABSTRACT_BONEXTENSION( IDML_BON::OperationBase );
-IMPLEMENT_BONEXTENSION( IDML_BON::Package, "Package" );
-IMPLEMENT_BONEXTENSION( IDML_BON::ReadonlyAttribute, "ReadonlyAttribute" );
-IMPLEMENT_ABSTRACT_BONEXTENSION( IDML_BON::NamedType );
-IMPLEMENT_ABSTRACT_BONEXTENSION( IDML_BON::Port );
-IMPLEMENT_ABSTRACT_BONEXTENSION( IDML_BON::PredefinedType );
-IMPLEMENT_BONEXTENSION( IDML_BON::ComponentRef, "ComponentRef" );
-IMPLEMENT_BONEXTENSION( IDML_BON::Constant, "Constant" );
-IMPLEMENT_BONEXTENSION( IDML_BON::Attribute, "Attribute" );
-IMPLEMENT_ABSTRACT_BONEXTENSION( IDML_BON::HasExceptions );
-IMPLEMENT_ABSTRACT_BONEXTENSION( IDML_BON::Inheritable );
-IMPLEMENT_BONEXTENSION( IDML_BON::OnewayOperation, "OnewayOperation" );
-IMPLEMENT_ABSTRACT_BONEXTENSION( IDML_BON::NoInheritable );
-IMPLEMENT_BONEXTENSION( IDML_BON::Boolean, "Boolean" );
-IMPLEMENT_BONEXTENSION( IDML_BON::Byte, "Byte" );
-IMPLEMENT_BONEXTENSION( IDML_BON::GenericObject, "GenericObject" );
-IMPLEMENT_BONEXTENSION( IDML_BON::GenericValue, "GenericValue" );
-IMPLEMENT_BONEXTENSION( IDML_BON::GenericValueObject, "GenericValueObject" );
-IMPLEMENT_BONEXTENSION( IDML_BON::LongInteger, "LongInteger" );
-IMPLEMENT_BONEXTENSION( IDML_BON::RealNumber, "RealNumber" );
-IMPLEMENT_BONEXTENSION( IDML_BON::ShortInteger, "ShortInteger" );
-IMPLEMENT_BONEXTENSION( IDML_BON::String, "String" );
-IMPLEMENT_BONEXTENSION( IDML_BON::TypeEncoding, "TypeEncoding" );
-IMPLEMENT_BONEXTENSION( IDML_BON::TypeKind, "TypeKind" );
-IMPLEMENT_BONEXTENSION( IDML_BON::Boxed, "Boxed" );
-IMPLEMENT_BONEXTENSION( IDML_BON::InEventPort, "InEventPort" );
-IMPLEMENT_BONEXTENSION( IDML_BON::OutEventPort, "OutEventPort" );
-IMPLEMENT_BONEXTENSION( IDML_BON::ProvidedRequestPort, "ProvidedRequestPort" );
-IMPLEMENT_BONEXTENSION( IDML_BON::RequiredRequestPort, "RequiredRequestPort" );
-IMPLEMENT_BONEXTENSION( IDML_BON::Aggregate, "Aggregate" );
-IMPLEMENT_BONEXTENSION( IDML_BON::Enum, "Enum" );
-IMPLEMENT_BONEXTENSION( IDML_BON::FactoryOperation, "FactoryOperation" );
-IMPLEMENT_ABSTRACT_BONEXTENSION( IDML_BON::HasOperations );
-IMPLEMENT_BONEXTENSION( IDML_BON::LookupOperation, "LookupOperation" );
-IMPLEMENT_ABSTRACT_BONEXTENSION( IDML_BON::SupportsInterfaces );
-IMPLEMENT_BONEXTENSION( IDML_BON::SwitchedAggregate, "SwitchedAggregate" );
-IMPLEMENT_BONEXTENSION( IDML_BON::TwowayOperation, "TwowayOperation" );
-IMPLEMENT_BONEXTENSION( IDML_BON::Alias, "Alias" );
-IMPLEMENT_BONEXTENSION( IDML_BON::Collection, "Collection" );
-IMPLEMENT_BONEXTENSION( IDML_BON::Component, "Component" );
-IMPLEMENT_BONEXTENSION( IDML_BON::ComponentFactory, "ComponentFactory" );
-IMPLEMENT_BONEXTENSION( IDML_BON::Object, "Object" );
-IMPLEMENT_ABSTRACT_BONEXTENSION( IDML_BON::ObjectByValue );
-IMPLEMENT_BONEXTENSION( IDML_BON::Event, "Event" );
-IMPLEMENT_BONEXTENSION( IDML_BON::ValueObject, "ValueObject" );
-IMPLEMENT_BONEXTENSION( IDML_BON::EnumValue, "EnumValue" );
-IMPLEMENT_BONEXTENSION( IDML_BON::Label, "Label" );
-IMPLEMENT_BONEXTENSION( IDML_BON::PrivateFlag, "PrivateFlag" );
-IMPLEMENT_BONEXTENSION( IDML_BON::LabelConnection, "LabelConnection" );
-IMPLEMENT_BONEXTENSION( IDML_BON::MakeMemberPrivate, "MakeMemberPrivate" );
-IMPLEMENT_BONEXTENSION( IDML_BON::ManagesComponent, "ManagesComponent" );
-IMPLEMENT_BONEXTENSION( IDML_BON::AttributeMember, "AttributeMember" );
-IMPLEMENT_BONEXTENSION( IDML_BON::Discriminator, "Discriminator" );
-IMPLEMENT_BONEXTENSION( IDML_BON::ExceptionRef, "ExceptionRef" );
-IMPLEMENT_BONEXTENSION( IDML_BON::FileRef, "FileRef" );
-IMPLEMENT_BONEXTENSION( IDML_BON::GetException, "GetException" );
-IMPLEMENT_BONEXTENSION( IDML_BON::InParameter, "InParameter" );
-IMPLEMENT_BONEXTENSION( IDML_BON::Inherits, "Inherits" );
-IMPLEMENT_BONEXTENSION( IDML_BON::InoutParameter, "InoutParameter" );
-IMPLEMENT_BONEXTENSION( IDML_BON::LookupKey, "LookupKey" );
-IMPLEMENT_BONEXTENSION( IDML_BON::Member, "Member" );
-IMPLEMENT_BONEXTENSION( IDML_BON::OutParameter, "OutParameter" );
-IMPLEMENT_BONEXTENSION( IDML_BON::ReturnType, "ReturnType" );
-IMPLEMENT_BONEXTENSION( IDML_BON::SetException, "SetException" );
-IMPLEMENT_BONEXTENSION( IDML_BON::Supports, "Supports" );
+IMPLEMENT_ABSTRACT_BONEXTENSION( IDML::Orderable );
+IMPLEMENT_BONEXTENSION( IDML::InterfaceDefinitions, "InterfaceDefinitions" );
+IMPLEMENT_BONEXTENSION( IDML::PredefinedTypes, "PredefinedTypes" );
+IMPLEMENT_ABSTRACT_BONEXTENSION( IDML::Prefixable );
+IMPLEMENT_ABSTRACT_BONEXTENSION( IDML::ConstantType );
+IMPLEMENT_ABSTRACT_BONEXTENSION( IDML::Manageable );
+IMPLEMENT_ABSTRACT_BONEXTENSION( IDML::MemberType );
+IMPLEMENT_ABSTRACT_BONEXTENSION( IDML::Provideable );
+IMPLEMENT_ABSTRACT_BONEXTENSION( IDML::Taggable );
+IMPLEMENT_BONEXTENSION( IDML::Exception, "Exception" );
+IMPLEMENT_BONEXTENSION( IDML::File, "File" );
+IMPLEMENT_ABSTRACT_BONEXTENSION( IDML::OperationBase );
+IMPLEMENT_BONEXTENSION( IDML::Package, "Package" );
+IMPLEMENT_BONEXTENSION( IDML::ReadonlyAttribute, "ReadonlyAttribute" );
+IMPLEMENT_ABSTRACT_BONEXTENSION( IDML::NamedType );
+IMPLEMENT_ABSTRACT_BONEXTENSION( IDML::Port );
+IMPLEMENT_ABSTRACT_BONEXTENSION( IDML::PredefinedType );
+IMPLEMENT_BONEXTENSION( IDML::ComponentRef, "ComponentRef" );
+IMPLEMENT_BONEXTENSION( IDML::Constant, "Constant" );
+IMPLEMENT_BONEXTENSION( IDML::Attribute, "Attribute" );
+IMPLEMENT_ABSTRACT_BONEXTENSION( IDML::HasExceptions );
+IMPLEMENT_ABSTRACT_BONEXTENSION( IDML::Inheritable );
+IMPLEMENT_BONEXTENSION( IDML::OnewayOperation, "OnewayOperation" );
+IMPLEMENT_ABSTRACT_BONEXTENSION( IDML::NoInheritable );
+IMPLEMENT_BONEXTENSION( IDML::Boolean, "Boolean" );
+IMPLEMENT_BONEXTENSION( IDML::Byte, "Byte" );
+IMPLEMENT_BONEXTENSION( IDML::GenericObject, "GenericObject" );
+IMPLEMENT_BONEXTENSION( IDML::GenericValue, "GenericValue" );
+IMPLEMENT_BONEXTENSION( IDML::GenericValueObject, "GenericValueObject" );
+IMPLEMENT_BONEXTENSION( IDML::LongInteger, "LongInteger" );
+IMPLEMENT_BONEXTENSION( IDML::RealNumber, "RealNumber" );
+IMPLEMENT_BONEXTENSION( IDML::ShortInteger, "ShortInteger" );
+IMPLEMENT_BONEXTENSION( IDML::String, "String" );
+IMPLEMENT_BONEXTENSION( IDML::TypeEncoding, "TypeEncoding" );
+IMPLEMENT_BONEXTENSION( IDML::TypeKind, "TypeKind" );
+IMPLEMENT_BONEXTENSION( IDML::Boxed, "Boxed" );
+IMPLEMENT_BONEXTENSION( IDML::InEventPort, "InEventPort" );
+IMPLEMENT_BONEXTENSION( IDML::OutEventPort, "OutEventPort" );
+IMPLEMENT_BONEXTENSION( IDML::ProvidedRequestPort, "ProvidedRequestPort" );
+IMPLEMENT_BONEXTENSION( IDML::RequiredRequestPort, "RequiredRequestPort" );
+IMPLEMENT_BONEXTENSION( IDML::Aggregate, "Aggregate" );
+IMPLEMENT_BONEXTENSION( IDML::Enum, "Enum" );
+IMPLEMENT_BONEXTENSION( IDML::FactoryOperation, "FactoryOperation" );
+IMPLEMENT_ABSTRACT_BONEXTENSION( IDML::HasOperations );
+IMPLEMENT_BONEXTENSION( IDML::LookupOperation, "LookupOperation" );
+IMPLEMENT_ABSTRACT_BONEXTENSION( IDML::SupportsInterfaces );
+IMPLEMENT_BONEXTENSION( IDML::SwitchedAggregate, "SwitchedAggregate" );
+IMPLEMENT_BONEXTENSION( IDML::TwowayOperation, "TwowayOperation" );
+IMPLEMENT_BONEXTENSION( IDML::Alias, "Alias" );
+IMPLEMENT_BONEXTENSION( IDML::Collection, "Collection" );
+IMPLEMENT_BONEXTENSION( IDML::Component, "Component" );
+IMPLEMENT_BONEXTENSION( IDML::ComponentFactory, "ComponentFactory" );
+IMPLEMENT_BONEXTENSION( IDML::Object, "Object" );
+IMPLEMENT_ABSTRACT_BONEXTENSION( IDML::ObjectByValue );
+IMPLEMENT_BONEXTENSION( IDML::Event, "Event" );
+IMPLEMENT_BONEXTENSION( IDML::ValueObject, "ValueObject" );
+IMPLEMENT_BONEXTENSION( IDML::EnumValue, "EnumValue" );
+IMPLEMENT_BONEXTENSION( IDML::Label, "Label" );
+IMPLEMENT_BONEXTENSION( IDML::PrivateFlag, "PrivateFlag" );
+IMPLEMENT_BONEXTENSION( IDML::LabelConnection, "LabelConnection" );
+IMPLEMENT_BONEXTENSION( IDML::MakeMemberPrivate, "MakeMemberPrivate" );
+IMPLEMENT_BONEXTENSION( IDML::ManagesComponent, "ManagesComponent" );
+IMPLEMENT_BONEXTENSION( IDML::AttributeMember, "AttributeMember" );
+IMPLEMENT_BONEXTENSION( IDML::Discriminator, "Discriminator" );
+IMPLEMENT_BONEXTENSION( IDML::ExceptionRef, "ExceptionRef" );
+IMPLEMENT_BONEXTENSION( IDML::FileRef, "FileRef" );
+IMPLEMENT_BONEXTENSION( IDML::GetException, "GetException" );
+IMPLEMENT_BONEXTENSION( IDML::InParameter, "InParameter" );
+IMPLEMENT_BONEXTENSION( IDML::Inherits, "Inherits" );
+IMPLEMENT_BONEXTENSION( IDML::InoutParameter, "InoutParameter" );
+IMPLEMENT_BONEXTENSION( IDML::LookupKey, "LookupKey" );
+IMPLEMENT_BONEXTENSION( IDML::Member, "Member" );
+IMPLEMENT_BONEXTENSION( IDML::OutParameter, "OutParameter" );
+IMPLEMENT_BONEXTENSION( IDML::ReturnType, "ReturnType" );
+IMPLEMENT_BONEXTENSION( IDML::SetException, "SetException" );
+IMPLEMENT_BONEXTENSION( IDML::Supports, "Supports" );
 
 
 }; // end namespace BON
 
-namespace IDML_BON
+namespace IDML
 {
 //*******************************************************************
 // // getter for kind "File"
@@ -2378,5 +2378,5 @@ Object SupportsImpl::getObject()
 
 
 
-}; // namespace IDML_BON
+}; // namespace IDML
 

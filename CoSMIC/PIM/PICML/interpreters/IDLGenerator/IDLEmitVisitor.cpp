@@ -8,7 +8,7 @@
 #include <fstream>
 #endif
 
-namespace IDML_BON
+namespace IDML
 {
   IDLEmitVisitor::IDLEmitVisitor( std::ostream& strm )
     : ofs (strm)

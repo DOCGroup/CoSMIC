@@ -3,7 +3,7 @@
 
 #include "IDMLBonExtension.h"
 
-namespace IDML_BON
+namespace IDML
 {
   class DependencyVisitor
   {

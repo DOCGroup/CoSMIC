@@ -4,7 +4,7 @@
 #include "IDMLBonExtension.h"
 #include "IDLStream.h"
 
-namespace IDML_BON
+namespace IDML
 {
   class IDLEmitVisitor	: public BON::Visitor
   {

@@ -4,7 +4,7 @@
 #include "BONImpl.h"
 #include "Extensions.h"
 
-namespace IDML_BON
+namespace IDML
 {
 DECLARE_ABSTRACT_BONEXTENSION( BON::FCO, OrderableImpl, Orderable );
 DECLARE_BONEXTENSION( BON::Folder, InterfaceDefinitionsImpl, InterfaceDefinitions );
@@ -98,7 +98,7 @@ public:
 //   C  L  A  S  S   InterfaceDefinitionsImpl
 //*******************************************************************
 class InterfaceDefinitionsImpl :
-  public BON::FolderImpl
+  virtual public BON::FolderImpl
 {
 public:
 	//
@@ -115,7 +115,7 @@ public:
 //   C  L  A  S  S   PredefinedTypesImpl
 //*******************************************************************
 class PredefinedTypesImpl :
-  public BON::FolderImpl
+  virtual public BON::FolderImpl
 {
 public:
 	//
@@ -240,7 +240,7 @@ public:
 class ExceptionImpl :
   virtual public BON::ModelImpl,
   virtual public OrderableImpl,
-  public TaggableImpl 
+  virtual public TaggableImpl 
 {
 public:
 	//
@@ -258,7 +258,7 @@ public:
 //*******************************************************************
 class FileImpl :
   virtual public OrderableImpl,
-  public PrefixableImpl 
+  virtual public PrefixableImpl 
 {
 public:
 	//
@@ -305,7 +305,7 @@ private:
 class OperationBaseImpl :
   virtual public BON::ModelImpl,
   virtual public OrderableImpl,
-  public TaggableImpl 
+  virtual public TaggableImpl 
 {
 public:
 	//
@@ -323,8 +323,8 @@ public:
 //*******************************************************************
 class PackageImpl :
   virtual public OrderableImpl,
-  public TaggableImpl,
-  public PrefixableImpl 
+  virtual public TaggableImpl,
+  virtual public PrefixableImpl 
 {
 public:
 	//
@@ -359,7 +359,7 @@ public:
 class ReadonlyAttributeImpl :
   virtual public BON::ModelImpl,
   virtual public OrderableImpl,
-  public TaggableImpl 
+  virtual public TaggableImpl 
 {
 public:
 	//
@@ -377,8 +377,8 @@ public:
 //   C  L  A  S  S   NamedTypeImpl
 //*******************************************************************
 class NamedTypeImpl :
-  public TaggableImpl,
-  public MemberTypeImpl 
+  virtual public TaggableImpl,
+  virtual public MemberTypeImpl 
 {
 public:
 
@@ -392,7 +392,7 @@ public:
 //   C  L  A  S  S   PortImpl
 //*******************************************************************
 class PortImpl :
-  public TaggableImpl 
+  virtual public TaggableImpl 
 {
 public:
 
@@ -406,8 +406,8 @@ public:
 //   C  L  A  S  S   PredefinedTypeImpl
 //*******************************************************************
 class PredefinedTypeImpl :
-  public MemberTypeImpl,
-  public ConstantTypeImpl 
+  virtual public MemberTypeImpl,
+  virtual public ConstantTypeImpl 
 {
 public:
 
@@ -422,7 +422,7 @@ public:
 //*******************************************************************
 class ComponentRefImpl :
   virtual public BON::ReferenceImpl,
-  public ManageableImpl 
+  virtual public ManageableImpl 
 {
 public:
 	//
@@ -441,7 +441,7 @@ public:
 class ConstantImpl :
   virtual public BON::ReferenceImpl,
   virtual public OrderableImpl,
-  public TaggableImpl 
+  virtual public TaggableImpl 
 {
 public:
 	//
@@ -461,7 +461,7 @@ public:
 //   C  L  A  S  S   AttributeImpl
 //*******************************************************************
 class AttributeImpl :
-  public ReadonlyAttributeImpl 
+  virtual public ReadonlyAttributeImpl 
 {
 public:
 	//
@@ -478,7 +478,7 @@ public:
 //   C  L  A  S  S   HasExceptionsImpl
 //*******************************************************************
 class HasExceptionsImpl :
-  public OperationBaseImpl 
+  virtual public OperationBaseImpl 
 {
 public:
 	//
@@ -497,7 +497,7 @@ public:
 class InheritableImpl :
   virtual public BON::ModelImpl,
   virtual public OrderableImpl,
-  public NamedTypeImpl 
+  virtual public NamedTypeImpl 
 {
 public:
 	//
@@ -517,7 +517,7 @@ public:
 //   C  L  A  S  S   OnewayOperationImpl
 //*******************************************************************
 class OnewayOperationImpl :
-  public OperationBaseImpl 
+  virtual public OperationBaseImpl 
 {
 public:
 
@@ -532,7 +532,7 @@ public:
 //*******************************************************************
 class NoInheritableImpl :
   virtual public OrderableImpl,
-  public NamedTypeImpl
+  virtual public NamedTypeImpl
 {
 public:
 
@@ -547,7 +547,7 @@ public:
 //*******************************************************************
 class BooleanImpl :
   virtual public BON::AtomImpl,
-  public PredefinedTypeImpl 
+  virtual public PredefinedTypeImpl 
 {
 public:
 
@@ -562,7 +562,7 @@ public:
 //*******************************************************************
 class ByteImpl :
   virtual public BON::AtomImpl,
-  public PredefinedTypeImpl 
+  virtual public PredefinedTypeImpl 
 {
 public:
 
@@ -577,8 +577,8 @@ public:
 //*******************************************************************
 class GenericObjectImpl :
   virtual public BON::AtomImpl,
-  public PredefinedTypeImpl,
-  public ProvideableImpl 
+  virtual public PredefinedTypeImpl,
+  virtual public ProvideableImpl 
 {
 public:
 
@@ -593,7 +593,7 @@ public:
 //*******************************************************************
 class GenericValueImpl :
   virtual public BON::AtomImpl,
-  public PredefinedTypeImpl 
+  virtual public PredefinedTypeImpl 
 {
 public:
 
@@ -608,7 +608,7 @@ public:
 //*******************************************************************
 class GenericValueObjectImpl :
   virtual public BON::AtomImpl,
-  public PredefinedTypeImpl 
+  virtual public PredefinedTypeImpl 
 {
 public:
 
@@ -623,7 +623,7 @@ public:
 //*******************************************************************
 class LongIntegerImpl :
   virtual public BON::AtomImpl,
-  public PredefinedTypeImpl 
+  virtual public PredefinedTypeImpl 
 {
 public:
 
@@ -638,7 +638,7 @@ public:
 //*******************************************************************
 class RealNumberImpl :
   virtual public BON::AtomImpl,
-  public PredefinedTypeImpl 
+  virtual public PredefinedTypeImpl 
 {
 public:
 
@@ -653,7 +653,7 @@ public:
 //*******************************************************************
 class ShortIntegerImpl :
   virtual public BON::AtomImpl,
-  public PredefinedTypeImpl 
+  virtual public PredefinedTypeImpl 
 {
 public:
 
@@ -668,7 +668,7 @@ public:
 //*******************************************************************
 class StringImpl :
   virtual public BON::AtomImpl,
-  public PredefinedTypeImpl 
+  virtual public PredefinedTypeImpl 
 {
 public:
 
@@ -683,7 +683,7 @@ public:
 //*******************************************************************
 class TypeEncodingImpl :
   virtual public BON::AtomImpl,
-  public PredefinedTypeImpl 
+  virtual public PredefinedTypeImpl 
 {
 public:
 
@@ -698,7 +698,7 @@ public:
 //*******************************************************************
 class TypeKindImpl :
   virtual public BON::AtomImpl,
-  public PredefinedTypeImpl 
+  virtual public PredefinedTypeImpl 
 {
 public:
 
@@ -714,7 +714,7 @@ public:
 class BoxedImpl :
   virtual public BON::ReferenceImpl,
   virtual public OrderableImpl,
-  public NamedTypeImpl 
+  virtual public NamedTypeImpl 
 {
 public:
 	//
@@ -732,7 +732,7 @@ public:
 //*******************************************************************
 class InEventPortImpl :
   virtual public BON::ReferenceImpl,
-  public PortImpl 
+  virtual public PortImpl 
 {
 public:
 	//
@@ -750,7 +750,7 @@ public:
 //*******************************************************************
 class OutEventPortImpl :
   virtual public BON::ReferenceImpl,
-  public PortImpl 
+  virtual public PortImpl 
 {
 public:
 	//
@@ -771,7 +771,7 @@ public:
 //*******************************************************************
 class ProvidedRequestPortImpl :
   virtual public BON::ReferenceImpl,
-  public PortImpl 
+  virtual public PortImpl 
 {
 public:
 	//
@@ -789,7 +789,7 @@ public:
 //*******************************************************************
 class RequiredRequestPortImpl :
   virtual public BON::ReferenceImpl,
-  public PortImpl 
+  virtual public PortImpl 
 {
 public:
 	//
@@ -810,7 +810,7 @@ public:
 //*******************************************************************
 class AggregateImpl :
   virtual public BON::ModelImpl,
-  public NoInheritableImpl 
+  virtual public NoInheritableImpl 
 {
 public:
 	//
@@ -828,8 +828,8 @@ public:
 //*******************************************************************
 class EnumImpl :
   virtual public BON::ModelImpl,
-  public NoInheritableImpl,
-  public ConstantTypeImpl 
+  virtual public NoInheritableImpl,
+  virtual public ConstantTypeImpl 
 {
 public:
 	//
@@ -846,7 +846,7 @@ public:
 //   C  L  A  S  S   FactoryOperationImpl
 //*******************************************************************
 class FactoryOperationImpl :
-  public HasExceptionsImpl 
+  virtual public HasExceptionsImpl 
 {
 public:
 
@@ -886,7 +886,7 @@ public:
 //   C  L  A  S  S   LookupOperationImpl
 //*******************************************************************
 class LookupOperationImpl :
-  public HasExceptionsImpl 
+  virtual public HasExceptionsImpl 
 {
 public:
 
@@ -919,7 +919,7 @@ public:
 //*******************************************************************
 class SwitchedAggregateImpl :
   virtual public BON::ModelImpl,
-  public NoInheritableImpl 
+  virtual public NoInheritableImpl 
 {
 public:
 	//
@@ -939,7 +939,7 @@ public:
 //   C  L  A  S  S   TwowayOperationImpl
 //*******************************************************************
 class TwowayOperationImpl :
-  public HasExceptionsImpl 
+  virtual public HasExceptionsImpl 
 {
 public:
 	//
@@ -959,7 +959,7 @@ public:
 //*******************************************************************
 class AliasImpl :
   virtual public BON::ReferenceImpl,
-  public NoInheritableImpl 
+  virtual public NoInheritableImpl 
 {
 public:
 	//
@@ -977,7 +977,7 @@ public:
 //*******************************************************************
 class CollectionImpl :
   virtual public BON::ReferenceImpl,
-  public NoInheritableImpl 
+  virtual public NoInheritableImpl 
 {
 public:
 	//
@@ -994,9 +994,9 @@ public:
 //   C  L  A  S  S   ComponentImpl
 //*******************************************************************
 class ComponentImpl :
-  public NamedTypeImpl,
-  public SupportsInterfacesImpl,
-  public ManageableImpl
+  virtual public NamedTypeImpl,
+  virtual public SupportsInterfacesImpl,
+  virtual public ManageableImpl
 {
 public:
 	//
@@ -1025,8 +1025,8 @@ private:
 //   C  L  A  S  S   ComponentFactoryImpl
 //*******************************************************************
 class ComponentFactoryImpl :
-  public SupportsInterfacesImpl,
-  public HasOperationsImpl 
+  virtual public SupportsInterfacesImpl,
+  virtual public HasOperationsImpl 
 {
 public:
 	//
@@ -1049,9 +1049,9 @@ public:
 //   C  L  A  S  S   ObjectImpl
 //*******************************************************************
 class ObjectImpl :
-  public HasOperationsImpl,
-  public ProvideableImpl,
-  public PrefixableImpl 
+  virtual public HasOperationsImpl,
+  virtual public ProvideableImpl,
+  virtual public PrefixableImpl 
 {
 public:
 	//
@@ -1069,9 +1069,9 @@ public:
 //   C  L  A  S  S   ObjectByValueImpl
 //*******************************************************************
 class ObjectByValueImpl :
-  public PrefixableImpl,
-  public SupportsInterfacesImpl,
-  public HasOperationsImpl 
+  virtual public PrefixableImpl,
+  virtual public SupportsInterfacesImpl,
+  virtual public HasOperationsImpl 
 {
 public:
 	//
@@ -1094,7 +1094,7 @@ public:
 //   C  L  A  S  S   EventImpl
 //*******************************************************************
 class EventImpl :
-  public ObjectByValueImpl 
+  virtual public ObjectByValueImpl 
 {
 public:
 
@@ -1108,7 +1108,7 @@ public:
 //   C  L  A  S  S   ValueObjectImpl
 //*******************************************************************
 class ValueObjectImpl :
-  public ObjectByValueImpl 
+  virtual public ObjectByValueImpl 
 {
 public:
 
@@ -1467,7 +1467,7 @@ public:
 
 
 
-}; // namespace IDML_BON
+}; // namespace IDML
 
 ///BUP
 // add your additional class definitions here

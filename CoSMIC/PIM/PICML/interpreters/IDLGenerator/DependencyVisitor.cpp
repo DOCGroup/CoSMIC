@@ -8,7 +8,7 @@
 #include <fstream>
 #endif
 
-namespace IDML_BON
+namespace IDML
 {
   void DependencyVisitor::visitOrderableImpl( const Orderable& object )
   {
@@ -254,5 +254,5 @@ namespace IDML_BON
     std::multiset<ComponentFactory> cf = cr->getManagesComponentSrcs ();
     if (cf.size () > 0) cr->getComponent ()->ref_managed (true);
   }
-} // namespace IDML_BON
+} // namespace IDML
 
