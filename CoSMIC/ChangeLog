@@ -1,3 +1,26 @@
+Mon Aug 30 09:40:29 CDT 2004 Gan Deng <gan.deng@vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML.xml:
+
+          Fixed the wrong earlier check-in of the PICML.xml.
+          
+        * PIM/PICML/interpreters/packaging/PICML.h:
+        * PIM/PICML/interpreters/packaging/PICML.cpp:
+        * PIM/PICML/interpreters/packaging/PICML.xsd:
+        * PIM/PICML/interpreters/plan/PICML.h:
+        * PIM/PICML/interpreters/plan/PICML.cpp:
+        * PIM/PICML/interpreters/plan/PICML.xsd:
+        * PIM/PICML/interpreters/MPC/Component/PICML.h:
+        * PIM/PICML/interpreters/MPC/Component/PICML.cpp:
+        * PIM/PICML/interpreters/cidl/Component/PICML.h:
+        * PIM/PICML/interpreters/cidl/Component/PICML.cpp:
+        * PIM/PICML/interpreters/domain/PICML.h:
+        * PIM/PICML/interpreters/domain/PICML.xsd:
+        * PIM/PICML/interpreters/domain/PICML.cpp:
+        
+          Reflects changes to the meta by adding new Picml.h and Picml.cpp
+          and PICML.xsd
+
 Sun Aug 29 22:46:29 CDT 2004 Gan Deng <gan.deng@vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
