@@ -1,12 +1,45 @@
+Wed May  5 02:44:11 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PICML/examples/BasicSP.mga:
+        * PICML/examples/BasicSP.xme:
+
+          Added new example to show how to view an assembly. I haven't
+          added all the package related material. But those should be
+          straightforward.
+
+        * PICML/paradigms/IDML-Meta.xme:
+
+          Made ComponenDef show it's type in instances.
+
+        * PICML/paradigms/IDML.mga:
+        * PICML/paradigms/IDML.xmp:
+
+          Updated to reflect the above change.
+
+        * PICML/paradigms/PICML.mga:
+        * PICML/paradigms/PICML.xme:
+        * PICML/paradigms/PICML.xmp:
+
+          Next version of the paradigm. This time with some constraints.
+          More need to be added. The Meta is still pseudo-stable.
+
+        * PICML/paradigms/icons/DataType.bmp:
+        * PICML/paradigms/icons/component.bmp:
+        * PICML/paradigms/icons/manages.bmp:
+
+          New icons + old icons resized so that GME doesn't stretch them
+          to fit it's idea of how big an idol representing a model should
+          be.
+
 Fri Apr 30 18:29:04 2004  Jeff Parsons  <j.parsons@vanderbilt.edu>
 
         * PICML/paradigms/icons/component.bmp:
-        
+
           Made the icon more elongated, to hopefully make a better-looking
           display when used as a reference.
-          
+
         * PICML/paradigms/icons/manages.bmp:
-        
+
           Changed the 'component' piece of this icon to match the change
           to the icon above.
 
