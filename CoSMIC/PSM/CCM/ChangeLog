@@ -1,3 +1,19 @@
+Tue Nov 09 09:03:33 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * OCML/interpreters/OCMLConfiguratorInterpreter/OCMLConfigurationInterpreterBON2Component.dsp :
+        * CCM/OCML/interpreters/OCMLConfiguratorInterpreter/dlldata.c :
+        * CCM/OCML/interpreters/OCMLConfiguratorLibrary/DLLEntry.hpp :
+        * CCM/OCML/interpreters/OCMLConfiguratorLibrary/LoadLibrary.cpp :
+        * CCM/OCML/interpreters/OCMLConfiguratorLibrary/LoadLibrary.hpp :
+        * CCM/OCML/interpreters/OCMLConfiguratorLibrary/OCMLConfigurator.dsp :
+        * CCM/OCML/interpreters/OCML_Interpreter/ComponentLib.tlb :
+        * CCM/OCML/interpreters/OCML_Interpreter/OCMLBON2Component.dsp :
+        * CCM/OCML/interpreters/TAOServiceConfExportInterpreter/OCML_Svc_Conf_ExporterBON2Component.dsp :
+        * CCM/OCML/interpreters/TAOServiceConfExporter/SvcConfExporter.dsp :
+
+          Fixed some compile/link errors.
+	
+
 Mon Nov 08 11:57:41 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * OCML/interpreters/OCMLConfiguratorLibrary/MainFrame.cpp: 

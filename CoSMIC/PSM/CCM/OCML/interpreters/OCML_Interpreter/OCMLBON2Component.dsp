@@ -52,11 +52,11 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 xerces-c_2D.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"Debug/OCML.dll" /pdbtype:sept /libpath:"$(XERCESCROOT)\lib"
+# ADD LINK32 xerces-c_2D.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCML.dll" /pdbtype:sept /libpath:"$(XERCESCROOT)\lib"
 # Begin Custom Build - Performing registration
 OutDir=.\..\..\..\..\..\PIM\PICML\lib
-TargetPath=.\Debug\OCML.dll
-InputPath=.\Debug\OCML.dll
+TargetPath=\CoSMIC\PIM\PICML\bin\OCML.dll
+InputPath=\CoSMIC\PIM\PICML\bin\OCML.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -80,7 +80,6 @@ SOURCE="$(InputPath)"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O1 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /Yu"stdafx.h" /FD /c
 # ADD CPP /nologo /MD /W3 /GR /GX /O1 /I ".\\" /I "C:/Program Files/GME/sdk/BON/" /I "$(XERCESCROOT)\include" /D "NDEBUG" /D "_ATL_STATIC_REGISTRY" /D "WIN32" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /D "BUILDER_OBJECT_NETWORK_V2" /Yu"stdafx.h" /FD /Zm200 /c
-# SUBTRACT CPP /Z<none>
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
 # ADD RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"

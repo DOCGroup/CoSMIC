@@ -66,7 +66,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo /o"$(PICML_ROOT)\lib\OCMLSvcConfExporter.bsc"
 LINK32=link.exe
 # ADD BASE LINK32 /machine:IX86
-# ADD LINK32 advapi32.lib user32.lib xerces-c_2d.lib /nologo /version:1.0 /subsystem:windows /dll /incremental:no /pdb:"$(PICML_ROOT)\bin\OCMLSvcConfExporterd.pdb" /debug /machine:I386 /out:"$(PICML_ROOT)\bin\OCMLSvcConfExporterd.dll" /libpath:"$(XERCESCROOT)\lib"
+# ADD LINK32 advapi32.lib user32.lib xerces-c_2d.lib /nologo /version:1.0 /subsystem:windows /dll /incremental:no /pdb:"$(PICML_ROOT)\bin\OCMLSvcConfExporterd.pdb" /debug /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCMLSvcConfExporterd.dll" /libpath:"$(XERCESCROOT)\lib"
 # SUBTRACT LINK32 /pdb:none
 
 !ENDIF 

@@ -2,7 +2,6 @@
  * $Id$
  */
 
-
 #include "StdAfx.h"
 #include "LoadLibrary.hpp"
 #include "assert.h"

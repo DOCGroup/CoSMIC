@@ -10,7 +10,7 @@
 #include "extern_declarations.hpp"
 
 // The caller should free the result with free
-typedef char* (*DLLFunctionPtr) (const char*, size_t);
+typedef char* (*DLLFunctionPtr) (const char*, size_t, const char*);
 
 extern "C" OCMLConfigurator_API char*
 DLLFunction(const char* values, size_t values_size, const char* tree_file);

@@ -52,7 +52,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 OCMLSvcConfExporterd.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCML_Svc_Conf_Exporter.dll" /pdbtype:sept /libpath:"..\TAOServiceConfExporter"
+# ADD LINK32 ..\..\..\..\..\PIM\PICML\bin\OCMLSvcConfExporterd.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCML_Svc_Conf_Exporter.dll" /pdbtype:sept /libpath:"..\TAOServiceConfExporter"
 # Begin Custom Build - Performing registration
 OutDir=.\..\..\..\..\..\PIM\PICML\lib
 TargetPath=\CoSMIC\PIM\PICML\bin\OCML_Svc_Conf_Exporter.dll
@@ -80,7 +80,6 @@ SOURCE="$(InputPath)"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O1 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /Yu"stdafx.h" /FD /c
 # ADD CPP /nologo /MD /W3 /GR /GX /O1 /I ".\\" /I "C:/Program Files/GME/sdk/BON/" /I "$(XERCESCROOT)/include" /D "NDEBUG" /D "_ATL_STATIC_REGISTRY" /D "WIN32" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /D "BUILDER_OBJECT_NETWORK_V2" /Yu"stdafx.h" /FD /Zm200 /c
-# SUBTRACT CPP /Z<none>
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
 # ADD RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
@@ -89,7 +88,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 OCMLSvcConfExporter.lib /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCML_Svc_Conf_Exporter.dll" /libpath:"$(PICML_ROOT)\lib"
+# ADD LINK32 ..\..\..\..\..\PIM\PICML\bin\OCMLSvcConfExporter.lib /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCML_Svc_Conf_Exporter.dll" /libpath:"$(PICML_ROOT)\lib"
 # SUBTRACT LINK32 /debug
 # Begin Custom Build - Performing registration
 OutDir=.\..\..\..\..\..\PIM\PICML\lib
