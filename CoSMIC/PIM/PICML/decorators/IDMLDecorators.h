@@ -20,6 +20,7 @@ using namespace std;
 #define PICML_BYTE_NAME                "Byte"
 #define PICML_COLLECTION_NAME          "Collection"
 #define PICML_COMPONENT_NAME           "Component"
+#define PICML_COMPONENTREF_NAME        "ComponentRef"
 #define PICML_COMPONENTFACTORY_NAME    "ComponentFactory"
 #define PICML_ENUM_NAME                "Enum"
 #define PICML_EVENT_NAME               "Event"
@@ -27,6 +28,7 @@ using namespace std;
 #define PICML_GENERICVALUE_NAME        "GenericValue"
 #define PICML_GENERICVALUEOBJECT_NAME  "GenericValueObject"
 #define PICML_INEVENTPORT_NAME         "InEventPort"
+#define PICML_INHERITS_NAME            "Inherits"
 #define PICML_LONGINTEGER_NAME         "LongInteger"
 #define PICML_MEMBER_NAME              "Member"
 #define PICML_OBJECT_NAME              "Object"
@@ -40,7 +42,6 @@ using namespace std;
 #define PICML_TYPEENCODING_NAME        "TypeEncoding"
 #define PICML_TYPEKIND_NAME            "TypeKind"
 #define PICML_VALUEOBJECT_NAME         "ValueObject"
-#define PICML_INHERITS_NAME            "Inherits"
 
 static const char* PREF_TYPESHOWN				= "isTypeShown";
 
@@ -95,7 +96,21 @@ class MemberDecorator : public DecoratorBase
 public:
   MemberDecorator();
 
-  virtual void initialize( IMgaFCO *obj, CComPtr<IMgaMetaFCO>& metaFco );
+  virtual void draw( CDC* pDC );
+  virtual void LoadBitmap();
+};
+
+//########################################################
+//
+//	CLASS : InheritsDecorator
+//
+//########################################################
+
+class InheritsDecorator : public DecoratorBase
+{
+public:
+  InheritsDecorator();
+
   virtual void draw( CDC* pDC );
   virtual void LoadBitmap();
 };

@@ -1792,6 +1792,7 @@ or self.requiredUUID <> ""]]>
             <dispname>Multiplicity of objects, which are associated to ComponentRef as "src" over PackageInterface, has to match 0..1.</dispname>
          </constraint>
          <regnode name = "icon" value ="componentref.bmp"></regnode>
+         <regnode name = "decorator" value ="MGA.Decorator.IDMLDecorator"></regnode>
          <regnode name = "isNameEnabled" value ="false"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "Component"></pointeritem>
@@ -2052,6 +2053,7 @@ or self.requiredUUID <> ""]]>
             <dispname>A reference cannot be null</dispname>
          </constraint>
          <regnode name = "icon" value ="inherits.bmp"></regnode>
+         <regnode name = "decorator" value ="MGA.Decorator.IDMLDecorator"></regnode>
          <regnode name = "isNameEnabled" value ="false"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "Component"></pointeritem>

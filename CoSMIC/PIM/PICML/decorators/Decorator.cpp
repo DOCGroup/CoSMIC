@@ -42,8 +42,19 @@ STDMETHODIMP CDecorator::Initialize( IMgaProject *project,
 				m_pDecorator = new ComponentDecorator( metaPart );
 				break;
 			case OBJTYPE_REFERENCE :
-				m_pDecorator = new MemberDecorator;
-				break;
+        {
+          CComBSTR bstr;
+          metaFco->get_Name ( &bstr );
+
+          // ComponentDecorator draws ComponentRefs too.
+          if ( bstr == PICML_COMPONENTREF_NAME )
+				    m_pDecorator = new ComponentDecorator( metaPart );
+          else if ( bstr == PICML_INHERITS_NAME )
+            m_pDecorator = new InheritsDecorator;
+          else
+				    m_pDecorator = new MemberDecorator;
+				  break;
+        }
 		}
 
 		if ( m_pDecorator ) {

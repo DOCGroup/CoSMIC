@@ -1,3 +1,25 @@
+Fri Sep  3 11:23:49 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/decorators/Decorator.cpp:
+        * PIM/PICML/decorators/Decorator.rc:
+        * PIM/PICML/decorators/IDMLDecorators.cpp:
+        * PIM/PICML/decorators/IDMLDecorators.h:
+        * PIM/PICML/decorators/resource.h:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        
+          Fixes and enhancements to PICML decorator:
+          
+          - All ports of the referenced component (including the
+            inherited ones, see entry below) are displayed in
+            ComponentRef.
+            
+          - The Inherits icon, if it referred to a component in a
+            model, was displaying the ports of the referenced
+            component (default GME decorator behavior). The PICML
+            decorator now draws this icon, and does not display
+            the ports.
+
 Thu Sep  2 16:04:05 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/decorators/Decorator.cpp:

@@ -133,6 +133,7 @@ IDB_BITMAP_OUTEVENT_RT  BITMAP  DISCARDABLE     "..\\paradigms\\icons\\outevent_
 IDB_BITMAP_RECEPTACLE_LF BITMAP  DISCARDABLE     "..\\paradigms\\icons\\receptacle_lf.bmp"
 IDB_BITMAP_FACET        BITMAP  DISCARDABLE     "..\\paradigms\\icons\\providedrequestport.bmp"
 IDB_BITMAP_AGGREGATEREF BITMAP  DISCARDABLE     "..\\paradigms\\icons\\aggregateref.bmp"
+IDB_BITMAP_INHERITS     BITMAP  DISCARDABLE     "..\\paradigms\\icons\\inherits.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

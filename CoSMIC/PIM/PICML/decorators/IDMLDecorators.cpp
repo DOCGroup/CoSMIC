@@ -20,8 +20,8 @@ static const int GAP_LABEL = 2;
 static const int GAP_PORT = 3;
 static const int GAP_XMODELPORT = 4;
 static const int GAP_YMODELPORT = 8;
-static const int GAP_XOVALICONFUDGE = 5;
-static const int GAP_YOVALICONFUDGE = 2;
+static const int GAP_XBORDER = 5;
+static const int GAP_YBORDER = 2;
 static const int GAP_PORTLABEL = 20;
 static const int WIDTH_MODEL = 113;
 static const int HEIGHT_MODEL = 71;
@@ -144,12 +144,6 @@ MemberDecorator::MemberDecorator()
 {
 }
 
-void 
-MemberDecorator::initialize( IMgaFCO *obj, CComPtr<IMgaMetaFCO>& metaFco )
-{
-  DecoratorBase::initialize( obj, metaFco );
-}
-
 void
 MemberDecorator::LoadBitmap()
 {
@@ -250,6 +244,43 @@ MemberDecorator::draw( CDC* pDC )
     // Skip drawing the name only for attribute members appearing
     // in the editor.
     if (!m_mgaFco || m_metaName != PICML_ATTRIBUTEMEMBER_NAME) {
+		  CPoint namePos( m_rect.left + ICON_SIZEX / 2,
+                      m_rect.bottom + NAME_MARGINY );
+		  d_util.DrawText( pDC, 
+                       m_name,
+                       namePos,
+                       d_util.GetFont(GME_NAME_FONT),
+                       m_nameColor,
+                       TA_BOTTOM | TA_CENTER);
+    }
+  }
+}
+
+//########################################################
+//
+//	CLASS : InheritsDecorator
+//
+//########################################################
+
+InheritsDecorator::InheritsDecorator()
+  : DecoratorBase()
+{
+}
+
+void
+InheritsDecorator::LoadBitmap()
+{
+  m_bitmap.ReadFromResource( IDB_BITMAP_INHERITS );
+}
+
+void
+InheritsDecorator::draw( CDC* pDC )
+{
+  if (m_bitmap.IsValid ()) {
+    m_bitmap.Draw( pDC, m_rect );
+
+    // Skip drawing the name in the editor.
+    if (!m_mgaFco) {
 		  CPoint namePos( m_rect.left + ICON_SIZEX / 2,
                       m_rect.bottom + NAME_MARGINY );
 		  d_util.DrawText( pDC, 
@@ -388,6 +419,56 @@ ComponentDecorator::initialize(IMgaFCO *obj, CComPtr<IMgaMetaFCO>& metaFco)
   DecoratorBase::initialize(obj, metaFco);
   if (!m_mgaFco) return;
   
+	CComPtr<IMgaMetaAspect>	spParentAspect;
+	COMTHROW( m_metaPart->get_ParentAspect( &spParentAspect ) );
+
+	CComPtr<IMgaMetaFCO> spMetaFCO;
+  m_mgaFco->get_Meta( &spMetaFCO );
+  CComQIPtr<IMgaMetaModel> spMetaModel;
+
+  if ( m_metaName == PICML_COMPONENT_NAME )
+	  spMetaModel = spMetaFCO;
+  else
+    {
+      CComQIPtr<IMgaReference> spRef = m_mgaFco;
+      CComPtr<IMgaFCO> spFCO = NULL;
+      spRef->get_Referred( &spFCO );
+
+      // We could be drawing an unassigned ComponentRef.
+      if ( !spFCO ) return;
+
+      CComPtr<IMgaMetaFCO> tmp = NULL;
+      spFCO->get_Meta( &tmp );
+      spMetaModel = tmp;
+    }
+
+	CComBSTR bstrAspect;
+	COMTHROW( m_metaPart->get_KindAspect( &bstrAspect ) );
+	if ( bstrAspect.Length() == 0 ) {
+		bstrAspect.Empty();
+		COMTHROW( spParentAspect->get_Name( &bstrAspect ) );
+	}
+	
+	HRESULT hr = spMetaModel->get_AspectByName( bstrAspect, &m_spAspect );
+	
+	if ( hr == E_NOTFOUND) {
+		try {
+			// JEFF: There is at present only one aspect in PICML,
+      // but this is still the easiest way
+			m_spAspect = NULL;
+			CComPtr<IMgaMetaAspects> spAspects;
+			COMTHROW( spMetaModel->get_Aspects( &spAspects ) );
+			ASSERT( spAspects );
+			long nAspects = 0;
+			COMTHROW( spAspects->get_Count( &nAspects ) );
+			if ( nAspects > 0 ) {
+				COMTHROW( spAspects->get_Item( 1, &m_spAspect ) );
+			}
+		}
+		catch ( hresult_exception& ) {
+		}
+	}
+
   loadPorts();
 
 	CComBSTR bstrPath = PREF_TYPESHOWN;
@@ -426,25 +507,23 @@ ComponentDecorator::initialize(IMgaFCO *obj, CComPtr<IMgaMetaFCO>& metaFco)
 CSize
 ComponentDecorator::getPreferredSize() const
 {
-	if ( m_vecLeftPorts.empty() && m_vecRightPorts.empty() )
-		return DecoratorBase::getPreferredSize();
-
 	long lWidth =
     ( 8 * m_iMaxPortTextLength
       + GAP_LABEL
       + GME_PORT_SIZE
       + GAP_XMODELPORT
-      + GAP_XOVALICONFUDGE )
+      + GAP_XBORDER )
       * 2
     + GAP_PORTLABEL;
+
 	long lHeight =
-    (GAP_YMODELPORT + GAP_YOVALICONFUDGE) * 2
+    ( GAP_YMODELPORT + GAP_YBORDER ) * 2
     + max( m_vecLeftPorts.size(), m_vecRightPorts.size() )
       * ( GME_PORT_SIZE + GAP_PORT )
     - GAP_PORT;
 
-	return CSize( max( (long) WIDTH_MODEL, lWidth ),
-                max( (long) HEIGHT_MODEL, lHeight ) );
+	return CSize( max( m_bitmap.Width(), lWidth ),
+                max( m_bitmap.Height(), lHeight ) );
 }
 
 void
@@ -460,11 +539,11 @@ ComponentDecorator::setLocation( const CRect& cRect )
 
 	for ( i = 0 ; i < m_vecLeftPorts.size() ; i++ ) {
 		m_vecLeftPorts[ i ]->setLocation( CRect( GAP_XMODELPORT
-                                             + GAP_XOVALICONFUDGE, 
+                                             + GAP_XBORDER, 
                                              lY, 
                                              GAP_XMODELPORT
                                              + GME_PORT_SIZE
-                                             + GAP_XOVALICONFUDGE, 
+                                             + GAP_XBORDER, 
                                              lY + GME_PORT_SIZE ) );
 		lY += GME_PORT_SIZE + GAP_PORT;
 	}
@@ -478,11 +557,11 @@ ComponentDecorator::setLocation( const CRect& cRect )
 		m_vecRightPorts[ i ]->setLocation( CRect( cRect.Width()
                                               - GAP_XMODELPORT
                                               - GME_PORT_SIZE
-                                              - GAP_XOVALICONFUDGE, 
+                                              - GAP_XBORDER, 
                                               lY,
                                               cRect.Width()
                                               - GAP_XMODELPORT
-                                              - GAP_XOVALICONFUDGE, 
+                                              - GAP_XBORDER, 
                                               lY + GME_PORT_SIZE ) );
 		lY += GME_PORT_SIZE + GAP_PORT;
 	}
@@ -491,7 +570,10 @@ ComponentDecorator::setLocation( const CRect& cRect )
 void
 ComponentDecorator::LoadBitmap()
 {
-  m_bitmap.ReadFromResource( IDB_BITMAP_COMPONENT );       
+  if ( m_metaName == PICML_COMPONENT_NAME )
+    m_bitmap.ReadFromResource( IDB_BITMAP_COMPONENT );
+  else
+    m_bitmap.ReadFromResource( IDB_BITMAP_COMPONENTREF );
 }
 
 void
@@ -572,54 +654,31 @@ ComponentDecorator::getPort( CComPtr<IMgaFCO> spFCO ) const
 void
 ComponentDecorator::loadPorts()
 {
-	CComPtr<IMgaMetaAspect>	spParentAspect;
-	COMTHROW( m_metaPart->get_ParentAspect( &spParentAspect ) );
+  // If we are in the Part Browser, we don't want to load ports.
+	if ( !m_spAspect ) return;
 
-	CComQIPtr<IMgaModel> spModel = m_mgaFco;
-	CComPtr<IMgaMetaFCO> spMetaFCO;
-	COMTHROW( spModel->get_Meta( &spMetaFCO ) );
-	CComQIPtr<IMgaMetaModel> spMetaModel = spMetaFCO;
+	vector<PortDecorator*>	vecPorts;
+  CComQIPtr<IMgaModel> spModel;
 
-	CComBSTR bstrAspect;
-	COMTHROW( m_metaPart->get_KindAspect( &bstrAspect ) );
-	if ( bstrAspect.Length() == 0 ) {
-		bstrAspect.Empty();
-		COMTHROW( spParentAspect->get_Name( &bstrAspect ) );
-	}
-	
-	HRESULT hr = spMetaModel->get_AspectByName( bstrAspect, &m_spAspect );
-	
-	if ( hr == E_NOTFOUND) {
-		try {
-			// JEFF: There is at present only one aspect in PICML,
-      // but this is still the easiest way
-			m_spAspect = NULL;
-			CComPtr<IMgaMetaAspects> spAspects;
-			COMTHROW( spMetaModel->get_Aspects( &spAspects ) );
-			ASSERT( spAspects );
-			long nAspects = 0;
-			COMTHROW( spAspects->get_Count( &nAspects ) );
-			if ( nAspects > 0 ) {
-				COMTHROW( spAspects->get_Item( 1, &m_spAspect ) );
-			}
-		}
-		catch ( hresult_exception& ) {
-		}
-	}
+  if ( m_metaName == PICML_COMPONENT_NAME )
+	  spModel = m_mgaFco;
+  else
+    {
+      CComQIPtr<IMgaReference> spRef = m_mgaFco;
+      CComPtr<IMgaFCO> tmp = NULL;
+      spRef->get_Referred ( &tmp );
+      if ( !tmp ) return;
+      spModel = tmp;
+    }
 
-	if ( m_spAspect ) {
+	CComPtr<IMgaFCOs> spFCOs;
+	COMTHROW( spModel->get_ChildFCOs( &spFCOs ) );
 
-		vector<PortDecorator*>	vecPorts;
+  // Iterate over the child FCOs list and add any ports to
+  // the vector.
+  this->findPorts( vecPorts, spFCOs );
 
-		CComPtr<IMgaFCOs> spFCOs;
-		COMTHROW( spModel->get_ChildFCOs( &spFCOs ) );
-
-    // Iterate over the child FCOs list and add any ports to
-    // the vector.
-    this->findPorts( vecPorts, spFCOs );
-
-		orderPorts( vecPorts );
-	}
+	orderPorts( vecPorts );
 }
 
 void
