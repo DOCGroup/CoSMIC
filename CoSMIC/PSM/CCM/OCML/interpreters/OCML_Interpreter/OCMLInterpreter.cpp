@@ -91,9 +91,13 @@ OCMLInterpreter::save_file(const char* title, std::string& file_name)
   ofn.Flags = OFN_PATHMUSTEXIST;
 
   // GetSaveFileName() system call shows up the save file dialog
-  bool result;
-  if (result = GetSaveFileName(&ofn))
+
+  bool result = false;
+  if (GetSaveFileName (&ofn) != 0)
+  {
     file_name = szFile;
+	result = true;
+  }
   delete[] szFile;
   return result;
 }

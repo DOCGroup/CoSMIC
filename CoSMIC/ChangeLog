@@ -1,3 +1,28 @@
+Thu Oct 21 14:55:21 2004  Krishnakumar B  <kitty@dre.vanderbilt.edu>
+
+        * PIM/PICML/examples/RobotAssembly.xme: Updated to work after
+          Jeff's modifications which caused problems.
+
+        * PIM/PICML/interpreters/packaging/CompIcon.ico: Updated to fix
+          Doug's comments.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Updated to fix problems due to Jeff's previous commit.
+
+        * PSM/CCM/OCML/interpreters/OCML_Interpreter/OCMLBON2Component.dsp:
+        * PSM/CCM/OCML/interpreters/OCML_Interpreter/OCMLInterpreter.cpp:
+
+          Updated to use environement variables instead of hard-coded
+          paths. Fixed a compilation warning.
+
+        * PIM/PICML/examples/BasicSP.xme:
+
+          Removed this file.
+
 Wed Oct 20 21:20:10 2004  Gan Deng  <gan.deng@vanderbilt.edu>
 
         * PIM/PICML/interpreters/EQAL/BON2Component.cpp
@@ -8,7 +33,7 @@ Wed Oct 20 21:20:10 2004  Gan Deng  <gan.deng@vanderbilt.edu>
 
 Wed Oct 20 14:47:10 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-        * PIM/PICML/examples/RobotAssembly.xme: 
+        * PIM/PICML/examples/RobotAssembly.xme:
 
           Added the OCML configuration for Watch Manager and Human Machine
           Interface components.
@@ -25,7 +50,7 @@ Mon Oct 18 17:54:28 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xmp:
         * PIM/PICML/paradigms/PICMLTemplate.xme:
-        
+
           Changed aspect names to avoid clashes due to the stricter
           constraint checking of GME 4.9.27. Also rearranged some of
           the crowded paradigm sheets to make them more readable.
@@ -35,16 +60,16 @@ Fri Oct  8 14:17:25 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/decorators/Decorator.cpp:
         * PIM/PICML/decorators/IDMLDecorators.cpp:
         * PIM/PICML/decorators/IDMLDecorators.h:
-        
+
           Fixed decorator to correctly display active and inactive
           objects when modifying the members of the GME Set
           CollocationGroup.
-          
+
         * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xmp:
         * PIM/PICML/paradigms/PICMLTemplate.xme:
-        
+
           Added an item in the DeploymentPlan paradigm sheet to its
           aspect.
 
@@ -58,14 +83,14 @@ Fri Oct  8 13:33:41 2004  Gan Deng <gan.deng@vanderbilt.edu>
         * PIM/PICML/interpreters/domain/PICML.h
         * PIM/PICML/paradigms/PICML.xml
         * PIM/PICML/paradigms/PICML.xmp
-        
+
           Updated the above files to fix interpreters build errors,
           since these files were not up to date before.
 
 Fri Oct  1 14:33:41 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
-        
+
           Modified code generation so a Component's inherited
           attributes are not generated in the derived Component,
           similarly to inherited ports. Also minor changes to
@@ -77,18 +102,18 @@ Thu Sep 30 16:13:57 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xmp:
         * PIM/PICML/paradigms/PICMLTemplate.xme:
-        
+
           - In EventChannelConfiguration paradigm sheet, removed
             duplicate inheritance that had been added to proxies.
-            
+
           - In EventChannelConfiguration paradigm sheet, removed
             containment of abstract Model RTEC_Proxy in
             EventChannelConfiguration Model, since it was causing
             a duplicate containment error in the metainterpreter.
-            
+
           - In ComponentType, added containment of Attribute in
             Component, since it was lost in the changes of
-            
+
             Thu Sep 23 15:06:37 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
 Thu Sep 23 15:06:37 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
@@ -107,13 +132,13 @@ Thu Sep 23 15:06:37 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xmp:
         * PIM/PICML/paradigms/PICMLTemplate.xme:
-        
+
           Modified handling of inheritance in Component model elements.
           Formerly, all inheritable types would contain one or more
           Inherits model elements which are GME References referring
           to the inherited type. However, for Components, this made it
           impossible for a Component to display its inherited ports
-          in a model and to make connections to such ports. So a 
+          in a model and to make connections to such ports. So a
           different mechanism for inheritance is now used for Components.
           A derived Component is created in a model by copying the
           intended base Component as a subtype. This change required
@@ -124,11 +149,11 @@ Thu Sep 23 15:06:37 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 Thu Sep 16 17:02:20 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters.IDLImporter/XercesString.cpp:
-        
+
           Added #include <string>.
-          
+
         * PIM/PICML/interpreters.IDLImporter/picml_visitor.cpp:
-        
+
           In VC6, a ternary operator ( ? : ) is causing an unnecessary
           and unwanted call to an XStr constructor. Adding const to
           the XMLCh* variable declaration at least makes sure the
@@ -138,15 +163,15 @@ Thu Sep 16 17:02:20 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
 Thu Sep 16 15:54:32 CDT 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
       * PIM/PICML/paradigms/PICML-uml.xme
-	* PIM/PICML/paradigms/PICML.xme
-	* PIM/PICML/paradigms/PICML.xmp
+        * PIM/PICML/paradigms/PICML.xme
+        * PIM/PICML/paradigms/PICML.xmp
         Resolved constraint violations from the BGML paradigm.
 
 Mon Sep 06 19:03:32 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-	* PIM/PICML/paradigms/PICML-uml.xme
-	* PIM/PICML/paradigms/PICML.xme
-	* PIM/PICML/paradigms/PICML.xmp
+        * PIM/PICML/paradigms/PICML-uml.xme
+        * PIM/PICML/paradigms/PICML.xme
+        * PIM/PICML/paradigms/PICML.xmp
 
           Added "configurator" field to the ImplementationArtifact.
 
@@ -159,7 +184,7 @@ Sat Sep  4 22:16:34 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xmp:
         * PIM/PICML/paradigms/PICMLTemplate.xme:
-        
+
           Modified decorator to include drawing of ComponentAssembly.
 
 Fri Sep  3 17:11:29 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
@@ -167,7 +192,7 @@ Fri Sep  3 17:11:29 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/decorators/Decorator.cpp:
         * PIM/PICML/decorators/IDMLDecorators.cpp:
         * PIM/PICML/decorators/IDMLDecorators.h:
-        
+
           Fixed PICML decorator so that ToolTip messages are displayed
           for ports in referenced Component model elements the same
           as they are in the Component model element itself.
@@ -184,13 +209,13 @@ Fri Sep  3 11:23:49 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xmp:
         * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICMLTemplate.xme:
-        
+
           Fixes and enhancements to PICML decorator:
-          
+
           - All ports of the referenced component (including the
             inherited ones, see entry below) are displayed in
             ComponentRef.
-            
+
           - The Inherits icon, if it referred to a component in a
             model, was displaying the ports of the referenced
             component (default GME decorator behavior). The PICML
@@ -200,12 +225,12 @@ Fri Sep  3 11:23:49 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 Thu Sep  2 16:04:05 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/decorators/Decorator.cpp:
-        
+
           Cosmetic changes to source code.
-          
+
         * PIM/PICML/decorators/IDMLDecorators.cpp:
         * PIM/PICML/decorators/IDMLDecorators.h:
-        
+
           Modified generator for components to draw inherited ports from
           all ancestors.
 
@@ -214,7 +239,7 @@ Thu Sep 2 15:50:22 CDT 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/IDL_Generator/Component.ico:
         * PIM/PICML/interpreters/IDL_Generator/IDLGenerator.vcproj:
         * PIM/PICML/interpreters/cidl/IDL_Stream.cp:
-          
+
           Fixed some bugs after the demo to the LMCO folks.
 
 Mon Aug 30 09:40:29 CDT 2004 Gan Deng <gan.deng@vanderbilt.edu>
@@ -222,7 +247,7 @@ Mon Aug 30 09:40:29 CDT 2004 Gan Deng <gan.deng@vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xml:
 
           Fixed the wrong earlier check-in of the PICML.xml.
-          
+
         * PIM/PICML/interpreters/packaging/PICML.h:
         * PIM/PICML/interpreters/packaging/PICML.cpp:
         * PIM/PICML/interpreters/packaging/PICML.xsd:
@@ -236,7 +261,7 @@ Mon Aug 30 09:40:29 CDT 2004 Gan Deng <gan.deng@vanderbilt.edu>
         * PIM/PICML/interpreters/domain/PICML.h:
         * PIM/PICML/interpreters/domain/PICML.xsd:
         * PIM/PICML/interpreters/domain/PICML.cpp:
-        
+
           Reflects changes to the meta by adding new Picml.h and Picml.cpp
           and PICML.xsd
 
@@ -262,7 +287,7 @@ Sat Aug 28 16:56:29 CDT 2004 Gan Deng <gan.deng@vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
-        
+
         * PIM/PICML/paradigms/icons/conjunction_group.bmp
         * PIM/PICML/paradigms/icons/disjunction_group.bmp
         * PIM/PICML/paradigms/icons/ec_consumer.bmp
@@ -302,8 +327,8 @@ Sat Aug 28 16:56:29 CDT 2004 Gan Deng <gan.deng@vanderbilt.edu>
         * PIM/PICML/paradigms/icons/rtec_proxy_supplier.bmp
         * PIM/PICML/paradigms/icons/rtec_resource_factory-port.bmp
         * PIM/PICML/paradigms/icons/rtec_resource_factory.bmp
-        
-          Added icon files for the EQAL. Some of them are 
+
+          Added icon files for the EQAL. Some of them are
           not used by current metamodel, which might be deleted later.
 
 Thu Aug 26 10:46:29 CDT 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
@@ -312,7 +337,7 @@ Thu Aug 26 10:46:29 CDT 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
           Added an attribute to the meta of BGML
-        
+
         * PIM/PICML/interpreters/packaging/PICML.h:
         * PIM/PICML/interpreters/packaging/PICML.cpp:
         * PIM/PICML/interpreters/packaging/PICML.xsd:
@@ -336,8 +361,8 @@ Wed Aug 25 18:13:17 CDT 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xmp:
           Added a modeling elements including Workload and Task components
           to the BGML Paradigm
-        
-	  * PIM/PICML/examples/RobotAssembly.xme: 
+
+          * PIM/PICML/examples/RobotAssembly.xme:
           Added these components to the example
 
         * PIM/PICML/interpreters/packaging/PICML.h:
@@ -359,7 +384,7 @@ Wed Aug 25 18:13:17 CDT 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 Wed Aug 25 17:01:50 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
-        
+
           Changed XERCESROOT to XERCESCROOT.
 
 Wed Aug 25 17:39:29 2004  Krishnakumar B  <kitty@nospam.invalid.domain>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="PICML" guid="{CA9B4254-5987-4992-8789-46D7477207A8}" cdate="Mon Oct 11 11:07:04 2004" mdate="Mon Oct 11 11:07:04 2004" >
+<paradigm name="PICML" guid="{920D59C1-B0F0-490D-A7C1-DAF94A51E424}" cdate="Wed Oct 20 23:12:21 2004" mdate="Wed Oct 20 23:15:15 2004" >
 
 	<comment></comment>
 
@@ -19,59 +19,59 @@
 		<constraint type="function" name="allFileScopeDecls">
 			<![CDATA[method;gme::Folder;;ocl::Set;
 			let closure = self.models ("File") in
-  if (closure->size < 1) then
-    Set{}
-  else
-    closure->iterate (x ; accu = Set{} | accu 
-                                                                     + x.parts () 
-                                                                     - x.parts ("FileRef") 
-                                                                     - x.parts ("ComponentRef") 
-                                                                     - x.parts ("ManagesComponent"))
-  endif]]>
+          if (closure->size < 1) then
+          Set{}
+          else
+          closure->iterate (x ; accu = Set{} | accu
+          + x.parts ()
+          - x.parts ("FileRef")
+          - x.parts ("ComponentRef")
+          - x.parts ("ManagesComponent"))
+          endif]]>
 		</constraint>
 		<constraint type="function" name="allOps">
 			<![CDATA[method;gme::Model;top: gme::Model;ocl::Set;
 			let ret = localOps () + inheritedOps (top) + supportedOps () + inheritedSupportedOps () in
-  ret]]>
+          ret]]>
 		</constraint>
 		<constraint type="function" name="inheritedOps">
 			<![CDATA[method;gme::Model;top : gme::Model;ocl::Set;
 			let parents = self.referenceParts ("Inherits") in
-parents->iterate (ref; accu = Set{} | accu + 
-(let parent = ref.refersTo ().oclAsType (gme::Model) in
-if (parent == top) then Set{}
-else
-parent.localOps () + parent.inheritedOps (top)
-endif))]]>
+          parents->iterate (ref; accu = Set{} | accu +
+          (let parent = ref.refersTo ().oclAsType (gme::Model) in
+          if (parent == top) then Set{}
+          else
+          parent.localOps () + parent.inheritedOps (top)
+          endif))]]>
 		</constraint>
 		<constraint type="function" name="inheritedSupportedOps">
 			<![CDATA[method;gme::Model;;ocl::Set;
 			let parents= referenceParts ("Inherits") in
-parents->iterate (ref; accu = Set{} | accu +
-(let parent = ref.refersTo ().oclAsType (gme::Model) in
-parent.supportedOps () + parent.inheritedSupportedOps ()))]]>
+          parents->iterate (ref; accu = Set{} | accu +
+          (let parent = ref.refersTo ().oclAsType (gme::Model) in
+          parent.supportedOps () + parent.inheritedSupportedOps ()))]]>
 		</constraint>
 		<constraint type="function" name="inheritsRecursive">
 			<![CDATA[method;gme::Model;top : gme::Model;ocl::Set;
 			let inherits = referenceParts ("Inherits") in
-inherits->iterate (ref; accu = Set{} | accu +
-(let parent = ref.refersTo ().oclAsType (gme::Model) in
-Set {parent} + 
-(if (parent != top) then parent.inheritsRecursive (top)
-else Set {}
-endif)))]]>
+          inherits->iterate (ref; accu = Set{} | accu +
+          (let parent = ref.refersTo ().oclAsType (gme::Model) in
+          Set {parent} +
+          (if (parent != top) then parent.inheritsRecursive (top)
+          else Set {}
+          endif)))]]>
 		</constraint>
 		<constraint type="function" name="localOps">
 			<![CDATA[method;gme::Model;;ocl::Set;
 			self.parts ("OnewayOperation") + self.parts ("TwowayOperation") +
-self.parts ("FactoryOperation") + self.parts ("LookupOperation")]]>
+          self.parts ("FactoryOperation") + self.parts ("LookupOperation")]]>
 		</constraint>
 		<constraint type="function" name="supportedOps">
 			<![CDATA[method;gme::Model;;ocl::Set;
 			let supported_set = referenceParts ("Supports") in
-supported_set->iterate (ref; accu = Set{} | accu +
-(let supported = ref.refersTo ().oclAsType (gme::Model) in
-supported.localOps () + supported.inheritedOps (supported)))]]>
+          supported_set->iterate (ref; accu = Set{} | accu +
+          (let supported = ref.refersTo ().oclAsType (gme::Model) in
+          supported.localOps () + supported.inheritedOps (supported)))]]>
 		</constraint>
 		<attrdef name="DataValue" metaref = "2747" valuetype = "string" defvalue = "">
 			<dispname>value</dispname>
@@ -281,7 +281,7 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="UniqueUUID" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let packages = project.allInstancesOf (ComponentPackage) in
-        self.UUID <> "" implies packages->isUnique (i : ComponentPackage | i.UUID)]]>
+          self.UUID <> "" implies packages->isUnique (i : ComponentPackage | i.UUID)]]>
 				<dispname>UUIDs if defined, should uniquely identify ComponentPackages</dispname>
 			</constraint>
 			<constraint name="ValidPackageInterfacedstCardinality86" eventmask = "0x0" depth = "1" priority = "1">
@@ -392,12 +392,12 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="UniquePackageConfiguration" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let folder = project.allInstancesOf(PackageConfiguration) in
-       folder->isUnique (e1 : PackageConfiguration | e1.name)]]>
+          folder->isUnique (e1 : PackageConfiguration | e1.name)]]>
 				<dispname>PackageConfiguration should be unique within a project</dispname>
 			</constraint>
 			<constraint name="UniqueUUID" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let packageconfigs = project.allInstancesOf (PackageConfiguration) in
-        self.UUID <> "" implies packageconfigs->isUnique (i : PackageConfiguration | i.UUID)]]>
+          self.UUID <> "" implies packageconfigs->isUnique (i : PackageConfiguration | i.UUID)]]>
 				<dispname>UUIDs if defined, should uniquely identify PackageConfigurations</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfBasePackagedstCardinality72" eventmask = "0x0" depth = "1" priority = "1">
@@ -448,13 +448,13 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
 			</constraint>
 			<constraint name="ECConsumerControlPeriod_Constraint" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[(self.ECConsumerControlPeriod <> 0 and self.ECConsumerControlPeriod <> 5000000)
-implies
-self.ECConsumerControl = "reactive"]]>
+          implies
+          self.ECConsumerControl = "reactive"]]>
 				<dispname>ECConsumerControlPeriod only valid with "reactive" ECConsumerControlPolicy.</dispname>
 			</constraint>
 			<constraint name="ECDispatchingThreads_Constraint" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[self.ECDispatchingThreads <> 1 implies
-self.ECDispatching = "mt"]]>
+          self.ECDispatching = "mt"]]>
 				<dispname>ECDispatchingThreads only valid with "mt" ECDispatchingStrategy</dispname>
 			</constraint>
 			<constraint name="ECDispatchingThreads_Positive_Integer_Constraint" eventmask = "0x0" depth = "1" priority = "2">
@@ -463,8 +463,8 @@ self.ECDispatching = "mt"]]>
 			</constraint>
 			<constraint name="ECSupplierControlPeriod_Constraint" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[(self.ECSupplierControlPeriod <> 0 and self.ECSupplierControlPeriod <> 5000000)
-implies
-self.ECSupplierControl = "reactive"]]>
+          implies
+          self.ECSupplierControl = "reactive"]]>
 				<dispname>ECSupplierControlPeriod only valid with "reactive" ECSupplierControlPolicy</dispname>
 			</constraint>
 				<regnode name = "icon" value ="rtec_resource_factory.bmp"></regnode>
@@ -535,6 +535,7 @@ self.ECSupplierControl = "reactive"]]>
 		<set name = "CollocationGroup" metaref = "3711" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "mName" value ="members"></regnode>
+				<regnode name = "sName" value ="setCollocationGroup"></regnode>
 				<regnode name = "icon" value ="ComponentSet"></regnode>
 			<pointerspec name = "set">
 				<pointeritem desc = "ComponentRef"></pointeritem>
@@ -543,6 +544,7 @@ self.ECSupplierControl = "reactive"]]>
 		<set name = "TaskSet" metaref = "4258" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "mName" value ="members"></regnode>
+				<regnode name = "sName" value ="setTaskSet"></regnode>
 				<regnode name = "icon" value ="taskset.bmp"></regnode>
 			<constraint name="ValidWorkloadCharacteristicssrcCardinality101" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", WorkloadCharacteristics ) -> size in
@@ -553,9 +555,10 @@ self.ECSupplierControl = "reactive"]]>
 				<pointeritem desc = "Task"></pointeritem>
 			</pointerspec>
 		</set>
-		<set name = "Workspace" metaref = "4130" >
+		<set name = "Workspaces" metaref = "4388" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "mName" value ="members"></regnode>
+				<regnode name = "sName" value ="setWorkspace"></regnode>
 				<regnode name = "icon" value ="Workspace.bmp"></regnode>
 			<pointerspec name = "set">
 				<pointeritem desc = "Project"></pointeritem>
@@ -853,10 +856,12 @@ self.ECSupplierControl = "reactive"]]>
 			<connjoint>
 				<pointerspec name = "src">
 					<pointeritem desc = "Component ProvidedRequestPort"></pointeritem>
+					<pointeritem desc = "ComponentAssembly ProvidedRequestPort"></pointeritem>
 					<pointeritem desc = "ProvidedRequestPort"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
 					<pointeritem desc = "Component ProvidedRequestPort"></pointeritem>
+					<pointeritem desc = "ComponentAssembly ProvidedRequestPort"></pointeritem>
 					<pointeritem desc = "ProvidedRequestPort"></pointeritem>
 				</pointerspec>
 			</connjoint>
@@ -951,6 +956,18 @@ self.ECSupplierControl = "reactive"]]>
 					<pointeritem desc = "LogicalANDGroup"></pointeritem>
 				</pointerspec>
 			</connjoint>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "ConjunctionGroup"></pointeritem>
+					<pointeritem desc = "DisjunctionGroup"></pointeritem>
+					<pointeritem desc = "LogicalANDGroup"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "ConjunctionGroup"></pointeritem>
+					<pointeritem desc = "DisjunctionGroup"></pointeritem>
+					<pointeritem desc = "LogicalANDGroup"></pointeritem>
+				</pointerspec>
+			</connjoint>
 		</connection>
 		<connection name = "Include_RT_Info" metaref = "4308" >
 				<regnode name = "sName" value ="srcInclude_RT_Info"></regnode>
@@ -968,6 +985,17 @@ self.ECSupplierControl = "reactive"]]>
 					<pointeritem desc = "ConjunctionGroup"></pointeritem>
 					<pointeritem desc = "DisjunctionGroup"></pointeritem>
 					<pointeritem desc = "LogicalANDGroup"></pointeritem>
+				</pointerspec>
+			</connjoint>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "ConjunctionGroup"></pointeritem>
+					<pointeritem desc = "DisjunctionGroup"></pointeritem>
+					<pointeritem desc = "LogicalANDGroup"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Null_RT_Info"></pointeritem>
+					<pointeritem desc = "RT_Info"></pointeritem>
 				</pointerspec>
 			</connjoint>
 		</connection>
@@ -1320,6 +1348,10 @@ self.ECSupplierControl = "reactive"]]>
 					<pointeritem desc = "OutEventPort"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
+					<pointeritem desc = "RTEC_Proxy_Consumer Null_RT_Info"></pointeritem>
+					<pointeritem desc = "RTEC_Proxy_Consumer RT_Info"></pointeritem>
+					<pointeritem desc = "RTEC_Proxy_Supplier Null_RT_Info"></pointeritem>
+					<pointeritem desc = "RTEC_Proxy_Supplier RT_Info"></pointeritem>
 				</pointerspec>
 			</connjoint>
 		</connection>
@@ -1404,6 +1436,9 @@ self.ECSupplierControl = "reactive"]]>
 				<regnode name = "lineType" value ="solid"></regnode>
 			<connjoint>
 				<pointerspec name = "src">
+					<pointeritem desc = "RTEC_Proxy_Supplier ConjunctionGroup"></pointeritem>
+					<pointeritem desc = "RTEC_Proxy_Supplier DisjunctionGroup"></pointeritem>
+					<pointeritem desc = "RTEC_Proxy_Supplier LogicalANDGroup"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
 					<pointeritem desc = "ComponentRef InEventPort"></pointeritem>
@@ -1425,7 +1460,25 @@ self.ECSupplierControl = "reactive"]]>
 				</pointerspec>
 				<pointerspec name = "dst">
 					<pointeritem desc = "Null_RT_Info"></pointeritem>
+					<pointeritem desc = "RTEC_Proxy_Consumer Null_RT_Info"></pointeritem>
+					<pointeritem desc = "RTEC_Proxy_Consumer RT_Info"></pointeritem>
+					<pointeritem desc = "RTEC_Proxy_Supplier Null_RT_Info"></pointeritem>
+					<pointeritem desc = "RTEC_Proxy_Supplier RT_Info"></pointeritem>
 					<pointeritem desc = "RT_Info"></pointeritem>
+				</pointerspec>
+			</connjoint>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Null_RT_Info"></pointeritem>
+					<pointeritem desc = "RTEC_Proxy_Consumer Null_RT_Info"></pointeritem>
+					<pointeritem desc = "RTEC_Proxy_Consumer RT_Info"></pointeritem>
+					<pointeritem desc = "RTEC_Proxy_Supplier Null_RT_Info"></pointeritem>
+					<pointeritem desc = "RTEC_Proxy_Supplier RT_Info"></pointeritem>
+					<pointeritem desc = "RT_Info"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "RTEC_Proxy_Consumer RTEC_Resource_Factory_Reference"></pointeritem>
+					<pointeritem desc = "RTEC_Resource_Factory_Reference"></pointeritem>
 				</pointerspec>
 			</connjoint>
 		</connection>
@@ -1502,6 +1555,7 @@ self.ECSupplierControl = "reactive"]]>
 				</pointerspec>
 				<pointerspec name = "dst">
 					<pointeritem desc = "Component ProvidedRequestPort"></pointeritem>
+					<pointeritem desc = "ComponentAssembly ProvidedRequestPort"></pointeritem>
 					<pointeritem desc = "ProvidedRequestPort"></pointeritem>
 				</pointerspec>
 			</connjoint>
@@ -1626,7 +1680,7 @@ self.ECSupplierControl = "reactive"]]>
 				<regnode name = "rrName" value ="referedbyBoxed"></regnode>
 			<constraint name="NoBoxedValueDef" eventmask = "0x80000011" depth = "1" priority = "1">
 				<![CDATA[let boxedref = refersTo () in
-   boxedref.kindName <> "ValueDef" and boxedref.kindName <> "EventDef"]]>
+          boxedref.kindName <> "ValueDef" and boxedref.kindName <> "EventDef"]]>
 				<dispname>It is redundant and illegal to box a ValueDef or an EventDef</dispname>
 			</constraint>
 			<constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "1">
@@ -1731,9 +1785,9 @@ self.ECSupplierControl = "reactive"]]>
 				<dispname>ComponentImplementationReference cannot be null</dispname>
 			</constraint>
 			<constraint name="OneAttribute" eventmask = "0x0" depth = "1" priority = "2">
-				<![CDATA[self.requiredName <> "" 
-or self.requiredType <> "" 
-or self.requiredUUID <> ""]]>
+				<![CDATA[self.requiredName <> ""
+          or self.requiredType <> ""
+          or self.requiredUUID <> ""]]>
 				<dispname>Atleast one of requiredName, requiredType or requiredUUID should be present</dispname>
 			</constraint>
 			<regnode name = "icon" value ="PackageReference.bmp"></regnode>
@@ -1767,24 +1821,24 @@ or self.requiredUUID <> ""]]>
 				<regnode name = "rrName" value ="referedbyConstant"></regnode>
 			<constraint name="LegalConstantType" eventmask = "0x400" depth = "1" priority = "1">
 				<![CDATA[let x = refersTo () in
-  x.isTypeOf (String) or
-  x.isTypeOf (LongInteger) or
-  x.isTypeOf (Enum) or
-  x.isTypeOf (ShortInteger) or
-  x.isTypeOf (RealNumber) or
-  x.isTypeOf (Byte) or
-  x.isTypeOf (Boolean)]]>
+          x.isTypeOf (String) or
+          x.isTypeOf (LongInteger) or
+          x.isTypeOf (Enum) or
+          x.isTypeOf (ShortInteger) or
+          x.isTypeOf (RealNumber) or
+          x.isTypeOf (Byte) or
+          x.isTypeOf (Boolean)]]>
 				<dispname>A Constant must be a Boolean, Byte, ShortInteger, LongInteger, RealNumber, String or Enum</dispname>
 			</constraint>
 			<constraint name="LegalConstantValue" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let x = refersTo () in
-  (x.isTypeOf (Boolean) implies ((let y = value.trim ().toInteger () in y = 0 or y = 1) or
-                                                               (let z = value.trim ().toUpper () in z = "TRUE" or z = "FALSE"))) and
-  (x.isTypeOf (Byte) implies (let y = value.trim ().toInteger () in y >= 0 and y < 256)) and
-  (x.isTypeOf (ShortInteger) implies (let y = value.trim ().toInteger () in y > -32769 and y < 32768)) and
-  (x.isTypeOf (LongInteger) implies (let y = value.trim ().toInteger () in y > -2147483649 and y < 2147483648)) and
-  (x.isTypeOf (RealNumber) implies value.trim ().match ("^\-?[0-9]+\.[0-9]*$")) and
-  (x.isTypeOf (Enum) implies x.oclAsType (gme::Model).parts ()->collect (y : gme::FCO | y.name)->exists (z : ocl::String | z = value.trim ()))]]>
+          (x.isTypeOf (Boolean) implies ((let y = value.trim ().toInteger () in y = 0 or y = 1) or
+          (let z = value.trim ().toUpper () in z = "TRUE" or z = "FALSE"))) and
+          (x.isTypeOf (Byte) implies (let y = value.trim ().toInteger () in y >= 0 and y < 256)) and
+          (x.isTypeOf (ShortInteger) implies (let y = value.trim ().toInteger () in y > -32769 and y < 32768)) and
+          (x.isTypeOf (LongInteger) implies (let y = value.trim ().toInteger () in y > -2147483649 and y < 2147483648)) and
+          (x.isTypeOf (RealNumber) implies value.trim ().match ("^\-?[0-9]+\.[0-9]*$")) and
+          (x.isTypeOf (Enum) implies x.oclAsType (gme::Model).parts ()->collect (y : gme::FCO | y.name)->exists (z : ocl::String | z = value.trim ()))]]>
 				<dispname>Constant's value does not match type or is out of range</dispname>
 			</constraint>
 			<constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "2">
@@ -2161,8 +2215,8 @@ or self.requiredUUID <> ""]]>
 				<regnode name = "rrName" value ="referedbyOutEventPort"></regnode>
 			<constraint name="MatchingEmitConsumer" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let consumers = self.connectedFCOs(emit)
-in
-   consumers->forAll ( i : InEventPort | i.refersTo().name() = self.refersTo().name())]]>
+          in
+          consumers->forAll ( i : InEventPort | i.refersTo().name() = self.refersTo().name())]]>
 				<dispname>An OutEventPort should be connected to an InEventPort of the same type</dispname>
 			</constraint>
 			<constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
@@ -2180,6 +2234,11 @@ in
 			<constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
+			</constraint>
+			<constraint name="ValidemitdstCardinality106" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", emit ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to OutEventPort as "dst" over emit, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidpublishdstCardinality112" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", publish ) -> size in
@@ -2283,8 +2342,8 @@ in
 				<regnode name = "rrName" value ="referedbyRequiredRequestPort"></regnode>
 			<constraint name="MatchingFacet" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let facets = self.connectedFCOs(invoke)
-in
-   facets->forAll ( i : ProvidedRequestPort | i.refersTo().name() = self.refersTo().name())]]>
+          in
+          facets->forAll ( i : ProvidedRequestPort | i.refersTo().name() = self.refersTo().name())]]>
 				<dispname>A RequiredRequestPort should be connected to a ProvidedRequestPort of the same type</dispname>
 			</constraint>
 			<constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
@@ -2405,15 +2464,15 @@ in
 			<role name = "ImplementationArtifactReference" metaref = "3191" kind = "ImplementationArtifactReference"></role>
 			<role name = "Property" metaref = "2817" kind = "Property"></role>
 			<role name = "Requirement" metaref = "2818" kind = "Requirement"></role>
-			<aspect name = "PackageConfiguratorPackagingAspect" metaref = "4388" >
-				<part metaref = "4389" role = "ArtifactDependsOn" primary = "yes" linked = "no"></part>
-				<part metaref = "4390" role = "ArtifactDeployRequirement" primary = "yes" linked = "no"></part>
-				<part metaref = "4391" role = "ArtifactExecParameter" primary = "yes" linked = "no"></part>
-				<part metaref = "4392" role = "ArtifactInfoProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "4393" role = "ImplementationArtifact" primary = "yes" linked = "no"></part>
-				<part metaref = "4394" role = "ImplementationArtifactReference" primary = "yes" linked = "no"></part>
-				<part metaref = "4395" role = "Property" primary = "yes" linked = "no"></part>
-				<part metaref = "4396" role = "Requirement" primary = "yes" linked = "no"></part>
+			<aspect name = "Packaging" metaref = "3849" >
+				<part metaref = "3850" role = "ArtifactDependsOn" primary = "yes" linked = "no"></part>
+				<part metaref = "3851" role = "ArtifactDeployRequirement" primary = "yes" linked = "no"></part>
+				<part metaref = "3852" role = "ArtifactExecParameter" primary = "yes" linked = "no"></part>
+				<part metaref = "3853" role = "ArtifactInfoProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "3854" role = "ImplementationArtifact" primary = "yes" linked = "no"></part>
+				<part metaref = "3855" role = "ImplementationArtifactReference" primary = "yes" linked = "no"></part>
+				<part metaref = "3856" role = "Property" primary = "yes" linked = "no"></part>
+				<part metaref = "3857" role = "Requirement" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Attribute" metaref = "1405" attributes = "VersionTag SpecifyIdTag" >
@@ -2488,8 +2547,8 @@ in
 				<dispname>Multiplicity of objects, which are associated to Bridge as "src" over Interconnect2Bridge, has to match 1..*.</dispname>
 			</constraint>
 			<role name = "Resource" metaref = "3678" kind = "Resource"></role>
-			<aspect name = "TargetAspect" metaref = "4397" attributes = "label" >
-				<part metaref = "4398" role = "Resource" primary = "yes" linked = "no"></part>
+			<aspect name = "Target" metaref = "3578" attributes = "label" >
+				<part metaref = "3679" role = "Resource" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Capability" metaref = "2830" attributes = "resourceType" >
@@ -2501,12 +2560,12 @@ in
 			</constraint>
 			<constraint name="NoCapacityOrQuantity" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let sp = self.modelParts(SatisfierProperty) in
-    sp->forAll (elem : SatisfierProperty | elem.SatisfierPropertyKind <> #Capacity && elem.SatisfierPropertyKind <> #Quantity)]]>
+          sp->forAll (elem : SatisfierProperty | elem.SatisfierPropertyKind <> #Capacity && elem.SatisfierPropertyKind <> #Quantity)]]>
 				<dispname>Capability elements cannot have a SatisfierProperty with kind Capacity or Quantity</dispname>
 			</constraint>
 			<role name = "SatisfierProperty" metaref = "2831" kind = "SatisfierProperty"></role>
-			<aspect name = "PackageConfiguratorPackagingAspect" metaref = "4399" attributes = "resourceType" >
-				<part metaref = "4400" role = "SatisfierProperty" primary = "yes" linked = "no"></part>
+			<aspect name = "Packaging" metaref = "3858" attributes = "resourceType" >
+				<part metaref = "3859" role = "SatisfierProperty" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Component" metaref = "1822" attributes = "VersionTag SpecifyIdTag label UUID" >
@@ -2516,11 +2575,11 @@ in
 				<regnode name = "isTypeShown" value ="true"></regnode>
 			<constraint name="ComponentInstanceOnly" eventmask = "0x80000000" depth = "1" priority = "1">
 				<![CDATA[let parent = self.parent() in
-if ( parent.isNull() ) then
-   true
-else
-    parent.kindName = "ComponentAssembly" implies self.isInstance()
-endif]]>
+          if ( parent.isNull() ) then
+          true
+          else
+          parent.kindName = "ComponentAssembly" implies self.isInstance()
+          endif]]>
 				<dispname>Only Component Instances can be created inside a Component Assembly (Press Alt)</dispname>
 			</constraint>
 			<constraint name="NoDeriveAndSupport" eventmask = "0x0" depth = "1" priority = "2">
@@ -2565,21 +2624,21 @@ endif]]>
 				<regnode name = "decorator" value ="MGA.Decorator.IDMLDecorator"></regnode>
 			<constraint name="AssemblyInstanceOnly" eventmask = "0x80000000" depth = "1" priority = "1">
 				<![CDATA[let parent = self.parent() in
-if ( parent.isNull() ) then
-   true
-else
-    parent.kindName = "ComponentAssembly" implies self.isInstance()
-endif]]>
+          if ( parent.isNull() ) then
+          true
+          else
+          parent.kindName = "ComponentAssembly" implies self.isInstance()
+          endif]]>
 				<dispname>Only Assembly Instances can be created inside a Component Assembly (Press Alt)</dispname>
 			</constraint>
 			<constraint name="UniqueConnectorNames" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let connectors = self.atomParts(PublishConnector) in
-        connectors->isUnique (i : PublishConnector | i.name.trim())]]>
+          connectors->isUnique (i : PublishConnector | i.name.trim())]]>
 				<dispname>Connectors used in a ComponentAssembly should have unique names</dispname>
 			</constraint>
 			<constraint name="UniqueInstanceName" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let components = self.modelParts(Component) in
-        components->isUnique (i : Component | i.name.trim())]]>
+          components->isUnique (i : Component | i.name.trim())]]>
 				<dispname>Components of an Assembly should have unique names</dispname>
 			</constraint>
 			<constraint name="ValidComponentAssemblyPartCardinality114" eventmask = "0x0" depth = "1" priority = "1">
@@ -2611,31 +2670,31 @@ endif]]>
 			<role name = "emit" metaref = "3943" kind = "emit"></role>
 			<role name = "invoke" metaref = "3944" kind = "invoke"></role>
 			<role name = "publish" metaref = "3587" kind = "publish"></role>
-			<aspect name = "PackageConfiguratorPackagingAspect" metaref = "4401" attributes = "label UUID" >
-				<part metaref = "4402" role = "AssemblyConfigProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "4403" role = "AssemblyDeployRequirement" primary = "yes" linked = "no"></part>
-				<part metaref = "4404" role = "AssemblyselectRequirement" primary = "yes" linked = "no"></part>
-				<part metaref = "4405" role = "Component" primary = "yes" linked = "no"></part>
-				<part metaref = "4406" role = "ComponentAssembly" primary = "yes" linked = "no"></part>
-				<part metaref = "4407" role = "ComponentPackage" primary = "yes" linked = "no"></part>
-				<part metaref = "4408" role = "ComponentPackageReference" primary = "yes" linked = "no"></part>
-				<part metaref = "4409" role = "EventSinkDelegate" primary = "yes" linked = "no"></part>
-				<part metaref = "4410" role = "EventSourceDelegate" primary = "yes" linked = "no"></part>
-				<part metaref = "4411" role = "ExternalDelegate" primary = "yes" linked = "no"></part>
-				<part metaref = "4412" role = "ExternalReferenceEndPoint" primary = "yes" linked = "no"></part>
-				<part metaref = "4413" role = "FacetDelegate" primary = "yes" linked = "no"></part>
-				<part metaref = "4414" role = "InEventPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
-				<part metaref = "4415" role = "OutEventPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
-				<part metaref = "4416" role = "Property" primary = "yes" linked = "no"></part>
-				<part metaref = "4417" role = "ProvidedRequestPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "4418" role = "PublishConnector" primary = "yes" linked = "no"></part>
-				<part metaref = "4419" role = "ReceptacleDelegate" primary = "yes" linked = "no"></part>
-				<part metaref = "4420" role = "RequiredRequestPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
-				<part metaref = "4421" role = "Requirement" primary = "yes" linked = "no"></part>
-				<part metaref = "4422" role = "deliverTo" primary = "yes" linked = "no"></part>
-				<part metaref = "4423" role = "emit" primary = "yes" linked = "no"></part>
-				<part metaref = "4424" role = "invoke" primary = "yes" linked = "no"></part>
-				<part metaref = "4425" role = "publish" primary = "yes" linked = "no"></part>
+			<aspect name = "Packaging" metaref = "3860" attributes = "label UUID" >
+				<part metaref = "3861" role = "AssemblyConfigProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "3862" role = "AssemblyDeployRequirement" primary = "yes" linked = "no"></part>
+				<part metaref = "3863" role = "AssemblyselectRequirement" primary = "yes" linked = "no"></part>
+				<part metaref = "4111" role = "Component" primary = "yes" linked = "no"></part>
+				<part metaref = "4199" role = "ComponentAssembly" primary = "yes" linked = "no"></part>
+				<part metaref = "3865" role = "ComponentPackage" primary = "yes" linked = "no"></part>
+				<part metaref = "3866" role = "ComponentPackageReference" primary = "yes" linked = "no"></part>
+				<part metaref = "4145" role = "EventSinkDelegate" primary = "yes" linked = "no"></part>
+				<part metaref = "4200" role = "EventSourceDelegate" primary = "yes" linked = "no"></part>
+				<part metaref = "4147" role = "ExternalDelegate" primary = "yes" linked = "no"></part>
+				<part metaref = "4201" role = "ExternalReferenceEndPoint" primary = "yes" linked = "no"></part>
+				<part metaref = "4202" role = "FacetDelegate" primary = "yes" linked = "no"></part>
+				<part metaref = "4203" role = "InEventPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
+				<part metaref = "4151" role = "OutEventPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
+				<part metaref = "3867" role = "Property" primary = "yes" linked = "no"></part>
+				<part metaref = "4204" role = "ProvidedRequestPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
+				<part metaref = "3868" role = "PublishConnector" primary = "yes" linked = "no"></part>
+				<part metaref = "4205" role = "ReceptacleDelegate" primary = "yes" linked = "no"></part>
+				<part metaref = "4154" role = "RequiredRequestPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
+				<part metaref = "3869" role = "Requirement" primary = "yes" linked = "no"></part>
+				<part metaref = "3870" role = "deliverTo" primary = "yes" linked = "no"></part>
+				<part metaref = "3871" role = "emit" primary = "yes" linked = "no"></part>
+				<part metaref = "3872" role = "invoke" primary = "yes" linked = "no"></part>
+				<part metaref = "3873" role = "publish" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "ComponentContainer" metaref = "2862" >
@@ -2651,13 +2710,13 @@ endif]]>
 			<role name = "ComponentPropertyDescription" metaref = "2866" kind = "ComponentPropertyDescription"></role>
 			<role name = "ComponentRef" metaref = "4206" kind = "ComponentRef"></role>
 			<role name = "Property" metaref = "2868" kind = "Property"></role>
-			<aspect name = "PackageConfiguratorPackagingAspect" metaref = "4426" >
-				<part metaref = "4427" role = "ComponentConfigProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "4428" role = "ComponentInfoProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "4429" role = "ComponentProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "4430" role = "ComponentPropertyDescription" primary = "yes" linked = "no"></part>
-				<part metaref = "4431" role = "ComponentRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "4432" role = "Property" primary = "yes" linked = "no"></part>
+			<aspect name = "Packaging" metaref = "3874" >
+				<part metaref = "3875" role = "ComponentConfigProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "3876" role = "ComponentInfoProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "3877" role = "ComponentProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "3878" role = "ComponentPropertyDescription" primary = "yes" linked = "no"></part>
+				<part metaref = "4207" role = "ComponentRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "3880" role = "Property" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "ComponentFactory" metaref = "3256" attributes = "VersionTag SpecifyIdTag" >
@@ -2685,13 +2744,13 @@ endif]]>
 			</constraint>
 			<constraint name="UniqueInheritableDeclNames" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let a = parts () - parts ("Inherits") - parts ("Supports") - parts ("MakeMemberPrivate") - parts ("PrivateFlag") in
-a->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
+          a->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
 				<dispname>Declarations in a scope must have unique names</dispname>
 			</constraint>
 			<constraint name="UniqueOperationNames" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[
-allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
-]]>
+            allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
+          ]]>
 				<dispname>Local, inherited and supported operations must all have unique names</dispname>
 			</constraint>
 			<constraint name="ValidComponentFactoryPartCardinality116" eventmask = "0x0" depth = "1" priority = "1">
@@ -2751,7 +2810,7 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="ImplementationXor" eventmask = "0x80000000" depth = "1" priority = "2">
 				<![CDATA[(self.modelParts (ComponentAssembly)->size = 1 implies self.atomParts (MonolithicImplementation)->size = 0)and
-(self.atomParts (MonolithicImplementation)->size = 1 implies self.modelParts (ComponentAssembly)->size = 0)]]>
+          (self.atomParts (MonolithicImplementation)->size = 1 implies self.modelParts (ComponentAssembly)->size = 0)]]>
 				<dispname>ComponentImplementation can either be Monolithic or be assembly based, but not both</dispname>
 			</constraint>
 			<constraint name="ValidComponentImplementationContainerPartCardinality117" eventmask = "0x0" depth = "1" priority = "1">
@@ -2775,23 +2834,23 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 			<role name = "MonolithicImplementation" metaref = "3598" kind = "MonolithicImplementation"></role>
 			<role name = "MonolithprimaryArtifact" metaref = "3599" kind = "MonolithprimaryArtifact"></role>
 			<role name = "Property" metaref = "2893" kind = "Property"></role>
-			<aspect name = "PackageConfiguratorPackagingAspect" metaref = "4433" >
-				<part metaref = "4434" role = "Capability" primary = "yes" linked = "no"></part>
-				<part metaref = "4435" role = "ComponentAssembly" primary = "yes" linked = "no"></part>
-				<part metaref = "4436" role = "ComponentRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "4437" role = "ConfigProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "4438" role = "ImplementationArtifactReference" primary = "yes" linked = "no"></part>
-				<part metaref = "4439" role = "ImplementationCapability" primary = "yes" linked = "no"></part>
-				<part metaref = "4440" role = "ImplementationDependency" primary = "yes" linked = "no"></part>
-				<part metaref = "4441" role = "ImplementationDependsOn" primary = "yes" linked = "no"></part>
-				<part metaref = "4442" role = "ImplementationRequirement" primary = "yes" linked = "no"></part>
-				<part metaref = "4443" role = "Implements" primary = "yes" linked = "no"></part>
-				<part metaref = "4444" role = "InfoProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "4445" role = "MonolithDeployRequirement" primary = "yes" linked = "no"></part>
-				<part metaref = "4446" role = "MonolithExecParameter" primary = "yes" linked = "no"></part>
-				<part metaref = "4447" role = "MonolithicImplementation" primary = "yes" linked = "no"></part>
-				<part metaref = "4448" role = "MonolithprimaryArtifact" primary = "yes" linked = "no"></part>
-				<part metaref = "4449" role = "Property" primary = "yes" linked = "no"></part>
+			<aspect name = "Packaging" metaref = "3881" >
+				<part metaref = "3882" role = "Capability" primary = "yes" linked = "no"></part>
+				<part metaref = "3883" role = "ComponentAssembly" primary = "yes" linked = "no"></part>
+				<part metaref = "4213" role = "ComponentRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "3885" role = "ConfigProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "3886" role = "ImplementationArtifactReference" primary = "yes" linked = "no"></part>
+				<part metaref = "3887" role = "ImplementationCapability" primary = "yes" linked = "no"></part>
+				<part metaref = "3888" role = "ImplementationDependency" primary = "yes" linked = "no"></part>
+				<part metaref = "3889" role = "ImplementationDependsOn" primary = "yes" linked = "no"></part>
+				<part metaref = "3890" role = "ImplementationRequirement" primary = "yes" linked = "no"></part>
+				<part metaref = "3891" role = "Implements" primary = "yes" linked = "no"></part>
+				<part metaref = "3892" role = "InfoProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "3893" role = "MonolithDeployRequirement" primary = "yes" linked = "no"></part>
+				<part metaref = "3894" role = "MonolithExecParameter" primary = "yes" linked = "no"></part>
+				<part metaref = "3895" role = "MonolithicImplementation" primary = "yes" linked = "no"></part>
+				<part metaref = "3896" role = "MonolithprimaryArtifact" primary = "yes" linked = "no"></part>
+				<part metaref = "3897" role = "Property" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "ComponentPropertyDescription" metaref = "2910" >
@@ -2803,8 +2862,8 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 				<dispname>Multiplicity of parts, which are contained by ComponentPropertyDescription, has to match 1.</dispname>
 			</constraint>
 			<role name = "DataType" metaref = "3770" kind = "DataType"></role>
-			<aspect name = "PackageConfiguratorPackagingAspect" metaref = "4450" >
-				<part metaref = "4451" role = "DataType" primary = "yes" linked = "no"></part>
+			<aspect name = "Packaging" metaref = "3898" >
+				<part metaref = "3899" role = "DataType" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "DeploymentPlan" metaref = "3603" attributes = "label" >
@@ -2817,7 +2876,7 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 				<part metaref = "3713" role = "CollocationGroup" primary = "yes" linked = "no"></part>
 				<part metaref = "4387" role = "ComponentRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 				<part metaref = "3609" role = "InstanceMapping" primary = "yes" linked = "no"></part>
-				<part metaref = "3683" role = "NodeReference" primary = "yes" kindaspect = "TargetAspect" linked = "no"></part>
+				<part metaref = "3683" role = "NodeReference" primary = "yes" kindaspect = "Target" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Domain" metaref = "3611" attributes = "label UUID" >
@@ -2833,17 +2892,17 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 			<role name = "Property" metaref = "3616" kind = "Property"></role>
 			<role name = "SharedResource" metaref = "3691" kind = "SharedResource"></role>
 			<role name = "Shares" metaref = "3692" kind = "Shares"></role>
-			<aspect name = "TargetAspect" metaref = "4452" attributes = "label UUID" >
-				<part metaref = "4453" role = "Bridge" primary = "yes" linked = "no"></part>
-				<part metaref = "4454" role = "Bridge2Interconnect" primary = "yes" linked = "no"></part>
-				<part metaref = "4455" role = "Interconnect" primary = "yes" linked = "no"></part>
-				<part metaref = "4456" role = "Interconnect2Bridge" primary = "yes" linked = "no"></part>
-				<part metaref = "4457" role = "Interconnect2Node" primary = "yes" linked = "no"></part>
-				<part metaref = "4458" role = "Node" primary = "yes" linked = "no"></part>
-				<part metaref = "4459" role = "Node2Interconnect" primary = "yes" linked = "no"></part>
-				<part metaref = "4460" role = "Property" primary = "yes" linked = "no"></part>
-				<part metaref = "4461" role = "SharedResource" primary = "yes" linked = "no"></part>
-				<part metaref = "4462" role = "Shares" primary = "yes" linked = "no"></part>
+			<aspect name = "Target" metaref = "3618" attributes = "label UUID" >
+				<part metaref = "3693" role = "Bridge" primary = "yes" linked = "no"></part>
+				<part metaref = "3694" role = "Bridge2Interconnect" primary = "yes" linked = "no"></part>
+				<part metaref = "3695" role = "Interconnect" primary = "yes" linked = "no"></part>
+				<part metaref = "3696" role = "Interconnect2Bridge" primary = "yes" linked = "no"></part>
+				<part metaref = "3697" role = "Interconnect2Node" primary = "yes" linked = "no"></part>
+				<part metaref = "3698" role = "Node" primary = "yes" linked = "no"></part>
+				<part metaref = "3699" role = "Node2Interconnect" primary = "yes" linked = "no"></part>
+				<part metaref = "3623" role = "Property" primary = "yes" linked = "no"></part>
+				<part metaref = "3700" role = "SharedResource" primary = "yes" linked = "no"></part>
+				<part metaref = "3701" role = "Shares" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Enum" metaref = "2950" attributes = "VersionTag SpecifyIdTag" >
@@ -2876,12 +2935,12 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 				<regnode name = "icon" value ="event.bmp"></regnode>
 			<constraint name="ConcreteEventParent" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let concrete_parents = self.parts ("Inherits")->select (x : gme::Model | x.oclAsType (Event).abstract = false)
-  in
-if (self.abstract = true) then
-  concrete_parents->size = 0
-else
-  concrete_parents->size < 2
-endif]]>
+          in
+          if (self.abstract = true) then
+          concrete_parents->size = 0
+          else
+          concrete_parents->size < 2
+          endif]]>
 				<dispname>An abstract Event can have no concrete parent, if it is concrete it can have at most one.</dispname>
 			</constraint>
 			<constraint name="InheritsSameType" eventmask = "0x0" depth = "1" priority = "2">
@@ -2898,13 +2957,13 @@ endif]]>
 			</constraint>
 			<constraint name="UniqueInheritableDeclNames" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let a = parts () - parts ("Inherits") - parts ("Supports") - parts ("MakeMemberPrivate") - parts ("PrivateFlag") in
-a->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
+          a->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
 				<dispname>Declarations in a scope must have unique names</dispname>
 			</constraint>
 			<constraint name="UniqueOperationNames" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[
-allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
-]]>
+            allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
+          ]]>
 				<dispname>Local, inherited and supported operations must all have unique names</dispname>
 			</constraint>
 			<constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
@@ -3004,8 +3063,8 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 				<dispname>One An executor project can exist as a part of the Component Project</dispname>
 			</constraint>
 			<role name = "ImplementationArtifactReference" metaref = "4134" kind = "ImplementationArtifactReference"></role>
-			<aspect name = "LibraryArtifactAspect" metaref = "4463" attributes = "libraryexport sharedname ORBServices" >
-				<part metaref = "4464" role = "ImplementationArtifactReference" primary = "yes" linked = "no"></part>
+			<aspect name = "LibraryArtifact" metaref = "4220" attributes = "libraryexport sharedname ORBServices" >
+				<part metaref = "4136" role = "ImplementationArtifactReference" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "FactoryOperation" metaref = "1927" attributes = "VersionTag SpecifyIdTag" >
@@ -3017,8 +3076,8 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 			</constraint>
 			<constraint name="UniqueExceptions" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let x = self.referenceParts (ExceptionRef) in
-x->size > 0 implies 
-x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersTo ().name)]]>
+          x->size > 0 implies
+          x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersTo ().name)]]>
 				<dispname>An operation's exception list cannot have repeated names</dispname>
 			</constraint>
 			<constraint name="UniqueParamNames" eventmask = "0x0" depth = "1" priority = "2">
@@ -3083,8 +3142,8 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="ImplementationRequirement.bmp"></regnode>
 			<role name = "Property" metaref = "3625" kind = "Property"></role>
-			<aspect name = "PackageConfiguratorPackagingAspect" metaref = "4465" attributes = "resourceType resourcePort componentPort ResourceUsageKind" >
-				<part metaref = "4466" role = "Property" primary = "yes" linked = "no"></part>
+			<aspect name = "Packaging" metaref = "3902" attributes = "resourceType resourcePort componentPort ResourceUsageKind" >
+				<part metaref = "3903" role = "Property" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Interconnect" metaref = "3702" attributes = "label" >
@@ -3101,8 +3160,8 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 				<dispname>Multiplicity of objects, which are associated to Interconnect as "src" over Node2Interconnect, has to match 1..*.</dispname>
 			</constraint>
 			<role name = "Resource" metaref = "3703" kind = "Resource"></role>
-			<aspect name = "TargetAspect" metaref = "4467" attributes = "label" >
-				<part metaref = "4468" role = "Resource" primary = "yes" linked = "no"></part>
+			<aspect name = "Target" metaref = "3631" attributes = "label" >
+				<part metaref = "3704" role = "Resource" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Latency" metaref = "4033" attributes = "fileName warmup iterations" >
@@ -3138,8 +3197,8 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 			</constraint>
 			<constraint name="UniqueExceptions" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let x = self.referenceParts (ExceptionRef) in
-x->size > 0 implies 
-x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersTo ().name)]]>
+          x->size > 0 implies
+          x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersTo ().name)]]>
 				<dispname>An operation's exception list cannot have repeated names</dispname>
 			</constraint>
 			<constraint name="UniqueParamNames" eventmask = "0x0" depth = "1" priority = "2">
@@ -3160,18 +3219,18 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 		<model name = "MPC" metaref = "4137" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<role name = "Project" metaref = "4167" kind = "Project"></role>
-			<role name = "Workspace" metaref = "4139" kind = "Workspace"></role>
-			<aspect name = "WorkspaceAspect" metaref = "4469" >
-				<part metaref = "4470" role = "Project" primary = "yes" linked = "no"></part>
-				<part metaref = "4471" role = "Workspace" primary = "yes" linked = "no"></part>
+			<role name = "Workspaces" metaref = "4389" kind = "Workspaces"></role>
+			<aspect name = "Workspace" metaref = "4234" >
+				<part metaref = "4168" role = "Project" primary = "yes" linked = "no"></part>
+				<part metaref = "4390" role = "Workspaces" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Node" metaref = "3705" attributes = "label" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Node"></regnode>
 			<role name = "Resource" metaref = "3706" kind = "Resource"></role>
-			<aspect name = "TargetAspect" metaref = "4472" attributes = "label" >
-				<part metaref = "4473" role = "Resource" primary = "yes" linked = "no"></part>
+			<aspect name = "Target" metaref = "3639" attributes = "label" >
+				<part metaref = "3707" role = "Resource" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Object" metaref = "3016" attributes = "VersionTag PrefixTag SpecifyIdTag local abstract" >
@@ -3187,11 +3246,11 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 			</constraint>
 			<constraint name="NoNonLocalFromLocal" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[if (self.local = true) then
-  true
-else
-  let parents = self.parts ("Inherits")->collect (x : gme::Reference | x.refersTo ()) in
-  parents->forAll (x : gme::Model | x.oclAsType (Object).local = false)
-endif]]>
+          true
+          else
+          let parents = self.parts ("Inherits")->collect (x : gme::Reference | x.refersTo ()) in
+          parents->forAll (x : gme::Model | x.oclAsType (Object).local = false)
+          endif]]>
 				<dispname>A non-local Object cannot inherit from a local one</dispname>
 			</constraint>
 			<constraint name="NoRecursiveInheritance" eventmask = "0x0" depth = "1" priority = "1">
@@ -3204,13 +3263,13 @@ endif]]>
 			</constraint>
 			<constraint name="UniqueInheritableDeclNames" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let a = parts () - parts ("Inherits") - parts ("Supports") - parts ("MakeMemberPrivate") - parts ("PrivateFlag") in
-a->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
+          a->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
 				<dispname>Declarations in a scope must have unique names</dispname>
 			</constraint>
 			<constraint name="UniqueOperationNames" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[
-allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
-]]>
+            allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
+          ]]>
 				<dispname>Local, inherited and supported operations must all have unique names</dispname>
 			</constraint>
 			<constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
@@ -3281,11 +3340,11 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 			</constraint>
 			<constraint name="UniquePackageDeclNames" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[parts ()->forAll (
-    x, y : gme::FCO | x.name == y.name implies (x == y or
-                                                                                        (x.oclIsTypeOf (Package) and y.oclIsTypeOf (Package)) or
-                                                                                        (x.oclIsTypeOf (gme::Connection) or y.oclIsTypeOf (gme::Connection)))
-  )
-  ]]>
+          x, y : gme::FCO | x.name == y.name implies (x == y or
+          (x.oclIsTypeOf (Package) and y.oclIsTypeOf (Package)) or
+          (x.oclIsTypeOf (gme::Connection) or y.oclIsTypeOf (gme::Connection)))
+          )
+          ]]>
 				<dispname>Declarations in a Package must have unique names unless they are themselves Packages</dispname>
 			</constraint>
 			<constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
@@ -3330,38 +3389,38 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 		<model name = "PackageConfigurationContainer" metaref = "2974" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="PackageConfXor" eventmask = "0x0" depth = "1" priority = "2">
-				<![CDATA[self.referenceParts(PackageConfigurationReference)->size = 1 
-  xor self.referenceParts(ComponentPackageReference)->size = 1 
-  xor self.atomParts(ComponentPackage)->size = 1]]>
+				<![CDATA[self.referenceParts(PackageConfigurationReference)->size = 1
+          xor self.referenceParts(ComponentPackageReference)->size = 1
+          xor self.atomParts(ComponentPackage)->size = 1]]>
 				<dispname>A PackageConfiguration can either specialize another PackageConfiguration, or contain a ComponentPackage, or contain a reference to a ComponentPackage</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality121" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
+				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality122" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
+				<![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality123" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfSpecializedConfig" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality124" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PackageConfiguration" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 1..*.</dispname>
 			</constraint>
+			<constraint name="ValidPackageConfigurationContainerPartCardinality124" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PackageConfSpecializedConfig" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality125" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfBasePackage" ) -> size in
+				<![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality126" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
+				<![CDATA[let partCount = self.parts( "PackageConfBasePackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -3375,17 +3434,17 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 			<role name = "PackageConfiguration" metaref = "3291" kind = "PackageConfiguration"></role>
 			<role name = "Property" metaref = "3646" kind = "Property"></role>
 			<role name = "Requirement" metaref = "3647" kind = "Requirement"></role>
-			<aspect name = "PackageConfiguratorPackagingAspect" metaref = "4474" >
-				<part metaref = "4475" role = "ComponentPackage" primary = "yes" linked = "no"></part>
-				<part metaref = "4476" role = "ComponentPackageReference" primary = "yes" linked = "no"></part>
-				<part metaref = "4477" role = "PackageConfBasePackage" primary = "yes" linked = "no"></part>
-				<part metaref = "4478" role = "PackageConfConfigProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "4479" role = "PackageConfReference" primary = "yes" linked = "no"></part>
-				<part metaref = "4480" role = "PackageConfSelectRequirement" primary = "yes" linked = "no"></part>
-				<part metaref = "4481" role = "PackageConfSpecializedConfig" primary = "yes" linked = "no"></part>
-				<part metaref = "4482" role = "PackageConfiguration" primary = "yes" linked = "no"></part>
-				<part metaref = "4483" role = "Property" primary = "yes" linked = "no"></part>
-				<part metaref = "4484" role = "Requirement" primary = "yes" linked = "no"></part>
+			<aspect name = "Packaging" metaref = "3909" >
+				<part metaref = "3910" role = "ComponentPackage" primary = "yes" linked = "no"></part>
+				<part metaref = "3911" role = "ComponentPackageReference" primary = "yes" linked = "no"></part>
+				<part metaref = "3912" role = "PackageConfBasePackage" primary = "yes" linked = "no"></part>
+				<part metaref = "3913" role = "PackageConfConfigProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "3914" role = "PackageConfReference" primary = "yes" linked = "no"></part>
+				<part metaref = "3915" role = "PackageConfSelectRequirement" primary = "yes" linked = "no"></part>
+				<part metaref = "3916" role = "PackageConfSpecializedConfig" primary = "yes" linked = "no"></part>
+				<part metaref = "3917" role = "PackageConfiguration" primary = "yes" linked = "no"></part>
+				<part metaref = "3918" role = "Property" primary = "yes" linked = "no"></part>
+				<part metaref = "3919" role = "Requirement" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PackageContainer" metaref = "4116" >
@@ -3408,15 +3467,15 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 			<role name = "PackageInfoProperty" metaref = "4121" kind = "PackageInfoProperty"></role>
 			<role name = "PackageInterface" metaref = "4122" kind = "PackageInterface"></role>
 			<role name = "Property" metaref = "3002" kind = "Property"></role>
-			<aspect name = "PackageConfiguratorPackagingAspect" metaref = "4485" >
-				<part metaref = "4486" role = "ComponentImplementationReference" primary = "yes" kindaspect = "PackageConfiguratorPackagingAspect" linked = "no"></part>
-				<part metaref = "4487" role = "ComponentPackage" primary = "yes" linked = "no"></part>
-				<part metaref = "4488" role = "ComponentRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "4489" role = "Implementation" primary = "yes" linked = "no"></part>
-				<part metaref = "4490" role = "PackageConfigProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "4491" role = "PackageInfoProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "4492" role = "PackageInterface" primary = "yes" linked = "no"></part>
-				<part metaref = "4493" role = "Property" primary = "yes" linked = "no"></part>
+			<aspect name = "Packaging" metaref = "3920" >
+				<part metaref = "3921" role = "ComponentImplementationReference" primary = "yes" kindaspect = "Packaging" linked = "no"></part>
+				<part metaref = "3922" role = "ComponentPackage" primary = "yes" linked = "no"></part>
+				<part metaref = "4161" role = "ComponentRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "3924" role = "Implementation" primary = "yes" linked = "no"></part>
+				<part metaref = "3925" role = "PackageConfigProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "3926" role = "PackageInfoProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "3927" role = "PackageInterface" primary = "yes" linked = "no"></part>
+				<part metaref = "3928" role = "Property" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Project" metaref = "4169" >
@@ -3428,12 +3487,12 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 			<role name = "ImplementationArtifact" metaref = "4173" kind = "ImplementationArtifact"></role>
 			<role name = "ServantProject" metaref = "4174" kind = "ServantProject"></role>
 			<role name = "StubProject" metaref = "4175" kind = "StubProject"></role>
-			<aspect name = "ComponentLibrariesAspect" metaref = "4494" >
-				<part metaref = "4495" role = "ExecutorProject" primary = "yes" linked = "no"></part>
-				<part metaref = "4496" role = "ExtResourceConn" primary = "yes" linked = "no"></part>
-				<part metaref = "4497" role = "ExternalResources" primary = "yes" linked = "no"></part>
-				<part metaref = "4498" role = "ServantProject" primary = "yes" linked = "no"></part>
-				<part metaref = "4499" role = "StubProject" primary = "yes" linked = "no"></part>
+			<aspect name = "ComponentLibraries" metaref = "4176" >
+				<part metaref = "4177" role = "ExecutorProject" primary = "yes" linked = "no"></part>
+				<part metaref = "4178" role = "ExtResourceConn" primary = "yes" linked = "no"></part>
+				<part metaref = "4179" role = "ExternalResources" primary = "yes" linked = "no"></part>
+				<part metaref = "4180" role = "ServantProject" primary = "yes" linked = "no"></part>
+				<part metaref = "4181" role = "StubProject" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Property" metaref = "3650" attributes = "DataValue" >
@@ -3445,8 +3504,8 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 				<dispname>Multiplicity of parts, which are contained by Property, has to match 1.</dispname>
 			</constraint>
 			<role name = "DataType" metaref = "3772" kind = "DataType"></role>
-			<aspect name = "PackageConfiguratorPackagingAspect" metaref = "4500" attributes = "DataValue" >
-				<part metaref = "4501" role = "DataType" primary = "yes" linked = "no"></part>
+			<aspect name = "Packaging" metaref = "3929" attributes = "DataValue" >
+				<part metaref = "3930" role = "DataType" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "RTEC_Proxy_Consumer" metaref = "4327" >
@@ -3462,9 +3521,9 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 			<role name = "RT_Info" metaref = "4330" kind = "RT_Info"></role>
 			<role name = "Use_RT_Info" metaref = "4331" kind = "Use_RT_Info"></role>
 			<aspect name = "RtecConfigAspect" metaref = "4345" >
-				<part metaref = "4355" role = "Null_RT_Info" primary = "yes" linked = "no"></part>
+				<part metaref = "4355" role = "Null_RT_Info" primary = "yes" linked = "yes"></part>
 				<part metaref = "4356" role = "RTEC_Resource_Factory_Reference" primary = "yes" linked = "yes"></part>
-				<part metaref = "4357" role = "RT_Info" primary = "yes" linked = "no"></part>
+				<part metaref = "4357" role = "RT_Info" primary = "yes" linked = "yes"></part>
 				<part metaref = "4358" role = "Use_RT_Info" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
@@ -3479,13 +3538,13 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 			<role name = "Null_RT_Info" metaref = "4339" kind = "Null_RT_Info"></role>
 			<role name = "RT_Info" metaref = "4340" kind = "RT_Info"></role>
 			<aspect name = "RtecConfigAspect" metaref = "4346" >
-				<part metaref = "4359" role = "ConjunctionGroup" primary = "yes" linked = "no"></part>
-				<part metaref = "4360" role = "DisjunctionGroup" primary = "yes" linked = "no"></part>
+				<part metaref = "4359" role = "ConjunctionGroup" primary = "yes" linked = "yes"></part>
+				<part metaref = "4360" role = "DisjunctionGroup" primary = "yes" linked = "yes"></part>
 				<part metaref = "4361" role = "Include_RTEC_Filter_Group" primary = "yes" linked = "no"></part>
 				<part metaref = "4362" role = "Include_RT_Info" primary = "yes" linked = "no"></part>
-				<part metaref = "4363" role = "LogicalANDGroup" primary = "yes" linked = "no"></part>
-				<part metaref = "4364" role = "Null_RT_Info" primary = "yes" linked = "no"></part>
-				<part metaref = "4365" role = "RT_Info" primary = "yes" linked = "no"></part>
+				<part metaref = "4363" role = "LogicalANDGroup" primary = "yes" linked = "yes"></part>
+				<part metaref = "4364" role = "Null_RT_Info" primary = "yes" linked = "yes"></part>
+				<part metaref = "4365" role = "RT_Info" primary = "yes" linked = "yes"></part>
 			</aspect>
 		</model>
 		<model name = "ReadonlyAttribute" metaref = "1626" attributes = "VersionTag SpecifyIdTag" >
@@ -3511,16 +3570,16 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Requirement.bmp"></regnode>
 			<role name = "Property" metaref = "3020" kind = "Property"></role>
-			<aspect name = "PackageConfiguratorPackagingAspect" metaref = "4502" attributes = "resourceType" >
-				<part metaref = "4503" role = "Property" primary = "yes" linked = "no"></part>
+			<aspect name = "Packaging" metaref = "3931" attributes = "resourceType" >
+				<part metaref = "3932" role = "Property" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Resource" metaref = "3708" attributes = "resourceType" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Resource"></regnode>
 			<role name = "SatisfierProperty" metaref = "3653" kind = "SatisfierProperty"></role>
-			<aspect name = "TargetAspect" metaref = "4504" attributes = "resourceType" >
-				<part metaref = "4505" role = "SatisfierProperty" primary = "yes" linked = "no"></part>
+			<aspect name = "Target" metaref = "3655" attributes = "resourceType" >
+				<part metaref = "3656" role = "SatisfierProperty" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "SatisfierProperty" metaref = "3657" attributes = "DataValue SatisfierPropertyKind" >
@@ -3532,8 +3591,8 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 				<dispname>Multiplicity of parts, which are contained by SatisfierProperty, has to match 1.</dispname>
 			</constraint>
 			<role name = "DataType" metaref = "3774" kind = "DataType"></role>
-			<aspect name = "PackageConfiguratorPackagingAspect" metaref = "4506" attributes = "DataValue SatisfierPropertyKind" >
-				<part metaref = "4507" role = "DataType" primary = "yes" linked = "no"></part>
+			<aspect name = "Packaging" metaref = "3933" attributes = "DataValue SatisfierPropertyKind" >
+				<part metaref = "3934" role = "DataType" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "ServantProject" metaref = "4143" attributes = "libraryexport sharedname ORBServices" >
@@ -3549,8 +3608,8 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 				<dispname>Only A servant project can exists as a part of the Component project</dispname>
 			</constraint>
 			<role name = "ImplementationArtifactReference" metaref = "4144" kind = "ImplementationArtifactReference"></role>
-			<aspect name = "LibraryArtifactAspect" metaref = "4508" attributes = "libraryexport sharedname ORBServices" >
-				<part metaref = "4509" role = "ImplementationArtifactReference" primary = "yes" linked = "no"></part>
+			<aspect name = "LibraryArtifact" metaref = "4247" attributes = "libraryexport sharedname ORBServices" >
+				<part metaref = "4146" role = "ImplementationArtifactReference" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "SharedResource" metaref = "3709" attributes = "resourceType" >
@@ -3562,8 +3621,8 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 				<dispname>Multiplicity of objects, which are associated to SharedResource as "src" over Shares, has to match 1..*.</dispname>
 			</constraint>
 			<role name = "SatisfierProperty" metaref = "3660" kind = "SatisfierProperty"></role>
-			<aspect name = "TargetAspect" metaref = "4510" attributes = "resourceType" >
-				<part metaref = "4511" role = "SatisfierProperty" primary = "yes" linked = "no"></part>
+			<aspect name = "Target" metaref = "3661" attributes = "resourceType" >
+				<part metaref = "3663" role = "SatisfierProperty" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "StubProject" metaref = "4160" attributes = "libraryexport sharedname ORBServices" >
@@ -3580,9 +3639,9 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 			</constraint>
 			<role name = "FileRef" metaref = "4248" kind = "FileRef"></role>
 			<role name = "ImplementationArtifactReference" metaref = "4162" kind = "ImplementationArtifactReference"></role>
-			<aspect name = "LibraryArtifactAspect" metaref = "4512" attributes = "libraryexport sharedname ORBServices" >
-				<part metaref = "4513" role = "FileRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "4514" role = "ImplementationArtifactReference" primary = "yes" linked = "no"></part>
+			<aspect name = "LibraryArtifact" metaref = "4163" attributes = "libraryexport sharedname ORBServices" >
+				<part metaref = "4249" role = "FileRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "4165" role = "ImplementationArtifactReference" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "SwitchedAggregate" metaref = "3064" attributes = "VersionTag SpecifyIdTag" >
@@ -3590,18 +3649,18 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 				<regnode name = "icon" value ="switchedaggregate.bmp"></regnode>
 			<constraint name="DefaultCaseCardinality" eventmask = "0x80000000" depth = "1" priority = "1">
 				<![CDATA[parts (Member)->forAll (
-    x : gme::FCO | let labels = x.connectedFCOs ()
-                                in
-    labels->exists (y : gme::Atom | y.name = "default") implies labels->size = 1
-)]]>
+          x : gme::FCO | let labels = x.connectedFCOs ()
+          in
+          labels->exists (y : gme::Atom | y.name = "default") implies labels->size = 1
+          )]]>
 				<dispname>A default member cannot have multiple labels</dispname>
 			</constraint>
 			<constraint name="LegalDiscriminatorType" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[referenceParts (Discriminator) -> forAll (
-    x : gme::Reference | x.refersTo ().isTypeOf (Enum) or
-                                     x.refersTo ().isTypeOf (Boolean) or
-                                     x.refersTo ().isTypeOf (ShortInteger) or
-                                     x.refersTo ().isTypeOf (LongInteger))]]>
+          x : gme::Reference | x.refersTo ().isTypeOf (Enum) or
+          x.refersTo ().isTypeOf (Boolean) or
+          x.refersTo ().isTypeOf (ShortInteger) or
+          x.refersTo ().isTypeOf (LongInteger))]]>
 				<dispname>Discriminator must have integer, character, boolean or enum type</dispname>
 			</constraint>
 			<constraint name="UniqueLabelNames" eventmask = "0x80000010" depth = "1" priority = "1">
@@ -3617,19 +3676,19 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 				<dispname>Not a valid identifier</dispname>
 			</constraint>
 			<constraint name="ValidSwitchedAggregatePartCardinality135" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
+				<![CDATA[let partCount = self.parts( "Label" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
 			<constraint name="ValidSwitchedAggregatePartCardinality136" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
+			</constraint>
+			<constraint name="ValidSwitchedAggregatePartCardinality137" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
-			</constraint>
-			<constraint name="ValidSwitchedAggregatePartCardinality137" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Label" ) -> size in
-                     (partCount >= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
 			<constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
@@ -3691,10 +3750,10 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 			<role name = "PackageConfigurationReference" metaref = "3030" kind = "PackageConfigurationReference"></role>
 			<role name = "TopLevelPackage" metaref = "3664" kind = "TopLevelPackage"></role>
 			<role name = "package" metaref = "4123" kind = "package"></role>
-			<aspect name = "PackageConfiguratorPackagingAspect" metaref = "4515" >
-				<part metaref = "4516" role = "PackageConfigurationReference" primary = "yes" linked = "no"></part>
-				<part metaref = "4517" role = "TopLevelPackage" primary = "yes" linked = "no"></part>
-				<part metaref = "4518" role = "package" primary = "yes" linked = "no"></part>
+			<aspect name = "Packaging" metaref = "3935" >
+				<part metaref = "3936" role = "PackageConfigurationReference" primary = "yes" linked = "no"></part>
+				<part metaref = "3937" role = "TopLevelPackage" primary = "yes" linked = "no"></part>
+				<part metaref = "3938" role = "package" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "TwowayOperation" metaref = "2040" attributes = "VersionTag SpecifyIdTag" >
@@ -3706,8 +3765,8 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 			</constraint>
 			<constraint name="UniqueExceptions" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let x = self.referenceParts (ExceptionRef) in
-x->size > 0 implies 
-x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersTo ().name)]]>
+          x->size > 0 implies
+          x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersTo ().name)]]>
 				<dispname>An operation's exception list cannot have repeated names</dispname>
 			</constraint>
 			<constraint name="UniqueParamNames" eventmask = "0x0" depth = "1" priority = "2">
@@ -3740,14 +3799,14 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="value.bmp"></regnode>
 			<constraint name="ConcreteValueParent" eventmask = "0x0" depth = "1" priority = "2">
-				<![CDATA[let concrete_parents = 
-  self.parts ("Inherits")->select (x : gme::Reference | x.refersTo ().oclAsType (ValueObject).abstract = false)
-  in
-if (self.abstract = true) then
-  concrete_parents->size = 0
-else
-  concrete_parents->size < 2
-endif]]>
+				<![CDATA[let concrete_parents =
+          self.parts ("Inherits")->select (x : gme::Reference | x.refersTo ().oclAsType (ValueObject).abstract = false)
+          in
+          if (self.abstract = true) then
+          concrete_parents->size = 0
+          else
+          concrete_parents->size < 2
+          endif]]>
 				<dispname>An abstract ValueDef can have no concrete parent, if it is concrete it can have at most one.</dispname>
 			</constraint>
 			<constraint name="InheritsSameType" eventmask = "0x0" depth = "1" priority = "2">
@@ -3764,13 +3823,13 @@ endif]]>
 			</constraint>
 			<constraint name="UniqueInheritableDeclNames" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let a = parts () - parts ("Inherits") - parts ("Supports") - parts ("MakeMemberPrivate") - parts ("PrivateFlag") in
-a->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
+          a->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
 				<dispname>Declarations in a scope must have unique names</dispname>
 			</constraint>
 			<constraint name="UniqueOperationNames" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[
-allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
-]]>
+            allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
+          ]]>
 				<dispname>Local, inherited and supported operations must all have unique names</dispname>
 			</constraint>
 			<constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
@@ -3839,8 +3898,8 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 		<folder name = "InterfaceDefinitions" metaref = "4256"  rootobjects = "File" >
 			<constraint name="UniqueGlobalDeclNames" eventmask = "0x0" depth = "0" priority = "1">
 				<![CDATA[allFileScopeDecls ()->forAll (
-    x, y : gme::FCO | x <> y and (not x.isTypeOf (Package) or not y.isTypeOf (Package)) implies x.name <> y.name
-  )]]>
+          x, y : gme::FCO | x <> y and (not x.isTypeOf (Package) or not y.isTypeOf (Package)) implies x.name <> y.name
+          )]]>
 				<dispname>Declarations at global scope must have unique names unless they are Packages</dispname>
 			</constraint>
 		</folder>

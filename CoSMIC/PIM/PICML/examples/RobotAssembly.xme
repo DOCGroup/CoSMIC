@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Wed Oct 20 14:28:29 2004" mdate="Wed Oct 20 14:46:35 2004" metaguid="{6BDDC685-DEAD-BEEF-FEED-DAD000000001}" metaname="PICML">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Thu Oct 21 14:33:17 2004" mdate="Thu Oct 21 14:33:18 2004" version="" metaguid="{920D59C1-B0F0-490D-A7C1-DAF94A51E424}" metaversion="" metaname="PICML">
 	<name>RobotAssembly</name>
 	<comment></comment>
 	<author></author>
@@ -3727,7 +3727,25 @@
 								<name>AttributeMember</name>
 							</reference>
 						</model>
-						<reference id="id-0067-00000038" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-0000002e" isinstance="yes" isprimary="no" referred="id-0065-0000000a" isbound="yes">
+						<reference id="id-0067-00000038" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-0000002f" isinstance="yes" isprimary="no" referred="id-0065-00000009" isbound="yes">
+							<name>WorkDisplayUpdate</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser">
+								<value>true</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000039" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-0000002e" isinstance="yes" isprimary="no" referred="id-0065-0000000a" isbound="yes">
 							<name>HumanResponse</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -3743,24 +3761,6 @@
 							</attribute>
 							<attribute kind="multiple_connections" status="meta">
 								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000039" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-0000002f" isinstance="yes" isprimary="no" referred="id-0065-00000009" isbound="yes">
-							<name>WorkDisplayUpdate</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser">
-								<value>true</value>
 							</attribute>
 							<attribute kind="optional" status="meta">
 								<value>false</value>
@@ -3814,8 +3814,8 @@
 						<attribute kind="label" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-0000003b" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-00000022" isinstance="yes" isprimary="no" referred="id-0065-00000018" isbound="yes">
-							<name>ProductionReport</name>
+						<reference id="id-0067-0000003b" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000024" isinstance="yes" isprimary="no" referred="id-0065-00000028" isbound="yes">
+							<name>Controller</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
 							</attribute>
@@ -3825,11 +3825,11 @@
 							<attribute kind="exclusiveProvider" status="meta">
 								<value>false</value>
 							</attribute>
-							<attribute kind="exclusiveUser">
-								<value>true</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
+							<attribute kind="exclusiveUser" status="meta">
 								<value>false</value>
+							</attribute>
+							<attribute kind="optional">
+								<value>true</value>
 							</attribute>
 						</reference>
 						<reference id="id-0067-0000003c" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000023" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
@@ -3853,8 +3853,8 @@
 								<value>true</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-0000003d" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000024" isinstance="yes" isprimary="no" referred="id-0065-00000028" isbound="yes">
-							<name>Controller</name>
+						<reference id="id-0067-0000003d" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-00000022" isinstance="yes" isprimary="no" referred="id-0065-00000018" isbound="yes">
+							<name>ProductionReport</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
 							</attribute>
@@ -3864,11 +3864,11 @@
 							<attribute kind="exclusiveProvider" status="meta">
 								<value>false</value>
 							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional">
+							<attribute kind="exclusiveUser">
 								<value>true</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
 							</attribute>
 						</reference>
 					</model>
@@ -3901,70 +3901,7 @@
 						<attribute kind="label" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-0000003e" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000025" isinstance="yes" isprimary="no" referred="id-0065-00000009" isbound="yes">
-							<name>Display</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="inherited">
-								<value>true</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="single_destination" status="inherited">
-								<value>true</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-0000003f" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000026" isinstance="yes" isprimary="no" referred="id-0065-00000011" isbound="yes">
-							<name>ProductionControl</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="inherited">
-								<value>true</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="single_destination" status="inherited">
-								<value>true</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000040" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000027" isinstance="yes" isprimary="no" referred="id-0065-00000016" isbound="yes">
-							<name>MovePallet</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="inherited">
-								<value>true</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="single_destination" status="inherited">
-								<value>true</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000041" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000028" isinstance="yes" isprimary="no" referred="id-0065-00000018" isbound="yes">
+						<reference id="id-0067-0000003e" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000028" isinstance="yes" isprimary="no" referred="id-0065-00000018" isbound="yes">
 							<name>ProductionReport</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -3985,7 +3922,7 @@
 								<value>true</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000042" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000029" isinstance="yes" isprimary="no" referred="id-0065-0000000a" isbound="yes">
+						<reference id="id-0067-0000003f" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000029" isinstance="yes" isprimary="no" referred="id-0065-0000000a" isbound="yes">
 							<name>DisplayResponse</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -3998,6 +3935,66 @@
 							</attribute>
 							<attribute kind="exclusiveUser" status="meta">
 								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000040" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000025" isinstance="yes" isprimary="no" referred="id-0065-00000009" isbound="yes">
+							<name>Display</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="inherited">
+								<value>true</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="single_destination" status="inherited">
+								<value>true</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000041" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000027" isinstance="yes" isprimary="no" referred="id-0065-00000016" isbound="yes">
+							<name>MovePallet</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="inherited">
+								<value>true</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="single_destination" status="inherited">
+								<value>true</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000042" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-0000002c" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+							<name>recvWorkOrder</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="inherited">
+								<value>true</value>
 							</attribute>
 							<attribute kind="optional" status="meta">
 								<value>false</value>
@@ -4021,7 +4018,28 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000044" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-0000002b" isinstance="yes" isprimary="no" referred="id-0065-00000014" isbound="yes">
+						<reference id="id-0067-00000044" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000026" isinstance="yes" isprimary="no" referred="id-0065-00000011" isbound="yes">
+							<name>ProductionControl</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="inherited">
+								<value>true</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="single_destination" status="inherited">
+								<value>true</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000045" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-0000002b" isinstance="yes" isprimary="no" referred="id-0065-00000014" isbound="yes">
 							<name>PalletStatus</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -4033,24 +4051,6 @@
 								<value>false</value>
 							</attribute>
 							<attribute kind="exclusiveUser">
-								<value>true</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000045" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-0000002c" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
-							<name>recvWorkOrder</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="inherited">
 								<value>true</value>
 							</attribute>
 							<attribute kind="optional" status="meta">
@@ -4192,7 +4192,25 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-0000004a" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000032" isinstance="yes" isprimary="no" referred="id-0065-00000013" isbound="yes">
+						<reference id="id-0067-0000004a" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000033" isinstance="yes" isprimary="no" referred="id-0065-00000038" isbound="yes">
+							<name>Controller</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional">
+								<value>true</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-0000004b" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000032" isinstance="yes" isprimary="no" referred="id-0065-00000013" isbound="yes">
 							<name>ProcessingStatus</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -4210,24 +4228,6 @@
 								<value>false</value>
 							</attribute>
 							<attribute kind="single_destination" status="inherited">
-								<value>true</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-0000004b" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000033" isinstance="yes" isprimary="no" referred="id-0065-00000038" isbound="yes">
-							<name>Controller</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional">
 								<value>true</value>
 							</attribute>
 						</reference>
@@ -4259,37 +4259,37 @@
 					<connection id="id-0068-00000006" kind="emit" role="emit" relid="0x6">
 						<name>emit</name>
 						<connpoint role="src" target="id-0067-0000003c"/>
-						<connpoint role="dst" target="id-0067-00000045"/>
+						<connpoint role="dst" target="id-0067-00000042"/>
 					</connection>
 					<connection id="id-0068-00000007" kind="emit" role="emit" relid="0x7">
 						<name>emit</name>
-						<connpoint role="dst" target="id-0067-0000003b"/>
-						<connpoint role="src" target="id-0067-00000041"/>
+						<connpoint role="dst" target="id-0067-0000003d"/>
+						<connpoint role="src" target="id-0067-0000003e"/>
 					</connection>
 					<connection id="id-0068-00000008" kind="emit" role="emit" relid="0x8">
 						<name>emit</name>
-						<connpoint role="src" target="id-0067-00000040"/>
+						<connpoint role="src" target="id-0067-00000041"/>
 						<connpoint role="dst" target="id-0067-00000046"/>
 					</connection>
 					<connection id="id-0068-00000009" kind="emit" role="emit" relid="0xa">
 						<name>emit</name>
-						<connpoint role="dst" target="id-0067-00000044"/>
+						<connpoint role="dst" target="id-0067-00000045"/>
 						<connpoint role="src" target="id-0067-00000047"/>
 					</connection>
 					<connection id="id-0068-0000000a" kind="invoke" role="invoke" relid="0xf">
 						<name>invoke</name>
-						<connpoint role="src" target="id-0067-00000038"/>
-						<connpoint role="dst" target="id-0067-00000042"/>
+						<connpoint role="src" target="id-0067-00000039"/>
+						<connpoint role="dst" target="id-0067-0000003f"/>
 					</connection>
 					<connection id="id-0068-0000000b" kind="emit" role="emit" relid="0x10">
 						<name>emit</name>
-						<connpoint role="dst" target="id-0067-00000039"/>
-						<connpoint role="src" target="id-0067-0000003e"/>
+						<connpoint role="dst" target="id-0067-00000038"/>
+						<connpoint role="src" target="id-0067-00000040"/>
 					</connection>
 					<connection id="id-0068-0000000c" kind="publish" role="publish" relid="0x26">
 						<name>publish</name>
 						<connpoint role="dst" target="id-0066-00000029"/>
-						<connpoint role="src" target="id-0067-0000003f"/>
+						<connpoint role="src" target="id-0067-00000044"/>
 					</connection>
 					<connection id="id-0068-0000000d" kind="deliverTo" role="deliverTo" relid="0x27">
 						<name>deliverTo</name>
@@ -4302,7 +4302,7 @@
 							<value>e</value>
 						</regnode>
 						<connpoint role="dst" target="id-0066-0000002a"/>
-						<connpoint role="src" target="id-0067-0000004a"/>
+						<connpoint role="src" target="id-0067-0000004b"/>
 					</connection>
 					<connection id="id-0068-0000000f" kind="deliverTo" role="deliverTo" relid="0x2a">
 						<name>deliverTo</name>
@@ -4740,7 +4740,7 @@
 								<value>438,11</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>284,32</value>
@@ -4773,7 +4773,7 @@
 								<value>88,88</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>585,172</value>
@@ -4797,7 +4797,7 @@
 								<value>404,145</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>385,287</value>
@@ -4815,7 +4815,7 @@
 								<value>431,256</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>81,109</value>
@@ -4833,7 +4833,7 @@
 								<value>438,361</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>585,18</value>
@@ -4851,7 +4851,7 @@
 								<value>438,494</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>81,242</value>
@@ -5177,7 +5177,7 @@
 					<connpoint role="dst" target="id-0067-00000051"/>
 					<connpoint role="src" target="id-0069-00000002"/>
 				</connection>
-				<set id="id-0069-00000001" kind="CollocationGroup" role="CollocationGroup" relid="0x9" members="id-0067-00000054 id-0067-00000055 id-0067-00000053 id-0067-00000056">
+				<set id="id-0069-00000001" kind="CollocationGroup" role="CollocationGroup" relid="0x9" members="id-0067-00000054 id-0067-00000056 id-0067-00000053 id-0067-00000055">
 					<name>Group1</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6453,7 +6453,7 @@
 								<value>44,37</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>81,151</value>
@@ -6486,7 +6486,7 @@
 								<value>46,186</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>11,151</value>
@@ -6519,7 +6519,7 @@
 								<value>305,60</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>361,207</value>
@@ -6549,7 +6549,7 @@
 								<value>319,347</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>361,116</value>
@@ -6579,7 +6579,7 @@
 								<value>312,193</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>361,18</value>
@@ -6590,7 +6590,7 @@
 						<value></value>
 					</attribute>
 					<attribute kind="configuration">
-						<value><![CDATA[<OptionCategory name="ORB_Configuration_Options"><OptionCategory name="Service_Configurator_File"><OptionCategory name="Server_Strategy_Factory"><EnumOption name="ORBAllowReactivationOfSystemids">0</EnumOption><EnumOption name="ORBPOALock">null</EnumOption></OptionCategory></OptionCategory></OptionCategory>]]></value>
+						<value>&lt;OptionCategory name=&quot;ORB_Configuration_Options&quot;&gt;&lt;OptionCategory name=&quot;Service_Configurator_File&quot;&gt;&lt;OptionCategory name=&quot;Server_Strategy_Factory&quot;&gt;&lt;EnumOption name=&quot;ORBAllowReactivationOfSystemids&quot;&gt;0&lt;/EnumOption&gt;&lt;EnumOption name=&quot;ORBPOALock&quot;&gt;null&lt;/EnumOption&gt;&lt;/OptionCategory&gt;&lt;/OptionCategory&gt;&lt;/OptionCategory&gt;</value>
 					</attribute>
 					<attribute kind="label">
 						<value>WatchSettingManager Executor</value>
@@ -6609,7 +6609,7 @@
 								<value>634,137</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>11,81</value>
@@ -6627,7 +6627,7 @@
 								<value>634,515</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>81,81</value>
@@ -6645,7 +6645,7 @@
 								<value>627,263</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>81,11</value>
@@ -6663,7 +6663,7 @@
 								<value>627,389</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>11,11</value>
@@ -6731,7 +6731,7 @@
 								<value>44,37</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>494,312</value>
@@ -6764,7 +6764,7 @@
 								<value>25,249</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>305,25</value>
@@ -6797,7 +6797,7 @@
 								<value>228,130</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>298,263</value>
@@ -6827,7 +6827,7 @@
 								<value>207,396</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>494,137</value>
@@ -6857,7 +6857,7 @@
 								<value>214,256</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>74,46</value>
@@ -6868,7 +6868,7 @@
 						<value></value>
 					</attribute>
 					<attribute kind="configuration">
-						<value><![CDATA[<OptionCategory name="ORB_Configuration_Options"><OptionCategory name="Service_Configurator_File"><OptionCategory name="Client_Strategy_Factory"><EnumOption name="ORBClientConnectionHandler">ST</EnumOption><EnumOption name="ORBConnectionStrategy">leader_follower</EnumOption><EnumOption name="ORBTransportMuxStrategy">EXCLUSIVE</EnumOption></OptionCategory><OptionCategory name="Resource_Factories"><OptionCategory name="Advanced_Resource_Factory"><EnumOption name="ORBInputCDRAllocator">null</EnumOption><EnumOption name="ORBReactorType">select_st</EnumOption></OptionCategory><OptionCategory name="Default_Resource_Factory"><EnumOption name="ORBConnectionCacheLock">null</EnumOption><EnumOption name="ORBConnectionPurgingStrategy">lfu</EnumOption><EnumOption name="ORBCorbaObjectLock">null</EnumOption><EnumOption name="ORBReactorMaskSignals">0</EnumOption></OptionCategory></OptionCategory></OptionCategory></OptionCategory>]]></value>
+						<value>&lt;OptionCategory name=&quot;ORB_Configuration_Options&quot;&gt;&lt;OptionCategory name=&quot;Service_Configurator_File&quot;&gt;&lt;OptionCategory name=&quot;Client_Strategy_Factory&quot;&gt;&lt;EnumOption name=&quot;ORBClientConnectionHandler&quot;&gt;ST&lt;/EnumOption&gt;&lt;EnumOption name=&quot;ORBConnectionStrategy&quot;&gt;leader_follower&lt;/EnumOption&gt;&lt;EnumOption name=&quot;ORBTransportMuxStrategy&quot;&gt;EXCLUSIVE&lt;/EnumOption&gt;&lt;/OptionCategory&gt;&lt;OptionCategory name=&quot;Resource_Factories&quot;&gt;&lt;OptionCategory name=&quot;Advanced_Resource_Factory&quot;&gt;&lt;EnumOption name=&quot;ORBInputCDRAllocator&quot;&gt;null&lt;/EnumOption&gt;&lt;EnumOption name=&quot;ORBReactorType&quot;&gt;select_st&lt;/EnumOption&gt;&lt;/OptionCategory&gt;&lt;OptionCategory name=&quot;Default_Resource_Factory&quot;&gt;&lt;EnumOption name=&quot;ORBConnectionCacheLock&quot;&gt;null&lt;/EnumOption&gt;&lt;EnumOption name=&quot;ORBConnectionPurgingStrategy&quot;&gt;lfu&lt;/EnumOption&gt;&lt;EnumOption name=&quot;ORBCorbaObjectLock&quot;&gt;null&lt;/EnumOption&gt;&lt;EnumOption name=&quot;ORBReactorMaskSignals&quot;&gt;0&lt;/EnumOption&gt;&lt;/OptionCategory&gt;&lt;/OptionCategory&gt;&lt;/OptionCategory&gt;&lt;/OptionCategory&gt;</value>
 					</attribute>
 					<attribute kind="label">
 						<value>HumanMachineInterface Executor</value>
@@ -6887,7 +6887,7 @@
 								<value>634,137</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>74,221</value>
@@ -6905,7 +6905,7 @@
 								<value>627,431</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>683,46</value>
@@ -6923,7 +6923,7 @@
 								<value>627,319</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>683,228</value>
@@ -6941,7 +6941,7 @@
 								<value>627,543</value>
 							</regnode>
 						</regnode>
-						<regnode name="Packaging">
+						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>676,137</value>
@@ -7685,7 +7685,7 @@
 						</reference>
 					</model>
 				</model>
-				<set id="id-0069-00000003" kind="Workspace" role="Workspace" relid="0x8" members="id-0065-00000089 id-0065-00000099 id-0065-0000008d id-0065-00000095 id-0065-00000091">
+				<set id="id-0069-00000003" kind="Workspaces" role="Workspaces" relid="0x8" members="id-0065-00000095 id-0065-0000008d id-0065-00000089 id-0065-00000099 id-0065-00000091">
 					<name>RobotAssembly</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -7829,7 +7829,7 @@
 					<connpoint role="src" target="id-0065-0000009e"/>
 					<connpoint role="dst" target="id-0069-00000004"/>
 				</connection>
-				<set id="id-0069-00000004" kind="TaskSet" role="TaskSet" relid="0x7" members="id-0066-00000055 id-0066-00000056 id-0066-00000057">
+				<set id="id-0069-00000004" kind="TaskSet" role="TaskSet" relid="0x7" members="id-0066-00000055 id-0066-00000057 id-0066-00000056">
 					<name>TaskSet</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -8092,7 +8092,7 @@
 				<connection id="id-0068-0000005f" kind="RTEC_Connection" role="RTEC_Connection" relid="0x6">
 					<name>RTEC_Connection</name>
 					<connpoint role="dst" target="id-0066-00000058"/>
-					<connpoint role="src" target="id-0067-0000004a" refs="id-0067-00000090"/>
+					<connpoint role="src" target="id-0067-0000004b" refs="id-0067-00000090"/>
 				</connection>
 				<connection id="id-0068-00000060" kind="Use_RTEC_Filter" role="Use_RTEC_Filter" relid="0x8">
 					<name>Use_RTEC_Filter</name>
