@@ -9,8 +9,16 @@
 #include <fstream>
 #include <algorithm>
 #include <iterator>
+#include <cstdlib>
+#include <sstream>
 
 #include "../DllEntry.hpp"
+
+#ifdef _DEBUG
+#define OCML_CONFIGURATOR_LIBRARY_NAME "OCMLConfiguratord.dll"
+#elif
+#define OCML_CONFIGURATOR_LIBRARY_NAME "OCMLConfigurator.dll"
+#endif
 
 LRESULT CALLBACK MainWndProc(HWND, UINT, WPARAM, LPARAM); 
 
@@ -77,24 +85,44 @@ LRESULT CALLBACK MainWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
   switch( msg ) {
   case WM_PAINT:
-    hDC = BeginPaint( hWnd, &ps );
-    TextOut( hDC, 10, 10, "Click on this form to launch dll", 32 );
-    EndPaint( hWnd, &ps );
-    break;
+    {
+      hDC = BeginPaint( hWnd, &ps );
+
+      std::stringstream ss;
+      char *picml_root = getenv("PICML_ROOT");
+      ss << "Click on this form to launch dll. "
+         << "PICML_ROOT environment variable points to: "
+         << picml_root;
+    
+      TextOut( hDC, 10, 10, ss.str().c_str(), ss.str().size());
+      EndPaint( hWnd, &ps );
+      break;
+    }
 
   case WM_DESTROY:
-    PostQuitMessage( 0 );
-    break;
+    {
+      PostQuitMessage( 0 );
+      break;
+    }
 
   case WM_LBUTTONUP:
     {
       if (pause)
         return 0;
-#ifdef _DEBUG
-      HMODULE hModule = LoadLibrary("OCMLConfiguratord.dll");
-#elif
-      HMODULE hModule = LoadLibrary("OCMLConfigurator.dll");
-#endif
+
+      char *buffer = getenv("PICML_ROOT");
+
+      std::string library_path;
+      if (buffer)
+        {
+          // delete double quotes (if there are any)
+          std::remove_copy(buffer, buffer + strlen(buffer),
+                           std::back_inserter(library_path), '"');
+          library_path += "\\bin\\";
+        }
+      library_path += OCML_CONFIGURATOR_LIBRARY_NAME;
+
+      HMODULE hModule = LoadLibrary(library_path.c_str());
       assert(hModule);
 
       DLLFunctionPtr pProc =
@@ -103,7 +131,7 @@ LRESULT CALLBACK MainWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
       // Read the values from file
       std::string values;
-      std::ifstream values_file("c:\\Data\\values.xml");
+      std::ifstream values_file("values.xml");
       values_file.unsetf(std::ios_base::skipws);
       std::copy(std::istream_iterator<char>(values_file),
                 std::istream_iterator<char>(),
