@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{4E60B9A3-87AE-4CCA-AD4F-FB402629A1D7}" cdate="Thu Oct 21 21:46:15 2004" mdate="Thu Oct 21 21:54:48 2004" version="" metaguid="{D3D17030-901D-4635-8689-7F13FB0799EE}" metaversion="" metaname="PICML">
+<project guid="{889816B2-FA50-40E2-A544-80F508DC3266}" cdate="Thu Oct 21 23:22:33 2004" mdate="Thu Oct 21 23:43:08 2004" version="" metaguid="{A7B8D27C-DF07-4204-B88C-835998BD8CFD}" metaversion="" metaname="PICML">
 	<name>RobotAssembly</name>
 	<comment></comment>
 	<author></author>
@@ -7701,7 +7701,7 @@
 		</folder>
 		<folder id="id-006a-0000000d" relid="0x12" childrelidcntr="0x1" kind="ComponentAnalyses">
 			<name>RobotAssemblyAnalyses</name>
-			<model id="id-0065-0000009d" kind="BenchmarkAnalysis" relid="0x1" childrelidcntr="0xb">
+			<model id="id-0065-0000009d" kind="BenchmarkAnalysis" relid="0x1" childrelidcntr="0x14">
 				<name>RobotAssemblyBenchmarkAnalysis</name>
 				<model id="id-0065-0000009e" kind="Latency" role="Latency" relid="0x3" childrelidcntr="0x0">
 					<name>Latency</name>
@@ -7790,6 +7790,18 @@
 						<value>0</value>
 					</attribute>
 				</atom>
+				<atom id="id-0066-0000005c" kind="TimeProbe" role="TimeProbe" relid="0xc">
+					<name>TimeProbe</name>
+					<regnode name="PartRegs">
+						<value></value>
+						<regnode name="ComponentMetrics">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>422,213</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</atom>
 				<reference id="id-0067-0000008e" kind="OperationRef" role="OperationRef" relid="0x1" referred="id-0065-0000000b">
 					<name>WorkOrderResponse</name>
 					<regnode name="PartRegs" isopaque="yes">
@@ -7814,6 +7826,18 @@
 						</regnode>
 					</regnode>
 				</reference>
+				<reference id="id-0067-000000dc" kind="EventRef" role="EventRef" relid="0x10" referred="id-0065-00000018">
+					<name>ProductionStatus</name>
+					<regnode name="PartRegs">
+						<value></value>
+						<regnode name="ComponentMetrics">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>542,227</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</reference>
 				<connection id="id-0068-0000005b" kind="MetricConnection" role="MetricConnection" relid="0x5">
 					<name>MetricConnection</name>
 					<connpoint role="dst" target="id-0065-0000009e"/>
@@ -7829,7 +7853,15 @@
 					<connpoint role="src" target="id-0065-0000009e"/>
 					<connpoint role="dst" target="id-0069-00000004"/>
 				</connection>
-				<set id="id-0069-00000004" kind="TaskSet" role="TaskSet" relid="0x7" members="id-0066-00000055 id-0066-00000057 id-0066-00000056">
+				<connection id="id-0068-00000067" kind="TimerEventSinkConn" role="TimerEventSinkConn" relid="0x14">
+					<name>TimerEventSinkConn</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>e</value>
+					</regnode>
+					<connpoint role="dst" target="id-0066-0000005c"/>
+					<connpoint role="src" target="id-0067-000000dc"/>
+				</connection>
+				<set id="id-0069-00000004" kind="TaskSet" role="TaskSet" relid="0x7" members="id-0066-00000056 id-0066-00000057 id-0066-00000055">
 					<name>TaskSet</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -7915,7 +7947,7 @@
 							</regnode>
 						</regnode>
 					</reference>
-					<connection id="id-0068-00000066" kind="Use_RT_Info" role="Use_RT_Info" relid="0x6">
+					<connection id="id-0068-0000005e" kind="Use_RT_Info" role="Use_RT_Info" relid="0x6">
 						<name>Use_RT_Info</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>Ew</value>
@@ -7992,7 +8024,7 @@
 							</regnode>
 						</regnode>
 					</atom>
-					<connection id="id-0068-00000067" kind="Include_RT_Info" role="Include_RT_Info" relid="0x3">
+					<connection id="id-0068-0000005f" kind="Include_RT_Info" role="Include_RT_Info" relid="0x3">
 						<name>Include_RT_Info</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>We</value>
@@ -8097,17 +8129,17 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-0000005f" kind="RTEC_Connection" role="RTEC_Connection" relid="0x6">
+				<connection id="id-0068-00000060" kind="RTEC_Connection" role="RTEC_Connection" relid="0x6">
 					<name>RTEC_Connection</name>
 					<connpoint role="dst" target="id-0066-00000058"/>
 					<connpoint role="src" target="id-0067-0000004a" refs="id-0067-00000090"/>
 				</connection>
-				<connection id="id-0068-00000060" kind="Use_RTEC_Filter" role="Use_RTEC_Filter" relid="0x8">
+				<connection id="id-0068-00000061" kind="Use_RTEC_Filter" role="Use_RTEC_Filter" relid="0x8">
 					<name>Use_RTEC_Filter</name>
 					<connpoint role="src" target="id-0066-0000005a"/>
 					<connpoint role="dst" target="id-0067-00000043" refs="id-0067-00000091"/>
 				</connection>
-				<connection id="id-0068-00000061" kind="Use_RT_Info" role="Use_RT_Info" relid="0xa">
+				<connection id="id-0068-00000062" kind="Use_RT_Info" role="Use_RT_Info" relid="0xa">
 					<name>Use_RT_Info</name>
 					<connpoint role="dst" target="id-0066-00000059"/>
 					<connpoint role="src" target="id-0067-000000db"/>

@@ -1,3 +1,16 @@
+Thu Oct 21 23:50:24 CDT 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Corrected the BGML Meta model for constraint errors. Still there are 
+          errors from the EQAL meta-model
+          
+        * PIM/PICML/examples/RobotAssembly.xme: 
+        
+          Added BGML capabilities to Example
+
 Thu Oct 21 21:59:10 2004  Gan Deng  <gan.deng@vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:

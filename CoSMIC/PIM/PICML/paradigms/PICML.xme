@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{31389661-CCA6-4F28-97CA-C120132F2E37}" cdate="Thu Oct 21 20:02:21 2004" mdate="Thu Oct 21 21:54:06 2004" version="" metaguid="{DF851054-A0B3-41EF-8FF2-8C42EE5EDD12}" metaversion="" metaname="MetaGME">
+<project guid="{2B0DD293-61BE-486D-A867-6C49EE494BD2}" cdate="Thu Oct 21 23:16:08 2004" mdate="Thu Oct 21 23:40:45 2004" version="" metaguid="{DF851054-A0B3-41EF-8FF2-8C42EE5EDD12}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment></comment>
 	<author></author>
@@ -36723,8 +36723,8 @@
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="src" target="id-0066-00000022"/>
 				<connpoint role="dst" target="id-0066-00000022"/>
+				<connpoint role="src" target="id-0066-00000022"/>
 			</connection>
 			<connection id="id-0068-00000044" kind="HasAspect" role="HasAspect" relid="0x54">
 				<name>HasAspect</name>
@@ -65665,8 +65665,8 @@
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="src" target="id-0066-00000132"/>
 				<connpoint role="dst" target="id-0066-00000132"/>
+				<connpoint role="src" target="id-0066-00000132"/>
 			</connection>
 			<connection id="id-0068-00000237" kind="Containment" role="Containment" relid="0x9d">
 				<name>Containment</name>
@@ -67354,7 +67354,7 @@
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-00000015" kind="ParadigmSheet" relid="0x2a" childrelidcntr="0x7b">
+		<model id="id-0065-00000015" kind="ParadigmSheet" relid="0x2a" childrelidcntr="0x7d">
 			<name>ComponentBenchmark</name>
 			<atom id="id-0066-00000163" kind="Inheritance" role="Inheritance" relid="0x3">
 				<name>Inheritance</name>
@@ -67500,7 +67500,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>778,20</value>
+							<value>841,13</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -67860,7 +67860,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>822,138</value>
+							<value>829,131</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -67890,7 +67890,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>162,188</value>
+							<value>183,181</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -68954,7 +68954,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>758,268</value>
+							<value>799,222</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -69448,7 +69448,7 @@
 					<value>Ew</value>
 				</regnode>
 				<attribute kind="Cardinality">
-					<value>1</value>
+					<value>0..1</value>
 				</attribute>
 				<attribute kind="dstRolename" status="meta">
 					<value>dst</value>
@@ -69531,7 +69531,7 @@
 			<connection id="id-0068-00000289" kind="SourceToConnector" role="SourceToConnector" relid="0x4f">
 				<name>SourceToConnector</name>
 				<attribute kind="Cardinality">
-					<value>1</value>
+					<value>0..1</value>
 				</attribute>
 				<attribute kind="srcRolename" status="meta">
 					<value>src</value>
@@ -69611,8 +69611,8 @@
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>e</value>
 				</regnode>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
+				<attribute kind="Cardinality">
+					<value>0..1</value>
 				</attribute>
 				<attribute kind="srcRolename" status="meta">
 					<value>src</value>
@@ -69772,7 +69772,7 @@
 					<value></value>
 				</attribute>
 			</set>
-			<set id="id-0069-0000000f" kind="Aspect" role="Aspect" relid="0x3a" members="id-0066-00000173 id-0066-00000166 id-0066-0000016a id-0066-00000169 id-0066-00000168 id-0066-00000167">
+			<set id="id-0069-0000000f" kind="Aspect" role="Aspect" relid="0x3a" members="id-0066-00000166 id-0066-0000016a id-0066-00000169 id-0066-00000168 id-0066-00000167 id-0066-00000173">
 				<name>DataAnalysis</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
