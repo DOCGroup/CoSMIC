@@ -1,20 +1,25 @@
+// $Id$
+
 #include "BooleanOptionEditor.hpp"
 
 #include "../../Common/Debug.hpp"
 
 BooleanOptionEditor::BooleanOptionEditor(wxWindow* parent,
-					 BooleanOption* boolean_option)
+                                         BooleanOption* boolean_option)
   : OptionEditor(parent, boolean_option)
 {
   editor_ = new BooleanEditControl(panel());
+
   if (option()->assigned())
     {
       editor_->SetValue(boolean_option->get());
+      button()->Enable(true);
     }
   else
     {
-      editor_->SetValue(false);
+      editor_->SetValue(boolean_option->default_value());
     }
+
   editor_->Show(true);
   editor_->add_focus_listener(this);
   editor_->add_click_listener(this);
@@ -61,5 +66,7 @@ BooleanOptionEditor::clear_button_clicked(ClearButton*)
 {
   option()->clear();
   button()->Enable(false);
-  editor_->SetValue(false);
+
+  BooleanOption* boolean_option = (BooleanOption*) option();
+  editor_->SetValue(boolean_option->default_value());
 }

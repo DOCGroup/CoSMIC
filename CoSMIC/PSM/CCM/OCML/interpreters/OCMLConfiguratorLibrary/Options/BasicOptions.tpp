@@ -1,11 +1,11 @@
 #include <xercesc/dom/DOMText.hpp>
 
 /*
- *  class BasicOption methods.
+ *  class Base_Option methods.
  */
 
 template <typename VALUE_TYPE>
-BasicOption<VALUE_TYPE>::BasicOption(value_kind_type value_kind,
+Base_Option<VALUE_TYPE>::Base_Option(value_kind_type value_kind,
                                      const char* name, const char* description)
   : Option(value_kind, name, description),
     value_()
@@ -13,7 +13,7 @@ BasicOption<VALUE_TYPE>::BasicOption(value_kind_type value_kind,
 }
 
 template <typename VALUE_TYPE>
-BasicOption<VALUE_TYPE>::~BasicOption()
+Base_Option<VALUE_TYPE>::~Base_Option()
 {
 }
 
@@ -25,7 +25,7 @@ BasicOption<VALUE_TYPE>::~BasicOption()
  * If the value is NULL, the option is assumed as not assigned.
  */
 template <typename VALUE_TYPE> void
-BasicOption<VALUE_TYPE>::set(typename BasicOption::value_type value)
+Base_Option<VALUE_TYPE>::set(typename Base_Option::value_type value)
 {
   value_.reset(new VALUE_TYPE(value));
 }
@@ -34,8 +34,8 @@ BasicOption<VALUE_TYPE>::set(typename BasicOption::value_type value)
  * The NotAssigned exception is thrown when the value_ ptr points to a NULL
  * pointer.
  */
-template <typename VALUE_TYPE> typename BasicOption<VALUE_TYPE>::value_type
-BasicOption<VALUE_TYPE>::get() const
+template <typename VALUE_TYPE> typename Base_Option<VALUE_TYPE>::value_type
+Base_Option<VALUE_TYPE>::get() const
 {
   if (value_.get() == NULL)
     throw NotAssigned();
@@ -51,7 +51,7 @@ BasicOption<VALUE_TYPE>::get() const
  * @see Option::write.
  */
 template <typename VALUE_TYPE> xercesc::DOMElement*
-BasicOption<VALUE_TYPE>::write(xercesc::DOMDocument* doc) const
+Base_Option<VALUE_TYPE>::write(xercesc::DOMDocument* doc) const
 {
   xercesc::DOMElement* element = Option::write(doc);
 
@@ -73,7 +73,7 @@ BasicOption<VALUE_TYPE>::write(xercesc::DOMDocument* doc) const
  * @see Option::clear.
  */
 template <typename VALUE_TYPE> void
-BasicOption<VALUE_TYPE>::clear()
+Base_Option<VALUE_TYPE>::clear()
 {
   value_.reset();
 }
@@ -85,7 +85,28 @@ BasicOption<VALUE_TYPE>::clear()
  * @see Option::assigned.
  */
 template <typename VALUE_TYPE> bool
-BasicOption<VALUE_TYPE>::assigned() const
+Base_Option<VALUE_TYPE>::assigned() const
 {
   return value_.get() != NULL;
+}
+
+/*
+ *  class Basic_Option methods.
+ */
+
+template <typename VALUE_TYPE>
+Basic_Option<VALUE_TYPE>::
+Basic_Option(value_kind_type value_kind,
+             const char* name, const char* description,
+             value_type def_value)
+  : Base_Option<VALUE_TYPE>(value_kind, name, description),
+    default_value_(def_value)
+{
+}
+
+template <typename VALUE_TYPE>
+typename Basic_Option<VALUE_TYPE>::value_type
+Basic_Option<VALUE_TYPE>::default_value()
+{
+  return default_value_;
 }

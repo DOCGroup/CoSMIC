@@ -11,9 +11,14 @@ StringOptionEditor::StringOptionEditor(wxWindow* parent,
   editor_ = new StringEditControl(panel());
 
   if (option()->assigned())
-    editor_->SetValue(string_option->get().c_str());
+    {
+      editor_->SetValue(string_option->get().c_str());
+      button()->Enable(true);
+    }
   else
-    editor_->SetValue("");
+    {
+      editor_->SetValue(string_option->default_value().c_str());
+    }
 
   editor_->Show(true);
   editor_->add_focus_listener(this);
@@ -73,7 +78,9 @@ StringOptionEditor::clear_button_clicked(ClearButton*)
 {
   option()->clear();
   button()->Enable(false);
-  editor_->SetValue("");
+
+  StringOption* string_option = (StringOption*) option();
+  editor_->SetValue(string_option->default_value().c_str());
 }
 
 void

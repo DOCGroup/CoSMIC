@@ -17,9 +17,14 @@ IntegerOptionEditor::IntegerOptionEditor(wxWindow* parent,
       std::ostringstream os;
       os << integer_option->get();
       editor_->SetValue(os.str().c_str());
+      button()->Enable(true);
     }
   else
-    editor_->SetValue("");
+    {
+      std::ostringstream os;
+      os << integer_option->default_value();
+      editor_->SetValue(os.str().c_str());
+    }
 
   editor_->Show(true);
   editor_->add_focus_listener(this);
@@ -82,7 +87,11 @@ IntegerOptionEditor::clear_button_clicked(ClearButton*)
 {
   option()->clear();
   button()->Enable(false);
-  editor_->SetValue("");
+
+  IntegerOption* integer_option = (IntegerOption*) option();
+  std::ostringstream os;
+  os << integer_option->default_value();
+  editor_->SetValue(os.str().c_str());
 }
 
 void

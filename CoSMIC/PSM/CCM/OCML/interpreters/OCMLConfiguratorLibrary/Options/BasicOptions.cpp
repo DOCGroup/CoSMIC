@@ -91,7 +91,7 @@ EnumOption::set(EnumOption::value_type value)
   if (std::find(items_.begin(), items_.end(), value) == items_.end())
     throw InvalidItem(value);
 
-  BasicOption<value_type>::set(value);
+  Base_Option<value_type>::set(value);
 }
 
 EnumOption::item_iterator

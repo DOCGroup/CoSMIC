@@ -1,3 +1,5 @@
+// $Id$
+
 #include "EnumOptionEditor.hpp"
 
 EnumOptionEditor::EnumOptionEditor(wxWindow* parent, EnumOption* enum_option)
@@ -11,7 +13,18 @@ EnumOptionEditor::EnumOptionEditor(wxWindow* parent, EnumOption* enum_option)
   panel()->GetSizer()->Add(editor_, 1, 0, 
                            /*wxALL | wxADJUST_MINSIZE | wxEXPAND,*/ 2);
 
-  editor_->Append("-");
+  std::string default_line;
+  if (enum_option->has_default())
+    {
+      EnumOption::item_iterator default_item = enum_option->get_default();
+      default_line = std::string("default - ") + *default_item;
+    }
+  else
+    {
+      default_line = std::string("-");
+    }
+  editor_->Append(default_line.c_str());
+
   for (EnumOption::item_iterator iter = enum_option->begin_items();
        iter != enum_option->end_items(); ++iter)
     {
@@ -19,9 +32,13 @@ EnumOptionEditor::EnumOptionEditor(wxWindow* parent, EnumOption* enum_option)
     }
 
   if (option()->assigned())
-    editor_->SetValue(enum_option->get().c_str());
+    {
+      editor_->SetValue(enum_option->get().c_str());
+    }
   else
-    editor_->SetValue("-");
+    {
+      editor_->SetValue(default_line.c_str());
+    }
     
   editor_->enable_events();
     
