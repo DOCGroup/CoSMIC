@@ -1,3 +1,11 @@
+Mon Sep 06 17:21:30 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+          A big OCML update. The integration of OCML & PICML and the new
+          two interpreters which should be registered with PICML
+          metamodel. OCML Configurator and TAO Service Configuration
+	  exporter. For more information about the interpreters please
+	  refer to the PSM/CCM/OCML/interpreters/README.txt file.
+
 Fri Aug 27 22:53:32 2004  Gabriele Trombetti  <gtrombetti@nospam.invalid.domain>
 
           Added the following files:
