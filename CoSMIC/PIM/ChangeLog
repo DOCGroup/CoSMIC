@@ -1,3 +1,78 @@
+Tue Jun  8 14:51:18 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * IDML/paradigms/Icons/aggregateref.bmp:
+        * IDML/paradigms/Icons/aliasref.bmp:
+        * IDML/paradigms/Icons/boolean.bmp:
+        * IDML/paradigms/Icons/boxedref.bmp:
+        * IDML/paradigms/Icons/byte.bmp:
+        * IDML/paradigms/Icons/componentfactoryref.bmp:
+        * IDML/paradigms/Icons/componentref.bmp:
+        * IDML/paradigms/Icons/genericobject.bmp:
+        * IDML/paradigms/Icons/genericvalue.bmp:
+        * IDML/paradigms/Icons/genericvalueobject.bmp:
+        * IDML/paradigms/Icons/inevent_lf.bmp:
+        * IDML/paradigms/Icons/inevent_rt.bmp:
+        * IDML/paradigms/Icons/long.bmp:
+        * IDML/paradigms/Icons/outevent_lf.bmp:
+        * IDML/paradigms/Icons/outevent_rt.bmp:
+        * IDML/paradigms/Icons/realnumber.bmp:
+        * IDML/paradigms/Icons/receptacle_lf.bmp:
+        * IDML/paradigms/Icons/receptacle_rt.bmp:
+        * IDML/paradigms/Icons/setexceptionref.bmp:
+        * IDML/paradigms/Icons/short.bmp:
+        * IDML/paradigms/Icons/string.bmp:
+        * IDML/paradigms/Icons/switchedaggregateref.bmp:
+        * IDML/paradigms/Icons/typeencoding.bmp:
+        * IDML/paradigms/Icons/typekind.bmp:
+        * IDML/paradigms/Icons/valueref.bmp:
+        * IDML/paradigms/Icons/variablecollectionref.bmp:
+
+          New icons, used when the type associated with the icon
+          is used as a reference.
+
+        * IDML/paradigms/Icons/aggregate.bmp:
+        * IDML/paradigms/Icons/alias.bmp:
+        * IDML/paradigms/Icons/attribute.bmp:
+        * IDML/paradigms/Icons/boxed.bmp:
+        * IDML/paradigms/Icons/component.bmp:
+        * IDML/paradigms/Icons/componentfactory.bmp:
+        * IDML/paradigms/Icons/const.bmp:
+        * IDML/paradigms/Icons/discriminator.bmp:
+        * IDML/paradigms/Icons/enum.bmp:
+        * IDML/paradigms/Icons/enumref.bmp:
+        * IDML/paradigms/Icons/enumvalue.bmp:
+        * IDML/paradigms/Icons/event.bmp:
+        * IDML/paradigms/Icons/eventref.bmp:
+        * IDML/paradigms/Icons/exception.bmp:
+        * IDML/paradigms/Icons/exceptionref.bmp:
+        * IDML/paradigms/Icons/factory.bmp:
+        * IDML/paradigms/Icons/fileref.bmp:
+        * IDML/paradigms/Icons/getexception.bmp:
+        * IDML/paradigms/Icons/in.bmp:
+        * IDML/paradigms/Icons/inherits.bmp:
+        * IDML/paradigms/Icons/inout.bmp:
+        * IDML/paradigms/Icons/label.bmp:
+        * IDML/paradigms/Icons/lookup.bmp:
+        * IDML/paradigms/Icons/lookupkey.bmp:
+        * IDML/paradigms/Icons/member.bmp:
+        * IDML/paradigms/Icons/object.bmp:
+        * IDML/paradigms/Icons/objectref.bmp:
+        * IDML/paradigms/Icons/oneway.bmp:
+        * IDML/paradigms/Icons/out.bmp:
+        * IDML/paradigms/Icons/package.bmp:
+        * IDML/paradigms/Icons/private.bmp:
+        * IDML/paradigms/Icons/providedrequestport.bmp:
+        * IDML/paradigms/Icons/readonlyattribute.bmp:
+        * IDML/paradigms/Icons/return.bmp:
+        * IDML/paradigms/Icons/setexception.bmp:
+        * IDML/paradigms/Icons/supports.bmp:
+        * IDML/paradigms/Icons/switchedaggregate.bmp:
+        * IDML/paradigms/Icons/twoway.bmp:
+        * IDML/paradigms/Icons/value.bmp:
+        * IDML/paradigms/Icons/variablecollection.bmp:
+
+          Made all icons 64x64 pixels in size.
+
 Mon Jun  7 18:20:34 2004  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * PICML/examples/RobotAssembly.xme: Updated the RobotAssembly
