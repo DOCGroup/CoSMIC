@@ -32,13 +32,19 @@ inline
 XMLUnicodeString::~XMLUnicodeString()
 {
   if (buf_)
-    xercesc::XMLString::release(&buf_);
+      xercesc::XMLString::release(&buf_);
 }
 
 inline std::string
 XMLUnicodeString::str() const
 {
-  return *this;
+  if (buf_ == NULL)
+    return std::string();
+  
+  char* tmp = xercesc::XMLString::transcode(buf_);
+  std::string result(tmp);
+  xercesc::XMLString::release(&tmp);
+  return result;
 }
 
 inline 
@@ -68,13 +74,7 @@ XMLUnicodeString::operator=(const XMLUnicodeString& value)
 inline 
 XMLUnicodeString::operator std::string () const
 {
-  if (buf_ == NULL)
-    return std::string();
-  
-  char* tmp = xercesc::XMLString::transcode(buf_);
-  std::string result(tmp);
-  delete tmp;
-  return result;
+  return this->str();
 }
 
 inline bool

@@ -100,29 +100,30 @@ namespace BON
       }
 
     FCO selected_fco = *(setSelectedFCOs.begin());
-    BON::Attribute attr = selected_fco->getAttribute("configuration");
-    if (!attr)
+    BON::Attribute config_attr = selected_fco->getAttribute("configuration");
+    if (!config_attr)
       {
         AfxMessageBox(error_message);
         return;
       }
     
-    std::string old_value = attr->getStringValue();
+    std::string old_value = config_attr->getStringValue();
 
-    BON::Attribute fn_attr = selected_fco->getAttribute("tree_file_name");
-    if (!fn_attr)
+    BON::Attribute file_name_attr =
+      selected_fco->getAttribute("tree_file_name");
+    if (!file_name_attr)
       {
         AfxMessageBox(error_message);
         return;
       }
     
-    std::string tree_file_name = attr->getStringValue();
+    std::string tree_file_name = file_name_attr->getStringValue();
 
     OCML_Configurator_Library lib;
     char* new_values = lib.call_function(old_value, tree_file_name);
 
     if (new_values)
-      attr->setStringValue(std::string(new_values));
+      config_attr->setStringValue(std::string(new_values));
   }
 
   // ====================================================
