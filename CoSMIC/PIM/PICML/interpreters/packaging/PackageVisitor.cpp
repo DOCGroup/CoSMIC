@@ -482,10 +482,26 @@ namespace PICML
     this->pop();
   }
 
-  void PackageVisitor::Visit_PackageConfConfigProperty(const PackageConfConfigProperty&)
-  {}
 
-  void PackageVisitor::Visit_PackageConfReference(const PackageConfReference&)
+  void PackageVisitor::Visit_PackageConfReference(const PackageConfReference& pkgconfref)
+  {
+    ComponentPackageReference pkgref = pkgconfref.dstPackageConfReference_end();
+    pkgref.Accept (*this);
+  }
+
+  void PackageVisitor::Visit_ComponentPackageReference(const ComponentPackageReference& pkgref)
+  {
+    this->push();
+    DOMElement* ele = this->doc_->createElement (XStr ("basePackage"));
+    ComponentPackage pkg = pkgref.ref();
+    std::string pkgName (pkg.name());
+    pkgName += ".cpd";
+    ele->setAttribute (XStr ("href"), XStr (pkgName));
+    this->curr_->appendChild (ele);
+    this->pop();
+  }
+
+  void PackageVisitor::Visit_PackageConfConfigProperty(const PackageConfConfigProperty&)
   {}
 
   void PackageVisitor::Visit_PackageConfSpecializedConfig(const PackageConfSpecializedConfig&)
@@ -494,8 +510,6 @@ namespace PICML
   void PackageVisitor::Visit_PackageConfSelectRequirement(const PackageConfSelectRequirement&)
   {}
 
-  void PackageVisitor::Visit_ComponentPackageReference(const ComponentPackageReference&)
-  {}
 
   void PackageVisitor::Visit_ComponentPackages(const ComponentPackages& cps)
   {

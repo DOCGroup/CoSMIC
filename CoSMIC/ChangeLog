@@ -1,47 +1,97 @@
+Fri Dec  3 17:03:39 2004  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Updated to fix a problem with a wrong constraint that fired when
+          types of facets and receptacles were checked in a publish
+          connection.
+
+        * PIM/PICML/interpreters/packaging/PackageVisitor.cpp:
+
+          Allowed support for using a reference to an existing package
+          instead of drawing an arbitrary package in the
+          PackageConfiguration view.
+
+        * PIM/PICML/examples/BasicSP.xme:
+        * PIM/PICML/examples/RobotAssembly.xme:
+
+          Updated the examples to use a reference to a ComponentPackage in
+          the PackageConfiguration element.
+
+        * PIM/PICML/interpreters/BGML_Interpreter/PICML.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/PICML.cpp:
+
+        * PIM/PICML/interpreters/MPC/PICML.h:
+        * PIM/PICML/interpreters/MPC/PICML.cpp:
+        * PIM/PICML/interpreters/MPC/PICML.xsd:
+
+        * PIM/PICML/interpreters/cidl/PICML.h:
+        * PIM/PICML/interpreters/cidl/PICML.xsd:
+        * PIM/PICML/interpreters/cidl/PICML.cpp:
+
+        * PIM/PICML/interpreters/domain/PICML.h:
+        * PIM/PICML/interpreters/domain/PICML.cpp:
+        * PIM/PICML/interpreters/domain/PICML.xsd:
+
+        * PIM/PICML/interpreters/packaging/PICML.h:
+        * PIM/PICML/interpreters/packaging/PICML.xsd:
+        * PIM/PICML/interpreters/packaging/PICML.cpp:
+
+        * PIM/PICML/interpreters/plan/PICML.h:
+        * PIM/PICML/interpreters/plan/PICML.xsd:
+        * PIM/PICML/interpreters/plan/PICML.cpp:
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICMLTemplate.xme:
+
+          Regenerated files to include changes in the metamodel.
+
 Fri Dec 03 15:56:11 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-        * build.pl: 
+        * build.pl:
 
           Added perl script to compile all the projects for Release build
           with VC6 by invoking msvc_mpc_auto_compile script.
 
 Fri Dec 03 13:20:23 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-        * PIM/PICML/interpreters/plan/DeploymentPlan.dsp (SOURCE): 
-        * PIM/PICML/interpreters/packaging/PackageComponent.dsp (SOURCE): 
-        * PIM/PICML/interpreters/domain/Domain.dsp (SOURCE): 
-        * PIM/PICML/interpreters/cidl/Component.dsp (SOURCE): 
-        * PIM/PICML/interpreters/MPC/Component.dsp (SOURCE): 
-        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.dsp (InputPath): 
-        * PIM/PICML/interpreters/EQAL/EQALBON2Component.dsp (InputPath): 
-        * PIM/PICML/interpreters/BGML_Interpreter/Component.dsp (SOURCE): 
-        * PIM/PICML/decorators/Decorator.dsp (InputPath): 
+        * PIM/PICML/interpreters/plan/DeploymentPlan.dsp (SOURCE):
+        * PIM/PICML/interpreters/packaging/PackageComponent.dsp (SOURCE):
+        * PIM/PICML/interpreters/domain/Domain.dsp (SOURCE):
+        * PIM/PICML/interpreters/cidl/Component.dsp (SOURCE):
+        * PIM/PICML/interpreters/MPC/Component.dsp (SOURCE):
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.dsp (InputPath):
+        * PIM/PICML/interpreters/EQAL/EQALBON2Component.dsp (InputPath):
+        * PIM/PICML/interpreters/BGML_Interpreter/Component.dsp (SOURCE):
+        * PIM/PICML/decorators/Decorator.dsp (InputPath):
 
           Changed the output directory for the binaries and libraries from
           PICML_ROOT to COSMIC_ROOT.
 
 Thu Dec 02 15:05:21 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-        * PIM/PICML/interpreters/plan/DeploymentPlan.dsp: 
-        * PIM/PICML/interpreters/packaging/PackageComponent.dsp: 
-        * PIM/PICML/interpreters/domain/Domain.dsp: 
+        * PIM/PICML/interpreters/plan/DeploymentPlan.dsp:
+        * PIM/PICML/interpreters/packaging/PackageComponent.dsp:
+        * PIM/PICML/interpreters/domain/Domain.dsp:
         * PIM/PICML/interpreters/cidl/Component.dsp:
-        * PIM/PICML/interpreters/MPC/Component.dsp: 
-        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.dsp: 
+        * PIM/PICML/interpreters/MPC/Component.dsp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.dsp:
         * PIM/PICML/interpreters/EQAL/EQALBON2Component.dsp:
         * PIM/PICML/interpreters/BGML_Interpreter/Component.dsp:
-        * PIM/PICML/decorators/Decorator.dsp: 
+        * PIM/PICML/decorators/Decorator.dsp:
 
           Changed the output directory for the binaries and libraries from
           PICML_ROOT to COSMIC_ROOT.
-        
+
 Thu Dec 02 14:45:41 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc: 
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
 
           Changed the output directory for the binaries and libraries from
           PICML_ROOT to COSMIC_ROOT.
-        
+
 Wed Nov 24 11:18:35 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/BGML_Interter/Benchmark_Stream.h:

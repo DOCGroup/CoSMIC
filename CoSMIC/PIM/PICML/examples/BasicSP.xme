@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{DDD8929B-53A1-42F8-8255-76B7F65BCF51}" cdate="Mon Nov 22 20:15:36 2004" mdate="Mon Nov 22 20:15:37 2004" version="" metaguid="{D58532B1-2176-46E0-9922-4194B7522384}" metaversion="" metaname="PICML">
+<project guid="{921C75B1-1658-4E38-AE11-A7FC828E02CE}" cdate="Fri Dec 03 16:28:39 2004" mdate="Fri Dec 03 17:08:48 2004" version="" metaguid="{C27FF4EA-D183-4EC2-A003-3B7D80F1CF3C}" metaversion="" metaname="PICML">
 	<name>BasicSP</name>
 	<comment></comment>
 	<author></author>
@@ -2572,7 +2572,25 @@
 						<attribute kind="label" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-0000003c" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-00000003" isinstance="yes" isprimary="no" referred="id-0065-00000003" isbound="yes">
+						<reference id="id-0067-0000003c" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000002" isinstance="yes" isprimary="no" referred="id-0065-00000003" isbound="yes">
+							<name>dataout</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-0000003d" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-00000003" isinstance="yes" isprimary="no" referred="id-0065-00000003" isbound="yes">
 							<name>datain</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -2593,7 +2611,7 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-0000003d" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000004" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+						<reference id="id-0067-0000003e" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000004" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 							<name>out_avail</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -2617,26 +2635,8 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-0000003e" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-00000005" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+						<reference id="id-0067-0000003f" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-00000005" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 							<name>in_avail</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-0000003f" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000002" isinstance="yes" isprimary="no" referred="id-0065-00000003" isbound="yes">
-							<name>dataout</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
 							</attribute>
@@ -2677,25 +2677,7 @@
 						<attribute kind="label" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000040" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-00000009" isinstance="yes" isprimary="no" referred="id-0065-00000005" isbound="yes">
-							<name>timeout</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000041" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000007" isinstance="yes" isprimary="no" referred="id-0065-00000003" isbound="yes">
+						<reference id="id-0067-00000040" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000007" isinstance="yes" isprimary="no" referred="id-0065-00000003" isbound="yes">
 							<name>data_read</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -2713,7 +2695,7 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000042" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000008" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+						<reference id="id-0067-00000041" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000008" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 							<name>data_available</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -2734,6 +2716,24 @@
 								<value>DirectConnect</value>
 							</attribute>
 							<attribute kind="single_destination" status="inherited">
+								<value>false</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000042" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-00000009" isinstance="yes" isprimary="no" referred="id-0065-00000005" isbound="yes">
+							<name>timeout</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
 								<value>false</value>
 							</attribute>
 						</reference>
@@ -2911,27 +2911,27 @@
 					<connection id="id-0068-00000034" kind="deliverTo" role="deliverTo" relid="0x9">
 						<name>deliverTo</name>
 						<connpoint role="src" target="id-0066-0000001e"/>
-						<connpoint role="dst" target="id-0067-00000040"/>
+						<connpoint role="dst" target="id-0067-00000042"/>
 					</connection>
 					<connection id="id-0068-00000035" kind="publish" role="publish" relid="0xb">
 						<name>publish</name>
 						<connpoint role="dst" target="id-0066-0000001f"/>
-						<connpoint role="src" target="id-0067-00000042"/>
+						<connpoint role="src" target="id-0067-00000041"/>
 					</connection>
 					<connection id="id-0068-00000036" kind="deliverTo" role="deliverTo" relid="0xc">
 						<name>deliverTo</name>
 						<connpoint role="src" target="id-0066-0000001f"/>
-						<connpoint role="dst" target="id-0067-0000003e"/>
+						<connpoint role="dst" target="id-0067-0000003f"/>
 					</connection>
 					<connection id="id-0068-00000037" kind="invoke" role="invoke" relid="0xd">
 						<name>invoke</name>
-						<connpoint role="src" target="id-0067-0000003c"/>
-						<connpoint role="dst" target="id-0067-00000041"/>
+						<connpoint role="src" target="id-0067-0000003d"/>
+						<connpoint role="dst" target="id-0067-00000040"/>
 					</connection>
 					<connection id="id-0068-00000038" kind="publish" role="publish" relid="0xf">
 						<name>publish</name>
 						<connpoint role="dst" target="id-0066-00000020"/>
-						<connpoint role="src" target="id-0067-0000003d"/>
+						<connpoint role="src" target="id-0067-0000003e"/>
 					</connection>
 					<connection id="id-0068-00000039" kind="deliverTo" role="deliverTo" relid="0x10">
 						<name>deliverTo</name>
@@ -2940,7 +2940,7 @@
 					</connection>
 					<connection id="id-0068-0000003a" kind="invoke" role="invoke" relid="0x12">
 						<name>invoke</name>
-						<connpoint role="dst" target="id-0067-0000003f"/>
+						<connpoint role="dst" target="id-0067-0000003c"/>
 						<connpoint role="src" target="id-0067-00000043"/>
 					</connection>
 				</model>
@@ -3227,7 +3227,7 @@
 		</folder>
 		<folder id="id-006a-00000008" relid="0x7" childrelidcntr="0x1" kind="PackageConfigurations">
 			<name>PackageConfigurations</name>
-			<model id="id-0065-00000041" kind="PackageConfigurationContainer" relid="0x1" childrelidcntr="0x7">
+			<model id="id-0065-00000041" kind="PackageConfigurationContainer" relid="0x1" childrelidcntr="0x9">
 				<name>Default</name>
 				<atom id="id-0066-00000026" kind="PackageConfiguration" role="PackageConfiguration" relid="0x2">
 					<name>Default</name>
@@ -3236,7 +3236,7 @@
 						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>121,149</value>
+								<value>431,305</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -3247,31 +3247,34 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000027" kind="ComponentPackage" role="ComponentPackage" relid="0x3">
+				<reference id="id-0067-00000077" kind="ComponentPackageReference" role="ComponentPackageReference" relid="0x8" referred="id-0066-00000025">
 					<name>BasicSP</name>
-					<regnode name="PartRegs" isopaque="yes">
+					<regnode name="PartRegs">
 						<value></value>
-						<regnode name="Packaging" isopaque="yes">
+						<regnode name="Packaging">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>347,144</value>
+								<value>662,305</value>
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
+					<attribute kind="requiredName" status="meta">
 						<value></value>
 					</attribute>
-					<attribute kind="label" status="meta">
+					<attribute kind="requiredType">
+						<value>BasicSP</value>
+					</attribute>
+					<attribute kind="requiredUUID" status="meta">
 						<value></value>
 					</attribute>
-				</atom>
-				<connection id="id-0068-00000044" kind="PackageConfBasePackage" role="PackageConfBasePackage" relid="0x4">
-					<name>PackageConfBasePackage</name>
+				</reference>
+				<connection id="id-0068-00000048" kind="PackageConfReference" role="PackageConfReference" relid="0x9">
+					<name>PackageConfReference</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-00000026"/>
-					<connpoint role="dst" target="id-0066-00000027"/>
+					<connpoint role="dst" target="id-0067-00000077"/>
 				</connection>
 			</model>
 		</folder>
