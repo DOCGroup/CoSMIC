@@ -3,10 +3,14 @@
 
 project (BGML_Base): acelib {
   sharedname = BGML_Base
-  dynamicflags = BGML_BASE_BUILD_DLL
+  dynamicflags = BGML_BUILD_DLL
   libs += ACE
   
   Source_Files {
     BGML_Task_Base.cpp
+  }
+  
+  Header_Files {
+    BGML_Export.h
   }
 }
