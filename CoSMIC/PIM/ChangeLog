@@ -1,3 +1,13 @@
+Mon Jun 14 18:19:01 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * IDML/paradimgs/IDML-Meta.xme:
+        * IDML/paradimgs/IDML.xmp:
+        * IDML/paradimgs/IDMLTemplate.xme:
+        * IDML/paradimgs/PredefinedTypes.xme:
+
+          Assigned the decorator below to the appropriate metamodel
+          elements, and updated the model template files.
+
 Mon Jun 14 17:56:33 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * IDML/decorators/CommonError.cpp:
