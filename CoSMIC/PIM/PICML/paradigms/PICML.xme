@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{1172640E-7074-4E9D-B008-2F0DC3387D66}" cdate="Thu Oct 21 20:02:21 2004" mdate="Thu Oct 21 21:31:25 2004" version="" metaguid="{DF851054-A0B3-41EF-8FF2-8C42EE5EDD12}" metaversion="" metaname="MetaGME">
+<project guid="{31389661-CCA6-4F28-97CA-C120132F2E37}" cdate="Thu Oct 21 20:02:21 2004" mdate="Thu Oct 21 21:54:06 2004" version="" metaguid="{DF851054-A0B3-41EF-8FF2-8C42EE5EDD12}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment></comment>
 	<author></author>
@@ -4779,19 +4779,19 @@
 					<value>7</value>
 				</regnode>
 				<regnode name="ComponentLibraries" isopaque="yes">
-					<value>5</value>
-				</regnode>
-				<regnode name="ComponentMetrics" isopaque="yes">
-					<value>8</value>
-				</regnode>
-				<regnode name="DataAnalysis" isopaque="yes">
-					<value>3</value>
-				</regnode>
-				<regnode name="InterfaceDefinition" isopaque="yes">
 					<value>7</value>
 				</regnode>
-				<regnode name="LibraryArtifact" isopaque="yes">
+				<regnode name="ComponentMetrics" isopaque="yes">
+					<value>6</value>
+				</regnode>
+				<regnode name="DataAnalysis" isopaque="yes">
+					<value>4</value>
+				</regnode>
+				<regnode name="InterfaceDefinition" isopaque="yes">
 					<value>9</value>
+				</regnode>
+				<regnode name="LibraryArtifact" isopaque="yes">
+					<value>10</value>
 				</regnode>
 				<regnode name="MainAspect" isopaque="yes">
 					<value>1</value>
@@ -4800,13 +4800,13 @@
 					<value>5</value>
 				</regnode>
 				<regnode name="NodeMapping" isopaque="yes">
-					<value>4</value>
+					<value>5</value>
 				</regnode>
 				<regnode name="Package" isopaque="yes">
 					<value>2</value>
 				</regnode>
 				<regnode name="Packaging" isopaque="yes">
-					<value>6</value>
+					<value>8</value>
 				</regnode>
 				<regnode name="ResourceView" isopaque="yes">
 					<value>3</value>
@@ -4815,7 +4815,7 @@
 					<value>2</value>
 				</regnode>
 				<regnode name="Target" isopaque="yes">
-					<value>10</value>
+					<value>3</value>
 				</regnode>
 				<regnode name="TypeDefinintionAspect" isopaque="yes">
 					<value>1</value>
@@ -71395,8 +71395,8 @@ dName = dstInclude_RTEC_Filter_Group</value>
 				<attribute kind="Color" status="meta">
 					<value>0x000000</value>
 				</attribute>
-				<attribute kind="ConnLineEnd" status="meta">
-					<value>butt</value>
+				<attribute kind="ConnLineEnd">
+					<value>arrow</value>
 				</attribute>
 				<attribute kind="ConnLineStart" status="meta">
 					<value>butt</value>
@@ -74360,7 +74360,7 @@ dName = dstUse_RT_Info</value>
 					<value>0..*</value>
 				</attribute>
 				<attribute kind="srcRolename">
-					<value></value>
+					<value>src</value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-00000195"/>
 				<connpoint role="src" target="id-0066-00000198"/>
@@ -74371,7 +74371,7 @@ dName = dstUse_RT_Info</value>
 					<value>0..*</value>
 				</attribute>
 				<attribute kind="dstRolename">
-					<value></value>
+					<value>dst</value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-00000189"/>
 				<connpoint role="src" target="id-0066-00000195"/>
@@ -75023,7 +75023,7 @@ dName = dstUse_RT_Info</value>
 				<connpoint role="dst" target="id-0066-00000183"/>
 				<connpoint role="src" target="id-0066-000001c0"/>
 			</connection>
-			<set id="id-0069-00000010" kind="Aspect" role="Aspect" relid="0x22" members="id-0067-0000003c id-0067-0000003b id-0067-0000003d id-0066-00000193 id-0066-00000186 id-0066-00000199 id-0066-0000019b id-0066-00000188 id-0066-00000198 id-0066-0000018b id-0066-0000018e id-0066-0000018d id-0066-00000194 id-0066-00000196 id-0066-00000189 id-0066-0000018c id-0066-00000183 id-0066-00000184 id-0066-00000182 id-0066-00000191 id-0066-00000192">
+			<set id="id-0069-00000010" kind="Aspect" role="Aspect" relid="0x22" members="id-0067-0000003c id-0066-0000018e id-0066-0000018b id-0066-00000191 id-0066-00000182 id-0066-00000184 id-0066-00000198 id-0066-00000188 id-0066-0000019b id-0066-00000183 id-0066-0000018c id-0066-00000189 id-0066-00000199 id-0066-00000186 id-0066-00000193 id-0067-0000003d id-0067-0000003b id-0066-00000196 id-0066-00000194 id-0066-0000018d id-0066-00000192">
 				<name>RtecConfigAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>

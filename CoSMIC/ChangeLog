@@ -1,3 +1,16 @@
+Thu Oct 21 21:59:10 2004  Gan Deng  <gan.deng@vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Updated to have a minor change of the EQAL metamodel.
+          
+        * PIM/PICML/examples/RobotAssembly.xme: 
+        
+          Updated to relex changes in EQAL. 
+
 Thu Oct 21 21:28:10 2004  Gan Deng  <gan.deng@vanderbilt.edu>
 
         * PIM/PICML/interpreters/EQAL/ComponentLib.h
