@@ -1,3 +1,19 @@
+Sun Aug  1 21:08:02 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/Interpreters/IDLIMporter/IDLImporter.mpc:
+        * PIM/PICML/Interpreters/IDLIMporter/TAO_PICML_BE_Export.h:
+        * PIM/PICML/Interpreters/IDLIMporter/XercesString.cpp:
+        * PIM/PICML/Interpreters/IDLIMporter/XercesString.h:
+        * PIM/PICML/Interpreters/IDLIMporter/be_extern.h:
+        * PIM/PICML/Interpreters/IDLIMporter/be_global.cpp:
+        * PIM/PICML/Interpreters/IDLIMporter/be_global.h:
+        * PIM/PICML/Interpreters/IDLIMporter/be_init.cpp:
+        * PIM/PICML/Interpreters/IDLIMporter/be_produce.cpp:
+        * PIM/PICML/Interpreters/IDLIMporter/picml_visitor.cpp:
+        * PIM/PICML/Interpreters/IDLIMporter/picml_visitor.h:
+        
+          New files in a new directory, an IDL importer for PICML.
+
 Thu Jul 29 16:03:55 2004  Jeff Parsons  <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.vcproj:
