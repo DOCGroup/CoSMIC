@@ -14,6 +14,7 @@ public:
 									   int type);
 	static std::string operation_name (PICML::TwowayOperation& op);
 	static std::vector<std::string> argument_list (PICML::TwowayOperation& op);
+	static std::string dependant_idls (PICML::TwowayOperation& op);
 
 protected:
 	static std::string scope_name (PICML::TwowayOperation &operation_name);

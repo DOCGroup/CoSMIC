@@ -32,11 +32,13 @@ protected:
 	void generate_header_file (std::string& class_name,
 							   std::string& component_name,
 							   std::string& operation_name,
-							   std::vector<string>& arg_list);
+							   std::vector<string>& arg_list,
+							   bool generate_header_file);
 	// Generate the header file information
 
 	void create_build_file (std::vector<std::string>& file_list, 
-							std::string& project_name);
+							std::string& project_name,
+							std::string& dependancy_list);
 	// Generate the build file building benchmarking library
 	
 private:

@@ -4,7 +4,8 @@
 #include "Uml.h"
 
 
-std::string IDL_Util::component_name (PICML::TwowayOperation& op)
+std::string 
+IDL_Util::component_name (PICML::TwowayOperation& op)
 {
 	// Obtain the object parent
 	PICML::HasOperations has_op = op.HasOperations_parent();
@@ -23,6 +24,68 @@ std::string IDL_Util::component_name (PICML::TwowayOperation& op)
 	}
 	
 	return NULL;
+}
+
+std::string
+IDL_Util::dependant_idls (PICML::TwowayOperation& op)
+{
+	// Obtain the object parent
+	PICML::HasOperations has_op = op.HasOperations_parent();
+	PICML::Object object = PICML::Object::Cast (has_op);
+	std::vector<std::string> return_set;
+	std::set<PICML::RequiredRequestPort> receptacle_set = object.referedbyRequiredRequestPort();
+	
+	for (std::set<PICML::RequiredRequestPort>::iterator iter = receptacle_set.begin ();
+	iter != receptacle_set.end ();
+	iter ++)
+	{
+		// Return the first component name; all names will be the same
+		PICML::Component component = iter->Component_parent ();
+
+		// Get the File parent
+		Udm::Object some_parent = component.parent ();
+		while (Udm::IsDerivedFrom (some_parent.type(), PICML::Package::meta))
+		{
+			PICML::Package temp = PICML::Package::Cast (some_parent);
+			some_parent = temp.parent ();
+		}
+
+		PICML::File file_parent = PICML::File::Cast (some_parent);
+
+		// Get the dependant IDL files included by this file
+		std::set<PICML::FileRef> file_refs = file_parent.FileRef_children ();
+		std::string return_set;
+
+		if (file_refs.size ())
+		{
+			// Add each of the dependant file names
+			for (std::set<PICML::FileRef>::iterator iter = file_refs.begin ();
+			     iter != file_refs.end ();
+				 iter ++)
+				 {
+					 std::string name;
+					 iter->GetStrValue ("name", name);
+					 return_set.append (name);
+					 return_set.append ("_stub ");
+				 }
+		}
+		else
+		{
+			// Add this file to the dependant list
+			std::string name;
+			file_parent.GetStrValue ("name", name);
+			return_set.append (name);
+			return_set.append ("_stub ");
+
+		}
+
+		// Return at the first iteration
+		return return_set;
+	}
+
+	// Return null string
+	return 0;
+
 }
 
 /*

@@ -171,7 +171,7 @@ this->strm_ << "//     http://www.dre.vanderbilt.edu/cosmic\n";
 }
 
 void
-BenchmarkStream::generate_task_header (std::string& header_name)
+BenchmarkStream::generate_task_header (std::string& header_name, bool create_export_header)
 {
 	// Generate the tool description
 	this->generate_tool_description ();
@@ -188,8 +188,10 @@ BenchmarkStream::generate_task_header (std::string& header_name)
 	this->gen_include_file (component_exec_header);
 
 	/// Generate the export files for benchmarking
-	this->create_export_macro (header_name);
-	std::string export_header_name = header_name + "_export.h";
+	if (create_export_header)
+		this->create_export_macro (header_name);
+
+	std::string export_header_name =  "Bechmark_" + this->operation_name_ + "_export.h";
 	this->gen_include_file (export_header_name);
 
 	/// Check for ACE_Barrier in the list
@@ -205,8 +207,13 @@ BenchmarkStream::generate_task_header (std::string& header_name)
 	// Step 3: Generate the "class" definition
 	this->strm_ << "template <typename T>";
 	this->nl ();
-	this->upcase (header_name.c_str ());
-	this->strm_ << "_Export class ";
+	this->strm_ << "class ";
+
+	// Generate the export macro for the workload generation
+	this->strm_ << "BENCHMARK_";
+	this->upcase (this->operation_name_.c_str ());
+	this->strm_ << "_Export ";
+
 	this->strm_ << header_name.c_str ();
 	this->strm_ << " : public BGML_Task_Base";
 	this->nl ();

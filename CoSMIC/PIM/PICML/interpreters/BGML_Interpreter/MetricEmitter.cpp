@@ -2,10 +2,12 @@
 #define METRIC_EMITTER_C
 
 #include <fstream>
+#include "ctype.h"
 
 #include "MetricEmitter.h"
 #include "IDL_Util.h"
 #include "Benchmark_Stream.h"
+#include <algorithm>
 
 template <class T>
 MetricEmitter<T>::MetricEmitter (PICML::OperationBase &base, 
@@ -36,7 +38,8 @@ void
 MetricEmitter<T>::generate_header_file (std::string& class_name,
 										std::string& component_name,
 										std::string& operation_name,
-										std::vector<string>& arg_list)
+										std::vector<string>& arg_list, 
+										bool create_export_macro)
 {
 	std::string output_file = this->output_path_ + "\\" + class_name + ".h";
 	std::ofstream output_stream (output_file.c_str (), ios::out);
@@ -47,13 +50,14 @@ MetricEmitter<T>::generate_header_file (std::string& class_name,
 								  this->task_priorities_,
 								  this->task_rates_,
 								  this->output_path_);
-	bench_stream.generate_task_header (class_name);
+	bench_stream.generate_task_header (class_name, create_export_macro);
 }
 
 template <class T>
 void
 MetricEmitter<T>::create_build_file (std::vector<std::string>& file_list, 
-									 std::string& project_name)
+									 std::string& project_name, 
+									 std::string& dependant_list)
 {
 	// Open the build stream
 	std::string build_file = this->output_path_ + "\\" + project_name + ".mpc";
@@ -61,13 +65,20 @@ MetricEmitter<T>::create_build_file (std::vector<std::string>& file_list,
 	
 	// Create project
 	build_stream << "project (";
-	build_stream << project_name << ") : acelib, ciao_client_dnc {";
+	build_stream << project_name << ") : acelib, ciao_component_dnc {";
 	build_stream << "\n";
 	
 	// Create include definition and libs+
 	build_stream << "  includes += $(BGML_HOME) \n";
-	build_stream << "  libs     += BGML_Base \n";
-	build_stream << "  libpaths += $(BGML_HOME) \n";
+	build_stream << "  libs     += BGML_Base ";
+	build_stream << dependant_list.c_str ();
+	build_stream << "\n  dynamicflags = ";
+
+	std::transform (project_name.begin(), 
+				    project_name.end(), 
+					ostream_iterator <char> (build_stream), 
+					toupper);
+	build_stream << "\n";
 	
 	// Add the Benchmarking Source files
 	build_stream << "  Source_Files { \n";
@@ -84,7 +95,6 @@ MetricEmitter<T>::create_build_file (std::vector<std::string>& file_list,
 	// Close the file
 	build_stream.close ();
 }
-
 
 
 template <class T>
@@ -108,7 +118,7 @@ MetricEmitter<T>::generate_benchmark ()
 
 	//// Generate the Benchmarking Header
 	std::string class_name = "Benchmark_" + operation_name;
-	this->generate_header_file (class_name, component_name, operation_name, arg_list);
+	this->generate_header_file (class_name, component_name, operation_name, arg_list, true);
 
 	std::vector<std::string> source_file_list;
 	if (this->task_priorities_.size ())
@@ -118,7 +128,7 @@ MetricEmitter<T>::generate_benchmark ()
 		// Add a barrier to the list of arguments
 		std::vector<std::string> temp_list (arg_list);
 		temp_list.push_back ("ACE_Barrier&");
-		this->generate_header_file (class_name, component_name, operation_name, temp_list);
+		this->generate_header_file (class_name, component_name, operation_name, temp_list, false);
 
 		std::string workload_cpp_file = 
 			this->output_path_ + "\\" + operation_name + "_Workload.cpp";
@@ -158,7 +168,9 @@ MetricEmitter<T>::generate_benchmark ()
 
 	// Create the mpc file for building the benchmarks
 	std::string project_name = "Benchmark_" + operation_name;
-	this->create_build_file (source_file_list, project_name);
+	std::string dependant_libs = IDL_Util::dependant_idls (twoway_op);
+
+	this->create_build_file (source_file_list, project_name, dependant_libs);
 }
 
 #endif // METRIC_EMITTER_C
