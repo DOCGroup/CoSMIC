@@ -1,3 +1,7 @@
+Thu Nov 4 14:23:30 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+        * PIM/PICML/interpreters/BGML_Interpreter/Component.dsp:
+          Resolved errors arising from generating the DLL in release mode
+
 Thu Nov  4 13:33:30 2004  Krishankumar B  <kitty@spam.invalid.domain>
 
         * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.dsp:
