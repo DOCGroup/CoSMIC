@@ -5,6 +5,7 @@ Fri Sep  3 11:23:49 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/decorators/IDMLDecorators.cpp:
         * PIM/PICML/decorators/IDMLDecorators.h:
         * PIM/PICML/decorators/resource.h:
+        * PIM/PICML/decorators/Decorator.dsp:
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xmp:
         * PIM/PICML/paradigms/PICML-uml.xme:
