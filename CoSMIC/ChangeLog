@@ -1,3 +1,10 @@
+Sun Aug 29 20:01:29 CDT 2004 Gan Deng <gan.deng@vanderbilt.edu>
+
+        * PIM/PICML/examples/RobotAssembly.xme:
+
+          Added real-time event channel configuration sheet
+          for the RobotAssembly example.
+
 Sat Aug 28 16:56:29 CDT 2004 Gan Deng <gan.deng@vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Wed Aug 25 17:52:20 2004" mdate="Wed Aug 25 17:57:34 2004" metaguid="{22AEE3B4-DEAD-BEEF-FEED-DAD000000001}" metaname="PICML">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri Aug 27 21:52:13 2004" mdate="Sun Aug 29 22:00:56 2004" metaguid="{CC62BE82-DEAD-BEEF-FEED-DAD000000001}" metaname="PICML">
 	<name>RobotAssembly</name>
 	<comment></comment>
 	<author></author>
-	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x12" kind="RootFolder">
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x13" kind="RootFolder">
 		<name>RobotAssembly</name>
 		<folder id="id-006a-00000002" relid="0x3" childrelidcntr="0x2" kind="InterfaceDefinitions">
 			<name>RobotAssemblyInterfaces</name>
@@ -117,7 +117,7 @@
 						<attribute kind="VersionTag" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-0000008e" kind="Member" role="Member" relid="0x1" referred="id-0066-0000004e">
+						<reference id="id-0067-00000090" kind="Member" role="Member" relid="0x1" referred="id-0066-0000004e">
 							<name>TimeTypeMember</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -195,7 +195,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000008f" kind="Member" role="Member" relid="0x2" referred="id-0066-0000004e">
+						<reference id="id-0067-00000091" kind="Member" role="Member" relid="0x2" referred="id-0066-0000004e">
 							<name>OrderNumber</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -207,7 +207,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000090" kind="Member" role="Member" relid="0x3" referred="id-0066-0000004e">
+						<reference id="id-0067-00000092" kind="Member" role="Member" relid="0x3" referred="id-0066-0000004e">
 							<name>ProductNumber</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -219,7 +219,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000091" kind="Member" role="Member" relid="0x4" referred="id-0066-0000004e">
+						<reference id="id-0067-00000093" kind="Member" role="Member" relid="0x4" referred="id-0066-0000004e">
 							<name>Priority</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -231,7 +231,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000092" kind="Member" role="Member" relid="0x5" referred="id-0066-0000004e">
+						<reference id="id-0067-00000094" kind="Member" role="Member" relid="0x5" referred="id-0066-0000004e">
 							<name>Quantity</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -611,7 +611,7 @@
 									</regnode>
 								</regnode>
 							</reference>
-							<reference id="id-0067-00000093" kind="InParameter" role="InParameter" relid="0x2" referred="id-0066-0000004e">
+							<reference id="id-0067-00000095" kind="InParameter" role="InParameter" relid="0x2" referred="id-0066-0000004e">
 								<name>OrderNumber</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -653,7 +653,7 @@
 									</regnode>
 								</regnode>
 							</reference>
-							<reference id="id-0067-00000094" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-0000004e">
+							<reference id="id-0067-00000096" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-0000004e">
 								<name>OrderNumber</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -695,7 +695,7 @@
 									</regnode>
 								</regnode>
 							</reference>
-							<reference id="id-0067-00000095" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-0000004e">
+							<reference id="id-0067-00000097" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-0000004e">
 								<name>OrderNumber</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -707,7 +707,7 @@
 									</regnode>
 								</regnode>
 							</reference>
-							<reference id="id-0067-00000096" kind="InParameter" role="InParameter" relid="0x3" referred="id-0066-0000004e">
+							<reference id="id-0067-00000098" kind="InParameter" role="InParameter" relid="0x3" referred="id-0066-0000004e">
 								<name>RobotNumber</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -749,7 +749,7 @@
 									</regnode>
 								</regnode>
 							</reference>
-							<reference id="id-0067-00000097" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-0000004e">
+							<reference id="id-0067-00000099" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-0000004e">
 								<name>OrderNumber</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -761,7 +761,7 @@
 									</regnode>
 								</regnode>
 							</reference>
-							<reference id="id-0067-00000098" kind="InParameter" role="InParameter" relid="0x3" referred="id-0066-0000004e">
+							<reference id="id-0067-0000009a" kind="InParameter" role="InParameter" relid="0x3" referred="id-0066-0000004e">
 								<name>ProductNumber</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -791,7 +791,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-00000099" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-0000004a">
+							<reference id="id-0067-0000009b" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-0000004a">
 								<name>ShutdownStarted</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -918,7 +918,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000009a" kind="Member" role="Member" relid="0x2" referred="id-0066-0000004e">
+						<reference id="id-0067-0000009c" kind="Member" role="Member" relid="0x2" referred="id-0066-0000004e">
 							<name>OrderNumber</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -930,7 +930,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000009b" kind="Member" role="Member" relid="0x3" referred="id-0066-0000004e">
+						<reference id="id-0067-0000009d" kind="Member" role="Member" relid="0x3" referred="id-0066-0000004e">
 							<name>ProductNumber</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -972,7 +972,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000009c" kind="Member" role="Member" relid="0x1" referred="id-0066-0000004e">
+						<reference id="id-0067-0000009e" kind="Member" role="Member" relid="0x1" referred="id-0066-0000004e">
 							<name>ProductNumber</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -984,7 +984,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000009d" kind="Member" role="Member" relid="0x2" referred="id-0066-0000004e">
+						<reference id="id-0067-0000009f" kind="Member" role="Member" relid="0x2" referred="id-0066-0000004e">
 							<name>OrderNumber</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -1158,7 +1158,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000009e" kind="Member" role="Member" relid="0x2" referred="id-0066-0000004e">
+						<reference id="id-0067-000000a0" kind="Member" role="Member" relid="0x2" referred="id-0066-0000004e">
 							<name>OrderNumber</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -1170,7 +1170,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000009f" kind="Member" role="Member" relid="0x3" referred="id-0066-0000004e">
+						<reference id="id-0067-000000a1" kind="Member" role="Member" relid="0x3" referred="id-0066-0000004e">
 							<name>ProductNumber</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -1182,7 +1182,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-000000a0" kind="Member" role="Member" relid="0x4" referred="id-0066-0000004e">
+						<reference id="id-0067-000000a2" kind="Member" role="Member" relid="0x4" referred="id-0066-0000004e">
 							<name>JobPriority</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -1236,7 +1236,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-000000a1" kind="Member" role="Member" relid="0x1" referred="id-0066-0000004e">
+						<reference id="id-0067-000000a3" kind="Member" role="Member" relid="0x1" referred="id-0066-0000004e">
 							<name>OrderNumber</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -1248,7 +1248,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-000000a2" kind="Member" role="Member" relid="0x4" referred="id-0066-0000004e">
+						<reference id="id-0067-000000a4" kind="Member" role="Member" relid="0x4" referred="id-0066-0000004e">
 							<name>RequestedProduction</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -1260,7 +1260,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-000000a3" kind="Member" role="Member" relid="0x5" referred="id-0066-0000004e">
+						<reference id="id-0067-000000a5" kind="Member" role="Member" relid="0x5" referred="id-0066-0000004e">
 							<name>ActualProduction</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -1272,7 +1272,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-000000a4" kind="Member" role="Member" relid="0x6" referred="id-0066-0000004e">
+						<reference id="id-0067-000000a6" kind="Member" role="Member" relid="0x6" referred="id-0066-0000004e">
 							<name>ProductNumber</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -1592,7 +1592,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000a5" kind="ReturnType" role="ReturnType" relid="0x2" referred="id-0066-00000051">
+							<reference id="id-0067-000000a7" kind="ReturnType" role="ReturnType" relid="0x2" referred="id-0066-00000051">
 								<name>String</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -1622,7 +1622,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000a6" kind="InParameter" role="InParameter" relid="0x2" referred="id-0066-00000050">
+							<reference id="id-0067-000000a8" kind="InParameter" role="InParameter" relid="0x2" referred="id-0066-00000050">
 								<name>theKey</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -1664,7 +1664,7 @@
 									</regnode>
 								</regnode>
 							</reference>
-							<reference id="id-0067-000000a7" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-00000050">
+							<reference id="id-0067-000000a9" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-00000050">
 								<name>SwitchNumber</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -1694,7 +1694,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000a8" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-00000050">
+							<reference id="id-0067-000000aa" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-00000050">
 								<name>SwitchNumber</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -1724,7 +1724,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000a9" kind="ReturnType" role="ReturnType" relid="0x1" referred="id-0066-00000050">
+							<reference id="id-0067-000000ab" kind="ReturnType" role="ReturnType" relid="0x1" referred="id-0066-00000050">
 								<name>short</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -1754,7 +1754,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000aa" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-00000050">
+							<reference id="id-0067-000000ac" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-00000050">
 								<name>volume</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -1862,7 +1862,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000ab" kind="ReturnType" role="ReturnType" relid="0x3" referred="id-0066-00000051">
+							<reference id="id-0067-000000ad" kind="ReturnType" role="ReturnType" relid="0x3" referred="id-0066-00000051">
 								<name>string</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -1979,7 +1979,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000ac" kind="ReturnType" role="ReturnType" relid="0x3" referred="id-0066-00000051">
+							<reference id="id-0067-000000ae" kind="ReturnType" role="ReturnType" relid="0x3" referred="id-0066-00000051">
 								<name>string</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -2096,7 +2096,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000ad" kind="ReturnType" role="ReturnType" relid="0x3" referred="id-0065-00000048">
+							<reference id="id-0067-000000af" kind="ReturnType" role="ReturnType" relid="0x3" referred="id-0065-00000048">
 								<name>MovePalletRequestType</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -2126,7 +2126,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000ae" kind="ReturnType" role="ReturnType" relid="0x1" referred="id-0066-00000050">
+							<reference id="id-0067-000000b0" kind="ReturnType" role="ReturnType" relid="0x1" referred="id-0066-00000050">
 								<name>Short</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -2156,7 +2156,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000af" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-00000050">
+							<reference id="id-0067-000000b1" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-00000050">
 								<name>number</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -2204,7 +2204,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000b0" kind="ReturnType" role="ReturnType" relid="0x3" referred="id-0066-00000051">
+							<reference id="id-0067-000000b2" kind="ReturnType" role="ReturnType" relid="0x3" referred="id-0066-00000051">
 								<name>string</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -2333,7 +2333,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000b1" kind="ReturnType" role="ReturnType" relid="0x3" referred="id-0066-00000051">
+							<reference id="id-0067-000000b3" kind="ReturnType" role="ReturnType" relid="0x3" referred="id-0066-00000051">
 								<name>string</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -2390,7 +2390,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-000000b2" kind="ReturnType" role="ReturnType" relid="0x3" referred="id-0066-00000051">
+							<reference id="id-0067-000000b4" kind="ReturnType" role="ReturnType" relid="0x3" referred="id-0066-00000051">
 								<name>string</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -2754,7 +2754,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-000000b3" kind="Member" role="Member" relid="0x2" referred="id-0066-0000004e">
+						<reference id="id-0067-000000b5" kind="Member" role="Member" relid="0x2" referred="id-0066-0000004e">
 							<name>OrderNumber</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -2766,7 +2766,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-000000b4" kind="Member" role="Member" relid="0x3" referred="id-0066-0000004e">
+						<reference id="id-0067-000000b6" kind="Member" role="Member" relid="0x3" referred="id-0066-0000004e">
 							<name>ProductNumber</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -2778,7 +2778,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-000000b5" kind="Member" role="Member" relid="0x4" referred="id-0066-0000004e">
+						<reference id="id-0067-000000b7" kind="Member" role="Member" relid="0x4" referred="id-0066-0000004e">
 							<name>JobPriority</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -4333,7 +4333,7 @@
 					<attribute kind="DataValue">
 						<value>RM.ior</value>
 					</attribute>
-					<reference id="id-0067-000000b6" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000051">
+					<reference id="id-0067-000000b8" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000051">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -4388,7 +4388,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000b7" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-00000038">
+				<reference id="id-0067-000000b9" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-00000038">
 					<name>RobotManager_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4406,7 +4406,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000b8" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x7" referred="id-0066-00000039">
+				<reference id="id-0067-000000ba" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x7" referred="id-0066-00000039">
 					<name>RobotManager_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4424,7 +4424,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000b9" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x8" referred="id-0066-0000003a">
+				<reference id="id-0067-000000bb" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x8" referred="id-0066-0000003a">
 					<name>RobotManager_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4453,7 +4453,7 @@
 				<connection id="id-0068-00000011" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x9">
 					<name>MonolithprimaryArtifact</name>
 					<connpoint role="src" target="id-0066-0000002b"/>
-					<connpoint role="dst" target="id-0067-000000b7"/>
+					<connpoint role="dst" target="id-0067-000000b9"/>
 				</connection>
 				<connection id="id-0068-00000012" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0xa">
 					<name>MonolithprimaryArtifact</name>
@@ -4461,12 +4461,12 @@
 						<value>w</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-0000002b"/>
-					<connpoint role="dst" target="id-0067-000000b8"/>
+					<connpoint role="dst" target="id-0067-000000ba"/>
 				</connection>
 				<connection id="id-0068-00000013" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0xb">
 					<name>MonolithprimaryArtifact</name>
 					<connpoint role="src" target="id-0066-0000002b"/>
-					<connpoint role="dst" target="id-0067-000000b9"/>
+					<connpoint role="dst" target="id-0067-000000bb"/>
 				</connection>
 				<connection id="id-0068-00000014" kind="ConfigProperty" role="ConfigProperty" relid="0xd">
 					<name>ConfigProperty</name>
@@ -4490,7 +4490,7 @@
 					<attribute kind="DataValue">
 						<value>WSM.ior</value>
 					</attribute>
-					<reference id="id-0067-000000ba" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000051">
+					<reference id="id-0067-000000bc" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000051">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -4533,7 +4533,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000bb" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x2" referred="id-0066-00000046">
+				<reference id="id-0067-000000bd" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x2" referred="id-0066-00000046">
 					<name>WatchSettingManager_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4545,7 +4545,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000bc" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x3" referred="id-0066-00000045">
+				<reference id="id-0067-000000be" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x3" referred="id-0066-00000045">
 					<name>WatchSettingManager_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4557,7 +4557,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000bd" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-00000044">
+				<reference id="id-0067-000000bf" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-00000044">
 					<name>WatchSettingManager_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4577,17 +4577,17 @@
 				<connection id="id-0068-00000016" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x7">
 					<name>MonolithprimaryArtifact</name>
 					<connpoint role="src" target="id-0066-0000002c"/>
-					<connpoint role="dst" target="id-0067-000000bb"/>
+					<connpoint role="dst" target="id-0067-000000bd"/>
 				</connection>
 				<connection id="id-0068-00000017" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x8">
 					<name>MonolithprimaryArtifact</name>
 					<connpoint role="src" target="id-0066-0000002c"/>
-					<connpoint role="dst" target="id-0067-000000bc"/>
+					<connpoint role="dst" target="id-0067-000000be"/>
 				</connection>
 				<connection id="id-0068-00000018" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x9">
 					<name>MonolithprimaryArtifact</name>
 					<connpoint role="src" target="id-0066-0000002c"/>
-					<connpoint role="dst" target="id-0067-000000bd"/>
+					<connpoint role="dst" target="id-0067-000000bf"/>
 				</connection>
 				<connection id="id-0068-00000019" kind="ConfigProperty" role="ConfigProperty" relid="0xb">
 					<name>ConfigProperty</name>
@@ -4611,7 +4611,7 @@
 					<attribute kind="DataValue">
 						<value>MWI.ior</value>
 					</attribute>
-					<reference id="id-0067-000000be" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000051">
+					<reference id="id-0067-000000c0" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000051">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -4654,7 +4654,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000bf" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-00000043">
+				<reference id="id-0067-000000c1" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-00000043">
 					<name>ManagementWorkInstructions_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4666,7 +4666,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000c0" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x5" referred="id-0066-00000042">
+				<reference id="id-0067-000000c2" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x5" referred="id-0066-00000042">
 					<name>ManagementWorkInstructions_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4678,7 +4678,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000c1" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-00000041">
+				<reference id="id-0067-000000c3" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-00000041">
 					<name>ManagementWorkInstructions_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4704,7 +4704,7 @@
 						<value>w</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-0000002d"/>
-					<connpoint role="dst" target="id-0067-000000bf"/>
+					<connpoint role="dst" target="id-0067-000000c1"/>
 				</connection>
 				<connection id="id-0068-0000001c" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x8">
 					<name>MonolithprimaryArtifact</name>
@@ -4712,7 +4712,7 @@
 						<value>w</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-0000002d"/>
-					<connpoint role="dst" target="id-0067-000000c0"/>
+					<connpoint role="dst" target="id-0067-000000c2"/>
 				</connection>
 				<connection id="id-0068-0000001d" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x9">
 					<name>MonolithprimaryArtifact</name>
@@ -4720,7 +4720,7 @@
 						<value>w</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-0000002d"/>
-					<connpoint role="dst" target="id-0067-000000c1"/>
+					<connpoint role="dst" target="id-0067-000000c3"/>
 				</connection>
 				<connection id="id-0068-0000001e" kind="ConfigProperty" role="ConfigProperty" relid="0xb">
 					<name>ConfigProperty</name>
@@ -4744,7 +4744,7 @@
 					<attribute kind="DataValue">
 						<value>HMI.ior</value>
 					</attribute>
-					<reference id="id-0067-000000c2" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000051">
+					<reference id="id-0067-000000c4" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000051">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -4787,7 +4787,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000c3" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x3" referred="id-0066-00000049">
+				<reference id="id-0067-000000c5" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x3" referred="id-0066-00000049">
 					<name>HumanMachineInterface_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4799,7 +4799,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000c4" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-00000048">
+				<reference id="id-0067-000000c6" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-00000048">
 					<name>HumanMachineInterface_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4811,7 +4811,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000c5" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x5" referred="id-0066-00000047">
+				<reference id="id-0067-000000c7" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x5" referred="id-0066-00000047">
 					<name>HumanMachineInterface_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4834,7 +4834,7 @@
 				<connection id="id-0068-00000020" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x7">
 					<name>MonolithprimaryArtifact</name>
 					<connpoint role="src" target="id-0066-0000002e"/>
-					<connpoint role="dst" target="id-0067-000000c3"/>
+					<connpoint role="dst" target="id-0067-000000c5"/>
 				</connection>
 				<connection id="id-0068-00000021" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x8">
 					<name>MonolithprimaryArtifact</name>
@@ -4842,7 +4842,7 @@
 						<value>w</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-0000002e"/>
-					<connpoint role="dst" target="id-0067-000000c4"/>
+					<connpoint role="dst" target="id-0067-000000c6"/>
 				</connection>
 				<connection id="id-0068-00000022" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x9">
 					<name>MonolithprimaryArtifact</name>
@@ -4850,7 +4850,7 @@
 						<value>w</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-0000002e"/>
-					<connpoint role="dst" target="id-0067-000000c5"/>
+					<connpoint role="dst" target="id-0067-000000c7"/>
 				</connection>
 				<connection id="id-0068-00000023" kind="ConfigProperty" role="ConfigProperty" relid="0xb">
 					<name>ConfigProperty</name>
@@ -4877,7 +4877,7 @@
 					<attribute kind="DataValue">
 						<value>PCM.ior</value>
 					</attribute>
-					<reference id="id-0067-000000c6" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000051">
+					<reference id="id-0067-000000c8" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000051">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -4920,7 +4920,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000c7" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x3" referred="id-0066-0000003f">
+				<reference id="id-0067-000000c9" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x3" referred="id-0066-0000003f">
 					<name>PalletConveyorManager_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4932,7 +4932,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000c8" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-00000040">
+				<reference id="id-0067-000000ca" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-00000040">
 					<name>PalletConveyorManager_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4944,7 +4944,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000c9" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x5" referred="id-0066-0000003e">
+				<reference id="id-0067-000000cb" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x5" referred="id-0066-0000003e">
 					<name>PalletConveyorManager_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4970,7 +4970,7 @@
 						<value>w</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-0000002f"/>
-					<connpoint role="dst" target="id-0067-000000c7"/>
+					<connpoint role="dst" target="id-0067-000000c9"/>
 				</connection>
 				<connection id="id-0068-00000026" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x8">
 					<name>MonolithprimaryArtifact</name>
@@ -4978,7 +4978,7 @@
 						<value>w</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-0000002f"/>
-					<connpoint role="dst" target="id-0067-000000c8"/>
+					<connpoint role="dst" target="id-0067-000000ca"/>
 				</connection>
 				<connection id="id-0068-00000027" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x9">
 					<name>MonolithprimaryArtifact</name>
@@ -4986,7 +4986,7 @@
 						<value>w</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-0000002f"/>
-					<connpoint role="dst" target="id-0067-000000c9"/>
+					<connpoint role="dst" target="id-0067-000000cb"/>
 				</connection>
 				<connection id="id-0068-00000028" kind="ConfigProperty" role="ConfigProperty" relid="0xb">
 					<name>ConfigProperty</name>
@@ -5674,7 +5674,7 @@
 					<attribute kind="DataValue">
 						<value>createRobotManagerHome_Impl</value>
 					</attribute>
-					<reference id="id-0067-000000ca" kind="DataType" role="DataType" relid="0x2" referred="id-0066-00000051">
+					<reference id="id-0067-000000cc" kind="DataType" role="DataType" relid="0x2" referred="id-0066-00000051">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -5701,7 +5701,7 @@
 					<attribute kind="DataValue">
 						<value>createRobotManagerHome_Servant</value>
 					</attribute>
-					<reference id="id-0067-000000cb" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000051">
+					<reference id="id-0067-000000cd" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000051">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -5789,7 +5789,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000cc" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0xc" referred="id-0066-0000003b">
+				<reference id="id-0067-000000ce" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0xc" referred="id-0066-0000003b">
 					<name>ACE</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -5801,7 +5801,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000cd" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0xd" referred="id-0066-0000003d">
+				<reference id="id-0067-000000cf" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0xd" referred="id-0066-0000003d">
 					<name>CIAO</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -5813,7 +5813,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000ce" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0xe" referred="id-0066-0000003c">
+				<reference id="id-0067-000000d0" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0xe" referred="id-0066-0000003c">
 					<name>TAO</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -5854,7 +5854,7 @@
 						<value>w</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-00000039"/>
-					<connpoint role="dst" target="id-0067-000000cd"/>
+					<connpoint role="dst" target="id-0067-000000cf"/>
 				</connection>
 				<connection id="id-0068-0000003c" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x10">
 					<name>ArtifactDependsOn</name>
@@ -5862,7 +5862,7 @@
 						<value>w</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-00000039"/>
-					<connpoint role="dst" target="id-0067-000000ce"/>
+					<connpoint role="dst" target="id-0067-000000d0"/>
 				</connection>
 				<connection id="id-0068-0000003d" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x11">
 					<name>ArtifactDependsOn</name>
@@ -5870,7 +5870,7 @@
 						<value>w</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-00000039"/>
-					<connpoint role="dst" target="id-0067-000000cc"/>
+					<connpoint role="dst" target="id-0067-000000ce"/>
 				</connection>
 			</model>
 			<model id="id-0065-0000007a" kind="ArtifactContainer" relid="0x2" childrelidcntr="0x4">
@@ -5955,7 +5955,7 @@
 					<attribute kind="DataValue">
 						<value>createPalletConveyorManagerHome_Servant</value>
 					</attribute>
-					<reference id="id-0067-000000cf" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000051">
+					<reference id="id-0067-000000d1" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000051">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -5982,7 +5982,7 @@
 					<attribute kind="DataValue">
 						<value>createPalletConveyorManagerHome_Impl</value>
 					</attribute>
-					<reference id="id-0067-000000d0" kind="DataType" role="DataType" relid="0x2" referred="id-0066-00000051">
+					<reference id="id-0067-000000d2" kind="DataType" role="DataType" relid="0x2" referred="id-0066-00000051">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -6170,7 +6170,7 @@
 					<attribute kind="DataValue">
 						<value>createManagementWorkInstructionsHome_Servant</value>
 					</attribute>
-					<reference id="id-0067-000000d1" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000051">
+					<reference id="id-0067-000000d3" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000051">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -6197,7 +6197,7 @@
 					<attribute kind="DataValue">
 						<value>createManagementWorkInstructionsHome_Impl</value>
 					</attribute>
-					<reference id="id-0067-000000d2" kind="DataType" role="DataType" relid="0x2" referred="id-0066-00000051">
+					<reference id="id-0067-000000d4" kind="DataType" role="DataType" relid="0x2" referred="id-0066-00000051">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -6385,7 +6385,7 @@
 					<attribute kind="DataValue">
 						<value>createWatchSettingManagerHome_Servant</value>
 					</attribute>
-					<reference id="id-0067-000000d3" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000051">
+					<reference id="id-0067-000000d5" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000051">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -6412,7 +6412,7 @@
 					<attribute kind="DataValue">
 						<value>createWatchSettingManagerHome_Impl</value>
 					</attribute>
-					<reference id="id-0067-000000d4" kind="DataType" role="DataType" relid="0x2" referred="id-0066-00000051">
+					<reference id="id-0067-000000d6" kind="DataType" role="DataType" relid="0x2" referred="id-0066-00000051">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -6600,7 +6600,7 @@
 					<attribute kind="DataValue">
 						<value>createHumanMachineInterfaceHome_Servant</value>
 					</attribute>
-					<reference id="id-0067-000000d5" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000051">
+					<reference id="id-0067-000000d7" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000051">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -6627,7 +6627,7 @@
 					<attribute kind="DataValue">
 						<value>createHumanMachineInterfaceHome_Impl</value>
 					</attribute>
-					<reference id="id-0067-000000d6" kind="DataType" role="DataType" relid="0x2" referred="id-0066-00000051">
+					<reference id="id-0067-000000d8" kind="DataType" role="DataType" relid="0x2" referred="id-0066-00000051">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -7507,9 +7507,9 @@
 				<name>RobotAssemblyBenchmarkAnalysis</name>
 				<model id="id-0065-0000009e" kind="Latency" role="Latency" relid="0x3" childrelidcntr="0x0">
 					<name>Latency</name>
-					<regnode name="PartRegs">
+					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
-						<regnode name="ComponentMetrics">
+						<regnode name="ComponentMetrics" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>247,23</value>
@@ -7528,9 +7528,9 @@
 				</model>
 				<model id="id-0065-0000009f" kind="Throughput" role="Throughput" relid="0x4" childrelidcntr="0x0">
 					<name>Throughput</name>
-					<regnode name="PartRegs">
+					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
-						<regnode name="ComponentMetrics">
+						<regnode name="ComponentMetrics" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>226,198</value>
@@ -7549,45 +7549,54 @@
 				</model>
 				<atom id="id-0066-00000055" kind="Task" role="Task" relid="0x8">
 					<name>Task</name>
-					<regnode name="PartRegs">
+					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
-						<regnode name="ComponentMetrics">
+						<regnode name="ComponentMetrics" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>492,23</value>
 							</regnode>
 						</regnode>
 					</regnode>
+					<attribute kind="priority" status="meta">
+						<value>0</value>
+					</attribute>
 				</atom>
 				<atom id="id-0066-00000056" kind="Task" role="Task" relid="0x9">
 					<name>Task</name>
-					<regnode name="PartRegs">
+					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
-						<regnode name="ComponentMetrics">
+						<regnode name="ComponentMetrics" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>534,86</value>
 							</regnode>
 						</regnode>
 					</regnode>
+					<attribute kind="priority" status="meta">
+						<value>0</value>
+					</attribute>
 				</atom>
 				<atom id="id-0066-00000057" kind="Task" role="Task" relid="0xa">
 					<name>Task</name>
-					<regnode name="PartRegs">
+					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
-						<regnode name="ComponentMetrics">
+						<regnode name="ComponentMetrics" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>569,30</value>
 							</regnode>
 						</regnode>
 					</regnode>
+					<attribute kind="priority" status="meta">
+						<value>0</value>
+					</attribute>
 				</atom>
-				<reference id="id-0067-000000d7" kind="OperationRef" role="OperationRef" relid="0x1" referred="id-0065-0000000b">
+				<reference id="id-0067-0000008e" kind="OperationRef" role="OperationRef" relid="0x1" referred="id-0065-0000000b">
 					<name>WorkOrderResponse</name>
-					<regnode name="PartRegs">
+					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
-						<regnode name="ComponentMetrics">
+						<regnode name="ComponentMetrics" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>89,49</value>
@@ -7595,11 +7604,11 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-000000d8" kind="OperationRef" role="OperationRef" relid="0x2" referred="id-0065-0000000e">
+				<reference id="id-0067-0000008f" kind="OperationRef" role="OperationRef" relid="0x2" referred="id-0065-0000000e">
 					<name>PalletInspectionResponse</name>
-					<regnode name="PartRegs">
+					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
-						<regnode name="ComponentMetrics">
+						<regnode name="ComponentMetrics" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>61,161</value>
@@ -7610,12 +7619,12 @@
 				<connection id="id-0068-0000005b" kind="MetricConnection" role="MetricConnection" relid="0x5">
 					<name>MetricConnection</name>
 					<connpoint role="dst" target="id-0065-0000009e"/>
-					<connpoint role="src" target="id-0067-000000d7"/>
+					<connpoint role="src" target="id-0067-0000008e"/>
 				</connection>
 				<connection id="id-0068-0000005c" kind="MetricConnection" role="MetricConnection" relid="0x6">
 					<name>MetricConnection</name>
 					<connpoint role="dst" target="id-0065-0000009f"/>
-					<connpoint role="src" target="id-0067-000000d8"/>
+					<connpoint role="src" target="id-0067-0000008f"/>
 				</connection>
 				<connection id="id-0068-0000005d" kind="WorkloadCharacteristics" role="WorkloadCharacteristics" relid="0xb">
 					<name>WorkloadCharacteristics</name>
@@ -7624,9 +7633,9 @@
 				</connection>
 				<set id="id-0069-00000004" kind="TaskSet" role="TaskSet" relid="0x7" members="id-0066-00000055 id-0066-00000056 id-0066-00000057">
 					<name>TaskSet</name>
-					<regnode name="PartRegs">
+					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
-						<regnode name="ComponentMetrics">
+						<regnode name="ComponentMetrics" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>387,44</value>
@@ -7634,6 +7643,269 @@
 						</regnode>
 					</regnode>
 				</set>
+			</model>
+		</folder>
+		<folder id="id-006a-0000000e" relid="0x13" childrelidcntr="0x1" kind="EventChannelConfig">
+			<name>EventChannelConfig</name>
+			<model id="id-0065-000000a0" kind="EventChannelConfiguration" relid="0x1" childrelidcntr="0x9">
+				<name>EventChannelConfiguration</name>
+				<model id="id-0065-000000a1" kind="RTEC_Proxy_Consumer" role="RTEC_Proxy_Consumer" relid="0x3" childrelidcntr="0x5">
+					<name>RTEC_Proxy_Consumer</name>
+					<regnode name="PartRegs">
+						<value></value>
+						<regnode name="RtecConfigAspect">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>658,203</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<atom id="id-0066-00000059" kind="RT_Info" role="RT_Info" relid="0x1">
+						<name>RT_Info</name>
+						<regnode name="PartRegs">
+							<value></value>
+							<regnode name="RtecConfigAspect">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>891,233</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="cached_execution_time" status="meta">
+							<value>0</value>
+						</attribute>
+						<attribute kind="criticality" status="meta">
+							<value>MEDIUM_CRITICALITY</value>
+						</attribute>
+						<attribute kind="enabled" status="meta">
+							<value>DEPENDENCY_NON_VOLATILE</value>
+						</attribute>
+						<attribute kind="entry_point" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="importance" status="meta">
+							<value>MEDIUM_IMPORTANCE</value>
+						</attribute>
+						<attribute kind="info_type" status="meta">
+							<value>OPERATION</value>
+						</attribute>
+						<attribute kind="period" status="meta">
+							<value>0</value>
+						</attribute>
+						<attribute kind="quantum" status="meta">
+							<value>0</value>
+						</attribute>
+						<attribute kind="threads" status="meta">
+							<value>1</value>
+						</attribute>
+						<attribute kind="typical_execution_time" status="meta">
+							<value>0</value>
+						</attribute>
+						<attribute kind="worst_case_execution_time" status="meta">
+							<value>0</value>
+						</attribute>
+					</atom>
+					<reference id="id-0067-000000dc" kind="RTEC_Resource_Factory_Reference" role="RTEC_Resource_Factory_Reference" relid="0x4" referred="id-0066-00000058">
+						<name>RTEC_Resource_Factory</name>
+						<regnode name="PartRegs">
+							<value></value>
+							<regnode name="RtecConfigAspect">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>108,227</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</reference>
+					<connection id="id-0068-00000062" kind="Use_RT_Info" role="Use_RT_Info" relid="0x5">
+						<name>Use_RT_Info</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>w</value>
+						</regnode>
+						<connpoint role="dst" target="id-0066-00000059"/>
+						<connpoint role="src" target="id-0067-000000dc"/>
+					</connection>
+				</model>
+				<model id="id-0065-000000a2" kind="RTEC_Proxy_Supplier" role="RTEC_Proxy_Supplier" relid="0x4" childrelidcntr="0x2">
+					<name>RTEC_Proxy_Supplier</name>
+					<regnode name="PartRegs">
+						<value></value>
+						<regnode name="RtecConfigAspect">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>415,219</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<atom id="id-0066-0000005a" kind="RT_Info" role="RT_Info" relid="0x1">
+						<name>RT_Info</name>
+						<regnode name="PartRegs">
+							<value></value>
+							<regnode name="RtecConfigAspect">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>870,219</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="cached_execution_time" status="meta">
+							<value>0</value>
+						</attribute>
+						<attribute kind="criticality" status="meta">
+							<value>MEDIUM_CRITICALITY</value>
+						</attribute>
+						<attribute kind="enabled" status="meta">
+							<value>DEPENDENCY_NON_VOLATILE</value>
+						</attribute>
+						<attribute kind="entry_point" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="importance" status="meta">
+							<value>MEDIUM_IMPORTANCE</value>
+						</attribute>
+						<attribute kind="info_type" status="meta">
+							<value>OPERATION</value>
+						</attribute>
+						<attribute kind="period" status="meta">
+							<value>0</value>
+						</attribute>
+						<attribute kind="quantum" status="meta">
+							<value>0</value>
+						</attribute>
+						<attribute kind="threads" status="meta">
+							<value>1</value>
+						</attribute>
+						<attribute kind="typical_execution_time" status="meta">
+							<value>0</value>
+						</attribute>
+						<attribute kind="worst_case_execution_time" status="meta">
+							<value>0</value>
+						</attribute>
+					</atom>
+					<atom id="id-0066-0000005b" kind="DisjunctionGroup" role="DisjunctionGroup" relid="0x2">
+						<name>DisjunctionGroup</name>
+						<regnode name="PartRegs">
+							<value></value>
+							<regnode name="RtecConfigAspect">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>114,254</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</atom>
+				</model>
+				<atom id="id-0066-00000058" kind="RTEC_Resource_Factory" role="RTEC_Resource_Factory" relid="0x5">
+					<name>RTEC_Resource_Factory</name>
+					<regnode name="PartRegs">
+						<value></value>
+						<regnode name="RtecConfigAspect">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>51,366</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="ECConsumerControl" status="meta">
+						<value>null (default)</value>
+					</attribute>
+					<attribute kind="ECConsumerControlPeriod" status="meta">
+						<value>5000000</value>
+					</attribute>
+					<attribute kind="ECConsumerLock" status="meta">
+						<value>thread (default)</value>
+					</attribute>
+					<attribute kind="ECDispatching" status="meta">
+						<value>reactive (default)</value>
+					</attribute>
+					<attribute kind="ECDispatchingThreads" status="meta">
+						<value>1</value>
+					</attribute>
+					<attribute kind="ECFiltering" status="meta">
+						<value>basic (default)</value>
+					</attribute>
+					<attribute kind="ECObserver" status="meta">
+						<value>null (default)</value>
+					</attribute>
+					<attribute kind="ECProxyPushConsumerCollectionFlag" status="meta">
+						<value>list (default)</value>
+					</attribute>
+					<attribute kind="ECProxyPushConsumerCollectionIterator" status="meta">
+						<value>immediate (default)</value>
+					</attribute>
+					<attribute kind="ECProxyPushConsumerCollectionSynch" status="meta">
+						<value>mt (default)</value>
+					</attribute>
+					<attribute kind="ECProxyPushSupplierCollectionFlag" status="meta">
+						<value>list (default)</value>
+					</attribute>
+					<attribute kind="ECProxyPushSupplierCollectionIterator" status="meta">
+						<value>immediate (default)</value>
+					</attribute>
+					<attribute kind="ECProxyPushSupplierCollectionSynch" status="meta">
+						<value>mt (default)</value>
+					</attribute>
+					<attribute kind="ECScheduling" status="meta">
+						<value>null (default)</value>
+					</attribute>
+					<attribute kind="ECSupplierControl" status="meta">
+						<value>null (default)</value>
+					</attribute>
+					<attribute kind="ECSupplierControlPeriod" status="meta">
+						<value>5000000</value>
+					</attribute>
+					<attribute kind="ECSupplierFiltering" status="meta">
+						<value>per-supplier (default)</value>
+					</attribute>
+					<attribute kind="ECSupplierLock" status="meta">
+						<value>thread (default)</value>
+					</attribute>
+					<attribute kind="ECTimeout" status="meta">
+						<value>reactive (default)</value>
+					</attribute>
+					<attribute kind="ECUseORBId" status="meta">
+						<value></value>
+					</attribute>
+				</atom>
+				<reference id="id-0067-000000d9" kind="ComponentRef" role="ComponentRef" relid="0x1" referred="id-0065-0000005c">
+					<name>RobotManager</name>
+					<regnode name="PartRegs">
+						<value></value>
+						<regnode name="RtecConfigAspect">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>861,203</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</reference>
+				<reference id="id-0067-000000da" kind="ComponentRef" role="ComponentRef" relid="0x2" referred="id-0065-0000005a">
+					<name>WatchSettingManager</name>
+					<regnode name="PartRegs">
+						<value></value>
+						<regnode name="RtecConfigAspect">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>224,217</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</reference>
+				<connection id="id-0068-0000005f" kind="RTEC_Connection" role="RTEC_Connection" relid="0x6">
+					<name>RTEC_Connection</name>
+					<connpoint role="dst" target="id-0066-00000059"/>
+					<connpoint role="src" target="id-0067-0000004a" refs="id-0067-000000d9"/>
+				</connection>
+				<connection id="id-0068-00000061" kind="Use_RTEC_Filter" role="Use_RTEC_Filter" relid="0x8">
+					<name>Use_RTEC_Filter</name>
+					<connpoint role="src" target="id-0066-0000005b"/>
+					<connpoint role="dst" target="id-0067-00000043" refs="id-0067-000000da"/>
+				</connection>
+				<connection id="id-0068-00000063" kind="Use_RT_Info" role="Use_RT_Info" relid="0x9">
+					<name>Use_RT_Info</name>
+					<connpoint role="src" target="id-0066-0000005a"/>
+					<connpoint role="dst" target="id-0067-000000dc"/>
+				</connection>
 			</model>
 		</folder>
 	</folder>
