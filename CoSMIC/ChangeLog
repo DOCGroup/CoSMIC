@@ -1,3 +1,18 @@
+Tue Nov 16 19:28:57 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+        * PIM/PICML/interpreters/BGML_Interpreter/MPCStream.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/MPCStream.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/BenchmarkStream.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/BenchmarkStream.cpp:
+          Updated the BGML_Interpreter to fix the following issues:
+          (1) All tasks synchronize via a barrier a barrier before starting
+              to generate background load. Thanks to 
+              Andy <gokhale@dre.vanderbilt.edu> for pointing this out.
+          (2) Along with the benchmarking files, there is now a mpc build
+              file generated to build the benchmark files generated. Thanks
+              to Andy for pointing this out.
+          (3) Export files are also generated along with the benchmark files
+              to ensure smooth working on Windows platforms. 
+
 Tue Nov 16 11:14:30 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.me:
 	  * PIM/PICML/paradigms/PICML.xml:
