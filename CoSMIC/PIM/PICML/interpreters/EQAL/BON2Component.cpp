@@ -21,6 +21,61 @@
 
 #include "BON2Component.h"
 
+namespace
+{
+  std::string outputPath; // global variable for outputPath.
+
+  void getPath( const std::string& message, std::string& path )
+  {
+    // Dialog instruction
+    char display_buffer[MAX_PATH];
+    BROWSEINFO folder_browsinfo;
+    memset (&folder_browsinfo, 0, sizeof (folder_browsinfo));
+
+    // Set GME as the owner of the dialog
+    folder_browsinfo.hwndOwner = GetForegroundWindow();
+    // Start the brows from desktop
+    folder_browsinfo.pidlRoot = NULL;
+    // Pointer to the folder name display buffer
+    folder_browsinfo.pszDisplayName = &display_buffer[0];
+    // Diaglog instruction string
+    folder_browsinfo.lpszTitle = message.c_str();
+    // Use new GUI style and allow edit plus file view
+    folder_browsinfo.ulFlags = BIF_BROWSEINCLUDEFILES | BIF_RETURNONLYFSDIRS;
+    // No callback function
+    folder_browsinfo.lpfn = NULL;
+    // No parameter passing into the dialog
+    folder_browsinfo.lParam = 0;
+
+    LPITEMIDLIST folder_pidl;
+    folder_pidl = SHBrowseForFolder(&folder_browsinfo);
+
+    if (folder_pidl == NULL)
+      {
+        return;
+      }
+    else
+      {
+        TCHAR FolderNameBuffer[MAX_PATH];
+
+        // Convert the selection into a path
+        if (SHGetPathFromIDList (folder_pidl, FolderNameBuffer))
+          {
+            path = FolderNameBuffer;
+          }
+
+        // Free the ItemIDList object returned from the call to
+        // SHBrowseForFolder using Gawp utility function
+        IMalloc * imalloc = 0;
+        if ( SUCCEEDED( SHGetMalloc ( &imalloc )) )
+          {
+            imalloc->Free ( folder_pidl );
+            imalloc->Release ( );
+          }
+      }
+  }
+}
+
 namespace BON
 {
 
@@ -85,6 +140,9 @@ void Component::invoke( Project& project, const std::set<FCO>& setModels, long l
 
 void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>& setSelectedFCOs, long lParam )
 {
+
+  std::string message = "Please specify the Output Directory";
+  getPath (message, outputPath);
 
 	EventChannelConfiguration ec_configuration (currentFCO);
 
@@ -175,10 +233,14 @@ IMPLEMENT_BONEXTENSION( CCMComponent, "CCMComponentImpl" );
 
 void EventChannelConfigurationVisitor::visitModelImpl (const Model& model)
 {
-
-  this->visitRTEC_Proxy_SupplierImpl (RTEC_Proxy_Supplier (model));
-  this->visitRTEC_Proxy_ConsumerImpl (RTEC_Proxy_Consumer (model));
-
+	std::set<Model> child_models = model->getChildModels ();
+	for (std::set<Model>::iterator model_iter = child_models.begin ();
+       model_iter != child_models.end ();
+       model_iter++)
+    {
+      this->visitRTEC_Proxy_SupplierImpl (RTEC_Proxy_Supplier (model));
+      this->visitRTEC_Proxy_ConsumerImpl (RTEC_Proxy_Consumer (model));
+    }
 }
 
 void EventChannelConfigurationVisitor::visitRTEC_Proxy_SupplierImpl (const RTEC_Proxy_Supplier& rtec_proxy_supp)
@@ -261,7 +323,8 @@ void RTEC_Proxy_ConsumerVisitor::visitRT_InfoImpl (const RT_Info & rt_info)
 
   std::string entry_point (rt_info->getAttribute("entry_point")->getStringValue());
   std::string source_port_name (source_port->getName ());
-  std::string cpf_name (component_name);
+
+  std::string cpf_name =  outputPath + "\\" + component_name;
   cpf_name += "-" + source_port_name + "-" + entry_point;
 
   // Write CPF file
@@ -292,7 +355,7 @@ void RTEC_Resource_FactoryImpl::generate_SVC (const char * file_name)
 {
 
   std::ofstream svc_file;
-  std::string svc_name (file_name);
+  std::string svc_name =  outputPath + "\\" + file_name;
   svc_name += ".conf";
   svc_file.open (svc_name.c_str ());
 
