@@ -1,6 +1,9 @@
 Mon Nov 08 18:28:11 2004  Gan Deng  <dengg@dre.vanderbilt.edu>
 
+        * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
 
           Added "out_event_port_type" attribute to the OutEventPort atom.
 
@@ -11,12 +14,23 @@ Mon Nov 08 18:28:11 2004  Gan Deng  <dengg@dre.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML.xml
         * PIM/PICML/paradigms/PICML.xmp
+        * PIM/PICML/interpreters/BGML_Interpreter/PICML.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/PICML.cpp:
+        * PIM/PICML/interpreters/MPC/PICML.h:
+        * PIM/PICML/interpreters/MPC/PICML.cpp:
+        * PIM/PICML/interpreters/cidl/PICML.h:
+        * PIM/PICML/interpreters/cidl/PICML.cpp:
         * PIM/PICML/interpreters/domain/PICML.h:
+        * PIM/PICML/interpreters/domain/PICML.xsd:
         * PIM/PICML/interpreters/domain/PICML.cpp:
         * PIM/PICML/interpreters/packaging/PICML.h:
         * PIM/PICML/interpreters/packaging/PICML.cpp:
+        * PIM/PICML/interpreters/packaging/PICML.xsd:
+        * PIM/PICML/interpreters/plan/PICML.h:
+        * PIM/PICML/interpreters/plan/PICML.xsd:
+        * PIM/PICML/interpreters/plan/PICML.cpp:
 
-          Reflect changes in the metamodel.
+          Updated to reflect changes in the metamodel.
 
 Mon Nov 08 15:02:43 CST 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
