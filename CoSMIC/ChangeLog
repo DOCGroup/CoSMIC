@@ -1,3 +1,53 @@
+Sat Aug 28 16:56:29 CDT 2004 Gan Deng <gan.deng@vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        
+        * PIM/PICML/paradigms/icons/conjunction_group.bmp
+        * PIM/PICML/paradigms/icons/disjunction_group.bmp
+        * PIM/PICML/paradigms/icons/ec_consumer.bmp
+        * PIM/PICML/paradigms/icons/ec_dependency.bmp
+        * PIM/PICML/paradigms/icons/ec_event.bmp
+        * PIM/PICML/paradigms/icons/ec_option.bmp
+        * PIM/PICML/paradigms/icons/ec_proxy.bmp
+        * PIM/PICML/paradigms/icons/ec_proxy_consumer.bmp
+        * PIM/PICML/paradigms/icons/ec_proxy_supplier.bmp
+        * PIM/PICML/paradigms/icons/ec_resource_factory.bmp
+        * PIM/PICML/paradigms/icons/ec_supplier.bmp
+        * PIM/PICML/paradigms/icons/ec_supplier_id.bmp
+        * PIM/PICML/paradigms/icons/event_sink.bmp
+        * PIM/PICML/paradigms/icons/event_source.bmp
+        * PIM/PICML/paradigms/icons/eventtype-port.bmp
+        * PIM/PICML/paradigms/icons/eventtype.bmp
+        * PIM/PICML/paradigms/icons/logical_and_group.bmp
+        * PIM/PICML/paradigms/icons/ns_admin.bmp
+        * PIM/PICML/paradigms/icons/ns_config.bmp
+        * PIM/PICML/paradigms/icons/ns_constraint.bmp
+        * PIM/PICML/paradigms/icons/ns_consumer.bmp
+        * PIM/PICML/paradigms/icons/ns_event.bmp
+        * PIM/PICML/paradigms/icons/ns_filter-port.bmp
+        * PIM/PICML/paradigms/icons/ns_filter.bmp
+        * PIM/PICML/paradigms/icons/ns_option.bmp
+        * PIM/PICML/paradigms/icons/ns_proxy.bmp
+        * PIM/PICML/paradigms/icons/ns_proxy_consumer.bmp
+        * PIM/PICML/paradigms/icons/ns_proxy_supplier.bmp
+        * PIM/PICML/paradigms/icons/ns_qos-port.bmp
+        * PIM/PICML/paradigms/icons/ns_qos.bmp
+        * PIM/PICML/paradigms/icons/ns_resource_factory-port.bmp
+        * PIM/PICML/paradigms/icons/ns_resource_factory.bmp
+        * PIM/PICML/paradigms/icons/ns_supplier.bmp
+        * PIM/PICML/paradigms/icons/rt_info-port.bmp
+        * PIM/PICML/paradigms/icons/rt_info.bmp
+        * PIM/PICML/paradigms/icons/rtec_proxy_consumer.bmp
+        * PIM/PICML/paradigms/icons/rtec_proxy_supplier.bmp
+        * PIM/PICML/paradigms/icons/rtec_resource_factory-port.bmp
+        * PIM/PICML/paradigms/icons/rtec_resource_factory.bmp
+        
+          Added icon files for the EQAL. Some of them are 
+          not used by current metamodel, which might be deleted later.
+
 Thu Aug 26 10:46:29 CDT 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICML.xme:
