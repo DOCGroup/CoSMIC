@@ -39,7 +39,7 @@ RSC=rc.exe
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 2
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "Debug"
+# PROP Output_Dir "../../bin/"
 # PROP Intermediate_Dir "Debug"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
@@ -54,12 +54,12 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 mfcs42d.lib MSVCRTD.lib xerces-c_2D.lib ZlibD.lib UdmBase_D.lib UdmDom_D.lib UdmUtil_D.lib UdmGme_D.lib /nologo /subsystem:windows /dll /debug /machine:I386 /nodefaultlib:"MSVCRTD.lib" /nodefaultlib:"mfcs42d.lib" /out:"$(PICML_ROOT)\bin\BGML.dll" /pdbtype:sept /libpath:"C:\Program Files\ISIS\UDM\lib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\zlib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib"
+# ADD LINK32 mfcs42d.lib MSVCRTD.lib xerces-c_2D.lib ZlibD.lib UdmBase_D.lib UdmDom_D.lib UdmUtil_D.lib UdmGme_D.lib /nologo /subsystem:windows /dll /debug /machine:I386 /nodefaultlib:"MSVCRTD.lib" /nodefaultlib:"mfcs42d.lib" /out:"../../bin/BGML.dll" /pdbtype:sept /libpath:"C:\Program Files\ISIS\UDM\lib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\zlib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib"
 # SUBTRACT LINK32 /pdb:none
 # Begin Custom Build - Performing registration
-OutDir=.\Debug
-TargetPath=.\$(PICML_ROOT)\bin\BGML.dll
-InputPath=.\$(PICML_ROOT)\bin\BGML.dll
+OutDir=.\../../bin/
+TargetPath=\CoSMIC\PIM\PICML\bin\BGML.dll
+InputPath=\CoSMIC\PIM\PICML\bin\BGML.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -78,7 +78,7 @@ SOURCE="$(InputPath)"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 2
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "ReleaseMinSize"
+# PROP Output_Dir "../../bin/"
 # PROP Intermediate_Dir "ReleaseMinSize"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
@@ -91,11 +91,11 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 xerces-c_2.lib Zlib.lib /nologo /subsystem:windows /dll /machine:I386 /out:"Release/Component.dll" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\zlib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib"
-# ADD LINK32 xerces-c_2.lib Zlib.lib UdmBase.lib UdmDom.lib UdmUtil.lib UdmGme.lib /nologo /subsystem:windows /dll /machine:I386 /out:"$(PICML_ROOT)/bin/BGML.dll" /libpath:"C:\Program Files\ISIS\UDM\lib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\zlib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib"
+# ADD LINK32 xerces-c_2.lib Zlib.lib UdmBase.lib UdmDom.lib UdmUtil.lib UdmGme.lib /nologo /subsystem:windows /dll /machine:I386 /out:"../../bin/BGML.dll" /libpath:"C:\Program Files\ISIS\UDM\lib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\zlib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib"
 # Begin Custom Build - Performing registration
-OutDir=.\ReleaseMinSize
-TargetPath=.\$(PICML_ROOT)\bin\BGML.dll
-InputPath=.\$(PICML_ROOT)\bin\BGML.dll
+OutDir=.\../../bin/
+TargetPath=\CoSMIC\PIM\PICML\bin\BGML.dll
+InputPath=\CoSMIC\PIM\PICML\bin\BGML.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -113,7 +113,7 @@ SOURCE="$(InputPath)"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 2
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "ReleaseMinDependency"
+# PROP Output_Dir "../../bin/"
 # PROP Intermediate_Dir "ReleaseMinDependency"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
@@ -127,11 +127,11 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 xerces-c_2.lib zlib.lib UdmBase.lib UdmGme.lib UdmUtil.lib UdmDom.lib /nologo /subsystem:windows /dll /machine:I386 /out:"$(PICML_ROOT)/bin/BGML.dll" /libpath:"C:\Program Files\ISIS\UDM\Lib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib" /libpath:"C:\Program Files\ISIS\UDM\3rdparty\zlib"
+# ADD LINK32 xerces-c_2.lib zlib.lib UdmBase.lib UdmGme.lib UdmUtil.lib UdmDom.lib /nologo /subsystem:windows /dll /machine:I386 /out:"../../bin/BGML.dll" /libpath:"C:\Program Files\ISIS\UDM\Lib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib" /libpath:"C:\Program Files\ISIS\UDM\3rdparty\zlib"
 # Begin Custom Build - Performing registration
-OutDir=.\ReleaseMinDependency
-TargetPath=.\$(PICML_ROOT)\bin\BGML.dll
-InputPath=.\$(PICML_ROOT)\bin\BGML.dll
+OutDir=.\../../bin/
+TargetPath=\CoSMIC\PIM\PICML\bin\BGML.dll
+InputPath=\CoSMIC\PIM\PICML\bin\BGML.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -195,6 +195,12 @@ BuildCmds= \
 
 "ComponentLib_i.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
+
+"ComponentLib_p.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+   $(BuildCmds)
+
+"dlldata.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+   $(BuildCmds)
 # End Custom Build
 
 !ELSEIF  "$(CFG)" == "Component - Win32 Release MinSize"
@@ -214,6 +220,12 @@ BuildCmds= \
 
 "ComponentLib_i.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
+
+"ComponentLib_p.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+   $(BuildCmds)
+
+"dlldata.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+   $(BuildCmds)
 # End Custom Build
 
 !ELSEIF  "$(CFG)" == "Component - Win32 Release MinDependency"
@@ -232,6 +244,12 @@ BuildCmds= \
    $(BuildCmds)
 
 "ComponentLib_i.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+   $(BuildCmds)
+
+"ComponentLib_p.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+   $(BuildCmds)
+
+"dlldata.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
 # End Custom Build
 

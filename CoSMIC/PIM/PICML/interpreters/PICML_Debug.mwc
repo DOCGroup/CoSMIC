@@ -1,7 +1,0 @@
-workspace (*Interpreters) {
-   cmdline += -feature_file default.features -base debug_libs \
-              -value_template configurations=Debug
-   PICML
-   Package
-   PackageComponent
-}

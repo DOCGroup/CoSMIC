@@ -1,7 +1,55 @@
+Thu Nov  4 12:55:44 2004  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/interpreters/BGML_Interpreter/Component.dsp:
+        * PIM/PICML/interpreters/EQAL/EQALBON2Component.dsp:
+        * PIM/PICML/interpreters/cidl/Component.dsp:
+        * PIM/PICML/interpreters/domain/Domain.dsp:
+        * PIM/PICML/interpreters/packaging/PackageComponent.dsp:
+        * PIM/PICML/interpreters/plan/DeploymentPlan.dsp:
+
+          Fixed these project files so that they:
+          1. Place the generated dlls into $(PICML_ROOT)/bin
+          2. Delete all the intermediate files that are generated,
+             for both the Debug and Release versions.
+
+          It can't be that hard to write project files...:-(
+
+        * PIM/PICML/interpreters/PICML/PICML.mpc:
+        * PIM/PICML/interpreters/PICML/PICML_Export.h:
+
+        * PIM/PICML/interpreters/PICML_Debug.mwc:
+        * PIM/PICML/interpreters/PICML_Release.mwc:
+
+        * PIM/PICML/interpreters/Package/Package.mpc:
+        * PIM/PICML/interpreters/Package/Package_Export.h:
+        * PIM/PICML/interpreters/Package/SchemaVisitor.h:
+        * PIM/PICML/interpreters/Package/SchemaVisitor.cpp:
+
+        * PIM/PICML/interpreters/PackageComponent/CompIcon.ico:
+        * PIM/PICML/interpreters/PackageComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.def:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.rc:
+        * PIM/PICML/interpreters/PackageComponent/RawComponent.h:
+        * PIM/PICML/interpreters/PackageComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/PackageComponent/Resource.h:
+        * PIM/PICML/interpreters/PackageComponent/StdAfx.h:
+        * PIM/PICML/interpreters/PackageComponent/StdAfx.cpp:
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.h:
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/PackageComponent/UdmConfig.h:
+
+        * PIM/PICML/interpreters/debug_libs.mpb:
+        * PIM/PICML/interpreters/default.features:
+        * PIM/PICML/interpreters/picmllib.mpb:
+        * PIM/PICML/interpreters/release_libs.mpb:
+
+          Removed these files.
+
 Thu Nov  4 09:49:33 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
-        
+
           Added display of message box to tell the user that generation
           is finished.
 
@@ -14,7 +62,7 @@ Wed Nov  3 18:34:58 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/IDLEmitVisitor.h:
         * PIM/PICML/IDMLBonExtension.cpp:
         * PIM/PICML/IDMLBonExtension.h:
-        
+
           Changed the name of the namespace containing the BonExtension
           and other classes to IDML from IDML_BON. Also made all the
           inheritances in the BonExtension classes virtual.
@@ -59,9 +107,9 @@ Mon Nov 1 10:40:39 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/MPC/MPCStream.cpp:
         * PIM/PICML/interpreters/MPC/Component.dsp:
-          
+
           Fixed generation of export files for directories that have
-          white space between them. 
+          white space between them.
 
         * PIM/PICML/interpreters/BGML_Interpreter/Component.dsp:
         * PIM/PICML/interpreters/BGML_Interpreter/BGML_Visitor.cpp:
@@ -73,7 +121,7 @@ Mon Nov 1 10:40:39 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
 Mon Nov 01 09:51:31 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-        * Installer/RegisterParadigm/RegisterParadigm.cpp: 
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:
 
           OCML paradigm register/unregister code is updated in the installer.
 
@@ -87,14 +135,14 @@ Mon Nov 1 08:29:55 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
 Fri Oct 29 13:34:27 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-        * PIM/PICML/bin/orb_tree.xml: 
+        * PIM/PICML/bin/orb_tree.xml:
 
           Added the OCML TAO options model into the bin directory.
 
 Mon Oct 25 09:30:49 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
-        
+
           Changed outpout directories to $PICML_ROOT/bin for the
           executable and DLL and $PICML_ROOT/lib for the .lib and
           .exp file.
@@ -103,7 +151,7 @@ Mon Oct 25 07:41:06 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/decorators/Decorator.dsp:
         * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.vcproj:
-        
+
           Changed output directory to $PICML_ROOT/bin for DLLs and
           $PICML_ROOT/lib for .lib and .exp files.
 
@@ -111,7 +159,7 @@ Sun Oct 24 19:05:36 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/cidl/Component.dsp:
         * PIM/PICML/interpreters/MPC/Component.dsp:
         * PIM/PICML/interpreters/BGML/Componenent.dsp:
-          Output directory changed to $(PICML_ROOT)/bin/ for the 
+          Output directory changed to $(PICML_ROOT)/bin/ for the
           interpreter DLLs
 
 Sun Oct 24 17:32:10 2004  Gan Deng  <gan.deng@vanderbilt.edu>

@@ -38,7 +38,7 @@ RSC=rc.exe
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 2
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "Debug"
+# PROP Output_Dir "../../bin"
 # PROP Intermediate_Dir "Debug"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
@@ -52,11 +52,11 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
+# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"../../bin/EQAL.dll" /pdbtype:sept
 # Begin Custom Build - Performing registration
-OutDir=.\Debug
-TargetPath=.\Debug\EQALBON2Component.dll
-InputPath=.\Debug\EQALBON2Component.dll
+OutDir=.\../../bin
+TargetPath=\CoSMIC\PIM\PICML\bin\EQAL.dll
+InputPath=\CoSMIC\PIM\PICML\bin\EQAL.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -74,7 +74,7 @@ SOURCE="$(InputPath)"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 2
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "Release"
+# PROP Output_Dir "../../bin"
 # PROP Intermediate_Dir "Release"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
@@ -88,11 +88,11 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"$(PICML_ROOT)/bin/EQAL.dll"
+# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"../../bin/EQAL.dll"
 # Begin Custom Build - Performing registration
-OutDir=.\Release
-TargetPath=.\$(PICML_ROOT)\bin\EQAL.dll
-InputPath=.\$(PICML_ROOT)\bin\EQAL.dll
+OutDir=.\../../bin
+TargetPath=\CoSMIC\PIM\PICML\bin\EQAL.dll
+InputPath=\CoSMIC\PIM\PICML\bin\EQAL.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -159,13 +159,19 @@ InputPath="C:/Program Files/GME/sdk/BON/ComponentLib.idl"
 BuildCmds= \
 	midl /I.\ /server none /client none "C:/Program Files/GME/sdk/BON/ComponentLib.idl"
 
-"ComponentLib.tlb" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-   $(BuildCmds)
-
 "ComponentLib.h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
 
 "ComponentLib_i.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+   $(BuildCmds)
+
+"ComponentLib_p.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+   $(BuildCmds)
+
+"ComponentLib.tlb" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+   $(BuildCmds)
+
+"dlldata.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
 # End Custom Build
 
@@ -178,9 +184,6 @@ InputPath="C:/Program Files/GME/sdk/BON/ComponentLib.idl"
 BuildCmds= \
 	midl /I.\ /server none /client none "C:/Program Files/GME/sdk/BON/ComponentLib.idl"
 
-"ComponentLib.tlb" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-   $(BuildCmds)
-
 "ComponentLib.h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
 
@@ -188,6 +191,9 @@ BuildCmds= \
    $(BuildCmds)
 
 "ComponentLib_p.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+   $(BuildCmds)
+
+"ComponentLib.tlb" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
 
 "dlldata.c" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
