@@ -162,7 +162,7 @@ void CUdmApp::UdmMain(
 		AfxMessageBox(e.what());
     }
 	
-	AfxMessageBox ("MPC files were successfully generated!");
+	AfxMessageBox ("Cidl files were successfully generated!");
 	return;
 	
 #ifdef _DEBUG
