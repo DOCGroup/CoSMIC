@@ -157,17 +157,7 @@ IMPLEMENT_BONEXTENSION( RTEC_Resource_Factory_Reference, "RTEC_Resource_Factory_
 
 IMPLEMENT_BONEXTENSION( RT_Info_Param, "" );
 
-IMPLEMENT_BONEXTENSION( RTEC_Filter_Group, "" );
-
 IMPLEMENT_BONEXTENSION( RT_Info, "RT_Info" );
-
-IMPLEMENT_BONEXTENSION( Null_RT_Info, "Null_RT_Info" );
-
-IMPLEMENT_BONEXTENSION( DisjunctionGroup, "DisjunctionGroup" );
-
-IMPLEMENT_BONEXTENSION( ConjunctionGroup, "ConjunctionGroup" );
-
-IMPLEMENT_BONEXTENSION( LogicalANDGroup, "LogicalANDGroup" );
 
 IMPLEMENT_BONEXTENSION( OutEventPort_Reference, "OutEventPort_ReferenceImpl" );
 

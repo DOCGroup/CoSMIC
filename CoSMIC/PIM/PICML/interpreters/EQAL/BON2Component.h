@@ -53,6 +53,7 @@ namespace BON
 	class RT_InfoImpl;
 	DECLARE_BONEXTENSION( RT_Info_Param, RT_InfoImpl, RT_Info );
 
+  /*
 	class Null_RT_InfoImpl;
 	DECLARE_BONEXTENSION( RT_Info_Param, Null_RT_InfoImpl, Null_RT_Info );
 
@@ -67,6 +68,7 @@ namespace BON
 
 	class LogicalANDGroupImpl;
 	DECLARE_BONEXTENSION( RTEC_Filter_Group, LogicalANDGroupImpl, LogicalANDGroup );
+  */
 
   class OutEventPort_ReferenceImpl;
   DECLARE_BONEXTENSION ( Reference, OutEventPort_ReferenceImpl, OutEventPort_Reference);
@@ -173,23 +175,6 @@ public:
   void generate_CPF (const char * file_name, const char * component_name, const char * port_name);
 };
 
-class DisjunctionGroupImpl
-	: public RTEC_Filter_GroupImpl
-{
-
-};
-
-class ConjunctionGroupImpl
-	: public RTEC_Filter_GroupImpl
-{
-
-};
-
-class LogicalANDGroupImpl
-	: public RTEC_Filter_GroupImpl
-{
-
-};
 
 class OutEventPort_ReferenceImpl
 	: public ReferenceImpl
