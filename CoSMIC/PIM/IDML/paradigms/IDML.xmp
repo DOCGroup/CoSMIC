@@ -76,14 +76,14 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
       <atom name = "Boolean" metaref = "2914" >
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
       </atom>
       <atom name = "Byte" metaref = "2915" >
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
       </atom>
@@ -94,21 +94,21 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
       <atom name = "GenericObject" metaref = "2916" >
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
       </atom>
       <atom name = "GenericValue" metaref = "2917" >
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
       </atom>
       <atom name = "GenericValueObject" metaref = "2918" >
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
       </atom>
@@ -124,7 +124,7 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
       <atom name = "LongInteger" metaref = "2919" >
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
       </atom>
@@ -141,35 +141,35 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
       <atom name = "RealNumber" metaref = "2920" >
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
       </atom>
       <atom name = "ShortInteger" metaref = "2921" >
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
       </atom>
       <atom name = "String" metaref = "2922" >
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
       </atom>
       <atom name = "TypeEncoding" metaref = "2923" >
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
       </atom>
       <atom name = "TypeKind" metaref = "2924" >
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
       </atom>
@@ -223,7 +223,7 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <dispname>A reference to a named type must be assigned</dispname>
          </constraint>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
@@ -298,7 +298,7 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <dispname>A reference to a named type must be assigned</dispname>
          </constraint>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
@@ -338,7 +338,7 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <dispname>A reference to a named type must be assigned</dispname>
          </constraint>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
@@ -391,6 +391,17 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
   x.isTypeOf (Byte) or
   x.isTypeOf (Boolean)]]>
             <dispname>A Constant must be a Boolean, Byte, ShortInteger, LongInteger, RealNumber, String or Enum</dispname>
+         </constraint>
+         <constraint name="LegalConstantValue" eventmask = "0x0" depth = "1" priority = "2">
+            <![CDATA[let x = refersTo () in
+  (x.isTypeOf (Boolean) implies ((let y = value.trim ().toInteger () in y = 0 or y = 1) or
+                                                               (let z = value.trim ().toUpper () in z = "TRUE" or z = "FALSE"))) and
+  (x.isTypeOf (Byte) implies (let y = value.trim ().toInteger () in y >= 0 and y < 256)) and
+  (x.isTypeOf (ShortInteger) implies (let y = value.trim ().toInteger () in y > -32769 and y < 32768)) and
+  (x.isTypeOf (LongInteger) implies (let y = value.trim ().toInteger () in y > -2147483649 and y < 2147483648)) and
+  (x.isTypeOf (RealNumber) implies value.trim ().match ("^\-?[0-9]+\.[0-9]*$")) and
+  (x.isTypeOf (Enum) implies x.oclAsType (gme::Model).parts ()->collect (y : gme::FCO | y.name)->exists (z : ocl::String | z = value.trim ()))]]>
+            <dispname>Constant's value does not match type or is out of range</dispname>
          </constraint>
          <constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not refersTo ().isNull ()]]>
@@ -754,7 +765,7 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <dispname>Members of an aggregate type must have unique names</dispname>
          </constraint>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
@@ -828,7 +839,7 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
             <dispname>Local, inherited and supported operations must all have unique names</dispname>
          </constraint>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
@@ -893,7 +904,7 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
             <dispname>Multiplicity of parts, which are contained by ComponentFactory, has to match 0..1.</dispname>
          </constraint>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidManagesComponentdstCardinality6" eventmask = "0x0" depth = "1" priority = "1">
@@ -953,7 +964,7 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
             <dispname>Multiplicity of parts, which are contained by Enum, has to match 1..*.</dispname>
          </constraint>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
@@ -1001,7 +1012,7 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
             <dispname>Local, inherited and supported operations must all have unique names</dispname>
          </constraint>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
@@ -1189,7 +1200,7 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
             <dispname>Local, inherited and supported operations must all have unique names</dispname>
          </constraint>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
@@ -1345,13 +1356,13 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
             <dispname>Members of an aggregate type must have unique names</dispname>
          </constraint>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidSwitchedAggregatePartCardinality10" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
-                     (partCount = 1)]]>
-            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
+            <![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
+                     (partCount >= 1)]]>
+            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
          </constraint>
          <constraint name="ValidSwitchedAggregatePartCardinality11" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "Label" ) -> size in
@@ -1359,9 +1370,9 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
             <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
          </constraint>
          <constraint name="ValidSwitchedAggregatePartCardinality12" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
-                     (partCount >= 1)]]>
-            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
+            <![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
+                     (partCount = 1)]]>
+            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
             <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
@@ -1450,7 +1461,7 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
             <dispname>Local, inherited and supported operations must all have unique names</dispname>
          </constraint>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
-            <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">

@@ -1,3 +1,19 @@
+Tue Jun 15 10:47:57 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * IDML/examples/new_test.xme:
+        * IDML/paradigms/IDML-Meta.xme:
+        * IDML/paradigms/IDML.xmp:
+        * IDML/paradigms/IDMLTemplate.xme:
+        * IDML/paradigms/PredefinedTypes.xme:
+        
+          Added constraint to metamodel that checks for legal values
+          (type and range) for constants. Note that there seems to
+          be a problem with GME's Constraint Manager using toInteger()
+          to convert a constant's string value to an integer if
+          there is a '-' prefix to the string of digits. This issue
+          has been raised with gme-users. Also updated template models
+          and example model to use the updated paradigm.
+
 Mon Jun 14 18:19:01 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * IDML/paradimgs/IDML-Meta.xme:

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Tue Jun 08 19:49:43 2004" mdate="Mon Jun 14 13:55:07 2004" metaguid="{99CB7435-DEAD-BEEF-FEED-DAD000000001}" metaname="MetaGME">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Tue Jun 08 19:49:43 2004" mdate="Tue Jun 15 10:35:35 2004" metaguid="{99CB7435-DEAD-BEEF-FEED-DAD000000001}" metaname="MetaGME">
 	<name>IDML</name>
 	<comment></comment>
 	<author></author>
@@ -22843,7 +22843,7 @@
 				</regnode>
 			</regnode>
 		</regnode>
-		<model id="id-0065-00000001" kind="ParadigmSheet" relid="0x1" childrelidcntr="0x119">
+		<model id="id-0065-00000001" kind="ParadigmSheet" relid="0x1" childrelidcntr="0x11b">
 			<name>TopLevel</name>
 			<attribute kind="AuthorInformation" status="meta">
 				<value></value>
@@ -22873,7 +22873,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>225,321</value>
+							<value>176,321</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -22948,7 +22948,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1002,41</value>
+							<value>764,41</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -23047,7 +23047,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1079,363</value>
+							<value>939,104</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -23134,7 +23134,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>582,300</value>
+							<value>456,265</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -23230,7 +23230,7 @@
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>666,440</value>
+							<value>603,440</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -23263,7 +23263,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>454,335</value>
+							<value>335,335</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -23343,7 +23343,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1182,265</value>
+							<value>916,300</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -23379,7 +23379,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1073,184</value>
+							<value>804,545</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -23543,7 +23543,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>582,41</value>
+							<value>456,62</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -23603,7 +23603,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>615,174</value>
+							<value>489,174</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -23678,7 +23678,7 @@
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1114,90</value>
+							<value>925,104</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -23690,7 +23690,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1143,44</value>
+							<value>848,405</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -23744,7 +23744,7 @@
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>442,397</value>
+							<value>463,384</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -23828,7 +23828,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>757,250</value>
+							<value>589,159</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -23888,7 +23888,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>828,58</value>
+							<value>650,55</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -23963,7 +23963,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>944,265</value>
+							<value>776,174</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -24038,6 +24038,88 @@
 					<value>false</value>
 				</attribute>
 			</atom>
+			<atom id="id-0066-00000095" kind="Constraint" role="Constraint" relid="0x11a">
+				<name>LegalConstantValue</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>625,261</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value><![CDATA[Constant's value does not match type or is out of range]]></value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value><![CDATA[let x = refersTo () in
+  (x.isTypeOf (Boolean) implies ((let y = value.trim ().toInteger () in y = 0 or y = 1) or
+                                                               (let z = value.trim ().toUpper () in z = "TRUE" or z = "FALSE"))) and
+  (x.isTypeOf (Byte) implies (let y = value.trim ().toInteger () in y >= 0 and y < 256)) and
+  (x.isTypeOf (ShortInteger) implies (let y = value.trim ().toInteger () in y > -32769 and y < 32768)) and
+  (x.isTypeOf (LongInteger) implies (let y = value.trim ().toInteger () in y > -2147483649 and y < 2147483648)) and
+  (x.isTypeOf (RealNumber) implies value.trim ().match ("^\-?[0-9]+\.[0-9]*$")) and
+  (x.isTypeOf (Enum) implies x.oclAsType (gme::Model).parts ()->collect (y : gme::FCO | y.name)->exists (z : ocl::String | z = value.trim ()))]]></value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority" status="meta">
+					<value>2</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
 			<reference id="id-0067-00000019" kind="AspectProxy" role="AspectProxy" relid="0x9e" referred="id-0069-00000002">
 				<name>OperationAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
@@ -24093,7 +24175,7 @@
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>323,594</value>
+							<value>330,566</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -24240,7 +24322,7 @@
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>862,258</value>
+							<value>771,272</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -24252,7 +24334,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>358,83</value>
+							<value>57,174</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -24396,7 +24478,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>708,391</value>
+							<value>645,412</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -24456,7 +24538,7 @@
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>932,384</value>
+							<value>876,433</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -24468,7 +24550,7 @@
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>834,517</value>
+							<value>953,538</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -25003,6 +25085,14 @@
 				</regnode>
 				<connpoint role="dst" target="id-0066-00000015"/>
 				<connpoint role="src" target="id-0066-00000017"/>
+			</connection>
+			<connection id="id-0068-000000ea" kind="HasConstraint" role="HasConstraint" relid="0x11b">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000015"/>
+				<connpoint role="src" target="id-0066-00000095"/>
 			</connection>
 			<set id="id-0069-00000005" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-00000021 id-0067-00000022 id-0067-00000020 id-0067-0000001f id-0067-0000001e id-0067-0000001d id-0066-00000015 id-0066-00000010 id-0066-00000007 id-0066-00000001 id-0066-00000002 id-0066-00000005">
 				<name>InterfaceDefinition</name>
@@ -27178,7 +27268,7 @@
 					<value>Not a valid identifier</value>
 				</attribute>
 				<attribute kind="ConstraintEqn">
-					<value><![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]></value>
+					<value><![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]></value>
 				</attribute>
 				<attribute kind="ConstraintParam" status="meta">
 					<value></value>
