@@ -1,3 +1,20 @@
+Sun Jun 20 19:00:23 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PICML/examples/RobotAssembly.xme: Updated model to include
+          ComponentIOR property.
+
+        * PICML/interpreters/packaging/PackageVisitor.h:
+        * PICML/interpreters/packaging/PackageVisitor.cpp:
+        * PICML/interpreters/packaging/UdmApp.cpp: First version of the
+          PICML interpreter which generates all types of descriptors.
+
+        * PICML/paradigms/PICML.xmp: Updated meta to fix problems with
+          some constraints which triggered inappropriately.
+
+        * PICML/paradigms/PICML-uml.xme:
+        * PICML/paradigms/PICML.xme: Updated to reflect changes in the
+          meta.
+
 Sun Jun 20 17:10:38 2004  Jaiganesh B  <jai@dre.vanderbilt.edu>
 
         * PICML/interpreters/domain/CompIcon.ico:

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Sun Jun 13 14:28:03 2004" mdate="Sun Jun 13 14:28:42 2004" metaguid="{68A77B5A-DEAD-BEEF-FEED-DAD000000001}" metaname="UML">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Sun Jun 13 14:28:03 2004" mdate="Sun Jun 20 18:44:52 2004" metaguid="{68A77B5A-DEAD-BEEF-FEED-DAD000000001}" metaname="UML">
 	<name>PICML-uml</name>
 	<comment></comment>
 	<author></author>
@@ -2552,7 +2552,7 @@ position : String[0..1]
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>350,5</value>
+								<value>337,12</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2580,7 +2580,7 @@ position : String[0..1]
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>0,200</value>
+								<value>29,405</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2601,7 +2601,7 @@ position : String[0..1]
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>150,200</value>
+								<value>82,132</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2622,7 +2622,7 @@ position : String[0..1]
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>300,200</value>
+								<value>323,426</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2643,7 +2643,7 @@ position : String[0..1]
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>450,200</value>
+								<value>705,272</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2664,7 +2664,7 @@ position : String[0..1]
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>600,200</value>
+								<value>701,41</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2685,7 +2685,7 @@ position : String[0..1]
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>750,200</value>
+								<value>469,426</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2706,7 +2706,7 @@ position : String[0..1]
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>900,200</value>
+								<value>621,440</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2727,7 +2727,7 @@ position : String[0..1]
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>1050,200</value>
+								<value>686,153</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2748,7 +2748,7 @@ position : String[0..1]
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>0,300</value>
+								<value>14,237</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2769,7 +2769,7 @@ position : String[0..1]
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>150,300</value>
+								<value>183,433</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -3318,7 +3318,7 @@ PrefixTag:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>596,468</value>
+								<value>214,440</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -3345,7 +3345,7 @@ PrefixTag:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>267,90</value>
+								<value>329,97</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -3372,7 +3372,7 @@ PrefixTag:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>113,27</value>
+								<value>573,27</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -3399,7 +3399,7 @@ PrefixTag:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>526,90</value>
+								<value>136,27</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -3426,7 +3426,7 @@ PrefixTag:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>435,223</value>
+								<value>22,209</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -3453,7 +3453,7 @@ PrefixTag:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>813,223</value>
+								<value>402,209</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -3480,7 +3480,7 @@ PrefixTag:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>1086,363</value>
+								<value>792,342</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -3507,7 +3507,7 @@ PrefixTag:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>666,362</value>
+								<value>318,341</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -3535,7 +3535,7 @@ multiple_connections:Boolean=false</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>477,356</value>
+								<value>76,342</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -3562,7 +3562,7 @@ multiple_connections:Boolean=false</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>883,362</value>
+								<value>557,334</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -3590,7 +3590,7 @@ single_destination:Boolean=false</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>624,223</value>
+								<value>253,201</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -3613,9 +3613,12 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>333,53</value>
+								<value>390,54</value>
 							</regnode>
 						</regnode>
+					</regnode>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value></value>
 					</regnode>
 				</atom>
 				<atom id="id-0066-000000a8" kind="Inheritance" role="Inheritance" relid="0x17">
@@ -3631,7 +3634,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>626,544</value>
+								<value>241,516</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -3649,7 +3652,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>556,173</value>
+								<value>164,117</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -3667,7 +3670,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>836,299</value>
+								<value>423,278</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -3685,7 +3688,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>988,461</value>
+								<value>734,475</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -3706,7 +3709,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>477,552</value>
+								<value>82,524</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -3727,7 +3730,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>708,523</value>
+								<value>404,516</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -3771,6 +3774,9 @@ UUID:String</value>
 				</connection>
 				<connection id="id-0068-0000001c" kind="Association" role="Association" relid="0xf">
 					<name></name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>e</value>
+					</regnode>
 					<attribute kind="Stereotype" status="meta">
 						<value></value>
 					</attribute>
@@ -3791,6 +3797,9 @@ UUID:String</value>
 				</connection>
 				<connection id="id-0068-0000001d" kind="Association" role="Association" relid="0x10">
 					<name></name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>S</value>
+					</regnode>
 					<attribute kind="Stereotype" status="meta">
 						<value></value>
 					</attribute>
@@ -3811,6 +3820,9 @@ UUID:String</value>
 				</connection>
 				<connection id="id-0068-0000001e" kind="Association" role="Association" relid="0x11">
 					<name></name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>S</value>
+					</regnode>
 					<attribute kind="Stereotype" status="meta">
 						<value></value>
 					</attribute>
@@ -3831,6 +3843,9 @@ UUID:String</value>
 				</connection>
 				<connection id="id-0068-0000001f" kind="Association" role="Association" relid="0x12">
 					<name></name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>w</value>
+					</regnode>
 					<attribute kind="Stereotype" status="meta">
 						<value></value>
 					</attribute>
@@ -3898,6 +3913,9 @@ UUID:String</value>
 				</connection>
 				<connection id="id-0068-00000027" kind="Sub" role="Sub" relid="0x1f">
 					<name></name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>n</value>
+					</regnode>
 					<connpoint role="dst" target="id-0066-00000010"/>
 					<connpoint role="src" target="id-0066-000000a9"/>
 				</connection>
@@ -3913,11 +3931,17 @@ UUID:String</value>
 				</connection>
 				<connection id="id-0068-0000002a" kind="Sub" role="Sub" relid="0x23">
 					<name></name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>n</value>
+					</regnode>
 					<connpoint role="dst" target="id-0066-0000000c"/>
 					<connpoint role="src" target="id-0066-000000aa"/>
 				</connection>
 				<connection id="id-0068-0000002b" kind="Sub" role="Sub" relid="0x24">
 					<name></name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>n</value>
+					</regnode>
 					<connpoint role="dst" target="id-0066-0000000f"/>
 					<connpoint role="src" target="id-0066-000000aa"/>
 				</connection>
@@ -3928,6 +3952,9 @@ UUID:String</value>
 				</connection>
 				<connection id="id-0068-0000002d" kind="Sub" role="Sub" relid="0x26">
 					<name></name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>n</value>
+					</regnode>
 					<connpoint role="dst" target="id-0066-0000000e"/>
 					<connpoint role="src" target="id-0066-000000aa"/>
 				</connection>
@@ -4916,7 +4943,7 @@ abstract:Boolean=false</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>43,453</value>
+								<value>12,607</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -7993,7 +8020,7 @@ label:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>295,237</value>
+								<value>292,258</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -8020,7 +8047,7 @@ label:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>589,237</value>
+								<value>643,258</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -8047,7 +8074,7 @@ label:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>8,503</value>
+								<value>13,496</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -8074,7 +8101,7 @@ label:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>771,18</value>
+								<value>603,18</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -8104,7 +8131,7 @@ exclusiveProvider:Boolean=false</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>414,153</value>
+								<value>444,174</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -8131,7 +8158,7 @@ exclusiveProvider:Boolean=false</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>596,503</value>
+								<value>595,475</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -8180,9 +8207,12 @@ exclusiveProvider:Boolean=false</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>256,529</value>
+								<value>208,523</value>
 							</regnode>
 						</regnode>
+					</regnode>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value></value>
 					</regnode>
 				</atom>
 				<atom id="id-0066-000000ba" kind="Connector" role="Connector" relid="0x19">
@@ -8192,9 +8222,12 @@ exclusiveProvider:Boolean=false</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>473,263</value>
+								<value>502,285</value>
 							</regnode>
 						</regnode>
+					</regnode>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value></value>
 					</regnode>
 				</atom>
 				<atom id="id-0066-000000bb" kind="Connector" role="Connector" relid="0x1d">
@@ -8204,7 +8237,7 @@ exclusiveProvider:Boolean=false</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>508,529</value>
+								<value>516,502</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -8222,7 +8255,7 @@ exclusiveProvider:Boolean=false</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>829,131</value>
+								<value>689,131</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -8234,7 +8267,7 @@ exclusiveProvider:Boolean=false</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>624,363</value>
+								<value>687,363</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -8255,7 +8288,7 @@ exclusiveProvider:Boolean=false</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>323,496</value>
+								<value>317,489</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -8276,7 +8309,7 @@ exclusiveProvider:Boolean=false</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>603,131</value>
+								<value>302,26</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -8297,7 +8330,7 @@ exclusiveProvider:Boolean=false</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>792,174</value>
+								<value>668,167</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -8493,6 +8526,9 @@ exclusiveProvider:Boolean=false</value>
 				</connection>
 				<connection id="id-0068-000000bb" kind="Src" role="Src" relid="0x1e">
 					<name></name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>E</value>
+					</regnode>
 					<attribute kind="Cardinality">
 						<value>0..*</value>
 					</attribute>
@@ -8504,6 +8540,9 @@ exclusiveProvider:Boolean=false</value>
 				</connection>
 				<connection id="id-0068-000000bc" kind="Dst" role="Dst" relid="0x1f">
 					<name></name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>e</value>
+					</regnode>
 					<attribute kind="Cardinality">
 						<value>0..*</value>
 					</attribute>
@@ -8574,7 +8613,7 @@ requiredType:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>274,187</value>
+								<value>330,243</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -8739,7 +8778,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>442,125</value>
+								<value>507,69</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -8784,9 +8823,12 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>494,221</value>
+								<value>551,194</value>
 							</regnode>
 						</regnode>
+					</regnode>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>SE</value>
 					</regnode>
 				</atom>
 				<atom id="id-0066-000000c0" kind="Connector" role="Connector" relid="0x22">
@@ -8814,7 +8856,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>596,195</value>
+								<value>726,167</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -9066,6 +9108,9 @@ UUID:String</value>
 				</connection>
 				<connection id="id-0068-000000d0" kind="Src" role="Src" relid="0x1f">
 					<name></name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>N</value>
+					</regnode>
 					<attribute kind="Cardinality">
 						<value>0..1</value>
 					</attribute>
@@ -10099,7 +10144,7 @@ resourcePort:String]]></value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>778,230</value>
+								<value>806,230</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -10224,7 +10269,7 @@ resourcePort:String]]></value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>225,34</value>
+								<value>594,377</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -10251,7 +10296,7 @@ resourcePort:String]]></value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>526,27</value>
+								<value>640,195</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -10278,7 +10323,7 @@ resourcePort:String]]></value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>582,111</value>
+								<value>566,97</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -10305,7 +10350,7 @@ resourcePort:String]]></value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>43,447</value>
+								<value>40,419</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -10332,7 +10377,7 @@ resourcePort:String]]></value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>673,447</value>
+								<value>637,468</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -10387,7 +10432,7 @@ resourcePort:String]]></value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>344,186</value>
+								<value>326,221</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -10438,9 +10483,12 @@ location:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>284,473</value>
+								<value>313,446</value>
 							</regnode>
 						</regnode>
+					</regnode>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value></value>
 					</regnode>
 				</atom>
 				<atom id="id-0066-000000ca" kind="Connector" role="Connector" relid="0x19">
@@ -10450,9 +10498,12 @@ location:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>662,228</value>
+								<value>432,124</value>
 							</regnode>
 						</regnode>
+					</regnode>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value></value>
 					</regnode>
 				</atom>
 				<atom id="id-0066-000000cb" kind="Connector" role="Connector" relid="0x1d">
@@ -10462,7 +10513,7 @@ location:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>564,473</value>
+								<value>558,495</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -10474,7 +10525,7 @@ location:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>403,53</value>
+								<value>649,348</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -10486,7 +10537,7 @@ location:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>785,202</value>
+								<value>316,20</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -10501,7 +10552,7 @@ location:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>351,440</value>
+								<value>338,524</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -10657,6 +10708,9 @@ location:String</value>
 				</connection>
 				<connection id="id-0068-00000106" kind="Src" role="Src" relid="0x16">
 					<name></name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>W</value>
+					</regnode>
 					<attribute kind="Cardinality">
 						<value>0..*</value>
 					</attribute>
@@ -10668,6 +10722,9 @@ location:String</value>
 				</connection>
 				<connection id="id-0068-00000107" kind="Dst" role="Dst" relid="0x17">
 					<name></name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>w</value>
+					</regnode>
 					<attribute kind="Cardinality">
 						<value>0..*</value>
 					</attribute>
@@ -10779,7 +10836,7 @@ location:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>316,251</value>
+								<value>310,244</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -10861,7 +10918,7 @@ location:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>50,216</value>
+								<value>10,216</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -10886,6 +10943,9 @@ location:String</value>
 							</regnode>
 						</regnode>
 					</regnode>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value></value>
+					</regnode>
 				</atom>
 				<reference id="id-0067-00000040" kind="ClassCopy" role="ClassCopy" relid="0x7" referred="id-0066-00000083">
 					<name>PackageConfigurationReference</name>
@@ -10900,7 +10960,7 @@ location:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>631,251</value>
+								<value>626,244</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -11010,7 +11070,7 @@ location:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>393,362</value>
+								<value>340,327</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -11039,7 +11099,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>701,370</value>
+								<value>808,335</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -11066,7 +11126,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>533,440</value>
+								<value>594,440</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -11093,7 +11153,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>295,69</value>
+								<value>199,125</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -11120,7 +11180,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>582,181</value>
+								<value>575,104</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -11202,7 +11262,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>610,517</value>
+								<value>503,510</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -11229,7 +11289,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>225,475</value>
+								<value>24,608</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -11250,9 +11310,12 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>627,396</value>
+								<value>684,362</value>
 							</regnode>
 						</regnode>
+					</regnode>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value></value>
 					</regnode>
 				</atom>
 				<atom id="id-0066-000000cf" kind="Connector" role="Connector" relid="0x1e">
@@ -11266,6 +11329,9 @@ UUID:String</value>
 							</regnode>
 						</regnode>
 					</regnode>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value></value>
+					</regnode>
 				</atom>
 				<atom id="id-0066-000000d0" kind="Connector" role="Connector" relid="0x22">
 					<name></name>
@@ -11274,9 +11340,12 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>459,291</value>
+								<value>453,152</value>
 							</regnode>
 						</regnode>
+					</regnode>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value></value>
 					</regnode>
 				</atom>
 				<atom id="id-0066-000000d1" kind="Connector" role="Connector" relid="0x26">
@@ -11286,7 +11355,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>487,543</value>
+								<value>404,537</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -11298,7 +11367,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>305,396</value>
+								<value>103,558</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -11316,7 +11385,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>64,355</value>
+								<value>57,397</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -11337,7 +11406,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>764,237</value>
+								<value>758,181</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -11358,7 +11427,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>400,635</value>
+								<value>316,593</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -11379,7 +11448,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>407,181</value>
+								<value>414,27</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -11574,6 +11643,9 @@ UUID:String</value>
 				</connection>
 				<connection id="id-0068-00000126" kind="Dst" role="Dst" relid="0x1c">
 					<name></name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value></value>
+					</regnode>
 					<attribute kind="Cardinality">
 						<value>0..1</value>
 					</attribute>
@@ -11767,7 +11839,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>1044,335</value>
+								<value>1039,328</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -11821,7 +11893,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>218,503</value>
+								<value>61,608</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -11848,7 +11920,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>113,258</value>
+								<value>108,265</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -11931,7 +12003,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>547,503</value>
+								<value>523,538</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -11985,7 +12057,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>883,524</value>
+								<value>876,615</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -12012,7 +12084,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>8,363</value>
+								<value>9,356</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -12108,7 +12180,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>963,459</value>
+								<value>971,474</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -12201,7 +12273,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>393,587</value>
+								<value>296,615</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -12285,7 +12357,7 @@ UUID:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>1023,411</value>
+								<value>1084,425</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -12641,6 +12713,9 @@ UUID:String</value>
 				</connection>
 				<connection id="id-0068-0000014e" kind="Src" role="Src" relid="0x32">
 					<name></name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>E</value>
+					</regnode>
 					<attribute kind="Cardinality">
 						<value>0..*</value>
 					</attribute>
@@ -13089,7 +13164,7 @@ label:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>624,321</value>
+								<value>551,307</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -13116,7 +13191,7 @@ label:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>1205,328</value>
+								<value>838,475</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -13143,7 +13218,7 @@ label:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>925,398</value>
+								<value>533,405</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -13170,7 +13245,7 @@ label:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>925,125</value>
+								<value>852,293</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -13224,7 +13299,7 @@ label:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>533,223</value>
+								<value>552,48</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -13251,7 +13326,7 @@ label:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>64,545</value>
+								<value>33,496</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -13305,7 +13380,7 @@ label:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>729,482</value>
+								<value>711,552</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -13326,9 +13401,12 @@ label:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>977,508</value>
+								<value>621,502</value>
 							</regnode>
 						</regnode>
+					</regnode>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value></value>
 					</regnode>
 				</atom>
 				<atom id="id-0066-000000de" kind="Connector" role="Connector" relid="0x21">
@@ -13338,9 +13416,12 @@ label:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>1117,354</value>
+								<value>789,488</value>
 							</regnode>
 						</regnode>
+					</regnode>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value></value>
 					</regnode>
 				</atom>
 				<atom id="id-0066-000000df" kind="Connector" role="Connector" relid="0x26">
@@ -13350,9 +13431,12 @@ label:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>830,347</value>
+								<value>677,334</value>
 							</regnode>
 						</regnode>
+					</regnode>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value></value>
 					</regnode>
 				</atom>
 				<atom id="id-0066-000000e0" kind="Connector" role="Connector" relid="0x2a">
@@ -13374,7 +13458,7 @@ label:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>480,249</value>
+								<value>495,243</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -13386,9 +13470,12 @@ label:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>249,571</value>
+								<value>250,523</value>
 							</regnode>
 						</regnode>
+					</regnode>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value></value>
 					</regnode>
 				</atom>
 				<atom id="id-0066-000000e3" kind="Connector" role="Connector" relid="0x39">
@@ -13398,9 +13485,12 @@ label:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>977,263</value>
+								<value>810,320</value>
 							</regnode>
 						</regnode>
+					</regnode>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value></value>
 					</regnode>
 				</atom>
 				<reference id="id-0067-0000004e" kind="ClassCopy" role="ClassCopy" relid="0xb" referred="id-0066-00000072">
@@ -13416,7 +13506,7 @@ label:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>148,356</value>
+								<value>100,321</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -13458,7 +13548,7 @@ label:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>925,573</value>
+								<value>582,538</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -13479,7 +13569,7 @@ label:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>428,348</value>
+								<value>414,320</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -13521,7 +13611,7 @@ label:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>1044,230</value>
+								<value>711,370</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -13542,7 +13632,7 @@ label:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>771,237</value>
+								<value>687,216</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -13584,7 +13674,7 @@ label:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>169,629</value>
+								<value>143,580</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -13605,7 +13695,7 @@ label:String</value>
 						<regnode name="UML">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>183,475</value>
+								<value>188,419</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -13797,6 +13887,9 @@ label:String</value>
 				</connection>
 				<connection id="id-0068-00000176" kind="Src" role="Src" relid="0x1d">
 					<name></name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>S</value>
+					</regnode>
 					<attribute kind="Cardinality">
 						<value>0..*</value>
 					</attribute>
@@ -13851,6 +13944,9 @@ label:String</value>
 				</connection>
 				<connection id="id-0068-0000017c" kind="Src" role="Src" relid="0x27">
 					<name></name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>N</value>
+					</regnode>
 					<attribute kind="Cardinality">
 						<value>0..*</value>
 					</attribute>

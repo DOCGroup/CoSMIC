@@ -135,13 +135,8 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="UniqueUUID" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[let packages = project.allInstancesOf (ComponentPackage) in
-      self.UUID <> "" implies packages->forAll (elem : ComponentPackage | elem.UUID = self.UUID implies elem = self)]]>
+        self.UUID <> "" implies packages->isUnique (i : ComponentPackage | i.UUID)]]>
             <dispname>UUIDs if defined, should uniquely identify ComponentPackages</dispname>
-         </constraint>
-         <constraint name="ValidImplementationdstCardinality26" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let dstCount = self.attachingConnections( "src", Implementation ) -> size in
-                     (dstCount >= 1)]]>
-            <dispname>Multiplicity of objects, which are associated to ComponentPackage as "dst" over Implementation, has to match 1..*.</dispname>
          </constraint>
          <constraint name="ValidPackageInterfacedstCardinality70" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let dstCount = self.attachingConnections( "src", PackageInterface ) -> size in
@@ -1857,6 +1852,11 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
       <model name = "ComponentAssembly" metaref = "3581" attributes = "label UUID" >
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="Assembly.bmp"></regnode>
+         <constraint name="UniqueInstanceName" eventmask = "0x0" depth = "1" priority = "2">
+            <![CDATA[let components = self.modelParts(Component) in
+        components->isUnique (i : Component | i.name.trim())]]>
+            <dispname>Instances of a Component Assembly should have unique names</dispname>
+         </constraint>
          <constraint name="ValidComponentAssemblyPartCardinality84" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "Component" ) -> size in
                      (partCount >= 1)]]>
@@ -2235,10 +2235,10 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "ExceptionRef" metaref = "2324" kind = "ExceptionRef"></role>
-         <role name = "InParameter" metaref = "3810" kind = "InParameter"></role>
+         <role name = "InParameter" metaref = "3714" kind = "InParameter"></role>
          <aspect name = "InterfaceDefinition" metaref = "3346" attributes = "VersionTag SpecifyIdTag" >
             <part metaref = "2471" role = "ExceptionRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3811" role = "InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3715" role = "InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
          </aspect>
       </model>
       <model name = "File" metaref = "2326" attributes = "PrefixTag" >
@@ -2328,10 +2328,10 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "ExceptionRef" metaref = "2339" kind = "ExceptionRef"></role>
-         <role name = "InParameter" metaref = "3812" kind = "InParameter"></role>
+         <role name = "InParameter" metaref = "3716" kind = "InParameter"></role>
          <aspect name = "InterfaceDefinition" metaref = "3360" attributes = "VersionTag SpecifyIdTag" >
             <part metaref = "2524" role = "ExceptionRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3813" role = "InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3717" role = "InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
          </aspect>
       </model>
       <model name = "Node" metaref = "3705" attributes = "label" >
@@ -2403,7 +2403,7 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
          <role name = "OnewayOperation" metaref = "3026" kind = "OnewayOperation"></role>
          <role name = "ReadonlyAttribute" metaref = "3027" kind = "ReadonlyAttribute"></role>
          <role name = "SwitchedAggregate" metaref = "3028" kind = "SwitchedAggregate"></role>
-         <role name = "TwowayOperation" metaref = "3814" kind = "TwowayOperation"></role>
+         <role name = "TwowayOperation" metaref = "3718" kind = "TwowayOperation"></role>
          <aspect name = "InterfaceDefinition" metaref = "3369" attributes = "VersionTag PrefixTag SpecifyIdTag local abstract" >
             <part metaref = "3031" role = "Aggregate" primary = "yes" linked = "no"></part>
             <part metaref = "3188" role = "Alias" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
@@ -2430,9 +2430,9 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
             <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
-         <role name = "InParameter" metaref = "3815" kind = "InParameter"></role>
+         <role name = "InParameter" metaref = "3719" kind = "InParameter"></role>
          <aspect name = "InterfaceDefinition" metaref = "3381" attributes = "VersionTag SpecifyIdTag" >
-            <part metaref = "3816" role = "InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3720" role = "InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
          </aspect>
       </model>
       <model name = "Package" metaref = "2341" attributes = "VersionTag PrefixTag SpecifyIdTag" >
@@ -2504,22 +2504,22 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
             <dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
          </constraint>
          <constraint name="ValidPackageConfigurationContainerPartCardinality91" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
-                     (partCount <= 1)]]>
-            <dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
-         </constraint>
-         <constraint name="ValidPackageConfigurationContainerPartCardinality92" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "PackageConfBasePackage" ) -> size in
                      (partCount <= 1)]]>
             <dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
          </constraint>
-         <constraint name="ValidPackageConfigurationContainerPartCardinality93" eventmask = "0x0" depth = "1" priority = "1">
+         <constraint name="ValidPackageConfigurationContainerPartCardinality92" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
                      (partCount <= 1)]]>
             <dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
          </constraint>
-         <constraint name="ValidPackageConfigurationContainerPartCardinality94" eventmask = "0x0" depth = "1" priority = "1">
+         <constraint name="ValidPackageConfigurationContainerPartCardinality93" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "PackageConfSpecializedConfig" ) -> size in
+                     (partCount <= 1)]]>
+            <dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
+         </constraint>
+         <constraint name="ValidPackageConfigurationContainerPartCardinality94" eventmask = "0x0" depth = "1" priority = "1">
+            <![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
                      (partCount <= 1)]]>
             <dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
          </constraint>
@@ -2683,14 +2683,14 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidSwitchedAggregatePartCardinality100" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
-                     (partCount = 1)]]>
-            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
-         </constraint>
-         <constraint name="ValidSwitchedAggregatePartCardinality101" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "Label" ) -> size in
                      (partCount >= 1)]]>
             <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
+         </constraint>
+         <constraint name="ValidSwitchedAggregatePartCardinality101" eventmask = "0x0" depth = "1" priority = "1">
+            <![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
+                     (partCount = 1)]]>
+            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
          </constraint>
          <constraint name="ValidSwitchedAggregatePartCardinality102" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
@@ -2716,9 +2716,9 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="TopLevelPackageConfiguration.bmp"></regnode>
          <constraint name="ValidTopLevelPackageContainerPartCardinality103" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "PackageConfigurationReference" ) -> size in
-                     (partCount = 1)]]>
-            <dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 1.</dispname>
+            <![CDATA[let partCount = self.parts( "package" ) -> size in
+                     (partCount <= 1)]]>
+            <dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
          </constraint>
          <constraint name="ValidTopLevelPackageContainerPartCardinality104" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
@@ -2726,9 +2726,9 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
             <dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
          </constraint>
          <constraint name="ValidTopLevelPackageContainerPartCardinality105" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "package" ) -> size in
-                     (partCount <= 1)]]>
-            <dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
+            <![CDATA[let partCount = self.parts( "PackageConfigurationReference" ) -> size in
+                     (partCount = 1)]]>
+            <dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 1.</dispname>
          </constraint>
          <role name = "PackageConfigurationReference" metaref = "3030" kind = "PackageConfigurationReference"></role>
          <role name = "TopLevelPackage" metaref = "3664" kind = "TopLevelPackage"></role>
@@ -2762,15 +2762,15 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "ExceptionRef" metaref = "2348" kind = "ExceptionRef"></role>
-         <role name = "InParameter" metaref = "3817" kind = "InParameter"></role>
-         <role name = "InoutParameter" metaref = "3818" kind = "InoutParameter"></role>
-         <role name = "OutParameter" metaref = "3819" kind = "OutParameter"></role>
-         <role name = "ReturnType" metaref = "3820" kind = "ReturnType"></role>
+         <role name = "InParameter" metaref = "3721" kind = "InParameter"></role>
+         <role name = "InoutParameter" metaref = "3722" kind = "InoutParameter"></role>
+         <role name = "OutParameter" metaref = "3723" kind = "OutParameter"></role>
+         <role name = "ReturnType" metaref = "3724" kind = "ReturnType"></role>
          <aspect name = "InterfaceDefinition" metaref = "3412" attributes = "VersionTag SpecifyIdTag" >
             <part metaref = "2588" role = "ExceptionRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3806" role = "InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3807" role = "InoutParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3808" role = "OutParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3725" role = "InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3726" role = "InoutParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3727" role = "OutParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3219" role = "ReturnType" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
          </aspect>
       </model>

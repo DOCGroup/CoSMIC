@@ -50,11 +50,11 @@ using xercesc::DOMException;
 using xercesc::XMLString;
 using PICML::XStr;
 
-#define SetUpVisitor(type, root, visitor)                               \
-  do                                                                    \
-    {                                                                   \
-      PICML:: ## type start = PICML:: ## type ## ::Cast (root);         \
-      start.Accept (visitor);                                           \
+#define SetUpVisitor(type, root, visitor)                       \
+  do                                                            \
+    {                                                           \
+      PICML:: ## type start = PICML:: ## type ## ::Cast (root); \
+      start.Accept (visitor);                                   \
     } while (0)
 
 // template <class T, class U>
@@ -177,77 +177,74 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
   try
     {
       XMLPlatformUtils::Initialize();
-      std::string outputPath;
-      std::string message = "Please specify the Output Directory";
-      getPath (message, outputPath);
-      if (focusObject == Udm::null && selectedObjects.empty())
+      try
         {
-          showUsage();
-          return;
-        }
-      else
-        {
-          std::set<Udm::Object> mySet (selectedObjects);
-          if (focusObject != Udm::null)
-            mySet.insert (focusObject);
-          for (std::set<Udm::Object>::iterator iter = mySet.begin();
-               iter != mySet.end();
-               ++iter)
+          std::string outputPath;
+          std::string message = "Please specify the Output Directory";
+          getPath (message, outputPath);
+          PICML::PackageVisitor visitor (outputPath);
+          if (focusObject == Udm::null && selectedObjects.empty())
+            SetUpVisitor (RootFolder, p_backend->GetRootObject(), visitor);
+          else
             {
-              Udm::Object root = *iter;
-              std::string kindName = (*iter).type().name();
-              PICML::PackageVisitor visitor (outputPath);
-              if (kindName == "TopLevelPackages")
-                SetUpVisitor (TopLevelPackages, root, visitor);
-              else if (kindName == "TopLevelPackageContainer")
-                SetUpVisitor (TopLevelPackageContainer, root, visitor);
-              else if (kindName == "ImplementationArtifacts")
-                SetUpVisitor (ImplementationArtifacts, root, visitor);
-              else if (kindName == "ArtifactContainer")
-                SetUpVisitor (ArtifactContainer, root, visitor);
-              else if (kindName == "ComponentTypes")
-                SetUpVisitor (ComponentTypes, root, visitor);
-              else if (kindName == "ComponentContainer")
-                SetUpVisitor (ComponentContainer, root, visitor);
-              else if (kindName == "ComponentPackages")
-                SetUpVisitor (ComponentPackages, root, visitor);
-              else if (kindName == "PackageContainer")
-                SetUpVisitor (PackageContainer, root, visitor);
-              else if (kindName == "ComponentImplementations")
-                SetUpVisitor (ComponentImplementations, root, visitor);
-              else if (kindName == "ComponentImplementationContainer")
-                SetUpVisitor (ComponentImplementationContainer, root, visitor);
-              else if (kindName == "PackageConfigurations")
-                SetUpVisitor (PackageConfigurations, root, visitor);
-              else if (kindName == "PackageConfigurationContainer")
-                SetUpVisitor (PackageConfigurationContainer, root, visitor);
-              else
+              std::set<Udm::Object> mySet (selectedObjects);
+              if (focusObject != Udm::null)
+                mySet.insert (focusObject);
+              for (std::set<Udm::Object>::iterator iter = mySet.begin();
+                   iter != mySet.end();
+                   ++iter)
                 {
-                  showUsage();
-                  return;
+                  Udm::Object root = *iter;
+                  std::string kindName = (*iter).type().name();
+                  if (kindName == "TopLevelPackages")
+                    SetUpVisitor (TopLevelPackages, root, visitor);
+                  else if (kindName == "TopLevelPackageContainer")
+                    SetUpVisitor (TopLevelPackageContainer, root, visitor);
+                  else if (kindName == "ImplementationArtifacts")
+                    SetUpVisitor (ImplementationArtifacts, root, visitor);
+                  else if (kindName == "ArtifactContainer")
+                    SetUpVisitor (ArtifactContainer, root, visitor);
+                  else if (kindName == "ComponentTypes")
+                    SetUpVisitor (ComponentTypes, root, visitor);
+                  else if (kindName == "ComponentContainer")
+                    SetUpVisitor (ComponentContainer, root, visitor);
+                  else if (kindName == "ComponentPackages")
+                    SetUpVisitor (ComponentPackages, root, visitor);
+                  else if (kindName == "PackageContainer")
+                    SetUpVisitor (PackageContainer, root, visitor);
+                  else if (kindName == "ComponentImplementations")
+                    SetUpVisitor (ComponentImplementations, root, visitor);
+                  else if (kindName == "ComponentImplementationContainer")
+                    SetUpVisitor (ComponentImplementationContainer, root,
+                                  visitor);
+                  else if (kindName == "PackageConfigurations")
+                    SetUpVisitor (PackageConfigurations, root, visitor);
+                  else if (kindName == "PackageConfigurationContainer")
+                    SetUpVisitor (PackageConfigurationContainer, root, visitor);
                 }
             }
         }
-      XMLPlatformUtils::Terminate();
-    }
-  catch(udm_exception &e)
-    {
-      AfxMessageBox(e.what());
-    }
-  catch (const DOMException& e)
-    {
-      const unsigned int maxChars = 2047;
-      XMLCh errText[maxChars + 1];
-
-      std::stringstream estream;
-      estream << "DOMException code: " << e.code << std::endl;
-      if (DOMImplementation::loadDOMExceptionMsg(e.code, errText, maxChars))
+      catch(udm_exception &e)
         {
-          std::string message (XMLString::transcode (errText));
-          estream << "Message is: " << message << std::endl;
+          AfxMessageBox ("Caught UDM Exception: " + CString (e.what()));
+          return;
         }
-      AfxMessageBox (estream.str().c_str());
-      return;
+      catch (const DOMException& e)
+        {
+          const unsigned int maxChars = 2047;
+          XMLCh errText[maxChars + 1];
+
+          std::stringstream estream;
+          estream << "DOMException code: " << e.code << std::endl;
+          if (DOMImplementation::loadDOMExceptionMsg(e.code, errText, maxChars))
+            {
+              std::string message (XMLString::transcode (errText));
+              estream << "Message is: " << message << std::endl;
+            }
+          AfxMessageBox (estream.str().c_str());
+          return;
+        }
+      XMLPlatformUtils::Terminate();
     }
   catch (const XMLException& e)
     {

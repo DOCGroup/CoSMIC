@@ -108,47 +108,49 @@ namespace PICML
 
     virtual void Visit_ComponentTypes(const ComponentTypes&);
     virtual void Visit_ComponentContainer(const ComponentContainer&);
-    virtual void Visit_ComponentType(const ComponentType&){};
+    virtual void Visit_ComponentType(const ComponentType&);
     virtual void Visit_ComponentPropertyDescription(const ComponentPropertyDescription&);
     virtual void Visit_ComponentProperty(const ComponentProperty&);
     virtual void Visit_ComponentInfoProperty(const ComponentInfoProperty&);
     virtual void Visit_ComponentConfigProperty(const ComponentConfigProperty&);
-    virtual void Visit_OutEventPort(const OutEventPort&){};
-    virtual void Visit_ProvidedRequestPort(const ProvidedRequestPort&){};
-    virtual void Visit_Component(const Component&){};
-    virtual void Visit_RequiredRequestPort(const RequiredRequestPort&){};
-    virtual void Visit_InEventPort(const InEventPort&){};
-    virtual void Visit_Supports(const Supports&){};
-    virtual void Visit_Object(const Object&){};
+    virtual void Visit_OutEventPort(const OutEventPort&);
+    virtual void Visit_ProvidedRequestPort(const ProvidedRequestPort&);
+    virtual void Visit_Component(const Component&);
+    virtual void Visit_RequiredRequestPort(const RequiredRequestPort&);
+    virtual void Visit_InEventPort(const InEventPort&);
+    virtual void Visit_Supports(const Supports&);
+    virtual void Visit_Object(const Object&);
+
 
 
     // ComponentImplementation operations
 
-    virtual void Visit_ComponentImplementations(const ComponentImplementations&){};
-    virtual void Visit_ComponentImplementationContainer(const ComponentImplementationContainer&){};
-    virtual void Visit_MonolithicImplementation(const MonolithicImplementation&){};
-    virtual void Visit_MonolithExecParameter(const MonolithExecParameter&){};
+    virtual void Visit_ComponentImplementations(const ComponentImplementations&);
+    virtual void Visit_ComponentImplementationContainer(const ComponentImplementationContainer&);
+    virtual void Visit_MonolithicImplementation(const MonolithicImplementation&);
+    virtual void Visit_MonolithExecParameter(const MonolithExecParameter&);
 
-    virtual void Visit_Requirement(const Requirement&){};
-    virtual void Visit_SatisfierProperty(const SatisfierProperty&){};
-    virtual void Visit_ImplementationDependency(const ImplementationDependency&){};
-    virtual void Visit_Capability(const Capability&){};
-    virtual void Visit_AssemblyselectRequirement(const AssemblyselectRequirement&){};
-    virtual void Visit_AssemblyConfigProperty(const AssemblyConfigProperty&){};
-    virtual void Visit_PublishConnector(const PublishConnector&){};
-    virtual void Visit_publish(const publish&){};
-    virtual void Visit_deliverTo(const deliverTo&){};
-    virtual void Visit_AssemblyDeployRequirement(const AssemblyDeployRequirement&){};
-    virtual void Visit_ComponentAssembly(const ComponentAssembly&){};
-    virtual void Visit_emit(const emit&){};
-    virtual void Visit_invoke(const invoke&){};
-    virtual void Visit_InfoProperty(const InfoProperty&){};
-    virtual void Visit_MonolithprimaryArtifact(const MonolithprimaryArtifact&){};
-    virtual void Visit_MonolithDeployRequirement(const MonolithDeployRequirement&){};
-    virtual void Visit_ConfigProperty(const ConfigProperty&){};
-    virtual void Visit_ImplementationDependsOn(const ImplementationDependsOn&){};
-    virtual void Visit_Implements(const Implements&){};
-    virtual void Visit_ImplementationCapability(const ImplementationCapability&){};
+    virtual void Visit_Requirement(const Requirement&);
+    virtual void Visit_SatisfierProperty(const SatisfierProperty&);
+    virtual void Visit_ImplementationDependency(const ImplementationDependency&);
+    virtual void Visit_Capability(const Capability&);
+    virtual void Visit_AssemblyselectRequirement(const AssemblyselectRequirement&);
+    virtual void Visit_AssemblyConfigProperty(const AssemblyConfigProperty&);
+    virtual void Visit_PublishConnector(const PublishConnector&);
+    virtual void Visit_publish(const publish&);
+    virtual void Visit_deliverTo(const deliverTo&);
+    virtual void Visit_AssemblyDeployRequirement(const AssemblyDeployRequirement&);
+    virtual void Visit_ComponentAssembly(const ComponentAssembly&);
+    virtual void Visit_emit(const emit&);
+    virtual void Visit_invoke(const invoke&);
+    virtual void Visit_InfoProperty(const InfoProperty&);
+    virtual void Visit_MonolithprimaryArtifact(const MonolithprimaryArtifact&);
+    virtual void Visit_MonolithDeployRequirement(const MonolithDeployRequirement&);
+    virtual void Visit_ConfigProperty(const ConfigProperty&);
+    virtual void Visit_ImplementationDependsOn(const ImplementationDependsOn&);
+    virtual void Visit_Implements(const Implements&);
+    virtual void Visit_ImplementationCapability(const ImplementationCapability&);
+    //
 
     virtual void Visit_Resource(const Resource&){};
     virtual void Visit_SharedResource(const SharedResource&){};
@@ -219,5 +221,6 @@ namespace PICML
     XMLFormatTarget*    target_;
     std::string         outputPath_;
     std::stack<DOMElement*> curr_stack_;
+    std::map<std::string, std::string> idMap_;
   };
 }

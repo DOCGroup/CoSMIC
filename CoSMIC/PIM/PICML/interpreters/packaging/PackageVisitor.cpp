@@ -1,6 +1,7 @@
 #include <afxdlgs.h> // For CFileDialog
 #include "PackageVisitor.h"
 #include "UuidString.h"
+#include "UmlExt.h"
 
 using xercesc::LocalFileFormatTarget;
 using xercesc::DOMImplementationRegistry;
@@ -115,8 +116,75 @@ namespace PICML
     return pName;
   }
 
-  void PackageVisitor::Visit_RootFolder(const RootFolder&)
-  {}
+  void PackageVisitor::Visit_RootFolder(const RootFolder& rf)
+  {
+    {
+      std::set<ComponentImplementations>
+        folders = rf.ComponentImplementations_kind_children();
+      for (std::set<ComponentImplementations>::iterator iter = folders.begin();
+           iter != folders.end();
+           ++iter)
+        {
+          ComponentImplementations folder = *iter;
+          folder.Accept (*this);
+        }
+    }
+    {
+      std::set<ComponentPackages>
+        folders = rf.ComponentPackages_kind_children();
+      for (std::set<ComponentPackages>::iterator iter = folders.begin();
+           iter != folders.end();
+           ++iter)
+        {
+          ComponentPackages folder = *iter;
+          folder.Accept (*this);
+        }
+    }
+    {
+      std::set<ComponentTypes>
+        folders = rf.ComponentTypes_kind_children();
+      for (std::set<ComponentTypes>::iterator iter = folders.begin();
+           iter != folders.end();
+           ++iter)
+        {
+          ComponentTypes folder = *iter;
+          folder.Accept (*this);
+        }
+    }
+    {
+      std::set<ImplementationArtifacts>
+        folders = rf.ImplementationArtifacts_kind_children();
+      for (std::set<ImplementationArtifacts>::iterator iter = folders.begin();
+           iter != folders.end();
+           ++iter)
+        {
+          ImplementationArtifacts folder = *iter;
+          folder.Accept (*this);
+        }
+    }
+    {
+      std::set<TopLevelPackages>
+        folders = rf.TopLevelPackages_kind_children();
+      for (std::set<TopLevelPackages>::iterator iter = folders.begin();
+           iter != folders.end();
+           ++iter)
+        {
+          TopLevelPackages folder = *iter;
+          folder.Accept (*this);
+        }
+    }
+    {
+      std::set<PackageConfigurations>
+        folders = rf.PackageConfigurations_kind_children();
+      for (std::set<PackageConfigurations>::iterator iter = folders.begin();
+           iter != folders.end();
+           ++iter)
+        {
+          PackageConfigurations folder = *iter;
+          folder.Accept (*this);
+        }
+    }
+  }
 
   // Predefined Types
   void PackageVisitor::Visit_LongInteger(const LongInteger&)
@@ -226,21 +294,18 @@ namespace PICML
 
   void PackageVisitor::Visit_ArtifactExecParameter(const ArtifactExecParameter& param)
   {
+    this->push();
+    DOMElement* ele = this->doc_->createElement (XStr ("execParameter"));
+    this->curr_->appendChild (ele);
+    this->curr_ = ele;
     Property ref = param.dstArtifactExecParameter_end();
     ref.Accept (*this);
+    this->pop();
   }
 
   void PackageVisitor::Visit_Property(const Property& property)
   {
     this->push();
-    DOMElement* ele = 0;
-    set<ArtifactExecParameter> ias = property.srcArtifactExecParameter();
-    if (!ias.empty())
-      {
-        ele = this->doc_->createElement (XStr ("execParameter"));
-      }
-    this->curr_->appendChild (ele);
-    this->curr_ = ele;
     this->curr_->appendChild (this->createSimpleContent ("name",
                                                          property.name()));
     // Property's value
@@ -532,5 +597,541 @@ namespace PICML
   void PackageVisitor::Visit_PackageInfoProperty(const PackageInfoProperty&)
   {}
 
+  void PackageVisitor::Visit_ComponentTypes(const ComponentTypes& cts)
+  {
+    std::set<ComponentContainer> ccs = cts.ComponentContainer_kind_children();
+    for (std::set<ComponentContainer>::iterator iter = ccs.begin();
+         iter != ccs.end();
+         ++iter)
+      {
+        ComponentContainer cc = *iter;
+        cc.Accept (*this);
+      }
+  }
 
+  void PackageVisitor::Visit_ComponentContainer(const ComponentContainer& cc)
+  {
+    std::set<ComponentType> cts = cc.ComponentType_kind_children();
+    for (std::set<ComponentType>::iterator iter = cts.begin();
+         iter != cts.end();
+         ++iter)
+      {
+        ComponentType ct = *iter;
+        ct.Accept (*this);
+      }
+  }
+
+  void PackageVisitor::Visit_ComponentType(const ComponentType& ct)
+  {
+    Component comp = ct.ref();
+    comp.Accept (*this);
+  }
+
+  void PackageVisitor::Visit_Component(const Component& comp)
+  {
+    this->push();
+    std::string name = this->outputPath_ + "\\";
+    name += comp.name();
+    name += ".ccd";
+    this->initTarget (name);
+    this->initDocument ("Deployment:ComponentInterfaceDescription");
+    this->initRootAttributes();
+
+    std::string label = comp.label();
+    if (!label.empty())
+      this->curr_->appendChild (this->createSimpleContent ("label",
+                                                           label));
+    std::string uuid = comp.UUID();
+    if (uuid.empty())
+      uuid = PICML::MakeUuidString();
+    this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
+
+//     Package parent = comp.Package_parent();
+//     std::string pkg = "";
+//     for (; parent != Udm::null; parent = parent.Package_parent())
+//       {
+//         std::string pcomp = parent.name();
+//         pkg = pcomp + "/" + pkg;
+//       }
+//     std::string specificType = "IDL:" + pkg + std::string (comp.name())+ ":1.0";
+//     this->curr_->appendChild (this->createSimpleContent ("specificType",
+//                                                          specificType));
+
+    const std::set<OutEventPort> oeps = comp.OutEventPort_kind_children();
+    for (std::set<OutEventPort>::const_iterator it1 = oeps.begin();
+         it1 != oeps.end();
+         ++it1)
+      {
+        OutEventPort oep = *it1;
+        oep.Accept (*this);
+      }
+
+    const std::set<InEventPort> ieps = comp.InEventPort_kind_children();
+    for (std::set<InEventPort>::const_iterator it2 = ieps.begin();
+         it2 != ieps.end();
+         ++it2)
+      {
+        InEventPort iep = *it2;
+        iep.Accept (*this);
+      }
+
+    const std::set<ProvidedRequestPort>
+      facets = comp.ProvidedRequestPort_kind_children();
+    for (std::set<ProvidedRequestPort>::const_iterator it3 = facets.begin();
+         it3 != facets.end();
+         ++it3)
+      {
+        ProvidedRequestPort facet = *it3;
+        facet.Accept (*this);
+      }
+
+    const std::set<RequiredRequestPort>
+      receps = comp.RequiredRequestPort_kind_children();
+    for (std::set<RequiredRequestPort>::const_iterator it4 = receps.begin();
+         it4 != receps.end();
+         ++it4)
+      {
+        RequiredRequestPort recep = *it4;
+        recep.Accept (*this);
+      }
+
+    // Dump out an ComponentInterfaceDescription file
+    this->dumpDocument();
+    this->pop();
+  }
+
+  void PackageVisitor::Visit_OutEventPort(const OutEventPort& oep)
+  {
+    this->push();
+    DOMElement* ele = this->doc_->createElement (XStr ("port"));
+    ele->appendChild (this->createSimpleContent ("name", oep.name()));
+    ele->appendChild (this->createSimpleContent ("exclusiveProvider",
+                                                 oep.exclusiveProvider() ? "true" : "false"));
+    ele->appendChild (this->createSimpleContent ("exclusiveUser",
+                                                 oep.exclusiveUser() ? "true" : "false"));
+    ele->appendChild (this->createSimpleContent ("optional",
+                                                 oep.optional() ? "true" : "false"));
+    ele->appendChild (this->createSimpleContent ("provider", "true"));
+    ele->appendChild (this->createSimpleContent ("kind",
+                                                 oep.exclusiveProvider() ? "EventEmitter" : "EventPublisher"));
+    this->curr_->appendChild (ele);
+    this->pop();
+  }
+
+  void PackageVisitor::Visit_InEventPort(const InEventPort& iep)
+  {
+    this->push();
+    DOMElement* ele = this->doc_->createElement (XStr ("port"));
+    ele->appendChild (this->createSimpleContent ("name", iep.name()));
+    ele->appendChild (this->createSimpleContent ("exclusiveProvider",
+                                                 iep.exclusiveProvider() ? "true" : "false"));
+    ele->appendChild (this->createSimpleContent ("exclusiveUser",
+                                                 iep.exclusiveUser() ? "true" : "false"));
+    ele->appendChild (this->createSimpleContent ("optional",
+                                                 iep.optional() ? "true" : "false"));
+    ele->appendChild (this->createSimpleContent ("provider", "false"));
+    ele->appendChild (this->createSimpleContent ("kind", "EventConsumer"));
+    this->curr_->appendChild (ele);
+    this->pop();
+  }
+
+  void PackageVisitor::Visit_ProvidedRequestPort(const ProvidedRequestPort& facet)
+  {
+    this->push();
+    DOMElement* ele = this->doc_->createElement (XStr ("port"));
+    ele->appendChild (this->createSimpleContent ("name", facet.name()));
+    ele->appendChild (this->createSimpleContent ("exclusiveProvider",
+                                                 facet.exclusiveProvider() ? "true" : "false"));
+    ele->appendChild (this->createSimpleContent ("exclusiveUser",
+                                                 facet.exclusiveUser() ? "true" : "false"));
+    ele->appendChild (this->createSimpleContent ("optional",
+                                                 facet.optional() ? "true" : "false"));
+    ele->appendChild (this->createSimpleContent ("provider", "true"));
+    ele->appendChild (this->createSimpleContent ("kind", "Facet"));
+    this->curr_->appendChild (ele);
+    this->pop();
+  }
+
+
+  void PackageVisitor::Visit_RequiredRequestPort(const RequiredRequestPort& recep)
+  {
+    this->push();
+    DOMElement* ele = this->doc_->createElement (XStr ("port"));
+    ele->appendChild (this->createSimpleContent ("name", recep.name()));
+    ele->appendChild (this->createSimpleContent ("exclusiveProvider",
+                                                 recep.exclusiveProvider() ? "true" : "false"));
+    ele->appendChild (this->createSimpleContent ("exclusiveUser",
+                                                 recep.exclusiveUser() ? "true" : "false"));
+    ele->appendChild (this->createSimpleContent ("optional",
+                                                 recep.optional() ? "true" : "false"));
+    ele->appendChild (this->createSimpleContent ("provider", "false"));
+    ele->appendChild (this->createSimpleContent ("kind",
+                                                 recep.multiple_connections() ? "MultiplexReceptacle" : "SimplexReceptacle"));
+    this->curr_->appendChild (ele);
+    this->pop();
+  }
+
+  void PackageVisitor::Visit_ComponentPropertyDescription(const ComponentPropertyDescription&)
+  {}
+
+  void PackageVisitor::Visit_ComponentProperty(const ComponentProperty&)
+  {}
+
+  void PackageVisitor::Visit_ComponentInfoProperty(const ComponentInfoProperty&)
+  {}
+
+  void PackageVisitor::Visit_ComponentConfigProperty(const ComponentConfigProperty&)
+  {}
+
+  void PackageVisitor::Visit_Supports(const Supports&)
+  {}
+
+  void PackageVisitor::Visit_Object(const Object&)
+  {}
+
+  void PackageVisitor::Visit_ComponentImplementations(const ComponentImplementations& cimpls)
+  {
+    std::set<ComponentImplementationContainer>
+      cics = cimpls.ComponentImplementationContainer_kind_children();
+    for (std::set<ComponentImplementationContainer>::iterator
+           iter = cics.begin();
+         iter != cics.end();
+         ++iter)
+      {
+        ComponentImplementationContainer cc = *iter;
+        cc.Accept (*this);
+      }
+  }
+
+  void PackageVisitor::Visit_ComponentImplementationContainer(const ComponentImplementationContainer& cic)
+  {
+    std::set<MonolithicImplementation>
+      mimpls = cic.MonolithicImplementation_kind_children();
+    for (std::set<MonolithicImplementation>::iterator iter = mimpls.begin();
+         iter != mimpls.end();
+         ++iter)
+      {
+        MonolithicImplementation mimpl = *iter;
+        mimpl.Accept (*this);
+      }
+
+    std::set<ComponentAssembly> asms = cic.ComponentAssembly_kind_children();
+    for (std::set<ComponentAssembly>::iterator it = asms.begin();
+         it != asms.end();
+         ++it)
+      {
+        ComponentAssembly assembly = *it;
+        assembly.Accept (*this);
+      }
+  }
+
+  void PackageVisitor::Visit_MonolithicImplementation(const MonolithicImplementation& mimpl)
+  {
+    this->push();
+    std::string name = this->outputPath_ + "\\";
+    name += mimpl.name();
+    name += ".cid";
+    this->initTarget (name);
+    this->initDocument ("Deployment:ComponentImplementationDescription");
+    this->initRootAttributes();
+
+    std::string label = mimpl.label();
+    if (!label.empty())
+      this->curr_->appendChild (this->createSimpleContent ("label",
+                                                           label));
+    std::string uuid = mimpl.UUID();
+    if (uuid.empty())
+      uuid = PICML::MakeUuidString();
+    this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
+
+    const std::set<Implements> impls = mimpl.dstImplements();
+    for (std::set<Implements>::const_iterator iter = impls.begin();
+         iter != impls.end();
+         ++iter)
+      {
+        Implements impl = *iter;
+        impl.Accept (*this);
+      }
+    this->push();
+    DOMElement* ele = this->doc_->createElement (XStr ("monolithicImpl"));
+    this->curr_->appendChild (ele);
+    this->curr_ = ele;
+    const std::set<MonolithprimaryArtifact>
+      mpas = mimpl.dstMonolithprimaryArtifact();
+    for (std::set<MonolithprimaryArtifact>::const_iterator it = mpas.begin();
+         it != mpas.end();
+         ++it)
+      {
+        MonolithprimaryArtifact mpa = *it;
+        mpa.Accept (*this);
+      }
+    this->pop();
+    const std::set<ConfigProperty>
+      cps = mimpl.dstConfigProperty();
+    for (std::set<ConfigProperty>::const_iterator it2 = cps.begin();
+         it2 != cps.end();
+         ++it2)
+      {
+        ConfigProperty cp = *it2;
+        cp.Accept (*this);
+      }
+
+    // Dump out an ComponentImplementationDescription file
+    this->dumpDocument();
+    this->pop();
+  }
+
+  void PackageVisitor::Visit_Implements(const Implements& impl)
+  {
+    this->push();
+    const ComponentType iface = impl.dstImplements_end();
+    const Component ref = iface.ref();
+    std::string refName (ref.name());
+    refName += ".ccd";
+    DOMElement*
+      refEle = this->doc_->createElement (XStr ("implements"));
+    refEle->setAttribute (XStr ("href"), XStr (refName));
+    this->curr_->appendChild (refEle);
+    this->pop();
+  }
+
+  void PackageVisitor::Visit_MonolithprimaryArtifact(const MonolithprimaryArtifact& mpa)
+  {
+    this->push();
+    DOMElement* ele = this->doc_->createElement (XStr ("primaryArtifact"));
+    const ImplementationArtifactReference iaref = mpa.dstMonolithprimaryArtifact_end();
+    const ImplementationArtifact ref = iaref.ref();
+    ele->appendChild (this->createSimpleContent ("name", ref.name()));
+    std::string refName (ref.name());
+    refName += ".iad";
+    DOMElement*
+      refEle = this->doc_->createElement (XStr ("referencedArtifact"));
+    refEle->setAttribute (XStr ("href"), XStr (refName));
+    ele->appendChild (refEle);
+    this->curr_->appendChild (ele);
+    this->pop();
+  }
+
+  void PackageVisitor::Visit_ConfigProperty(const ConfigProperty& cp)
+  {
+    this->push();
+    DOMElement* ele = this->doc_->createElement (XStr ("ConfigProperty"));
+    this->curr_->appendChild (ele);
+    this->curr_ = ele;
+    Property ref = cp.dstConfigProperty_end();
+    ref.Accept (*this);
+    this->pop();
+  }
+
+  void PackageVisitor::Visit_ComponentAssembly(const ComponentAssembly& assembly)
+  {
+    this->push();
+    std::string name = this->outputPath_ + "\\";
+    name += assembly.name();
+    name += ".cid";
+    this->initTarget (name);
+    this->initDocument ("Deployment:ComponentImplementationDescription");
+    this->initRootAttributes();
+
+    std::string label = assembly.label();
+    if (!label.empty())
+      this->curr_->appendChild (this->createSimpleContent ("label",
+                                                           label));
+    std::string uuid = assembly.UUID();
+    if (uuid.empty())
+      uuid = PICML::MakeUuidString();
+    this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
+
+    this->push();
+    DOMElement* ele = this->doc_->createElement (XStr ("assemblyImpl"));
+    this->curr_->appendChild (ele);
+    this->curr_ = ele;
+
+    const std::set<Component> comps = assembly.Component_kind_children();
+    for (std::set<Component>::const_iterator iter = comps.begin();
+         iter != comps.end();
+         ++iter)
+      {
+        Component comp = *iter;
+        DOMElement* instance = this->doc_->createElement (XStr ("instance"));
+        std::string uniqueName = comp.name();
+        uniqueName += "_";
+        uniqueName += PICML::MakeUuidString();
+        instance->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
+        this->idMap_[std::string (comp.name())] = uniqueName;
+        instance->appendChild (this->createSimpleContent ("name",
+                                                                comp.name()));
+        std::string refName = comp.name();
+        refName += ".cpd";
+        DOMElement* refEle = this->doc_->createElement (XStr ("package"));
+        refEle->setAttribute (XStr ("href"), XStr (refName));
+        instance->appendChild (refEle);
+        this->curr_->appendChild (instance);
+      }
+
+    const std::set<invoke> invokes = assembly.invoke_kind_children();
+    for (std::set<invoke>::const_iterator it = invokes.begin();
+         it != invokes.end();
+         ++it)
+      {
+        invoke iv = *it;
+        iv.Accept (*this);
+      }
+
+    const std::set<emit> emits = assembly.emit_kind_children();
+    for (std::set<emit>::const_iterator it2 = emits.begin();
+         it2 != emits.end();
+         ++it2)
+      {
+        emit ev = *it2;
+        ev.Accept (*this);
+      }
+    this->pop();
+
+    // Dump out an ComponentImplementationDescription file
+    this->dumpDocument();
+    this->pop();
+  }
+
+  void PackageVisitor::Visit_invoke(const invoke& iv)
+  {
+    this->push();
+
+    DOMElement* ele = this->doc_->createElement (XStr ("connection"));
+    this->curr_->appendChild (ele);
+    this->curr_ = ele;
+    // Get the facet end
+    const ProvidedRequestPort facet = iv.dstinvoke_end();
+    const Component facet_comp = facet.Component_parent();
+    // Get the receptacle end
+    const RequiredRequestPort receptacle = iv.srcinvoke_end();
+    const Component recep_comp = receptacle.Component_parent();
+
+    // Create a connection
+    std::string connection = receptacle.name();
+    connection += "_";
+    connection += facet.name();
+    ele->appendChild (this->createSimpleContent ("name", connection));
+
+    // Facet endPoint
+    DOMElement* endPoint
+      = this->doc_->createElement (XStr ("internalEndpoint"));
+    endPoint->appendChild (this->createSimpleContent ("portName",
+                                                      facet.name()));
+    // Facet instance
+    DOMElement* instance = this->doc_->createElement (XStr ("instance"));
+    instance->setAttribute (XStr ("xmi:idref"),
+                            XStr (this->idMap_[std::string (facet_comp.name())]));
+    endPoint->appendChild (instance);
+    ele->appendChild (endPoint);
+
+    // Receptacle endPoint
+    endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
+    endPoint->appendChild (this->createSimpleContent ("portName",
+                                                      receptacle.name()));
+    // Receptacle instance
+    instance = this->doc_->createElement (XStr ("instance"));
+    instance->setAttribute (XStr ("xmi:idref"),
+                            XStr (this->idMap_[std::string (recep_comp.name())]));
+    endPoint->appendChild (instance);
+    ele->appendChild (endPoint);
+
+    this->pop();
+  }
+
+  void PackageVisitor::Visit_emit(const emit& ev)
+  {
+    this->push();
+
+    DOMElement* ele = this->doc_->createElement (XStr ("connection"));
+    this->curr_->appendChild (ele);
+    this->curr_ = ele;
+    // Get the emitter end
+    const OutEventPort emitter = ev.srcemit_end();
+    const Component emitter_comp = emitter.Component_parent();
+    // Get the consumer end
+    const InEventPort consumer = ev.dstemit_end();
+    const Component consumer_comp = consumer.Component_parent();
+
+    // Create a connection
+    std::string connection = consumer.name();
+    connection += "_";
+    connection += emitter.name();
+    ele->appendChild (this->createSimpleContent ("name", connection));
+
+    // Emitter endPoint
+    DOMElement* endPoint
+      = this->doc_->createElement (XStr ("internalEndpoint"));
+    endPoint->appendChild (this->createSimpleContent ("portName",
+                                                      emitter.name()));
+    // Emitter instance
+    DOMElement* instance = this->doc_->createElement (XStr ("instance"));
+    instance->setAttribute (XStr ("xmi:idref"),
+                            XStr (this->idMap_[std::string (emitter_comp.name())]));
+    endPoint->appendChild (instance);
+    ele->appendChild (endPoint);
+
+    // Consumer endPoint
+    endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
+    endPoint->appendChild (this->createSimpleContent ("portName",
+                                                      consumer.name()));
+    // Consumer instance
+    instance = this->doc_->createElement (XStr ("instance"));
+    instance->setAttribute (XStr ("xmi:idref"),
+                            XStr (this->idMap_[std::string (consumer_comp.name())]));
+    endPoint->appendChild (instance);
+    ele->appendChild (endPoint);
+
+    this->pop();
+  }
+
+  void PackageVisitor::Visit_PublishConnector(const PublishConnector&)
+  {}
+
+  void PackageVisitor::Visit_publish(const publish&)
+  {}
+
+  void PackageVisitor::Visit_deliverTo(const deliverTo&)
+  {}
+
+  void PackageVisitor::Visit_MonolithExecParameter(const MonolithExecParameter&)
+  {}
+
+  void PackageVisitor::Visit_Requirement(const Requirement&)
+  {}
+
+  void PackageVisitor::Visit_SatisfierProperty(const SatisfierProperty&)
+  {}
+
+  void PackageVisitor::Visit_ImplementationDependency(const ImplementationDependency&)
+  {}
+
+  void PackageVisitor::Visit_Capability(const Capability&)
+  {}
+
+  void PackageVisitor::Visit_AssemblyselectRequirement(const AssemblyselectRequirement&)
+  {}
+
+  void PackageVisitor::Visit_AssemblyConfigProperty(const AssemblyConfigProperty&)
+  {}
+
+
+  void PackageVisitor::Visit_AssemblyDeployRequirement(const AssemblyDeployRequirement&)
+  {}
+
+
+  void PackageVisitor::Visit_InfoProperty(const InfoProperty&)
+  {}
+
+
+  void PackageVisitor::Visit_MonolithDeployRequirement(const MonolithDeployRequirement&)
+  {}
+
+
+  void PackageVisitor::Visit_ImplementationDependsOn(const ImplementationDependsOn&)
+  {}
+
+
+  void PackageVisitor::Visit_ImplementationCapability(const ImplementationCapability&)
+  {}
 }
