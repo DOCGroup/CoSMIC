@@ -254,7 +254,15 @@ SOURCE=.\aggregateref.bmp
 # End Source File
 # Begin Source File
 
+SOURCE=..\paradigms\icons\aggregateref.bmp
+# End Source File
+# Begin Source File
+
 SOURCE=.\aliasref.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=..\paradigms\icons\aliasref.bmp
 # End Source File
 # Begin Source File
 
@@ -335,6 +343,10 @@ SOURCE=.\typekind.bmp
 # Begin Source File
 
 SOURCE=.\valueref.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=..\paradigms\icons\valueref.bmp
 # End Source File
 # Begin Source File
 

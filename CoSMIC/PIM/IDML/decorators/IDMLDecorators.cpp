@@ -14,7 +14,7 @@ CDecoratorUtil d_util;
 #define ICON_SIZEX 64
 #define ICON_SIZEY 64
 
-static const int MAX_PORT_LENGTH = 3;
+static const int MAX_PORT_LENGTH = 5;
 static const int WIDTH_MODELSIDE = 100;
 static const int GAP_LABEL = 2;
 static const int GAP_PORT = 3;
@@ -153,8 +153,8 @@ MemberDecorator::initialize( IMgaFCO *obj, CComPtr<IMgaMetaFCO>& metaFco )
 void
 MemberDecorator::LoadBitmap()
 {
-  if (m_metaName == IDML_MEMBER_NAME 
-      || m_metaName == IDML_ATTRIBUTEMEMBER_NAME) {
+  if (m_metaName == PICML_MEMBER_NAME 
+      || m_metaName == PICML_ATTRIBUTEMEMBER_NAME) {
 	  CComPtr<IMgaFCO> mgaFco = m_mgaFco;
     if ( mgaFco ) {
 		  CComPtr<IMgaReference> ref;
@@ -167,70 +167,70 @@ MemberDecorator::LoadBitmap()
       mgaFco->get_Meta( &metaFco );
 		  CComBSTR bstr;
 		  COMTHROW( metaFco->get_Name( &bstr ) );
-      if ( bstr == IDML_STRING_NAME ) {
+      if ( bstr == PICML_STRING_NAME ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_STRING );
       }
-      else if ( bstr == IDML_LONGINTEGER_NAME ) {
+      else if ( bstr == PICML_LONGINTEGER_NAME ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_LONG );       
       }
-      else if ( bstr == IDML_BOOLEAN_NAME ) {
+      else if ( bstr == PICML_BOOLEAN_NAME ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_BOOLEAN );       
       }
-      else if ( bstr == IDML_REALNUMBER_NAME ) {
+      else if ( bstr == PICML_REALNUMBER_NAME ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_REALNUMBER );       
       }
-      else if ( bstr == IDML_COLLECTION_NAME ) {
+      else if ( bstr == PICML_COLLECTION_NAME ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_COLLECTIONREF );       
       }
-      else if ( bstr == IDML_ENUM_NAME ) {
+      else if ( bstr == PICML_ENUM_NAME ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_ENUMREF );       
       }
-      else if ( bstr == IDML_AGGREGATE_NAME ) {
+      else if ( bstr == PICML_AGGREGATE_NAME ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_AGGREGATEREF );       
       }
-      else if ( bstr == IDML_ALIAS_NAME ) {
+      else if ( bstr == PICML_ALIAS_NAME ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_ALIASREF );       
       }
-      else if ( bstr == IDML_SHORTINTEGER_NAME ) {
+      else if ( bstr == PICML_SHORTINTEGER_NAME ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_SHORTINTEGER );       
       }
-      else if ( bstr == IDML_OBJECT_NAME ) {
+      else if ( bstr == PICML_OBJECT_NAME ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_OBJECTREF );       
       }
-      else if ( bstr == IDML_VALUEOBJECT_NAME ) {
+      else if ( bstr == PICML_VALUEOBJECT_NAME ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_VALUEREF );       
       }
-      else if ( bstr == IDML_COMPONENT_NAME ) {
+      else if ( bstr == PICML_COMPONENT_NAME ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_COMPONENTREF );       
       }
-      else if ( bstr == IDML_EVENT_NAME ) {
+      else if ( bstr == PICML_EVENT_NAME ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_EVENTREF );       
       }
-      else if ( bstr == IDML_COMPONENTFACTORY_NAME ) {
+      else if ( bstr == PICML_COMPONENTFACTORY_NAME ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_COMPONENTFACTORYREF );       
       }
-      else if ( bstr == IDML_SWITCHEDAGGREGATE_NAME ) {
+      else if ( bstr == PICML_SWITCHEDAGGREGATE_NAME ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_SWITCHEDAGGREGATEREF );       
       }
-      else if ( bstr == IDML_GENERICVALUE_NAME ) {
+      else if ( bstr == PICML_GENERICVALUE_NAME ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_GENERICVALUE );       
       }
-      else if ( bstr == IDML_GENERICOBJECT_NAME ) {
+      else if ( bstr == PICML_GENERICOBJECT_NAME ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_GENERICOBJECT );       
       }
-      else if ( bstr == IDML_GENERICVALUEOBJECT_NAME ) {
+      else if ( bstr == PICML_GENERICVALUEOBJECT_NAME ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_GENERICVALUEOBJECT );       
       }
-      else if ( bstr == IDML_BYTE_NAME ) {
+      else if ( bstr == PICML_BYTE_NAME ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_BYTE );       
       }
-      else if ( bstr == IDML_TYPEENCODING_NAME ) {
+      else if ( bstr == PICML_TYPEENCODING_NAME ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_TYPEENCODING );       
       }
-      else if ( bstr == IDML_TYPEKIND_NAME ) {
+      else if ( bstr == PICML_TYPEKIND_NAME ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_TYPEKIND );       
       }
-      else if ( bstr == IDML_BOXED_NAME ) {
+      else if ( bstr == PICML_BOXED_NAME ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_BOXEDREF );       
       }
 		  mgaFco = NULL;
@@ -249,7 +249,7 @@ MemberDecorator::draw( CDC* pDC )
 
     // Skip drawing the name only for attribute members appearing
     // in the editor.
-    if (!m_mgaFco || m_metaName != IDML_ATTRIBUTEMEMBER_NAME) {
+    if (!m_mgaFco || m_metaName != PICML_ATTRIBUTEMEMBER_NAME) {
 		  CPoint namePos( m_rect.left + ICON_SIZEX / 2,
                       m_rect.bottom + NAME_MARGINY );
 		  d_util.DrawText( pDC, 
@@ -304,17 +304,16 @@ void
 PortDecorator::draw( CDC* pDC )
 {
   CRect dst = getLocation();
-  m_bitmap.Draw( pDC, dst );
+  m_bitmap.DrawTransparent( pDC, dst, GME_WHITE_COLOR, false, GME_BLACK_COLOR );
 
-	CPoint namePos( m_right ? dst.left - GAP_LABEL - ( 8 * MAX_PORT_LENGTH )
-                          : dst.right + GAP_LABEL,
+	CPoint namePos( m_right ? dst.left - GAP_LABEL : dst.right + GAP_LABEL,
                   dst.top - GAP_PORT );
 	d_util.DrawText( pDC, 
                    m_name,
                    namePos,
                    d_util.GetFont( GME_PORTNAME_FONT ),
                    m_nameColor,
-                   TA_LEFT );
+                   m_right ? TA_RIGHT : TA_LEFT );
 }
 
 void
@@ -326,17 +325,17 @@ PortDecorator::LoadBitmap()
     mgaFco->get_Meta( &metaFco );
 		CComBSTR bstr;
 		COMTHROW( metaFco->get_Name( &bstr ) );
-    if ( bstr == IDML_INEVENTPORT_NAME ) {
+    if ( bstr == PICML_INEVENTPORT_NAME ) {
       m_bitmap.ReadFromResource( m_right
                                  ? IDB_BITMAP_INEVENT_RT
                                  : IDB_BITMAP_INEVENT_LF );
     }
-    else if ( bstr == IDML_OUTEVENTPORT_NAME ) {
+    else if ( bstr == PICML_OUTEVENTPORT_NAME ) {
       m_bitmap.ReadFromResource( m_right
                                  ? IDB_BITMAP_OUTEVENT_RT
                                  : IDB_BITMAP_OUTEVENT_LF );
     }
-    else if ( bstr == IDML_REQUIREDREQUESTPORT_NAME ) {
+    else if ( bstr == PICML_REQUIREDREQUESTPORT_NAME ) {
       m_bitmap.ReadFromResource( m_right
                                  ? IDB_BITMAP_RECEPTACLE_RT
                                  : IDB_BITMAP_RECEPTACLE_LF );

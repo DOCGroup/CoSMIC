@@ -2,10 +2,43 @@
 #define DECORATOR_STD_H
 
 
-typedef enum { GME_LEFT_SIDE, GME_TOP_SIDE, GME_RIGHT_SIDE, GME_BOTTOM_SIDE, GME_SIDE_NUM } GMESizeCode;
-typedef enum { GME_RIGHT_DIRECTION = 0, GME_LEFT_DIRECTION, GME_DOWN_DIRECTION, GME_UP_DIRECTION, GME_DIRECTION_NUM } GMEDirectionCode;
-typedef enum { GME_NAME_FONT = 0, GME_PORTNAME_FONT, GME_CONNLABEL_FONT, GME_FONT_KIND_NUM } GMEFontKind;
-typedef enum { DSAtom, DSSet, DSNullRef, DSRefToNull, DSAtomPort, DSModelPort, DSRefPort, DSSetPort, DSBMPNum, DSModel, DSModelInstance, DSModelRef } DefaultShape;
+typedef enum {
+               GME_LEFT_SIDE,
+               GME_TOP_SIDE,
+               GME_RIGHT_SIDE,
+               GME_BOTTOM_SIDE,
+               GME_SIDE_NUM
+             } GMESizeCode;
+
+typedef enum {
+               GME_RIGHT_DIRECTION = 0,
+               GME_LEFT_DIRECTION,
+               GME_DOWN_DIRECTION,
+               GME_UP_DIRECTION,
+               GME_DIRECTION_NUM
+             } GMEDirectionCode;
+
+typedef enum {
+               GME_NAME_FONT = 0,
+               GME_PORTNAME_FONT,
+               GME_CONNLABEL_FONT,
+               GME_FONT_KIND_NUM
+             } GMEFontKind;
+
+typedef enum {
+               DSAtom,
+               DSSet,
+               DSNullRef,
+               DSRefToNull,
+               DSAtomPort,
+               DSModelPort,
+               DSRefPort,
+               DSSetPort,
+               DSBMPNum,
+               DSModel,
+               DSModelInstance,
+               DSModelRef
+             } DefaultShape;
 
 #define	GME_BACKGROUND_COLOR		RGB(0xff, 0xff, 0xff)
 #define	GME_BORDER_COLOR			RGB(0x00, 0x00, 0x00)

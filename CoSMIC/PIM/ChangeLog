@@ -1,3 +1,36 @@
+Wed Jul 28 14:51:19 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PICML/paradigms/icons/component.bmp:
+        * PICML/paradigms/icons/componentref.bmp:
+        
+          Changed these icons to be rectangular, eliminating
+          aliasing problems when they are resized.
+          
+        * PICML/paradigms/icons/boundedstring.bmp:
+        * PICML/paradigms/icons/file.bmp:
+        * PICML/paradigms/icons/fixedcollection.bmp:
+        * PICML/paradigms/icons/fixedpoint.bmp:
+        * PICML/paradigms/icons/id.bmp:
+        * PICML/paradigms/icons/manages.bmp:
+        * PICML/paradigms/icons/namedtyperef.bmp:
+        * PICML/paradigms/icons/predefined.bmp:
+        * PICML/paradigms/icons/prefix.bmp:
+        * PICML/paradigms/icons/version.bmp:
+        
+          Removed these unused icons from the repository.
+          
+        * PICML/decorators/Decorator.rc:
+        * PICML/decorators/DecoratorStd.h:
+        * PICML/decorators/IDMLDecorators.cpp:
+        * PICML/decorators/IDMLDecorators.h:
+        * PICML/decorators/resource.h:
+        
+          Modified the drawing of component ports to:
+          - have a transparent background.
+          - use 5 letters instead of 3 for the displayed name.
+          - right-justify the names of ports on the right side
+            of the component.
+
 Tue Jul 27 17:38:16 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PICML/paradigms/PICML-uml.xme:
