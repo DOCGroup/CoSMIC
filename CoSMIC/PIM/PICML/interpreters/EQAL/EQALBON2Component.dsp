@@ -88,11 +88,11 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386
+# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"$(PICML_ROOT)/bin/EQAL.dll"
 # Begin Custom Build - Performing registration
 OutDir=.\Release
-TargetPath=.\Release\EQALBON2Component.dll
-InputPath=.\Release\EQALBON2Component.dll
+TargetPath=.\$(PICML_ROOT)\bin\EQAL.dll
+InputPath=.\$(PICML_ROOT)\bin\EQAL.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"

@@ -1,3 +1,10 @@
+Sun Oct 24 17:32:10 2004  Gan Deng  <gan.deng@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/EQAL/EQALBON2Component.dsp:
+
+          Updated the project file to change the output directory
+          of the EQAL dll library.
+
 Fri Oct 22 23:35:57 2004  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * PIM/PICML/interpreters/packaging/CompIcon.ico: Updated icon
