@@ -66,7 +66,7 @@ public:
   // put a newline and indent on the next line
 
   // Workspace definitions
-  void create_workspace (const PICML::Workspace &workspace);
+  void create_workspace (const PICML::Workspaces &workspace);
   void write_mwc_footer ();
   void write_mwc_header ();
 

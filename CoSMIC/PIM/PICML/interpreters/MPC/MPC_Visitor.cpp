@@ -35,8 +35,8 @@ namespace PICML
   {
 	  // Start for interpretation
 	  // Step 1: Create Workspace for the projects
-	  std::set<PICML::Workspace> workspace = proj_folder.Workspace_children();
-	  for (std::set<PICML::Workspace>::iterator iter = workspace.begin ();
+	  std::set<PICML::Workspaces> workspace = proj_folder.Workspaces_children();
+	  for (std::set<PICML::Workspaces>::iterator iter = workspace.begin ();
 	  iter != workspace.end ();
 	  iter ++)
 	  {

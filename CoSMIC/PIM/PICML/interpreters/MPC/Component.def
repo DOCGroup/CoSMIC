@@ -1,6 +1,6 @@
 ; Interpreter.def : Declares the module parameters.
 
-LIBRARY      "Component.DLL"
+LIBRARY      "MPC.DLL"
 
 EXPORTS
 	DllCanUnloadNow     @1 PRIVATE

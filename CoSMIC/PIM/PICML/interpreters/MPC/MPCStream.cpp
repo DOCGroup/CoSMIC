@@ -72,7 +72,7 @@ MPCStream::indent (void)
 }
 
 void
-MPCStream::create_workspace (const PICML::Workspace &workspace)
+MPCStream::create_workspace (const PICML::Workspaces &workspace)
 {
 	// Write out the header for the workspace
 	this->write_mwc_header ();
