@@ -1,3 +1,12 @@
+Wed Aug 25 14:43:48 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        
+          Removed the trailing 'D' from the Xerces library name.
+          MPC can add a 'd' for the debug version on Windows
+          and it will work since Windows is case-insensitive. This
+          way you don't have to rename the installed Xerces library.
+
 Wed Aug 25 13:52:53 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/XercesString.cpp:

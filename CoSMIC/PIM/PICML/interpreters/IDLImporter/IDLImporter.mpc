@@ -5,7 +5,7 @@ project(TAO_PICML_BE) : acelib, core, tao_output, crosscompile {
   after       += TAO_IDL_FE
   sharedname   = TAO_PICML_BE
   libpaths    += $(XERCESROOT)/lib 
-  libs        += TAO_IDL_FE xerces-c_2D
+  libs        += TAO_IDL_FE xerces-c_2
   dynamicflags = TAO_PICML_BE_BUILD_DLL
   includes    += $(XERCESROOT)/include $(TAO_ROOT)/TAO_IDL/include $(TAO_ROOT)/TAO_IDL/fe
 
