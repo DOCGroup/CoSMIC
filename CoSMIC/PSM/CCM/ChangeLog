@@ -3,6 +3,7 @@ Wed Nov 10 13:53:00 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
         * OCML/interpreters/OCMLConfiguratorLibrary/test/main.cpp: 
         * OCML/interpreters/OCMLConfiguratorLibrary/Configurator.cpp: 
         * OCML/interpreters/OCMLConfiguratorLibrary/LoadLibrary.cpp: 
+        * OCML/Interpreters/OCMLConfiguratorLibrary/BON2Component.cpp:
 
           Changed PICML_ROOTs to COSMIC_ROOT (PICML_ROOT is not to be
           registered by the installer).

@@ -23,8 +23,6 @@
 #include "DLLEntry.hpp"
 #include "../OCMLConfiguratorLibrary/LoadLibrary.hpp"
 
-#include <fstream> // debug
-
 namespace BON
 {
 
@@ -92,14 +90,6 @@ namespace BON
   void Component::invokeEx( Project& project, FCO& currentFCO,
                             const std::set<FCO>& setSelectedFCOs, long lParam )
   {
-    { // debug
-      std::ifstream test_file("orb_tree.xml");
-      if (test_file)
-        AfxMessageBox("Found the file");
-      else
-        AfxMessageBox("Could not find the file");
-    }
-    
     const char* error_message =
       "An implementation artifact or RTEC resource factory should be selected";
 
