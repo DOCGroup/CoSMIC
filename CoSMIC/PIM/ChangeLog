@@ -1,3 +1,26 @@
+Wed Jul 21 13:30:29 2004  Arvind S. Krishna  <arvindk@dre.vanderbilt.edu>
+
+        * PICML/paradigms/PICML.xme:
+        * PICML/paradigms/PICML.xml:
+
+          Updated the export file and the XML file required to generate
+          the interpreter files from UDM
+
+        * PICML/paradigms/Integrating-Tools-with-PICML.txt:
+
+          README files for all tool developers on the steps required for
+          them to integrate their tools with the PICML meta.
+
+        * PICML/interpreters/packaging/PICML.h:
+        * PICML/interpreters/packaging/PICML.cpp:
+        * PICML/interpreters/packaging/PICML.xsd:
+        * PICML/interpreters/plan/PICML.h:
+        * PICML/interpreters/plan/PICML.cpp:
+        * PICML/interpreters/packaging/PICML.xsd:
+
+          Updated the header and .cpp files generated from UDM required
+          for the interpreters
+
 Tue Jul 20 15:47:25 2004  Arvind S. Krishna  <arvindk@dre.vanderbilt.edu>
 
         * PICML/paradigms/PICML.xmp:
