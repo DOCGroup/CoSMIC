@@ -32,6 +32,8 @@
 #include "XercesString.h"
 #include "ace/OS_NS_stdio.h"
 
+
+
 // The XMAX_ and YMAX_ values below work well for a screen size
 // of 1600 x 1200, giving a likely size for the IDML Model Editor
 // window.
@@ -817,8 +819,7 @@ picml_visitor::visit_attribute (AST_Attribute *node)
   member->setAttribute (X ("relid"), X (be_global->hex_string (1UL)));
   this->add_name_element (member, "AttributeMember");
   this->add_regnodes (0, member, 1UL, node);
-  XMLCh *id = this->lookup_id (ft);
-  member->setAttribute (X ("referred"), id);
+  member->setAttribute (X ("referred"), this->lookup_id (ft));
   elem->appendChild (member);
   
   UTL_ExceptList *get_ex = node->get_get_exceptions ();
@@ -1107,8 +1108,7 @@ picml_visitor::visit_typedef (AST_Typedef *node)
       elem->setAttribute (X ("kind"), X (role));
       elem->setAttribute (X ("role"), X (role));      
       this->set_relid_attr (elem);
-      XMLCh *id = this->lookup_id (bt);
-      elem->setAttribute (X ("referred"), id);
+      elem->setAttribute (X ("referred"), this->lookup_id (bt));
       this->add_name_element (elem, node->local_name ()->get_string ());
       this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
       this->add_replace_id_element (elem, node);
@@ -2230,7 +2230,7 @@ picml_visitor::add_manages (AST_Home *node)
   connection->appendChild (conn_reg);
   
   AST_Component *c = node->managed_component ();
-  XMLCh *comp_id = this->lookup_id (c);
+  const XMLCh *comp_id = this->lookup_id (c);
   idl_bool same_scope = (c->defined_in () == s);
   ACE_CString comp_ref_id;
   
@@ -2274,7 +2274,6 @@ picml_visitor::add_lookup_key (DOMElement *parent, AST_Home *node)
       return;
     }
     
-  XMLCh *id = this->lookup_id (pk ); 
   unsigned long slot = (node->base_home () == 0 ? 0UL : 1UL)
                        + static_cast<unsigned long> (node->n_supports ())
                        + 1;
@@ -2284,7 +2283,7 @@ picml_visitor::add_lookup_key (DOMElement *parent, AST_Home *node)
   lookup_key->setAttribute (X ("kind"), X ("LookupKey"));
   lookup_key->setAttribute (X ("role"), X ("LookupKey"));
   lookup_key->setAttribute (X ("relid"), X (be_global->hex_string (slot)));
-  lookup_key->setAttribute (X ("referred"), id);
+  lookup_key->setAttribute (X ("referred"), this->lookup_id (pk ));
   this->add_name_element (lookup_key, "LookupKey");
   this->add_regnodes (node, lookup_key, slot);
   parent->appendChild (lookup_key);

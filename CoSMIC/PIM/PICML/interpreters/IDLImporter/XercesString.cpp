@@ -1,6 +1,7 @@
 // $Id$
 
 #include <iostream>
+#include <string>
 #include "XercesString.h"
 
 using xercesc::XMLString;
