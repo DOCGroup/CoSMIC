@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project SYSTEM "mga.dtd">
+
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri May 21 14:31:42 2004" mdate="Fri May 21 18:24:19 2004" metaguid="{8BA9A5E4-DEAD-BEEF-FEED-DAD000000001}" metaname="IDML">
+	<name>IDMLTemplate</name>
+	<comment></comment>
+	<author></author>
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x9" kind="RootFolder">
+		<name>IDMLTemplate</name>
+		<folder id="id-006a-00000005" relid="0x8" childrelidcntr="0x1" libref="MGA=C:\Program Files\GME\Paradigms\IDML\PredefinedTypes.mga" kind="RootFolder">
+			<name>MGA=C:\Program Files\GME\Paradigms\IDML\PredefinedTypes.mga</name>
+			<folder id="id-006a-00000006" relid="0x1" childrelidcntr="0xc" kind="PredefinedTypes">
+				<name>PredefinedTypes</name>
+				<atom id="id-0066-0000000d" kind="TypeKind" relid="0xc">
+					<name>TypeKind</name>
+				</atom>
+				<atom id="id-0066-0000000e" kind="TypeEncoding" relid="0xb">
+					<name>TypeEncoding</name>
+				</atom>
+				<atom id="id-0066-0000000f" kind="String" relid="0xa">
+					<name>String</name>
+				</atom>
+				<atom id="id-0066-00000010" kind="Boolean" relid="0x9">
+					<name>Boolean</name>
+				</atom>
+				<atom id="id-0066-00000011" kind="ShortInteger" relid="0x8">
+					<name>ShortInteger</name>
+				</atom>
+				<atom id="id-0066-00000012" kind="RealNumber" relid="0x7">
+					<name>RealNumber</name>
+				</atom>
+				<atom id="id-0066-00000013" kind="LongInteger" relid="0x6">
+					<name>LongInteger</name>
+				</atom>
+				<atom id="id-0066-00000014" kind="GenericValueObject" relid="0x5">
+					<name>GenericValueObject</name>
+				</atom>
+				<atom id="id-0066-00000015" kind="GenericValue" relid="0x4">
+					<name>GenericValue</name>
+				</atom>
+				<atom id="id-0066-00000016" kind="GenericObject" relid="0x3">
+					<name>GenericObject</name>
+				</atom>
+				<atom id="id-0066-00000017" kind="Byte" relid="0x2">
+					<name>Byte</name>
+				</atom>
+			</folder>
+		</folder>
+		<folder id="id-006a-00000007" relid="0x9" childrelidcntr="0x0" kind="InterfaceDefinitions">
+			<name>NewInterfaceDefinitions</name>
+		</folder>
+	</folder>
+</project>

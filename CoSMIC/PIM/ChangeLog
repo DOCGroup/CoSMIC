@@ -1,3 +1,29 @@
+Fri May 21 18:37:50 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * IDML/examples/new_test.xme:
+        * IDML/paradigms/IDML-Meta.xme:
+        * IDML/paradigms/IDML.xmp:
+        
+          Major overhaul of paradigm, to make fewer steps and more
+          simplicity for the user.
+        
+        * IDML/paradigms/PredefinedTypes.xme:
+        
+          New file, a model containing a folder with all the 
+          basic types.
+          
+        * IDML/paradigms/IDMLTemplate.xme:
+        
+          New file.
+          Users can start from this file instead of creating a new
+          project, and they will get an attached read-only library
+          with the basic types from the model above.
+         
+        * IDML/paradigms/Icons/member.bmp:
+        
+          New file, need because after the overhaul of the 
+          paradigm, Member is no longer abstract.
+
 Thu May 20 11:53:28 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * IDML/*:
