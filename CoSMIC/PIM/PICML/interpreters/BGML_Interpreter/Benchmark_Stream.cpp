@@ -381,7 +381,7 @@ BenchmarkStream::gen_background_load (std::string& class_name, int task_set_size
 
 	// Create Barrier
 	this->strm_ << "ACE_Barrier barrier (" 
-				<<  task_set_size
+				<<  (task_set_size + 1)
 				<< ");";
 	this->nl ();
 
@@ -430,6 +430,11 @@ BenchmarkStream::gen_background_load (std::string& class_name, int task_set_size
 		this->nl ();
 	}
 
+	this->nl ();
+	this->indent ();
+	this->strm_ << "// Wait on Barrier for tasks to start \n";
+	this->indent ();
+	this->strm_ << "barrier.wait ();\n";
 	this->nl ();
 
 }
