@@ -34,6 +34,10 @@ protected:
 							   std::string& operation_name,
 							   std::vector<string>& arg_list);
 	// Generate the header file information
+
+	void create_build_file (std::vector<std::string>& file_list, 
+							std::string& project_name);
+	// Generate the build file building benchmarking library
 	
 private:
 	PICML::OperationBase &operation_;

@@ -26,14 +26,16 @@ BenchmarkStream::BenchmarkStream (std::string& component_name,
 								  std::vector<std::string>& arg_list,
 								  std::ostream& strm,
 								  std::vector<__int64>& task_priorities,
-								  std::vector<__int64>& task_rates)
+								  std::vector<__int64>& task_rates,
+								  std::string& output_path)
 : component_name_ (component_name),
   operation_name_ (operation_name),
   arg_list_ (arg_list),
   strm_ (strm),
   task_priorities_ (task_priorities),
   task_rates_ (task_rates),
-  indent_level_ (0)
+  indent_level_ (0),
+  output_path_ (output_path)
 {
 	
 }
@@ -88,6 +90,7 @@ BenchmarkStream::gen_include_file (std::string& file_name)
 	this->strm_ << "\"";
 	this->nl ();
 }
+
 
 void
 BenchmarkStream::gen_constructor_decl (std::string& name)
@@ -162,12 +165,27 @@ BenchmarkStream::generate_task_header (std::string& header_name)
 
 	this->gen_include_file (base_task);
 	this->gen_include_file (component_exec_header);
+
+	/// Generate the export files for benchmarking
+	this->create_export_macro (header_name);
+	std::string export_header_name = header_name + "_export.h";
+	this->gen_include_file (export_header_name);
+
+	/// Check for ACE_Barrier in the list
+	if (std::find (this->arg_list_.begin (), this->arg_list_.end (), "ACE_Barrier&") != 
+		this->arg_list_.end ())
+	{
+		std::string barrier_include = "ace/Barrier.h";
+		this->gen_include_file (barrier_include);
+	}
+
 	this->nl ();
-	
-	///// Step 3: Generate the "class" definition
+
+	// Step 3: Generate the "class" definition
 	this->strm_ << "template <typename T>";
 	this->nl ();
-	this->strm_ << "class ";
+	this->upcase (header_name.c_str ());
+	this->strm_ << "_Export class ";
 	this->strm_ << header_name.c_str ();
 	this->strm_ << " : public BGML_Task_Base";
 	this->nl ();
@@ -205,6 +223,39 @@ BenchmarkStream::generate_task_header (std::string& header_name)
 	
 	//// Step 9: Close the header file
 	this->gen_endif (header_name.c_str ());
+}
+
+
+void
+BenchmarkStream::create_export_macro (std::string& shared_name)
+{
+	// Generate the stub export file name as well
+	std::string command = "generate_export_file.pl -s ";
+
+	// Convert the export to upper case
+	const char* str = shared_name.c_str ();
+	int i = 0;
+	char c;
+	
+	while ((c = str[i++]) != '\0')
+    {
+		command += toupper (c);
+    }
+
+	// Redirect to required file
+	command.append (" > ");
+
+	// The output path should be within quotes otherwise it is going to crib if
+	// the output directory has spaces in it somewhere
+	command.append ("\"");
+	command.append (this->output_path_);
+	command.append ("\"");
+
+	command.append ("\\");
+	command.append (shared_name);
+	command.append ("_export.h");
+	command.append (" 2>&1");
+	system (command.c_str ());
 }
 
 void 
@@ -262,6 +313,7 @@ BenchmarkStream::gen_warmup_iterations (__int64 iterations)
 	this->strm_ << "(void) this->remote_ref_->";
 	this->strm_ << this->operation_name_;
 	this->strm_ << " (";
+
 	for (size_t i =0; i < this->arg_list_.size (); i++)
 	{
 		if (i)
@@ -279,6 +331,14 @@ BenchmarkStream::gen_background_load (std::string& class_name)
 {
 	// For the number of tasks assigned 
 	this->nl ();
+	this->indent ();
+
+	// Create Barrier
+	this->strm_ << "ACE_Barrier barrier (" 
+				<<  this->task_priorities_.size ()
+				<< ");";
+	this->nl ();
+
 	this->indent ();
 	this->strm_ << "// Generate the Background workload \n";
 	for (size_t i = 0; i < this->task_priorities_.size (); i++)
@@ -310,6 +370,8 @@ BenchmarkStream::gen_background_load (std::string& class_name)
 		this->nl ();
 		*/
 
+		// Insert barrier code
+		this->strm_ << ", barrier";
 		this->strm_ << ");";
 		this->nl ();
 	}
@@ -457,7 +519,7 @@ BenchmarkStream::generate_workload_def (__int64 iterations)
 	this->nl ();
 
 	this->gen_constructor_defn (macro_name);
-	this->gen_destructor_defn (macro_name);
+	this->gen_destructor_defn  (macro_name);
 
 	/// Step 2: Generate the svc hook function to run it in a thread
 	std::vector<std::string> param_list;
@@ -466,8 +528,16 @@ BenchmarkStream::generate_workload_def (__int64 iterations)
 									 "int",
 									 param_list);
    this->incr_indent ();
-   this->indent ();
 
+   // Wait on the barrier
+   this->indent ();
+   this->strm_ << "// Wait on the Barrier for tasks to start";
+   this->nl ();
+   this->indent ();
+   this->strm_ << "this->arg" << (this->arg_list_.size() -1) << "_.wait ();";
+   this->nl ();
+
+   this->indent ();
    this->strm_ << "for (int i = 0; ";
    this->strm_ << "i < ";
    __int64 iter = (iterations) ? iterations : BGML_DEFAULT_BENCH_ITER;
@@ -483,7 +553,10 @@ BenchmarkStream::generate_workload_def (__int64 iterations)
    this->strm_ << "(void)this->remote_ref_->";
    this->strm_ << this->operation_name_;
    this->strm_ << " (";
-   for (size_t i =0; i < this->arg_list_.size (); i++)
+
+   // Stop one short of the size as ACE_Barrier& is the last 
+   // argument
+   for (size_t i =0; i < this->arg_list_.size () - 1; i++)
 	{
 		if (i)
 			this->strm_ << ",";
@@ -596,6 +669,7 @@ BenchmarkStream::generate_task_def (__int64 warmup,
 		std::string workload_name = this->operation_name_ + "_Workload.h";
 		this->gen_include_file (workload_name);
 	}
+	
 	this->nl ();
 
 	this->gen_constructor_defn (header_name);

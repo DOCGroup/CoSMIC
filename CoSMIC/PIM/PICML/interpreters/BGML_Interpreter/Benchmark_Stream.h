@@ -50,7 +50,8 @@ public:
 				   std::vector<std::string>& arg_list,
 				   std::ostream& strm,
 				   std::vector<__int64>& task_priorities_,
-				   std::vector<__int64>& task_rates_);
+				   std::vector<__int64>& task_rates_,
+				   std::string& output_path);
   // constructor.
 
   virtual ~BenchmarkStream (void);
@@ -134,6 +135,12 @@ public:
   void generate_workload_def (__int64 interations);
   // Generates the workload definition
 
+  void create_export_macro (std::string& shared_name);
+  // Generate the export header file
+
+  void create_build_file ();
+  // Generate the mpc file to create the benchmarking library
+
 private:
   std::string& component_name_;
   std::string& operation_name_; 
@@ -142,6 +149,7 @@ private:
   std::vector<__int64> task_priorities_;
   std::vector<__int64> task_rates_;
   int indent_level_;
+  std::string& output_path_;
   
 private:
   void upcase (const char *);
