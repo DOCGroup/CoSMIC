@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Mon Jun 21 22:14:48 2004" mdate="Mon Jun 21 22:14:48 2004" metaguid="{3347C4F6-DEAD-BEEF-FEED-DAD000000000}" metaname="GReATConfig">
-	<name>PA2CS_Configuration</name>
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri Jun 25 22:46:39 2004" mdate="Fri Jun 25 22:46:39 2004" metaguid="{4C9A857B-DEAD-BEEF-FEED-DAD000000000}" metaname="GReATConfig">
+	<name>PICML2Cadena_Configuration</name>
 	<comment></comment>
 	<author></author>
 	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x3" kind="RootFolder">
-		<name>PA2CS_Configuration</name>
+		<name>PICML2Cadena_Configuration</name>
 		<model id="id-0065-00000001" kind="UsageInformation" relid="0x1" childrelidcntr="0x6">
 			<name></name>
 			<attribute kind="StartRulePath">
@@ -18,7 +18,7 @@
 					<value></value>
 				</attribute>
 				<attribute kind="FileID">
-					<value>PICML_FileType</value>
+					<value>PICML_File</value>
 				</attribute>
 				<attribute kind="MetaName">
 					<value>PICML</value>
@@ -36,10 +36,10 @@
 			<atom id="id-0066-00000002" kind="FileUsage" role="FileUsage" relid="0x2">
 				<name></name>
 				<attribute kind="DTDFileName">
-					<value>cadena_scenario.xsd</value>
+					<value>Udm\cadena_scenario.xsd</value>
 				</attribute>
 				<attribute kind="FileID">
-					<value>CadenaScenario_FileType</value>
+					<value>CadenaScenario_File</value>
 				</attribute>
 				<attribute kind="MetaName">
 					<value>cadena_scenario</value>
@@ -57,10 +57,10 @@
 			<atom id="id-0066-00000003" kind="FileUsage" role="FileUsage" relid="0x3">
 				<name></name>
 				<attribute kind="DTDFileName">
-					<value>PICMLCadena_Xchange_embedded_EIProperties.xsd</value>
+					<value>Udm\PICMLCadena_Xchange_embedded_EIProperties.xsd</value>
 				</attribute>
 				<attribute kind="FileID">
-					<value>PicmlCadenaExchange_FileType</value>
+					<value>EmbeddedDummy_File</value>
 				</attribute>
 				<attribute kind="MetaName">
 					<value>PICMLCadena_Xchange_embedded_EIProperties</value>
@@ -78,7 +78,7 @@
 			<atom id="id-0066-00000004" kind="TransformationInput" role="TransformationInput" relid="0x4">
 				<name></name>
 				<attribute kind="FileID">
-					<value>PICML_FileType</value>
+					<value>PICML_File</value>
 				</attribute>
 				<attribute kind="ObjectPath">
 					<value>RootFolder</value>
@@ -90,7 +90,7 @@
 			<atom id="id-0066-00000005" kind="TransformationInput" role="TransformationInput" relid="0x5">
 				<name></name>
 				<attribute kind="FileID">
-					<value>CadenaScenario_FileType</value>
+					<value>CadenaScenario_File</value>
 				</attribute>
 				<attribute kind="ObjectPath">
 					<value>Scenarios</value>
@@ -102,7 +102,7 @@
 			<atom id="id-0066-00000006" kind="TransformationInput" role="TransformationInput" relid="0x6">
 				<name></name>
 				<attribute kind="FileID">
-					<value>PicmlCadenaExchange_FileType</value>
+					<value>EmbeddedDummy_File</value>
 				</attribute>
 				<attribute kind="ObjectPath">
 					<value>RootContainer</value>
@@ -115,10 +115,10 @@
 		<model id="id-0065-00000002" kind="MetaInformation" relid="0x2" childrelidcntr="0x0">
 			<name></name>
 			<attribute kind="TransformationFile">
-				<value>PICMLAssembly2CadenaScenario-gr.xml</value>
+				<value>PICML2Cadena-gr.xml</value>
 			</attribute>
 			<attribute kind="UdmProjectFile">
-				<value>Udm\PICMLAssembly2CadenaScenario.udm</value>
+				<value>Udm\PICML2Cadena.udm</value>
 			</attribute>
 		</model>
 		<model id="id-0065-00000003" kind="RuntimeInformation" relid="0x3" childrelidcntr="0x3">
@@ -129,10 +129,10 @@
 					<value></value>
 				</attribute>
 				<attribute kind="FileID">
-					<value>PICML_FileType</value>
+					<value>PICML_File</value>
 				</attribute>
 				<attribute kind="FileName">
-					<value>..\examples\RobotAssembly.mga</value>
+					<value>examples\TweakedRobotAssembly.mga</value>
 				</attribute>
 			</atom>
 			<atom id="id-0066-00000008" kind="InputFile" role="InputFile" relid="0x2">
@@ -141,10 +141,10 @@
 					<value></value>
 				</attribute>
 				<attribute kind="FileID">
-					<value>CadenaScenario_FileType</value>
+					<value>CadenaScenario_File</value>
 				</attribute>
 				<attribute kind="FileName">
-					<value>..\examples\exported_nontweaked.xml</value>
+					<value>examples\exported.xml</value>
 				</attribute>
 			</atom>
 			<atom id="id-0066-00000009" kind="InputFile" role="InputFile" relid="0x3">
@@ -153,10 +153,10 @@
 					<value></value>
 				</attribute>
 				<attribute kind="FileID">
-					<value>PicmlCadenaExchange_FileType</value>
+					<value>EmbeddedDummy_File</value>
 				</attribute>
 				<attribute kind="FileName">
-					<value>..\examples\dummy_embedded.xml</value>
+					<value>examples\dummy_embedded.xml</value>
 				</attribute>
 			</atom>
 		</model>

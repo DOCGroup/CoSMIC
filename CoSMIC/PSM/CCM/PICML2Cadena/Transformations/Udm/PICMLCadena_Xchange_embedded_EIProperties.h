@@ -1,7 +1,7 @@
 #ifndef MOBIES_PICMLCADENA_XCHANGE_EMBEDDED_EIPROPERTIES_H
 #define MOBIES_PICMLCADENA_XCHANGE_EMBEDDED_EIPROPERTIES_H
 // header file PICMLCadena_Xchange_embedded_EIProperties.h generated from diagram PICMLCadena_Xchange_embedded_EIProperties
-// generated on Wed Jun 23 02:05:45 2004
+// generated on Fri Jun 25 22:48:34 2004
 
 #ifndef MOBIES_UDMBASE_H
 #include "UdmBase.h"
@@ -10,37 +10,37 @@
 namespace PICML
 { 
 	 class  Property;
-	 class  invoke;
-	 class  ComponentAssembly;
-	 class  emit;
-	 class  PublishConnector;
-	 class  Component;
-	 class  OutEventPort;
-	 class  ProvidedRequestPort;
-	 class  RequiredRequestPort;
-	 class  InEventPort;
 	 class  Port;
+	 class  InEventPort;
+	 class  RequiredRequestPort;
+	 class  ProvidedRequestPort;
+	 class  OutEventPort;
+	 class  Component;
+	 class  PublishConnector;
+	 class  emit;
+	 class  ComponentAssembly;
+	 class  invoke;
 };
 namespace cadena_scenario
 { 
-	 class  FRConnection;
-	 class  ESSConnection;
-	 class  EventSink;
-	 class  EventSource;
-	 class  Receptacle;
-	 class  Facet;
-	 class  ComponentPort;
-	 class  Property;
 	 class  ComponentInstance;
 	 class  Scenario;
+	 class  Property;
+	 class  ComponentPort;
+	 class  Facet;
+	 class  Receptacle;
+	 class  EventSource;
+	 class  EventSink;
+	 class  FRConnection;
+	 class  ESSConnection;
 };
 
 
 namespace PICMLCadena_Xchange_embedded_EIProperties {
 
 	class  Property;
-	class  RootContainer;
 	class  ConnectionSelector;
+	class  RootContainer;
 
 	  void Initialize();
 
@@ -83,42 +83,6 @@ namespace PICMLCadena_Xchange_embedded_EIProperties {
 		Udm::ParentAttr<PICMLCadena_Xchange_embedded_EIProperties::ConnectionSelector> ConnectionSelector_parent() const { return Udm::ParentAttr<PICMLCadena_Xchange_embedded_EIProperties::ConnectionSelector>(impl, meta_ConnectionSelector_parent); }
 
 		Udm::ParentAttr<PICMLCadena_Xchange_embedded_EIProperties::ConnectionSelector> parent() const { return Udm::ParentAttr<PICMLCadena_Xchange_embedded_EIProperties::ConnectionSelector>(impl, Udm::NULLPARENTROLE); }
-	};
-
-	class  RootContainer :  public Udm::Object {
-	 public:
-		static Uml::Class meta;
-
-		RootContainer() { }
-		RootContainer(Udm::ObjectImpl *impl) : Object(impl) { }
-		RootContainer(const RootContainer &master) : Object(master) { }
-		static RootContainer Cast(const Udm::Object &a) { return __Cast(a, meta); }
-
-		static RootContainer Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-
-		RootContainer CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-
-		RootContainer CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
-
-		Udm::InstantiatedAttr<RootContainer> Instances() { return Udm::InstantiatedAttr<PICMLCadena_Xchange_embedded_EIProperties::RootContainer>(impl);}
-		template <class Pred> Udm::InstantiatedAttr<RootContainer, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICMLCadena_Xchange_embedded_EIProperties::RootContainer, Pred>(impl);}
-
-		Udm::DerivedAttr<PICMLCadena_Xchange_embedded_EIProperties::RootContainer> Derived() { return Udm::DerivedAttr<PICMLCadena_Xchange_embedded_EIProperties::RootContainer>(impl);}
-		template <class Pred> Udm::DerivedAttr<PICMLCadena_Xchange_embedded_EIProperties::RootContainer, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICMLCadena_Xchange_embedded_EIProperties::RootContainer, Pred>(impl);}
-
-		Udm::ArchetypeAttr<PICMLCadena_Xchange_embedded_EIProperties::RootContainer> Archetype() { return Udm::ArchetypeAttr<PICMLCadena_Xchange_embedded_EIProperties::RootContainer>(impl);}
-
-		static Uml::AssociationRole meta_componentAssembly;
-		Udm::CrossPointerAttr<PICML::ComponentAssembly> componentAssembly() const { return Udm::CrossPointerAttr<PICML::ComponentAssembly>(impl, meta_componentAssembly); }
-
-		static Uml::CompositionChildRole meta_ConnectionSelector_children;
-		Udm::ChildrenAttr<PICMLCadena_Xchange_embedded_EIProperties::ConnectionSelector> ConnectionSelector_children() const { return Udm::ChildrenAttr<PICMLCadena_Xchange_embedded_EIProperties::ConnectionSelector>(impl, meta_ConnectionSelector_children); }
-		 template <class Pred> Udm::ChildrenAttr<PICMLCadena_Xchange_embedded_EIProperties::ConnectionSelector, Pred> ConnectionSelector_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICMLCadena_Xchange_embedded_EIProperties::ConnectionSelector, Pred>(impl, meta_ConnectionSelector_children); }
-
-		Udm::ChildrenAttr<PICMLCadena_Xchange_embedded_EIProperties::ConnectionSelector> ConnectionSelector_kind_children() const { return Udm::ChildrenAttr<PICMLCadena_Xchange_embedded_EIProperties::ConnectionSelector>(impl, Udm::NULLCHILDROLE); }
-		template<class Pred> Udm::ChildrenAttr<PICMLCadena_Xchange_embedded_EIProperties::ConnectionSelector, Pred> ConnectionSelector_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICMLCadena_Xchange_embedded_EIProperties::ConnectionSelector, Pred>(impl, Udm::NULLCHILDROLE); }
-
-		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 	};
 
 	class  ConnectionSelector :  public Udm::Object {
@@ -164,6 +128,42 @@ namespace PICMLCadena_Xchange_embedded_EIProperties {
 		Udm::ParentAttr<PICMLCadena_Xchange_embedded_EIProperties::RootContainer> RootContainer_parent() const { return Udm::ParentAttr<PICMLCadena_Xchange_embedded_EIProperties::RootContainer>(impl, meta_RootContainer_parent); }
 
 		Udm::ParentAttr<PICMLCadena_Xchange_embedded_EIProperties::RootContainer> parent() const { return Udm::ParentAttr<PICMLCadena_Xchange_embedded_EIProperties::RootContainer>(impl, Udm::NULLPARENTROLE); }
+	};
+
+	class  RootContainer :  public Udm::Object {
+	 public:
+		static Uml::Class meta;
+
+		RootContainer() { }
+		RootContainer(Udm::ObjectImpl *impl) : Object(impl) { }
+		RootContainer(const RootContainer &master) : Object(master) { }
+		static RootContainer Cast(const Udm::Object &a) { return __Cast(a, meta); }
+
+		static RootContainer Create(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+
+		RootContainer CreateInstance(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+
+		RootContainer CreateDerived(const Udm::Object &parent, const Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl, true); }
+
+		Udm::InstantiatedAttr<RootContainer> Instances() { return Udm::InstantiatedAttr<PICMLCadena_Xchange_embedded_EIProperties::RootContainer>(impl);}
+		template <class Pred> Udm::InstantiatedAttr<RootContainer, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<PICMLCadena_Xchange_embedded_EIProperties::RootContainer, Pred>(impl);}
+
+		Udm::DerivedAttr<PICMLCadena_Xchange_embedded_EIProperties::RootContainer> Derived() { return Udm::DerivedAttr<PICMLCadena_Xchange_embedded_EIProperties::RootContainer>(impl);}
+		template <class Pred> Udm::DerivedAttr<PICMLCadena_Xchange_embedded_EIProperties::RootContainer, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<PICMLCadena_Xchange_embedded_EIProperties::RootContainer, Pred>(impl);}
+
+		Udm::ArchetypeAttr<PICMLCadena_Xchange_embedded_EIProperties::RootContainer> Archetype() { return Udm::ArchetypeAttr<PICMLCadena_Xchange_embedded_EIProperties::RootContainer>(impl);}
+
+		static Uml::AssociationRole meta_componentAssembly;
+		Udm::CrossPointerAttr<PICML::ComponentAssembly> componentAssembly() const { return Udm::CrossPointerAttr<PICML::ComponentAssembly>(impl, meta_componentAssembly); }
+
+		static Uml::CompositionChildRole meta_ConnectionSelector_children;
+		Udm::ChildrenAttr<PICMLCadena_Xchange_embedded_EIProperties::ConnectionSelector> ConnectionSelector_children() const { return Udm::ChildrenAttr<PICMLCadena_Xchange_embedded_EIProperties::ConnectionSelector>(impl, meta_ConnectionSelector_children); }
+		 template <class Pred> Udm::ChildrenAttr<PICMLCadena_Xchange_embedded_EIProperties::ConnectionSelector, Pred> ConnectionSelector_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICMLCadena_Xchange_embedded_EIProperties::ConnectionSelector, Pred>(impl, meta_ConnectionSelector_children); }
+
+		Udm::ChildrenAttr<PICMLCadena_Xchange_embedded_EIProperties::ConnectionSelector> ConnectionSelector_kind_children() const { return Udm::ChildrenAttr<PICMLCadena_Xchange_embedded_EIProperties::ConnectionSelector>(impl, Udm::NULLCHILDROLE); }
+		template<class Pred> Udm::ChildrenAttr<PICMLCadena_Xchange_embedded_EIProperties::ConnectionSelector, Pred> ConnectionSelector_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr<PICMLCadena_Xchange_embedded_EIProperties::ConnectionSelector, Pred>(impl, Udm::NULLCHILDROLE); }
+
+		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 	};
 
 }

@@ -1,3 +1,97 @@
+Sat June 26 00:53:40 2004  Gabriele Trombetti  <gtrombetti@nospam.invalid.domain>
+        
+          Unfortunately I committed a few times on the HEAD by mistake between today
+          and the previous official commit w/ changelog dated June 23,  2004.
+          Please don't checkout those intermediate versions.
+        
+          These are the variations from the previous changelog (written by hand):
+        
+          Added the following files:
+        
+        * PSM/CCM/PICML2Cadena/Transformations/util/export.py
+        * PSM/CCM/PICML2Cadena/Transformations/util/import.py
+          Python scripts to ease the launch of the transformations via commandline
+        
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML-gr.xml
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena-gr.xml
+          GReAT Master Interpreter generated files, needed by the python scripts.
+        
+        
+          Modified the following files:
+        
+        * PSM/CCM/PICML2Cadena/Docs/PICMLCadena_integration_manual.doc
+          Documentation updated
+        
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML.mga
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML.xme
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML_Configuration.mga
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML_Configuration.xme
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena.mga
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena.xme
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena_Configuration.mga
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena_configuration.xme
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/Cadena2PICML.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/Cadena2PICML.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/Cadena2PICML.udm
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/Cadena2PICML.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/CrossLinks.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/CrossLinks.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/CrossLinks.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML2Cadena.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML2Cadena.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML2Cadena.udm
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML2Cadena.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICMLCadena_Xchange_embedded_EIProperties.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICMLCadena_Xchange_embedded_EIProperties.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICMLCadena_Xchange_embedded_EIProperties.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/cadena_scenario.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/cadena_scenario.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/cadena_scenario.xsd
+          Ported the above files to GReAT 1.3.1 and the bundled UDM 2.19 .
+        
+          The OTIF workflow didn't need to be changed and it's compatible with
+          both OTIF 1.3.4 and OTIF 1.3.5
+        
+          ----
+          OTOH This is the changelog given by CVS (differences from my latest commit to 
+          the HEAD by mistake)
+        
+          Modified the following files:
+        
+        * PSM/CCM/PICML2Cadena/Docs/PICMLCadena_integration_manual.doc
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML-gr.xml
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML.mga
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML.xme
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML_Configuration.mga
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML_Configuration.xme
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena-gr.xml
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena.mga
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena.xme
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena_Configuration.mga
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena_configuration.xme
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/Cadena2PICML.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/Cadena2PICML.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/Cadena2PICML.udm
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/Cadena2PICML.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/CrossLinks.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/CrossLinks.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/CrossLinks.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML2Cadena.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML2Cadena.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML2Cadena.udm
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML2Cadena.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICMLCadena_Xchange_embedded_EIProperties.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICMLCadena_Xchange_embedded_EIProperties.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICMLCadena_Xchange_embedded_EIProperties.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/cadena_scenario.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/cadena_scenario.h
+
 Wed June 23 04:01:32 2004  Gabriele Trombetti  <gtrombetti@nospam.invalid.domain>
         
           Updated the documentation

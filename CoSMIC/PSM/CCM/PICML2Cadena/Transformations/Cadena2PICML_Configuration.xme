@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Wed Jun 23 02:05:47 2004" mdate="Wed Jun 23 02:05:47 2004" metaguid="{3347C4F6-DEAD-BEEF-FEED-DAD000000000}" metaname="GReATConfig">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri Jun 25 22:48:42 2004" mdate="Fri Jun 25 22:48:42 2004" metaguid="{4C9A857B-DEAD-BEEF-FEED-DAD000000000}" metaname="GReATConfig">
 	<name>Cadena2PICML_Configuration</name>
 	<comment></comment>
 	<author></author>
