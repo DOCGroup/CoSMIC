@@ -1,3 +1,21 @@
+Mon Jun  7 18:20:34 2004  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PICML/examples/RobotAssembly.xme: Updated the RobotAssembly
+          model so that it is complete enough for descriptor generation.
+
+        * PICML/interpreters/PICML/PICML.mpc: Added -m to Udm.exe upon
+          Endre's suggestion.
+
+        * PICML/interpreters/Package/SchemaVisitor.h: Minor
+          modifications.
+
+        * PICML/paradigms/IDML-uml.xme:
+        * PICML/paradigms/PICML-uml.xme:
+        * PICML/paradigms/PICML.xme:
+        * PICML/paradigms/PICML.xml:
+        * PICML/paradigms/PICML.xmp: Updated to reflect bugs in the model
+          while building the RobotAssembly model.
+
 Fri Jun  4 18:40:17 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PICML/examples/RobotAssembly.xme: New file which models the
