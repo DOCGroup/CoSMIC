@@ -67,7 +67,7 @@ if (False==os.path.isfile(cadenascenario_file)) :
     print 'Fatal: File '+quotes+cadena_file+quotes+' not found.\nExiting.'
     sys.exit(-1)
 
-greinvocationcommand = 'gre.exe'+ space +quotes+transformations_fullpath+'Cadena2PICML_Configuration.mga'+quotes
+greinvocationcommand = 'gre.exe'+ space +quotes+transformations_fullpath+'PICML2Cadena_Configuration.mga'+quotes
 greinvocationcommand += space+quotes+'PICML_File='+picml_file+quotes
 greinvocationcommand += space+quotes+'CadenaScenario_File='+cadenascenario_file+quotes
 greinvocationcommand += space+quotes+'EmbeddedDummy_File='+tempfile.gettempdir().rstrip('\\')+'\\'+'dummy_embedded.xml'+quotes
