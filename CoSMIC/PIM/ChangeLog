@@ -1,3 +1,19 @@
+Wed May 13 017:32:44 2004  Jeff Parsons  <j.parsons@vanderbilt.edu>
+
+        * PICML/paradifms/IDML-Meta.xme:
+        * PICML/paradigms/IDML.xmp:
+        
+          Made some minor changes to better integrate with PICML.
+          
+        * PICML/paradigms/icons/file.bmp:
+        
+          New icon, created because the model element File is no longer
+          in the root folder.
+          
+        * PICML/paradigms/icons/fileref.cmp:
+        
+          Modified icon to be similar to the new icon described above.
+
 Wed May  5 02:44:11 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PICML/examples/BasicSP.mga:
