@@ -4,8 +4,8 @@ Tue Feb 15 22:43:34 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
           Fixed bug involving non generation of remote reference data 
           member within a benchmarking class if the operation takes in
-          no arguments. Thanks to Diana Ukleja <diana@raytheon.com> for 
-          pointing this out.
+          no arguments. Thanks to Diana Ukleja <Diana_Ukleja@raytheon.com> 
+          for pointing this out.
 
 Mon Feb 14 16:34:19 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
  
@@ -49,7 +49,8 @@ Fri Feb 4 16:17:05 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
           Eliminated the generation of export files and export definitions
           these are not needed as currently, all the generated code is 
           templatized. This was an error which came out by help from Diana
-          Ukleja <diana@raytheon.com> and Kitty <kitty@dre.vanderbilt.edu>
+          Ukleja <diana_ukleja@raytheon.com> and Kitty 
+          <kitty@dre.vanderbilt.edu>
 
 Thu Jan 27 21:18:11 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.h:
@@ -130,7 +131,8 @@ Tue Jan 25 12:49:33 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
          Added expiliciltly the fact that user needs to run $ACE_ROOT/bin/mwc.pl
          and not $ACE_ROOT/MPC/mwc.pl. This was thanks to Diana Ukleja 
-         <diana@raytheon.com>
+         <diana_ukleja@raytheon.com>
+
 Tue Jan 25 11:57:36 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/BGML_Base/BGML_Base.mpc:
