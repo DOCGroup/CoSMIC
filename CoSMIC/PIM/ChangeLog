@@ -1,10 +1,33 @@
+Fri Jun 11 16:07:48 2004  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PICML/interpreters/packaging/PackageComponent.dsp: Removed the
+          /s flag to regsvr32 to catch errors in interpreter
+          installation.
+
+        * PICML/interpreters/packaging/PackageVisitor.h:
+        * PICML/interpreters/packaging/PackageVisitor.cpp: New files
+          moved from SchemaVisitor.
+
+        * PICML/interpreters/packaging/UdmApp.cpp: Initial code. Checking
+          it in to retrieve it from other machines.
+
+        * PICML/interpreters/packaging/XercesString.h:
+        * PICML/interpreters/packaging/XercesString.cpp: Utility class to
+          make working with Xerces strings easier.
+
+        * PICML/interpreters/packaging/SchemaVisitor.h:
+        * PICML/interpreters/packaging/SchemaVisitor.cpp:
+
+          Removed these files as the name SchemaVisitor was not
+          appropriate.
+
 Thu Jun 10 18:53:00 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * IDML/paradigms/Icons/ineventport.bmp:
         * IDML/paradigms/Icons/member.bmp:
         * IDML/paradigms/Icons/outeventport.bmp:
         * IDML/paradigms/Icons/requiredrequestport.bmp:
-        
+
           Resized these icons to 64x64 pixels. They got overlooked
           when I resized all icons the first time.
 

@@ -43,7 +43,7 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /Yu"stdafx.h" /FD /GZ /c
-# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I ".\stlport" /I "$(XERCESCROOT)/include" /I "$(GME_ROOT)/sdk/BON/" /I ".\\" /I "$(GME_ROOT)/SDK/BON" /I "$(UDM_PATH)\include" /I "$(UDM_PATH)/3rdParty/stl" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /FR /FD /GZ /Zm200 /c
+# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I ".\\" /I "$(GME_ROOT)/sdk/BON/" /I "$(XERCESCROOT)/include" /I "$(UDM_PATH)/include" /I "$(UDM_PATH)/3rdParty/stl" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /FR /FD /GZ /Zm200 /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
 # ADD RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
@@ -61,7 +61,7 @@ InputPath=.\Debug\PackageComponent.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	regsvr32 /s /c "$(TargetPath)" 
+	regsvr32 /c "$(TargetPath)" 
 	echo regsvr32 exec. time > "$(OutDir)\regsvr32.trg" 
 	
 # End Custom Build
@@ -81,7 +81,7 @@ SOURCE="$(InputPath)"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O1 /I ".\\" /I "C:/Program Files/GME/sdk/BON/" /I "$(UDM_PATH)\include" /I "$(UDM_PATH)\3rdParty\stl" /D "NDEBUG" /D "_ATL_DLL" /D "WIN32" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /D "GME_INTERPRETER_USED" /D "UML_CLASS_DIAGRAM" /FR /FD /Zm200 /c
-# ADD CPP /nologo /MD /W3 /GR /GX /O1 /I "C:/Program Files/GME/sdk/BON/" /I "$(UDM_PATH)\3rdParty\stl" /I ".\\" /I "$(XERCESCROOT)/include" /I "$(GME_ROOT)/SDK/BON" /I "$(UDM_PATH)\include" /I "$(UDM_PATH)/3rdParty/stl" /D "NDEBUG" /D "_ATL_DLL" /D "WIN32" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /FR /FD /Zm200 /c
+# ADD CPP /nologo /MD /W3 /GR /GX /O1 /I ".\\" /I "$(GME_ROOT)/sdk/BON/" /I "$(XERCESCROOT)/include" /I "$(UDM_PATH)/include" /I "$(UDM_PATH)/3rdParty/stl" /D "NDEBUG" /D "_ATL_DLL" /D "WIN32" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /FR /FD /Zm200 /c
 # ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
 # ADD RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
 BSC32=bscmake.exe
@@ -97,7 +97,7 @@ InputPath=.\Release\PackageComponent.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	regsvr32 /s /c "$(TargetPath)" 
+	regsvr32 /c "$(TargetPath)" 
 	echo regsvr32 exec. time > "$(OutDir)\regsvr32.trg" 
 	
 # End Custom Build
@@ -198,6 +198,10 @@ SOURCE=.\StdAfx.cpp
 
 SOURCE=.\UdmApp.cpp
 # End Source File
+# Begin Source File
+
+SOURCE=.\XercesString.cpp
+# End Source File
 # End Group
 # Begin Group "Header Files"
 
@@ -249,6 +253,10 @@ SOURCE=.\UdmApp.h
 # Begin Source File
 
 SOURCE=.\UdmConfig.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\XercesString.h
 # End Source File
 # End Group
 # Begin Group "Resource Files"
