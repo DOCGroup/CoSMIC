@@ -1,3 +1,26 @@
+Thu Jul 29 10:23:14 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PICML/examples/RobotAssembly.xme:
+        
+          Changed the name of an Aggregate member to be different
+          than the name of the Aggregate. A constraint to check for
+          this has been added as described below.
+          
+        * PICML/paradigms/PICML.xme:
+        * PICML/paradigms/PICML.xml:
+        * PICML/paradigms/PICML.xmp:
+        
+          - Added a constraint to check for Member names duplicating
+            the name of their container.
+            
+          - Combined the two constraints for Metrics and Timer connections
+            into one, which has the intended semantics of both.
+
+        * PICML/paradigms/PICMLTemplate.xme:
+        
+          Updated the template PICML model to correspond with the
+          updated meta-model.
+          
 Wed Jul 28 19:49:00 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PICML/interpreters/IDLGenerator/BON2Component.cpp:

@@ -1530,6 +1530,10 @@ or self.requiredUUID <> ""]]>
             <![CDATA[not refersTo ().isNull ()]]>
             <dispname>A reference to a named type must be assigned</dispname>
          </constraint>
+         <constraint name="ParentNameClash" eventmask = "0x0" depth = "1" priority = "2">
+            <![CDATA[name <> parent ().name]]>
+            <dispname>A member may not have the same name as its container.</dispname>
+         </constraint>
          <constraint name="ValidMakeMemberPrivatedstCardinality44" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let dstCount = self.attachingConnections( "src", MakeMemberPrivate ) -> size in
                      (dstCount <= 1)]]>
@@ -2329,21 +2333,9 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
       <model name = "FactoryOperation" metaref = "1927" attributes = "VersionTag SpecifyIdTag" >
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="factory.bmp"></regnode>
-         <constraint name="MetricConnectionConstraint" eventmask = "0x0" depth = "1" priority = "2">
-            <![CDATA[self.attachingConnections("MetricConnection")->size<=1]]>
-            <dispname>An operation can measure one metric at any given time</dispname>
-         </constraint>
-         <constraint name="TimerMeticConnection" eventmask = "0x0" depth = "1" priority = "2">
-            <![CDATA[if (self.attachingConnections("MetricConnection")->size = 1 && self.attachingConnections("TimerConnection")->size = 0)  then
-  true
-else 
-   if (self.attachingConnections("MetricConnection")->size = 0 && self.attachingConnections("TimerConnection")->size =1) then
-true
-else 
-   false
-endif
-endif]]>
-            <dispname>Cannot combine Metrics along with Timer values</dispname>
+         <constraint name="TimerMetricConnection" eventmask = "0x0" depth = "1" priority = "2">
+            <![CDATA[attachingConnections("MetricConnection")->size + attachingConnections("TimerConnection")->size <= 1]]>
+            <dispname>An operation cannot have more than 1 Timer connection or 1 Metrics connection</dispname>
          </constraint>
          <constraint name="UniqueExceptions" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[let x = self.referenceParts (ExceptionRef) in
@@ -2457,21 +2449,9 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
       <model name = "LookupOperation" metaref = "1980" attributes = "VersionTag SpecifyIdTag" >
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="lookup.bmp"></regnode>
-         <constraint name="MetricConnectionConstraint" eventmask = "0x0" depth = "1" priority = "2">
-            <![CDATA[self.attachingConnections("MetricConnection")->size<=1]]>
-            <dispname>An operation can measure one metric at any given time</dispname>
-         </constraint>
-         <constraint name="TimerMeticConnection" eventmask = "0x0" depth = "1" priority = "2">
-            <![CDATA[if (self.attachingConnections("MetricConnection")->size = 1 && self.attachingConnections("TimerConnection")->size = 0)  then
-  true
-else 
-   if (self.attachingConnections("MetricConnection")->size = 0 && self.attachingConnections("TimerConnection")->size =1) then
-true
-else 
-   false
-endif
-endif]]>
-            <dispname>Cannot combine Metrics along with Timer values</dispname>
+         <constraint name="TimerMetricConnection" eventmask = "0x0" depth = "1" priority = "2">
+            <![CDATA[attachingConnections("MetricConnection")->size + attachingConnections("TimerConnection")->size <= 1]]>
+            <dispname>An operation cannot have more than 1 Timer connection or 1 Metrics connection</dispname>
          </constraint>
          <constraint name="UniqueExceptions" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[let x = self.referenceParts (ExceptionRef) in
@@ -2583,21 +2563,9 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
       <model name = "OnewayOperation" metaref = "1592" attributes = "VersionTag SpecifyIdTag" >
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="oneway.bmp"></regnode>
-         <constraint name="MetricConnectionConstraint" eventmask = "0x0" depth = "1" priority = "2">
-            <![CDATA[self.attachingConnections("MetricConnection")->size<=1]]>
-            <dispname>An operation can measure one metric at any given time</dispname>
-         </constraint>
-         <constraint name="TimerMeticConnection" eventmask = "0x0" depth = "1" priority = "2">
-            <![CDATA[if (self.attachingConnections("MetricConnection")->size = 1 && self.attachingConnections("TimerConnection")->size = 0)  then
-  true
-else 
-   if (self.attachingConnections("MetricConnection")->size = 0 && self.attachingConnections("TimerConnection")->size =1) then
-true
-else 
-   false
-endif
-endif]]>
-            <dispname>Cannot combine Metrics along with Timer values</dispname>
+         <constraint name="TimerMetricConnection" eventmask = "0x0" depth = "1" priority = "2">
+            <![CDATA[attachingConnections("MetricConnection")->size + attachingConnections("TimerConnection")->size <= 1]]>
+            <dispname>An operation cannot have more than 1 Timer connection or 1 Metrics connection</dispname>
          </constraint>
          <constraint name="UniqueParamNames" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[AllParams ()->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
@@ -2676,12 +2644,12 @@ endif]]>
             <dispname>A PackageConfiguration can either specialize another PackageConfiguration, or contain a ComponentPackage, or contain a reference to a ComponentPackage</dispname>
          </constraint>
          <constraint name="ValidPackageConfigurationContainerPartCardinality100" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
+            <![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
                      (partCount <= 1)]]>
             <dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
          </constraint>
          <constraint name="ValidPackageConfigurationContainerPartCardinality96" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
+            <![CDATA[let partCount = self.parts( "PackageConfBasePackage" ) -> size in
                      (partCount <= 1)]]>
             <dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
          </constraint>
@@ -2691,12 +2659,12 @@ endif]]>
             <dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
          </constraint>
          <constraint name="ValidPackageConfigurationContainerPartCardinality98" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "PackageConfBasePackage" ) -> size in
+            <![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
                      (partCount <= 1)]]>
             <dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
          </constraint>
          <constraint name="ValidPackageConfigurationContainerPartCardinality99" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
+            <![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
                      (partCount <= 1)]]>
             <dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
          </constraint>
@@ -2860,14 +2828,14 @@ endif]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidSwitchedAggregatePartCardinality106" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "Label" ) -> size in
-                     (partCount >= 1)]]>
-            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
-         </constraint>
-         <constraint name="ValidSwitchedAggregatePartCardinality107" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
                      (partCount = 1)]]>
             <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
+         </constraint>
+         <constraint name="ValidSwitchedAggregatePartCardinality107" eventmask = "0x0" depth = "1" priority = "1">
+            <![CDATA[let partCount = self.parts( "Label" ) -> size in
+                     (partCount >= 1)]]>
+            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
          </constraint>
          <constraint name="ValidSwitchedAggregatePartCardinality108" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
@@ -2912,19 +2880,19 @@ endif]]>
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="TopLevelPackageConfiguration.bmp"></regnode>
          <constraint name="ValidTopLevelPackageContainerPartCardinality109" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "package" ) -> size in
+            <![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
                      (partCount <= 1)]]>
             <dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
          </constraint>
          <constraint name="ValidTopLevelPackageContainerPartCardinality110" eventmask = "0x0" depth = "1" priority = "1">
+            <![CDATA[let partCount = self.parts( "package" ) -> size in
+                     (partCount <= 1)]]>
+            <dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
+         </constraint>
+         <constraint name="ValidTopLevelPackageContainerPartCardinality111" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "PackageConfigurationReference" ) -> size in
                      (partCount = 1)]]>
             <dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 1.</dispname>
-         </constraint>
-         <constraint name="ValidTopLevelPackageContainerPartCardinality111" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
-                     (partCount <= 1)]]>
-            <dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
          </constraint>
          <role name = "PackageConfigurationReference" metaref = "3030" kind = "PackageConfigurationReference"></role>
          <role name = "TopLevelPackage" metaref = "3664" kind = "TopLevelPackage"></role>
@@ -2938,21 +2906,9 @@ endif]]>
       <model name = "TwowayOperation" metaref = "2040" attributes = "VersionTag SpecifyIdTag" >
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="twoway.bmp"></regnode>
-         <constraint name="MetricConnectionConstraint" eventmask = "0x0" depth = "1" priority = "2">
-            <![CDATA[self.attachingConnections("MetricConnection")->size<=1]]>
-            <dispname>An operation can measure one metric at any given time</dispname>
-         </constraint>
-         <constraint name="TimerMeticConnection" eventmask = "0x0" depth = "1" priority = "2">
-            <![CDATA[if (self.attachingConnections("MetricConnection")->size = 1 && self.attachingConnections("TimerConnection")->size = 0)  then
-  true
-else 
-   if (self.attachingConnections("MetricConnection")->size = 0 && self.attachingConnections("TimerConnection")->size =1) then
-true
-else 
-   false
-endif
-endif]]>
-            <dispname>Cannot combine Metrics along with Timer values</dispname>
+         <constraint name="TimerMetricConnection" eventmask = "0x0" depth = "1" priority = "2">
+            <![CDATA[attachingConnections("MetricConnection")->size + attachingConnections("TimerConnection")->size <= 1]]>
+            <dispname>An operation cannot have more than 1 Timer connection or 1 Metrics connection</dispname>
          </constraint>
          <constraint name="UniqueExceptions" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[let x = self.referenceParts (ExceptionRef) in
