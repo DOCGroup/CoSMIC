@@ -5,7 +5,7 @@ project {
   exename = svc_conf_exporter
 
   libs += OCMLSvcConfExporter
-  libpaths += $(PICML_ROOT)/lib $(PICML_ROOT)/bin
+  libpaths += $(OCML_ROOT)/lib $(OCML_ROOT)/bin
 
   Source_Files {
     main.cpp

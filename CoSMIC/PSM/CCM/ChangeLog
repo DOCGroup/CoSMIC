@@ -1,3 +1,12 @@
+Thu Dec 02 14:45:22 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * OCML/interpreters/OCMLConfiguratorLibrary/OCMLConfigurator.mpc: 
+        * OCML/interpreters/TAOServiceConfExporter/SvcConfExporter.mpc: 
+        * OCML/interpreters/TAOServiceConfExporter/test/SvcConfExporterTest.mpc: 
+
+          Changed the output directory for the binaries and libraries from
+          PICML_ROOT to OCML_ROOT.
+	
 Mon Nov 15 18:39:52 2004  Gabriele Trombetti  <gtrombetti@nospam.invalid.domain>
 
           Changed the following files:
