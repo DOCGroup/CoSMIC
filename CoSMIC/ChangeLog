@@ -1,3 +1,13 @@
+Sat Nov  6 19:18:00 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/PICML/docs/ocml_sample_rule.png: 
+        * PIM/PICML/docs/ocml_rule_aspect.png: 
+        * PIM/PICML/docs/ocml_option_aspect.png: 
+        * PIM/PICML/docs/ocml_configurator.png: 
+        * PIM/PICML/docs/ocml.html: 
+
+          Committed the documentation for the OCML.
+
 Sat Nov  6 19:09:15 2004  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * Installer/CoSMIC-Installer.aip: Updated to fix the bug with the
