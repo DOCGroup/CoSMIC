@@ -151,6 +151,10 @@ void Component::objectEventPerformed( Object& object, unsigned long event, VARIA
 
 IMPLEMENT_BONEXTENSION( EventChannelConfiguration, "EventChannelConfiguration" );
 
+IMPLEMENT_BONEXTENSION( RTEC_Proxy_Supplier, "RTEC_Proxy_Supplier" );
+
+IMPLEMENT_BONEXTENSION( RTEC_Proxy_Consumer, "RTEC_Proxy_Consumer" );
+
 IMPLEMENT_BONEXTENSION( RTEC_Resource_Factory, "RTEC_Resource_Factory" );
 
 IMPLEMENT_BONEXTENSION( RTEC_Resource_Factory_Reference, "RTEC_Resource_Factory_Reference" );
@@ -158,6 +162,8 @@ IMPLEMENT_BONEXTENSION( RTEC_Resource_Factory_Reference, "RTEC_Resource_Factory_
 IMPLEMENT_BONEXTENSION( RT_Info_Param, "" );
 
 IMPLEMENT_BONEXTENSION( RT_Info, "RT_Info" );
+
+IMPLEMENT_BONEXTENSION( OutEventPort, "OutEventPort" );
 
 IMPLEMENT_BONEXTENSION( OutEventPort_Reference, "OutEventPort_ReferenceImpl" );
 
