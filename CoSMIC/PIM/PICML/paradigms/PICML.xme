@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{4B93A189-01C7-49EB-BC10-04BD577810D3}" cdate="Wed Oct 20 23:12:21 2004" mdate="Thu Oct 21 14:32:42 2004" version="" metaguid="{DF851054-A0B3-41EF-8FF2-8C42EE5EDD12}" metaversion="" metaname="MetaGME">
+<project guid="{1172640E-7074-4E9D-B008-2F0DC3387D66}" cdate="Thu Oct 21 20:02:21 2004" mdate="Thu Oct 21 21:31:25 2004" version="" metaguid="{DF851054-A0B3-41EF-8FF2-8C42EE5EDD12}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment></comment>
 	<author></author>
@@ -4779,16 +4779,16 @@
 					<value>7</value>
 				</regnode>
 				<regnode name="ComponentLibraries" isopaque="yes">
-					<value>7</value>
-				</regnode>
-				<regnode name="ComponentMetrics" isopaque="yes">
-					<value>6</value>
-				</regnode>
-				<regnode name="DataAnalysis" isopaque="yes">
 					<value>5</value>
 				</regnode>
+				<regnode name="ComponentMetrics" isopaque="yes">
+					<value>8</value>
+				</regnode>
+				<regnode name="DataAnalysis" isopaque="yes">
+					<value>3</value>
+				</regnode>
 				<regnode name="InterfaceDefinition" isopaque="yes">
-					<value>2</value>
+					<value>7</value>
 				</regnode>
 				<regnode name="LibraryArtifact" isopaque="yes">
 					<value>9</value>
@@ -4806,22 +4806,22 @@
 					<value>2</value>
 				</regnode>
 				<regnode name="Packaging" isopaque="yes">
-					<value>1</value>
+					<value>6</value>
 				</regnode>
 				<regnode name="ResourceView" isopaque="yes">
 					<value>3</value>
 				</regnode>
 				<regnode name="RtecConfigAspect" isopaque="yes">
-					<value>10</value>
+					<value>2</value>
 				</regnode>
 				<regnode name="Target" isopaque="yes">
-					<value>3</value>
+					<value>10</value>
 				</regnode>
 				<regnode name="TypeDefinintionAspect" isopaque="yes">
 					<value>1</value>
 				</regnode>
 				<regnode name="Workspace" isopaque="yes">
-					<value>8</value>
+					<value>1</value>
 				</regnode>
 			</regnode>
 			<regnode name="AspectSelNames" isopaque="yes">
@@ -36723,8 +36723,8 @@
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000022"/>
 				<connpoint role="src" target="id-0066-00000022"/>
+				<connpoint role="dst" target="id-0066-00000022"/>
 			</connection>
 			<connection id="id-0068-00000044" kind="HasAspect" role="HasAspect" relid="0x54">
 				<name>HasAspect</name>
@@ -65665,8 +65665,8 @@
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000132"/>
 				<connpoint role="src" target="id-0066-00000132"/>
+				<connpoint role="dst" target="id-0066-00000132"/>
 			</connection>
 			<connection id="id-0068-00000237" kind="Containment" role="Containment" relid="0x9d">
 				<name>Containment</name>
@@ -70323,8 +70323,8 @@
 				<attribute kind="Color" status="meta">
 					<value>0x000000</value>
 				</attribute>
-				<attribute kind="ConnLineEnd" status="meta">
-					<value>butt</value>
+				<attribute kind="ConnLineEnd">
+					<value>arrow</value>
 				</attribute>
 				<attribute kind="ConnLineStart" status="meta">
 					<value>butt</value>
@@ -70342,9 +70342,8 @@
 					<value></value>
 				</attribute>
 				<attribute kind="GeneralPreferences">
-					<value>
-            sName = srcRTEC_Connection
-          dName = dstRTEC_Connection</value>
+					<value>sName = srcRTEC_Connection
+dName = dstRTEC_Connection</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -70689,9 +70688,8 @@
 					<value></value>
 				</attribute>
 				<attribute kind="GeneralPreferences">
-					<value>
-            sName = srcInclude_RTEC_Filter_Group
-          dName = dstInclude_RTEC_Filter_Group</value>
+					<value>sName = srcInclude_RTEC_Filter_Group
+dName = dstInclude_RTEC_Filter_Group</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -71065,8 +71063,8 @@
 				<attribute kind="Color" status="meta">
 					<value>0x000000</value>
 				</attribute>
-				<attribute kind="ConnLineEnd" status="meta">
-					<value>butt</value>
+				<attribute kind="ConnLineEnd">
+					<value>arrow</value>
 				</attribute>
 				<attribute kind="ConnLineStart" status="meta">
 					<value>butt</value>
@@ -71416,9 +71414,8 @@
 					<value></value>
 				</attribute>
 				<attribute kind="GeneralPreferences">
-					<value>
-            sName = srcInclude_RT_Info
-          dName = dstInclude_RT_Info</value>
+					<value>sName = srcInclude_RT_Info
+dName = dstInclude_RT_Info</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -71531,6 +71528,9 @@
 						</regnode>
 					</regnode>
 				</regnode>
+				<regnode name="color" isopaque="yes">
+					<value>0xff0000</value>
+				</regnode>
 				<attribute kind="Color" status="meta">
 					<value>0x000000</value>
 				</attribute>
@@ -71553,9 +71553,8 @@
 					<value></value>
 				</attribute>
 				<attribute kind="GeneralPreferences">
-					<value>
-            sName = srcUse_RT_Info
-          dName = dstUse_RT_Info</value>
+					<value>sName = srcUse_RT_Info
+dName = dstUse_RT_Info</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -74045,7 +74044,7 @@
 				</attribute>
 			</atom>
 			<reference id="id-0067-0000003b" kind="ReferenceProxy" role="ReferenceProxy" relid="0x33" referred="id-0066-000000a5">
-				<name>InEventPort</name>
+				<name>InEventPortReference</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -74111,13 +74110,13 @@
 				</attribute>
 			</reference>
 			<reference id="id-0067-0000003c" kind="ReferenceProxy" role="ReferenceProxy" relid="0x34" referred="id-0066-0000009f">
-				<name>OutEventPort</name>
+				<name>OutEventPortReference</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>155,174</value>
+							<value>197,174</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -74419,7 +74418,7 @@
 					<value>0..*</value>
 				</attribute>
 				<attribute kind="srcRolename">
-					<value></value>
+					<value>dst</value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-00000197"/>
 				<connpoint role="src" target="id-0066-0000019b"/>
@@ -74490,7 +74489,7 @@
 					<value>0..*</value>
 				</attribute>
 				<attribute kind="dstRolename">
-					<value></value>
+					<value>src</value>
 				</attribute>
 				<connpoint role="src" target="id-0066-00000197"/>
 				<connpoint role="dst" target="id-0066-00000198"/>
@@ -75024,7 +75023,7 @@
 				<connpoint role="dst" target="id-0066-00000183"/>
 				<connpoint role="src" target="id-0066-000001c0"/>
 			</connection>
-			<set id="id-0069-00000010" kind="Aspect" role="Aspect" relid="0x22" members="id-0066-00000192 id-0066-00000191 id-0066-00000182 id-0066-00000184 id-0066-00000183 id-0066-0000018c id-0066-00000189 id-0066-00000196 id-0066-00000194 id-0066-0000018d id-0066-0000018e id-0066-0000018b id-0066-00000198 id-0066-00000188 id-0066-0000019b id-0066-00000199 id-0066-00000186 id-0066-00000193 id-0067-0000003d id-0067-0000003b id-0067-0000003c">
+			<set id="id-0069-00000010" kind="Aspect" role="Aspect" relid="0x22" members="id-0067-0000003c id-0067-0000003b id-0067-0000003d id-0066-00000193 id-0066-00000186 id-0066-00000199 id-0066-0000019b id-0066-00000188 id-0066-00000198 id-0066-0000018b id-0066-0000018e id-0066-0000018d id-0066-00000194 id-0066-00000196 id-0066-00000189 id-0066-0000018c id-0066-00000183 id-0066-00000184 id-0066-00000182 id-0066-00000191 id-0066-00000192">
 				<name>RtecConfigAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>

@@ -1,3 +1,32 @@
+Thu Oct 21 21:28:10 2004  Gan Deng  <gan.deng@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/EQAL/ComponentLib.h
+        * PIM/PICML/interpreters/EQAL/ComponentLib.tlb
+        * PIM/PICML/interpreters/EQAL/ComponentLib_i.c
+        * PIM/PICML/interpreters/EQAL/ComponentLib_p.c
+        * PIM/PICML/interpreters/EQAL/dlldata.c
+        * PIM/PICML/interpreters/EQAL/GMESources.txt
+        * PIM/PICML/interpreters/EQAL/BON2Component.dsw
+        
+          Removed those files. Either because they are automatically
+          generated or no longer used.
+          
+        * PIM/PICML/interpreters/EQAL/EQALInterpreter.dsw
+        
+          Added this file.
+          
+        * PIM/PICML/interpreters/EQAL/BON2Component.cpp
+
+          Updated to add a message box statement only.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Updated to have a minor change of the EQAL metamodel.
+        
+                
 Thu Oct 21 14:55:21 2004  Krishnakumar B  <kitty@dre.vanderbilt.edu>
 
         * PIM/PICML/examples/RobotAssembly.xme: Updated to work after
