@@ -77,7 +77,7 @@ int CUdmApp::Initialize()
 static void showUsage()
 {
   AfxMessageBox ("Interpretation must start from either \n"
-                 "DeploymentPlans/DeploymentPlan");
+                 "Targets/Domain");
   return;
 }
 
@@ -192,9 +192,9 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
               Udm::Object root = *iter;
               std::string kindName = (*iter).type().name();
               PICML::DomainVisitor visitor (outputPath);
-              if (kindName == "DeploymentPlan")
+              if (kindName == "Targets")
                 SetUpVisitor (DeploymentPlan, root, visitor);
-              else if (kindName == "DeploymentPlans")
+              else if (kindName == "Domain")
                 SetUpVisitor (DeploymentPlans, root, visitor);
               else
                 {

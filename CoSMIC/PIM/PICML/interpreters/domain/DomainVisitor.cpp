@@ -312,4 +312,52 @@ namespace PICML
   {
   }
 
+  void DomainVisitor::Visit_Resource(const Resource&)
+  {
+  }
+
+  void DomainVisitor::Visit_SharedResource(const SharedResource&)
+  {
+  }
+
+  void DomainVisitor::Visit_Bridge(const Bridge&)
+  {
+  }
+
+  void DomainVisitor::Visit_Node(const Node&)
+  {
+  }
+
+  void DomainVisitor::Visit_Interconnect(const Interconnect&)
+  {
+  }
+
+  void DomainVisitor::Visit_Domain(const Domain&)
+  {
+  }
+
+  void DomainVisitor::Visit_Targets(const Targets&)
+  {
+  }
+
+  void DomainVisitor::Visit_Node2Interconnect(const Node2Interconnect&)
+  {
+  }
+
+  void DomainVisitor::Visit_Bridge2Interconnect(const Bridge2Interconnect&)
+  {
+  }
+
+  void DomainVisitor::Visit_Shares(const Shares&)
+  {
+  }
+
+  void DomainVisitor::Visit_Interconnect2Node(const Interconnect2Node&)
+  {
+  }
+
+  void DomainVisitor::Visit_Interconnect2Bridge(const Interconnect2Bridge&)
+  {
+  }
+
 }

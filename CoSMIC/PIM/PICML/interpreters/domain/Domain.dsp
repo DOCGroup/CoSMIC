@@ -184,7 +184,7 @@ SOURCE=.\PICML.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\PlanVisitor.cpp
+SOURCE=.\DomainVisitor.cpp
 # End Source File
 # Begin Source File
 
@@ -237,7 +237,7 @@ SOURCE=.\PICML.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\PlanVisitor.h
+SOURCE=.\DomainVisitor.h
 # End Source File
 # Begin Source File
 

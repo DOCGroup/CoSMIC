@@ -1,3 +1,15 @@
+Sun Jun 20 18:12:55 2004  Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * PICML/interpreters/domain/CompIcon.ico:
+        * PICML/interpreters/domain/ComponentConfig.h:
+        * PICML/interpreters/domain/Domain.dsp:
+        * PICML/interpreters/domain/DomainVisitor.cpp:
+        * PICML/interpreters/domain/DomainVisitor.h:
+        * PICML/interpreters/domain/UdmApp.cpp:
+
+          Made a firct cut version of the interpreter that will generate
+          Domain descriptors.
+
 Sun Jun 20 19:00:23 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PICML/examples/RobotAssembly.xme: Updated model to include
