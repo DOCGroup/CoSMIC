@@ -98,11 +98,11 @@ SOURCE="C:\Program Files\GME\Interfaces\Meta.idl"
 
 # PROP Ignore_Default_Tool 1
 # Begin Custom Build
-InputPath=C:\Program Files\GME\Interfaces\Meta.idl
+InputPath="C:\Program Files\GME\Interfaces\Meta.idl"
 InputName=Meta
 
 BuildCmds= \
-	midl /server none /client none /I "C:/Progra~1/GME/Interfaces" "$(InputPath)"
+	midl /server none /client none /I "C:/Progra~1/GME/Interfaces" "C:/Progra~1/GME/Interfaces/Meta.idl"
 
 "$(InputName).h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
@@ -118,11 +118,11 @@ BuildCmds= \
 
 # PROP Ignore_Default_Tool 1
 # Begin Custom Build
-InputPath=C:\Program Files\GME\Interfaces\Meta.idl
+InputPath="C:\Program Files\GME\Interfaces\Meta.idl"
 InputName=Meta
 
 BuildCmds= \
-	midl /server none /client none /I "C:/Progra~1/GME/Interfaces" "$(InputPath)"
+	midl /server none /client none /I "C:/Progra~1/GME/Interfaces" "C:/Progra~1/GME/Interfaces/Meta.idl"
 
 "$(InputName).h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
@@ -145,11 +145,11 @@ SOURCE="C:\Program Files\GME\Interfaces\Mga.idl"
 
 # PROP Ignore_Default_Tool 1
 # Begin Custom Build
-InputPath=C:\Program Files\GME\Interfaces\Mga.idl
+InputPath="C:\Program Files\GME\Interfaces\Mga.idl"
 InputName=Mga
 
 BuildCmds= \
-	midl /server none /client none /I "C:/Progra~1/GME/Interfaces" "$(InputPath)"
+	midl /server none /client none /I "C:/Progra~1/GME/Interfaces" "C:/Progra~1/GME/Interfaces/Mga.idl"
 
 "$(InputName).h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
@@ -165,11 +165,11 @@ BuildCmds= \
 
 # PROP Ignore_Default_Tool 1
 # Begin Custom Build
-InputPath=C:\Program Files\GME\Interfaces\Mga.idl
+InputPath="C:\Program Files\GME\Interfaces\Mga.idl"
 InputName=Mga
 
 BuildCmds= \
-	midl /server none /client none /I "C:/Progra~1/GME/Interfaces" "$(InputPath)"
+	midl /server none /client none /I "C:/Progra~1/GME/Interfaces" "C:/Progra~1/GME/Interfaces/Mga.idl"
 
 "$(InputName).h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
@@ -192,11 +192,11 @@ SOURCE="C:\Program Files\GME\Interfaces\MgaUtil.idl"
 
 # PROP Ignore_Default_Tool 1
 # Begin Custom Build
-InputPath=C:\Program Files\GME\Interfaces\MgaUtil.idl
+InputPath="C:\Program Files\GME\Interfaces\MgaUtil.idl"
 InputName=MgaUtil
 
 BuildCmds= \
-	midl /server none /client none /I "C:/Progra~1/GME/Interfaces" "$(InputPath)"
+	midl /server none /client none /I "C:/Progra~1/GME/Interfaces" "C:/Progra~1/GME/Interfaces/MgaUtil.idl"
 
 "$(InputName).h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
@@ -215,11 +215,11 @@ BuildCmds= \
 
 # PROP Ignore_Default_Tool 1
 # Begin Custom Build
-InputPath=C:\Program Files\GME\Interfaces\MgaUtil.idl
+InputPath="C:\Program Files\GME\Interfaces\MgaUtil.idl"
 InputName=MgaUtil
 
 BuildCmds= \
-	midl /server none /client none /I "C:/Progra~1/GME/Interfaces" "$(InputPath)"
+	midl /server none /client none /I "C:/Progra~1/GME/Interfaces" "C:/Progra~1/GME/Interfaces/MgaUtil.idl"
 
 "$(InputName).h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
    $(BuildCmds)
