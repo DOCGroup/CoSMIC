@@ -1,3 +1,7 @@
+Wed Jul 28 15:01:50 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * 
+
 Wed Jul 28 14:51:19 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PICML/paradigms/icons/component.bmp:
@@ -24,6 +28,7 @@ Wed Jul 28 14:51:19 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PICML/decorators/IDMLDecorators.cpp:
         * PICML/decorators/IDMLDecorators.h:
         * PICML/decorators/resource.h:
+        * PICML/decorators/Decorator.dsp:
         
           Modified the drawing of component ports to:
           - have a transparent background.
