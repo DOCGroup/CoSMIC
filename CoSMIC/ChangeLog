@@ -1,3 +1,10 @@
+Sun Dec 05 17:13:56 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * Installer/CoSMIC-Installer.aip: 
+
+          Changed the sources for the dll files from PICML/bin to
+          CoSMIC/bin. Added the documentation into the installation.
+
 Sun Dec 05 14:25:58 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * bin/orb_tree.xml: 
