@@ -1,8 +1,8 @@
-project (PICML) : mfc, picmllib {
+project (PICML) : picmllib {
    Define_Custom(UDM) {
       automatic         = 0
       command           = "$(UDM_PATH)"/bin/Udm
-      commandflags      = -l PICML_Export
+      commandflags      = -v -l PICML_Export
       inputext          = .xml
       source_outputext  = .cpp
       header_outputext  = .h

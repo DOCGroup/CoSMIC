@@ -1,3 +1,38 @@
+Wed Jun  2 12:03:02 2004  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PICML/interpreters/PICML/PICML.mpc:
+        * PICML/interpreters/PICML/PICML_Export.h: Modified to fix some
+          bugs and made PICML a non-MFC application.
+
+        * PICML/interpreters/Package/Package.mpc:
+        * PICML/interpreters/Package/SchemaVisitor.h:
+        * PICML/interpreters/Package/SchemaVisitor.cpp: Similar changes
+          as above. Added new files which will hold the Package
+          interpreter logic.
+
+        * PICML/interpreters/PackageComponent/CompIcon.ico:
+        * PICML/interpreters/PackageComponent/ComponentConfig.h:
+        * PICML/interpreters/PackageComponent/PackageComponent.def:
+        * PICML/interpreters/PackageComponent/PackageComponent.rc:
+        * PICML/interpreters/PackageComponent/RawComponent.h:
+        * PICML/interpreters/PackageComponent/RawComponent.cpp:
+        * PICML/interpreters/PackageComponent/StdAfx.h:
+        * PICML/interpreters/PackageComponent/StdAfx.cpp:
+        * PICML/interpreters/PackageComponent/UdmApp.h:
+        * PICML/interpreters/PackageComponent/UdmApp.cpp:
+        * PICML/interpreters/PackageComponent/UdmConfig.h:
+
+          Standard files needed to write an interpreter using UDM. These
+          files can't be copied en masse to create a new interpreter.
+          There are some non-trivial modifications to be made to
+          ComponentConfig.h. Hopefully I can also add a perl script to do
+          that.
+
+        * PICML/interpreters/debug_libs.mpb:
+        * PICML/interpreters/picmllib.mpb:
+        * PICML/interpreters/release_libs.mpb: Modified to reflect
+          suggestions from Chad.
+
 Thu May 27 13:07:08 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * IDML/paradigms/IDML-Meta.xme:
@@ -5,7 +40,7 @@ Thu May 27 13:07:08 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
         * IDML/paradigms/IDMLTemplate.xme:
         * IDML/paradigms/PredefinedTypes.xme:
         * IDML/examples/new_test.xme:
-        
+
           Made slight change to metamodel - changed ProvidedRequestPort and
           RequiredRequestPort elements to refer to, instead of an Object,
           and FCO abstract base class of Object and GenericObject. This

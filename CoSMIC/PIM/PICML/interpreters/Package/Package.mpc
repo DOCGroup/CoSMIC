@@ -1,4 +1,4 @@
-project(Package): mfc, picmllib {
+project(Package): picmllib {
    after += PICML
    sharedname = Package
    includes += $(PICML_ROOT)/interpreters/PICML
