@@ -1,3 +1,13 @@
+Mon Aug  2 08:25:15 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/docs/Importing_IDL_PDF.pdf:
+        * PIM/PICML/docs/Interface_Definitions_PDF.pdf:
+        
+          Renamed the PDF files below. Unfortunately necessary since
+          they were originally added to CVS without the -kb option
+          needed for PDF files, and with CVS there's no way to go
+          back once this mistake is made.
+
 Mon Aug  2 08:13:42 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/docs/Importing_IDL.doc:
