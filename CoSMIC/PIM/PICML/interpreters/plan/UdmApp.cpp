@@ -77,12 +77,7 @@ int CUdmApp::Initialize()
 static void showUsage()
 {
   AfxMessageBox ("Interpretation must start from either \n"
-                 "TopLevelPackages/TopLevelPackageContainer, \n"
-                 "ComponentTypes/ComponentContainer, \n"
-                 "ComponentPackages/PackageContainer, \n"
-                 "ComponentImplementations/ComponentImplementationContainer, \n"
-                 "ImplementationArtifacts/ImplementationArtifactContainer, \n"
-                 "PackageConfigurations/PackageConfigurationContainer.");
+                 "DeploymentPlans/DeploymentPlan");
   return;
 }
 
@@ -197,30 +192,10 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
               Udm::Object root = *iter;
               std::string kindName = (*iter).type().name();
               PICML::PlanVisitor visitor (outputPath);
-              if (kindName == "TopLevelPackages")
-                SetUpVisitor (TopLevelPackages, root, visitor);
-              else if (kindName == "TopLevelPackageContainer")
-                SetUpVisitor (TopLevelPackageContainer, root, visitor);
-              else if (kindName == "ImplementationArtifacts")
-                SetUpVisitor (ImplementationArtifacts, root, visitor);
-              else if (kindName == "ArtifactContainer")
-                SetUpVisitor (ArtifactContainer, root, visitor);
-              else if (kindName == "ComponentTypes")
-                SetUpVisitor (ComponentTypes, root, visitor);
-              else if (kindName == "ComponentContainer")
-                SetUpVisitor (ComponentContainer, root, visitor);
-              else if (kindName == "ComponentPackages")
-                SetUpVisitor (ComponentPackages, root, visitor);
-              else if (kindName == "PackageContainer")
-                SetUpVisitor (PackageContainer, root, visitor);
-              else if (kindName == "ComponentImplementations")
-                SetUpVisitor (ComponentImplementations, root, visitor);
-              else if (kindName == "ComponentImplementationContainer")
-                SetUpVisitor (ComponentImplementationContainer, root, visitor);
-              else if (kindName == "PackageConfigurations")
-                SetUpVisitor (PackageConfigurations, root, visitor);
-              else if (kindName == "PackageConfigurationContainer")
-                SetUpVisitor (PackageConfigurationContainer, root, visitor);
+              if (kindName == "DeploymentPlan")
+                SetUpVisitor (DeploymentPlan, root, visitor);
+              else if (kindName == "DeploymentPlans")
+                SetUpVisitor (DeploymentPlans, root, visitor);
               else
                 {
                   showUsage();

@@ -135,7 +135,7 @@ namespace PICML
     virtual void Visit_ComponentType(const ComponentType&){};
     virtual void Visit_Resource(const Resource&){};
     virtual void Visit_SharedResource(const SharedResource&){};
-    virtual void Visit_NodeReference(const NodeReference&){};
+    virtual void Visit_NodeReference(const NodeReference&);
     virtual void Visit_Bridge(const Bridge&){};
     virtual void Visit_Node(const Node&){};
     virtual void Visit_Interconnect(const Interconnect&){};
@@ -146,9 +146,9 @@ namespace PICML
     virtual void Visit_Shares(const Shares&){};
     virtual void Visit_Interconnect2Node(const Interconnect2Node&){};
     virtual void Visit_Interconnect2Bridge(const Interconnect2Bridge&){};
-    virtual void Visit_InstanceMapping(const InstanceMapping&){};
-    virtual void Visit_DeploymentPlan(const DeploymentPlan&){};
-    virtual void Visit_DeploymentPlans(const DeploymentPlans&){};
+    virtual void Visit_InstanceMapping(const InstanceMapping&);
+    virtual void Visit_DeploymentPlan(const DeploymentPlan&);
+    virtual void Visit_DeploymentPlans(const DeploymentPlans&);
     virtual void Visit_CollocationGroup(const CollocationGroup&){};
     virtual void Visit_InParameter(const InParameter&){};
     virtual void Visit_TwowayOperation(const TwowayOperation&){};

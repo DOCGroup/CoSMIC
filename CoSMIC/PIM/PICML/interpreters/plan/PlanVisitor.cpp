@@ -243,4 +243,73 @@ namespace PICML
   void PlanVisitor::Visit_ComponentPackageReference(const ComponentPackageReference&)
   {}
 
+  void PlanVisitor::Visit_DeploymentPlans(const DeploymentPlans&)
+  {}
+
+  void PlanVisitor::Visit_DeploymentPlan(const DeploymentPlan& dp)
+  { 
+	  this->push();
+      std::string name = this->outputPath_ + "\\";
+      name += dp.name();
+      name += ".cdp";
+      this->initTarget (name);
+      this->initDocument ("Deployment:DeploymentPlan");
+	  this->initRootAttributes();
+
+	  const std::set<CollocationGroup> dps = dp.CollocationGroup_children();
+
+      for (std::set<CollocationGroup>::const_iterator iter = dps.begin();
+           iter != dps.end();
+           ++iter)
+		{
+			   std::string refName;
+			   CollocationGroup cg = *iter;
+
+			   const std::set<InstanceMapping> cg_ins_maps = cg.dstInstanceMapping ();
+
+			   for (std::set<InstanceMapping>::const_iterator cg_ins_map_iter = cg_ins_maps.begin();
+			        cg_ins_map_iter != cg_ins_maps.end ();
+					++cg_ins_map_iter)
+					{
+						InstanceMapping cg_ins = *cg_ins_map_iter;
+						NodeReference node_ref = cg_ins.dstInstanceMapping_end();
+						const Node ref = node_ref.ref();
+                        refName = (ref.name());
+					}
+
+			   const std::set<ComponentType> comp_types = cg.members ();
+
+			   for (std::set<ComponentType>::const_iterator comp_type_iter = comp_types.begin();
+			        comp_type_iter != comp_types.end ();
+					++comp_type_iter)
+					{
+						ComponentType comp_type = *comp_type_iter;
+						Component comp = comp_type.ref();
+						this->push();
+                        DOMElement* ele = this->doc_->createElement (XStr ("instance"));
+                        ele->appendChild (this->createSimpleContent ("name", comp.name()));
+						DOMElement*
+                          refEle = this->doc_->createElement (XStr ("node"));
+                        refEle->appendChild (this->createSimpleContent ("name",refName));
+						ele->appendChild (refEle);
+                        this->curr_->appendChild (ele);
+                        this->pop();
+					}
+		}
+
+
+	  this->dumpDocument();
+      this->pop();
+  }
+
+  void PlanVisitor::Visit_InstanceMapping(const InstanceMapping& ins_map)
+  {
+	  NodeReference node_ref = ins_map.dstInstanceMapping_end();
+	  node_ref.Accept (*this);
+  }
+
+  void PlanVisitor::Visit_NodeReference(const NodeReference& node_ref)
+  {
+  }
+
 }

@@ -180,11 +180,11 @@ SOURCE="C:\Program Files\GME\SDK\BON\ComponentObj.cpp"
 # End Source File
 # Begin Source File
 
-SOURCE=.\PlanVisitor.cpp
+SOURCE=.\PICML.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\PICML.cpp
+SOURCE=.\PlanVisitor.cpp
 # End Source File
 # Begin Source File
 
@@ -233,11 +233,11 @@ SOURCE="C:\Program Files\GME\SDK\BON\GMECOM.H"
 # End Source File
 # Begin Source File
 
-SOURCE=.\PlanVisitor.h
+SOURCE=.\PICML.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\PICML.h
+SOURCE=.\PlanVisitor.h
 # End Source File
 # Begin Source File
 
