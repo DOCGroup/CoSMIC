@@ -7,6 +7,8 @@ Fri Sep  3 11:23:49 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/decorators/resource.h:
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/PICML-uml.xme:
+        * PIM/PICML/PICMLTemplate.xme:
         
           Fixes and enhancements to PICML decorator:
           
