@@ -47,6 +47,13 @@ using xercesc::XMLPlatformUtils;
 using xercesc::XMLException;
 using PICML::XStr;
 
+#define SetUpVisitor (type, root, visitor)                              \
+    do                                                                  \
+      {                                                                 \
+        PICML:: ## type start = PICML:: ## type ## ::Cast (root);       \
+        start.Accept (visitor);                                         \
+      } while (0)
+
 extern void dummy(void); // Dummy function for UDM meta initialization
 
 // Initialization function. The framework calls it before preparing the
@@ -57,8 +64,20 @@ int CUdmApp::Initialize()
   return 0;
 }
 
+static void showUsage()
+{
+  AfxMessageBox ("Interpretation must start from either \n"
+                 "TopLevelPackages/TopLevelPackageContainer, \n"
+                 "ComponentTypes/ComponentContainer, \n"
+                 "ComponentPackages/PackageContainer, \n"
+                 "ComponentImplementations/ComponentImplementationContainer, \n"
+                 "ImplementationArtifacts/ImplementationArtifactContainer, \n"
+                 "PackageConfigurations/PackageConfigurationContainer.");
+  return;
+}
+
 // This method prompts a dialog to allow the user to specify a folder
-bool getPath (const std::string& description, std::string& path)
+static bool getPath (const std::string& description, std::string& path)
 {
   // Initalize the com library
   //WINOLEAPI com_lib_return = OleInitialize(NULL);
@@ -148,150 +167,85 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
   try
     {
       XMLPlatformUtils::Initialize();
-    }
-  catch (const XMLException& toCatch)
-    {
-      AfxMessageBox ("Error during Xerces-c Initialization.\n"
-                     "  Exception message:" + CString (XStr (toCatch.getMessage())));
-      return;
-    }
-  std::string outputPath;
-  std::string message = "Please specify the Output Directory";
-  getPath (message, outputPath);
-  std::string messageText = "The following files: \n";
-
-  try
-    {
+      std::string outputPath;
+      std::string message = "Please specify the Output Directory";
+      getPath (message, outputPath);
       if (focusObject == Udm::null && selectedObjects.empty())
         {
-
+          showUsage();
+          return;
         }
       else
         {
           std::set<Udm::Object> mySet (selectedObjects);
           if (focusObject != Udm::null)
             mySet.insert (focusObject);
-
-
           for (std::set<Udm::Object>::iterator iter = mySet.begin();
                iter != mySet.end();
                ++iter)
             {
-              std::string fileBase;
-              std::string fileExt;
+              Udm::Object root = *iter;
               std::string kindName = (*iter).type().name();
-              const char* name = kindName.c_str();
-              AfxMessageBox ("Iter's name is " + CString (name));
-              if (strcmp (name, "TopLevelPackages") == 0
-                  || strcmp (name, "TopLevelPackageContainer") == 0)
-                {
-                  fileBase = "package";
-                  fileExt = ".tpd";
-                }
-              else if (strcmp (name, "ImplementationArtifacts") == 0 ||
-                       strcmp (name, "ImplementationArtifactContainer") == 0)
-                fileExt = ".iad";
-              else if (strcmp (name, "ComponentTypes") == 0
-                       || strcmp (name, "ComponentContainer") == 0)
-                fileExt = ".ccd";
-              else if (strcmp (name, "ComponentPackages") == 0
-                       || strcmp (name, "PackageContainer") == 0)
-                fileExt = ".cpd";
-              else if (strcmp (name, "ComponentImplementations") == 0 ||
-                       strcmp (name, "ComponentImplementationContainer") == 0)
-                fileExt = ".cid";
-              else if (strcmp (name, "PackageConfigurations") == 0 ||
-                       strcmp (name, "PackageConfigurationContainer") == 0)
-                fileExt = ".pcd";
+              PICML::PackageVisitor visitor (outputPath);
+              if (kindName == "TopLevelPackages")
+                SetUpVisitor (TopLevelPackages, root, visitor);
+              else if (kindName == "TopLevelPackageContainer")
+                SetUpVisitor (TopLevelPackageContainer, root, visitor);
+              else if (kindName == "ImplementationArtifacts")
+                SetUpVisitor (ImplementationArtifacts, root, visitor);
+              else if (kindName == "ImplementationArtifactContainer")
+                SetUpVisitor (ImplementationArtifactContainer, root, visitor);
+              else if (kindName == "ComponentTypes")
+                SetUpVisitor (ComponentTypes, root, visitor);
+              else if (kindName == "ComponentContainer")
+                SetUpVisitor (ComponentContainer, root, visitor);
+              else if (kindName == "ComponentPackages")
+                SetUpVisitor (ComponentPackages, root, visitor);
+              else if (kindName == "PackageContainer")
+                SetUpVisitor (PackageContainer, root, visitor);
+              else if (kindName == "ComponentImplementations")
+                SetUpVisitor (ComponentImplementations, root, visitor);
+              else if (kindName == "ComponentImplementationContainer")
+                SetUpVisitor (ComponentImplementationContainer, root, visitor);
+              else if (kindName == "PackageConfigurations")
+                SetUpVisitor (PackageConfigurations, root, visitor);
+              else if (kindName == "PackageConfigurationContainer")
+                SetUpVisitor (PackageConfigurationContainer, root, visitor);
               else
                 {
-                  AfxMessageBox ("Interpretation must start from either \n"
-                                 "TopLevelPackages/TopLevelPackageContainer, \n"
-                                 "ComponentTypes/ComponentContainer, \n"
-                                 "ComponentPackages/ComponentPackageContainer, \n"
-                                 "ComponentImplementations/ComponentImplementationContainer, \n"
-                                 "ImplementationArtifacts/ImplementationArtifactContainer, \n"
-                                 "PackageConfigurations/PackageConfigurationContainer.");
+                  showUsage();
                   return;
                 }
-
-              Udm::Object root = *iter;
-              // Set the name of the root element
-              std::string rootPrefix ("Deployment:");
-              std::string rootSuffix ("Description");
-              std::string rootName (root.type().name());
-              if (fileBase.length() == 0)
-                fileBase = rootName;
-              rootName = rootPrefix + rootName + rootSuffix;
-              std::string fileName = fileBase + fileExt;
-              fileName = outputPath + "\\" + fileName;
-
-              PICML::PackageVisitor visitor (fileName, rootName);
-              if (strcmp (name, "TopLevelPackages") == 0)
-                {
-                  PICML::TopLevelPackages start
-                    = PICML::TopLevelPackages::Cast (root);
-                  start.Accept(visitor);
-                }
-              else if (strcmp (name, "ImplementationArtifacts") == 0)
-                {
-                  PICML::ImplementationArtifacts start
-                    = PICML::ImplementationArtifacts::Cast (root);
-                  start.Accept(visitor);
-                }
-              else if (strcmp (name, "ComponentTypes") == 0)
-                {
-                  PICML::ComponentTypes start
-                    = PICML::ComponentTypes::Cast (root);
-                  start.Accept(visitor);
-                }
-              else if (strcmp (name, "ComponentPackages") == 0)
-                {
-                  PICML::ComponentPackages start
-                    = PICML::ComponentPackages::Cast (root);
-                  start.Accept(visitor);
-                }
-              else if (strcmp (name, "ComponentImplementations") == 0)
-                {
-                  PICML::ComponentImplementations start
-                    = PICML::ComponentImplementations::Cast (root);
-                  start.Accept(visitor);
-                }
-              else if (strcmp (name, "PackageConfigurations") == 0)
-                {
-                  PICML::PackageConfigurations start
-                    = PICML::PackageConfigurations::Cast (root);
-                  start.Accept (visitor);
-                }
-              else if (strcmp (name, "PackageConfigurationContainer") == 0)
-                {
-                  PICML::PackageConfigurationContainer start
-                    = PICML::PackageConfigurationContainer::Cast (root);
-				  std::string mesg = start.name();
-				  AfxMessageBox ("My name is " + CString (mesg.c_str()));
-                  start.Accept (visitor);
-                }
-              visitor.dumpDocument();
-              messageText += fileName + "\n";
             }
         }
+      XMLPlatformUtils::Terminate();
     }
-
   catch(udm_exception &e)
     {
       AfxMessageBox(e.what());
     }
-  try
+  catch (const DOMException& e)
     {
-      XMLPlatformUtils::Terminate();
-    }
-  catch (const XMLException& toCatch)
-    {
-      AfxMessageBox ("Error during Xerces-c Finalization.\n"
-                     "  Exception message:" + CString (XStr (toCatch.getMessage())));
+      const unsigned int maxChars = 2047;
+      XMLCh errText[maxChars + 1];
+
+      std::strstream estream;
+      estream << "DOMException code: " << e.code << std::endl;
+      if (DOMImplementation::loadDOMExceptionMsg(e.code, errText, maxChars))
+        {
+          std::string message (XMLString::transcode (errText));
+          estream << "Message is: " << message << std::endl;
+        }
+      AfxMessageBox (estream.str().c_str());
       return;
     }
-  AfxMessageBox (messageText.c_str() + CString(" were successfully generated ! "));
+  catch (const XMLException& e)
+    {
+      std::string message (XMLString::transcode (e.getMessage()));
+      AfxMessageBox (message.c_str());
+      return;
+    }
+  AfxMessageBox ("Descriptor files were successfully generated!");
   return;
 }
 

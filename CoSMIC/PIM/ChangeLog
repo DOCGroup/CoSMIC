@@ -1,3 +1,15 @@
+Mon Jun 14 08:57:13 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PICML/interpreters/packaging/PackageVisitor.cpp:
+        * PICML/interpreters/packaging/PackageVisitor.h:
+        * PICML/interpreters/packaging/UdmApp.cpp:
+        * PICML/interpreters/packaging/UuidString.cpp:
+        * PICML/interpreters/packaging/UuidString.h:
+        * PICML/interpreters/packaging/XercesString.cpp:
+        * PICML/interpreters/packaging/XercesString.h:
+
+          Checking in to work on the office machine.
+
 Sun Jun 13 18:45:52 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PICML/examples/RobotAssembly.xme: Updated to match Robert's

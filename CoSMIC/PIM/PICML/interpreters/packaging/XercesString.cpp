@@ -17,6 +17,12 @@ namespace PICML
     _wstr = XMLString::transcode(str);
   }
 
+  XStr::XStr (std::string& str)
+    : _wstr (0)
+  {
+    _wstr = XMLString::transcode (str.c_str());
+  }
+
   XStr::XStr (XMLCh *wstr)
     : _wstr(wstr)
   {
@@ -134,7 +140,7 @@ namespace PICML
   }
 
   char* XStr::c_str() const
-  { 
+  {
 	return XMLString::transcode (_wstr);
   }
 
@@ -142,7 +148,7 @@ namespace PICML
   {
 	return _wstr;
   };
-  
+
   std::ostream&
   operator<< (std::ostream& o, XStr const& str)
   {

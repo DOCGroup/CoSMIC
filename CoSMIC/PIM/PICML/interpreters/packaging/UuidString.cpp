@@ -3,36 +3,40 @@
 #include "rpcdce.h"
 #include "UuidString.h"
 
-CString MakeUuidString(UUID* pUUID/*=NULL*/)
+namespace PICML
 {
-   CString sUUID = "";
-   unsigned char* sTemp;
-   BOOL bAllocated = FALSE;
 
-   if (pUUID == NULL)
-   {
-      pUUID      = new UUID;
-      bAllocated = TRUE;
-   }
-   if (pUUID != NULL)
-   {
-      HRESULT hr;
-      hr = UuidCreate(pUUID);
-      if (hr == RPC_S_OK)
+  CString MakeUuidString(UUID* pUUID)
+  {
+    CString sUUID = "";
+    unsigned char* sTemp;
+    BOOL bAllocated = FALSE;
+
+    if (pUUID == 0)
       {
-         hr = UuidToString(pUUID, &sTemp);
-         if (hr == RPC_S_OK)
-         {
-            sUUID = sTemp;
-            sUUID.MakeUpper();
-            RpcStringFree(&sTemp);
-         }
+        pUUID      = new UUID;
+        bAllocated = TRUE;
       }
-      if (bAllocated)
+    if (pUUID != 0)
       {
-         delete pUUID;
-         pUUID = NULL;
+        HRESULT hr;
+        hr = UuidCreate(pUUID);
+        if (hr == RPC_S_OK)
+          {
+            hr = UuidToString(pUUID, &sTemp);
+            if (hr == RPC_S_OK)
+              {
+                sUUID = sTemp;
+                sUUID.MakeUpper();
+                RpcStringFree(&sTemp);
+              }
+          }
+        if (bAllocated)
+          {
+            delete pUUID;
+            pUUID = 0;
+          }
       }
-   }
-   return sUUID;
+    return sUUID;
+  }
 }

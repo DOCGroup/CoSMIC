@@ -1,5 +1,6 @@
 // $Id$
 
+#include <memory>
 #include "PICML.h"
 
 // Xerces includes
@@ -23,11 +24,12 @@ namespace PICML
   class PackageVisitor: public Visitor
   {
   public:
-
-    PackageVisitor (const std::string& path, const std::string& rootName);
+    PackageVisitor (const std::string& outputPath);
     ~PackageVisitor();
 
     void init();
+    void initTarget (const std::string& fileName);
+    void initDocument (const std::string& rootName)
     void initRootAttributes();
     void dumpDocument();
 
@@ -185,6 +187,7 @@ namespace PICML
     virtual void Visit_ComponentRef(const ComponentRef&){};
     virtual void Visit_ComponentFactory(const ComponentFactory&){};
     virtual void Visit_Object(const Udm::Object&){};
+
   private:
 
     DOMImplementation*  impl_;
@@ -192,7 +195,7 @@ namespace PICML
     DOMElement*         root_;
     DOMElement*         curr_;
     DOMWriter*          serializer_;
-    XMLFormatTarget*    target_;
-    std::string         rootName_;
+    auto_ptr<XMLFormatTarget>    target_;
+    std::string         outputPath_;
   };
 }

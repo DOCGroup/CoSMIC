@@ -21,6 +21,8 @@ namespace PICML
 
     XStr (const char* str);
 
+    XStr (std::string& str);
+
     XStr (XMLCh* wstr);
 
     XStr (const XMLCh* wstr);
@@ -46,9 +48,9 @@ namespace PICML
     const XMLCh operator [] (const int i) const;
 
     operator const XMLCh* () const;
-	
+
 	char* c_str() const;
-	
+
     bool operator== (const XMLCh* wstr) const;
 
 

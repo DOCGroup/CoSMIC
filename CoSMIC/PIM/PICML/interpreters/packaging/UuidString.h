@@ -2,6 +2,9 @@
 #ifndef __UUIDSTRING_H
 #define __UUIDSTRING_H
 
-CString MakeUuidString(UUID* pUUID=NULL);
+namespace PICML
+{
+  CString MakeUuidString(UUID* pUUID = 0);
+}
 
 #endif
