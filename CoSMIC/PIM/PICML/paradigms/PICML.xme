@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{98D7FDFE-F775-4300-8E98-625135C90E84}" cdate="Fri Dec 03 17:25:41 2004" mdate="Fri Dec 03 17:57:50 2004" version="" metaguid="{DF851054-A0B3-41EF-8FF2-8C42EE5EDD12}" metaversion="" metaname="MetaGME">
+<project guid="{034EAA97-FD8D-45D9-B355-723AAF6BECAF}" cdate="Sat Dec 11 20:36:53 2004" mdate="Sat Dec 11 20:36:53 2004" version="" metaguid="{FEFF5A03-BF64-4567-A10E-EBFCBDD5C475}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment></comment>
 	<author></author>
@@ -4782,16 +4782,16 @@
 					<value>9</value>
 				</regnode>
 				<regnode name="ComponentMetrics" isopaque="yes">
-					<value>1</value>
+					<value>5</value>
 				</regnode>
 				<regnode name="DataAnalysis" isopaque="yes">
 					<value>8</value>
 				</regnode>
 				<regnode name="InterfaceDefinition" isopaque="yes">
-					<value>4</value>
+					<value>1</value>
 				</regnode>
 				<regnode name="LibraryArtifact" isopaque="yes">
-					<value>10</value>
+					<value>6</value>
 				</regnode>
 				<regnode name="MainAspect" isopaque="yes">
 					<value>1</value>
@@ -4800,19 +4800,19 @@
 					<value>5</value>
 				</regnode>
 				<regnode name="NodeMapping" isopaque="yes">
-					<value>7</value>
+					<value>4</value>
 				</regnode>
 				<regnode name="Package" isopaque="yes">
 					<value>2</value>
 				</regnode>
 				<regnode name="Packaging" isopaque="yes">
-					<value>6</value>
+					<value>2</value>
 				</regnode>
 				<regnode name="ResourceView" isopaque="yes">
 					<value>3</value>
 				</regnode>
 				<regnode name="RtecConfigAspect" isopaque="yes">
-					<value>2</value>
+					<value>10</value>
 				</regnode>
 				<regnode name="Target" isopaque="yes">
 					<value>3</value>
@@ -4821,15 +4821,27 @@
 					<value>1</value>
 				</regnode>
 				<regnode name="Workspace" isopaque="yes">
-					<value>5</value>
+					<value>7</value>
 				</regnode>
 			</regnode>
 			<regnode name="AspectSelNames" isopaque="yes">
 				<value></value>
+				<regnode name="ElementsTarget">
+					<value></value>
+					<regnode name="myNameIs" isopaque="yes">
+						<value>Target</value>
+					</regnode>
+				</regnode>
 				<regnode name="InterfaceDefinition" isopaque="yes">
 					<value></value>
 					<regnode name="myNameIs" isopaque="yes">
 						<value>InterfaceDefinition</value>
+					</regnode>
+				</regnode>
+				<regnode name="PkgConfPackaging">
+					<value></value>
+					<regnode name="myNameIs" isopaque="yes">
+						<value>Packaging</value>
 					</regnode>
 				</regnode>
 			</regnode>
@@ -20422,6 +20434,24 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>3043</value>
+				</regnode>
+			</regnode>
+		</regnode>
+		<regnode name="MetaGME_Options">
+			<value></value>
+			<regnode name="GeneratedConstraints" isopaque="yes">
+				<value>skip_dialog</value>
+				<regnode name="ConnectionEndEventMask" isopaque="yes">
+					<value>0x00004800</value>
+				</regnode>
+				<regnode name="FolderContainmentEventMask" isopaque="yes">
+					<value>0xC0000404</value>
+				</regnode>
+				<regnode name="Priority" isopaque="yes">
+					<value>1</value>
+				</regnode>
+				<regnode name="RegularContainmentEventMask" isopaque="yes">
+					<value>0xC0000604</value>
 				</regnode>
 			</regnode>
 		</regnode>
@@ -51060,7 +51090,7 @@ RTEventChannel</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>939,528</value>
+							<value>925,500</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -52758,7 +52788,7 @@ RTEventChannel</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1044,531</value>
+							<value>1044,482</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -52918,7 +52948,7 @@ RTEventChannel</value>
 				<connpoint role="src" target="id-0066-000000d6"/>
 			</connection>
 			<set id="id-0069-00000007" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000cb id-0066-000000d0 id-0066-000000cc id-0066-000000ca id-0066-000000ce id-0066-000000d5">
-				<name>Packaging</name>
+				<name>CommonPackaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
 					<regnode name="Visualization" isopaque="yes">
@@ -54432,7 +54462,7 @@ RTEventChannel</value>
 				<connpoint role="src" target="id-0066-000000e5"/>
 			</connection>
 			<set id="id-0069-00000016" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000e2 id-0067-0000001b id-0066-000000df id-0066-000000de id-0066-000000dd id-0066-000000d9 id-0066-000000db id-0067-0000001c id-0067-0000006e">
-				<name>Packaging</name>
+				<name>CompPkgPackaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
 					<regnode name="Visualization" isopaque="yes">
@@ -56293,7 +56323,7 @@ RTEventChannel</value>
 				<connpoint role="src" target="id-0067-00000020"/>
 			</connection>
 			<set id="id-0069-00000008" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000ed id-0066-000000f6 id-0066-000000f2 id-0066-000000f3 id-0067-0000001d id-0066-000000ee id-0066-000000ef">
-				<name>Packaging</name>
+				<name>InterfacePackaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
 					<regnode name="Visualization" isopaque="yes">
@@ -57769,7 +57799,7 @@ RTEventChannel</value>
 				<connpoint role="src" target="id-0066-00000106"/>
 			</connection>
 			<set id="id-0069-00000009" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000fe id-0066-000000f9 id-0066-000000fa id-0066-000000fc id-0067-00000021 id-0067-00000022 id-0066-000000ff id-0066-00000100 id-0066-00000103">
-				<name>Packaging</name>
+				<name>ArtifactPackaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
 					<regnode name="Visualization" isopaque="yes">
@@ -59690,7 +59720,7 @@ RTEventChannel</value>
 				<connpoint role="src" target="id-0066-0000011a"/>
 			</connection>
 			<set id="id-0069-0000000a" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000111 id-0066-00000110 id-0067-00000026 id-0067-00000024 id-0067-00000023 id-0066-00000119 id-0066-0000010a id-0066-00000108 id-0066-0000010d id-0067-00000025 id-0066-00000114">
-				<name>Packaging</name>
+				<name>PkgConfPackaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
 					<regnode name="Visualization" isopaque="yes">
@@ -62364,7 +62394,7 @@ RTEventChannel</value>
 				<connpoint role="src" target="id-0066-00000133"/>
 			</connection>
 			<set id="id-0069-0000000b" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-0000002c id-0067-00000029 id-0067-0000002b id-0067-00000028 id-0066-00000130 id-0066-0000012e id-0066-0000012d id-0066-00000124 id-0066-00000127 id-0066-00000128 id-0066-0000012c id-0066-0000011e id-0066-0000011c id-0066-00000120 id-0067-00000027 id-0066-00000123 id-0067-0000002a">
-				<name>Packaging</name>
+				<name>ImplPackaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
 					<regnode name="Visualization" isopaque="yes">
@@ -63804,7 +63834,7 @@ RTEventChannel</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1103,207</value>
+							<value>1152,172</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -63837,7 +63867,7 @@ RTEventChannel</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1037,118</value>
+							<value>1086,48</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -65443,7 +65473,7 @@ RTEventChannel</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1044,230</value>
+							<value>1079,222</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -65899,7 +65929,7 @@ RTEventChannel</value>
 					<value>N</value>
 				</regnode>
 				<attribute kind="Cardinality">
-					<value>0..1</value>
+					<value>0..*</value>
 				</attribute>
 				<attribute kind="srcRolename" status="meta">
 					<value>src</value>
@@ -65954,8 +65984,8 @@ RTEventChannel</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000134"/>
 				<connpoint role="src" target="id-0066-00000134"/>
+				<connpoint role="dst" target="id-0066-00000134"/>
 			</connection>
 			<connection id="id-0068-0000023a" kind="Containment" role="Containment" relid="0x9d">
 				<name>Containment</name>
@@ -66335,8 +66365,8 @@ RTEventChannel</value>
 				<connpoint role="src" target="id-0066-00000159"/>
 				<connpoint role="dst" target="id-0067-00000036"/>
 			</connection>
-			<set id="id-0069-0000000c" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-0000013b id-0067-00000030 id-0066-0000013f id-0066-0000013c id-0066-00000140 id-0067-00000031 id-0066-0000014a id-0066-00000151 id-0066-0000014f id-0066-00000148 id-0066-0000014d id-0066-0000014c id-0067-00000035 id-0067-00000036 id-0067-00000034 id-0066-00000145 id-0066-00000142 id-0067-00000032 id-0067-0000002d id-0067-0000002f id-0067-0000002e id-0067-00000033 id-0066-00000134 id-0066-00000139 id-0066-00000135">
-				<name>Packaging</name>
+			<set id="id-0069-0000000c" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000135 id-0066-00000139 id-0066-00000134 id-0067-00000033 id-0067-0000002e id-0067-0000002f id-0067-0000002d id-0067-00000032 id-0066-00000142 id-0066-00000145 id-0067-00000034 id-0067-00000036 id-0067-00000035 id-0066-0000014c id-0066-0000014d id-0066-00000148 id-0066-0000014f id-0066-00000151 id-0066-0000014a id-0067-00000031 id-0066-00000140 id-0066-0000013c id-0066-0000013f id-0067-00000030 id-0066-0000013b">
+				<name>AssemblyPackaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
 					<regnode name="Visualization" isopaque="yes">
@@ -67644,7 +67674,7 @@ RTEventChannel</value>
 				<connpoint role="src" target="id-0066-00000166"/>
 			</connection>
 			<set id="id-0069-0000000d" kind="Aspect" role="Aspect" relid="0x25" members="id-0067-00000038 id-0066-00000164 id-0066-00000162">
-				<name>Target</name>
+				<name>ElementsTarget</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
 					<regnode name="Visualization" isopaque="yes">

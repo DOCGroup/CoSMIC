@@ -1,26 +1,72 @@
+Sun Dec 19 17:17:02 2004  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICMLTemplate.xme:
+
+          Updated the paradigm to fix problems with the latest version of
+          GME.  Please upgrade to GME-4.11.10 for all CoSMIC related
+          activities.
+
+        * PIM/PICML/interpreters/packaging/PackageComponent.dsp:
+
+          Updated to fix the names for the DLLs with the new version of
+          Udm.  Next is to write MPC files to generate the projects.
+
+        * PIM/PICML/examples/BasicSP.xme:
+        * PIM/PICML/examples/RobotAssembly.xme:
+
+          Updated to reflect change in paradigm.
+
+        * PIM/PICML/interpreters/BGML_Interpreter/PICML.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/PICML.cpp:
+        * PIM/PICML/interpreters/MPC/PICML.h:
+        * PIM/PICML/interpreters/MPC/PICML.cpp:
+        * PIM/PICML/interpreters/MPC/PICML.xsd:
+        * PIM/PICML/interpreters/cidl/PICML.h:
+        * PIM/PICML/interpreters/cidl/PICML.xsd:
+        * PIM/PICML/interpreters/cidl/PICML.cpp:
+        * PIM/PICML/interpreters/domain/PICML.h:
+        * PIM/PICML/interpreters/domain/PICML.cpp:
+        * PIM/PICML/interpreters/domain/PICML.xsd:
+        * PIM/PICML/interpreters/packaging/PICML.h:
+        * PIM/PICML/interpreters/packaging/PICML.xsd:
+        * PIM/PICML/interpreters/packaging/PICML.cpp:
+        * PIM/PICML/interpreters/plan/PICML.h:
+        * PIM/PICML/interpreters/plan/PICML.xsd:
+        * PIM/PICML/interpreters/plan/PICML.cpp:
+
+          Regenerated the files to reflect the change in the paradigm.
+
+        * PIM/PICML/bin/.empty:
+
+          Removed this file.
+
 Thu Dec  9 10:07:20 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
-        
+
           Made changes necessitates by Greg Bostrum's <greg.bostrom@hp.com>
           changes on December 7 to the IDL compiler front end.
 
 Tue Dec  7 19:14:37 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-        * PIM/PICML/docs/BGML_Documentation_Guide.pdf: 
+        * PIM/PICML/docs/BGML_Documentation_Guide.pdf:
 
           Added the BGML documentation PDF file into the CVS.
 
 Tue Dec 7 18:48:12 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
        * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.cpp:
-       * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.h: 
-       * PIM/PICML/interpreters/BGML_Interpreter/IDL_Util.cpp: 
-       * PIM/PICML/interpreters/BGML_Interpreter/IDL_Util.h:  
-       * PIM/PICML/interpreters/BGML_Interpreter/MetricEmitter.cpp: 
+       * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.h:
+       * PIM/PICML/interpreters/BGML_Interpreter/IDL_Util.cpp:
+       * PIM/PICML/interpreters/BGML_Interpreter/IDL_Util.h:
+       * PIM/PICML/interpreters/BGML_Interpreter/MetricEmitter.cpp:
        * PIM/PICML/interpreters/BGML_Interpreter/MetricEmitter.h:
 
-         Fixed errors in the BGML generated code pointed out by 
+         Fixed errors in the BGML generated code pointed out by
          Theckla Louchious <theckla.louchious@lmco.com>. These bugs
          pertained to Windows export macros and generated MPC files
          to build the benchmarks. These were discovered prior to the
@@ -28,7 +74,7 @@ Tue Dec 7 18:48:12 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
 Tue Dec 07 17:05:48 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-        * Installer/CoSMIC-Installer.aip: 
+        * Installer/CoSMIC-Installer.aip:
 
           Set up the correct version number.
           Added the src and src/BGML_Base directories for the target computer.
@@ -44,20 +90,20 @@ Tue Dec 7 10:40:03 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
 Sun Dec 05 17:20:00 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-        * build.pl: 
+        * build.pl:
 
           Added IDLGenerator into the build script.
 
 Sun Dec 05 17:13:56 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-        * Installer/CoSMIC-Installer.aip: 
+        * Installer/CoSMIC-Installer.aip:
 
           Changed the sources for the dll files from PICML/bin to
           CoSMIC/bin. Added the documentation into the installation.
 
 Sun Dec 05 14:25:58 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-        * bin/orb_tree.xml: 
+        * bin/orb_tree.xml:
 
           Moved the file from PICML/bin to CoSMIC/bin.
 

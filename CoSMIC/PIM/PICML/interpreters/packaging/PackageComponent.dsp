@@ -53,10 +53,10 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 xerces-c_2_5D.lib xerces-c_2D.lib ZlibD.lib UdmBase_D.lib UdmDom_D.lib UdmUtil_D.lib UdmGme_D.lib rpcrt4.lib /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept /libpath:"$(XERCESCROOT)/lib" /libpath:"$(UDM_PATH)\lib" /libpath:"$(UDM_PATH)\3rdParty\zlib" /libpath:"$(UDM_PATH)\3rdParty\xerces\xerces-c2_2_0-win32\lib"
+# ADD LINK32 xerces-c_2D.lib  ZlibD.lib UdmBaseD.lib UdmDomD.lib UdmUtilD.lib UdmGmeD.lib rpcrt4.lib /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept /libpath:"$(XERCESCROOT)/lib" /libpath:"$(UDM_PATH)\lib" /libpath:"$(UDM_PATH)\3rdParty\zlib" /libpath:"$(UDM_PATH)\3rdParty\xerces\xerces-c2_2_0-win32\lib"
 # SUBTRACT LINK32 /pdb:none
 # Begin Custom Build - Performing registration
-OutDir=.\../../bin
+OutDir=.\../../../../bin
 TargetPath=\CoSMIC\bin\PackageComponent.dll
 InputPath=\CoSMIC\bin\PackageComponent.dll
 SOURCE="$(InputPath)"
@@ -91,9 +91,9 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 xerces-c_2.lib Zlib.lib /nologo /subsystem:windows /dll /machine:I386 /out:"Release/Component.dll" /libpath:"$(UDM_PATH)\3rdParty\zlib" /libpath:"$(UDM_PATH)\3rdParty\xerces\xerces-c2_2_0-win32\lib"
-# ADD LINK32 xerces-c_2_5.lib xerces-c_2.lib Zlib.lib UdmBase.lib UdmDom.lib UdmUtil.lib UdmGme.lib rpcrt4.lib /nologo /subsystem:windows /dll /machine:I386 /libpath:"$(XERCESCROOT)/lib" /libpath:"$(UDM_PATH)\lib" /libpath:"$(UDM_PATH)\3rdParty\zlib" /libpath:"$(UDM_PATH)\3rdParty\xerces\xerces-c2_2_0-win32\lib"
+# ADD LINK32 xerces-c_2.lib Zlib.lib UdmBase.lib UdmDom.lib UdmUtil.lib UdmGme.lib rpcrt4.lib /nologo /subsystem:windows /dll /machine:I386 /libpath:"$(XERCESCROOT)/lib" /libpath:"$(UDM_PATH)\lib" /libpath:"$(UDM_PATH)\3rdParty\zlib" /libpath:"$(UDM_PATH)\3rdParty\xerces\xerces-c2_2_0-win32\lib"
 # Begin Custom Build - Performing registration
-OutDir=.\../../bin
+OutDir=.\../../../../bin
 TargetDir=\CoSMIC\bin
 TargetName=PackageComponent
 InputPath=\CoSMIC\bin\PackageComponent.dll
