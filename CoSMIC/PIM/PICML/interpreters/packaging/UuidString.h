@@ -10,4 +10,4 @@ namespace PICML
   CString MakeUuidString(UUID* pUUID = 0);
 }
 
-#endif
+#endif /* __UUIDSTRING_H */

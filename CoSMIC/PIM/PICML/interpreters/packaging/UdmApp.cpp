@@ -20,19 +20,12 @@
 
 #include "stdafx.h"
 #pragma warning( disable : 4290 )
-#include <afxdlgs.h> // For CFileDialog
+
+#include <windows.h>
+#include <shlobj.h>
 #include "resource.h"
 #include <stdlib.h>
 #include <sstream>
-
-// Xerces includes
-#include <xercesc/util/PlatformUtils.hpp>
-#include <xercesc/util/XMLString.hpp>
-#include <xercesc/dom/DOM.hpp>
-#include <xercesc/framework/LocalFileFormatTarget.hpp>
-
-// Utility includes
-#include "XercesString.h"
 
 #include "UdmStatic.h"
 #include "UmlExt.h"
@@ -84,7 +77,9 @@ static void showUsage()
 static bool getPath (const std::string& description, std::string& path)
 {
   // Initalize the com library
-  //WINOLEAPI com_lib_return = OleInitialize(NULL);
+  HRESULT hr = ::CoInitialize(NULL);
+  if (FAILED(hr))
+    return false;
 
   // Dialog instruction
   char display_buffer[MAX_PATH];
@@ -93,21 +88,20 @@ static bool getPath (const std::string& description, std::string& path)
 
   // Set GME as the owner of the dialog
   folder_browsinfo.hwndOwner = GetForegroundWindow();
-  // Start the brows from desktop
+  // Start the browse from desktop
   folder_browsinfo.pidlRoot = NULL;
   // Pointer to the folder name display buffer
   folder_browsinfo.pszDisplayName = &display_buffer[0];
-  // Diaglog instruction string
+  // Dialog instruction string
   folder_browsinfo.lpszTitle = description.c_str();
   // Use new GUI style and allow edit plus file view
-  folder_browsinfo.ulFlags = BIF_BROWSEINCLUDEFILES | BIF_RETURNONLYFSDIRS;
+  folder_browsinfo.ulFlags = BIF_RETURNONLYFSDIRS;
   // No callback function
   folder_browsinfo.lpfn = NULL;
   // No parameter passing into the dialog
   folder_browsinfo.lParam = 0;
 
-  LPITEMIDLIST folder_pidl;
-  folder_pidl = SHBrowseForFolder(&folder_browsinfo);
+  LPITEMIDLIST folder_pidl = SHBrowseForFolder(&folder_browsinfo);
 
   if(folder_pidl == NULL)
     return false;
@@ -128,6 +122,7 @@ static bool getPath (const std::string& description, std::string& path)
           imalloc->Release ( );
         }
     }
+  ::CoUninitialize();
   return true;
 }
 
@@ -240,7 +235,7 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
 
           std::stringstream estream;
           estream << "DOMException code: " << e.code << std::endl;
-          if (DOMImplementation::loadDOMExceptionMsg(e.code, errText, maxChars))
+          if (xercesc::DOMImplementation::loadDOMExceptionMsg(e.code, errText, maxChars))
             {
               std::string message (XMLString::transcode (errText));
               estream << "Message is: " << message << std::endl;
@@ -256,7 +251,8 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
       AfxMessageBox (message.c_str());
       return;
     }
-  AfxMessageBox ("Descriptor files were successfully generated!");
+  AfxMessageBox ("Descriptor files were successfully generated!",
+                 MB_OK| MB_ICONINFORMATION);
   return;
 }
 

@@ -1,5 +1,48 @@
+Mon Nov 22 20:27:25 2004  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML.xme:
+
+          Added new constraints to check invalid connections in the case
+          of 'publishes' keyword.  Also updated a couple of constraints so
+          that they fire on connection.  Fixed a too restrictive
+          constraint that prevented a single event consumer from receiving
+          events emitted by different emitters.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICMLTemplate.xme:
+
+        * PIM/PICML/examples/BasicSP.xme:
+        * PIM/PICML/examples/RobotAssembly.xme:
+
+        * PIM/PICML/interpreters/BGML_Interpreter/PICML.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/PICML.cpp:
+        * PIM/PICML/interpreters/MPC/PICML.h:
+        * PIM/PICML/interpreters/MPC/PICML.cpp:
+        * PIM/PICML/interpreters/cidl/PICML.h:
+        * PIM/PICML/interpreters/cidl/PICML.cpp:
+        * PIM/PICML/interpreters/domain/PICML.h:
+        * PIM/PICML/interpreters/domain/PICML.cpp:
+        * PIM/PICML/interpreters/domain/PICML.xsd:
+        * PIM/PICML/interpreters/packaging/PICML.h:
+        * PIM/PICML/interpreters/packaging/PICML.xsd:
+        * PIM/PICML/interpreters/packaging/PICML.cpp:
+        * PIM/PICML/interpreters/plan/PICML.h:
+        * PIM/PICML/interpreters/plan/PICML.xsd:
+        * PIM/PICML/interpreters/plan/PICML.cpp:
+
+          Updated all the of the above to reflect changes in the meta.
+
+        * PIM/PICML/interpreters/packaging/PackageVisitor.h:
+        * PIM/PICML/interpreters/packaging/UdmApp.cpp:
+        * PIM/PICML/interpreters/packaging/UuidString.h:
+
+          Added include guards and updated the message box displayed to
+          use MB_ICONINFORMATION.
+
 Mon Nov 22 10:02:33 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
-        
+
         * PIM/PICML/interpreters/BGML_Interpreter/MetricStream.cpp:
 
           Fixed errors in the MPC files to compile the Benchmarking files
@@ -59,8 +102,8 @@ Tue Nov 16 19:28:57 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 Tue Nov 16 11:14:30 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML.me:
-	* PIM/PICML/paradigms/PICML.xml:
-	* PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML-uml.xme:
 
           Updated the meta model, in particular, the MPC paradigm. This was
           required to fix the bug in the generated MPC file from the model and
@@ -90,7 +133,7 @@ Tue Nov 16 11:14:30 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/*/Picml.h:
         * PIM/PICML/interpreters/*/Picml.cpp:
         * PIM/PICML/interpreters/*/Picml.xsd:
-	  Updated changes to the meta in all the interpreter
+          Updated changes to the meta in all the interpreter
           directories.
 
 Mon Nov 15 12:45:06 2004  Krishnakumar B  <kitty@spam.invalid.domain>

@@ -1,5 +1,8 @@
 // $Id$
 
+#ifndef PACKAGE_VISITOR_H
+#define PACKAGE_VISITOR_H
+
 #include <memory>
 #include <stack>
 #include "PICML.h"
@@ -13,15 +16,16 @@
 // Utility includes
 #include "XercesString.h"
 
-using xercesc::DOMImplementation;
-using xercesc::DOMDocument;
-using xercesc::DOMElement;
-using xercesc::DOMWriter;
-using xercesc::XMLFormatTarget;
-using xercesc::LocalFileFormatTarget;
 
 namespace PICML
 {
+	using xercesc::DOMImplementation;
+	using xercesc::DOMDocument;
+	using xercesc::DOMElement;
+	using xercesc::DOMWriter;
+	using xercesc::XMLFormatTarget;
+	using xercesc::LocalFileFormatTarget;
+
   class PackageVisitor: public Visitor
   {
   public:
@@ -232,3 +236,5 @@ namespace PICML
     std::multimap<std::string, InEventPort> consumers_;
   };
 }
+
+#endif /* PACKAGE_VISITOR_H */
