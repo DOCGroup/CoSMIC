@@ -1,3 +1,18 @@
+Tue Dec 7 18:48:12 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+
+       * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.cpp:
+       * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.h: 
+       * PIM/PICML/interpreters/BGML_Interpreter/IDL_Util.cpp: 
+       * PIM/PICML/interpreters/BGML_Interpreter/IDL_Util.h:  
+       * PIM/PICML/interpreters/BGML_Interpreter/MetricEmitter.cpp: 
+       * PIM/PICML/interpreters/BGML_Interpreter/MetricEmitter.h:
+
+         Fixed errors in the BGML generated code pointed out by 
+         Theckla Louchious <theckla.louchious@lmco.com>. These bugs
+         pertained to Windows export macros and generated MPC files
+         to build the benchmarks. These were discovered prior to the
+         PCES PI meeting!!
+
 Tue Dec 07 17:05:48 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * Installer/CoSMIC-Installer.aip: 
