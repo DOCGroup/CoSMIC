@@ -52,9 +52,9 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"../../bin/EQAL.dll" /pdbtype:sept
+# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"../../../../bin/EQAL.dll" /pdbtype:sept
 # Begin Custom Build - Performing registration
-OutDir=.\../../bin
+OutDir=.\../../../../bin
 TargetPath=\CoSMIC\bin\EQAL.dll
 InputPath=\CoSMIC\bin\EQAL.dll
 SOURCE="$(InputPath)"
@@ -88,9 +88,9 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"../../bin/EQAL.dll"
+# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"../../../../bin/EQAL.dll"
 # Begin Custom Build - Performing registration
-OutDir=.\../../bin
+OutDir=.\../../../../bin
 TargetPath=\CoSMIC\bin\EQAL.dll
 InputPath=\CoSMIC\bin\EQAL.dll
 SOURCE="$(InputPath)"

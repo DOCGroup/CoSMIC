@@ -53,10 +53,10 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 xerces-c_2D.lib ZlibD.lib UdmBase_D.lib UdmDom_D.lib UdmUtil_D.lib UdmGme_D.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"../../bin/MPC.dll" /pdbtype:sept /libpath:"C:\Program Files\ISIS\UDM\lib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\zlib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib"
+# ADD LINK32 xerces-c_2D.lib ZlibD.lib UdmBase_D.lib UdmDom_D.lib UdmUtil_D.lib UdmGme_D.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"../../../../bin/MPC.dll" /pdbtype:sept /libpath:"C:\Program Files\ISIS\UDM\lib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\zlib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib"
 # SUBTRACT LINK32 /pdb:none
 # Begin Custom Build - Performing registration
-OutDir=.\../../bin
+OutDir=.\../../../../bin
 TargetPath=\CoSMIC\bin\MPC.dll
 InputPath=\CoSMIC\bin\MPC.dll
 SOURCE="$(InputPath)"
@@ -90,9 +90,9 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 xerces-c_2.lib Zlib.lib /nologo /subsystem:windows /dll /machine:I386 /out:"Release/Component.dll" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\zlib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib"
-# ADD LINK32 xerces-c_2.lib Zlib.lib UdmBase.lib UdmDom.lib UdmUtil.lib UdmGme.lib /nologo /subsystem:windows /dll /machine:I386 /out:"../../bin/MPC.dll" /libpath:"C:\Program Files\ISIS\UDM\lib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\zlib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib"
+# ADD LINK32 xerces-c_2.lib Zlib.lib UdmBase.lib UdmDom.lib UdmUtil.lib UdmGme.lib /nologo /subsystem:windows /dll /machine:I386 /out:"../../../../bin/MPC.dll" /libpath:"C:\Program Files\ISIS\UDM\lib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\zlib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib"
 # Begin Custom Build - Performing registration
-OutDir=.\../../bin
+OutDir=.\../../../../bin
 TargetPath=\CoSMIC\bin\MPC.dll
 InputPath=\CoSMIC\bin\MPC.dll
 SOURCE="$(InputPath)"
@@ -126,9 +126,9 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 xerces-c_2.lib zlib.lib UdmBase.lib UdmGme.lib UdmUtil.lib UdmDom.lib /nologo /subsystem:windows /dll /machine:I386 /out:"../../bin/MPC.dll" /libpath:"C:\Program Files\ISIS\UDM\Lib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib" /libpath:"C:\Program Files\ISIS\UDM\3rdparty\zlib"
+# ADD LINK32 xerces-c_2.lib zlib.lib UdmBase.lib UdmGme.lib UdmUtil.lib UdmDom.lib /nologo /subsystem:windows /dll /machine:I386 /out:"../../../../bin/MPC.dll" /libpath:"C:\Program Files\ISIS\UDM\Lib" /libpath:"C:\Program Files\ISIS\UDM\3rdParty\xerces\xerces-c2_2_0-win32\lib" /libpath:"C:\Program Files\ISIS\UDM\3rdparty\zlib"
 # Begin Custom Build - Performing registration
-OutDir=.\../../bin
+OutDir=.\../../../../bin
 TargetPath=\CoSMIC\bin\MPC.dll
 InputPath=\CoSMIC\bin\MPC.dll
 SOURCE="$(InputPath)"
