@@ -1,3 +1,10 @@
+Tue Jun 22 15:24:04 2004  Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * PICML/examples/RobotAssembly.xme:
+
+          Updated the robot assembly model to incorporate the
+          IDL changes.
+
 Mon Jun 21 15:50:02 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PICML/examples/RobotAssembly.xme: Fixed a couple of typos in
