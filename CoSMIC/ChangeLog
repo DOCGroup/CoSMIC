@@ -1,3 +1,20 @@
+Thu Jan 27 21:18:11 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+        * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/Metric_Emitter.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/Metric_Emitter.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/UdmApp.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/BGML_Visitor.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/BGML_Visitor.cpp:
+
+          These commits fix the problem that was foundout in the PCES PI 
+          meeting Dec 12th with the BGML Generated code. The problem was 
+          when tasks were spawned from an already spawned task and not 
+          the main thread, waiting on the global thread manager deadlocks
+          the system. The solution then is to wait on the tasks one by one 
+          rather on the thred manager. Thanks to Theckla Lochious 
+          <theckla@lmco.com> for reporting this problem.
+
 Tue Jan 25 16:08:22 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.h:
