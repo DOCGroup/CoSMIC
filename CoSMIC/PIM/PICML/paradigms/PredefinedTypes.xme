@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Wed May 26 22:06:23 2004" mdate="Wed May 26 22:06:23 2004" metaguid="{B2CF86BE-DEAD-BEEF-FEED-DAD000000001}" metaname="PICML">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri Jun 04 13:08:01 2004" mdate="Fri Jun 04 13:08:52 2004" metaguid="{3136B6BD-DEAD-BEEF-FEED-DAD000000001}" metaname="PICML">
 	<name>PredefinedTypes</name>
 	<comment></comment>
 	<author></author>
@@ -30,13 +30,13 @@
 			<atom id="id-0066-00000007" kind="ShortInteger" relid="0x7">
 				<name>ShortInteger</name>
 			</atom>
-			<atom id="id-0066-0000000a" kind="String" relid="0xa">
+			<atom id="id-0066-00000008" kind="String" relid="0xa">
 				<name>String</name>
 			</atom>
-			<atom id="id-0066-0000000b" kind="TypeEncoding" relid="0xb">
+			<atom id="id-0066-00000009" kind="TypeEncoding" relid="0xb">
 				<name>TypeEncoding</name>
 			</atom>
-			<atom id="id-0066-0000000c" kind="TypeKind" relid="0xc">
+			<atom id="id-0066-0000000a" kind="TypeKind" relid="0xc">
 				<name>TypeKind</name>
 			</atom>
 		</folder>

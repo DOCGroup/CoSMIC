@@ -1,3 +1,39 @@
+Fri Jun  4 18:40:17 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PICML/examples/RobotAssembly.xme: New file which models the
+          RobotAssembly scenario requested by LockHeed. The scenario is
+          almost done except for adding the implementation artifacts for
+          4 components.
+
+        * PICML/interpreters/PackageComponent/PackageComponent.mpc: Added
+          PackageComponent.def, the export DEF file to the sources.
+
+        * PICML/paradigms/PICML.xme: Updated to reflect bugs in the
+          meta-model uncovered when modeling the RobotAssembly scenario.
+          Removed some constraints which triggered at the wrong time.
+          There seems to be some bug in the constraint manager.
+
+        * PICML/paradigms/PICML.xmp: New version of the paradigm which
+          reflects the above changes.
+
+        * PICML/paradigms/PICMLTemplate.xme:
+        * PICML/paradigms/PredefinedTypes.xme: Updated to reflect changes
+          in the paradigm.
+
+        * PICML/paradigms/icons/component.bmp:
+        * PICML/paradigms/icons/manages.bmp: New versions of these icons
+          from the IDML directory.
+
+
+        * PICML/paradigms/icons/providedrequestport.bmp:
+        * PICML/paradigms/icons/requiredrequestport.bmp: Renamed these
+          icons to reflect the renaming in IDML.
+
+        * PICML/paradigms/icons/inrequestport.bmp:
+        * PICML/paradigms/icons/outrequestport.bmp:
+
+          Removed these files.
+
 Thu Jun  3 12:36:40 2004  Krishnakumar B  <kitty@dre.vanderbilt.edu>
 
         * PICML/paradigms/PICML.xme:

@@ -28,6 +28,7 @@ project (PackageComponent): mfc, picmllib {
     $(GME_ROOT)/SDK/BON/ComponentObj.cpp
     ComponentLib_p.c
     ComponentLib_i.c
+    PackageComponent.def
     RawComponent.cpp
     StdAfx.cpp
     UdmApp.cpp
