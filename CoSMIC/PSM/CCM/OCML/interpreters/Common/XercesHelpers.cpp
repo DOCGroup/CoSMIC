@@ -14,7 +14,7 @@ XercesSystem::initialize()
     {
       XMLPlatformUtils::Initialize();
     }
-  catch (const xercesc::XMLException& e)
+  catch (const xercesc::XMLException&)
     {
       std::cerr << "XMLException occured at initialization" << std::endl;
       throw;

@@ -4,6 +4,8 @@
 #include <string>
 #include <xercesc/util/XMLString.hpp>
 
+#pragma warning ( disable: 4786 )
+
 class XMLUnicodeString
 {
 public:

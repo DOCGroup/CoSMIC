@@ -79,8 +79,7 @@ EnumEditControl::enable_events()
   events_enabled_ = true;
 }
 
-
-BEGIN_EVENT_TABLE(EnumEditControl, wxCheckBox)
+BEGIN_EVENT_TABLE(EnumEditControl, wxComboBox)
   EVT_TEXT(wxID_ANY, EnumEditControl::on_select)
   //  EVT_SET_FOCUS(EnumEditControl::on_focus_gain)
   //  EVT_KILL_FOCUS(EnumEditControl::on_focus_lost)

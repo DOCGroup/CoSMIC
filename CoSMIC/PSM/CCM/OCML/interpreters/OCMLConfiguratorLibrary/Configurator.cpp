@@ -39,10 +39,10 @@ Configurator::Configurator(const char* tree_file)
     if (tree_doc == 0)
       throw "Config file not found.";
   }
-  catch (const XMLException& toCatch) {
+  catch (const XMLException&) {
     throw InitializationError();
   }
-  catch (const DOMException& toCatch) {
+  catch (const DOMException&) {
     throw InitializationError();
   }
   catch (...) {

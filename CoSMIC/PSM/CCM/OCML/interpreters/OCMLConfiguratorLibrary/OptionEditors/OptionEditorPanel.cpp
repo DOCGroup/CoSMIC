@@ -24,18 +24,18 @@ OptionEditorPanel::~OptionEditorPanel()
 void
 OptionEditorPanel::set_category(OptionCategory* category)
 {
-  for (std::list<OptionEditor*>::iterator iter = editors_.begin();
-       iter != editors_.end(); ++iter)
-    (*iter)->unfocus();
+  for (std::list<OptionEditor*>::iterator e_iter = editors_.begin();
+       e_iter != editors_.end(); ++e_iter)
+    (*e_iter)->unfocus();
 
   DestroyChildren();
   while (sizer_->Remove(0));
   sizer_->Layout();
 
-  for (OptionCategory::option_iterator iter = category->begin_options();
-       iter != category->end_options(); ++iter)
+  for (OptionCategory::option_iterator o_iter = category->begin_options();
+       o_iter != category->end_options(); ++o_iter)
     {
-      Option* option = *iter;
+      Option* option = *o_iter;
       OptionEditor* editor = NULL;
       
       switch (option->value_kind())

@@ -27,7 +27,7 @@ XercesSystem::new_parser()
  */
 
 template <typename T> inline
-XercesAutoPtr<T>::XercesAutoPtr(typename XercesAutoPtr<T>::element_type* t=0) throw()
+XercesAutoPtr<T>::XercesAutoPtr(typename XercesAutoPtr<T>::element_type* t) throw()
   : t_(t)
 {
 }
@@ -84,7 +84,7 @@ XercesAutoPtr<T>::release() throw()
 }
   
 template <typename T> inline void
-XercesAutoPtr<T>::reset(typename XercesAutoPtr<T>::element_type* p=0) throw()
+XercesAutoPtr<T>::reset(typename XercesAutoPtr<T>::element_type* p) throw()
 {
   if (t_)
     t_->release();

@@ -1,6 +1,8 @@
 #ifndef XERCES_UTILS_HPP
 #define XERCES_UTILS_HPP
 
+#pragma warning ( disable: 4786 )
+
 #include <xercesc/dom/DOM.hpp>
 
 class XercesSystem

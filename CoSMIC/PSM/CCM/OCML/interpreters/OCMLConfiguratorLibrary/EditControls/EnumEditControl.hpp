@@ -1,8 +1,11 @@
 /**
- * Definition of the enum edit control.
- *
  * @file EnumEditControl.hpp
+ *
+ * $Id$
+ *
  * @author Emre Turkay <turkaye@dre.vanderbilt.edu>
+ *
+ * Definition of the enum edit control.
  */
 
 #ifndef ENUM_EDIT_CONTROL_HPP
@@ -40,7 +43,7 @@ public:
  * interfaces. When a click event or focus event occurs, calls the registered
  * listeners.
  */
-class EnumEditControl: public wxComboBox
+class OCMLConfigurator_API EnumEditControl: public wxComboBox
 {
 public:
   /// WXWindow select event handler.
@@ -72,7 +75,7 @@ private:
   std::list<EnumEditControlSelectListener*> select_listeners_;
   /// The container for the focus listeners.
   std::list<EnumEditControlFocusListener*> focus_listeners_;
-    
+
   // Declares WXWindow event table.
   DECLARE_EVENT_TABLE()
 };    

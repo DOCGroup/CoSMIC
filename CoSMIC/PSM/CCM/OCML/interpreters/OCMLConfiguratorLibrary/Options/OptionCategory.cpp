@@ -7,13 +7,13 @@ OptionCategory::OptionCategory(const char* name, const char* description)
 
 OptionCategory::~OptionCategory()
 {
-  for (category_iterator iter = categories_.begin();
-       iter != categories_.end(); ++iter)
-    delete *iter;
+  for (category_iterator c_iter = categories_.begin();
+       c_iter != categories_.end(); ++c_iter)
+    delete *c_iter;
 
-  for (option_iterator iter = options_.begin();
-       iter != options_.end(); ++iter)
-    delete *iter;
+  for (option_iterator o_iter = options_.begin();
+       o_iter != options_.end(); ++o_iter)
+    delete *o_iter;
 }
 
 /// @see DescribedItem::type_string
@@ -133,20 +133,20 @@ OptionCategory::write(xercesc::DOMDocument* doc) const
 
   // Traverse the contained categories and call write methods.
   // 
-  for (const_category_iterator iter = begin_categories();
-       iter != end_categories(); ++iter)
+  for (const_category_iterator c_iter = begin_categories();
+       c_iter != end_categories(); ++c_iter)
     {
-      xercesc::DOMElement* child = (*iter)->write(doc);
+      xercesc::DOMElement* child = (*c_iter)->write(doc);
       // Append as child if the return value is not NULL.
       if (child)
         element->appendChild(child);
     }
 
   // Traverse the contained options and call write methods.
-  for (const_option_iterator iter = begin_options();
-       iter != end_options(); ++iter)
+  for (const_option_iterator o_iter = begin_options();
+       o_iter != end_options(); ++o_iter)
     {
-      xercesc::DOMElement* child = (*iter)->write(doc);
+      xercesc::DOMElement* child = (*o_iter)->write(doc);
       // Append as child if the return value is not NULL.
       if (child)
         element->appendChild(child);
@@ -157,14 +157,14 @@ OptionCategory::write(xercesc::DOMDocument* doc) const
 bool
 OptionCategory::items_assigned() const
 {
-  for (const_option_iterator iter = begin_options();
-       iter != end_options(); ++iter)
-    if ((*iter)->assigned())
+  for (const_option_iterator c_iter = begin_options();
+       c_iter != end_options(); ++c_iter)
+    if ((*c_iter)->assigned())
       return true;
 
-  for (const_category_iterator iter = begin_categories();
-       iter != end_categories(); ++iter)
-    if ((*iter)->items_assigned())
+  for (const_category_iterator o_iter = begin_categories();
+       o_iter != end_categories(); ++o_iter)
+    if ((*o_iter)->items_assigned())
       return true;
 
   return false;
