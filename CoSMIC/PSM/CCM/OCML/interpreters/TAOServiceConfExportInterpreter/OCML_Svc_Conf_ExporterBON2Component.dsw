@@ -3,7 +3,7 @@ Microsoft Developer Studio Workspace File, Format Version 6.00
 
 ###############################################################################
 
-Project: "OCML_Svc_Conf_Exporter"=".\OCML_Svc_Conf_ExporterBON2Component.dsp" - Package Owner=<4>
+Project: "OCMLSvcConfExportInterpreter"=".\OCML_Svc_Conf_ExporterBON2Component.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{

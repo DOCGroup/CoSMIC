@@ -1,10 +1,10 @@
-# Microsoft Developer Studio Project File - Name="OCML_Svc_Conf_Exporter" - Package Owner=<4>
+# Microsoft Developer Studio Project File - Name="OCMLSvcConfExportInterpreter" - Package Owner=<4>
 # Microsoft Developer Studio Generated Build File, Format Version 6.00
 # ** DO NOT EDIT **
 
 # TARGTYPE "Win32 (x86) Dynamic-Link Library" 0x0102
 
-CFG=OCML_Svc_Conf_Exporter - Win32 Debug
+CFG=OCMLSvcConfExportInterpreter - Win32 Debug
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
 !MESSAGE 
@@ -13,12 +13,12 @@ CFG=OCML_Svc_Conf_Exporter - Win32 Debug
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "OCML_Svc_Conf_ExporterBON2Component.mak" CFG="OCML_Svc_Conf_Exporter - Win32 Debug"
+!MESSAGE NMAKE /f "OCML_Svc_Conf_ExporterBON2Component.mak" CFG="OCMLSvcConfExportInterpreter - Win32 Debug"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
-!MESSAGE "OCML_Svc_Conf_Exporter - Win32 Debug" (based on "Win32 (x86) Dynamic-Link Library")
-!MESSAGE "OCML_Svc_Conf_Exporter - Win32 Release" (based on "Win32 (x86) Dynamic-Link Library")
+!MESSAGE "OCMLSvcConfExportInterpreter - Win32 Debug" (based on "Win32 (x86) Dynamic-Link Library")
+!MESSAGE "OCMLSvcConfExportInterpreter - Win32 Release" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE 
 
 # Begin Project
@@ -29,7 +29,7 @@ CPP=cl.exe
 MTL=midl.exe
 RSC=rc.exe
 
-!IF  "$(CFG)" == "OCML_Svc_Conf_Exporter - Win32 Debug"
+!IF  "$(CFG)" == "OCMLSvcConfExportInterpreter - Win32 Debug"
 
 # PROP BASE Use_MFC 2
 # PROP BASE Use_Debug_Libraries 1
@@ -52,11 +52,11 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 ..\..\..\..\..\PIM\PICML\bin\OCMLSvcConfExporterd.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCML_Svc_Conf_Exporter.dll" /pdbtype:sept /libpath:"..\TAOServiceConfExporter"
+# ADD LINK32 OCMLSvcConfExporterd.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCMLSvcConfExportInterpreter.dll" /pdbtype:sept /libpath:"$(PICML_ROOT)\lib"
 # Begin Custom Build - Performing registration
 OutDir=.\..\..\..\..\..\PIM\PICML\lib
-TargetPath=\CoSMIC\PIM\PICML\bin\OCML_Svc_Conf_Exporter.dll
-InputPath=\CoSMIC\PIM\PICML\bin\OCML_Svc_Conf_Exporter.dll
+TargetPath=\CoSMIC\PIM\PICML\bin\OCMLSvcConfExportInterpreter.dll
+InputPath=\CoSMIC\PIM\PICML\bin\OCMLSvcConfExportInterpreter.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -65,7 +65,7 @@ SOURCE="$(InputPath)"
 	
 # End Custom Build
 
-!ELSEIF  "$(CFG)" == "OCML_Svc_Conf_Exporter - Win32 Release"
+!ELSEIF  "$(CFG)" == "OCMLSvcConfExportInterpreter - Win32 Release"
 
 # PROP BASE Use_MFC 2
 # PROP BASE Use_Debug_Libraries 0
@@ -88,12 +88,12 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 ..\..\..\..\..\PIM\PICML\bin\OCMLSvcConfExporter.lib /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCML_Svc_Conf_Exporter.dll" /libpath:"$(PICML_ROOT)\lib"
+# ADD LINK32 OCMLSvcConfExporter.lib /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCMLSvcConfExportInterpreter.dll" /libpath:"$(PICML_ROOT)\lib"
 # SUBTRACT LINK32 /debug
 # Begin Custom Build - Performing registration
 OutDir=.\..\..\..\..\..\PIM\PICML\lib
-TargetPath=\CoSMIC\PIM\PICML\bin\OCML_Svc_Conf_Exporter.dll
-InputPath=\CoSMIC\PIM\PICML\bin\OCML_Svc_Conf_Exporter.dll
+TargetPath=\CoSMIC\PIM\PICML\bin\OCMLSvcConfExportInterpreter.dll
+InputPath=\CoSMIC\PIM\PICML\bin\OCMLSvcConfExportInterpreter.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -106,8 +106,8 @@ SOURCE="$(InputPath)"
 
 # Begin Target
 
-# Name "OCML_Svc_Conf_Exporter - Win32 Debug"
-# Name "OCML_Svc_Conf_Exporter - Win32 Release"
+# Name "OCMLSvcConfExportInterpreter - Win32 Debug"
+# Name "OCMLSvcConfExportInterpreter - Win32 Release"
 # Begin Group "Source Files"
 
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
@@ -151,7 +151,7 @@ SOURCE="C:/Program Files/GME/sdk/BON/ComponentDll.cpp"
 
 SOURCE="C:/Program Files/GME/sdk/BON/ComponentLib.idl"
 
-!IF  "$(CFG)" == "OCML_Svc_Conf_Exporter - Win32 Debug"
+!IF  "$(CFG)" == "OCMLSvcConfExportInterpreter - Win32 Debug"
 
 # PROP Ignore_Default_Tool 1
 # Begin Custom Build - MIDL $(InputPath))
@@ -170,7 +170,7 @@ BuildCmds= \
    $(BuildCmds)
 # End Custom Build
 
-!ELSEIF  "$(CFG)" == "OCML_Svc_Conf_Exporter - Win32 Release"
+!ELSEIF  "$(CFG)" == "OCMLSvcConfExportInterpreter - Win32 Release"
 
 # PROP Ignore_Default_Tool 1
 # Begin Custom Build - MIDL $(InputPath))

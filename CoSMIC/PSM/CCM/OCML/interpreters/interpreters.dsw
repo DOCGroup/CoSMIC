@@ -39,7 +39,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "OCML_Svc_Conf_Exporter"=.\TAOServiceConfExportInterpreter\OCML_Svc_Conf_ExporterBON2Component.dsp - Package Owner=<4>
+Project: "OCMLSvcConfExportInterpreter"=.\TAOServiceConfExportInterpreter\OCML_Svc_Conf_ExporterBON2Component.dsp - Package Owner=<4>
 
 Package=<5>
 {{{

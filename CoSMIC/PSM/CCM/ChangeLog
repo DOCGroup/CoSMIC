@@ -1,3 +1,11 @@
+Tue Nov 09 12:16:26 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * OCML/interpreters/TAOServiceConfExportInterpreter/OCML_Svc_Conf_ExporterBON2Component.dsw: 
+        * OCML/interpreters/TAOServiceConfExportInterpreter/OCML_Svc_Conf_ExporterBON2Component.dsp: 
+        * OCML/interpreters/interpreters.dsw: 
+
+          Changed the generated dll name from OCML_Svc_Conf_Exporter to OCMLSvcConfExportInterpreter.dll.
+
 Tue Nov 09 09:03:33 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * OCML/interpreters/OCMLConfiguratorInterpreter/OCMLConfigurationInterpreterBON2Component.dsp :
