@@ -1,0 +1,6 @@
+Tue Apr 27 14:21:09 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PICML/README: Preliminary version of the README file.
+
+        * PICML/paradigms/PICML.xme: First version of the PICML
+          meta-model.
