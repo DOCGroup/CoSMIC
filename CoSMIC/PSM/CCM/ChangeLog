@@ -1,3 +1,31 @@
+Fri Apr 16 14:43:36 2004  Arvind S. Krishna  <arvindk@dre.vanderbilt.edu>
+
+        * CCMPerf/CCMPerf-Paradigm.xme:
+          The exported version of the CCMPerf Metamodel.
+
+        * CCMPerf/Icons:
+          Directory for all icons specific to CCMPerf.
+
+        * CCMPerf/Icons/Component.bmp:
+        * CCMPerf/Icons/Esink-port.bmp:
+        * CCMPerf/Icons/Esource-port.bmp:
+        * CCMPerf/Icons/event.bmp:
+        * CCMPerf/Icons/Event-ref.bmp:
+        * CCMPerf/Icons/Event-Sink.bmp:
+        * CCMPerf/Icons/Event-Source.bmp:
+        * CCMPerf/Icons/Facet.bmp:
+        * CCMPerf/Icons/facet-port.bmp:
+        * CCMPerf/Icons/IDL-interface.bmp:
+        * CCMPerf/Icons/Interface-Ref.bmp:
+        * CCMPerf/Icons/Jitter.bmp:
+        * CCMPerf/Icons/Latency.bmp:
+        * CCMPerf/Icons/operation.bmp:
+        * CCMPerf/Icons/Receptacle.bmp:
+        * CCMPerf/Icons/receptacle-port.bmp:
+        * CCMPerf/Icons/Throughput.bmp:
+          Paradigm Icons used by CCMPerf.
+
+
 Tue Mar 30 22:29:34 2004  Gan Deng  <gan.deng@vanderbilt.edu>
         * FESML:
           Added this tool.
