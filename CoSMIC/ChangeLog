@@ -1,3 +1,17 @@
+Mon Aug  2 08:13:42 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/docs/Importing_IDL.doc:
+        * PIM/PICML/docs/Importing_IDL.pdf:
+        * PIM/PICML/docs/Interface_Definitions.doc:
+        * PIM/PICML/docs/Interface_Definitions.pdf:
+        
+          New files, documentation/user guides for the interface
+          definition part of PICML, generating and importing IDL
+          from/into PICML, and references for mapping PICML interface
+          definitions to IDL and vice versa. Including both MS Word and
+          PDF versions for future merge into a larger PICML documentation
+          file.
+
 Sun Aug  1 23:16:49 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * xerces/*: Removed this directory as we are making binary
