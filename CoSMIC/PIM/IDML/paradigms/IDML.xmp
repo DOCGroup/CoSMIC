@@ -187,9 +187,8 @@ supported_set->iterate (ref; accu = Set{} |
             </pointerspec>
          </connjoint>
       </connection>
-      <connection name = "ManagesComponent" metaref = "3118" >
-         <dispname>manages</dispname>
-            <regnode name = "color" value ="0x00DD00"></regnode>
+      <connection name = "ManagesComponent" metaref = "3238" >
+            <regnode name = "color" value ="0x00FF00"></regnode>
             <regnode name = "dstStyle" value ="arrow"></regnode>
             <regnode name = "srcStyle" value ="butt"></regnode>
             <regnode name = "lineType" value ="solid"></regnode>
@@ -198,7 +197,7 @@ supported_set->iterate (ref; accu = Set{} |
                <pointeritem desc = "ComponentFactory"></pointeritem>
             </pointerspec>
             <pointerspec name = "dst">
-               <pointeritem desc = "ComponentDef"></pointeritem>
+               <pointeritem desc = "Component"></pointeritem>
                <pointeritem desc = "ComponentRef"></pointeritem>
             </pointerspec>
          </connjoint>
@@ -222,9 +221,10 @@ supported_set->iterate (ref; accu = Set{} |
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
+            <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
-            <pointeritem desc = "ComponentDef"></pointeritem>
+            <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
             <pointeritem desc = "Enum"></pointeritem>
             <pointeritem desc = "Event"></pointeritem>
@@ -242,7 +242,36 @@ supported_set->iterate (ref; accu = Set{} |
             <pointeritem desc = "ValueObject"></pointeritem>
          </pointerspec>
       </reference>
-      <reference name = "Boxed" metaref = "3120">
+      <reference name = "AttributeMember" metaref = "3239">
+            <regnode name = "namePosition" value ="4"></regnode>
+         <regnode name = "icon" value ="member.bmp"></regnode>
+         <regnode name = "isNameEnabled" value ="false"></regnode>
+         <pointerspec name = "ref">
+            <pointeritem desc = "Aggregate"></pointeritem>
+            <pointeritem desc = "Alias"></pointeritem>
+            <pointeritem desc = "Boolean"></pointeritem>
+            <pointeritem desc = "Boxed"></pointeritem>
+            <pointeritem desc = "Byte"></pointeritem>
+            <pointeritem desc = "Collection"></pointeritem>
+            <pointeritem desc = "Component"></pointeritem>
+            <pointeritem desc = "ComponentFactory"></pointeritem>
+            <pointeritem desc = "Enum"></pointeritem>
+            <pointeritem desc = "Event"></pointeritem>
+            <pointeritem desc = "GenericObject"></pointeritem>
+            <pointeritem desc = "GenericValue"></pointeritem>
+            <pointeritem desc = "GenericValueObject"></pointeritem>
+            <pointeritem desc = "LongInteger"></pointeritem>
+            <pointeritem desc = "Object"></pointeritem>
+            <pointeritem desc = "RealNumber"></pointeritem>
+            <pointeritem desc = "ShortInteger"></pointeritem>
+            <pointeritem desc = "String"></pointeritem>
+            <pointeritem desc = "SwitchedAggregate"></pointeritem>
+            <pointeritem desc = "TypeEncoding"></pointeritem>
+            <pointeritem desc = "TypeKind"></pointeritem>
+            <pointeritem desc = "ValueObject"></pointeritem>
+         </pointerspec>
+      </reference>
+      <reference name = "Boxed" metaref = "3120" attributes = "VersionTag SpecifyIdTag">
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="NoBoxedValueDef" eventmask = "0x80000011" depth = "1" priority = "1">
             <![CDATA[let boxedref = refersTo () in
@@ -253,14 +282,23 @@ supported_set->iterate (ref; accu = Set{} |
             <![CDATA[not refersTo ().isNull ()]]>
             <dispname>A reference to a named type must be assigned</dispname>
          </constraint>
+         <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
+            <![CDATA[name.trim().match( "^[_]?[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <dispname>Not a valid identifier</dispname>
+         </constraint>
+         <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
+            <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
+            <dispname>Version must be a valid decimal number</dispname>
+         </constraint>
          <regnode name = "icon" value ="boxed.bmp"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
+            <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
-            <pointeritem desc = "ComponentDef"></pointeritem>
+            <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
             <pointeritem desc = "Enum"></pointeritem>
             <pointeritem desc = "Event"></pointeritem>
@@ -297,9 +335,10 @@ supported_set->iterate (ref; accu = Set{} |
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
+            <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
-            <pointeritem desc = "ComponentDef"></pointeritem>
+            <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
             <pointeritem desc = "Enum"></pointeritem>
             <pointeritem desc = "Event"></pointeritem>
@@ -317,16 +356,12 @@ supported_set->iterate (ref; accu = Set{} |
             <pointeritem desc = "ValueObject"></pointeritem>
          </pointerspec>
       </reference>
-      <reference name = "ComponentRef" metaref = "2752">
+      <reference name = "ComponentRef" metaref = "3240">
             <regnode name = "namePosition" value ="4"></regnode>
-         <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
-            <![CDATA[not self.refersTo ().isNull ()]]>
-            <dispname>A reference cannot be null</dispname>
-         </constraint>
          <regnode name = "icon" value ="manages.bmp"></regnode>
          <regnode name = "isNameEnabled" value ="false"></regnode>
          <pointerspec name = "ref">
-            <pointeritem desc = "ComponentDef"></pointeritem>
+            <pointeritem desc = "Component"></pointeritem>
          </pointerspec>
       </reference>
       <reference name = "Constant" metaref = "3112" attributes = "VersionTag SpecifyIdTag value">
@@ -439,9 +474,10 @@ supported_set->iterate (ref; accu = Set{} |
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
+            <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
-            <pointeritem desc = "ComponentDef"></pointeritem>
+            <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
             <pointeritem desc = "Enum"></pointeritem>
             <pointeritem desc = "Event"></pointeritem>
@@ -468,7 +504,7 @@ supported_set->iterate (ref; accu = Set{} |
          <regnode name = "icon" value ="inherits.bmp"></regnode>
          <regnode name = "isNameEnabled" value ="false"></regnode>
          <pointerspec name = "ref">
-            <pointeritem desc = "ComponentDef"></pointeritem>
+            <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
             <pointeritem desc = "Event"></pointeritem>
             <pointeritem desc = "Object"></pointeritem>
@@ -482,9 +518,10 @@ supported_set->iterate (ref; accu = Set{} |
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
+            <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
-            <pointeritem desc = "ComponentDef"></pointeritem>
+            <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
             <pointeritem desc = "Enum"></pointeritem>
             <pointeritem desc = "Event"></pointeritem>
@@ -520,11 +557,6 @@ supported_set->iterate (ref; accu = Set{} |
             <![CDATA[not refersTo ().isNull ()]]>
             <dispname>A reference to a named type must be assigned</dispname>
          </constraint>
-         <constraint name="ValidLabelConnectiondstCardinality2" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let dstCount = self.attachingConnections( "src", LabelConnection ) -> size in
-                     (dstCount >= 1)]]>
-            <dispname>Multiplicity of objects, which are associated to Member as "dst" over LabelConnection, has to match 1..*.</dispname>
-         </constraint>
          <constraint name="ValidMakeMemberPrivatedstCardinality4" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let dstCount = self.attachingConnections( "src", MakeMemberPrivate ) -> size in
                      (dstCount <= 1)]]>
@@ -535,9 +567,10 @@ supported_set->iterate (ref; accu = Set{} |
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
+            <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
-            <pointeritem desc = "ComponentDef"></pointeritem>
+            <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
             <pointeritem desc = "Enum"></pointeritem>
             <pointeritem desc = "Event"></pointeritem>
@@ -580,9 +613,10 @@ supported_set->iterate (ref; accu = Set{} |
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
+            <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
-            <pointeritem desc = "ComponentDef"></pointeritem>
+            <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
             <pointeritem desc = "Enum"></pointeritem>
             <pointeritem desc = "Event"></pointeritem>
@@ -641,9 +675,10 @@ supported_set->iterate (ref; accu = Set{} |
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
+            <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
-            <pointeritem desc = "ComponentDef"></pointeritem>
+            <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
             <pointeritem desc = "Enum"></pointeritem>
             <pointeritem desc = "Event"></pointeritem>
@@ -710,7 +745,7 @@ supported_set->iterate (ref; accu = Set{} |
             <regnode name = "icon" value ="readonlyattribute.bmp"></regnode>
             <regnode name = "icon" value ="attribute.bmp"></regnode>
          <constraint name="ValidReadonlyAttributePartCardinality9" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "Member" ) -> size in
+            <![CDATA[let partCount = self.parts( "AttributeMember" ) -> size in
                      (partCount = 1)]]>
             <dispname>Multiplicity of parts, which are contained by ReadonlyAttribute, has to match 1.</dispname>
          </constraint>
@@ -718,16 +753,16 @@ supported_set->iterate (ref; accu = Set{} |
             <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
+         <role name = "AttributeMember" metaref = "3241" kind = "AttributeMember"></role>
          <role name = "GetException" metaref = "2265" kind = "GetException"></role>
-         <role name = "Member" metaref = "3130" kind = "Member"></role>
          <role name = "SetException" metaref = "1702" kind = "SetException"></role>
          <aspect name = "InterfaceDefinition" metaref = "2372" attributes = "VersionTag SpecifyIdTag" >
+            <part metaref = "3242" role = "AttributeMember" primary = "yes" linked = "no"></part>
             <part metaref = "2376" role = "GetException" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3131" role = "Member" primary = "yes" linked = "no"></part>
             <part metaref = "2379" role = "SetException" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
          </aspect>
       </model>
-      <model name = "ComponentDef" metaref = "2209" attributes = "VersionTag SpecifyIdTag" >
+      <model name = "Component" metaref = "1822" attributes = "VersionTag SpecifyIdTag" >
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="component.bmp"></regnode>
             <regnode name = "isTypeShown" value ="true"></regnode>
@@ -763,26 +798,26 @@ supported_set->iterate (ref; accu = Set{} |
             <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
-         <role name = "Attribute" metaref = "2210" kind = "Attribute"></role>
-         <role name = "InEventPort" metaref = "2757" kind = "InEventPort"></role>
-         <role name = "Inherits" metaref = "2212" kind = "Inherits"></role>
-         <role name = "OutEventPort" metaref = "2758" kind = "OutEventPort"></role>
-         <role name = "ProvidedRequestPort" metaref = "2759" kind = "ProvidedRequestPort"></role>
-         <role name = "ReadonlyAttribute" metaref = "2215" kind = "ReadonlyAttribute"></role>
-         <role name = "RequiredRequestPort" metaref = "2760" kind = "RequiredRequestPort"></role>
-         <role name = "Supports" metaref = "2218" kind = "Supports"></role>
-         <aspect name = "InterfaceDefinition" metaref = "2392" attributes = "VersionTag SpecifyIdTag" >
-            <part metaref = "2393" role = "Attribute" primary = "yes" linked = "no"></part>
-            <part metaref = "2761" role = "InEventPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
-            <part metaref = "2395" role = "Inherits" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "2762" role = "OutEventPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
-            <part metaref = "2763" role = "ProvidedRequestPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
-            <part metaref = "2398" role = "ReadonlyAttribute" primary = "yes" linked = "no"></part>
-            <part metaref = "2764" role = "RequiredRequestPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
-            <part metaref = "2401" role = "Supports" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+         <role name = "Attribute" metaref = "1420" kind = "Attribute"></role>
+         <role name = "InEventPort" metaref = "3243" kind = "InEventPort"></role>
+         <role name = "Inherits" metaref = "1422" kind = "Inherits"></role>
+         <role name = "OutEventPort" metaref = "3244" kind = "OutEventPort"></role>
+         <role name = "ProvidedRequestPort" metaref = "3245" kind = "ProvidedRequestPort"></role>
+         <role name = "ReadonlyAttribute" metaref = "1423" kind = "ReadonlyAttribute"></role>
+         <role name = "RequiredRequestPort" metaref = "3246" kind = "RequiredRequestPort"></role>
+         <role name = "Supports" metaref = "1424" kind = "Supports"></role>
+         <aspect name = "InterfaceDefinition" metaref = "3247" attributes = "VersionTag SpecifyIdTag" >
+            <part metaref = "3248" role = "Attribute" primary = "yes" linked = "no"></part>
+            <part metaref = "3249" role = "InEventPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
+            <part metaref = "3250" role = "Inherits" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3251" role = "OutEventPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
+            <part metaref = "3252" role = "ProvidedRequestPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
+            <part metaref = "3253" role = "ReadonlyAttribute" primary = "yes" linked = "no"></part>
+            <part metaref = "3254" role = "RequiredRequestPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
+            <part metaref = "3255" role = "Supports" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
          </aspect>
       </model>
-      <model name = "ComponentFactory" metaref = "2705" attributes = "VersionTag SpecifyIdTag" >
+      <model name = "ComponentFactory" metaref = "3256" attributes = "VersionTag SpecifyIdTag" >
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="componentfactory.bmp"></regnode>
          <constraint name="InheritsSameType" eventmask = "0x0" depth = "1" priority = "2">
@@ -827,45 +862,35 @@ supported_set->iterate (ref; accu = Set{} |
          <role name = "Alias" metaref = "3132" kind = "Alias"></role>
          <role name = "Attribute" metaref = "2708" kind = "Attribute"></role>
          <role name = "Collection" metaref = "3133" kind = "Collection"></role>
-         <role name = "ComponentDef" metaref = "3134" kind = "ComponentDef"></role>
-         <role name = "ComponentFactory" metaref = "3135" kind = "ComponentFactory"></role>
          <role name = "Constant" metaref = "3136" kind = "Constant"></role>
          <role name = "Enum" metaref = "2942" kind = "Enum"></role>
-         <role name = "Event" metaref = "3137" kind = "Event"></role>
          <role name = "Exception" metaref = "2943" kind = "Exception"></role>
          <role name = "FactoryOperation" metaref = "2712" kind = "FactoryOperation"></role>
          <role name = "Inherits" metaref = "2713" kind = "Inherits"></role>
          <role name = "LookupKey" metaref = "2714" kind = "LookupKey"></role>
          <role name = "LookupOperation" metaref = "2715" kind = "LookupOperation"></role>
-         <role name = "Object" metaref = "3138" kind = "Object"></role>
          <role name = "OnewayOperation" metaref = "2717" kind = "OnewayOperation"></role>
          <role name = "ReadonlyAttribute" metaref = "2718" kind = "ReadonlyAttribute"></role>
          <role name = "Supports" metaref = "2720" kind = "Supports"></role>
          <role name = "SwitchedAggregate" metaref = "2944" kind = "SwitchedAggregate"></role>
          <role name = "TwowayOperation" metaref = "2722" kind = "TwowayOperation"></role>
-         <role name = "ValueObject" metaref = "3139" kind = "ValueObject"></role>
          <aspect name = "InterfaceDefinition" metaref = "2724" attributes = "VersionTag SpecifyIdTag" >
             <part metaref = "2945" role = "Aggregate" primary = "yes" linked = "no"></part>
             <part metaref = "3140" role = "Alias" primary = "yes" linked = "no"></part>
             <part metaref = "2727" role = "Attribute" primary = "yes" linked = "no"></part>
             <part metaref = "3141" role = "Collection" primary = "yes" linked = "no"></part>
-            <part metaref = "3142" role = "ComponentDef" primary = "yes" linked = "no"></part>
-            <part metaref = "3143" role = "ComponentFactory" primary = "yes" linked = "no"></part>
             <part metaref = "3144" role = "Constant" primary = "yes" linked = "no"></part>
             <part metaref = "2947" role = "Enum" primary = "yes" linked = "no"></part>
-            <part metaref = "3145" role = "Event" primary = "yes" linked = "no"></part>
             <part metaref = "2948" role = "Exception" primary = "yes" linked = "no"></part>
             <part metaref = "2731" role = "FactoryOperation" primary = "yes" linked = "no"></part>
             <part metaref = "2732" role = "Inherits" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "2733" role = "LookupKey" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "2734" role = "LookupOperation" primary = "yes" linked = "no"></part>
-            <part metaref = "3146" role = "Object" primary = "yes" linked = "no"></part>
             <part metaref = "2736" role = "OnewayOperation" primary = "yes" linked = "no"></part>
             <part metaref = "2737" role = "ReadonlyAttribute" primary = "yes" linked = "no"></part>
             <part metaref = "2739" role = "Supports" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "2949" role = "SwitchedAggregate" primary = "yes" linked = "no"></part>
             <part metaref = "2741" role = "TwowayOperation" primary = "yes" linked = "no"></part>
-            <part metaref = "3147" role = "ValueObject" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "Enum" metaref = "2950" attributes = "VersionTag SpecifyIdTag" >
@@ -937,47 +962,37 @@ endif]]>
          <role name = "Alias" metaref = "3148" kind = "Alias"></role>
          <role name = "Attribute" metaref = "2960" kind = "Attribute"></role>
          <role name = "Collection" metaref = "3149" kind = "Collection"></role>
-         <role name = "ComponentDef" metaref = "3150" kind = "ComponentDef"></role>
-         <role name = "ComponentFactory" metaref = "3151" kind = "ComponentFactory"></role>
          <role name = "Constant" metaref = "3152" kind = "Constant"></role>
          <role name = "Enum" metaref = "2962" kind = "Enum"></role>
-         <role name = "Event" metaref = "3153" kind = "Event"></role>
          <role name = "Exception" metaref = "2963" kind = "Exception"></role>
          <role name = "FactoryOperation" metaref = "2964" kind = "FactoryOperation"></role>
          <role name = "Inherits" metaref = "2965" kind = "Inherits"></role>
          <role name = "MakeMemberPrivate" metaref = "2966" kind = "MakeMemberPrivate"></role>
          <role name = "Member" metaref = "3154" kind = "Member"></role>
-         <role name = "Object" metaref = "3155" kind = "Object"></role>
          <role name = "OnewayOperation" metaref = "2968" kind = "OnewayOperation"></role>
          <role name = "PrivateFlag" metaref = "2969" kind = "PrivateFlag"></role>
          <role name = "ReadonlyAttribute" metaref = "2970" kind = "ReadonlyAttribute"></role>
          <role name = "Supports" metaref = "2971" kind = "Supports"></role>
          <role name = "SwitchedAggregate" metaref = "2972" kind = "SwitchedAggregate"></role>
          <role name = "TwowayOperation" metaref = "2973" kind = "TwowayOperation"></role>
-         <role name = "ValueObject" metaref = "3156" kind = "ValueObject"></role>
          <aspect name = "InterfaceDefinition" metaref = "2974" attributes = "VersionTag PrefixTag SpecifyIdTag abstract" >
             <part metaref = "2975" role = "Aggregate" primary = "yes" linked = "no"></part>
             <part metaref = "3157" role = "Alias" primary = "yes" linked = "no"></part>
             <part metaref = "2977" role = "Attribute" primary = "yes" linked = "no"></part>
             <part metaref = "3158" role = "Collection" primary = "yes" linked = "no"></part>
-            <part metaref = "3159" role = "ComponentDef" primary = "yes" linked = "no"></part>
-            <part metaref = "3160" role = "ComponentFactory" primary = "yes" linked = "no"></part>
             <part metaref = "3161" role = "Constant" primary = "yes" linked = "no"></part>
             <part metaref = "2979" role = "Enum" primary = "yes" linked = "no"></part>
-            <part metaref = "3162" role = "Event" primary = "yes" linked = "no"></part>
             <part metaref = "2980" role = "Exception" primary = "yes" linked = "no"></part>
             <part metaref = "2981" role = "FactoryOperation" primary = "yes" linked = "no"></part>
             <part metaref = "2982" role = "Inherits" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "2983" role = "MakeMemberPrivate" primary = "yes" linked = "no"></part>
             <part metaref = "3163" role = "Member" primary = "yes" linked = "no"></part>
-            <part metaref = "3164" role = "Object" primary = "yes" linked = "no"></part>
             <part metaref = "2985" role = "OnewayOperation" primary = "yes" linked = "no"></part>
             <part metaref = "2986" role = "PrivateFlag" primary = "yes" linked = "no"></part>
             <part metaref = "2987" role = "ReadonlyAttribute" primary = "yes" linked = "no"></part>
             <part metaref = "2988" role = "Supports" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "2989" role = "SwitchedAggregate" primary = "yes" linked = "no"></part>
             <part metaref = "2990" role = "TwowayOperation" primary = "yes" linked = "no"></part>
-            <part metaref = "3165" role = "ValueObject" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "Exception" metaref = "2991" attributes = "VersionTag SpecifyIdTag" >
@@ -1022,15 +1037,15 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
          <role name = "Alias" metaref = "3170" kind = "Alias"></role>
          <role name = "Boxed" metaref = "3171" kind = "Boxed"></role>
          <role name = "Collection" metaref = "3172" kind = "Collection"></role>
-         <role name = "ComponentDef" metaref = "2252" kind = "ComponentDef"></role>
-         <role name = "ComponentFactory" metaref = "2743" kind = "ComponentFactory"></role>
-         <role name = "ComponentRef" metaref = "2766" kind = "ComponentRef"></role>
+         <role name = "Component" metaref = "1939" kind = "Component"></role>
+         <role name = "ComponentFactory" metaref = "3265" kind = "ComponentFactory"></role>
+         <role name = "ComponentRef" metaref = "3266" kind = "ComponentRef"></role>
          <role name = "Constant" metaref = "3114" kind = "Constant"></role>
          <role name = "Enum" metaref = "2997" kind = "Enum"></role>
          <role name = "Event" metaref = "2999" kind = "Event"></role>
          <role name = "Exception" metaref = "3000" kind = "Exception"></role>
          <role name = "FileRef" metaref = "2628" kind = "FileRef"></role>
-         <role name = "ManagesComponent" metaref = "3173" kind = "ManagesComponent"></role>
+         <role name = "ManagesComponent" metaref = "3267" kind = "ManagesComponent"></role>
          <role name = "Object" metaref = "3001" kind = "Object"></role>
          <role name = "Package" metaref = "2330" kind = "Package"></role>
          <role name = "SwitchedAggregate" metaref = "3003" kind = "SwitchedAggregate"></role>
@@ -1040,15 +1055,15 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
             <part metaref = "3174" role = "Alias" primary = "yes" linked = "no"></part>
             <part metaref = "3175" role = "Boxed" primary = "yes" linked = "no"></part>
             <part metaref = "3176" role = "Collection" primary = "yes" linked = "no"></part>
-            <part metaref = "2479" role = "ComponentDef" primary = "yes" linked = "no"></part>
-            <part metaref = "2744" role = "ComponentFactory" primary = "yes" linked = "no"></part>
-            <part metaref = "2768" role = "ComponentRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3268" role = "Component" primary = "yes" linked = "no"></part>
+            <part metaref = "3269" role = "ComponentFactory" primary = "yes" linked = "no"></part>
+            <part metaref = "3270" role = "ComponentRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3115" role = "Constant" primary = "yes" linked = "no"></part>
             <part metaref = "3008" role = "Enum" primary = "yes" linked = "no"></part>
             <part metaref = "3010" role = "Event" primary = "yes" linked = "no"></part>
             <part metaref = "3011" role = "Exception" primary = "yes" linked = "no"></part>
             <part metaref = "2629" role = "FileRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3177" role = "ManagesComponent" primary = "yes" linked = "no"></part>
+            <part metaref = "3271" role = "ManagesComponent" primary = "yes" linked = "no"></part>
             <part metaref = "3012" role = "Object" primary = "yes" linked = "no"></part>
             <part metaref = "2487" role = "Package" primary = "yes" linked = "no"></part>
             <part metaref = "3014" role = "SwitchedAggregate" primary = "yes" linked = "no"></part>
@@ -1129,37 +1144,27 @@ endif]]>
          <role name = "Alias" metaref = "3180" kind = "Alias"></role>
          <role name = "Attribute" metaref = "3021" kind = "Attribute"></role>
          <role name = "Collection" metaref = "3181" kind = "Collection"></role>
-         <role name = "ComponentDef" metaref = "3182" kind = "ComponentDef"></role>
-         <role name = "ComponentFactory" metaref = "3183" kind = "ComponentFactory"></role>
          <role name = "Constant" metaref = "3184" kind = "Constant"></role>
          <role name = "Enum" metaref = "3023" kind = "Enum"></role>
-         <role name = "Event" metaref = "3185" kind = "Event"></role>
          <role name = "Exception" metaref = "3024" kind = "Exception"></role>
          <role name = "Inherits" metaref = "3025" kind = "Inherits"></role>
-         <role name = "Object" metaref = "3186" kind = "Object"></role>
          <role name = "OnewayOperation" metaref = "3026" kind = "OnewayOperation"></role>
          <role name = "ReadonlyAttribute" metaref = "3027" kind = "ReadonlyAttribute"></role>
          <role name = "SwitchedAggregate" metaref = "3028" kind = "SwitchedAggregate"></role>
          <role name = "TwowayOperation" metaref = "3029" kind = "TwowayOperation"></role>
-         <role name = "ValueObject" metaref = "3187" kind = "ValueObject"></role>
          <aspect name = "InterfaceDefinition" metaref = "3030" attributes = "VersionTag PrefixTag SpecifyIdTag local abstract" >
             <part metaref = "3031" role = "Aggregate" primary = "yes" linked = "no"></part>
             <part metaref = "3188" role = "Alias" primary = "yes" linked = "no"></part>
             <part metaref = "3033" role = "Attribute" primary = "yes" linked = "no"></part>
             <part metaref = "3189" role = "Collection" primary = "yes" linked = "no"></part>
-            <part metaref = "3190" role = "ComponentDef" primary = "yes" linked = "no"></part>
-            <part metaref = "3191" role = "ComponentFactory" primary = "yes" linked = "no"></part>
             <part metaref = "3192" role = "Constant" primary = "yes" linked = "no"></part>
             <part metaref = "3035" role = "Enum" primary = "yes" linked = "no"></part>
-            <part metaref = "3193" role = "Event" primary = "yes" linked = "no"></part>
             <part metaref = "3036" role = "Exception" primary = "yes" linked = "no"></part>
             <part metaref = "3037" role = "Inherits" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3194" role = "Object" primary = "yes" linked = "no"></part>
             <part metaref = "3038" role = "OnewayOperation" primary = "yes" linked = "no"></part>
             <part metaref = "3039" role = "ReadonlyAttribute" primary = "yes" linked = "no"></part>
             <part metaref = "3040" role = "SwitchedAggregate" primary = "yes" linked = "no"></part>
             <part metaref = "3041" role = "TwowayOperation" primary = "yes" linked = "no"></part>
-            <part metaref = "3195" role = "ValueObject" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "OnewayOperation" metaref = "1592" attributes = "VersionTag SpecifyIdTag" >
@@ -1200,14 +1205,14 @@ endif]]>
          <role name = "Alias" metaref = "3198" kind = "Alias"></role>
          <role name = "Boxed" metaref = "3199" kind = "Boxed"></role>
          <role name = "Collection" metaref = "3200" kind = "Collection"></role>
-         <role name = "ComponentDef" metaref = "2258" kind = "ComponentDef"></role>
-         <role name = "ComponentFactory" metaref = "2745" kind = "ComponentFactory"></role>
-         <role name = "ComponentRef" metaref = "2770" kind = "ComponentRef"></role>
+         <role name = "Component" metaref = "2001" kind = "Component"></role>
+         <role name = "ComponentFactory" metaref = "3276" kind = "ComponentFactory"></role>
+         <role name = "ComponentRef" metaref = "3277" kind = "ComponentRef"></role>
          <role name = "Constant" metaref = "3116" kind = "Constant"></role>
          <role name = "Enum" metaref = "3045" kind = "Enum"></role>
          <role name = "Event" metaref = "3047" kind = "Event"></role>
          <role name = "Exception" metaref = "3048" kind = "Exception"></role>
-         <role name = "ManagesComponent" metaref = "3201" kind = "ManagesComponent"></role>
+         <role name = "ManagesComponent" metaref = "3278" kind = "ManagesComponent"></role>
          <role name = "Object" metaref = "3049" kind = "Object"></role>
          <role name = "Package" metaref = "2344" kind = "Package"></role>
          <role name = "SwitchedAggregate" metaref = "3051" kind = "SwitchedAggregate"></role>
@@ -1217,14 +1222,14 @@ endif]]>
             <part metaref = "3202" role = "Alias" primary = "yes" linked = "no"></part>
             <part metaref = "3203" role = "Boxed" primary = "yes" linked = "no"></part>
             <part metaref = "3204" role = "Collection" primary = "yes" linked = "no"></part>
-            <part metaref = "2543" role = "ComponentDef" primary = "yes" linked = "no"></part>
-            <part metaref = "2746" role = "ComponentFactory" primary = "yes" linked = "no"></part>
-            <part metaref = "2772" role = "ComponentRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3279" role = "Component" primary = "yes" linked = "no"></part>
+            <part metaref = "3280" role = "ComponentFactory" primary = "yes" linked = "no"></part>
+            <part metaref = "3281" role = "ComponentRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3117" role = "Constant" primary = "yes" linked = "no"></part>
             <part metaref = "3056" role = "Enum" primary = "yes" linked = "no"></part>
             <part metaref = "3058" role = "Event" primary = "yes" linked = "no"></part>
             <part metaref = "3059" role = "Exception" primary = "yes" linked = "no"></part>
-            <part metaref = "3205" role = "ManagesComponent" primary = "yes" linked = "no"></part>
+            <part metaref = "3282" role = "ManagesComponent" primary = "yes" linked = "no"></part>
             <part metaref = "3060" role = "Object" primary = "yes" linked = "no"></part>
             <part metaref = "2550" role = "Package" primary = "yes" linked = "no"></part>
             <part metaref = "3062" role = "SwitchedAggregate" primary = "yes" linked = "no"></part>
@@ -1235,7 +1240,7 @@ endif]]>
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="readonlyattribute.bmp"></regnode>
          <constraint name="ValidReadonlyAttributePartCardinality9" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "Member" ) -> size in
+            <![CDATA[let partCount = self.parts( "AttributeMember" ) -> size in
                      (partCount = 1)]]>
             <dispname>Multiplicity of parts, which are contained by ReadonlyAttribute, has to match 1.</dispname>
          </constraint>
@@ -1243,11 +1248,11 @@ endif]]>
             <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
+         <role name = "AttributeMember" metaref = "3283" kind = "AttributeMember"></role>
          <role name = "GetException" metaref = "2267" kind = "GetException"></role>
-         <role name = "Member" metaref = "3206" kind = "Member"></role>
          <aspect name = "InterfaceDefinition" metaref = "2560" attributes = "VersionTag SpecifyIdTag" >
+            <part metaref = "3284" role = "AttributeMember" primary = "yes" linked = "no"></part>
             <part metaref = "2564" role = "GetException" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3207" role = "Member" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "SwitchedAggregate" metaref = "3064" attributes = "VersionTag SpecifyIdTag" >
@@ -1282,9 +1287,9 @@ endif]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidSwitchedAggregatePartCardinality10" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
-                     (partCount = 1)]]>
-            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
+            <![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
+                     (partCount >= 1)]]>
+            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
          </constraint>
          <constraint name="ValidSwitchedAggregatePartCardinality11" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "Label" ) -> size in
@@ -1292,9 +1297,9 @@ endif]]>
             <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
          </constraint>
          <constraint name="ValidSwitchedAggregatePartCardinality12" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
-                     (partCount >= 1)]]>
-            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
+            <![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
+                     (partCount = 1)]]>
+            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
             <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^( 0  |  ( [1-9] [0-9]* ) ) \. ( 0 | ( [1-9] [0-9]* ) ) $")]]>
@@ -1391,47 +1396,37 @@ endif]]>
          <role name = "Alias" metaref = "3220" kind = "Alias"></role>
          <role name = "Attribute" metaref = "3080" kind = "Attribute"></role>
          <role name = "Collection" metaref = "3221" kind = "Collection"></role>
-         <role name = "ComponentDef" metaref = "3222" kind = "ComponentDef"></role>
-         <role name = "ComponentFactory" metaref = "3223" kind = "ComponentFactory"></role>
          <role name = "Constant" metaref = "3224" kind = "Constant"></role>
          <role name = "Enum" metaref = "3082" kind = "Enum"></role>
-         <role name = "Event" metaref = "3225" kind = "Event"></role>
          <role name = "Exception" metaref = "3083" kind = "Exception"></role>
          <role name = "FactoryOperation" metaref = "3084" kind = "FactoryOperation"></role>
          <role name = "Inherits" metaref = "3085" kind = "Inherits"></role>
          <role name = "MakeMemberPrivate" metaref = "3086" kind = "MakeMemberPrivate"></role>
          <role name = "Member" metaref = "3226" kind = "Member"></role>
-         <role name = "Object" metaref = "3227" kind = "Object"></role>
          <role name = "OnewayOperation" metaref = "3088" kind = "OnewayOperation"></role>
          <role name = "PrivateFlag" metaref = "3089" kind = "PrivateFlag"></role>
          <role name = "ReadonlyAttribute" metaref = "3090" kind = "ReadonlyAttribute"></role>
          <role name = "Supports" metaref = "3091" kind = "Supports"></role>
          <role name = "SwitchedAggregate" metaref = "3092" kind = "SwitchedAggregate"></role>
          <role name = "TwowayOperation" metaref = "3093" kind = "TwowayOperation"></role>
-         <role name = "ValueObject" metaref = "3228" kind = "ValueObject"></role>
          <aspect name = "InterfaceDefinition" metaref = "3094" attributes = "VersionTag PrefixTag SpecifyIdTag abstract" >
             <part metaref = "3095" role = "Aggregate" primary = "yes" linked = "no"></part>
             <part metaref = "3229" role = "Alias" primary = "yes" linked = "no"></part>
             <part metaref = "3097" role = "Attribute" primary = "yes" linked = "no"></part>
             <part metaref = "3230" role = "Collection" primary = "yes" linked = "no"></part>
-            <part metaref = "3231" role = "ComponentDef" primary = "yes" linked = "no"></part>
-            <part metaref = "3232" role = "ComponentFactory" primary = "yes" linked = "no"></part>
             <part metaref = "3233" role = "Constant" primary = "yes" linked = "no"></part>
             <part metaref = "3099" role = "Enum" primary = "yes" linked = "no"></part>
-            <part metaref = "3234" role = "Event" primary = "yes" linked = "no"></part>
             <part metaref = "3100" role = "Exception" primary = "yes" linked = "no"></part>
             <part metaref = "3101" role = "FactoryOperation" primary = "yes" linked = "no"></part>
             <part metaref = "3102" role = "Inherits" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3103" role = "MakeMemberPrivate" primary = "yes" linked = "no"></part>
             <part metaref = "3235" role = "Member" primary = "yes" linked = "no"></part>
-            <part metaref = "3236" role = "Object" primary = "yes" linked = "no"></part>
             <part metaref = "3105" role = "OnewayOperation" primary = "yes" linked = "no"></part>
             <part metaref = "3106" role = "PrivateFlag" primary = "yes" linked = "no"></part>
             <part metaref = "3107" role = "ReadonlyAttribute" primary = "yes" linked = "no"></part>
             <part metaref = "3108" role = "Supports" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3109" role = "SwitchedAggregate" primary = "yes" linked = "no"></part>
             <part metaref = "3110" role = "TwowayOperation" primary = "yes" linked = "no"></part>
-            <part metaref = "3237" role = "ValueObject" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <folder name = "InterfaceDefinitions" metaref = "2775"  rootobjects = "File" >

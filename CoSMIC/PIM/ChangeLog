@@ -1,3 +1,14 @@
+Sat May 22 20:33:28 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * IDML/examples/new_test.xme:
+        * IDML/paradigms/IDML-Meta.xme:
+        * IDML/paradigms/IDML.xmp:
+        * IDML/paradigms/IDMLTemplate.xme:
+        * IDML/paradigms/PredefinedTypes.xme:
+        
+          Fixed a couple of minor problems with the paradigm, and regenerated
+          XML for it and everything that uses it.
+
 Fri May 21 18:37:50 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * IDML/examples/new_test.xme:
