@@ -12,10 +12,7 @@ class MetricEmitter
 public:
 	MetricEmitter (PICML::OperationBase &base, 
 				   T& latency,
-			       std::string& output_path,
-			       std::vector<__int64>& task_priorities,
-				   std::vector<__int64>& task_rates,
-				   std::string& metric);
+			       std::string& metric);
 	~MetricEmitter ();
 	
 	void generate_benchmark ();
@@ -44,9 +41,6 @@ protected:
 private:
 	PICML::OperationBase &operation_;
 	T& latency_;
-	std::string& output_path_;
-	std::vector<__int64>& task_priorities_;
-	std::vector<__int64>& task_rates_;
 	std::string& metric_;
 		
 };

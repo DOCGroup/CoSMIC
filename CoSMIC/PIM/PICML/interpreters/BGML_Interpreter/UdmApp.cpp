@@ -6,6 +6,7 @@
 #include "UdmApp.h"
 #include "UdmConfig.h"
 #include "BGML_Visitor.h"
+#include "Global_Data.h"
 
 #define SetUpVisitor(type, root, visitor)                               \
   do                                                                    \
@@ -153,6 +154,11 @@ void CUdmApp::UdmMain(
 				// Generate MPC file only for the Component
 				if (kindName == "BenchmarkAnalysis")
 				{
+					/// Default Settings used in the interpretation process
+					bgml_state.warmup_iterations = bgml_state.benchmark_iterations = 0;
+					bgml_state.benchmark_rate = 0;
+					bgml_state.benchmark_priority = -1;
+
 					BGML_Visitor visitor (outputPath);
 					SetUpVisitor (BenchmarkAnalysis, root, visitor);
 				}

@@ -1,3 +1,49 @@
+Tue Jan 25 13:15:59 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/examples/RobotAssembly.xme:
+
+          Added a priority and rate attributed to the BGML tasks and the 
+          main benchmarking task. This enables the generation of the main 
+          task and the background tasks at a given rate or priority. Updated
+          the example to refect this.
+
+        * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/Metric_Emitter.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/Metric_Emitter.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/BGML_Visitor.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/BGML_Visitor.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/UdmApp.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/Component.dsp:
+        * PIM/PICML/interpreters/BGML_Interpreter/Global_Data.h:
+ 
+          Updated the interpreter to generate the benchmark code that
+          honor the rate and priority of the benchmarking tasks.
+
+        * PIM/PICML/interpreters/BGML_Interpreter/PICML.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/PICML.cpp:
+        * PIM/PICML/interpreters/MPC/PICML.h:
+        * PIM/PICML/interpreters/MPC/PICML.cpp:
+        * PIM/PICML/interpreters/MPC/PICML.xsd:
+        * PIM/PICML/interpreters/cidl/PICML.h:
+        * PIM/PICML/interpreters/cidl/PICML.xsd:
+        * PIM/PICML/interpreters/cidl/PICML.cpp:
+        * PIM/PICML/interpreters/domain/PICML.h:
+        * PIM/PICML/interpreters/domain/PICML.cpp:
+        * PIM/PICML/interpreters/domain/PICML.xsd:
+        * PIM/PICML/interpreters/packaging/PICML.h:
+        * PIM/PICML/interpreters/packaging/PICML.xsd:
+        * PIM/PICML/interpreters/packaging/PICML.cpp:
+        * PIM/PICML/interpreters/plan/PICML.h:
+        * PIM/PICML/interpreters/plan/PICML.xsd:
+        * PIM/PICML/interpreters/plan/PICML.cpp:
+	
+	    Regenerated the above files to reflect changes to the paradigm
+
 Tue Jan 25 12:49:33 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
    
        * PIM/PICML/docs/BGML/BGML_Documentation_Guide.tex:

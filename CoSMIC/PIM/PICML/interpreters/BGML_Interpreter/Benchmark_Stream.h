@@ -4,6 +4,7 @@
 #include <ostream>
 #include <string>
 #include <vector>
+#include "Global_Data.h"
 
 // A dummy structure to inform TAO_OutStream's << operator to  put a newline
 // and use the current indentation for the succeeding line
@@ -48,13 +49,10 @@ public:
   BenchmarkStream (std::string& component_name, 
 				   std::string& operation_name, 
 				   std::vector<std::string>& arg_list,
-				   std::ostream& strm,
-				   std::vector<__int64>& task_priorities_,
-				   std::vector<__int64>& task_rates_,
-				   std::string& output_path);
-  // constructor.
+				   std::ostream& strm);
+  // constructor.for generating workloads
 
-  virtual ~BenchmarkStream (void);
+  ~BenchmarkStream (void);
   // destructor.
 
   void incr_indent (unsigned short flag = 1);
@@ -112,10 +110,7 @@ public:
   void gen_private_mem_decl ();
   // Generate the private members of the Task_Base class
 
-  void generate_task_def (__int64 warmup, 
-						  __int64 iterations, 
-						  std::string& file_name, 
-						  std::string& metrics);
+  void generate_task_def (std::string &metric);
   // Generate the .cpp file required by the task
 
   void gen_template_function_def (const std::string& name,
@@ -123,16 +118,18 @@ public:
 								  const std::string& return_type,
 								  const std::vector<std::string>& param_list);
 
-  void gen_warmup_iterations (__int64 iterations);
+  void gen_warmup_iterations (__int64 iterations, 
+							  __int64 benchmark_priority);
   // Generate the warmup iterations
 
   void gen_bench_def (__int64 iterations);
   // Generate the benchmarking definition
 
-  void gen_background_load (std::string& class_name);
+  void gen_background_load (std::string& class_name, int tasks);
   // Generate Background load
 
-  void generate_workload_def (__int64 interations);
+  void generate_workload_def (__int64 interations, 
+							  BGML_Task_Data &data);
   // Generates the workload definition
 
   void create_export_macro (std::string& shared_name);
@@ -149,13 +146,10 @@ private:
   std::string& operation_name_; 
   std::vector<std::string>& arg_list_;
   std::ostream& strm_;
-  std::vector<__int64> task_priorities_;
-  std::vector<__int64> task_rates_;
   int indent_level_;
-  std::string& output_path_;
   
-private:
   void upcase (const char *);
+  void generate_rate_helper ();
 };
 
 #endif // BenchmarkStream_H

@@ -1,6 +1,7 @@
 #include "Benchmark_Stream.h"
 #include "ctype.h"
 
+
 NL::NL (void)
 {
 }
@@ -24,18 +25,13 @@ const UNINDENT uidt_nl (1);
 BenchmarkStream::BenchmarkStream (std::string& component_name, 
 								  std::string& operation_name, 
 								  std::vector<std::string>& arg_list,
-								  std::ostream& strm,
-								  std::vector<__int64>& task_priorities,
-								  std::vector<__int64>& task_rates,
-								  std::string& output_path)
+								  std::ostream& strm)
+								  
 : component_name_ (component_name),
   operation_name_ (operation_name),
   arg_list_ (arg_list),
   strm_ (strm),
-  task_priorities_ (task_priorities),
-  task_rates_ (task_rates),
-  indent_level_ (0),
-  output_path_ (output_path)
+  indent_level_ (0)
 {
 	
 }
@@ -166,7 +162,7 @@ this->strm_ << "//       Nashville, TN\n";
 this->strm_ << "//       USA\n";
 this->strm_ << "//       http://www.isis.vanderbilt.edu/ \n";
 this->strm_ << "//\n";
-this->strm_ << "// Information about BGML & PICML is available from:\n";
+this->strm_ << "// Information about BGML is available from:\n";
 this->strm_ << "//     http://www.dre.vanderbilt.edu/cosmic\n";
 }
 
@@ -276,7 +272,7 @@ BenchmarkStream::create_export_macro (std::string& shared_name)
 	// The output path should be within quotes otherwise it is going to crib if
 	// the output directory has spaces in it somewhere
 	command.append ("\"");
-	command.append (this->output_path_);
+	command.append (bgml_state.output_path);
 	command.append ("\"");
 
 	command.append ("\\");
@@ -323,14 +319,30 @@ BenchmarkStream::gen_template_function_def (const std::string& name,
 }
 
 void
-BenchmarkStream::gen_warmup_iterations (__int64 iterations)
+BenchmarkStream::gen_warmup_iterations (__int64 iterations,
+										__int64 benchmark_priority)
 {
 	this->incr_indent ();
 	this->nl ();
+
+	// check for priority if so set the proper priority
+	if (benchmark_priority != -1)
+	{
+		this->indent ();
+		this->strm_ << "// Set right priority for this thread \n";
+		this->indent ();
+		this->strm_ << "this->set_priority (";
+		this->strm_ << (int) benchmark_priority;
+		this->strm_ << ");\n";
+	}
+	
+	this->nl ();
+	this->indent ();
+	this->strm_ << "// Warm up the system before benchmark generation \n";
 	this->indent ();
 	this->strm_ << "for (int warm_up = 0; warm_up < ";
 	if (iterations)
-		this->strm_ << (long) iterations;
+		this->strm_ << (int) iterations;
 	else
 		this->strm_ << BGML_DEFAULT_WARMUP_ITER;
 	this->strm_ << "; warm_up++)\n";
@@ -355,7 +367,7 @@ BenchmarkStream::gen_warmup_iterations (__int64 iterations)
 }
 
 void
-BenchmarkStream::gen_background_load (std::string& class_name)
+BenchmarkStream::gen_background_load (std::string& class_name, int task_set_size)
 {
 	// For the number of tasks assigned 
 	this->nl ();
@@ -363,13 +375,13 @@ BenchmarkStream::gen_background_load (std::string& class_name)
 
 	// Create Barrier
 	this->strm_ << "ACE_Barrier barrier (" 
-				<<  this->task_priorities_.size ()
+				<<  task_set_size
 				<< ");";
 	this->nl ();
 
 	this->indent ();
 	this->strm_ << "// Generate the Background workload \n";
-	for (size_t i = 0; i < this->task_priorities_.size (); i++)
+	for (int i = 0; i < task_set_size; i++)
 	{
 		this->indent ();
 		this->strm_ << class_name.c_str ();
@@ -409,7 +421,7 @@ BenchmarkStream::gen_background_load (std::string& class_name)
 	this->indent ();
 	this->strm_ << "// Activate the Background tasks \n";
 	
-	for (i = 0; i < this->task_priorities_.size (); i++)
+	for (i = 0; i < task_set_size; i++)
 	{
 		this->indent ();
 		this->strm_ << "if (task" << i << ".activate (THR_NEW_LWP | THR_JOINABLE, 1, 1) == -1)";
@@ -432,17 +444,28 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
    this->indent ();
    this->strm_ << "ACE_Sample_History history (";
    __int64 iter = (iterations) ? iterations : BGML_DEFAULT_BENCH_ITER;
-   this->strm_ << (long) iter;
+   this->strm_ << (int) iter;
    this->strm_ << ");";
-   
-   this->nl ();
-   this->indent ();
-   this->strm_ << "ACE_hrtime_t test_start = ACE_OS::gethrtime ();\n";
 
    this->nl ();
    this->indent ();
    this->strm_ << "ACE_UINT32 gsf = ACE_High_Res_Timer::global_scale_factor ();";
    this->nl ();
+
+   // Check if the tasks have to perform benchmarking at a given rate
+   if (bgml_state.benchmark_rate != -1)
+   {
+	   this->indent ();
+	   this->strm_ << "ACE_hrtime_t deadline_for_call = 0;\n";
+	   this->indent ();
+	   this->strm_ << "ACE_hrtime_t interval_between_calls = 1/double ("
+				   << (int) bgml_state.benchmark_rate
+				   << ") * gsf * ACE_HR_SCALE_CONVERSION; \n";
+   }
+   
+   this->nl ();
+   this->indent ();
+   this->strm_ << "ACE_hrtime_t test_start = ACE_OS::gethrtime ();\n";
 
    this->indent ();
    this->strm_ << "for (int i = 0; ";
@@ -456,9 +479,20 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
    this->incr_indent ();
    this->indent ();
    this->strm_ << "ACE_hrtime_t start = ACE_OS::gethrtime ();\n";
-   this->indent ();
+   
+
+   // Check for rate based events
+   if (bgml_state.benchmark_rate != -1)
+   {
+	  this->nl ();
+	  this->indent ();
+	  this->strm_ << "deadline_for_call = interval_between_calls * (i + 1);\n";
+	  this->indent ();
+	  this->strm_ << "deadline_for_call += test_start; \n";
+   }
 
    /// Cast the operation return-type as a (void)
+   this->indent ();
    this->strm_ << "(void)this->remote_ref_->";
    this->strm_ << this->operation_name_;
    this->strm_ << " (";
@@ -484,6 +518,24 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
    this->indent ();
    this->strm_ << "history.sample (now - start);";
 
+   // Check if this is a rate based invocation
+   if (bgml_state.benchmark_rate != -1)
+   {
+		this->nl ();
+		this->indent ();
+		this->strm_ << "if (now < deadline_for_call)\n";
+		this->indent ();
+		this->strm_ << "{\n";
+		this->incr_indent ();
+		this->indent ();
+		this->strm_ << "ACE_hrtime sleep_time = deadline_for_call - now;\n";
+		this->indent ();
+		this->strm_ << "ACE_OS::sleep (ACE_Time_Value (0, long (to_seconds (sleep_time, gsf) * ACE_ONE_SECOND_IN_USECS)));\n";
+		this->decr_indent ();
+		this->indent ();
+		this->strm_ << "}";
+   }
+
    this->nl ();
    this->decr_indent ();
    this->indent ();
@@ -495,7 +547,7 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
    this->nl ();
 
    // If there were workloads asociated , then wait for them to finish
-   if (this->task_priorities_.size ())
+   if (bgml_state.task_group_data.size ())
    {
 	   this->nl ();
 	   this->indent ();
@@ -545,7 +597,8 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
 }
 
 void
-BenchmarkStream::generate_workload_def (__int64 iterations)
+BenchmarkStream::generate_workload_def (__int64 iterations,
+										BGML_Task_Data &data)
 {
 	/// Step 1: Generate the ifdef macros
 	std::string macro_name = this->operation_name_ + "_Workload";
@@ -560,6 +613,11 @@ BenchmarkStream::generate_workload_def (__int64 iterations)
 	this->gen_constructor_defn (macro_name);
 	this->gen_destructor_defn  (macro_name);
 
+	//// Check if this is a rate based invocation
+	if (data.task_rate > 0)
+		this->generate_rate_helper ();
+	
+
 	/// Step 2: Generate the svc hook function to run it in a thread
 	std::vector<std::string> param_list;
 	this->gen_template_function_def ("svc",
@@ -568,6 +626,20 @@ BenchmarkStream::generate_workload_def (__int64 iterations)
 									 param_list);
    this->incr_indent ();
 
+   /// Set the thread to the appropriate priority
+   if (data.task_priority >= 0)
+   {
+	this->indent ();
+	this->strm_ << "// Set the thread to the appropriate priority \n";
+	this->nl ();
+	this->indent ();
+	this->strm_ << "this->set_priority ("
+				<< (int) data.task_priority
+			    << ")";
+	this->nl ();
+	this->nl ();
+   }
+
    // Wait on the barrier
    this->indent ();
    this->strm_ << "// Wait on the Barrier for tasks to start";
@@ -575,6 +647,23 @@ BenchmarkStream::generate_workload_def (__int64 iterations)
    this->indent ();
    this->strm_ << "this->arg" << (this->arg_list_.size() -1) << "_.wait ();";
    this->nl ();
+
+   /// If this is a rate based invocation
+   if (data.task_rate > 0)
+   {
+	   this->indent ();
+	   this->strm_ << "ACE_UINT32 gsf = ACE_High_Res_Timer::global_scale_factor ();";
+       this->nl ();
+	   this->indent ();
+	   this->strm_ << "ACE_hrtime_t deadline_for_call = 0;\n";
+	   this->indent ();
+	   this->strm_ << "ACE_hrtime_t interval_between_calls = 1/double ("
+				   << (int) data.task_rate
+				   << ") * gsf * ACE_HR_SCALE_CONVERSION; \n";
+   }
+
+   this->indent ();
+   this->strm_ << "ACE_hrtime_t test_start = ACE_OS::gethrtime ();\n";
 
    this->indent ();
    this->strm_ << "for (int i = 0; ";
@@ -586,6 +675,18 @@ BenchmarkStream::generate_workload_def (__int64 iterations)
    this->indent ();
    this->strm_ << "{\n";
    this->incr_indent ();
+
+   /// Check if this a rate based invocation
+   if (data.task_rate > 0)
+   {
+	  this->indent ();
+	  this->strm_ << "ACE_hrtime_t start = ACE_OS::gethrtime ();\n";
+	  this->indent ();
+	  this->strm_ << "deadline_for_call = interval_between_calls * (i + 1);\n";
+	  this->indent ();
+	  this->strm_ << "deadline_for_call += test_start; \n";
+	  this->nl ();
+	}
    
    /// Cast the operation return-type as a (void)
    this->indent ();
@@ -608,8 +709,29 @@ BenchmarkStream::generate_workload_def (__int64 iterations)
 
    this->indent ();
    this->strm_ << "ACE_CHECK;";
-   
    this->nl ();
+
+   /// Check if this is a rate based invocation
+   if (data.task_rate > 0)
+   {
+	   this->nl ();
+	   this->indent ();
+	   this->strm_ << "ACE_hrtime_t now = ACE_OS::gethrtime ();\n";
+	   this->nl ();
+	   this->indent ();
+	   this->strm_ << "if (now < deadline_for_call)\n";
+	   this->indent ();
+	   this->strm_ << "{\n";
+	   this->incr_indent ();
+	   this->indent ();
+	   this->strm_ << "ACE_hrtime sleep_time = deadline_for_call - now;\n";
+	   this->indent ();
+	   this->strm_ << "ACE_OS::sleep (ACE_Time_Value (0, long (to_seconds (sleep_time, gsf) * ACE_ONE_SECOND_IN_USECS)));\n";
+	   this->decr_indent ();
+	   this->indent ();
+	   this->strm_ << "}\n";
+   }
+
    this->decr_indent ();
    this->indent ();
    this->strm_ << "}\n";
@@ -681,10 +803,34 @@ BenchmarkStream::gen_destructor_defn (std::string& name)
 }
 
 void
-BenchmarkStream::generate_task_def (__int64 warmup, 
-									__int64 iterations, 
-									std::string& file_name,
-									std::string& metrics)
+BenchmarkStream::generate_rate_helper ()
+{
+	this->nl ();
+	this->strm_ << "double \n"
+				<< "to_seconds (ACE_UINT64 hrtime,"
+				<< "ACE_UINT32 sf)\n"
+				<< "{\n";
+	this->incr_indent ();
+	this->indent ();
+	this->strm_ << "double seconds = \n";
+	this->strm_ << "#if defined ACE_LACKS_LONGLONG_T\n";
+	this->indent ();
+	this->strm_ << "hrtime / sf;\n";
+	this->strm_ << "#else  /* ! ACE_LACKS_LONGLONG_T */ \n";
+	this->indent ();
+	this->strm_ << "ACE_static_cast (double, ACE_UINT64_DBLCAST_ADAPTER (hrtime / sf)); \n";
+	this->strm_ << "#endif /* ! ACE_LACKS_LONGLONG_T */ \n";
+	this->indent ();
+	this->strm_ << "seconds /= ACE_HR_SCALE_CONVERSION; \n";
+	this->decr_indent ();
+	this->indent ();
+	this->strm_ << "return seconds; \n";
+	this->strm_ << "}\n";
+	this->nl ();
+}
+
+void
+BenchmarkStream::generate_task_def (std::string& metrics)
 {
 	/// Step 1: Generate the ifdef macros
 	std::string header_name = "Benchmark_" + this->operation_name_;
@@ -703,7 +849,7 @@ BenchmarkStream::generate_task_def (__int64 warmup,
 	include_file = "ace/Sample_History.h";
 	this->gen_include_file (include_file);
 
-	if (this->task_priorities_.size ())
+	if (bgml_state.task_group_data.size ())
 	{
 		std::string workload_name = this->operation_name_ + "_Workload.h";
 		this->gen_include_file (workload_name);
@@ -714,6 +860,12 @@ BenchmarkStream::generate_task_def (__int64 warmup,
 	this->gen_constructor_defn (header_name);
 	this->gen_destructor_defn (header_name);
 
+	/// Check if the invocations are rate based
+	if (bgml_state.benchmark_rate != -1)
+	{
+		this->generate_rate_helper ();
+	}
+
 	/// Step 2: Generate the svc hook function to run it in a thread
 	std::vector<std::string> param_list;
 	this->gen_template_function_def ("svc",
@@ -722,16 +874,22 @@ BenchmarkStream::generate_task_def (__int64 warmup,
 									 param_list);
 
 	/// Step 3: Generate the warm_up iterations
-	this->gen_warmup_iterations (warmup);
+	this->gen_warmup_iterations (bgml_state.warmup_iterations, 
+								 bgml_state.benchmark_priority);
 
-	if (this->task_priorities_.size ())
+	if (bgml_state.task_group_data.size ())
 	{
-		std::string class_name = this->operation_name_ + "_Workload";
-		this->gen_background_load (class_name);
+		/// For each of the data generate the load
+		for (size_t i = 0; i < bgml_state.task_group_data.size (); i++)
+		{
+			std::string class_name = this->operation_name_ + "_Workload";
+			this->gen_background_load (class_name, 
+									   bgml_state.task_group_data[i].number_of_tasks);
+		}
 	}
 
 	/// Step 4: Generate the code for benchmarking
-	this->gen_bench_def (iterations);
+	this->gen_bench_def (bgml_state.benchmark_iterations);
 
 	//// Step 5: Generate the endif macro to close the cpp file
 	this->gen_endifc (header_name);

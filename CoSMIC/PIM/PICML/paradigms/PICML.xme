@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{034EAA97-FD8D-45D9-B355-723AAF6BECAF}" cdate="Sat Dec 11 20:36:53 2004" mdate="Sat Dec 11 20:36:53 2004" version="" metaguid="{FEFF5A03-BF64-4567-A10E-EBFCBDD5C475}" metaversion="" metaname="MetaGME">
+<project guid="{0FDC3D9B-138A-4200-9C9F-BBBBA089B98A}" cdate="Mon Jan 24 13:26:57 2005" mdate="Tue Jan 25 10:33:06 2005" version="" metaguid="{DF851054-A0B3-41EF-8FF2-8C42EE5EDD12}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment></comment>
 	<author></author>
@@ -4779,19 +4779,19 @@
 					<value>7</value>
 				</regnode>
 				<regnode name="ComponentLibraries" isopaque="yes">
-					<value>9</value>
+					<value>1</value>
 				</regnode>
 				<regnode name="ComponentMetrics" isopaque="yes">
-					<value>5</value>
+					<value>9</value>
 				</regnode>
 				<regnode name="DataAnalysis" isopaque="yes">
 					<value>8</value>
 				</regnode>
 				<regnode name="InterfaceDefinition" isopaque="yes">
-					<value>1</value>
+					<value>4</value>
 				</regnode>
 				<regnode name="LibraryArtifact" isopaque="yes">
-					<value>6</value>
+					<value>10</value>
 				</regnode>
 				<regnode name="MainAspect" isopaque="yes">
 					<value>1</value>
@@ -4800,19 +4800,19 @@
 					<value>5</value>
 				</regnode>
 				<regnode name="NodeMapping" isopaque="yes">
-					<value>4</value>
+					<value>6</value>
 				</regnode>
 				<regnode name="Package" isopaque="yes">
 					<value>2</value>
 				</regnode>
 				<regnode name="Packaging" isopaque="yes">
-					<value>2</value>
+					<value>7</value>
 				</regnode>
 				<regnode name="ResourceView" isopaque="yes">
 					<value>3</value>
 				</regnode>
 				<regnode name="RtecConfigAspect" isopaque="yes">
-					<value>10</value>
+					<value>2</value>
 				</regnode>
 				<regnode name="Target" isopaque="yes">
 					<value>3</value>
@@ -4821,12 +4821,12 @@
 					<value>1</value>
 				</regnode>
 				<regnode name="Workspace" isopaque="yes">
-					<value>7</value>
+					<value>5</value>
 				</regnode>
 			</regnode>
 			<regnode name="AspectSelNames" isopaque="yes">
 				<value></value>
-				<regnode name="ElementsTarget">
+				<regnode name="ElementsTarget" isopaque="yes">
 					<value></value>
 					<regnode name="myNameIs" isopaque="yes">
 						<value>Target</value>
@@ -4838,7 +4838,7 @@
 						<value>InterfaceDefinition</value>
 					</regnode>
 				</regnode>
-				<regnode name="PkgConfPackaging">
+				<regnode name="PkgConfPackaging" isopaque="yes">
 					<value></value>
 					<regnode name="myNameIs" isopaque="yes">
 						<value>Packaging</value>
@@ -20437,7 +20437,7 @@
 				</regnode>
 			</regnode>
 		</regnode>
-		<regnode name="MetaGME_Options">
+		<regnode name="MetaGME_Options" isopaque="yes">
 			<value></value>
 			<regnode name="GeneratedConstraints" isopaque="yes">
 				<value>skip_dialog</value>
@@ -31255,7 +31255,7 @@
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>617,468</value>
+							<value>610,496</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -32822,7 +32822,7 @@
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>260,62</value>
+							<value>253,27</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -36806,8 +36806,8 @@
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000022"/>
 				<connpoint role="src" target="id-0066-00000022"/>
+				<connpoint role="dst" target="id-0066-00000022"/>
 			</connection>
 			<connection id="id-0068-00000045" kind="HasAspect" role="HasAspect" relid="0x54">
 				<name>HasAspect</name>
@@ -65017,7 +65017,7 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>414,250</value>
+							<value>526,243</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -65984,8 +65984,8 @@ RTEventChannel</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="src" target="id-0066-00000134"/>
 				<connpoint role="dst" target="id-0066-00000134"/>
+				<connpoint role="src" target="id-0066-00000134"/>
 			</connection>
 			<connection id="id-0068-0000023a" kind="Containment" role="Containment" relid="0x9d">
 				<name>Containment</name>
@@ -66930,7 +66930,7 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>415,107</value>
+							<value>393,47</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -67005,7 +67005,7 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>435,118</value>
+							<value>540,47</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -67080,7 +67080,7 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>394,107</value>
+							<value>337,131</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -67155,7 +67155,7 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>387,247</value>
+							<value>337,265</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -67229,7 +67229,7 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>422,135</value>
+							<value>505,138</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -67307,7 +67307,7 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>631,453</value>
+							<value>610,278</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -67689,7 +67689,7 @@ RTEventChannel</value>
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-00000015" kind="ParadigmSheet" relid="0x2a" childrelidcntr="0x7f">
+		<model id="id-0065-00000015" kind="ParadigmSheet" relid="0x2a" childrelidcntr="0x83">
 			<name>ComponentBenchmark</name>
 			<atom id="id-0066-00000167" kind="Inheritance" role="Inheritance" relid="0x3">
 				<name>Inheritance</name>
@@ -67698,13 +67698,13 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>325,173</value>
+							<value>472,215</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>570,124</value>
+							<value>556,138</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -67823,7 +67823,7 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>435,118</value>
+							<value>638,13</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -67895,7 +67895,7 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>547,174</value>
+							<value>512,97</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -67967,7 +67967,7 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>617,139</value>
+							<value>610,104</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -68378,7 +68378,7 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>232,216</value>
+							<value>309,97</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -68453,7 +68453,7 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>344,216</value>
+							<value>288,188</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -68639,7 +68639,7 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>295,76</value>
+							<value>736,234</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -68714,7 +68714,7 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>527,51</value>
+							<value>904,293</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -68821,7 +68821,7 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>505,314</value>
+							<value>484,356</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -69203,7 +69203,7 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>758,156</value>
+							<value>750,489</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -69277,7 +69277,7 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>666,230</value>
+							<value>442,468</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -69349,7 +69349,7 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>688,44</value>
+							<value>897,48</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -69441,7 +69441,7 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>674,310</value>
+							<value>645,384</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -69474,7 +69474,7 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>807,317</value>
+							<value>806,384</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -70120,14 +70120,24 @@ RTEventChannel</value>
 				<connpoint role="dst" target="id-0066-00000176"/>
 				<connpoint role="src" target="id-0066-00000183"/>
 			</connection>
-			<connection id="id-0068-000002a4" kind="HasAttribute" role="HasAttribute" relid="0x7b">
+			<connection id="id-0068-000002fe" kind="HasAttribute" role="HasAttribute" relid="0x80">
 				<name>HasAttribute</name>
-				<connpoint role="dst" target="id-0066-00000182"/>
+				<connpoint role="dst" target="id-0066-00000177"/>
 				<connpoint role="src" target="id-0066-00000185"/>
 			</connection>
-			<connection id="id-0068-000002a5" kind="HasAttribute" role="HasAttribute" relid="0x7f">
+			<connection id="id-0068-000002ff" kind="HasAttribute" role="HasAttribute" relid="0x81">
 				<name>HasAttribute</name>
-				<connpoint role="dst" target="id-0066-00000182"/>
+				<connpoint role="dst" target="id-0066-00000177"/>
+				<connpoint role="src" target="id-0066-00000186"/>
+			</connection>
+			<connection id="id-0068-00000300" kind="HasAttribute" role="HasAttribute" relid="0x82">
+				<name>HasAttribute</name>
+				<connpoint role="dst" target="id-0066-00000181"/>
+				<connpoint role="src" target="id-0066-00000185"/>
+			</connection>
+			<connection id="id-0068-00000301" kind="HasAttribute" role="HasAttribute" relid="0x83">
+				<name>HasAttribute</name>
+				<connpoint role="dst" target="id-0066-00000181"/>
 				<connpoint role="src" target="id-0066-00000186"/>
 			</connection>
 			<set id="id-0069-0000000e" kind="Aspect" role="Aspect" relid="0x2c" members="id-0066-0000017d id-0066-0000017e id-0066-00000178 id-0066-00000174 id-0066-00000173 id-0066-00000170 id-0066-00000176 id-0066-00000171 id-0066-00000169 id-0066-00000181 id-0066-00000183 id-0066-00000182">

@@ -323,6 +323,10 @@ SOURCE=.\ComponentObj.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\Global_Data.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\GMECOM.H
 # End Source File
 # Begin Source File
