@@ -286,6 +286,10 @@ BenchmarkStream::gen_background_load (std::string& class_name)
 	{
 		this->indent ();
 		this->strm_ << class_name.c_str ();
+		
+		// Instantiate the workload template
+		this->strm_ << "<T>";
+
 		this->strm_ << " task";
 		this->strm_ << i << " (this->remote_ref_,";
 		bool arg_flag = 0;

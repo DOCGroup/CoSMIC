@@ -1,3 +1,9 @@
+Mon Nov 8 09:04:07 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+        * PIM/PICML/intrepreters/BGML_Intrepter/Benchmark_Stream.cpp:
+           
+          The generated code did not instantiate the template workload 
+          generated code. Fixed this bug
+
 Sun Nov 7 19:29:16 2004 Gan Deng <gan.deng@vanderbilt.edu>
 
         * PIM/PICML/interpreters/EQAL/BON2Component.cpp:
