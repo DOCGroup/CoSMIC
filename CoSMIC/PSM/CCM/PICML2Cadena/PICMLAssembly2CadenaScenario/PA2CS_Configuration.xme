@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Sun Jun 13 15:39:36 2004" mdate="Sun Jun 13 15:39:36 2004" metaguid="{3347C4F6-DEAD-BEEF-FEED-DAD000000000}" metaname="GReATConfig">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Mon Jun 14 03:26:14 2004" mdate="Mon Jun 14 03:26:14 2004" metaguid="{3347C4F6-DEAD-BEEF-FEED-DAD000000000}" metaname="GReATConfig">
 	<name>PA2CS_Configuration</name>
 	<comment></comment>
 	<author></author>
@@ -132,7 +132,7 @@
 					<value>PICML_FileType</value>
 				</attribute>
 				<attribute kind="FileName">
-					<value>Models\RobotAssembly.mga</value>
+					<value>..\..\CVSSandboxes\CoSMIC\PSM\CCM\PICML2Cadena\examples\TweakedRobotAssembly.mga</value>
 				</attribute>
 			</atom>
 			<atom id="id-0066-00000008" kind="InputFile" role="InputFile" relid="0x2">
@@ -144,7 +144,7 @@
 					<value>CadenaScenario_FileType</value>
 				</attribute>
 				<attribute kind="FileName">
-					<value>Models\exported.xml</value>
+					<value>..\..\CVSSandboxes\CoSMIC\PSM\CCM\PICML2Cadena\examples\exported.xml</value>
 				</attribute>
 			</atom>
 			<atom id="id-0066-00000009" kind="InputFile" role="InputFile" relid="0x3">
