@@ -137,6 +137,7 @@ IDLStream::gen_cidlc_home_decl (std::string &component_name)
 {
 	this->strm_ << "home executor ";
 	this->strm_ << component_name;
+	this->strm_ << "Home";
 	this->strm_ << "_Exec\n";
 	this->indent ();
 	this->strm_ << "{";
