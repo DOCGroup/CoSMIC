@@ -7,7 +7,8 @@ Fri Dec 03 13:24:56 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
         * OCML/interpreters/OCMLConfiguratorInterpreter/OCMLConfigurationInterpreterBON2Component.dsp: 
 
           Changed the output directory for the binaries and libraries from
-          PICML_ROOT to OCML_ROOT.
+          PICML_ROOT to COSMIC_ROOT.
+
 Thu Dec 02 15:10:20 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * OCML/interpreters/OCMLConfiguratorInterpreter/OCMLConfigurationInterpreterBON2Component.dsp: 
@@ -17,7 +18,7 @@ Thu Dec 02 15:10:20 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
         * OCML/interpreters/TAOServiceConfExportInterpreter/OCML_Svc_Conf_ExporterBON2Component.dsp: 
 
           Changed the output directory for the binaries and libraries from
-          PICML_ROOT to OCML_ROOT.
+          PICML_ROOT to COSMIC_ROOT.
         
 Thu Dec 02 14:45:22 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
@@ -26,7 +27,7 @@ Thu Dec 02 14:45:22 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
         * OCML/interpreters/TAOServiceConfExporter/test/SvcConfExporterTest.mpc: 
 
           Changed the output directory for the binaries and libraries from
-          PICML_ROOT to OCML_ROOT.
+          PICML_ROOT to COSMIC_ROOT.
         
 Mon Nov 15 18:39:52 2004  Gabriele Trombetti  <gtrombetti@nospam.invalid.domain>
 

@@ -18,7 +18,7 @@ Fri Dec 03 13:20:23 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
         * PIM/PICML/decorators/Decorator.dsp (InputPath): 
 
           Changed the output directory for the binaries and libraries from
-          PICML_ROOT to OCML_ROOT.
+          PICML_ROOT to COSMIC_ROOT.
 
 Thu Dec 02 15:05:21 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
@@ -33,14 +33,14 @@ Thu Dec 02 15:05:21 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
         * PIM/PICML/decorators/Decorator.dsp: 
 
           Changed the output directory for the binaries and libraries from
-          PICML_ROOT to OCML_ROOT.
+          PICML_ROOT to COSMIC_ROOT.
         
 Thu Dec 02 14:45:41 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc: 
 
           Changed the output directory for the binaries and libraries from
-          PICML_ROOT to OCML_ROOT.
+          PICML_ROOT to COSMIC_ROOT.
         
 Wed Nov 24 11:18:35 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
