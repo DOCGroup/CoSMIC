@@ -1,9 +1,14 @@
+Mon Nov 15 11:42:03 2004  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/examples/BasicSP.xme: New example developed during
+          the hands-on demo to LMCO.
+
 Tue Nov 9 18:44:04 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/MPC/UdmApp.cpp:
         * PIM/PICML/interpreters/cidl/UdmApp.cpp:
 
-          Fixed wrong error messages when interpretation does not start 
+          Fixed wrong error messages when interpretation does not start
           from the right aspect
 
 Mon Nov 8 22:39:21 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
@@ -11,7 +16,7 @@ Mon Nov 8 22:39:21 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.cpp:
           Changes to the intrepreter generated code to remove errors
 
-        * PIM/PICML/examples/RobotAssembly.xme: Previous commit did not 
+        * PIM/PICML/examples/RobotAssembly.xme: Previous commit did not
           get the changes!
 
 Mon Nov  8 20:02:25 2004  Krishnakumar B  <kitty@spam.invalid.domain>
