@@ -1,3 +1,12 @@
+Mon Dec 06 19:28:39 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * OCML/interpreters/OCMLConfiguratorLibrary/Options/OptionCategory.hpp:
+        * OCML/interpreters/OCMLConfiguratorLibrary/Options/OptionCategory.ipp:
+        * OCML/interpreters/OCMLConfiguratorLibrary/Options/OptionCategory.cpp:
+
+          The inline methods of OptionCategory is moved into
+          OptionCategory.ipp.
+
 Fri Dec 03 13:24:56 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * OCML/interpreters/TAOServiceConfExporter/SvcConfExporter.dsp: 

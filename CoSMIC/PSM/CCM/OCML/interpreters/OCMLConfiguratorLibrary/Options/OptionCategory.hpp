@@ -96,4 +96,6 @@ private:
   options_type options_;
 };
 
+#include "OptionCategory.ipp"
+
 #endif // OPTION_CATEGORY_HPP
