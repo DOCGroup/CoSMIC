@@ -54,7 +54,7 @@ public:
   // decrease the indentation level and by default actually indent the output
   // accordingly
 
-  void reset (void);
+  inline void reset (void);
   // reset indentation level to 0
 
   void indent (void);

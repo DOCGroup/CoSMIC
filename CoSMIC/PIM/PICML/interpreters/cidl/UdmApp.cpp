@@ -146,7 +146,8 @@ void CUdmApp::UdmMain(
 				Udm::Object root = *iter;
 				std::string kindName = (*iter).type().name();
 				PICML::Cidlc_Visitor visitor (outputPath);
-				// Generate MPC file only for the Component
+
+				// Generate cidl file only for the Component
 				if (kindName == "File")
 					SetUpVisitor (File, root, visitor);
 				else
