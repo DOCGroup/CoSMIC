@@ -1,3 +1,12 @@
+Fri Feb 4 16:17:05 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+        * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/Metric_Emitter.cpp:
+
+          Eliminated the generation of export files and export definitions
+          these are not needed as currently, all the generated code is 
+          templatized. This was an error which came out by help from Diana
+          Ukleja <diana@raytheon.com> and Kitty <kitty@dre.vanderbilt.edu>
+
 Thu Jan 27 21:18:11 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.h:
         * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.cpp:

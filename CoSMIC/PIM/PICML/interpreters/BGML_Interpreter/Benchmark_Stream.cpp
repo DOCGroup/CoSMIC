@@ -187,12 +187,14 @@ BenchmarkStream::generate_task_header (std::string& header_name,
 	this->gen_include_file (base_task);
 	this->gen_include_file (component_exec_header);
 
+	/* ------- NEED NOT GENERATE THE EXPORT INFORMATION FOR NOW
 	/// Generate the export files for benchmarking
 	if (output_path.size ())
 		this->create_export_macro (header_name, output_path);
 
 	std::string export_header_name =  "Benchmark_" + this->operation_name_ + "_export.h";
 	this->gen_include_file (export_header_name);
+	*/
 
 	/// Check for ACE_Barrier in the list
 	if (std::find (this->arg_list_.begin (), this->arg_list_.end (), "ACE_Barrier&") != 
@@ -209,10 +211,12 @@ BenchmarkStream::generate_task_header (std::string& header_name,
 	this->nl ();
 	this->strm_ << "class ";
 
+	/* ----- NEED NOT GENERATE THE EXPORT MACRO FOR NOW
 	// Generate the export macro for the workload generation
 	this->strm_ << "BENCHMARK_";
 	this->upcase (this->operation_name_.c_str ());
 	this->strm_ << "_Export ";
+	*/
 
 	this->strm_ << header_name.c_str ();
 	this->strm_ << " : public BGML_Task_Base";

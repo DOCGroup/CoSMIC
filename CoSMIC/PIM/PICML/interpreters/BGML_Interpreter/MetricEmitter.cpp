@@ -59,7 +59,7 @@ MetricEmitter<T>::create_build_file (std::vector<std::string>& file_list,
 	
 	// Create project
 	build_stream << "project (";
-	build_stream << project_name << ") : acelib, ciao_component_dnc {";
+	build_stream << project_name << ") : ciao_component_dnc {";
 	build_stream << "\n";
 	
 	// Create include definition and libs+
@@ -69,15 +69,22 @@ MetricEmitter<T>::create_build_file (std::vector<std::string>& file_list,
 				 << " \n";
 	build_stream << "  libs     += BGML_Base ";
 	build_stream << dependant_list.c_str ();
+
+	/// ---- DYNAMIC FLAGS NEED NOT BE GENERATED FOR NOW ---
+	/*
 	build_stream << "\n  dynamicflags = ";
 
 	std::transform (project_name.begin(), 
 				    project_name.end(), 
 					ostream_iterator <char> (build_stream), 
 					toupper);
+	// There has to a "_BUIL_DLL" convention added"
+	build_stream << "_BUILD_DLL";
 	build_stream << "\n";
+	*/
 	
 	// Add the Benchmarking Source files
+	build_stream << "\n";
 	build_stream << "  Source_Files { \n";
 	for (size_t i = 0; i < file_list.size (); i++)
 	{
@@ -87,6 +94,11 @@ MetricEmitter<T>::create_build_file (std::vector<std::string>& file_list,
 	}
 
 	build_stream << "  }\n";
+
+	// Add NULL IDL file definition
+	build_stream << "  IDL_Files { \n";
+	build_stream << "  }\n";
+
 	build_stream << "}\n";
 	
 	// Close the file
