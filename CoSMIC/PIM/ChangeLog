@@ -1,3 +1,34 @@
+Wed Jun  2 15:47:05 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * IDML/interpreters/IDLGenerator/BON2Component.cpp:
+        * IDML/interpreters/IDLGenerator/BON2Component.h:
+        * IDML/interpreters/IDLGenerator/BON2Component.sln:
+        * IDML/interpreters/IDLGenerator/CompIcon.ico:
+        * IDML/interpreters/IDLGenerator/Component.aps:
+        * IDML/interpreters/IDLGenerator/Component.rc:
+        * IDML/interpreters/IDLGenerator/ComponentConfig.h:
+        * IDML/interpreters/IDLGenerator/ComponentLib.h:
+        * IDML/interpreters/IDLGenerator/ComponentLib.tlb:
+        * IDML/interpreters/IDLGenerator/ComponentLib_i.c:
+        * IDML/interpreters/IDLGenerator/ComponentLib_p.c:
+        * IDML/interpreters/IDLGenerator/DependencyVisitor.cpp:
+        * IDML/interpreters/IDLGenerator/DependencyVisitor.h:
+        * IDML/interpreters/IDLGenerator/GMESources.txt:
+        * IDML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
+        * IDML/interpreters/IDLGenerator/IDLEmitVisitor.h:
+        * IDML/interpreters/IDLGenerator/IDLGeneratorBON2Component.vcproj:
+        * IDML/interpreters/IDLGenerator/IDLStream.cpp:
+        * IDML/interpreters/IDLGenerator/IDLStream.h:
+        * IDML/interpreters/IDLGenerator/IDMLBonExtension.cpp:
+        * IDML/interpreters/IDLGenerator/IDMLBonExtension.h:
+        * IDML/interpreters/IDLGenerator/Resource.h:
+        * IDML/interpreters/IDLGenerator/StdAfx.cpp:
+        * IDML/interpreters/IDLGenerator/StdAfx.h:
+        * IDML/interpreters/IDLGenerator/component.def:
+        * IDML/interpreters/IDLGenerator/dlldata.c:
+
+          New interpreter, which generates IDL from IDML models.
+
 Wed Jun  2 12:03:02 2004  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * PICML/interpreters/PICML/PICML.mpc:
