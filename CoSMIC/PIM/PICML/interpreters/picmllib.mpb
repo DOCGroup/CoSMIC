@@ -1,5 +1,5 @@
 // MPC file to generate library
-project {
+project: debug_libs {
    libout = $(PICML_ROOT)/lib
    dllout = $(PICML_ROOT)/bin
    includes += $(GME_ROOT)/SDK/BON \

@@ -186,6 +186,8 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
       </attrdef>
       <attrdef name="componentPort" metaref = "2751" valuetype = "string" defvalue = "">
       </attrdef>
+      <attrdef name="configuration" metaref = "4386" valuetype = "string" defvalue = "">
+      </attrdef>
       <attrdef name="criticality" metaref = "4287" valuetype = "enum" defvalue = "MEDIUM_CRITICALITY">
          <enumitem dispname = "VERY_LOW_CRITICALITY" value = "VERY_LOW_CRITICALITY"></enumitem>
          <enumitem dispname = "LOW_CRITICALITY" value = "LOW_CRITICALITY"></enumitem>
@@ -331,7 +333,7 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
       </atom>
-      <atom name = "ImplementationArtifact" metaref = "3534"  attributes = "label UUID location">
+      <atom name = "ImplementationArtifact" metaref = "3534"  attributes = "configuration label UUID location">
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="ImplementationArtifact.bmp"></regnode>
       </atom>
