@@ -384,7 +384,7 @@ what is shown in Figure~\ref{task-complete}. If there are any, please
 see if they pertain to the BGML paradigm and revisit steps 1-4 to
 ensure you have followed all the steps. If there are still violations,
 please export the GME model via File$\rightarrow$Export XML and send the
-resulting file to arvindk@dre.vanderbilt.edu If there are no
+resulting file to me. If there are no
 violations you are ready to interpret the file and look at the
 generated code. This step is discussed in the next section. Similar
 steps can be followed for events.
@@ -413,7 +413,7 @@ platforms and compilers. ACE is freely available and can be downloaded
 from \url{http://deuce.doc.wustl.edu/Download.html}. This also means
 that currently BGML generates C++ code. We do plan to generate java
 benchmarking code as well. If you are interested or need this
-functionality please email me at arvindk@dre.vanderbilt.edu. Next
+functionality please email me. Next 
 a description of the generated code is provided.
 
 \subsection* {Benchmark Header \& Source Files}
@@ -646,6 +646,7 @@ following lines of code should be added to the implementation:
 \footnotesize
 
 \begin{verbatim}
+// Obtain the remote reference
 RobotAssembly::WorkOrderResponses_var rev = this->context_->
         get_connection_HumanResponse (ACE_ENV_SINGLE_ARG_PARAMETER);
       ACE_CHECK;
@@ -653,11 +654,16 @@ RobotAssembly::WorkOrderResponses_var rev = this->context_->
 if (CORBA::is_nil (rev.in ()))
   ACE_THROW (CORBA::BAD_INV_ORDER ());
 
+// Instantiate the benchmark class
 Benchmark_AcceptWorkOrderResponse<RobotAssembly::WorkOrderResponses>
 benchmark (rev.in (), myOrder, myStatus);
 
+// Start the benchmark
 if (benchmark.activate (THR_NEW_LWP|THR_JOINABLE, 1, 1) == -1)
   ACE_ERROR ((LM_ERROR, "Error activating workload task0 \n"));
+
+// Wait for the task to finish
+benchmark.thr_mgr ()->wait ();
 
 \end{verbatim}
 }
@@ -671,7 +677,7 @@ After adding this code, the user must link the application with
 libBenchmark\_AcceptWorkOrderResponse.so library.
 
 If there are any errors in the generated code, {\em i.e.}, runtime or
-compilation errors please report them to arvindk@dre.vanderbilt.edu
+compilation errors please report them to me. 
 
 \section* {Planned Feature Additions}
 The following are some planned future additions:
@@ -699,7 +705,6 @@ to quickly evaluate the performance of systems for a given configuration.
 The configuration information generated from the OCML tool (part of the
 CoSMIC tool chain). Similarly the tool can also be used to evaluate the
 deployment plan, {\em i.e.}, how components map on to target nodes. Any
-feedback, suggestion or criticism please direct to
-Arvind S. Krishna arvindk@dre.vanderbilt.edu.
+feedback, suggestion or criticism please email me directly.
 
 \end{document}
