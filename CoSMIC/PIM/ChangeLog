@@ -1,3 +1,16 @@
+Tue Jul 13 17:14:51 2004  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PICML/interpreters/packaging/PackageVisitor.cpp: Fixed the bug
+          with generating "ConfigProperty" instead of "configProperty".
+
+        * PICML/paradigms/PICML.xme:
+        * PICML/paradigms/PICML.xmp: Updated to use "Packaging" as the
+          aspect name instead of "Package".
+
+        * PICML/examples/RobotAssembly.xme: Changes to reflect the above
+          change.
+
+
 Thu Jun 24 10:57:57 2004  Jaiganesh B  <jai@dre.vanderbilt.edu>
 
         * PICML/interpreters/domain/DomainVisitor.cpp:

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Thu Jun 24 09:50:50 2004" mdate="Thu Jun 24 09:50:55 2004" metaguid="{E68E5F89-DEAD-BEEF-FEED-DAD000000001}" metaname="PICML">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Tue Jul 13 13:30:39 2004" mdate="Tue Jul 13 17:07:40 2004" metaguid="{BC0B45A4-DEAD-BEEF-FEED-DAD000000001}" metaname="PICML">
 	<name>RobotAssembly</name>
 	<comment></comment>
 	<author></author>
@@ -2842,7 +2842,7 @@
 								<regnode name="InterfaceDefinition" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>94,157</value>
+										<value>339,157</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -2869,7 +2869,7 @@
 								<regnode name="InterfaceDefinition" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>302,148</value>
+										<value>87,157</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -2950,7 +2950,7 @@
 								<regnode name="InterfaceDefinition" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>295,22</value>
+										<value>59,143</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -3010,7 +3010,7 @@
 								<regnode name="InterfaceDefinition" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>295,197</value>
+										<value>283,17</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -3040,7 +3040,7 @@
 								<regnode name="InterfaceDefinition" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>295,274</value>
+										<value>283,416</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -3070,7 +3070,7 @@
 								<regnode name="InterfaceDefinition" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>66,381</value>
+										<value>68,327</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -3097,7 +3097,7 @@
 								<regnode name="InterfaceDefinition" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>66,66</value>
+										<value>283,248</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -3124,7 +3124,7 @@
 								<regnode name="InterfaceDefinition" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>59,171</value>
+										<value>59,45</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -3151,7 +3151,7 @@
 								<regnode name="InterfaceDefinition" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>59,283</value>
+										<value>52,423</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -3232,7 +3232,7 @@
 								<regnode name="InterfaceDefinition" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>290,36</value>
+										<value>283,213</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -3262,7 +3262,7 @@
 								<regnode name="InterfaceDefinition" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>94,220</value>
+										<value>283,87</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -3385,7 +3385,7 @@
 								<regnode name="InterfaceDefinition" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>344,99</value>
+										<value>87,311</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -3466,7 +3466,7 @@
 								<regnode name="InterfaceDefinition" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>94,80</value>
+										<value>318,87</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -3493,7 +3493,7 @@
 								<regnode name="InterfaceDefinition" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>295,85</value>
+										<value>73,157</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -3523,7 +3523,7 @@
 								<regnode name="InterfaceDefinition" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>290,192</value>
+										<value>82,292</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -3673,6 +3673,12 @@
 								<value>151,186</value>
 							</regnode>
 						</regnode>
+						<regnode name="Packaging">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>221,158</value>
+							</regnode>
+						</regnode>
 					</regnode>
 					<attribute kind="UUID" status="meta">
 						<value></value>
@@ -3688,6 +3694,12 @@
 								<value></value>
 								<regnode name="Position" isopaque="yes">
 									<value>49,252</value>
+								</regnode>
+							</regnode>
+							<regnode name="Packaging">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>105,252</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -3783,6 +3795,12 @@
 									<value>595,434</value>
 								</regnode>
 							</regnode>
+							<regnode name="Packaging">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>364,399</value>
+								</regnode>
+							</regnode>
 						</regnode>
 						<attribute kind="SpecifyIdTag" status="meta">
 							<value></value>
@@ -3862,6 +3880,12 @@
 								<value></value>
 								<regnode name="Position" isopaque="yes">
 									<value>280,225</value>
+								</regnode>
+							</regnode>
+							<regnode name="Packaging">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>364,252</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -4044,6 +4068,12 @@
 									<value>714,231</value>
 								</regnode>
 							</regnode>
+							<regnode name="Packaging">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>364,77</value>
+								</regnode>
+							</regnode>
 						</regnode>
 						<attribute kind="SpecifyIdTag" status="meta">
 							<value></value>
@@ -4123,6 +4153,12 @@
 								<value></value>
 								<regnode name="Position" isopaque="yes">
 									<value>525,35</value>
+								</regnode>
+							</regnode>
+							<regnode name="Packaging">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>623,259</value>
 								</regnode>
 							</regnode>
 						</regnode>

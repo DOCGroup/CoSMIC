@@ -1720,15 +1720,15 @@ or self.requiredUUID <> ""]]>
          <role name = "ImplementationArtifactReference" metaref = "3191" kind = "ImplementationArtifactReference"></role>
          <role name = "Property" metaref = "2817" kind = "Property"></role>
          <role name = "Requirement" metaref = "2818" kind = "Requirement"></role>
-         <aspect name = "Package" metaref = "2819" >
-            <part metaref = "3571" role = "ArtifactDependsOn" primary = "yes" linked = "no"></part>
-            <part metaref = "3572" role = "ArtifactDeployRequirement" primary = "yes" linked = "no"></part>
-            <part metaref = "3573" role = "ArtifactExecParameter" primary = "yes" linked = "no"></part>
-            <part metaref = "3574" role = "ArtifactInfoProperty" primary = "yes" linked = "no"></part>
-            <part metaref = "3196" role = "ImplementationArtifact" primary = "yes" linked = "no"></part>
-            <part metaref = "3197" role = "ImplementationArtifactReference" primary = "yes" linked = "no"></part>
-            <part metaref = "2826" role = "Property" primary = "yes" linked = "no"></part>
-            <part metaref = "2827" role = "Requirement" primary = "yes" linked = "no"></part>
+         <aspect name = "Packaging" metaref = "3849" >
+            <part metaref = "3850" role = "ArtifactDependsOn" primary = "yes" linked = "no"></part>
+            <part metaref = "3851" role = "ArtifactDeployRequirement" primary = "yes" linked = "no"></part>
+            <part metaref = "3852" role = "ArtifactExecParameter" primary = "yes" linked = "no"></part>
+            <part metaref = "3853" role = "ArtifactInfoProperty" primary = "yes" linked = "no"></part>
+            <part metaref = "3854" role = "ImplementationArtifact" primary = "yes" linked = "no"></part>
+            <part metaref = "3855" role = "ImplementationArtifactReference" primary = "yes" linked = "no"></part>
+            <part metaref = "3856" role = "Property" primary = "yes" linked = "no"></part>
+            <part metaref = "3857" role = "Requirement" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "Attribute" metaref = "1405" attributes = "VersionTag SpecifyIdTag" >
@@ -1784,8 +1784,8 @@ or self.requiredUUID <> ""]]>
             <dispname>Capability elements cannot have a SatisfierProperty with kind Capacity or Quantity</dispname>
          </constraint>
          <role name = "SatisfierProperty" metaref = "2831" kind = "SatisfierProperty"></role>
-         <aspect name = "Package" metaref = "2832" attributes = "resourceType" >
-            <part metaref = "2833" role = "SatisfierProperty" primary = "yes" linked = "no"></part>
+         <aspect name = "Packaging" metaref = "3858" attributes = "resourceType" >
+            <part metaref = "3859" role = "SatisfierProperty" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "Component" metaref = "1822" attributes = "VersionTag SpecifyIdTag label UUID" >
@@ -1888,20 +1888,20 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
          <role name = "emit" metaref = "3206" kind = "emit"></role>
          <role name = "invoke" metaref = "3207" kind = "invoke"></role>
          <role name = "publish" metaref = "3587" kind = "publish"></role>
-         <aspect name = "Package" metaref = "2848" attributes = "label UUID" >
-            <part metaref = "3588" role = "AssemblyConfigProperty" primary = "yes" linked = "no"></part>
-            <part metaref = "3589" role = "AssemblyDeployRequirement" primary = "yes" linked = "no"></part>
-            <part metaref = "3590" role = "AssemblyselectRequirement" primary = "yes" linked = "no"></part>
-            <part metaref = "3836" role = "Component" primary = "yes" linked = "no"></part>
-            <part metaref = "3212" role = "ComponentPackage" primary = "yes" linked = "no"></part>
-            <part metaref = "3213" role = "ComponentPackageReference" primary = "yes" linked = "no"></part>
-            <part metaref = "2857" role = "Property" primary = "yes" linked = "no"></part>
-            <part metaref = "3214" role = "PublishConnector" primary = "yes" linked = "no"></part>
-            <part metaref = "2859" role = "Requirement" primary = "yes" linked = "no"></part>
-            <part metaref = "3215" role = "deliverTo" primary = "yes" linked = "no"></part>
-            <part metaref = "3216" role = "emit" primary = "yes" linked = "no"></part>
-            <part metaref = "3217" role = "invoke" primary = "yes" linked = "no"></part>
-            <part metaref = "3218" role = "publish" primary = "yes" linked = "no"></part>
+         <aspect name = "Packaging" metaref = "3860" attributes = "label UUID" >
+            <part metaref = "3861" role = "AssemblyConfigProperty" primary = "yes" linked = "no"></part>
+            <part metaref = "3862" role = "AssemblyDeployRequirement" primary = "yes" linked = "no"></part>
+            <part metaref = "3863" role = "AssemblyselectRequirement" primary = "yes" linked = "no"></part>
+            <part metaref = "3864" role = "Component" primary = "yes" linked = "no"></part>
+            <part metaref = "3865" role = "ComponentPackage" primary = "yes" linked = "no"></part>
+            <part metaref = "3866" role = "ComponentPackageReference" primary = "yes" linked = "no"></part>
+            <part metaref = "3867" role = "Property" primary = "yes" linked = "no"></part>
+            <part metaref = "3868" role = "PublishConnector" primary = "yes" linked = "no"></part>
+            <part metaref = "3869" role = "Requirement" primary = "yes" linked = "no"></part>
+            <part metaref = "3870" role = "deliverTo" primary = "yes" linked = "no"></part>
+            <part metaref = "3871" role = "emit" primary = "yes" linked = "no"></part>
+            <part metaref = "3872" role = "invoke" primary = "yes" linked = "no"></part>
+            <part metaref = "3873" role = "publish" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "ComponentContainer" metaref = "2862" >
@@ -1917,13 +1917,13 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
          <role name = "ComponentPropertyDescription" metaref = "2866" kind = "ComponentPropertyDescription"></role>
          <role name = "ComponentType" metaref = "2867" kind = "ComponentType"></role>
          <role name = "Property" metaref = "2868" kind = "Property"></role>
-         <aspect name = "Package" metaref = "2869" >
-            <part metaref = "2870" role = "ComponentConfigProperty" primary = "yes" linked = "no"></part>
-            <part metaref = "2871" role = "ComponentInfoProperty" primary = "yes" linked = "no"></part>
-            <part metaref = "2872" role = "ComponentProperty" primary = "yes" linked = "no"></part>
-            <part metaref = "2873" role = "ComponentPropertyDescription" primary = "yes" linked = "no"></part>
-            <part metaref = "2874" role = "ComponentType" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "2875" role = "Property" primary = "yes" linked = "no"></part>
+         <aspect name = "Packaging" metaref = "3874" >
+            <part metaref = "3875" role = "ComponentConfigProperty" primary = "yes" linked = "no"></part>
+            <part metaref = "3876" role = "ComponentInfoProperty" primary = "yes" linked = "no"></part>
+            <part metaref = "3877" role = "ComponentProperty" primary = "yes" linked = "no"></part>
+            <part metaref = "3878" role = "ComponentPropertyDescription" primary = "yes" linked = "no"></part>
+            <part metaref = "3879" role = "ComponentType" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3880" role = "Property" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "ComponentFactory" metaref = "3837" attributes = "VersionTag SpecifyIdTag" >
@@ -2040,23 +2040,23 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
          <role name = "MonolithicImplementation" metaref = "3598" kind = "MonolithicImplementation"></role>
          <role name = "MonolithprimaryArtifact" metaref = "3599" kind = "MonolithprimaryArtifact"></role>
          <role name = "Property" metaref = "2893" kind = "Property"></role>
-         <aspect name = "Package" metaref = "2894" >
-            <part metaref = "2895" role = "Capability" primary = "yes" linked = "no"></part>
-            <part metaref = "3238" role = "ComponentAssembly" primary = "yes" linked = "no"></part>
-            <part metaref = "2897" role = "ComponentType" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3600" role = "ConfigProperty" primary = "yes" linked = "no"></part>
-            <part metaref = "3794" role = "ImplementationArtifactReference" primary = "yes" linked = "no"></part>
-            <part metaref = "3240" role = "ImplementationCapability" primary = "yes" linked = "no"></part>
-            <part metaref = "2900" role = "ImplementationDependency" primary = "yes" linked = "no"></part>
-            <part metaref = "3601" role = "ImplementationDependsOn" primary = "yes" linked = "no"></part>
-            <part metaref = "2902" role = "ImplementationRequirement" primary = "yes" linked = "no"></part>
-            <part metaref = "3602" role = "Implements" primary = "yes" linked = "no"></part>
-            <part metaref = "3243" role = "InfoProperty" primary = "yes" linked = "no"></part>
-            <part metaref = "3244" role = "MonolithDeployRequirement" primary = "yes" linked = "no"></part>
-            <part metaref = "3245" role = "MonolithExecParameter" primary = "yes" linked = "no"></part>
-            <part metaref = "3246" role = "MonolithicImplementation" primary = "yes" linked = "no"></part>
-            <part metaref = "3247" role = "MonolithprimaryArtifact" primary = "yes" linked = "no"></part>
-            <part metaref = "2909" role = "Property" primary = "yes" linked = "no"></part>
+         <aspect name = "Packaging" metaref = "3881" >
+            <part metaref = "3882" role = "Capability" primary = "yes" linked = "no"></part>
+            <part metaref = "3883" role = "ComponentAssembly" primary = "yes" linked = "no"></part>
+            <part metaref = "3884" role = "ComponentType" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3885" role = "ConfigProperty" primary = "yes" linked = "no"></part>
+            <part metaref = "3886" role = "ImplementationArtifactReference" primary = "yes" linked = "no"></part>
+            <part metaref = "3887" role = "ImplementationCapability" primary = "yes" linked = "no"></part>
+            <part metaref = "3888" role = "ImplementationDependency" primary = "yes" linked = "no"></part>
+            <part metaref = "3889" role = "ImplementationDependsOn" primary = "yes" linked = "no"></part>
+            <part metaref = "3890" role = "ImplementationRequirement" primary = "yes" linked = "no"></part>
+            <part metaref = "3891" role = "Implements" primary = "yes" linked = "no"></part>
+            <part metaref = "3892" role = "InfoProperty" primary = "yes" linked = "no"></part>
+            <part metaref = "3893" role = "MonolithDeployRequirement" primary = "yes" linked = "no"></part>
+            <part metaref = "3894" role = "MonolithExecParameter" primary = "yes" linked = "no"></part>
+            <part metaref = "3895" role = "MonolithicImplementation" primary = "yes" linked = "no"></part>
+            <part metaref = "3896" role = "MonolithprimaryArtifact" primary = "yes" linked = "no"></part>
+            <part metaref = "3897" role = "Property" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "ComponentPropertyDescription" metaref = "2910" >
@@ -2068,8 +2068,8 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
             <dispname>Multiplicity of parts, which are contained by ComponentPropertyDescription, has to match 1.</dispname>
          </constraint>
          <role name = "DataType" metaref = "3770" kind = "DataType"></role>
-         <aspect name = "Package" metaref = "2912" >
-            <part metaref = "3771" role = "DataType" primary = "yes" linked = "no"></part>
+         <aspect name = "Packaging" metaref = "3898" >
+            <part metaref = "3899" role = "DataType" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "DeploymentPlan" metaref = "3603" attributes = "label" >
@@ -2248,10 +2248,10 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "ExceptionRef" metaref = "2324" kind = "ExceptionRef"></role>
-         <role name = "InParameter" metaref = "3810" kind = "InParameter"></role>
+         <role name = "InParameter" metaref = "3900" kind = "InParameter"></role>
          <aspect name = "InterfaceDefinition" metaref = "3346" attributes = "VersionTag SpecifyIdTag" >
             <part metaref = "2471" role = "ExceptionRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3811" role = "InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3901" role = "InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
          </aspect>
       </model>
       <model name = "File" metaref = "2326" attributes = "PrefixTag" >
@@ -2301,8 +2301,8 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="ImplementationRequirement.bmp"></regnode>
          <role name = "Property" metaref = "3625" kind = "Property"></role>
-         <aspect name = "Package" metaref = "2959" attributes = "resourceType resourcePort componentPort ResourceUsageKind" >
-            <part metaref = "3626" role = "Property" primary = "yes" linked = "no"></part>
+         <aspect name = "Packaging" metaref = "3902" attributes = "resourceType resourcePort componentPort ResourceUsageKind" >
+            <part metaref = "3903" role = "Property" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "Interconnect" metaref = "3702" attributes = "label" >
@@ -2341,10 +2341,10 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "ExceptionRef" metaref = "2339" kind = "ExceptionRef"></role>
-         <role name = "InParameter" metaref = "3812" kind = "InParameter"></role>
+         <role name = "InParameter" metaref = "3904" kind = "InParameter"></role>
          <aspect name = "InterfaceDefinition" metaref = "3360" attributes = "VersionTag SpecifyIdTag" >
             <part metaref = "2524" role = "ExceptionRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3813" role = "InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3905" role = "InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
          </aspect>
       </model>
       <model name = "Node" metaref = "3705" attributes = "label" >
@@ -2416,7 +2416,7 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
          <role name = "OnewayOperation" metaref = "3026" kind = "OnewayOperation"></role>
          <role name = "ReadonlyAttribute" metaref = "3027" kind = "ReadonlyAttribute"></role>
          <role name = "SwitchedAggregate" metaref = "3028" kind = "SwitchedAggregate"></role>
-         <role name = "TwowayOperation" metaref = "3814" kind = "TwowayOperation"></role>
+         <role name = "TwowayOperation" metaref = "3906" kind = "TwowayOperation"></role>
          <aspect name = "InterfaceDefinition" metaref = "3369" attributes = "VersionTag PrefixTag SpecifyIdTag local abstract" >
             <part metaref = "3031" role = "Aggregate" primary = "yes" linked = "no"></part>
             <part metaref = "3188" role = "Alias" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
@@ -2443,9 +2443,9 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
             <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
-         <role name = "InParameter" metaref = "3815" kind = "InParameter"></role>
+         <role name = "InParameter" metaref = "3907" kind = "InParameter"></role>
          <aspect name = "InterfaceDefinition" metaref = "3381" attributes = "VersionTag SpecifyIdTag" >
-            <part metaref = "3816" role = "InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3908" role = "InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
          </aspect>
       </model>
       <model name = "Package" metaref = "2341" attributes = "VersionTag PrefixTag SpecifyIdTag" >
@@ -2546,17 +2546,17 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
          <role name = "PackageConfiguration" metaref = "3291" kind = "PackageConfiguration"></role>
          <role name = "Property" metaref = "3646" kind = "Property"></role>
          <role name = "Requirement" metaref = "3647" kind = "Requirement"></role>
-         <aspect name = "Package" metaref = "2984" >
-            <part metaref = "3256" role = "ComponentPackage" primary = "yes" linked = "no"></part>
-            <part metaref = "3257" role = "ComponentPackageReference" primary = "yes" linked = "no"></part>
-            <part metaref = "3258" role = "PackageConfBasePackage" primary = "yes" linked = "no"></part>
-            <part metaref = "3259" role = "PackageConfConfigProperty" primary = "yes" linked = "no"></part>
-            <part metaref = "3260" role = "PackageConfReference" primary = "yes" linked = "no"></part>
-            <part metaref = "3261" role = "PackageConfSelectRequirement" primary = "yes" linked = "no"></part>
-            <part metaref = "3292" role = "PackageConfSpecializedConfig" primary = "yes" linked = "no"></part>
-            <part metaref = "3293" role = "PackageConfiguration" primary = "yes" linked = "no"></part>
-            <part metaref = "2992" role = "Property" primary = "yes" linked = "no"></part>
-            <part metaref = "2993" role = "Requirement" primary = "yes" linked = "no"></part>
+         <aspect name = "Packaging" metaref = "3909" >
+            <part metaref = "3910" role = "ComponentPackage" primary = "yes" linked = "no"></part>
+            <part metaref = "3911" role = "ComponentPackageReference" primary = "yes" linked = "no"></part>
+            <part metaref = "3912" role = "PackageConfBasePackage" primary = "yes" linked = "no"></part>
+            <part metaref = "3913" role = "PackageConfConfigProperty" primary = "yes" linked = "no"></part>
+            <part metaref = "3914" role = "PackageConfReference" primary = "yes" linked = "no"></part>
+            <part metaref = "3915" role = "PackageConfSelectRequirement" primary = "yes" linked = "no"></part>
+            <part metaref = "3916" role = "PackageConfSpecializedConfig" primary = "yes" linked = "no"></part>
+            <part metaref = "3917" role = "PackageConfiguration" primary = "yes" linked = "no"></part>
+            <part metaref = "3918" role = "Property" primary = "yes" linked = "no"></part>
+            <part metaref = "3919" role = "Requirement" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "PackageContainer" metaref = "3262" >
@@ -2579,15 +2579,15 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
          <role name = "PackageInfoProperty" metaref = "3267" kind = "PackageInfoProperty"></role>
          <role name = "PackageInterface" metaref = "3268" kind = "PackageInterface"></role>
          <role name = "Property" metaref = "3002" kind = "Property"></role>
-         <aspect name = "Package" metaref = "3395" >
-            <part metaref = "3269" role = "ComponentImplementationReference" primary = "yes" kindaspect = "Package" linked = "no"></part>
-            <part metaref = "3270" role = "ComponentPackage" primary = "yes" linked = "no"></part>
-            <part metaref = "3006" role = "ComponentType" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3271" role = "Implementation" primary = "yes" linked = "no"></part>
-            <part metaref = "3272" role = "PackageConfigProperty" primary = "yes" linked = "no"></part>
-            <part metaref = "3273" role = "PackageInfoProperty" primary = "yes" linked = "no"></part>
-            <part metaref = "3274" role = "PackageInterface" primary = "yes" linked = "no"></part>
-            <part metaref = "3649" role = "Property" primary = "yes" linked = "no"></part>
+         <aspect name = "Packaging" metaref = "3920" >
+            <part metaref = "3921" role = "ComponentImplementationReference" primary = "yes" kindaspect = "Packaging" linked = "no"></part>
+            <part metaref = "3922" role = "ComponentPackage" primary = "yes" linked = "no"></part>
+            <part metaref = "3923" role = "ComponentType" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3924" role = "Implementation" primary = "yes" linked = "no"></part>
+            <part metaref = "3925" role = "PackageConfigProperty" primary = "yes" linked = "no"></part>
+            <part metaref = "3926" role = "PackageInfoProperty" primary = "yes" linked = "no"></part>
+            <part metaref = "3927" role = "PackageInterface" primary = "yes" linked = "no"></part>
+            <part metaref = "3928" role = "Property" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "Property" metaref = "3650" attributes = "DataValue" >
@@ -2599,8 +2599,8 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
             <dispname>Multiplicity of parts, which are contained by Property, has to match 1.</dispname>
          </constraint>
          <role name = "DataType" metaref = "3772" kind = "DataType"></role>
-         <aspect name = "Package" metaref = "3396" attributes = "DataValue" >
-            <part metaref = "3773" role = "DataType" primary = "yes" linked = "no"></part>
+         <aspect name = "Packaging" metaref = "3929" attributes = "DataValue" >
+            <part metaref = "3930" role = "DataType" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "ReadonlyAttribute" metaref = "1626" attributes = "VersionTag SpecifyIdTag" >
@@ -2626,8 +2626,8 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="Requirement.bmp"></regnode>
          <role name = "Property" metaref = "3020" kind = "Property"></role>
-         <aspect name = "Package" metaref = "3400" attributes = "resourceType" >
-            <part metaref = "3022" role = "Property" primary = "yes" linked = "no"></part>
+         <aspect name = "Packaging" metaref = "3931" attributes = "resourceType" >
+            <part metaref = "3932" role = "Property" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "Resource" metaref = "3708" attributes = "resourceType" >
@@ -2647,8 +2647,8 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
             <dispname>Multiplicity of parts, which are contained by SatisfierProperty, has to match 1.</dispname>
          </constraint>
          <role name = "DataType" metaref = "3774" kind = "DataType"></role>
-         <aspect name = "Package" metaref = "3401" attributes = "DataValue SatisfierPropertyKind" >
-            <part metaref = "3775" role = "DataType" primary = "yes" linked = "no"></part>
+         <aspect name = "Packaging" metaref = "3933" attributes = "DataValue SatisfierPropertyKind" >
+            <part metaref = "3934" role = "DataType" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "SharedResource" metaref = "3709" attributes = "resourceType" >
@@ -2746,10 +2746,10 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
          <role name = "PackageConfigurationReference" metaref = "3030" kind = "PackageConfigurationReference"></role>
          <role name = "TopLevelPackage" metaref = "3664" kind = "TopLevelPackage"></role>
          <role name = "package" metaref = "3275" kind = "package"></role>
-         <aspect name = "Package" metaref = "3407" >
-            <part metaref = "3034" role = "PackageConfigurationReference" primary = "yes" linked = "no"></part>
-            <part metaref = "3665" role = "TopLevelPackage" primary = "yes" linked = "no"></part>
-            <part metaref = "3276" role = "package" primary = "yes" linked = "no"></part>
+         <aspect name = "Packaging" metaref = "3935" >
+            <part metaref = "3936" role = "PackageConfigurationReference" primary = "yes" linked = "no"></part>
+            <part metaref = "3937" role = "TopLevelPackage" primary = "yes" linked = "no"></part>
+            <part metaref = "3938" role = "package" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
       <model name = "TwowayOperation" metaref = "2040" attributes = "VersionTag SpecifyIdTag" >
@@ -2775,15 +2775,15 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "ExceptionRef" metaref = "2348" kind = "ExceptionRef"></role>
-         <role name = "InParameter" metaref = "3817" kind = "InParameter"></role>
-         <role name = "InoutParameter" metaref = "3818" kind = "InoutParameter"></role>
-         <role name = "OutParameter" metaref = "3819" kind = "OutParameter"></role>
-         <role name = "ReturnType" metaref = "3820" kind = "ReturnType"></role>
+         <role name = "InParameter" metaref = "3939" kind = "InParameter"></role>
+         <role name = "InoutParameter" metaref = "3940" kind = "InoutParameter"></role>
+         <role name = "OutParameter" metaref = "3941" kind = "OutParameter"></role>
+         <role name = "ReturnType" metaref = "3942" kind = "ReturnType"></role>
          <aspect name = "InterfaceDefinition" metaref = "3412" attributes = "VersionTag SpecifyIdTag" >
             <part metaref = "2588" role = "ExceptionRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3806" role = "InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3807" role = "InoutParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3808" role = "OutParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3943" role = "InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3944" role = "InoutParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3945" role = "OutParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3219" role = "ReturnType" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
          </aspect>
       </model>

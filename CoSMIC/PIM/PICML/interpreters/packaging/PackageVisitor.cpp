@@ -915,7 +915,7 @@ namespace PICML
   void PackageVisitor::Visit_ConfigProperty(const ConfigProperty& cp)
   {
     this->push();
-    DOMElement* ele = this->doc_->createElement (XStr ("ConfigProperty"));
+    DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
     this->curr_->appendChild (ele);
     this->curr_ = ele;
     Property ref = cp.dstConfigProperty_end();
