@@ -1,3 +1,16 @@
+Wed Oct 27 16:51:14 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * OCML/interpreters/OCML_Interpreter/OCML_BON_Extension.h:
+        * OCML/interpreters/OCML_Interpreter/OCML_BON_Extension.cpp:
+        * OCML/interpreters/OCML_Interpreter/OCMLBonExtension.h:
+        * OCML/interpreters/OCML_Interpreter/OCMLBonExtension.cpp:
+
+          Deleted the files and added the followings instead. (Generated
+          files by GME metamodel BON extender interpreter).
+	
+        * OCML/interpreters/OCML_Interpreter/OCMLBonX.cpp
+        * OCML/interpreters/OCML_Interpreter/OCMLBonX.h
+
 Wed Oct 27 15:20:43 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * OCML/paradigms/TAO_Options.xme: 
@@ -93,8 +106,8 @@ Mon Sep 06 17:21:30 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
           A big OCML update. The integration of OCML & PICML and the new
           two interpreters which should be registered with PICML
           metamodel. OCML Configurator and TAO Service Configuration
-	  exporter. For more information about the interpreters please
-	  refer to the PSM/CCM/OCML/interpreters/README.txt file.
+          exporter. For more information about the interpreters please
+          refer to the PSM/CCM/OCML/interpreters/README.txt file.
 
 Fri Aug 27 22:53:32 2004  Gabriele Trombetti  <gtrombetti@nospam.invalid.domain>
 

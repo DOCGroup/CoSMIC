@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "OCMLBonExtension.h"
+#include "OCMLBonX.h"
 
 
 namespace BON
@@ -52,9 +52,9 @@ IMPLEMENT_BONEXTENSION( OCML_BON::OR, "OR" );
 
 namespace OCML_BON
 {
-//*******************************************************************
+//********************************************************************************
 // returns dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Associated_OptionImpl::getSelect_AssociationDsts()
 {
 	std::multiset<BON::FCO> res;
@@ -71,9 +71,9 @@ std::multiset<BON::FCO> Associated_OptionImpl::getSelect_AssociationDsts()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src and dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Associated_OptionImpl::getSelect_AssociationEnds()
 {
 	std::multiset<BON::FCO> res;
@@ -96,9 +96,9 @@ std::multiset<BON::FCO> Associated_OptionImpl::getSelect_AssociationEnds()
 	return res;
 }
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
+//********************************************************************************
 std::set<Select_Association> Associated_OptionImpl::getSelect_AssociationLinks()
 {
 	std::set<Select_Association> result;
@@ -114,9 +114,9 @@ std::set<Select_Association> Associated_OptionImpl::getSelect_AssociationLinks()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Associated_OptionImpl::getSelect_AssociationSrcs()
 {
 	std::multiset<BON::FCO> res;
@@ -133,27 +133,45 @@ std::multiset<BON::FCO> Associated_OptionImpl::getSelect_AssociationSrcs()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
-std::string Described_ItemImpl::getDescription()
+//********************************************************************************
+std::string Described_ItemImpl::getDescription() 
 {
 	return FCOImpl::getAttribute("Description")->getStringValue();
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
-std::string Described_ItemImpl::getTitle()
+//********************************************************************************
+std::string Described_ItemImpl::getTitle() 
 {
 	return FCOImpl::getAttribute("Title")->getStringValue();
 }
 
 
-//*******************************************************************
+//********************************************************************************
+// 
+//********************************************************************************
+void Described_ItemImpl::setDescription( const std::string& val)
+{
+	FCOImpl::getAttribute("Description")->setStringValue( val);
+}
+
+
+//********************************************************************************
+// 
+//********************************************************************************
+void Described_ItemImpl::setTitle( const std::string& val)
+{
+	FCOImpl::getAttribute("Title")->setStringValue( val);
+}
+
+
+//********************************************************************************
 // getter for role "Boolean_Option" among "Option"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<Boolean_Option> Option_CategoryImpl::getBoolean_Option()
 {
 	std::set<Boolean_Option> res;
@@ -168,9 +186,9 @@ std::set<Boolean_Option> Option_CategoryImpl::getBoolean_Option()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "Enum_Option" among "Option"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<Enum_Option> Option_CategoryImpl::getEnum_Option()
 {
 	std::set<Enum_Option> res;
@@ -185,9 +203,9 @@ std::set<Enum_Option> Option_CategoryImpl::getEnum_Option()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "Flag_Option" among "Option"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<Flag_Option> Option_CategoryImpl::getFlag_Option()
 {
 	std::set<Flag_Option> res;
@@ -202,9 +220,9 @@ std::set<Flag_Option> Option_CategoryImpl::getFlag_Option()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "Integer_Option" among "Option"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<Integer_Option> Option_CategoryImpl::getInteger_Option()
 {
 	std::set<Integer_Option> res;
@@ -219,9 +237,9 @@ std::set<Integer_Option> Option_CategoryImpl::getInteger_Option()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // aggregated getter for role "" among "Option"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<Option> Option_CategoryImpl::getOption()
 {
 	std::set<Option> res;
@@ -243,9 +261,9 @@ std::set<Option> Option_CategoryImpl::getOption()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "Option_Category" among "Option_Category"s
-//*******************************************************************
+//********************************************************************************
 std::set<Option_Category> Option_CategoryImpl::getOption_Category()
 {
 	std::set<Option_Category> res;
@@ -260,9 +278,9 @@ std::set<Option_Category> Option_CategoryImpl::getOption_Category()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "String_Option" among "Option"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<String_Option> Option_CategoryImpl::getString_Option()
 {
 	std::set<String_Option> res;
@@ -277,18 +295,45 @@ std::set<String_Option> Option_CategoryImpl::getString_Option()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
-std::string OptionImpl::getParameter_Name()
+//********************************************************************************
+std::string OptionImpl::getParameter_Name() 
 {
 	return FCOImpl::getAttribute("Parameter_Name")->getStringValue();
 }
 
 
-//*******************************************************************
+//********************************************************************************
+// 
+//********************************************************************************
+void OptionImpl::setParameter_Name( const std::string& val)
+{
+	FCOImpl::getAttribute("Parameter_Name")->setStringValue( val);
+}
+
+
+//********************************************************************************
+// 
+//********************************************************************************
+bool Option_ItemImpl::isItem_Default_Value() 
+{
+	return FCOImpl::getAttribute("Item_Default_Value")->getBooleanValue();
+}
+
+
+//********************************************************************************
+// 
+//********************************************************************************
+void Option_ItemImpl::setItem_Default_Value( bool val)
+{
+	FCOImpl::getAttribute("Item_Default_Value")->setBooleanValue( val);
+}
+
+
+//********************************************************************************
 // getter for role "Enum_Item" among "Enum_Item"s
-//*******************************************************************
+//********************************************************************************
 std::set<Enum_Item> Enum_OptionImpl::getEnum_Item()
 {
 	std::set<Enum_Item> res;
@@ -303,9 +348,9 @@ std::set<Enum_Item> Enum_OptionImpl::getEnum_Item()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "Flag_Item" among "Flag_Item"s
-//*******************************************************************
+//********************************************************************************
 std::set<Flag_Item> Flag_OptionImpl::getFlag_Item()
 {
 	std::set<Flag_Item> res;
@@ -320,9 +365,9 @@ std::set<Flag_Item> Flag_OptionImpl::getFlag_Item()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Atom_Option_ReferenceImpl::getComparison_AssociationDsts()
 {
 	std::multiset<BON::FCO> res;
@@ -339,9 +384,9 @@ std::multiset<BON::FCO> Atom_Option_ReferenceImpl::getComparison_AssociationDsts
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src and dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Atom_Option_ReferenceImpl::getComparison_AssociationEnds()
 {
 	std::multiset<BON::FCO> res;
@@ -364,9 +409,9 @@ std::multiset<BON::FCO> Atom_Option_ReferenceImpl::getComparison_AssociationEnds
 	return res;
 }
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
+//********************************************************************************
 std::set<Comparison_Association> Atom_Option_ReferenceImpl::getComparison_AssociationLinks()
 {
 	std::set<Comparison_Association> result;
@@ -382,9 +427,9 @@ std::set<Comparison_Association> Atom_Option_ReferenceImpl::getComparison_Associ
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Atom_Option_ReferenceImpl::getComparison_AssociationSrcs()
 {
 	std::multiset<BON::FCO> res;
@@ -401,9 +446,63 @@ std::multiset<BON::FCO> Atom_Option_ReferenceImpl::getComparison_AssociationSrcs
 }
 
 
-//*******************************************************************
+//********************************************************************************
+// 
+//********************************************************************************
+bool Boolean_OptionImpl::isBoolean_Default_Value() 
+{
+	return FCOImpl::getAttribute("Boolean_Default_Value")->getBooleanValue();
+}
+
+
+//********************************************************************************
+// 
+//********************************************************************************
+void Boolean_OptionImpl::setBoolean_Default_Value( bool val)
+{
+	FCOImpl::getAttribute("Boolean_Default_Value")->setBooleanValue( val);
+}
+
+
+//********************************************************************************
+// 
+//********************************************************************************
+std::string Integer_OptionImpl::getInteger_Default_Value() 
+{
+	return FCOImpl::getAttribute("Integer_Default_Value")->getStringValue();
+}
+
+
+//********************************************************************************
+// 
+//********************************************************************************
+void Integer_OptionImpl::setInteger_Default_Value( const std::string& val)
+{
+	FCOImpl::getAttribute("Integer_Default_Value")->setStringValue( val);
+}
+
+
+//********************************************************************************
+// 
+//********************************************************************************
+std::string String_OptionImpl::getString_Default_Value() 
+{
+	return FCOImpl::getAttribute("String_Default_Value")->getStringValue();
+}
+
+
+//********************************************************************************
+// 
+//********************************************************************************
+void String_OptionImpl::setString_Default_Value( const std::string& val)
+{
+	FCOImpl::getAttribute("String_Default_Value")->setStringValue( val);
+}
+
+
+//********************************************************************************
 // returns dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Boolean_Option_ReferenceImpl::getBoolean_Equality_AssociationDsts()
 {
 	std::multiset<BON::FCO> res;
@@ -420,9 +519,9 @@ std::multiset<BON::FCO> Boolean_Option_ReferenceImpl::getBoolean_Equality_Associ
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src and dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Boolean_Option_ReferenceImpl::getBoolean_Equality_AssociationEnds()
 {
 	std::multiset<BON::FCO> res;
@@ -445,9 +544,9 @@ std::multiset<BON::FCO> Boolean_Option_ReferenceImpl::getBoolean_Equality_Associ
 	return res;
 }
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
+//********************************************************************************
 std::set<Boolean_Equality_Association> Boolean_Option_ReferenceImpl::getBoolean_Equality_AssociationLinks()
 {
 	std::set<Boolean_Equality_Association> result;
@@ -463,9 +562,9 @@ std::set<Boolean_Equality_Association> Boolean_Option_ReferenceImpl::getBoolean_
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Boolean_Option_ReferenceImpl::getBoolean_Equality_AssociationSrcs()
 {
 	std::multiset<BON::FCO> res;
@@ -482,9 +581,9 @@ std::multiset<BON::FCO> Boolean_Option_ReferenceImpl::getBoolean_Equality_Associ
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
+//********************************************************************************
 Boolean_Option Boolean_Option_ReferenceImpl::getBoolean_Option()
 {
 	BON::FCO r = getReferred();
@@ -492,9 +591,9 @@ Boolean_Option Boolean_Option_ReferenceImpl::getBoolean_Option()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
+//********************************************************************************
 Enum_Option Enum_Option_ReferenceImpl::getEnum_Option()
 {
 	BON::FCO r = getReferred();
@@ -502,9 +601,9 @@ Enum_Option Enum_Option_ReferenceImpl::getEnum_Option()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
+//********************************************************************************
 Flag_Option Flag_Option_ReferenceImpl::getFlag_Option()
 {
 	BON::FCO r = getReferred();
@@ -512,9 +611,9 @@ Flag_Option Flag_Option_ReferenceImpl::getFlag_Option()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getInteger_Equality_AssociationDsts()
 {
 	std::multiset<BON::FCO> res;
@@ -531,9 +630,9 @@ std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getInteger_Equality_Associ
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src and dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getInteger_Equality_AssociationEnds()
 {
 	std::multiset<BON::FCO> res;
@@ -556,9 +655,9 @@ std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getInteger_Equality_Associ
 	return res;
 }
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
+//********************************************************************************
 std::set<Integer_Equality_Association> Integer_Option_ReferenceImpl::getInteger_Equality_AssociationLinks()
 {
 	std::set<Integer_Equality_Association> result;
@@ -574,9 +673,9 @@ std::set<Integer_Equality_Association> Integer_Option_ReferenceImpl::getInteger_
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getInteger_Equality_AssociationSrcs()
 {
 	std::multiset<BON::FCO> res;
@@ -593,9 +692,9 @@ std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getInteger_Equality_Associ
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getMax_AssociationDsts()
 {
 	std::multiset<BON::FCO> res;
@@ -612,9 +711,9 @@ std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getMax_AssociationDsts()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src and dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getMax_AssociationEnds()
 {
 	std::multiset<BON::FCO> res;
@@ -637,9 +736,9 @@ std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getMax_AssociationEnds()
 	return res;
 }
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
+//********************************************************************************
 std::set<Max_Association> Integer_Option_ReferenceImpl::getMax_AssociationLinks()
 {
 	std::set<Max_Association> result;
@@ -655,9 +754,9 @@ std::set<Max_Association> Integer_Option_ReferenceImpl::getMax_AssociationLinks(
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getMax_AssociationSrcs()
 {
 	std::multiset<BON::FCO> res;
@@ -674,9 +773,9 @@ std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getMax_AssociationSrcs()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getMin_AssociationDsts()
 {
 	std::multiset<BON::FCO> res;
@@ -693,9 +792,9 @@ std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getMin_AssociationDsts()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src and dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getMin_AssociationEnds()
 {
 	std::multiset<BON::FCO> res;
@@ -718,9 +817,9 @@ std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getMin_AssociationEnds()
 	return res;
 }
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
+//********************************************************************************
 std::set<Min_Association> Integer_Option_ReferenceImpl::getMin_AssociationLinks()
 {
 	std::set<Min_Association> result;
@@ -736,9 +835,9 @@ std::set<Min_Association> Integer_Option_ReferenceImpl::getMin_AssociationLinks(
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getMin_AssociationSrcs()
 {
 	std::multiset<BON::FCO> res;
@@ -755,9 +854,9 @@ std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getMin_AssociationSrcs()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getRange_AssociationDsts()
 {
 	std::multiset<BON::FCO> res;
@@ -774,9 +873,9 @@ std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getRange_AssociationDsts()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src and dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getRange_AssociationEnds()
 {
 	std::multiset<BON::FCO> res;
@@ -799,9 +898,9 @@ std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getRange_AssociationEnds()
 	return res;
 }
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
+//********************************************************************************
 std::set<Range_Association> Integer_Option_ReferenceImpl::getRange_AssociationLinks()
 {
 	std::set<Range_Association> result;
@@ -817,9 +916,9 @@ std::set<Range_Association> Integer_Option_ReferenceImpl::getRange_AssociationLi
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getRange_AssociationSrcs()
 {
 	std::multiset<BON::FCO> res;
@@ -836,9 +935,9 @@ std::multiset<BON::FCO> Integer_Option_ReferenceImpl::getRange_AssociationSrcs()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
+//********************************************************************************
 Integer_Option Integer_Option_ReferenceImpl::getInteger_Option()
 {
 	BON::FCO r = getReferred();
@@ -846,9 +945,9 @@ Integer_Option Integer_Option_ReferenceImpl::getInteger_Option()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> String_Option_ReferenceImpl::getString_Equality_AssociationDsts()
 {
 	std::multiset<BON::FCO> res;
@@ -865,9 +964,9 @@ std::multiset<BON::FCO> String_Option_ReferenceImpl::getString_Equality_Associat
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src and dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> String_Option_ReferenceImpl::getString_Equality_AssociationEnds()
 {
 	std::multiset<BON::FCO> res;
@@ -890,9 +989,9 @@ std::multiset<BON::FCO> String_Option_ReferenceImpl::getString_Equality_Associat
 	return res;
 }
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
+//********************************************************************************
 std::set<String_Equality_Association> String_Option_ReferenceImpl::getString_Equality_AssociationLinks()
 {
 	std::set<String_Equality_Association> result;
@@ -908,9 +1007,9 @@ std::set<String_Equality_Association> String_Option_ReferenceImpl::getString_Equ
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> String_Option_ReferenceImpl::getString_Equality_AssociationSrcs()
 {
 	std::multiset<BON::FCO> res;
@@ -927,9 +1026,9 @@ std::multiset<BON::FCO> String_Option_ReferenceImpl::getString_Equality_Associat
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
+//********************************************************************************
 String_Option String_Option_ReferenceImpl::getString_Option()
 {
 	BON::FCO r = getReferred();
@@ -937,9 +1036,9 @@ String_Option String_Option_ReferenceImpl::getString_Option()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "AND" among "Expression_Box"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<AND> RuleImpl::getAND()
 {
 	std::set<AND> res;
@@ -954,9 +1053,9 @@ std::set<AND> RuleImpl::getAND()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // aggregated getter for role "" among "Association"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<Association> RuleImpl::getAssociation()
 {
 	std::set<Association> res;
@@ -982,9 +1081,9 @@ std::set<Association> RuleImpl::getAssociation()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "Boolean_Equality_Association" among "Association"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<Boolean_Equality_Association> RuleImpl::getBoolean_Equality_Association()
 {
 	std::set<Boolean_Equality_Association> res;
@@ -999,9 +1098,9 @@ std::set<Boolean_Equality_Association> RuleImpl::getBoolean_Equality_Association
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "Boolean_Option_Reference" among "Option_Reference"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<Boolean_Option_Reference> RuleImpl::getBoolean_Option_Reference()
 {
 	std::set<Boolean_Option_Reference> res;
@@ -1016,9 +1115,9 @@ std::set<Boolean_Option_Reference> RuleImpl::getBoolean_Option_Reference()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "Comparison_Association" among "Association"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<Comparison_Association> RuleImpl::getComparison_Association()
 {
 	std::set<Comparison_Association> res;
@@ -1033,9 +1132,9 @@ std::set<Comparison_Association> RuleImpl::getComparison_Association()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "Enum_Option_Reference" among "Option_Reference"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<Enum_Option_Reference> RuleImpl::getEnum_Option_Reference()
 {
 	std::set<Enum_Option_Reference> res;
@@ -1050,9 +1149,9 @@ std::set<Enum_Option_Reference> RuleImpl::getEnum_Option_Reference()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "Equal" among "Expression_Box"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<Equal> RuleImpl::getEqual()
 {
 	std::set<Equal> res;
@@ -1067,9 +1166,9 @@ std::set<Equal> RuleImpl::getEqual()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // aggregated getter for role "" among "Expression_Box"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<Expression_Box> RuleImpl::getExpression_Box()
 {
 	std::set<Expression_Box> res;
@@ -1092,9 +1191,9 @@ std::set<Expression_Box> RuleImpl::getExpression_Box()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "Flag_Option_Reference" among "Option_Reference"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<Flag_Option_Reference> RuleImpl::getFlag_Option_Reference()
 {
 	std::set<Flag_Option_Reference> res;
@@ -1109,9 +1208,9 @@ std::set<Flag_Option_Reference> RuleImpl::getFlag_Option_Reference()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "IF" among "Expression_Box"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<IF> RuleImpl::getIF()
 {
 	std::set<IF> res;
@@ -1126,9 +1225,9 @@ std::set<IF> RuleImpl::getIF()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "IFF" among "Expression_Box"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<IFF> RuleImpl::getIFF()
 {
 	std::set<IFF> res;
@@ -1143,9 +1242,9 @@ std::set<IFF> RuleImpl::getIFF()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "Integer_Equality_Association" among "Association"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<Integer_Equality_Association> RuleImpl::getInteger_Equality_Association()
 {
 	std::set<Integer_Equality_Association> res;
@@ -1160,9 +1259,9 @@ std::set<Integer_Equality_Association> RuleImpl::getInteger_Equality_Association
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "Integer_Option_Reference" among "Option_Reference"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<Integer_Option_Reference> RuleImpl::getInteger_Option_Reference()
 {
 	std::set<Integer_Option_Reference> res;
@@ -1177,9 +1276,9 @@ std::set<Integer_Option_Reference> RuleImpl::getInteger_Option_Reference()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "Logical_Association" among "Association"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<Logical_Association> RuleImpl::getLogical_Association()
 {
 	std::set<Logical_Association> res;
@@ -1194,9 +1293,9 @@ std::set<Logical_Association> RuleImpl::getLogical_Association()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "Max_Association" among "Association"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<Max_Association> RuleImpl::getMax_Association()
 {
 	std::set<Max_Association> res;
@@ -1211,9 +1310,9 @@ std::set<Max_Association> RuleImpl::getMax_Association()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "Min_Association" among "Association"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<Min_Association> RuleImpl::getMin_Association()
 {
 	std::set<Min_Association> res;
@@ -1228,9 +1327,9 @@ std::set<Min_Association> RuleImpl::getMin_Association()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "NOT" among "Expression_Box"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<NOT> RuleImpl::getNOT()
 {
 	std::set<NOT> res;
@@ -1245,9 +1344,9 @@ std::set<NOT> RuleImpl::getNOT()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "OR" among "Expression_Box"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<OR> RuleImpl::getOR()
 {
 	std::set<OR> res;
@@ -1262,9 +1361,9 @@ std::set<OR> RuleImpl::getOR()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // aggregated getter for role "" among "Option_Reference"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<Option_Reference> RuleImpl::getOption_Reference()
 {
 	std::set<Option_Reference> res;
@@ -1286,9 +1385,9 @@ std::set<Option_Reference> RuleImpl::getOption_Reference()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "Range_Association" among "Association"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<Range_Association> RuleImpl::getRange_Association()
 {
 	std::set<Range_Association> res;
@@ -1303,9 +1402,9 @@ std::set<Range_Association> RuleImpl::getRange_Association()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "Select_Association" among "Association"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<Select_Association> RuleImpl::getSelect_Association()
 {
 	std::set<Select_Association> res;
@@ -1320,9 +1419,9 @@ std::set<Select_Association> RuleImpl::getSelect_Association()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "String_Equality_Association" among "Association"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<String_Equality_Association> RuleImpl::getString_Equality_Association()
 {
 	std::set<String_Equality_Association> res;
@@ -1337,9 +1436,9 @@ std::set<String_Equality_Association> RuleImpl::getString_Equality_Association()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getter for role "String_Option_Reference" among "Option_Reference"s and its descendants
-//*******************************************************************
+//********************************************************************************
 std::set<String_Option_Reference> RuleImpl::getString_Option_Reference()
 {
 	std::set<String_Option_Reference> res;
@@ -1354,9 +1453,9 @@ std::set<String_Option_Reference> RuleImpl::getString_Option_Reference()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getDst() return value is a ConnectionEnd casted to BON::FCO
-//*******************************************************************
+//********************************************************************************
 BON::FCO Comparison_AssociationImpl::getDst()
 {
 	BON::ConnectionEnd ce = ConnectionImpl::getDst();
@@ -1369,9 +1468,9 @@ BON::FCO Comparison_AssociationImpl::getDst()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getSrc() return value is a ConnectionEnd casted to BON::FCO
-//*******************************************************************
+//********************************************************************************
 BON::FCO Comparison_AssociationImpl::getSrc()
 {
 	BON::ConnectionEnd ce = ConnectionImpl::getSrc();
@@ -1384,9 +1483,9 @@ BON::FCO Comparison_AssociationImpl::getSrc()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getDst() return value is a ConnectionEnd casted to Expression_Box
-//*******************************************************************
+//********************************************************************************
 Expression_Box Logical_AssociationImpl::getDst()
 {
 	BON::ConnectionEnd ce = ConnectionImpl::getDst();
@@ -1399,9 +1498,9 @@ Expression_Box Logical_AssociationImpl::getDst()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getSrc() return value is a ConnectionEnd casted to Expression_Box
-//*******************************************************************
+//********************************************************************************
 Expression_Box Logical_AssociationImpl::getSrc()
 {
 	BON::ConnectionEnd ce = ConnectionImpl::getSrc();
@@ -1414,9 +1513,9 @@ Expression_Box Logical_AssociationImpl::getSrc()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getDst() return value is a ConnectionEnd casted to BON::FCO
-//*******************************************************************
+//********************************************************************************
 BON::FCO Select_AssociationImpl::getDst()
 {
 	BON::ConnectionEnd ce = ConnectionImpl::getDst();
@@ -1429,27 +1528,36 @@ BON::FCO Select_AssociationImpl::getDst()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getSrc() return value is a ConnectionEnd
-//*******************************************************************
+//********************************************************************************
 BON::ConnectionEnd Select_AssociationImpl::getSrc()
 {
 	return ConnectionImpl::getSrc();
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
-bool Boolean_Equality_AssociationImpl::isBoolean_Value()
+//********************************************************************************
+bool Boolean_Equality_AssociationImpl::isBoolean_Value() 
 {
 	return FCOImpl::getAttribute("Boolean_Value")->getBooleanValue();
 }
 
 
-//*******************************************************************
+//********************************************************************************
+// 
+//********************************************************************************
+void Boolean_Equality_AssociationImpl::setBoolean_Value( bool val)
+{
+	FCOImpl::getAttribute("Boolean_Value")->setBooleanValue( val);
+}
+
+
+//********************************************************************************
 // getDst() return value is a ConnectionEnd casted to BON::FCO
-//*******************************************************************
+//********************************************************************************
 BON::FCO Boolean_Equality_AssociationImpl::getDst()
 {
 	BON::ConnectionEnd ce = ConnectionImpl::getDst();
@@ -1462,9 +1570,9 @@ BON::FCO Boolean_Equality_AssociationImpl::getDst()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getSrc() return value is a ConnectionEnd casted to BON::FCO
-//*******************************************************************
+//********************************************************************************
 BON::FCO Boolean_Equality_AssociationImpl::getSrc()
 {
 	BON::ConnectionEnd ce = ConnectionImpl::getSrc();
@@ -1477,18 +1585,27 @@ BON::FCO Boolean_Equality_AssociationImpl::getSrc()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
-long Integer_Equality_AssociationImpl::getInteger_Value()
+//********************************************************************************
+long Integer_Equality_AssociationImpl::getInteger_Value() 
 {
 	return FCOImpl::getAttribute("Integer_Value")->getIntegerValue();
 }
 
 
-//*******************************************************************
+//********************************************************************************
+// 
+//********************************************************************************
+void Integer_Equality_AssociationImpl::setInteger_Value( const long val)
+{
+	FCOImpl::getAttribute("Integer_Value")->setIntegerValue( val);
+}
+
+
+//********************************************************************************
 // getDst() return value is a ConnectionEnd casted to BON::FCO
-//*******************************************************************
+//********************************************************************************
 BON::FCO Integer_Equality_AssociationImpl::getDst()
 {
 	BON::ConnectionEnd ce = ConnectionImpl::getDst();
@@ -1501,9 +1618,9 @@ BON::FCO Integer_Equality_AssociationImpl::getDst()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getSrc() return value is a ConnectionEnd casted to BON::FCO
-//*******************************************************************
+//********************************************************************************
 BON::FCO Integer_Equality_AssociationImpl::getSrc()
 {
 	BON::ConnectionEnd ce = ConnectionImpl::getSrc();
@@ -1516,18 +1633,27 @@ BON::FCO Integer_Equality_AssociationImpl::getSrc()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
-long Max_AssociationImpl::getMaximum()
+//********************************************************************************
+long Max_AssociationImpl::getMaximum() 
 {
 	return FCOImpl::getAttribute("Maximum")->getIntegerValue();
 }
 
 
-//*******************************************************************
+//********************************************************************************
+// 
+//********************************************************************************
+void Max_AssociationImpl::setMaximum( const long val)
+{
+	FCOImpl::getAttribute("Maximum")->setIntegerValue( val);
+}
+
+
+//********************************************************************************
 // getDst() return value is a ConnectionEnd casted to BON::FCO
-//*******************************************************************
+//********************************************************************************
 BON::FCO Max_AssociationImpl::getDst()
 {
 	BON::ConnectionEnd ce = ConnectionImpl::getDst();
@@ -1540,9 +1666,9 @@ BON::FCO Max_AssociationImpl::getDst()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getSrc() return value is a ConnectionEnd casted to BON::FCO
-//*******************************************************************
+//********************************************************************************
 BON::FCO Max_AssociationImpl::getSrc()
 {
 	BON::ConnectionEnd ce = ConnectionImpl::getSrc();
@@ -1555,18 +1681,27 @@ BON::FCO Max_AssociationImpl::getSrc()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
-long Min_AssociationImpl::getMinimum()
+//********************************************************************************
+long Min_AssociationImpl::getMinimum() 
 {
 	return FCOImpl::getAttribute("Minimum")->getIntegerValue();
 }
 
 
-//*******************************************************************
+//********************************************************************************
+// 
+//********************************************************************************
+void Min_AssociationImpl::setMinimum( const long val)
+{
+	FCOImpl::getAttribute("Minimum")->setIntegerValue( val);
+}
+
+
+//********************************************************************************
 // getDst() return value is a ConnectionEnd casted to BON::FCO
-//*******************************************************************
+//********************************************************************************
 BON::FCO Min_AssociationImpl::getDst()
 {
 	BON::ConnectionEnd ce = ConnectionImpl::getDst();
@@ -1579,9 +1714,9 @@ BON::FCO Min_AssociationImpl::getDst()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getSrc() return value is a ConnectionEnd casted to BON::FCO
-//*******************************************************************
+//********************************************************************************
 BON::FCO Min_AssociationImpl::getSrc()
 {
 	BON::ConnectionEnd ce = ConnectionImpl::getSrc();
@@ -1594,27 +1729,45 @@ BON::FCO Min_AssociationImpl::getSrc()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
-long Range_AssociationImpl::getMaximum()
+//********************************************************************************
+long Range_AssociationImpl::getMaximum() 
 {
 	return FCOImpl::getAttribute("Maximum")->getIntegerValue();
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
-long Range_AssociationImpl::getMinimum()
+//********************************************************************************
+long Range_AssociationImpl::getMinimum() 
 {
 	return FCOImpl::getAttribute("Minimum")->getIntegerValue();
 }
 
 
-//*******************************************************************
+//********************************************************************************
+// 
+//********************************************************************************
+void Range_AssociationImpl::setMaximum( const long val)
+{
+	FCOImpl::getAttribute("Maximum")->setIntegerValue( val);
+}
+
+
+//********************************************************************************
+// 
+//********************************************************************************
+void Range_AssociationImpl::setMinimum( const long val)
+{
+	FCOImpl::getAttribute("Minimum")->setIntegerValue( val);
+}
+
+
+//********************************************************************************
 // getDst() return value is a ConnectionEnd casted to BON::FCO
-//*******************************************************************
+//********************************************************************************
 BON::FCO Range_AssociationImpl::getDst()
 {
 	BON::ConnectionEnd ce = ConnectionImpl::getDst();
@@ -1627,9 +1780,9 @@ BON::FCO Range_AssociationImpl::getDst()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getSrc() return value is a ConnectionEnd casted to BON::FCO
-//*******************************************************************
+//********************************************************************************
 BON::FCO Range_AssociationImpl::getSrc()
 {
 	BON::ConnectionEnd ce = ConnectionImpl::getSrc();
@@ -1642,18 +1795,27 @@ BON::FCO Range_AssociationImpl::getSrc()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
-std::string String_Equality_AssociationImpl::getString_Value()
+//********************************************************************************
+std::string String_Equality_AssociationImpl::getString_Value() 
 {
 	return FCOImpl::getAttribute("String_Value")->getStringValue();
 }
 
 
-//*******************************************************************
+//********************************************************************************
+// 
+//********************************************************************************
+void String_Equality_AssociationImpl::setString_Value( const std::string& val)
+{
+	FCOImpl::getAttribute("String_Value")->setStringValue( val);
+}
+
+
+//********************************************************************************
 // getDst() return value is a ConnectionEnd casted to BON::FCO
-//*******************************************************************
+//********************************************************************************
 BON::FCO String_Equality_AssociationImpl::getDst()
 {
 	BON::ConnectionEnd ce = ConnectionImpl::getDst();
@@ -1666,9 +1828,9 @@ BON::FCO String_Equality_AssociationImpl::getDst()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // getSrc() return value is a ConnectionEnd casted to BON::FCO
-//*******************************************************************
+//********************************************************************************
 BON::FCO String_Equality_AssociationImpl::getSrc()
 {
 	BON::ConnectionEnd ce = ConnectionImpl::getSrc();
@@ -1681,9 +1843,9 @@ BON::FCO String_Equality_AssociationImpl::getSrc()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Expression_BoxImpl::getBoolean_Equality_AssociationDsts()
 {
 	std::multiset<BON::FCO> res;
@@ -1700,9 +1862,9 @@ std::multiset<BON::FCO> Expression_BoxImpl::getBoolean_Equality_AssociationDsts(
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src and dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Expression_BoxImpl::getBoolean_Equality_AssociationEnds()
 {
 	std::multiset<BON::FCO> res;
@@ -1725,9 +1887,9 @@ std::multiset<BON::FCO> Expression_BoxImpl::getBoolean_Equality_AssociationEnds(
 	return res;
 }
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
+//********************************************************************************
 std::set<Boolean_Equality_Association> Expression_BoxImpl::getBoolean_Equality_AssociationLinks()
 {
 	std::set<Boolean_Equality_Association> result;
@@ -1743,9 +1905,9 @@ std::set<Boolean_Equality_Association> Expression_BoxImpl::getBoolean_Equality_A
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Expression_BoxImpl::getBoolean_Equality_AssociationSrcs()
 {
 	std::multiset<BON::FCO> res;
@@ -1762,9 +1924,9 @@ std::multiset<BON::FCO> Expression_BoxImpl::getBoolean_Equality_AssociationSrcs(
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Expression_BoxImpl::getInteger_Equality_AssociationDsts()
 {
 	std::multiset<BON::FCO> res;
@@ -1781,9 +1943,9 @@ std::multiset<BON::FCO> Expression_BoxImpl::getInteger_Equality_AssociationDsts(
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src and dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Expression_BoxImpl::getInteger_Equality_AssociationEnds()
 {
 	std::multiset<BON::FCO> res;
@@ -1806,9 +1968,9 @@ std::multiset<BON::FCO> Expression_BoxImpl::getInteger_Equality_AssociationEnds(
 	return res;
 }
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
+//********************************************************************************
 std::set<Integer_Equality_Association> Expression_BoxImpl::getInteger_Equality_AssociationLinks()
 {
 	std::set<Integer_Equality_Association> result;
@@ -1824,9 +1986,9 @@ std::set<Integer_Equality_Association> Expression_BoxImpl::getInteger_Equality_A
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Expression_BoxImpl::getInteger_Equality_AssociationSrcs()
 {
 	std::multiset<BON::FCO> res;
@@ -1843,9 +2005,9 @@ std::multiset<BON::FCO> Expression_BoxImpl::getInteger_Equality_AssociationSrcs(
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns dst Expression_Boxs
-//*******************************************************************
+//********************************************************************************
 std::multiset<Expression_Box> Expression_BoxImpl::getLogical_AssociationDsts()
 {
 	std::multiset<Expression_Box> res;
@@ -1862,9 +2024,9 @@ std::multiset<Expression_Box> Expression_BoxImpl::getLogical_AssociationDsts()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src and dst Expression_Boxs
-//*******************************************************************
+//********************************************************************************
 std::multiset<Expression_Box> Expression_BoxImpl::getLogical_AssociationEnds()
 {
 	std::multiset<Expression_Box> res;
@@ -1887,9 +2049,9 @@ std::multiset<Expression_Box> Expression_BoxImpl::getLogical_AssociationEnds()
 	return res;
 }
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
+//********************************************************************************
 std::set<Logical_Association> Expression_BoxImpl::getLogical_AssociationLinks()
 {
 	std::set<Logical_Association> result;
@@ -1905,9 +2067,9 @@ std::set<Logical_Association> Expression_BoxImpl::getLogical_AssociationLinks()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src Expression_Boxs
-//*******************************************************************
+//********************************************************************************
 std::multiset<Expression_Box> Expression_BoxImpl::getLogical_AssociationSrcs()
 {
 	std::multiset<Expression_Box> res;
@@ -1924,9 +2086,9 @@ std::multiset<Expression_Box> Expression_BoxImpl::getLogical_AssociationSrcs()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Expression_BoxImpl::getMax_AssociationDsts()
 {
 	std::multiset<BON::FCO> res;
@@ -1943,9 +2105,9 @@ std::multiset<BON::FCO> Expression_BoxImpl::getMax_AssociationDsts()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src and dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Expression_BoxImpl::getMax_AssociationEnds()
 {
 	std::multiset<BON::FCO> res;
@@ -1968,9 +2130,9 @@ std::multiset<BON::FCO> Expression_BoxImpl::getMax_AssociationEnds()
 	return res;
 }
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
+//********************************************************************************
 std::set<Max_Association> Expression_BoxImpl::getMax_AssociationLinks()
 {
 	std::set<Max_Association> result;
@@ -1986,9 +2148,9 @@ std::set<Max_Association> Expression_BoxImpl::getMax_AssociationLinks()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Expression_BoxImpl::getMax_AssociationSrcs()
 {
 	std::multiset<BON::FCO> res;
@@ -2005,9 +2167,9 @@ std::multiset<BON::FCO> Expression_BoxImpl::getMax_AssociationSrcs()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Expression_BoxImpl::getMin_AssociationDsts()
 {
 	std::multiset<BON::FCO> res;
@@ -2024,9 +2186,9 @@ std::multiset<BON::FCO> Expression_BoxImpl::getMin_AssociationDsts()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src and dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Expression_BoxImpl::getMin_AssociationEnds()
 {
 	std::multiset<BON::FCO> res;
@@ -2049,9 +2211,9 @@ std::multiset<BON::FCO> Expression_BoxImpl::getMin_AssociationEnds()
 	return res;
 }
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
+//********************************************************************************
 std::set<Min_Association> Expression_BoxImpl::getMin_AssociationLinks()
 {
 	std::set<Min_Association> result;
@@ -2067,9 +2229,9 @@ std::set<Min_Association> Expression_BoxImpl::getMin_AssociationLinks()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Expression_BoxImpl::getMin_AssociationSrcs()
 {
 	std::multiset<BON::FCO> res;
@@ -2086,9 +2248,9 @@ std::multiset<BON::FCO> Expression_BoxImpl::getMin_AssociationSrcs()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Expression_BoxImpl::getRange_AssociationDsts()
 {
 	std::multiset<BON::FCO> res;
@@ -2105,9 +2267,9 @@ std::multiset<BON::FCO> Expression_BoxImpl::getRange_AssociationDsts()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src and dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Expression_BoxImpl::getRange_AssociationEnds()
 {
 	std::multiset<BON::FCO> res;
@@ -2130,9 +2292,9 @@ std::multiset<BON::FCO> Expression_BoxImpl::getRange_AssociationEnds()
 	return res;
 }
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
+//********************************************************************************
 std::set<Range_Association> Expression_BoxImpl::getRange_AssociationLinks()
 {
 	std::set<Range_Association> result;
@@ -2148,9 +2310,9 @@ std::set<Range_Association> Expression_BoxImpl::getRange_AssociationLinks()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Expression_BoxImpl::getRange_AssociationSrcs()
 {
 	std::multiset<BON::FCO> res;
@@ -2167,27 +2329,27 @@ std::multiset<BON::FCO> Expression_BoxImpl::getRange_AssociationSrcs()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns dst BON::FCOs and referenceports
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::ConnectionEnd> Expression_BoxImpl::getSelect_AssociationDsts()
 {
 	return getOutConnEnds("Select_Association");
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src and dst BON::FCOs and referenceports
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::ConnectionEnd> Expression_BoxImpl::getSelect_AssociationEnds()
 {
 	return getConnEnds("Select_Association");
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
+//********************************************************************************
 std::set<Select_Association> Expression_BoxImpl::getSelect_AssociationLinks()
 {
 	std::set<Select_Association> result;
@@ -2203,18 +2365,18 @@ std::set<Select_Association> Expression_BoxImpl::getSelect_AssociationLinks()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src BON::FCOs and referenceports
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::ConnectionEnd> Expression_BoxImpl::getSelect_AssociationSrcs()
 {
 	return getInConnEnds("Select_Association");
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Expression_BoxImpl::getString_Equality_AssociationDsts()
 {
 	std::multiset<BON::FCO> res;
@@ -2231,9 +2393,9 @@ std::multiset<BON::FCO> Expression_BoxImpl::getString_Equality_AssociationDsts()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src and dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Expression_BoxImpl::getString_Equality_AssociationEnds()
 {
 	std::multiset<BON::FCO> res;
@@ -2256,9 +2418,9 @@ std::multiset<BON::FCO> Expression_BoxImpl::getString_Equality_AssociationEnds()
 	return res;
 }
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
+//********************************************************************************
 std::set<String_Equality_Association> Expression_BoxImpl::getString_Equality_AssociationLinks()
 {
 	std::set<String_Equality_Association> result;
@@ -2274,9 +2436,9 @@ std::set<String_Equality_Association> Expression_BoxImpl::getString_Equality_Ass
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> Expression_BoxImpl::getString_Equality_AssociationSrcs()
 {
 	std::multiset<BON::FCO> res;
@@ -2293,9 +2455,9 @@ std::multiset<BON::FCO> Expression_BoxImpl::getString_Equality_AssociationSrcs()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns dst Expression_Boxs
-//*******************************************************************
+//********************************************************************************
 std::multiset<Expression_Box> Logical_ExpressionImpl::getLogical_AssociationDsts()
 {
 	std::multiset<Expression_Box> res;
@@ -2312,9 +2474,9 @@ std::multiset<Expression_Box> Logical_ExpressionImpl::getLogical_AssociationDsts
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src and dst Expression_Boxs
-//*******************************************************************
+//********************************************************************************
 std::multiset<Expression_Box> Logical_ExpressionImpl::getLogical_AssociationEnds()
 {
 	std::multiset<Expression_Box> res;
@@ -2337,9 +2499,9 @@ std::multiset<Expression_Box> Logical_ExpressionImpl::getLogical_AssociationEnds
 	return res;
 }
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
+//********************************************************************************
 std::set<Logical_Association> Logical_ExpressionImpl::getLogical_AssociationLinks()
 {
 	std::set<Logical_Association> result;
@@ -2355,9 +2517,9 @@ std::set<Logical_Association> Logical_ExpressionImpl::getLogical_AssociationLink
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src Expression_Boxs
-//*******************************************************************
+//********************************************************************************
 std::multiset<Expression_Box> Logical_ExpressionImpl::getLogical_AssociationSrcs()
 {
 	std::multiset<Expression_Box> res;
@@ -2374,9 +2536,9 @@ std::multiset<Expression_Box> Logical_ExpressionImpl::getLogical_AssociationSrcs
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> EqualImpl::getComparison_AssociationDsts()
 {
 	std::multiset<BON::FCO> res;
@@ -2393,9 +2555,9 @@ std::multiset<BON::FCO> EqualImpl::getComparison_AssociationDsts()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src and dst BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> EqualImpl::getComparison_AssociationEnds()
 {
 	std::multiset<BON::FCO> res;
@@ -2418,9 +2580,9 @@ std::multiset<BON::FCO> EqualImpl::getComparison_AssociationEnds()
 	return res;
 }
 
-//*******************************************************************
+//********************************************************************************
 // 
-//*******************************************************************
+//********************************************************************************
 std::set<Comparison_Association> EqualImpl::getComparison_AssociationLinks()
 {
 	std::set<Comparison_Association> result;
@@ -2436,9 +2598,9 @@ std::set<Comparison_Association> EqualImpl::getComparison_AssociationLinks()
 }
 
 
-//*******************************************************************
+//********************************************************************************
 // returns src BON::FCOs
-//*******************************************************************
+//********************************************************************************
 std::multiset<BON::FCO> EqualImpl::getComparison_AssociationSrcs()
 {
 	std::multiset<BON::FCO> res;
