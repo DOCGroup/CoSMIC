@@ -114,6 +114,7 @@ namespace IDML_BON
 	  void emitMemberType( const NamedType& nt );
 	  void emitConstantType( const Constant& c );
 	  void emitInherits( const Inheritable& object );
+	  void emitComponentInherits( const Component& comp );
 	  bool emitOBVInheritsConcrete( std::set<Inherits>& parents );
 	  void emitReturnType( const TwowayOperation& op );
 	  void emitParameters( const HasExceptions& he );

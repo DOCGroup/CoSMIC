@@ -185,7 +185,7 @@ namespace IDML_BON
     ofs << nl
         << "component " << object->getName ();
         
-    this->emitInherits (object);
+    this->emitComponentInherits (object);
     this->emitSupports (object);
         
     ofs << nl
@@ -1348,7 +1348,6 @@ namespace IDML_BON
          i != fwd_decls.end ();
          i++)
       {
-//        if (i == fwd_decls.begin ()) ofs << nl;
         this->emitFwdDeclNested ((*i).first, (*i).second);
         ofs << nl;
       }
@@ -1413,14 +1412,18 @@ namespace IDML_BON
   IDLEmitVisitor::visitChildren (const Orderable& object)
   {
     this->order_children (object);
+    Component comp (object);
+    bool not_first = false;
     
 		for (std::vector<Orderable>::iterator it =
 		       object->ordered_children.begin ();
 		     it != object->ordered_children.end (); 
 		     it++)
 		  {
-		    if (it != object->ordered_children.begin ()) ofs << nl;
+		    if (not_first) ofs << nl;
+		    if ((*it)->getParent () != object) continue;
 		    this->visitOrderableImpl (*it);
+		    not_first = true;
 		  }
   }
   
@@ -1598,7 +1601,7 @@ namespace IDML_BON
     bool obv_inherits_concrete = false;    
     ObjectByValue obv (object);
     
-    // If a concrete valuetype of eventtype has a conrete
+    // If a concrete valuetype of eventtype has a concrete
     // parent and one or more abstract ones, the concrete
     // parent must appear first in the inheritance list. The GME
     // Constraint Manager will ensure that no more than one concrete
@@ -1622,6 +1625,20 @@ namespace IDML_BON
         if (i_ma == o_ma) ofs << inh->getName ();
         else ofs << this->scoped_name (inh);
       }
+  }
+  
+  void IDLEmitVisitor::emitComponentInherits (const Component &comp)
+  {
+    Orderable base = comp->base_component ();
+    if (!base) return;
+    
+    ofs << nl
+        << "  : ";
+        
+    BON::Model i_ma = comp->getParentModel ();
+    BON::Model o_ma = base->getParentModel ();
+    if (i_ma == o_ma) ofs << base->getName ();
+    else ofs << this->scoped_name (base);
   }
   
   bool IDLEmitVisitor::emitOBVInheritsConcrete (
@@ -1666,8 +1683,11 @@ namespace IDML_BON
     
     std::set<BON::Reference> refs = he->getChildReferences ();
     std::set<ExceptionRef> exceps = he->getExceptionRef ();
+    unsigned long rt_factor = 0;
+    TwowayOperation op (he);
+    if (op) rt_factor = op->getReturnType ().size ();
     
-    if (refs.size () == exceps.size ())
+    if (refs.size () == exceps.size () + rt_factor)
       {
         ofs << ")";
         return;
@@ -1861,14 +1881,25 @@ namespace IDML_BON
   void IDLEmitVisitor::emitPorts( const Component& c )
   {
     std::set<Port> ports = c->getPort ();
+    bool not_first = false;
+    
     for (std::set<Port>::const_iterator i = ports.begin ();
          i != ports.end ();
          i++)
       {
-        ofs << nl;
-        if (i != ports.begin ()) ofs << nl;
+        if (not_first) ofs << nl;
+        
+        // Relative IDs of derived GME ports have the
+        // number below added to their base value - easy
+        // way to check.
+		    long rel_id;
+		    (*i)->getFCOI ()->get_RelID (&rel_id);
+		    if (rel_id & 0x08000000) continue;
+		    
+		    ofs << nl;
         this->visitReferenceImpl (*i);
         this->emitPreprocDirectives (*i);
+        not_first = true;
       }
      
     // Leave a space between the ports and the attributes, if any. 

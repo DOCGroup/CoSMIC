@@ -330,11 +330,11 @@ picml_visitor::visit_component (AST_Component *node)
       this->set_childrelidcntr_attr (elem, node);
       elem->setAttribute (X ("kind"), X ("Component"));
       elem->setAttribute (X ("role"), X ("Component"));
+      this->add_base_component (elem, node);
       this->add_name_element (elem, node->local_name ()->get_string ());
       this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
       this->add_replace_id_element (elem, node);
       this->add_version_element (elem, node);
-      this->add_base_component (elem, node);
       this->add_supported_elements (elem,
                                     node,
                                     node->supports (),
@@ -2039,15 +2039,32 @@ picml_visitor::add_private (AST_Field *f,
 }
 
 void
-picml_visitor::add_base_component (DOMElement *parent, AST_Component *node)
+picml_visitor::add_base_component (DOMElement *elem, AST_Component *node)
 {
   AST_Component *base = node->base_component ();
   if (base == 0)
     {
       return;
     }
+
+  XMLCh *id = 0;
+  int result = be_global->decl_id_table ().find (base->repoID (), id);
+                                      
+  if (result != 0)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "picml_visitor::add_base_component - "
+                  "lookup of parent %s failed\n",
+                  base->full_name ()));
+    }
     
-  this->add_one_inherited (parent, node, base, 1UL);
+  // XML generated from GEM models has these attributes also for
+  // derived ports, but it seems we don't need all that for
+  // correct importing, so we just generate the attributes for
+  // the derived component.  
+  elem->setAttribute (X ("derivedfrom"), id);
+  elem->setAttribute (X ("isinstance"), X ("no"));
+  elem->setAttribute (X ("isprimary"), X ("yes"));
 }
 
 void

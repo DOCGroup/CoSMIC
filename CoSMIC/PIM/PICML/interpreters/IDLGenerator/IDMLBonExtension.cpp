@@ -86,7 +86,6 @@ IMPLEMENT_BONEXTENSION( IDML_BON::Supports, "Supports" );
 
 namespace IDML_BON
 {
-
 //*******************************************************************
 // // getter for kind "File"
 //*******************************************************************
@@ -1790,6 +1789,22 @@ bool ComponentImpl::ref_managed () const
 void ComponentImpl::ref_managed (bool val)
 {
   this->ref_managed_ = val;
+}
+
+//*******************************************************************
+// 
+//*******************************************************************
+Orderable ComponentImpl::base_component () const
+{
+  return this->base_component_;
+}
+
+//*******************************************************************
+// 
+//*******************************************************************
+void ComponentImpl::base_component (const Orderable &base)
+{
+  this->base_component_ = base;
 }
 
 //*******************************************************************

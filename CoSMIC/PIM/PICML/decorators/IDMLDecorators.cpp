@@ -730,10 +730,6 @@ ComponentDecorator::findPorts( vector<PortDecorator*>& vecPorts,
                                CComPtr<IMgaFCOs>& spFCOs )
 {
 	MGACOLL_ITERATE( IMgaFCO, spFCOs ) {
-
-    // We want our ancestors' ports as well.
-    this->checkInherits( vecPorts, MGACOLL_ITER );
-
 		CComPtr<IMgaPart> spPart;
 		COMTHROW( MGACOLL_ITER->get_Part( m_spAspect, &spPart ) );
 		if ( spPart ) {
@@ -756,26 +752,3 @@ ComponentDecorator::findPorts( vector<PortDecorator*>& vecPorts,
 	} MGACOLL_ITERATE_END;
 }
 
-void
-ComponentDecorator::checkInherits( vector<PortDecorator*>& vecPorts,
-                                   CComPtr<IMgaFCO>& mgaFCO )
-{
-  CComPtr<IMgaMetaFCO> metaFCO;
-  mgaFCO->get_Meta( &metaFCO );
-	CComBSTR bstr;
-	COMTHROW( metaFCO->get_Name( &bstr ) );
-  if ( !( bstr == PICML_INHERITS_NAME ) ) return;
-
-	CComPtr<IMgaReference> spRef;
-	COMTHROW( mgaFCO.QueryInterface( &spRef ) );
-  if ( !spRef ) return;
-
-  CComPtr<IMgaFCO> spFCO = NULL;
-  spRef->get_Referred ( &spFCO );
-  CComQIPtr<IMgaModel> spModel = spFCO;
-  if ( !spModel ) return;
-
-  CComPtr<IMgaFCOs> spFCOs = NULL;
-  COMTHROW( spModel->get_ChildFCOs( &spFCOs ) );
-  this->findPorts( vecPorts, spFCOs );
-}

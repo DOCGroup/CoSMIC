@@ -51,12 +51,12 @@ DECLARE_BONEXTENSION3( BON::Model, NoInheritable, ConstantType, EnumImpl, Enum )
 DECLARE_BONEXTENSION( HasExceptions, FactoryOperationImpl, FactoryOperation );
 DECLARE_ABSTRACT_BONEXTENSION( Inheritable, HasOperationsImpl, HasOperations );
 DECLARE_BONEXTENSION( HasExceptions, LookupOperationImpl, LookupOperation );
-DECLARE_ABSTRACT_BONEXTENSION( Inheritable, SupportsInterfacesImpl, SupportsInterfaces );
+DECLARE_ABSTRACT_BONEXTENSION2( BON::Model, Orderable, SupportsInterfacesImpl, SupportsInterfaces );
 DECLARE_BONEXTENSION2( BON::Model, NoInheritable, SwitchedAggregateImpl, SwitchedAggregate );
 DECLARE_BONEXTENSION( HasExceptions, TwowayOperationImpl, TwowayOperation );
 DECLARE_BONEXTENSION2( BON::Reference, NoInheritable, AliasImpl, Alias );
 DECLARE_BONEXTENSION2( BON::Reference, NoInheritable, CollectionImpl, Collection );
-DECLARE_BONEXTENSION2( SupportsInterfaces, Manageable, ComponentImpl, Component );
+DECLARE_BONEXTENSION3( NamedType, SupportsInterfaces, Manageable, ComponentImpl, Component );
 DECLARE_BONEXTENSION2( SupportsInterfaces, HasOperations, ComponentFactoryImpl, ComponentFactory );
 DECLARE_BONEXTENSION3( HasOperations, Provideable, Prefixable, ObjectImpl, Object );
 DECLARE_ABSTRACT_BONEXTENSION3( Prefixable, SupportsInterfaces, HasOperations, ObjectByValueImpl, ObjectByValue );
@@ -900,7 +900,8 @@ public:
 //   C  L  A  S  S   SupportsInterfacesImpl
 //*******************************************************************
 class SupportsInterfacesImpl :
-  virtual public InheritableImpl 
+  virtual public BON::ModelImpl,
+  virtual public OrderableImpl
 {
 public:
 	//
@@ -993,8 +994,9 @@ public:
 //   C  L  A  S  S   ComponentImpl
 //*******************************************************************
 class ComponentImpl :
+  public NamedTypeImpl,
   public SupportsInterfacesImpl,
-  public ManageableImpl 
+  public ManageableImpl
 {
 public:
 	//
@@ -1008,10 +1010,14 @@ public:
 	bool ref_managed () const;
 	void ref_managed (bool val);
 	
+	Orderable base_component () const;
+	void base_component (const Orderable &base);
+	
 	virtual void initialize ();
 	
 private:
   bool ref_managed_;
+  Orderable base_component_;
 };
 
 

@@ -1,3 +1,33 @@
+Thu Sep 23 15:06:37 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/decorators/IDMLDecorators.cpp:
+        * PIM/PICML/docs/Interface_Definitions.doc:
+        * PIM/PICML/docs/Interface_Definitions_PDF.pdf:
+        * PIM/PICML/interpreters/IDLGenerator/DependencyVisitor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDMLBonExtension.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDMLBonExtension.h:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICMLTemplate.xme:
+        
+          Modified handling of inheritance in Component model elements.
+          Formerly, all inheritable types would contain one or more
+          Inherits model elements which are GME References referring
+          to the inherited type. However, for Components, this made it
+          impossible for a Component to display its inherited ports
+          in a model and to make connections to such ports. So a 
+          different mechanism for inheritance is now used for Components.
+          A derived Component is created in a model by copying the
+          intended base Component as a subtype. This change required
+          associated modifications to the PICML decorator, the IDL
+          Generator and the IDL Importer. Documentation was changed to
+          reflect the update as well.
+
 Thu Sep 16 17:02:20 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters.IDLImporter/XercesString.cpp:

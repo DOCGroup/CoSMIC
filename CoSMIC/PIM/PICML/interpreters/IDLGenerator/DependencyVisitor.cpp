@@ -17,9 +17,10 @@ namespace IDML_BON
     // If we're not a model, we're done.
     BON::Model model (object);
     if (model)
-      {       
-        // Should we generate a file include for Components.idl?
-        if (Component (object) 
+      { 
+        Component comp (object);
+            
+        if (comp 
             || ComponentFactory (object) 
             || Event (object))
           {
@@ -36,6 +37,27 @@ namespace IDML_BON
             if (!child) continue;
             object->ordered_children.push_back (child);
 		        this->visitOrderableImpl (child);
+		      }
+		      
+		    if (comp)
+		      {
+		        BON::FCOPtr spFCO;
+		        COMTHROW (comp->getFCOI ()->get_DerivedFrom (spFCO.Addr ()));
+		        
+		        if (spFCO)
+		          {
+		            Component base (BON::FCOImpl::attach (spFCO));
+		            if (!base) return;
+		            comp->base_component (base);
+		            
+		            // Just insert the derived component into the
+		            // depends_on_me container of the base. Since
+		            // this is an inheritance relationship, we won't
+		            // have any problems with incomplete types in
+		            // the IDL, so we can just call order_children()
+		            // as usual.
+		            base->depends_on_me.insert (comp);
+		          }
 		      }
 		  } 
   }

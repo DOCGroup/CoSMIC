@@ -45,7 +45,7 @@ BE_GlobalData::BE_GlobalData (void)
     npredefined_ (11UL),
     nfiles_ (0L),
     first_file_ (I_TRUE),
-    output_file_ ("PICML_default_xme_file.xme"),
+    output_file_ ("PICML_default_xme_file"),
     doc_ (0),
     writer_ (0),
     target_ (0),
