@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Wed Aug 25 16:50:36 2004" mdate="Wed Aug 25 16:50:38 2004" metaguid="{4C6178D3-DEAD-BEEF-FEED-DAD000000001}" metaname="PICML">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Wed Aug 25 17:52:20 2004" mdate="Wed Aug 25 17:57:34 2004" metaguid="{22AEE3B4-DEAD-BEEF-FEED-DAD000000001}" metaname="PICML">
 	<name>RobotAssembly</name>
 	<comment></comment>
 	<author></author>
-	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x11" kind="RootFolder">
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x12" kind="RootFolder">
 		<name>RobotAssembly</name>
 		<folder id="id-006a-00000002" relid="0x3" childrelidcntr="0x2" kind="InterfaceDefinitions">
 			<name>RobotAssemblyInterfaces</name>
@@ -589,7 +589,7 @@
 								<regnode name="InterfaceDefinition" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>72,114</value>
+										<value>220,73</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -702,7 +702,7 @@
 									<regnode name="InterfaceDefinition" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
-											<value>96,254</value>
+											<value>80,143</value>
 										</regnode>
 									</regnode>
 								</regnode>
@@ -714,7 +714,7 @@
 									<regnode name="InterfaceDefinition" isopaque="yes">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
-											<value>243,247</value>
+											<value>241,101</value>
 										</regnode>
 									</regnode>
 								</regnode>
@@ -727,7 +727,7 @@
 								<regnode name="InterfaceDefinition" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>286,256</value>
+										<value>402,241</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -7495,6 +7495,141 @@
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>506,58</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</set>
+			</model>
+		</folder>
+		<folder id="id-006a-0000000d" relid="0x12" childrelidcntr="0x1" kind="ComponentAnalyses">
+			<name>RobotAssemblyAnalyses</name>
+			<model id="id-0065-0000009d" kind="BenchmarkAnalysis" relid="0x1" childrelidcntr="0xb">
+				<name>RobotAssemblyBenchmarkAnalysis</name>
+				<model id="id-0065-0000009e" kind="Latency" role="Latency" relid="0x3" childrelidcntr="0x0">
+					<name>Latency</name>
+					<regnode name="PartRegs">
+						<value></value>
+						<regnode name="ComponentMetrics">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>247,23</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="fileName" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="iterations" status="meta">
+						<value>0</value>
+					</attribute>
+					<attribute kind="warmup" status="meta">
+						<value>0</value>
+					</attribute>
+				</model>
+				<model id="id-0065-0000009f" kind="Throughput" role="Throughput" relid="0x4" childrelidcntr="0x0">
+					<name>Throughput</name>
+					<regnode name="PartRegs">
+						<value></value>
+						<regnode name="ComponentMetrics">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>226,198</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="fileName" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="iterations" status="meta">
+						<value>0</value>
+					</attribute>
+					<attribute kind="warmup" status="meta">
+						<value>0</value>
+					</attribute>
+				</model>
+				<atom id="id-0066-00000055" kind="Task" role="Task" relid="0x8">
+					<name>Task</name>
+					<regnode name="PartRegs">
+						<value></value>
+						<regnode name="ComponentMetrics">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>492,23</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</atom>
+				<atom id="id-0066-00000056" kind="Task" role="Task" relid="0x9">
+					<name>Task</name>
+					<regnode name="PartRegs">
+						<value></value>
+						<regnode name="ComponentMetrics">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>534,86</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</atom>
+				<atom id="id-0066-00000057" kind="Task" role="Task" relid="0xa">
+					<name>Task</name>
+					<regnode name="PartRegs">
+						<value></value>
+						<regnode name="ComponentMetrics">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>569,30</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</atom>
+				<reference id="id-0067-000000d7" kind="OperationRef" role="OperationRef" relid="0x1" referred="id-0065-0000000b">
+					<name>WorkOrderResponse</name>
+					<regnode name="PartRegs">
+						<value></value>
+						<regnode name="ComponentMetrics">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>89,49</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</reference>
+				<reference id="id-0067-000000d8" kind="OperationRef" role="OperationRef" relid="0x2" referred="id-0065-0000000e">
+					<name>PalletInspectionResponse</name>
+					<regnode name="PartRegs">
+						<value></value>
+						<regnode name="ComponentMetrics">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>61,161</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</reference>
+				<connection id="id-0068-0000005b" kind="MetricConnection" role="MetricConnection" relid="0x5">
+					<name>MetricConnection</name>
+					<connpoint role="dst" target="id-0065-0000009e"/>
+					<connpoint role="src" target="id-0067-000000d7"/>
+				</connection>
+				<connection id="id-0068-0000005c" kind="MetricConnection" role="MetricConnection" relid="0x6">
+					<name>MetricConnection</name>
+					<connpoint role="dst" target="id-0065-0000009f"/>
+					<connpoint role="src" target="id-0067-000000d8"/>
+				</connection>
+				<connection id="id-0068-0000005d" kind="WorkloadCharacteristics" role="WorkloadCharacteristics" relid="0xb">
+					<name>WorkloadCharacteristics</name>
+					<connpoint role="src" target="id-0065-0000009e"/>
+					<connpoint role="dst" target="id-0069-00000004"/>
+				</connection>
+				<set id="id-0069-00000004" kind="TaskSet" role="TaskSet" relid="0x7" members="id-0066-00000055 id-0066-00000056 id-0066-00000057">
+					<name>TaskSet</name>
+					<regnode name="PartRegs">
+						<value></value>
+						<regnode name="ComponentMetrics">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>387,44</value>
 							</regnode>
 						</regnode>
 					</regnode>

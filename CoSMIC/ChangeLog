@@ -1,3 +1,30 @@
+Wed Aug 25 18:13:17 CDT 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+          Added a modeling elements including Workload and Task components
+          to the BGML Paradigm
+        
+	  * PIM/PICML/examples/RobotAssembly.xme: 
+          Added these components to the example
+
+        * PIM/PICML/interpreters/packaging/PICML.h:
+        * PIM/PICML/interpreters/packaging/PICML.cpp:
+        * PIM/PICML/interpreters/packaging/PICML.xsd:
+        * PIM/PICML/interpreters/plan/PICML.h:
+        * PIM/PICML/interpreters/plan/PICML.cpp:
+        * PIM/PICML/interpreters/plan/PICML.xsd:
+        * PIM/PICML/interpreters/MPC/Component/PICML.h:
+        * PIM/PICML/interpreters/MPC/Component/PICML.cpp:
+        * PIM/PICML/interpreters/cidl/Component/PICML.h:
+        * PIM/PICML/interpreters/cidl/Component/PICML.cpp:
+        * PIM/PICML/interpreters/domain/PICML.h:
+        * PIM/PICML/interpreters/domain/PICML.xsd:
+        * PIM/PICML/interpreters/domain/PICML.cpp:
+          Reflects changes to the meta by adding new Picml.h and Picml.cpp
+
+
 Wed Aug 25 17:01:50 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
