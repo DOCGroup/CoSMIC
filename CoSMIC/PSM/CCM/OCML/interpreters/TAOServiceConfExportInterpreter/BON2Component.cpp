@@ -107,6 +107,12 @@ namespace BON
     
     std::string value = attr->getStringValue();
 
+    if (value.size() == 0)
+      {
+        AfxMessageBox("You should run the OCML Configurator Interpreter first");
+        return;
+      }
+
     FileSaveDlg file_save("svc.conf.xml");
     if (file_save.show())
       {

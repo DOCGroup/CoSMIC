@@ -1,3 +1,10 @@
+Sat Nov 06 19:38:43 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * OCML/interpreters/TAOServiceConfExportInterpreter/BON2Component.cpp:
+
+          Fixed the bug occuring then the TAO Service Configuration Export
+          Interpreter is invoked with empty configuration value.
+
 Sat Nov 06 19:26:26 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * OCML/paradigms/OCML.xme: 
