@@ -595,7 +595,11 @@ the sources to a directory for example:
 \\build/arvindk/software/BGML\_Base.  Next set up an environment
 variable \$BGML\_HOME that points to this directory. Next run the mwc.pl
 (MakeProjectCreator) file shipped with MPC to generate the build file.
-After which compile the directory using the appropriate make command. Below
+After which compile the directory using the appropriate make command. 
+{\bf NOTE:} Please make sure that you run the mwc.pl file in 
+\$ACE\_ROOT/bin directory and not the mwc.pl file in \$ACE\_ROOT/bin.
+This is very important.
+Below
 we show the compilation snippet using gmake on Linux platform.
 {
 \footnotesize
