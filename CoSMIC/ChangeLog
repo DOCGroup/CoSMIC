@@ -1,3 +1,17 @@
+Fri Oct  8 13:33:41 2004  Gan Deng <gan.deng@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/BGML_Interpreter/Component/PICML.cpp
+        * PIM/PICML/interpreters/BGML_Interpreter/Component/PICML.h
+        * PIM/PICML/interpreters/MPC/Component/PICML.cpp
+        * PIM/PICML/interpreters/MPC/Component/PICML.h
+        * PIM/PICML/interpreters/domain/PICML.cpp
+        * PIM/PICML/interpreters/domain/PICML.h
+        * PIM/PICML/paradigms/PICML.xml
+        * PIM/PICML/paradigms/PICML.xmp
+        
+          Updated the above files to fix interpreters build errors,
+          since these files were not up to date before.
+
 Fri Oct  1 14:33:41 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
