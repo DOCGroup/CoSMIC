@@ -1,3 +1,11 @@
+Sat Mar 05 15:08:24 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/OCML/engine/option_rules.tpp:
+        * PIM/OCML/ui/boolean_option_editor.cpp:
+
+          Fixed an issue regarding the boolean options. (Displaying wrong
+          default value).
+
 Fri Mar 04 09:00:20 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * PIM/OCML/engine/constraint_engine.cpp engine/option_interface.ipp:

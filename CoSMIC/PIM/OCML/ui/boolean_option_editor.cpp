@@ -19,7 +19,7 @@ Boolean_Option_Editor::Boolean_Option_Editor(wxWindow* parent,
     {
       Basic_Option_Definition<Boolean_Option_Trait>* definition =
         dynamic_cast<Basic_Option_Definition<Boolean_Option_Trait>*> (boolean_option->definition());
-      editor_->SetValue(Boolean_Option_Trait::as_string(definition->default_value()).c_str());
+      editor_->SetValue(definition->default_value());
     }
 
   editor_->Show(true);
@@ -53,7 +53,7 @@ void
 Boolean_Option_Editor::boolean_edit_focus_lost(Boolean_Edit_Control*)
 {
   // Nothing to do here
-}    
+}
 
 void
 Boolean_Option_Editor::boolean_edit_clicked(Boolean_Edit_Control*)
