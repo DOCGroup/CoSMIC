@@ -6,21 +6,20 @@
 
 CFG=SvcConfExporter - Win32 Debug
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
-!MESSAGE run the tool that generated this project file and specify the
-!MESSAGE nmake output type.  You can then use the following command:
-!MESSAGE
+!MESSAGE use the Export Makefile command and run
+!MESSAGE 
 !MESSAGE NMAKE /f "SvcConfExporter.mak".
-!MESSAGE
+!MESSAGE 
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
-!MESSAGE
+!MESSAGE 
 !MESSAGE NMAKE /f "SvcConfExporter.mak" CFG="SvcConfExporter - Win32 Debug"
-!MESSAGE
+!MESSAGE 
 !MESSAGE Possible choices for configuration are:
-!MESSAGE
+!MESSAGE 
 !MESSAGE "SvcConfExporter - Win32 Release" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE "SvcConfExporter - Win32 Debug" (based on "Win32 (x86) Dynamic-Link Library")
-!MESSAGE
+!MESSAGE 
 
 # Begin Project
 # PROP AllowPerConfigDependencies 0
@@ -38,15 +37,17 @@ RSC=rc.exe
 # PROP Intermediate_Dir "Release\SvcConfExporter"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
-# ADD CPP /nologo /O2 /W3 /GX /MD /GR /I "$(XERCESCROOT)\include" /D NDEBUG /D WIN32 /D _WINDOWS /D SVC_CONF_EXPORTER_DLL_ENTRY_EXPORTS /D _USRDLL /D WXMAKINGDLL /FD /c
+# ADD CPP /nologo /MD /W3 /GR /GX /O2 /I "$(XERCESCROOT)\include" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "SVC_CONF_EXPORTER_DLL_ENTRY_EXPORTS" /D "_USRDLL" /D "WXMAKINGDLL" /FD /c
 # SUBTRACT CPP /YX
-
-# ADD MTL /D "NDEBUG" /nologo /mktyplib203 /win32
-# ADD RSC /l 0x409 /d NDEBUG /d SVC_CONF_EXPORTER_DLL_ENTRY_EXPORTS /d _USRDLL /d WXMAKINGDLL /i "$(XERCESCROOT)\include"
+# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
+# ADD BASE RSC /l 0x409
+# ADD RSC /l 0x409 /i "$(XERCESCROOT)\include" /d "NDEBUG" /d "SVC_CONF_EXPORTER_DLL_ENTRY_EXPORTS" /d "_USRDLL" /d "WXMAKINGDLL"
 BSC32=bscmake.exe
 # ADD BSC32 /nologo /o"$(PICML_ROOT)\lib\OCMLSvcConfExporter.bsc"
 LINK32=link.exe
-# ADD LINK32 advapi32.lib user32.lib /INCREMENTAL:NO xerces-c_2.lib /libpath:"$(XERCESCROOT)\lib" /nologo /version:1.0 /subsystem:windows /pdb:"$(PICML_ROOT)\bin\OCMLSvcConfExporter.pdb" /dll  /machine:I386 /out:"$(PICML_ROOT)\bin\OCMLSvcConfExporter.dll"
+# ADD BASE LINK32 /machine:IX86
+# ADD LINK32 advapi32.lib user32.lib xerces-c_2.lib /nologo /version:1.0 /subsystem:windows /dll /pdb:"$(PICML_ROOT)\bin\OCMLSvcConfExporter.pdb" /machine:I386 /out:"$(PICML_ROOT)\bin\OCMLSvcConfExporter.dll" /libpath:"$(XERCESCROOT)\lib"
+# SUBTRACT LINK32 /pdb:none
 
 !ELSEIF  "$(CFG)" == "SvcConfExporter - Win32 Debug"
 
@@ -56,17 +57,19 @@ LINK32=link.exe
 # PROP Intermediate_Dir "Debug\SvcConfExporter"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
-# ADD CPP /nologo /Ob0 /W3 /Gm /GX /Zi /MDd /GR /Gy /I "$(XERCESCROOT)\include" /D _DEBUG /D WIN32 /D _WINDOWS /D SVC_CONF_EXPORTER_DLL_ENTRY_EXPORTS /D _USRDLL /D WXMAKINGDLL /FD /c
+# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /Zi /Gy /I "$(XERCESCROOT)\include" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "SVC_CONF_EXPORTER_DLL_ENTRY_EXPORTS" /D "_USRDLL" /D "WXMAKINGDLL" /FD /c
 # SUBTRACT CPP /Fr /YX
-
-# ADD MTL /D "_DEBUG" /nologo /mktyplib203 /win32
-# ADD RSC /l 0x409 /d _DEBUG /d SVC_CONF_EXPORTER_DLL_ENTRY_EXPORTS /d _USRDLL /d WXMAKINGDLL /i "$(XERCESCROOT)\include"
+# ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
+# ADD BASE RSC /l 0x409
+# ADD RSC /l 0x409 /i "$(XERCESCROOT)\include" /d "_DEBUG" /d "SVC_CONF_EXPORTER_DLL_ENTRY_EXPORTS" /d "_USRDLL" /d "WXMAKINGDLL"
 BSC32=bscmake.exe
 # ADD BSC32 /nologo /o"$(PICML_ROOT)\lib\OCMLSvcConfExporter.bsc"
 LINK32=link.exe
-# ADD LINK32 advapi32.lib user32.lib /INCREMENTAL:NO xerces-c_2d.lib /libpath:"$(XERCESCROOT)\lib" /nologo /version:1.0 /subsystem:windows /pdb:"$(PICML_ROOT)\bin\OCMLSvcConfExporterd.pdb" /dll /debug /machine:I386 /out:"$(PICML_ROOT)\bin\OCMLSvcConfExporterd.dll"
+# ADD BASE LINK32 /machine:IX86
+# ADD LINK32 advapi32.lib user32.lib xerces-c_2d.lib /nologo /version:1.0 /subsystem:windows /dll /incremental:no /pdb:"$(PICML_ROOT)\bin\OCMLSvcConfExporterd.pdb" /debug /machine:I386 /out:"$(PICML_ROOT)\bin\OCMLSvcConfExporterd.dll" /libpath:"$(XERCESCROOT)\lib"
+# SUBTRACT LINK32 /pdb:none
 
-!ENDIF
+!ENDIF 
 
 # Begin Target
 
@@ -77,16 +80,20 @@ LINK32=link.exe
 # PROP Default_Filter "cpp;cxx;c"
 # Begin Source File
 
-SOURCE="..\Common\XercesHelpers.cpp"
+SOURCE="SvcConfExporter.cpp"
 # End Source File
 # Begin Source File
 
-SOURCE="SvcConfExporter.cpp"
+SOURCE="..\Common\XercesHelpers.cpp"
 # End Source File
 # End Group
 # Begin Group "Header Files"
 
 # PROP Default_Filter "h;hpp;hxx;hh"
+# Begin Source File
+
+SOURCE="extern_declarations.hpp"
+# End Source File
 # Begin Source File
 
 SOURCE="..\Common\StringUtils.hpp"
@@ -97,19 +104,15 @@ SOURCE="..\Common\StringUtils.ipp"
 # End Source File
 # Begin Source File
 
+SOURCE="SvcConfExporter.hpp"
+# End Source File
+# Begin Source File
+
 SOURCE="..\Common\XercesHelpers.hpp"
 # End Source File
 # Begin Source File
 
 SOURCE="..\Common\XercesHelpers.ipp"
-# End Source File
-# Begin Source File
-
-SOURCE="extern_declarations.hpp"
-# End Source File
-# Begin Source File
-
-SOURCE="SvcConfExporter.hpp"
 # End Source File
 # End Group
 # End Target

@@ -51,22 +51,22 @@ LINK32=link.exe
 
 !ELSEIF  "$(CFG)" == "OCMLConfigurator - Win32 Debug"
 
-# PROP Use_MFC 0
+# PROP Use_MFC 2
 # PROP Use_Debug_Libraries 1
 # PROP Output_Dir "..\..\..\..\..\PIM\PICML\lib"
 # PROP Intermediate_Dir "Debug\OCMLConfigurator"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
-# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /Zi /Gy /I "$(XERCESCROOT)\include" /I "$(WXWINDOWS_ROOT)\include" /I "$(WXWINDOWS_ROOT)\lib\mswd" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "OCML_CONFIGURATOR_DLL_ENTRY_EXPORTS" /D "_USRDLL" /D "WXMAKINGDLL" /FD /c
+# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /Zi /Gy /I "$(XERCESCROOT)\include" /I "$(WXWINDOWS_ROOT)\include" /I "$(WXWINDOWS_ROOT)\lib\mswd" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "OCML_CONFIGURATOR_DLL_ENTRY_EXPORTS" /D "_USRDLL" /D "WXMAKINGDLL" /D "_WINDLL" /D "_AFXDLL" /FD /c
 # SUBTRACT CPP /Fr /YX
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x409
-# ADD RSC /l 0x409 /i "$(XERCESCROOT)\include" /i "$(WXWINDOWS_ROOT)\include" /i "$(WXWINDOWS_ROOT)\lib\mswd" /d "_DEBUG" /d "OCML_CONFIGURATOR_DLL_ENTRY_EXPORTS" /d "_USRDLL" /d "WXMAKINGDLL"
+# ADD RSC /l 0x409 /i "$(XERCESCROOT)\include" /i "$(WXWINDOWS_ROOT)\include" /i "$(WXWINDOWS_ROOT)\lib\mswd" /d "_DEBUG" /d "OCML_CONFIGURATOR_DLL_ENTRY_EXPORTS" /d "_USRDLL" /d "WXMAKINGDLL" /d "_AFXDLL"
 BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /machine:IX86
-# ADD LINK32 advapi32.lib user32.lib comctl32.lib wsock32.lib rpcrt4.lib xerces-c_2d.lib wxmswd.lib /nologo /version:1.0 /subsystem:windows /dll /incremental:no /pdb:"$(PICML_ROOT)\bin\OCMLConfiguratord.pdb" /debug /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCMLConfiguratord.dll" /libpath:"$(XERCESCROOT)\lib" /libpath:"$(WXWINDOWS_ROOT)\lib"
+# ADD LINK32 shell32.lib Comdlg32.lib Advapi32.lib ole32.lib user32.lib gdi32.lib comctl32.lib wsock32.lib rpcrt4.lib xerces-c_2d.lib wxmswd.lib /nologo /version:1.0 /subsystem:windows /dll /incremental:no /pdb:"$(PICML_ROOT)\bin\OCMLConfiguratord.pdb" /debug /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCMLConfiguratord.dll" /libpath:"$(XERCESCROOT)\lib" /libpath:"$(WXWINDOWS_ROOT)\lib"
 # SUBTRACT LINK32 /pdb:none
 
 !ENDIF 

@@ -39,21 +39,6 @@ Package=<4>
 
 ###############################################################################
 
-Project: "OCMLConfiguratorTest"=.\OCMLConfiguratorLibrary\test\OCMLConfiguratorTest.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-    Begin Project Dependency
-    Project_Dep_Name OCMLConfigurator
-    End Project Dependency
-}}}
-
-###############################################################################
-
 Project: "OCML_Svc_Conf_Exporter"=.\TAOServiceConfExportInterpreter\OCML_Svc_Conf_ExporterBON2Component.dsp - Package Owner=<4>
 
 Package=<5>
@@ -67,18 +52,6 @@ Package=<4>
 ###############################################################################
 
 Project: "SvcConfExporter"=.\TAOServiceConfExporter\SvcConfExporter.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-}}}
-
-###############################################################################
-
-Project: "SvcConfExporterTest"=.\TAOServiceConfExporter\test\SvcConfExporterTest.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
