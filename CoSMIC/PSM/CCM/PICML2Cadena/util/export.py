@@ -62,18 +62,31 @@ cadenascenario_file = os.path.abspath(purifiedparams[1])
 
 #checking correct file extension
 if (os.path.splitext(picml_file)[1]!='.mga') :
-    print 'Fatal: The specified filename for PICML model '+quotes+picml_file+quotes+' does not have .mga extension!\nExiting.'
+    print 'FATAL: The specified filename for PICML model '+quotes+picml_file+quotes+' does not have .mga extension!\nExiting.'
     sys.exit(-1)
 if (os.path.splitext(cadenascenario_file)[1]!='.xml') :
-    print 'Fatal: The specified filename for CadenaScenario '+quotes+cadenascenario_file+quotes+' does not have .xml extension!\nExiting.'
+    print 'FATAL: The specified filename for CadenaScenario '+quotes+cadenascenario_file+quotes+' does not have .xml extension!\nExiting.'
     sys.exit(-1)
 
 #checking existence of files (only picml_file for the export transformation)
 if (False==os.path.isfile(picml_file)) :
-    print 'Fatal: File '+quotes+picml_file+quotes+' not found.\nExiting.'
+    print 'FATAL: File '+quotes+picml_file+quotes+' not found.\nExiting.'
     sys.exit(-1)
 
+#checking existence of PICML2Cadena_Configuration.mga, PICML2Cadena-gr.xml, Udm\PICML2Cadena.udm
+transfname='PICML2Cadena'
+for f in [transformations_fullpath+transfname+'_Configuration.mga',
+          transformations_fullpath+transfname+'-gr.xml',
+          integration_udm_fullpath+transfname+'.udm'] :
+    if (False==os.path.isfile(f)) :
+        print 'FATAL: File '+quotes+f+quotes+' does not exist.\n\
+This is needed for the transformation to run.\n\
+Please open GReAT for this '+transfname+' transformation and run the GReAT Master Interpreter.\n\
+Then try to run this script again. If it still doesn\'t work, please obtain a clean update\n\
+of the whole PICML2Cadena directory from the CVS and then run this script again.'
+        sys.exit(-1)
 
+        
 
 greinvocationcommand = 'gre.exe'+ space +quotes+transformations_fullpath+'PICML2Cadena_Configuration.mga'+quotes
 greinvocationcommand += space+quotes+'PICML_File='+picml_file+quotes

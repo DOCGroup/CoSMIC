@@ -77,6 +77,19 @@ if (False==os.path.isfile(cadenascenario_file)) :
     print 'Fatal: File '+quotes+cadenascenario_file+quotes+' not found.\nExiting.'
     sys.exit(-1)
 
+#checking existence of Cadena2PICML_Configuration.mga, Cadena2PICML-gr.xml, Udm\Cadena2PICML.udm
+transfname='Cadena2PICML'
+for f in [transformations_fullpath+transfname+'_Configuration.mga',
+          transformations_fullpath+transfname+'-gr.xml',
+          integration_udm_fullpath+transfname+'.udm'] :
+    if (False==os.path.isfile(f)) :
+        print 'FATAL: File '+quotes+f+quotes+' does not exist.\n\
+This is needed for the transformation to run.\n\
+Please open GReAT for this '+transfname+' transformation and run the GReAT Master Interpreter.\n\
+Then try to run this script again. If it still doesn\'t work, please obtain a clean update\n\
+of the whole PICML2Cadena directory from the CVS and then run this script again.'
+        sys.exit(-1)
+
 #validating the input xml file for the schema location and namespace
 print 'Validating the input xml file for the schema location and namespace.'
 xmldoc = minidom.parse(cadenascenario_file)
