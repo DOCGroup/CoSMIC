@@ -1,0 +1,61 @@
+Wed Mar 10 17:55:49 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * COMPASS/README: Initial README for COMPASS.
+
+        * COMPASS/docs/TechnicalManual.doc:
+        * COMPASS/docs/UserManual.doc:
+
+          User and Technical manual for COMPASS.
+
+        * COMPASS/examples/HUDisplay.xme: Exported version of HUDisplay
+          example.
+
+        * COMPASS/interpreters/BON2Component.h:
+        * COMPASS/interpreters/BON2Component.dsw:
+        * COMPASS/interpreters/BON2Component.cpp:
+        * COMPASS/interpreters/CompIcon.ico:
+        * COMPASS/interpreters/CompassMLBON2Component.dsp:
+        * COMPASS/interpreters/Component.rc:
+        * COMPASS/interpreters/ComponentConfig.h:
+        * COMPASS/interpreters/ComponentLib_p.c:
+        * COMPASS/interpreters/ConfigureComponent.exe:
+        * COMPASS/interpreters/CreateDOMDocument.cpp:
+        * COMPASS/interpreters/GMESources.txt:
+        * COMPASS/interpreters/Resource.h:
+        * COMPASS/interpreters/StdAfx.h:
+        * COMPASS/interpreters/StdAfx.cpp:
+        * COMPASS/interpreters/XercesString.h:
+        * COMPASS/interpreters/XercesString.cpp:
+        * COMPASS/interpreters/component.def:
+        * COMPASS/interpreters/dlldata.c:
+        * COMPASS/interpreters/example.cpp:
+
+          Files needed to build the interpreter.
+
+        * COMPASS/paradigms/Compass.xme: Exported version of the COMPASS
+          meta-model.
+
+        * COMPASS/paradigms/icons/AssemblyConnection.bmp:
+        * COMPASS/paradigms/icons/Capability.bmp:
+        * COMPASS/paradigms/icons/ComponentAssembly.bmp:
+        * COMPASS/paradigms/icons/ComponentImplementation.bmp:
+        * COMPASS/paradigms/icons/ComponentImplementationReference.bmp:
+        * COMPASS/paradigms/icons/ComponentInterface.bmp:
+        * COMPASS/paradigms/icons/ComponentInterfaceReference.bmp:
+        * COMPASS/paradigms/icons/ComponentPackage.bmp:
+        * COMPASS/paradigms/icons/ComponentPackageReference.bmp:
+        * COMPASS/paradigms/icons/ComponentPort.bmp:
+        * COMPASS/paradigms/icons/ComponentProperty.bmp:
+        * COMPASS/paradigms/icons/ImplementationArtifact.bmp:
+        * COMPASS/paradigms/icons/ImplementationArtifactReference.bmp:
+        * COMPASS/paradigms/icons/ImplementationDependency.bmp:
+        * COMPASS/paradigms/icons/MonolithicImplementation.bmp:
+        * COMPASS/paradigms/icons/NamedImplementationArtifact.bmp:
+        * COMPASS/paradigms/icons/PortEndPoint.bmp:
+        * COMPASS/paradigms/icons/Property.bmp:
+        * COMPASS/paradigms/icons/Requirement.bmp:
+        * COMPASS/paradigms/icons/SubComponentInstantiation.bmp:
+        * COMPASS/paradigms/icons/SubComponentInstantiationReference.bmp:
+        * COMPASS/paradigms/icons/TopLevelPackageConfiguration.bmp:
+
+          Icon files for the COMPASS modeling paradigm.
