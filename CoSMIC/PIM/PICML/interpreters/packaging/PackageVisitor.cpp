@@ -383,6 +383,37 @@ namespace PICML
     this->initTarget (name);
     this->initDocument ("Deployment:PackageConfiguration");
     this->initRootAttributes();
+
+    PackageConfBasePackage bp = pc.dstPackageConfBasePackage();
+    if (bp != Udm::null)
+      bp.Accept (*this);
+    else
+      {
+        PackageConfReference pcr = pc.dstPackageConfReference();
+        if (pcr != Udm::null)
+          pcr.Accept (*this);
+        else
+          {
+            PackageConfSpecializedConfig
+              pcsc = pc.dstPackageConfSpecializedConfig();
+            if (pcsc != Udm::null)
+              pcsc.Accept (*this);
+          }
+      }
+    this->dumpDocument();
+    this->pop();
+  }
+
+  void PackageVisitor::Visit_PackageConfBasePackage(const PackageConfBasePackage& pcbp)
+  {
+    this->push();
+    DOMElement* ele = this->doc_->createElement (XStr ("basePackage"));
+    const ComponentPackage pkg = pcbp.dstPackageConfBasePackage_end();
+    std::string pkgName (pkg.name());
+    pkgName += ".cpd";
+    ele->setAttribute (XStr ("href"), XStr (pkgName));
+    this->curr_->appendChild (ele);
+    this->pop();
   }
 
   void PackageVisitor::Visit_PackageConfConfigProperty(const PackageConfConfigProperty&)
@@ -397,10 +428,109 @@ namespace PICML
   void PackageVisitor::Visit_PackageConfSelectRequirement(const PackageConfSelectRequirement&)
   {}
 
-  void PackageVisitor::Visit_PackageConfBasePackage(const PackageConfBasePackage&)
-  {}
-
   void PackageVisitor::Visit_ComponentPackageReference(const ComponentPackageReference&)
   {}
+
+  void PackageVisitor::Visit_ComponentPackages(const ComponentPackages& cps)
+  {
+    std::set<PackageContainer> pcs = cps.PackageContainer_kind_children();
+    for (std::set<PackageContainer>::iterator iter = pcs.begin();
+         iter != pcs.end();
+         ++iter)
+      {
+        PackageContainer pc = *iter;
+        pc.Accept (*this);
+      }
+  }
+
+  void PackageVisitor::Visit_PackageContainer(const PackageContainer& pc)
+  {
+    std::set<ComponentPackage> cps = pc.ComponentPackage_kind_children();
+    for (std::set<ComponentPackage>::iterator iter = cps.begin();
+         iter != cps.end();
+         ++iter)
+      {
+        ComponentPackage cp = *iter;
+        cp.Accept (*this);
+      }
+  }
+
+  void PackageVisitor::Visit_ComponentPackage(const ComponentPackage& cp)
+  {
+    this->push();
+    std::string name = this->outputPath_ + "\\";
+    name += cp.name();
+    name += ".cpd";
+    this->initTarget (name);
+    this->initDocument ("Deployment:ComponentPackageDescription");
+    this->initRootAttributes();
+
+    std::string label = cp.label();
+    if (!label.empty())
+      this->curr_->appendChild (this->createSimpleContent ("label",
+                                                           label));
+    std::string uuid = cp.UUID();
+    if (uuid.empty())
+      uuid = PICML::MakeUuidString();
+    this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
+
+    PackageInterface pi = cp.dstPackageInterface();
+    if (pi != Udm::null)
+      pi.Accept (*this);
+
+    std::set<Implementation> impls = cp.dstImplementation();
+    for (std::set<Implementation>::const_iterator it = impls.begin();
+         it != impls.end();
+         ++it)
+      {
+        Implementation impl = *it;
+        impl.Accept (*this);
+      }
+    // Dump out an ComponentPackageDescription file
+    this->dumpDocument();
+    this->pop();
+  }
+
+  void PackageVisitor::Visit_PackageInterface(const PackageInterface& pi)
+  {
+    this->push();
+    DOMElement* ele = this->doc_->createElement (XStr ("realizes"));
+    const ComponentType cref = pi.dstPackageInterface_end();
+    const Component comp  = cref.ref();
+    std::string refName (comp.name());
+    refName += ".ccd";
+    ele->setAttribute (XStr ("href"), XStr (refName));
+    this->curr_->appendChild (ele);
+    this->pop();
+  }
+
+  void PackageVisitor::Visit_Implementation(const Implementation& impl)
+  {
+    ComponentImplementationReference cir = impl.dstImplementation_end();
+    cir.Accept (*this);
+  }
+
+  void PackageVisitor::Visit_ComponentImplementationReference(const ComponentImplementationReference& cir)
+  {
+    this->push();
+    DOMElement* ele = this->doc_->createElement (XStr ("implementation"));
+    ele->appendChild (this->createSimpleContent ("name", cir.name()));
+    const ComponentImplementation ref = cir.ref();
+    std::string refName (ref.name());
+    refName += ".cid";
+    DOMElement*
+      refEle = this->doc_->createElement (XStr ("referencedImplementation"));
+    refEle->setAttribute (XStr ("href"), XStr (refName));
+    ele->appendChild (refEle);
+    this->curr_->appendChild (ele);
+    this->pop();
+  }
+
+  void PackageVisitor::Visit_PackageConfigProperty(const PackageConfigProperty&)
+  {}
+
+  void PackageVisitor::Visit_PackageInfoProperty(const PackageInfoProperty&)
+  {}
+
 
 }

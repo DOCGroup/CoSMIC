@@ -58,7 +58,7 @@ namespace PICML
     virtual void Visit_TypeEncoding(const TypeEncoding&){};
     virtual void Visit_GenericValueObject(const GenericValueObject&){};
 
-    // Implementation Artifact operations
+    // ImplementationArtifact operations
 
     virtual void Visit_ImplementationArtifacts(const ImplementationArtifacts&);
     virtual void Visit_ArtifactContainer(const ArtifactContainer&);
@@ -93,7 +93,42 @@ namespace PICML
     virtual void Visit_PackageConfBasePackage(const PackageConfBasePackage&);
     virtual void Visit_ComponentPackageReference(const ComponentPackageReference&);
 
-    //
+    // ComponentPackage operations
+
+    virtual void Visit_ComponentPackages(const ComponentPackages&);
+    virtual void Visit_PackageContainer(const PackageContainer&);
+    virtual void Visit_ComponentPackage(const ComponentPackage&);
+    virtual void Visit_PackageInterface(const PackageInterface&);
+    virtual void Visit_PackageConfigProperty(const PackageConfigProperty&);
+    virtual void Visit_PackageInfoProperty(const PackageInfoProperty&);
+    virtual void Visit_Implementation(const Implementation&);
+    virtual void Visit_ComponentImplementationReference(const ComponentImplementationReference&);
+
+    // ComponentInterface operations
+
+    virtual void Visit_ComponentTypes(const ComponentTypes&);
+    virtual void Visit_ComponentContainer(const ComponentContainer&);
+    virtual void Visit_ComponentType(const ComponentType&){};
+    virtual void Visit_ComponentPropertyDescription(const ComponentPropertyDescription&);
+    virtual void Visit_ComponentProperty(const ComponentProperty&);
+    virtual void Visit_ComponentInfoProperty(const ComponentInfoProperty&);
+    virtual void Visit_ComponentConfigProperty(const ComponentConfigProperty&);
+    virtual void Visit_OutEventPort(const OutEventPort&){};
+    virtual void Visit_ProvidedRequestPort(const ProvidedRequestPort&){};
+    virtual void Visit_Component(const Component&){};
+    virtual void Visit_RequiredRequestPort(const RequiredRequestPort&){};
+    virtual void Visit_InEventPort(const InEventPort&){};
+    virtual void Visit_Supports(const Supports&){};
+    virtual void Visit_Object(const Object&){};
+
+
+    // ComponentImplementation operations
+
+    virtual void Visit_ComponentImplementations(const ComponentImplementations&){};
+    virtual void Visit_ComponentImplementationContainer(const ComponentImplementationContainer&){};
+    virtual void Visit_MonolithicImplementation(const MonolithicImplementation&){};
+    virtual void Visit_MonolithExecParameter(const MonolithExecParameter&){};
+
     virtual void Visit_Requirement(const Requirement&){};
     virtual void Visit_SatisfierProperty(const SatisfierProperty&){};
     virtual void Visit_ImplementationDependency(const ImplementationDependency&){};
@@ -107,32 +142,14 @@ namespace PICML
     virtual void Visit_ComponentAssembly(const ComponentAssembly&){};
     virtual void Visit_emit(const emit&){};
     virtual void Visit_invoke(const invoke&){};
-    virtual void Visit_ComponentPackage(const ComponentPackage&){};
-    virtual void Visit_ComponentPackages(const ComponentPackages&){};
-    virtual void Visit_Implementation(const Implementation&){};
-    virtual void Visit_PackageContainer(const PackageContainer&){};
-    virtual void Visit_PackageConfigProperty(const PackageConfigProperty&){};
-    virtual void Visit_PackageInfoProperty(const PackageInfoProperty&){};
-    virtual void Visit_PackageInterface(const PackageInterface&){};
     virtual void Visit_InfoProperty(const InfoProperty&){};
     virtual void Visit_MonolithprimaryArtifact(const MonolithprimaryArtifact&){};
     virtual void Visit_MonolithDeployRequirement(const MonolithDeployRequirement&){};
-    virtual void Visit_ComponentImplementationReference(const ComponentImplementationReference&){};
     virtual void Visit_ConfigProperty(const ConfigProperty&){};
-    virtual void Visit_ComponentImplementationContainer(const ComponentImplementationContainer&){};
-    virtual void Visit_MonolithicImplementation(const MonolithicImplementation&){};
-    virtual void Visit_MonolithExecParameter(const MonolithExecParameter&){};
     virtual void Visit_ImplementationDependsOn(const ImplementationDependsOn&){};
     virtual void Visit_Implements(const Implements&){};
-    virtual void Visit_ComponentImplementations(const ComponentImplementations&){};
     virtual void Visit_ImplementationCapability(const ImplementationCapability&){};
-    virtual void Visit_ComponentContainer(const ComponentContainer&){};
-    virtual void Visit_ComponentPropertyDescription(const ComponentPropertyDescription&){};
-    virtual void Visit_ComponentInfoProperty(const ComponentInfoProperty&){};
-    virtual void Visit_ComponentProperty(const ComponentProperty&){};
-    virtual void Visit_ComponentTypes(const ComponentTypes&){};
-    virtual void Visit_ComponentConfigProperty(const ComponentConfigProperty&){};
-    virtual void Visit_ComponentType(const ComponentType&){};
+
     virtual void Visit_Resource(const Resource&){};
     virtual void Visit_SharedResource(const SharedResource&){};
     virtual void Visit_NodeReference(const NodeReference&){};
@@ -180,21 +197,14 @@ namespace PICML
     virtual void Visit_LookupKey(const LookupKey&){};
     virtual void Visit_Attribute(const Attribute&){};
     virtual void Visit_ReadonlyAttribute(const ReadonlyAttribute&){};
-    virtual void Visit_Supports(const Supports&){};
     virtual void Visit_MakeMemberPrivate(const MakeMemberPrivate&){};
     virtual void Visit_PrivateFlag(const PrivateFlag&){};
     virtual void Visit_GetException(const GetException&){};
     virtual void Visit_Inherits(const Inherits&){};
-    virtual void Visit_Object(const Object&){};
     virtual void Visit_ValueObject(const ValueObject&){};
     virtual void Visit_Event(const Event&){};
     virtual void Visit_AttributeMember(const AttributeMember&){};
-    virtual void Visit_OutEventPort(const OutEventPort&){};
-    virtual void Visit_ProvidedRequestPort(const ProvidedRequestPort&){};
-    virtual void Visit_Component(const Component&){};
-    virtual void Visit_RequiredRequestPort(const RequiredRequestPort&){};
     virtual void Visit_ManagesComponent(const ManagesComponent&){};
-    virtual void Visit_InEventPort(const InEventPort&){};
     virtual void Visit_ComponentRef(const ComponentRef&){};
     virtual void Visit_ComponentFactory(const ComponentFactory&){};
     virtual void Visit_Object(const Udm::Object&){};
