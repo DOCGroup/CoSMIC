@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{2B0DD293-61BE-486D-A867-6C49EE494BD2}" cdate="Thu Oct 21 23:16:08 2004" mdate="Thu Oct 21 23:40:45 2004" version="" metaguid="{DF851054-A0B3-41EF-8FF2-8C42EE5EDD12}" metaversion="" metaname="MetaGME">
+<project guid="{7435E6BC-8DE4-42FA-A8A8-5D0EE63F6E67}" cdate="Fri Oct 22 10:01:12 2004" mdate="Fri Oct 22 10:31:31 2004" version="" metaguid="{DF851054-A0B3-41EF-8FF2-8C42EE5EDD12}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment></comment>
 	<author></author>
@@ -36723,8 +36723,8 @@
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000022"/>
 				<connpoint role="src" target="id-0066-00000022"/>
+				<connpoint role="dst" target="id-0066-00000022"/>
 			</connection>
 			<connection id="id-0068-00000044" kind="HasAspect" role="HasAspect" relid="0x54">
 				<name>HasAspect</name>
@@ -65665,8 +65665,8 @@
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000132"/>
 				<connpoint role="src" target="id-0066-00000132"/>
+				<connpoint role="dst" target="id-0066-00000132"/>
 			</connection>
 			<connection id="id-0068-00000237" kind="Containment" role="Containment" relid="0x9d">
 				<name>Containment</name>
@@ -69788,7 +69788,7 @@
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-00000016" kind="ParadigmSheet" relid="0x2b" childrelidcntr="0x52">
+		<model id="id-0065-00000016" kind="ParadigmSheet" relid="0x2b" childrelidcntr="0x56">
 			<name>EventChannelConfiguration</name>
 			<atom id="id-0066-00000182" kind="Model" role="Model" relid="0x12f">
 				<name>RTEC_Proxy</name>
@@ -74326,17 +74326,6 @@ dName = dstUse_RT_Info</value>
 				<connpoint role="src" target="id-0066-00000194"/>
 				<connpoint role="dst" target="id-0066-00000195"/>
 			</connection>
-			<connection id="id-0068-000002a2" kind="SourceToConnector" role="SourceToConnector" relid="0x6">
-				<name>SourceToConnector</name>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<attribute kind="srcRolename" status="meta">
-					<value>src</value>
-				</attribute>
-				<connpoint role="src" target="id-0066-00000189"/>
-				<connpoint role="dst" target="id-0066-00000190"/>
-			</connection>
 			<connection id="id-0068-000002a3" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x3">
 				<name>ConnectorToDestination</name>
 				<regnode name="autorouterPref" isopaque="yes">
@@ -74412,17 +74401,6 @@ dName = dstUse_RT_Info</value>
 				<connpoint role="dst" target="id-0066-00000192"/>
 				<connpoint role="src" target="id-0066-00000193"/>
 			</connection>
-			<connection id="id-0068-000002a9" kind="SourceToConnector" role="SourceToConnector" relid="0x1c">
-				<name>SourceToConnector</name>
-				<attribute kind="Cardinality">
-					<value>0..*</value>
-				</attribute>
-				<attribute kind="srcRolename">
-					<value>dst</value>
-				</attribute>
-				<connpoint role="dst" target="id-0066-00000197"/>
-				<connpoint role="src" target="id-0066-0000019b"/>
-			</connection>
 			<connection id="id-0068-000002aa" kind="SourceToConnector" role="SourceToConnector" relid="0x3e">
 				<name>SourceToConnector</name>
 				<regnode name="autorouterPref" isopaque="yes">
@@ -74479,20 +74457,6 @@ dName = dstUse_RT_Info</value>
 				<name>DerivedInheritance</name>
 				<connpoint role="dst" target="id-0066-00000186"/>
 				<connpoint role="src" target="id-0066-0000019a"/>
-			</connection>
-			<connection id="id-0068-000002b0" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x2a">
-				<name>ConnectorToDestination</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>E</value>
-				</regnode>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<attribute kind="dstRolename">
-					<value>src</value>
-				</attribute>
-				<connpoint role="src" target="id-0066-00000197"/>
-				<connpoint role="dst" target="id-0066-00000198"/>
 			</connection>
 			<connection id="id-0068-000002b1" kind="Containment" role="Containment" relid="0x29">
 				<name>Containment</name>
@@ -74918,20 +74882,6 @@ dName = dstUse_RT_Info</value>
 				<connpoint role="dst" target="id-0066-00000192"/>
 				<connpoint role="src" target="id-0067-0000003d"/>
 			</connection>
-			<connection id="id-0068-000002ec" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x37">
-				<name>ConnectorToDestination</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>e</value>
-				</regnode>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<attribute kind="dstRolename" status="meta">
-					<value>dst</value>
-				</attribute>
-				<connpoint role="src" target="id-0066-00000190"/>
-				<connpoint role="dst" target="id-0067-0000003b"/>
-			</connection>
 			<connection id="id-0068-000002ed" kind="SourceToConnector" role="SourceToConnector" relid="0x38">
 				<name>SourceToConnector</name>
 				<regnode name="autorouterPref" isopaque="yes">
@@ -75023,7 +74973,63 @@ dName = dstUse_RT_Info</value>
 				<connpoint role="dst" target="id-0066-00000183"/>
 				<connpoint role="src" target="id-0066-000001c0"/>
 			</connection>
-			<set id="id-0069-00000010" kind="Aspect" role="Aspect" relid="0x22" members="id-0067-0000003c id-0066-0000018e id-0066-0000018b id-0066-00000191 id-0066-00000182 id-0066-00000184 id-0066-00000198 id-0066-00000188 id-0066-0000019b id-0066-00000183 id-0066-0000018c id-0066-00000189 id-0066-00000199 id-0066-00000186 id-0066-00000193 id-0067-0000003d id-0067-0000003b id-0066-00000196 id-0066-00000194 id-0066-0000018d id-0066-00000192">
+			<connection id="id-0068-000002f8" kind="SourceToConnector" role="SourceToConnector" relid="0x53">
+				<name>SourceToConnector</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>W</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="srcRolename" status="meta">
+					<value>src</value>
+				</attribute>
+				<connpoint role="src" target="id-0066-00000189"/>
+				<connpoint role="dst" target="id-0066-00000190"/>
+			</connection>
+			<connection id="id-0068-000002fa" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x54">
+				<name>ConnectorToDestination</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ne</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="dstRolename" status="meta">
+					<value>dst</value>
+				</attribute>
+				<connpoint role="src" target="id-0066-00000190"/>
+				<connpoint role="dst" target="id-0067-0000003b"/>
+			</connection>
+			<connection id="id-0068-000002fb" kind="SourceToConnector" role="SourceToConnector" relid="0x55">
+				<name>SourceToConnector</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>W</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="srcRolename" status="meta">
+					<value>src</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000197"/>
+				<connpoint role="src" target="id-0066-00000198"/>
+			</connection>
+			<connection id="id-0068-000002fc" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x56">
+				<name>ConnectorToDestination</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>e</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="dstRolename" status="meta">
+					<value>dst</value>
+				</attribute>
+				<connpoint role="src" target="id-0066-00000197"/>
+				<connpoint role="dst" target="id-0066-0000019b"/>
+			</connection>
+			<set id="id-0069-00000010" kind="Aspect" role="Aspect" relid="0x22" members="id-0066-00000192 id-0066-0000018d id-0066-00000194 id-0066-00000196 id-0067-0000003b id-0067-0000003d id-0066-00000193 id-0066-00000186 id-0066-00000199 id-0066-00000189 id-0066-0000018c id-0066-00000183 id-0066-0000019b id-0066-00000188 id-0066-00000198 id-0066-00000184 id-0066-00000182 id-0066-00000191 id-0066-0000018b id-0066-0000018e id-0067-0000003c">
 				<name>RtecConfigAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
