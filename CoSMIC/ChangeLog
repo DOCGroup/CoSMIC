@@ -1,3 +1,11 @@
+Thu Jul 29 16:03:55 2004  Jeff Parsons  <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.vcproj:
+        
+          Turned the silencer option for the call to regsvr32 in the
+          Custom Build Step back on after turning it off for debugging
+          purposes and overlooked it in the checkin below.
+
 Thu Jul 29 15:44:29 2004  Jeff Parsons  <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLGenerator/BON2Component.sln:
