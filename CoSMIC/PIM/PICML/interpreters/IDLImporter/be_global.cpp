@@ -378,10 +378,15 @@ BE_GlobalData::xerces_init (void)
       target_name += FILE_EXT;
       
       // Create a target for the output:
+      
+      // (@@@ JP) All of a sudden (2/7/05) there was an exception when
+      // XMLCh* was passed, but not when char* was passed (the constructor
+      // for LocalFileFormatTarget has two variants).
+      XStr target_xstr (target_name.c_str ());
+      const XMLCh * target_arg = target_xstr.begin ();
+      
       ACE_NEW (this->target_,
-               xercesc::LocalFileFormatTarget (
-                  XStr (target_name.c_str ()))
-                );
+               xercesc::LocalFileFormatTarget (target_name.c_str ()));
     }
   catch (const xercesc::DOMException &e)
     {
@@ -402,8 +407,35 @@ BE_GlobalData::cache_files (const char *files[], long nfiles)
 {
   for (long i = 0; i < nfiles; ++i)
     {
+      // Cache the file names in be_global.
       this->allfiles_[i] = files[i];
-    }
+      
+      // Store DOM element and GME id for each file now, so we
+      // won't have to be concerned that a lookup failure later
+      // might be due to a mistake or that the filename just
+      // appears further down the command line.
+      
+      // Create a DOM element and store in the table under the
+      // local filename. This may lead to name clashes, but it is
+      // too much of a bottomless pit to deal with full pathnames
+      // portably.
+      DOMElement *file = this->doc_->createElement (X ("model"));
+      ACE_CString fname (files[i]);
+      int fpos = fname.rfind ('/');
+      int pos = (fpos == ACE_CString::npos ? fname.rfind ('\\') : fpos);
+      ACE_CString lname =
+        (pos == ACE_CString::npos ? fname : fname.substr (pos + 1));
+      lname = lname.substr (0, lname.rfind ('.'));
+      const char *lname_cstr = lname.c_str ();
+      this->decl_elem_table_.bind (ACE::strnew (lname_cstr),
+                                   file);
+                                   
+      // Create a new GME id and store it as well.
+      ACE_CString new_id = this->make_gme_id (MODEL);
+      file->setAttribute (X ("id"), X (new_id.c_str ()));
+      this->decl_id_table_.bind (ACE::strnew (lname_cstr),
+                                 file->getAttribute (X ("id")));
+   }
     
   this->nfiles_ = nfiles;
 }
@@ -457,3 +489,43 @@ BE_GlobalData::basic_seq_suffix (void) const
 {
   return this->basic_seq_suffix_;
 }
+
+ACE_CString
+BE_GlobalData::make_gme_id (kind_id kind)
+{
+  ACE_CString val ("id-");
+  static char short_str[5];
+  ACE_OS::sprintf (short_str, "%4.4x", kind);
+  short_str[4] = '\0';
+  val += short_str;
+  val += "-";
+  unsigned long tmp = 0;
+  
+  switch (kind)
+    {
+      case MODEL:
+        tmp = this->models_seen_++;
+        break;
+      case ATOM:
+        tmp = this->atoms_seen_++;
+        break;
+      case REF:
+        tmp = this->refs_seen_++;
+        break;
+      case CONN:
+        tmp = this->conns_seen_++;
+        break;
+      case FOLDER:
+        tmp = this->folders_seen_++;
+        break;
+      default:
+        break;
+    }
+    
+  static char long_str[9];
+  ACE_OS::sprintf (long_str, "%8.8x", tmp);  
+  long_str[8] = '\0';
+  val += long_str;
+  return val;
+}
+  

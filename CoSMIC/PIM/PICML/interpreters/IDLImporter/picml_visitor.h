@@ -92,20 +92,11 @@ public:
   virtual int visit_native (AST_Native *node);
   
 private:
-  enum kind_id
-    {
-      MODEL  = 0x65,
-      ATOM   = 0x66,
-      REF    = 0x67,
-      CONN   = 0x68,
-      FOLDER = 0x6a
-    };
-    
   typedef ACE_Unbounded_Queue_Iterator<AST_Component::port_description>
     PORT_ITER;
   
 private:
-  ACE_CString set_id_attr (DOMElement *elem, kind_id kind);
+  ACE_CString set_id_attr (DOMElement *elem, BE_GlobalData::kind_id kind);
   void set_relid_attr (DOMElement *elem);
   void set_childrelidcntr_attr (DOMElement *elem,
                                 UTL_Scope *s,
@@ -172,7 +163,6 @@ private:
   void add_home_factories (DOMElement *parent, AST_Home *node);
   void add_finders (DOMElement *parent, AST_Home *node);
   
-  ACE_CString make_gme_id (kind_id kind);
   ACE_TCHAR *timestamp (ACE_TCHAR date_and_time[], int length);
   unsigned long nmembers_gme (UTL_Scope *s, AST_Attribute *a = 0);
   XMLCh *lookup_id (AST_Decl *d);

@@ -38,7 +38,7 @@
 // of 1600 x 1200, giving a likely size for the IDML Model Editor
 // window.
 picml_visitor::picml_visitor (DOMElement *sub_tree,
-                            unsigned long rel_id)
+                              unsigned long rel_id)
   : sub_tree_ (sub_tree),
     doc_ (sub_tree->getOwnerDocument ()),
     rel_id_ (rel_id),
@@ -110,23 +110,15 @@ picml_visitor::visit_predefined_type (AST_PredefinedType *)
 int 
 picml_visitor::visit_module (AST_Module *node)
 {
-  DOMElement *elem = this->doc_->createElement (X ("model"));
-  int result = 0;//be_global->decl_elem_table ().find (node->repoID (), elem);
-  unsigned long holder = 0;
+  // Since modules can be reopened in IDL, we create a new DOMElement
+  // without checking for previous existence. Since a module cannot
+  // be referenced by any other AST node, there's no need to store
+  // anything in either of the tables we use in the backend.
 
-  if (result != 0)
-    {
-      // Create a DOMElement and a GME id and store them in their
-      // respective tables. These actions are idempotent, so we
-      // don't care about the return values of bind().
-      elem = this->doc_->createElement (X ("model"));
-      be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
-                                          elem);
-      this->set_id_attr (elem, MODEL);
-      be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
-                                        elem->getAttribute (X ("id")));
-    }
-    
+  DOMElement *elem = this->doc_->createElement (X ("model"));
+  int result = 0;
+  unsigned long holder = 0;
+  
   if (!node->imported ())
     {
       // Homes can be declared at global scope or in (possibly nested)
@@ -135,7 +127,7 @@ picml_visitor::visit_module (AST_Module *node)
       holder = this->manages_relid_offset_;
       this->manages_relid_offset_ = 0UL;
         
-      this->set_id_attr (elem, MODEL);
+      this->set_id_attr (elem, BE_GlobalData::MODEL);
       this->set_relid_attr (elem);
       this->set_childrelidcntr_attr (elem, node);
       elem->setAttribute (X ("kind"), X ("Package"));
@@ -181,7 +173,7 @@ picml_visitor::visit_interface (AST_Interface *node)
       elem = this->doc_->createElement (X ("model"));
       be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
                                           elem);
-      this->set_id_attr (elem, MODEL);
+      this->set_id_attr (elem, BE_GlobalData::MODEL);
       be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
                                         elem->getAttribute (X ("id")));
     }
@@ -234,7 +226,7 @@ picml_visitor::visit_interface_fwd (AST_InterfaceFwd *node)
   elem = this->doc_->createElement (X ("model"));
   (void) be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
                                              elem);
-  this->set_id_attr (elem, MODEL);
+  this->set_id_attr (elem, BE_GlobalData::MODEL);
   (void) be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
                                            elem->getAttribute (X ("id")));
   return 0;
@@ -254,7 +246,7 @@ picml_visitor::visit_valuetype (AST_ValueType *node)
       elem = this->doc_->createElement (X ("model"));
       be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
                                           elem);
-      this->set_id_attr (elem, MODEL);
+      this->set_id_attr (elem, BE_GlobalData::MODEL);
       be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
                                         elem->getAttribute (X ("id")));
     }
@@ -319,7 +311,7 @@ picml_visitor::visit_component (AST_Component *node)
       elem = this->doc_->createElement (X ("model"));
       be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
                                           elem);
-      this->set_id_attr (elem, MODEL);
+      this->set_id_attr (elem, BE_GlobalData::MODEL);
       be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
                                         elem->getAttribute (X ("id")));
     }
@@ -396,7 +388,7 @@ picml_visitor::visit_home (AST_Home *node)
       elem = this->doc_->createElement (X ("model"));
       be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
                                           elem);
-      this->set_id_attr (elem, MODEL);
+      this->set_id_attr (elem, BE_GlobalData::MODEL);
       be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
                                         elem->getAttribute (X ("id")));
     }
@@ -451,7 +443,7 @@ picml_visitor::visit_factory (AST_Factory *node)
     }
     
   DOMElement *elem = this->doc_->createElement (X ("model"));
-  this->set_id_attr (elem, MODEL);
+  this->set_id_attr (elem, BE_GlobalData::MODEL);
   elem->setAttribute (X ("kind"), X ("FactoryOperation"));
   elem->setAttribute (X ("role"), X ("FactoryOperation"));
   this->set_relid_attr (elem);
@@ -495,7 +487,7 @@ picml_visitor::visit_structure (AST_Structure *node)
       elem = this->doc_->createElement (X ("model"));
       be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
                                           elem);
-      this->set_id_attr (elem, MODEL);
+      this->set_id_attr (elem, BE_GlobalData::MODEL);
       be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
                                         elem->getAttribute (X ("id")));
     }
@@ -554,7 +546,7 @@ picml_visitor::visit_structure_fwd (AST_StructureFwd *node)
   elem = this->doc_->createElement (X ("model"));
   (void) be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
                                             elem);
-  this->set_id_attr (elem, MODEL);
+  this->set_id_attr (elem, BE_GlobalData::MODEL);
   (void) be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
                                            elem->getAttribute (X ("id")));
   return 0;
@@ -574,7 +566,7 @@ picml_visitor::visit_exception (AST_Exception *node)
       elem = this->doc_->createElement (X ("model"));
       be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
                                           elem);
-      this->set_id_attr (elem, MODEL);
+      this->set_id_attr (elem, BE_GlobalData::MODEL);
       be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
                                         elem->getAttribute (X ("id")));
     }
@@ -625,7 +617,7 @@ picml_visitor::visit_enum (AST_Enum *node)
       elem = this->doc_->createElement (X ("model"));
       be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
                                           elem);
-      this->set_id_attr (elem, MODEL);
+      this->set_id_attr (elem, BE_GlobalData::MODEL);
       be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
                                         elem->getAttribute (X ("id")));
     }
@@ -665,7 +657,7 @@ picml_visitor::visit_operation (AST_Operation *node)
     }
     
   DOMElement *elem = this->doc_->createElement (X ("model"));
-  this->set_id_attr (elem, MODEL);
+  this->set_id_attr (elem, BE_GlobalData::MODEL);
   ACE_CString kind =
     node->flags () == AST_Operation::OP_oneway ? "Oneway" : "Twoway";
   kind += "Operation";
@@ -684,7 +676,7 @@ picml_visitor::visit_operation (AST_Operation *node)
     {
       AST_Type *rt = node->return_type ();
       DOMElement *return_type = this->doc_->createElement (X ("reference"));
-      this->set_id_attr (return_type, REF);
+      this->set_id_attr (return_type, BE_GlobalData::REF);
       return_type->setAttribute (X ("kind"), X ("ReturnType"));
       return_type->setAttribute (X ("role"), X ("ReturnType"));
       return_type->setAttribute (X ("relid"),
@@ -736,7 +728,7 @@ picml_visitor::visit_field (AST_Field *node)
     }
     
   DOMElement *elem = this->doc_->createElement (X ("reference"));
-  ACE_CString id = this->set_id_attr (elem, REF);
+  ACE_CString id = this->set_id_attr (elem, BE_GlobalData::REF);
   elem->setAttribute (X ("kind"), X ("Member"));
   elem->setAttribute (X ("role"), X ("Member"));
   this->set_relid_attr (elem);
@@ -759,7 +751,7 @@ int
 picml_visitor::visit_argument (AST_Argument *node)
 {
   DOMElement *arg = this->doc_->createElement (X ("reference"));
-  this->set_id_attr (arg, REF);
+  this->set_id_attr (arg, BE_GlobalData::REF);
   ACE_CString kind;
   
   switch (node->direction ())
@@ -799,7 +791,7 @@ picml_visitor::visit_attribute (AST_Attribute *node)
     }
     
   DOMElement *elem = this->doc_->createElement (X ("model"));
-  this->set_id_attr (elem, MODEL);
+  this->set_id_attr (elem, BE_GlobalData::MODEL);
   idl_bool read_only = node->readonly ();
   const char *kind = read_only ? "ReadonlyAttribute" : "Attribute";
   elem->setAttribute (X ("kind"), X (kind));
@@ -813,7 +805,7 @@ picml_visitor::visit_attribute (AST_Attribute *node)
   
   AST_Type *ft = node->field_type ();
   DOMElement *member = this->doc_->createElement (X ("reference"));
-  this->set_id_attr (member, REF);
+  this->set_id_attr (member, BE_GlobalData::REF);
   member->setAttribute (X ("kind"), X ("AttributeMember"));
   member->setAttribute (X ("role"), X ("AttributeMember"));
   member->setAttribute (X ("relid"), X (be_global->hex_string (1UL)));
@@ -863,7 +855,7 @@ picml_visitor::visit_union (AST_Union *node)
       elem = this->doc_->createElement (X ("model"));
       be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
                                           elem);
-      this->set_id_attr (elem, MODEL);
+      this->set_id_attr (elem, BE_GlobalData::MODEL);
       be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
                                         elem->getAttribute (X ("id")));
     }
@@ -933,7 +925,7 @@ picml_visitor::visit_union_branch (AST_UnionBranch *node)
     }
     
   DOMElement *elem = this->doc_->createElement (X ("reference"));
-  ACE_CString id = this->set_id_attr (elem, REF);
+  ACE_CString id = this->set_id_attr (elem, BE_GlobalData::REF);
   elem->setAttribute (X ("kind"), X ("Member"));
   elem->setAttribute (X ("role"), X ("Member"));
   this->set_relid_attr (elem);
@@ -968,7 +960,7 @@ picml_visitor::visit_constant (AST_Constant *node)
       elem = this->doc_->createElement (X ("reference"));
       be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
                                           elem);
-      this->set_id_attr (elem, REF);
+      this->set_id_attr (elem, BE_GlobalData::REF);
       be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
                                         elem->getAttribute (X ("id")));
     }
@@ -1024,7 +1016,7 @@ picml_visitor::visit_enum_val (AST_EnumVal *node)
       elem = this->doc_->createElement (X ("atom"));
       be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
                                           elem);
-      this->set_id_attr (elem, ATOM);
+      this->set_id_attr (elem, BE_GlobalData::ATOM);
       be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
                                         elem->getAttribute (X ("id")));
     }
@@ -1079,7 +1071,7 @@ picml_visitor::visit_typedef (AST_Typedef *node)
       elem = this->doc_->createElement (X ("reference"));
       be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
                                           elem);
-      this->set_id_attr (elem, REF);
+      this->set_id_attr (elem, BE_GlobalData::REF);
       be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
                                         elem->getAttribute (X ("id")));
     }
@@ -1153,7 +1145,7 @@ picml_visitor::visit_root (AST_Root *node)
       sub_tree_->appendChild (author);
       
       DOMElement *root_folder = doc_->createElement (X ("folder"));
-      this->set_id_attr (root_folder, FOLDER);
+      this->set_id_attr (root_folder, BE_GlobalData::FOLDER);
       this->set_relid_attr (root_folder);
       root_folder->setAttribute (X ("childrelidcntr"), X ("0x2"));
       root_folder->setAttribute (X ("kind"), X ("RootFolder"));
@@ -1163,7 +1155,7 @@ picml_visitor::visit_root (AST_Root *node)
          
       interface_definitions =
         doc_->createElement (X ("folder"));
-      this->set_id_attr (interface_definitions, FOLDER);
+      this->set_id_attr (interface_definitions, BE_GlobalData::FOLDER);
       this->set_relid_attr (interface_definitions);
       interface_definitions->setAttribute (
           X ("childrelidcntr"), 
@@ -1213,9 +1205,9 @@ picml_visitor::visit_native (AST_Native *)
 }
 
 ACE_CString
-picml_visitor::set_id_attr (DOMElement *elem, kind_id kind)
+picml_visitor::set_id_attr (DOMElement *elem, BE_GlobalData::kind_id kind)
 {
-  ACE_CString val = this->make_gme_id (kind);
+  ACE_CString val = be_global->make_gme_id (kind);
   elem->setAttribute (X ("id"), X (val.c_str ()));
   return val;
 }
@@ -1301,7 +1293,7 @@ void
 picml_visitor::add_predefined_types (DOMElement *root_folder)
 {
   DOMElement *pdt_folder = doc_->createElement (X ("folder"));
-  this->set_id_attr (pdt_folder, FOLDER);
+  this->set_id_attr (pdt_folder, BE_GlobalData::FOLDER);
   pdt_folder->setAttribute (X ("relid"), X ("0x1"));
   
   unsigned long npdt = be_global->npredefined ();
@@ -1314,7 +1306,7 @@ picml_visitor::add_predefined_types (DOMElement *root_folder)
   for (unsigned long i = 0; i < npdt; ++i)
     {
       DOMElement *pdt = doc_->createElement (X ("atom"));
-      this->set_id_attr (pdt, ATOM);
+      this->set_id_attr (pdt, BE_GlobalData::ATOM);
       pdt->setAttribute (X ("kind"), X (be_global->pdt_names ()[i]));
       
       // Store the GME id for possible rererence by other XML elements.
@@ -1443,7 +1435,7 @@ picml_visitor::add_one_predefined_sequence (DOMElement *parent,
       return;
     }
     
-  this->set_id_attr (seq, REF);
+  this->set_id_attr (seq, BE_GlobalData::REF);
   seq->setAttribute (X ("relid"), X (be_global->hex_string (model_slot)));
   seq->setAttribute (X ("kind"), X ("Collection"));
   seq->setAttribute (X ("role"), X ("Collection"));
@@ -1476,31 +1468,43 @@ picml_visitor::add_one_predefined_sequence (DOMElement *parent,
 DOMElement *
 picml_visitor::add_file_element (DOMElement *parent, AST_Root *node)
 {
-  DOMElement *file = this->doc_->createElement (X ("model"));
+  ACE_CString tmp (idl_global->stripped_filename ()->get_string ());
+  tmp = tmp.substr (0, tmp.rfind ('.'));
+  const char *tmp_cstr = tmp.c_str ();
+  
+  DOMElement *file = 0;
+  int result = be_global->decl_elem_table ().find (tmp_cstr, file);
+
+  // All files should have been stored as part of BE_init(). If 
+  // this lookup fails, we will crash if we continue.
+  if (result != 0)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "Error: file %s not found in decl table\n",
+                  tmp_cstr));
+                        
+      exit (99);
+    }
+    
   this->set_relid_attr (file);
   file->setAttribute (X ("kind"), X ("File"));
   
-  ACE_CString tmp (idl_global->stripped_filename ()->get_string ());
-  tmp = tmp.substr (0, tmp.rfind ('.'));
-  
   XMLCh *file_id = 0;
-  int result = be_global->decl_id_table ().find (tmp.c_str (), file_id);
+  result = be_global->decl_id_table ().find (tmp_cstr, file_id);
   
-  // If a GME id has already been inserted in the table, use it, otherwise
-  // create a new one and insert that into the table.
-  if (result == 0)
+  // All files should have been stored as part of BE_init(). If 
+  // this lookup fails, we will crash if we continue.
+  if (result != 0)
     {
-      file->setAttribute (X ("id"), file_id);
+      ACE_ERROR ((LM_ERROR,
+                  "Error: file %s id not found in id table\n",
+                  tmp_cstr));
+                        
+      exit (99);
     }
-  else
-    {
-      this->set_id_attr (file, MODEL);
-      (void) be_global->decl_id_table ().bind (ACE::strnew (tmp.c_str ()),
-                                               file->getAttribute (X ("id")));
-        
-    }
-  
-  this->add_name_element (file, tmp.c_str ());
+    
+  file->setAttribute (X ("id"), file_id);
+  this->add_name_element (file, tmp_cstr);
   this->add_prefix_element (file, node);
   
   // This has to come before add_include_elements, because it adjusts
@@ -1652,7 +1656,7 @@ picml_visitor::add_include_elements (UTL_Scope *container, DOMElement *parent)
         }
         
       DOMElement *fileref = this->doc_->createElement (X ("reference"));
-      this->set_id_attr (fileref, REF);
+      this->set_id_attr (fileref, BE_GlobalData::REF);
       const char *hex_rel_id = be_global->hex_string (slot);
       fileref->setAttribute (X ("relid"), X (hex_rel_id));
       ++this->rel_id_;
@@ -1666,18 +1670,20 @@ picml_visitor::add_include_elements (UTL_Scope *container, DOMElement *parent)
       int result =
         be_global->decl_id_table ().find (tmp, id);
         
-      if (result == 0)
+      if (result != 0)
         {
-          fileref->setAttribute (X ("referred"), id);
-        }
-      else
-        {
-          ACE_CString new_id = this->make_gme_id (MODEL);
-          fileref->setAttribute (X ("referred"), X (new_id.c_str ()));
-          be_global->decl_id_table ().bind (ACE::strnew (tmp),
-                                            fileref->getAttribute (X ("referred")));
+          ACE_ERROR ((LM_ERROR,
+                      "Error: Filename %s, included in %s, not found "
+                      "in id table. %s was omitted from command line "
+                      "or spelling differs in case.\n",
+                      lname.c_str (),
+                      idl_global->filename ()->get_string (),
+                      lname.c_str ()));
+          
+          exit (99);
         }
       
+      fileref->setAttribute (X ("referred"), id);
       this->add_name_element (fileref, "FileRef");
       this->add_regnodes (container, fileref, slot++);
       
@@ -1782,7 +1788,7 @@ picml_visitor::add_one_inherited (DOMElement *parent,
                                  unsigned long slot)
 {
   DOMElement *elem = this->doc_->createElement (X ("reference"));
-  this->set_id_attr (elem, REF);
+  this->set_id_attr (elem, BE_GlobalData::REF);
   elem->setAttribute (X ("kind"), X ("Inherits"));
   elem->setAttribute (X ("role"), X ("Inherits"));
   const char *hex_rel_id = be_global->hex_string (slot);
@@ -1843,7 +1849,7 @@ picml_visitor::add_supported_elements (DOMElement *parent,
   for (unsigned long i = 0; i < static_cast<unsigned long> (n_supports); ++i)
     {
       DOMElement *supported = this->doc_->createElement (X ("reference"));
-      this->set_id_attr (supported, REF);
+      this->set_id_attr (supported, BE_GlobalData::REF);
       supported->setAttribute (X ("kind"), X ("Supports"));
       supported->setAttribute (X ("role"), X ("Supports"));
       supported->setAttribute (X ("relid"),
@@ -1869,7 +1875,7 @@ picml_visitor::add_exception_elements (DOMElement *parent,
        ei.next ())
     {
       DOMElement *elem = this->doc_->createElement (X ("reference"));
-      this->set_id_attr (elem, REF);
+      this->set_id_attr (elem, BE_GlobalData::REF);
       elem->setAttribute (X ("kind"), X (name));
       elem->setAttribute (X ("role"), X (name));
       elem->setAttribute (X ("relid"), 
@@ -1895,7 +1901,7 @@ void
 picml_visitor::add_discriminator (DOMElement *parent, AST_Union *u)
 {
   DOMElement *elem = this->doc_->createElement (X ("reference"));
-  this->set_id_attr (elem, REF);
+  this->set_id_attr (elem, BE_GlobalData::REF);
   elem->setAttribute (X ("kind"), X ("Discriminator"));
   elem->setAttribute (X ("role"), X ("Discriminator"));
   elem->setAttribute (X ("relid"), 
@@ -1917,7 +1923,7 @@ picml_visitor::add_labels (AST_UnionBranch *ub,
   for (unsigned long i = 0; i < ub->label_list_length (); ++i)
     {
       DOMElement *label = this->doc_->createElement (X ("atom"));
-      ACE_CString label_id = this->set_id_attr (label, ATOM);
+      ACE_CString label_id = this->set_id_attr (label, BE_GlobalData::ATOM);
       label->setAttribute (X ("kind"), X ("Label"));
       label->setAttribute (X ("role"), X ("Label"));
       label->setAttribute(X ("relid"),
@@ -1927,7 +1933,7 @@ picml_visitor::add_labels (AST_UnionBranch *ub,
       this->sub_tree_->appendChild (label);
       
       DOMElement *connection = this->doc_->createElement (X ("connection"));
-      this->set_id_attr (connection, CONN);
+      this->set_id_attr (connection, BE_GlobalData::CONN);
       connection->setAttribute (X ("kind"), X ("LabelConnection"));
       connection->setAttribute (X ("role"), X ("LabelConnection"));
       connection->setAttribute(X ("relid"),
@@ -2009,7 +2015,7 @@ picml_visitor::add_private (AST_Field *f,
                        + 1;
 
   DOMElement *pflag = this->doc_->createElement (X ("atom"));
-  ACE_CString flag_id = this->set_id_attr (pflag, ATOM);
+  ACE_CString flag_id = this->set_id_attr (pflag, BE_GlobalData::ATOM);
   pflag->setAttribute (X ("kind"), X ("PrivateFlag"));
   pflag->setAttribute (X ("role"), X ("PrivateFlag"));
   pflag->setAttribute (X ("relid"),
@@ -2019,7 +2025,7 @@ picml_visitor::add_private (AST_Field *f,
   this->add_regnodes (f->defined_in (), pflag, this->rel_id_ - 1, 0, I_TRUE);
   
   DOMElement *connection = this->doc_->createElement (X ("connection"));
-  this->set_id_attr (connection, CONN);
+  this->set_id_attr (connection, BE_GlobalData::CONN);
   connection->setAttribute (X ("kind"), X ("MakeMemberPrivate"));
   connection->setAttribute (X ("role"), X ("MakeMemberPrivate"));
   connection->setAttribute (X ("relid"),
@@ -2107,7 +2113,7 @@ picml_visitor::add_ports (DOMElement *parent, AST_Component *node)
       provides_iter.next (pd);
       DOMElement *provides_port =
         this->doc_->createElement (X ("reference"));
-      this->set_id_attr (provides_port, REF);
+      this->set_id_attr (provides_port, BE_GlobalData::REF);
       provides_port->setAttribute (X ("kind"), X ("ProvidedRequestPort"));
       provides_port->setAttribute (X ("role"), X ("ProvidedRequestPort"));
       provides_port->setAttribute (X ("relid"),
@@ -2129,7 +2135,7 @@ picml_visitor::add_ports (DOMElement *parent, AST_Component *node)
       uses_iter.next (pd);
       DOMElement *uses_port =
         this->doc_->createElement (X ("reference"));
-      this->set_id_attr (uses_port, REF);
+      this->set_id_attr (uses_port, BE_GlobalData::REF);
       uses_port->setAttribute (X ("kind"), X ("RequiredRequestPort"));
       uses_port->setAttribute (X ("role"), X ("RequiredRequestPort"));
       uses_port->setAttribute (X ("relid"),
@@ -2159,7 +2165,7 @@ picml_visitor::add_ports (DOMElement *parent, AST_Component *node)
       emits_iter.next (pd);
       DOMElement *emits_port =
         this->doc_->createElement (X ("reference"));
-      this->set_id_attr (emits_port, REF);
+      this->set_id_attr (emits_port, BE_GlobalData::REF);
       emits_port->setAttribute (X ("kind"), X ("OutEventPort"));
       emits_port->setAttribute (X ("role"), X ("OutEventPort"));
       emits_port->setAttribute (X ("relid"),
@@ -2188,7 +2194,7 @@ picml_visitor::add_ports (DOMElement *parent, AST_Component *node)
       publishes_iter.next (pd);
       DOMElement *publishes_port =
         this->doc_->createElement (X ("reference"));
-      this->set_id_attr (publishes_port, REF);
+      this->set_id_attr (publishes_port, BE_GlobalData::REF);
       publishes_port->setAttribute (X ("kind"), X ("OutEventPort"));
       publishes_port->setAttribute (X ("role"), X ("OutEventPort"));
       publishes_port->setAttribute (X ("relid"),
@@ -2217,7 +2223,7 @@ picml_visitor::add_ports (DOMElement *parent, AST_Component *node)
       consumes_iter.next (pd);
       DOMElement *consumes_port =
         this->doc_->createElement (X ("reference"));
-      this->set_id_attr (consumes_port, REF);
+      this->set_id_attr (consumes_port, BE_GlobalData::REF);
       consumes_port->setAttribute (X ("kind"), X ("InEventPort"));
       consumes_port->setAttribute (X ("role"), X ("InEventPort"));
       consumes_port->setAttribute (X ("relid"),
@@ -2241,7 +2247,7 @@ picml_visitor::add_manages (AST_Home *node)
                        + 1;
 
   DOMElement *connection = this->doc_->createElement (X ("connection"));
-  this->set_id_attr (connection, CONN);
+  this->set_id_attr (connection, BE_GlobalData::CONN);
   connection->setAttribute (X ("kind"), X ("ManagesComponent"));
   connection->setAttribute (X ("role"), X ("ManagesComponent"));
   connection->setAttribute (X ("relid"),
@@ -2268,7 +2274,7 @@ picml_visitor::add_manages (AST_Home *node)
       // Create a ComponentRef node and make that the dst end of the
       // ManagesComponent connection.
       DOMElement *comp_ref = this->doc_->createElement (X ("reference"));
-      comp_ref_id = this->set_id_attr (comp_ref, REF);
+      comp_ref_id = this->set_id_attr (comp_ref, BE_GlobalData::REF);
       comp_ref->setAttribute (X ("kind"), X ("ComponentRef"));
       comp_ref->setAttribute (X ("role"), X ("ComponentRef"));
       comp_ref->setAttribute (X ("relid"),
@@ -2308,7 +2314,7 @@ picml_visitor::add_lookup_key (DOMElement *parent, AST_Home *node)
                        + 1;
                        
   DOMElement *lookup_key = this->doc_->createElement (X ("reference"));
-  this->set_id_attr (lookup_key, REF);
+  this->set_id_attr (lookup_key, BE_GlobalData::REF);
   lookup_key->setAttribute (X ("kind"), X ("LookupKey"));
   lookup_key->setAttribute (X ("role"), X ("LookupKey"));
   lookup_key->setAttribute (X ("relid"), X (be_global->hex_string (slot)));
@@ -2333,7 +2339,7 @@ picml_visitor::add_home_factories (DOMElement *parent, AST_Home *node)
     {
       i.next (op);
       DOMElement *factory = this->doc_->createElement (X ("model"));
-      this->set_id_attr (factory, MODEL);
+      this->set_id_attr (factory, BE_GlobalData::MODEL);
       this->set_childrelidcntr_attr (factory, *op);
       factory->setAttribute (X ("relid"), X (be_global->hex_string (slot)));
       factory->setAttribute (X ("kind"), X ("FactoryOperation"));
@@ -2377,7 +2383,7 @@ picml_visitor::add_finders (DOMElement *parent, AST_Home *node)
     {
       i.next (op);
       DOMElement *finder = this->doc_->createElement (X ("model"));
-      this->set_id_attr (finder, MODEL);
+      this->set_id_attr (finder, BE_GlobalData::MODEL);
       this->set_childrelidcntr_attr (finder, *op);
       finder->setAttribute (X ("relid"), X (be_global->hex_string (slot)));
       finder->setAttribute (X ("kind"), X ("LookupOperation"));
@@ -2405,50 +2411,6 @@ picml_visitor::add_finders (DOMElement *parent, AST_Home *node)
     }
 }
 
-ACE_CString
-picml_visitor::make_gme_id (kind_id kind)
-{
-  ACE_CString val ("id-");
-  static char short_str[5];
-  ACE_OS::sprintf (short_str, "%4.4x", kind);
-  short_str[4] = '\0';
-  val += short_str;
-  val += "-";
-  unsigned long tmp = 0;
-  
-  switch (kind)
-    {
-      case MODEL:
-        tmp = be_global->models_seen ();
-        be_global->incr_models_seen ();
-        break;
-      case ATOM:
-        tmp = be_global->atoms_seen ();
-        be_global->incr_atoms_seen ();
-        break;
-      case REF:
-        tmp = be_global->refs_seen ();
-        be_global->incr_refs_seen ();
-        break;
-      case CONN:
-        tmp = be_global->conns_seen ();
-        be_global->incr_conns_seen ();
-        break;
-      case FOLDER:
-        tmp = be_global->folders_seen ();
-        be_global->incr_folders_seen ();
-        break;
-      default:
-        break;
-    }
-    
-  static char long_str[9];
-  ACE_OS::sprintf (long_str, "%8.8x", tmp);  
-  long_str[8] = '\0';
-  val += long_str;
-  return val;
-}
-  
 ACE_TCHAR *
 picml_visitor::timestamp (ACE_TCHAR date_and_time[],
                          int length)

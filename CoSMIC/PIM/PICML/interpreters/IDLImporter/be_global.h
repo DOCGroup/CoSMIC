@@ -97,6 +97,16 @@ public:
                                    ACE_Null_Mutex>
     DECL_ELEM_TABLE_ITERATOR;
 
+  // Maps GME model element type to hex string used in GME id.
+  enum kind_id
+    {
+      MODEL  = 0x65,
+      ATOM   = 0x66,
+      REF    = 0x67,
+      CONN   = 0x68,
+      FOLDER = 0x6a
+    };
+    
   // Data accessors.
 
   const char *filename (void) const;
@@ -179,6 +189,9 @@ public:
   
   ACE_CString basic_seq_suffix (void) const;
   // Accessor for the member.
+
+  ACE_CString make_gme_id (kind_id kind);
+  // Create a unique GME id based on the model element type.
 
 private:
   char *filename_;

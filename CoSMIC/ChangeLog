@@ -1,3 +1,26 @@
+Mon Feb  7 20:37:13 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.h:
+        
+          Added code to BE_GlobalData::cache_files() to create a DOM
+          element and GME id for each file, and store these created
+          items in their respective tables in the backend. Then, when
+          processing the file as part of visit_root(), the DOM element
+          and the GME id are simple looked up in the tables. This change
+          enables better error checking during the processing of
+          included IDL files, since it now doesn't matter if a particular
+          included file has not yet been processed as a command line file.
+          Previous to this change, a command line omission or misspelling
+          would not be caught, and the generated file simple would not
+          load into GME. Spelling of the filename on the command line is
+          required to be case-sensitive, since tao_picml could be executed
+          on a UNIX platform, where case matters in filename spelling.
+          Thanks to Sam Abbe <Sam_abbe@raytheon.com> for reporting a
+          problem loading an XME file generated from the BasicSP example.
+
 Fri Feb 4 16:17:05 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.cpp:
         * PIM/PICML/interpreters/BGML_Interpreter/Metric_Emitter.cpp:
