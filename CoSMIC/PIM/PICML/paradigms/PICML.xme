@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Thu Sep 23 14:51:05 2004" mdate="Thu Sep 30 15:51:49 2004" metaguid="{99CB7435-DEAD-BEEF-FEED-DAD000000001}" metaname="MetaGME">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Thu Sep 23 14:51:05 2004" mdate="Fri Oct 08 13:41:47 2004" metaguid="{99CB7435-DEAD-BEEF-FEED-DAD000000001}" metaname="MetaGME">
 	<name>PICML</name>
 	<comment></comment>
 	<author></author>
@@ -4779,19 +4779,19 @@
 					<value>7</value>
 				</regnode>
 				<regnode name="ComponentLibraries" isopaque="yes">
-					<value>9</value>
+					<value>3</value>
 				</regnode>
 				<regnode name="ComponentMetrics" isopaque="yes">
-					<value>6</value>
+					<value>9</value>
 				</regnode>
 				<regnode name="DataAnalysis" isopaque="yes">
-					<value>5</value>
-				</regnode>
-				<regnode name="InterfaceDefinition" isopaque="yes">
 					<value>2</value>
 				</regnode>
+				<regnode name="InterfaceDefinition" isopaque="yes">
+					<value>8</value>
+				</regnode>
 				<regnode name="LibraryArtifact" isopaque="yes">
-					<value>3</value>
+					<value>1</value>
 				</regnode>
 				<regnode name="MainAspect" isopaque="yes">
 					<value>1</value>
@@ -4800,7 +4800,7 @@
 					<value>5</value>
 				</regnode>
 				<regnode name="NodeMapping" isopaque="yes">
-					<value>1</value>
+					<value>6</value>
 				</regnode>
 				<regnode name="Package" isopaque="yes">
 					<value>2</value>
@@ -4815,13 +4815,13 @@
 					<value>4</value>
 				</regnode>
 				<regnode name="Target" isopaque="yes">
-					<value>8</value>
+					<value>7</value>
 				</regnode>
 				<regnode name="TypeDefinintionAspect" isopaque="yes">
 					<value>1</value>
 				</regnode>
 				<regnode name="Workspace" isopaque="yes">
-					<value>7</value>
+					<value>5</value>
 				</regnode>
 			</regnode>
 		</regnode>
@@ -11290,6 +11290,12 @@
 							<value>InterfaceDefinition</value>
 						</regnode>
 					</regnode>
+					<regnode name="DeploymentPlan:ComponentRef">
+						<value></value>
+						<regnode name="NodeMapping" isopaque="yes">
+							<value>InterfaceDefinition</value>
+						</regnode>
+					</regnode>
 					<regnode name="EventChannelConfiguration:ComponentRef" isopaque="yes">
 						<value></value>
 						<regnode name="RtecConfigAspect" isopaque="yes">
@@ -11339,6 +11345,9 @@
 						<value></value>
 						<regnode name="ComponentRef" isopaque="yes">
 							<value>4214</value>
+							<regnode name="NodeMapping" isopaque="yes">
+								<value>4387</value>
+							</regnode>
 						</regnode>
 					</regnode>
 					<regnode name="EventChannelConfiguration">
@@ -11389,6 +11398,12 @@
 					<regnode name="ComponentImplementationContainer:ComponentRef" isopaque="yes">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="DeploymentPlan:ComponentRef">
+						<value></value>
+						<regnode name="NodeMapping" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -66462,6 +66477,12 @@ mName = members</value>
 							<value>78,83</value>
 						</regnode>
 					</regnode>
+					<regnode name="Visualization">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>78,83</value>
+						</regnode>
+					</regnode>
 				</regnode>
 				<attribute kind="Decorator" status="meta">
 					<value></value>
@@ -66685,7 +66706,7 @@ mName = members</value>
 				<connpoint role="dst" target="id-0066-0000015a"/>
 				<connpoint role="src" target="id-0067-00000036"/>
 			</connection>
-			<set id="id-0069-00000018" kind="Aspect" role="Aspect" relid="0x1b" members="id-0066-0000015a id-0066-00000157 id-0067-00000074 id-0066-00000156">
+			<set id="id-0069-00000018" kind="Aspect" role="Aspect" relid="0x1b" members="id-0067-00000036 id-0066-0000015a id-0066-00000157 id-0067-00000074 id-0066-00000156">
 				<name>NodeMapping</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>

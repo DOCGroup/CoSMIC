@@ -2869,6 +2869,7 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
          <role name = "NodeReference" metaref = "3681" kind = "NodeReference"></role>
          <aspect name = "NodeMapping" metaref = "3607" attributes = "label" >
             <part metaref = "3713" role = "CollocationGroup" primary = "yes" linked = "no"></part>
+            <part metaref = "4387" role = "ComponentRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3609" role = "InstanceMapping" primary = "yes" linked = "no"></part>
             <part metaref = "3683" role = "NodeReference" primary = "yes" kindaspect = "Target" linked = "no"></part>
          </aspect>

@@ -68,6 +68,7 @@ public:
 	virtual CSize			getPreferredSize() const;
   virtual void      setLocation( const CRect& cRect );
   virtual CRect     getLocation() const;
+	virtual void 			setActive( bool bActive );
   virtual void 			draw( CDC* pDC ) = 0;
   virtual void      LoadBitmap() = 0;
 
@@ -86,6 +87,7 @@ protected:
 	objtype_enum					m_eType;
 	CMaskedBitmap         m_bitmap;
 	long							    m_lBorderWidth;
+	bool							    m_bActive;
 
 	COLORREF	            m_color;
 	COLORREF	            m_nameColor;
@@ -168,6 +170,7 @@ public:
   virtual void  initialize( IMgaFCO *obj, CComPtr<IMgaMetaFCO>& metaFco );
   virtual CSize getPreferredSize() const;
   virtual void  setLocation( const CRect& cRect );
+	virtual void  setActive( bool bActive );
   virtual void  draw( CDC* pDC );
   virtual void  LoadBitmap();
 

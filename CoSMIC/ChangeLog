@@ -1,3 +1,21 @@
+Fri Oct  8 14:17:25 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/decorators/Decorator.cpp:
+        * PIM/PICML/decorators/IDMLDecorators.cpp:
+        * PIM/PICML/decorators/IDMLDecorators.h:
+        
+          Fixed decorator to correctly display active and inactive
+          objects when modifying the members of the GME Set
+          CollocationGroup.
+          
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICMLTemplate.xme:
+        
+          Added an item in the DeploymentPlan paradigm sheet to its
+          aspect.
+
 Fri Oct  8 13:33:41 2004  Gan Deng <gan.deng@vanderbilt.edu>
 
         * PIM/PICML/interpreters/BGML_Interpreter/Component/PICML.cpp

@@ -36,6 +36,7 @@ DecoratorBase::DecoratorBase()
   : m_mgaFco( 0 ),
     m_metaFco( 0 ),
     m_lBorderWidth( 0 ),
+    m_bActive( true ),
     m_color( GME_BLACK_COLOR ),
     m_nameColor( GME_BLACK_COLOR )
 {
@@ -131,6 +132,12 @@ CRect
 DecoratorBase::getLocation() const
 {
   return m_rect;
+}
+
+void
+DecoratorBase::setActive( bool bActive )
+{
+	m_bActive = bActive;
 }
 
 vector<PortDecorator*>
@@ -347,7 +354,11 @@ void
 PortDecorator::draw( CDC* pDC )
 {
   CRect dst = getLocation();
-  m_bitmap.DrawTransparent( pDC, dst, GME_WHITE_COLOR, false, GME_BLACK_COLOR );
+  m_bitmap.DrawTransparent( pDC,
+                            dst,
+                            GME_WHITE_COLOR,
+                            !m_bActive,
+                            GME_GRAYED_OUT_COLOR );
 
 	CPoint namePos( m_right ? dst.left - GAP_LABEL : dst.right + GAP_LABEL,
                   dst.top - GAP_PORT );
@@ -355,7 +366,7 @@ PortDecorator::draw( CDC* pDC )
                    m_name,
                    namePos,
                    d_util.GetFont( GME_PORTNAME_FONT ),
-                   m_nameColor,
+                   m_bActive ? m_nameColor : GME_GRAYED_OUT_COLOR,
                    m_right ? TA_RIGHT : TA_LEFT );
 }
 
@@ -581,6 +592,16 @@ ComponentDecorator::setLocation( const CRect& cRect )
 }
 
 void
+ComponentDecorator::setActive( bool bActive )
+{
+	m_bActive = bActive;
+	for ( unsigned int i = 0 ; i < m_vecLeftPorts.size() ; i++ )
+		m_vecLeftPorts[ i ]->setActive( bActive );
+	for ( i = 0 ; i < m_vecRightPorts.size() ; i++ )
+		m_vecRightPorts[ i ]->setActive( bActive );
+}
+
+void
 ComponentDecorator::LoadBitmap()
 {
   if ( m_metaName == PICML_COMPONENT_NAME
@@ -595,7 +616,12 @@ ComponentDecorator::draw( CDC* pDC )
 {
   // Draw the component icon.
   CRect dst = getLocation();
-	m_bitmap.Draw( pDC, dst );
+//	m_bitmap.Draw( pDC, dst );
+  m_bitmap.DrawTransparent( pDC,
+                            dst,
+                            GME_WHITE_COLOR,
+                            !m_bActive,
+                            GME_GRAYED_OUT_COLOR );
 
   // Draw the component name.
 	CPoint namePos( dst.left + dst.Width () / 2, dst.bottom + NAME_MARGINY );
@@ -603,7 +629,7 @@ ComponentDecorator::draw( CDC* pDC )
                    m_name,
                    namePos,
                    d_util.GetFont( GME_NAME_FONT ),
-                   m_nameColor,
+                   m_bActive ? m_nameColor : GME_GRAYED_OUT_COLOR,
                    TA_BOTTOM | TA_CENTER );
 
   // If we are an instance, draw the type info.
@@ -615,7 +641,7 @@ ComponentDecorator::draw( CDC* pDC )
                      typeInfoStr,
                      typeNamePos,
                      d_util.GetFont( GME_PORTNAME_FONT ),
-                     m_nameColor,
+                     m_bActive ? m_nameColor : GME_GRAYED_OUT_COLOR,
                      TA_BOTTOM | TA_CENTER );
 	}
 

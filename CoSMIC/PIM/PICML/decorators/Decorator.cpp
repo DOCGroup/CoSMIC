@@ -118,11 +118,10 @@ STDMETHODIMP CDecorator::GetParam( BSTR name, VARIANT* value )
 
 STDMETHODIMP CDecorator::SetActive( VARIANT_BOOL isActive )
 {
-	//
-	// TODO: If isActive==VARIANT_FALSE, draw your object in GME_GREYED_OUT, otherwise use the color of the object
-	//
 	VERIFY_INIT;
-	m_isActive = ( isActive != VARIANT_FALSE );
+
+	m_pDecorator->setActive( isActive == VARIANT_TRUE );
+
 	return S_OK;
 }
 
