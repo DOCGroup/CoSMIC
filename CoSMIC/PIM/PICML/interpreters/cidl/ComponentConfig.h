@@ -22,8 +22,7 @@
 // for this paradigm. Separate the names of paradigms by commas.
 #define PARADIGMS "PICML"
 
-#define TOOLTIP_TEXT "CIDL Generator"
-
+#define TOOLTIP_TEXT "Component IDL Generator"
 
 // This is the location of the GME interfaces file (Mga.idl, Meta.idl, etc)
 #define GME_INTERFACES_BASE C:/Program Files/GME/Interfaces

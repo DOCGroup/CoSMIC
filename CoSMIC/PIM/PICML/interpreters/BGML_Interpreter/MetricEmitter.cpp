@@ -49,6 +49,7 @@ MetricEmitter<T>::generate_header_file (std::string& class_name,
 	bench_stream.generate_task_header (class_name);
 }
 
+
 template <class T>
 void
 MetricEmitter<T>::generate_benchmark ()
@@ -67,7 +68,7 @@ MetricEmitter<T>::generate_benchmark ()
 	std::string& component_name = IDL_Util::component_name (twoway_op);
 	std::string& operation_name = IDL_Util::operation_name (twoway_op);
 	std::vector<std::string>& arg_list = IDL_Util::argument_list (twoway_op);
-	
+
 	//// Generate the Header file /////////////////////////////////
 	std::string class_name = "Benchmark_" + operation_name;
 	this->generate_header_file (class_name, component_name, operation_name, arg_list);

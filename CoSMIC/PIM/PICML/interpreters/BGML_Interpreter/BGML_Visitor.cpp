@@ -138,8 +138,7 @@ BGML_Visitor::Visit_BenchmarkAnalysis (const PICML::BenchmarkAnalysis& model)
 												   task_priorities,
 												   task_rates,
 												   kindName);
-			emitter.generate_benchmark ();
-		
+			emitter.generate_benchmark ();		
 		 }
 		 else if (kindName == "Throughput" &&
 		    	  op_kind  == "TwowayOperation")

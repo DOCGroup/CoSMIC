@@ -426,6 +426,12 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
    this->strm_ << "ACE_Throughput_Stats::dump_throughput (\"Total\", gsf, test_end - test_start, stats.samples_count ());\n";
 
    this->nl ();
+
+   // Return success status
+   this->indent ();
+   this->strm_ << "return 1;";
+   this->nl ();
+
    this->decr_indent ();
    this->strm_ << "}\n";
 
@@ -435,27 +441,26 @@ void
 BenchmarkStream::generate_workload_def (__int64 iterations)
 {
 	/// Step 1: Generate the ifdef macros
-	std::string header_name = this->component_name_ + "_Workload";
-	this->gen_ifdefc_macro (header_name);
+	std::string macro_name = this->operation_name_ + "_Workload";
+	this->gen_ifdefc_macro (macro_name);
 	this->nl ();
 	
 	//// Step 1.1: Generate the #include definitions
-	std::string include_file = header_name + ".h";
+	std::string include_file = macro_name + ".h";
+	this->gen_include_file (include_file);
 	this->nl ();
 
-	this->gen_constructor_defn (header_name);
-	this->gen_destructor_defn (header_name);
+	this->gen_constructor_defn (macro_name);
+	this->gen_destructor_defn (macro_name);
 
 	/// Step 2: Generate the svc hook function to run it in a thread
 	std::vector<std::string> param_list;
 	this->gen_template_function_def ("svc",
-									 header_name,
-									 "void",
+									 macro_name,
+									 "int",
 									 param_list);
    this->incr_indent ();
    this->indent ();
-
-   /// If rate 
 
    this->strm_ << "for (i = 0; ";
    this->strm_ << "i < ";
@@ -490,11 +495,16 @@ BenchmarkStream::generate_workload_def (__int64 iterations)
    this->indent ();
    this->strm_ << "}\n";
 
+   this->indent ();
+   this->strm_ << "// Indicate success \n";
+   this->indent ();
+   this->strm_ << "return 1; \n";
+
    this->decr_indent ();
    this->strm_ << "}\n";
 
 	//// Step 5: Generate the endif macro to close the cpp file
-	this->gen_endifc (header_name);
+	this->gen_endifc (macro_name);
 	
 }
 
@@ -565,6 +575,15 @@ BenchmarkStream::generate_task_def (__int64 warmup,
 	//// Step 1.1: Generate the #include definitions
 	std::string include_file = header_name + ".h";
 	this->gen_include_file (include_file);
+
+	/// Step 2: Generate the include files required for Benchmarking
+	include_file = "ace/High_Res_Timer.h";
+	this->gen_include_file (include_file);
+	include_file = "ace/Stats.h";
+	this->gen_include_file (include_file);
+	include_file = "ace/Sample_History.h";
+	this->gen_include_file (include_file);
+
 	if (this->task_priorities_.size ())
 	{
 		std::string workload_name = this->operation_name_ + "_Workload.h";
@@ -579,7 +598,7 @@ BenchmarkStream::generate_task_def (__int64 warmup,
 	std::vector<std::string> param_list;
 	this->gen_template_function_def ("svc",
 									 header_name,
-									 "void",
+									 "int",
 									 param_list);
 
 	/// Step 3: Generate the warm_up iterations

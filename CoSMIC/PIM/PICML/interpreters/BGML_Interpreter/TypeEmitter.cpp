@@ -65,7 +65,7 @@ std::string InTypeEmitter::generate_type_defn (std::string &kind_name,
 	else if (kind_name == "Enum")
 		return scope_name;
 	else if (kind_name == "SwitchedAggregate" ||
-			     kind_name == "Aggreage")
+			     kind_name == "Aggregate")
 				 return ("const " + scope_name + " &");
 	
 	return "";

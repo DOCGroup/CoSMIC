@@ -34,7 +34,7 @@ protected:
 							   std::string& operation_name,
 							   std::vector<string>& arg_list);
 	// Generate the header file information
-		
+	
 private:
 	PICML::OperationBase &operation_;
 	T& latency_;

@@ -15,7 +15,6 @@
 // This name will appear in the popup window for interpreter selection.
 #define COMPONENT_NAME "BGML"
 
-
 // This #define determines the interpreter type:
 #define GME_INTERPRETER
 // The name of the paradigm(s). The GME will use this component
@@ -26,6 +25,7 @@
 // This is the location of the GME interfaces file (Mga.idl, Meta.idl, etc)
 #define GME_INTERFACES_BASE C:/Program Files/GME/Interfaces
 
+#define TOOLTIP_TEXT "Generate Benchmark Information"
 
 #define BON_ICON_SUPPORT
 

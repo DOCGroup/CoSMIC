@@ -26,6 +26,7 @@
 // This is the location of the GME interfaces file (Mga.idl, Meta.idl, etc)
 #define GME_INTERFACES_BASE C:/Program Files/GME/Interfaces
 
+#define TOOLTIP_TEXT "Generate MPC (build) Files"
 
 #define BON_ICON_SUPPORT
 
