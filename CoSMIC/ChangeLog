@@ -5,6 +5,11 @@ Mon Nov 22 10:02:33 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
           Fixed errors in the MPC files to compile the Benchmarking files
           generated.
 
+        * PIM/PICML/docs/BGML/BGML_Documentation_Guide.tex:
+        * PIM/PICML/docs/BGML/RobotAssembly.png:
+
+          Updated the BGML Documentation guide.
+
 Fri Nov 19 17:59:36 2004  Arvind S. Krishna  <arvindk@dre.vanderbilt.edu>
 
         * PIM/PICML/docs/BGML:
