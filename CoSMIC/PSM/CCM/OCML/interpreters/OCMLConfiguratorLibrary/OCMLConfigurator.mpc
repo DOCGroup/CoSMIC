@@ -1,3 +1,5 @@
+// $Id$
+
 // wxwindows template project does not work with windows well.
 // There is a workaround below which depends on the WXWINDOWS_ROOT environment
 // variable. This should be defined and point to the directory where the
@@ -7,6 +9,9 @@
 project: wxwindows {
   sharedName = OCMLConfigurator
   macros += OCML_CONFIGURATOR_DLL_ENTRY_EXPORTS _USRDLL WXMAKINGDLL
+
+  libout = $(PICML_ROOT)/lib
+  dllout = $(PICML_ROOT)/bin
 
   specific(em3, nmake, vc6) {
     subsystem = windows
@@ -45,7 +50,7 @@ project: wxwindows {
     Options/TreeParser.cpp
     Options/ValueParser.cpp
     ../Common/Debug.cpp
-	../Common/XercesHelpers.cpp
+    ../Common/XercesHelpers.cpp
   }
 
   Header_Files {

@@ -88,11 +88,11 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 xerces-c_2D.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"Release/OCML.dll" /libpath:"$(XERCESCROOT)\lib"
+# ADD LINK32 xerces-c_2D.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"$(PICML_ROOT)/bin/OCML.dll" /libpath:"$(XERCESCROOT)\lib"
 # Begin Custom Build - Performing registration
 OutDir=.\Release
-TargetPath=.\Release\OCML.dll
-InputPath=.\Release\OCML.dll
+TargetPath=.\$(PICML_ROOT)\bin\OCML.dll
+InputPath=.\$(PICML_ROOT)\bin\OCML.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"

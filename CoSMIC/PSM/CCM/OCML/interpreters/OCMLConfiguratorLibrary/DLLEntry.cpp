@@ -5,6 +5,12 @@
 #include <string>
 #include <algorithm>
 
+#ifdef _DEBUG
+#define OCML_CONFIGURATOR_LIBRARY_NAME "OCMLConfiguratord.dll"
+#elif
+#define OCML_CONFIGURATOR_LIBRARY_NAME "OCMLConfigurator.dll"
+#endif
+
 // The following defines wxGetApp() which is used in DllMain.
 DECLARE_APP(MainApp)
 
@@ -75,4 +81,26 @@ DLLFunction(const char* values, size_t values_size)
     result = strdup(listener.value_.c_str());
 
   return result;
+}
+
+DLLFunctionPtr load_library()
+{
+  char *buffer = getenv("PICML_ROOT");
+  
+  std::string library_path;
+  if (buffer)
+    {
+      // delete double quotes (if there are any)
+      std::remove_copy(buffer, buffer + strlen(buffer),
+                       std::back_inserter(library_path), '"');
+      library_path += "\\bin\\";
+    }
+  library_path += OCML_CONFIGURATOR_LIBRARY_NAME;
+  
+  HMODULE hModule = LoadLibrary(library_path.c_str());
+  assert(hModule);
+  
+  DLLFunctionPtr pProc =
+    (DLLFunctionPtr)GetProcAddress(hModule, "DLLFunction");
+  assert(pProc);
 }

@@ -11,9 +11,11 @@ project {
 
   Source_Files {
     main.cpp
+    ../LoadLibrary.cpp
   }
 
   Header_Files {
     ../DllEntry.hpp
+    ../LoadLibrary.hpp
   }
 }

@@ -2,7 +2,7 @@
  * $Id$
  */
 
-#include <windows.h>
+#include "windows.h"
 #include "assert.h"
 
 #include <string>
@@ -13,12 +13,7 @@
 #include <sstream>
 
 #include "../DllEntry.hpp"
-
-#ifdef _DEBUG
-#define OCML_CONFIGURATOR_LIBRARY_NAME "OCMLConfiguratord.dll"
-#elif
-#define OCML_CONFIGURATOR_LIBRARY_NAME "OCMLConfigurator.dll"
-#endif
+#include "../LoadLibrary.hpp"
 
 LRESULT CALLBACK MainWndProc(HWND, UINT, WPARAM, LPARAM); 
 
@@ -106,48 +101,31 @@ LRESULT CALLBACK MainWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
     }
 
   case WM_LBUTTONUP:
-    {
-      if (pause)
-        return 0;
+    if (pause)
+      return 0;
+    else
+      {
+        pause = true;
 
-      char *buffer = getenv("PICML_ROOT");
+        // Read the values from file
+        std::string values;
+        std::ifstream values_file("values.xml");
+        values_file.unsetf(std::ios_base::skipws);
+        std::copy(std::istream_iterator<char>(values_file),
+                  std::istream_iterator<char>(),
+                  std::back_inserter(values));
+        
+        // Load up the DLL and call DLLFunction
+        OCML_Configurator_Library lib;
 
-      std::string library_path;
-      if (buffer)
-        {
-          // delete double quotes (if there are any)
-          std::remove_copy(buffer, buffer + strlen(buffer),
-                           std::back_inserter(library_path), '"');
-          library_path += "\\bin\\";
-        }
-      library_path += OCML_CONFIGURATOR_LIBRARY_NAME;
-
-      HMODULE hModule = LoadLibrary(library_path.c_str());
-      assert(hModule);
-
-      DLLFunctionPtr pProc =
-        (DLLFunctionPtr)GetProcAddress(hModule, "DLLFunction");
-      assert(pProc);
-
-      // Read the values from file
-      std::string values;
-      std::ifstream values_file("values.xml");
-      values_file.unsetf(std::ios_base::skipws);
-      std::copy(std::istream_iterator<char>(values_file),
-                std::istream_iterator<char>(),
-                std::back_inserter(values));
-
-      // Load up the DLL and call DLLFunction
-      pause = true;
-      char* new_values = (pProc)(values.c_str(), values.size());
-      if (new_values)
-        {
-          std::ofstream of("values.xml");
-          of << new_values;
-        }
-      FreeLibrary(hModule);
-      pause = false;
-    }
+        char* new_values = lib.call_function(values);
+        if (new_values)
+          {
+            std::ofstream of("values.xml");
+            of << new_values;
+          }
+      }
+    pause = false;
     break;
 
   default:
