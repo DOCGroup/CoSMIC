@@ -42,7 +42,7 @@ BGML_Task_Base::set_priority ()
 		{
 			ACE_ERROR ((LM_ERROR,
 				"Client_Task_Base (%P|%t): sched_params failed\n"));
-			return -1
+			return -1;
 		}
 	}
 	return 1;
