@@ -131,11 +131,10 @@ bool operator!= (const XStr& lhs, const XStr& rhs)
 std::ostream&
 operator<< (std::ostream& o, XStr const& str)
 {
-  char* s (XMLString::transcode (str));
+  std::string conv (XMLString::transcode (str));
   
-  o << s;
+  o << conv;
   
-  XMLString::release (&s); // idiots?
   return o;
 }
 

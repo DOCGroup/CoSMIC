@@ -427,7 +427,7 @@ BE_GlobalData::destroy (void)
        id_iter.next (id_entry) != 0;
        id_iter.advance ())
     {
-      delete id_entry->ext_id_;
+      delete const_cast<char *> (id_entry->ext_id_);
     }
   
   DECL_ELEM_TABLE_ENTRY *fwd_entry = 0;
@@ -435,7 +435,7 @@ BE_GlobalData::destroy (void)
        fwd_iter.next (fwd_entry) != 0;
        fwd_iter.advance ())
     {
-      delete fwd_entry->ext_id_;
+      delete const_cast<char *> (fwd_entry->ext_id_);
     }
 }
 

@@ -1,3 +1,10 @@
+Wed Aug 25 13:52:53 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/XercesString.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        
+          Fixed VC6 compile errors.
+
 Wed Aug 25 12:54:51 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
