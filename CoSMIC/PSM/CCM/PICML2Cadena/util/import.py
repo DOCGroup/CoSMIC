@@ -61,11 +61,20 @@ Or: import.py --help for extensive help'
 picml_file = os.path.abspath(purifiedparams[1])
 cadenascenario_file = os.path.abspath(purifiedparams[0])
 
+#checking correct file extension
+if (os.path.splitext(picml_file)[1]!='.mga') :
+    print 'Fatal: The specified filename for PICML model '+quotes+picml_file+quotes+' does not have .mga extension!\nExiting.'
+    sys.exit(-1)
+if (os.path.splitext(cadenascenario_file)[1]!='.xml') :
+    print 'Fatal: The specified filename for CadenaScenario '+quotes+cadenascenario_file+quotes+' does not have .xml extension!\nExiting.'
+    sys.exit(-1)
+
+#checking existence of files
 if (False==os.path.isfile(picml_file)) :
     print 'Fatal: File '+quotes+picml_file+quotes+' not found.\nExiting.'
     sys.exit(-1)
 if (False==os.path.isfile(cadenascenario_file)) :
-    print 'Fatal: File '+quotes+cadena_file+quotes+' not found.\nExiting.'
+    print 'Fatal: File '+quotes+cadenascenario_file+quotes+' not found.\nExiting.'
     sys.exit(-1)
 
 #validating the input xml file for the schema location and namespace
