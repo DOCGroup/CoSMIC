@@ -1,3 +1,17 @@
+Thu Mar 03 15:52:30 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/OCML/engine/tree_parser.cpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/ComponentLib_p.c:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLBON2Component.vcproj:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLBonExtension_Manual.cpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLBonX.h:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLInterpreter.ncb:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLInterpreter.suo:
+
+          Changed OCML interpreter so that it exports enum options as
+          string options. The idea is to get rid of the enum option
+          concept in the configurator perspective.
+
 Wed Mar 02 21:10:25 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * PIM/OCML/ocml.mwc:

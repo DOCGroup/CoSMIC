@@ -90,8 +90,22 @@ namespace OCML_BON
   xercesc::DOMElement*
   Enum_OptionImpl::xml_export(xercesc::DOMDocument* doc)
   {
-    xercesc::DOMElement* node = OptionImpl::xml_export(doc);
-    children_xml_exporter(getEnum_Item(), doc, node);
+//    xercesc::DOMElement* node = OptionImpl::xml_export(doc);
+//    children_xml_exporter(getEnum_Item(), doc, node);
+    xercesc::DOMElement* node = Described_ItemImpl::xml_export(doc);
+
+    typedef std::set<OCML_BON::Enum_Item> children_t;
+    children_t children = getEnum_Item();
+    
+    for (children_t::iterator iter = children.begin(); iter != children.end();
+         ++iter)
+    {
+      if ((*iter)->isItem_Default_Value())
+      {
+        node->setAttribute(XStr("default-value"),
+                           XStr((*iter)->getTitle()));
+      }
+    }
     return node;
   }
 

@@ -77,13 +77,16 @@ Option_Tree_Parser::parse_attributes(DOMNode* node,
   XMLUnicodeString default_tag("default-value");
 
   DOMNamedNodeMap* attributes = node->getAttributes();
+  DOMNode* attr_node;
 
-  name =
+  name = 
     attributes->getNamedItem(name_tag)->getNodeValue();
   description =
     attributes->getNamedItem(descr_tag)->getNodeValue();
-  default_value =
-    attributes->getNamedItem(default_tag)->getNodeValue();
+  attr_node =
+    attributes->getNamedItem(default_tag);
+  if (attr_node)
+    default_value = attr_node->getNodeValue();
   ACE_DEBUG((LM_TRACE,
         "EXIT: Option_Tree_Parser::parse_attributes(DOMNode*, XMLUnicodeString&, XMLUnicodeString&, XMLUnicodeString&)\n"));
 }

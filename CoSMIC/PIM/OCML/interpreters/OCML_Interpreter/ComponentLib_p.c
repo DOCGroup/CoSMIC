@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 6.00.0361 */
-/* at Wed Mar 02 14:00:43 2005
+/* at Thu Mar 03 15:41:53 2005
  */
 /* Compiler settings for C:/Program Files/GME/sdk/BON/ComponentLib.idl:
     Oicf, W1, Zp8, env=Win32 (32b run)
@@ -38606,7 +38606,7 @@ const ExtendedProxyFileInfo ComponentLib_ProxyFileInfo =
 
 
  /* File created by MIDL compiler version 6.00.0361 */
-/* at Wed Mar 02 14:00:43 2005
+/* at Thu Mar 03 15:41:53 2005
  */
 /* Compiler settings for C:/Program Files/GME/sdk/BON/ComponentLib.idl:
     Oicf, W1, Zp8, env=Win64 (32b run,appending)

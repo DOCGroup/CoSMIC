@@ -3,6 +3,7 @@
 	ProjectType="Visual C++"
 	Version="7.10"
 	Name="OCML"
+	RootNamespace="OCML"
 	SccProjectName=""
 	SccLocalPath=""
 	Keyword="MFCProj">
@@ -86,7 +87,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\..\..\..\..\..\lib"
+			OutputDirectory="..\..\..\bin"
 			IntermediateDirectory=".\Debug"
 			ConfigurationType="2"
 			UseOfMFC="2"
@@ -122,7 +123,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="xerces-cd.lib"
-				OutputFile="..\..\..\..\..\bin\OCML.dll"
+				OutputFile="..\..\..\bin\OCML.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(XERCESCROOT)\lib"
