@@ -1,3 +1,24 @@
+Wed Jul 14 18:12:52 2004  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PICML/paradigms/PICML.xml: Regenerated the xml file to the
+          updated version of the meta. Forgot to do this with the
+          previous check-in.
+
+        * PICML/paradigms/PICML-uml.xme: Updated version of the export.
+
+        * PICML/interpreters/domain/PICML.h:
+        * PICML/interpreters/domain/PICML.cpp:
+        * PICML/interpreters/domain/PICML.xsd:
+        * PICML/interpreters/packaging/PICML.h:
+        * PICML/interpreters/packaging/PICML.xsd:
+        * PICML/interpreters/packaging/PICML.cpp:
+        * PICML/interpreters/plan/PICML.h:
+        * PICML/interpreters/plan/PICML.cpp:
+        * PICML/interpreters/plan/PICML.xsd:
+
+          Updated version of the generated API files.
+
+
 Tue Jul 13 17:14:51 2004  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * PICML/interpreters/packaging/PackageVisitor.cpp: Fixed the bug
