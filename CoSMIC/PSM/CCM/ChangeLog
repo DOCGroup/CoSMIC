@@ -1,3 +1,37 @@
+Fri June 18 06:49:09 2004  Gabriele Trombetti  <gtrombetti@nospam.invalid.domain>
+
+          Added the following files:
+         
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/CS2PA_Configuration.mga
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/CS2PA_Configuration.xme
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/Cadena2PICML.mga
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/Cadena2PICML.xme
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/Gen/GenCS2PA.cpp
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/Gen/GenCS2PA.h
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/Gen/GenCS2PA_main.cpp
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/CadenaScenario2PICMLAssembly.cpp
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/CadenaScenario2PICMLAssembly.h
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/CadenaScenario2PICMLAssembly.udm
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/CadenaScenario2PICMLAssembly.xsd
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/CrossLinks.cpp
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/CrossLinks.h
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/CrossLinks.xsd
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/PICML.cpp
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/PICML.h
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/PICML.xsd
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/PICMLCadena_Xchange_embedded_EIProperties.cpp
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/PICMLCadena_Xchange_embedded_EIProperties.h
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/PICMLCadena_Xchange_embedded_EIProperties.xsd
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/cadena_scenario.cpp
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/cadena_scenario.h
+        * PICML2Cadena/CadenaScenario2PICMLAssembly/UDM/cadena_scenario.xsd
+          New (lossless) version of the import transformation.  
+
+        * PICML2Cadena/examples/TweakedRobotAssembly_reimported_from_modified.mga
+        * PICML2Cadena/examples/TweakedRobotAssembly_reimported_from_modified.xme
+        * PICML2Cadena/examples/exported_modified.xml
+          Added example files to show the effect of an export-modify-import cycle
+
 Mon June 14 02:49:13 2004  Gabriele Trombetti  <gtrombetti@nospam.invalid.domain>
 
           Added the following files:
