@@ -1,3 +1,35 @@
+Tue Nov 16 11:14:30 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+        * PIM/PICML/paradigms/PICML.me:
+	  * PIM/PICML/paradigms/PICML.xml:
+	  * PIM/PICML/paradigms/PICML-uml.xme:
+          Updated the meta model, in particular, the MPC paradigm. This was
+          required to fix the bug in the generated MPC file from the model and
+          the need to differentiate between servant projects, which are either
+          component servants or normal CORBA servants.
+
+        * PIM/PICML/examples/RobotAssembly.xme:
+        * PIM/PICML/examples/BasicSP.xme:
+          Updated the MPC paradigms in each of the examples to generate the 
+          required MPC files. Also updated the implementation artifacts to reflect
+          right set of dependencies between the artifacts so that the build
+          paradigm generates the right MPC file
+
+        * PIM/PICML/interpreters/MPC/MPCStream.h:
+        * PIM/PICML/interpreters/MPC/MPCStream.cpp:
+        * PIM/PICML/interpreters/MPC/PICML.h:
+        * PIM/PICML/interpreters/MPC/PICML.cpp:
+
+          Fixed the MPC interpreter generation. The fixes were the following: 
+          (1) generation of libpaths += in the MPC file
+          (2) generation of libs += i.e. generation of dependant libraries
+          (3) generation of component servant and normal CORBA servant project
+         These should fix bugs pointed out by Theckla <theckla.louchious@lmco.com>
+
+        * PIM/PICML/interpreters/*/Picml.h:
+        * PIM/PICML/interpreters/*/Picml.cpp:
+        * PIM/PICML/interpreters/*/Picml.xsd:
+	    Updated changes to the meta in all the interpreter directories. 
+
 Mon Nov 15 12:45:06 2004  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * Installer/CoSMIC-Installer.aip: Updated to fix the change in
