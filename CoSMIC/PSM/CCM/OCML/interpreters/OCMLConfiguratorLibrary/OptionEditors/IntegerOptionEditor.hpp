@@ -7,38 +7,43 @@
 #include "../EditControls/IntegerEditControl.hpp"
 #include "../Options/BasicOptions.hpp"
 
-class IntegerOptionEditor;
-
-class IntegerOptionEditorFocusListener
+namespace OCML
 {
-public:
-  virtual void integer_editor_focused(IntegerOptionEditor* editor) = 0;
-};
+
+  class IntegerOptionEditor;
+
+  class IntegerOptionEditorFocusListener
+  {
+  public:
+    virtual void integer_editor_focused(IntegerOptionEditor* editor) = 0;
+  };
     
-class IntegerOptionEditor: public OptionEditor,
-			   public IntegerEditControlFocusListener,
-                           public IntegerEditControlValueChangeListener
-{
-public:
-  IntegerOptionEditor(wxWindow* parent, IntegerOption* option);
-  virtual ~IntegerOptionEditor();
+  class IntegerOptionEditor: public OptionEditor,
+                             public IntegerEditControlFocusListener,
+                             public IntegerEditControlValueChangeListener
+  {
+  public:
+    IntegerOptionEditor(wxWindow* parent, IntegerOption* option);
+    virtual ~IntegerOptionEditor();
     
-  virtual void unfocus();
+    virtual void unfocus();
 
-  void add_focus_listener(IntegerOptionEditorFocusListener* l);
+    void add_focus_listener(IntegerOptionEditorFocusListener* l);
     
-  virtual void integer_edit_focus_gain(IntegerEditControl* control);
-  virtual void integer_edit_focus_lost(IntegerEditControl* control);
-  virtual void integer_edit_value_changed(IntegerEditControl* control);
-  virtual void clear_button_clicked(ClearButton* control);
+    virtual void integer_edit_focus_gain(IntegerEditControl* control);
+    virtual void integer_edit_focus_lost(IntegerEditControl* control);
+    virtual void integer_edit_value_changed(IntegerEditControl* control);
+    virtual void clear_button_clicked(ClearButton* control);
 
-private:
-  bool focused_;
-  bool value_changed_;
+  private:
+    bool focused_;
+    bool value_changed_;
 
-  IntegerEditControl* editor_;
+    IntegerEditControl* editor_;
 
-  std::list<IntegerOptionEditorFocusListener*> focus_listeners_;
-};
+    std::list<IntegerOptionEditorFocusListener*> focus_listeners_;
+  };
+
+} // namespace OCML
 
 #endif // INTEGER_OPTION_EDITOR_HPP

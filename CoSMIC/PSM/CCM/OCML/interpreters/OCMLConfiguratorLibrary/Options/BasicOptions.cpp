@@ -3,6 +3,8 @@
 #include <sstream>
 #include <algorithm>
 
+using namespace OCML;
+
 /*
  *  class BooleanOption implementation.
  */

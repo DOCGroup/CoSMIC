@@ -1,77 +1,82 @@
-/*
- * OptionCategory inline methods.
- */
-
-OptionCategory::OptionCategory(const char* name, const char* description)
-  : DescribedItem(name, description)
+namespace OCML
 {
-}
 
-/*
- * STL begin & end markers.
- */
+  /*
+   * OptionCategory inline methods.
+   */
 
-OptionCategory::category_iterator
-OptionCategory::begin_categories()
-{
-  return categories_.begin();
-}
+  inline
+  OptionCategory::OptionCategory(const char* name, const char* description)
+    : DescribedItem(name, description)
+  {
+  }
 
-OptionCategory::category_iterator
-OptionCategory::end_categories()
-{
-  return categories_.end();
-}
+  /*
+   * STL begin & end markers.
+   */
 
-OptionCategory::option_iterator
-OptionCategory::begin_options()
-{
-  return options_.begin();
-}
+  inline OptionCategory::category_iterator
+  OptionCategory::begin_categories()
+  {
+    return categories_.begin();
+  }
 
-OptionCategory::option_iterator
-OptionCategory::end_options()
-{
-  return options_.end();
-}
+  inline OptionCategory::category_iterator
+  OptionCategory::end_categories()
+  {
+    return categories_.end();
+  }
 
-/*
- * STL begin & end markers. - const versions -
- */
+  inline OptionCategory::option_iterator
+  OptionCategory::begin_options()
+  {
+    return options_.begin();
+  }
 
-OptionCategory::const_category_iterator
-OptionCategory::begin_categories() const
-{
-  return categories_.begin();
-}
+  inline OptionCategory::option_iterator
+  OptionCategory::end_options()
+  {
+    return options_.end();
+  }
 
-OptionCategory::const_category_iterator
-OptionCategory::end_categories() const
-{
-  return categories_.end();
-}
+  /*
+   * STL begin & end markers. - const versions -
+   */
 
-OptionCategory::const_option_iterator
-OptionCategory::begin_options() const
-{
-  return options_.begin();
-}
+  inline OptionCategory::const_category_iterator
+  OptionCategory::begin_categories() const
+  {
+    return categories_.begin();
+  }
 
-OptionCategory::const_option_iterator
-OptionCategory::end_options() const
-{
-  return options_.end();
-}
+  inline OptionCategory::const_category_iterator
+  OptionCategory::end_categories() const
+  {
+    return categories_.end();
+  }
 
-void
-OptionCategory::add_option(Option* option)
-{
-  options_.push_back(option);
-}
+  inline OptionCategory::const_option_iterator
+  OptionCategory::begin_options() const
+  {
+    return options_.begin();
+  }
 
-void
-OptionCategory::add_category(OptionCategory* category)
-{
-  categories_.push_back(category);
-}
+  inline OptionCategory::const_option_iterator
+  OptionCategory::end_options() const
+  {
+    return options_.end();
+  }
 
+  inline void
+  OptionCategory::add_option(Option* option)
+  {
+    options_.push_back(option);
+  }
+
+  inline void
+  OptionCategory::add_category(OptionCategory* category)
+  {
+    categories_.push_back(category);
+  }
+
+} // namespace OCML

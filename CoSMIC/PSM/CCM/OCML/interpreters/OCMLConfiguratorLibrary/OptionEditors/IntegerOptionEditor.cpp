@@ -4,6 +4,8 @@
 
 #include <sstream>
 
+using namespace OCML;
+
 IntegerOptionEditor::IntegerOptionEditor(wxWindow* parent,
                                          IntegerOption* integer_option)
   : OptionEditor(parent, integer_option),

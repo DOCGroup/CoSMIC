@@ -12,6 +12,7 @@
 #include "Options/Options.hpp"
 
 using namespace xercesc;
+using namespace OCML;
 
 /**
  * Reads the options file from $COSMIC_ROOT/tree_file.

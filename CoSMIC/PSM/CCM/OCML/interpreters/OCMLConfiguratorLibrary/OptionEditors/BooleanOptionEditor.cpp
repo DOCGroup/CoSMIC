@@ -4,6 +4,8 @@
 
 #include "../../Common/Debug.hpp"
 
+using namespace OCML;
+
 BooleanOptionEditor::BooleanOptionEditor(wxWindow* parent,
                                          BooleanOption* boolean_option)
   : OptionEditor(parent, boolean_option)

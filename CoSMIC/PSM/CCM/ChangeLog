@@ -1,3 +1,44 @@
+Mon Dec 06 22:02:06 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * OCML/interpreters/OCMLConfiguratorLibrary/MainFrame.cpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/OptionEditors/StringOptionEditor.cpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/OptionEditors/OptionEditorPanel.hpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/OptionEditors/OptionEditor.hpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/OptionEditors/OptionEditor.ipp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/OptionEditors/IntegerOptionEditor.hpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/OptionEditors/EnumOptionEditor.hpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/OptionEditors/EnumOptionEditor.cpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/OptionEditors/BooleanOptionEditor.hpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/OptionEditors/BooleanOptionEditor.cpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/Options/ValueParser.hpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/Options/ValueParser.cpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/Options/TreeParser.ipp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/Options/TreeParser.hpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/Options/TreeParser.cpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/Options/OptionCategory.ipp:
+        * OCML/interpreters/OCMLConfiguratorLibrary/Options/OptionCategory.hpp:
+        * OCML/interpreters/OCMLConfiguratorLibrary/Options/OptionCategory.cpp:
+        * OCML/interpreters/OCMLConfiguratorLibrary/Options/Option.ipp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/Options/Option.hpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/Options/Option.cpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/Options/DescribedItem.ipp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/Options/DescribedItem.hpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/Options/DescribedItem.cpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/Options/BasicOptions.cpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/Options/BasicOptions.tpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/Options/BasicOptions.hpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/Options/BasicOptions.ipp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/Configurator.hpp: 
+        * OCML/interpreters/OCMLConfiguratorLibrary/MainFrame.hpp: 
+
+          Moved OCML specific classes into the OCML namespace.
+
+Mon Dec 06 19:43:09 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * OCML/interpreters/OCMLConfiguratorLibrary/Configurator.hpp: 
+
+          Added more comments.
+
 Mon Dec 06 19:28:39 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * OCML/interpreters/OCMLConfiguratorLibrary/Options/OptionCategory.hpp:

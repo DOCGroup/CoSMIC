@@ -2,6 +2,8 @@
 
 #include "StringOptionEditor.hpp"
 
+using namespace OCML;
+
 StringOptionEditor::StringOptionEditor(wxWindow* parent,
                                        StringOption* string_option)
   : OptionEditor(parent, string_option),

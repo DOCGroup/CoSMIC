@@ -3,6 +3,7 @@
 #include "../../Common/StringUtils.hpp"
 
 using namespace xercesc;
+using namespace OCML;
 
 /**
  * Static public factory method. Parses an xml option value tree and sets the

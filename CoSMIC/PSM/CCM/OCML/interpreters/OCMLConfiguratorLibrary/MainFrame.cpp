@@ -7,6 +7,8 @@
 #include <wx/splitter.h>
 #include "MainApp.hpp"
 
+using namespace OCML;
+
 // The following defines wxGetApp()
 DECLARE_APP(MainApp)
 

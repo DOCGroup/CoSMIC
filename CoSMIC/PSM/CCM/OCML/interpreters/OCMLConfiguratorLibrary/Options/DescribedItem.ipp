@@ -1,3 +1,8 @@
+// $Id$
+
+namespace OCML
+{
+
 /*
  *  Inline methods of the class DescribedItem
  */
@@ -28,3 +33,5 @@ DescribedItem::operator==(const char* value) const
 {
   return name_ == std::string(value);
 }
+
+} // namespace OCML

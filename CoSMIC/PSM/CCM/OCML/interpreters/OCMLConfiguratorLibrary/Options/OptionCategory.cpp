@@ -1,5 +1,7 @@
 #include "OptionCategory.hpp"
 
+using namespace OCML;
+
 OptionCategory::~OptionCategory()
 {
   for (category_iterator c_iter = categories_.begin();

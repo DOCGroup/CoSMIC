@@ -15,44 +15,49 @@
 
 #include "../../Common/StringUtils.hpp"
 
-/**
- * class DescribedItem provides name and description attributes for the
- * options, categories, and option items.
- *
- * The name and description attributes are specified at the initialization time
- * as the parameters of the constructor.  They cannot be changed after
- * initialization.
- */
-class DescribedItem
+namespace OCML
 {
-public:
-  /// Constructor.
-  DescribedItem(const char* name, const char* description);
-  /// Desctructor.
-  virtual ~DescribedItem();
 
-  /// Getter method for name attribute.
-  const std::string& name() const;
+  /**
+   * class DescribedItem provides name and description attributes for the
+   * options, categories, and option items.
+   *
+   * The name and description attributes are specified at the initialization time
+   * as the parameters of the constructor.  They cannot be changed after
+   * initialization.
+   */
+  class DescribedItem
+  {
+  public:
+    /// Constructor.
+    DescribedItem(const char* name, const char* description);
+    /// Desctructor.
+    virtual ~DescribedItem();
 
-  /// Getter method for description attribute.
-  const std::string& description() const;
+    /// Getter method for name attribute.
+    const std::string& name() const;
 
-  /// Returns the type of the described item as a char sequence.
-  virtual const char* type_string() const = 0;
+    /// Getter method for description attribute.
+    const std::string& description() const;
 
-  /// Creates the corresponding DOMElement for saving the value.
-  virtual xercesc::DOMElement* write(xercesc::DOMDocument* doc) const;
+    /// Returns the type of the described item as a char sequence.
+    virtual const char* type_string() const = 0;
 
-  /// Returns true if name is equal to the item's name.
-  bool operator==(const char* value) const;
+    /// Creates the corresponding DOMElement for saving the value.
+    virtual xercesc::DOMElement* write(xercesc::DOMDocument* doc) const;
 
-private:
-  /// The name attribute.
-  std::string name_;
+    /// Returns true if name is equal to the item's name.
+    bool operator==(const char* value) const;
 
-  /// The description attribute.
-  std::string description_;
-};
+  private:
+    /// The name attribute.
+    std::string name_;
+
+    /// The description attribute.
+    std::string description_;
+  };
+
+} // namespace OCML
 
 #include "DescribedItem.ipp"
 

@@ -17,7 +17,7 @@ public:
 };
 
 class OCMLConfigurator_API MainFrame: public wxFrame,
-                                      public OptionEditorPanelFocusListener
+                                      public OCML::OptionEditorPanelFocusListener
 {
 public:
   MainFrame(const wxString& title, const wxPoint& pos,
@@ -30,13 +30,13 @@ public:
       
 private:
   void initialize_tree_node(wxTreeCtrl* tree, wxTreeItemId root_id,
-                            OptionCategory* category);
+                            OCML::OptionCategory* category);
 
   wxTreeCtrl* initialize_tree(wxWindow* root);
 
   void MainFrame::selection_changed(wxTreeEvent& event);
 
-  virtual void editor_focused(OptionEditor* editor);
+  virtual void editor_focused(OCML::OptionEditor* editor);
 
   void OnQuit(wxCommandEvent &event);
 
@@ -46,8 +46,8 @@ private:
 private:
   wxHtmlWindow* description_;
   wxTreeCtrl* tree_;
-  OptionEditorPanel* options_panel_;
-  Configurator configurator_;
+  OCML::OptionEditorPanel* options_panel_;
+  OCML::Configurator configurator_;
 
   std::list<MainFrameValueChangeListener*> value_change_listeners_;
 

@@ -2,6 +2,8 @@
 
 #include "../../Common/Debug.hpp"
 
+using namespace OCML;
+
 OptionEditorPanel::OptionEditorPanel(wxWindow* parent,
                                      OptionCategory* category)
   :  wxScrolledWindow(parent, -1, wxPoint(0, 0), wxSize(400, 400)),

@@ -2,6 +2,8 @@
 
 #include "EnumOptionEditor.hpp"
 
+using namespace OCML;
+
 EnumOptionEditor::EnumOptionEditor(wxWindow* parent, EnumOption* enum_option)
   : OptionEditor(parent, enum_option)
 {

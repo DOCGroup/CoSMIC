@@ -1,5 +1,7 @@
 #include "DescribedItem.hpp"
 
+using namespace OCML;
+
 /**
  *  Destructor - nop
  */

@@ -1,5 +1,7 @@
 #include "Option.hpp"
 
+using namespace OCML;
+
 /**
  * If the option is assigned returns the created node by the
  * DescribedItem::write, otherwise NULL.

@@ -18,10 +18,10 @@ public:
                     MainFrameValueChangeListener* l,
                     const char* tree_file);
     
-  OptionCategory* initialize_options();
+  OCML::OptionCategory* initialize_options();
 
 private:
-  OptionEditorPanel* panel;
+  OCML::OptionEditorPanel* panel;
   wxTextCtrl* console;
 };
 

@@ -5,31 +5,36 @@
 #include "../Options/Option.hpp"
 #include "../EditControls/ClearButton.hpp"
 
-class OptionEditor: public ClearButtonClickListener
+namespace OCML
 {
-public:
-  OptionEditor(wxWindow* parent, Option* option);
 
-  wxPanel* panel();
+  class OptionEditor: public ClearButtonClickListener
+  {
+  public:
+    OptionEditor(wxWindow* parent, Option* option);
 
-  Option* option();
+    wxPanel* panel();
 
-  int label_width();
-  void label_width(int value);
-  virtual void unfocus();
+    Option* option();
 
-  // This method is remained as abstract.
-  //  virtual void clear_button_clicked(ClearButton* control);
-protected:
-  ClearButton* button();
+    int label_width();
+    void label_width(int value);
+    virtual void unfocus();
 
-private:
-  wxPanel* panel_;
-  Option* option_;
-  wxBoxSizer* sizer_;
-  ClearButton* button_;
-  wxStaticText* label_;
-};
+    // This method is remained as abstract.
+    //  virtual void clear_button_clicked(ClearButton* control);
+  protected:
+    ClearButton* button();
+
+  private:
+    wxPanel* panel_;
+    Option* option_;
+    wxBoxSizer* sizer_;
+    ClearButton* button_;
+    wxStaticText* label_;
+  };
+
+} // namespace OCML
 
 #include "OptionEditor.ipp"
 
