@@ -24,6 +24,10 @@ OptionEditorPanel::~OptionEditorPanel()
 void
 OptionEditorPanel::set_category(OptionCategory* category)
 {
+  for (std::list<OptionEditor*>::iterator iter = editors_.begin();
+       iter != editors_.end(); ++iter)
+    (*iter)->unfocus();
+
   DestroyChildren();
   while (sizer_->Remove(0));
   sizer_->Layout();

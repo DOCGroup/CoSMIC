@@ -20,6 +20,8 @@ public:
   StringOptionEditor(wxWindow* parent, StringOption* option);
   virtual ~StringOptionEditor();
     
+  virtual void unfocus();
+
   void add_focus_listener(StringOptionEditorFocusListener* l);
     
   virtual void string_edit_focus_gain(StringEditControl* control);
@@ -27,6 +29,8 @@ public:
   virtual void clear_button_clicked(ClearButton* control);
 
 private:
+  bool focused_;
+
   StringEditControl* editor_;
 
   std::list<StringOptionEditorFocusListener*> focus_listeners_;

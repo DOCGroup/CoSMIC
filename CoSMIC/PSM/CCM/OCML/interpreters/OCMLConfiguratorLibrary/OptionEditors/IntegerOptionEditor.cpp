@@ -61,3 +61,9 @@ IntegerOptionEditor::clear_button_clicked(ClearButton*)
   button()->Enable(false);
   editor_->SetValue("");
 }
+
+void
+IntegerOptionEditor::unfocus()
+{
+  integer_edit_focus_lost(0);
+}

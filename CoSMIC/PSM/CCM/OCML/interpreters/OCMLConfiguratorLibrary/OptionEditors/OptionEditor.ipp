@@ -16,6 +16,12 @@ OptionEditor::OptionEditor(wxWindow* parent, Option* option)
   sizer_->Add(label_, 0, wxALL, 2);
 }
 
+inline void
+OptionEditor::unfocus()
+{
+  // TODO: This is a virtual function thus no reason for making it inline.
+}
+
 inline wxPanel*
 OptionEditor::panel()
 {

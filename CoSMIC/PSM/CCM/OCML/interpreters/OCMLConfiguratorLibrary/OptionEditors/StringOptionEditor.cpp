@@ -2,7 +2,8 @@
 
 StringOptionEditor::StringOptionEditor(wxWindow* parent,
                                        StringOption* string_option)
-  : OptionEditor(parent, string_option)
+  : OptionEditor(parent, string_option),
+    focused_(false)
 {
   editor_ = new StringEditControl(panel());
   if (option()->assigned())
@@ -29,18 +30,24 @@ StringOptionEditor::add_focus_listener(StringOptionEditorFocusListener* l)
 void
 StringOptionEditor::string_edit_focus_gain(StringEditControl*)
 {
+  if (focused_)
+    return;
   for (std::list<StringOptionEditorFocusListener*>::iterator
 	 iter = focus_listeners_.begin();
        iter != focus_listeners_.end(); ++iter)
     (*iter)->string_editor_focused(this);
+  focused_ = true;
 }
 
 void
 StringOptionEditor::string_edit_focus_lost(StringEditControl*)
 {
+  if (!focused_)
+    return;
   StringOption* string_option = (StringOption*) option();
   string_option->set((const char*) editor_->GetValue());
   button()->Enable(true);
+  focused_ = false;
 }    
 
 void
@@ -49,4 +56,10 @@ StringOptionEditor::clear_button_clicked(ClearButton*)
   option()->clear();
   button()->Enable(false);
   editor_->SetValue("");
+}
+
+void
+StringOptionEditor::unfocus()
+{
+  string_edit_focus_lost(0);
 }

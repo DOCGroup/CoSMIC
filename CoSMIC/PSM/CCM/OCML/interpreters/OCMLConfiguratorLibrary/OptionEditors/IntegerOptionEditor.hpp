@@ -20,6 +20,8 @@ public:
   IntegerOptionEditor(wxWindow* parent, IntegerOption* option);
   virtual ~IntegerOptionEditor();
     
+  virtual void unfocus();
+
   void add_focus_listener(IntegerOptionEditorFocusListener* l);
     
   virtual void integer_edit_focus_gain(IntegerEditControl* control);

@@ -16,6 +16,7 @@ public:
 
   int label_width();
   void label_width(int value);
+  virtual void unfocus();
 
   // This method is remained as abstract.
   //  virtual void clear_button_clicked(ClearButton* control);

@@ -1,3 +1,17 @@
+Tue Oct 26 14:46:24 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+	* OCML/interpreters/OCMLConfiguratorLibrary/OptionEditors/StringOptionEditor.hpp: 
+	* OCML/interpreters/OCMLConfiguratorLibrary/OptionEditors/StringOptionEditor.cpp: 
+	* OCML/interpreters/OCMLConfiguratorLibrary/OptionEditors/OptionEditorPanel.hpp: 
+	* OCML/interpreters/OCMLConfiguratorLibrary/OptionEditors/OptionEditorPanel.cpp: 
+	* OCML/interpreters/OCMLConfiguratorLibrary/OptionEditors/OptionEditor.ipp: 
+	* OCML/interpreters/OCMLConfiguratorLibrary/OptionEditors/OptionEditor.hpp: 
+	* OCML/interpreters/OCMLConfiguratorLibrary/OptionEditors/IntegerOptionEditor.hpp: 
+	* OCML/interpreters/OCMLConfiguratorLibrary/OptionEditors/IntegerOptionEditor.cpp: 
+
+          Fixed a bug causing the configurator to crash when the current tree
+          item is changed while a string or integer editor is in focus.
+
 Fri Oct 08 21:16:44 2004  Gabriele Trombetti  <gtrombetti@nospam.invalid.domain>
 
           Changed the following files:
