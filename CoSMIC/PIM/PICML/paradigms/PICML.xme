@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Wed Aug 25 17:33:34 2004" mdate="Wed Aug 25 18:00:08 2004" metaguid="{99CB7435-DEAD-BEEF-FEED-DAD000000001}" metaname="MetaGME">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Wed Aug 25 17:33:34 2004" mdate="Wed Aug 25 20:14:37 2004" metaguid="{99CB7435-DEAD-BEEF-FEED-DAD000000001}" metaname="MetaGME">
 	<name>PICML</name>
 	<comment></comment>
 	<author></author>
@@ -4725,19 +4725,19 @@
 					<value>1</value>
 				</regnode>
 				<regnode name="ComponentLibraries" isopaque="yes">
-					<value>5</value>
-				</regnode>
-				<regnode name="ComponentMetrics" isopaque="yes">
-					<value>2</value>
-				</regnode>
-				<regnode name="DataAnalysis" isopaque="yes">
 					<value>3</value>
 				</regnode>
+				<regnode name="ComponentMetrics" isopaque="yes">
+					<value>1</value>
+				</regnode>
+				<regnode name="DataAnalysis" isopaque="yes">
+					<value>2</value>
+				</regnode>
 				<regnode name="InterfaceDefinition" isopaque="yes">
-					<value>8</value>
+					<value>6</value>
 				</regnode>
 				<regnode name="LibraryArtifact" isopaque="yes">
-					<value>6</value>
+					<value>4</value>
 				</regnode>
 				<regnode name="MainAspect" isopaque="yes">
 					<value>1</value>
@@ -4746,25 +4746,25 @@
 					<value>5</value>
 				</regnode>
 				<regnode name="NodeMapping" isopaque="yes">
-					<value>1</value>
+					<value>9</value>
 				</regnode>
 				<regnode name="Package" isopaque="yes">
 					<value>2</value>
 				</regnode>
 				<regnode name="Packaging" isopaque="yes">
-					<value>9</value>
+					<value>7</value>
 				</regnode>
 				<regnode name="ResourceView" isopaque="yes">
 					<value>3</value>
 				</regnode>
 				<regnode name="Target" isopaque="yes">
-					<value>7</value>
+					<value>5</value>
 				</regnode>
 				<regnode name="TypeDefinintionAspect" isopaque="yes">
 					<value>1</value>
 				</regnode>
 				<regnode name="Workspace" isopaque="yes">
-					<value>4</value>
+					<value>8</value>
 				</regnode>
 			</regnode>
 		</regnode>
@@ -66364,7 +66364,7 @@ rrName = referedbyNodeReference</value>
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-00000015" kind="ParadigmSheet" relid="0x2a" childrelidcntr="0x79">
+		<model id="id-0065-00000015" kind="ParadigmSheet" relid="0x2a" childrelidcntr="0x7b">
 			<name>ComponentBenchmark</name>
 			<attribute kind="AuthorInformation" status="meta">
 				<value></value>
@@ -66507,7 +66507,7 @@ dName = dstMetricConnection</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>498,118</value>
+							<value>435,118</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -66579,7 +66579,7 @@ dName = dstMetricConnection</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>561,188</value>
+							<value>547,174</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -66651,7 +66651,7 @@ dName = dstMetricConnection</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>646,170</value>
+							<value>617,139</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -66723,7 +66723,7 @@ dName = dstMetricConnection</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>758,177</value>
+							<value>687,146</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -67960,7 +67960,7 @@ mName = members</value>
 					<regnode name="Attributes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>758,268</value>
+							<value>666,230</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram">
@@ -68116,6 +68116,39 @@ dName = dstWorkloadCharacteristics</value>
 						</regnode>
 					</regnode>
 				</regnode>
+			</atom>
+			<atom id="id-0066-00000180" kind="FieldAttribute" role="FieldAttribute" relid="0x7a">
+				<name>priority</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Attributes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>674,310</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="DataType">
+					<value>integer</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
 			</atom>
 			<reference id="id-0067-00000038" kind="ModelProxy" role="ModelProxy" relid="0x1" referred="id-0066-0000008e">
 				<name>OperationBase</name>
@@ -68736,6 +68769,11 @@ dName = dstWorkloadCharacteristics</value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-00000171"/>
 				<connpoint role="src" target="id-0066-0000017e"/>
+			</connection>
+			<connection id="id-0068-0000029d" kind="HasAttribute" role="HasAttribute" relid="0x7b">
+				<name>HasAttribute</name>
+				<connpoint role="dst" target="id-0066-0000017d"/>
+				<connpoint role="src" target="id-0066-00000180"/>
 			</connection>
 			<set id="id-0069-0000000e" kind="Aspect" role="Aspect" relid="0x2c" members="id-0066-0000017d id-0066-0000017e id-0066-0000017c id-0066-00000164 id-0066-0000016c id-0066-00000171 id-0066-0000016b id-0066-0000016e id-0066-0000016f id-0066-00000173 id-0066-00000179 id-0066-00000178">
 				<name>ComponentMetrics</name>
