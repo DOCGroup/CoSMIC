@@ -1,3 +1,11 @@
+Mon Nov 1 08:29:55 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/MPC/MPCStream.cpp:
+        * PIM/PICML/interpreters/MPC/Component.dsp:
+          Fixed bug reported by Theckla <theckla.louchios@lmco.com>
+          involving generation of MPC files that conform to the old
+          format.
+
 Fri Oct 29 13:34:27 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * PIM/PICML/bin/orb_tree.xml: 

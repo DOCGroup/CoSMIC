@@ -594,18 +594,10 @@ MPCStream::create_executor_definition (const PICML::ExecutorProject& exec)
 	if (path_name.size () != 0)
 		this->create_lib_path_defn (path_name);
 	
-	// @@ Write out the IDL files
+	// Write out the IDL files
 	std::vector<std::string> idl_files;
 	std::vector<std::string> source_files;
-
-	for (std::vector<std::string>::iterator iter = this->cidl_file_.begin ();
-	     iter != this->cidl_file_.end ();
-		 iter ++)
-	{
-		idl_files.push_back (*iter + "EI.idl");
-		source_files.push_back (*iter + "EIC.cpp");
-	}
-
+    
 	// Add the exec implementation file name as well
 	// @@ Would depend on how cidl compiler is going to generate the dummy
 	// implementation
