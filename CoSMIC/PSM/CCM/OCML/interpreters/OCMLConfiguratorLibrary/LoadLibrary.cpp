@@ -17,7 +17,7 @@
 
 OCML_Configurator_Library::OCML_Configurator_Library()
 {
-  char *buffer = getenv("PICML_ROOT");
+  char *buffer = getenv("COSMIC_ROOT");
   
   std::string library_path;
   if (buffer)

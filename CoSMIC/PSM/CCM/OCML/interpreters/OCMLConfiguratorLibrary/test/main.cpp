@@ -84,9 +84,9 @@ LRESULT CALLBACK MainWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
       hDC = BeginPaint( hWnd, &ps );
 
       std::stringstream ss;
-      char *picml_root = getenv("PICML_ROOT");
+      char *picml_root = getenv("COSMIC_ROOT");
       ss << "Click on this form to launch dll. "
-         << "PICML_ROOT environment variable points to: "
+         << "COSMIC_ROOT environment variable points to: "
          << picml_root;
     
       TextOut( hDC, 10, 10, ss.str().c_str(), ss.str().size());
