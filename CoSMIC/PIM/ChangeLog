@@ -1,7 +1,16 @@
+Sat Jun 19 16:25:35 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PICML/interpreters/packaging/PackageVisitor.h:
+        * PICML/interpreters/packaging/PackageVisitor.cpp:
+        * PICML/interpreters/packaging/UdmApp.cpp: Added support to
+          generate ImplementationArtifact Descriptors and
+          TopLevelPackageDescriptor. Rest in pipeline. Checking in now so
+          that Jai can start on his part.
+
 Fri Jun 18 14:22:30 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * IDML/docs/IDML_User_Manual.pdf:
-        
+
           New file, user's manual and reference for IDML and IDLGenerator.
 
 Tue Jun 15 10:47:57 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
@@ -11,7 +20,7 @@ Tue Jun 15 10:47:57 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
         * IDML/paradigms/IDML.xmp:
         * IDML/paradigms/IDMLTemplate.xme:
         * IDML/paradigms/PredefinedTypes.xme:
-        
+
           Added constraint to metamodel that checks for legal values
           (type and range) for constants. Note that there seems to
           be a problem with GME's Constraint Manager using toInteger()
@@ -69,7 +78,7 @@ Mon Jun 14 17:56:33 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
           - Makes sure port icons are facing in the right direction.
             The ProvidedRequestPort icon is symmetrical, but each of
             the others has two mirror image icons, one of which is selected
-            by the decorator each time the screen is redrawn. Some of 
+            by the decorator each time the screen is redrawn. Some of
             the code for this feature was adapted from the default
             decorator in GME source code.
 

@@ -1,6 +1,7 @@
 // $Id$
 
 #include <memory>
+#include <stack>
 #include "PICML.h"
 
 // Xerces includes
@@ -15,9 +16,9 @@
 using xercesc::DOMImplementation;
 using xercesc::DOMDocument;
 using xercesc::DOMElement;
-using xercesc::DOMElement;
 using xercesc::DOMWriter;
 using xercesc::XMLFormatTarget;
+using xercesc::LocalFileFormatTarget;
 
 namespace PICML
 {
@@ -33,6 +34,9 @@ namespace PICML
     void initRootAttributes();
     void dumpDocument();
 
+    void push();
+    void pop();
+
     DOMElement* createSimpleContent (const std::string& name,
                                      const std::string& value);
 
@@ -45,7 +49,7 @@ namespace PICML
     virtual void Visit_Boolean(const Boolean&);
     virtual void Visit_ShortInteger(const ShortInteger&);
 
-	virtual void Visit_GenericValue(const GenericValue&){};
+    virtual void Visit_GenericValue(const GenericValue&){};
     virtual void Visit_Byte(const Byte&){};
     virtual void Visit_TypeKind(const TypeKind&){};
     virtual void Visit_GenericObject(const GenericObject&){};
@@ -69,6 +73,27 @@ namespace PICML
     virtual void Visit_ArtifactInfoProperty(const ArtifactInfoProperty&);
     virtual void Visit_ImplementationRequirement(const ImplementationRequirement&);
 
+    // TopLevelPackage operations
+
+    virtual void Visit_TopLevelPackages(const TopLevelPackages&);
+    virtual void Visit_TopLevelPackageContainer(const TopLevelPackageContainer&);
+    virtual void Visit_TopLevelPackage(const TopLevelPackage&);
+    virtual void Visit_package(const package&);
+    virtual void Visit_PackageConfigurationReference(const PackageConfigurationReference&);
+
+    // PackageConfiguration operations
+
+    virtual void Visit_PackageConfigurations(const PackageConfigurations&);
+    virtual void Visit_PackageConfigurationContainer(const PackageConfigurationContainer&);
+    virtual void Visit_PackageConfiguration(const PackageConfiguration&);
+    virtual void Visit_PackageConfConfigProperty(const PackageConfConfigProperty&);
+    virtual void Visit_PackageConfReference(const PackageConfReference&);
+    virtual void Visit_PackageConfSpecializedConfig(const PackageConfSpecializedConfig&);
+    virtual void Visit_PackageConfSelectRequirement(const PackageConfSelectRequirement&);
+    virtual void Visit_PackageConfBasePackage(const PackageConfBasePackage&);
+    virtual void Visit_ComponentPackageReference(const ComponentPackageReference&);
+
+    //
     virtual void Visit_Requirement(const Requirement&){};
     virtual void Visit_SatisfierProperty(const SatisfierProperty&){};
     virtual void Visit_ImplementationDependency(const ImplementationDependency&){};
@@ -82,13 +107,8 @@ namespace PICML
     virtual void Visit_ComponentAssembly(const ComponentAssembly&){};
     virtual void Visit_emit(const emit&){};
     virtual void Visit_invoke(const invoke&){};
-    virtual void Visit_package(const package&){};
-    virtual void Visit_TopLevelPackages(const TopLevelPackages&){};
-    virtual void Visit_TopLevelPackageContainer(const TopLevelPackageContainer&){};
-    virtual void Visit_TopLevelPackage(const TopLevelPackage&){};
     virtual void Visit_ComponentPackage(const ComponentPackage&){};
     virtual void Visit_ComponentPackages(const ComponentPackages&){};
-    virtual void Visit_ComponentPackageReference(const ComponentPackageReference&){};
     virtual void Visit_Implementation(const Implementation&){};
     virtual void Visit_PackageContainer(const PackageContainer&){};
     virtual void Visit_PackageConfigProperty(const PackageConfigProperty&){};
@@ -130,15 +150,6 @@ namespace PICML
     virtual void Visit_DeploymentPlan(const DeploymentPlan&){};
     virtual void Visit_DeploymentPlans(const DeploymentPlans&){};
     virtual void Visit_CollocationGroup(const CollocationGroup&){};
-    virtual void Visit_PackageConfigurationReference(const PackageConfigurationReference&){};
-    virtual void Visit_PackageConfConfigProperty(const PackageConfConfigProperty&){};
-    virtual void Visit_PackageConfigurations(const PackageConfigurations&){};
-    virtual void Visit_PackageConfigurationContainer(const PackageConfigurationContainer&){};
-    virtual void Visit_PackageConfReference(const PackageConfReference&){};
-    virtual void Visit_PackageConfiguration(const PackageConfiguration&){};
-    virtual void Visit_PackageConfSpecializedConfig(const PackageConfSpecializedConfig&){};
-    virtual void Visit_PackageConfSelectRequirement(const PackageConfSelectRequirement&){};
-    virtual void Visit_PackageConfBasePackage(const PackageConfBasePackage&){};
     virtual void Visit_InParameter(const InParameter&){};
     virtual void Visit_TwowayOperation(const TwowayOperation&){};
     virtual void Visit_OnewayOperation(const OnewayOperation&){};
@@ -195,7 +206,8 @@ namespace PICML
     DOMElement*         root_;
     DOMElement*         curr_;
     DOMWriter*          serializer_;
-    auto_ptr<LocalFileFormatTarget>    target_;
+    XMLFormatTarget*    target_;
     std::string         outputPath_;
+    std::stack<DOMElement*> curr_stack_;
   };
 }

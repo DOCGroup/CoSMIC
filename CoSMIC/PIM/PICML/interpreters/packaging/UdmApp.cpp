@@ -50,12 +50,19 @@ using xercesc::DOMException;
 using xercesc::XMLString;
 using PICML::XStr;
 
-#define SetUpVisitor(type, root, visitor)                              \
-    do                                                                  \
-      {                                                                 \
-        PICML:: ## type start = PICML:: ## type ## ::Cast (root);       \
-        start.Accept (visitor);                                         \
-      } while (0)
+#define SetUpVisitor(type, root, visitor)                               \
+  do                                                                    \
+    {                                                                   \
+      PICML:: ## type start = PICML:: ## type ## ::Cast (root);         \
+      start.Accept (visitor);                                           \
+    } while (0)
+
+// template <class T, class U>
+// void SetUpVisitor(const T& type, Udm::Object& root, const U& visitor)
+// {
+//   type start = type::Cast (root);
+//   start.Accept (visitor);
+// }
 
 extern void dummy(void); // Dummy function for UDM meta initialization
 
