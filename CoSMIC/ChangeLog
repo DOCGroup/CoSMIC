@@ -1,3 +1,10 @@
+Tue Jan 25 12:49:33 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+   
+       * PIM/PICML/docs/BGML/BGML_Documentation_Guide.tex:
+
+         Added expiliciltly the fact that user needs to run $ACE_ROOT/bin/mwc.pl
+         and not $ACE_ROOT/MPC/mwc.pl. This was thanks to Diana Ukleja 
+         <diana@raytheon.com>
 Tue Jan 25 11:57:36 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/BGML_Base/BGML_Base.mpc:
