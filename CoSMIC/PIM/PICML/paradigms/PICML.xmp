@@ -1791,6 +1791,7 @@ or self.requiredUUID <> ""]]>
       <model name = "Component" metaref = "1822" attributes = "VersionTag SpecifyIdTag label UUID" >
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="component.bmp"></regnode>
+            <regnode name = "decorator" value ="MGA.Decorator.IDMLDecorator"></regnode>
             <regnode name = "isTypeShown" value ="true"></regnode>
          <constraint name="ComponentInstanceOnly" eventmask = "0x80000000" depth = "1" priority = "1">
             <![CDATA[let parent = self.parent() in
