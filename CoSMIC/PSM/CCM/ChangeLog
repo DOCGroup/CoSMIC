@@ -1,7 +1,12 @@
+Wed Apr 21 23:05:06 2004  Gabriele Trombetti  <gtrombetti@nospam.invalid.domain>
+
+        * PICML2Cadena/cadena-scenario.xme: Fixed inheritance and representation
+          of connections; aggregated ports to components.
+
 Wed Apr 21 22:56:21 2004  Gabriele Trombetti  <gtrombetti@nospam.invalid.domain>
 
-        * PICML2Cadena/cadena-scenario.xme: Initial version of the UML diagram 
-          for CoSMIC/Cadena tool integration via OTIF, made by Jesse Greenwald. 
+        * PICML2Cadena/cadena-scenario.xme: Initial version of the UML diagram
+          for CoSMIC/Cadena tool integration via OTIF, made by Jesse Greenwald.
 
 Fri Apr 16 14:43:36 2004  Arvind S. Krishna  <arvindk@dre.vanderbilt.edu>
 
