@@ -1,3 +1,10 @@
+Wed Aug 18 16:02:34 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
+        
+          Replaced an overlooked string containing "IDML" with
+          the substring replaced by "PICML".
+
 Wed Aug 18 15:44:59 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/paradigms/Icons/component.bmp:

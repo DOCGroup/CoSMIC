@@ -1883,7 +1883,7 @@ namespace IDML_BON
     if (c->ref_managed ()) return;
 
     ofs << nl << nl
-        << "home " << c->getName () << "IDMLDefaultHome";
+        << "home " << c->getName () << "PICMLDefaultHome";
         
     // Local name for default home is ok - the managed component
     // is being declared just above it.  
