@@ -1,3 +1,10 @@
+Fri Oct 29 11:51:36 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * OCML/interpreters/OCMLConfiguratorLibrary/Options/TreeParser.cpp: 
+
+          Fixed the bug occuring when the default value specified in xml
+          file for the integer options is null string ("").
+
 Fri Oct 29 10:55:34 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * OCML/interpreters/OCMLConfiguratorLibrary/OptionEditors/EnumOptionEditor.cpp: 

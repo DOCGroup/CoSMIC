@@ -118,12 +118,15 @@ OptionTreeParser::parse_integer_option(DOMNode* node)
   XMLUnicodeString name, description, default_value;
   parse_attributes(node, name, description, default_value);
 
-  int i;
-  std::stringstream ss(default_value.str().c_str());
-  ss >> i;
+  int int_default_value = 0;
+  if (default_value.str() != "")
+    {
+      std::stringstream ss(default_value.str().c_str());
+      ss >> int_default_value;
+    }
 
   return new IntegerOption(name.str().c_str(), description.str().c_str(),
-                           i);
+                           int_default_value);
 }
 
 StringOption*
