@@ -1,3 +1,21 @@
+Thu Mar 11 03:18:31 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * COMPASS/interpreters/BON2Component.cpp: Fixed a bug where the
+          kind name was not getting generated for ComponentInterfaces.
+
+        * COMPASS/interpreters/CompassML.dsp:
+        * COMPASS/interpreters/CompassML.dsw:
+
+          Added files with logical names for building the interpreter.
+
+        * COMPASS/interpreters/BON2Component.dsw:
+        * COMPASS/interpreters/CompassMLBON2Component.dsp:
+        * COMPASS/interpreters/ComponentLib_p.c:
+        * COMPASS/interpreters/dlldata.c:
+        * COMPASS/interpreters/example.cpp:
+
+          Removed these files.
+
 Wed Mar 10 17:55:49 2004  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * COMPASS/README: Initial README for COMPASS.

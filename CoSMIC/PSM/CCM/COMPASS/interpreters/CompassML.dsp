@@ -7,19 +7,19 @@
 CFG=CompassML - Win32 Debug
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
-!MESSAGE 
-!MESSAGE NMAKE /f "CompassMLBON2Component.mak".
-!MESSAGE 
+!MESSAGE
+!MESSAGE NMAKE /f "CompassML.mak".
+!MESSAGE
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
-!MESSAGE 
-!MESSAGE NMAKE /f "CompassMLBON2Component.mak" CFG="CompassML - Win32 Debug"
-!MESSAGE 
+!MESSAGE
+!MESSAGE NMAKE /f "CompassML.mak" CFG="CompassML - Win32 Debug"
+!MESSAGE
 !MESSAGE Possible choices for configuration are:
-!MESSAGE 
+!MESSAGE
 !MESSAGE "CompassML - Win32 Debug" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE "CompassML - Win32 Release" (based on "Win32 (x86) Dynamic-Link Library")
-!MESSAGE 
+!MESSAGE
 
 # Begin Project
 # PROP AllowPerConfigDependencies 0
@@ -43,7 +43,7 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /Yu"stdafx.h" /FD /GZ /c
-# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "%XERCESROOT%\include" /I ".\\" /I "C:/Program Files/GME/sdk/BON/" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /D "BUILDER_OBJECT_NETWORK_V2" /FR /FD /Zm200 /Zm200 /GZ /c
+# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "C:/Tools/xerces/include" /I ".\\" /I "C:/Program Files/GME/sdk/BON/" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /D "BUILDER_OBJECT_NETWORK_V2" /FR /FD /Zm200 /Zm200 /GZ /c
 # SUBTRACT CPP /YX /Yc /Yu
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
@@ -53,7 +53,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib xerces-c_2D.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"Debug/CompassML.dll" /pdbtype:sept /libpath:"%XERCESROOT%\lib"
+# ADD LINK32 kernel32.lib user32.lib xerces-c_2D.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"Debug/CompassML.dll" /pdbtype:sept /libpath:"C:/Tools/xerces/lib"
 # Begin Custom Build - Performing registration
 OutDir=.\Debug
 TargetPath=.\Debug\CompassML.dll
@@ -61,9 +61,9 @@ InputPath=.\Debug\CompassML.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	regsvr32 /s /c "$(TargetPath)" 
-	echo regsvr32 exec. time > "$(OutDir)\regsvr32.trg" 
-	
+	regsvr32 /s /c "$(TargetPath)"
+	echo regsvr32 exec. time > "$(OutDir)\regsvr32.trg"
+
 # End Custom Build
 
 !ELSEIF  "$(CFG)" == "CompassML - Win32 Release"
@@ -80,7 +80,7 @@ SOURCE="$(InputPath)"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O1 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MD /W3 /GR /GX /Zi /O1 /I "%XERCESROOT%\include" /I ".\\" /I "C:/Program Files/GME/sdk/BON/" /D "NDEBUG" /D "_ATL_STATIC_REGISTRY" /D "WIN32" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /D "BUILDER_OBJECT_NETWORK_V2" /FD /Zm200 /c
+# ADD CPP /nologo /MD /W3 /GR /GX /Zi /O1 /I "C:/Tools/xerces/include" /I ".\\" /I "C:/Program Files/GME/sdk/BON/" /D "NDEBUG" /D "_ATL_STATIC_REGISTRY" /D "WIN32" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /D "BUILDER_OBJECT_NETWORK_V2" /FD /Zm200 /c
 # SUBTRACT CPP /YX /Yc /Yu
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
@@ -90,7 +90,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 kernel32.lib user32.lib xerces-c_2.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"Release/CompassML.dll" /libpath:"C:\Tools\xercesc\lib" /libpath:"%XERCESROOT%\lib"
+# ADD LINK32 kernel32.lib user32.lib xerces-c_2.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"Release/CompassML.dll" /libpath:"C:\Tools\xercesc\lib" /libpath:"C:/Tools/xerces/lib"
 # Begin Custom Build - Performing registration
 OutDir=.\Release
 TargetPath=.\Release\CompassML.dll
@@ -98,12 +98,12 @@ InputPath=.\Release\CompassML.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	regsvr32 /s /c "$(TargetPath)" 
-	echo regsvr32 exec. time > "$(OutDir)\regsvr32.trg" 
-	
+	regsvr32 /s /c "$(TargetPath)"
+	echo regsvr32 exec. time > "$(OutDir)\regsvr32.trg"
+
 # End Custom Build
 
-!ENDIF 
+!ENDIF
 
 # Begin Target
 
@@ -190,7 +190,7 @@ BuildCmds= \
    $(BuildCmds)
 # End Custom Build
 
-!ENDIF 
+!ENDIF
 
 # End Source File
 # Begin Source File

@@ -94,7 +94,7 @@ namespace BON
                        "  Exception message:" + XStr (toCatch.getMessage()));
         return;
       }
-    
+
     if (!currentFCO && setSelectedFCOs.empty())
       {
         AfxMessageBox ("Interpretation must start from a TopLevelPackage, "
@@ -871,6 +871,7 @@ namespace Compass {
                                                        supportedType));
         pRole->appendChild (this->createSimpleContent ("specificType",
                                                        specificType));
+        pRole->appendChild (this->createSimpleContent ("kind", kind));
         this->curr_->appendChild (pRole);
       }
   }
