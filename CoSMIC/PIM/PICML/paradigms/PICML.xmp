@@ -99,27 +99,27 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
       </attrdef>
       <attrdef name="exclusiveProvider" metaref = "2752" valuetype = "boolean" defvalue = "false">
       </attrdef>
-      <attrdef name="exclusiveUser" metaref = "2753" valuetype = "boolean" defvalue = "false">
+      <attrdef name="exclusiveUser" metaref = "4088" valuetype = "boolean" defvalue = "false">
       </attrdef>
       <attrdef name="fileName" metaref = "3993" valuetype = "string" defvalue = "">
       </attrdef>
       <attrdef name="iterations" metaref = "3994" valuetype = "integer" defvalue = "">
       </attrdef>
-      <attrdef name="label" metaref = "2754" valuetype = "string" defvalue = "">
+      <attrdef name="label" metaref = "4089" valuetype = "string" defvalue = "">
       </attrdef>
-      <attrdef name="location" metaref = "2755" valuetype = "string" defvalue = "">
+      <attrdef name="location" metaref = "4090" valuetype = "string" defvalue = "">
       </attrdef>
-      <attrdef name="optional" metaref = "2756" valuetype = "boolean" defvalue = "false">
+      <attrdef name="optional" metaref = "4091" valuetype = "boolean" defvalue = "false">
       </attrdef>
-      <attrdef name="requiredName" metaref = "2757" valuetype = "string" defvalue = "">
+      <attrdef name="requiredName" metaref = "4092" valuetype = "string" defvalue = "">
       </attrdef>
-      <attrdef name="requiredType" metaref = "2758" valuetype = "string" defvalue = "">
+      <attrdef name="requiredType" metaref = "4093" valuetype = "string" defvalue = "">
       </attrdef>
-      <attrdef name="requiredUUID" metaref = "2759" valuetype = "string" defvalue = "">
+      <attrdef name="requiredUUID" metaref = "4094" valuetype = "string" defvalue = "">
       </attrdef>
-      <attrdef name="resourcePort" metaref = "2760" valuetype = "string" defvalue = "">
+      <attrdef name="resourcePort" metaref = "4095" valuetype = "string" defvalue = "">
       </attrdef>
-      <attrdef name="resourceType" metaref = "2761" valuetype = "string" defvalue = "">
+      <attrdef name="resourceType" metaref = "4096" valuetype = "string" defvalue = "">
       </attrdef>
       <attrdef name="warmup" metaref = "3995" valuetype = "integer" defvalue = "">
       </attrdef>
@@ -134,7 +134,21 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
       </atom>
+      <atom name = "BooleanCollection" metaref = "4097" >
+            <regnode name = "namePosition" value ="4"></regnode>
+         <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <dispname>Not a valid identifier</dispname>
+         </constraint>
+      </atom>
       <atom name = "Byte" metaref = "2915" >
+            <regnode name = "namePosition" value ="4"></regnode>
+         <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <dispname>Not a valid identifier</dispname>
+         </constraint>
+      </atom>
+      <atom name = "ByteCollection" metaref = "4098" >
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
             <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
@@ -173,6 +187,13 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
       </atom>
+      <atom name = "GenericValueCollection" metaref = "4099" >
+            <regnode name = "namePosition" value ="4"></regnode>
+         <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <dispname>Not a valid identifier</dispname>
+         </constraint>
+      </atom>
       <atom name = "GenericValueObject" metaref = "2918" >
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
@@ -184,7 +205,7 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="ImplementationArtifact.bmp"></regnode>
       </atom>
-      <atom name = "ImplementationDependency" metaref = "2764"  attributes = "requiredType">
+      <atom name = "ImplementationDependency" metaref = "4100"  attributes = "requiredType">
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="ImplementationDependency.bmp"></regnode>
       </atom>
@@ -202,6 +223,13 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <regnode name = "icon" value ="label.bmp"></regnode>
       </atom>
       <atom name = "LongInteger" metaref = "2919" >
+            <regnode name = "namePosition" value ="4"></regnode>
+         <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <dispname>Not a valid identifier</dispname>
+         </constraint>
+      </atom>
+      <atom name = "LongIntegerCollection" metaref = "4101" >
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
             <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
@@ -270,6 +298,13 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
       </atom>
+      <atom name = "RealNumberCollection" metaref = "4102" >
+            <regnode name = "namePosition" value ="4"></regnode>
+         <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <dispname>Not a valid identifier</dispname>
+         </constraint>
+      </atom>
       <atom name = "ShortInteger" metaref = "2921" >
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
@@ -277,7 +312,21 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
       </atom>
+      <atom name = "ShortIntegerCollection" metaref = "4103" >
+            <regnode name = "namePosition" value ="4"></regnode>
+         <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <dispname>Not a valid identifier</dispname>
+         </constraint>
+      </atom>
       <atom name = "String" metaref = "2922" >
+            <regnode name = "namePosition" value ="4"></regnode>
+         <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
+            <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
+            <dispname>Not a valid identifier</dispname>
+         </constraint>
+      </atom>
+      <atom name = "StringCollection" metaref = "4104" >
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="ValidIdentifier" eventmask = "0x80000011" depth = "1" priority = "1">
             <![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
@@ -667,8 +716,6 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
          </connjoint>
       </connection>
       <connection name = "LabelConnection" metaref = "1796" >
-            <regnode name = "sName" value ="srcLabelConnection"></regnode>
-            <regnode name = "dName" value ="dstLabelConnection"></regnode>
             <regnode name = "color" value ="0x0000FF"></regnode>
             <regnode name = "dstStyle" value ="butt"></regnode>
             <regnode name = "srcStyle" value ="butt"></regnode>
@@ -683,8 +730,6 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
          </connjoint>
       </connection>
       <connection name = "MakeMemberPrivate" metaref = "2303" >
-            <regnode name = "sName" value ="srcMakeMemberPrivate"></regnode>
-            <regnode name = "dName" value ="dstMakeMemberPrivate"></regnode>
             <regnode name = "color" value ="0xFF0000"></regnode>
             <regnode name = "dstStyle" value ="butt"></regnode>
             <regnode name = "srcStyle" value ="butt"></regnode>
@@ -698,9 +743,7 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             </pointerspec>
          </connjoint>
       </connection>
-      <connection name = "ManagesComponent" metaref = "3821" >
-            <regnode name = "sName" value ="srcManagesComponent"></regnode>
-            <regnode name = "dName" value ="dstManagesComponent"></regnode>
+      <connection name = "ManagesComponent" metaref = "3238" >
             <regnode name = "color" value ="0x00FF00"></regnode>
             <regnode name = "dstStyle" value ="arrow"></regnode>
             <regnode name = "srcStyle" value ="butt"></regnode>
@@ -717,7 +760,9 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
       </connection>
       <connection name = "MetricConnection" metaref = "4001" >
             <regnode name = "labelFormatStr" value ="measures"></regnode>
-            <regnode name = "color" value ="0x000000"></regnode>
+            <regnode name = "sName" value ="srcMetricConnection"></regnode>
+            <regnode name = "dName" value ="dstMetricConnection"></regnode>
+            <regnode name = "color" value ="0x0000FF"></regnode>
             <regnode name = "dstStyle" value ="butt"></regnode>
             <regnode name = "srcStyle" value ="butt"></regnode>
             <regnode name = "lineType" value ="solid"></regnode>
@@ -952,7 +997,9 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
       </connection>
       <connection name = "TimerConnection" metaref = "4002" >
             <regnode name = "labelFormatStr" value ="getTime"></regnode>
-            <regnode name = "color" value ="0x000000"></regnode>
+            <regnode name = "sName" value ="srcTimerConnection"></regnode>
+            <regnode name = "dName" value ="dstTimerConnection"></regnode>
+            <regnode name = "color" value ="0xFF0000"></regnode>
             <regnode name = "dstStyle" value ="arrow"></regnode>
             <regnode name = "srcStyle" value ="butt"></regnode>
             <regnode name = "lineType" value ="dash"></regnode>
@@ -967,6 +1014,8 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
       </connection>
       <connection name = "TimerEventSinkConn" metaref = "4003" >
             <regnode name = "labelFormatStr" value ="getTime"></regnode>
+            <regnode name = "sName" value ="srcTimerEventSinkConn"></regnode>
+            <regnode name = "dName" value ="dstTimerEventSinkConn"></regnode>
             <regnode name = "color" value ="0x000000"></regnode>
             <regnode name = "dstStyle" value ="butt"></regnode>
             <regnode name = "srcStyle" value ="butt"></regnode>
@@ -1067,8 +1116,6 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
       </connection>
       <reference name = "Alias" metaref = "3119" attributes = "VersionTag SpecifyIdTag">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyAlias"></regnode>
          <constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[not refersTo ().isNull ()]]>
             <dispname>A reference to a named type must be assigned</dispname>
@@ -1086,8 +1133,10 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
+            <pointeritem desc = "BooleanCollection"></pointeritem>
             <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
+            <pointeritem desc = "ByteCollection"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
             <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
@@ -1095,12 +1144,17 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <pointeritem desc = "Event"></pointeritem>
             <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "GenericValue"></pointeritem>
+            <pointeritem desc = "GenericValueCollection"></pointeritem>
             <pointeritem desc = "GenericValueObject"></pointeritem>
             <pointeritem desc = "LongInteger"></pointeritem>
+            <pointeritem desc = "LongIntegerCollection"></pointeritem>
             <pointeritem desc = "Object"></pointeritem>
             <pointeritem desc = "RealNumber"></pointeritem>
+            <pointeritem desc = "RealNumberCollection"></pointeritem>
             <pointeritem desc = "ShortInteger"></pointeritem>
+            <pointeritem desc = "ShortIntegerCollection"></pointeritem>
             <pointeritem desc = "String"></pointeritem>
+            <pointeritem desc = "StringCollection"></pointeritem>
             <pointeritem desc = "SwitchedAggregate"></pointeritem>
             <pointeritem desc = "TypeEncoding"></pointeritem>
             <pointeritem desc = "TypeKind"></pointeritem>
@@ -1109,8 +1163,6 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
       </reference>
       <reference name = "AttributeMember" metaref = "3239">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyAttributeMember"></regnode>
          <regnode name = "icon" value ="member.bmp"></regnode>
          <regnode name = "decorator" value ="MGA.Decorator.IDMLDecorator"></regnode>
          <regnode name = "isNameEnabled" value ="false"></regnode>
@@ -1118,8 +1170,10 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
+            <pointeritem desc = "BooleanCollection"></pointeritem>
             <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
+            <pointeritem desc = "ByteCollection"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
             <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
@@ -1127,12 +1181,17 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <pointeritem desc = "Event"></pointeritem>
             <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "GenericValue"></pointeritem>
+            <pointeritem desc = "GenericValueCollection"></pointeritem>
             <pointeritem desc = "GenericValueObject"></pointeritem>
             <pointeritem desc = "LongInteger"></pointeritem>
+            <pointeritem desc = "LongIntegerCollection"></pointeritem>
             <pointeritem desc = "Object"></pointeritem>
             <pointeritem desc = "RealNumber"></pointeritem>
+            <pointeritem desc = "RealNumberCollection"></pointeritem>
             <pointeritem desc = "ShortInteger"></pointeritem>
+            <pointeritem desc = "ShortIntegerCollection"></pointeritem>
             <pointeritem desc = "String"></pointeritem>
+            <pointeritem desc = "StringCollection"></pointeritem>
             <pointeritem desc = "SwitchedAggregate"></pointeritem>
             <pointeritem desc = "TypeEncoding"></pointeritem>
             <pointeritem desc = "TypeKind"></pointeritem>
@@ -1141,8 +1200,6 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
       </reference>
       <reference name = "Boxed" metaref = "3120" attributes = "VersionTag SpecifyIdTag">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyBoxed"></regnode>
          <constraint name="NoBoxedValueDef" eventmask = "0x80000011" depth = "1" priority = "1">
             <![CDATA[let boxedref = refersTo () in
    boxedref.kindName <> "ValueDef" and boxedref.kindName <> "EventDef"]]>
@@ -1165,8 +1222,10 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
+            <pointeritem desc = "BooleanCollection"></pointeritem>
             <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
+            <pointeritem desc = "ByteCollection"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
             <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
@@ -1174,12 +1233,17 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <pointeritem desc = "Event"></pointeritem>
             <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "GenericValue"></pointeritem>
+            <pointeritem desc = "GenericValueCollection"></pointeritem>
             <pointeritem desc = "GenericValueObject"></pointeritem>
             <pointeritem desc = "LongInteger"></pointeritem>
+            <pointeritem desc = "LongIntegerCollection"></pointeritem>
             <pointeritem desc = "Object"></pointeritem>
             <pointeritem desc = "RealNumber"></pointeritem>
+            <pointeritem desc = "RealNumberCollection"></pointeritem>
             <pointeritem desc = "ShortInteger"></pointeritem>
+            <pointeritem desc = "ShortIntegerCollection"></pointeritem>
             <pointeritem desc = "String"></pointeritem>
+            <pointeritem desc = "StringCollection"></pointeritem>
             <pointeritem desc = "SwitchedAggregate"></pointeritem>
             <pointeritem desc = "TypeEncoding"></pointeritem>
             <pointeritem desc = "TypeKind"></pointeritem>
@@ -1188,8 +1252,6 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
       </reference>
       <reference name = "Collection" metaref = "3121" attributes = "VersionTag SpecifyIdTag">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyCollection"></regnode>
          <constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[not refersTo ().isNull ()]]>
             <dispname>A reference to a named type must be assigned</dispname>
@@ -1207,8 +1269,10 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
+            <pointeritem desc = "BooleanCollection"></pointeritem>
             <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
+            <pointeritem desc = "ByteCollection"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
             <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
@@ -1216,12 +1280,17 @@ supported.localOps () + supported.inheritedOps (supported)))]]>
             <pointeritem desc = "Event"></pointeritem>
             <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "GenericValue"></pointeritem>
+            <pointeritem desc = "GenericValueCollection"></pointeritem>
             <pointeritem desc = "GenericValueObject"></pointeritem>
             <pointeritem desc = "LongInteger"></pointeritem>
+            <pointeritem desc = "LongIntegerCollection"></pointeritem>
             <pointeritem desc = "Object"></pointeritem>
             <pointeritem desc = "RealNumber"></pointeritem>
+            <pointeritem desc = "RealNumberCollection"></pointeritem>
             <pointeritem desc = "ShortInteger"></pointeritem>
+            <pointeritem desc = "ShortIntegerCollection"></pointeritem>
             <pointeritem desc = "String"></pointeritem>
+            <pointeritem desc = "StringCollection"></pointeritem>
             <pointeritem desc = "SwitchedAggregate"></pointeritem>
             <pointeritem desc = "TypeEncoding"></pointeritem>
             <pointeritem desc = "TypeKind"></pointeritem>
@@ -1256,10 +1325,8 @@ or self.requiredUUID <> ""]]>
             <pointeritem desc = "ComponentPackage"></pointeritem>
          </pointerspec>
       </reference>
-      <reference name = "ComponentRef" metaref = "3822">
+      <reference name = "ComponentRef" metaref = "3240">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyComponentRef"></regnode>
          <regnode name = "icon" value ="componentref.bmp"></regnode>
          <regnode name = "isNameEnabled" value ="false"></regnode>
          <pointerspec name = "ref">
@@ -1286,8 +1353,6 @@ or self.requiredUUID <> ""]]>
       </reference>
       <reference name = "Constant" metaref = "3112" attributes = "VersionTag SpecifyIdTag value">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyConstant"></regnode>
          <constraint name="LegalConstantType" eventmask = "0x400" depth = "1" priority = "1">
             <![CDATA[let x = refersTo () in
   x.isTypeOf (String) or
@@ -1323,15 +1388,22 @@ or self.requiredUUID <> ""]]>
          <regnode name = "icon" value ="const.bmp"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "Boolean"></pointeritem>
+            <pointeritem desc = "BooleanCollection"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
+            <pointeritem desc = "ByteCollection"></pointeritem>
             <pointeritem desc = "Enum"></pointeritem>
             <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "GenericValue"></pointeritem>
+            <pointeritem desc = "GenericValueCollection"></pointeritem>
             <pointeritem desc = "GenericValueObject"></pointeritem>
             <pointeritem desc = "LongInteger"></pointeritem>
+            <pointeritem desc = "LongIntegerCollection"></pointeritem>
             <pointeritem desc = "RealNumber"></pointeritem>
+            <pointeritem desc = "RealNumberCollection"></pointeritem>
             <pointeritem desc = "ShortInteger"></pointeritem>
+            <pointeritem desc = "ShortIntegerCollection"></pointeritem>
             <pointeritem desc = "String"></pointeritem>
+            <pointeritem desc = "StringCollection"></pointeritem>
             <pointeritem desc = "TypeEncoding"></pointeritem>
             <pointeritem desc = "TypeKind"></pointeritem>
          </pointerspec>
@@ -1343,22 +1415,27 @@ or self.requiredUUID <> ""]]>
          <regnode name = "icon" value ="DataType.bmp"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "Boolean"></pointeritem>
+            <pointeritem desc = "BooleanCollection"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
+            <pointeritem desc = "ByteCollection"></pointeritem>
             <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "GenericValue"></pointeritem>
+            <pointeritem desc = "GenericValueCollection"></pointeritem>
             <pointeritem desc = "GenericValueObject"></pointeritem>
             <pointeritem desc = "LongInteger"></pointeritem>
+            <pointeritem desc = "LongIntegerCollection"></pointeritem>
             <pointeritem desc = "RealNumber"></pointeritem>
+            <pointeritem desc = "RealNumberCollection"></pointeritem>
             <pointeritem desc = "ShortInteger"></pointeritem>
+            <pointeritem desc = "ShortIntegerCollection"></pointeritem>
             <pointeritem desc = "String"></pointeritem>
+            <pointeritem desc = "StringCollection"></pointeritem>
             <pointeritem desc = "TypeEncoding"></pointeritem>
             <pointeritem desc = "TypeKind"></pointeritem>
          </pointerspec>
       </reference>
       <reference name = "Discriminator" metaref = "3122">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyDiscriminator"></regnode>
          <constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[not refersTo ().isNull ()]]>
             <dispname>A reference to a named type must be assigned</dispname>
@@ -1367,21 +1444,30 @@ or self.requiredUUID <> ""]]>
          <regnode name = "isNameEnabled" value ="false"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "Boolean"></pointeritem>
+            <pointeritem desc = "BooleanCollection"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
+            <pointeritem desc = "ByteCollection"></pointeritem>
             <pointeritem desc = "Enum"></pointeritem>
             <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "GenericValue"></pointeritem>
+            <pointeritem desc = "GenericValueCollection"></pointeritem>
             <pointeritem desc = "GenericValueObject"></pointeritem>
             <pointeritem desc = "LongInteger"></pointeritem>
+            <pointeritem desc = "LongIntegerCollection"></pointeritem>
             <pointeritem desc = "RealNumber"></pointeritem>
+            <pointeritem desc = "RealNumberCollection"></pointeritem>
             <pointeritem desc = "ShortInteger"></pointeritem>
+            <pointeritem desc = "ShortIntegerCollection"></pointeritem>
             <pointeritem desc = "String"></pointeritem>
+            <pointeritem desc = "StringCollection"></pointeritem>
             <pointeritem desc = "TypeEncoding"></pointeritem>
             <pointeritem desc = "TypeKind"></pointeritem>
          </pointerspec>
       </reference>
       <reference name = "EventRef" metaref = "4004">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbyEventRef"></regnode>
          <regnode name = "icon" value ="eventref.bmp"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "Event"></pointeritem>
@@ -1389,8 +1475,6 @@ or self.requiredUUID <> ""]]>
       </reference>
       <reference name = "ExceptionRef" metaref = "2312">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyExceptionRef"></regnode>
          <constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -1403,8 +1487,6 @@ or self.requiredUUID <> ""]]>
       </reference>
       <reference name = "FileRef" metaref = "2627">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyFileRef"></regnode>
          <constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -1417,8 +1499,6 @@ or self.requiredUUID <> ""]]>
       </reference>
       <reference name = "GetException" metaref = "2264">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyGetException"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -1438,10 +1518,8 @@ or self.requiredUUID <> ""]]>
             <pointeritem desc = "ImplementationArtifact"></pointeritem>
          </pointerspec>
       </reference>
-      <reference name = "InEventPort" metaref = "3823" attributes = "VersionTag optional exclusiveUser SpecifyIdTag exclusiveProvider">
+      <reference name = "InEventPort" metaref = "2753" attributes = "VersionTag optional exclusiveUser SpecifyIdTag exclusiveProvider">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyInEventPort"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -1462,15 +1540,15 @@ or self.requiredUUID <> ""]]>
       </reference>
       <reference name = "InParameter" metaref = "3123">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyInParameter"></regnode>
          <regnode name = "icon" value ="in.bmp"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
+            <pointeritem desc = "BooleanCollection"></pointeritem>
             <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
+            <pointeritem desc = "ByteCollection"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
             <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
@@ -1478,12 +1556,17 @@ or self.requiredUUID <> ""]]>
             <pointeritem desc = "Event"></pointeritem>
             <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "GenericValue"></pointeritem>
+            <pointeritem desc = "GenericValueCollection"></pointeritem>
             <pointeritem desc = "GenericValueObject"></pointeritem>
             <pointeritem desc = "LongInteger"></pointeritem>
+            <pointeritem desc = "LongIntegerCollection"></pointeritem>
             <pointeritem desc = "Object"></pointeritem>
             <pointeritem desc = "RealNumber"></pointeritem>
+            <pointeritem desc = "RealNumberCollection"></pointeritem>
             <pointeritem desc = "ShortInteger"></pointeritem>
+            <pointeritem desc = "ShortIntegerCollection"></pointeritem>
             <pointeritem desc = "String"></pointeritem>
+            <pointeritem desc = "StringCollection"></pointeritem>
             <pointeritem desc = "SwitchedAggregate"></pointeritem>
             <pointeritem desc = "TypeEncoding"></pointeritem>
             <pointeritem desc = "TypeKind"></pointeritem>
@@ -1492,8 +1575,6 @@ or self.requiredUUID <> ""]]>
       </reference>
       <reference name = "Inherits" metaref = "1401">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyInherits"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -1510,15 +1591,15 @@ or self.requiredUUID <> ""]]>
       </reference>
       <reference name = "InoutParameter" metaref = "3124">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyInoutParameter"></regnode>
          <regnode name = "icon" value ="inout.bmp"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
+            <pointeritem desc = "BooleanCollection"></pointeritem>
             <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
+            <pointeritem desc = "ByteCollection"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
             <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
@@ -1526,12 +1607,17 @@ or self.requiredUUID <> ""]]>
             <pointeritem desc = "Event"></pointeritem>
             <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "GenericValue"></pointeritem>
+            <pointeritem desc = "GenericValueCollection"></pointeritem>
             <pointeritem desc = "GenericValueObject"></pointeritem>
             <pointeritem desc = "LongInteger"></pointeritem>
+            <pointeritem desc = "LongIntegerCollection"></pointeritem>
             <pointeritem desc = "Object"></pointeritem>
             <pointeritem desc = "RealNumber"></pointeritem>
+            <pointeritem desc = "RealNumberCollection"></pointeritem>
             <pointeritem desc = "ShortInteger"></pointeritem>
+            <pointeritem desc = "ShortIntegerCollection"></pointeritem>
             <pointeritem desc = "String"></pointeritem>
+            <pointeritem desc = "StringCollection"></pointeritem>
             <pointeritem desc = "SwitchedAggregate"></pointeritem>
             <pointeritem desc = "TypeEncoding"></pointeritem>
             <pointeritem desc = "TypeKind"></pointeritem>
@@ -1540,8 +1626,6 @@ or self.requiredUUID <> ""]]>
       </reference>
       <reference name = "LookupKey" metaref = "1800">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyLookupKey"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -1554,8 +1638,6 @@ or self.requiredUUID <> ""]]>
       </reference>
       <reference name = "Member" metaref = "3125">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyMember"></regnode>
          <constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[not refersTo ().isNull ()]]>
             <dispname>A reference to a named type must be assigned</dispname>
@@ -1571,8 +1653,10 @@ or self.requiredUUID <> ""]]>
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
+            <pointeritem desc = "BooleanCollection"></pointeritem>
             <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
+            <pointeritem desc = "ByteCollection"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
             <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
@@ -1580,12 +1664,17 @@ or self.requiredUUID <> ""]]>
             <pointeritem desc = "Event"></pointeritem>
             <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "GenericValue"></pointeritem>
+            <pointeritem desc = "GenericValueCollection"></pointeritem>
             <pointeritem desc = "GenericValueObject"></pointeritem>
             <pointeritem desc = "LongInteger"></pointeritem>
+            <pointeritem desc = "LongIntegerCollection"></pointeritem>
             <pointeritem desc = "Object"></pointeritem>
             <pointeritem desc = "RealNumber"></pointeritem>
+            <pointeritem desc = "RealNumberCollection"></pointeritem>
             <pointeritem desc = "ShortInteger"></pointeritem>
+            <pointeritem desc = "ShortIntegerCollection"></pointeritem>
             <pointeritem desc = "String"></pointeritem>
+            <pointeritem desc = "StringCollection"></pointeritem>
             <pointeritem desc = "SwitchedAggregate"></pointeritem>
             <pointeritem desc = "TypeEncoding"></pointeritem>
             <pointeritem desc = "TypeKind"></pointeritem>
@@ -1606,6 +1695,8 @@ or self.requiredUUID <> ""]]>
       </reference>
       <reference name = "OperationRef" metaref = "4005">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbyOperationRef"></regnode>
          <constraint name="ValidMetricConnectiondstCardinality48" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let dstCount = self.attachingConnections( "src", MetricConnection ) -> size in
                      (dstCount = 1)]]>
@@ -1624,10 +1715,8 @@ or self.requiredUUID <> ""]]>
             <pointeritem desc = "TwowayOperation"></pointeritem>
          </pointerspec>
       </reference>
-      <reference name = "OutEventPort" metaref = "3824" attributes = "VersionTag optional exclusiveUser SpecifyIdTag exclusiveProvider single_destination">
+      <reference name = "OutEventPort" metaref = "2754" attributes = "VersionTag optional exclusiveUser SpecifyIdTag exclusiveProvider single_destination">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyOutEventPort"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -1650,15 +1739,15 @@ or self.requiredUUID <> ""]]>
       </reference>
       <reference name = "OutParameter" metaref = "3126">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyOutParameter"></regnode>
          <regnode name = "icon" value ="out.bmp"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
+            <pointeritem desc = "BooleanCollection"></pointeritem>
             <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
+            <pointeritem desc = "ByteCollection"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
             <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
@@ -1666,12 +1755,17 @@ or self.requiredUUID <> ""]]>
             <pointeritem desc = "Event"></pointeritem>
             <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "GenericValue"></pointeritem>
+            <pointeritem desc = "GenericValueCollection"></pointeritem>
             <pointeritem desc = "GenericValueObject"></pointeritem>
             <pointeritem desc = "LongInteger"></pointeritem>
+            <pointeritem desc = "LongIntegerCollection"></pointeritem>
             <pointeritem desc = "Object"></pointeritem>
             <pointeritem desc = "RealNumber"></pointeritem>
+            <pointeritem desc = "RealNumberCollection"></pointeritem>
             <pointeritem desc = "ShortInteger"></pointeritem>
+            <pointeritem desc = "ShortIntegerCollection"></pointeritem>
             <pointeritem desc = "String"></pointeritem>
+            <pointeritem desc = "StringCollection"></pointeritem>
             <pointeritem desc = "SwitchedAggregate"></pointeritem>
             <pointeritem desc = "TypeEncoding"></pointeritem>
             <pointeritem desc = "TypeKind"></pointeritem>
@@ -1692,10 +1786,8 @@ or self.requiredUUID <> ""]]>
             <pointeritem desc = "PackageConfiguration"></pointeritem>
          </pointerspec>
       </reference>
-      <reference name = "ProvidedRequestPort" metaref = "3825" attributes = "VersionTag optional exclusiveUser SpecifyIdTag exclusiveProvider">
+      <reference name = "ProvidedRequestPort" metaref = "2755" attributes = "VersionTag optional exclusiveUser SpecifyIdTag exclusiveProvider">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyProvidedRequestPort"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -1710,10 +1802,8 @@ or self.requiredUUID <> ""]]>
             <pointeritem desc = "Object"></pointeritem>
          </pointerspec>
       </reference>
-      <reference name = "RequiredRequestPort" metaref = "3826" attributes = "VersionTag optional exclusiveUser SpecifyIdTag exclusiveProvider multiple_connections">
+      <reference name = "RequiredRequestPort" metaref = "2756" attributes = "VersionTag optional exclusiveUser SpecifyIdTag exclusiveProvider multiple_connections">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyRequiredRequestPort"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -1732,16 +1822,16 @@ or self.requiredUUID <> ""]]>
       </reference>
       <reference name = "ReturnType" metaref = "3127">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbyReturnType"></regnode>
          <regnode name = "icon" value ="return.bmp"></regnode>
          <regnode name = "isNameEnabled" value ="false"></regnode>
          <pointerspec name = "ref">
             <pointeritem desc = "Aggregate"></pointeritem>
             <pointeritem desc = "Alias"></pointeritem>
             <pointeritem desc = "Boolean"></pointeritem>
+            <pointeritem desc = "BooleanCollection"></pointeritem>
             <pointeritem desc = "Boxed"></pointeritem>
             <pointeritem desc = "Byte"></pointeritem>
+            <pointeritem desc = "ByteCollection"></pointeritem>
             <pointeritem desc = "Collection"></pointeritem>
             <pointeritem desc = "Component"></pointeritem>
             <pointeritem desc = "ComponentFactory"></pointeritem>
@@ -1749,12 +1839,17 @@ or self.requiredUUID <> ""]]>
             <pointeritem desc = "Event"></pointeritem>
             <pointeritem desc = "GenericObject"></pointeritem>
             <pointeritem desc = "GenericValue"></pointeritem>
+            <pointeritem desc = "GenericValueCollection"></pointeritem>
             <pointeritem desc = "GenericValueObject"></pointeritem>
             <pointeritem desc = "LongInteger"></pointeritem>
+            <pointeritem desc = "LongIntegerCollection"></pointeritem>
             <pointeritem desc = "Object"></pointeritem>
             <pointeritem desc = "RealNumber"></pointeritem>
+            <pointeritem desc = "RealNumberCollection"></pointeritem>
             <pointeritem desc = "ShortInteger"></pointeritem>
+            <pointeritem desc = "ShortIntegerCollection"></pointeritem>
             <pointeritem desc = "String"></pointeritem>
+            <pointeritem desc = "StringCollection"></pointeritem>
             <pointeritem desc = "SwitchedAggregate"></pointeritem>
             <pointeritem desc = "TypeEncoding"></pointeritem>
             <pointeritem desc = "TypeKind"></pointeritem>
@@ -1763,8 +1858,6 @@ or self.requiredUUID <> ""]]>
       </reference>
       <reference name = "SetException" metaref = "1701">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbySetException"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -1777,8 +1870,6 @@ or self.requiredUUID <> ""]]>
       </reference>
       <reference name = "Supports" metaref = "1404">
             <regnode name = "namePosition" value ="4"></regnode>
-            <regnode name = "rName" value ="ref"></regnode>
-            <regnode name = "rrName" value ="referedbySupports"></regnode>
          <constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
             <![CDATA[not self.refersTo ().isNull ()]]>
             <dispname>A reference cannot be null</dispname>
@@ -1860,22 +1951,22 @@ or self.requiredUUID <> ""]]>
       <model name = "BenchmarkAnalysis" metaref = "4006" >
             <regnode name = "namePosition" value ="4"></regnode>
          <role name = "Average" metaref = "4007" kind = "Average"></role>
-         <role name = "Event" metaref = "4008" kind = "Event"></role>
+         <role name = "Event" metaref = "4105" kind = "Event"></role>
          <role name = "EventRef" metaref = "4009" kind = "EventRef"></role>
-         <role name = "FactoryOperation" metaref = "4010" kind = "FactoryOperation"></role>
+         <role name = "FactoryOperation" metaref = "4106" kind = "FactoryOperation"></role>
          <role name = "Jitter" metaref = "4011" kind = "Jitter"></role>
          <role name = "Latency" metaref = "4012" kind = "Latency"></role>
-         <role name = "LookupOperation" metaref = "4013" kind = "LookupOperation"></role>
+         <role name = "LookupOperation" metaref = "4107" kind = "LookupOperation"></role>
          <role name = "Maximum" metaref = "4014" kind = "Maximum"></role>
          <role name = "MetricConnection" metaref = "4015" kind = "MetricConnection"></role>
          <role name = "Minimum" metaref = "4016" kind = "Minimum"></role>
-         <role name = "OnewayOperation" metaref = "4017" kind = "OnewayOperation"></role>
+         <role name = "OnewayOperation" metaref = "4108" kind = "OnewayOperation"></role>
          <role name = "OperationRef" metaref = "4018" kind = "OperationRef"></role>
          <role name = "Throughput" metaref = "4019" kind = "Throughput"></role>
          <role name = "TimeProbe" metaref = "4076" kind = "TimeProbe"></role>
          <role name = "TimerConnection" metaref = "4020" kind = "TimerConnection"></role>
          <role name = "TimerEventSinkConn" metaref = "4021" kind = "TimerEventSinkConn"></role>
-         <role name = "TwowayOperation" metaref = "4023" kind = "TwowayOperation"></role>
+         <role name = "TwowayOperation" metaref = "4109" kind = "TwowayOperation"></role>
          <aspect name = "ComponentMetrics" metaref = "4052" >
             <part metaref = "4054" role = "EventRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "4056" role = "Latency" primary = "yes" linked = "no"></part>
@@ -1961,7 +2052,8 @@ endif]]>
             <dispname>ComponentDef and ComponentManager may have only one parent</dispname>
          </constraint>
          <constraint name="UniqueInheritableDeclNames" eventmask = "0x0" depth = "1" priority = "2">
-            <![CDATA[(parts () - parts ("Inherits") - parts ("Supports"))->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
+            <![CDATA[let a = parts () - parts ("Inherits") - parts ("Supports") - parts ("MakeMemberPrivate") - parts ("PrivateFlag") in
+a->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
             <dispname>Declarations in a scope must have unique names</dispname>
          </constraint>
          <constraint name="UniqueOperationNames" eventmask = "0x0" depth = "1" priority = "2">
@@ -1979,21 +2071,21 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
             <dispname>Version must be a valid decimal number</dispname>
          </constraint>
          <role name = "Attribute" metaref = "1420" kind = "Attribute"></role>
-         <role name = "InEventPort" metaref = "3827" kind = "InEventPort"></role>
+         <role name = "InEventPort" metaref = "3243" kind = "InEventPort"></role>
          <role name = "Inherits" metaref = "1422" kind = "Inherits"></role>
-         <role name = "OutEventPort" metaref = "3828" kind = "OutEventPort"></role>
-         <role name = "ProvidedRequestPort" metaref = "3829" kind = "ProvidedRequestPort"></role>
+         <role name = "OutEventPort" metaref = "3244" kind = "OutEventPort"></role>
+         <role name = "ProvidedRequestPort" metaref = "3245" kind = "ProvidedRequestPort"></role>
          <role name = "ReadonlyAttribute" metaref = "1423" kind = "ReadonlyAttribute"></role>
-         <role name = "RequiredRequestPort" metaref = "3830" kind = "RequiredRequestPort"></role>
+         <role name = "RequiredRequestPort" metaref = "3246" kind = "RequiredRequestPort"></role>
          <role name = "Supports" metaref = "1424" kind = "Supports"></role>
          <aspect name = "InterfaceDefinition" metaref = "3436" attributes = "VersionTag SpecifyIdTag label UUID" >
             <part metaref = "3248" role = "Attribute" primary = "yes" linked = "no"></part>
-            <part metaref = "3831" role = "InEventPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
+            <part metaref = "3249" role = "InEventPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
             <part metaref = "3250" role = "Inherits" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3832" role = "OutEventPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
-            <part metaref = "3833" role = "ProvidedRequestPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
+            <part metaref = "3251" role = "OutEventPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
+            <part metaref = "3252" role = "ProvidedRequestPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
             <part metaref = "3253" role = "ReadonlyAttribute" primary = "yes" linked = "no"></part>
-            <part metaref = "3834" role = "RequiredRequestPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
+            <part metaref = "3254" role = "RequiredRequestPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
             <part metaref = "3255" role = "Supports" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
          </aspect>
       </model>
@@ -2013,7 +2105,7 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
          <role name = "AssemblyConfigProperty" metaref = "3582" kind = "AssemblyConfigProperty"></role>
          <role name = "AssemblyDeployRequirement" metaref = "3583" kind = "AssemblyDeployRequirement"></role>
          <role name = "AssemblyselectRequirement" metaref = "3201" kind = "AssemblyselectRequirement"></role>
-         <role name = "Component" metaref = "3835" kind = "Component"></role>
+         <role name = "Component" metaref = "4110" kind = "Component"></role>
          <role name = "ComponentPackage" metaref = "3584" kind = "ComponentPackage"></role>
          <role name = "ComponentPackageReference" metaref = "3585" kind = "ComponentPackageReference"></role>
          <role name = "Property" metaref = "2843" kind = "Property"></role>
@@ -2027,7 +2119,7 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
             <part metaref = "3861" role = "AssemblyConfigProperty" primary = "yes" linked = "no"></part>
             <part metaref = "3862" role = "AssemblyDeployRequirement" primary = "yes" linked = "no"></part>
             <part metaref = "3863" role = "AssemblyselectRequirement" primary = "yes" linked = "no"></part>
-            <part metaref = "3864" role = "Component" primary = "yes" linked = "no"></part>
+            <part metaref = "4111" role = "Component" primary = "yes" linked = "no"></part>
             <part metaref = "3865" role = "ComponentPackage" primary = "yes" linked = "no"></part>
             <part metaref = "3866" role = "ComponentPackageReference" primary = "yes" linked = "no"></part>
             <part metaref = "3867" role = "Property" primary = "yes" linked = "no"></part>
@@ -2061,7 +2153,7 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
             <part metaref = "3880" role = "Property" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
-      <model name = "ComponentFactory" metaref = "3837" attributes = "VersionTag SpecifyIdTag" >
+      <model name = "ComponentFactory" metaref = "3256" attributes = "VersionTag SpecifyIdTag" >
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="componentfactory.bmp"></regnode>
          <constraint name="InheritsSameType" eventmask = "0x0" depth = "1" priority = "2">
@@ -2085,7 +2177,8 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
             <dispname>ComponentDef and ComponentManager may have only one parent</dispname>
          </constraint>
          <constraint name="UniqueInheritableDeclNames" eventmask = "0x0" depth = "1" priority = "2">
-            <![CDATA[(parts () - parts ("Inherits") - parts ("Supports"))->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
+            <![CDATA[let a = parts () - parts ("Inherits") - parts ("Supports") - parts ("MakeMemberPrivate") - parts ("PrivateFlag") in
+a->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
             <dispname>Declarations in a scope must have unique names</dispname>
          </constraint>
          <constraint name="UniqueOperationNames" eventmask = "0x0" depth = "1" priority = "2">
@@ -2297,7 +2390,8 @@ endif]]>
             <dispname>There is a cycle in the inheritance graph</dispname>
          </constraint>
          <constraint name="UniqueInheritableDeclNames" eventmask = "0x0" depth = "1" priority = "2">
-            <![CDATA[(parts () - parts ("Inherits") - parts ("Supports"))->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
+            <![CDATA[let a = parts () - parts ("Inherits") - parts ("Supports") - parts ("MakeMemberPrivate") - parts ("PrivateFlag") in
+a->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
             <dispname>Declarations in a scope must have unique names</dispname>
          </constraint>
          <constraint name="UniqueOperationNames" eventmask = "0x0" depth = "1" priority = "2">
@@ -2416,14 +2510,14 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
          <role name = "Boxed" metaref = "3171" kind = "Boxed"></role>
          <role name = "Collection" metaref = "3172" kind = "Collection"></role>
          <role name = "Component" metaref = "1939" kind = "Component"></role>
-         <role name = "ComponentFactory" metaref = "3838" kind = "ComponentFactory"></role>
-         <role name = "ComponentRef" metaref = "3839" kind = "ComponentRef"></role>
+         <role name = "ComponentFactory" metaref = "3265" kind = "ComponentFactory"></role>
+         <role name = "ComponentRef" metaref = "3266" kind = "ComponentRef"></role>
          <role name = "Constant" metaref = "3114" kind = "Constant"></role>
          <role name = "Enum" metaref = "2997" kind = "Enum"></role>
          <role name = "Event" metaref = "2999" kind = "Event"></role>
          <role name = "Exception" metaref = "3000" kind = "Exception"></role>
          <role name = "FileRef" metaref = "2628" kind = "FileRef"></role>
-         <role name = "ManagesComponent" metaref = "3840" kind = "ManagesComponent"></role>
+         <role name = "ManagesComponent" metaref = "3267" kind = "ManagesComponent"></role>
          <role name = "Object" metaref = "3001" kind = "Object"></role>
          <role name = "Package" metaref = "2330" kind = "Package"></role>
          <role name = "SwitchedAggregate" metaref = "3003" kind = "SwitchedAggregate"></role>
@@ -2433,15 +2527,15 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
             <part metaref = "3174" role = "Alias" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3175" role = "Boxed" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3176" role = "Collection" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3841" role = "Component" primary = "yes" linked = "no"></part>
-            <part metaref = "3842" role = "ComponentFactory" primary = "yes" linked = "no"></part>
-            <part metaref = "3843" role = "ComponentRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+            <part metaref = "3268" role = "Component" primary = "yes" linked = "no"></part>
+            <part metaref = "3269" role = "ComponentFactory" primary = "yes" linked = "no"></part>
+            <part metaref = "3270" role = "ComponentRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3115" role = "Constant" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3008" role = "Enum" primary = "yes" linked = "no"></part>
             <part metaref = "3010" role = "Event" primary = "yes" linked = "no"></part>
             <part metaref = "3011" role = "Exception" primary = "yes" linked = "no"></part>
             <part metaref = "2629" role = "FileRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3844" role = "ManagesComponent" primary = "yes" linked = "no"></part>
+            <part metaref = "3271" role = "ManagesComponent" primary = "yes" linked = "no"></part>
             <part metaref = "3012" role = "Object" primary = "yes" linked = "no"></part>
             <part metaref = "2487" role = "Package" primary = "yes" linked = "no"></part>
             <part metaref = "3014" role = "SwitchedAggregate" primary = "yes" linked = "no"></part>
@@ -2570,7 +2664,8 @@ endif]]>
             <dispname>An ObjectDef cannot be both local and abstract</dispname>
          </constraint>
          <constraint name="UniqueInheritableDeclNames" eventmask = "0x0" depth = "1" priority = "2">
-            <![CDATA[(parts () - parts ("Inherits") - parts ("Supports"))->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
+            <![CDATA[let a = parts () - parts ("Inherits") - parts ("Supports") - parts ("MakeMemberPrivate") - parts ("PrivateFlag") in
+a->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
             <dispname>Declarations in a scope must have unique names</dispname>
          </constraint>
          <constraint name="UniqueOperationNames" eventmask = "0x0" depth = "1" priority = "2">
@@ -2675,13 +2770,13 @@ endif]]>
          <role name = "Boxed" metaref = "3199" kind = "Boxed"></role>
          <role name = "Collection" metaref = "3200" kind = "Collection"></role>
          <role name = "Component" metaref = "2001" kind = "Component"></role>
-         <role name = "ComponentFactory" metaref = "3845" kind = "ComponentFactory"></role>
-         <role name = "ComponentRef" metaref = "3846" kind = "ComponentRef"></role>
+         <role name = "ComponentFactory" metaref = "3276" kind = "ComponentFactory"></role>
+         <role name = "ComponentRef" metaref = "3277" kind = "ComponentRef"></role>
          <role name = "Constant" metaref = "3116" kind = "Constant"></role>
          <role name = "Enum" metaref = "3045" kind = "Enum"></role>
          <role name = "Event" metaref = "3047" kind = "Event"></role>
          <role name = "Exception" metaref = "3048" kind = "Exception"></role>
-         <role name = "ManagesComponent" metaref = "3847" kind = "ManagesComponent"></role>
+         <role name = "ManagesComponent" metaref = "3278" kind = "ManagesComponent"></role>
          <role name = "Object" metaref = "3049" kind = "Object"></role>
          <role name = "Package" metaref = "2344" kind = "Package"></role>
          <role name = "SwitchedAggregate" metaref = "3051" kind = "SwitchedAggregate"></role>
@@ -2691,7 +2786,7 @@ endif]]>
             <part metaref = "3202" role = "Alias" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3203" role = "Boxed" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3204" role = "Collection" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-            <part metaref = "3848" role = "Component" primary = "yes" linked = "no"></part>
+            <part metaref = "3279" role = "Component" primary = "yes" linked = "no"></part>
             <part metaref = "3280" role = "ComponentFactory" primary = "yes" linked = "no"></part>
             <part metaref = "3281" role = "ComponentRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
             <part metaref = "3117" role = "Constant" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
@@ -2714,7 +2809,7 @@ endif]]>
             <dispname>A PackageConfiguration can either specialize another PackageConfiguration, or contain a ComponentPackage, or contain a reference to a ComponentPackage</dispname>
          </constraint>
          <constraint name="ValidPackageConfigurationContainerPartCardinality100" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "PackageConfBasePackage" ) -> size in
+            <![CDATA[let partCount = self.parts( "PackageConfSpecializedConfig" ) -> size in
                      (partCount <= 1)]]>
             <dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
          </constraint>
@@ -2729,21 +2824,21 @@ endif]]>
             <dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
          </constraint>
          <constraint name="ValidPackageConfigurationContainerPartCardinality98" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
+            <![CDATA[let partCount = self.parts( "PackageConfBasePackage" ) -> size in
                      (partCount <= 1)]]>
             <dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
          </constraint>
          <constraint name="ValidPackageConfigurationContainerPartCardinality99" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "PackageConfSpecializedConfig" ) -> size in
+            <![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
                      (partCount <= 1)]]>
             <dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
          </constraint>
-         <role name = "ComponentPackage" metaref = "3249" kind = "ComponentPackage"></role>
+         <role name = "ComponentPackage" metaref = "4112" kind = "ComponentPackage"></role>
          <role name = "ComponentPackageReference" metaref = "3643" kind = "ComponentPackageReference"></role>
-         <role name = "PackageConfBasePackage" metaref = "3251" kind = "PackageConfBasePackage"></role>
-         <role name = "PackageConfConfigProperty" metaref = "3252" kind = "PackageConfConfigProperty"></role>
+         <role name = "PackageConfBasePackage" metaref = "4113" kind = "PackageConfBasePackage"></role>
+         <role name = "PackageConfConfigProperty" metaref = "4114" kind = "PackageConfConfigProperty"></role>
          <role name = "PackageConfReference" metaref = "3644" kind = "PackageConfReference"></role>
-         <role name = "PackageConfSelectRequirement" metaref = "3254" kind = "PackageConfSelectRequirement"></role>
+         <role name = "PackageConfSelectRequirement" metaref = "4115" kind = "PackageConfSelectRequirement"></role>
          <role name = "PackageConfSpecializedConfig" metaref = "3645" kind = "PackageConfSpecializedConfig"></role>
          <role name = "PackageConfiguration" metaref = "3291" kind = "PackageConfiguration"></role>
          <role name = "Property" metaref = "3646" kind = "Property"></role>
@@ -2761,25 +2856,25 @@ endif]]>
             <part metaref = "3919" role = "Requirement" primary = "yes" linked = "no"></part>
          </aspect>
       </model>
-      <model name = "PackageContainer" metaref = "3262" >
+      <model name = "PackageContainer" metaref = "4116" >
             <regnode name = "namePosition" value ="4"></regnode>
          <constraint name="ValidPackageContainerPartCardinality101" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "PackageInterface" ) -> size in
-                     (partCount <= 1)]]>
-            <dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
-         </constraint>
-         <constraint name="ValidPackageContainerPartCardinality102" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
                      (partCount <= 1)]]>
             <dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
          </constraint>
-         <role name = "ComponentImplementationReference" metaref = "3263" kind = "ComponentImplementationReference"></role>
-         <role name = "ComponentPackage" metaref = "3264" kind = "ComponentPackage"></role>
+         <constraint name="ValidPackageContainerPartCardinality102" eventmask = "0x0" depth = "1" priority = "1">
+            <![CDATA[let partCount = self.parts( "PackageInterface" ) -> size in
+                     (partCount <= 1)]]>
+            <dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
+         </constraint>
+         <role name = "ComponentImplementationReference" metaref = "4117" kind = "ComponentImplementationReference"></role>
+         <role name = "ComponentPackage" metaref = "4118" kind = "ComponentPackage"></role>
          <role name = "ComponentType" metaref = "3648" kind = "ComponentType"></role>
-         <role name = "Implementation" metaref = "3265" kind = "Implementation"></role>
-         <role name = "PackageConfigProperty" metaref = "3266" kind = "PackageConfigProperty"></role>
-         <role name = "PackageInfoProperty" metaref = "3267" kind = "PackageInfoProperty"></role>
-         <role name = "PackageInterface" metaref = "3268" kind = "PackageInterface"></role>
+         <role name = "Implementation" metaref = "4119" kind = "Implementation"></role>
+         <role name = "PackageConfigProperty" metaref = "4120" kind = "PackageConfigProperty"></role>
+         <role name = "PackageInfoProperty" metaref = "4121" kind = "PackageInfoProperty"></role>
+         <role name = "PackageInterface" metaref = "4122" kind = "PackageInterface"></role>
          <role name = "Property" metaref = "3002" kind = "Property"></role>
          <aspect name = "Packaging" metaref = "3920" >
             <part metaref = "3921" role = "ComponentImplementationReference" primary = "yes" kindaspect = "Packaging" linked = "no"></part>
@@ -2898,19 +2993,19 @@ endif]]>
             <dispname>Not a valid identifier</dispname>
          </constraint>
          <constraint name="ValidSwitchedAggregatePartCardinality106" eventmask = "0x0" depth = "1" priority = "1">
+            <![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
+                     (partCount = 1)]]>
+            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
+         </constraint>
+         <constraint name="ValidSwitchedAggregatePartCardinality107" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "Label" ) -> size in
                      (partCount >= 1)]]>
             <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
          </constraint>
-         <constraint name="ValidSwitchedAggregatePartCardinality107" eventmask = "0x0" depth = "1" priority = "1">
+         <constraint name="ValidSwitchedAggregatePartCardinality108" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
                      (partCount >= 1)]]>
             <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
-         </constraint>
-         <constraint name="ValidSwitchedAggregatePartCardinality108" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
-                     (partCount = 1)]]>
-            <dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
          </constraint>
          <constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
             <![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
@@ -2950,23 +3045,23 @@ endif]]>
             <regnode name = "namePosition" value ="4"></regnode>
             <regnode name = "icon" value ="TopLevelPackageConfiguration.bmp"></regnode>
          <constraint name="ValidTopLevelPackageContainerPartCardinality109" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
-                     (partCount <= 1)]]>
-            <dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
-         </constraint>
-         <constraint name="ValidTopLevelPackageContainerPartCardinality110" eventmask = "0x0" depth = "1" priority = "1">
-            <![CDATA[let partCount = self.parts( "package" ) -> size in
-                     (partCount <= 1)]]>
-            <dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
-         </constraint>
-         <constraint name="ValidTopLevelPackageContainerPartCardinality111" eventmask = "0x0" depth = "1" priority = "1">
             <![CDATA[let partCount = self.parts( "PackageConfigurationReference" ) -> size in
                      (partCount = 1)]]>
             <dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 1.</dispname>
          </constraint>
+         <constraint name="ValidTopLevelPackageContainerPartCardinality110" eventmask = "0x0" depth = "1" priority = "1">
+            <![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
+                     (partCount <= 1)]]>
+            <dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
+         </constraint>
+         <constraint name="ValidTopLevelPackageContainerPartCardinality111" eventmask = "0x0" depth = "1" priority = "1">
+            <![CDATA[let partCount = self.parts( "package" ) -> size in
+                     (partCount <= 1)]]>
+            <dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
+         </constraint>
          <role name = "PackageConfigurationReference" metaref = "3030" kind = "PackageConfigurationReference"></role>
          <role name = "TopLevelPackage" metaref = "3664" kind = "TopLevelPackage"></role>
-         <role name = "package" metaref = "3275" kind = "package"></role>
+         <role name = "package" metaref = "4123" kind = "package"></role>
          <aspect name = "Packaging" metaref = "3935" >
             <part metaref = "3936" role = "PackageConfigurationReference" primary = "yes" linked = "no"></part>
             <part metaref = "3937" role = "TopLevelPackage" primary = "yes" linked = "no"></part>
@@ -3051,7 +3146,8 @@ endif]]>
             <dispname>There is a cycle in the inheritance graph</dispname>
          </constraint>
          <constraint name="UniqueInheritableDeclNames" eventmask = "0x0" depth = "1" priority = "2">
-            <![CDATA[(parts () - parts ("Inherits") - parts ("Supports"))->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
+            <![CDATA[let a = parts () - parts ("Inherits") - parts ("Supports") - parts ("MakeMemberPrivate") - parts ("PrivateFlag") in
+a->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
             <dispname>Declarations in a scope must have unique names</dispname>
          </constraint>
          <constraint name="UniqueOperationNames" eventmask = "0x0" depth = "1" priority = "2">
@@ -3109,15 +3205,15 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
       </model>
       <folder name = "ComponentAnalyses" metaref = "4051"  rootobjects = "BenchmarkAnalysis" >
       </folder>
-      <folder name = "ComponentImplementations" metaref = "3277"  rootobjects = "ComponentImplementationContainer" >
+      <folder name = "ComponentImplementations" metaref = "4124"  rootobjects = "ComponentImplementationContainer" >
       </folder>
-      <folder name = "ComponentPackages" metaref = "3278"  rootobjects = "PackageContainer" >
+      <folder name = "ComponentPackages" metaref = "4125"  rootobjects = "PackageContainer" >
       </folder>
       <folder name = "ComponentTypes" metaref = "3666"  rootobjects = "ComponentContainer" >
       </folder>
       <folder name = "DeploymentPlans" metaref = "3667"  rootobjects = "DeploymentPlan" >
       </folder>
-      <folder name = "ImplementationArtifacts" metaref = "3279"  rootobjects = "ArtifactContainer" >
+      <folder name = "ImplementationArtifacts" metaref = "4126"  rootobjects = "ArtifactContainer" >
       </folder>
       <folder name = "InterfaceDefinitions" metaref = "2775"  rootobjects = "File" >
          <constraint name="UniqueGlobalDeclNames" eventmask = "0x0" depth = "0" priority = "1">
@@ -3129,7 +3225,7 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
       </folder>
       <folder name = "PackageConfigurations" metaref = "3669"  rootobjects = "PackageConfigurationContainer" >
       </folder>
-      <folder name = "PredefinedTypes" metaref = "3111"  rootobjects = "Boolean Byte GenericObject GenericValue GenericValueObject LongInteger RealNumber ShortInteger String TypeEncoding TypeKind" >
+      <folder name = "PredefinedTypes" metaref = "3111"  rootobjects = "Boolean BooleanCollection Byte ByteCollection GenericObject GenericValue GenericValueCollection GenericValueObject LongInteger LongIntegerCollection RealNumber RealNumberCollection ShortInteger ShortIntegerCollection String StringCollection TypeEncoding TypeKind" >
       </folder>
       <folder name = "Targets" metaref = "3710"  rootobjects = "Domain" >
       </folder>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri Jun 04 13:08:01 2004" mdate="Fri Jun 04 13:08:52 2004" metaguid="{3136B6BD-DEAD-BEEF-FEED-DAD000000001}" metaname="PICML">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Tue Jul 27 15:25:26 2004" mdate="Tue Jul 27 15:25:26 2004" metaguid="{1D83603D-DEAD-BEEF-FEED-DAD000000001}" metaname="PICML">
 	<name>PredefinedTypes</name>
 	<comment></comment>
 	<author></author>
 	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x1" kind="RootFolder">
 		<name>PredefinedTypes</name>
-		<folder id="id-006a-00000002" relid="0x1" childrelidcntr="0xc" kind="PredefinedTypes">
+		<folder id="id-006a-00000002" relid="0x1" childrelidcntr="0x15" kind="PredefinedTypes">
 			<name>PredefinedTypes</name>
 			<atom id="id-0066-00000001" kind="Boolean" relid="0x1">
 				<name>Boolean</name>
@@ -38,6 +38,30 @@
 			</atom>
 			<atom id="id-0066-0000000a" kind="TypeKind" relid="0xc">
 				<name>TypeKind</name>
+			</atom>
+			<atom id="id-0066-0000000b" kind="BooleanCollection" relid="0xd">
+				<name>BooleanCollection</name>
+			</atom>
+			<atom id="id-0066-0000000d" kind="ByteCollection" relid="0xf">
+				<name>ByteCollection</name>
+			</atom>
+			<atom id="id-0066-0000000e" kind="LongIntegerCollection" relid="0x10">
+				<name>LongIntegerCollection</name>
+			</atom>
+			<atom id="id-0066-0000000f" kind="RealNumberCollection" relid="0x11">
+				<name>RealNumberCollection</name>
+			</atom>
+			<atom id="id-0066-00000010" kind="ShortIntegerCollection" relid="0x12">
+				<name>ShortIntegerCollection</name>
+			</atom>
+			<atom id="id-0066-00000011" kind="StringCollection" relid="0x13">
+				<name>StringCollection</name>
+			</atom>
+			<atom id="id-0066-00000012" kind="GenericValueObject" relid="0x14">
+				<name>GenericValueObject</name>
+			</atom>
+			<atom id="id-0066-00000013" kind="GenericValueCollection" relid="0x15">
+				<name>GenericValueCollection</name>
 			</atom>
 		</folder>
 	</folder>
