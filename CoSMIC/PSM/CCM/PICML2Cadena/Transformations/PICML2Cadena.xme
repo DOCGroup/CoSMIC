@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri Jun 25 22:45:56 2004" mdate="Tue Aug 10 16:34:33 2004" metaguid="{ED81A5AD-DEAD-BEEF-FEED-DAD000000001}" metaname="UMLModelTransformer">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri Jun 25 22:45:56 2004" mdate="Wed Aug 25 13:48:12 2004" metaguid="{ED81A5AD-DEAD-BEEF-FEED-DAD000000001}" metaname="UMLModelTransformer">
 	<name>PICML2Cadena</name>
 	<comment></comment>
 	<author></author>
@@ -9661,9 +9661,15 @@ mydiagram.dgr=const_cast<Uml::Diagram *>(&(RootContainer.__impl()->__getdn()->Ge
 mydiagram.init=Uml::diagram.init;
 
 UdmDom::DomDataNetwork ddn(mydiagram);
-ddn.OpenExistingFromString(str, "");
-UdmUtil::CopyObjectHierarchy(ddn.GetRootObject().__impl(), RootContainer.__impl(), RootContainer.__impl()->__getdn(), UdmUtil::copy_assoc_map());
-ddn.CloseNoUpdate();]]></value>
+try
+{
+   ddn.OpenExistingFromString(str, "");
+   UdmUtil::CopyObjectHierarchy(ddn.GetRootObject().__impl(), RootContainer.__impl(),    RootContainer.__impl()->__getdn(), UdmUtil::copy_assoc_map());
+   ddn.CloseNoUpdate();
+} catch (udm_exception) 
+{
+  cerr << "WARNING: Invalid XML structure found in EmbeddedEIProperties: skipped!" << endl;
+}]]></value>
 								</attribute>
 							</atom>
 							<atom id="id-0066-000000c0" kind="Out" role="Out" relid="0x10">

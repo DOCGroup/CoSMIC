@@ -1,5 +1,5 @@
 // cpp(meta datanetwork format) source file PICML.cpp generated from diagram PICML
-// generated on Tue Aug 10 16:34:17 2004
+// generated on Wed Aug 25 16:06:00 2004
 
 #include "PICML.h"
 #include "UmlExt.h"
@@ -7,7 +7,7 @@
 #include "UdmStatic.h"
 
 // cross-package metainformation header file
-#include "PICML2Cadena.h"
+#include "Cadena2PICML.h"
 
 namespace PICML {
 
@@ -69,11 +69,11 @@ namespace PICML {
 	Uml::Class Requirement::meta;
 	Uml::Class DataType::meta;
 	Uml::Class ImplementationDependency::meta;
-	Uml::Class Property::meta;
 	Uml::Class Capability::meta;
 	Uml::Class RequirementSatisfier::meta;
 	Uml::Class ImplementationRequirement::meta;
 	Uml::Class RequirementBase::meta;
+	Uml::Class Property::meta;
 	Uml::Class Elements::meta;
 	Uml::Class Domain::meta;
 	Uml::Class Interconnect2Node::meta;
@@ -84,13 +84,13 @@ namespace PICML {
 	Uml::Class Targets::meta;
 	Uml::Class AssemblyDeployRequirement::meta;
 	Uml::Class invoke::meta;
-	Uml::Class ComponentAssembly::meta;
 	Uml::Class AssemblyselectRequirement::meta;
 	Uml::Class emit::meta;
 	Uml::Class PublishConnector::meta;
 	Uml::Class deliverTo::meta;
 	Uml::Class publish::meta;
 	Uml::Class AssemblyConfigProperty::meta;
+	Uml::Class ComponentAssembly::meta;
 	Uml::Class ArtifactExecParameter::meta;
 	Uml::Class ImplementationArtifactReference::meta;
 	Uml::Class ArtifactDependsOn::meta;
@@ -203,12 +203,12 @@ namespace PICML {
 	Uml::Attribute SatisfierProperty::meta_DataValue;
 	Uml::Attribute SatisfierProperty::meta_SatisfierPropertyKind;
 	Uml::Attribute ImplementationDependency::meta_requiredType;
-	Uml::Attribute Property::meta_DataValue;
 	Uml::Attribute RequirementSatisfier::meta_resourceType;
 	Uml::Attribute ImplementationRequirement::meta_ResourceUsageKind;
 	Uml::Attribute ImplementationRequirement::meta_componentPort;
 	Uml::Attribute ImplementationRequirement::meta_resourcePort;
 	Uml::Attribute RequirementBase::meta_resourceType;
+	Uml::Attribute Property::meta_DataValue;
 	Uml::Attribute Domain::meta_label;
 	Uml::Attribute Domain::meta_UUID;
 	Uml::Attribute Targets::meta_name;
@@ -334,6 +334,8 @@ namespace PICML {
 	Uml::AssociationRole Requirement::meta_srcAssemblyselectRequirement, Requirement::meta_srcAssemblyselectRequirement_rev;
 	Uml::AssociationRole DataType::meta_ref;
 	Uml::AssociationRole ImplementationDependency::meta_srcImplementationDependsOn, ImplementationDependency::meta_srcImplementationDependsOn_rev;
+	Uml::AssociationRole Capability::meta_srcImplementationCapability, Capability::meta_srcImplementationCapability_rev;
+	Uml::AssociationRole ImplementationRequirement::meta_srcMonolithDeployRequirement, ImplementationRequirement::meta_srcMonolithDeployRequirement_rev;
 	Uml::AssociationRole Property::meta_srcComponentInfoProperty, Property::meta_srcComponentInfoProperty_rev;
 	Uml::AssociationRole Property::meta_srcComponentConfigProperty, Property::meta_srcComponentConfigProperty_rev;
 	Uml::AssociationRole Property::meta_srcConfigProperty, Property::meta_srcConfigProperty_rev;
@@ -345,8 +347,7 @@ namespace PICML {
 	Uml::AssociationRole Property::meta_srcArtifactExecParameter, Property::meta_srcArtifactExecParameter_rev;
 	Uml::AssociationRole Property::meta_srcArtifactInfoProperty, Property::meta_srcArtifactInfoProperty_rev;
 	Uml::AssociationRole Property::meta_srcAssemblyConfigProperty, Property::meta_srcAssemblyConfigProperty_rev;
-	Uml::AssociationRole Capability::meta_srcImplementationCapability, Capability::meta_srcImplementationCapability_rev;
-	Uml::AssociationRole ImplementationRequirement::meta_srcMonolithDeployRequirement, ImplementationRequirement::meta_srcMonolithDeployRequirement_rev;
+	Uml::AssociationRole Property::meta_cadenaProperty;
 	Uml::AssociationRole Interconnect2Node::meta_dstInterconnect2Node_end_;
 	Uml::AssociationRole Interconnect2Node::meta_srcInterconnect2Node_end_;
 	Uml::AssociationRole Bridge2Interconnect::meta_dstBridge2Interconnect_end_;
@@ -362,7 +363,6 @@ namespace PICML {
 	Uml::AssociationRole invoke::meta_cadenaInvoke;
 	Uml::AssociationRole invoke::meta_dstinvoke_end_;
 	Uml::AssociationRole invoke::meta_srcinvoke_end_;
-	Uml::AssociationRole ComponentAssembly::meta_rootContainer;
 	Uml::AssociationRole AssemblyselectRequirement::meta_dstAssemblyselectRequirement_end_;
 	Uml::AssociationRole AssemblyselectRequirement::meta_srcAssemblyselectRequirement_end_;
 	Uml::AssociationRole emit::meta_cadenaEmit;
@@ -378,6 +378,8 @@ namespace PICML {
 	Uml::AssociationRole publish::meta_srcpublish_end_;
 	Uml::AssociationRole AssemblyConfigProperty::meta_dstAssemblyConfigProperty_end_;
 	Uml::AssociationRole AssemblyConfigProperty::meta_srcAssemblyConfigProperty_end_;
+	Uml::AssociationRole ComponentAssembly::meta_cadenaScenario;
+	Uml::AssociationRole ComponentAssembly::meta_rootContainer;
 	Uml::AssociationRole ArtifactExecParameter::meta_dstArtifactExecParameter_end_;
 	Uml::AssociationRole ArtifactExecParameter::meta_srcArtifactExecParameter_end_;
 	Uml::AssociationRole ImplementationArtifactReference::meta_srcMonolithprimaryArtifact, ImplementationArtifactReference::meta_srcMonolithprimaryArtifact_rev;
@@ -528,6 +530,8 @@ namespace PICML {
 	Uml::CompositionParentRole DataType::meta_ComponentPropertyDescription_parent;
 	Uml::CompositionParentRole DataType::meta_Property_parent;
 	Uml::CompositionParentRole ImplementationDependency::meta_ComponentImplementationContainer_parent;
+	Uml::CompositionParentRole Capability::meta_ComponentImplementationContainer_parent;
+	Uml::CompositionParentRole ImplementationRequirement::meta_ComponentImplementationContainer_parent;
 	Uml::CompositionParentRole Property::meta_ComponentContainer_parent;
 	Uml::CompositionParentRole Property::meta_ComponentImplementationContainer_parent;
 	Uml::CompositionParentRole Property::meta_PackageConfigurationContainer_parent;
@@ -536,8 +540,6 @@ namespace PICML {
 	Uml::CompositionParentRole Property::meta_Domain_parent;
 	Uml::CompositionParentRole Property::meta_ComponentAssembly_parent;
 	Uml::CompositionParentRole Property::meta_ArtifactContainer_parent;
-	Uml::CompositionParentRole Capability::meta_ComponentImplementationContainer_parent;
-	Uml::CompositionParentRole ImplementationRequirement::meta_ComponentImplementationContainer_parent;
 	Uml::CompositionParentRole Elements::meta_Domain_parent;
 	Uml::CompositionParentRole Domain::meta_Targets_parent;
 	Uml::CompositionParentRole Interconnect2Node::meta_Domain_parent;
@@ -672,9 +674,9 @@ namespace PICML {
 	Uml::CompositionChildRole Interconnect::meta_Resource_children;
 	Uml::CompositionChildRole Bridge::meta_Resource_children;
 	Uml::CompositionChildRole SatisfierProperty::meta_DataType_child;
-	Uml::CompositionChildRole Property::meta_DataType_child;
 	Uml::CompositionChildRole RequirementSatisfier::meta_SatisfierProperty_children;
 	Uml::CompositionChildRole RequirementBase::meta_Property_children;
+	Uml::CompositionChildRole Property::meta_DataType_child;
 	Uml::CompositionChildRole Domain::meta_Node2Interconnect_children;
 	Uml::CompositionChildRole Domain::meta_Interconnect2Bridge_children;
 	Uml::CompositionChildRole Domain::meta_Bridge2Interconnect_children;
@@ -820,11 +822,11 @@ namespace PICML {
 		Requirement::meta = Uml::Class::Create(umldiagram);
 		DataType::meta = Uml::Class::Create(umldiagram);
 		ImplementationDependency::meta = Uml::Class::Create(umldiagram);
-		Property::meta = Uml::Class::Create(umldiagram);
 		Capability::meta = Uml::Class::Create(umldiagram);
 		RequirementSatisfier::meta = Uml::Class::Create(umldiagram);
 		ImplementationRequirement::meta = Uml::Class::Create(umldiagram);
 		RequirementBase::meta = Uml::Class::Create(umldiagram);
+		Property::meta = Uml::Class::Create(umldiagram);
 		Elements::meta = Uml::Class::Create(umldiagram);
 		Domain::meta = Uml::Class::Create(umldiagram);
 		Interconnect2Node::meta = Uml::Class::Create(umldiagram);
@@ -835,13 +837,13 @@ namespace PICML {
 		Targets::meta = Uml::Class::Create(umldiagram);
 		AssemblyDeployRequirement::meta = Uml::Class::Create(umldiagram);
 		invoke::meta = Uml::Class::Create(umldiagram);
-		ComponentAssembly::meta = Uml::Class::Create(umldiagram);
 		AssemblyselectRequirement::meta = Uml::Class::Create(umldiagram);
 		emit::meta = Uml::Class::Create(umldiagram);
 		PublishConnector::meta = Uml::Class::Create(umldiagram);
 		deliverTo::meta = Uml::Class::Create(umldiagram);
 		publish::meta = Uml::Class::Create(umldiagram);
 		AssemblyConfigProperty::meta = Uml::Class::Create(umldiagram);
+		ComponentAssembly::meta = Uml::Class::Create(umldiagram);
 		ArtifactExecParameter::meta = Uml::Class::Create(umldiagram);
 		ImplementationArtifactReference::meta = Uml::Class::Create(umldiagram);
 		ArtifactDependsOn::meta = Uml::Class::Create(umldiagram);
@@ -954,12 +956,12 @@ namespace PICML {
 		SatisfierProperty::meta_DataValue = Uml::Attribute::Create(SatisfierProperty::meta);
 		SatisfierProperty::meta_SatisfierPropertyKind = Uml::Attribute::Create(SatisfierProperty::meta);
 		ImplementationDependency::meta_requiredType = Uml::Attribute::Create(ImplementationDependency::meta);
-		Property::meta_DataValue = Uml::Attribute::Create(Property::meta);
 		RequirementSatisfier::meta_resourceType = Uml::Attribute::Create(RequirementSatisfier::meta);
 		ImplementationRequirement::meta_ResourceUsageKind = Uml::Attribute::Create(ImplementationRequirement::meta);
 		ImplementationRequirement::meta_componentPort = Uml::Attribute::Create(ImplementationRequirement::meta);
 		ImplementationRequirement::meta_resourcePort = Uml::Attribute::Create(ImplementationRequirement::meta);
 		RequirementBase::meta_resourceType = Uml::Attribute::Create(RequirementBase::meta);
+		Property::meta_DataValue = Uml::Attribute::Create(Property::meta);
 		Domain::meta_label = Uml::Attribute::Create(Domain::meta);
 		Domain::meta_UUID = Uml::Attribute::Create(Domain::meta);
 		Targets::meta_name = Uml::Attribute::Create(Targets::meta);
@@ -1154,9 +1156,6 @@ namespace PICML {
 		ImplementationDependency::meta.name() = "ImplementationDependency";
 		ImplementationDependency::meta.isAbstract() = false;
 		ImplementationDependency::meta.stereotype() = "Atom";
-		Property::meta.name() = "Property";
-		Property::meta.isAbstract() = false;
-		Property::meta.stereotype() = "Model";
 		Capability::meta.name() = "Capability";
 		Capability::meta.isAbstract() = false;
 		Capability::meta.stereotype() = "Model";
@@ -1169,6 +1168,9 @@ namespace PICML {
 		RequirementBase::meta.name() = "RequirementBase";
 		RequirementBase::meta.isAbstract() = true;
 		RequirementBase::meta.stereotype() = "Model";
+		Property::meta.name() = "Property";
+		Property::meta.isAbstract() = false;
+		Property::meta.stereotype() = "Model";
 		Elements::meta.name() = "Elements";
 		Elements::meta.isAbstract() = true;
 		Elements::meta.stereotype() = "FCO";
@@ -1199,9 +1201,6 @@ namespace PICML {
 		invoke::meta.name() = "invoke";
 		invoke::meta.isAbstract() = false;
 		invoke::meta.stereotype() = "Connection";
-		ComponentAssembly::meta.name() = "ComponentAssembly";
-		ComponentAssembly::meta.isAbstract() = false;
-		ComponentAssembly::meta.stereotype() = "Model";
 		AssemblyselectRequirement::meta.name() = "AssemblyselectRequirement";
 		AssemblyselectRequirement::meta.isAbstract() = false;
 		AssemblyselectRequirement::meta.stereotype() = "Connection";
@@ -1220,6 +1219,9 @@ namespace PICML {
 		AssemblyConfigProperty::meta.name() = "AssemblyConfigProperty";
 		AssemblyConfigProperty::meta.isAbstract() = false;
 		AssemblyConfigProperty::meta.stereotype() = "Connection";
+		ComponentAssembly::meta.name() = "ComponentAssembly";
+		ComponentAssembly::meta.isAbstract() = false;
+		ComponentAssembly::meta.stereotype() = "Model";
 		ArtifactExecParameter::meta.name() = "ArtifactExecParameter";
 		ArtifactExecParameter::meta.isAbstract() = false;
 		ArtifactExecParameter::meta.stereotype() = "Connection";
@@ -1726,15 +1728,6 @@ namespace PICML {
 		ImplementationDependency::meta_requiredType.ordered() = false;
 		ImplementationDependency::meta_requiredType.visibility() = "public";
 		ImplementationDependency::meta_requiredType.defvalue() = vector<string>();
-		Property::meta_DataValue.name() = "DataValue";
-		Property::meta_DataValue.type() = "String";
-		Property::meta_DataValue.min() = 1;
-		Property::meta_DataValue.max() = 1;
-		Property::meta_DataValue.nonpersistent() = false;
-		Property::meta_DataValue.registry() = false;
-		Property::meta_DataValue.ordered() = false;
-		Property::meta_DataValue.visibility() = "public";
-		Property::meta_DataValue.defvalue() = vector<string>();
 		RequirementSatisfier::meta_resourceType.name() = "resourceType";
 		RequirementSatisfier::meta_resourceType.type() = "String";
 		RequirementSatisfier::meta_resourceType.min() = 1;
@@ -1782,6 +1775,15 @@ namespace PICML {
 		RequirementBase::meta_resourceType.ordered() = false;
 		RequirementBase::meta_resourceType.visibility() = "public";
 		RequirementBase::meta_resourceType.defvalue() = vector<string>();
+		Property::meta_DataValue.name() = "DataValue";
+		Property::meta_DataValue.type() = "String";
+		Property::meta_DataValue.min() = 1;
+		Property::meta_DataValue.max() = 1;
+		Property::meta_DataValue.nonpersistent() = false;
+		Property::meta_DataValue.registry() = false;
+		Property::meta_DataValue.ordered() = false;
+		Property::meta_DataValue.visibility() = "public";
+		Property::meta_DataValue.defvalue() = vector<string>();
 		Domain::meta_label.name() = "label";
 		Domain::meta_label.type() = "String";
 		Domain::meta_label.min() = 1;
@@ -4740,33 +4742,18 @@ namespace PICML {
 	{
 		Uml::Composition comp = Uml::Composition::Create(umldiagram);
 		comp.nonpersistent() =false;
-		PublishConnector::meta_ComponentAssembly_parent = Uml::CompositionParentRole::Create(comp);
-		PublishConnector::meta_ComponentAssembly_parent.name() = "ComponentAssembly_parent";
-		PublishConnector::meta_ComponentAssembly_parent.isNavigable() = true;
-		PublishConnector::meta_ComponentAssembly_parent.target() = ComponentAssembly::meta;
-		ComponentAssembly::meta_PublishConnector_children = Uml::CompositionChildRole::Create(comp);
-		ComponentAssembly::meta_PublishConnector_children.name() = "PublishConnector";
-		ComponentAssembly::meta_PublishConnector_children.min() = 0;
-		ComponentAssembly::meta_PublishConnector_children.max() = -1;
-		ComponentAssembly::meta_PublishConnector_children.isNavigable() = true;
-		ComponentAssembly::meta_PublishConnector_children.target() = PublishConnector::meta;
+		AssemblyselectRequirement::meta_ComponentAssembly_parent = Uml::CompositionParentRole::Create(comp);
+		AssemblyselectRequirement::meta_ComponentAssembly_parent.name() = "ComponentAssembly_parent";
+		AssemblyselectRequirement::meta_ComponentAssembly_parent.isNavigable() = true;
+		AssemblyselectRequirement::meta_ComponentAssembly_parent.target() = ComponentAssembly::meta;
+		ComponentAssembly::meta_AssemblyselectRequirement_children = Uml::CompositionChildRole::Create(comp);
+		ComponentAssembly::meta_AssemblyselectRequirement_children.name() = "AssemblyselectRequirement";
+		ComponentAssembly::meta_AssemblyselectRequirement_children.min() = 0;
+		ComponentAssembly::meta_AssemblyselectRequirement_children.max() = -1;
+		ComponentAssembly::meta_AssemblyselectRequirement_children.isNavigable() = true;
+		ComponentAssembly::meta_AssemblyselectRequirement_children.target() = AssemblyselectRequirement::meta;
 	}
 	void InitComposition86()
-	{
-		Uml::Composition comp = Uml::Composition::Create(umldiagram);
-		comp.nonpersistent() =false;
-		AssemblyConfigProperty::meta_ComponentAssembly_parent = Uml::CompositionParentRole::Create(comp);
-		AssemblyConfigProperty::meta_ComponentAssembly_parent.name() = "ComponentAssembly_parent";
-		AssemblyConfigProperty::meta_ComponentAssembly_parent.isNavigable() = true;
-		AssemblyConfigProperty::meta_ComponentAssembly_parent.target() = ComponentAssembly::meta;
-		ComponentAssembly::meta_AssemblyConfigProperty_children = Uml::CompositionChildRole::Create(comp);
-		ComponentAssembly::meta_AssemblyConfigProperty_children.name() = "AssemblyConfigProperty";
-		ComponentAssembly::meta_AssemblyConfigProperty_children.min() = 0;
-		ComponentAssembly::meta_AssemblyConfigProperty_children.max() = -1;
-		ComponentAssembly::meta_AssemblyConfigProperty_children.isNavigable() = true;
-		ComponentAssembly::meta_AssemblyConfigProperty_children.target() = AssemblyConfigProperty::meta;
-	}
-	void InitComposition87()
 	{
 		Uml::Composition comp = Uml::Composition::Create(umldiagram);
 		comp.nonpersistent() =false;
@@ -4781,20 +4768,35 @@ namespace PICML {
 		ComponentAssembly::meta_emit_children.isNavigable() = true;
 		ComponentAssembly::meta_emit_children.target() = emit::meta;
 	}
+	void InitComposition87()
+	{
+		Uml::Composition comp = Uml::Composition::Create(umldiagram);
+		comp.nonpersistent() =false;
+		PublishConnector::meta_ComponentAssembly_parent = Uml::CompositionParentRole::Create(comp);
+		PublishConnector::meta_ComponentAssembly_parent.name() = "ComponentAssembly_parent";
+		PublishConnector::meta_ComponentAssembly_parent.isNavigable() = true;
+		PublishConnector::meta_ComponentAssembly_parent.target() = ComponentAssembly::meta;
+		ComponentAssembly::meta_PublishConnector_children = Uml::CompositionChildRole::Create(comp);
+		ComponentAssembly::meta_PublishConnector_children.name() = "PublishConnector";
+		ComponentAssembly::meta_PublishConnector_children.min() = 0;
+		ComponentAssembly::meta_PublishConnector_children.max() = -1;
+		ComponentAssembly::meta_PublishConnector_children.isNavigable() = true;
+		ComponentAssembly::meta_PublishConnector_children.target() = PublishConnector::meta;
+	}
 	void InitComposition88()
 	{
 		Uml::Composition comp = Uml::Composition::Create(umldiagram);
 		comp.nonpersistent() =false;
-		Component::meta_ComponentAssembly_parent = Uml::CompositionParentRole::Create(comp);
-		Component::meta_ComponentAssembly_parent.name() = "ComponentAssembly_parent";
-		Component::meta_ComponentAssembly_parent.isNavigable() = true;
-		Component::meta_ComponentAssembly_parent.target() = ComponentAssembly::meta;
-		ComponentAssembly::meta_Component_children = Uml::CompositionChildRole::Create(comp);
-		ComponentAssembly::meta_Component_children.name() = "Component";
-		ComponentAssembly::meta_Component_children.min() = 1;
-		ComponentAssembly::meta_Component_children.max() = -1;
-		ComponentAssembly::meta_Component_children.isNavigable() = true;
-		ComponentAssembly::meta_Component_children.target() = Component::meta;
+		deliverTo::meta_ComponentAssembly_parent = Uml::CompositionParentRole::Create(comp);
+		deliverTo::meta_ComponentAssembly_parent.name() = "ComponentAssembly_parent";
+		deliverTo::meta_ComponentAssembly_parent.isNavigable() = true;
+		deliverTo::meta_ComponentAssembly_parent.target() = ComponentAssembly::meta;
+		ComponentAssembly::meta_deliverTo_children = Uml::CompositionChildRole::Create(comp);
+		ComponentAssembly::meta_deliverTo_children.name() = "deliverTo";
+		ComponentAssembly::meta_deliverTo_children.min() = 0;
+		ComponentAssembly::meta_deliverTo_children.max() = -1;
+		ComponentAssembly::meta_deliverTo_children.isNavigable() = true;
+		ComponentAssembly::meta_deliverTo_children.target() = deliverTo::meta;
 	}
 	void InitComposition89()
 	{
@@ -4815,31 +4817,31 @@ namespace PICML {
 	{
 		Uml::Composition comp = Uml::Composition::Create(umldiagram);
 		comp.nonpersistent() =false;
-		AssemblyselectRequirement::meta_ComponentAssembly_parent = Uml::CompositionParentRole::Create(comp);
-		AssemblyselectRequirement::meta_ComponentAssembly_parent.name() = "ComponentAssembly_parent";
-		AssemblyselectRequirement::meta_ComponentAssembly_parent.isNavigable() = true;
-		AssemblyselectRequirement::meta_ComponentAssembly_parent.target() = ComponentAssembly::meta;
-		ComponentAssembly::meta_AssemblyselectRequirement_children = Uml::CompositionChildRole::Create(comp);
-		ComponentAssembly::meta_AssemblyselectRequirement_children.name() = "AssemblyselectRequirement";
-		ComponentAssembly::meta_AssemblyselectRequirement_children.min() = 0;
-		ComponentAssembly::meta_AssemblyselectRequirement_children.max() = -1;
-		ComponentAssembly::meta_AssemblyselectRequirement_children.isNavigable() = true;
-		ComponentAssembly::meta_AssemblyselectRequirement_children.target() = AssemblyselectRequirement::meta;
+		AssemblyConfigProperty::meta_ComponentAssembly_parent = Uml::CompositionParentRole::Create(comp);
+		AssemblyConfigProperty::meta_ComponentAssembly_parent.name() = "ComponentAssembly_parent";
+		AssemblyConfigProperty::meta_ComponentAssembly_parent.isNavigable() = true;
+		AssemblyConfigProperty::meta_ComponentAssembly_parent.target() = ComponentAssembly::meta;
+		ComponentAssembly::meta_AssemblyConfigProperty_children = Uml::CompositionChildRole::Create(comp);
+		ComponentAssembly::meta_AssemblyConfigProperty_children.name() = "AssemblyConfigProperty";
+		ComponentAssembly::meta_AssemblyConfigProperty_children.min() = 0;
+		ComponentAssembly::meta_AssemblyConfigProperty_children.max() = -1;
+		ComponentAssembly::meta_AssemblyConfigProperty_children.isNavigable() = true;
+		ComponentAssembly::meta_AssemblyConfigProperty_children.target() = AssemblyConfigProperty::meta;
 	}
 	void InitComposition91()
 	{
 		Uml::Composition comp = Uml::Composition::Create(umldiagram);
 		comp.nonpersistent() =false;
-		deliverTo::meta_ComponentAssembly_parent = Uml::CompositionParentRole::Create(comp);
-		deliverTo::meta_ComponentAssembly_parent.name() = "ComponentAssembly_parent";
-		deliverTo::meta_ComponentAssembly_parent.isNavigable() = true;
-		deliverTo::meta_ComponentAssembly_parent.target() = ComponentAssembly::meta;
-		ComponentAssembly::meta_deliverTo_children = Uml::CompositionChildRole::Create(comp);
-		ComponentAssembly::meta_deliverTo_children.name() = "deliverTo";
-		ComponentAssembly::meta_deliverTo_children.min() = 0;
-		ComponentAssembly::meta_deliverTo_children.max() = -1;
-		ComponentAssembly::meta_deliverTo_children.isNavigable() = true;
-		ComponentAssembly::meta_deliverTo_children.target() = deliverTo::meta;
+		Component::meta_ComponentAssembly_parent = Uml::CompositionParentRole::Create(comp);
+		Component::meta_ComponentAssembly_parent.name() = "ComponentAssembly_parent";
+		Component::meta_ComponentAssembly_parent.isNavigable() = true;
+		Component::meta_ComponentAssembly_parent.target() = ComponentAssembly::meta;
+		ComponentAssembly::meta_Component_children = Uml::CompositionChildRole::Create(comp);
+		ComponentAssembly::meta_Component_children.name() = "Component";
+		ComponentAssembly::meta_Component_children.min() = 1;
+		ComponentAssembly::meta_Component_children.max() = -1;
+		ComponentAssembly::meta_Component_children.isNavigable() = true;
+		ComponentAssembly::meta_Component_children.target() = Component::meta;
 	}
 	void InitComposition92()
 	{
@@ -5703,7 +5705,7 @@ namespace PICML {
 		first = false;
 		Uml::Initialize();
 
-		PICML2Cadena::Initialize();
+		Cadena2PICML::Initialize();
 
 		ASSERT( umldiagram == Udm::null );
 		UdmStatic::StaticDataNetwork * meta_dn = new UdmStatic::StaticDataNetwork(Uml::diagram);
@@ -5787,12 +5789,14 @@ namespace PICML {
 		InitAssociation69();
 		InitAssociation70();
 		InitAssociation71();
-		invoke::meta_cadenaInvoke = PICML2Cadena::invoke_cross_ph_PICML::meta_cadenaInvoke;
-		ComponentAssembly::meta_rootContainer = PICML2Cadena::ComponentAssembly_cross_ph_PICML::meta_rootContainer;
-		emit::meta_cadenaEmit = PICML2Cadena::emit_cross_ph_PICML::meta_cadenaEmit;
-		PublishConnector::meta_cadenaESSConnection = PICML2Cadena::PublishConnector_cross_ph_PICML::meta_cadenaESSConnection;
-		Component::meta_cadenaComponentInstance = PICML2Cadena::Component_cross_ph_PICML::meta_cadenaComponentInstance;
-		Port::meta_cadenaPort = PICML2Cadena::Port_cross_ph_PICML::meta_cadenaPort;
+		Property::meta_cadenaProperty = Cadena2PICML::Property_cross_ph_PICML::meta_cadenaProperty;
+		invoke::meta_cadenaInvoke = Cadena2PICML::invoke_cross_ph_PICML::meta_cadenaInvoke;
+		emit::meta_cadenaEmit = Cadena2PICML::emit_cross_ph_PICML::meta_cadenaEmit;
+		PublishConnector::meta_cadenaESSConnection = Cadena2PICML::PublishConnector_cross_ph_PICML::meta_cadenaESSConnection;
+		ComponentAssembly::meta_cadenaScenario = Cadena2PICML::ComponentAssembly_cross_ph_PICML::meta_cadenaScenario;
+		ComponentAssembly::meta_rootContainer = Cadena2PICML::ComponentAssembly_cross_ph_PICML::meta_rootContainer;
+		Component::meta_cadenaComponentInstance = Cadena2PICML::Component_cross_ph_PICML::meta_cadenaComponentInstance;
+		Port::meta_cadenaPort = Cadena2PICML::Port_cross_ph_PICML::meta_cadenaPort;
 		InitComposition0();
 		InitComposition1();
 		InitComposition2();
@@ -6054,9 +6058,9 @@ namespace PICML {
 		MgaObject::meta.subTypes() +=  SatisfierProperty::meta;
 		MgaObject::meta.subTypes() +=  DataType::meta;
 		MgaObject::meta.subTypes() +=  ImplementationDependency::meta;
-		MgaObject::meta.subTypes() +=  Property::meta;
 		MgaObject::meta.subTypes() +=  RequirementSatisfier::meta;
 		MgaObject::meta.subTypes() +=  RequirementBase::meta;
+		MgaObject::meta.subTypes() +=  Property::meta;
 		MgaObject::meta.subTypes() +=  Elements::meta;
 		MgaObject::meta.subTypes() +=  Domain::meta;
 		MgaObject::meta.subTypes() +=  Interconnect2Node::meta;
@@ -6193,8 +6197,6 @@ namespace PICML {
 		Uml::SetClass(DataType::meta, umldiagram, "DataType");
 		Uml::SetClass(ImplementationDependency::meta, umldiagram, "ImplementationDependency");
 		Uml::SetAttribute(ImplementationDependency::meta_requiredType,ImplementationDependency::meta, "requiredType");
-		Uml::SetClass(Property::meta, umldiagram, "Property");
-		Uml::SetAttribute(Property::meta_DataValue,Property::meta, "DataValue");
 		Uml::SetClass(Capability::meta, umldiagram, "Capability");
 		Uml::SetClass(RequirementSatisfier::meta, umldiagram, "RequirementSatisfier");
 		Uml::SetAttribute(RequirementSatisfier::meta_resourceType,RequirementSatisfier::meta, "resourceType");
@@ -6204,6 +6206,8 @@ namespace PICML {
 		Uml::SetAttribute(ImplementationRequirement::meta_resourcePort,ImplementationRequirement::meta, "resourcePort");
 		Uml::SetClass(RequirementBase::meta, umldiagram, "RequirementBase");
 		Uml::SetAttribute(RequirementBase::meta_resourceType,RequirementBase::meta, "resourceType");
+		Uml::SetClass(Property::meta, umldiagram, "Property");
+		Uml::SetAttribute(Property::meta_DataValue,Property::meta, "DataValue");
 		Uml::SetClass(Elements::meta, umldiagram, "Elements");
 		Uml::SetClass(Domain::meta, umldiagram, "Domain");
 		Uml::SetAttribute(Domain::meta_label,Domain::meta, "label");
@@ -6217,13 +6221,13 @@ namespace PICML {
 		Uml::SetAttribute(Targets::meta_name,Targets::meta, "name");
 		Uml::SetClass(AssemblyDeployRequirement::meta, umldiagram, "AssemblyDeployRequirement");
 		Uml::SetClass(invoke::meta, umldiagram, "invoke");
-		Uml::SetClass(ComponentAssembly::meta, umldiagram, "ComponentAssembly");
 		Uml::SetClass(AssemblyselectRequirement::meta, umldiagram, "AssemblyselectRequirement");
 		Uml::SetClass(emit::meta, umldiagram, "emit");
 		Uml::SetClass(PublishConnector::meta, umldiagram, "PublishConnector");
 		Uml::SetClass(deliverTo::meta, umldiagram, "deliverTo");
 		Uml::SetClass(publish::meta, umldiagram, "publish");
 		Uml::SetClass(AssemblyConfigProperty::meta, umldiagram, "AssemblyConfigProperty");
+		Uml::SetClass(ComponentAssembly::meta, umldiagram, "ComponentAssembly");
 		Uml::SetClass(ArtifactExecParameter::meta, umldiagram, "ArtifactExecParameter");
 		Uml::SetClass(ImplementationArtifactReference::meta, umldiagram, "ImplementationArtifactReference");
 		Uml::SetClass(ArtifactDependsOn::meta, umldiagram, "ArtifactDependsOn");
@@ -6394,6 +6398,8 @@ namespace PICML {
 		Uml::SetParentRole(DataType::meta_ComponentPropertyDescription_parent,DataType::meta,ComponentPropertyDescription::meta, "");
 		Uml::SetParentRole(DataType::meta_Property_parent,DataType::meta,Property::meta, "");
 		Uml::SetParentRole(ImplementationDependency::meta_ComponentImplementationContainer_parent,ImplementationDependency::meta,ComponentImplementationContainer::meta, "");
+		Uml::SetParentRole(Capability::meta_ComponentImplementationContainer_parent,Capability::meta,ComponentImplementationContainer::meta, "");
+		Uml::SetParentRole(ImplementationRequirement::meta_ComponentImplementationContainer_parent,ImplementationRequirement::meta,ComponentImplementationContainer::meta, "");
 		Uml::SetParentRole(Property::meta_ComponentContainer_parent,Property::meta,ComponentContainer::meta, "");
 		Uml::SetParentRole(Property::meta_ComponentImplementationContainer_parent,Property::meta,ComponentImplementationContainer::meta, "");
 		Uml::SetParentRole(Property::meta_PackageConfigurationContainer_parent,Property::meta,PackageConfigurationContainer::meta, "");
@@ -6402,8 +6408,6 @@ namespace PICML {
 		Uml::SetParentRole(Property::meta_Domain_parent,Property::meta,Domain::meta, "");
 		Uml::SetParentRole(Property::meta_ComponentAssembly_parent,Property::meta,ComponentAssembly::meta, "");
 		Uml::SetParentRole(Property::meta_ArtifactContainer_parent,Property::meta,ArtifactContainer::meta, "");
-		Uml::SetParentRole(Capability::meta_ComponentImplementationContainer_parent,Capability::meta,ComponentImplementationContainer::meta, "");
-		Uml::SetParentRole(ImplementationRequirement::meta_ComponentImplementationContainer_parent,ImplementationRequirement::meta,ComponentImplementationContainer::meta, "");
 		Uml::SetParentRole(Elements::meta_Domain_parent,Elements::meta,Domain::meta, "");
 		Uml::SetParentRole(Domain::meta_Targets_parent,Domain::meta,Targets::meta, "");
 		Uml::SetParentRole(Interconnect2Node::meta_Domain_parent,Interconnect2Node::meta,Domain::meta, "");
@@ -6539,9 +6543,9 @@ namespace PICML {
 		Uml::SetChildRole(Interconnect::meta_Resource_children,Interconnect::meta,Resource::meta, "");
 		Uml::SetChildRole(Bridge::meta_Resource_children,Bridge::meta,Resource::meta, "");
 		Uml::SetChildRole(SatisfierProperty::meta_DataType_child,SatisfierProperty::meta,DataType::meta, "");
-		Uml::SetChildRole(Property::meta_DataType_child,Property::meta,DataType::meta, "");
 		Uml::SetChildRole(RequirementSatisfier::meta_SatisfierProperty_children,RequirementSatisfier::meta,SatisfierProperty::meta, "");
 		Uml::SetChildRole(RequirementBase::meta_Property_children,RequirementBase::meta,Property::meta, "");
+		Uml::SetChildRole(Property::meta_DataType_child,Property::meta,DataType::meta, "");
 		Uml::SetChildRole(Domain::meta_Node2Interconnect_children,Domain::meta,Node2Interconnect::meta, "");
 		Uml::SetChildRole(Domain::meta_Interconnect2Bridge_children,Domain::meta,Interconnect2Bridge::meta, "");
 		Uml::SetChildRole(Domain::meta_Bridge2Interconnect_children,Domain::meta,Bridge2Interconnect::meta, "");
@@ -6834,6 +6838,14 @@ namespace PICML {
 		Uml::SetAssocRole(ImplementationDependency::meta_srcImplementationDependsOn,ImplementationDependency::meta,ComponentImplementation::meta, "dstImplementationDependsOn");
 		ComponentImplementation::meta_dstImplementationDependsOn_rev = ImplementationDependency::meta_srcImplementationDependsOn;
 
+		Uml::SetAssocRole(Capability::meta_srcImplementationCapability,Capability::meta,ComponentImplementation::meta, "dstImplementationCapability");
+		ComponentImplementation::meta_dstImplementationCapability_rev = Capability::meta_srcImplementationCapability;
+
+
+		Uml::SetAssocRole(ImplementationRequirement::meta_srcMonolithDeployRequirement,ImplementationRequirement::meta,MonolithicImplementation::meta, "dstMonolithDeployRequirement");
+		MonolithicImplementation::meta_dstMonolithDeployRequirement_rev = ImplementationRequirement::meta_srcMonolithDeployRequirement;
+
+
 		Uml::SetAssocRole(Property::meta_srcComponentInfoProperty,Property::meta,ComponentType::meta, "dstComponentInfoProperty");
 		ComponentType::meta_dstComponentInfoProperty_rev = Property::meta_srcComponentInfoProperty;
 		Uml::SetAssocRole(Property::meta_srcComponentConfigProperty,Property::meta,ComponentType::meta, "dstComponentConfigProperty");
@@ -6856,14 +6868,6 @@ namespace PICML {
 		ImplementationArtifact::meta_dstArtifactInfoProperty_rev = Property::meta_srcArtifactInfoProperty;
 		Uml::SetAssocRole(Property::meta_srcAssemblyConfigProperty,Property::meta,Component::meta, "dstAssemblyConfigProperty");
 		Component::meta_dstAssemblyConfigProperty_rev = Property::meta_srcAssemblyConfigProperty;
-
-		Uml::SetAssocRole(Capability::meta_srcImplementationCapability,Capability::meta,ComponentImplementation::meta, "dstImplementationCapability");
-		ComponentImplementation::meta_dstImplementationCapability_rev = Capability::meta_srcImplementationCapability;
-
-
-		Uml::SetAssocRole(ImplementationRequirement::meta_srcMonolithDeployRequirement,ImplementationRequirement::meta,MonolithicImplementation::meta, "dstMonolithDeployRequirement");
-		MonolithicImplementation::meta_dstMonolithDeployRequirement_rev = ImplementationRequirement::meta_srcMonolithDeployRequirement;
-
 
 
 
@@ -6889,7 +6893,6 @@ namespace PICML {
 		invoke::meta_dstinvoke_end_ = RequiredRequestPort::meta_dstinvoke;
 		invoke::meta_srcinvoke_end_ = ProvidedRequestPort::meta_srcinvoke;
 
-
 		AssemblyselectRequirement::meta_dstAssemblyselectRequirement_end_ = Component::meta_dstAssemblyselectRequirement;
 		AssemblyselectRequirement::meta_srcAssemblyselectRequirement_end_ = Requirement::meta_srcAssemblyselectRequirement;
 
@@ -6911,6 +6914,7 @@ namespace PICML {
 
 		AssemblyConfigProperty::meta_dstAssemblyConfigProperty_end_ = Component::meta_dstAssemblyConfigProperty;
 		AssemblyConfigProperty::meta_srcAssemblyConfigProperty_end_ = Property::meta_srcAssemblyConfigProperty;
+
 
 		ArtifactExecParameter::meta_dstArtifactExecParameter_end_ = ImplementationArtifact::meta_dstArtifactExecParameter;
 		ArtifactExecParameter::meta_srcArtifactExecParameter_end_ = Property::meta_srcArtifactExecParameter;

@@ -1,5 +1,5 @@
 // cpp(meta datanetwork format) source file PICMLCadena_Xchange_embedded_EIProperties.cpp generated from diagram PICMLCadena_Xchange_embedded_EIProperties
-// generated on Tue Aug 10 16:34:19 2004
+// generated on Wed Aug 25 16:06:01 2004
 
 #include "PICMLCadena_Xchange_embedded_EIProperties.h"
 #include "UmlExt.h"
@@ -7,7 +7,7 @@
 #include "UdmStatic.h"
 
 // cross-package metainformation header file
-#include "PICML2Cadena.h"
+#include "Cadena2PICML.h"
 
 namespace PICMLCadena_Xchange_embedded_EIProperties {
 
@@ -141,7 +141,7 @@ namespace PICMLCadena_Xchange_embedded_EIProperties {
 		first = false;
 		Uml::Initialize();
 
-		PICML2Cadena::Initialize();
+		Cadena2PICML::Initialize();
 
 		ASSERT( umldiagram == Udm::null );
 		UdmStatic::StaticDataNetwork * meta_dn = new UdmStatic::StaticDataNetwork(Uml::diagram);
@@ -153,7 +153,7 @@ namespace PICMLCadena_Xchange_embedded_EIProperties {
 		InitClassesAttributes();
 		Uml::InitDiagram(umldiagram, "PICMLCadena_Xchange_embedded_EIProperties", "1.00");
 
-		RootContainer::meta_componentAssembly = PICML2Cadena::RootContainer_cross_ph_PICMLCadena_Xchange_embedded_EIProperties::meta_componentAssembly;
+		RootContainer::meta_componentAssembly = Cadena2PICML::RootContainer_cross_ph_PICMLCadena_Xchange_embedded_EIProperties::meta_componentAssembly;
 		InitComposition0();
 		InitComposition1();
 		

@@ -1,3 +1,108 @@
+Fri Aug 27 22:53:32 2004  Gabriele Trombetti  <gtrombetti@nospam.invalid.domain>
+
+          Added the following files:
+
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/Component.aps
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/Component.clw
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/Component.dsw
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/Component.rc
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/ComponentConfig.h
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/ComponentLib.h
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/ComponentLib.tlb
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/ComponentLib_i.c
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/ComponentLib_p.c
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/ConfigureComponent.exe
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/DialogPublishCompletion.cpp
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/DialogPublishCompletion.h
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/GMESources.txt
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/OTIF_PublisherComponent.dsp
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/RawComponent.cpp
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/RawComponent.h
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/StdAfx.cpp
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/StdAfx.h
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/compicon.ico
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/component.def
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/dlldata.c
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/resource.h
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/Component.aps
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/Component.clw
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/Component.dsw
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/Component.rc
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/ComponentConfig.h
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/ComponentDll.cpp
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/ComponentDll.h
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/ComponentLib.h
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/ComponentLib.tlb
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/ComponentLib_i.c
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/ComponentLib_p.c
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/ConfigureComponent.exe
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/DialogBackplaneMonitor.cpp
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/DialogBackplaneMonitor.h
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/DialogCompletionStatus.cpp
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/DialogCompletionStatus.h
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/GMESources.txt
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/OTIF_ReceiverComponent.dsp
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/RawComponent.cpp
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/RawComponent.h
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/ReceiverToolAdaptor.cpp
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/ReceiverToolAdaptor.h
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/StdAfx.cpp
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/StdAfx.h
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/compicon.ico
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/component.def
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/dlldata.c
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/resource.h
+          COOL OTIF tooladapters for GME added! They are actually paradigm-independent so
+          they are NOT PICML-specific. Publish your gme document on the backplane with 1 click!
+          Monitor the documents that get published on the backplane with the same paradigm as your
+          GME document, and FETCH them with 1 click, WOW! :-)  See documentation for details.
+        
+
+          Removed the following files:
+
+        * PSM/CCM/PICML2Cadena/OTIF_related/TranslatorWrappers/Release/CS2PA_TransWrap.exe
+        * PSM/CCM/PICML2Cadena/OTIF_related/TranslatorWrappers/Release/PA2CS_TransWrap.exe
+	  As per new CoSMIC policy, we commit no binaries in the repository.
+
+
+          Modified the following files:
+
+        * PSM/CCM/PICML2Cadena/Docs/PICMLCadena_integration_manual.doc
+          Documentation updated!
+
+        * PSM/CCM/PICML2Cadena/OTIF_related/CadenaPICML_Workflow.mga
+        * PSM/CCM/PICML2Cadena/OTIF_related/CadenaPICML_Workflow.xme
+          New workflow with PICML_Publisher and PICML_Receiver
+
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML-gr.xml
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML.mga
+        * PSM/CCM/PICML2Cadena/Transformations/Cadena2PICML.xme
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena-gr.xml
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena.mga
+        * PSM/CCM/PICML2Cadena/Transformations/PICML2Cadena.xme
+          Corrected one bug in the import transformation which would create wrong CadenaEIProperties
+          Corrected one bug in the export transformation which would crash on wrong CadenaEIProperties
+
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/Cadena2PICML.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/Cadena2PICML.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/Cadena2PICML.udm
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/Cadena2PICML.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/CrossLinks.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/CrossLinks.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/CrossLinks.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML2Cadena.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML2Cadena.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML2Cadena.udm
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICML2Cadena.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICMLCadena_Xchange_embedded_EIProperties.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICMLCadena_Xchange_embedded_EIProperties.h
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/PICMLCadena_Xchange_embedded_EIProperties.xsd
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/cadena_scenario.cpp
+        * PSM/CCM/PICML2Cadena/Transformations/Udm/cadena_scenario.h
+
 Thu Aug 12 18:43:11 2004  Gabriele Trombetti  <gtrombetti@nospam.invalid.domain>
 
           Added the following files:

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri Jun 25 22:48:05 2004" mdate="Tue Aug 10 16:32:32 2004" metaguid="{ED81A5AD-DEAD-BEEF-FEED-DAD000000001}" metaname="UMLModelTransformer">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri Jun 25 22:48:05 2004" mdate="Wed Aug 25 16:07:35 2004" metaguid="{ED81A5AD-DEAD-BEEF-FEED-DAD000000001}" metaname="UMLModelTransformer">
 	<name>Cadena2PICML</name>
 	<comment></comment>
 	<author></author>
@@ -11567,7 +11567,7 @@ PProperty.SetStrValue("DataValue", cValue);]]></value>
 								<connpoint role="src" target="id-0067-000000c1"/>
 							</connection>
 						</model>
-						<model id="id-0065-00000036" kind="Rule" role="Rule" relid="0x8" childrelidcntr="0x32">
+						<model id="id-0065-00000036" kind="Rule" role="Rule" relid="0x8" childrelidcntr="0x33">
 							<name>EnumeratePublishConnectorProperties</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -11661,6 +11661,24 @@ PProperty.SetStrValue("DataValue", cValue);]]></value>
 										</regnode>
 									</regnode>
 								</regnode>
+							</atom>
+							<atom id="id-0066-0000023a" kind="Guard" role="Guard" relid="0x33">
+								<name>MustNotBe_Emit</name>
+								<regnode name="PartRegs">
+									<value></value>
+									<regnode name="Transform">
+										<value></value>
+										<regnode name="Position" isopaque="yes">
+											<value>646,37</value>
+										</regnode>
+									</regnode>
+								</regnode>
+								<attribute kind="ExpressionString">
+									<value><![CDATA[string connid;
+ESSConnection.GetStrValue("ConnectorID", connid);
+return (connid != "emit");
+]]></value>
+								</attribute>
 							</atom>
 							<reference id="id-0067-000000c4" kind="PatternClass" role="PatternClass" relid="0x1e" referred="id-0066-00000140">
 								<name>ESSConnection</name>

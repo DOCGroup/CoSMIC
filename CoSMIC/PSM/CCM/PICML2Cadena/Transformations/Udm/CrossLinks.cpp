@@ -1,5 +1,5 @@
 // cpp(meta datanetwork format) source file CrossLinks.cpp generated from diagram CrossLinks
-// generated on Tue Aug 10 16:33:38 2004
+// generated on Wed Aug 25 16:05:52 2004
 
 #include "CrossLinks.h"
 #include "UmlExt.h"
@@ -7,7 +7,7 @@
 #include "UdmStatic.h"
 
 // cross-package metainformation header file
-#include "PICML2Cadena.h"
+#include "Cadena2PICML.h"
 
 namespace CrossLinks {
 
@@ -28,7 +28,7 @@ namespace CrossLinks {
 		first = false;
 		Uml::Initialize();
 
-		PICML2Cadena::Initialize();
+		Cadena2PICML::Initialize();
 
 		ASSERT( umldiagram == Udm::null );
 		UdmStatic::StaticDataNetwork * meta_dn = new UdmStatic::StaticDataNetwork(Uml::diagram);
