@@ -21,6 +21,7 @@
 
 #include "BON2Component.h"
 #include "DLLEntry.hpp"
+#include "../OCMLConfiguratorLibrary/LoadLibrary.hpp"
 
 namespace BON
 {
@@ -105,31 +106,11 @@ namespace BON
     
     std::string old_value = attr->getStringValue();
 
-#ifdef _DEBUG
-    HMODULE hModule = LoadLibrary("OCMLConfiguratord.dll");
-#else
-    HMODULE hModule = LoadLibrary("OCMLConfigurator.dll");
-#endif
-    if (!hModule)
-      {
-        AfxMessageBox("OCML Configurator dll could not be found");
-        return;
-      }
-    
-    DLLFunctionPtr pProc =
-      (DLLFunctionPtr)GetProcAddress(hModule, "DLLFunction");
-    if (!pProc)
-      {
-        AfxMessageBox("DLL function could not be reached");
-        return;
-      }
-    
-    char* new_values = (pProc)(old_value.c_str(), old_value.size());
-    
+    OCML_Configurator_Library lib;
+    char* new_values = lib.call_function(old_value);
+
     if (new_values)
       attr->setStringValue(std::string(new_values));
-
-    FreeLibrary(hModule);
   }
 
   // ====================================================

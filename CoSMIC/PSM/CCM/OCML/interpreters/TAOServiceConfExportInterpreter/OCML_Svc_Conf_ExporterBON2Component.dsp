@@ -52,11 +52,11 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 OCMLSvcConfExporterd.lib /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept /libpath:"..\TAOServiceConfExporter"
+# ADD LINK32 OCMLSvcConfExporterd.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCML_Svc_Conf_Export_Interpreter.dll" /pdbtype:sept /libpath:"..\TAOServiceConfExporter"
 # Begin Custom Build - Performing registration
 OutDir=.\Debug
-TargetPath=.\Debug\OCML_Svc_Conf_ExporterBON2Component.dll
-InputPath=.\Debug\OCML_Svc_Conf_ExporterBON2Component.dll
+TargetPath=\CoSMIC\PIM\PICML\bin\OCML_Svc_Conf_Export_Interpreter.dll
+InputPath=\CoSMIC\PIM\PICML\bin\OCML_Svc_Conf_Export_Interpreter.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -88,11 +88,11 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 OCMLSvcConfExporterd.lib /nologo /subsystem:windows /dll /debug /machine:I386 /libpath:"..\TAOServiceConfExporter"
+# ADD LINK32 OCMLSvcConfExporterd.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCML_Svc_Conf_Export_Interpreter.dll" /libpath:"..\TAOServiceConfExporter"
 # Begin Custom Build - Performing registration
 OutDir=.\Release
-TargetPath=.\Release\OCML_Svc_Conf_ExporterBON2Component.dll
-InputPath=.\Release\OCML_Svc_Conf_ExporterBON2Component.dll
+TargetPath=\CoSMIC\PIM\PICML\bin\OCML_Svc_Conf_Export_Interpreter.dll
+InputPath=\CoSMIC\PIM\PICML\bin\OCML_Svc_Conf_Export_Interpreter.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"

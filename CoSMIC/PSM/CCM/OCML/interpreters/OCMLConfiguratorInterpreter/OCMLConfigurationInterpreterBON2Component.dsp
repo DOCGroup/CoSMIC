@@ -52,11 +52,11 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
+# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\..\..\..\..\PIM\PICML\bin\OCMLConfigurationInterpreter.dll" /pdbtype:sept
 # Begin Custom Build - Performing registration
 OutDir=.\Debug
-TargetPath=.\Debug\OCMLConfigurationInterpreterBON2Component.dll
-InputPath=.\Debug\OCMLConfigurationInterpreterBON2Component.dll
+TargetPath=\CoSMIC\PIM\PICML\bin\OCMLConfigurationInterpreter.dll
+InputPath=\CoSMIC\PIM\PICML\bin\OCMLConfigurationInterpreter.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -88,11 +88,11 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386
+# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /nodefaultlib /out:"..\..\..\..\..\PIM\PICML\bin\OCMLConfigurationInterpreter.dll"
 # Begin Custom Build - Performing registration
 OutDir=.\Release
-TargetPath=.\Release\OCMLConfigurationInterpreterBON2Component.dll
-InputPath=.\Release\OCMLConfigurationInterpreterBON2Component.dll
+TargetPath=\CoSMIC\PIM\PICML\bin\OCMLConfigurationInterpreter.dll
+InputPath=\CoSMIC\PIM\PICML\bin\OCMLConfigurationInterpreter.dll
 SOURCE="$(InputPath)"
 
 "$(OutDir)\regsvr32.trg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
@@ -209,6 +209,19 @@ SOURCE="C:/Program Files/GME/sdk/BON/Exceptions.cpp"
 
 SOURCE="C:/Program Files/GME/sdk/BON/Extensions.cpp"
 # SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\OCMLConfiguratorLibrary\LoadLibrary.cpp
+
+!IF  "$(CFG)" == "OCMLConfigurationInterpreter - Win32 Debug"
+
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "OCMLConfigurationInterpreter - Win32 Release"
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 

@@ -1,5 +1,9 @@
+// $Id$
+
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
+#include <algorithm>
 
 #include "Configurator.hpp"
 
@@ -14,12 +18,22 @@ Configurator::Configurator(const char* tree_file)
   system_.initialize();
   XercesAutoPtr<DOMBuilder> parser = system_.new_parser();
   DOMDocument *tree_doc = 0;
-  // TODO
-  std::string str_tree_file = std::string("c:\\") + std::string(tree_file);
+
+  char *buffer = getenv("PICML_ROOT");
   
+  std::string tree_file_path;
+  if (buffer)
+    {
+      // delete double quotes (if there are any)
+      std::remove_copy(buffer, buffer + strlen(buffer),
+                       std::back_inserter(tree_file_path), '"');
+      tree_file_path += "\\bin\\";
+    }
+  tree_file_path += "orb_tree.xml";
+
   try {
     // parse the options tree
-    tree_doc = parser->parseURI(str_tree_file.c_str());
+    tree_doc = parser->parseURI(tree_file_path.c_str());
 
     // TODO
     if (tree_doc == 0)

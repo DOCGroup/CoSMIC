@@ -7,10 +7,10 @@
 #include <algorithm>
 #include <cstdlib>
 #include <iterator>
-
+  
 #ifdef _DEBUG
 #define OCML_CONFIGURATOR_LIBRARY_NAME "OCMLConfiguratord.dll"
-#elif
+#else 
 #define OCML_CONFIGURATOR_LIBRARY_NAME "OCMLConfigurator.dll"
 #endif
 

@@ -53,30 +53,30 @@ OptionValueParser::parse_category(OptionCategory* category, DOMNode* node)
 
     if (node_name.str() == std::string("OptionCategory"))
       {
-	// Parsing a category node
-	parse_category(category->category(name.str().c_str()), item);
+        // Parsing a category node
+        parse_category(category->category(name.str().c_str()), item);
       }
     else
       {
-	// Parsing an option node
-	Option* option = category->option(name.str().c_str());
+        // Parsing an option node
+        Option* option = category->option(name.str().c_str());
 
-	if (node_name.str() == std::string("BooleanOption"))
-	  {
-	    parse_boolean_option((BooleanOption*) option, item);
-	  }
-	else if (node_name.str() == std::string("StringOption"))
-	  {
-	    parse_string_option((StringOption*) option, item);
-	  }
-	else if (node_name.str() == std::string("IntegerOption"))
-	  {
-	    parse_integer_option((IntegerOption*) option, item);
-	  }
-	else if (node_name.str() == std::string("EnumOption"))
-	  {
-	    parse_enum_option((EnumOption*) option, item);
-	  }
+        if (option && (node_name.str() == std::string("BooleanOption")))
+          {
+            parse_boolean_option((BooleanOption*) option, item);
+          }
+        else if (option && (node_name.str() == std::string("StringOption")))
+          {
+            parse_string_option((StringOption*) option, item);
+          }
+        else if (option && (node_name.str() == std::string("IntegerOption")))
+          {
+            parse_integer_option((IntegerOption*) option, item);
+          }
+        else if (option && (node_name.str() == std::string("EnumOption")))
+          {
+            parse_enum_option((EnumOption*) option, item);
+          }
 /*
         else
           throw UnknownOptionKind(name.str());
@@ -94,10 +94,10 @@ OptionValueParser::parse_boolean_option(BooleanOption* option, DOMNode* node)
   for (size_t i = 0; i < children->getLength(); ++i)
     {
       if (children->item(i)->getNodeType() == DOMNode::TEXT_NODE)
-	{
-	  XMLUnicodeString value = children->item(i)->getNodeValue();
-	  node_value = value.str();
-	}
+  {
+    XMLUnicodeString value = children->item(i)->getNodeValue();
+    node_value = value.str();
+  }
     }
 
   node_value = delete_begin_end_spaces(node_value);
@@ -120,10 +120,10 @@ OptionValueParser::parse_integer_option(IntegerOption* option, DOMNode* node)
   for (size_t i = 0; i < children->getLength(); ++i)
     {
       if (children->item(i)->getNodeType() == DOMNode::TEXT_NODE)
-	{
-	  XMLUnicodeString value = children->item(i)->getNodeValue();
-	  node_value = value.str();
-	}
+  {
+    XMLUnicodeString value = children->item(i)->getNodeValue();
+    node_value = value.str();
+  }
     }
 
   node_value = delete_begin_end_spaces(node_value);
@@ -142,10 +142,10 @@ OptionValueParser::parse_string_option(StringOption* option, DOMNode* node)
   for (size_t i = 0; i < children->getLength(); ++i)
     {
       if (children->item(i)->getNodeType() == DOMNode::TEXT_NODE)
-	{
-	  XMLUnicodeString value = children->item(i)->getNodeValue();
-	  node_value = value.str();
-	}
+  {
+    XMLUnicodeString value = children->item(i)->getNodeValue();
+    node_value = value.str();
+  }
     }
 
   node_value = delete_begin_end_spaces(node_value);
