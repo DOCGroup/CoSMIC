@@ -236,15 +236,7 @@ SOURCE=.\OCMLBonExtension.cpp
 # Begin Source File
 
 SOURCE=.\OCMLBonExtension_Manual.cpp
-
-!IF  "$(CFG)" == "OCML - Win32 Debug"
-
-!ELSEIF  "$(CFG)" == "OCML - Win32 Release"
-
 # SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 

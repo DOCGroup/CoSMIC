@@ -36,7 +36,7 @@
 
 // not defined: #define BON_CUSTOM_TRANSACTIONS
 
-#define REGISTER_SYSTEMWIDE
+// not defined: #define REGISTER_SYSTEMWIDE
 
 // Just to please the whims of those Microsoft jerks:
 #define COCLASS_UUID_EXPLODED1 0xB32EC90F

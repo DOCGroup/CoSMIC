@@ -11,7 +11,8 @@ OptionCategory*
 OptionTreeParser::parse_xml(DOMDocument* doc)
 {
   OptionTreeParser parser;
-  return parser.parse_document(doc);
+  if (doc)
+    return parser.parse_document(doc);
 }
 
 OptionTreeParser::OptionTreeParser()

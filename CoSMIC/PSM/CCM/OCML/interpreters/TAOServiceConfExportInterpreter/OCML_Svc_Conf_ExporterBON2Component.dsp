@@ -213,15 +213,7 @@ SOURCE="C:/Program Files/GME/sdk/BON/Extensions.cpp"
 # Begin Source File
 
 SOURCE=..\Common\FileSaveDlg.cpp
-
-!IF  "$(CFG)" == "OCML_Svc_Conf_Exporter - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "OCML_Svc_Conf_Exporter - Win32 Release"
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 

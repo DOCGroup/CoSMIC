@@ -14,10 +14,16 @@ Configurator::Configurator(const char* tree_file)
   system_.initialize();
   XercesAutoPtr<DOMBuilder> parser = system_.new_parser();
   DOMDocument *tree_doc = 0;
+  // TODO
+  std::string str_tree_file = std::string("c:\\") + std::string(tree_file);
   
   try {
     // parse the options tree
-    tree_doc = parser->parseURI(tree_file);
+    tree_doc = parser->parseURI(str_tree_file.c_str());
+
+    // TODO
+    if (tree_doc == 0)
+      throw "Config file not found.";
   }
   catch (const XMLException& toCatch) {
     throw InitializationError();
