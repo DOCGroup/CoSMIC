@@ -1,3 +1,22 @@
+Mon Nov  8 20:02:25 2004  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * Installer/CoSMIC-Installer.aip: Updated to include
+          documentation.
+
+        * PIM/PICML/docs/Importing_IDL.pdf:
+        * PIM/PICML/docs/Interface_Definitions.pdf:
+
+          Renamed the old versions which had PDF in their names.
+
+        * PSM/CCM/OCML/paradigms/OCML.xme:
+        * PSM/CCM/OCML/paradigms/TAO_Options.xme: Updated to reflect
+          changes to include icons.
+
+        * PIM/PICML/docs/Importing_IDL_PDF.pdf:
+        * PIM/PICML/docs/Interface_Definitions_PDF.pdf:
+
+          Removed these files.
+
 Mon Nov 08 18:28:11 2004  Gan Deng  <dengg@dre.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
@@ -36,9 +55,9 @@ Mon Nov 08 15:02:43 CST 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
         * PIM/PICML/examples/RobotAssemly.xme:
 
-          Example updated to reflect implementation changes. Added an 
+          Example updated to reflect implementation changes. Added an
           operation AcceptWorkOrder in the WorkOrderResponses interface.
-          
+
 Mon Nov 08 14:01:47 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/MPC/ComponentConfig.h:
         * PIM/PICML/interpreters/cidl/ComponentConfig.h:
@@ -60,7 +79,7 @@ Mon Nov 08 14:01:47 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
 Mon Nov 08 11:51:11 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-        * PIM/PICML/paradigms/PICML.xme: 
+        * PIM/PICML/paradigms/PICML.xme:
 
           Added the hidden tree_file_name attribute to the Implementation
           Artifact. Every PICML element using the OCML metamodel should
@@ -68,8 +87,8 @@ Mon Nov 08 11:51:11 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
 Mon Nov 8 09:04:07 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/intrepreters/BGML_Intrepter/Benchmark_Stream.cpp:
-           
-          The generated code did not instantiate the template workload 
+
+          The generated code did not instantiate the template workload
           generated code. Fixed this bug
 
 Sun Nov 7 19:29:16 2004 Gan Deng <gan.deng@vanderbilt.edu>
@@ -83,17 +102,17 @@ Sun Nov 7 19:29:16 2004 Gan Deng <gan.deng@vanderbilt.edu>
 Sun Nov 7 16:10:16 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/cidl/UdmApp.cpp:
-          
+
           Fixed error message when intrepretation starts from the wrong
           aspect
 
 Sat Nov  6 19:18:00 2004  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-        * PIM/PICML/docs/ocml_sample_rule.png: 
-        * PIM/PICML/docs/ocml_rule_aspect.png: 
-        * PIM/PICML/docs/ocml_option_aspect.png: 
-        * PIM/PICML/docs/ocml_configurator.png: 
-        * PIM/PICML/docs/ocml.html: 
+        * PIM/PICML/docs/ocml_sample_rule.png:
+        * PIM/PICML/docs/ocml_rule_aspect.png:
+        * PIM/PICML/docs/ocml_option_aspect.png:
+        * PIM/PICML/docs/ocml_configurator.png:
+        * PIM/PICML/docs/ocml.html:
 
           Committed the documentation for the OCML.
 

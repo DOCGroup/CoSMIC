@@ -37,6 +37,7 @@
     <ROW Component="TAO_PICML_BE.dll" ComponentId="{E0A36EA2-6E66-4652-959C-4BBBC9BA3D8F}" Directory_="bin" Attributes="0" Condition="" KeyPath="TAO_PICML_BE.dll" FullKeyPath="TARGETDIR\bin\TAO_PICML_BE.dll"/>
     <ROW Component="tao_picml.exe" ComponentId="{C0ACD712-8559-4DF8-A2FF-BF4CD79618D4}" Directory_="bin" Attributes="0" Condition="" KeyPath="tao_picml.exe" FullKeyPath="TARGETDIR\bin\tao_picml.exe"/>
     <ROW Component="IDML_User_Manual.pdf" ComponentId="{D0B773E4-3634-4554-A59B-4053DF431C79}" Directory_="docs" Attributes="0" Condition="" KeyPath="Readme.rtf" FullKeyPath="TARGETDIR\docs"/>
+    <ROW Component="Importing_IDL.pdf" ComponentId="{EFBA30D0-1A9E-4D2F-97E3-3B78AAA3E0A3}" Directory_="docs" Attributes="0" Condition="" KeyPath="Importing_IDL.pdf" FullKeyPath="TARGETDIR\docs\Importing_IDL.pdf"/>
     <ROW Component="OCMLConfigurationInterpreter.dll" ComponentId="{B2655C51-5B2A-4225-A0AA-4BC4F94F6263}" Directory_="bin" Attributes="0" Condition="" KeyPath="OCMLConfigurationInterpreter.dll" FullKeyPath="TARGETDIR\bin\OCMLConfigurationInterpreter.dll"/>
     <ROW Component="PackageComponent.dll" ComponentId="{EB0F7747-6EC7-4329-9AA6-58C07C380BE8}" Directory_="bin" Attributes="0" Condition="" KeyPath="PackageComponent.dll" FullKeyPath="TARGETDIR\bin\PackageComponent.dll"/>
     <ROW Component="orb_tree.xml" ComponentId="{3121D556-560A-4E61-973F-0F1E5D2BF0FD}" Directory_="bin" Attributes="0" Condition="" KeyPath="orb_tree.xml" FullKeyPath="TARGETDIR\bin"/>
@@ -47,9 +48,8 @@
     <ROW Component="xerces_c_2_5_0.dll" ComponentId="{CE1A4194-1994-433E-A070-B7C687E1A9C5}" Directory_="bin" Attributes="0" Condition="" KeyPath="xerces_c_2_5_0.dll" FullKeyPath="TARGETDIR\bin\xerces-c_2_5_0.dll"/>
     <ROW Component="ACE.dll" ComponentId="{C38D87A4-2F7A-41F6-83D7-010A2AA1AE85}" Directory_="bin" Attributes="0" Condition="" KeyPath="ACE.dll" FullKeyPath="TARGETDIR\bin\ACE.dll"/>
     <ROW Component="IDML_uml.xme" ComponentId="{487E388E-00DB-4FEE-A4E6-5E76B653CFF7}" Directory_="paradigms" Attributes="0" Condition="" KeyPath="PICML.xme" FullKeyPath="TARGETDIR\paradigms"/>
-    <ROW Component="lib" ComponentId="{C608EF6D-BA05-40AD-B8D2-B635E1599423}" Directory_="lib_DIR" Attributes="0" Condition="" KeyPath="" FullKeyPath=""/>
-    <ROW Component="xerces_c_2_2_0.dll" ComponentId="{4EEBFB42-BA1B-4505-9D31-0F79E85AEC40}" Directory_="bin" Attributes="0" Condition="" KeyPath="xerces_c_2_2_0.dll" FullKeyPath="TARGETDIR\bin\xerces-c_2_2_0.dll"/>
     <ROW Component="BGML.dll" ComponentId="{97A5A5A1-B813-4DA5-9BC6-2C24F561DC8D}" Directory_="bin" Attributes="0" Condition="" KeyPath="BGML.dll" FullKeyPath="TARGETDIR\bin\BGML.dll"/>
+    <ROW Component="Interface_Definitions.pdf" ComponentId="{DE3D6333-F716-4A68-8286-E54139CDB679}" Directory_="docs" Attributes="0" Condition="" KeyPath="Interface_Definitions.pdf" FullKeyPath="TARGETDIR\docs\Interface_Definitions.pdf"/>
     <ROW Component="ReleaseNotes.rtf" ComponentId="{E1D9B4AB-5A93-4D06-8A4F-C5B4009F7EE7}" Directory_="docs" Attributes="0" Condition="" KeyPath="ReleaseNotes.rtf" FullKeyPath="TARGETDIR\docs\ReleaseNotes.rtf"/>
     <ROW Component="aggregate.bmp" ComponentId="{D4B44F5A-2DEA-46C1-B41C-518EBF1307F0}" Directory_="icons_DIR" Attributes="0" Condition="" KeyPath="aggregate.bmp" FullKeyPath="TARGETDIR\paradigms\icons"/>
     <ROW Component="EQAL.dll" ComponentId="{C1AEB0F7-23A0-40B7-B212-582168B91CA2}" Directory_="bin" Attributes="0" Condition="" KeyPath="EQAL.dll" FullKeyPath="TARGETDIR\bin\EQAL.dll"/>
@@ -59,9 +59,12 @@
     <ROW Component="RobotAssembly.xme" ComponentId="{EFD28A0E-6413-4754-84FE-F0F54A05AB84}" Directory_="examples" Attributes="0" Condition="" KeyPath="RobotAssembly.xme" FullKeyPath="TARGETDIR\examples"/>
     <ROW Component="TargetDir" ComponentId="{1C64D638-9525-4F68-A282-A7B40EE8D9E9}" Directory_="TARGETDIR" Attributes="4" Condition="" KeyPath="TargetDir" FullKeyPath="HK_LM\Software\[Manufacturer]\[ProductName]\TargetDir"/>
     <ROW Component="cidl.dll" ComponentId="{AF6C6810-0125-44B1-A58F-7AD27FD93B07}" Directory_="bin" Attributes="0" Condition="" KeyPath="cidl.dll" FullKeyPath="TARGETDIR\bin\cidl.dll"/>
+    <ROW Component="ocml.html" ComponentId="{E2B20362-4ACB-44AC-A734-BEA76FB10515}" Directory_="docs" Attributes="0" Condition="" KeyPath="ocml.html" FullKeyPath="TARGETDIR\docs\ocml.html"/>
+    <ROW Component="lib" ComponentId="{C608EF6D-BA05-40AD-B8D2-B635E1599423}" Directory_="lib_DIR" Attributes="0" Condition="" KeyPath="" FullKeyPath=""/>
+    <ROW Component="xerces_c_2_2_0.dll" ComponentId="{4EEBFB42-BA1B-4505-9D31-0F79E85AEC40}" Directory_="bin" Attributes="0" Condition="" KeyPath="xerces_c_2_2_0.dll" FullKeyPath="TARGETDIR\bin\xerces-c_2_2_0.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
-    <ROW Feature="MainFeature" Feature_Parent="" Title="MainFeature" Description="Description" Display="2" Level="1" Directory_="TARGETDIR" Attributes="0" Components="TargetDir IDML_uml.xme IDML_User_Manual.pdf RobotAssembly.xme ReleaseNotes.rtf aggregate.bmp TAO_PICML_BE.dll BGML.dll cidl.dll EQAL.dll IDLGenerator.dll MPC.dll OCML.dll OCMLConfigurator.dll OCMLSvcConfExporter.dll PackageComponent.dll DeploymentPlan.dll tao_picml.exe xerces_c_2_5_0.dll stlport_vc646.dll xerces_c_2_2_0.dll orb_tree.xml lib TAO_IDL_FE.dll ACE.dll Domain.dll OCML_Svc_Conf_Exporter.dll OCMLConfigurationInterpreter.dll"/>
+    <ROW Feature="MainFeature" Feature_Parent="" Title="MainFeature" Description="Description" Display="2" Level="1" Directory_="TARGETDIR" Attributes="0" Components="TargetDir IDML_uml.xme IDML_User_Manual.pdf RobotAssembly.xme ReleaseNotes.rtf aggregate.bmp TAO_PICML_BE.dll BGML.dll cidl.dll EQAL.dll IDLGenerator.dll MPC.dll OCML.dll OCMLConfigurator.dll OCMLSvcConfExporter.dll PackageComponent.dll DeploymentPlan.dll tao_picml.exe xerces_c_2_5_0.dll stlport_vc646.dll xerces_c_2_2_0.dll orb_tree.xml lib TAO_IDL_FE.dll ACE.dll Domain.dll OCML_Svc_Conf_Exporter.dll OCMLConfigurationInterpreter.dll Importing_IDL.pdf Interface_Definitions.pdf ocml.html"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
     <ROW File="and.bmp" Component_="aggregate.bmp" FileName="and.bmp" Version="" Language="" Attributes="" SourcePath="PSM\CCM\OCML\paradigms\icons\and.bmp" SelfReg="false"/>
@@ -115,44 +118,37 @@
     <ROW File="label.bmp" Component_="aggregate.bmp" FileName="label.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\label.bmp" SelfReg="false"/>
     <ROW File="OCML.xmp" Component_="IDML_uml.xme" FileName="OCML.xmp" Version="" Language="" Attributes="" SourcePath="PSM\CCM\OCML\paradigms\OCML.xmp" SelfReg="false"/>
     <ROW File="if2.bmp" Component_="aggregate.bmp" FileName="if2.bmp" Version="" Language="" Attributes="" SourcePath="PSM\CCM\OCML\paradigms\icons\if2.bmp" SelfReg="false"/>
+    <ROW File="ocml.html" Component_="ocml.html" FileName="ocml~1.htm|ocml.html" Version="" Language="" Attributes="" SourcePath="PIM\PICML\docs\ocml.html" SelfReg="false"/>
     <ROW File="or.bmp" Component_="aggregate.bmp" FileName="or.bmp" Version="" Language="" Attributes="" SourcePath="PSM\CCM\OCML\paradigms\icons\or.bmp" SelfReg="false"/>
     <ROW File="ns_event.bmp" Component_="aggregate.bmp" FileName="ns_event.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\ns_event.bmp" SelfReg="false"/>
     <ROW File="rtec_proxy_supplier.bmp" Component_="aggregate.bmp" FileName="rtec_p~2.bmp|rtec_proxy_supplier.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\rtec_proxy_supplier.bmp" SelfReg="false"/>
     <ROW File="ImplementationArtifactReference.bmp" Component_="aggregate.bmp" FileName="Implem~2.bmp|ImplementationArtifactReference.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\ImplementationArtifactReference.bmp" SelfReg="false"/>
-    <ROW File="TAO_IDL_FE.dll" Component_="TAO_IDL_FE.dll" FileName="TAO_ID~1.dll|TAO_IDL_FE.dll" Version="" Language="" Attributes="" SourcePath="D:\ACE_wrappers\lib\TAO_IDL_FE.dll" SelfReg="false"/>
     <ROW File="lookupkey.bmp" Component_="aggregate.bmp" FileName="lookup~1.bmp|lookupkey.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\lookupkey.bmp" SelfReg="false"/>
     <ROW File="ns_resource_factory_port.bmp" Component_="aggregate.bmp" FileName="ns_res~2.bmp|ns_resource_factory-port.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\ns_resource_factory-port.bmp" SelfReg="false"/>
+    <ROW File="ocml_configurator.png" Component_="IDML_User_Manual.pdf" FileName="ocml_c~1.png|ocml_configurator.png" Version="" Language="" Attributes="" SourcePath="PIM\PICML\docs\ocml_configurator.png" SelfReg="false"/>
     <ROW File="Min.bmp" Component_="aggregate.bmp" FileName="Min.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\Min.bmp" SelfReg="false"/>
     <ROW File="PackageConfiguration.bmp" Component_="aggregate.bmp" FileName="Packag~1.bmp|PackageConfiguration.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\PackageConfiguration.bmp" SelfReg="false"/>
-    <ROW File="aggregateref.bmp" Component_="aggregate.bmp" FileName="aggreg~2.bmp|aggregateref.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\aggregateref.bmp" SelfReg="false"/>
-    <ROW File="eventtype.bmp" Component_="aggregate.bmp" FileName="eventt~1.bmp|eventtype.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\eventtype.bmp" SelfReg="false"/>
-    <ROW File="orb_tree.xml" Component_="orb_tree.xml" FileName="orb_tree.xml" Version="" Language="" Attributes="" SourcePath="PIM\PICML\bin\orb_tree.xml" SelfReg="false"/>
     <ROW File="ImplementationDependency.bmp" Component_="aggregate.bmp" FileName="Implem~3.bmp|ImplementationDependency.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\ImplementationDependency.bmp" SelfReg="false"/>
-    <ROW File="Property.bmp" Component_="aggregate.bmp" FileName="Property.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\Property.bmp" SelfReg="false"/>
-    <ROW File="ns_constraint.bmp" Component_="aggregate.bmp" FileName="ns_con~2.bmp|ns_constraint.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\ns_constraint.bmp" SelfReg="false"/>
     <ROW File="ACE.dll" Component_="ACE.dll" FileName="ACE.dll" Version="" Language="" Attributes="" SourcePath="D:\ACE_wrappers\lib\ACE.dll" SelfReg="false"/>
     <ROW File="Max.bmp" Component_="aggregate.bmp" FileName="Max.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\Max.bmp" SelfReg="false"/>
     <ROW File="Node.bmp" Component_="aggregate.bmp" FileName="Node.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\Node.bmp" SelfReg="false"/>
-    <ROW File="ec_dependency.bmp" Component_="aggregate.bmp" FileName="ec_dep~1.bmp|ec_dependency.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\ec_dependency.bmp" SelfReg="false"/>
-    <ROW File="ec_resource_factory.bmp" Component_="aggregate.bmp" FileName="ec_res~1.bmp|ec_resource_factory.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\ec_resource_factory.bmp" SelfReg="false"/>
     <ROW File="inherits.bmp" Component_="aggregate.bmp" FileName="inherits.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\inherits.bmp" SelfReg="false"/>
     <ROW File="ns_filter.bmp" Component_="aggregate.bmp" FileName="ns_fil~1.bmp|ns_filter.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\ns_filter.bmp" SelfReg="false"/>
     <ROW File="option_integer.bmp" Component_="aggregate.bmp" FileName="option~3.bmp|option_integer.bmp" Version="" Language="" Attributes="" SourcePath="PSM\CCM\OCML\paradigms\icons\option_integer.bmp" SelfReg="false"/>
-    <ROW File="aggregate.bmp" Component_="aggregate.bmp" FileName="aggreg~1.bmp|aggregate.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\aggregate.bmp" SelfReg="false"/>
     <ROW File="aliasref.bmp" Component_="aggregate.bmp" FileName="aliasref.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\aliasref.bmp" SelfReg="false"/>
-    <ROW File="const.bmp" Component_="aggregate.bmp" FileName="const.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\const.bmp" SelfReg="false"/>
-    <ROW File="ec_supplier_id.bmp" Component_="aggregate.bmp" FileName="ec_sup~2.bmp|ec_supplier_id.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\ec_supplier_id.bmp" SelfReg="false"/>
     <ROW File="Any.bmp" Component_="aggregate.bmp" FileName="Any.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\Any.bmp" SelfReg="false"/>
     <ROW File="OCML.dll" Component_="OCML.dll" FileName="OCML.dll" Version="" Language="" Attributes="" SourcePath="PIM\PICML\bin\OCML.dll" SelfReg="true"/>
     <ROW File="Resource.bmp" Component_="aggregate.bmp" FileName="Resource.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\Resource.bmp" SelfReg="false"/>
     <ROW File="componentfactoryref.bmp" Component_="aggregate.bmp" FileName="compon~3.bmp|componentfactoryref.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\componentfactoryref.bmp" SelfReg="false"/>
     <ROW File="eventtype_port.bmp" Component_="aggregate.bmp" FileName="eventt~2.bmp|eventtype-port.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\eventtype-port.bmp" SelfReg="false"/>
+    <ROW File="ocml_option_aspect.png" Component_="IDML_User_Manual.pdf" FileName="ocml_o~1.png|ocml_option_aspect.png" Version="" Language="" Attributes="" SourcePath="PIM\PICML\docs\ocml_option_aspect.png" SelfReg="false"/>
     <ROW File="typekind.bmp" Component_="aggregate.bmp" FileName="typekind.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\typekind.bmp" SelfReg="false"/>
     <ROW File="DeploymentPlan.dll" Component_="DeploymentPlan.dll" FileName="Deploy~1.dll|DeploymentPlan.dll" Version="" Language="" Attributes="" SourcePath="PIM\PICML\bin\DeploymentPlan.dll" SelfReg="true"/>
     <ROW File="comp_proj.bmp" Component_="aggregate.bmp" FileName="comp-p~1.bmp|comp-proj.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\comp-proj.bmp" SelfReg="false"/>
     <ROW File="ec_event.bmp" Component_="aggregate.bmp" FileName="ec_event.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\ec_event.bmp" SelfReg="false"/>
     <ROW File="ec_proxy.bmp" Component_="aggregate.bmp" FileName="ec_proxy.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\ec_proxy.bmp" SelfReg="false"/>
     <ROW File="ns_admin.bmp" Component_="aggregate.bmp" FileName="ns_admin.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\ns_admin.bmp" SelfReg="false"/>
+    <ROW File="ocml_sample_rule.png" Component_="IDML_User_Manual.pdf" FileName="ocml_s~1.png|ocml_sample_rule.png" Version="" Language="" Attributes="" SourcePath="PIM\PICML\docs\ocml_sample_rule.png" SelfReg="false"/>
     <ROW File="receptacle_lf.bmp" Component_="aggregate.bmp" FileName="recept~1.bmp|receptacle_lf.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\receptacle_lf.bmp" SelfReg="false"/>
     <ROW File="typeencoding.bmp" Component_="aggregate.bmp" FileName="typeen~1.bmp|typeencoding.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\typeencoding.bmp" SelfReg="false"/>
     <ROW File="alias.bmp" Component_="aggregate.bmp" FileName="alias.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\alias.bmp" SelfReg="false"/>
@@ -165,6 +161,7 @@
     <ROW File="outevent_lf.bmp" Component_="aggregate.bmp" FileName="outeve~1.bmp|outevent_lf.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\outevent_lf.bmp" SelfReg="false"/>
     <ROW File="providedrequestport.bmp" Component_="aggregate.bmp" FileName="provid~1.bmp|providedrequestport.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\providedrequestport.bmp" SelfReg="false"/>
     <ROW File="twoway.bmp" Component_="aggregate.bmp" FileName="twoway.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\twoway.bmp" SelfReg="false"/>
+    <ROW File="Importing_IDL.pdf" Component_="Importing_IDL.pdf" FileName="Import~1.pdf|Importing_IDL.pdf" Version="" Language="" Attributes="" SourcePath="PIM\PICML\docs\Importing_IDL.pdf" SelfReg="false"/>
     <ROW File="Interconnect.bmp" Component_="aggregate.bmp" FileName="Interc~1.bmp|Interconnect.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\Interconnect.bmp" SelfReg="false"/>
     <ROW File="exceptionref.bmp" Component_="aggregate.bmp" FileName="except~2.bmp|exceptionref.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\exceptionref.bmp" SelfReg="false"/>
     <ROW File="ns_consumer.bmp" Component_="aggregate.bmp" FileName="ns_con~3.bmp|ns_consumer.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\ns_consumer.bmp" SelfReg="false"/>
@@ -256,6 +253,19 @@
     <ROW File="event.bmp" Component_="aggregate.bmp" FileName="event.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\event.bmp" SelfReg="false"/>
     <ROW File="ns_proxy.bmp" Component_="aggregate.bmp" FileName="ns_proxy.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\ns_proxy.bmp" SelfReg="false"/>
     <ROW File="switchedaggregate.bmp" Component_="aggregate.bmp" FileName="switch~1.bmp|switchedaggregate.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\switchedaggregate.bmp" SelfReg="false"/>
+    <ROW File="TAO_IDL_FE.dll" Component_="TAO_IDL_FE.dll" FileName="TAO_ID~1.dll|TAO_IDL_FE.dll" Version="" Language="" Attributes="" SourcePath="D:\ACE_wrappers\lib\TAO_IDL_FE.dll" SelfReg="false"/>
+    <ROW File="aggregateref.bmp" Component_="aggregate.bmp" FileName="aggreg~2.bmp|aggregateref.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\aggregateref.bmp" SelfReg="false"/>
+    <ROW File="eventtype.bmp" Component_="aggregate.bmp" FileName="eventt~1.bmp|eventtype.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\eventtype.bmp" SelfReg="false"/>
+    <ROW File="orb_tree.xml" Component_="orb_tree.xml" FileName="orb_tree.xml" Version="" Language="" Attributes="" SourcePath="PIM\PICML\bin\orb_tree.xml" SelfReg="false"/>
+    <ROW File="Property.bmp" Component_="aggregate.bmp" FileName="Property.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\Property.bmp" SelfReg="false"/>
+    <ROW File="ns_constraint.bmp" Component_="aggregate.bmp" FileName="ns_con~2.bmp|ns_constraint.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\ns_constraint.bmp" SelfReg="false"/>
+    <ROW File="ec_dependency.bmp" Component_="aggregate.bmp" FileName="ec_dep~1.bmp|ec_dependency.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\ec_dependency.bmp" SelfReg="false"/>
+    <ROW File="ec_resource_factory.bmp" Component_="aggregate.bmp" FileName="ec_res~1.bmp|ec_resource_factory.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\ec_resource_factory.bmp" SelfReg="false"/>
+    <ROW File="Interface_Definitions.pdf" Component_="Interface_Definitions.pdf" FileName="Interf~1.pdf|Interface_Definitions.pdf" Version="" Language="" Attributes="" SourcePath="PIM\PICML\docs\Interface_Definitions.pdf" SelfReg="false"/>
+    <ROW File="aggregate.bmp" Component_="aggregate.bmp" FileName="aggreg~1.bmp|aggregate.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\aggregate.bmp" SelfReg="false"/>
+    <ROW File="const.bmp" Component_="aggregate.bmp" FileName="const.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\const.bmp" SelfReg="false"/>
+    <ROW File="ec_supplier_id.bmp" Component_="aggregate.bmp" FileName="ec_sup~2.bmp|ec_supplier_id.bmp" Version="" Language="" Attributes="" SourcePath="PIM\PICML\paradigms\icons\ec_supplier_id.bmp" SelfReg="false"/>
+    <ROW File="ocml_rule_aspect.png" Component_="IDML_User_Manual.pdf" FileName="ocml_r~1.png|ocml_rule_aspect.png" Version="" Language="" Attributes="" SourcePath="PIM\PICML\docs\ocml_rule_aspect.png" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="regsvr32.exe_12" Type="1026" Source="regsvr32.exe" Target="/s &quot;[TARGETDIR]\bin\cidl.dll&quot;"/>
@@ -301,34 +311,41 @@
     <ATTRIBUTE name="Path" value="Installer\MergeModules\oleaut32.msm"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
+    <ROW Shortcut="OCML_User_Guide" Directory_="Docs" Name="OCMLUs~1|OCML User Guide" Component_="ocml.html" Target="[#ocml.html]" Arguments="" Description="" Hotkey="0" Icon_="" IconIndex="0" ShowCmd="1" WkDir="docs"/>
     <ROW Shortcut="Readme" Directory_="Docs" Name="Readme" Component_="IDML_User_Manual.pdf" Target="[#Readme.rtf]" Arguments="" Description="Readme for CoSMIC" Hotkey="0" Icon_="" IconIndex="0" ShowCmd="1" WkDir="Docs"/>
     <ROW Shortcut="ReleaseNotes" Directory_="Docs" Name="Releas~1|ReleaseNotes" Component_="ReleaseNotes.rtf" Target="[#ReleaseNotes.rtf]" Arguments="" Description="ReleaseNotes for CoSMIC" Hotkey="0" Icon_="" IconIndex="0" ShowCmd="1" WkDir="Docs"/>
+    <ROW Shortcut="Uninstall" Directory_="SHORTCUTDIR" Name="Uninst~1|Uninstall" Component_="OCMLConfigurator.dll" Target="[SystemFolder]msiexec.exe" Arguments="/x [ProductCode]" Description="Uninstall CoSMIC" Hotkey="0" Icon_="SystemFolder_msiexec.exe" IconIndex="0" ShowCmd="1" WkDir=""/>
+    <ROW Shortcut="Importing_IDL" Directory_="Docs" Name="Import~1|Importing IDL" Component_="Importing_IDL.pdf" Target="[#Importing_IDL.pdf]" Arguments="" Description="Documentation on importing IDL" Hotkey="0" Icon_="" IconIndex="0" ShowCmd="1" WkDir=""/>
+    <ROW Shortcut="Interface_Definitions_Manual" Directory_="Docs" Name="Interf~1|Interface Definitions Manual" Component_="Interface_Definitions.pdf" Target="[#Interface_Definitions.pdf]" Arguments="" Description="Documentation on Interface Definitions" Hotkey="0" Icon_="" IconIndex="0" ShowCmd="1" WkDir=""/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
+    <ROW Name="SystemFolder_msiexec.exe" SourcePath="&lt;uninstall.ico&gt;" Index="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
-    <ROW Action="regsvr32.exe_4" Condition="REMOVE=&quot;ALL&quot;" Sequence="4"/>
-    <ROW Action="regsvr32.exe_13" Condition="NOT Installed" Sequence="3"/>
-    <ROW Action="regsvr32.exe_21" Condition="NOT Installed" Sequence="11"/>
-    <ROW Action="regsvr32.exe" Condition="REMOVE=&quot;ALL&quot;" Sequence="0"/>
-    <ROW Action="regsvr32.exe_12" Condition="NOT Installed" Sequence="2"/>
-    <ROW Action="regsvr32.exe_20" Condition="NOT Installed" Sequence="10"/>
-    <ROW Action="regsvr32.exe_6" Condition="REMOVE=&quot;ALL&quot;" Sequence="6"/>
     <ROW Action="regsvr32.exe_8" Condition="REMOVE=&quot;ALL&quot;" Sequence="8"/>
-    <ROW Action="RegisterParadigm.dll_1" Condition="REMOVE=&quot;ALL&quot;" Sequence="11"/>
-    <ROW Action="regsvr32.exe_11" Condition="NOT Installed" Sequence="1"/>
-    <ROW Action="regsvr32.exe_15" Condition="NOT Installed" Sequence="5"/>
-    <ROW Action="regsvr32.exe_19" Condition="NOT Installed" Sequence="9"/>
-    <ROW Action="regsvr32.exe_2" Condition="REMOVE=&quot;ALL&quot;" Sequence="2"/>
-    <ROW Action="regsvr32.exe_5" Condition="REMOVE=&quot;ALL&quot;" Sequence="5"/>
-    <ROW Action="RegisterParadigm.dll" Condition="NOT Installed" Sequence="0"/>
     <ROW Action="regsvr32.exe_10" Condition="REMOVE=&quot;ALL&quot;" Sequence="10"/>
-    <ROW Action="regsvr32.exe_14" Condition="NOT Installed" Sequence="4"/>
-    <ROW Action="regsvr32.exe_18" Condition="NOT Installed" Sequence="8"/>
-    <ROW Action="regsvr32.exe_1" Condition="REMOVE=&quot;ALL&quot;" Sequence="1"/>
-    <ROW Action="regsvr32.exe_7" Condition="REMOVE=&quot;ALL&quot;" Sequence="7"/>
-    <ROW Action="regsvr32.exe_17" Condition="NOT Installed" Sequence="7"/>
-    <ROW Action="regsvr32.exe_9" Condition="REMOVE=&quot;ALL&quot;" Sequence="9"/>
-    <ROW Action="regsvr32.exe_3" Condition="REMOVE=&quot;ALL&quot;" Sequence="3"/>
     <ROW Action="regsvr32.exe_16" Condition="NOT Installed" Sequence="6"/>
+    <ROW Action="regsvr32.exe_6" Condition="REMOVE=&quot;ALL&quot;" Sequence="6"/>
+    <ROW Action="RegisterParadigm.dll" Condition="NOT Installed" Sequence="0"/>
+    <ROW Action="regsvr32.exe_3" Condition="REMOVE=&quot;ALL&quot;" Sequence="3"/>
+    <ROW Action="regsvr32.exe_13" Condition="NOT Installed" Sequence="3"/>
+    <ROW Action="regsvr32.exe_20" Condition="NOT Installed" Sequence="10"/>
+    <ROW Action="regsvr32.exe_11" Condition="NOT Installed" Sequence="1"/>
+    <ROW Action="regsvr32.exe_5" Condition="REMOVE=&quot;ALL&quot;" Sequence="5"/>
+    <ROW Action="regsvr32.exe_18" Condition="NOT Installed" Sequence="8"/>
+    <ROW Action="regsvr32.exe_9" Condition="REMOVE=&quot;ALL&quot;" Sequence="9"/>
+    <ROW Action="regsvr32.exe_4" Condition="REMOVE=&quot;ALL&quot;" Sequence="4"/>
+    <ROW Action="regsvr32.exe_12" Condition="NOT Installed" Sequence="2"/>
+    <ROW Action="RegisterParadigm.dll_1" Condition="REMOVE=&quot;ALL&quot;" Sequence="11"/>
+    <ROW Action="regsvr32.exe_2" Condition="REMOVE=&quot;ALL&quot;" Sequence="2"/>
+    <ROW Action="regsvr32.exe_14" Condition="NOT Installed" Sequence="4"/>
+    <ROW Action="regsvr32.exe_17" Condition="NOT Installed" Sequence="7"/>
+    <ROW Action="regsvr32.exe" Condition="REMOVE=&quot;ALL&quot;" Sequence="0"/>
+    <ROW Action="regsvr32.exe_19" Condition="NOT Installed" Sequence="9"/>
+    <ROW Action="regsvr32.exe_7" Condition="REMOVE=&quot;ALL&quot;" Sequence="7"/>
+    <ROW Action="regsvr32.exe_21" Condition="NOT Installed" Sequence="11"/>
+    <ROW Action="regsvr32.exe_15" Condition="NOT Installed" Sequence="5"/>
+    <ROW Action="regsvr32.exe_1" Condition="REMOVE=&quot;ALL&quot;" Sequence="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
     <ROW Name="RegisterParadigm.dll" SourcePath="Installer\RegisterParadigm\Release\RegisterParadigm.dll"/>

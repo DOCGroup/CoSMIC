@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{E5FE844C-91C7-4BA6-9F3A-16D0F5AE14C2}" cdate="Sat Nov 06 17:53:30 2004" mdate="Sat Nov 06 18:30:08 2004" version="" metaguid="{DF851054-A0B3-41EF-8FF2-8C42EE5EDD12}" metaversion="" metaname="MetaGME">
+<project guid="{36B0F9AE-DF16-41EF-99C6-639DD3917078}" cdate="Sat Nov 06 19:46:20 2004" mdate="Sat Nov 06 19:46:23 2004" version="" metaguid="{DF851054-A0B3-41EF-8FF2-8C42EE5EDD12}" metaversion="" metaname="MetaGME">
 	<name>OCML</name>
 	<comment></comment>
 	<author></author>
@@ -478,7 +478,7 @@
 				</regnode>
 				<regnode name="Options" isopaque="yes">
 					<value></value>
-					<regnode name="Boolean_Default_Value-5c-BooleanAttribute">
+					<regnode name="Boolean_Default_Value-5c-BooleanAttribute" isopaque="yes">
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1181</value>
@@ -658,7 +658,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Integer_Default_Value-5e-FieldAttribute">
+					<regnode name="Integer_Default_Value-5e-FieldAttribute" isopaque="yes">
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1182</value>
@@ -700,7 +700,7 @@
 							<value>1071</value>
 						</regnode>
 					</regnode>
-					<regnode name="Item_Default_Value-63-BooleanAttribute">
+					<regnode name="Item_Default_Value-63-BooleanAttribute" isopaque="yes">
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1183</value>
@@ -781,7 +781,7 @@
 							<value>1180</value>
 						</regnode>
 					</regnode>
-					<regnode name="String_Default_Value-5d-FieldAttribute">
+					<regnode name="String_Default_Value-5d-FieldAttribute" isopaque="yes">
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>1184</value>
@@ -2839,7 +2839,7 @@
 								<value>57,468</value>
 							</regnode>
 						</regnode>
-						<regnode name="Visualization">
+						<regnode name="Visualization" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>806,454</value>
@@ -2899,7 +2899,7 @@
 								<value>715,475</value>
 							</regnode>
 						</regnode>
-						<regnode name="Visualization">
+						<regnode name="Visualization" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>71,636</value>
@@ -2962,7 +2962,7 @@
 								<value>554,475</value>
 							</regnode>
 						</regnode>
-						<regnode name="Visualization">
+						<regnode name="Visualization" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>85,440</value>
@@ -3025,7 +3025,7 @@
 								<value>239,454</value>
 							</regnode>
 						</regnode>
-						<regnode name="Visualization">
+						<regnode name="Visualization" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>435,454</value>
@@ -3085,7 +3085,7 @@
 								<value>365,538</value>
 							</regnode>
 						</regnode>
-						<regnode name="Visualization">
+						<regnode name="Visualization" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>603,622</value>
@@ -3574,8 +3574,8 @@
 					<attribute kind="Rolename" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="src" target="id-0066-00000020"/>
 					<connpoint role="dst" target="id-0066-00000020"/>
+					<connpoint role="src" target="id-0066-00000020"/>
 				</connection>
 				<set id="id-0069-00000002" kind="Aspect" role="Aspect" relid="0x5" members="id-0067-00000008 id-0066-00000020">
 					<name>Option_Aspect</name>
@@ -8953,13 +8953,13 @@
 					<value>1</value>
 				</regnode>
 				<regnode name="Model_Option_Aspect" isopaque="yes">
-					<value>1</value>
-				</regnode>
-				<regnode name="Option_Aspect" isopaque="yes">
 					<value>3</value>
 				</regnode>
-				<regnode name="Rule_Aspect" isopaque="yes">
+				<regnode name="Option_Aspect" isopaque="yes">
 					<value>2</value>
+				</regnode>
+				<regnode name="Rule_Aspect" isopaque="yes">
+					<value>1</value>
 				</regnode>
 				<regnode name="SameAspect" isopaque="yes">
 					<value>3</value>
