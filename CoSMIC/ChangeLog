@@ -1,3 +1,11 @@
+Mon Oct 25 09:30:49 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        
+          Changed outpout directories to $PICML_ROOT/bin for the
+          executable and DLL and $PICML_ROOT/lib for the .lib and
+          .exp.file.
+
 Mon Oct 25 07:41:06 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/decorators/Decorator.dsp:

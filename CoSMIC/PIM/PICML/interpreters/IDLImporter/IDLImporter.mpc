@@ -1,11 +1,13 @@
 // -*- MPC -*-
 // $Id$
 
-project(TAO_PICML_BE) : acelib, core, tao_output, crosscompile {
+project(TAO_PICML_BE) : acedefaults, aceversion, core, crosscompile {
   after       += TAO_IDL_FE
   sharedname   = TAO_PICML_BE
-  libpaths    += $(XERCESCROOT)/lib 
-  libs        += TAO_IDL_FE xerces-c_2
+  libout       = $(PICML_ROOT)/lib
+  dllout       = $(PICML_ROOT)/bin
+  libpaths    += $(ACE_ROOT)/lib $(XERCESCROOT)/lib 
+  libs        += ACE TAO_IDL_FE xerces-c_2
   dynamicflags = TAO_PICML_BE_BUILD_DLL
   includes    += $(XERCESCROOT)/include $(TAO_ROOT)/TAO_IDL/include $(TAO_ROOT)/TAO_IDL/fe
 
@@ -26,13 +28,13 @@ project(TAO_PICML_BE) : acelib, core, tao_output, crosscompile {
 }
 
 
-project(TAO_PICML_EXE) : aceexe, core, tao_output, crosscompile {
+project(TAO_PICML_EXE) : aceexe, core, crosscompile {
   after          += TAO_PICML_BE TAO_IDL_FE
   exename         = tao_picml
   libs           += TAO_PICML_BE TAO_IDL_FE
   includes       += . $(TAO_ROOT)/TAO_IDL/include $(TAO_ROOT)/TAO_IDL/fe $(XERCESCROOT)/include 
-  libpaths       += $(TAO_ROOT)/TAO_IDL $(XERCESCROOT)/lib 
-  install         = $(ACE_ROOT)/bin
+  libpaths       += $(PICML_ROOT)/lib $(TAO_ROOT)/TAO_IDL $(XERCESCROOT)/lib 
+  install         = $(PICML_ROOT)/bin
 
   verbatim(gnuace, local) {
     ifeq ($(TAO_IDL_PREPROCESSOR),)
