@@ -1,3 +1,13 @@
+Thu Jul 22 18:54:53 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * IDML/paradigms/IDML.xmp:
+        * IDML/paradigms/IDML-Meta.xme:
+        
+          Updated metamodel, fixed constraint for inheritable types that checks
+          for unique contained names so it will skip the PrivateFlag atoms
+          and MakeMemberPrivate connections that may appear in a valuetype
+          or eventtype.
+
 Thu Jul 22 000:56:30 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * IDML/decorators/Decorator.cpp:

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Tue Jun 08 19:49:43 2004" mdate="Tue Jun 15 10:35:35 2004" metaguid="{99CB7435-DEAD-BEEF-FEED-DAD000000001}" metaname="MetaGME">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri Jul 09 20:10:05 2004" mdate="Thu Jul 22 18:50:24 2004" metaguid="{99CB7435-DEAD-BEEF-FEED-DAD000000001}" metaname="MetaGME">
 	<name>IDML</name>
 	<comment></comment>
 	<author></author>
@@ -20773,7 +20773,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>2341</value>
-					<regnode name="File">
+					<regnode name="File" isopaque="yes">
 						<value></value>
 						<regnode name="Package" isopaque="yes">
 							<value>2330</value>
@@ -20785,7 +20785,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Package" isopaque="yes">
+					<regnode name="Package">
 						<value></value>
 						<regnode name="Package" isopaque="yes">
 							<value>2344</value>
@@ -24038,11 +24038,11 @@
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000095" kind="Constraint" role="Constraint" relid="0x11a">
+			<atom id="id-0066-00000018" kind="Constraint" role="Constraint" relid="0x11a">
 				<name>LegalConstantValue</name>
-				<regnode name="PartRegs">
+				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
-					<regnode name="Constraints">
+					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
 							<value>625,261</value>
@@ -24168,7 +24168,7 @@
 					</regnode>
 				</regnode>
 			</reference>
-			<reference id="id-0067-0000001d" kind="FCOProxy" role="FCOProxy" relid="0xf7" referred="id-0066-00000019">
+			<reference id="id-0067-0000001d" kind="FCOProxy" role="FCOProxy" relid="0xf7" referred="id-0066-0000001a">
 				<name>PredefinedType</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -24240,7 +24240,7 @@
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-0000001e" kind="ModelProxy" role="ModelProxy" relid="0xf8" referred="id-0066-00000026">
+			<reference id="id-0067-0000001e" kind="ModelProxy" role="ModelProxy" relid="0xf8" referred="id-0066-00000027">
 				<name>Enum</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -24315,7 +24315,7 @@
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-0000001f" kind="ReferenceProxy" role="ReferenceProxy" relid="0x101" referred="id-0066-0000003c">
+			<reference id="id-0067-0000001f" kind="ReferenceProxy" role="ReferenceProxy" relid="0x101" referred="id-0066-0000003d">
 				<name>Member</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -24387,7 +24387,7 @@
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000020" kind="FCOProxy" role="FCOProxy" relid="0x106" referred="id-0066-00000038">
+			<reference id="id-0067-00000020" kind="FCOProxy" role="FCOProxy" relid="0x106" referred="id-0066-00000039">
 				<name>NamedType</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -24459,7 +24459,7 @@
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000021" kind="ReferenceProxy" role="ReferenceProxy" relid="0x10e" referred="id-0066-00000085">
+			<reference id="id-0067-00000021" kind="ReferenceProxy" role="ReferenceProxy" relid="0x10e" referred="id-0066-00000086">
 				<name>ComponentRef</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -24531,7 +24531,7 @@
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000022" kind="ConnectionProxy" role="ConnectionProxy" relid="0x111" referred="id-0066-00000089">
+			<reference id="id-0067-00000022" kind="ConnectionProxy" role="ConnectionProxy" relid="0x111" referred="id-0066-0000008a">
 				<name>ManagesComponent</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -24611,8 +24611,8 @@
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="src" target="id-0066-00000001"/>
 				<connpoint role="dst" target="id-0066-00000001"/>
+				<connpoint role="src" target="id-0066-00000001"/>
 			</connection>
 			<connection id="id-0068-00000002" kind="HasAspect" role="HasAspect" relid="0x54">
 				<name>HasAspect</name>
@@ -25086,13 +25086,13 @@
 				<connpoint role="dst" target="id-0066-00000015"/>
 				<connpoint role="src" target="id-0066-00000017"/>
 			</connection>
-			<connection id="id-0068-000000ea" kind="HasConstraint" role="HasConstraint" relid="0x11b">
+			<connection id="id-0068-0000002e" kind="HasConstraint" role="HasConstraint" relid="0x11b">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ns</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-00000015"/>
-				<connpoint role="src" target="id-0066-00000095"/>
+				<connpoint role="src" target="id-0066-00000018"/>
 			</connection>
 			<set id="id-0069-00000005" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-00000021 id-0067-00000022 id-0067-00000020 id-0067-0000001f id-0067-0000001e id-0067-0000001d id-0066-00000015 id-0066-00000010 id-0066-00000007 id-0066-00000001 id-0066-00000002 id-0066-00000005">
 				<name>InterfaceDefinition</name>
@@ -25121,7 +25121,7 @@
 			<attribute kind="VersionInformation" status="meta">
 				<value></value>
 			</attribute>
-			<atom id="id-0066-00000018" kind="Folder" role="Folder" relid="0x91">
+			<atom id="id-0066-00000019" kind="Folder" role="Folder" relid="0x91">
 				<name>PredefinedTypes</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -25157,7 +25157,7 @@
 					<value>true</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000019" kind="FCO" role="FCO" relid="0x92">
+			<atom id="id-0066-0000001a" kind="FCO" role="FCO" relid="0x92">
 				<name>PredefinedType</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -25229,7 +25229,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000001a" kind="Inheritance" role="Inheritance" relid="0x95">
+			<atom id="id-0066-0000001b" kind="Inheritance" role="Inheritance" relid="0x95">
 				<name>Inheritance</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -25259,7 +25259,7 @@
 					</regnode>
 				</regnode>
 			</atom>
-			<atom id="id-0066-0000001b" kind="Atom" role="Atom" relid="0x97">
+			<atom id="id-0066-0000001c" kind="Atom" role="Atom" relid="0x97">
 				<name>Byte</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -25331,7 +25331,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000001c" kind="Atom" role="Atom" relid="0x98">
+			<atom id="id-0066-0000001d" kind="Atom" role="Atom" relid="0x98">
 				<name>Boolean</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -25403,7 +25403,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000001d" kind="Atom" role="Atom" relid="0x99">
+			<atom id="id-0066-0000001e" kind="Atom" role="Atom" relid="0x99">
 				<name>ShortInteger</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -25475,7 +25475,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000001e" kind="Atom" role="Atom" relid="0x9a">
+			<atom id="id-0066-0000001f" kind="Atom" role="Atom" relid="0x9a">
 				<name>LongInteger</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -25547,7 +25547,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000001f" kind="Atom" role="Atom" relid="0x9b">
+			<atom id="id-0066-00000020" kind="Atom" role="Atom" relid="0x9b">
 				<name>RealNumber</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -25619,7 +25619,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000020" kind="Atom" role="Atom" relid="0x9c">
+			<atom id="id-0066-00000021" kind="Atom" role="Atom" relid="0x9c">
 				<name>String</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -25691,7 +25691,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000021" kind="Atom" role="Atom" relid="0x9e">
+			<atom id="id-0066-00000022" kind="Atom" role="Atom" relid="0x9e">
 				<name>GenericObject</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -25763,7 +25763,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000022" kind="Atom" role="Atom" relid="0x9f">
+			<atom id="id-0066-00000023" kind="Atom" role="Atom" relid="0x9f">
 				<name>GenericValueObject</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -25835,7 +25835,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000023" kind="Atom" role="Atom" relid="0xa0">
+			<atom id="id-0066-00000024" kind="Atom" role="Atom" relid="0xa0">
 				<name>GenericValue</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -25907,7 +25907,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000024" kind="Atom" role="Atom" relid="0xa1">
+			<atom id="id-0066-00000025" kind="Atom" role="Atom" relid="0xa1">
 				<name>TypeEncoding</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -25979,7 +25979,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000025" kind="Atom" role="Atom" relid="0xa2">
+			<atom id="id-0066-00000026" kind="Atom" role="Atom" relid="0xa2">
 				<name>TypeKind</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -26051,15 +26051,15 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<connection id="id-0068-0000002e" kind="BaseInheritance" role="BaseInheritance" relid="0x96">
+			<connection id="id-0068-0000002f" kind="BaseInheritance" role="BaseInheritance" relid="0x96">
 				<name>BaseInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-00000019"/>
-				<connpoint role="dst" target="id-0066-0000001a"/>
+				<connpoint role="src" target="id-0066-0000001a"/>
+				<connpoint role="dst" target="id-0066-0000001b"/>
 			</connection>
-			<connection id="id-0068-0000002f" kind="FolderContainment" role="FolderContainment" relid="0x9d">
+			<connection id="id-0068-00000030" kind="FolderContainment" role="FolderContainment" relid="0x9d">
 				<name>FolderContainment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ew</value>
@@ -26067,98 +26067,98 @@
 				<attribute kind="Cardinality" status="meta">
 					<value>0..*</value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000018"/>
-				<connpoint role="src" target="id-0066-00000019"/>
+				<connpoint role="dst" target="id-0066-00000019"/>
+				<connpoint role="src" target="id-0066-0000001a"/>
 			</connection>
-			<connection id="id-0068-00000030" kind="DerivedInheritance" role="DerivedInheritance" relid="0xa3">
+			<connection id="id-0068-00000031" kind="DerivedInheritance" role="DerivedInheritance" relid="0xa3">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000001a"/>
-				<connpoint role="dst" target="id-0066-0000001c"/>
-			</connection>
-			<connection id="id-0068-00000031" kind="DerivedInheritance" role="DerivedInheritance" relid="0xa4">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-0000001a"/>
-				<connpoint role="dst" target="id-0066-0000001b"/>
-			</connection>
-			<connection id="id-0068-00000032" kind="DerivedInheritance" role="DerivedInheritance" relid="0xa5">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-0000001a"/>
+				<connpoint role="src" target="id-0066-0000001b"/>
 				<connpoint role="dst" target="id-0066-0000001d"/>
 			</connection>
-			<connection id="id-0068-00000033" kind="DerivedInheritance" role="DerivedInheritance" relid="0xa6">
+			<connection id="id-0068-00000032" kind="DerivedInheritance" role="DerivedInheritance" relid="0xa4">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000001a"/>
+				<connpoint role="src" target="id-0066-0000001b"/>
+				<connpoint role="dst" target="id-0066-0000001c"/>
+			</connection>
+			<connection id="id-0068-00000033" kind="DerivedInheritance" role="DerivedInheritance" relid="0xa5">
+				<name>DerivedInheritance</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-0000001b"/>
 				<connpoint role="dst" target="id-0066-0000001e"/>
 			</connection>
-			<connection id="id-0068-00000034" kind="DerivedInheritance" role="DerivedInheritance" relid="0xa7">
+			<connection id="id-0068-00000034" kind="DerivedInheritance" role="DerivedInheritance" relid="0xa6">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000001a"/>
+				<connpoint role="src" target="id-0066-0000001b"/>
 				<connpoint role="dst" target="id-0066-0000001f"/>
 			</connection>
-			<connection id="id-0068-00000035" kind="DerivedInheritance" role="DerivedInheritance" relid="0xa8">
+			<connection id="id-0068-00000035" kind="DerivedInheritance" role="DerivedInheritance" relid="0xa7">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000001a"/>
+				<connpoint role="src" target="id-0066-0000001b"/>
 				<connpoint role="dst" target="id-0066-00000020"/>
 			</connection>
-			<connection id="id-0068-00000036" kind="DerivedInheritance" role="DerivedInheritance" relid="0xa9">
+			<connection id="id-0068-00000036" kind="DerivedInheritance" role="DerivedInheritance" relid="0xa8">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000001a"/>
+				<connpoint role="src" target="id-0066-0000001b"/>
 				<connpoint role="dst" target="id-0066-00000021"/>
 			</connection>
-			<connection id="id-0068-00000037" kind="DerivedInheritance" role="DerivedInheritance" relid="0xaa">
+			<connection id="id-0068-00000037" kind="DerivedInheritance" role="DerivedInheritance" relid="0xa9">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000001a"/>
+				<connpoint role="src" target="id-0066-0000001b"/>
 				<connpoint role="dst" target="id-0066-00000022"/>
 			</connection>
-			<connection id="id-0068-00000038" kind="DerivedInheritance" role="DerivedInheritance" relid="0xab">
+			<connection id="id-0068-00000038" kind="DerivedInheritance" role="DerivedInheritance" relid="0xaa">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000001a"/>
+				<connpoint role="src" target="id-0066-0000001b"/>
 				<connpoint role="dst" target="id-0066-00000023"/>
 			</connection>
-			<connection id="id-0068-00000039" kind="DerivedInheritance" role="DerivedInheritance" relid="0xac">
+			<connection id="id-0068-00000039" kind="DerivedInheritance" role="DerivedInheritance" relid="0xab">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000001a"/>
+				<connpoint role="src" target="id-0066-0000001b"/>
 				<connpoint role="dst" target="id-0066-00000024"/>
 			</connection>
-			<connection id="id-0068-0000003a" kind="DerivedInheritance" role="DerivedInheritance" relid="0xad">
+			<connection id="id-0068-0000003a" kind="DerivedInheritance" role="DerivedInheritance" relid="0xac">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000001a"/>
+				<connpoint role="src" target="id-0066-0000001b"/>
 				<connpoint role="dst" target="id-0066-00000025"/>
 			</connection>
-			<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-0000001e id-0066-0000001d id-0066-0000001c id-0066-0000001b id-0066-00000020 id-0066-0000001f id-0066-00000025 id-0066-00000022 id-0066-00000021 id-0066-00000024 id-0066-00000023">
+			<connection id="id-0068-0000003b" kind="DerivedInheritance" role="DerivedInheritance" relid="0xad">
+				<name>DerivedInheritance</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-0000001b"/>
+				<connpoint role="dst" target="id-0066-00000026"/>
+			</connection>
+			<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-0000001f id-0066-0000001e id-0066-0000001d id-0066-0000001c id-0066-00000021 id-0066-00000020 id-0066-00000026 id-0066-00000023 id-0066-00000022 id-0066-00000025 id-0066-00000024">
 				<name>PredefinedTypeAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -26185,7 +26185,7 @@
 			<attribute kind="VersionInformation" status="meta">
 				<value></value>
 			</attribute>
-			<atom id="id-0066-00000026" kind="Model" role="Model" relid="0x6">
+			<atom id="id-0066-00000027" kind="Model" role="Model" relid="0x6">
 				<name>Enum</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -26260,7 +26260,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000027" kind="Atom" role="Atom" relid="0x8">
+			<atom id="id-0066-00000028" kind="Atom" role="Atom" relid="0x8">
 				<name>EnumValue</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -26332,7 +26332,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000028" kind="Model" role="Model" relid="0x3c">
+			<atom id="id-0066-00000029" kind="Model" role="Model" relid="0x3c">
 				<name>Aggregate</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -26407,7 +26407,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000029" kind="Model" role="Model" relid="0x42">
+			<atom id="id-0066-0000002a" kind="Model" role="Model" relid="0x42">
 				<name>SwitchedAggregate</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -26482,7 +26482,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000002a" kind="Atom" role="Atom" relid="0x69">
+			<atom id="id-0066-0000002b" kind="Atom" role="Atom" relid="0x69">
 				<name>Label</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -26554,7 +26554,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000002b" kind="Connection" role="Connection" relid="0x89">
+			<atom id="id-0066-0000002c" kind="Connection" role="Connection" relid="0x89">
 				<name>LabelConnection</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -26623,7 +26623,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000002c" kind="Connector" role="Connector" relid="0x8a">
+			<atom id="id-0066-0000002d" kind="Connector" role="Connector" relid="0x8a">
 				<name>Connector</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -26644,7 +26644,7 @@
 					<value></value>
 				</regnode>
 			</atom>
-			<atom id="id-0066-0000002d" kind="FCO" role="FCO" relid="0x90">
+			<atom id="id-0066-0000002e" kind="FCO" role="FCO" relid="0x90">
 				<name>MemberType</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -26716,7 +26716,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000002e" kind="Inheritance" role="Inheritance" relid="0x91">
+			<atom id="id-0066-0000002f" kind="Inheritance" role="Inheritance" relid="0x91">
 				<name>Inheritance</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -26746,7 +26746,7 @@
 					</regnode>
 				</regnode>
 			</atom>
-			<atom id="id-0066-0000002f" kind="Inheritance" role="Inheritance" relid="0xb8">
+			<atom id="id-0066-00000030" kind="Inheritance" role="Inheritance" relid="0xb8">
 				<name>Inheritance</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -26776,7 +26776,7 @@
 					</regnode>
 				</regnode>
 			</atom>
-			<atom id="id-0066-00000030" kind="Constraint" role="Constraint" relid="0xc9">
+			<atom id="id-0066-00000031" kind="Constraint" role="Constraint" relid="0xc9">
 				<name>UniqueLabelNames</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -26851,7 +26851,7 @@
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000031" kind="Constraint" role="Constraint" relid="0xce">
+			<atom id="id-0066-00000032" kind="Constraint" role="Constraint" relid="0xce">
 				<name>DefaultCaseCardinality</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -26930,7 +26930,7 @@
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000032" kind="Constraint" role="Constraint" relid="0xd0">
+			<atom id="id-0066-00000033" kind="Constraint" role="Constraint" relid="0xd0">
 				<name>UniqueEnumValues</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -27005,7 +27005,7 @@
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000033" kind="Constraint" role="Constraint" relid="0xd2">
+			<atom id="id-0066-00000034" kind="Constraint" role="Constraint" relid="0xd2">
 				<name>NoBoxedValueDef</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -27081,7 +27081,7 @@
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000034" kind="Constraint" role="Constraint" relid="0xd4">
+			<atom id="id-0066-00000035" kind="Constraint" role="Constraint" relid="0xd4">
 				<name>NonNullReference</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -27156,7 +27156,7 @@
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000035" kind="Constraint" role="Constraint" relid="0xd6">
+			<atom id="id-0066-00000036" kind="Constraint" role="Constraint" relid="0xd6">
 				<name>LegalDiscriminatorType</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -27235,7 +27235,7 @@
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000036" kind="Constraint" role="Constraint" relid="0xdd">
+			<atom id="id-0066-00000037" kind="Constraint" role="Constraint" relid="0xdd">
 				<name>ValidIdentifier</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -27310,7 +27310,7 @@
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000037" kind="Reference" role="Reference" relid="0x10b">
+			<atom id="id-0066-00000038" kind="Reference" role="Reference" relid="0x10b">
 				<name>Discriminator</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -27382,7 +27382,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000038" kind="FCO" role="FCO" relid="0x10e">
+			<atom id="id-0066-00000039" kind="FCO" role="FCO" relid="0x10e">
 				<name>NamedType</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -27454,7 +27454,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000039" kind="Reference" role="Reference" relid="0x113">
+			<atom id="id-0066-0000003a" kind="Reference" role="Reference" relid="0x113">
 				<name>Collection</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -27526,7 +27526,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000003a" kind="Reference" role="Reference" relid="0x114">
+			<atom id="id-0066-0000003b" kind="Reference" role="Reference" relid="0x114">
 				<name>Alias</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -27598,7 +27598,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000003b" kind="Reference" role="Reference" relid="0x115">
+			<atom id="id-0066-0000003c" kind="Reference" role="Reference" relid="0x115">
 				<name>Boxed</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -27670,7 +27670,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000003c" kind="Reference" role="Reference" relid="0x116">
+			<atom id="id-0066-0000003d" kind="Reference" role="Reference" relid="0x116">
 				<name>Member</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -27742,7 +27742,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000003d" kind="Constraint" role="Constraint" relid="0x12e">
+			<atom id="id-0066-0000003e" kind="Constraint" role="Constraint" relid="0x12e">
 				<name>UniqueMemberNames</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -27817,7 +27817,7 @@
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000003e" kind="FCO" role="FCO" relid="0x132">
+			<atom id="id-0066-0000003f" kind="FCO" role="FCO" relid="0x132">
 				<name>NoInheritable</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -27889,7 +27889,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000003f" kind="Inheritance" role="Inheritance" relid="0x133">
+			<atom id="id-0066-00000040" kind="Inheritance" role="Inheritance" relid="0x133">
 				<name>Inheritance</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -27919,7 +27919,7 @@
 					</regnode>
 				</regnode>
 			</atom>
-			<reference id="id-0067-00000001" kind="FCOProxy" role="FCOProxy" relid="0x106" referred="id-0066-00000019">
+			<reference id="id-0067-00000001" kind="FCOProxy" role="FCOProxy" relid="0x106" referred="id-0066-0000001a">
 				<name>PredefinedType</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -27991,7 +27991,7 @@
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000002" kind="FCOProxy" role="FCOProxy" relid="0x13a" referred="id-0066-00000038">
+			<reference id="id-0067-00000002" kind="FCOProxy" role="FCOProxy" relid="0x13a" referred="id-0066-00000039">
 				<name>NamedType</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -28135,7 +28135,7 @@
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000023" kind="ModelProxy" role="ModelProxy" relid="0xa0" referred="id-0066-00000048">
+			<reference id="id-0067-00000023" kind="ModelProxy" role="ModelProxy" relid="0xa0" referred="id-0066-00000049">
 				<name>Inheritable</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -28210,7 +28210,7 @@
 					<value></value>
 				</attribute>
 			</reference>
-			<connection id="id-0068-0000003b" kind="Containment" role="Containment" relid="0xa6">
+			<connection id="id-0068-0000003c" kind="Containment" role="Containment" relid="0xa6">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ew</value>
@@ -28224,59 +28224,59 @@
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000029"/>
+				<connpoint role="dst" target="id-0066-0000002a"/>
+				<connpoint role="src" target="id-0066-0000002c"/>
+			</connection>
+			<connection id="id-0068-0000003d" kind="Containment" role="Containment" relid="0xa8">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ew</value>
+				</regnode>
+				<attribute kind="Cardinality">
+					<value>1..*</value>
+				</attribute>
+				<attribute kind="IsPort">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000002a"/>
 				<connpoint role="src" target="id-0066-0000002b"/>
 			</connection>
-			<connection id="id-0068-0000003c" kind="Containment" role="Containment" relid="0xa8">
-				<name>Containment</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ew</value>
-				</regnode>
-				<attribute kind="Cardinality">
-					<value>1..*</value>
-				</attribute>
-				<attribute kind="IsPort">
-					<value>false</value>
-				</attribute>
-				<attribute kind="Rolename" status="meta">
-					<value></value>
-				</attribute>
-				<connpoint role="dst" target="id-0066-00000029"/>
-				<connpoint role="src" target="id-0066-0000002a"/>
-			</connection>
-			<connection id="id-0068-0000003d" kind="HasConstraint" role="HasConstraint" relid="0xcd">
+			<connection id="id-0068-0000003e" kind="HasConstraint" role="HasConstraint" relid="0xcd">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ns</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000029"/>
-				<connpoint role="src" target="id-0066-00000030"/>
-			</connection>
-			<connection id="id-0068-0000003e" kind="HasConstraint" role="HasConstraint" relid="0xcf">
-				<name>HasConstraint</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ew</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-00000029"/>
+				<connpoint role="dst" target="id-0066-0000002a"/>
 				<connpoint role="src" target="id-0066-00000031"/>
 			</connection>
-			<connection id="id-0068-0000003f" kind="HasConstraint" role="HasConstraint" relid="0xd1">
+			<connection id="id-0068-0000003f" kind="HasConstraint" role="HasConstraint" relid="0xcf">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ew</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-0000002a"/>
+				<connpoint role="src" target="id-0066-00000032"/>
+			</connection>
+			<connection id="id-0068-00000040" kind="HasConstraint" role="HasConstraint" relid="0xd1">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ns</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000026"/>
-				<connpoint role="src" target="id-0066-00000032"/>
+				<connpoint role="dst" target="id-0066-00000027"/>
+				<connpoint role="src" target="id-0066-00000033"/>
 			</connection>
-			<connection id="id-0068-00000040" kind="HasConstraint" role="HasConstraint" relid="0xe0">
+			<connection id="id-0068-00000041" kind="HasConstraint" role="HasConstraint" relid="0xe0">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-0000002d"/>
-				<connpoint role="src" target="id-0066-00000036"/>
+				<connpoint role="dst" target="id-0066-0000002e"/>
+				<connpoint role="src" target="id-0066-00000037"/>
 			</connection>
-			<connection id="id-0068-00000041" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0xe5">
+			<connection id="id-0068-00000042" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0xe5">
 				<name>ConnectorToDestination</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value></value>
@@ -28287,18 +28287,18 @@
 				<attribute kind="dstRolename" status="meta">
 					<value>dst</value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-0000002a"/>
-				<connpoint role="src" target="id-0066-0000002c"/>
+				<connpoint role="dst" target="id-0066-0000002b"/>
+				<connpoint role="src" target="id-0066-0000002d"/>
 			</connection>
-			<connection id="id-0068-00000042" kind="AssociationClass" role="AssociationClass" relid="0xe6">
+			<connection id="id-0068-00000043" kind="AssociationClass" role="AssociationClass" relid="0xe6">
 				<name>AssociationClass</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>S</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000002b"/>
-				<connpoint role="dst" target="id-0066-0000002c"/>
+				<connpoint role="src" target="id-0066-0000002c"/>
+				<connpoint role="dst" target="id-0066-0000002d"/>
 			</connection>
-			<connection id="id-0068-00000043" kind="Containment" role="Containment" relid="0x105">
+			<connection id="id-0068-00000044" kind="Containment" role="Containment" relid="0x105">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>We</value>
@@ -28312,50 +28312,50 @@
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000026"/>
-				<connpoint role="src" target="id-0066-00000027"/>
+				<connpoint role="dst" target="id-0066-00000027"/>
+				<connpoint role="src" target="id-0066-00000028"/>
 			</connection>
-			<connection id="id-0068-00000044" kind="DerivedInheritance" role="DerivedInheritance" relid="0x110">
+			<connection id="id-0068-00000045" kind="DerivedInheritance" role="DerivedInheritance" relid="0x110">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000026"/>
-				<connpoint role="src" target="id-0066-0000002f"/>
+				<connpoint role="dst" target="id-0066-00000027"/>
+				<connpoint role="src" target="id-0066-00000030"/>
 			</connection>
-			<connection id="id-0068-00000045" kind="DerivedInheritance" role="DerivedInheritance" relid="0x111">
+			<connection id="id-0068-00000046" kind="DerivedInheritance" role="DerivedInheritance" relid="0x111">
+				<name>DerivedInheritance</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-0000002a"/>
+				<connpoint role="src" target="id-0066-00000030"/>
+			</connection>
+			<connection id="id-0068-00000047" kind="DerivedInheritance" role="DerivedInheritance" relid="0x112">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-00000029"/>
-				<connpoint role="src" target="id-0066-0000002f"/>
+				<connpoint role="src" target="id-0066-00000030"/>
 			</connection>
-			<connection id="id-0068-00000046" kind="DerivedInheritance" role="DerivedInheritance" relid="0x112">
+			<connection id="id-0068-00000048" kind="DerivedInheritance" role="DerivedInheritance" relid="0x117">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000028"/>
-				<connpoint role="src" target="id-0066-0000002f"/>
-			</connection>
-			<connection id="id-0068-00000047" kind="DerivedInheritance" role="DerivedInheritance" relid="0x117">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-0000002f"/>
-				<connpoint role="dst" target="id-0066-00000039"/>
-			</connection>
-			<connection id="id-0068-00000048" kind="DerivedInheritance" role="DerivedInheritance" relid="0x118">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-0000002f"/>
+				<connpoint role="src" target="id-0066-00000030"/>
 				<connpoint role="dst" target="id-0066-0000003a"/>
 			</connection>
-			<connection id="id-0068-00000049" kind="Containment" role="Containment" relid="0x119">
+			<connection id="id-0068-00000049" kind="DerivedInheritance" role="DerivedInheritance" relid="0x118">
+				<name>DerivedInheritance</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-00000030"/>
+				<connpoint role="dst" target="id-0066-0000003b"/>
+			</connection>
+			<connection id="id-0068-0000004a" kind="Containment" role="Containment" relid="0x119">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ns</value>
@@ -28369,10 +28369,10 @@
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000028"/>
-				<connpoint role="src" target="id-0066-0000003c"/>
+				<connpoint role="dst" target="id-0066-00000029"/>
+				<connpoint role="src" target="id-0066-0000003d"/>
 			</connection>
-			<connection id="id-0068-0000004a" kind="Containment" role="Containment" relid="0x11a">
+			<connection id="id-0068-0000004b" kind="Containment" role="Containment" relid="0x11a">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ew</value>
@@ -28386,10 +28386,10 @@
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000029"/>
-				<connpoint role="src" target="id-0066-0000003c"/>
+				<connpoint role="dst" target="id-0066-0000002a"/>
+				<connpoint role="src" target="id-0066-0000003d"/>
 			</connection>
-			<connection id="id-0068-0000004b" kind="SourceToConnector" role="SourceToConnector" relid="0x11b">
+			<connection id="id-0068-0000004c" kind="SourceToConnector" role="SourceToConnector" relid="0x11b">
 				<name>SourceToConnector</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>E</value>
@@ -28400,178 +28400,178 @@
 				<attribute kind="srcRolename" status="meta">
 					<value>src</value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-0000002c"/>
-				<connpoint role="src" target="id-0066-0000003c"/>
+				<connpoint role="dst" target="id-0066-0000002d"/>
+				<connpoint role="src" target="id-0066-0000003d"/>
 			</connection>
-			<connection id="id-0068-0000004c" kind="ReferTo" role="ReferTo" relid="0x11d">
+			<connection id="id-0068-0000004d" kind="ReferTo" role="ReferTo" relid="0x11d">
 				<name>ReferTo</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>We</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-0000002d"/>
-				<connpoint role="src" target="id-0066-0000003c"/>
+				<connpoint role="dst" target="id-0066-0000002e"/>
+				<connpoint role="src" target="id-0066-0000003d"/>
 			</connection>
-			<connection id="id-0068-0000004d" kind="ReferTo" role="ReferTo" relid="0x11e">
+			<connection id="id-0068-0000004e" kind="ReferTo" role="ReferTo" relid="0x11e">
 				<name>ReferTo</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Se</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-0000002d"/>
-				<connpoint role="src" target="id-0066-00000039"/>
-			</connection>
-			<connection id="id-0068-0000004e" kind="ReferTo" role="ReferTo" relid="0x11f">
-				<name>ReferTo</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Se</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-0000002d"/>
+				<connpoint role="dst" target="id-0066-0000002e"/>
 				<connpoint role="src" target="id-0066-0000003a"/>
 			</connection>
-			<connection id="id-0068-0000004f" kind="BaseInheritance" role="BaseInheritance" relid="0x120">
+			<connection id="id-0068-0000004f" kind="ReferTo" role="ReferTo" relid="0x11f">
+				<name>ReferTo</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Se</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-0000002e"/>
+				<connpoint role="src" target="id-0066-0000003b"/>
+			</connection>
+			<connection id="id-0068-00000050" kind="BaseInheritance" role="BaseInheritance" relid="0x120">
 				<name>BaseInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000002d"/>
-				<connpoint role="dst" target="id-0066-0000002e"/>
+				<connpoint role="src" target="id-0066-0000002e"/>
+				<connpoint role="dst" target="id-0066-0000002f"/>
 			</connection>
-			<connection id="id-0068-00000050" kind="DerivedInheritance" role="DerivedInheritance" relid="0x121">
+			<connection id="id-0068-00000051" kind="DerivedInheritance" role="DerivedInheritance" relid="0x121">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sw</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000002e"/>
+				<connpoint role="src" target="id-0066-0000002f"/>
 				<connpoint role="dst" target="id-0067-00000001"/>
 			</connection>
-			<connection id="id-0068-00000051" kind="HasAspect" role="HasAspect" relid="0x124">
+			<connection id="id-0068-00000052" kind="HasAspect" role="HasAspect" relid="0x124">
 				<name>HasAspect</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000026"/>
+				<connpoint role="dst" target="id-0066-00000027"/>
 				<connpoint role="src" target="id-0069-00000006"/>
 			</connection>
-			<connection id="id-0068-00000052" kind="HasAspect" role="HasAspect" relid="0x125">
+			<connection id="id-0068-00000053" kind="HasAspect" role="HasAspect" relid="0x125">
 				<name>HasAspect</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000029"/>
+				<connpoint role="dst" target="id-0066-0000002a"/>
 				<connpoint role="src" target="id-0069-00000006"/>
 			</connection>
-			<connection id="id-0068-00000053" kind="HasAspect" role="HasAspect" relid="0x126">
+			<connection id="id-0068-00000054" kind="HasAspect" role="HasAspect" relid="0x126">
 				<name>HasAspect</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>We</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000028"/>
+				<connpoint role="dst" target="id-0066-00000029"/>
 				<connpoint role="src" target="id-0069-00000006"/>
 			</connection>
-			<connection id="id-0068-00000054" kind="HasConstraint" role="HasConstraint" relid="0x127">
+			<connection id="id-0068-00000055" kind="HasConstraint" role="HasConstraint" relid="0x127">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Wn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-00000034"/>
-				<connpoint role="dst" target="id-0066-0000003b"/>
+				<connpoint role="src" target="id-0066-00000035"/>
+				<connpoint role="dst" target="id-0066-0000003c"/>
 			</connection>
-			<connection id="id-0068-00000055" kind="HasConstraint" role="HasConstraint" relid="0x128">
+			<connection id="id-0068-00000056" kind="HasConstraint" role="HasConstraint" relid="0x128">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ns</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-00000034"/>
-				<connpoint role="dst" target="id-0066-00000039"/>
-			</connection>
-			<connection id="id-0068-00000056" kind="HasConstraint" role="HasConstraint" relid="0x129">
-				<name>HasConstraint</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ns</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-00000034"/>
+				<connpoint role="src" target="id-0066-00000035"/>
 				<connpoint role="dst" target="id-0066-0000003a"/>
 			</connection>
-			<connection id="id-0068-00000057" kind="HasConstraint" role="HasConstraint" relid="0x12a">
+			<connection id="id-0068-00000057" kind="HasConstraint" role="HasConstraint" relid="0x129">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-00000035"/>
+				<connpoint role="dst" target="id-0066-0000003b"/>
+			</connection>
+			<connection id="id-0068-00000058" kind="HasConstraint" role="HasConstraint" relid="0x12a">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ew</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-00000034"/>
-				<connpoint role="dst" target="id-0066-00000037"/>
+				<connpoint role="src" target="id-0066-00000035"/>
+				<connpoint role="dst" target="id-0066-00000038"/>
 			</connection>
-			<connection id="id-0068-00000058" kind="HasConstraint" role="HasConstraint" relid="0x12b">
+			<connection id="id-0068-00000059" kind="HasConstraint" role="HasConstraint" relid="0x12b">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>En</value>
 				</regnode>
+				<connpoint role="src" target="id-0066-00000035"/>
+				<connpoint role="dst" target="id-0066-0000003d"/>
+			</connection>
+			<connection id="id-0068-0000005a" kind="HasConstraint" role="HasConstraint" relid="0x12c">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
 				<connpoint role="src" target="id-0066-00000034"/>
 				<connpoint role="dst" target="id-0066-0000003c"/>
 			</connection>
-			<connection id="id-0068-00000059" kind="HasConstraint" role="HasConstraint" relid="0x12c">
+			<connection id="id-0068-0000005b" kind="HasConstraint" role="HasConstraint" relid="0x12f">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ns</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-00000033"/>
-				<connpoint role="dst" target="id-0066-0000003b"/>
+				<connpoint role="dst" target="id-0066-00000029"/>
+				<connpoint role="src" target="id-0066-0000003e"/>
 			</connection>
-			<connection id="id-0068-0000005a" kind="HasConstraint" role="HasConstraint" relid="0x12f">
-				<name>HasConstraint</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ns</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-00000028"/>
-				<connpoint role="src" target="id-0066-0000003d"/>
-			</connection>
-			<connection id="id-0068-0000005b" kind="HasConstraint" role="HasConstraint" relid="0x130">
+			<connection id="id-0068-0000005c" kind="HasConstraint" role="HasConstraint" relid="0x130">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000029"/>
-				<connpoint role="src" target="id-0066-0000003d"/>
+				<connpoint role="dst" target="id-0066-0000002a"/>
+				<connpoint role="src" target="id-0066-0000003e"/>
 			</connection>
-			<connection id="id-0068-0000005c" kind="HasConstraint" role="HasConstraint" relid="0x131">
+			<connection id="id-0068-0000005d" kind="HasConstraint" role="HasConstraint" relid="0x131">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>We</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000029"/>
-				<connpoint role="src" target="id-0066-00000035"/>
+				<connpoint role="dst" target="id-0066-0000002a"/>
+				<connpoint role="src" target="id-0066-00000036"/>
 			</connection>
-			<connection id="id-0068-0000005d" kind="BaseInheritance" role="BaseInheritance" relid="0x134">
+			<connection id="id-0068-0000005e" kind="BaseInheritance" role="BaseInheritance" relid="0x134">
 				<name>BaseInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-00000038"/>
+				<connpoint role="src" target="id-0066-00000039"/>
+				<connpoint role="dst" target="id-0066-00000040"/>
+			</connection>
+			<connection id="id-0068-0000005f" kind="DerivedInheritance" role="DerivedInheritance" relid="0x135">
+				<name>DerivedInheritance</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
 				<connpoint role="dst" target="id-0066-0000003f"/>
+				<connpoint role="src" target="id-0066-00000040"/>
 			</connection>
-			<connection id="id-0068-0000005e" kind="DerivedInheritance" role="DerivedInheritance" relid="0x135">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-0000003e"/>
-				<connpoint role="src" target="id-0066-0000003f"/>
-			</connection>
-			<connection id="id-0068-0000005f" kind="BaseInheritance" role="BaseInheritance" relid="0x136">
+			<connection id="id-0068-00000060" kind="BaseInheritance" role="BaseInheritance" relid="0x136">
 				<name>BaseInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-0000002f"/>
-				<connpoint role="src" target="id-0066-0000003e"/>
+				<connpoint role="dst" target="id-0066-00000030"/>
+				<connpoint role="src" target="id-0066-0000003f"/>
 			</connection>
-			<connection id="id-0068-00000060" kind="DerivedInheritance" role="DerivedInheritance" relid="0x137">
+			<connection id="id-0068-00000061" kind="DerivedInheritance" role="DerivedInheritance" relid="0x137">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000003f"/>
+				<connpoint role="src" target="id-0066-00000040"/>
 				<connpoint role="dst" target="id-0067-00000023"/>
 			</connection>
-			<connection id="id-0068-00000061" kind="Containment" role="Containment" relid="0x139">
+			<connection id="id-0068-00000062" kind="Containment" role="Containment" relid="0x139">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ns</value>
@@ -28585,42 +28585,42 @@
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000029"/>
-				<connpoint role="src" target="id-0066-00000037"/>
+				<connpoint role="dst" target="id-0066-0000002a"/>
+				<connpoint role="src" target="id-0066-00000038"/>
 			</connection>
-			<connection id="id-0068-00000062" kind="DerivedInheritance" role="DerivedInheritance" relid="0x13b">
+			<connection id="id-0068-00000063" kind="DerivedInheritance" role="DerivedInheritance" relid="0x13b">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Se</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000002e"/>
+				<connpoint role="src" target="id-0066-0000002f"/>
 				<connpoint role="dst" target="id-0067-00000002"/>
 			</connection>
-			<connection id="id-0068-00000063" kind="DerivedInheritance" role="DerivedInheritance" relid="0x13c">
+			<connection id="id-0068-00000064" kind="DerivedInheritance" role="DerivedInheritance" relid="0x13c">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-0000003b"/>
-				<connpoint role="src" target="id-0066-0000003f"/>
+				<connpoint role="dst" target="id-0066-0000003c"/>
+				<connpoint role="src" target="id-0066-00000040"/>
 			</connection>
-			<connection id="id-0068-00000064" kind="ReferTo" role="ReferTo" relid="0x13e">
+			<connection id="id-0068-00000065" kind="ReferTo" role="ReferTo" relid="0x13e">
 				<name>ReferTo</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sw</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-0000002d"/>
-				<connpoint role="src" target="id-0066-0000003b"/>
+				<connpoint role="dst" target="id-0066-0000002e"/>
+				<connpoint role="src" target="id-0066-0000003c"/>
 			</connection>
-			<connection id="id-0068-00000065" kind="ReferTo" role="ReferTo" relid="0x140">
+			<connection id="id-0068-00000066" kind="ReferTo" role="ReferTo" relid="0x140">
 				<name>ReferTo</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ew</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-00000037"/>
+				<connpoint role="src" target="id-0066-00000038"/>
 				<connpoint role="dst" target="id-0067-00000003"/>
 			</connection>
-			<set id="id-0069-00000006" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-00000001 id-0066-00000037 id-0066-0000003b id-0066-0000003c id-0066-00000039 id-0066-0000003a id-0066-00000027 id-0067-00000023 id-0066-0000002b id-0066-0000002a id-0066-00000029 id-0066-00000028 id-0066-00000026 id-0067-00000003">
+			<set id="id-0069-00000006" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-00000001 id-0066-00000038 id-0066-0000003c id-0066-0000003d id-0066-0000003a id-0066-0000003b id-0066-00000028 id-0067-00000023 id-0066-0000002c id-0066-0000002b id-0066-0000002a id-0066-00000029 id-0066-00000027 id-0067-00000003">
 				<name>NamedTypeAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -28647,7 +28647,7 @@
 			<attribute kind="VersionInformation" status="meta">
 				<value></value>
 			</attribute>
-			<atom id="id-0066-00000040" kind="Model" role="Model" relid="0x1">
+			<atom id="id-0066-00000041" kind="Model" role="Model" relid="0x1">
 				<name>Object</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -28722,7 +28722,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000041" kind="Inheritance" role="Inheritance" relid="0x19">
+			<atom id="id-0066-00000042" kind="Inheritance" role="Inheritance" relid="0x19">
 				<name>Inheritance</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -28752,7 +28752,7 @@
 					</regnode>
 				</regnode>
 			</atom>
-			<atom id="id-0066-00000042" kind="Reference" role="Reference" relid="0x1d">
+			<atom id="id-0066-00000043" kind="Reference" role="Reference" relid="0x1d">
 				<name>Inherits</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -28824,7 +28824,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000043" kind="Model" role="Model" relid="0x21">
+			<atom id="id-0066-00000044" kind="Model" role="Model" relid="0x21">
 				<name>Event</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -28899,7 +28899,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000044" kind="Model" role="Model" relid="0x22">
+			<atom id="id-0066-00000045" kind="Model" role="Model" relid="0x22">
 				<name>ValueObject</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -28974,7 +28974,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000045" kind="Inheritance" role="Inheritance" relid="0x23">
+			<atom id="id-0066-00000046" kind="Inheritance" role="Inheritance" relid="0x23">
 				<name>Inheritance</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -29004,7 +29004,7 @@
 					</regnode>
 				</regnode>
 			</atom>
-			<atom id="id-0066-00000046" kind="Inheritance" role="Inheritance" relid="0x26">
+			<atom id="id-0066-00000047" kind="Inheritance" role="Inheritance" relid="0x26">
 				<name>Inheritance</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -29034,7 +29034,7 @@
 					</regnode>
 				</regnode>
 			</atom>
-			<atom id="id-0066-00000047" kind="Inheritance" role="Inheritance" relid="0x27">
+			<atom id="id-0066-00000048" kind="Inheritance" role="Inheritance" relid="0x27">
 				<name>Inheritance</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -29064,7 +29064,7 @@
 					</regnode>
 				</regnode>
 			</atom>
-			<atom id="id-0066-00000048" kind="Model" role="Model" relid="0x31">
+			<atom id="id-0066-00000049" kind="Model" role="Model" relid="0x31">
 				<name>Inheritable</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -29139,7 +29139,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000049" kind="Model" role="Model" relid="0x34">
+			<atom id="id-0066-0000004a" kind="Model" role="Model" relid="0x34">
 				<name>HasOperations</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -29214,7 +29214,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000004a" kind="Model" role="Model" relid="0x35">
+			<atom id="id-0066-0000004b" kind="Model" role="Model" relid="0x35">
 				<name>SupportsInterfaces</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -29289,7 +29289,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000004b" kind="Reference" role="Reference" relid="0x3c">
+			<atom id="id-0066-0000004c" kind="Reference" role="Reference" relid="0x3c">
 				<name>Supports</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -29361,7 +29361,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000004c" kind="Model" role="Model" relid="0x3f">
+			<atom id="id-0066-0000004d" kind="Model" role="Model" relid="0x3f">
 				<name>ReadonlyAttribute</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -29436,7 +29436,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000004d" kind="Inheritance" role="Inheritance" relid="0x47">
+			<atom id="id-0066-0000004e" kind="Inheritance" role="Inheritance" relid="0x47">
 				<name>Inheritance</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -29466,7 +29466,7 @@
 					</regnode>
 				</regnode>
 			</atom>
-			<atom id="id-0066-0000004e" kind="Model" role="Model" relid="0x48">
+			<atom id="id-0066-0000004f" kind="Model" role="Model" relid="0x48">
 				<name>Attribute</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -29541,7 +29541,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000004f" kind="BooleanAttribute" role="BooleanAttribute" relid="0x53">
+			<atom id="id-0066-00000050" kind="BooleanAttribute" role="BooleanAttribute" relid="0x53">
 				<name>abstract</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -29568,7 +29568,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000050" kind="BooleanAttribute" role="BooleanAttribute" relid="0x56">
+			<atom id="id-0066-00000051" kind="BooleanAttribute" role="BooleanAttribute" relid="0x56">
 				<name>local</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -29595,7 +29595,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000051" kind="Reference" role="Reference" relid="0x5f">
+			<atom id="id-0066-00000052" kind="Reference" role="Reference" relid="0x5f">
 				<name>LookupKey</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -29667,7 +29667,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000052" kind="Reference" role="Reference" relid="0x80">
+			<atom id="id-0066-00000053" kind="Reference" role="Reference" relid="0x80">
 				<name>SetException</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -29739,7 +29739,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000053" kind="Model" role="Model" relid="0x8c">
+			<atom id="id-0066-00000054" kind="Model" role="Model" relid="0x8c">
 				<name>ObjectByValue</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -29814,7 +29814,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000054" kind="Reference" role="Reference" relid="0xae">
+			<atom id="id-0066-00000055" kind="Reference" role="Reference" relid="0xae">
 				<name>GetException</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -29886,7 +29886,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000055" kind="Atom" role="Atom" relid="0xbc">
+			<atom id="id-0066-00000056" kind="Atom" role="Atom" relid="0xbc">
 				<name>PrivateFlag</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -29958,7 +29958,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000056" kind="Connection" role="Connection" relid="0xbe">
+			<atom id="id-0066-00000057" kind="Connection" role="Connection" relid="0xbe">
 				<name>MakeMemberPrivate</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -30027,7 +30027,7 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000057" kind="Connector" role="Connector" relid="0xc0">
+			<atom id="id-0066-00000058" kind="Connector" role="Connector" relid="0xc0">
 				<name>Connector</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -30048,7 +30048,7 @@
 					<value>nsE</value>
 				</regnode>
 			</atom>
-			<atom id="id-0066-00000058" kind="Constraint" role="Constraint" relid="0xc6">
+			<atom id="id-0066-00000059" kind="Constraint" role="Constraint" relid="0xc6">
 				<name>UniqueInheritableDeclNames</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -30081,7 +30081,8 @@
 					<value>Declarations in a scope must have unique names</value>
 				</attribute>
 				<attribute kind="ConstraintEqn">
-					<value><![CDATA[(parts () - parts ("Inherits") - parts ("Supports"))->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]></value>
+					<value><![CDATA[let a = parts () - parts ("Inherits") - parts ("Supports") - parts ("MakeMemberPrivate") - parts ("PrivateFlag") in
+a->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]></value>
 				</attribute>
 				<attribute kind="ConstraintParam" status="meta">
 					<value></value>
@@ -30123,7 +30124,7 @@
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000059" kind="ConstraintFunc" role="ConstraintFunc" relid="0xc8">
+			<atom id="id-0066-0000005a" kind="ConstraintFunc" role="ConstraintFunc" relid="0xc8">
 				<name>inheritsRecursive</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -30156,7 +30157,7 @@ endif)))]]></value>
 					<value>method</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000005a" kind="Constraint" role="Constraint" relid="0xca">
+			<atom id="id-0066-0000005b" kind="Constraint" role="Constraint" relid="0xca">
 				<name>NoRecursiveInheritance</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -30231,7 +30232,7 @@ endif)))]]></value>
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000005b" kind="Constraint" role="Constraint" relid="0xcc">
+			<atom id="id-0066-0000005c" kind="Constraint" role="Constraint" relid="0xcc">
 				<name>NoNonLocalFromLocal</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -30311,7 +30312,7 @@ endif]]></value>
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000005c" kind="Constraint" role="Constraint" relid="0xce">
+			<atom id="id-0066-0000005d" kind="Constraint" role="Constraint" relid="0xce">
 				<name>OneParent</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -30386,7 +30387,7 @@ endif]]></value>
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000005d" kind="Constraint" role="Constraint" relid="0xd2">
+			<atom id="id-0066-0000005e" kind="Constraint" role="Constraint" relid="0xd2">
 				<name>ConcreteValueParent</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -30468,7 +30469,7 @@ endif]]></value>
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000005e" kind="Constraint" role="Constraint" relid="0xd5">
+			<atom id="id-0066-0000005f" kind="Constraint" role="Constraint" relid="0xd5">
 				<name>ConcreteEventParent</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -30549,7 +30550,7 @@ endif]]></value>
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000005f" kind="Constraint" role="Constraint" relid="0xd7">
+			<atom id="id-0066-00000060" kind="Constraint" role="Constraint" relid="0xd7">
 				<name>InheritsSameType</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -30624,7 +30625,7 @@ endif]]></value>
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000060" kind="ConstraintFunc" role="ConstraintFunc" relid="0xd9">
+			<atom id="id-0066-00000061" kind="ConstraintFunc" role="ConstraintFunc" relid="0xd9">
 				<name>localOps</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -30652,7 +30653,7 @@ self.parts ("FactoryOperation") + self.parts ("LookupOperation")]]></value>
 					<value>method</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000061" kind="Constraint" role="Constraint" relid="0xdc">
+			<atom id="id-0066-00000062" kind="Constraint" role="Constraint" relid="0xdc">
 				<name>NoDuplicateImmediateParents</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -30727,7 +30728,7 @@ self.parts ("FactoryOperation") + self.parts ("LookupOperation")]]></value>
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000062" kind="Constraint" role="Constraint" relid="0xde">
+			<atom id="id-0066-00000063" kind="Constraint" role="Constraint" relid="0xde">
 				<name>NoNullReference</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -30802,7 +30803,7 @@ self.parts ("FactoryOperation") + self.parts ("LookupOperation")]]></value>
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000063" kind="Constraint" role="Constraint" relid="0xfa">
+			<atom id="id-0066-00000064" kind="Constraint" role="Constraint" relid="0xfa">
 				<name>NotLocalAndAbstract</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -30877,7 +30878,7 @@ self.parts ("FactoryOperation") + self.parts ("LookupOperation")]]></value>
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000064" kind="Reference" role="Reference" relid="0x116">
+			<atom id="id-0066-00000065" kind="Reference" role="Reference" relid="0x116">
 				<name>AttributeMember</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -30949,7 +30950,7 @@ self.parts ("FactoryOperation") + self.parts ("LookupOperation")]]></value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000065" kind="ConstraintFunc" role="ConstraintFunc" relid="0x11c">
+			<atom id="id-0066-00000066" kind="ConstraintFunc" role="ConstraintFunc" relid="0x11c">
 				<name>supportedOps</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -30979,7 +30980,7 @@ supported.localOps () + supported.inheritedOps (supported)))]]></value>
 					<value>method</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000066" kind="ConstraintFunc" role="ConstraintFunc" relid="0x11d">
+			<atom id="id-0066-00000067" kind="ConstraintFunc" role="ConstraintFunc" relid="0x11d">
 				<name>allOps</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -31007,7 +31008,7 @@ supported.localOps () + supported.inheritedOps (supported)))]]></value>
 					<value>method</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000067" kind="Constraint" role="Constraint" relid="0x11e">
+			<atom id="id-0066-00000068" kind="Constraint" role="Constraint" relid="0x11e">
 				<name>UniqueOperationNames</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -31084,7 +31085,7 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000068" kind="ConstraintFunc" role="ConstraintFunc" relid="0x121">
+			<atom id="id-0066-00000069" kind="ConstraintFunc" role="ConstraintFunc" relid="0x121">
 				<name>inheritedSupportedOps</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -31114,7 +31115,7 @@ parent.supportedOps () + parent.inheritedSupportedOps ()))]]></value>
 					<value>method</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000069" kind="ConstraintFunc" role="ConstraintFunc" relid="0x124">
+			<atom id="id-0066-0000006a" kind="ConstraintFunc" role="ConstraintFunc" relid="0x124">
 				<name>inheritedOps</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -31147,7 +31148,7 @@ endif))]]></value>
 					<value>method</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000006a" kind="Constraint" role="Constraint" relid="0x126">
+			<atom id="id-0066-0000006b" kind="Constraint" role="Constraint" relid="0x126">
 				<name>NoDeriveAndSupport</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -31444,7 +31445,7 @@ endif))]]></value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000007" kind="ReferenceProxy" role="ReferenceProxy" relid="0x10a" referred="id-0066-0000003c">
+			<reference id="id-0067-00000007" kind="ReferenceProxy" role="ReferenceProxy" relid="0x10a" referred="id-0066-0000003d">
 				<name>Member</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -31516,7 +31517,7 @@ endif))]]></value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000008" kind="FCOProxy" role="FCOProxy" relid="0x115" referred="id-0066-0000002d">
+			<reference id="id-0067-00000008" kind="FCOProxy" role="FCOProxy" relid="0x115" referred="id-0066-0000002e">
 				<name>MemberType</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -31588,7 +31589,7 @@ endif))]]></value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000009" kind="FCOProxy" role="FCOProxy" relid="0x119" referred="id-0066-0000003e">
+			<reference id="id-0067-00000009" kind="FCOProxy" role="FCOProxy" relid="0x119" referred="id-0066-0000003f">
 				<name>NoInheritable</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -31654,7 +31655,7 @@ endif))]]></value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000024" kind="ModelProxy" role="ModelProxy" relid="0x4f" referred="id-0066-00000070">
+			<reference id="id-0067-00000024" kind="ModelProxy" role="ModelProxy" relid="0x4f" referred="id-0066-00000071">
 				<name>OnewayOperation</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -31729,7 +31730,7 @@ endif))]]></value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000025" kind="ModelProxy" role="ModelProxy" relid="0x94" referred="id-0066-0000006e">
+			<reference id="id-0067-00000025" kind="ModelProxy" role="ModelProxy" relid="0x94" referred="id-0066-0000006f">
 				<name>LookupOperation</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -31804,7 +31805,7 @@ endif))]]></value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000026" kind="ModelProxy" role="ModelProxy" relid="0x96" referred="id-0066-0000006d">
+			<reference id="id-0067-00000026" kind="ModelProxy" role="ModelProxy" relid="0x96" referred="id-0066-0000006e">
 				<name>FactoryOperation</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -31879,7 +31880,7 @@ endif))]]></value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000027" kind="ModelProxy" role="ModelProxy" relid="0x99" referred="id-0066-0000006f">
+			<reference id="id-0067-00000027" kind="ModelProxy" role="ModelProxy" relid="0x99" referred="id-0066-00000070">
 				<name>TwowayOperation</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -31954,7 +31955,7 @@ endif))]]></value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000028" kind="ModelProxy" role="ModelProxy" relid="0xa1" referred="id-0066-0000007a">
+			<reference id="id-0067-00000028" kind="ModelProxy" role="ModelProxy" relid="0xa1" referred="id-0066-0000007b">
 				<name>Component</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -32029,7 +32030,7 @@ endif))]]></value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000029" kind="ModelProxy" role="ModelProxy" relid="0x10d" referred="id-0066-00000088">
+			<reference id="id-0067-00000029" kind="ModelProxy" role="ModelProxy" relid="0x10d" referred="id-0066-00000089">
 				<name>ComponentFactory</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -32104,23 +32105,23 @@ endif))]]></value>
 					<value></value>
 				</attribute>
 			</reference>
-			<connection id="id-0068-00000066" kind="DerivedInheritance" role="DerivedInheritance" relid="0x29">
+			<connection id="id-0068-00000067" kind="DerivedInheritance" role="DerivedInheritance" relid="0x29">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000040"/>
-				<connpoint role="src" target="id-0066-00000046"/>
+				<connpoint role="dst" target="id-0066-00000041"/>
+				<connpoint role="src" target="id-0066-00000047"/>
 			</connection>
-			<connection id="id-0068-00000067" kind="ReferTo" role="ReferTo" relid="0x32">
+			<connection id="id-0068-00000068" kind="ReferTo" role="ReferTo" relid="0x32">
 				<name>ReferTo</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>We</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-00000042"/>
-				<connpoint role="dst" target="id-0066-00000048"/>
+				<connpoint role="src" target="id-0066-00000043"/>
+				<connpoint role="dst" target="id-0066-00000049"/>
 			</connection>
-			<connection id="id-0068-00000068" kind="Containment" role="Containment" relid="0x33">
+			<connection id="id-0068-00000069" kind="Containment" role="Containment" relid="0x33">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>We</value>
@@ -32134,42 +32135,34 @@ endif))]]></value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="src" target="id-0066-00000042"/>
-				<connpoint role="dst" target="id-0066-00000048"/>
-			</connection>
-			<connection id="id-0068-00000069" kind="BaseInheritance" role="BaseInheritance" relid="0x36">
-				<name>BaseInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-00000041"/>
-				<connpoint role="src" target="id-0066-00000048"/>
-			</connection>
-			<connection id="id-0068-0000006a" kind="DerivedInheritance" role="DerivedInheritance" relid="0x37">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-00000041"/>
+				<connpoint role="src" target="id-0066-00000043"/>
 				<connpoint role="dst" target="id-0066-00000049"/>
 			</connection>
-			<connection id="id-0068-0000006b" kind="DerivedInheritance" role="DerivedInheritance" relid="0x38">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-00000041"/>
-				<connpoint role="dst" target="id-0066-0000004a"/>
-			</connection>
-			<connection id="id-0068-0000006c" kind="BaseInheritance" role="BaseInheritance" relid="0x39">
+			<connection id="id-0068-0000006a" kind="BaseInheritance" role="BaseInheritance" relid="0x36">
 				<name>BaseInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000046"/>
+				<connpoint role="dst" target="id-0066-00000042"/>
 				<connpoint role="src" target="id-0066-00000049"/>
 			</connection>
-			<connection id="id-0068-0000006d" kind="BaseInheritance" role="BaseInheritance" relid="0x3a">
+			<connection id="id-0068-0000006b" kind="DerivedInheritance" role="DerivedInheritance" relid="0x37">
+				<name>DerivedInheritance</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-00000042"/>
+				<connpoint role="dst" target="id-0066-0000004a"/>
+			</connection>
+			<connection id="id-0068-0000006c" kind="DerivedInheritance" role="DerivedInheritance" relid="0x38">
+				<name>DerivedInheritance</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-00000042"/>
+				<connpoint role="dst" target="id-0066-0000004b"/>
+			</connection>
+			<connection id="id-0068-0000006d" kind="BaseInheritance" role="BaseInheritance" relid="0x39">
 				<name>BaseInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
@@ -32177,23 +32170,31 @@ endif))]]></value>
 				<connpoint role="dst" target="id-0066-00000047"/>
 				<connpoint role="src" target="id-0066-0000004a"/>
 			</connection>
-			<connection id="id-0068-0000006e" kind="HasAspect" role="HasAspect" relid="0x3b">
+			<connection id="id-0068-0000006e" kind="BaseInheritance" role="BaseInheritance" relid="0x3a">
+				<name>BaseInheritance</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000048"/>
+				<connpoint role="src" target="id-0066-0000004b"/>
+			</connection>
+			<connection id="id-0068-0000006f" kind="HasAspect" role="HasAspect" relid="0x3b">
 				<name>HasAspect</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ew</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000048"/>
+				<connpoint role="dst" target="id-0066-00000049"/>
 				<connpoint role="src" target="id-0069-00000007"/>
 			</connection>
-			<connection id="id-0068-0000006f" kind="ReferTo" role="ReferTo" relid="0x3d">
+			<connection id="id-0068-00000070" kind="ReferTo" role="ReferTo" relid="0x3d">
 				<name>ReferTo</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ws</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000040"/>
-				<connpoint role="src" target="id-0066-0000004b"/>
+				<connpoint role="dst" target="id-0066-00000041"/>
+				<connpoint role="src" target="id-0066-0000004c"/>
 			</connection>
-			<connection id="id-0068-00000070" kind="Containment" role="Containment" relid="0x3e">
+			<connection id="id-0068-00000071" kind="Containment" role="Containment" relid="0x3e">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ne</value>
@@ -32207,10 +32208,10 @@ endif))]]></value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-0000004a"/>
-				<connpoint role="src" target="id-0066-0000004b"/>
+				<connpoint role="dst" target="id-0066-0000004b"/>
+				<connpoint role="src" target="id-0066-0000004c"/>
 			</connection>
-			<connection id="id-0068-00000071" kind="Containment" role="Containment" relid="0x40">
+			<connection id="id-0068-00000072" kind="Containment" role="Containment" relid="0x40">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ew</value>
@@ -32224,34 +32225,34 @@ endif))]]></value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000048"/>
-				<connpoint role="src" target="id-0066-0000004c"/>
+				<connpoint role="dst" target="id-0066-00000049"/>
+				<connpoint role="src" target="id-0066-0000004d"/>
 			</connection>
-			<connection id="id-0068-00000072" kind="HasAspect" role="HasAspect" relid="0x44">
+			<connection id="id-0068-00000073" kind="HasAspect" role="HasAspect" relid="0x44">
 				<name>HasAspect</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>We</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-0000004c"/>
+				<connpoint role="dst" target="id-0066-0000004d"/>
 				<connpoint role="src" target="id-0069-00000007"/>
 			</connection>
-			<connection id="id-0068-00000073" kind="BaseInheritance" role="BaseInheritance" relid="0x49">
+			<connection id="id-0068-00000074" kind="BaseInheritance" role="BaseInheritance" relid="0x49">
 				<name>BaseInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-0000004c"/>
-				<connpoint role="dst" target="id-0066-0000004d"/>
-			</connection>
-			<connection id="id-0068-00000074" kind="DerivedInheritance" role="DerivedInheritance" relid="0x4a">
-				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-0000004d"/>
 				<connpoint role="dst" target="id-0066-0000004e"/>
 			</connection>
-			<connection id="id-0068-00000075" kind="Containment" role="Containment" relid="0x52">
+			<connection id="id-0068-00000075" kind="DerivedInheritance" role="DerivedInheritance" relid="0x4a">
+				<name>DerivedInheritance</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-0000004e"/>
+				<connpoint role="dst" target="id-0066-0000004f"/>
+			</connection>
+			<connection id="id-0068-00000076" kind="Containment" role="Containment" relid="0x52">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ew</value>
@@ -32265,34 +32266,34 @@ endif))]]></value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000049"/>
+				<connpoint role="dst" target="id-0066-0000004a"/>
 				<connpoint role="src" target="id-0067-00000024"/>
 			</connection>
-			<connection id="id-0068-00000076" kind="HasAttribute" role="HasAttribute" relid="0x55">
+			<connection id="id-0068-00000077" kind="HasAttribute" role="HasAttribute" relid="0x55">
 				<name>HasAttribute</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ns</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000040"/>
-				<connpoint role="src" target="id-0066-0000004f"/>
+				<connpoint role="dst" target="id-0066-00000041"/>
+				<connpoint role="src" target="id-0066-00000050"/>
 			</connection>
-			<connection id="id-0068-00000077" kind="HasAttribute" role="HasAttribute" relid="0x57">
+			<connection id="id-0068-00000078" kind="HasAttribute" role="HasAttribute" relid="0x57">
 				<name>HasAttribute</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Nw</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000040"/>
-				<connpoint role="src" target="id-0066-00000050"/>
+				<connpoint role="dst" target="id-0066-00000041"/>
+				<connpoint role="src" target="id-0066-00000051"/>
 			</connection>
-			<connection id="id-0068-00000078" kind="ReferTo" role="ReferTo" relid="0x64">
+			<connection id="id-0068-00000079" kind="ReferTo" role="ReferTo" relid="0x64">
 				<name>ReferTo</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>We</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000044"/>
-				<connpoint role="src" target="id-0066-00000051"/>
+				<connpoint role="dst" target="id-0066-00000045"/>
+				<connpoint role="src" target="id-0066-00000052"/>
 			</connection>
-			<connection id="id-0068-00000079" kind="Containment" role="Containment" relid="0x82">
+			<connection id="id-0068-0000007a" kind="Containment" role="Containment" relid="0x82">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ew</value>
@@ -32306,58 +32307,58 @@ endif))]]></value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-0000004e"/>
-				<connpoint role="src" target="id-0066-00000052"/>
+				<connpoint role="dst" target="id-0066-0000004f"/>
+				<connpoint role="src" target="id-0066-00000053"/>
 			</connection>
-			<connection id="id-0068-0000007a" kind="DerivedInheritance" role="DerivedInheritance" relid="0x8a">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-00000043"/>
-				<connpoint role="src" target="id-0066-00000045"/>
-			</connection>
-			<connection id="id-0068-0000007b" kind="DerivedInheritance" role="DerivedInheritance" relid="0x8b">
+			<connection id="id-0068-0000007b" kind="DerivedInheritance" role="DerivedInheritance" relid="0x8a">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-00000044"/>
-				<connpoint role="src" target="id-0066-00000045"/>
+				<connpoint role="src" target="id-0066-00000046"/>
 			</connection>
-			<connection id="id-0068-0000007c" kind="HasAttribute" role="HasAttribute" relid="0x8d">
-				<name>HasAttribute</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Nw</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-0000004f"/>
-				<connpoint role="dst" target="id-0066-00000053"/>
-			</connection>
-			<connection id="id-0068-0000007d" kind="BaseInheritance" role="BaseInheritance" relid="0x91">
-				<name>BaseInheritance</name>
+			<connection id="id-0068-0000007c" kind="DerivedInheritance" role="DerivedInheritance" relid="0x8b">
+				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-00000045"/>
-				<connpoint role="src" target="id-0066-00000053"/>
+				<connpoint role="src" target="id-0066-00000046"/>
 			</connection>
-			<connection id="id-0068-0000007e" kind="DerivedInheritance" role="DerivedInheritance" relid="0x92">
+			<connection id="id-0068-0000007d" kind="HasAttribute" role="HasAttribute" relid="0x8d">
+				<name>HasAttribute</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Nw</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-00000050"/>
+				<connpoint role="dst" target="id-0066-00000054"/>
+			</connection>
+			<connection id="id-0068-0000007e" kind="BaseInheritance" role="BaseInheritance" relid="0x91">
+				<name>BaseInheritance</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000046"/>
+				<connpoint role="src" target="id-0066-00000054"/>
+			</connection>
+			<connection id="id-0068-0000007f" kind="DerivedInheritance" role="DerivedInheritance" relid="0x92">
+				<name>DerivedInheritance</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-00000048"/>
+				<connpoint role="dst" target="id-0066-00000054"/>
+			</connection>
+			<connection id="id-0068-00000080" kind="DerivedInheritance" role="DerivedInheritance" relid="0x93">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-00000047"/>
-				<connpoint role="dst" target="id-0066-00000053"/>
+				<connpoint role="dst" target="id-0066-00000054"/>
 			</connection>
-			<connection id="id-0068-0000007f" kind="DerivedInheritance" role="DerivedInheritance" relid="0x93">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-00000046"/>
-				<connpoint role="dst" target="id-0066-00000053"/>
-			</connection>
-			<connection id="id-0068-00000080" kind="Containment" role="Containment" relid="0x97">
+			<connection id="id-0068-00000081" kind="Containment" role="Containment" relid="0x97">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>We</value>
@@ -32371,10 +32372,10 @@ endif))]]></value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000053"/>
+				<connpoint role="dst" target="id-0066-00000054"/>
 				<connpoint role="src" target="id-0067-00000026"/>
 			</connection>
-			<connection id="id-0068-00000081" kind="Containment" role="Containment" relid="0x9a">
+			<connection id="id-0068-00000082" kind="Containment" role="Containment" relid="0x9a">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ew</value>
@@ -32388,26 +32389,26 @@ endif))]]></value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000049"/>
+				<connpoint role="dst" target="id-0066-0000004a"/>
 				<connpoint role="src" target="id-0067-00000027"/>
 			</connection>
-			<connection id="id-0068-00000082" kind="DerivedInheritance" role="DerivedInheritance" relid="0xa3">
+			<connection id="id-0068-00000083" kind="DerivedInheritance" role="DerivedInheritance" relid="0xa3">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-00000047"/>
+				<connpoint role="src" target="id-0066-00000048"/>
 				<connpoint role="dst" target="id-0067-00000028"/>
 			</connection>
-			<connection id="id-0068-00000083" kind="ReferTo" role="ReferTo" relid="0xaf">
+			<connection id="id-0068-00000084" kind="ReferTo" role="ReferTo" relid="0xaf">
 				<name>ReferTo</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-00000054"/>
+				<connpoint role="src" target="id-0066-00000055"/>
 				<connpoint role="dst" target="id-0067-00000004"/>
 			</connection>
-			<connection id="id-0068-00000084" kind="Containment" role="Containment" relid="0xb0">
+			<connection id="id-0068-00000085" kind="Containment" role="Containment" relid="0xb0">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ew</value>
@@ -32421,10 +32422,10 @@ endif))]]></value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-0000004c"/>
-				<connpoint role="src" target="id-0066-00000054"/>
+				<connpoint role="dst" target="id-0066-0000004d"/>
+				<connpoint role="src" target="id-0066-00000055"/>
 			</connection>
-			<connection id="id-0068-00000085" kind="Containment" role="Containment" relid="0xb8">
+			<connection id="id-0068-00000086" kind="Containment" role="Containment" relid="0xb8">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>We</value>
@@ -32438,10 +32439,10 @@ endif))]]></value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000049"/>
+				<connpoint role="dst" target="id-0066-0000004a"/>
 				<connpoint role="src" target="id-0067-00000005"/>
 			</connection>
-			<connection id="id-0068-00000086" kind="Containment" role="Containment" relid="0xbd">
+			<connection id="id-0068-00000087" kind="Containment" role="Containment" relid="0xbd">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Nw</value>
@@ -32455,10 +32456,10 @@ endif))]]></value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000053"/>
-				<connpoint role="src" target="id-0066-00000055"/>
+				<connpoint role="dst" target="id-0066-00000054"/>
+				<connpoint role="src" target="id-0066-00000056"/>
 			</connection>
-			<connection id="id-0068-00000087" kind="Containment" role="Containment" relid="0xbf">
+			<connection id="id-0068-00000088" kind="Containment" role="Containment" relid="0xbf">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ew</value>
@@ -32472,10 +32473,10 @@ endif))]]></value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000053"/>
-				<connpoint role="src" target="id-0066-00000056"/>
+				<connpoint role="dst" target="id-0066-00000054"/>
+				<connpoint role="src" target="id-0066-00000057"/>
 			</connection>
-			<connection id="id-0068-00000088" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0xc2">
+			<connection id="id-0068-00000089" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0xc2">
 				<name>ConnectorToDestination</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>n</value>
@@ -32486,122 +32487,122 @@ endif))]]></value>
 				<attribute kind="dstRolename" status="meta">
 					<value>dst</value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000055"/>
-				<connpoint role="src" target="id-0066-00000057"/>
+				<connpoint role="dst" target="id-0066-00000056"/>
+				<connpoint role="src" target="id-0066-00000058"/>
 			</connection>
-			<connection id="id-0068-00000089" kind="AssociationClass" role="AssociationClass" relid="0xc4">
+			<connection id="id-0068-0000008a" kind="AssociationClass" role="AssociationClass" relid="0xc4">
 				<name>AssociationClass</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>N</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-00000056"/>
-				<connpoint role="dst" target="id-0066-00000057"/>
+				<connpoint role="src" target="id-0066-00000057"/>
+				<connpoint role="dst" target="id-0066-00000058"/>
 			</connection>
-			<connection id="id-0068-0000008a" kind="HasConstraint" role="HasConstraint" relid="0xc7">
+			<connection id="id-0068-0000008b" kind="HasConstraint" role="HasConstraint" relid="0xc7">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>We</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000048"/>
-				<connpoint role="src" target="id-0066-00000058"/>
+				<connpoint role="dst" target="id-0066-00000049"/>
+				<connpoint role="src" target="id-0066-00000059"/>
 			</connection>
-			<connection id="id-0068-0000008b" kind="HasConstraint" role="HasConstraint" relid="0xcb">
+			<connection id="id-0068-0000008c" kind="HasConstraint" role="HasConstraint" relid="0xcb">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>We</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000048"/>
-				<connpoint role="src" target="id-0066-0000005a"/>
-			</connection>
-			<connection id="id-0068-0000008c" kind="HasConstraint" role="HasConstraint" relid="0xcd">
-				<name>HasConstraint</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ew</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-00000040"/>
+				<connpoint role="dst" target="id-0066-00000049"/>
 				<connpoint role="src" target="id-0066-0000005b"/>
 			</connection>
-			<connection id="id-0068-0000008d" kind="HasConstraint" role="HasConstraint" relid="0xd4">
-				<name>HasConstraint</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>We</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-00000044"/>
-				<connpoint role="src" target="id-0066-0000005d"/>
-			</connection>
-			<connection id="id-0068-0000008e" kind="HasConstraint" role="HasConstraint" relid="0xd6">
+			<connection id="id-0068-0000008d" kind="HasConstraint" role="HasConstraint" relid="0xcd">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ew</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000043"/>
+				<connpoint role="dst" target="id-0066-00000041"/>
+				<connpoint role="src" target="id-0066-0000005c"/>
+			</connection>
+			<connection id="id-0068-0000008e" kind="HasConstraint" role="HasConstraint" relid="0xd4">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>We</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000045"/>
 				<connpoint role="src" target="id-0066-0000005e"/>
 			</connection>
-			<connection id="id-0068-0000008f" kind="HasConstraint" role="HasConstraint" relid="0xd8">
+			<connection id="id-0068-0000008f" kind="HasConstraint" role="HasConstraint" relid="0xd6">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ew</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000048"/>
+				<connpoint role="dst" target="id-0066-00000044"/>
 				<connpoint role="src" target="id-0066-0000005f"/>
 			</connection>
-			<connection id="id-0068-00000090" kind="HasConstraint" role="HasConstraint" relid="0xdd">
+			<connection id="id-0068-00000090" kind="HasConstraint" role="HasConstraint" relid="0xd8">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ew</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000048"/>
-				<connpoint role="src" target="id-0066-00000061"/>
+				<connpoint role="dst" target="id-0066-00000049"/>
+				<connpoint role="src" target="id-0066-00000060"/>
 			</connection>
-			<connection id="id-0068-00000091" kind="HasConstraint" role="HasConstraint" relid="0xe1">
+			<connection id="id-0068-00000091" kind="HasConstraint" role="HasConstraint" relid="0xdd">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ew</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000049"/>
+				<connpoint role="src" target="id-0066-00000062"/>
+			</connection>
+			<connection id="id-0068-00000092" kind="HasConstraint" role="HasConstraint" relid="0xe1">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ns</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000054"/>
-				<connpoint role="src" target="id-0066-00000062"/>
-			</connection>
-			<connection id="id-0068-00000092" kind="HasConstraint" role="HasConstraint" relid="0xe2">
-				<name>HasConstraint</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ns</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-00000051"/>
-				<connpoint role="src" target="id-0066-00000062"/>
-			</connection>
-			<connection id="id-0068-00000093" kind="HasConstraint" role="HasConstraint" relid="0xe5">
-				<name>HasConstraint</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-0000004b"/>
-				<connpoint role="src" target="id-0066-00000062"/>
-			</connection>
-			<connection id="id-0068-00000094" kind="HasConstraint" role="HasConstraint" relid="0xe6">
-				<name>HasConstraint</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-00000052"/>
-				<connpoint role="src" target="id-0066-00000062"/>
-			</connection>
-			<connection id="id-0068-00000095" kind="HasConstraint" role="HasConstraint" relid="0xfb">
-				<name>HasConstraint</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ns</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-00000040"/>
+				<connpoint role="dst" target="id-0066-00000055"/>
 				<connpoint role="src" target="id-0066-00000063"/>
 			</connection>
-			<connection id="id-0068-00000096" kind="HasConstraint" role="HasConstraint" relid="0xff">
+			<connection id="id-0068-00000093" kind="HasConstraint" role="HasConstraint" relid="0xe2">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000052"/>
+				<connpoint role="src" target="id-0066-00000063"/>
+			</connection>
+			<connection id="id-0068-00000094" kind="HasConstraint" role="HasConstraint" relid="0xe5">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-0000004c"/>
+				<connpoint role="src" target="id-0066-00000063"/>
+			</connection>
+			<connection id="id-0068-00000095" kind="HasConstraint" role="HasConstraint" relid="0xe6">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000053"/>
+				<connpoint role="src" target="id-0066-00000063"/>
+			</connection>
+			<connection id="id-0068-00000096" kind="HasConstraint" role="HasConstraint" relid="0xfb">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000041"/>
+				<connpoint role="src" target="id-0066-00000064"/>
+			</connection>
+			<connection id="id-0068-00000097" kind="HasConstraint" role="HasConstraint" relid="0xff">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>We</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000042"/>
-				<connpoint role="src" target="id-0066-00000062"/>
+				<connpoint role="dst" target="id-0066-00000043"/>
+				<connpoint role="src" target="id-0066-00000063"/>
 			</connection>
-			<connection id="id-0068-00000097" kind="Containment" role="Containment" relid="0x107">
+			<connection id="id-0068-00000098" kind="Containment" role="Containment" relid="0x107">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>We</value>
@@ -32615,10 +32616,10 @@ endif))]]></value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000049"/>
+				<connpoint role="dst" target="id-0066-0000004a"/>
 				<connpoint role="src" target="id-0067-00000006"/>
 			</connection>
-			<connection id="id-0068-00000098" kind="Containment" role="Containment" relid="0x10b">
+			<connection id="id-0068-00000099" kind="Containment" role="Containment" relid="0x10b">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>E</value>
@@ -32632,10 +32633,10 @@ endif))]]></value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000053"/>
+				<connpoint role="dst" target="id-0066-00000054"/>
 				<connpoint role="src" target="id-0067-00000007"/>
 			</connection>
-			<connection id="id-0068-00000099" kind="SourceToConnector" role="SourceToConnector" relid="0x10c">
+			<connection id="id-0068-0000009a" kind="SourceToConnector" role="SourceToConnector" relid="0x10c">
 				<name>SourceToConnector</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>S</value>
@@ -32646,10 +32647,18 @@ endif))]]></value>
 				<attribute kind="srcRolename" status="meta">
 					<value>src</value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000057"/>
+				<connpoint role="dst" target="id-0066-00000058"/>
 				<connpoint role="src" target="id-0067-00000007"/>
 			</connection>
-			<connection id="id-0068-0000009a" kind="DerivedInheritance" role="DerivedInheritance" relid="0x10e">
+			<connection id="id-0068-0000009b" kind="DerivedInheritance" role="DerivedInheritance" relid="0x10e">
+				<name>DerivedInheritance</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-00000048"/>
+				<connpoint role="dst" target="id-0067-00000029"/>
+			</connection>
+			<connection id="id-0068-0000009c" kind="DerivedInheritance" role="DerivedInheritance" relid="0x10f">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
@@ -32657,15 +32666,7 @@ endif))]]></value>
 				<connpoint role="src" target="id-0066-00000047"/>
 				<connpoint role="dst" target="id-0067-00000029"/>
 			</connection>
-			<connection id="id-0068-0000009b" kind="DerivedInheritance" role="DerivedInheritance" relid="0x10f">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-00000046"/>
-				<connpoint role="dst" target="id-0067-00000029"/>
-			</connection>
-			<connection id="id-0068-0000009c" kind="Containment" role="Containment" relid="0x110">
+			<connection id="id-0068-0000009d" kind="Containment" role="Containment" relid="0x110">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ew</value>
@@ -32682,7 +32683,7 @@ endif))]]></value>
 				<connpoint role="src" target="id-0067-00000026"/>
 				<connpoint role="dst" target="id-0067-00000029"/>
 			</connection>
-			<connection id="id-0068-0000009d" kind="Containment" role="Containment" relid="0x111">
+			<connection id="id-0068-0000009e" kind="Containment" role="Containment" relid="0x111">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ns</value>
@@ -32696,10 +32697,10 @@ endif))]]></value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="src" target="id-0066-00000051"/>
+				<connpoint role="src" target="id-0066-00000052"/>
 				<connpoint role="dst" target="id-0067-00000029"/>
 			</connection>
-			<connection id="id-0068-0000009e" kind="Containment" role="Containment" relid="0x112">
+			<connection id="id-0068-0000009f" kind="Containment" role="Containment" relid="0x112">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ns</value>
@@ -32716,31 +32717,31 @@ endif))]]></value>
 				<connpoint role="src" target="id-0067-00000025"/>
 				<connpoint role="dst" target="id-0067-00000029"/>
 			</connection>
-			<connection id="id-0068-0000009f" kind="HasConstraint" role="HasConstraint" relid="0x113">
+			<connection id="id-0068-000000a0" kind="HasConstraint" role="HasConstraint" relid="0x113">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ew</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000005c"/>
+				<connpoint role="src" target="id-0066-0000005d"/>
 				<connpoint role="dst" target="id-0067-00000028"/>
 			</connection>
-			<connection id="id-0068-000000a0" kind="HasConstraint" role="HasConstraint" relid="0x114">
+			<connection id="id-0068-000000a1" kind="HasConstraint" role="HasConstraint" relid="0x114">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>We</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000005c"/>
+				<connpoint role="src" target="id-0066-0000005d"/>
 				<connpoint role="dst" target="id-0067-00000029"/>
 			</connection>
-			<connection id="id-0068-000000a1" kind="ReferTo" role="ReferTo" relid="0x117">
+			<connection id="id-0068-000000a2" kind="ReferTo" role="ReferTo" relid="0x117">
 				<name>ReferTo</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-00000064"/>
+				<connpoint role="src" target="id-0066-00000065"/>
 				<connpoint role="dst" target="id-0067-00000008"/>
 			</connection>
-			<connection id="id-0068-000000a2" kind="Containment" role="Containment" relid="0x118">
+			<connection id="id-0068-000000a3" kind="Containment" role="Containment" relid="0x118">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ew</value>
@@ -32754,10 +32755,10 @@ endif))]]></value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-0000004c"/>
-				<connpoint role="src" target="id-0066-00000064"/>
+				<connpoint role="dst" target="id-0066-0000004d"/>
+				<connpoint role="src" target="id-0066-00000065"/>
 			</connection>
-			<connection id="id-0068-000000a3" kind="Containment" role="Containment" relid="0x11a">
+			<connection id="id-0068-000000a4" kind="Containment" role="Containment" relid="0x11a">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>We</value>
@@ -32771,42 +32772,42 @@ endif))]]></value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000049"/>
+				<connpoint role="dst" target="id-0066-0000004a"/>
 				<connpoint role="src" target="id-0067-00000009"/>
 			</connection>
-			<connection id="id-0068-000000a4" kind="ReferTo" role="ReferTo" relid="0x11b">
+			<connection id="id-0068-000000a5" kind="ReferTo" role="ReferTo" relid="0x11b">
 				<name>ReferTo</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ns</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-00000052"/>
+				<connpoint role="src" target="id-0066-00000053"/>
 				<connpoint role="dst" target="id-0067-00000004"/>
 			</connection>
-			<connection id="id-0068-000000a5" kind="HasConstraint" role="HasConstraint" relid="0x125">
+			<connection id="id-0068-000000a6" kind="HasConstraint" role="HasConstraint" relid="0x125">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000048"/>
-				<connpoint role="src" target="id-0066-00000067"/>
+				<connpoint role="dst" target="id-0066-00000049"/>
+				<connpoint role="src" target="id-0066-00000068"/>
 			</connection>
-			<connection id="id-0068-000000a6" kind="HasConstraint" role="HasConstraint" relid="0x127">
+			<connection id="id-0068-000000a7" kind="HasConstraint" role="HasConstraint" relid="0x127">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ws</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000006a"/>
+				<connpoint role="src" target="id-0066-0000006b"/>
 				<connpoint role="dst" target="id-0067-00000029"/>
 			</connection>
-			<connection id="id-0068-000000a7" kind="HasConstraint" role="HasConstraint" relid="0x128">
+			<connection id="id-0068-000000a8" kind="HasConstraint" role="HasConstraint" relid="0x128">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Es</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000006a"/>
+				<connpoint role="src" target="id-0066-0000006b"/>
 				<connpoint role="dst" target="id-0067-00000028"/>
 			</connection>
-			<set id="id-0069-00000007" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-00000006 id-0067-00000007 id-0067-00000004 id-0066-00000054 id-0066-00000043 id-0066-00000040 id-0066-00000055 id-0066-00000052 id-0066-00000051 id-0067-00000024 id-0066-0000004e id-0067-00000028 id-0067-00000025 id-0067-00000026 id-0067-00000027 id-0066-0000004c id-0066-0000004b id-0066-00000042 id-0066-00000044 id-0067-00000005 id-0066-00000056 id-0067-00000029 id-0067-00000009 id-0066-00000064 id-0067-00000008">
+			<set id="id-0069-00000007" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-00000006 id-0067-00000007 id-0067-00000004 id-0066-00000055 id-0066-00000044 id-0066-00000041 id-0066-00000056 id-0066-00000053 id-0066-00000052 id-0067-00000024 id-0066-0000004f id-0067-00000028 id-0067-00000025 id-0067-00000026 id-0067-00000027 id-0066-0000004d id-0066-0000004c id-0066-00000043 id-0066-00000045 id-0067-00000005 id-0066-00000057 id-0067-00000029 id-0067-00000009 id-0066-00000065 id-0067-00000008">
 				<name>InheritableAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -32833,7 +32834,7 @@ endif))]]></value>
 			<attribute kind="VersionInformation" status="meta">
 				<value></value>
 			</attribute>
-			<atom id="id-0066-0000006b" kind="Model" role="Model" relid="0x16">
+			<atom id="id-0066-0000006c" kind="Model" role="Model" relid="0x16">
 				<name>OperationBase</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -32908,7 +32909,7 @@ endif))]]></value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000006c" kind="Inheritance" role="Inheritance" relid="0x18">
+			<atom id="id-0066-0000006d" kind="Inheritance" role="Inheritance" relid="0x18">
 				<name>Inheritance</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -32938,7 +32939,7 @@ endif))]]></value>
 					</regnode>
 				</regnode>
 			</atom>
-			<atom id="id-0066-0000006d" kind="Model" role="Model" relid="0x19">
+			<atom id="id-0066-0000006e" kind="Model" role="Model" relid="0x19">
 				<name>FactoryOperation</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -33013,7 +33014,7 @@ endif))]]></value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000006e" kind="Model" role="Model" relid="0x1b">
+			<atom id="id-0066-0000006f" kind="Model" role="Model" relid="0x1b">
 				<name>LookupOperation</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -33088,7 +33089,7 @@ endif))]]></value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000006f" kind="Model" role="Model" relid="0x1d">
+			<atom id="id-0066-00000070" kind="Model" role="Model" relid="0x1d">
 				<name>TwowayOperation</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -33163,7 +33164,7 @@ endif))]]></value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000070" kind="Model" role="Model" relid="0x2e">
+			<atom id="id-0066-00000071" kind="Model" role="Model" relid="0x2e">
 				<name>OnewayOperation</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -33238,7 +33239,7 @@ endif))]]></value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000071" kind="Model" role="Model" relid="0x32">
+			<atom id="id-0066-00000072" kind="Model" role="Model" relid="0x32">
 				<name>HasExceptions</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -33313,7 +33314,7 @@ endif))]]></value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000072" kind="Inheritance" role="Inheritance" relid="0x33">
+			<atom id="id-0066-00000073" kind="Inheritance" role="Inheritance" relid="0x33">
 				<name>Inheritance</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -33343,7 +33344,7 @@ endif))]]></value>
 					</regnode>
 				</regnode>
 			</atom>
-			<atom id="id-0066-00000073" kind="Constraint" role="Constraint" relid="0x3a">
+			<atom id="id-0066-00000074" kind="Constraint" role="Constraint" relid="0x3a">
 				<name>UniqueExceptions</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -33420,7 +33421,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000074" kind="Constraint" role="Constraint" relid="0x3c">
+			<atom id="id-0066-00000075" kind="Constraint" role="Constraint" relid="0x3c">
 				<name>UniqueParamNames</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -33495,7 +33496,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000075" kind="ConstraintFunc" role="ConstraintFunc" relid="0x3e">
+			<atom id="id-0066-00000076" kind="ConstraintFunc" role="ConstraintFunc" relid="0x3e">
 				<name>AllParams</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -33522,7 +33523,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value>method</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000076" kind="Reference" role="Reference" relid="0x51">
+			<atom id="id-0066-00000077" kind="Reference" role="Reference" relid="0x51">
 				<name>InParameter</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -33594,7 +33595,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000077" kind="Reference" role="Reference" relid="0x52">
+			<atom id="id-0066-00000078" kind="Reference" role="Reference" relid="0x52">
 				<name>InoutParameter</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -33666,7 +33667,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000078" kind="Reference" role="Reference" relid="0x53">
+			<atom id="id-0066-00000079" kind="Reference" role="Reference" relid="0x53">
 				<name>OutParameter</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -33738,7 +33739,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000079" kind="Reference" role="Reference" relid="0x54">
+			<atom id="id-0066-0000007a" kind="Reference" role="Reference" relid="0x54">
 				<name>ReturnType</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -33882,7 +33883,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-0000000b" kind="FCOProxy" role="FCOProxy" relid="0x60" referred="id-0066-0000002d">
+			<reference id="id-0067-0000000b" kind="FCOProxy" role="FCOProxy" relid="0x60" referred="id-0066-0000002e">
 				<name>MemberType</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -33954,63 +33955,63 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</reference>
-			<connection id="id-0068-000000a8" kind="DerivedInheritance" role="DerivedInheritance" relid="0x1f">
+			<connection id="id-0068-000000a9" kind="DerivedInheritance" role="DerivedInheritance" relid="0x1f">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000006c"/>
-				<connpoint role="dst" target="id-0066-0000006d"/>
+				<connpoint role="src" target="id-0066-0000006d"/>
+				<connpoint role="dst" target="id-0066-0000006e"/>
 			</connection>
-			<connection id="id-0068-000000a9" kind="DerivedInheritance" role="DerivedInheritance" relid="0x24">
+			<connection id="id-0068-000000aa" kind="DerivedInheritance" role="DerivedInheritance" relid="0x24">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000006c"/>
-				<connpoint role="dst" target="id-0066-0000006f"/>
+				<connpoint role="src" target="id-0066-0000006d"/>
+				<connpoint role="dst" target="id-0066-00000070"/>
 			</connection>
-			<connection id="id-0068-000000aa" kind="HasAspect" role="HasAspect" relid="0x31">
+			<connection id="id-0068-000000ab" kind="HasAspect" role="HasAspect" relid="0x31">
 				<name>HasAspect</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Wn</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-0000006b"/>
+				<connpoint role="dst" target="id-0066-0000006c"/>
 				<connpoint role="src" target="id-0069-00000002"/>
 			</connection>
-			<connection id="id-0068-000000ab" kind="BaseInheritance" role="BaseInheritance" relid="0x34">
+			<connection id="id-0068-000000ac" kind="BaseInheritance" role="BaseInheritance" relid="0x34">
 				<name>BaseInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-0000006b"/>
-				<connpoint role="dst" target="id-0066-00000072"/>
-			</connection>
-			<connection id="id-0068-000000ac" kind="DerivedInheritance" role="DerivedInheritance" relid="0x35">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-00000071"/>
-				<connpoint role="src" target="id-0066-00000072"/>
-			</connection>
-			<connection id="id-0068-000000ad" kind="BaseInheritance" role="BaseInheritance" relid="0x36">
-				<name>BaseInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-0000006c"/>
-				<connpoint role="src" target="id-0066-00000071"/>
-			</connection>
-			<connection id="id-0068-000000ae" kind="DerivedInheritance" role="DerivedInheritance" relid="0x37">
-				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-0000006c"/>
-				<connpoint role="dst" target="id-0066-0000006e"/>
+				<connpoint role="dst" target="id-0066-00000073"/>
 			</connection>
-			<connection id="id-0068-000000af" kind="Containment" role="Containment" relid="0x38">
+			<connection id="id-0068-000000ad" kind="DerivedInheritance" role="DerivedInheritance" relid="0x35">
+				<name>DerivedInheritance</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000072"/>
+				<connpoint role="src" target="id-0066-00000073"/>
+			</connection>
+			<connection id="id-0068-000000ae" kind="BaseInheritance" role="BaseInheritance" relid="0x36">
+				<name>BaseInheritance</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-0000006d"/>
+				<connpoint role="src" target="id-0066-00000072"/>
+			</connection>
+			<connection id="id-0068-000000af" kind="DerivedInheritance" role="DerivedInheritance" relid="0x37">
+				<name>DerivedInheritance</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-0000006d"/>
+				<connpoint role="dst" target="id-0066-0000006f"/>
+			</connection>
+			<connection id="id-0068-000000b0" kind="Containment" role="Containment" relid="0x38">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>We</value>
@@ -34024,43 +34025,26 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000071"/>
+				<connpoint role="dst" target="id-0066-00000072"/>
 				<connpoint role="src" target="id-0067-0000000a"/>
 			</connection>
-			<connection id="id-0068-000000b0" kind="HasConstraint" role="HasConstraint" relid="0x3b">
+			<connection id="id-0068-000000b1" kind="HasConstraint" role="HasConstraint" relid="0x3b">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>We</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000071"/>
-				<connpoint role="src" target="id-0066-00000073"/>
-			</connection>
-			<connection id="id-0068-000000b1" kind="HasConstraint" role="HasConstraint" relid="0x3d">
-				<name>HasConstraint</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>We</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-0000006b"/>
+				<connpoint role="dst" target="id-0066-00000072"/>
 				<connpoint role="src" target="id-0066-00000074"/>
 			</connection>
-			<connection id="id-0068-000000b2" kind="Containment" role="Containment" relid="0x59">
-				<name>Containment</name>
+			<connection id="id-0068-000000b2" kind="HasConstraint" role="HasConstraint" relid="0x3d">
+				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ew</value>
+					<value>We</value>
 				</regnode>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<attribute kind="IsPort" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="Rolename" status="meta">
-					<value></value>
-				</attribute>
-				<connpoint role="dst" target="id-0066-0000006b"/>
-				<connpoint role="src" target="id-0066-00000076"/>
+				<connpoint role="dst" target="id-0066-0000006c"/>
+				<connpoint role="src" target="id-0066-00000075"/>
 			</connection>
-			<connection id="id-0068-000000b3" kind="Containment" role="Containment" relid="0x5a">
+			<connection id="id-0068-000000b3" kind="Containment" role="Containment" relid="0x59">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ew</value>
@@ -34074,10 +34058,10 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-0000006f"/>
+				<connpoint role="dst" target="id-0066-0000006c"/>
 				<connpoint role="src" target="id-0066-00000077"/>
 			</connection>
-			<connection id="id-0068-000000b4" kind="Containment" role="Containment" relid="0x5b">
+			<connection id="id-0068-000000b4" kind="Containment" role="Containment" relid="0x5a">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ew</value>
@@ -34091,10 +34075,27 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-0000006f"/>
+				<connpoint role="dst" target="id-0066-00000070"/>
 				<connpoint role="src" target="id-0066-00000078"/>
 			</connection>
-			<connection id="id-0068-000000b5" kind="Containment" role="Containment" relid="0x5c">
+			<connection id="id-0068-000000b5" kind="Containment" role="Containment" relid="0x5b">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ew</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000070"/>
+				<connpoint role="src" target="id-0066-00000079"/>
+			</connection>
+			<connection id="id-0068-000000b6" kind="Containment" role="Containment" relid="0x5c">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ew</value>
@@ -34108,26 +34109,18 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-0000006f"/>
-				<connpoint role="src" target="id-0066-00000079"/>
+				<connpoint role="dst" target="id-0066-00000070"/>
+				<connpoint role="src" target="id-0066-0000007a"/>
 			</connection>
-			<connection id="id-0068-000000b6" kind="DerivedInheritance" role="DerivedInheritance" relid="0x5f">
+			<connection id="id-0068-000000b7" kind="DerivedInheritance" role="DerivedInheritance" relid="0x5f">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sw</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000070"/>
-				<connpoint role="src" target="id-0066-00000072"/>
+				<connpoint role="dst" target="id-0066-00000071"/>
+				<connpoint role="src" target="id-0066-00000073"/>
 			</connection>
-			<connection id="id-0068-000000b7" kind="ReferTo" role="ReferTo" relid="0x62">
-				<name>ReferTo</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ws</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-00000076"/>
-				<connpoint role="dst" target="id-0067-0000000b"/>
-			</connection>
-			<connection id="id-0068-000000b8" kind="ReferTo" role="ReferTo" relid="0x63">
+			<connection id="id-0068-000000b8" kind="ReferTo" role="ReferTo" relid="0x62">
 				<name>ReferTo</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ws</value>
@@ -34135,7 +34128,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 				<connpoint role="src" target="id-0066-00000077"/>
 				<connpoint role="dst" target="id-0067-0000000b"/>
 			</connection>
-			<connection id="id-0068-000000b9" kind="ReferTo" role="ReferTo" relid="0x64">
+			<connection id="id-0068-000000b9" kind="ReferTo" role="ReferTo" relid="0x63">
 				<name>ReferTo</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ws</value>
@@ -34143,7 +34136,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 				<connpoint role="src" target="id-0066-00000078"/>
 				<connpoint role="dst" target="id-0067-0000000b"/>
 			</connection>
-			<connection id="id-0068-000000ba" kind="ReferTo" role="ReferTo" relid="0x65">
+			<connection id="id-0068-000000ba" kind="ReferTo" role="ReferTo" relid="0x64">
 				<name>ReferTo</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ws</value>
@@ -34151,7 +34144,15 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 				<connpoint role="src" target="id-0066-00000079"/>
 				<connpoint role="dst" target="id-0067-0000000b"/>
 			</connection>
-			<set id="id-0069-00000002" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000079 id-0066-00000078 id-0066-00000077 id-0066-00000076 id-0066-0000006b id-0066-00000070 id-0066-0000006f id-0067-0000000a id-0066-0000006e id-0066-0000006d">
+			<connection id="id-0068-000000bb" kind="ReferTo" role="ReferTo" relid="0x65">
+				<name>ReferTo</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ws</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-0000007a"/>
+				<connpoint role="dst" target="id-0067-0000000b"/>
+			</connection>
+			<set id="id-0069-00000002" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-0000007a id-0066-00000079 id-0066-00000078 id-0066-00000077 id-0066-0000006c id-0066-00000071 id-0066-00000070 id-0067-0000000a id-0066-0000006f id-0066-0000006e">
 				<name>OperationAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -34181,7 +34182,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 			<attribute kind="VersionInformation" status="meta">
 				<value></value>
 			</attribute>
-			<atom id="id-0066-0000007a" kind="Model" role="Model" relid="0x2">
+			<atom id="id-0066-0000007b" kind="Model" role="Model" relid="0x2">
 				<name>Component</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -34256,7 +34257,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000007b" kind="Reference" role="Reference" relid="0x10">
+			<atom id="id-0066-0000007c" kind="Reference" role="Reference" relid="0x10">
 				<name>OutEventPort</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -34328,7 +34329,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000007c" kind="Reference" role="Reference" relid="0x14">
+			<atom id="id-0066-0000007d" kind="Reference" role="Reference" relid="0x14">
 				<name>ProvidedRequestPort</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -34400,7 +34401,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000007d" kind="BooleanAttribute" role="BooleanAttribute" relid="0x25">
+			<atom id="id-0066-0000007e" kind="BooleanAttribute" role="BooleanAttribute" relid="0x25">
 				<name>multiple_connections</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -34427,7 +34428,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000007e" kind="BooleanAttribute" role="BooleanAttribute" relid="0x26">
+			<atom id="id-0066-0000007f" kind="BooleanAttribute" role="BooleanAttribute" relid="0x26">
 				<name>single_destination</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -34454,7 +34455,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000007f" kind="Constraint" role="Constraint" relid="0x30">
+			<atom id="id-0066-00000080" kind="Constraint" role="Constraint" relid="0x30">
 				<name>NoNullReference</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -34529,7 +34530,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000080" kind="Reference" role="Reference" relid="0x35">
+			<atom id="id-0066-00000081" kind="Reference" role="Reference" relid="0x35">
 				<name>RequiredRequestPort</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -34601,7 +34602,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000081" kind="Reference" role="Reference" relid="0x36">
+			<atom id="id-0066-00000082" kind="Reference" role="Reference" relid="0x36">
 				<name>InEventPort</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -34673,7 +34674,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000082" kind="FCO" role="FCO" relid="0x45">
+			<atom id="id-0066-00000083" kind="FCO" role="FCO" relid="0x45">
 				<name>Port</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -34745,7 +34746,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000083" kind="Inheritance" role="Inheritance" relid="0x46">
+			<atom id="id-0066-00000084" kind="Inheritance" role="Inheritance" relid="0x46">
 				<name>Inheritance</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -34775,7 +34776,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					</regnode>
 				</regnode>
 			</atom>
-			<atom id="id-0066-00000084" kind="Constraint" role="Constraint" relid="0x4d">
+			<atom id="id-0066-00000085" kind="Constraint" role="Constraint" relid="0x4d">
 				<name>NoInheritsAndSupports</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -34850,7 +34851,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000085" kind="Reference" role="Reference" relid="0x51">
+			<atom id="id-0066-00000086" kind="Reference" role="Reference" relid="0x51">
 				<name>ComponentRef</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -34922,7 +34923,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000086" kind="FCO" role="FCO" relid="0x54">
+			<atom id="id-0066-00000087" kind="FCO" role="FCO" relid="0x54">
 				<name>Manageable</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -34994,7 +34995,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000087" kind="Inheritance" role="Inheritance" relid="0x55">
+			<atom id="id-0066-00000088" kind="Inheritance" role="Inheritance" relid="0x55">
 				<name>Inheritance</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -35024,7 +35025,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					</regnode>
 				</regnode>
 			</atom>
-			<atom id="id-0066-00000088" kind="Model" role="Model" relid="0x59">
+			<atom id="id-0066-00000089" kind="Model" role="Model" relid="0x59">
 				<name>ComponentFactory</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -35099,7 +35100,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000089" kind="Connection" role="Connection" relid="0x5a">
+			<atom id="id-0066-0000008a" kind="Connection" role="Connection" relid="0x5a">
 				<name>ManagesComponent</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -35168,7 +35169,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000008a" kind="Connector" role="Connector" relid="0x5b">
+			<atom id="id-0066-0000008b" kind="Connector" role="Connector" relid="0x5b">
 				<name>Connector</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -35189,7 +35190,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value>swE</value>
 				</regnode>
 			</atom>
-			<atom id="id-0066-0000008b" kind="FCO" role="FCO" relid="0x62">
+			<atom id="id-0066-0000008c" kind="FCO" role="FCO" relid="0x62">
 				<name>Provideable</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -35261,7 +35262,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000008c" kind="Inheritance" role="Inheritance" relid="0x63">
+			<atom id="id-0066-0000008d" kind="Inheritance" role="Inheritance" relid="0x63">
 				<name>Inheritance</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -35291,7 +35292,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					</regnode>
 				</regnode>
 			</atom>
-			<reference id="id-0067-0000000c" kind="ModelProxy" role="ModelProxy" relid="0xf" referred="id-0066-00000043">
+			<reference id="id-0067-0000000c" kind="ModelProxy" role="ModelProxy" relid="0xf" referred="id-0066-00000044">
 				<name>Event</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -35366,7 +35367,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-0000000d" kind="ModelProxy" role="ModelProxy" relid="0x33" referred="id-0066-00000040">
+			<reference id="id-0067-0000000d" kind="ModelProxy" role="ModelProxy" relid="0x33" referred="id-0066-00000041">
 				<name>Object</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -35441,7 +35442,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-0000000e" kind="AtomProxy" role="AtomProxy" relid="0x68" referred="id-0066-00000021">
+			<reference id="id-0067-0000000e" kind="AtomProxy" role="AtomProxy" relid="0x68" referred="id-0066-00000022">
 				<name>GenericObject</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -35513,127 +35514,127 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</reference>
-			<connection id="id-0068-000000bb" kind="HasAttribute" role="HasAttribute" relid="0x37">
+			<connection id="id-0068-000000bc" kind="HasAttribute" role="HasAttribute" relid="0x37">
 				<name>HasAttribute</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ns</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000007d"/>
-				<connpoint role="dst" target="id-0066-00000080"/>
-			</connection>
-			<connection id="id-0068-000000bc" kind="HasAttribute" role="HasAttribute" relid="0x38">
-				<name>HasAttribute</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ns</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-0000007b"/>
 				<connpoint role="src" target="id-0066-0000007e"/>
-			</connection>
-			<connection id="id-0068-000000bd" kind="ReferTo" role="ReferTo" relid="0x3b">
-				<name>ReferTo</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-0000007b"/>
-				<connpoint role="dst" target="id-0067-0000000c"/>
-			</connection>
-			<connection id="id-0068-000000be" kind="ReferTo" role="ReferTo" relid="0x3c">
-				<name>ReferTo</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-00000081"/>
-				<connpoint role="dst" target="id-0067-0000000c"/>
-			</connection>
-			<connection id="id-0068-000000bf" kind="HasConstraint" role="HasConstraint" relid="0x43">
-				<name>HasConstraint</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ns</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-0000007b"/>
-				<connpoint role="src" target="id-0066-0000007f"/>
-			</connection>
-			<connection id="id-0068-000000c0" kind="HasConstraint" role="HasConstraint" relid="0x44">
-				<name>HasConstraint</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Es</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-0000007f"/>
 				<connpoint role="dst" target="id-0066-00000081"/>
 			</connection>
-			<connection id="id-0068-000000c1" kind="BaseInheritance" role="BaseInheritance" relid="0x47">
-				<name>BaseInheritance</name>
+			<connection id="id-0068-000000bd" kind="HasAttribute" role="HasAttribute" relid="0x38">
+				<name>HasAttribute</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-0000007c"/>
+				<connpoint role="src" target="id-0066-0000007f"/>
+			</connection>
+			<connection id="id-0068-000000be" kind="ReferTo" role="ReferTo" relid="0x3b">
+				<name>ReferTo</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-0000007c"/>
+				<connpoint role="dst" target="id-0067-0000000c"/>
+			</connection>
+			<connection id="id-0068-000000bf" kind="ReferTo" role="ReferTo" relid="0x3c">
+				<name>ReferTo</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-00000082"/>
-				<connpoint role="dst" target="id-0066-00000083"/>
+				<connpoint role="dst" target="id-0067-0000000c"/>
 			</connection>
-			<connection id="id-0068-000000c2" kind="DerivedInheritance" role="DerivedInheritance" relid="0x48">
-				<name>DerivedInheritance</name>
+			<connection id="id-0068-000000c0" kind="HasConstraint" role="HasConstraint" relid="0x43">
+				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
+					<value>Ns</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-0000007c"/>
-				<connpoint role="src" target="id-0066-00000083"/>
+				<connpoint role="src" target="id-0066-00000080"/>
 			</connection>
-			<connection id="id-0068-000000c3" kind="DerivedInheritance" role="DerivedInheritance" relid="0x49">
+			<connection id="id-0068-000000c1" kind="HasConstraint" role="HasConstraint" relid="0x44">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Es</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-00000080"/>
+				<connpoint role="dst" target="id-0066-00000082"/>
+			</connection>
+			<connection id="id-0068-000000c2" kind="BaseInheritance" role="BaseInheritance" relid="0x47">
+				<name>BaseInheritance</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-00000083"/>
+				<connpoint role="dst" target="id-0066-00000084"/>
+			</connection>
+			<connection id="id-0068-000000c3" kind="DerivedInheritance" role="DerivedInheritance" relid="0x48">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000080"/>
-				<connpoint role="src" target="id-0066-00000083"/>
+				<connpoint role="dst" target="id-0066-0000007d"/>
+				<connpoint role="src" target="id-0066-00000084"/>
 			</connection>
-			<connection id="id-0068-000000c4" kind="DerivedInheritance" role="DerivedInheritance" relid="0x4a">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-0000007b"/>
-				<connpoint role="src" target="id-0066-00000083"/>
-			</connection>
-			<connection id="id-0068-000000c5" kind="DerivedInheritance" role="DerivedInheritance" relid="0x4b">
+			<connection id="id-0068-000000c4" kind="DerivedInheritance" role="DerivedInheritance" relid="0x49">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-00000081"/>
-				<connpoint role="src" target="id-0066-00000083"/>
+				<connpoint role="src" target="id-0066-00000084"/>
 			</connection>
-			<connection id="id-0068-000000c6" kind="HasConstraint" role="HasConstraint" relid="0x4e">
+			<connection id="id-0068-000000c5" kind="DerivedInheritance" role="DerivedInheritance" relid="0x4a">
+				<name>DerivedInheritance</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-0000007c"/>
+				<connpoint role="src" target="id-0066-00000084"/>
+			</connection>
+			<connection id="id-0068-000000c6" kind="DerivedInheritance" role="DerivedInheritance" relid="0x4b">
+				<name>DerivedInheritance</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000082"/>
+				<connpoint role="src" target="id-0066-00000084"/>
+			</connection>
+			<connection id="id-0068-000000c7" kind="HasConstraint" role="HasConstraint" relid="0x4e">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>We</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-0000007a"/>
-				<connpoint role="src" target="id-0066-00000084"/>
+				<connpoint role="dst" target="id-0066-0000007b"/>
+				<connpoint role="src" target="id-0066-00000085"/>
 			</connection>
-			<connection id="id-0068-000000c7" kind="HasConstraint" role="HasConstraint" relid="0x4f">
+			<connection id="id-0068-000000c8" kind="HasConstraint" role="HasConstraint" relid="0x4f">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ns</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000007f"/>
-				<connpoint role="dst" target="id-0066-00000080"/>
+				<connpoint role="src" target="id-0066-00000080"/>
+				<connpoint role="dst" target="id-0066-00000081"/>
 			</connection>
-			<connection id="id-0068-000000c8" kind="HasConstraint" role="HasConstraint" relid="0x50">
+			<connection id="id-0068-000000c9" kind="HasConstraint" role="HasConstraint" relid="0x50">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ws</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-0000007c"/>
-				<connpoint role="src" target="id-0066-0000007f"/>
+				<connpoint role="dst" target="id-0066-0000007d"/>
+				<connpoint role="src" target="id-0066-00000080"/>
 			</connection>
-			<connection id="id-0068-000000c9" kind="ReferTo" role="ReferTo" relid="0x52">
+			<connection id="id-0068-000000ca" kind="ReferTo" role="ReferTo" relid="0x52">
 				<name>ReferTo</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ew</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-0000007a"/>
-				<connpoint role="src" target="id-0066-00000085"/>
+				<connpoint role="dst" target="id-0066-0000007b"/>
+				<connpoint role="src" target="id-0066-00000086"/>
 			</connection>
-			<connection id="id-0068-000000ca" kind="Containment" role="Containment" relid="0x53">
+			<connection id="id-0068-000000cb" kind="Containment" role="Containment" relid="0x53">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>We</value>
@@ -35647,34 +35648,34 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-0000007a"/>
-				<connpoint role="src" target="id-0066-00000082"/>
+				<connpoint role="dst" target="id-0066-0000007b"/>
+				<connpoint role="src" target="id-0066-00000083"/>
 			</connection>
-			<connection id="id-0068-000000cb" kind="BaseInheritance" role="BaseInheritance" relid="0x56">
+			<connection id="id-0068-000000cc" kind="BaseInheritance" role="BaseInheritance" relid="0x56">
 				<name>BaseInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-00000086"/>
-				<connpoint role="dst" target="id-0066-00000087"/>
+				<connpoint role="src" target="id-0066-00000087"/>
+				<connpoint role="dst" target="id-0066-00000088"/>
 			</connection>
-			<connection id="id-0068-000000cc" kind="DerivedInheritance" role="DerivedInheritance" relid="0x57">
+			<connection id="id-0068-000000cd" kind="DerivedInheritance" role="DerivedInheritance" relid="0x57">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000085"/>
-				<connpoint role="src" target="id-0066-00000087"/>
+				<connpoint role="dst" target="id-0066-00000086"/>
+				<connpoint role="src" target="id-0066-00000088"/>
 			</connection>
-			<connection id="id-0068-000000cd" kind="DerivedInheritance" role="DerivedInheritance" relid="0x58">
+			<connection id="id-0068-000000ce" kind="DerivedInheritance" role="DerivedInheritance" relid="0x58">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-0000007a"/>
-				<connpoint role="src" target="id-0066-00000087"/>
+				<connpoint role="dst" target="id-0066-0000007b"/>
+				<connpoint role="src" target="id-0066-00000088"/>
 			</connection>
-			<connection id="id-0068-000000ce" kind="SourceToConnector" role="SourceToConnector" relid="0x5c">
+			<connection id="id-0068-000000cf" kind="SourceToConnector" role="SourceToConnector" relid="0x5c">
 				<name>SourceToConnector</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>E</value>
@@ -35685,18 +35686,18 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 				<attribute kind="srcRolename" status="meta">
 					<value>src</value>
 				</attribute>
-				<connpoint role="src" target="id-0066-00000088"/>
-				<connpoint role="dst" target="id-0066-0000008a"/>
+				<connpoint role="src" target="id-0066-00000089"/>
+				<connpoint role="dst" target="id-0066-0000008b"/>
 			</connection>
-			<connection id="id-0068-000000cf" kind="AssociationClass" role="AssociationClass" relid="0x5d">
+			<connection id="id-0068-000000d0" kind="AssociationClass" role="AssociationClass" relid="0x5d">
 				<name>AssociationClass</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>N</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-00000089"/>
-				<connpoint role="dst" target="id-0066-0000008a"/>
+				<connpoint role="src" target="id-0066-0000008a"/>
+				<connpoint role="dst" target="id-0066-0000008b"/>
 			</connection>
-			<connection id="id-0068-000000d0" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x5e">
+			<connection id="id-0068-000000d1" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x5e">
 				<name>ConnectorToDestination</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>En</value>
@@ -35707,66 +35708,66 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 				<attribute kind="dstRolename" status="meta">
 					<value>dst</value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000086"/>
-				<connpoint role="src" target="id-0066-0000008a"/>
+				<connpoint role="dst" target="id-0066-00000087"/>
+				<connpoint role="src" target="id-0066-0000008b"/>
 			</connection>
-			<connection id="id-0068-000000d1" kind="HasAspect" role="HasAspect" relid="0x5f">
+			<connection id="id-0068-000000d2" kind="HasAspect" role="HasAspect" relid="0x5f">
 				<name>HasAspect</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ns</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000088"/>
+				<connpoint role="dst" target="id-0066-00000089"/>
 				<connpoint role="src" target="id-0069-00000003"/>
 			</connection>
-			<connection id="id-0068-000000d2" kind="HasAspect" role="HasAspect" relid="0x60">
+			<connection id="id-0068-000000d3" kind="HasAspect" role="HasAspect" relid="0x60">
 				<name>HasAspect</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Es</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-0000007a"/>
+				<connpoint role="dst" target="id-0066-0000007b"/>
 				<connpoint role="src" target="id-0069-00000003"/>
 			</connection>
-			<connection id="id-0068-000000d3" kind="BaseInheritance" role="BaseInheritance" relid="0x64">
+			<connection id="id-0068-000000d4" kind="BaseInheritance" role="BaseInheritance" relid="0x64">
 				<name>BaseInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000008b"/>
-				<connpoint role="dst" target="id-0066-0000008c"/>
+				<connpoint role="src" target="id-0066-0000008c"/>
+				<connpoint role="dst" target="id-0066-0000008d"/>
 			</connection>
-			<connection id="id-0068-000000d4" kind="DerivedInheritance" role="DerivedInheritance" relid="0x65">
+			<connection id="id-0068-000000d5" kind="DerivedInheritance" role="DerivedInheritance" relid="0x65">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sw</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000008c"/>
+				<connpoint role="src" target="id-0066-0000008d"/>
 				<connpoint role="dst" target="id-0067-0000000d"/>
 			</connection>
-			<connection id="id-0068-000000d5" kind="ReferTo" role="ReferTo" relid="0x67">
+			<connection id="id-0068-000000d6" kind="ReferTo" role="ReferTo" relid="0x67">
 				<name>ReferTo</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000007c"/>
-				<connpoint role="dst" target="id-0066-0000008b"/>
+				<connpoint role="src" target="id-0066-0000007d"/>
+				<connpoint role="dst" target="id-0066-0000008c"/>
 			</connection>
-			<connection id="id-0068-000000d6" kind="DerivedInheritance" role="DerivedInheritance" relid="0x6a">
+			<connection id="id-0068-000000d7" kind="DerivedInheritance" role="DerivedInheritance" relid="0x6a">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Se</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000008c"/>
+				<connpoint role="src" target="id-0066-0000008d"/>
 				<connpoint role="dst" target="id-0067-0000000e"/>
 			</connection>
-			<connection id="id-0068-000000d7" kind="ReferTo" role="ReferTo" relid="0x6b">
+			<connection id="id-0068-000000d8" kind="ReferTo" role="ReferTo" relid="0x6b">
 				<name>ReferTo</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-00000080"/>
-				<connpoint role="dst" target="id-0066-0000008b"/>
+				<connpoint role="src" target="id-0066-00000081"/>
+				<connpoint role="dst" target="id-0066-0000008c"/>
 			</connection>
-			<set id="id-0069-00000003" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-0000000c id-0067-0000000d id-0067-0000000e id-0066-00000080 id-0066-00000081 id-0066-0000007b id-0066-0000007c id-0066-0000007a id-0066-00000089 id-0066-00000085 id-0066-00000088">
+			<set id="id-0069-00000003" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-0000000c id-0067-0000000d id-0067-0000000e id-0066-00000081 id-0066-00000082 id-0066-0000007c id-0066-0000007d id-0066-0000007b id-0066-0000008a id-0066-00000086 id-0066-00000089">
 				<name>ComponentAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -35793,7 +35794,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 			<attribute kind="VersionInformation" status="meta">
 				<value></value>
 			</attribute>
-			<atom id="id-0066-0000008d" kind="Inheritance" role="Inheritance" relid="0x16">
+			<atom id="id-0066-0000008e" kind="Inheritance" role="Inheritance" relid="0x16">
 				<name>Inheritance</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -35823,7 +35824,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					</regnode>
 				</regnode>
 			</atom>
-			<atom id="id-0066-0000008e" kind="Model" role="Model" relid="0x1c">
+			<atom id="id-0066-0000008f" kind="Model" role="Model" relid="0x1c">
 				<name>Prefixable</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -35898,7 +35899,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000008f" kind="Inheritance" role="Inheritance" relid="0x20">
+			<atom id="id-0066-00000090" kind="Inheritance" role="Inheritance" relid="0x20">
 				<name>Inheritance</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -35928,7 +35929,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					</regnode>
 				</regnode>
 			</atom>
-			<atom id="id-0066-00000090" kind="Constraint" role="Constraint" relid="0x43">
+			<atom id="id-0066-00000091" kind="Constraint" role="Constraint" relid="0x43">
 				<name>ValidVersion</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -36003,7 +36004,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000091" kind="FCO" role="FCO" relid="0x48">
+			<atom id="id-0066-00000092" kind="FCO" role="FCO" relid="0x48">
 				<name>Taggable</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -36075,7 +36076,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000092" kind="FieldAttribute" role="FieldAttribute" relid="0x50">
+			<atom id="id-0066-00000093" kind="FieldAttribute" role="FieldAttribute" relid="0x50">
 				<name>PrefixTag</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -36108,7 +36109,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000093" kind="FieldAttribute" role="FieldAttribute" relid="0x52">
+			<atom id="id-0066-00000094" kind="FieldAttribute" role="FieldAttribute" relid="0x52">
 				<name>VersionTag</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -36141,7 +36142,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000094" kind="FieldAttribute" role="FieldAttribute" relid="0x54">
+			<atom id="id-0066-00000095" kind="FieldAttribute" role="FieldAttribute" relid="0x54">
 				<name>SpecifyIdTag</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -36324,7 +36325,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000011" kind="ModelProxy" role="ModelProxy" relid="0x15" referred="id-0066-00000053">
+			<reference id="id-0067-00000011" kind="ModelProxy" role="ModelProxy" relid="0x15" referred="id-0066-00000054">
 				<name>ObjectByValue</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -36399,7 +36400,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000012" kind="ModelProxy" role="ModelProxy" relid="0x23" referred="id-0066-0000006b">
+			<reference id="id-0067-00000012" kind="ModelProxy" role="ModelProxy" relid="0x23" referred="id-0066-0000006c">
 				<name>OperationBase</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -36549,7 +36550,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000014" kind="ModelProxy" role="ModelProxy" relid="0x45" referred="id-0066-00000040">
+			<reference id="id-0067-00000014" kind="ModelProxy" role="ModelProxy" relid="0x45" referred="id-0066-00000041">
 				<name>Object</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -36624,7 +36625,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000015" kind="FCOProxy" role="FCOProxy" relid="0x47" referred="id-0066-00000082">
+			<reference id="id-0067-00000015" kind="FCOProxy" role="FCOProxy" relid="0x47" referred="id-0066-00000083">
 				<name>Port</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -36696,7 +36697,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000016" kind="ModelProxy" role="ModelProxy" relid="0x57" referred="id-0066-0000004c">
+			<reference id="id-0067-00000016" kind="ModelProxy" role="ModelProxy" relid="0x57" referred="id-0066-0000004d">
 				<name>ReadonlyAttribute</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -36771,7 +36772,7 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000017" kind="FCOProxy" role="FCOProxy" relid="0x59" referred="id-0066-00000038">
+			<reference id="id-0067-00000017" kind="FCOProxy" role="FCOProxy" relid="0x59" referred="id-0066-00000039">
 				<name>NamedType</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -36915,148 +36916,148 @@ x->forAll (a, b : ExeceptionRef | a <> b implies a.refersTo ().name <> b.refersT
 					<value></value>
 				</attribute>
 			</reference>
-			<connection id="id-0068-000000d8" kind="BaseInheritance" role="BaseInheritance" relid="0x1d">
+			<connection id="id-0068-000000d9" kind="BaseInheritance" role="BaseInheritance" relid="0x1d">
 				<name>BaseInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-0000008d"/>
-				<connpoint role="src" target="id-0066-0000008e"/>
+				<connpoint role="dst" target="id-0066-0000008e"/>
+				<connpoint role="src" target="id-0066-0000008f"/>
 			</connection>
-			<connection id="id-0068-000000d9" kind="DerivedInheritance" role="DerivedInheritance" relid="0x33">
+			<connection id="id-0068-000000da" kind="DerivedInheritance" role="DerivedInheritance" relid="0x33">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Se</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000008f"/>
+				<connpoint role="src" target="id-0066-00000090"/>
 				<connpoint role="dst" target="id-0067-00000010"/>
 			</connection>
-			<connection id="id-0068-000000da" kind="DerivedInheritance" role="DerivedInheritance" relid="0x37">
+			<connection id="id-0068-000000db" kind="DerivedInheritance" role="DerivedInheritance" relid="0x37">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sw</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000008f"/>
+				<connpoint role="src" target="id-0066-00000090"/>
 				<connpoint role="dst" target="id-0067-00000012"/>
 			</connection>
-			<connection id="id-0068-000000db" kind="DerivedInheritance" role="DerivedInheritance" relid="0x38">
+			<connection id="id-0068-000000dc" kind="DerivedInheritance" role="DerivedInheritance" relid="0x38">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Se</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000008f"/>
+				<connpoint role="src" target="id-0066-00000090"/>
 				<connpoint role="dst" target="id-0067-00000013"/>
 			</connection>
-			<connection id="id-0068-000000dc" kind="DerivedInheritance" role="DerivedInheritance" relid="0x39">
+			<connection id="id-0068-000000dd" kind="DerivedInheritance" role="DerivedInheritance" relid="0x39">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sw</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000008d"/>
+				<connpoint role="src" target="id-0066-0000008e"/>
 				<connpoint role="dst" target="id-0067-00000010"/>
 			</connection>
-			<connection id="id-0068-000000dd" kind="HasAspect" role="HasAspect" relid="0x3b">
+			<connection id="id-0068-000000de" kind="HasAspect" role="HasAspect" relid="0x3b">
 				<name>HasAspect</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Wn</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-0000008e"/>
+				<connpoint role="dst" target="id-0066-0000008f"/>
 				<connpoint role="src" target="id-0069-00000004"/>
 			</connection>
-			<connection id="id-0068-000000de" kind="DerivedInheritance" role="DerivedInheritance" relid="0x42">
+			<connection id="id-0068-000000df" kind="DerivedInheritance" role="DerivedInheritance" relid="0x42">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Se</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000008d"/>
+				<connpoint role="src" target="id-0066-0000008e"/>
 				<connpoint role="dst" target="id-0067-0000000f"/>
 			</connection>
-			<connection id="id-0068-000000df" kind="BaseInheritance" role="BaseInheritance" relid="0x49">
+			<connection id="id-0068-000000e0" kind="BaseInheritance" role="BaseInheritance" relid="0x49">
 				<name>BaseInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-0000008f"/>
-				<connpoint role="src" target="id-0066-00000091"/>
+				<connpoint role="dst" target="id-0066-00000090"/>
+				<connpoint role="src" target="id-0066-00000092"/>
 			</connection>
-			<connection id="id-0068-000000e0" kind="DerivedInheritance" role="DerivedInheritance" relid="0x4a">
+			<connection id="id-0068-000000e1" kind="DerivedInheritance" role="DerivedInheritance" relid="0x4a">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sw</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000008f"/>
+				<connpoint role="src" target="id-0066-00000090"/>
 				<connpoint role="dst" target="id-0067-00000015"/>
 			</connection>
-			<connection id="id-0068-000000e1" kind="DerivedInheritance" role="DerivedInheritance" relid="0x4b">
+			<connection id="id-0068-000000e2" kind="DerivedInheritance" role="DerivedInheritance" relid="0x4b">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sw</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000008d"/>
+				<connpoint role="src" target="id-0066-0000008e"/>
 				<connpoint role="dst" target="id-0067-00000011"/>
 			</connection>
-			<connection id="id-0068-000000e2" kind="DerivedInheritance" role="DerivedInheritance" relid="0x4f">
+			<connection id="id-0068-000000e3" kind="DerivedInheritance" role="DerivedInheritance" relid="0x4f">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000008d"/>
+				<connpoint role="src" target="id-0066-0000008e"/>
 				<connpoint role="dst" target="id-0067-00000014"/>
 			</connection>
-			<connection id="id-0068-000000e3" kind="HasAttribute" role="HasAttribute" relid="0x51">
+			<connection id="id-0068-000000e4" kind="HasAttribute" role="HasAttribute" relid="0x51">
 				<name>HasAttribute</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ne</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-0000008e"/>
-				<connpoint role="src" target="id-0066-00000092"/>
+				<connpoint role="dst" target="id-0066-0000008f"/>
+				<connpoint role="src" target="id-0066-00000093"/>
 			</connection>
-			<connection id="id-0068-000000e4" kind="HasAttribute" role="HasAttribute" relid="0x53">
+			<connection id="id-0068-000000e5" kind="HasAttribute" role="HasAttribute" relid="0x53">
 				<name>HasAttribute</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ew</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000091"/>
-				<connpoint role="src" target="id-0066-00000093"/>
+				<connpoint role="dst" target="id-0066-00000092"/>
+				<connpoint role="src" target="id-0066-00000094"/>
 			</connection>
-			<connection id="id-0068-000000e5" kind="HasAttribute" role="HasAttribute" relid="0x55">
+			<connection id="id-0068-000000e6" kind="HasAttribute" role="HasAttribute" relid="0x55">
 				<name>HasAttribute</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Nw</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000091"/>
-				<connpoint role="src" target="id-0066-00000094"/>
+				<connpoint role="dst" target="id-0066-00000092"/>
+				<connpoint role="src" target="id-0066-00000095"/>
 			</connection>
-			<connection id="id-0068-000000e6" kind="HasConstraint" role="HasConstraint" relid="0x56">
+			<connection id="id-0068-000000e7" kind="HasConstraint" role="HasConstraint" relid="0x56">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ew</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-00000090"/>
-				<connpoint role="dst" target="id-0066-00000091"/>
+				<connpoint role="src" target="id-0066-00000091"/>
+				<connpoint role="dst" target="id-0066-00000092"/>
 			</connection>
-			<connection id="id-0068-000000e7" kind="DerivedInheritance" role="DerivedInheritance" relid="0x58">
+			<connection id="id-0068-000000e8" kind="DerivedInheritance" role="DerivedInheritance" relid="0x58">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sn</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000008f"/>
+				<connpoint role="src" target="id-0066-00000090"/>
 				<connpoint role="dst" target="id-0067-00000016"/>
 			</connection>
-			<connection id="id-0068-000000e8" kind="DerivedInheritance" role="DerivedInheritance" relid="0x5b">
+			<connection id="id-0068-000000e9" kind="DerivedInheritance" role="DerivedInheritance" relid="0x5b">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Se</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000008f"/>
+				<connpoint role="src" target="id-0066-00000090"/>
 				<connpoint role="dst" target="id-0067-00000018"/>
 			</connection>
-			<connection id="id-0068-000000e9" kind="DerivedInheritance" role="DerivedInheritance" relid="0x5c">
+			<connection id="id-0068-000000ea" kind="DerivedInheritance" role="DerivedInheritance" relid="0x5c">
 				<name>DerivedInheritance</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sw</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-0000008f"/>
+				<connpoint role="src" target="id-0066-00000090"/>
 				<connpoint role="dst" target="id-0067-00000017"/>
 			</connection>
 			<set id="id-0069-00000004" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-00000012 id-0067-00000013 id-0067-00000010 id-0067-00000011 id-0067-0000000f">
