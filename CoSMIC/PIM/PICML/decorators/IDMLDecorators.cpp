@@ -591,16 +591,16 @@ ComponentDecorator::loadPorts()
 	
 	if ( hr == E_NOTFOUND) {
 		try {
-			// JEFF: There is only one aspect in IDML,
+			// JEFF: There is at present only one aspect in PICML,
       // but this is still the easiest way
 			m_spAspect = NULL;
 			CComPtr<IMgaMetaAspects> spAspects;
-			COMTHROW(spMetaModel->get_Aspects(&spAspects));
-			ASSERT(spAspects);
+			COMTHROW( spMetaModel->get_Aspects( &spAspects ) );
+			ASSERT( spAspects );
 			long nAspects = 0;
-			COMTHROW(spAspects->get_Count(&nAspects));
-			if (nAspects > 0) {
-				COMTHROW(spAspects->get_Item(1, &m_spAspect));
+			COMTHROW( spAspects->get_Count( &nAspects ) );
+			if ( nAspects > 0 ) {
+				COMTHROW( spAspects->get_Item( 1, &m_spAspect ) );
 			}
 		}
 		catch ( hresult_exception& ) {
@@ -613,27 +613,10 @@ ComponentDecorator::loadPorts()
 
 		CComPtr<IMgaFCOs> spFCOs;
 		COMTHROW( spModel->get_ChildFCOs( &spFCOs ) );
-		MGACOLL_ITERATE( IMgaFCO, spFCOs ) {
-			CComPtr<IMgaPart> spPart;
-			COMTHROW( MGACOLL_ITER->get_Part( m_spAspect, &spPart ) );
-			if ( spPart ) {
-				CComPtr<IMgaMetaPart> spMetaPart;
-				COMTHROW( spPart->get_Meta( &spMetaPart ) );
-				VARIANT_BOOL vbLinked;
-				COMTHROW( spMetaPart->get_IsLinked( &vbLinked ) );
-				if ( vbLinked ) {
-					long lX = 0;
-					long lY = 0;
-					COMTHROW( spPart->GetGmeAttrs( 0, &lX, &lY ) );
-					vecPorts.push_back( new PortDecorator( MGACOLL_ITER,
-                                                 CPoint( lX, lY ) ) );
-				}
-				else
-					COMTHROW( MGACOLL_ITER->Close() );
-			}
-			else
-				COMTHROW( MGACOLL_ITER->Close() );
-		} MGACOLL_ITERATE_END;
+
+    // Iterate over the child FCOs list and add any ports to
+    // the vector.
+    this->findPorts( vecPorts, spFCOs );
 
 		orderPorts( vecPorts );
 	}
@@ -668,3 +651,57 @@ ComponentDecorator::orderPorts( vector<PortDecorator*>& vecPorts )
 	sort( m_vecRightPorts.begin(), m_vecRightPorts.end(), PortLess() );
 }
 
+void
+ComponentDecorator::findPorts( vector<PortDecorator*>& vecPorts,
+                               CComPtr<IMgaFCOs>& spFCOs )
+{
+	MGACOLL_ITERATE( IMgaFCO, spFCOs ) {
+
+    // We want our ancestors' ports as well.
+    this->checkInherits( vecPorts, MGACOLL_ITER );
+
+		CComPtr<IMgaPart> spPart;
+		COMTHROW( MGACOLL_ITER->get_Part( m_spAspect, &spPart ) );
+		if ( spPart ) {
+			CComPtr<IMgaMetaPart> spMetaPart;
+			COMTHROW( spPart->get_Meta( &spMetaPart ) );
+			VARIANT_BOOL vbLinked;
+			COMTHROW( spMetaPart->get_IsLinked( &vbLinked ) );
+			if ( vbLinked ) {
+				long lX = 0;
+				long lY = 0;
+				COMTHROW( spPart->GetGmeAttrs( 0, &lX, &lY ) );
+				vecPorts.push_back( new PortDecorator( MGACOLL_ITER,
+                                               CPoint( lX, lY ) ) );
+			}
+			else
+				COMTHROW( MGACOLL_ITER->Close() );
+		}
+		else
+			COMTHROW( MGACOLL_ITER->Close() );
+	} MGACOLL_ITERATE_END;
+}
+
+void
+ComponentDecorator::checkInherits( vector<PortDecorator*>& vecPorts,
+                                   CComPtr<IMgaFCO>& mgaFCO )
+{
+  CComPtr<IMgaMetaFCO> metaFCO;
+  mgaFCO->get_Meta( &metaFCO );
+	CComBSTR bstr;
+	COMTHROW( metaFCO->get_Name( &bstr ) );
+  if ( !( bstr == PICML_INHERITS_NAME ) ) return;
+
+	CComPtr<IMgaReference> spRef;
+	COMTHROW( mgaFCO.QueryInterface( &spRef ) );
+  if ( !spRef ) return;
+
+  CComPtr<IMgaFCO> spFCO = NULL;
+  spRef->get_Referred ( &spFCO );
+  CComQIPtr<IMgaModel> spModel = spFCO;
+  if ( !spModel ) return;
+
+  CComPtr<IMgaFCOs> spFCOs = NULL;
+  COMTHROW( spModel->get_ChildFCOs( &spFCOs ) );
+  this->findPorts( vecPorts, spFCOs );
+}

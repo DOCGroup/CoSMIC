@@ -40,6 +40,7 @@ using namespace std;
 #define PICML_TYPEENCODING_NAME        "TypeEncoding"
 #define PICML_TYPEKIND_NAME            "TypeKind"
 #define PICML_VALUEOBJECT_NAME         "ValueObject"
+#define PICML_INHERITS_NAME            "Inherits"
 
 static const char* PREF_TYPESHOWN				= "isTypeShown";
 
@@ -154,7 +155,9 @@ public:
 
 private:
 	void loadPorts();
-	void orderPorts( vector<PortDecorator*>& vecPorts );
+	void orderPorts( vector<PortDecorator*>& );
+  void findPorts( vector<PortDecorator*>&, CComPtr<IMgaFCOs>& );
+  void checkInherits( vector<PortDecorator*>&, CComPtr<IMgaFCO>& );
 };
 
 #endif //__DECORATOR_H_

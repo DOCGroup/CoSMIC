@@ -9,14 +9,14 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CDecorator
-STDMETHODIMP CDecorator::Initialize(IMgaProject *project,
-                                    IMgaMetaPart *metaPart,
-                                    IMgaFCO *obj)
+STDMETHODIMP CDecorator::Initialize( IMgaProject *project,
+                                     IMgaMetaPart *metaPart,
+                                     IMgaFCO *obj )
 {
-	AFX_MANAGE_STATE(AfxGetStaticModuleState( ));
+	AFX_MANAGE_STATE( AfxGetStaticModuleState() );
 
   CComPtr<IMgaMetaFCO> metaFco;
-	if (!GetMetaFCO(metaPart, metaFco)) {
+	if ( !GetMetaFCO( metaPart, metaFco ) ) {
 		return E_DECORATOR_INIT_WITH_NULL;
 	}
 	else {
@@ -66,7 +66,7 @@ STDMETHODIMP CDecorator::Destroy()
 	return S_OK;
 }
 
-STDMETHODIMP CDecorator::GetMnemonic(BSTR *mnemonic)
+STDMETHODIMP CDecorator::GetMnemonic( BSTR *mnemonic )
 {	
 	//
 	// TODO: Return the logical name of the decorator (currently not used by GME)
@@ -75,7 +75,7 @@ STDMETHODIMP CDecorator::GetMnemonic(BSTR *mnemonic)
 	return S_OK;
 }
 
-STDMETHODIMP CDecorator::GetFeatures(feature_code *features)
+STDMETHODIMP CDecorator::GetFeatures( feature_code *features )
 {	
 	//
 	// TODO: Return supported features (combine multiple features with bitwise-OR)
@@ -85,7 +85,7 @@ STDMETHODIMP CDecorator::GetFeatures(feature_code *features)
 	return S_OK;
 }
 
-STDMETHODIMP CDecorator::SetParam(BSTR name, VARIANT value)
+STDMETHODIMP CDecorator::SetParam( BSTR name, VARIANT value )
 {
 	//
 	// TODO:  Parse and set all supported parameters, otherwise return error
@@ -95,7 +95,7 @@ STDMETHODIMP CDecorator::SetParam(BSTR name, VARIANT value)
 	return E_DECORATOR_UNKNOWN_PARAMETER;
 }
 
-STDMETHODIMP CDecorator::GetParam(BSTR name, VARIANT* value)
+STDMETHODIMP CDecorator::GetParam( BSTR name, VARIANT* value )
 {
 	//
 	// TODO: Return values of supported and previously set parameters, otherwise return error
@@ -105,17 +105,17 @@ STDMETHODIMP CDecorator::GetParam(BSTR name, VARIANT* value)
 	return E_DECORATOR_UNKNOWN_PARAMETER;
 }
 
-STDMETHODIMP CDecorator::SetActive(VARIANT_BOOL isActive)
+STDMETHODIMP CDecorator::SetActive( VARIANT_BOOL isActive )
 {
 	//
 	// TODO: If isActive==VARIANT_FALSE, draw your object in GME_GREYED_OUT, otherwise use the color of the object
 	//
 	VERIFY_INIT;
-	m_isActive = (isActive != VARIANT_FALSE);
+	m_isActive = ( isActive != VARIANT_FALSE );
 	return S_OK;
 }
 
-STDMETHODIMP CDecorator::GetPreferredSize(long* sizex, long* sizey) 
+STDMETHODIMP CDecorator::GetPreferredSize( long* sizex, long* sizey ) 
 {
 	VERIFY_INIT;
 
@@ -127,7 +127,10 @@ STDMETHODIMP CDecorator::GetPreferredSize(long* sizex, long* sizey)
 }
 
 
-STDMETHODIMP CDecorator::SetLocation(long sx, long sy, long ex, long ey)
+STDMETHODIMP CDecorator::SetLocation( long sx,
+                                      long sy,
+                                      long ex,
+                                      long ey )
 {
 	VERIFY_INIT;
 	m_pDecorator->setLocation( CRect( sx, sy, ex, ey ) );
@@ -136,7 +139,10 @@ STDMETHODIMP CDecorator::SetLocation(long sx, long sy, long ex, long ey)
 	return S_OK;
 }
 
-STDMETHODIMP CDecorator::GetLocation(long *sx, long *sy, long *ex, long *ey)
+STDMETHODIMP CDecorator::GetLocation( long *sx,
+                                      long *sy,
+                                      long *ex,
+                                      long *ey )
 {
 	VERIFY_INIT;
 	VERIFY_LOCSET;
@@ -149,7 +155,10 @@ STDMETHODIMP CDecorator::GetLocation(long *sx, long *sy, long *ex, long *ey)
 	return S_OK;
 }
 
-STDMETHODIMP CDecorator::GetLabelLocation(long *sx, long *sy, long *ex, long *ey)
+STDMETHODIMP CDecorator::GetLabelLocation( long *sx,
+                                           long *sy,
+                                           long *ex,
+                                           long *ey )
 {
 	//
 	// TODO: Return the location of the text box of your label if you support labels.
@@ -160,7 +169,11 @@ STDMETHODIMP CDecorator::GetLabelLocation(long *sx, long *sy, long *ex, long *ey
 	return S_OK;
 }
 
-STDMETHODIMP CDecorator::GetPortLocation(IMgaFCO *pFCO, long *sx, long *sy, long *ex, long *ey)
+STDMETHODIMP CDecorator::GetPortLocation( IMgaFCO *pFCO,
+                                          long *sx,
+                                          long *sy,
+                                          long *ex,
+                                          long *ey )
 {
 	VERIFY_INIT;
 	VERIFY_LOCSET;
@@ -185,11 +198,11 @@ STDMETHODIMP CDecorator::GetPortLocation(IMgaFCO *pFCO, long *sx, long *sy, long
 	return E_DECORATOR_PORTNOTFOUND;
 }
 
-STDMETHODIMP CDecorator::GetPorts(IMgaFCOs **portFCOs)
+STDMETHODIMP CDecorator::GetPorts( IMgaFCOs **portFCOs )
 {
 	VERIFY_INIT;
 	CComPtr<IMgaFCOs> spFCOs;
-	COMTHROW(spFCOs.CoCreateInstance(OLESTR("Mga.MgaFCOs")));
+	COMTHROW( spFCOs.CoCreateInstance( OLESTR( "Mga.MgaFCOs" ) ) );
 
 	vector<PortDecorator*>	vecPorts;
 	switch ( m_pDecorator->getType() ) {
@@ -209,14 +222,14 @@ STDMETHODIMP CDecorator::GetPorts(IMgaFCOs **portFCOs)
 }
 
 
-STDMETHODIMP CDecorator::Draw(HDC hdc)
+STDMETHODIMP CDecorator::Draw( HDC hdc )
 {
 	VERIFY_INIT;
 	VERIFY_LOCSET;
 
 	CDC dc;
-	dc.Attach(hdc);
-  m_pDecorator->draw(&dc);
+	dc.Attach( hdc );
+  m_pDecorator->draw( &dc );
 	dc.Detach();
 	return S_OK;
 }
@@ -224,7 +237,8 @@ STDMETHODIMP CDecorator::Draw(HDC hdc)
 STDMETHODIMP CDecorator::SaveState()
 {
 	//
-	// TODO: The only method where we are in read-write transaction. Store all permanent information
+	// TODO: The only method where we are in read-write transaction.
+  // Store all permanent information
 	// (currently GME does not support this) 
 	//
 	VERIFY_INIT;
@@ -234,9 +248,9 @@ STDMETHODIMP CDecorator::SaveState()
 
 //////////// Decorator private functions
 CDecorator::CDecorator() 
-  : m_isInitialized(false),
-    m_isLocSet(false),
-    m_pDecorator(0)
+  : m_isInitialized( false),
+    m_isLocSet( false ),
+    m_pDecorator( 0 )
 {
 }
 
@@ -246,21 +260,22 @@ CDecorator::~CDecorator()
 }
 
 bool
-CDecorator::GetMetaFCO(const CComPtr<IMgaMetaPart> &metaPart, CComPtr<IMgaMetaFCO> &metaFco)
+CDecorator::GetMetaFCO( const CComPtr<IMgaMetaPart> &metaPart,
+                        CComPtr<IMgaMetaFCO> &metaFco )
 {
-	if (!metaPart) {
+	if ( !metaPart ) {
 		return false;
 	}
 
 	metaFco = NULL;
 	CComPtr<IMgaMetaRole> metaRole;
 	try {
-		COMTHROW(metaPart->get_Role(&metaRole));
-		COMTHROW(metaRole->get_Kind(&metaFco));
+		COMTHROW( metaPart->get_Role( &metaRole ) );
+		COMTHROW( metaRole->get_Kind( &metaFco ) );
 	}
-	catch (hresult_exception &) {
+	catch ( hresult_exception & ) {
 		metaFco = NULL;
 	}
-	return (metaFco != NULL);
+	return ( metaFco != NULL );
 }
 

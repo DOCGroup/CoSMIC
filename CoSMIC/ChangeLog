@@ -1,3 +1,15 @@
+Thu Sep  2 16:04:05 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/decorators/Decorator.cpp:
+        
+          Cosmetic changes to source code.
+          
+        * PIM/PICML/decorators/IDMLDecorators.cpp:
+        * PIM/PICML/decorators/IDMLDecorators.h:
+        
+          Modified generator for components to draw inherited ports from
+          all ancestors.
+
 Thu Sep 2 15:50:22 CDT 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/IDL_Generator/ComponentConfig.h:
         * PIM/PICML/interpreters/IDL_Generator/Component.ico:
