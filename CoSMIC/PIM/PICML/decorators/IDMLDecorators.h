@@ -42,6 +42,7 @@ using namespace std;
 #define PICML_TYPEENCODING_NAME        "TypeEncoding"
 #define PICML_TYPEKIND_NAME            "TypeKind"
 #define PICML_VALUEOBJECT_NAME         "ValueObject"
+#define PICML_COMPONENTASSEMBLY_NAME   "ComponentAssembly"
 
 static const char* PREF_TYPESHOWN				= "isTypeShown";
 

@@ -931,6 +931,8 @@ self.ECSupplierControl = "reactive"]]>
          </connjoint>
       </connection>
       <connection name = "Include_RTEC_Filter_Group" metaref = "4307" >
+            <regnode name = "sName" value ="srcInclude_RTEC_Filter_Group"></regnode>
+            <regnode name = "dName" value ="dstInclude_RTEC_Filter_Group"></regnode>
             <regnode name = "color" value ="0x000000"></regnode>
             <regnode name = "dstStyle" value ="butt"></regnode>
             <regnode name = "srcStyle" value ="butt"></regnode>
@@ -961,6 +963,8 @@ self.ECSupplierControl = "reactive"]]>
          </connjoint>
       </connection>
       <connection name = "Include_RT_Info" metaref = "4308" >
+            <regnode name = "sName" value ="srcInclude_RT_Info"></regnode>
+            <regnode name = "dName" value ="dstInclude_RT_Info"></regnode>
             <regnode name = "color" value ="0x000000"></regnode>
             <regnode name = "dstStyle" value ="butt"></regnode>
             <regnode name = "srcStyle" value ="butt"></regnode>
@@ -1325,6 +1329,8 @@ self.ECSupplierControl = "reactive"]]>
          </connjoint>
       </connection>
       <connection name = "RTEC_Connection" metaref = "4310" >
+            <regnode name = "sName" value ="srcRTEC_Connection"></regnode>
+            <regnode name = "dName" value ="dstRTEC_Connection"></regnode>
             <regnode name = "color" value ="0x000000"></regnode>
             <regnode name = "dstStyle" value ="butt"></regnode>
             <regnode name = "srcStyle" value ="butt"></regnode>
@@ -1415,6 +1421,8 @@ self.ECSupplierControl = "reactive"]]>
          </connjoint>
       </connection>
       <connection name = "Use_RTEC_Filter" metaref = "4311" >
+            <regnode name = "sName" value ="srcUse_RTEC_Filter"></regnode>
+            <regnode name = "dName" value ="dstUse_RTEC_Filter"></regnode>
             <regnode name = "color" value ="0x000000"></regnode>
             <regnode name = "dstStyle" value ="butt"></regnode>
             <regnode name = "srcStyle" value ="butt"></regnode>
@@ -1432,6 +1440,8 @@ self.ECSupplierControl = "reactive"]]>
          </connjoint>
       </connection>
       <connection name = "Use_RT_Info" metaref = "4312" >
+            <regnode name = "sName" value ="srcUse_RT_Info"></regnode>
+            <regnode name = "dName" value ="dstUse_RT_Info"></regnode>
             <regnode name = "color" value ="0x000000"></regnode>
             <regnode name = "dstStyle" value ="butt"></regnode>
             <regnode name = "srcStyle" value ="butt"></regnode>
@@ -2312,6 +2322,8 @@ in
       </reference>
       <reference name = "RTEC_Resource_Factory_Reference" metaref = "4313">
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "rName" value ="ref"></regnode>
+            <regnode name = "rrName" value ="referedbyRTEC_Resource_Factory_Reference"></regnode>
          <regnode name = "icon" value ="rtec_resource_factory.bmp"></regnode>
          <regnode name = "porticon" value ="rtec_resource_factory-port.bmp"></regnode>
          <pointerspec name = "ref">
@@ -2628,6 +2640,7 @@ allOps (self)->forAll (x, y: gme::Model | x.name = y.name implies x == y)
       </model>
       <model name = "ComponentAssembly" metaref = "3581" attributes = "label UUID" >
             <regnode name = "namePosition" value ="4"></regnode>
+            <regnode name = "decorator" value ="MGA.Decorator.IDMLDecorator"></regnode>
          <constraint name="AssemblyInstanceOnly" eventmask = "0x80000000" depth = "1" priority = "1">
             <![CDATA[let parent = self.parent() in
 if ( parent.isNull() ) then

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri Sep 03 10:29:19 2004" mdate="Fri Sep 03 10:33:40 2004" metaguid="{99CB7435-DEAD-BEEF-FEED-DAD000000001}" metaname="MetaGME">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Fri Sep 03 10:29:19 2004" mdate="Fri Sep 03 11:34:42 2004" metaguid="{99CB7435-DEAD-BEEF-FEED-DAD000000001}" metaname="MetaGME">
 	<name>PICML</name>
 	<comment></comment>
 	<author></author>
@@ -4779,19 +4779,19 @@
 					<value>7</value>
 				</regnode>
 				<regnode name="ComponentLibraries" isopaque="yes">
-					<value>6</value>
+					<value>2</value>
 				</regnode>
 				<regnode name="ComponentMetrics" isopaque="yes">
-					<value>9</value>
-				</regnode>
-				<regnode name="DataAnalysis" isopaque="yes">
-					<value>1</value>
-				</regnode>
-				<regnode name="InterfaceDefinition" isopaque="yes">
 					<value>4</value>
 				</regnode>
+				<regnode name="DataAnalysis" isopaque="yes">
+					<value>9</value>
+				</regnode>
+				<regnode name="InterfaceDefinition" isopaque="yes">
+					<value>8</value>
+				</regnode>
 				<regnode name="LibraryArtifact" isopaque="yes">
-					<value>2</value>
+					<value>1</value>
 				</regnode>
 				<regnode name="MainAspect" isopaque="yes">
 					<value>1</value>
@@ -4800,19 +4800,19 @@
 					<value>5</value>
 				</regnode>
 				<regnode name="NodeMapping" isopaque="yes">
-					<value>5</value>
+					<value>10</value>
 				</regnode>
 				<regnode name="Package" isopaque="yes">
 					<value>2</value>
 				</regnode>
 				<regnode name="Packaging" isopaque="yes">
-					<value>8</value>
+					<value>3</value>
 				</regnode>
 				<regnode name="ResourceView" isopaque="yes">
 					<value>3</value>
 				</regnode>
 				<regnode name="RtecConfigAspect" isopaque="yes">
-					<value>3</value>
+					<value>6</value>
 				</regnode>
 				<regnode name="Target" isopaque="yes">
 					<value>7</value>
@@ -4821,7 +4821,7 @@
 					<value>1</value>
 				</regnode>
 				<regnode name="Workspace" isopaque="yes">
-					<value>10</value>
+					<value>5</value>
 				</regnode>
 			</regnode>
 		</regnode>
@@ -62224,8 +62224,8 @@ dName = dstMonolithExecParameter</value>
 						</regnode>
 					</regnode>
 				</regnode>
-				<attribute kind="Decorator" status="meta">
-					<value></value>
+				<attribute kind="Decorator">
+					<value>MGA.Decorator.IDMLDecorator</value>
 				</attribute>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
@@ -70319,8 +70319,10 @@ dName = dstWorkloadCharacteristics</value>
 				<attribute kind="DstAttrLabel2" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
+				<attribute kind="GeneralPreferences">
+					<value>
+sName = srcRTEC_Connection
+dName = dstRTEC_Connection</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -70664,8 +70666,10 @@ dName = dstWorkloadCharacteristics</value>
 				<attribute kind="DstAttrLabel2" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
+				<attribute kind="GeneralPreferences">
+					<value>
+sName = srcInclude_RTEC_Filter_Group
+dName = dstInclude_RTEC_Filter_Group</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -71057,8 +71061,10 @@ dName = dstWorkloadCharacteristics</value>
 				<attribute kind="DstAttrLabel2" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
+				<attribute kind="GeneralPreferences">
+					<value>
+sName = srcUse_RTEC_Filter
+dName = dstUse_RTEC_Filter</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -71387,8 +71393,10 @@ dName = dstWorkloadCharacteristics</value>
 				<attribute kind="DstAttrLabel2" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
+				<attribute kind="GeneralPreferences">
+					<value>
+sName = srcInclude_RT_Info
+dName = dstInclude_RT_Info</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -71522,8 +71530,10 @@ dName = dstWorkloadCharacteristics</value>
 				<attribute kind="DstAttrLabel2" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
+				<attribute kind="GeneralPreferences">
+					<value>
+sName = srcUse_RT_Info
+dName = dstUse_RT_Info</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -71846,8 +71856,10 @@ dName = dstWorkloadCharacteristics</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
+				<attribute kind="GeneralPreferences">
+					<value>
+rName = ref
+rrName = referedbyRTEC_Resource_Factory_Reference</value>
 				</attribute>
 				<attribute kind="Icon">
 					<value>rtec_resource_factory.bmp</value>

@@ -1,3 +1,15 @@
+Sat Sep  4 22:16:34 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/decorators/Decorator.dsp:
+        * PIM/PICML/decorators/IDMLDecorators.cpp:
+        * PIM/PICML/decorators/IDMLDecorators.h:
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICMLTemplate.xme:
+        
+          Modified decorator to include drawing of ComponentAssembly.
+
 Fri Sep  3 17:11:29 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/decorators/Decorator.cpp:

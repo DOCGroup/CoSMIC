@@ -250,6 +250,10 @@ SOURCE=.\Decorator.rgs
 # End Group
 # Begin Source File
 
+SOURCE=.\hoy.htm
+# End Source File
+# Begin Source File
+
 SOURCE=..\paradigms\icons\inherits.bmp
 # End Source File
 # End Target

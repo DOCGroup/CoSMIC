@@ -438,7 +438,8 @@ ComponentDecorator::initialize(IMgaFCO *obj, CComPtr<IMgaMetaFCO>& metaFco)
   m_mgaFco->get_Meta( &spMetaFCO );
   CComQIPtr<IMgaMetaModel> spMetaModel;
 
-  if ( m_metaName == PICML_COMPONENT_NAME )
+  if ( m_metaName == PICML_COMPONENT_NAME
+       || m_metaName == PICML_COMPONENTASSEMBLY_NAME )
 	  spMetaModel = spMetaFCO;
   else
     {
@@ -582,7 +583,8 @@ ComponentDecorator::setLocation( const CRect& cRect )
 void
 ComponentDecorator::LoadBitmap()
 {
-  if ( m_metaName == PICML_COMPONENT_NAME )
+  if ( m_metaName == PICML_COMPONENT_NAME
+       || m_metaName == PICML_COMPONENTASSEMBLY_NAME )
     m_bitmap.ReadFromResource( IDB_BITMAP_COMPONENT );
   else
     m_bitmap.ReadFromResource( IDB_BITMAP_COMPONENTREF );
@@ -672,7 +674,8 @@ ComponentDecorator::loadPorts()
 	vector<PortDecorator*>	vecPorts;
   CComQIPtr<IMgaModel> spModel;
 
-  if ( m_metaName == PICML_COMPONENT_NAME )
+  if ( m_metaName == PICML_COMPONENT_NAME
+       || m_metaName == PICML_COMPONENTASSEMBLY_NAME )
 	  spModel = m_mgaFco;
   else
     {
