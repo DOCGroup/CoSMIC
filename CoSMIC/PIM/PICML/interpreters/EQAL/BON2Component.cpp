@@ -223,7 +223,7 @@ IMPLEMENT_BONEXTENSION( RT_Info, "RT_Info" );
 
 IMPLEMENT_BONEXTENSION( OutEventPort, "OutEventPort" );
 
-IMPLEMENT_BONEXTENSION( OutEventPort_Reference, "OutEventPort_ReferenceImpl" );
+IMPLEMENT_BONEXTENSION( OutEventPortReference, "OutEventPortReferenceImpl" );
 
 IMPLEMENT_BONEXTENSION( CCMComponent, "CCMComponentImpl" );
 
@@ -238,8 +238,8 @@ void EventChannelConfigurationVisitor::visitModelImpl (const Model& model)
        model_iter != child_models.end ();
        model_iter++)
     {
-      this->visitRTEC_Proxy_SupplierImpl (RTEC_Proxy_Supplier (model));
-      this->visitRTEC_Proxy_ConsumerImpl (RTEC_Proxy_Consumer (model));
+      this->visitRTEC_Proxy_SupplierImpl (RTEC_Proxy_Supplier (*model_iter));
+      this->visitRTEC_Proxy_ConsumerImpl (RTEC_Proxy_Consumer (*model_iter));
     }
 }
 
@@ -307,17 +307,18 @@ void RTEC_Proxy_ConsumerVisitor::visitRT_InfoImpl (const RT_Info & rt_info)
 
   // Get the source event port reference
   std::multiset<ConnectionEnd> source_port_list = rt_info->getInConnEnds ("RTEC_Connection");
+
 	std::multiset<ConnectionEnd>::iterator source_port_iter = source_port_list.begin ();
 
-  OutEventPort_Reference source_port_ref = FCO (*source_port_iter);
+  ReferencePort source_port_ref = ReferencePort (*source_port_iter);
   if (!source_port_ref) return;
 
-  // Get the actual source event port
-  OutEventPort source_port = source_port_ref->getReferred ();
+  FCO source_port = source_port_ref->getFCO ();
+  std::string name = source_port->getName ();
   if (!source_port) return;
 
   // Get the CCMComponent 
-  CCMComponent component (FCO (source_port)->getParent ());
+  FCO component (source_port->getParent ());
   if (!component) return; //ERROR
   std::string component_name = component->getName ();
 
@@ -331,7 +332,12 @@ void RTEC_Proxy_ConsumerVisitor::visitRT_InfoImpl (const RT_Info & rt_info)
   rt_info->generate_CPF (cpf_name.c_str (), component_name.c_str (), source_port_name.c_str ());
 
   // Write svc.conf
-  std::multiset<ConnectionEnd> rtec_factory_list = rt_info->getOutConnEnds ("Use_RT_Info");
+  std::multiset<ConnectionEnd> rtec_factory_list = rt_info->getInConnEnds ("Use_RT_Info");
+
+  int i;
+  
+  i = rtec_factory_list.size ();
+
 	for (std::multiset<ConnectionEnd>::iterator rtec_factory_iter = rtec_factory_list.begin ();
        rtec_factory_iter != rtec_factory_list.end ();
        rtec_factory_iter++)

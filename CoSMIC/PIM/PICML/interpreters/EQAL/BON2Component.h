@@ -53,25 +53,8 @@ namespace BON
 	class RT_InfoImpl;
 	DECLARE_BONEXTENSION( RT_Info_Param, RT_InfoImpl, RT_Info );
 
-  /*
-	class Null_RT_InfoImpl;
-	DECLARE_BONEXTENSION( RT_Info_Param, Null_RT_InfoImpl, Null_RT_Info );
-
-	class RTEC_Filter_GroupImpl;
-	DECLARE_BONEXTENSION( Atom, RTEC_Filter_GroupImpl, RTEC_Filter_Group );
-
-	class DisjunctionGroupImpl;
-	DECLARE_BONEXTENSION( RTEC_Filter_Group, DisjunctionGroupImpl, DisjunctionGroup );
-
-	class ConjunctionGroupImpl;
-	DECLARE_BONEXTENSION( RTEC_Filter_Group, ConjunctionGroupImpl, ConjunctionGroup );
-
-	class LogicalANDGroupImpl;
-	DECLARE_BONEXTENSION( RTEC_Filter_Group, LogicalANDGroupImpl, LogicalANDGroup );
-  */
-
-  class OutEventPort_ReferenceImpl;
-  DECLARE_BONEXTENSION ( Reference, OutEventPort_ReferenceImpl, OutEventPort_Reference);
+  class OutEventPortReferenceImpl;
+  DECLARE_BONEXTENSION ( Reference, OutEventPortReferenceImpl, OutEventPortReference);
 
   class OutEventPortImpl;
   DECLARE_BONEXTENSION ( Atom, OutEventPortImpl, OutEventPort);
@@ -176,7 +159,7 @@ public:
 };
 
 
-class OutEventPort_ReferenceImpl
+class OutEventPortReferenceImpl
 	: public ReferenceImpl
 {
 
