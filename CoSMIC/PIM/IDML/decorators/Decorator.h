@@ -57,8 +57,6 @@ private:
 
 private:
 	bool GetMetaFCO(const CComPtr<IMgaMetaPart> &metaPart, CComPtr<IMgaMetaFCO> &metaFco);
-//	bool GetPreference(CString &val, const CString &path);
-//	bool GetPreference(int &val, const CString &path, bool hex = false);
 };
 
 

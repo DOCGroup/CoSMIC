@@ -264,26 +264,3 @@ CDecorator::GetMetaFCO(const CComPtr<IMgaMetaPart> &metaPart, CComPtr<IMgaMetaFC
 	return (metaFco != NULL);
 }
 
-/*
-bool CDecorator::GetPreference(CString &val,const CString &path)
-{
-	CComBSTR pathBstr(path);
-	CComBSTR bstrVal;
-	if (m_mgaFco) {
-		COMTHROW(m_mgaFco->get_RegistryValue(pathBstr,&bstrVal));
-	}
-	else {
-		COMTHROW(m_metaFco->get_RegistryValue(pathBstr,&bstrVal));
-	}
-	val = bstrVal;
-	return !val.IsEmpty();
-}
-
-bool CDecorator::GetPreference(int &val,const CString &path,bool hex)
-{
-	CString strVal;
-	GetPreference(strVal, path);
-	return (sscanf(strVal,hex ? "%x" : "%d",&val) == 1);
-}
-
-*/

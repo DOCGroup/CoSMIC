@@ -1,6 +1,7 @@
 // Decorator.cpp : Implementation of CDecorator
 #include "stdafx.h"
 #include "IDMLDecorators.h"
+#include "CommonSmart.h"
 #include "Resource.h"
 #include "DecoratorUtil.h"
 #include "MaskedBitmap.h"
@@ -111,8 +112,6 @@ long
 DecoratorBase::getBorderWidth( bool bActive ) const
 {
 	long lBorderWidth = m_lBorderWidth;
-//	if ( ( m_bActive || bActive ) && m_bHasViolation )
-//		lBorderWidth += WIDTH_BORDERVIOLATION + 1;
 	return lBorderWidth;
 }
 
@@ -368,8 +367,10 @@ struct PortLess
 
 ComponentDecorator::ComponentDecorator( CComPtr<IMgaMetaPart>	metaPart )
   : DecoratorBase(),
-    m_metaPart (metaPart),
-    m_iMaxPortTextLength( MAX_PORT_LENGTH )
+    m_metaPart( metaPart ),
+    m_iMaxPortTextLength( MAX_PORT_LENGTH ),
+    m_bTypeNameEnabled( false ),
+    m_iTypeInfo( 0 )
 {
 }
 
@@ -386,7 +387,41 @@ void
 ComponentDecorator::initialize(IMgaFCO *obj, CComPtr<IMgaMetaFCO>& metaFco)
 {
   DecoratorBase::initialize(obj, metaFco);
-  if (m_mgaFco) loadPorts();
+  if (!m_mgaFco) return;
+  
+  loadPorts();
+
+	CComBSTR bstrPath = PREF_TYPESHOWN;
+	CComBSTR bstrValue;
+	COMTHROW( m_mgaFco->get_RegistryValue( bstrPath, &bstrValue ) );
+  m_bTypeNameEnabled =
+    (bstrValue == "t" || bstrValue == "true" || bstrValue == "1" );
+
+	VARIANT_BOOL bInstance = VARIANT_FALSE;
+	COMTHROW( m_mgaFco->get_IsInstance( &bInstance ) );
+	if ( bInstance == VARIANT_TRUE ) {
+		m_iTypeInfo = 3;
+		if ( m_bTypeNameEnabled ) {
+			CComPtr<IMgaFCO> spType;
+			COMTHROW( m_mgaFco->get_DerivedFrom( &spType ) );
+			CComBSTR bstrName;
+			COMTHROW( spType->get_Name( &bstrName ) );
+			m_strTypeName = bstrName;
+		}
+	}
+	else {
+		CComPtr<IMgaFCO> spType;
+		COMTHROW( m_mgaFco->get_DerivedFrom( &spType ) );
+		if ( spType )
+			m_iTypeInfo = 2;
+		else {
+			CComPtr<IMgaFCOs> spFCOs;
+			COMTHROW( m_mgaFco->get_DerivedObjects( &spFCOs ) );
+			long lCount = 0;
+			COMTHROW( spFCOs->get_Count( &lCount ) );
+			m_iTypeInfo = ( lCount == 0 ) ? 0 : 1;
+		}
+	}
 }
 
 CSize
@@ -457,24 +492,37 @@ ComponentDecorator::setLocation( const CRect& cRect )
 void
 ComponentDecorator::LoadBitmap()
 {
-  m_bitmap.ReadFromResource(IDB_BITMAP_COMPONENT);       
+  m_bitmap.ReadFromResource( IDB_BITMAP_COMPONENT );       
 }
 
 void
-ComponentDecorator::draw(CDC* pDC)
+ComponentDecorator::draw( CDC* pDC )
 {
   // Draw the component icon.
   CRect dst = getLocation();
 	m_bitmap.Draw( pDC, dst );
 
-  // Draw the comonent name.
-	CPoint namePos(dst.left + dst.Width () / 2, dst.bottom + NAME_MARGINY);
-	d_util.DrawText(pDC, 
-                  m_name,
-                  namePos,
-                  d_util.GetFont(GME_NAME_FONT),
-                  m_nameColor,
-                  TA_BOTTOM | TA_CENTER);
+  // Draw the component name.
+	CPoint namePos( dst.left + dst.Width () / 2, dst.bottom + NAME_MARGINY );
+	d_util.DrawText( pDC, 
+                   m_name,
+                   namePos,
+                   d_util.GetFont( GME_NAME_FONT ),
+                   m_nameColor,
+                   TA_BOTTOM | TA_CENTER );
+
+  // If we are an instance, draw the type info.
+	if ( m_bTypeNameEnabled && m_iTypeInfo == 3 ) {
+	  CPoint typeNamePos( dst.left + dst.Width () / 2,
+                        dst.bottom + 2 * NAME_MARGINY );
+    CString typeInfoStr = "[  " + m_strTypeName + "  ]";
+	  d_util.DrawText( pDC, 
+                     typeInfoStr,
+                     typeNamePos,
+                     d_util.GetFont( GME_PORTNAME_FONT ),
+                     m_nameColor,
+                     TA_BOTTOM | TA_CENTER );
+	}
 
   // Draw the component ports, if any.
 	CSize cExtentD = pDC->GetViewportExt();

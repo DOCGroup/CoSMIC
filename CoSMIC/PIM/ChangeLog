@@ -1,3 +1,13 @@
+Thu Jul 22 000:56:30 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * IDML/decorators/Decorator.cpp:
+        * IDML/decorators/Decorator.h:
+        * IDML/decorators/IDMLDecorators.cpp:
+        * IDML/decorators/IDMLDecorators.h:
+        
+          Added code to generate the type name for instances of components,
+          when such instances are added to a PICML model.
+
 Wed Jul 21 13:30:29 2004  Arvind S. Krishna  <arvindk@dre.vanderbilt.edu>
 
         * PICML/paradigms/PICML.xme:

@@ -41,6 +41,8 @@ using namespace std;
 #define IDML_TYPEKIND_NAME            "TypeKind"
 #define IDML_VALUEOBJECT_NAME         "ValueObject"
 
+static const char* PREF_TYPESHOWN				= "isTypeShown";
+
 //########################################################
 //
 //	CLASS : DecoratorBase
@@ -134,7 +136,9 @@ private:
 	vector<PortDecorator*>		m_vecRightPorts;
 	CComPtr<IMgaMetaAspect>	  m_spAspect;
 	long							        m_iMaxPortTextLength;
-
+	CString		                m_strTypeName;
+  bool							        m_bTypeNameEnabled;
+  int                       m_iTypeInfo;
 public:
   ComponentDecorator( CComPtr<IMgaMetaPart>	metaPart );
   virtual ~ComponentDecorator();
