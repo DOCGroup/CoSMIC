@@ -1,4 +1,28 @@
-Thu Oct 21 23:50:24 CDT 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+Fri Oct 22 10:04:13 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+        * PIM/PICML/interpreters/cidl/Component/*:
+          Deleted all interpreter files from this directory
+        * PIM/PICML/interpreters/cidl/*:
+          Added all the required interpreters files back in this directory
+
+        * PIM/PICML/interpreters/MPC/Component/*:
+          Deleted all interpreter files from this directory
+        * PIM/PICML/interpreters/MPC/*:
+          Added all interpreter files to the top level directory
+ 
+        * PIM/PICML/interpreters/BGML_Interpreter/Component/*:
+          Deleted all interpreter files from this directory
+        * PIM/PICML/interpreters/BGML_Interpreter/*:
+          Added all interpreter files to this top level directory
+
+          This Changelog is a succinct version, as all this is about moving
+          a bunch of files around. The main motivation being: to have all the
+          intrepreter files in the top level directory rather than having a 
+          Component directory (one level indirection). The culprit being 
+          the UDM wizard that added this indirection. This change also includes
+          renaming the DLLs (intpreters) generated to "Foo.dll" rather than 
+          "Component.dll" to make more sense to all.
+
+Thu Oct 21 23:50:24 2004 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
