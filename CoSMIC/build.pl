@@ -28,7 +28,6 @@ $dsp_args = "-v -s -Release"; # -rebuild
 
 $dsp_args_no_env = "-v -s -u -Release"; # -rebuild
 @projects_no_env = (
-  "PIM/PICML/interpreters",
   "Installer/RegisterParadigm",
    "PIM/PICML/interpreters/IDLImporter"
 );
