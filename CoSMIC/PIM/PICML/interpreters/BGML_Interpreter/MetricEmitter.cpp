@@ -61,7 +61,7 @@ MetricEmitter<T>::create_build_file (std::vector<std::string>& file_list,
 	
 	// Create project
 	build_stream << "project (";
-	build_stream << project_name << ") : acelib, ciao_client {";
+	build_stream << project_name << ") : acelib, ciao_client_dnc {";
 	build_stream << "\n";
 	
 	// Create include definition and libs+
