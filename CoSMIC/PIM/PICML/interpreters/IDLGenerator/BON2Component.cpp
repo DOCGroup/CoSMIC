@@ -177,6 +177,8 @@ void Component::invokeEx( Project& project,
       IDLEmitVisitor emit_visitor (strm);
       emit_visitor.visitOrderableImpl (root);
     }
+
+  AfxMessageBox ("IDL generation completed.");
 }
 
 // ====================================================

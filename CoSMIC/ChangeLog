@@ -1,3 +1,10 @@
+Thu Nov  4 09:49:33 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
+        
+          Added display of message box to tell the user that generation
+          is finished.
+
 Wed Nov  3 18:34:58 2004  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/BON2Component.cpp:
