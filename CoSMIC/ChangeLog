@@ -1,3 +1,56 @@
+Fri Apr 8 11:11:23 CDT 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML-UML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+      
+          Updates to the BGML meta model.
+
+        * PIM/PICML/paradigms/icons/Discrete-Benchmark.bmp:
+        * PIM/PICML/paradigms/icons/Periodic-Bench.bmp:
+        * PIM/PICML/paradigms/icons/Trigger-Bench.bmp:
+
+          New Icons for the BGML additions to the meta-model.
+
+
+        * PIM/PICML/interpreters/BGML_Base/BGML_Task_Base.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/BGML_Visitor.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/BGML_Visitor.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/Global_Data.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/MetricEmitter.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/MetricEmitter.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/PICML.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/PICML.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/UdmApp.cpp:
+
+          Enhancements to the BGML interpreter to do the following:
+          --  generate code from any paradigm sheet and not requiring the 
+              user to choose the BGML paradigm
+          --  rate based benchmarking 
+          --  allowing the background operations to be different than the 
+              main benchmarking task
+
+        * PIM/PICML/interpreters/MPC/PICML.cpp:
+        * PIM/PICML/interpreters/MPC/PICML.h:
+        * PIM/PICML/interpreters/MPC/PICML.xsd:
+        * PIM/PICML/interpreters/cidl/PICML.cpp:
+        * PIM/PICML/interpreters/cidl/PICML.h:
+        * PIM/PICML/interpreters/cidl/PICML.xsd:
+        * PIM/PICML/interpreters/domain/PICML.cpp:
+        * PIM/PICML/interpreters/domain/PICML.h:
+        * PIM/PICML/interpreters/domain/PICML.xsd:
+        * PIM/PICML/interpreters/packaging/PICML.cpp:
+        * PIM/PICML/interpreters/packaging/PICML.h:
+        * PIM/PICML/interpreters/packaging/PICML.xsd:
+        * PIM/PICML/interpreters/plan/PICML.cpp:
+        * PIM/PICML/interpreters/plan/PICML.h:
+        * PIM/PICML/interpreters/plan/PICML.xsd:
+
+          Update all Udm based interpreters of the change to BGML!
+
+
 Fri Apr  8 06:09:13 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * PROBLEM-REPORT-FORM:
