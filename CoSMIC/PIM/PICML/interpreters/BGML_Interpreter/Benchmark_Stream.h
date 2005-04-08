@@ -96,7 +96,7 @@ public:
   
   // generate a #if !defined, #defined macro
 
-  void generate_task_header (std::string& class_name, std::string &path);
+  void generate_task_header (std::string& class_name, bool is_main_class);
   // Generate the header file for the Task
 
   void gen_include_file (std::string& file_name);
@@ -126,12 +126,21 @@ public:
   void gen_bench_def (__int64 iterations);
   // Generate the benchmarking definition
 
-  void gen_background_load (std::string& class_name, int tasks);
+  int gen_barrier (void);
+  // Generate barrier information
+
+  void activate_background_tasks (int task_size);
+  // Activate background tasks if necessary
+
+  void gen_background_load (std::string& class_name, __int64 start, __int64 finish);
   // Generate Background load
 
   void generate_workload_def (__int64 interations, 
-							  BGML_Task_Data &data);
+							  BGML_Task_Group_Data &data);
   // Generates the workload definition
+
+  void gen_run_method (std::string &name);
+  // Generate the run method to run the tasks
 
   void create_export_macro (std::string& shared_name, std::string &output_path);
   // Generate the export header file

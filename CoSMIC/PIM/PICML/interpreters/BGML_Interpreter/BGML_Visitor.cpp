@@ -89,8 +89,8 @@ BGML_Visitor::Visit_BenchmarkAnalysis (const PICML::BenchmarkAnalysis& model)
 	{
 		// The two-way operation that it is measuring
 		PICML::MetricConnection conn = iter->srcMetricConnection ();
-		PICML::OperationRef op_ref = conn.srcMetricConnection_end();
-		PICML::OperationBase operation = op_ref.ref ();
+		PICML::OperationRef operation_reference_1 = conn.srcMetricConnection_end();
+		PICML::OperationBase main_operation = operation_reference_1.ref ();
 
 		/// Check if there is a priority or rate for the main task
 		this->bgml_state_.benchmark_priority = (* iter).priority ();
@@ -103,27 +103,50 @@ BGML_Visitor::Visit_BenchmarkAnalysis (const PICML::BenchmarkAnalysis& model)
 		if (task_set != Udm::null)
 		{
 			PICML::TaskSet set = task_set.dstWorkloadCharacteristics_end();
+			
+			BGML_Task_Group_Data task_group_data;
+			task_group_data.task_priority = set.rate ();
+			task_group_data.task_rate = set.priority ();
 
-			BGML_Task_Data this_task;
 			std::set<PICML::Task> tasks = set.members ();
-			this_task.number_of_tasks = tasks.size ();
-			this_task.task_priority = set.priority();
-			this_task.task_rate = set.rate ();
-			this->bgml_state_.task_group_data.push_back (this_task);
+			task_group_data.size = tasks.size ();
+
+            for (std::set<PICML::Task>::iterator task_iter = tasks.begin ();
+				 task_iter != tasks.end ();
+				 task_iter ++)
+				 {
+					// Need to figure out the operation name now
+					PICML::WorkLoadOperationConnection wrkload_conn = 
+						task_iter->srcWorkLoadOperationConnection();
+					if (wrkload_conn != Udm::null)
+					{
+						PICML::OperationRef op_ref = wrkload_conn.srcWorkLoadOperationConnection_end();
+						PICML::OperationBase operation_base = op_ref.ref ();
+						task_group_data.background_operations.push_back (operation_base);
+					}
+				 }
+
+			/// Push back each task in task group
+			this->bgml_state_.task_group_data.push_back (task_group_data);
+
 		}
 		
+		/// Get the type of Benchmark Characterisitcs
+		PICML::BenchmarkCharacteristics bench_char = iter->srcBenchmarkCharacteristics ();
+		this->bgml_state_.benchmark_type = bench_char.srcBenchmarkCharacteristics_end ();
+
 		// If the metrics is a latencyMetric
 		std::string kindName = (*iter).type().name();
 		
 		// Check if this operation is a two-way operation
-		std::string op_kind = operation.type().name();
+		std::string op_kind = main_operation.type().name();
 
 		if (kindName == "Latency" &&
 			op_kind  == "TwowayOperation")
 		{
 			// Write out the Latency information for this guy
 			PICML::Latency latency = PICML::Latency::Cast (* iter);
-			MetricEmitter<PICML::Latency> emitter (op_ref, 
+			MetricEmitter<PICML::Latency> emitter (operation_reference_1, 
 												   latency, 
 												   kindName,
 												   this->bgml_state_);
@@ -134,7 +157,7 @@ BGML_Visitor::Visit_BenchmarkAnalysis (const PICML::BenchmarkAnalysis& model)
 		  {
 			// Write out the Latency information for this guy
 			PICML::Throughput thr = PICML::Throughput::Cast (* iter);
-			MetricEmitter<PICML::Throughput> thr_emitter (op_ref, 
+			MetricEmitter<PICML::Throughput> thr_emitter (operation_reference_1, 
 														  thr, 
 														  kindName,
 														  this->bgml_state_);

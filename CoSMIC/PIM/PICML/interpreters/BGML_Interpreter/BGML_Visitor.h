@@ -15,9 +15,8 @@ public:
     ~BGML_Visitor();
 	
 	// Visitor Operations
-	void Visit_BenchmarkAnalysis (const PICML::BenchmarkAnalysis& model);
-	void Visit_TimeProbe (const PICML::TimeProbe& probe);
-	
+	void Visit_BenchmarkAnalysis (const PICML::BenchmarkAnalysis &model);
+	void Visit_TimeProbe (const PICML::TimeProbe &probe);
 private:
     void write_timer_information (std::string& file_name);
 

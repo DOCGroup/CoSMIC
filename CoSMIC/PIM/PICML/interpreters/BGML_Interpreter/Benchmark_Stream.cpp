@@ -1,7 +1,8 @@
 #include "Benchmark_Stream.h"
 #include "ctype.h"
 #include "Global_Data.h"
-
+#include "IDL_Util.h"
+#include "Uml.h"
 
 NL::NL (void)
 {
@@ -175,8 +176,54 @@ this->strm_ << "//     http://www.dre.vanderbilt.edu/cosmic\n";
 }
 
 void
+BenchmarkStream::gen_run_method (std::string &name)
+{
+	this->indent ();
+	this->strm_ << "template <class T> void \n";
+	
+	this->indent ();
+	this->strm_ << name << ":: run (";
+	this->strm_ << " (T* remote_ref";
+	
+	if (this->arg_list_.size ())
+		for (size_t i=0; i < this->arg_list_.size (); i++)
+		{
+			this->strm_ << ", ";
+			this->strm_ << this->arg_list_[i];
+			this->strm_ << " ";
+			this->strm_ << "arg";
+			this->strm_ << i;
+		}
+	this->strm_ << ")\n";
+
+	this->indent ();
+	this->strm_ << "{\n";
+
+	this->incr_indent ();
+	this->indent ();
+
+	/// Check what type of benchmark
+	if (this->bgml_state_.benchmark_type != Udm::null)
+	{
+		std::string bench_kind = this->bgml_state_.benchmark_type.type().name();
+		if (bench_kind == "FixedIterationBenchmarks")
+		{
+
+		}
+		else if (bench_kind == "PeriodicBenchmarks")
+		{
+
+		}
+	}
+
+	/// Default case same as "Trigger Benchmarks"
+	
+
+}
+
+void
 BenchmarkStream::generate_task_header (std::string& header_name, 
-									   std::string& output_path)
+									   bool is_main_class)
 {
 	// Generate the tool description
 	this->generate_tool_description ();
@@ -234,7 +281,27 @@ BenchmarkStream::generate_task_header (std::string& header_name,
 	//// Step 4: Write out the constructor/Destructor for the tasks
 	this->gen_constructor_decl (header_name);
 	this->gen_destructor_decl  (header_name);
-	
+
+	/// Step 5: Add the static run method
+	this->incr_indent ();
+	this->nl ();
+	this->indent ();
+	this->strm_ << "// Static entry point for benchmarking \n";
+	this->indent ();
+	this->strm_ << "int static run (T* remote_ref";
+	if (this->arg_list_.size ())
+		for (size_t i=0; i < this->arg_list_.size (); i++)
+		{
+			this->strm_ << ", ";
+			this->strm_ << this->arg_list_[i];
+			this->strm_ << " ";
+			this->strm_ << "arg";
+			this->strm_ << i;
+		}
+	this->strm_ << ");";
+	this->nl ();
+	this->decr_indent ();
+
 	//// Step 5: Write out the hook svc method for ACE_Task_Base
 	this->incr_indent ();
 	this->nl ();
@@ -242,9 +309,11 @@ BenchmarkStream::generate_task_header (std::string& header_name,
 	this->strm_ << "int svc (void);";
 	
 	// If main task generate the get_stats operation
-	if (output_path.size ())
+	if (is_main_class)
 	{
 		this->nl ();
+		this->indent ();
+		this->strm_ << "// Interface to fetch data from benchmarks \n";
 		this->indent ();
 		this->strm_ << "BGML_Data& get_stats (void);";
 	}
@@ -253,11 +322,8 @@ BenchmarkStream::generate_task_header (std::string& header_name,
 	this->nl ();
 	
 	//// Step 6: Write out the private members
-	if (output_path.size ())
-		this->gen_private_mem_decl (1);
-	else
-		this->gen_private_mem_decl (0);
-
+	this->gen_private_mem_decl (is_main_class);
+	
 	/// Step 7: Write out the close the class
 	this->nl ();
 	this->strm_ << "};";
@@ -393,73 +459,6 @@ BenchmarkStream::gen_warmup_iterations (__int64 iterations,
 }
 
 void
-BenchmarkStream::gen_background_load (std::string& class_name, int task_set_size)
-{
-	// For the number of tasks assigned 
-	this->nl ();
-	this->indent ();
-
-	// Create Barrier
-	this->strm_ << "ACE_Barrier barrier (" 
-				<<  (task_set_size + 1)
-				<< ");";
-	this->nl ();
-
-	this->indent ();
-	this->strm_ << "// Generate the Background workload \n";
-	for (int i = 0; i < task_set_size; i++)
-	{
-		this->indent ();
-		this->strm_ << class_name.c_str ();
-		
-		// Instantiate the workload template
-		this->strm_ << "<T>";
-
-		this->strm_ << " task";
-		this->strm_ << i << " (this->remote_ref_,";
-		bool arg_flag = 0;
-		for (size_t t = 0; t < this->arg_list_.size (); t++)
-		{
-			if (arg_flag)
-				this->strm_ << ",";
-			this->strm_ << " arg" << t << "_";
-			arg_flag = 1;
-		}
-
-		// Insert barrier code
-		arg_flag ? this->strm_ << ", barrier" : this->strm_ << " barrier";
-		this->strm_ << ");";
-		this->nl ();
-	}
-
-	this->nl ();
-
-	this->indent ();
-	this->strm_ << "// Activate the Background tasks \n";
-	
-	for (i = 0; i < task_set_size; i++)
-	{
-		this->indent ();
-		this->strm_ << "if (task" << i << ".activate (THR_NEW_LWP | THR_JOINABLE, 1, 1) == -1)";
-		this->nl ();
-		this->incr_indent ();
-		this->indent ();
-		this->strm_ << "ACE_ERROR ((LM_ERROR, \"Error activating workload task" << i
-			        << " \\n\"));";
-		this->decr_indent ();
-		this->nl ();
-	}
-
-	this->nl ();
-	this->indent ();
-	this->strm_ << "// Wait on Barrier for tasks to start \n";
-	this->indent ();
-	this->strm_ << "barrier.wait ();\n";
-	this->nl ();
-
-}
-
-void
 BenchmarkStream::gen_bench_def (__int64 iterations)
 {
    this->indent ();
@@ -575,17 +574,19 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
 	   this->strm_ << "// Wait for tasks to finish\n";
    }
 
+   __int64 total_task_counter = 0; // Count of total number of tasks
+
    for (__int64 counter = 0; 
 		counter < this->bgml_state_.task_group_data.size (); 
 		counter++)
    {
-	  for (__int64 inner_counter = 0; 
-	       inner_counter < this->bgml_state_.task_group_data[counter].number_of_tasks;
+	 for (size_t inner_counter = 0; 
+	       inner_counter < this->bgml_state_.task_group_data[ (int) counter].size;
 		   inner_counter ++)
 		 {
 			this->indent ();
 			this->strm_ << "task"
-				     	<< (int) inner_counter
+				     	<< (int) total_task_counter ++
 				        << ".wait ();";
 			this->nl ();
 		  }
@@ -611,6 +612,26 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
    this->indent ();
    this->strm_ << "history.collect_basic_stats (stats);";
    this->nl ();
+   this->nl ();
+
+   /// Find the resolution of the individual samples 
+   if (this->bgml_state_.resolution == "miliseconds")
+   {
+	   this->indent ();
+	   this->strm_ << "// Converting to milisecond resolution";
+	   this->nl ();
+	   this->indent ();
+	   this->strm_ << "gsf *= 1000;";
+	   this->nl ();
+   }
+   else if (this->bgml_state_.resolution == "seconds")
+   {
+	   this->indent ();
+	   this->strm_ << "// Converting to seconds resolution \n";
+	   this->nl ();
+	   this->strm_ << "gsf *= 1000000;";
+	   this->nl ();
+   }
 
    /// Check if we need to dump the data out to a file
    if (this->bgml_state_.file_name.size ())
@@ -695,7 +716,7 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
 
 void
 BenchmarkStream::generate_workload_def (__int64 iterations,
-										BGML_Task_Data &data)
+										BGML_Task_Group_Data &data)
 {
 	/// Step 1: Generate the ifdef macros
 	std::string macro_name = this->component_name_ + "_" + this->operation_name_ + "_Workload";
@@ -928,6 +949,93 @@ BenchmarkStream::generate_rate_helper ()
 }
 
 void
+BenchmarkStream::gen_background_load (std::string& class_name, __int64 start_index, __int64 end_index)
+{
+	
+	for (; start_index < end_index; start_index++)
+	{
+		this->indent ();
+		this->strm_ << class_name.c_str ();
+		
+		// Instantiate the workload template
+		this->strm_ << "<T>";
+
+		this->strm_ << " task";
+		this->strm_ << start_index << " (this->remote_ref_,";
+		bool arg_flag = 0;
+		for (size_t t = 0; t < this->arg_list_.size (); t++)
+		{
+			if (arg_flag)
+				this->strm_ << ",";
+			this->strm_ << " arg" << t << "_";
+			arg_flag = 1;
+		}
+
+		// Insert barrier code
+		arg_flag ? this->strm_ << ", barrier" : this->strm_ << " barrier";
+		this->strm_ << ");";
+		this->nl ();
+	}
+}
+
+void 
+BenchmarkStream::activate_background_tasks (int task_size)
+{
+	if (task_size)
+	{
+		this->nl ();
+		this->indent ();
+	}
+
+	this->strm_ << "// Activate the Background tasks \n";
+	for (int i = 0; i < task_size; i++)
+	{
+		this->indent ();
+		this->strm_ << "if (task" << i << ".activate (THR_NEW_LWP | THR_JOINABLE, 1, 1) == -1)";
+		this->nl ();
+		this->incr_indent ();
+		this->indent ();
+		this->strm_ << "ACE_ERROR ((LM_ERROR, \"Error activating workload task" << i
+			        << " \\n\"));";
+		this->decr_indent ();
+		this->nl ();
+	}
+
+	this->nl ();
+	this->indent ();
+	this->strm_ << "// Wait on Barrier for tasks to start \n";
+	this->indent ();
+	this->strm_ << "barrier.wait ();\n";
+	this->nl ();
+
+}
+
+int
+BenchmarkStream::gen_barrier ()
+{
+	/// Compute total number of tasks
+	int total_size = 0;
+	for (size_t i = 0; i < this->bgml_state_.task_group_data.size (); i++)
+		for (size_t j = 0; j < this->bgml_state_.task_group_data [i].size; j++, total_size ++);
+
+	if (total_size)
+	{
+		// For the number of tasks assigned 
+		this->nl ();
+		this->indent ();
+
+		// Create Barrier
+		this->strm_ << "ACE_Barrier barrier (" 
+					<<  (total_size + 1)
+					<< ");";
+		this->nl ();
+	}
+	
+	/// Return this information
+	return total_size;
+}
+
+void
 BenchmarkStream::generate_task_def (std::string& metrics,
 									BGML_Data &bgml_state)
 {
@@ -981,13 +1089,71 @@ BenchmarkStream::generate_task_def (std::string& metrics,
 	this->gen_warmup_iterations (this->bgml_state_.warmup_iterations, 
 								 this->bgml_state_.benchmark_priority);
 
-	/// For each of the data generate the load
+	/// Generate barrier information if there are background tasks
+	int total_size = this->gen_barrier ();
+
+	__int64 start_index = 0; /* Start the number for tasks */
+	__int64 end_index = 0; /* Ending index for tasks */
+
+	if (this->bgml_state_.task_group_data.size ())
+	{
+		this->nl ();
+		this->indent ();
+		this->strm_ << "// Generate the Background workload \n";
+	}
+
 	for (size_t i = 0; i < this->bgml_state_.task_group_data.size (); i++)
 	{
-		std::string class_name = this->component_name_ + "_" + this->operation_name_ + "_Workload";
-		this->gen_background_load (class_name, 
-								   this->bgml_state_.task_group_data[i].number_of_tasks);
+		BGML_Task_Group_Data &task_data = 
+			this->bgml_state_.task_group_data [i];
+
+		if (! task_data.background_operations.size ())
+		{
+			std::string class_name = this->component_name_ + "_" + this->operation_name_ + "_Workload";
+			end_index = start_index + task_data.size;	
+			this->gen_background_load (class_name, start_index, end_index);
+
+		} else if (task_data.background_operations.size () == task_data.size)
+		{
+			end_index = start_index + task_data.size;
+			for (size_t j = 0; j < task_data.background_operations.size (); j++)
+			{
+				PICML::TwowayOperation twoway_op = 
+					PICML::TwowayOperation::Cast (task_data.background_operations [j]);
+				std::string& operation_name = IDL_Util::operation_name (twoway_op);
+				std::string class_name = this->component_name_ + "_" + 
+					this->operation_name_ + "_Workload";
+				this->gen_background_load (class_name, start_index, start_index + 1);
+				++ start_index;
+			}
+			// start is one more than what it should be, but we reset it later, hence
+			// ignore the subtraction for now here.
+		} else
+		{
+			end_index = start_index + task_data.background_operations.size () ;
+			for (size_t j = 0; j < task_data.background_operations.size (); j++)
+			{
+				PICML::TwowayOperation twoway_op = 
+					PICML::TwowayOperation::Cast (task_data.background_operations [j]);
+				std::string& operation_name = IDL_Util::operation_name (twoway_op);
+				std::string class_name = this->component_name_ + "_" + 
+					operation_name + "_Workload";
+				this->gen_background_load (class_name, start_index, start_index + 1);
+				start_index ++;
+			}
+
+			// Start will now be from the end
+			start_index = end_index;
+
+			std::string class_name = this->component_name_ + "_" + this->operation_name_ + "_Workload";
+			end_index = start_index + task_data.size -1;	
+			this->gen_background_load (class_name, start_index, end_index);
+		}
+
+		start_index = end_index; // After each interation, start is now finish
 	}
+
+	this->activate_background_tasks (total_size);
 
 	/// Step 4: Generate the code for benchmarking
 	this->gen_bench_def (this->bgml_state_.benchmark_iterations);

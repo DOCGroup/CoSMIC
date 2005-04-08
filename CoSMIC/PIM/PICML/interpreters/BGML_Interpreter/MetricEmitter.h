@@ -33,14 +33,28 @@ protected:
 							   std::string& component_name,
 							   std::string& operation_name,
 							   std::vector<string>& arg_list,
-							   std::string &path);
+							   bool is_main);
 	// Generate the header file information
 
 	void create_build_file (std::vector<std::string>& file_list, 
 							std::string& project_name,
 							std::string& dependancy_list);
 	// Generate the build file building benchmarking library
-	
+
+	void generate_workload_files (std::string &component_name,
+								  std::string &operation_name,
+								  std::vector<std::string> &arg_list,
+								  std::vector<std::string> &source_file_list,
+								  bool is_main,
+								  BGML_Task_Group_Data &data);
+	// Generate workload .h and .cpp files
+
+	void generate_workload_tasks_that_differ (BGML_Task_Group_Data &task_group_data,
+											  std::string &component_name,
+											  std::vector<std::string> &source_file_list,
+											  bool is_main);
+	// Generate workload tasks that benchmark different operation than the main task
+
 private:
 	PICML::OperationRef &operation_ref_;
 	T& latency_;

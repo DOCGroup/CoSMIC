@@ -28,7 +28,8 @@ int CUdmApp::Initialize()
 
 static void showUsage()
 {
-  AfxMessageBox ("Interpretation must start from Benchmarking Aspect");
+	static std::string message ("BGML Interpreter failed to detect BGML Paradigm");
+  AfxMessageBox (message.c_str ());
   return;
 }
 
@@ -131,12 +132,10 @@ void CUdmApp::UdmMain(
 		if (outputPath.size () == 0)
 			return;
 
-		if (focusObject == Udm::null && selectedObjects.empty())
-        {
-			showUsage();
-			return;
-        }
-		else
+		bool valid_interpretation = 0;
+
+		if (focusObject != Udm::null || 
+			selectedObjects.empty())
         {
 			std::set<Udm::Object> mySet (selectedObjects);
 			if (focusObject != Udm::null)
@@ -155,16 +154,39 @@ void CUdmApp::UdmMain(
 				{
 					BGML_Visitor visitor (outputPath);
 					SetUpVisitor (BenchmarkAnalysis, root, visitor);
+					valid_interpretation = 1;
 				}
-				else
-                {
-					showUsage();
-					return;
-                }
 			}
-
-			AfxMessageBox ("Bencharking files successfully generated");
 		}
+
+		if (! valid_interpretation)
+		{
+			Udm::Object root_obj = p_backend->GetRootObject();
+			PICML::RootFolder root_folder = PICML::RootFolder::Cast (root_obj);
+			std::set<PICML::ComponentAnalyses> child_benchmarks = 
+				root_folder.ComponentAnalyses_children ();
+			for (std::set<PICML::ComponentAnalyses>::iterator iter = child_benchmarks.begin ();
+			iter != child_benchmarks.end ();
+			iter ++)
+			{
+				std::set<PICML::BenchmarkAnalysis> benchmarks = 
+					iter->BenchmarkAnalysis_children();
+				for (std::set<PICML::BenchmarkAnalysis>::iterator iter2 = benchmarks.begin ();
+				iter2 != benchmarks.end ();
+				iter2 ++)
+				{
+					BGML_Visitor visitor (outputPath);
+					SetUpVisitor (BenchmarkAnalysis, *iter2, visitor);
+					valid_interpretation = 1;
+				}
+				
+			}
+		} /* end else */
+
+		if (valid_interpretation)		
+			AfxMessageBox ("Bencharking files successfully generated");
+		else
+			showUsage ();
 	 }
       catch(udm_exception &ex)
         {
