@@ -1,16 +1,16 @@
-project (PackageComponent): mfc, picmllib {
-  after += PICML Package
+project (DeploymentPlanComponent): mfc, picmllib {
+  after += PICML DeploymentPlan
 
   MIDL_Files {
     gendir = .
     $(GME_ROOT)/SDK/BON/ComponentLib.idl
   }
   macros += PICML_HAS_DLL _USRDLL _WINDLL
-  sharedname = PackageComponent
+  sharedname = DeploymentPlanComponent
   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML \
-              $(COSMIC_ROOT)/PIM/PICML/interpreters/Package \
-              $(COSMIC_ROOT)/PIM/PICML/interpreters/PackageComponent
-  libs += PICML Package
+              $(COSMIC_ROOT)/PIM/PICML/interpreters/DeploymentPlan \
+              $(COSMIC_ROOT)/PIM/PICML/interpreters/DeploymentPlanComponent
+  libs += PICML DeploymentPlan
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
 
@@ -52,8 +52,8 @@ project (PackageComponent): mfc, picmllib {
   }
 }
 
-project (RegisterPackageComponent): picmllib {
-  after += PackageComponent
+project (RegisterDeploymentPlanComponent): picmllib {
+  after += DeploymentPlanComponent
   custom_only           = 1
 
   Register_Files {

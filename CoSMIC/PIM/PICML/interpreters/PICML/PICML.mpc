@@ -11,10 +11,12 @@ project (PICML): picmllib {
    Source_Files {
      PICML.cpp
      XercesString.cpp
+     Utils.cpp
    }
 
    Header_Files {
      PICML.h
+     Utils.h
      PICML_Export.h
      XercesString.h
    }

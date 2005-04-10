@@ -7,12 +7,10 @@ project(Package): picmllib {
 
    Source_Files {
      PackageVisitor.cpp
-     XercesString.cpp
    }
 
    Header_Files {
      PackageVisitor.h
-     XercesString.h
      Package_Export.h
    }
 }

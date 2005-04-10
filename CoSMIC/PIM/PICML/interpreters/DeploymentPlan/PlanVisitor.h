@@ -12,17 +12,18 @@
 
 // Utility includes
 #include "XercesString.h"
-
-using xercesc::DOMImplementation;
-using xercesc::DOMDocument;
-using xercesc::DOMElement;
-using xercesc::DOMWriter;
-using xercesc::XMLFormatTarget;
-using xercesc::LocalFileFormatTarget;
+#include "Plan_Export.h"
 
 namespace PICML
 {
-  class PlanVisitor: public Visitor
+  using xercesc::DOMImplementation;
+  using xercesc::DOMDocument;
+  using xercesc::DOMElement;
+  using xercesc::DOMWriter;
+  using xercesc::XMLFormatTarget;
+  using xercesc::LocalFileFormatTarget;
+
+  class Plan_Export PlanVisitor: public Visitor
   {
   public:
     PlanVisitor (const std::string& outputPath);

@@ -1,6 +1,4 @@
-#include <afxdlgs.h> // For CFileDialog
 #include "PlanVisitor.h"
-#include "UuidString.h"
 
 using xercesc::LocalFileFormatTarget;
 using xercesc::DOMImplementationRegistry;
@@ -101,7 +99,6 @@ namespace PICML
       }
     else
       {
-        AfxMessageBox("Oops..Mismatch in push()/pop()");
         throw(std::exception());
       }
   }
@@ -132,47 +129,47 @@ namespace PICML
 
   void PlanVisitor::Visit_ImplementationArtifacts(const ImplementationArtifacts& ia)
   {
-    
+
   }
 
   void PlanVisitor::Visit_ArtifactContainer(const ArtifactContainer& ac)
   {
-    
+
   }
 
   void PlanVisitor::Visit_ImplementationArtifact(const ImplementationArtifact& ia)
   {
-    
+
   }
 
   void PlanVisitor::Visit_ArtifactDependsOn(const ArtifactDependsOn& ado)
   {
-    
+
   }
 
   void PlanVisitor::Visit_ImplementationArtifactReference(const ImplementationArtifactReference& iar)
   {
-    
+
   }
 
   void PlanVisitor::Visit_ArtifactExecParameter(const ArtifactExecParameter& param)
   {
-    
+
   }
 
   void PlanVisitor::Visit_Property(const Property& property)
   {
-    
+
   }
 
   void PlanVisitor::Visit_DataType(const DataType& type)
   {
-    
+
   }
 
   void PlanVisitor::Visit_String(const String& str)
   {
-    
+
   }
 
   void PlanVisitor::Visit_ArtifactDeployRequirement(const ArtifactDeployRequirement&)
@@ -186,43 +183,43 @@ namespace PICML
 
   void PlanVisitor::Visit_TopLevelPackages(const TopLevelPackages& tp)
   {
-    
+
   }
 
 
   void PlanVisitor::Visit_TopLevelPackageContainer(const TopLevelPackageContainer& tpc)
   {
-    
+
   }
 
   void PlanVisitor::Visit_TopLevelPackage(const TopLevelPackage& tp)
   {
-    
+
   }
 
   void PlanVisitor::Visit_package(const package& pkg)
   {
-    
+
   }
 
   void PlanVisitor::Visit_PackageConfigurationReference(const PackageConfigurationReference& pcr)
   {
-    
+
   }
 
   void PlanVisitor::Visit_PackageConfigurations(const PackageConfigurations& pcs)
   {
-    
+
   }
 
   void PlanVisitor::Visit_PackageConfigurationContainer(const PackageConfigurationContainer& pcc)
   {
-    
+
   }
 
   void PlanVisitor::Visit_PackageConfiguration(const PackageConfiguration& pc)
   {
-    
+
   }
 
   void PlanVisitor::Visit_PackageConfConfigProperty(const PackageConfConfigProperty&)
@@ -247,62 +244,62 @@ namespace PICML
   {}
 
   void PlanVisitor::Visit_DeploymentPlan(const DeploymentPlan& dp)
-  { 
-	  this->push();
-      std::string name = this->outputPath_ + "\\";
-      name += dp.name();
-      name += ".cdp";
-      this->initTarget (name);
-      this->initDocument ("Deployment:DeploymentPlan");
-	  this->initRootAttributes();
+  {
+    this->push();
+    std::string name = this->outputPath_ + "\\";
+    name += dp.name();
+    name += ".cdp";
+    this->initTarget (name);
+    this->initDocument ("Deployment:DeploymentPlan");
+    this->initRootAttributes();
 
-	  const std::set<CollocationGroup> dps = dp.CollocationGroup_children();
+    const std::set<CollocationGroup> dps = dp.CollocationGroup_children();
 
-      for (std::set<CollocationGroup>::const_iterator iter = dps.begin();
-           iter != dps.end();
-           ++iter)
-		{
-			   std::string refName;
-			   CollocationGroup cg = *iter;
+    for (std::set<CollocationGroup>::const_iterator iter = dps.begin();
+         iter != dps.end();
+         ++iter)
+      {
+        std::string refName;
+        CollocationGroup cg = *iter;
 
-			   const std::set<InstanceMapping> cg_ins_maps = cg.dstInstanceMapping ();
+        const std::set<InstanceMapping> cg_ins_maps = cg.dstInstanceMapping ();
 
-			   for (std::set<InstanceMapping>::const_iterator cg_ins_map_iter = cg_ins_maps.begin();
-			        cg_ins_map_iter != cg_ins_maps.end ();
-					++cg_ins_map_iter)
-					{
-						InstanceMapping cg_ins = *cg_ins_map_iter;
-						NodeReference node_ref = cg_ins.dstInstanceMapping_end();
-						const Node ref = node_ref.ref();
-                        refName = (ref.name());
-					}
+        for (std::set<InstanceMapping>::const_iterator cg_ins_map_iter = cg_ins_maps.begin();
+             cg_ins_map_iter != cg_ins_maps.end ();
+             ++cg_ins_map_iter)
+          {
+            InstanceMapping cg_ins = *cg_ins_map_iter;
+            NodeReference node_ref = cg_ins.dstInstanceMapping_end();
+            const Node ref = node_ref.ref();
+            refName = (ref.name());
+          }
 
-			   const std::set<ComponentRef> comp_types = cg.members ();
+        const std::set<ComponentRef> comp_types = cg.members ();
 
-			   for (std::set<ComponentRef>::const_iterator comp_type_iter = comp_types.begin();
-			        comp_type_iter != comp_types.end ();
-					++comp_type_iter)
-					{
-						ComponentRef comp_type = *comp_type_iter;
-						Component comp = comp_type.ref();
-						this->push();
-                        DOMElement* ele = this->doc_->createElement (XStr ("instance"));
-                        ele->appendChild (this->createSimpleContent ("name", comp.name()));
-						ele->appendChild (this->createSimpleContent ("node", refName));
-                        this->curr_->appendChild (ele);
-                        this->pop();
-					}
-		}
+        for (std::set<ComponentRef>::const_iterator comp_type_iter = comp_types.begin();
+             comp_type_iter != comp_types.end ();
+             ++comp_type_iter)
+          {
+            ComponentRef comp_type = *comp_type_iter;
+            Component comp = comp_type.ref();
+            this->push();
+            DOMElement* ele = this->doc_->createElement (XStr ("instance"));
+            ele->appendChild (this->createSimpleContent ("name", comp.name()));
+            ele->appendChild (this->createSimpleContent ("node", refName));
+            this->curr_->appendChild (ele);
+            this->pop();
+          }
+      }
 
 
-	  this->dumpDocument();
-      this->pop();
+    this->dumpDocument();
+    this->pop();
   }
 
   void PlanVisitor::Visit_InstanceMapping(const InstanceMapping& ins_map)
   {
-	  NodeReference node_ref = ins_map.dstInstanceMapping_end();
-	  node_ref.Accept (*this);
+    NodeReference node_ref = ins_map.dstInstanceMapping_end();
+    node_ref.Accept (*this);
   }
 
   void PlanVisitor::Visit_NodeReference(const NodeReference& node_ref)

@@ -34,6 +34,7 @@
 #include "UdmApp.h"
 #include "UdmConfig.h"
 
+#include "Utils.h"
 #include "PICML.h"
 #include "PackageVisitor.h"
 
@@ -44,12 +45,7 @@ using xercesc::XMLString;
 using PICML::XStr;
 
 
-#define SetUpVisitor(type, root, visitor)       \
-do                                              \
-  {                                             \
-    type start = type ## ::Cast (root);         \
-    start.Accept (visitor);                     \
-  } while (0)
+
 
 extern void dummy(void); // Dummy function for UDM meta initialization
 
@@ -60,72 +56,6 @@ int CUdmApp::Initialize()
 {
   return 0;
 }
-
-static void showUsage()
-{
-  AfxMessageBox ("Interpretation must start from either \n"
-                 "TopLevelPackages/TopLevelPackageContainer, \n"
-                 "ComponentTypes/ComponentContainer, \n"
-                 "ComponentPackages/PackageContainer, \n"
-                 "ComponentImplementations/ComponentImplementationContainer, \n"
-                 "ImplementationArtifacts/ImplementationArtifactContainer, \n"
-                 "PackageConfigurations/PackageConfigurationContainer.");
-  return;
-}
-
-// This method prompts a dialog to allow the user to specify a folder
-static bool getPath (const std::string& description, std::string& path)
-{
-  // Initalize the com library
-  HRESULT hr = ::CoInitialize(NULL);
-  if (FAILED(hr))
-    return false;
-
-  // Dialog instruction
-  char display_buffer[MAX_PATH];
-  BROWSEINFO folder_browsinfo;
-  memset (&folder_browsinfo, 0, sizeof (folder_browsinfo));
-
-  // Set GME as the owner of the dialog
-  folder_browsinfo.hwndOwner = GetForegroundWindow();
-  // Start the browse from desktop
-  folder_browsinfo.pidlRoot = NULL;
-  // Pointer to the folder name display buffer
-  folder_browsinfo.pszDisplayName = &display_buffer[0];
-  // Dialog instruction string
-  folder_browsinfo.lpszTitle = description.c_str();
-  // Use new GUI style and allow edit plus file view
-  folder_browsinfo.ulFlags = BIF_RETURNONLYFSDIRS|BIF_USENEWUI;
-  // No callback function
-  folder_browsinfo.lpfn = NULL;
-  // No parameter passing into the dialog
-  folder_browsinfo.lParam = 0;
-
-  LPITEMIDLIST folder_pidl = SHBrowseForFolder(&folder_browsinfo);
-
-  if(folder_pidl == NULL)
-    return false;
-  else
-    {
-      TCHAR FolderNameBuffer[MAX_PATH];
-
-      // Convert the selection into a path
-      if (SHGetPathFromIDList (folder_pidl, FolderNameBuffer))
-        path = FolderNameBuffer;
-
-      // Free the ItemIDList object returned from the call to
-      // SHBrowseForFolder using Gawp utility function
-      IMalloc * imalloc = 0;
-      if ( SUCCEEDED( SHGetMalloc ( &imalloc )) )
-        {
-          imalloc->Free ( folder_pidl );
-          imalloc->Release ( );
-        }
-    }
-  ::CoUninitialize();
-  return true;
-}
-
 /*
   Remarks to CUdmApp::UdmMain(...):
   0. The p_backend points to an already open backend, and the framework
@@ -170,57 +100,12 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
         {
           std::string outputPath;
           std::string message = "Please specify the Output Directory";
-          if (!getPath (message, outputPath))
+          if (!::PICML::getPath (message, outputPath))
             return;
           PICML::PackageVisitor visitor (outputPath);
-          if (focusObject == Udm::null && selectedObjects.empty())
-            SetUpVisitor (PICML::RootFolder, p_backend->GetRootObject(),
-                          visitor);
-          else
-            {
-              std::set<Udm::Object> mySet (selectedObjects);
-              if (focusObject != Udm::null)
-                mySet.insert (focusObject);
-              for (std::set<Udm::Object>::iterator iter = mySet.begin();
-                   iter != mySet.end();
-                   ++iter)
-                {
-                  Udm::Object root = *iter;
-                  std::string kindName = (*iter).type().name();
-                  if (kindName == "TopLevelPackages")
-                    SetUpVisitor (PICML::TopLevelPackages, root, visitor);
-                  else if (kindName == "TopLevelPackageContainer")
-                    SetUpVisitor (PICML::TopLevelPackageContainer, root,
-                                  visitor);
-                  else if (kindName == "ImplementationArtifacts")
-                    SetUpVisitor (PICML::ImplementationArtifacts, root,
-                                  visitor);
-                  else if (kindName == "ArtifactContainer")
-                    SetUpVisitor (PICML::ArtifactContainer, root, visitor);
-                  else if (kindName == "ComponentTypes")
-                    SetUpVisitor (PICML::ComponentTypes, root, visitor);
-                  else if (kindName == "ComponentContainer")
-                    SetUpVisitor (PICML::ComponentContainer, root, visitor);
-                  else if (kindName == "ComponentPackages")
-                    SetUpVisitor (PICML::ComponentPackages, root, visitor);
-                  else if (kindName == "PackageContainer")
-                    SetUpVisitor (PICML::PackageContainer, root, visitor);
-                  else if (kindName == "ComponentImplementations")
-                    SetUpVisitor (PICML::ComponentImplementations, root,
-                                  visitor);
-                  else if (kindName == "ComponentImplementationContainer")
-                    SetUpVisitor (PICML::ComponentImplementationContainer, root,
-                                  visitor);
-                  else if (kindName == "PackageConfigurations")
-                    SetUpVisitor (PICML::PackageConfigurations, root, visitor);
-                  else if (kindName == "PackageConfigurationContainer")
-                    SetUpVisitor (PICML::PackageConfigurationContainer, root,
-                                  visitor);
-                  else
-                    SetUpVisitor (PICML::RootFolder, p_backend->GetRootObject(),
-                                  visitor);
-                }
-            }
+          PICML::RootFolder
+            start = PICML::RootFolder::Cast (p_backend->GetRootObject());
+          start.Accept (visitor);
         }
       catch(udm_exception &e)
         {

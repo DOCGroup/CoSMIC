@@ -41,6 +41,7 @@
 #include "UdmApp.h"
 #include "UdmConfig.h"
 
+#include "Utils.h"
 #include "PICML.h"
 #include "PlanVisitor.h"
 
@@ -50,20 +51,6 @@ using xercesc::DOMException;
 using xercesc::XMLString;
 using PICML::XStr;
 
-#define SetUpVisitor(type, root, visitor)                               \
-  do                                                                    \
-    {                                                                   \
-      PICML:: ## type start = PICML:: ## type ## ::Cast (root);         \
-      start.Accept (visitor);                                           \
-    } while (0)
-
-// template <class T, class U>
-// void SetUpVisitor(const T& type, Udm::Object& root, const U& visitor)
-// {
-//   type start = type::Cast (root);
-//   start.Accept (visitor);
-// }
-
 extern void dummy(void); // Dummy function for UDM meta initialization
 
 // Initialization function. The framework calls it before preparing the
@@ -72,64 +59,6 @@ extern void dummy(void); // Dummy function for UDM meta initialization
 int CUdmApp::Initialize()
 {
   return 0;
-}
-
-static void showUsage()
-{
-  AfxMessageBox ("Interpretation must start from either \n"
-                 "DeploymentPlans/DeploymentPlan");
-  return;
-}
-
-// This method prompts a dialog to allow the user to specify a folder
-static bool getPath (const std::string& description, std::string& path)
-{
-  // Initalize the com library
-  //WINOLEAPI com_lib_return = OleInitialize(NULL);
-
-  // Dialog instruction
-  char display_buffer[MAX_PATH];
-  BROWSEINFO folder_browsinfo;
-  memset (&folder_browsinfo, 0, sizeof (folder_browsinfo));
-
-  // Set GME as the owner of the dialog
-  folder_browsinfo.hwndOwner = GetForegroundWindow();
-  // Start the brows from desktop
-  folder_browsinfo.pidlRoot = NULL;
-  // Pointer to the folder name display buffer
-  folder_browsinfo.pszDisplayName = &display_buffer[0];
-  // Diaglog instruction string
-  folder_browsinfo.lpszTitle = description.c_str();
-  // Use new GUI style and allow edit plus file view
-  folder_browsinfo.ulFlags = BIF_BROWSEINCLUDEFILES | BIF_RETURNONLYFSDIRS;
-  // No callback function
-  folder_browsinfo.lpfn = NULL;
-  // No parameter passing into the dialog
-  folder_browsinfo.lParam = 0;
-
-  LPITEMIDLIST folder_pidl;
-  folder_pidl = SHBrowseForFolder(&folder_browsinfo);
-
-  if(folder_pidl == NULL)
-    return false;
-  else
-    {
-      TCHAR FolderNameBuffer[MAX_PATH];
-
-      // Convert the selection into a path
-      if (SHGetPathFromIDList (folder_pidl, FolderNameBuffer))
-        path = FolderNameBuffer;
-
-      // Free the ItemIDList object returned from the call to
-      // SHBrowseForFolder using Gawp utility function
-      IMalloc * imalloc = 0;
-      if ( SUCCEEDED( SHGetMalloc ( &imalloc )) )
-        {
-          imalloc->Free ( folder_pidl );
-          imalloc->Release ( );
-        }
-    }
-  return true;
 }
 
 /*
@@ -172,58 +101,38 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
   try
     {
       XMLPlatformUtils::Initialize();
-      std::string outputPath;
-      std::string message = "Please specify the Output Directory";
-      if (!getPath (message, outputPath))
-		return;
-      if (focusObject == Udm::null && selectedObjects.empty())
+      try
         {
-          showUsage();
+          std::string outputPath;
+          std::string message = "Please specify the Output Directory";
+          if (!::PICML::getPath (message, outputPath))
+            return;
+          PICML::PlanVisitor visitor (outputPath);
+          PICML::RootFolder
+            start = PICML::RootFolder::Cast (p_backend->GetRootObject());
+          start.Accept (visitor);
+        }
+      catch(udm_exception &e)
+        {
+          AfxMessageBox ("Caught UDM Exception: " + CString (e.what()));
           return;
         }
-      else
+      catch (const DOMException& e)
         {
-          std::set<Udm::Object> mySet (selectedObjects);
-          if (focusObject != Udm::null)
-            mySet.insert (focusObject);
-          for (std::set<Udm::Object>::iterator iter = mySet.begin();
-               iter != mySet.end();
-               ++iter)
+          const unsigned int maxChars = 2047;
+          XMLCh errText[maxChars + 1];
+
+          std::stringstream estream;
+          estream << "DOMException code: " << e.code << std::endl;
+          if (xercesc::DOMImplementation::loadDOMExceptionMsg(e.code, errText, maxChars))
             {
-              Udm::Object root = *iter;
-              std::string kindName = (*iter).type().name();
-              PICML::PlanVisitor visitor (outputPath);
-              if (kindName == "DeploymentPlan")
-                SetUpVisitor (DeploymentPlan, root, visitor);
-              else if (kindName == "DeploymentPlans")
-                SetUpVisitor (DeploymentPlans, root, visitor);
-              else
-                {
-                  showUsage();
-                  return;
-                }
+              std::string message (XMLString::transcode (errText));
+              estream << "Message is: " << message << std::endl;
             }
+          AfxMessageBox (estream.str().c_str());
+          return;
         }
       XMLPlatformUtils::Terminate();
-    }
-  catch(udm_exception &e)
-    {
-      AfxMessageBox(e.what());
-    }
-  catch (const DOMException& e)
-    {
-      const unsigned int maxChars = 2047;
-      XMLCh errText[maxChars + 1];
-
-      std::stringstream estream;
-      estream << "DOMException code: " << e.code << std::endl;
-      if (DOMImplementation::loadDOMExceptionMsg(e.code, errText, maxChars))
-        {
-          std::string message (XMLString::transcode (errText));
-          estream << "Message is: " << message << std::endl;
-        }
-      AfxMessageBox (estream.str().c_str());
-      return;
     }
   catch (const XMLException& e)
     {
@@ -231,7 +140,8 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
       AfxMessageBox (message.c_str());
       return;
     }
-  AfxMessageBox ("Descriptor files were successfully generated!");
+  AfxMessageBox ("Descriptor files were successfully generated!",
+                 MB_OK| MB_ICONINFORMATION);
   return;
 }
 

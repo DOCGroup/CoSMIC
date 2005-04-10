@@ -1,3 +1,92 @@
+Sun Apr 10 22:49:38 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/interpreters/ConfigExport/ConfigExport.mpc:
+
+          Modified to include the directory of the interpreter, i.e,
+          ConfigExport in the search path for header files.
+
+        * PIM/PICML/interpreters/ConfigExport/UdmApp.cpp:
+
+          Modified to get the getPath() function working.
+
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlan.mpc:
+        * PIM/PICML/interpreters/DeploymentPlan/PlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlan/PlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlan/Plan_Export.h:
+
+          New files migrated from the old plan directory.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/CompIcon.ico:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Component.def:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Component.rc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/RawComponent.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/StdAfx.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/StdAfx.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmConfig.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/resource.h:
+
+          New files migrated from the old plan directory.
+
+        * PIM/PICML/interpreters/Interpreters.mwc: Added the
+          DeploymentPlan directory to the list of directories to be
+          built.
+
+        * PIM/PICML/interpreters/PICML/PICML.mpc:
+        * PIM/PICML/interpreters/PICML/Utils.h:
+        * PIM/PICML/interpreters/PICML/Utils.cpp:
+        * PIM/PICML/interpreters/PICML/XercesString.h:
+
+          Modifications to refactor common code (like getPath()) lying
+          around in multiple files.
+
+        * PIM/PICML/interpreters/Package/Package.mpc:
+
+          Removed references to XercesString which has been refactored as
+          above.
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:
+
+          Updated to use the archetype()'s name when dumping out names of
+          the package references.
+
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp:
+
+          Changes related to the above mentioned refactoring.
+
+        * PIM/PICML/interpreters/picmllib.mpb: Updated to use xerces.mpb.
+
+        * PIM/PICML/interpreters/plan/CompIcon.ico:
+        * PIM/PICML/interpreters/plan/Component.def:
+        * PIM/PICML/interpreters/plan/Component.rc:
+        * PIM/PICML/interpreters/plan/ComponentConfig.h:
+        * PIM/PICML/interpreters/plan/DeploymentPlan.dsp:
+        * PIM/PICML/interpreters/plan/DeploymentPlan.dsw:
+        * PIM/PICML/interpreters/plan/PICML.h:
+        * PIM/PICML/interpreters/plan/PICML.cpp:
+        * PIM/PICML/interpreters/plan/PICML.xsd:
+        * PIM/PICML/interpreters/plan/PlanVisitor.h:
+        * PIM/PICML/interpreters/plan/PlanVisitor.cpp:
+        * PIM/PICML/interpreters/plan/RawComponent.h:
+        * PIM/PICML/interpreters/plan/RawComponent.cpp:
+        * PIM/PICML/interpreters/plan/StdAfx.h:
+        * PIM/PICML/interpreters/plan/StdAfx.cpp:
+        * PIM/PICML/interpreters/plan/UdmApp.h:
+        * PIM/PICML/interpreters/plan/UdmApp.cpp:
+        * PIM/PICML/interpreters/plan/UdmConfig.h:
+        * PIM/PICML/interpreters/plan/UuidString.h:
+        * PIM/PICML/interpreters/plan/UuidString.cpp:
+        * PIM/PICML/interpreters/plan/XercesString.h:
+        * PIM/PICML/interpreters/plan/XercesString.cpp:
+        * PIM/PICML/interpreters/plan/resource.h:
+
+          Removed these files.
+
 Sun Apr 10 20:27:53 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/ConfigExport/ConfigExport.mpc:
@@ -24,7 +113,7 @@ Sun Apr 10 19:52:27 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/ConfigExport/CompIcon.ico:
         * PIM/PICML/interpreters/ConfigExport/Component.def:
-	
+
         * PIM/PICML/interpreters/Interpreters.mwc:
         * PIM/PICML/interpreters/ConfigExport/CompIcon.ico:
         * PIM/PICML/interpreters/ConfigExport/Component.def:
@@ -46,13 +135,13 @@ Sun Apr 10 19:52:27 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
           to UDM. Now, the interpreter always generates all the service
           configuration files at each interpret request, independent of
           the selected/focused object.
-	
+
 Fri Apr 8 11:11:23 CDT 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML-UML.xme:
         * PIM/PICML/paradigms/PICML.xml:
-      
+
           Updates to the BGML meta model.
 
         * PIM/PICML/paradigms/icons/Discrete-Benchmark.bmp:
@@ -75,10 +164,10 @@ Fri Apr 8 11:11:23 CDT 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/BGML_Interpreter/UdmApp.cpp:
 
           Enhancements to the BGML interpreter to do the following:
-          --  generate code from any paradigm sheet and not requiring the 
+          --  generate code from any paradigm sheet and not requiring the
               user to choose the BGML paradigm
-          --  rate based benchmarking 
-          --  allowing the background operations to be different than the 
+          --  rate based benchmarking
+          --  allowing the background operations to be different than the
               main benchmarking task
 
         * PIM/PICML/interpreters/MPC/PICML.cpp:

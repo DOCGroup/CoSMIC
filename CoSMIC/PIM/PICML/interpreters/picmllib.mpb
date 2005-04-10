@@ -1,14 +1,12 @@
 // MPC file to generate base library
-project {
-   libs += UdmDll xerces-c_2 zlib
+project : xerces {
+   libs += UdmDll zlib
    libout = $(COSMIC_ROOT)/lib
    dllout = $(COSMIC_ROOT)/bin
-   includes += . $(GME_ROOT)/SDK/BON \
-               $(UDM_PATH)/include $(XERCESCROOT)/include
+   includes += $(GME_ROOT)/SDK/BON $(UDM_PATH)/include
    macros += UDM_DYNAMIC_LINKING
    libpaths += $(COSMIC_ROOT)/lib $(UDM_PATH)/lib \
                $(UDM_PATH)/3rdParty/zlib \
-               $(XERCESCROOT)/lib
 
   Define_Custom(UDM) {
       automatic         = 0
@@ -39,7 +37,5 @@ project {
     generic_outputext   = .trg
     postcommand         = echo regsvr32 exec. time <%gt%> <%output%>
   }
-
-
 
 }

@@ -35,7 +35,7 @@
 #include "UdmConfig.h"
 
 #include "PICML.h"
-#include <PICML/Utils.h>
+#include "Utils.h"
 #include "ConfigExportVisitor.h"
 
 extern void dummy(void); // Dummy function for UDM meta initialization
@@ -89,7 +89,7 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
     {
       std::string outputPath;
       std::string message = "Please specify the Output Directory";
-      if (!PICML::getPath (message, outputPath))
+      if (!::PICML::getPath (message, outputPath))
         return;
       PICML::ConfigExportVisitor visitor (outputPath);
       PICML::RootFolder root_folder =
