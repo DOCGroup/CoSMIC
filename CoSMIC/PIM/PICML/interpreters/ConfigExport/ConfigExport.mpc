@@ -8,7 +8,7 @@ project (ConfigExport): mfc, picmllib {
    macros += PICML_HAS_DLL _USRDLL _WINDLL \
              OCML_CONFIGURATOR_INTERPRETER_BUILD_DLL
    sharedname = ConfigExport
-   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML
+   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML ..
    libs += PICML
    pch_header = StdAfx.h
    pch_source = StdAfx.cpp
