@@ -7,12 +7,10 @@ project(Domain): picmllib {
 
    Source_Files {
      DomainVisitor.cpp
-     XercesString.cpp
    }
 
    Header_Files {
      DomainVisitor.h
-     XercesString.h
      Domain_Export.h
    }
 }
