@@ -3,6 +3,8 @@ workspace {
    PICML
    Package
    PackageComponent
+   Target
+   TargetComponent
    DeploymentPlan
    DeploymentPlanComponent
    ConfigExport

@@ -1,0 +1,18 @@
+project(Domain): picmllib {
+   after += PICML
+   sharedname = Domain
+   macros += DOMAIN_BUILD_DLL PICML_HAS_DLL
+   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML
+   libs += PICML
+
+   Source_Files {
+     DomainVisitor.cpp
+     XercesString.cpp
+   }
+
+   Header_Files {
+     DomainVisitor.h
+     XercesString.h
+     Domain_Export.h
+   }
+}
