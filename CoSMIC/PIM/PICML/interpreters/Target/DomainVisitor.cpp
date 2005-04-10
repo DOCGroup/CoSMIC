@@ -113,8 +113,20 @@ namespace PICML
     return pName;
   }
 
-  void DomainVisitor::Visit_RootFolder(const RootFolder&)
-  {}
+  void DomainVisitor::Visit_RootFolder(const RootFolder& rf)
+  {
+    {
+      std::set<Targets>
+        folders = rf.Targets_kind_children();
+      for (std::set<Targets>::iterator iter = folders.begin();
+           iter != folders.end();
+           ++iter)
+        {
+          Targets folder = *iter;
+          folder.Accept (*this);
+        }
+    } 
+  }
 
   // Predefined Types
   void DomainVisitor::Visit_LongInteger(const LongInteger&)
@@ -432,7 +444,15 @@ namespace PICML
 
   void DomainVisitor::Visit_Targets(const Targets& targets)
   {
-
+    std::set<Domain>
+      domains = targets.Domain_kind_children();
+    for (std::set<Domain>::iterator iter = domains.begin();
+         iter != domains.end();
+         ++iter)
+      {
+        Domain domain = *iter;
+        domain.Accept (*this);
+      }
   }
 
   void DomainVisitor::Visit_Node2Interconnect(const Node2Interconnect&)
