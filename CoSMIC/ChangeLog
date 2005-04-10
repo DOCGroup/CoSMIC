@@ -1,3 +1,17 @@
+Sun Apr 10 20:17:04 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PICML/Utils.h:
+        * PIM/PICML/interpreters/PICML/XercesString.cpp:
+        * PIM/PICML/interpreters/PICML/XercesString.h:
+        * PIM/PICML/interpreters/Package/XercesString.cpp:
+        * PIM/PICML/interpreters/Package/XercesString.h:
+        * PIM/PICML/interpreters/PICML/PICML.mpc:
+
+          Moved XercesString.* files into the PICML directory (these two
+          are common files for all the interpreters.) Created the
+          PICML/Utils.h file which includes getPath() function, to display
+          a directory selection dialog.
+
 Sun Apr 10 19:52:27 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/ConfigExport/CompIcon.ico:

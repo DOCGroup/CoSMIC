@@ -8,13 +8,15 @@
 #include <string>
 #include <xercesc/util/XMLString.hpp>
 
+#include "PICML_export.h"
+
 // Utility class that provides a std::string like facade to XMLString.
 // Doesn't implement all of the methods of std::string.
 
 namespace PICML
 {
 
-  class XStr
+  class PICML_Export XStr
   {
   public:
     XStr() : _wstr(0L) { };
