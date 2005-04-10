@@ -3,4 +3,5 @@ workspace {
    PICML
    Package
    PackageComponent
+   ConfigExport
 }

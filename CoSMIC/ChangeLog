@@ -1,3 +1,30 @@
+Sun Apr 10 19:52:27 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/ConfigExport/CompIcon.ico:
+        * PIM/PICML/interpreters/ConfigExport/Component.def:
+	
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        * PIM/PICML/interpreters/ConfigExport/CompIcon.ico:
+        * PIM/PICML/interpreters/ConfigExport/Component.def:
+        * PIM/PICML/interpreters/ConfigExport/Component.rc:
+        * PIM/PICML/interpreters/ConfigExport/ComponentConfig.h:
+        * PIM/PICML/interpreters/ConfigExport/ConfigExport.mpc:
+        * PIM/PICML/interpreters/ConfigExport/ConfigExportVisitor.cpp:
+        * PIM/PICML/interpreters/ConfigExport/ConfigExportVisitor.h:
+        * PIM/PICML/interpreters/ConfigExport/RawComponent.cpp:
+        * PIM/PICML/interpreters/ConfigExport/RawComponent.h:
+        * PIM/PICML/interpreters/ConfigExport/StdAfx.cpp:
+        * PIM/PICML/interpreters/ConfigExport/StdAfx.h:
+        * PIM/PICML/interpreters/ConfigExport/UdmApp.cpp:
+        * PIM/PICML/interpreters/ConfigExport/UdmApp.h:
+        * PIM/PICML/interpreters/ConfigExport/UdmConfig.h:
+        * PIM/PICML/interpreters/ConfigExport/resource.h:
+
+          Switched OCML Service Configuration export interpreter from BON
+          to UDM. Now, the interpreter always generates all the service
+          configuration files at each interpret request, independent of
+          the selected/focused object.
+	
 Fri Apr 8 11:11:23 CDT 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
