@@ -1,19 +1,25 @@
 // Component configuration file automatically generated as ComponentConfig.h
-// by UDM Interpreter Wizard on Wednesday, August 25, 2004 19:28:01
+// by ConfigureComponent on Mon Apr 11 15:04:29 2005
 
-#define RAWCOMPONENT
 
-// COM UUID-s, names and ProgID
+#define BON2COMPONENT
 
-#define TYPELIB_UUID "3574DCD9-7755-401B-B9CF-C794DFDC98DA"
+// COM UUID-s, names and progID
+
+#define TYPELIB_UUID "BEF9B2F8-BF1E-4417-926F-8BD35A0F6F92"
 #define TYPELIB_NAME "MGA Interpreter TypeLibrary (BGML)"
-#define COCLASS_UUID "F690E3CA-34D9-4B59-AED3-EA626A8059BF"
+#define COCLASS_UUID "15DED4A6-FA24-431F-B18E-58E575E61B59"
 #define COCLASS_NAME "MGA Interpreter CoClass (BGML)"
 #define COCLASS_PROGID "MGA.Interpreter.BGML"
 
 
 // This name will appear in the popup window for interpreter selection.
 #define COMPONENT_NAME "BGML"
+
+
+// This text will appear in the toolbar icon tooltip and in the menu.
+#define TOOLTIP_TEXT "BGML"
+
 
 // This #define determines the interpreter type:
 #define GME_INTERPRETER
@@ -23,21 +29,24 @@
 
 
 // This is the location of the GME interfaces file (Mga.idl, Meta.idl, etc)
-#define GME_INTERFACES_BASE C:/Program Files/GME/Interfaces
+#define GME_BASE C:/Program Files/GME
 
-#define TOOLTIP_TEXT "Generate Benchmark Information"
 
 #define BON_ICON_SUPPORT
 
+// not defined: #define BON_CUSTOM_TRANSACTIONS
+
+// not defined: #define REGISTER_SYSTEMWIDE
+
 // Just to please the whims of those Microsoft jerks:
-#define COCLASS_UUID_EXPLODED1 0xF690E3CA
-#define COCLASS_UUID_EXPLODED2  0x34D9
-#define COCLASS_UUID_EXPLODED3  0x4B59
-#define COCLASS_UUID_EXPLODED4  0xAE
-#define COCLASS_UUID_EXPLODED5  0xD3
-#define COCLASS_UUID_EXPLODED6  0xEA
-#define COCLASS_UUID_EXPLODED7  0x62
-#define COCLASS_UUID_EXPLODED8  0x6A
-#define COCLASS_UUID_EXPLODED9  0x80
-#define COCLASS_UUID_EXPLODED10  0x59
-#define COCLASS_UUID_EXPLODED11  0xBF
+#define COCLASS_UUID_EXPLODED1 0x15DED4A6
+#define COCLASS_UUID_EXPLODED2  0xFA24
+#define COCLASS_UUID_EXPLODED3  0x431F
+#define COCLASS_UUID_EXPLODED4  0xB1
+#define COCLASS_UUID_EXPLODED5  0x8E
+#define COCLASS_UUID_EXPLODED6  0x58
+#define COCLASS_UUID_EXPLODED7  0xE5
+#define COCLASS_UUID_EXPLODED8  0x75
+#define COCLASS_UUID_EXPLODED9  0xE6
+#define COCLASS_UUID_EXPLODED10  0x1B
+#define COCLASS_UUID_EXPLODED11  0x59

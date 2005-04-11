@@ -5,7 +5,7 @@ project (BGMLComponent): mfc, picmllib {
     gendir = .
     $(GME_ROOT)/SDK/BON/ComponentLib.idl
   }
-  macros +=  BGML_BUILD_DLL PICML_HAS_DLL _USRDLL _WINDLL
+  macros += PICML_HAS_DLL _USRDLL _WINDLL
   sharedname = BGMLComponent
   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML \
               $(COSMIC_ROOT)/PIM/PICML/interpreters/BGML \

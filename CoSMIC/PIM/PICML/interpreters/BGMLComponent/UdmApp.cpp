@@ -7,13 +7,6 @@
 #include "UdmConfig.h"
 #include "BGML_Visitor.h"
 
-#define SetUpVisitor(type, root, visitor)                               \
-  do                                                                    \
-    {                                                                   \
-      PICML:: ## type start = PICML:: ## type ## ::Cast (root);         \
-      start.Accept (visitor);                                           \
-    } while (0)
-
 /********************************************************************************/
 /* Initialization function. The framework calls it before preparing the backend. */
 /* Initialize here the settings in the config global object.					  */
@@ -153,7 +146,8 @@ void CUdmApp::UdmMain(
 				if (kindName == "BenchmarkAnalysis")
 				{
 					BGML_Visitor visitor (outputPath);
-					SetUpVisitor (BenchmarkAnalysis, root, visitor);
+					PICML::BenchmarkAnalysis start = PICML::BenchmarkAnalysis::Cast (root);
+				    start.Accept (visitor);   
 					valid_interpretation = 1;
 				}
 			}
@@ -175,8 +169,10 @@ void CUdmApp::UdmMain(
 				iter2 != benchmarks.end ();
 				iter2 ++)
 				{
+					Udm::Object root = *iter2;
 					BGML_Visitor visitor (outputPath);
-					SetUpVisitor (BenchmarkAnalysis, *iter2, visitor);
+					PICML::BenchmarkAnalysis start = PICML::BenchmarkAnalysis::Cast (root);
+				    start.Accept (visitor);   
 					valid_interpretation = 1;
 				}
 				

@@ -24,8 +24,6 @@
 extern CComModule _Module;
 #include <atlcom.h>
 
-#pragma warning( disable : 4666)
-
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
