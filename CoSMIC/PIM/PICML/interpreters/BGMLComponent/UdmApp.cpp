@@ -7,6 +7,15 @@
 #include "UdmConfig.h"
 #include "BGML_Visitor.h"
 
+#include "../PICML/Utils.h"
+
+#define SetUpVisitor(type, root, visitor)                               \
+  do                                                                    \
+    {                                                                   \
+      PICML:: ## type start = PICML:: ## type ## ::Cast (root);         \
+      start.Accept (visitor);                                           \
+    } while (0)
+
 /********************************************************************************/
 /* Initialization function. The framework calls it before preparing the backend. */
 /* Initialize here the settings in the config global object.					  */
@@ -26,57 +35,6 @@ static void showUsage()
   return;
 }
 
-
-// This method prompts a dialog to allow the user to specify a folder
-static bool getPath (const std::string& description, std::string& path)
-{
-  // Initalize the com library
-  //WINOLEAPI com_lib_return = OleInitialize(NULL);
-
-  // Dialog instruction
-  char display_buffer[MAX_PATH];
-  BROWSEINFO folder_browsinfo;
-  memset (&folder_browsinfo, 0, sizeof (folder_browsinfo));
-
-  // Set GME as the owner of the dialog
-  folder_browsinfo.hwndOwner = GetForegroundWindow();
-  // Start the brows from desktop
-  folder_browsinfo.pidlRoot = NULL;
-  // Pointer to the folder name display buffer
-  folder_browsinfo.pszDisplayName = &display_buffer[0];
-  // Diaglog instruction string
-  folder_browsinfo.lpszTitle = description.c_str();
-  // Use new GUI style and allow edit plus file view
-  folder_browsinfo.ulFlags = BIF_BROWSEINCLUDEFILES | BIF_RETURNONLYFSDIRS;
-  // No callback function
-  folder_browsinfo.lpfn = NULL;
-  // No parameter passing into the dialog
-  folder_browsinfo.lParam = 0;
-
-  LPITEMIDLIST folder_pidl;
-  folder_pidl = SHBrowseForFolder(&folder_browsinfo);
-
-  if(folder_pidl == NULL)
-    return false;
-  else
-    {
-      TCHAR FolderNameBuffer[MAX_PATH];
-
-      // Convert the selection into a path
-      if (SHGetPathFromIDList (folder_pidl, FolderNameBuffer))
-        path = FolderNameBuffer;
-
-      // Free the ItemIDList object returned from the call to
-      // SHBrowseForFolder using Gawp utility function
-      IMalloc * imalloc = 0;
-      if ( SUCCEEDED( SHGetMalloc ( &imalloc )) )
-        {
-          imalloc->Free ( folder_pidl );
-          imalloc->Release ( );
-        }
-    }
-  return true;
-}
 
 
 /* 
@@ -119,7 +77,7 @@ void CUdmApp::UdmMain(
     {
 		std::string outputPath;
 		std::string message = "Please specify the Output Directory";
-		getPath (message, outputPath);
+		PICML::getPath (message, outputPath);
 				
 		// Do not do anything if Cancel button is pressed
 		if (outputPath.size () == 0)
@@ -128,7 +86,7 @@ void CUdmApp::UdmMain(
 		bool valid_interpretation = 0;
 
 		if (focusObject != Udm::null || 
-			selectedObjects.empty())
+			! selectedObjects.empty())
         {
 			std::set<Udm::Object> mySet (selectedObjects);
 			if (focusObject != Udm::null)
@@ -146,8 +104,7 @@ void CUdmApp::UdmMain(
 				if (kindName == "BenchmarkAnalysis")
 				{
 					BGML_Visitor visitor (outputPath);
-					PICML::BenchmarkAnalysis start = PICML::BenchmarkAnalysis::Cast (root);
-				    start.Accept (visitor);   
+					SetUpVisitor (BenchmarkAnalysis, root, visitor);
 					valid_interpretation = 1;
 				}
 			}
@@ -170,10 +127,12 @@ void CUdmApp::UdmMain(
 				iter2 ++)
 				{
 					Udm::Object root = *iter2;
-					BGML_Visitor visitor (outputPath);
-					PICML::BenchmarkAnalysis start = PICML::BenchmarkAnalysis::Cast (root);
-				    start.Accept (visitor);   
-					valid_interpretation = 1;
+					if (root != Udm::null)
+					{
+						BGML_Visitor visitor (outputPath);
+						SetUpVisitor (BenchmarkAnalysis, root, visitor);
+						valid_interpretation = 1;
+					}
 				}
 				
 			}

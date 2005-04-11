@@ -1,0 +1,18 @@
+project(CIDL): picmllib {
+   after += PICML
+   sharedname = CIDL
+   macros += CIDL_BUILD_DLL PICML_HAS_DLL
+   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML
+   libs += PICML
+
+   Source_Files {
+     Cidlc_Visitor.cpp
+     IDLStream.cpp
+   }
+
+   Header_Files {
+     Cidlc_Visitor.h
+     IDLStream.h
+     CIDL_Export.h
+   }
+}
