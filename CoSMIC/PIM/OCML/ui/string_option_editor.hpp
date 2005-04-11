@@ -4,7 +4,7 @@
 #define STRING_OPTION_EDITOR_HPP
 
 #include "option_editor.hpp"
-#include <string_edit_control.hpp>
+#include "string_edit_control.hpp"
 #include <engine/option_interface.hpp>
 #include <wx/window.h>
 

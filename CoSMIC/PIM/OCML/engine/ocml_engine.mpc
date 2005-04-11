@@ -1,5 +1,5 @@
 project: acelib, xerces {
-  includes += ../ $(BOOST_ROOT)
+  includes += .. $(BOOST_ROOT)
   libs += ocml_common
   after += ocml_common
   sharedname = ocml_engine

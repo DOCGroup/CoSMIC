@@ -4,6 +4,9 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <algorithm>
+#include <fstream>
+#include <iterator>
 
 std::string tree_file = "orb_tree.xml";
 std::string value_file;
@@ -56,8 +59,14 @@ int ACE_TMAIN(int argc, ACE_TCHAR** argv)
   ACE_LOG_MSG->priority_mask(LM_DEBUG, ACE_Log_Msg::PROCESS);
   if (parse_params(argc, argv) == false)
     return 1;
+
+  std::string values;
+  std::ifstream f(value_file.c_str());
+  std::copy(std::istream_iterator<char>(f), std::istream_iterator<char>(),
+            std::back_inserter(values));
+ 
   Configurator_Dialog dlg;
-  std::string new_values = dlg.show(tree_file, value_file, rule_file);
+  std::string new_values = dlg.show(tree_file, values, rule_file);
   std::cout << new_values;
   return 0;
 }

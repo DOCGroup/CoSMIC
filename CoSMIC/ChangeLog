@@ -1,3 +1,18 @@
+Mon Apr 11 14:01:52 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/OCML/engine/ocml_engine.mpc:
+        * PIM/OCML/test/configurator_ui_test.cpp:
+        * PIM/OCML/test/ocml_test.mpc:
+        * PIM/OCML/ui/boolean_option_editor.hpp:
+        * PIM/OCML/ui/configurator_ui.cpp:
+        * PIM/OCML/ui/configurator_ui.hpp:
+        * PIM/OCML/ui/integer_option_editor.hpp:
+        * PIM/OCML/ui/ocml_configurator_ui.mpc:
+        * PIM/OCML/ui/option_editor.hpp:
+        * PIM/OCML/ui/string_option_editor.hpp:
+
+          Fixed directory and project issues.
+
 Mon Apr 11 13:55:33 CDT 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/BGML:

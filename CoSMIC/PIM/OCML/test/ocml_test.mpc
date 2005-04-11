@@ -16,7 +16,7 @@
 
 project (ocml_definitions_test): aceexe, xerces {
   exename = definitions_test
-  includes += ../
+  includes += ..
   libs += ocml_common ocml_engine
   after += ocml_common ocml_engine
 
@@ -36,7 +36,7 @@ project (ocml_definitions_test): aceexe, xerces {
 
 project (ocml_value_test): aceexe {
   exename = value_test
-  includes += ../
+  includes += ..
   libs += ocml_common
   after += ocml_common
 
@@ -59,7 +59,7 @@ project (ocml_value_test): aceexe {
 
 project (ocml_option_value_test): aceexe, xerces {
   exename = option_value_test
-  includes += ../
+  includes += ..
   libs += ocml_common ocml_engine
   after += ocml_definitions_test ocml_value_test
 
@@ -85,7 +85,7 @@ project (ocml_option_value_test): aceexe, xerces {
 
 project (ocml_rules_test): aceexe, xerces {
   exename = rules_test
-  includes += ../
+  includes += ..
   libs += ocml_common ocml_engine
   after += ocml_option_value_test 
 
@@ -112,7 +112,7 @@ project (ocml_rules_test): aceexe, xerces {
  
 project (ocml_constraint_engine_test): aceexe, xerces {
   exename = constraint_engine_test
-  includes += ../
+  includes += ..
   libs += ocml_common ocml_engine
   after += ocml_rules_test
 
@@ -130,7 +130,7 @@ project (ocml_constraint_engine_test): aceexe, xerces {
 
 project (ocml_configurator_test): aceexe, xerces {
   exename = configurator_test
-  includes += ../
+  includes += ..
   libs += ocml_common ocml_engine
   after += ocml_constraint_engine_test
 
@@ -141,7 +141,7 @@ project (ocml_configurator_test): aceexe, xerces {
 
 project (ocml_ui_test): aceexe {
   exename = ui_test
-  includes += ../
+  includes += ..
   libs  += ocml_configurator_ui ocml_engine ocml_common
   after += ocml_configurator_ui ocml_engine ocml_common
 

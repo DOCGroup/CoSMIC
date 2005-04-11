@@ -58,22 +58,22 @@ private:
 
 std::string
 Configurator_Dialog::show(const std::string& tree_file,
-                          const std::string& value_file,
+                          const std::string& values,
                           const std::string& rule_file)
 {
   wxWindow win;
   win.SetHWND((WXHWND) 0);
   win.Enable(false);
 
-  std::string values;
+//  std::string values;
   std::string rules;
 
-  if (value_file != "")
-  {
-    std::ifstream f(value_file.c_str());
-    std::copy(std::istream_iterator<char>(f), std::istream_iterator<char>(),
-              std::back_inserter(values));
-  }
+//  if (value_file != "")
+//  {
+//    std::ifstream f(value_file.c_str());
+//    std::copy(std::istream_iterator<char>(f), std::istream_iterator<char>(),
+//              std::back_inserter(values));
+//  }
 
   if (rule_file != "")
   {

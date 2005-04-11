@@ -8,7 +8,7 @@ class CONFIGURATOR_UI_Export Configurator_Dialog
 {
 public:
   std::string show(const std::string& tree_file,
-                   const std::string& value_file,
+                   const std::string& values,
                    const std::string& rule_file);
 };
 
