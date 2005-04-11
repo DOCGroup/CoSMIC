@@ -1,4 +1,4 @@
-project: acelib, xerces {
+project: xerces {
   sharedname = ocml_common
   dynamicflags += OCML_COMMON_BUILD_DLL
 
@@ -34,7 +34,7 @@ project: acelib, xerces {
   }
 }
 
-project (common_test): aceexe, xerces {
+project (common_test): xerces {
   exename = common_test
   libs += ocml_common
   after += ocml_common

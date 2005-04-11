@@ -1,4 +1,4 @@
-project: acelib, xerces {
+project: xerces {
   includes += .. $(BOOST_ROOT)
   libs += ocml_common
   after += ocml_common

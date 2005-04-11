@@ -1,3 +1,12 @@
+Mon Apr 11 14:55:19 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/OCML/common/ocml_common.mpc:
+        * PIM/OCML/engine/ocml_engine.mpc 
+        * PIM/OCML/test/ocml_test.mpc:
+        * PIM/OCML/ui/ocml_configurator_ui.mpc:
+
+          Removed ACE dependency from the project files.
+
 Mon Apr 11 14:50:28 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * PIM/OCML/ocml.mwc:

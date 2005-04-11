@@ -1,4 +1,4 @@
-project (ocml_configurator_ui): acelib, wxwindows, xerces {
+project (ocml_configurator_ui): wxwindows, xerces {
   sharedname = ocml_configurator_ui
   includes += .. $(BOOST_ROOT)
   macros += _USRDLL WXMAKINGDLL
