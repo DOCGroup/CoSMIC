@@ -1,3 +1,32 @@
+Mon Apr 11 19:59:06 CDT 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/BGMLComponent/UdmApp.cpp:
+          
+          Fixed the interpreter to use the getPath function defined in Utils
+          directory than define its own!
+
+       * PIM/PICML/interpreters/CIDL_Interpreter/*:
+         
+         Created directory to hold the cidl interpreter files. This directory
+         holds only the logic (files required for interpretation)
+
+       * PIM/PICML/interpreters/CIDLComponent/*:
+
+         Holds the wrapper classes to create interpreter DLL to register with 
+         the paradigm
+
+       * PIM/PICML/interpreters/MPC_Interpreter/*:
+         
+         Interpreter logic for generating MPC files
+
+       * PIM/PICML/interpreters/MPCComponent/*:
+         
+         Wrapper for Registering MPC with GME
+
+       * PIM/PICML/interpreters/Interpreters.mwc:
+
+         Added these interpreters to the list of interpreters
+
 Mon Apr 11 20:12:44 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * cosmic.mwc:

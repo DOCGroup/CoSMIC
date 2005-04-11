@@ -11,4 +11,8 @@ workspace {
    IDLGenerator
    BGML
    BGMLcomponent
+   MPC_Interpreter
+   MPCComponent
+   CIDL_Interpreter
+   CIDLComponent
 }
