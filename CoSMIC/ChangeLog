@@ -1,3 +1,15 @@
+Mon Apr 11 22:15:44 2005  Gan Deng <gan.deng@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/EQAL/EQAL.mpc:
+        
+          New files to generate VC projects, replacing the hand-written
+          projects below.
+
+        * PIM/PICML/interpreters/EQAL/IDLGenerator.dsp:
+        * PIM/PICML/interpreters/EQAL/IDLGenerator.dsw:
+        
+          Removed files, replace by corresponding MPC files.
+
 Mon Apr 11 19:59:06 CDT 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/BGMLComponent/UdmApp.cpp:
