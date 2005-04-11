@@ -597,7 +597,7 @@ ComponentDecorator::setActive( bool bActive )
 	m_bActive = bActive;
 	for ( unsigned int i = 0 ; i < m_vecLeftPorts.size() ; i++ )
 		m_vecLeftPorts[ i ]->setActive( bActive );
-	for ( i = 0 ; i < m_vecRightPorts.size() ; i++ )
+	for ( unsigned int i = 0 ; i < m_vecRightPorts.size() ; i++ )
 		m_vecRightPorts[ i ]->setActive( bActive );
 }
 

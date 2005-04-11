@@ -1,3 +1,35 @@
+Mon Apr 11 20:12:44 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * cosmic.mwc:
+        
+          Added directory PIM/PICML/decorators.
+          
+        * PIM/PICML/decorators/DecoratorApp.def:
+        * PIM/PICML/decorators/IDMLDecorators.cpp:
+        * PIM/PICML/decorators/MaskedBitmap.cpp:
+        * PIM/PICML/decorators/StdAfx.cpp:
+        
+          Minor changes to enable compilation with VC 7.1.
+          
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        
+          Added the IDLGenerator directory.
+
+        * PIM/PICML/decorators/PICMLDecorator.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+        
+          New files to generate VC projects, replacing the hand-written
+          projects below.
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.dsp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.dsw:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.sln:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.vcproj:
+        * PIM/PICML/decorators/Decorator.dsp:
+        * PIM/PICML/decorators/Decorator.dsw:
+        
+          Removed files, replace by corresponding MPC files.
+
 Mon Apr 11 14:55:19 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * PIM/OCML/common/ocml_common.mpc:

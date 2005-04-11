@@ -1,0 +1,79 @@
+project (PICMLDecorator): mfc {
+   sharedname = PICMLDecorator
+   libout = $(COSMIC_ROOT)/lib
+   dllout = $(COSMIC_ROOT)/bin
+   includes += .  $(COSMIC_ROOT)/PIM/PICML/decorators
+   libpaths += $(COSMIC_ROOT)/lib
+   macros += _WINDLL _USRDLL _ATL_DLL
+
+  Define_Custom(MIDL) {
+    automatic            = 0
+    command              = midl
+    commandflags         = -win32 -I. -server none -client none
+    source_pre_extension = _i,_p
+    source_outputext     = .c
+    header_outputext     = .h
+    resource_outputext   = .tlb
+    inputext             = .idl
+  }
+
+   MIDL_Files {
+     gendir = .
+     DecoratorLib.idl
+   }
+
+   specific {
+     use_lib_modifier =
+   }
+
+   specific (vc6,vc7,vc71,vc8) {
+     link_options += /DEF:DecoratorApp.def
+   }
+
+   Source_Files {
+     CommonError.cpp
+     Decorator.cpp
+     Decorator.rc
+     DecoratorApp.cpp
+     DecoratorApp.def
+     DecoratorLib.idl
+     DecoratorUtil.cpp
+     IDMLDecorators.cpp
+     MaskedBitmap.cpp
+     StdAfx.cpp
+   }
+
+   Header_Files {
+     CommonError.h
+     CommonSmart.h
+     Decorator.h
+     DecoratorConfig.h
+     DecoratorStd.h
+     DecoratorUtil.h
+     IDMLDecorators.h
+     MaskedBitmap.h
+     Resource.h
+     StdAfx.h
+   }
+
+   Resource_Files {
+     Decorator.rgs
+   }
+}
+
+project (RegisterPICMLDecorator) {
+  after += PICMLDecorator
+  custom_only = 1
+
+  Define_Custom(Register) {
+    automatic           = 0
+    command             = regsvr32.exe
+    inputext            = .dll
+    generic_outputext   = .trg
+    postcommand         = echo regsvr32 exec. time <%gt%> <%output%>
+  }
+
+  Register_Files {
+    $(COSMIC_ROOT)\bin\PICMLDecorator.dll
+  }
+}
