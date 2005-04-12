@@ -60,11 +60,10 @@ namespace PICML
     XMLCh* _wstr; // Internal representation
   };
 
-  bool operator== (const XStr& lhs, const XStr& rhs);
-  bool operator!= (const XStr& lhs, const XStr& rhs);
+  PICML_Export bool operator== (const XStr& lhs, const XStr& rhs);
+  PICML_Export bool operator!= (const XStr& lhs, const XStr& rhs);
 
-  std::ostream&
-  operator<< (std::ostream& o, XStr const& str);
+  PICML_Export std::ostream& operator<< (std::ostream& o, XStr const& str);
 
 }
 

@@ -44,8 +44,8 @@ using xercesc::DOMException;
 using xercesc::XMLString;
 using PICML::XStr;
 
-
-
+extern PICML_Export bool PICML::getPath (const std::string& description,
+                                         std::string& path);
 
 extern void dummy(void); // Dummy function for UDM meta initialization
 

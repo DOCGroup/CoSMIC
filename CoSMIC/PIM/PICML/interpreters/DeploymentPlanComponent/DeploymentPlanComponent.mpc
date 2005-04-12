@@ -57,6 +57,6 @@ project (RegisterDeploymentPlanComponent): picmllib {
   custom_only           = 1
 
   Register_Files {
-    $(COSMIC_ROOT)\bin\PackageComponent.dll
+    $(COSMIC_ROOT)\bin\DeploymentPlanComponent.dll
   }
 }

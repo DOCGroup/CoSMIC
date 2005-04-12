@@ -1,6 +1,6 @@
 ; Interpreter.def : Declares the module parameters.
 
-LIBRARY      "Domain.DLL"
+LIBRARY      "DomainComponent.DLL"
 
 EXPORTS
 	DllCanUnloadNow     PRIVATE

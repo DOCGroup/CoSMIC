@@ -112,8 +112,17 @@ namespace PICML
     return pName;
   }
 
-  void PlanVisitor::Visit_RootFolder(const RootFolder&)
-  {}
+  void PlanVisitor::Visit_RootFolder(const RootFolder& rf)
+  {
+    std::set<DeploymentPlans> folders = rf.DeploymentPlans_kind_children();
+    for (std::set<DeploymentPlans>::iterator iter = folders.begin();
+         iter != folders.end();
+         ++iter)
+      {
+        DeploymentPlans folder = *iter;
+        folder.Accept (*this);
+      }
+  }
 
   // Predefined Types
   void PlanVisitor::Visit_LongInteger(const LongInteger&)
@@ -240,8 +249,17 @@ namespace PICML
   void PlanVisitor::Visit_ComponentPackageReference(const ComponentPackageReference&)
   {}
 
-  void PlanVisitor::Visit_DeploymentPlans(const DeploymentPlans&)
-  {}
+  void PlanVisitor::Visit_DeploymentPlans(const DeploymentPlans& dps)
+  {
+    std::set<DeploymentPlan> plans = dps.DeploymentPlan_kind_children();
+    for (std::set<DeploymentPlan>::iterator iter = plans.begin();
+         iter != plans.end();
+         ++iter)
+      {
+        DeploymentPlan plan = *iter;
+        plan.Accept (*this);
+      }
+  }
 
   void PlanVisitor::Visit_DeploymentPlan(const DeploymentPlan& dp)
   {

@@ -105,7 +105,7 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
         {
           std::string outputPath;
           std::string message = "Please specify the Output Directory";
-          if (!::PICML::getPath (message, outputPath))
+          if (!PICML::getPath (message, outputPath))
             return;
           PICML::PlanVisitor visitor (outputPath);
           PICML::RootFolder

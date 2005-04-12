@@ -1,3 +1,41 @@
+Tue Apr 12 17:01:56 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/DeploymentPlan/PlanVisitor.cpp: Updated
+          to start intepretation from the RootFolder.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Component.def:
+          Updated to refer to DeploymentPlanComponent.DLL instead of
+          DeploymentPlan.DLL.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+
+        * PIM/PICML/interpreters/PICML/XercesString.h: Added exports for
+          comparison operator functions for XercesString.
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp: Updated the
+          getPath() function to use "_" as the path delimiter since "/"
+          creates invalid XML files.  The long term fix is to use "." as
+          well as preventing the initial "." from being generated.  But
+          this will need the next version of UDM.
+
+        * PIM/PICML/interpreters/PackageComponent/StdAfx.cpp:
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp:
+
+        * PIM/PICML/interpreters/TargetComponent/Component.def: Updated to
+          fix the name
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Added support for deploying component assemblies in addition to
+          plain component instances.  Relaxed a constraint which required
+          an assembly to contain atleast one component, which caused
+          problems when a hierarchical assembly contained just two
+          sub-assemblies.
+
 Tue Apr 12 17:09:21 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * Installer/RegisterParadigm/StdAfx.h:
@@ -13,19 +51,19 @@ Tue Apr 12 14:40:10 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLGenerator/DependencyVisitor.cpp:
         * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
-        
+
           Added some missing checks for null objects before calling
           operations on them.
 
 Tue Apr 12 12:13:04 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp: 
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp:
 
           Fixed error, which is causing wrong Utils.h to be included.
 
 Tue Apr 12 12:08:31 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp: 
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
 
           Fixed error, which is causing wrong Utils.h to be included.
 
@@ -38,9 +76,9 @@ Tue Apr 12 11:50:56 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 Tue Apr 12 11:20:31 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/decorators/Decorators.mwc:
-        
+
           New file, omitted from checkin of
-          
+
 Tue Apr 12 10:55:37 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/Configurator/CompIcon.ico:
@@ -95,38 +133,38 @@ Tue Apr 12 10:40:26 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 Mon Apr 11 22:15:44 2005  Gan Deng <gan.deng@vanderbilt.edu>
 
         * PIM/PICML/interpreters/EQAL/EQAL.mpc:
-        
+
           New files to generate VC projects, replacing the hand-written
           projects below.
 
         * PIM/PICML/interpreters/EQAL/IDLGenerator.dsp:
         * PIM/PICML/interpreters/EQAL/IDLGenerator.dsw:
-        
+
           Removed files, replace by corresponding MPC files.
 
 Mon Apr 11 19:59:06 CDT 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/BGMLComponent/UdmApp.cpp:
-          
+
           Fixed the interpreter to use the getPath function defined in Utils
           directory than define its own!
 
        * PIM/PICML/interpreters/CIDL_Interpreter/*:
-         
+
          Created directory to hold the cidl interpreter files. This directory
          holds only the logic (files required for interpretation)
 
        * PIM/PICML/interpreters/CIDLComponent/*:
 
-         Holds the wrapper classes to create interpreter DLL to register with 
+         Holds the wrapper classes to create interpreter DLL to register with
          the paradigm
 
        * PIM/PICML/interpreters/MPC_Interpreter/*:
-         
+
          Interpreter logic for generating MPC files
 
        * PIM/PICML/interpreters/MPCComponent/*:
-         
+
          Wrapper for Registering MPC with GME
 
        * PIM/PICML/interpreters/Interpreters.mwc:
@@ -136,23 +174,23 @@ Mon Apr 11 19:59:06 CDT 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 Mon Apr 11 20:12:44 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * cosmic.mwc:
-        
+
           Added directory PIM/PICML/decorators.
-          
+
         * PIM/PICML/decorators/DecoratorApp.def:
         * PIM/PICML/decorators/IDMLDecorators.cpp:
         * PIM/PICML/decorators/MaskedBitmap.cpp:
         * PIM/PICML/decorators/StdAfx.cpp:
-        
+
           Minor changes to enable compilation with VC 7.1.
-          
+
         * PIM/PICML/interpreters/Interpreters.mwc:
-        
+
           Added the IDLGenerator directory.
 
         * PIM/PICML/decorators/PICMLDecorator.mpc:
         * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
-        
+
           New files to generate VC projects, replacing the hand-written
           projects below.
 
@@ -162,13 +200,13 @@ Mon Apr 11 20:12:44 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.vcproj:
         * PIM/PICML/decorators/Decorator.dsp:
         * PIM/PICML/decorators/Decorator.dsw:
-        
+
           Removed files, replace by corresponding MPC files.
 
 Mon Apr 11 14:55:19 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * PIM/OCML/common/ocml_common.mpc:
-        * PIM/OCML/engine/ocml_engine.mpc 
+        * PIM/OCML/engine/ocml_engine.mpc
         * PIM/OCML/test/ocml_test.mpc:
         * PIM/OCML/ui/ocml_configurator_ui.mpc:
 
@@ -201,12 +239,12 @@ Mon Apr 11 14:01:52 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 Mon Apr 11 13:55:33 CDT 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/BGML:
- 
+
           Directory that contains the interpreter logic
 
         * PIM/PICML/interpreters/BGMLComponent:
 
-          Directory that contains the wrapper files needed to create DLL 
+          Directory that contains the wrapper files needed to create DLL
           and register with GME
 
 Sun Apr 10 22:49:38 2005  Krishnakumar B  <kitty@spam.invalid.domain>
