@@ -1,11 +1,15 @@
+Tue Apr 12 11:50:56 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/OCML/common/ocml_common.mpc:
+
+          Fixed link error.
+
 Tue Apr 12 11:20:31 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/decorators/Decorators.mwc:
         
           New file, omitted from checkin of
           
-          Mon Apr 11 20:12:44 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
-
 Tue Apr 12 10:55:37 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/Configurator/CompIcon.ico:
