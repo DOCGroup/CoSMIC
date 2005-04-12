@@ -1,7 +1,16 @@
+// $Id$
 // RegisterParadigm.cpp : Defines the entry point for the DLL application.
 //
 
-#include "stdafx.h"
+#include <windows.h>
+
+#include <msiquery.h>
+#include <objbase.h>
+#include "mgautil.h"
+#include <stdlib.h>
+#include <malloc.h>
+#include <string.h>
+#include <string>
 
 #define PARADIGMCOST 30000
 
@@ -34,21 +43,21 @@ void InitProgressBar(MSIHANDLE hInstall, int nSteps, int nStepSize,
   MsiRecordSetString(hRec, 2, szDescription);	// description
   MsiRecordSetString(hRec, 3, szTemplate);	    // template for ACTIONDATA
   int nResult = MsiProcessMessage(hInstall,
-                                  MSIMESSAGE (INSTALLMESSAGE_ACTIONSTART),
+                                  INSTALLMESSAGE_ACTIONSTART,
                                   hRec);
 
   MsiRecordSetInteger(hRec, 1, 0);	        // reset PB, set the total ticks
   MsiRecordSetInteger(hRec, 2, nTotalCost); // est. total ticks
   MsiRecordSetInteger(hRec, 3, 0);          // forward direction
   nResult = MsiProcessMessage(hInstall,
-                              MSIMESSAGE (INSTALLMESSAGE_PROGRESS),
+                              INSTALLMESSAGE_PROGRESS,
                               hRec);
 
   MsiRecordSetInteger(hRec, 1, 1);         // progress setup info
   MsiRecordSetInteger(hRec, 2, nStepSize); // step size
   MsiRecordSetInteger(hRec, 3, 1);         // increment by the prev parameter
   nResult = MsiProcessMessage(hInstall,
-                              MSIMESSAGE (INSTALLMESSAGE_PROGRESS),
+                              INSTALLMESSAGE_PROGRESS,
                               hRec);
 }
 
@@ -66,10 +75,10 @@ void SendMsgToProgressBar(MSIHANDLE hInstall,
   MsiRecordSetString(hRec, 1, szMessage); // set the progress bar message
 
   int nResult = MsiProcessMessage(hInstall,
-                                  MSIMESSAGE (INSTALLMESSAGE_ACTIONDATA),
+                                  INSTALLMESSAGE_ACTIONDATA,
                                   hRec);
   nResult = MsiProcessMessage(hInstall,
-                              MSIMESSAGE (INSTALLMESSAGE_PROGRESS),
+                              INSTALLMESSAGE_PROGRESS,
                               hProgressRec);
 }
 
@@ -80,7 +89,7 @@ void SendErrorMsg(MSIHANDLE hInstall, const char* svErrorMessage, int nFatal)
   MsiRecordSetString(hRec, 0, "Error occured: [1]");
   MsiRecordSetString(hRec, 1, svErrorMessage);
   MsiProcessMessage(hInstall,
-                    MSIMESSAGE (INSTALLMESSAGE_ERROR),
+                    INSTALLMESSAGE_ERROR,
                     hRec);
 }
 

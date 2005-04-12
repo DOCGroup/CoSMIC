@@ -1,0 +1,19 @@
+project: picmllib {
+  lit_libs += msi
+  macros += _MBCS,_USRDLL,REGISTERPARADIGM_EXPORTS
+  sharedname = RegisterParadigm
+  libout = $(COSMIC_ROOT)/lib
+  dllout = $(COSMIC_ROOT)/bin
+
+  Source_Files {
+    RegisterParadigm.cpp
+  }
+
+  MIDL_Files {
+    gendir = .
+    commandflags += -I. -I<%quote%>$(GME_ROOT)/Interfaces<%quote%>
+    $(GME_ROOT)/Interfaces/Meta.idl
+    $(GME_ROOT)/Interfaces/Mga.idl
+    $(GME_ROOT)/Interfaces/MgaUtil.idl
+  }
+}

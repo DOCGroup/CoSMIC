@@ -1,3 +1,14 @@
+Tue Apr 12 17:09:21 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * Installer/RegisterParadigm/StdAfx.h:
+        * Installer/RegisterParadigm/StdAfx.cpp:
+        * Installer/RegisterParadigm/RegisterParadigm.dsp:
+        * Installer/RegisterParadigm/RegisterParadigm.dsw:
+        * Installer/RegisterParadigm/RegisterParadigm.mpc:
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:
+
+          Created mpc file for the RegisterParadigm and ported to VC71.
+
 Tue Apr 12 14:40:10 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLGenerator/DependencyVisitor.cpp:
