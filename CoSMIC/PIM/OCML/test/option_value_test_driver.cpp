@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-int ACE_TMAIN(int, ACE_TCHAR*[])
+int main(int, char*[])
 {
   std::auto_ptr<OCML::Option_Category> category(create_category());
 

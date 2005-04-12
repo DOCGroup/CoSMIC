@@ -5,8 +5,6 @@
 #include "tree_parser.hpp"
 #include <common/string_utils.hpp>
 
-#include <ace/Log_Msg.h>
-
 using namespace xercesc;
 using namespace OCML;
 
@@ -18,29 +16,23 @@ using namespace OCML;
 Option_Category*
 Option_Tree_Parser::parse_xml(DOMDocument* doc)
 {
-  ACE_DEBUG((LM_TRACE, "ENTER: Option_Tree_Parser::parse_xml()\n"));
   Option_Tree_Parser parser;
   if (doc)
   {
     Option_Category* result = parser.parse_document(doc);
-    ACE_DEBUG((LM_TRACE, "EXIT: Option_Tree_Parser::parse_xml()\n"));
     return result;
   }
-  ACE_DEBUG((LM_TRACE, "EXIT: Option_Tree_Parser::parse_xml()\n"));
   return 0;
 }
 
 Option_Tree_Parser::Option_Tree_Parser()
 {
-  ACE_DEBUG((LM_TRACE, "Option_Tree_Parser::Option_Tree_Parser()\n"));
 }
 
 Option_Category*
 Option_Tree_Parser::parse_document(DOMDocument* doc)
 {
-  ACE_DEBUG((LM_TRACE, "ENTER: Option_Tree_Parser::parse_document()\n"));
   Option_Category* result = parse_category(doc->getDocumentElement());
-  ACE_DEBUG((LM_TRACE, "EXIT: Option_Tree_Parser::parse_document()\n"));
   return result;
 }
 
@@ -49,8 +41,6 @@ Option_Tree_Parser::parse_attributes(DOMNode* node,
                                      XMLUnicodeString& name,
                                      XMLUnicodeString& description)
 {
-  ACE_DEBUG((LM_TRACE,
-        "ENTER: Option_Tree_Parser::parse_attributes(DOMNode*, XMLUnicodeString&, XMLUnicodeString&)\n"));
   XMLUnicodeString name_tag("name");
   XMLUnicodeString descr_tag("description");
 
@@ -60,8 +50,6 @@ Option_Tree_Parser::parse_attributes(DOMNode* node,
     attributes->getNamedItem(name_tag)->getNodeValue();
   description =
     attributes->getNamedItem(descr_tag)->getNodeValue();
-  ACE_DEBUG((LM_TRACE,
-        "EXIT: Option_Tree_Parser::parse_attributes(DOMNode*, XMLUnicodeString&, XMLUnicodeString&)\n"));
 }
 
 void
@@ -70,8 +58,6 @@ Option_Tree_Parser::parse_attributes(DOMNode* node,
                                      XMLUnicodeString& description,
                                      XMLUnicodeString& default_value)
 {
-  ACE_DEBUG((LM_TRACE,
-        "ENTER: Option_Tree_Parser::parse_attributes(DOMNode*, XMLUnicodeString&, XMLUnicodeString&, XMLUnicodeString&)\n"));
   XMLUnicodeString name_tag("name");
   XMLUnicodeString descr_tag("description");
   XMLUnicodeString default_tag("default-value");
@@ -87,15 +73,11 @@ Option_Tree_Parser::parse_attributes(DOMNode* node,
     attributes->getNamedItem(default_tag);
   if (attr_node)
     default_value = attr_node->getNodeValue();
-  ACE_DEBUG((LM_TRACE,
-        "EXIT: Option_Tree_Parser::parse_attributes(DOMNode*, XMLUnicodeString&, XMLUnicodeString&, XMLUnicodeString&)\n"));
 }
 
 Option_Category*
 Option_Tree_Parser::parse_category(DOMNode* node)
 {
-  ACE_DEBUG((LM_TRACE,
-        "ENTER: Option_Tree_Parser::parse_category(DOMNode*)\n"));
   XMLUnicodeString name, description;
   parse_attributes(node, name, description);
 
@@ -123,8 +105,6 @@ Option_Tree_Parser::parse_category(DOMNode* node)
     //      throw UnknownOptionKind(child_node_name.str());
   }
 
-  ACE_DEBUG((LM_TRACE,
-        "EXIT: Option_Tree_Parser::parse_category(DOMNode*)\n"));
   return result;
 }
 

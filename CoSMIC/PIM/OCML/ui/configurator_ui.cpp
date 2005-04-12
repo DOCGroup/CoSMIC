@@ -6,6 +6,8 @@
 #include <algorithm>
 #include <iterator>
 
+#include <windows.h>
+
 DECLARE_APP(MainApp)
 
 BOOL APIENTRY DllMain(HANDLE hModule, 

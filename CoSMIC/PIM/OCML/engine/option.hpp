@@ -31,7 +31,7 @@ namespace OCML
    * Provides the methods for modifying the option values
    * with rule-checking.
    */
-  class OCML_Engine_Export Option
+  class Option
   {
   protected:
     /// protected Constructor.
@@ -40,13 +40,13 @@ namespace OCML
 
   public:
     /// Clears the option so that assigned method return false.
-    bool clear();
+    OCML_Engine_Export bool clear();
 
     /// Assigns the value of the option.
-    bool value(const Option_Value* value);
+    OCML_Engine_Export bool value(const Option_Value* value);
 
     /// Assigns the value of the option by parsing the given string.
-    virtual bool str_value(const char* str) = 0;
+    OCML_Engine_Export virtual bool str_value(const char* str) = 0;
 
   private:
     Option_Definition* definition_;

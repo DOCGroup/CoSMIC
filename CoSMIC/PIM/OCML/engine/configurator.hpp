@@ -35,7 +35,8 @@ namespace OCML
    * Also handles loading the XML files (the options tree file and
    * option values) and storing the option values.
    */
-  class OCML_Engine_Export Configurator {
+  class Configurator
+  {
   public:
     /// Thrown on errors in constructor on XML errors.
     class InitializationError { };
@@ -45,6 +46,7 @@ namespace OCML
 
     /// Thrown on constraint violation while loading the options.
     class Initialization_Constraint_Violation { };
+
   private:
     /// Default constructor, empty option tree.
     Configurator();
@@ -55,27 +57,27 @@ namespace OCML
                  const char* values, size_t values_size);
 
   public:
-    ~Configurator();
+    OCML_Engine_Export ~Configurator();
 
     /// Implements the singleton pattern.
-    static Configurator* instance(const char* tree_file,
-                                  const char* rules, size_t rules_size,
-                                  const char* values, size_t values_size);
+    OCML_Engine_Export static Configurator* instance(const char* tree_file,
+                                                     const char* rules, size_t rules_size,
+                                                     const char* values, size_t values_size);
 
-    static Configurator* instance();
+    OCML_Engine_Export static Configurator* instance();
 
     /// Exports the option tree into the return value as XML tree.
-    std::string write() const;
+    OCML_Engine_Export std::string write() const;
   
     /// Returns the root category.
-    Option_Category* root_category();
+    OCML_Engine_Export Option_Category* root_category();
 
-    Option_Definition* definition(const Option_Path& path, size_t i = 0,
-                                  Option_Category* root = 0);
+    OCML_Engine_Export Option_Definition* definition(const Option_Path& path, size_t i = 0,
+                                                     Option_Category* root = 0);
 
-    Option_Interface* interface(Option_Definition* definition);
+    OCML_Engine_Export Option_Interface* interface(Option_Definition* definition);
 
-    Constraint_Engine* constraint_engine();
+    OCML_Engine_Export Constraint_Engine* constraint_engine();
 
   private:
     /*

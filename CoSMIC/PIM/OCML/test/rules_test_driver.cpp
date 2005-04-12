@@ -9,8 +9,6 @@
 #include <list>
 #include <memory>
 
-#include <ace/Log_Msg.h>
-
 struct find_ref_t
 {
   find_ref_t(OCML::Option_Category* category,
@@ -30,10 +28,8 @@ private:
   references_map* references_;
 };
 
-int ACE_TMAIN(int, ACE_TCHAR*[])
+int main(int, char*[])
 {
-  ACE_LOG_MSG->priority_mask(LM_DEBUG, ACE_Log_Msg::PROCESS);
-
   // create category
   std::auto_ptr<OCML::Option_Category>
     category(create_category());

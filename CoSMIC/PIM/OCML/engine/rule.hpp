@@ -55,27 +55,27 @@ namespace OCML
     }
   };
 
-  class OCML_Engine_Export Root_Rule: public Basic_Rule<Root_Rule>
+  class Root_Rule: public Basic_Rule<Root_Rule>
   {
   public:
     typedef std::list<Rule*> rule_container;
     typedef rule_container::iterator rule_index;
 
   public:
-    Root_Rule()
+    OCML_Engine_Export Root_Rule()
       : Basic_Rule<Root_Rule>(0)
     {
     }
-    virtual ~Root_Rule();
+    OCML_Engine_Export virtual ~Root_Rule();
 
-    virtual bool test() const;
-    virtual bool apply(bool negate);
-    bool apply() { return apply(false); }
+    OCML_Engine_Export virtual bool test() const;
+    OCML_Engine_Export virtual bool apply(bool negate);
+    OCML_Engine_Export bool apply() { return apply(false); }
 
-    rule_index add_rule(Rule* rule);
-    void delete_rule(rule_index index);
+    OCML_Engine_Export rule_index add_rule(Rule* rule);
+    OCML_Engine_Export void delete_rule(rule_index index);
 
-    Rule* get_rule(rule_index index);
+    OCML_Engine_Export Rule* get_rule(rule_index index);
 
   private:
     rule_container rules_;

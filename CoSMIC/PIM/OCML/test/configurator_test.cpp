@@ -1,5 +1,4 @@
 #include <engine/configurator.hpp>
-#include <ace/Log_Msg.h>
 
 void write_indent(size_t indent)
 {
@@ -29,9 +28,8 @@ void write_category(OCML::Option_Category* category, size_t indent = 0)
   }
 }
 
-int ACE_TMAIN(int, ACE_TCHAR*[])
+int main(int, char*[])
 {
-  ACE_LOG_MSG->priority_mask(LM_DEBUG, ACE_Log_Msg::PROCESS);
   OCML::Configurator* c =
     OCML::Configurator::instance("orb_tree.xml", 0, 0, 0, 0);
   write_category(c->root_category());

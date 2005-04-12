@@ -4,6 +4,9 @@ project: xerces {
   after += ocml_common
   sharedname = ocml_engine
   dynamicflags += OCML_ENGINE_BUILD_DLL
+  libout = $(COSMIC_ROOT)/lib
+  dllout = $(COSMIC_ROOT)/bin
+  libpaths += $(COSMIC_ROOT)/lib
 
   Source_Files {
     configurator.cpp

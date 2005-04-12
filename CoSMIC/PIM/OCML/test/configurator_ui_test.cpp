@@ -1,6 +1,4 @@
 #include <ui/configurator_ui.hpp>
-#include <ace/OS.h>
-#include <ace/Log_Msg.h>
 #include <iostream>
 #include <vector>
 #include <string>
@@ -20,7 +18,7 @@ bool usage(const char* bin_name)
   return false;
 }
 
-bool parse_params(int argc, ACE_TCHAR** argv)
+bool parse_params(int argc, char** argv)
 {
   std::vector<std::string> args(argv+1, argv + argc);
   std::vector<std::string>::iterator iter = args.begin();
@@ -54,9 +52,8 @@ bool parse_params(int argc, ACE_TCHAR** argv)
   return true;
 }
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv)
+int main(int argc, char* argv[])
 {
-  ACE_LOG_MSG->priority_mask(LM_DEBUG, ACE_Log_Msg::PROCESS);
   if (parse_params(argc, argv) == false)
     return 1;
 

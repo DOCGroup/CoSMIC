@@ -14,11 +14,14 @@
 //                                      V
 //                                configurator_test
 
-project (ocml_definitions_test): aceexe, xerces {
+project (ocml_definitions_test): xerces {
   exename = definitions_test
   includes += ..
   libs += ocml_common ocml_engine
   after += ocml_common ocml_engine
+  libout = $(COSMIC_ROOT)/lib
+  dllout = $(COSMIC_ROOT)/bin
+  libpaths += $(COSMIC_ROOT)/lib
 
   Source_Files {
     definitions_test.cpp
@@ -34,11 +37,14 @@ project (ocml_definitions_test): aceexe, xerces {
   }
 }
 
-project (ocml_value_test): aceexe {
+project (ocml_value_test) {
   exename = value_test
   includes += ..
   libs += ocml_common
   after += ocml_common
+  libout = $(COSMIC_ROOT)/lib
+  dllout = $(COSMIC_ROOT)/bin
+  libpaths += $(COSMIC_ROOT)/lib
 
   Source_Files {
     value_test_driver.cpp
@@ -57,11 +63,14 @@ project (ocml_value_test): aceexe {
   }
 }
 
-project (ocml_option_value_test): aceexe, xerces {
+project (ocml_option_value_test): xerces {
   exename = option_value_test
   includes += ..
   libs += ocml_common ocml_engine
   after += ocml_definitions_test ocml_value_test
+  libout = $(COSMIC_ROOT)/lib
+  dllout = $(COSMIC_ROOT)/bin
+  libpaths += $(COSMIC_ROOT)/lib
 
   Source_Files {
     option_value_test_driver.cpp
@@ -83,11 +92,14 @@ project (ocml_option_value_test): aceexe, xerces {
   }
 }
 
-project (ocml_rules_test): aceexe, xerces {
+project (ocml_rules_test): xerces {
   exename = rules_test
   includes += ..
   libs += ocml_common ocml_engine
   after += ocml_option_value_test 
+  libout = $(COSMIC_ROOT)/lib
+  dllout = $(COSMIC_ROOT)/bin
+  libpaths += $(COSMIC_ROOT)/lib
 
   Source_Files {
     rules_test.cpp
@@ -110,11 +122,14 @@ project (ocml_rules_test): aceexe, xerces {
   }
 }
  
-project (ocml_constraint_engine_test): aceexe, xerces {
+project (ocml_constraint_engine_test): xerces {
   exename = constraint_engine_test
   includes += ..
   libs += ocml_common ocml_engine
   after += ocml_rules_test
+  libout = $(COSMIC_ROOT)/lib
+  dllout = $(COSMIC_ROOT)/bin
+  libpaths += $(COSMIC_ROOT)/lib
 
   Source_Files {
     constraint_engine_test.cpp
@@ -128,22 +143,28 @@ project (ocml_constraint_engine_test): aceexe, xerces {
   }
 }
 
-project (ocml_configurator_test): aceexe, xerces {
+project (ocml_configurator_test): xerces {
   exename = configurator_test
   includes += ..
   libs += ocml_common ocml_engine
   after += ocml_constraint_engine_test
+  libout = $(COSMIC_ROOT)/lib
+  dllout = $(COSMIC_ROOT)/bin
+  libpaths += $(COSMIC_ROOT)/lib
 
   Source_Files {
     configurator_test.cpp
   }
 }
 
-project (ocml_ui_test): aceexe {
+project (ocml_ui_test) {
   exename = ui_test
   includes += ..
   libs  += ocml_configurator_ui ocml_engine ocml_common
   after += ocml_configurator_ui ocml_engine ocml_common
+  libout = $(COSMIC_ROOT)/lib
+  dllout = $(COSMIC_ROOT)/bin
+  libpaths += $(COSMIC_ROOT)/lib
 
   Source_Files {
     configurator_ui_test.cpp

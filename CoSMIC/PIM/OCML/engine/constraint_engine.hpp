@@ -19,20 +19,20 @@ namespace OCML
    * Base class for the value change listeners (the listener will be invoked
    * whenever the value for the class is changed by the constraint engine).
    */
-  class OCML_Engine_Export Constraint_Value_Change_Listener
+  class Constraint_Value_Change_Listener
   {
   public:
-    Constraint_Value_Change_Listener();
-    virtual ~Constraint_Value_Change_Listener();
+    OCML_Engine_Export Constraint_Value_Change_Listener();
+    OCML_Engine_Export virtual ~Constraint_Value_Change_Listener();
 
     /**
      * The callback method which should be implemented by the specific value
      * change listener. The implementation is responsible to delete the value.
      */
-    virtual void value_changed(bool flagged, Option_Value* value) = 0;
+    OCML_Engine_Export virtual void value_changed(bool flagged, Option_Value* value) = 0;
 
   private:
-    void set_value(Option_Reference* reference);
+    OCML_Engine_Export void set_value(Option_Reference* reference);
 
     std::auto_ptr<Option_Value> value_;
     bool flag_;
@@ -43,7 +43,7 @@ namespace OCML
   /**
    * Manages the constraint checking process.
    */
-  class OCML_Engine_Export Constraint_Engine
+  class Constraint_Engine
   {
   private:
     class rule_interface
@@ -77,28 +77,28 @@ namespace OCML
 
   public:
     /// Initialize constraint engine.
-    Constraint_Engine(Option_Category* root_category);
+    OCML_Engine_Export Constraint_Engine(Option_Category* root_category);
 
-    void register_listener(Option_Definition* option,
-                           Constraint_Value_Change_Listener* l);
+    OCML_Engine_Export void register_listener(Option_Definition* option,
+                                              Constraint_Value_Change_Listener* l);
 
-    void unregister_listener(Option_Definition* option);
+    OCML_Engine_Export void unregister_listener(Option_Definition* option);
 
-    rule_index define_selection_rule(const Option_Definition* option);
-    rule_index define_equality_rule(const Option_Definition* option,
-                                    const Option_Value* value);
-    rule_index define_not_rule(rule_index index);
-    rule_index define_if_rule(rule_index index1, rule_index index2);
-    rule_index define_iff_rule(rule_index index1, rule_index index2);
-    rule_index define_and_rule(const std::vector<rule_index>& indexes);
-    rule_index define_or_rule(const std::vector<rule_index>& indexes);
-    void delete_rule_definition(rule_index index);
+    OCML_Engine_Export rule_index define_selection_rule(const Option_Definition* option);
+    OCML_Engine_Export rule_index define_equality_rule(const Option_Definition* option,
+                                                       const Option_Value* value);
+    OCML_Engine_Export rule_index define_not_rule(rule_index index);
+    OCML_Engine_Export rule_index define_if_rule(rule_index index1, rule_index index2);
+    OCML_Engine_Export rule_index define_iff_rule(rule_index index1, rule_index index2);
+    OCML_Engine_Export rule_index define_and_rule(const std::vector<rule_index>& indexes);
+    OCML_Engine_Export rule_index define_or_rule(const std::vector<rule_index>& indexes);
+    OCML_Engine_Export void delete_rule_definition(rule_index index);
 
-    void add_rule(rule_index index);
-    void delete_rule(rule_index index);
+    OCML_Engine_Export void add_rule(rule_index index);
+    OCML_Engine_Export void delete_rule(rule_index index);
 
     /// Ends transaction makes constraint validation and returns the result.
-    bool validate();
+    OCML_Engine_Export bool validate();
 
   protected:
     template <typename OPTION_TRAIT>

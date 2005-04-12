@@ -1,7 +1,6 @@
 #include "definitions.hpp"
 #include "constraint_engine.hpp"
 #include "option_reference.hpp"
-#include <ace/Log_Msg.h>
 
 namespace OCML
 {
@@ -15,9 +14,6 @@ namespace OCML
  
   void Constraint_Value_Change_Listener::set_value(Option_Reference* reference)
   {
-    ACE_DEBUG((LM_TRACE, "ENTER: %s\n",
-          "Constraint_Value_Change_Listener::set_value(Option_Reference*)"));
-
     bool changed = false;
     std::auto_ptr<Option_Value> ref_value(reference->option_value());
 
@@ -45,9 +41,6 @@ namespace OCML
       value_.reset(ref_value->duplicate());
       value_changed(flag_, value_.get());
     }
-
-    ACE_DEBUG((LM_TRACE, "EXIT: %s\n",
-          "Constraint_Value_Change_Listener::set_value(Option_Reference*)"));
   }
   
   /*
@@ -69,8 +62,6 @@ namespace OCML
 
   bool Constraint_Engine::validate()
   {
-    ACE_DEBUG((LM_TRACE, "ENTER: Constraint_Engine::validate()\n"));
-
     // Insert & delete local copies into/from root rule.
     commit_changes();
 
@@ -110,8 +101,6 @@ namespace OCML
     inserted_rules_.clear();
     deleted_rules_.clear();
  
-    ACE_DEBUG((LM_TRACE, "EXIT: Constraint_Engine::validate()\n"));
-
     // Return the result of the validation to the caller.
     return result;
   }

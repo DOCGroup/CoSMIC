@@ -1,9 +1,8 @@
 #include "value_test.hpp"
-#include <ace/OS_Main.h>
 #include <iostream>
 #include "test.hpp"
 
-int ACE_TMAIN(int, ACE_TCHAR*[])
+int main(int, char*[])
 {
   // Some values
   OCML::Integer_Option_Value int_value(3);

@@ -12,7 +12,7 @@ Boolean_Option_Editor::Boolean_Option_Editor(wxWindow* parent,
 
   if (option()->assigned())
     {
-      editor_->SetValue(boolean_option->str_value().c_str());
+      editor_->SetValue(Boolean_Option_Trait::parse_string(boolean_option->str_value().c_str()));
       button()->Enable(true);
     }
   else

@@ -1,3 +1,36 @@
+Tue Apr 12 10:40:26 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/OCML/common/common_test.cpp:
+        * PIM/OCML/common/ocml_common.mpc :
+        * PIM/OCML/common/xerces_helpers.cpp:
+        * PIM/OCML/engine/configurator.cpp :
+        * PIM/OCML/engine/configurator.hpp:
+        * PIM/OCML/engine/constraint_engine.cpp :
+        * PIM/OCML/engine/constraint_engine.hpp:
+        * PIM/OCML/engine/definitions.hpp :
+        * PIM/OCML/engine/logic_rules.hpp:
+        * PIM/OCML/engine/ocml_engine.mpc :
+        * PIM/OCML/engine/option.hpp:
+        * PIM/OCML/engine/option.ipp:
+        * PIM/OCML/engine/option.tpp :
+        * PIM/OCML/engine/option_interface.hpp:
+        * PIM/OCML/engine/rule.hpp :
+        * PIM/OCML/engine/tree_parser.cpp:
+        * PIM/OCML/test/configurator_test.cpp :
+        * PIM/OCML/test/configurator_ui_test.cpp:
+        * PIM/OCML/test/constraint_engine_test.cpp :
+        * PIM/OCML/test/constraint_engine_test_driver.cpp:
+        * PIM/OCML/test/definitions_test_driver.cpp:
+        * PIM/OCML/test/ocml_test.mpc :
+        * PIM/OCML/test/option_value_test_driver.cpp:
+        * PIM/OCML/test/rules_test_driver.cpp :
+        * PIM/OCML/test/value_test_driver.cpp:
+        * PIM/OCML/ui/boolean_option_editor.cpp :
+        * PIM/OCML/ui/configurator_ui.cpp:
+        * PIM/OCML/ui/ocml_configurator_ui.mpc :
+
+          More ACE dependency extraction.
+
 Mon Apr 11 22:15:44 2005  Gan Deng <gan.deng@vanderbilt.edu>
 
         * PIM/PICML/interpreters/EQAL/EQAL.mpc:

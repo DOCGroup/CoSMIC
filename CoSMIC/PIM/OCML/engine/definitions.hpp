@@ -120,7 +120,7 @@ namespace OCML
    *
    * @see Option_Definition.
    */
-  class OCML_Engine_Export Option_Category: public Described_Item
+  class Option_Category: public Described_Item
   {
   private:
     /// The container type for the contained options.
@@ -140,12 +140,12 @@ namespace OCML
     
   public:
     /// Contructor.
-    Option_Category(const char* name, const char* description);
+    OCML_Engine_Export Option_Category(const char* name, const char* description);
     /// Destructor.
-    virtual ~Option_Category();
+    OCML_Engine_Export virtual ~Option_Category();
 
     // Defined as abstract at DescribedItem.
-    virtual const char* type_string() const;
+    OCML_Engine_Export virtual const char* type_string() const;
 
     // First defined at DescribedItem.
 //    virtual xercesc::DOMElement* write(xercesc::DOMDocument* doc) const;
@@ -155,36 +155,36 @@ namespace OCML
      */
 
     /// STL compatible begin marker for the contained categories.
-    category_iterator begin_categories();
+    OCML_Engine_Export category_iterator begin_categories();
     /// STL compatible end marker for the contained categories.
-    category_iterator end_categories();
+    OCML_Engine_Export category_iterator end_categories();
     /// STL compatible begin marker for the contained options
-    option_iterator begin_options();
+    OCML_Engine_Export option_iterator begin_options();
     /// STL compatible end marker for the contained options.
-    option_iterator end_options();
+    OCML_Engine_Export option_iterator end_options();
 
     /*
      * STL begin & end markers. - const versions -
      */
 
     /// STL compatible *const* begin marker for the contained categories.
-    const_category_iterator begin_categories() const;
+    OCML_Engine_Export const_category_iterator begin_categories() const;
     /// STL compatible *const* end marker for the contained categories.
-    const_category_iterator end_categories() const;
+    OCML_Engine_Export const_category_iterator end_categories() const;
     /// STL compatible *const* begin marker for the contained options
-    const_option_iterator begin_options() const;
+    OCML_Engine_Export const_option_iterator begin_options() const;
     /// STL compatible *const* end marker for the contained options.
-    const_option_iterator end_options() const;
+    OCML_Engine_Export const_option_iterator end_options() const;
 
     /// Inserts a new category to the categories list.
-    void add_category(Option_Category* category);
+    OCML_Engine_Export void add_category(Option_Category* category);
     /// Inserts a new option to the options list.
-    void add_option(Option_Definition* option);
+    OCML_Engine_Export void add_option(Option_Definition* option);
 
     /// Finds a category with given name in the category list and returns it.
-    Option_Category* category(const char* name);
+    OCML_Engine_Export Option_Category* category(const char* name);
     /// Finds an option with given name in the options list and returns it.
-    Option_Definition* option(const char* name);
+    OCML_Engine_Export Option_Definition* option(const char* name);
 
     /// Returns true if any of the contained item is assigned
     /// -checks the recursively the contained librraries-.

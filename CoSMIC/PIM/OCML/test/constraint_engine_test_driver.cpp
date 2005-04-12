@@ -1,11 +1,7 @@
-#include <ace/Log_Msg.h>
-#include <ace/OS_Main.h>
 #include "constraint_engine_test.hpp"
 
-int ACE_TMAIN(int, ACE_TCHAR*[])
+int main(int, char*[])
 {
-  ACE_LOG_MSG->priority_mask(LM_DEBUG, ACE_Log_Msg::PROCESS);
-
   bool result;
 
   // Create definitions

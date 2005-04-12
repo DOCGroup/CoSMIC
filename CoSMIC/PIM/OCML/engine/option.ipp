@@ -1,7 +1,6 @@
 // $Id$
 
 #include "constraint_engine.hpp"
-#include <ace/Log_Msg.h>
 
 namespace OCML
 {
@@ -12,17 +11,13 @@ namespace OCML
       constraint_manager_(constraint_manager),
       assigned_(false)
   {
-    ACE_DEBUG((LM_TRACE,
-          "Option::Option(Option_Definition*, Constraint_Engine&)\n"));
   }
 
   inline bool
   Option::clear()
   {
-    ACE_DEBUG((LM_TRACE, "ENTER: Option::clear()\n"));
     if (!assigned_)
     {
-      ACE_DEBUG((LM_TRACE, "EXIT: Option::clear()\n"));
       return true;
     }
 
@@ -31,14 +26,12 @@ namespace OCML
     // If validated no more assigned, otherwise still assigned.
     assigned_ = !(constraint_manager_->validate());
 
-    ACE_DEBUG((LM_TRACE, "EXIT: Option::clear()\n"));
     return !assigned_;
   }
 
   inline bool
   Option::value(const Option_Value* value)
   {
-    ACE_DEBUG((LM_TRACE, "ENTER: Option::value(const Option_Value*)\n"));
     bool initially_assigned = assigned_;
 
     Constraint_Engine::rule_index tmp_equality_rule = equality_rule_;
@@ -67,7 +60,6 @@ namespace OCML
       }
     }
 
-    ACE_DEBUG((LM_TRACE, "EXIT: Option::value(const Option_Value*)\n"));
     return assigned_;
   }
 

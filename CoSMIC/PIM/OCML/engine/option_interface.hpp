@@ -30,7 +30,7 @@ namespace OCML
    * value via callback method of the value change listener. Keeps a copy of
    * the current value of the option.
    */
-  class OCML_Engine_Export Option_Interface
+  class Option_Interface
     : public Constraint_Value_Change_Listener
   {
   private:
@@ -40,32 +40,32 @@ namespace OCML
     typedef listeners_type::iterator listener_index;
 
   public:
-    Option_Interface(Constraint_Engine* constraint_engine,
-                     Option_Definition* definition,
-                     Option* option, Option_Value* value);
+    OCML_Engine_Export Option_Interface(Constraint_Engine* constraint_engine,
+                                        Option_Definition* definition,
+                                        Option* option, Option_Value* value);
 
-    virtual ~Option_Interface();
+    OCML_Engine_Export virtual ~Option_Interface();
 
-    bool value(Option_Value* value);
-    bool clear();
-    bool str_value(const char* str);
+    OCML_Engine_Export bool value(Option_Value* value);
+    OCML_Engine_Export bool clear();
+    OCML_Engine_Export bool str_value(const char* str);
 
-    const Option_Value* value() const;
-    bool assigned() const;
-    bool flagged() const;
+    OCML_Engine_Export const Option_Value* value() const;
+    OCML_Engine_Export bool assigned() const;
+    OCML_Engine_Export bool flagged() const;
 
-    Option_Definition* definition() { return definition_; }
+    OCML_Engine_Export Option_Definition* definition() { return definition_; }
 
-    std::string str_value() const;
+    OCML_Engine_Export std::string str_value() const;
 
-    listener_index register_listener(Option_Interface_Value_Change_Listener* l);
-    void unregister_listener(listener_index index);
+    OCML_Engine_Export listener_index register_listener(Option_Interface_Value_Change_Listener* l);
+    OCML_Engine_Export void unregister_listener(listener_index index);
     
     /**
      * The callback method which is invoked by the constraint manager whenever
      * the value of the option change.
      */
-    virtual void value_changed(bool flagged, Option_Value* value);
+    OCML_Engine_Export virtual void value_changed(bool flagged, Option_Value* value);
 
   private:
     Constraint_Engine* constraint_engine_;

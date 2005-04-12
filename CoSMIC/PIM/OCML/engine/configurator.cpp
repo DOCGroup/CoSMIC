@@ -162,9 +162,6 @@ namespace OCML
    */
   void Configurator::create_interfaces(Option_Category* category)
   {
-    ACE_DEBUG((LM_TRACE,
-              "ENTER: Configurator::create_interfaces(Option_Category*)\n"));
-
     for (Option_Category::option_iterator iter = category->begin_options();
          iter != category->end_options(); ++iter)
     {
@@ -177,9 +174,6 @@ namespace OCML
     {
       create_interfaces(*iter);
     }
-
-    ACE_DEBUG((LM_TRACE,
-              "EXIT: Configurator::create_interfaces(Option_Category*)\n"));
   }
 
   xercesc::DOMElement*

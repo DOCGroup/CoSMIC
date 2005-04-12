@@ -5,8 +5,6 @@
 #include <xercesc/framework/MemBufInputSource.hpp>
 #include <xercesc/framework/Wrapper4InputSource.hpp>
 
-#include <ace/Log_Msg.h>
-
 using namespace xercesc;
 
 bool XercesSystem::initialized_ = false;
@@ -16,8 +14,6 @@ DOMImplementationLS* XercesSystem::impl_ls_ = 0;
 void
 XercesSystem::initialize()
 {
-  ACE_DEBUG((LM_TRACE, "ENTER: XercesSystem::initialize()\n"));
-
   try
     {
       XMLPlatformUtils::Initialize();
@@ -32,8 +28,6 @@ XercesSystem::initialize()
   XMLString::transcode("LS", tempStr, 99);
   impl_ = DOMImplementationRegistry::getDOMImplementation(tempStr);
   impl_ls_ = (DOMImplementationLS*) impl_;
-
-  ACE_DEBUG((LM_TRACE, "EXIT: XercesSystem::initialize()\n"));
 }
 
 DOMDocument*

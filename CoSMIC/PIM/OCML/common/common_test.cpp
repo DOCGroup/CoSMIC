@@ -2,7 +2,7 @@
 #include "string_utils.hpp"
 #include <iostream>
 
-int ACE_TMAIN(int, char*[])
+int main(int, char*[])
 {
   std::cout << "Test" << std::endl;
 
@@ -16,7 +16,8 @@ int ACE_TMAIN(int, char*[])
 
   xercesc::DOMElement* element = doc->createElement(XMLUnicodeString("test"));
 
-  std::cout << std::string(XMLUnicodeString(writer->writeToString(*element))) << std::endl;
+  std::cout << std::string(XMLUnicodeString(writer->writeToString(*element)))
+            << std::endl;
 
   return 0;
 }

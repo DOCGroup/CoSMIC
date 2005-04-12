@@ -1,6 +1,9 @@
 project: xerces {
   sharedname = ocml_common
   dynamicflags += OCML_COMMON_BUILD_DLL
+  libout = $(COSMIC_ROOT)/lib
+  dllout = $(COSMIC_ROOT)/bin
+  libs += ocml_common
 
   Header_Files {
     algorithm.hpp
@@ -38,6 +41,7 @@ project (common_test): xerces {
   exename = common_test
   libs += ocml_common
   after += ocml_common
+  libpaths += $(COSMIC_ROOT)/lib
 
   Source_Files {
     common_test.cpp

@@ -28,7 +28,7 @@ class Definition_Test: public Test
     std::auto_ptr<OCML::Option_Category> category_;
 };
 
-int ACE_TMAIN(int, ACE_TCHAR*[])
+int main(int, char*[])
 {
   Definition_Test()();
 

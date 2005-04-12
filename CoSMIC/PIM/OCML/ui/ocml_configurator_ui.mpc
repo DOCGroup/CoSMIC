@@ -3,6 +3,9 @@ project (ocml_configurator_ui): wxwindows, xerces {
   includes += .. $(BOOST_ROOT)
   macros += _USRDLL WXMAKINGDLL
   dynamicflags += CONFIGURATOR_UI_BUILD_DLL
+  libout = $(COSMIC_ROOT)/lib
+  dllout = $(COSMIC_ROOT)/bin
+  libpaths += $(COSMIC_ROOT)/lib
 
   specific (em3, nmake, vc6) {
     subsystem = windows
