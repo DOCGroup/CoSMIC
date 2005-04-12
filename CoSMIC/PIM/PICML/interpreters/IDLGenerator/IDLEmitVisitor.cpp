@@ -1305,6 +1305,7 @@ namespace IDML
 		    if (first) ofs << nl;
 		    
 		    fi = (*it)->getFile ();
+		    if (!fi) continue;
 		    found = std::find (f->discovered_includes_.begin (),
 		                       f->discovered_includes_.end (),
 		                       fi);

@@ -1,3 +1,11 @@
+Tue Apr 12 14:40:10 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/DependencyVisitor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
+        
+          Added some missing checks for null objects before calling
+          operations on them.
+
 Tue Apr 12 12:13:04 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp: 

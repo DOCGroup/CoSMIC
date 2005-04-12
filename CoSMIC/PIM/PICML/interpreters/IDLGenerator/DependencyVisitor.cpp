@@ -105,6 +105,7 @@ namespace IDML
 		  {
         BON::FCO orig_obj = (*it)->getReferred ();
         BON::FCO target_obj (orig_obj);
+        if (!target_obj) continue;
         BON::Model target_scope = target_obj->getParentModel ();
         
         // This will happen if we are referencing a basic type, since
