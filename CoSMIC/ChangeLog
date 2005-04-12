@@ -1,3 +1,9 @@
+Tue Apr 12 17:16:39 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * cosmic.mwc: 
+
+          Added Installer/RegisterParadigm to the root mwc file.
+
 Tue Apr 12 17:01:56 2005  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:

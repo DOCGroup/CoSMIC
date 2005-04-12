@@ -4,4 +4,5 @@ workspace {
   PIM/PICML/interpreters/Interpreters.mwc
   PIM/PICML/decorators/Decorators.mwc
   PIM/OCML/ocml.mwc
+  Installer/RegisterParadigm
 }
