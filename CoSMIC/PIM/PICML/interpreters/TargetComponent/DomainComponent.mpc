@@ -1,4 +1,4 @@
-project (domain_component): mfc, picmllib {
+project (DomainComponent): mfc, picmllib {
   after += PICML Domain
 
   MIDL_Files {
@@ -53,7 +53,7 @@ project (domain_component): mfc, picmllib {
 }
 
 project (RegisterDomainComponent): picmllib {
-  after += domain_component
+  after += DomainComponent
   custom_only           = 1
 
   Register_Files {

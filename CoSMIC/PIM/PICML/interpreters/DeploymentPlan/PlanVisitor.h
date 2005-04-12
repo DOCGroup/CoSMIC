@@ -31,6 +31,8 @@ namespace PICML
 
     void init();
     void initTarget (const std::string& fileName);
+	void initNodeRefName (const std::string& nodeRefName);
+	std::string retNodeRefName ();
     void initDocument (const std::string& rootName);
     void initRootAttributes();
     void dumpDocument();
@@ -105,7 +107,7 @@ namespace PICML
     virtual void Visit_publish(const publish&){};
     virtual void Visit_deliverTo(const deliverTo&){};
     virtual void Visit_AssemblyDeployRequirement(const AssemblyDeployRequirement&){};
-    virtual void Visit_ComponentAssembly(const ComponentAssembly&){};
+    virtual void Visit_ComponentAssembly(const ComponentAssembly&);
     virtual void Visit_emit(const emit&){};
     virtual void Visit_invoke(const invoke&){};
     virtual void Visit_ComponentPackage(const ComponentPackage&){};
@@ -209,5 +211,6 @@ namespace PICML
     XMLFormatTarget*    target_;
     std::string         outputPath_;
     std::stack<DOMElement*> curr_stack_;
+	std::string         node_ref_name_;
   };
 }

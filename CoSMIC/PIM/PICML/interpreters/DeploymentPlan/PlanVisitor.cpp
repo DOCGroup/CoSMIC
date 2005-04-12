@@ -12,7 +12,7 @@ namespace PICML
 {
   PlanVisitor::PlanVisitor (const std::string& outputPath)
     : impl_ (0), doc_ (0), root_ (0), curr_ (0), serializer_ (0), target_ (0),
-      outputPath_ (outputPath)
+      outputPath_ (outputPath), node_ref_name_ (0)
   {
     this->init();
   }
@@ -48,6 +48,16 @@ namespace PICML
     if (this->target_)
       delete this->target_;
     this->target_ = new LocalFileFormatTarget (fileName.c_str());
+  }
+
+  void PlanVisitor::initNodeRefName (const std::string& nodeRefName)
+  {
+    this->node_ref_name_ = nodeRefName;
+  }
+
+  std::string PlanVisitor::retNodeRefName ()
+  {
+    return this->node_ref_name_;
   }
 
   void PlanVisitor::initDocument (const std::string& rootName)
@@ -265,7 +275,7 @@ namespace PICML
   {
     this->push();
     std::string name = this->outputPath_ + "\\";
-    name += dp.name();
+	name += dp.name();
     name += ".cdp";
     this->initTarget (name);
     this->initDocument ("Deployment:DeploymentPlan");
@@ -290,28 +300,67 @@ namespace PICML
             NodeReference node_ref = cg_ins.dstInstanceMapping_end();
             const Node ref = node_ref.ref();
             refName = (ref.name());
+			this->initNodeRefName (refName);
           }
 
-        const std::set<ComponentRef> comp_types = cg.members ();
-
-        for (std::set<ComponentRef>::const_iterator comp_type_iter = comp_types.begin();
-             comp_type_iter != comp_types.end ();
-             ++comp_type_iter)
-          {
-            ComponentRef comp_type = *comp_type_iter;
-            Component comp = comp_type.ref();
-            this->push();
-            DOMElement* ele = this->doc_->createElement (XStr ("instance"));
-            ele->appendChild (this->createSimpleContent ("name", comp.name()));
-            ele->appendChild (this->createSimpleContent ("node", refName));
-            this->curr_->appendChild (ele);
-            this->pop();
-          }
-      }
+        std::set<CollocationGroup_Members_Base> comp_types = cg.members ();
+		for (std::set<CollocationGroup_Members_Base>::const_iterator comp_type_iter = comp_types.begin();
+			 comp_type_iter != comp_types.end (); ++comp_type_iter)
+		  {
+            CollocationGroup_Members_Base comp_type = *comp_type_iter;
+			if (Udm::IsDerivedFrom (comp_type.type(), ComponentRef::meta))
+			  {
+			    ComponentRef component_ref = ComponentRef::Cast (comp_type);
+				Component comp = component_ref.ref();
+				this->push();
+                DOMElement* ele = this->doc_->createElement (XStr ("instance"));
+                ele->appendChild (this->createSimpleContent ("name", comp.name()));
+                ele->appendChild (this->createSimpleContent ("node", refName));
+                this->curr_->appendChild (ele);
+                this->pop();
+			  }
+		    else if (Udm::IsDerivedFrom (comp_type.type(), ComponentAssemblyReference::meta))
+			  {
+			    ComponentAssemblyReference comp_assembly_ref = ComponentAssemblyReference::Cast (comp_type);
+				ComponentAssembly comp_assembly = comp_assembly_ref.ref ();
+				comp_assembly.Accept (*this);
+			  }
+		  }
+	  }
 
 
     this->dumpDocument();
     this->pop();
+  }
+
+  void PlanVisitor::Visit_ComponentAssembly(const ComponentAssembly& assembly)
+  {
+    std::set<ComponentAssembly>
+      asms = assembly.ComponentAssembly_kind_children();
+    for (std::set<ComponentAssembly>::iterator aiter = asms.begin();
+         aiter != asms.end();
+         ++aiter)
+      {
+        ComponentAssembly rassembly  = *aiter;
+        rassembly.Accept (*this);
+      }
+
+    std::string node_reference_name = this->retNodeRefName ();
+
+    std::set<Component> comps = assembly.Component_kind_children();
+	for (std::set<Component>::iterator iter = comps.begin();
+         iter != comps.end();
+         ++iter)
+      {
+	    Component comp = *iter;
+		this->push();
+        DOMElement* ele = this->doc_->createElement (XStr ("instance"));
+		std::string uniqueName = comp.getPath ("_",false,true);
+        ele->appendChild (this->createSimpleContent ("name", uniqueName));
+        ele->appendChild (this->createSimpleContent ("node", node_reference_name));
+        this->curr_->appendChild (ele);
+        this->pop();
+	  }
   }
 
   void PlanVisitor::Visit_InstanceMapping(const InstanceMapping& ins_map)
