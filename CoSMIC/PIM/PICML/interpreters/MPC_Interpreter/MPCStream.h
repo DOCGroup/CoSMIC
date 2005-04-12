@@ -41,71 +41,71 @@ extern const INDENT idt_nl;
 extern const UNINDENT uidt;
 extern const UNINDENT uidt_nl;
 
-class MPC_Export MPCStream
+class  MPCStream
 {
 public:
-  MPCStream (std::ostream& strm, std::string output_path_);
+  MPC_Export MPCStream (std::ostream& strm, std::string output_path_);
   // constructor.
 
-  virtual ~MPCStream (void);
+  MPC_Export ~MPCStream (void);
   // destructor.
 
-  void incr_indent (unsigned short flag = 1);
+  MPC_Export void incr_indent (unsigned short flag = 1);
   // increment the indentation level and by default actually indent the output
   // accordingly
 
-  void decr_indent (unsigned short flag = 1);
+  MPC_Export void decr_indent (unsigned short flag = 1);
   // decrease the indentation level and by default actually indent the output
   // accordingly
 
-  inline void reset (void);
+  MPC_Export inline void reset (void);
   // reset indentation level to 0
 
-  void indent (void);
+  MPC_Export void indent (void);
   // indent starting next line
 
-  void nl (void);
+  MPC_Export void nl (void);
   // put a newline and indent on the next line
 
   // Workspace definitions
-  void create_workspace (const PICML::Workspaces &workspace);
-  void write_mwc_footer ();
-  void write_mwc_header ();
+  MPC_Export void create_workspace (const PICML::Workspaces &workspace);
+  MPC_Export void write_mwc_footer ();
+  MPC_Export void write_mwc_header ();
 
   // Project related definitions
-  void create_project (const PICML::Project &project);
-  void create_stub_definition (const PICML::StubProject &);
-  void create_skeleton_definition (const PICML::ServantProject &);
-  void create_executor_definition (const PICML::ExecutorProject &);
-  bool dependent_project (PICML::ImplementationArtifact &artifact, 
-						  std::string &dependent_proj);
-  void create_project_defn (std::string& proj_name, 
-							std::string root_proj);
-  void create_after_defn (std::string& deo_proj_name);
-  void create_shared_defn (std::string& name);
-  void create_export_defn (std::string& shared_name);
-  void create_close_proj_defn ();
-  void create_dynamic_flags_defn (std::string& shared_name);
-  void create_idl_file_defn (std::vector<std::string>& idl_files);
-  void create_source_file_defn (std::vector<std::string>& idl_c_files);
-  void create_lib_path_defn (std::string& lib_path);
-  void create_cidl_defn (PICML::ImplementationArtifact& artifact);
-  void create_export_macro (std::string& shared_name);
-  std::string skel_export_macro (PICML::Project project);
-  std::vector<std::string> generate_dependant_libs (std::set<PICML::ArtifactDependsOn>& art_refs);
-  void create_dependant_libs_defn (std::vector<std::string>& list);
+  MPC_Export void create_project (const PICML::Project &project);
+  MPC_Export void create_stub_definition (const PICML::StubProject &);
+  MPC_Export void create_skeleton_definition (const PICML::ServantProject &);
+  MPC_Export void create_executor_definition (const PICML::ExecutorProject &);
+  MPC_Export bool dependent_project (PICML::ImplementationArtifact &artifact, 
+									 std::string &dependent_proj);
+  MPC_Export void create_project_defn (std::string& proj_name, 
+									   std::string root_proj);
+  MPC_Export void create_after_defn (std::string& deo_proj_name);
+  MPC_Export void create_shared_defn (std::string& name);
+  MPC_Export void create_export_defn (std::string& shared_name);
+  MPC_Export void create_close_proj_defn ();
+  MPC_Export void create_dynamic_flags_defn (std::string& shared_name);
+  MPC_Export void create_idl_file_defn (std::vector<std::string>& idl_files);
+  MPC_Export void create_source_file_defn (std::vector<std::string>& idl_c_files);
+  MPC_Export void create_lib_path_defn (std::string& lib_path);
+  MPC_Export void create_cidl_defn (PICML::ImplementationArtifact& artifact);
+  MPC_Export void create_export_macro (std::string& shared_name);
+  MPC_Export std::string skel_export_macro (PICML::Project project);
+  MPC_Export std::vector<std::string> generate_dependant_libs (std::set<PICML::ArtifactDependsOn>& art_refs);
+  MPC_Export void create_dependant_libs_defn (std::vector<std::string>& list);
 
-  MPCStream &operator<< (const std::string &);
-  MPCStream &operator<< (const char *);
-  MPCStream &operator<< (const long &);
-  MPCStream &operator<< (const unsigned long &);
-  MPCStream &operator<< (const double &);
-  MPCStream &operator<< (const char &);
+  MPC_Export MPCStream &operator<< (const std::string &);
+  MPC_Export MPCStream &operator<< (const char *);
+  MPC_Export MPCStream &operator<< (const long &);
+  MPC_Export MPCStream &operator<< (const unsigned long &);
+  MPC_Export MPCStream &operator<< (const double &);
+  MPC_Export MPCStream &operator<< (const char &);
 
   // = MANIPULATORS
-  MPCStream &operator<< (const NL &);
-  MPCStream &operator<< (const INDENT &);
-  MPCStream &operator<< (const UNINDENT &);
+  MPC_Export MPCStream &operator<< (const NL &);
+  MPC_Export MPCStream &operator<< (const INDENT &);
+  MPC_Export MPCStream &operator<< (const UNINDENT &);
 
 private:
   std::ostream& strm_;
