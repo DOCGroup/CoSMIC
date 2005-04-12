@@ -8,6 +8,7 @@ workspace {
    DeploymentPlan
    DeploymentPlanComponent
    ConfigExport
+   Configurator
    IDLGenerator
    BGML
    BGMLcomponent
