@@ -1,3 +1,11 @@
+Tue Apr 12 22:09:25 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/DeploymentPlan/PlanVisitor.h: 
+        * PIM/PICML/interpreters/DeploymentPlan/PlanVisitor.cpp: 
+
+          Changed export macros from the class level to the individual
+          public methods. Fixed a pointer error, causing interpreter to crash.
+
 Tue Apr 12 17:16:39 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * cosmic.mwc: 

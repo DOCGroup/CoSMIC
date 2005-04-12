@@ -12,7 +12,7 @@ namespace PICML
 {
   PlanVisitor::PlanVisitor (const std::string& outputPath)
     : impl_ (0), doc_ (0), root_ (0), curr_ (0), serializer_ (0), target_ (0),
-      outputPath_ (outputPath), node_ref_name_ (0)
+      outputPath_ (outputPath)
   {
     this->init();
   }
