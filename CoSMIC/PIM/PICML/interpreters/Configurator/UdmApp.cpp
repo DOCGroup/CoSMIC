@@ -35,8 +35,21 @@
 #include "UdmConfig.h"
 
 #include "PICML.h"
-#include <PICML/Utils.h>
-#include "ConfigExportVisitor.h"
+#include "ConfiguratorVisitor.h"
+
+#include <map>
+#include <sstream>
+#include <fstream>
+#include <cstdlib>
+
+#include <ui/configurator_ui.hpp>
+
+#define SetUpVisitor(type, root, visitor)       \
+do                                              \
+  {                                             \
+    type start = type ## ::Cast (root);         \
+    start.Accept (visitor);                     \
+  } while (0)
 
 extern void dummy(void); // Dummy function for UDM meta initialization
 
@@ -75,6 +88,13 @@ int CUdmApp::Initialize()
   udm_exception::what() to form an error message.
 */
 
+struct addon_info 
+{
+  std::string schema;
+  std::string rules;
+  std::string attr;
+};
+
 /***********************************************/
 /* Main entry point for Udm-based Interpreter  */
 /***********************************************/
@@ -85,22 +105,85 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
                       set<Udm::Object> selectedObjects,	// Selected objects
                       long param)			// Parameters
 {
+  typedef std::map<std::string, addon_info> addons_type;
+  typedef addons_type::const_iterator addon_iterator;
+  addons_type add_ons;
+
+  std::ostringstream error_msg;
+
+  error_msg << "Selected object should be one of the following" << std::endl;
+
+  // Read the ini file TODO: This is going to be read from registry.
+  {
+    char *cosmic_root = getenv("COSMIC_ROOT");
+    std::string bin_dir =
+      std::string(cosmic_root) + std::string("\\bin\\");
+
+
+    std::ifstream ini_file ("c:\\ocml_configurator.ini");
+    while (!ini_file.eof())
+      {
+        std::string name;
+        std::string rule_file_name;
+        addon_info info;
+        ini_file >> name >> info.schema >> rule_file_name >> info.attr;
+        rule_file_name = bin_dir + rule_file_name;
+
+        std::ifstream rule_file(rule_file_name.c_str());
+        std::copy(std::istream_iterator<char>(rule_file),
+                  std::istream_iterator<char>(),
+                  std::back_inserter(info.rules));
+
+        add_ons[name] = info;
+
+        error_msg << name << std::endl;
+      }
+  }
+
   try
     {
-      std::string outputPath;
-      std::string message = "Please specify the Output Directory";
-      if (!PICML::getPath (message, outputPath))
-        return;
-      PICML::ConfigExportVisitor visitor (outputPath);
-      PICML::RootFolder root_folder =
-        PICML::RootFolder::Cast(p_backend->GetRootObject());
-      root_folder.Accept (visitor);
+      // Select *one* object from the selected list, which has registered with
+      // OCML in the windows registry (read in the previous step). The result
+      // will be stored in the active_object_ptr, if non found it will be
+      // selectedObjects.end().
+      set<Udm::Object>::iterator active_object_ptr = selectedObjects.end();
+      addon_iterator info_iter;
+
+      for (set<Udm::Object>::iterator iter = selectedObjects.begin();
+           iter != selectedObjects.end(); ++iter)
+        {
+          std::string kind_name = iter->type().name();
+          info_iter = add_ons.find(kind_name);
+
+          if (info_iter !=add_ons.end())
+            {
+              active_object_ptr = iter;
+              break;
+            }
+        }
+
+      if (active_object_ptr == selectedObjects.end())
+        {
+          AfxMessageBox (error_msg.str().c_str());
+          return;
+        }
+      
+      // display the gui. 
+      std::string old_value;
+      active_object_ptr->GetStrValue(info_iter->second.attr, old_value);
+
+      Configurator_Dialog dlg;
+      std::string new_values =
+        dlg.show(info_iter->second.schema, old_value, info_iter->second.rules);
+
+      active_object_ptr->SetStrValue(info_iter->second.attr, new_values);
     }
   catch(udm_exception &e)
     {
       AfxMessageBox ("Caught UDM Exception: " + CString (e.what()));
       return;
     }
+
   return;
 }
 

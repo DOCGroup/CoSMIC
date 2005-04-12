@@ -1,3 +1,21 @@
+Tue Apr 12 10:55:37 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Configurator/CompIcon.ico:
+        * PIM/PICML/interpreters/Configurator/Component.def:
+        * PIM/PICML/interpreters/Configurator/Component.rc:
+        * PIM/PICML/interpreters/Configurator/ComponentConfig.h:
+        * PIM/PICML/interpreters/Configurator/Configurator.mpc:
+        * PIM/PICML/interpreters/Configurator/RawComponent.cpp:
+        * PIM/PICML/interpreters/Configurator/RawComponent.h:
+        * PIM/PICML/interpreters/Configurator/resource.h:
+        * PIM/PICML/interpreters/Configurator/StdAfx.cpp:
+        * PIM/PICML/interpreters/Configurator/StdAfx.h:
+        * PIM/PICML/interpreters/Configurator/UdmApp.cpp:
+        * PIM/PICML/interpreters/Configurator/UdmApp.h:
+        * PIM/PICML/interpreters/Configurator/UdmConfig.h:
+
+          Added the UDM - Configurator interpreter.
+
 Tue Apr 12 10:40:26 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * PIM/OCML/common/common_test.cpp:

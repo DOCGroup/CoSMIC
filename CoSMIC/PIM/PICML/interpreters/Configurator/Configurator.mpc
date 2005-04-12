@@ -1,5 +1,6 @@
-project (ConfigExport): mfc, picmllib {
-   after += PICML
+project (Configurator): mfc, picmllib {
+   after += PICML ocml_configurator_ui
+   sharedname = Configurator
 
    MIDL_Files {
      gendir = .
@@ -7,9 +8,9 @@ project (ConfigExport): mfc, picmllib {
    }
    macros += PICML_HAS_DLL _USRDLL _WINDLL \
              OCML_CONFIGURATOR_INTERPRETER_BUILD_DLL
-   sharedname = ConfigExport
-   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML .. .
-   libs += PICML
+   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML \
+               $(COsMIC_ROOT)/PIM/OCML .. .
+   libs += PICML ocml_configurator_ui
    pch_header = StdAfx.h
    pch_source = StdAfx.cpp
 
@@ -30,8 +31,6 @@ project (ConfigExport): mfc, picmllib {
      Component.def
      RawComponent.cpp
      UdmApp.cpp
-
-     ConfigExportVisitor.cpp
    }
 
    Header_Files {
@@ -46,29 +45,19 @@ project (ConfigExport): mfc, picmllib {
      StdAfx.h
      UdmApp.h
      UdmConfig.h
-
-     ConfigExportVisitor.h
    }
 
    Resource_Files {
      CompIcon.ico
    }
-
-   Source_Files {
-     ConfigExportVisitor.cpp
-   }
-
-   Header_Files {
-     OCML_Configurator_Interpreter_Visitor.h
-   }
 }
 
-project (RegisterConfigExport): picmllib {
-  after += ConfigExport
+project (RegisterConfigurator): picmllib {
+  after += Configurator
   custom_only = 1
 
   Register_Files {
-    $(COSMIC_ROOT)\bin\ConfigExport.dll
+    $(COSMIC_ROOT)\bin\Configurator.dll
   }
 }
 
