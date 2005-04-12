@@ -35,7 +35,6 @@
 #include "UdmConfig.h"
 
 #include "PICML.h"
-#include "ConfiguratorVisitor.h"
 
 #include <map>
 #include <sstream>
