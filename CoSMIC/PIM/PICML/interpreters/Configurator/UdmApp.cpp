@@ -117,9 +117,10 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
     char *cosmic_root = getenv("COSMIC_ROOT");
     std::string bin_dir =
       std::string(cosmic_root) + std::string("\\bin\\");
+    std::string ini_file_name = bin_dir + ini_file;
 
 
-    std::ifstream ini_file ("c:\\ocml_configurator.ini");
+    std::ifstream ini_file (ini_file_name.c_str());
     while (!ini_file.eof())
       {
         std::string name;
