@@ -1,3 +1,11 @@
+Wed Apr 13 11:32:14 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        
+          Updated to be compatible with the most recent versions
+          of ACE_MPC and the Xerces library naming conventions in
+          CoSMIC.
+
 Wed Apr 13 07:53:13 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/interpreters.mwc:
