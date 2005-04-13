@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{D5C41C51-ACE1-4565-9F20-9A13F04C6D81}" cdate="Fri Feb 25 18:29:39 2005" mdate="Fri Feb 25 18:29:39 2005" version="" metaguid="{422E3338-49F6-4AA7-A4B7-AAE1018DCC06}" metaversion="" metaname="PICML">
+<project guid="{D5C41C51-ACE1-4565-9F20-9A13F04C6D81}" cdate="Wed Apr 13 16:43:31 2005" mdate="Wed Apr 13 16:43:31 2005" version="" metaguid="{02F92DA4-8C61-4C4D-9618-FD600EE5CACF}" metaversion="" metaname="PICML">
 	<name>BasicSP</name>
 	<comment></comment>
 	<author></author>
@@ -1044,9 +1044,6 @@
 					<attribute kind="location">
 						<value>BMClosedED_exec</value>
 					</attribute>
-					<attribute kind="tree_file_name" status="meta">
-						<value>orb_tree.xml</value>
-					</attribute>
 				</atom>
 				<atom id="id-0066-0000000d" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
 					<name>BMClosedED_stub</name>
@@ -1071,9 +1068,6 @@
 					<attribute kind="location">
 						<value>BMClosedED_stub</value>
 					</attribute>
-					<attribute kind="tree_file_name" status="meta">
-						<value>orb_tree.xml</value>
-					</attribute>
 				</atom>
 				<atom id="id-0066-0000000e" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
 					<name>BMClosedED_svnt</name>
@@ -1097,9 +1091,6 @@
 					</attribute>
 					<attribute kind="location">
 						<value>BMClosedED_svnt</value>
-					</attribute>
-					<attribute kind="tree_file_name" status="meta">
-						<value>orb_tree.xml</value>
 					</attribute>
 				</atom>
 				<reference id="id-0067-00000015" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x8" referred="id-0066-0000000d">
@@ -1263,9 +1254,6 @@
 					<attribute kind="location">
 						<value>BMDevice_exec</value>
 					</attribute>
-					<attribute kind="tree_file_name" status="meta">
-						<value>orb_tree.xml</value>
-					</attribute>
 				</atom>
 				<atom id="id-0066-00000010" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
 					<name>BMDevice_stub</name>
@@ -1290,9 +1278,6 @@
 					<attribute kind="location">
 						<value>BMDevice_stub</value>
 					</attribute>
-					<attribute kind="tree_file_name" status="meta">
-						<value>orb_tree.xml</value>
-					</attribute>
 				</atom>
 				<atom id="id-0066-00000011" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
 					<name>BMDevice_svnt</name>
@@ -1316,9 +1301,6 @@
 					</attribute>
 					<attribute kind="location">
 						<value>BMDevice_svnt</value>
-					</attribute>
-					<attribute kind="tree_file_name" status="meta">
-						<value>orb_tree.xml</value>
 					</attribute>
 				</atom>
 				<reference id="id-0067-00000019" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x8" referred="id-0066-00000010">
@@ -1482,9 +1464,6 @@
 					<attribute kind="location">
 						<value>BMDisplay_exec</value>
 					</attribute>
-					<attribute kind="tree_file_name" status="meta">
-						<value>orb_tree.xml</value>
-					</attribute>
 				</atom>
 				<atom id="id-0066-00000013" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
 					<name>BMDisplay_svnt</name>
@@ -1509,9 +1488,6 @@
 					<attribute kind="location">
 						<value>BMDisplay_svnt</value>
 					</attribute>
-					<attribute kind="tree_file_name" status="meta">
-						<value>orb_tree.xml</value>
-					</attribute>
 				</atom>
 				<atom id="id-0066-00000014" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x4">
 					<name>BMDisplay_stub</name>
@@ -1535,9 +1511,6 @@
 					</attribute>
 					<attribute kind="location">
 						<value>BMDisplay_stub</value>
-					</attribute>
-					<attribute kind="tree_file_name" status="meta">
-						<value>orb_tree.xml</value>
 					</attribute>
 				</atom>
 				<reference id="id-0067-0000001d" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x8" referred="id-0066-00000014">
@@ -1701,9 +1674,6 @@
 					<attribute kind="location">
 						<value>EC_exec</value>
 					</attribute>
-					<attribute kind="tree_file_name" status="meta">
-						<value>orb_tree.xml</value>
-					</attribute>
 				</atom>
 				<atom id="id-0066-00000016" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
 					<name>EC_svnt</name>
@@ -1728,9 +1698,6 @@
 					<attribute kind="location">
 						<value>EC_svnt</value>
 					</attribute>
-					<attribute kind="tree_file_name" status="meta">
-						<value>orb_tree.xml</value>
-					</attribute>
 				</atom>
 				<atom id="id-0066-00000017" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
 					<name>EC_stub</name>
@@ -1754,9 +1721,6 @@
 					</attribute>
 					<attribute kind="location">
 						<value>EC_stub</value>
-					</attribute>
-					<attribute kind="tree_file_name" status="meta">
-						<value>orb_tree.xml</value>
 					</attribute>
 				</atom>
 				<reference id="id-0067-00000021" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x8" referred="id-0066-00000017">
@@ -1877,9 +1841,6 @@
 					<attribute kind="location" status="meta">
 						<value></value>
 					</attribute>
-					<attribute kind="tree_file_name" status="meta">
-						<value>orb_tree.xml</value>
-					</attribute>
 				</atom>
 				<atom id="id-0066-00000019" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
 					<name>BasicSP_svnt</name>
@@ -1903,9 +1864,6 @@
 					</attribute>
 					<attribute kind="location" status="meta">
 						<value></value>
-					</attribute>
-					<attribute kind="tree_file_name" status="meta">
-						<value>orb_tree.xml</value>
 					</attribute>
 				</atom>
 				<reference id="id-0067-00000023" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x3" referred="id-0066-00000018">
@@ -2695,7 +2653,25 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000041" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000008" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+						<reference id="id-0067-00000041" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-00000009" isinstance="yes" isprimary="no" referred="id-0065-00000005" isbound="yes">
+							<name>timeout</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000042" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000008" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 							<name>data_available</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -2716,24 +2692,6 @@
 								<value>DirectConnect</value>
 							</attribute>
 							<attribute kind="single_destination" status="inherited">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000042" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-00000009" isinstance="yes" isprimary="no" referred="id-0065-00000005" isbound="yes">
-							<name>timeout</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
 								<value>false</value>
 							</attribute>
 						</reference>
@@ -2761,7 +2719,25 @@
 						<attribute kind="label" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000043" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-0000000b" isinstance="yes" isprimary="no" referred="id-0065-00000003" isbound="yes">
+						<reference id="id-0067-00000043" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-0000000c" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+							<name>data_ready</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000044" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-0000000b" isinstance="yes" isprimary="no" referred="id-0065-00000003" isbound="yes">
 							<name>comp_data</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -2776,24 +2752,6 @@
 								<value>false</value>
 							</attribute>
 							<attribute kind="multiple_connections" status="inherited">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000044" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-0000000c" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
-							<name>data_ready</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
 								<value>false</value>
 							</attribute>
 							<attribute kind="optional" status="meta">
@@ -2832,11 +2790,11 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-00000045" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-0000000e" isinstance="yes" isprimary="no" referred="id-0066-00000007" isbound="yes">
+							<reference id="id-0067-00000046" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-0000000e" isinstance="yes" isprimary="no" referred="id-0066-00000007" isbound="yes">
 								<name>AttributeMember</name>
 							</reference>
 						</model>
-						<reference id="id-0067-00000046" kind="Supports" role="Supports" derivedfrom="id-0067-0000000f" isinstance="yes" isprimary="no" referred="id-0065-00000015" isbound="yes">
+						<reference id="id-0067-00000045" kind="Supports" role="Supports" derivedfrom="id-0067-0000000f" isinstance="yes" isprimary="no" referred="id-0065-00000015" isbound="yes">
 							<name>Supports</name>
 						</reference>
 						<reference id="id-0067-00000047" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000010" isinstance="yes" isprimary="no" referred="id-0065-00000005" isbound="yes">
@@ -2911,12 +2869,12 @@
 					<connection id="id-0068-00000034" kind="deliverTo" role="deliverTo" relid="0x9">
 						<name>deliverTo</name>
 						<connpoint role="src" target="id-0066-0000001e"/>
-						<connpoint role="dst" target="id-0067-00000042"/>
+						<connpoint role="dst" target="id-0067-00000041"/>
 					</connection>
 					<connection id="id-0068-00000035" kind="publish" role="publish" relid="0xb">
 						<name>publish</name>
 						<connpoint role="dst" target="id-0066-0000001f"/>
-						<connpoint role="src" target="id-0067-00000041"/>
+						<connpoint role="src" target="id-0067-00000042"/>
 					</connection>
 					<connection id="id-0068-00000036" kind="deliverTo" role="deliverTo" relid="0xc">
 						<name>deliverTo</name>
@@ -2936,12 +2894,12 @@
 					<connection id="id-0068-00000039" kind="deliverTo" role="deliverTo" relid="0x10">
 						<name>deliverTo</name>
 						<connpoint role="src" target="id-0066-00000020"/>
-						<connpoint role="dst" target="id-0067-00000044"/>
+						<connpoint role="dst" target="id-0067-00000043"/>
 					</connection>
 					<connection id="id-0068-0000003a" kind="invoke" role="invoke" relid="0x12">
 						<name>invoke</name>
 						<connpoint role="dst" target="id-0067-0000003c"/>
-						<connpoint role="src" target="id-0067-00000043"/>
+						<connpoint role="src" target="id-0067-00000044"/>
 					</connection>
 				</model>
 			</model>
@@ -3444,7 +3402,7 @@
 					<connpoint role="dst" target="id-0067-00000058"/>
 					<connpoint role="src" target="id-0069-00000002"/>
 				</connection>
-				<set id="id-0069-00000001" kind="CollocationGroup" role="CollocationGroup" relid="0x1" members="id-0067-00000053 id-0067-00000054 id-0067-00000055">
+				<set id="id-0069-00000001" kind="CollocationGroup" role="CollocationGroup" relid="0x1" members="id-0067-00000055 id-0067-00000053 id-0067-00000054">
 					<name>CollocationGroup</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4140,10 +4098,13 @@
 						<value>1000</value>
 					</attribute>
 					<attribute kind="priority" status="meta">
-						<value>0</value>
+						<value>-1</value>
 					</attribute>
 					<attribute kind="rate" status="meta">
-						<value>0</value>
+						<value>-1</value>
+					</attribute>
+					<attribute kind="resolution" status="meta">
+						<value>microseconds</value>
 					</attribute>
 					<attribute kind="warmup">
 						<value>500</value>
@@ -4195,7 +4156,7 @@
 					<connpoint role="dst" target="id-0065-0000005c"/>
 					<connpoint role="src" target="id-0067-00000070"/>
 				</connection>
-				<set id="id-0069-00000003" kind="TaskSet" role="TaskSet" relid="0x4" members="id-0066-00000028 id-0066-00000029">
+				<set id="id-0069-00000003" kind="TaskSet" role="TaskSet" relid="0x4" members="id-0066-00000029 id-0066-00000028">
 					<name>TaskSet</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4207,10 +4168,10 @@
 						</regnode>
 					</regnode>
 					<attribute kind="priority" status="meta">
-						<value>0</value>
+						<value>-1</value>
 					</attribute>
 					<attribute kind="rate" status="meta">
-						<value>0</value>
+						<value>-1</value>
 					</attribute>
 				</set>
 			</model>

@@ -1,3 +1,27 @@
+Wed Apr 13 17:04:35 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/examples/BasicSP.xme:
+        * PIM/PICML/examples/RobotAssembly.xme: Updated to reflect changes
+          in the meta-model.  The user-visible change is due to the fact
+          that an attribute, tree_file_name of ImplementationArtifact was
+          removed.
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:  Reverted to
+          using the component instance's name for the
+          MonolithicImplementation's package.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Updated the constraints to allow connections between a derived
+          eventtype publisher and a base eventtype consumer.  As part of
+          this, connections can only be made between base receptacle and
+          derived facet, in addition to normal same type connections.
+          Disallowed creation of references to component types inside
+          Deployment Plan.
+
 Wed Apr 13 13:02:29 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * Installer/CoSMIC-Installer.aip:
@@ -13,7 +37,7 @@ Wed Apr 13 12:17:43 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 Wed Apr 13 11:32:14 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
-        
+
           Updated to be compatible with the most recent versions
           of ACE_MPC and the Xerces library naming conventions in
           CoSMIC.
@@ -21,26 +45,26 @@ Wed Apr 13 11:32:14 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 Wed Apr 13 07:53:13 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/interpreters.mwc:
-        
+
           Added IDLImporter directory.
 
 Tue Apr 12 22:23:40 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-        * PIM/PICML/interpreters/Configurator/UdmApp.cpp: 
+        * PIM/PICML/interpreters/Configurator/UdmApp.cpp:
 
           Deleted include to an invalid header file.
 
 Tue Apr 12 22:09:25 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-        * PIM/PICML/interpreters/DeploymentPlan/PlanVisitor.h: 
-        * PIM/PICML/interpreters/DeploymentPlan/PlanVisitor.cpp: 
+        * PIM/PICML/interpreters/DeploymentPlan/PlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlan/PlanVisitor.cpp:
 
           Changed export macros from the class level to the individual
           public methods. Fixed a pointer error, causing interpreter to crash.
 
 Tue Apr 12 17:16:39 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-        * cosmic.mwc: 
+        * cosmic.mwc:
 
           Added Installer/RegisterParadigm to the root mwc file.
 

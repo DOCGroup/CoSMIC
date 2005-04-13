@@ -1010,7 +1010,7 @@ namespace PICML
         instance->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
         instance->appendChild (this->createSimpleContent ("name",
                                                           uniqueName));
-        std::string refName = comp.archetype().type().name();
+        std::string refName = comp.name();
         refName += ".cpd";
         DOMElement* refEle = this->doc_->createElement (XStr ("package"));
         refEle->setAttribute (XStr ("href"), XStr (refName));

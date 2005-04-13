@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{2EB41C2B-DEF5-464D-BB2B-360AE4FF2D73}" cdate="Mon Apr 11 16:42:16 2005" mdate="Mon Apr 11 16:42:16 2005" version="" metaguid="{FEFF5A03-BF64-4567-A10E-EBFCBDD5C475}" metaversion="" metaname="MetaGME">
+<project guid="{DCCA4721-F81B-4CE0-8FFF-4B0F6B4E699A}" cdate="Mon Apr 11 16:42:16 2005" mdate="Mon Apr 11 16:42:16 2005" version="" metaguid="{FEFF5A03-BF64-4567-A10E-EBFCBDD5C475}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment></comment>
 	<author></author>
@@ -288,40 +288,40 @@
 			<regnode name="AspectOrder" isopaque="yes">
 				<value>valid</value>
 				<regnode name="ComponentLibraries" isopaque="yes">
-					<value>5</value>
+					<value>8</value>
 				</regnode>
 				<regnode name="ComponentMetrics" isopaque="yes">
-					<value>4</value>
+					<value>7</value>
 				</regnode>
 				<regnode name="DataAnalysis" isopaque="yes">
-					<value>10</value>
+					<value>9</value>
 				</regnode>
 				<regnode name="ElementsTarget" isopaque="yes">
 					<value>2</value>
 				</regnode>
 				<regnode name="InterfaceDefinition" isopaque="yes">
-					<value>9</value>
+					<value>1</value>
 				</regnode>
 				<regnode name="LibraryArtifact" isopaque="yes">
-					<value>6</value>
+					<value>4</value>
 				</regnode>
 				<regnode name="NodeMapping" isopaque="yes">
 					<value>3</value>
 				</regnode>
 				<regnode name="Packaging" isopaque="yes">
-					<value>8</value>
+					<value>10</value>
 				</regnode>
 				<regnode name="PkgConfPackaging" isopaque="yes">
 					<value>7</value>
 				</regnode>
 				<regnode name="RtecConfigAspect" isopaque="yes">
-					<value>1</value>
+					<value>5</value>
 				</regnode>
 				<regnode name="Target" isopaque="yes">
-					<value>7</value>
+					<value>2</value>
 				</regnode>
 				<regnode name="Workspace" isopaque="yes">
-					<value>2</value>
+					<value>6</value>
 				</regnode>
 			</regnode>
 			<regnode name="AspectSelNames" isopaque="yes">
@@ -6537,16 +6537,16 @@
 			<regnode name="GeneratedConstraints">
 				<value></value>
 				<regnode name="ConnectionEndEventMask" isopaque="yes">
-					<value>0xC0000800</value>
+					<value>0x00000800</value>
 				</regnode>
 				<regnode name="FolderContainmentEventMask" isopaque="yes">
-					<value>0xC0000004</value>
+					<value>0x00000000</value>
 				</regnode>
 				<regnode name="Priority" isopaque="yes">
 					<value>1</value>
 				</regnode>
 				<regnode name="RegularContainmentEventMask" isopaque="yes">
-					<value>0xC0000004</value>
+					<value>0x00000000</value>
 				</regnode>
 			</regnode>
 		</regnode>
@@ -12510,7 +12510,7 @@
 				<connpoint role="dst" target="id-0066-00000019"/>
 				<connpoint role="src" target="id-0067-00000057"/>
 			</connection>
-			<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0x11" members="id-0066-00000021 id-0066-00000011 id-0066-00000017">
+			<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0x11" members="id-0066-00000017 id-0066-00000011 id-0066-00000021">
 				<name>Workspace</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -12525,7 +12525,7 @@
 					<value></value>
 				</attribute>
 			</set>
-			<set id="id-0069-00000002" kind="Aspect" role="Aspect" relid="0x15" members="id-0066-00000019 id-0066-00000018 id-0066-0000001a id-0066-00000014 id-0066-00000012">
+			<set id="id-0069-00000002" kind="Aspect" role="Aspect" relid="0x15" members="id-0066-00000012 id-0066-0000001a id-0066-00000014 id-0066-00000019 id-0066-00000018">
 				<name>ComponentLibraries</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -12540,7 +12540,7 @@
 					<value></value>
 				</attribute>
 			</set>
-			<set id="id-0069-00000011" kind="Aspect" role="Aspect" relid="0x16" members="id-0067-00000057 id-0067-00000056">
+			<set id="id-0069-00000011" kind="Aspect" role="Aspect" relid="0x16" members="id-0067-00000056 id-0067-00000057">
 				<name>LibraryArtifact</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -31976,7 +31976,7 @@ RTEventChannel</value>
 				<connpoint role="dst" target="id-0066-000000e3"/>
 				<connpoint role="src" target="id-0066-000000e5"/>
 			</connection>
-			<set id="id-0069-00000016" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000e2 id-0067-0000001b id-0066-000000df id-0066-000000de id-0066-000000dd id-0066-000000d9 id-0066-000000db id-0067-0000001c id-0067-0000006f">
+			<set id="id-0069-00000016" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-0000001c id-0066-000000d9 id-0067-0000006f id-0066-000000de id-0067-0000001b id-0066-000000dd id-0066-000000e2 id-0066-000000db id-0066-000000df">
 				<name>CompPkgPackaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -32525,7 +32525,7 @@ RTEventChannel</value>
 				<connpoint role="dst" target="id-0066-000000e6"/>
 				<connpoint role="src" target="id-0066-000000e9"/>
 			</connection>
-			<set id="id-0069-00000017" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-00000070 id-0066-000000e8 id-0066-000000e9 id-0066-000000e6">
+			<set id="id-0069-00000017" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000e6 id-0066-000000e8 id-0067-00000070 id-0066-000000e9">
 				<name>Packaging</name>
 				<regnode name="MetaRef" isopaque="yes">
 					<value></value>
@@ -33837,7 +33837,7 @@ RTEventChannel</value>
 				<connpoint role="dst" target="id-0066-000000f4"/>
 				<connpoint role="src" target="id-0067-00000020"/>
 			</connection>
-			<set id="id-0069-00000008" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000ed id-0066-000000f6 id-0066-000000f2 id-0066-000000f3 id-0067-0000001d id-0066-000000ee id-0066-000000ef">
+			<set id="id-0069-00000008" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000ed id-0066-000000f2 id-0066-000000f3 id-0067-0000001d id-0066-000000f6 id-0066-000000ee id-0066-000000ef">
 				<name>InterfacePackaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -34128,7 +34128,7 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>547,13</value>
+							<value>596,55</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -34533,7 +34533,7 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>597,527</value>
+							<value>113,552</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -34826,7 +34826,7 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>288,335</value>
+							<value>358,335</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -34844,39 +34844,6 @@ RTEventChannel</value>
 				</attribute>
 				<attribute kind="IsViewable" status="meta">
 					<value>true</value>
-				</attribute>
-				<attribute kind="Multiline" status="meta">
-					<value>1</value>
-				</attribute>
-				<attribute kind="Prompt" status="meta">
-					<value></value>
-				</attribute>
-			</atom>
-			<atom id="id-0066-00000106" kind="FieldAttribute" role="FieldAttribute" relid="0x47">
-				<name>tree_file_name</name>
-				<regnode name="PartRegs" isopaque="yes">
-					<value></value>
-					<regnode name="Attributes" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>435,335</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="DataType" status="meta">
-					<value>string</value>
-				</attribute>
-				<attribute kind="FieldDefault">
-					<value>orb_tree.xml</value>
-				</attribute>
-				<attribute kind="GlobalScope" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="Help" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="IsViewable">
-					<value>false</value>
 				</attribute>
 				<attribute kind="Multiline" status="meta">
 					<value>1</value>
@@ -35308,11 +35275,6 @@ RTEventChannel</value>
 				<connpoint role="dst" target="id-0066-00000103"/>
 				<connpoint role="src" target="id-0066-00000105"/>
 			</connection>
-			<connection id="id-0068-000001bd" kind="HasAttribute" role="HasAttribute" relid="0x48">
-				<name>HasAttribute</name>
-				<connpoint role="dst" target="id-0066-00000103"/>
-				<connpoint role="src" target="id-0066-00000106"/>
-			</connection>
 			<set id="id-0069-00000009" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000fe id-0066-000000f9 id-0066-000000fa id-0066-000000fc id-0067-00000021 id-0067-00000022 id-0066-000000ff id-0066-00000100 id-0066-00000103">
 				<name>ArtifactPackaging</name>
 				<regnode name="PartRegs" isopaque="yes">
@@ -35329,7 +35291,7 @@ RTEventChannel</value>
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-00000010" kind="ParadigmSheet" relid="0x14" childrelidcntr="0x51">
+		<model id="id-0065-00000010" kind="ParadigmSheet" relid="0x14" childrelidcntr="0x52">
 			<name>PackageConfiguration</name>
 			<atom id="id-0066-00000107" kind="Connector" role="Connector" relid="0x31">
 				<name>Connector</name>
@@ -35603,7 +35565,7 @@ RTEventChannel</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>512,608</value>
+							<value>561,559</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -36352,83 +36314,6 @@ RTEventChannel</value>
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000118" kind="Constraint" role="Constraint" relid="0x44">
-				<name>OneAttribute</name>
-				<regnode name="PartRegs" isopaque="yes">
-					<value></value>
-					<regnode name="Constraints" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>755,426</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="AddSetEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ChangeAttributeEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ChangePropertyEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ChangeRelationEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="CloseEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ConnectEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ConstraintDescription">
-					<value>Atleast one of requiredName, requiredType or requiredUUID should be present</value>
-				</attribute>
-				<attribute kind="ConstraintEqn">
-					<value>self.requiredName &lt;&gt; &quot;&quot;
-          or self.requiredType &lt;&gt; &quot;&quot;
-          or self.requiredUUID &lt;&gt; &quot;&quot;</value>
-				</attribute>
-				<attribute kind="ConstraintParam" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="ConstraintPriority" status="meta">
-					<value>2</value>
-				</attribute>
-				<attribute kind="CreateEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="DeleteEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="Depth" status="meta">
-					<value>1</value>
-				</attribute>
-				<attribute kind="DeriveEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="DisconnectEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="LostChildEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="MoveEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NewChildEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ReferenceEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="RemoveSetEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="UnReferenceEvent" status="meta">
-					<value>false</value>
-				</attribute>
-			</atom>
 			<atom id="id-0066-00000119" kind="Atom" role="Atom" relid="0x46">
 				<name>PackageConfiguration</name>
 				<regnode name="PartRegs" isopaque="yes">
@@ -36508,7 +36393,7 @@ RTEventChannel</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>597,513</value>
+							<value>643,454</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -37128,11 +37013,6 @@ RTEventChannel</value>
 				<connpoint role="dst" target="id-0066-0000010d"/>
 				<connpoint role="src" target="id-0066-00000116"/>
 			</connection>
-			<connection id="id-0068-000001d6" kind="HasConstraint" role="HasConstraint" relid="0x45">
-				<name>HasConstraint</name>
-				<connpoint role="src" target="id-0066-00000118"/>
-				<connpoint role="dst" target="id-0067-00000024"/>
-			</connection>
 			<connection id="id-0068-000001d7" kind="SourceToConnector" role="SourceToConnector" relid="0x47">
 				<name>SourceToConnector</name>
 				<regnode name="autorouterPref" isopaque="yes">
@@ -37234,7 +37114,7 @@ RTEventChannel</value>
 				<connpoint role="dst" target="id-0066-0000010b"/>
 				<connpoint role="src" target="id-0066-0000011a"/>
 			</connection>
-			<set id="id-0069-0000000a" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000111 id-0066-00000110 id-0067-00000026 id-0067-00000024 id-0067-00000023 id-0066-00000119 id-0066-0000010a id-0066-00000108 id-0066-0000010d id-0067-00000025 id-0066-00000114">
+			<set id="id-0069-0000000a" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-0000010a id-0066-00000108 id-0066-0000010d id-0067-00000025 id-0066-00000114 id-0067-00000026 id-0067-00000024 id-0067-00000023 id-0066-00000119 id-0066-00000111 id-0066-00000110">
 				<name>PkgConfPackaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -39908,7 +39788,7 @@ RTEventChannel</value>
 				<connpoint role="dst" target="id-0066-00000123"/>
 				<connpoint role="src" target="id-0066-00000133"/>
 			</connection>
-			<set id="id-0069-0000000b" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-0000002c id-0067-00000029 id-0067-0000002b id-0067-00000028 id-0066-00000130 id-0066-0000012e id-0066-0000012d id-0066-00000124 id-0066-00000127 id-0066-00000128 id-0066-0000012c id-0066-0000011e id-0066-0000011c id-0066-00000120 id-0067-00000027 id-0066-00000123 id-0067-0000002a">
+			<set id="id-0069-0000000b" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000128 id-0066-0000012c id-0066-0000011e id-0066-00000130 id-0066-0000012e id-0066-0000012d id-0067-00000029 id-0067-0000002b id-0067-00000028 id-0067-0000002c id-0066-0000011c id-0066-00000120 id-0067-00000027 id-0066-00000124 id-0066-00000127 id-0066-00000123 id-0067-0000002a">
 				<name>ImplPackaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -39924,7 +39804,7 @@ RTEventChannel</value>
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-00000012" kind="ParadigmSheet" relid="0x12" childrelidcntr="0xde">
+		<model id="id-0065-00000012" kind="ParadigmSheet" relid="0x12" childrelidcntr="0xe4">
 			<name>ComponentAssembly</name>
 			<atom id="id-0066-00000134" kind="Model" role="Model" relid="0xf">
 				<name>ComponentAssembly</name>
@@ -40887,7 +40767,7 @@ RTEventChannel</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>321,286</value>
+							<value>293,286</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -41376,7 +41256,7 @@ RTEventChannel</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>757,20</value>
+							<value>1044,139</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -41450,7 +41330,7 @@ RTEventChannel</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>127,559</value>
+							<value>1044,293</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -41530,7 +41410,7 @@ RTEventChannel</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>79,30</value>
+							<value>22,82</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -41542,7 +41422,7 @@ RTEventChannel</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>79,30</value>
+							<value>22,82</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -41724,11 +41604,11 @@ RTEventChannel</value>
 				</attribute>
 				<attribute kind="ConstraintEqn">
 					<value>let parent = self.parent() in
-          if ( parent.isNull() ) then
-          true
-          else
-          parent.kindName = &quot;ComponentAssembly&quot; implies self.isInstance()
-          endif</value>
+   if (parent.isNull()) then
+      true
+   else
+      parent.kindName = &quot;ComponentAssembly&quot; implies self.isInstance()
+   endif</value>
 				</attribute>
 				<attribute kind="ConstraintParam" status="meta">
 					<value></value>
@@ -41777,7 +41657,7 @@ RTEventChannel</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>349,363</value>
+							<value>370,363</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -41805,81 +41685,6 @@ RTEventChannel</value>
 				<attribute kind="ConstraintEqn">
 					<value>let connectors = self.atomParts(PublishConnector) in
           connectors-&gt;isUnique (i : PublishConnector | i.name.trim())</value>
-				</attribute>
-				<attribute kind="ConstraintParam" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="ConstraintPriority" status="meta">
-					<value>2</value>
-				</attribute>
-				<attribute kind="CreateEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="DeleteEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="Depth" status="meta">
-					<value>1</value>
-				</attribute>
-				<attribute kind="DeriveEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="DisconnectEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="LostChildEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="MoveEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NewChildEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ReferenceEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="RemoveSetEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="UnReferenceEvent" status="meta">
-					<value>false</value>
-				</attribute>
-			</atom>
-			<atom id="id-0066-00000154" kind="Constraint" role="Constraint" relid="0xc8">
-				<name>RequireConnections</name>
-				<regnode name="PartRegs" isopaque="yes">
-					<value></value>
-					<regnode name="Constraints" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>398,181</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="AddSetEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ChangeAttributeEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ChangePropertyEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ChangeRelationEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="CloseEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ConnectEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ConstraintDescription">
-					<value>Non-optional ports should have connections to other ports</value>
-				</attribute>
-				<attribute kind="ConstraintEqn">
-					<value>self.isInstance() =&gt; (self.optional = false =&gt; not self.connectedFCOs()-&gt;isEmpty())</value>
 				</attribute>
 				<attribute kind="ConstraintParam" status="meta">
 					<value></value>
@@ -41951,10 +41756,10 @@ RTEventChannel</value>
 					<value>false</value>
 				</attribute>
 				<attribute kind="ConstraintDescription">
-					<value>A connector element  should be used to connect atleast two ports</value>
+					<value>A PublishConnector should connect one OutEventPort with one or more InEventPorts</value>
 				</attribute>
 				<attribute kind="ConstraintEqn">
-					<value>self.attachingConnPoints()-&gt;size() &gt;= 2</value>
+					<value>self.connectedFCOs(publish)-&gt;size() == 1 and self.connectedFCOs(deliverTo)-&gt;size() &gt;= 1</value>
 				</attribute>
 				<attribute kind="ConstraintParam" status="meta">
 					<value></value>
@@ -42003,7 +41808,7 @@ RTEventChannel</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>839,223</value>
+							<value>888,237</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -42026,12 +41831,15 @@ RTEventChannel</value>
 					<value>true</value>
 				</attribute>
 				<attribute kind="ConstraintDescription">
-					<value>A RequiredRequestPort should be connected to a ProvidedRequestPort of the same type</value>
+					<value>A RequiredRequestPort should be connected to a ProvidedRequestPort of the same type, or the RequiredRequestPort should be a supertype of ProvidedRequestPort</value>
 				</attribute>
 				<attribute kind="ConstraintEqn">
-					<value>let facets = self.connectedFCOs(invoke)
-          in
-          facets-&gt;forAll ( i : ProvidedRequestPort | i.refersTo().name() = self.refersTo().name())</value>
+					<value>let facets = self.connectedFCOs(invoke) in
+  facets-&gt;forAll ( i : ProvidedRequestPort | 
+     let supertypes = i.refersTo().oclAsType(gme::Model).allAscendants(Set{}) in
+         supertypes-&gt;one (k: gme::FCO | k.name() = self.refersTo().name())
+      or self.refersTo().name() = i.refersTo().name()
+)</value>
 				</attribute>
 				<attribute kind="ConstraintParam" status="meta">
 					<value></value>
@@ -42103,12 +41911,15 @@ RTEventChannel</value>
 					<value>true</value>
 				</attribute>
 				<attribute kind="ConstraintDescription">
-					<value>An OutEventPort should be connected to an InEventPort of the same type</value>
+					<value>An OutEventPort should be connected to an InEventPort of the same type, or the OutEventPort should be a subtype of InEventPort</value>
 				</attribute>
 				<attribute kind="ConstraintEqn">
-					<value>let consumers = self.connectedFCOs(emit)
- in
-   consumers-&gt;forAll ( i : InEventPort | i.refersTo().name() = self.refersTo().name())</value>
+					<value>let consumers = self.connectedFCOs(emit)  in
+ consumers-&gt;forAll ( i : InEventPort | 
+     let supertypes = self.refersTo().oclAsType(gme::Model).allAscendants(Set{}) in
+         supertypes-&gt;one (k: gme::FCO | k.name() = i.refersTo().name())
+     or self.refersTo().name() = i.refersTo().name()
+)</value>
 				</attribute>
 				<attribute kind="ConstraintParam" status="meta">
 					<value></value>
@@ -42180,13 +41991,17 @@ RTEventChannel</value>
 					<value>false</value>
 				</attribute>
 				<attribute kind="ConstraintDescription">
-					<value>An OutEventPort connected to an InEventPort via a connector should be of the same type</value>
+					<value>An OutEventPort connected to an InEventPort via a PublishConnector should be of the same type or a subtype of InEventPort</value>
 				</attribute>
 				<attribute kind="ConstraintEqn">
 					<value>let consumers = self.connectedFCOs(deliverTo) in
    let publishers = self.connectedFCOs(publish) in
-   consumers-&gt;forAll (i : InEventPort | publishers-&gt;forAll (j : OutEventPort 
-            | j.refersTo().name() = i.refersTo().name()))</value>
+      publishers-&gt;forAll ( i : OutEventPort | 
+          let supertypes = i.refersTo().oclAsType(gme::Model).allAscendants(Set{}) in
+             consumers-&gt;forAll (j: InEventPort |
+                    supertypes-&gt;one (k: gme::FCO | k.name() = j.refersTo().name()  )
+             or i.refersTo().name() = j.refersTo().name()   )
+)</value>
 				</attribute>
 				<attribute kind="ConstraintParam" status="meta">
 					<value></value>
@@ -42328,7 +42143,7 @@ RTEventChannel</value>
 					<regnode name="Visualization">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>86,16</value>
+							<value>43,13</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -42377,6 +42192,221 @@ rrName = referedbyComponentAssemblyReference</value>
 					<value></value>
 				</attribute>
 			</atom>
+			<atom id="id-0066-000001e1" kind="ConstraintFunc" role="ConstraintFunc" relid="0xdf">
+				<name>ascendants</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>933,422</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="CFuncContext">
+					<value>gme::Model</value>
+				</attribute>
+				<attribute kind="CFuncDefinition">
+					<value>self.referenceParts(Inherits)-&gt;iterate
+ (i: gme::Reference; acc = Set{} | acc + Set{i.refersTo()})</value>
+				</attribute>
+				<attribute kind="CFuncParamList" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="CFuncReturnType">
+					<value>ocl::Set</value>
+				</attribute>
+				<attribute kind="CFuncStereotype" status="meta">
+					<value>method</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-000001e2" kind="ConstraintFunc" role="ConstraintFunc" relid="0xe0">
+				<name>allAscendants</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>954,499</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="CFuncContext">
+					<value>gme::Model</value>
+				</attribute>
+				<attribute kind="CFuncDefinition">
+					<value>let parents = self.ascendants() in
+   let visited = visited.including(self) in
+   parents-&gt;iterate( i : gme::Model ; accu = Set{} |
+      if ( visited.includes(i) or i = self ) then
+         accu.including(i)
+      else
+         accu.including(i) + i.allAscendants(visited)
+      endif
+)</value>
+				</attribute>
+				<attribute kind="CFuncParamList">
+					<value>visited: ocl::Set</value>
+				</attribute>
+				<attribute kind="CFuncReturnType">
+					<value>ocl::Set</value>
+				</attribute>
+				<attribute kind="CFuncStereotype" status="meta">
+					<value>method</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-000001e3" kind="Constraint" role="Constraint" relid="0xe1">
+				<name>MatchingEventSource</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>954,310</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>An OutEventPort can be delegated to another OutEventPort of the same type</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value>let publishers = self.connectedFCOs(EventSourceDelegate)  in
+ publishers-&gt;forAll ( i : OutEventPort |  self.refersTo().name() = i.refersTo().name() )</value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority" status="meta">
+					<value>2</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-000001e4" kind="Constraint" role="Constraint" relid="0xe3">
+				<name>MatchingEventSink</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>937,146</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>An InEventPort can only be delegated to another InEventPort of the same type</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value>let consumers = self.connectedFCOs(EventSinkDelegate)  in
+ consumers-&gt;forAll ( i : InEventPort |  self.refersTo().name() = i.refersTo().name() )</value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority" status="meta">
+					<value>2</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
 			<reference id="id-0067-0000002d" kind="AtomProxy" role="AtomProxy" relid="0x6e" referred="id-0066-000000e2">
 				<name>ComponentPackage</name>
 				<regnode name="PartRegs" isopaque="yes">
@@ -42384,7 +42414,7 @@ rrName = referedbyComponentAssemblyReference</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>162,166</value>
+							<value>232,173</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -42396,13 +42426,13 @@ rrName = referedbyComponentAssemblyReference</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>29,96</value>
+							<value>967,26</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>239,26</value>
+							<value>253,26</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -42456,7 +42486,7 @@ rrName = referedbyComponentAssemblyReference</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>162,97</value>
+							<value>232,104</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -42468,7 +42498,7 @@ rrName = referedbyComponentAssemblyReference</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>456,90</value>
+							<value>463,83</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -42531,7 +42561,7 @@ rrName = referedbyComponentAssemblyReference</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>50,97</value>
+							<value>120,153</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -42618,7 +42648,7 @@ rrName = referedbyComponentAssemblyReference</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>246,12</value>
+							<value>281,12</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -42753,7 +42783,7 @@ rrName = referedbyComponentAssemblyReference</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>414,12</value>
+							<value>421,12</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -42840,7 +42870,7 @@ rrName = referedbyComponentAssemblyReference</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>568,209</value>
+							<value>631,209</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -42900,7 +42930,7 @@ rrName = referedbyComponentAssemblyReference</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>274,41</value>
+							<value>281,34</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -42984,7 +43014,7 @@ rrName = referedbyComponentAssemblyReference</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>582,139</value>
+							<value>743,104</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -43915,29 +43945,6 @@ rrName = referedbyComponentAssemblyReference</value>
 				<connpoint role="src" target="id-0066-00000157"/>
 				<connpoint role="dst" target="id-0067-00000036"/>
 			</connection>
-			<connection id="id-0068-00000258" kind="HasConstraint" role="HasConstraint" relid="0xd5">
-				<name>HasConstraint</name>
-				<connpoint role="src" target="id-0066-00000154"/>
-				<connpoint role="dst" target="id-0067-00000035"/>
-			</connection>
-			<connection id="id-0068-00000259" kind="HasConstraint" role="HasConstraint" relid="0xd6">
-				<name>HasConstraint</name>
-				<connpoint role="src" target="id-0066-00000154"/>
-				<connpoint role="dst" target="id-0067-00000033"/>
-			</connection>
-			<connection id="id-0068-0000025a" kind="HasConstraint" role="HasConstraint" relid="0xd7">
-				<name>HasConstraint</name>
-				<connpoint role="src" target="id-0066-00000154"/>
-				<connpoint role="dst" target="id-0067-00000036"/>
-			</connection>
-			<connection id="id-0068-0000025b" kind="HasConstraint" role="HasConstraint" relid="0xd8">
-				<name>HasConstraint</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>N</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-00000154"/>
-				<connpoint role="dst" target="id-0067-00000034"/>
-			</connection>
 			<connection id="id-0068-0000025c" kind="HasConstraint" role="HasConstraint" relid="0xda">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
@@ -43959,6 +43966,16 @@ rrName = referedbyComponentAssemblyReference</value>
 				<connpoint role="dst" target="id-0066-00000134"/>
 				<connpoint role="src" target="id-0066-000001df"/>
 			</connection>
+			<connection id="id-0068-0000031c" kind="HasConstraint" role="HasConstraint" relid="0xe2">
+				<name>HasConstraint</name>
+				<connpoint role="src" target="id-0066-000001e3"/>
+				<connpoint role="dst" target="id-0067-00000036"/>
+			</connection>
+			<connection id="id-0068-0000031d" kind="HasConstraint" role="HasConstraint" relid="0xe4">
+				<name>HasConstraint</name>
+				<connpoint role="src" target="id-0066-000001e4"/>
+				<connpoint role="dst" target="id-0067-00000035"/>
+			</connection>
 			<set id="id-0069-0000000c" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000135 id-0066-00000139 id-0066-00000134 id-0067-00000033 id-0067-0000002e id-0067-0000002f id-0067-0000002d id-0067-00000032 id-0066-00000142 id-0066-00000145 id-0067-00000034 id-0067-00000036 id-0067-00000035 id-0066-0000014c id-0066-0000014d id-0066-00000148 id-0066-0000014f id-0066-00000151 id-0066-0000014a id-0067-00000031 id-0066-00000140 id-0066-0000013c id-0066-0000013f id-0067-00000030 id-0066-0000013b">
 				<name>AssemblyPackaging</name>
 				<regnode name="PartRegs" isopaque="yes">
@@ -43975,7 +43992,7 @@ rrName = referedbyComponentAssemblyReference</value>
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-00000013" kind="ParadigmSheet" relid="0x25" childrelidcntr="0x2e">
+		<model id="id-0065-00000013" kind="ParadigmSheet" relid="0x25" childrelidcntr="0x30">
 			<name>DeploymentPlan</name>
 			<atom id="id-0066-0000015a" kind="Model" role="Model" relid="0x1">
 				<name>DeploymentPlan</name>
@@ -44130,7 +44147,7 @@ rrName = referedbyComponentAssemblyReference</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>557,333</value>
+							<value>669,319</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -44163,7 +44180,7 @@ rrName = referedbyComponentAssemblyReference</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>37,16</value>
+							<value>253,146</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -44193,7 +44210,7 @@ rrName = referedbyComponentAssemblyReference</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>505,223</value>
+							<value>610,174</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -44254,6 +44271,86 @@ rrName = referedbyComponentAssemblyReference</value>
 					<value></value>
 				</attribute>
 			</atom>
+			<atom id="id-0066-000001e0" kind="Constraint" role="Constraint" relid="0x2f">
+				<name>ComponentInstanceOnly</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>461,272</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>A Deployment Plan can only contain component instance references; component type references are not allowed.</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value>let parent = self.parent() in
+   if (parent.isNull()) then
+      true
+   else
+      parent.kindName = &quot;DeploymentPlan&quot; implies self.refersTo().isInstance()
+   endif</value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority" status="meta">
+					<value>2</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
 			<reference id="id-0067-00000037" kind="ReferenceProxy" role="ReferenceProxy" relid="0x29" referred="id-0066-000000a9">
 				<name>ComponentRef</name>
 				<regnode name="PartRegs" isopaque="yes">
@@ -44267,7 +44364,7 @@ rrName = referedbyComponentAssemblyReference</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>78,83</value>
+							<value>225,258</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -44333,7 +44430,7 @@ rrName = referedbyComponentAssemblyReference</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>526,391</value>
+							<value>568,398</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -44400,6 +44497,12 @@ rrName = referedbyComponentAssemblyReference</value>
 						<value></value>
 						<regnode name="Position" isopaque="yes">
 							<value>183,363</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,13</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization">
@@ -44578,7 +44681,15 @@ rrName = referedbyComponentAssemblyReference</value>
 				<connpoint role="dst" target="id-0066-0000015e"/>
 				<connpoint role="src" target="id-0067-0000007d"/>
 			</connection>
-			<set id="id-0069-00000018" kind="Aspect" role="Aspect" relid="0x1b" members="id-0066-0000015e id-0067-00000077 id-0066-0000015a id-0066-0000015b id-0067-0000007d id-0067-00000037">
+			<connection id="id-0068-0000031a" kind="HasConstraint" role="HasConstraint" relid="0x30">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>W</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-000001e0"/>
+				<connpoint role="dst" target="id-0067-00000037"/>
+			</connection>
+			<set id="id-0069-00000018" kind="Aspect" role="Aspect" relid="0x1b" members="id-0066-0000015e id-0066-0000015b id-0067-00000077 id-0066-0000015a id-0067-00000037 id-0067-0000007d">
 				<name>NodeMapping</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -48878,7 +48989,7 @@ dName = dstBenchmarkCharacteristics</value>
 				<connpoint role="dst" target="id-0066-00000177"/>
 				<connpoint role="src" target="id-0066-00000193"/>
 			</connection>
-			<set id="id-0069-0000000e" kind="Aspect" role="Aspect" relid="0x2c" members="id-0066-00000174 id-0066-00000173 id-0066-00000170 id-0066-00000176 id-0066-00000171 id-0066-00000169 id-0066-00000181 id-0066-00000183 id-0066-00000182 id-0066-00000190 id-0066-0000018f id-0066-0000018e id-0066-00000192 id-0066-0000018b id-0066-00000189 id-0066-00000188 id-0066-0000017d id-0066-0000017e id-0066-00000178">
+			<set id="id-0069-0000000e" kind="Aspect" role="Aspect" relid="0x2c" members="id-0066-00000174 id-0066-0000017d id-0066-00000188 id-0066-0000018b id-0066-00000181 id-0066-00000182 id-0066-00000176 id-0066-00000183 id-0066-00000173 id-0066-0000018f id-0066-0000017e id-0066-00000178 id-0066-00000171 id-0066-00000169 id-0066-00000170 id-0066-00000190 id-0066-0000018e id-0066-00000192 id-0066-00000189">
 				<name>ComponentMetrics</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -48893,7 +49004,7 @@ dName = dstBenchmarkCharacteristics</value>
 					<value></value>
 				</attribute>
 			</set>
-			<set id="id-0069-0000000f" kind="Aspect" role="Aspect" relid="0x3a" members="id-0066-0000016e id-0066-0000016d id-0066-0000016c id-0066-0000016b id-0066-00000177 id-0066-0000016a">
+			<set id="id-0069-0000000f" kind="Aspect" role="Aspect" relid="0x3a" members="id-0066-0000016a id-0066-0000016d id-0066-0000016c id-0066-0000016e id-0066-00000177 id-0066-0000016b">
 				<name>DataAnalysis</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
