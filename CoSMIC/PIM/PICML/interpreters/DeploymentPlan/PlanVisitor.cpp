@@ -314,7 +314,8 @@ namespace PICML
 				Component comp = component_ref.ref();
 				this->push();
                 DOMElement* ele = this->doc_->createElement (XStr ("instance"));
-                ele->appendChild (this->createSimpleContent ("name", comp.name()));
+				std::string uniqueName = comp.getPath ("_",false,true);
+                ele->appendChild (this->createSimpleContent ("name", uniqueName));
                 ele->appendChild (this->createSimpleContent ("node", refName));
                 this->curr_->appendChild (ele);
                 this->pop();
