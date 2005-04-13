@@ -10,6 +10,7 @@ workspace {
    ConfigExport
    Configurator
    IDLGenerator
+   IDLImporter
    BGML
    BGMLcomponent
    MPC_Interpreter
