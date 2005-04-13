@@ -62,6 +62,7 @@
     <ROW Component="TAO_IDL_FE.dll" ComponentId="{FBD76C24-CD6E-447B-A35D-F4652B93B052}" Directory_="bin" Attributes="0" Condition="" KeyPath="TAO_IDL_FE.dll" FullKeyPath="TARGETDIR\bin\TAO_IDL_FE.dll"/>
     <ROW Component="TAO_PICML_BE.dll" ComponentId="{E0A36EA2-6E66-4652-959C-4BBBC9BA3D8F}" Directory_="bin" Attributes="0" Condition="" KeyPath="TAO_PICML_BE.dll" FullKeyPath="TARGETDIR\bin\TAO_PICML_BE.dll"/>
     <ROW Component="TargetDir" ComponentId="{1C64D638-9525-4F68-A282-A7B40EE8D9E9}" Directory_="TARGETDIR" Attributes="4" Condition="" KeyPath="TargetDir" FullKeyPath="HK_LM\Software\[Manufacturer]\[ProductName]\TargetDir"/>
+    <ROW Component="UdmDll.dll" ComponentId="{34A4A99D-E070-4CC0-AEC8-E3EB84AEE9AD}" Directory_="bin" Attributes="0" Condition="" KeyPath="UdmDll.dll" FullKeyPath="TARGETDIR\bin\UdmDll.dll"/>
     <ROW Component="aggregate.bmp" ComponentId="{D4B44F5A-2DEA-46C1-B41C-518EBF1307F0}" Directory_="icons_DIR" Attributes="0" Condition="" KeyPath="aggregate.bmp" FullKeyPath="TARGETDIR\paradigms\icons"/>
     <ROW Component="lib" ComponentId="{C608EF6D-BA05-40AD-B8D2-B635E1599423}" Directory_="lib_DIR" Attributes="0" Condition="" KeyPath="" FullKeyPath=""/>
     <ROW Component="ocml.html" ComponentId="{E2B20362-4ACB-44AC-A734-BEA76FB10515}" Directory_="docs" Attributes="0" Condition="" KeyPath="ocml.html" FullKeyPath="TARGETDIR\docs\ocml.html"/>
@@ -78,7 +79,7 @@
     <ROW Component="xerces_c_2_5_0.dll" ComponentId="{63F9FA27-E39A-46E0-81BF-C7DD6882E107}" Directory_="bin" Attributes="0" Condition="" KeyPath="xerces_c_2_5_0.dll" FullKeyPath="TARGETDIR\bin\xerces-c_2_5_0.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
-    <ROW Feature="MainFeature" Feature_Parent="" Title="MainFeature" Description="Description" Display="2" Level="1" Directory_="TARGETDIR" Attributes="0" Components="TargetDir IDML_uml.xme IDML_User_Manual.pdf RobotAssembly.xme ReleaseNotes.rtf aggregate.bmp TAO_PICML_BE.dll tao_picml.exe orb_tree.xml lib TAO_IDL_FE.dll Importing_IDL.pdf Interface_Definitions.pdf ocml.html BGML_Documentation_Guide.pdf EQAL_User_Guide.pdf src BGML_Base.mpc BGML.dll BGMLComponent.dll CIDL.dll CIDLComponent.dll ConfigExport.dll DeploymentPlan.dll DeploymentPlanComponent.dll Domain.dll DomainComponent.dll IDLGenerator.dll MPC.dll MPCComponent.dll ocml_common.dll ocml_configurator_ui.dll ocml_engine.dll Package.dll PackageComponent.dll PICML.dll PICMLDecorator.dll RegisterParadigm.dll xerces_c_2_5_0.dll wxbase24.dll wxbase24u.dll wxmsw24.dll wxmsw24u.dll"/>
+    <ROW Feature="MainFeature" Feature_Parent="" Title="MainFeature" Description="Description" Display="2" Level="1" Directory_="TARGETDIR" Attributes="0" Components="TargetDir IDML_uml.xme IDML_User_Manual.pdf RobotAssembly.xme ReleaseNotes.rtf aggregate.bmp TAO_PICML_BE.dll tao_picml.exe orb_tree.xml lib TAO_IDL_FE.dll Importing_IDL.pdf Interface_Definitions.pdf ocml.html BGML_Documentation_Guide.pdf EQAL_User_Guide.pdf src BGML_Base.mpc BGML.dll BGMLComponent.dll CIDL.dll CIDLComponent.dll ConfigExport.dll DeploymentPlan.dll DeploymentPlanComponent.dll Domain.dll DomainComponent.dll IDLGenerator.dll MPC.dll MPCComponent.dll ocml_common.dll ocml_configurator_ui.dll ocml_engine.dll Package.dll PackageComponent.dll PICML.dll PICMLDecorator.dll RegisterParadigm.dll xerces_c_2_5_0.dll wxbase24.dll wxbase24u.dll wxmsw24.dll wxmsw24u.dll UdmDll.dll"/>
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
@@ -152,6 +153,7 @@
     <ROW File="TAO_PICML_BE.dll" Component_="TAO_PICML_BE.dll" FileName="TAO_PI~1.dll|TAO_PICML_BE.dll" Version="" Language="" Attributes="1" SourcePath="bin\TAO_PICML_BE.dll" SelfReg="false"/>
     <ROW File="Throughput.bmp" Component_="aggregate.bmp" FileName="Throug~1.bmp|Throughput.bmp" Version="" Language="" Attributes="1" SourcePath="PIM\PICML\paradigms\icons\Throughput.bmp" SelfReg="false"/>
     <ROW File="TopLevelPackage.bmp" Component_="aggregate.bmp" FileName="TopLev~1.bmp|TopLevelPackage.bmp" Version="" Language="" Attributes="1" SourcePath="PIM\PICML\paradigms\icons\TopLevelPackage.bmp" SelfReg="false"/>
+    <ROW File="UdmDll.dll" Component_="UdmDll.dll" FileName="UdmDll.dll" Version="" Language="" Attributes="1" SourcePath="C:\Program Files\ISIS\UDM\bin\UdmDll.dll" SelfReg="false"/>
     <ROW File="aggregate.bmp" Component_="aggregate.bmp" FileName="aggreg~1.bmp|aggregate.bmp" Version="" Language="" Attributes="1" SourcePath="PIM\PICML\paradigms\icons\aggregate.bmp" SelfReg="false"/>
     <ROW File="aggregateref.bmp" Component_="aggregate.bmp" FileName="aggreg~2.bmp|aggregateref.bmp" Version="" Language="" Attributes="1" SourcePath="PIM\PICML\paradigms\icons\aggregateref.bmp" SelfReg="false"/>
     <ROW File="alias.bmp" Component_="aggregate.bmp" FileName="alias.bmp" Version="" Language="" Attributes="1" SourcePath="PIM\PICML\paradigms\icons\alias.bmp" SelfReg="false"/>
