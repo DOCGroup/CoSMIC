@@ -1,3 +1,14 @@
+Thu Apr 14 23:14:31 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * Installer/RegisterParadigm/RegisterParadigm.cpp: Return 1 from
+          the RegisterParadigm() and UnRegisterParadigm() functions.
+          All other return codes are considered to be error codes by
+          Windows Installer.
+
+        * PIM/PICML/interpreters/BGMLComponent/ComponentConfig.h: This
+          component is not a BON2COMPONENT.  So define it to be a
+          RAWCOMPONENT.
+
 Thu Apr 14 18:41:19 2005  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * Installer/RegisterParadigm/RegisterParadigm.def:  Removed the

@@ -2,7 +2,7 @@
 // by ConfigureComponent on Mon Apr 11 15:04:29 2005
 
 
-#define BON2COMPONENT
+#define RAWCOMPONENT
 
 // COM UUID-s, names and progID
 

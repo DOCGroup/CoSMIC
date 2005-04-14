@@ -212,8 +212,8 @@ UINT __stdcall RegisterParadigm (MSIHANDLE hInstall)
         return ERROR_FUNCTION_FAILED;
       }
   }
-
-  return ERROR_SUCCESS;
+  // Don't change this return value or BAD THINGS[TM] will happen.
+  return 1;
 }
 
 bool UnRegister (const std::string& paradigmName)
@@ -292,8 +292,8 @@ UINT __stdcall UnRegisterParadigm (MSIHANDLE hInstall)
         return ERROR_FUNCTION_FAILED;
       }
   }
-
-  return ERROR_SUCCESS;
+  // Don't change this return value or BAD THINGS[TM] will happen.
+  return 1;
 }
 
 
