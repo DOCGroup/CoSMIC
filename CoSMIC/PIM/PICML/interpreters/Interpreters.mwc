@@ -17,4 +17,5 @@ workspace {
    MPCComponent
    CIDL_Interpreter
    CIDLComponent
+   EQAL
 }

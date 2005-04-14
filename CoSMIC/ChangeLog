@@ -1,3 +1,9 @@
+Thu Apr 14 09:48:34 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Interpreters.mwc: 
+
+          Added EQAL to the interpreters.mwc file.
+
 Wed Apr 13 17:17:31 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * Installer/CoSMIC-Installer.aip:
