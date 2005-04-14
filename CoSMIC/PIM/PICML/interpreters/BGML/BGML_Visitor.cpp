@@ -131,10 +131,6 @@ BGML_Visitor::Visit_BenchmarkAnalysis (const PICML::BenchmarkAnalysis& model)
 
 		}
 		
-		/// Get the type of Benchmark Characterisitcs
-		PICML::BenchmarkCharacteristics bench_char = iter->srcBenchmarkCharacteristics ();
-		this->bgml_state_.benchmark_type = bench_char.srcBenchmarkCharacteristics_end ();
-
 		// If the metrics is a latencyMetric
 		std::string kindName = (*iter).type().name();
 		

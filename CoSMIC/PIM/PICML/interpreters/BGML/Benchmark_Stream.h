@@ -10,12 +10,12 @@
 
 // A dummy structure to inform TAO_OutStream's << operator to  put a newline
 // and use the current indentation for the succeeding line
-struct NL
+struct BGML_Export NL
 {
   NL (void);
 };
 
-struct INDENT
+struct BGML_Export INDENT
 {
   //   Increase the indentation level, if the "do_now" parameter is
   //   not zero then the <indent> method is called on the stream.
@@ -25,7 +25,7 @@ struct INDENT
   const int do_now_;
 };
 
-struct UNINDENT
+struct BGML_Export UNINDENT
 {
   //   Decrease the indentation level, if the "do_now" parameter is
   //   not zero then the <indent> method is called on the stream.

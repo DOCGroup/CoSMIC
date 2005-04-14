@@ -110,7 +110,7 @@ void CUdmApp::UdmMain(
 			}
 		}
 
-		if (! valid_interpretation)
+		else 
 		{
 			Udm::Object root_obj = p_backend->GetRootObject();
 			PICML::RootFolder root_folder = PICML::RootFolder::Cast (root_obj);
