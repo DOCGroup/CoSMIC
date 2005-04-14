@@ -1,6 +1,13 @@
+Thu Apr 14 14:27:38 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:  Added
+          support for attributes via configProperty in an assembly.  This
+          takes care of the case when an attribute is set on an individual
+          component instance of a component assembly.
+
 Thu Apr 14 09:48:34 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-        * PIM/PICML/interpreters/Interpreters.mwc: 
+        * PIM/PICML/interpreters/Interpreters.mwc:
 
           Added EQAL to the interpreters.mwc file.
 

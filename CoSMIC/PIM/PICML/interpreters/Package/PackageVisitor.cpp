@@ -951,6 +951,18 @@ namespace PICML
     this->pop();
   }
 
+  void PackageVisitor::Visit_AssemblyConfigProperty(const AssemblyConfigProperty& acp)
+  {
+    this->push();
+    DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
+    this->curr_->appendChild (ele);
+    this->curr_ = ele;
+    Property ref = acp.dstAssemblyConfigProperty_end();
+    ref.Accept (*this);
+    this->pop();
+  }
+
+
   void PackageVisitor::Visit_ComponentAssembly(const ComponentAssembly& assembly)
   {
     std::set<ComponentAssembly>
@@ -1006,6 +1018,9 @@ namespace PICML
       {
         Component comp = *iter;
         DOMElement* instance = this->doc_->createElement (XStr ("instance"));
+        this->curr_->appendChild (instance);
+        this->push();
+        this->curr_ = instance;
         std::string uniqueName = comp.getPath ("_",false,true);
         instance->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
         instance->appendChild (this->createSimpleContent ("name",
@@ -1015,7 +1030,16 @@ namespace PICML
         DOMElement* refEle = this->doc_->createElement (XStr ("package"));
         refEle->setAttribute (XStr ("href"), XStr (refName));
         instance->appendChild (refEle);
-        this->curr_->appendChild (instance);
+        const std::set<AssemblyConfigProperty>
+          cps = comp.dstAssemblyConfigProperty();
+        for (std::set<AssemblyConfigProperty>::const_iterator it2 = cps.begin();
+             it2 != cps.end();
+             ++it2)
+          {
+            AssemblyConfigProperty cp = *it2;
+            cp.Accept (*this);
+          }
+        this->pop();
       }
     for (std::vector<ComponentAssembly>::iterator iter = assemblies.begin();
          iter != assemblies.end();
@@ -1389,9 +1413,6 @@ namespace PICML
   {}
 
   void PackageVisitor::Visit_AssemblyselectRequirement(const AssemblyselectRequirement&)
-  {}
-
-  void PackageVisitor::Visit_AssemblyConfigProperty(const AssemblyConfigProperty&)
   {}
 
 
