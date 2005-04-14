@@ -3,7 +3,6 @@
 ; Defines the exported functions which will be available to the MSI engine
 ;
 LIBRARY    "RegisterParadigm"
-DESCRIPTION    'Custom Action DLL created to (un)register paradigms with GME'
 EXPORTS
         RegisterParadigm    @1
         UnRegisterParadigm  @2

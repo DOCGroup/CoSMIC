@@ -1,14 +1,26 @@
 project: picmllib {
   lit_libs += msi
-  macros += _MBCS,_USRDLL,REGISTERPARADIGM_EXPORTS
+  macros += _MBCS _USRDLL
   sharedname = RegisterParadigm
   libout = $(COSMIC_ROOT)/lib
   dllout = $(COSMIC_ROOT)/bin
+
+  specific (vc6,vc7,vc71,vc8) {
+     link_options += /DEF:RegisterParadigm.def
+  }
+  
+  specific {
+     use_lib_modifier =
+  }
 
   Source_Files {
     RegisterParadigm.cpp
   }
 
+  Header_Files {
+    RegisterParadigm.h
+  }
+  
   MIDL_Files {
     gendir = .
     commandflags += -I. -I<%quote%>$(GME_ROOT)/Interfaces<%quote%>

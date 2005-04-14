@@ -1,3 +1,14 @@
+Thu Apr 14 18:41:19 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * Installer/RegisterParadigm/RegisterParadigm.def:  Removed the
+          DESCRIPTION comment line.
+
+        * Installer/RegisterParadigm/Register_Paradigm.mpc: Fixed the file
+          to include the RegisterParadigm.def file on the link line.
+
+        * PIM/OCML/ui/ocml_configurator_ui.mpc: Updated to use
+          boost_base as a base project.
+
 Thu Apr 14 17:44:53 2005  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * PIM/OCML/engine/ocml_engine.mpc:  Changed to use the boost_base

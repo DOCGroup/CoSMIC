@@ -1,6 +1,6 @@
-project (ocml_configurator_ui): wxwindows, xerces {
+project (ocml_configurator_ui): wxwindows, xerces, boost_base {
   sharedname = ocml_configurator_ui
-  includes += .. $(BOOST_ROOT)
+  includes += ..
   macros += _USRDLL WXMAKINGDLL
   dynamicflags += CONFIGURATOR_UI_BUILD_DLL
   libout = $(COSMIC_ROOT)/lib
