@@ -1,5 +1,5 @@
-project: xerces {
-  includes += .. $(BOOST_ROOT)
+project: xerces, boost_base {
+  includes += ..
   libs += ocml_common
   after += ocml_common
   sharedname = ocml_engine

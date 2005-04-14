@@ -1,3 +1,11 @@
+Thu Apr 14 17:44:53 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/OCML/engine/ocml_engine.mpc:  Changed to use the boost_base
+          project as a base project.
+
+        * default.features:  Added boost=1 and wxWindows=1 to the
+          default.features list.
+
 Thu Apr 14 14:27:38 2005  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * PIM/PICML/interpreters/Package/PackageVisitor.cpp:  Added

@@ -15,4 +15,5 @@ qt            = 0
 zlib          = 0
 mfc           = 1
 rpc           = 0
-wxwindows     = 1
+wxWindows     = 1
+boost         = 1
