@@ -1,8 +1,15 @@
+Fri Apr 15 12:55:06 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+       * PIM/PICML/Configurator/UdmApp.cpp:
+
+         Changed the code calling Configurator via the ocml_configurator
+         library, now it spawns config_exe.
+	
 Fri Apr 15 12:53:27 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 	
-        * ocml.mwc:
-        * config_exe/config_exe.cpp:
-        * config_exe/config_exe.mpc:
+        * PIM/OCML/ocml.mwc:
+        * PIM/OCML/config_exe/config_exe.cpp:
+        * PIM/OCML/config_exe/config_exe.mpc:
 
           Added config_exe, a binary executable displays the Configurator GUI.
 
