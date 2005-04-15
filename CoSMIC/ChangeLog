@@ -1,3 +1,9 @@
+Fri Apr 15 10:02:38 2005  Gan deng  <dengg@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/EQAL/BON2Component.cpp:
+
+	  Fixed to make the interpreter work from any model.
+
 Fri Apr 15 00:49:38 2005  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * Installer/CoSMIC-Installer.ise:  New project file to create

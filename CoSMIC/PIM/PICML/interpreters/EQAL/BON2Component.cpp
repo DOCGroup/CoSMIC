@@ -144,17 +144,24 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
   std::string message = "Please specify the Output Directory";
   getPath (message, outputPath);
 
-	EventChannelConfiguration ec_configuration (currentFCO);
+  std::set<Object> selected = project->findByKind ("EventChannelConfiguration");
 
-	if(!ec_configuration)
+  for (std::set<Object>::const_iterator it = selected.begin ();
+       it != selected.end ();
+       ++it)
     {
-		  AfxMessageBox("Interpretation must start from a event channel configuration sheet!");
-		  return;
-	  }
+      EventChannelConfiguration ec_configuration (*it);
+      
+      if (!ec_configuration)
+        {
+          AfxMessageBox ("Interpretation must start from an EventChannelConfiguration model!");
+          continue;
+        }
+        
+      EventChannelConfigurationVisitor visitor; 
 
-  EventChannelConfigurationVisitor visitor; 
-
-  visitor.visitModelImpl (ec_configuration);
+      visitor.visitModelImpl (ec_configuration);
+    }
 
   AfxMessageBox("Event channel configuration interpretation completed!");
 
