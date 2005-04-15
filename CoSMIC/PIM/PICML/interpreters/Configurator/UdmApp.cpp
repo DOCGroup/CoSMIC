@@ -94,6 +94,28 @@ struct addon_info
   std::string attr;
 };
 
+HANDLE launchViaCreateProcess(LPCTSTR program, LPCTSTR args)
+{
+  HANDLE hProcess = NULL;
+  PROCESS_INFORMATION processInfo;
+  STARTUPINFO startupInfo;
+  ::ZeroMemory(&startupInfo, sizeof(startupInfo));
+  startupInfo.cb = sizeof(startupInfo);
+  if(::CreateProcess(program, (LPTSTR)args, 
+                    NULL,  // process security
+                    NULL,  // thread security
+                    FALSE, // no inheritance
+                    0,     // no startup flags
+                    NULL,  // no special environment
+                    NULL,  // default startup directory
+                    &startupInfo,
+                    &processInfo))
+    { /* success */
+      hProcess = processInfo.hProcess;
+    } /* success */
+  return hProcess;
+}
+
 /***********************************************/
 /* Main entry point for Udm-based Interpreter  */
 /***********************************************/
@@ -108,31 +130,32 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
   typedef addons_type::const_iterator addon_iterator;
   addons_type add_ons;
 
+  char *cosmic_root = getenv("COSMIC_ROOT");
+  std::string bin_dir =
+    std::string(cosmic_root) + std::string("\\bin\\");
+
   std::ostringstream error_msg;
 
   error_msg << "Selected object should be one of the following" << std::endl;
 
   // Read the ini file TODO: This is going to be read from registry.
   {
-    char *cosmic_root = getenv("COSMIC_ROOT");
-    std::string bin_dir =
-      std::string(cosmic_root) + std::string("\\bin\\");
     std::string ini_file_name = bin_dir + std::string("ocml_configurator.ini");
-
 
     std::ifstream ini_file (ini_file_name.c_str());
     while (!ini_file.eof())
       {
         std::string name;
-        std::string rule_file_name;
+//        std::string rule_file_name;
         addon_info info;
-        ini_file >> name >> info.schema >> rule_file_name >> info.attr;
-        rule_file_name = bin_dir + rule_file_name;
-
-        std::ifstream rule_file(rule_file_name.c_str());
-        std::copy(std::istream_iterator<char>(rule_file),
-                  std::istream_iterator<char>(),
-                  std::back_inserter(info.rules));
+        ini_file >> name >> info.schema >> info.rules >> info.attr;
+//        ini_file >> name >> info.schema >> rule_file_name >> info.attr;
+//        rule_file_name = bin_dir + rule_file_name;
+//
+//        std::ifstream rule_file(rule_file_name.c_str());
+//        std::copy(std::istream_iterator<char>(rule_file),
+//                  std::istream_iterator<char>(),
+//                  std::back_inserter(info.rules));
 
         add_ons[name] = info;
 
@@ -172,9 +195,40 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
       std::string old_value;
       active_object_ptr->GetStrValue(info_iter->second.attr, old_value);
 
-      Configurator_Dialog dlg;
-      std::string new_values =
-        dlg.show(info_iter->second.schema, old_value, info_iter->second.rules);
+//    Configurator_Dialog dlg;
+//    std::string new_values =
+//      dlg.show(info_iter->second.schema, old_value, info_iter->second.rules);
+
+      /////////////////////////////////////////////////////////////////
+
+      char *tmp_path    = getenv("TEMP");
+      std::string temp_file_name =
+        std::string(tmp_path) + std::string("\\ocml.value");
+      {
+        std::ofstream value_file(temp_file_name.c_str());
+        value_file << old_value;
+      }
+      std::ostringstream application;
+      std::ostringstream arguments;
+      application << bin_dir << "config_exe.exe";
+      arguments << info_iter->second.schema
+                << " -v " << '"' << temp_file_name << '"'
+         //       << " -r " << '"' << info_iter->second.rules << '"'
+                << " -o " << '"' << temp_file_name <<'"';
+      std::string new_values;
+      std::string application_s = application.str();
+      std::string arguments_s = arguments.str();
+      launchViaCreateProcess(application_s.c_str(), arguments_s.c_str());
+//      launchViaCreateProcess("c:\\cosmic\\bin\\config_exe.exe",
+//                             "orb_tree.xml -v WatchSettingManager_exec_svc.conf");
+      {
+        std::ifstream value_file(temp_file_name.c_str());
+        std::copy(std::istream_iterator<char>(value_file),
+                  std::istream_iterator<char>(),
+                  std::back_inserter(new_values));
+      }
+
+      /////////////////////////////////////////////////////////////////
 
       active_object_ptr->SetStrValue(info_iter->second.attr, new_values);
     }
