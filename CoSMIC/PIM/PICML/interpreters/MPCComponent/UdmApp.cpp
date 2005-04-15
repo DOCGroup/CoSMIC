@@ -106,7 +106,8 @@ void CUdmApp::UdmMain(
 				}
 			}
 		}
-		else
+
+		if (! valid_interpretation)
 		{
 			Udm::Object root_obj = p_backend->GetRootObject();
 			PICML::RootFolder root_folder = PICML::RootFolder::Cast (root_obj);
@@ -125,12 +126,12 @@ void CUdmApp::UdmMain(
 					valid_interpretation = 1;
 				}
 			}
-
-			if (valid_interpretation)
-				AfxMessageBox ("MPC Files successfully generated");
-			else
-				showUsage ();
 		}
+
+		if (valid_interpretation)
+			AfxMessageBox ("MPC Files successfully generated");
+		else
+			showUsage ();
 	 }
       catch(udm_exception &ex)
         {

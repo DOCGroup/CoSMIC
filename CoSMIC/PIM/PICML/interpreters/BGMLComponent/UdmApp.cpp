@@ -110,7 +110,7 @@ void CUdmApp::UdmMain(
 			}
 		}
 
-		else 
+		if (! valid_interpretation)
 		{
 			Udm::Object root_obj = p_backend->GetRootObject();
 			PICML::RootFolder root_folder = PICML::RootFolder::Cast (root_obj);
@@ -136,7 +136,7 @@ void CUdmApp::UdmMain(
 				}
 				
 			}
-		} /* end else */
+		} 
 
 		if (valid_interpretation)		
 			AfxMessageBox ("Bencharking files successfully generated");
