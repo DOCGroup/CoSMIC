@@ -1,3 +1,9 @@
+Sun Apr 17 13:18:12 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+       * PIM/OCML/ocml.mwc: 
+
+         Deleted OCML tests from the workspace.
+
 Fri Apr 15 12:55:06 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
        * PIM/PICML/Configurator/UdmApp.cpp:

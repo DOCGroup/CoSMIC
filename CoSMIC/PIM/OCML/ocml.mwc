@@ -3,5 +3,4 @@ workspace {
   engine
   ui
   config_exe
-  test
 }
