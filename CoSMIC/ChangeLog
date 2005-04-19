@@ -1,3 +1,9 @@
+Tue Apr 19 21:35:28 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+       * PIM/OCML/ui/ocml_configurator_ui.mpc: 
+
+         Added one missing dependent library.
+
 Tue Apr 19 17:31:35 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
        * PIM/PICML/interpreters/Configurator/Configurator.mpc: 

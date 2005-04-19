@@ -1,6 +1,7 @@
 // $Id$
 
 project (ocml_configurator_ui): wxwindows, xerces, boost_base {
+  after += ocml_engine
   sharedname = ocml_configurator_ui
   includes += .. 
   macros += _USRDLL WXMAKINGDLL
