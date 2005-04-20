@@ -1,3 +1,14 @@
+Wed Apr 20 20:30:39 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/OCML/gtkui/ocml_configurator_ui.mpc (project): 
+        * PIM/OCML/gtkui/main_window.hpp: 
+        * PIM/OCML/gtkui/configurator_ui.hpp: 
+        * PIM/OCML/gtkui/configurator_ui.cpp: 
+        * PIM/OCML/gtkui/CONFIGURATOR_UI_EXPORT.h: 
+
+          Added the gtkui directory, this is the placeholder for
+          Configurator UI gtk+ implementation.
+
 Wed Apr 20 14:43:05 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/docs/Importing_IDL.doc:
@@ -49,7 +60,7 @@ Fri Apr 15 12:55:06 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
          Changed the code calling Configurator via the ocml_configurator
          library, now it spawns config_exe.
-	
+
 Fri Apr 15 12:53:27 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 	
         * PIM/OCML/ocml.mwc:
