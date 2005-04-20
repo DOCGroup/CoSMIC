@@ -1,3 +1,9 @@
+Wed Apr 20 20:43:12 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * gtk.mpb: 
+
+          The mpb file for gtk+. This is specific for win32.
+
 Wed Apr 20 20:30:39 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
         * PIM/OCML/gtkui/ocml_configurator_ui.mpc (project): 
