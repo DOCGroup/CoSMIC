@@ -494,16 +494,6 @@ picml_visitor::visit_structure (AST_Structure *node)
     
   if (!node->imported ())
     {
-      ACE_Unbounded_Queue<AST_Type *> list;
-      if (node->in_recursion (list))
-        {
-          ACE_ERROR_RETURN ((LM_ERROR,
-                            "picml_visitor::visit_structure - "
-                            "recursive structs not supported: %s\n",
-                            node->full_name ()),
-                            -1);
-        }
-    
       elem->setAttribute (X ("kind"), X ("Aggregate"));
       elem->setAttribute (X ("role"), X ("Aggregate"));
       this->set_relid_attr (elem);
@@ -515,7 +505,16 @@ picml_visitor::visit_structure (AST_Structure *node)
       
       this->sub_tree_->appendChild (elem);
     }
-    
+
+  // If in_recursion() returns TRUE and this node is already in the
+  // decl id table, we are in the first level of recursion and do
+  // not need to visit the scope.    
+  ACE_Unbounded_Queue<AST_Type *> list;
+  if (result != 0 && node->in_recursion (list))
+    {
+      return 0;
+    }
+
   picml_visitor scope_visitor (elem);
   if (scope_visitor.visit_scope (node) != 0)
     {
@@ -861,17 +860,7 @@ picml_visitor::visit_union (AST_Union *node)
     }
     
   if (!node->imported ())
-    {
-      ACE_Unbounded_Queue<AST_Type *> list;
-      if (node->in_recursion (list))
-        {
-          ACE_ERROR_RETURN ((LM_ERROR,
-                            "picml_visitor::visit_union - "
-                            "recursive unions not supported: %s\n",
-                            node->full_name ()),
-                            -1);
-        }
-    
+    {    
       elem->setAttribute (X ("kind"), X ("SwitchedAggregate"));
       elem->setAttribute (X ("role"), X ("SwitchedAggregate"));
       this->set_relid_attr (elem);
@@ -885,6 +874,15 @@ picml_visitor::visit_union (AST_Union *node)
       this->sub_tree_->appendChild (elem);
     }
     
+  // If in_recursion() returns TRUE and this node is already in the
+  // decl id table, we are in the first level of recursion and do
+  // not need to visit the scope.    
+  ACE_Unbounded_Queue<AST_Type *> list;
+  if (result != 0 && node->in_recursion (list))
+    {
+      return 0;
+    }
+
   // Bump the rel_id by 1 since we've already added the discriminator.
   picml_visitor scope_visitor (elem, 2UL);
   if (scope_visitor.visit_scope (node) != 0)
