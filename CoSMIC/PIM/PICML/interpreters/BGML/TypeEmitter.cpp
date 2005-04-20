@@ -58,7 +58,8 @@ std::string InTypeEmitter::generate_type_defn (std::string &kind_name,
 		return "const ::CORBA::Any &";
 	else if (kind_name == "GenericObject")
 		return "::CORBA::Object_ptr";
-	else if (kind_name == "GenericValueObject")
+	else if (kind_name == "GenericValueObject" ||
+		     kind_name == "ValueObject")
 		return "::CORBA::ValueBase *";
 	
 	//// Named Types /////////////////

@@ -105,8 +105,8 @@ BGML_Visitor::Visit_BenchmarkAnalysis (const PICML::BenchmarkAnalysis& model)
 			PICML::TaskSet set = task_set.dstWorkloadCharacteristics_end();
 			
 			BGML_Task_Group_Data task_group_data;
-			task_group_data.task_priority = set.rate ();
-			task_group_data.task_rate = set.priority ();
+			task_group_data.task_priority = set.priority ();
+			task_group_data.task_rate = set.rate ();
 
 			std::set<PICML::Task> tasks = set.members ();
 			task_group_data.size = tasks.size ();
