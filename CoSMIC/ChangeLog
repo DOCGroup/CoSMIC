@@ -1,3 +1,11 @@
+Wed Apr 20 14:43:05 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/docs/Importing_IDL.doc:
+        * PIM/PICML/docs/Importing_IDL.pdf:
+        
+          Updated documentation, removed statement that recursive IDL
+          types cannot be imported.
+
 Wed Apr 20 14:28:56 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
