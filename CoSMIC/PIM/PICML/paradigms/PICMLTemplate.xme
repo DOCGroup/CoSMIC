@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Sat Dec 11 21:22:00 2004" mdate="Sat Dec 11 21:22:00 2004" version="" metaguid="{B36C0DDA-8AEA-4646-A0DA-C9AD2C424DF3}" metaversion="" metaname="PICML">
+<project guid="{00000000-0000-0000-0000-000000000000}" cdate="Mon Apr 25 14:15:00 2005" mdate="Mon Apr 25 14:15:00 2005" version="" metaguid="{FAD2EA6D-4604-425E-97B4-D68771F037D5}" metaversion="" metaname="PICML">
 	<name>PICMLTemplate</name>
 	<comment></comment>
 	<author></author>

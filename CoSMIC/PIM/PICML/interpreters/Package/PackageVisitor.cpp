@@ -184,16 +184,6 @@ namespace PICML
     }
   }
 
-  // Predefined Types
-  void PackageVisitor::Visit_LongInteger(const LongInteger&)
-  {}
-
-  void PackageVisitor::Visit_Boolean(const Boolean&)
-  {}
-
-  void PackageVisitor::Visit_ShortInteger(const ShortInteger&)
-  {}
-
   // Implementation Artifact operations
 
   void PackageVisitor::Visit_ImplementationArtifacts(const ImplementationArtifacts& ia)
@@ -333,6 +323,7 @@ namespace PICML
       }
   }
 
+  // Predefined Types
   void PackageVisitor::Visit_String(const String& str)
   {
     this->push();
@@ -343,6 +334,24 @@ namespace PICML
                                                          "tk_string"));
     this->pop();
   }
+
+  void PackageVisitor::Visit_LongInteger(const LongInteger&)
+  {
+    this->push();
+    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    this->curr_->appendChild (type);
+    this->curr_ = type;
+    this->curr_->appendChild (this->createSimpleContent ("kind",
+                                                         "tk_long"));
+    this->pop();
+  }
+
+  void PackageVisitor::Visit_Boolean(const Boolean&)
+  {}
+
+  void PackageVisitor::Visit_ShortInteger(const ShortInteger&)
+  {}
+
 
   void PackageVisitor::Visit_ArtifactDeployRequirement(const ArtifactDeployRequirement&)
   {}

@@ -1,7 +1,7 @@
 // $Id$
 
 project (Configurator): mfc, picmllib {
-   after += PICML ocml_configurator_ui
+   after += PICML config_exe
    sharedname = Configurator
 
    MIDL_Files {

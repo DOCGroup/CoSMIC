@@ -1,16 +1,29 @@
+Mon Apr 25 16:14:55 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/Configurator/Configurator.mpc:  Updated
+          to reflect dependency on config_exe project.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICMLTemplate.xme:  Updated to fix the
+          problem with Require2Connections constraint.  Thanks to Diana
+          Ukleja <Diana_Ukleja@raytheon.com> for reporting the problem.
+
 Wed Apr 20 20:43:12 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-        * gtk.mpb: 
+        * gtk.mpb:
 
           The mpb file for gtk+. This is specific for win32.
 
 Wed Apr 20 20:30:39 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-        * PIM/OCML/gtkui/ocml_configurator_ui.mpc (project): 
-        * PIM/OCML/gtkui/main_window.hpp: 
-        * PIM/OCML/gtkui/configurator_ui.hpp: 
-        * PIM/OCML/gtkui/configurator_ui.cpp: 
-        * PIM/OCML/gtkui/CONFIGURATOR_UI_EXPORT.h: 
+        * PIM/OCML/gtkui/ocml_configurator_ui.mpc (project):
+        * PIM/OCML/gtkui/main_window.hpp:
+        * PIM/OCML/gtkui/configurator_ui.hpp:
+        * PIM/OCML/gtkui/configurator_ui.cpp:
+        * PIM/OCML/gtkui/CONFIGURATOR_UI_EXPORT.h:
 
           Added the gtkui directory, this is the placeholder for
           Configurator UI gtk+ implementation.
@@ -19,44 +32,44 @@ Wed Apr 20 14:43:05 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/docs/Importing_IDL.doc:
         * PIM/PICML/docs/Importing_IDL.pdf:
-        
+
           Updated documentation, removed statement that recursive IDL
           types cannot be imported.
 
 Wed Apr 20 14:28:56 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
-        
+
           Added support for recursive IDL types.
 
 Wed Apr 20 09:04:23 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
        * PIM/PICML/interpreters/BGML/BGML_Visitor.cpp:
        * PIM/PICML/interpreters/BGML/TypeEmitter.cpp:
- 
+
          Added support for handling Valuetype Objects. This was earlier
-         added as GenericValue Object and was changed to ValueObject. 
+         added as GenericValue Object and was changed to ValueObject.
 
 Tue Apr 19 21:35:28 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-       * PIM/OCML/ui/ocml_configurator_ui.mpc: 
+       * PIM/OCML/ui/ocml_configurator_ui.mpc:
 
          Added one missing dependent library.
 
 Tue Apr 19 17:31:35 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-       * PIM/PICML/interpreters/Configurator/Configurator.mpc: 
+       * PIM/PICML/interpreters/Configurator/Configurator.mpc:
 
          Added cvs tag and fixed a typo.
 
 Tue Apr 19 16:59:53 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-       * PIM/OCML/ui/ocml_configurator_ui.mpc: 
+       * PIM/OCML/ui/ocml_configurator_ui.mpc:
 
          Added CVS tag id.
 
 Sun Apr 17 13:18:12 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-       * PIM/OCML/ocml.mwc: 
+       * PIM/OCML/ocml.mwc:
 
          Deleted OCML tests from the workspace.
 
@@ -68,7 +81,7 @@ Fri Apr 15 12:55:06 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
          library, now it spawns config_exe.
 
 Fri Apr 15 12:53:27 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
-	
+
         * PIM/OCML/ocml.mwc:
         * PIM/OCML/config_exe/config_exe.cpp:
         * PIM/OCML/config_exe/config_exe.mpc:
@@ -80,14 +93,14 @@ Fri Apr 15 11:04:17 CDT 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/MPCComponent/UdmApp.cpp:
         * PIM/PICML/interpreters/CIDLComponent/UdmApp.cpp:
 
-          Fixed the interpreters to generate code from any paradigm if 
+          Fixed the interpreters to generate code from any paradigm if
           possible. Tested for corner cases to make sure they work.
 
 Fri Apr 15 10:02:38 2005  Gan deng  <dengg@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/EQAL/BON2Component.cpp:
 
-	  Fixed to make the interpreter work from any model.
+          Fixed to make the interpreter work from any model.
 
 Fri Apr 15 00:49:38 2005  Krishnakumar B  <kitty@spam.invalid.domain>
 
