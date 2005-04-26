@@ -1,0 +1,16 @@
+project(FlatPlan): picmllib {
+   after += PICML
+   sharedname = FlatPlan
+   macros += FLATPLAN_BUILD_DLL PICML_HAS_DLL
+   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML
+   libs += PICML
+
+   Source_Files {
+     FlatPlanVisitor.cpp
+   }
+
+   Header_Files {
+     FlatPlanVisitor.h
+     FlatPlan_Export.h
+   }
+}

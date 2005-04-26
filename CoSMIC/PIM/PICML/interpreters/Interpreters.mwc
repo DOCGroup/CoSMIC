@@ -7,6 +7,8 @@ workspace {
    TargetComponent
    DeploymentPlan
    DeploymentPlanComponent
+   FlatPlan
+   FlatPlanComponent
    ConfigExport
    Configurator
    IDLGenerator
