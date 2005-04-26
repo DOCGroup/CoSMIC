@@ -307,8 +307,38 @@ namespace PICML
     DOMElement* val = this->doc_->createElement (XStr ("value"));
     this->curr_->appendChild (val);
     this->curr_ = val;
-    this->curr_->appendChild (this->createSimpleContent ("string",
-                                                         property.DataValue()));
+    PredefinedType ref = type.ref();
+    std::string refName = ref.name();
+    if (refName == "Boolean")
+      {
+        this->curr_->appendChild (this->createSimpleContent ("boolean",
+                                                             property.DataValue()));
+      }
+    else if (refName == "Byte")
+      {
+        this->curr_->appendChild (this->createSimpleContent ("octet",
+                                                             property.DataValue()));
+      }
+    else if (refName == "String")
+      {
+        this->curr_->appendChild (this->createSimpleContent ("string",
+                                                             property.DataValue()));
+      }
+    else if (refName == "RealNumber")
+      {
+        this->curr_->appendChild (this->createSimpleContent ("double",
+                                                             property.DataValue()));
+      }
+    else if (refName == "ShortInteger")
+      {
+        this->curr_->appendChild (this->createSimpleContent ("short",
+                                                             property.DataValue()));
+      }
+    else if (refName == "LongInteger")
+      {
+        this->curr_->appendChild (this->createSimpleContent ("long",
+                                                             property.DataValue()));
+      }
     this->pop();
   }
 
@@ -316,14 +346,62 @@ namespace PICML
   {
     PredefinedType ref = type.ref();
     std::string kindName = ref.name();
-    if (kindName == "String")
+    if (kindName == "Boolean")
+      {
+        Boolean boolv = PICML::Boolean::Cast (ref);
+        boolv.Accept (*this);
+      }
+    else if (kindName == "Byte")
+      {
+        Byte byte = PICML::Byte::Cast (ref);
+        byte.Accept (*this);
+      }
+    else if (kindName == "String")
       {
         String str = PICML::String::Cast (ref);
         str.Accept (*this);
       }
+    else if (kindName == "RealNumber")
+      {
+        RealNumber real = PICML::RealNumber::Cast (ref);
+        real.Accept (*this);
+      }
+    else if (kindName == "ShortInteger")
+      {
+        ShortInteger shortv = PICML::ShortInteger::Cast (ref);
+        shortv.Accept (*this);
+      }
+    else if (kindName == "LongInteger")
+      {
+        LongInteger lint = PICML::LongInteger::Cast (ref);
+        lint.Accept (*this);
+      }
   }
 
   // Predefined Types
+  void PackageVisitor::Visit_Boolean(const Boolean& boolean)
+  {
+    this->push();
+    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    this->curr_->appendChild (type);
+    this->curr_ = type;
+    this->curr_->appendChild (this->createSimpleContent ("kind",
+                                                         "tk_boolean"));
+    this->pop();
+
+  }
+
+  void PackageVisitor::Visit_Byte(const Byte& byte)
+  {
+    this->push();
+    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    this->curr_->appendChild (type);
+    this->curr_ = type;
+    this->curr_->appendChild (this->createSimpleContent ("kind",
+                                                         "tk_octet"));
+    this->pop();
+  }
+
   void PackageVisitor::Visit_String(const String& str)
   {
     this->push();
@@ -332,6 +410,28 @@ namespace PICML
     this->curr_ = type;
     this->curr_->appendChild (this->createSimpleContent ("kind",
                                                          "tk_string"));
+    this->pop();
+  }
+
+  void PackageVisitor::Visit_RealNumber(const RealNumber& real)
+  {
+    this->push();
+    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    this->curr_->appendChild (type);
+    this->curr_ = type;
+    this->curr_->appendChild (this->createSimpleContent ("kind",
+                                                         "tk_double"));
+    this->pop();
+  }
+
+  void PackageVisitor::Visit_ShortInteger(const ShortInteger&)
+  {
+    this->push();
+    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    this->curr_->appendChild (type);
+    this->curr_ = type;
+    this->curr_->appendChild (this->createSimpleContent ("kind",
+                                                         "tk_short"));
     this->pop();
   }
 
@@ -345,13 +445,6 @@ namespace PICML
                                                          "tk_long"));
     this->pop();
   }
-
-  void PackageVisitor::Visit_Boolean(const Boolean&)
-  {}
-
-  void PackageVisitor::Visit_ShortInteger(const ShortInteger&)
-  {}
-
 
   void PackageVisitor::Visit_ArtifactDeployRequirement(const ArtifactDeployRequirement&)
   {}

@@ -1,3 +1,14 @@
+Tue Apr 26 18:21:27 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * Installer/CoSMIC-Installer.ise:  Updated to check-in the latest
+          version.
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.h:
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:  Updated to
+          fix the generation of properties other than "string" type.
+          Thanks to Steven D Baker <Steven_D_Baker@raytheon.com> for
+          reporting the problem.
+
 Mon Apr 25 16:14:55 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/interpreters/Configurator/Configurator.mpc:  Updated
