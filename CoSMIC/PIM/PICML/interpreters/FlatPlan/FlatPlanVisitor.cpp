@@ -448,6 +448,8 @@ namespace PICML
   {
     this->push();
 	DOMElement* ele = this->doc_->createElement (XStr ("implementation"));
+	std::string impl_name = mimpl.name ();
+	this->monoimpls_.insert (make_pair (impl_name, mimpl));
 	std::string uniqueName = mimpl.getPath ("_",false,true);
 	ele->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
 	ele->appendChild (this->createSimpleContent ("name", uniqueName));
@@ -912,6 +914,8 @@ namespace PICML
   {
     this->push();
 	const std::set<CollocationGroup> dps = dp.CollocationGroup_children();
+	std::set<PICML::ComponentAssembly> containing_assemblies;
+	MonolithicImplementation mimpl;
 
     for (std::set<CollocationGroup>::const_iterator iter = dps.begin();
          iter != dps.end();
@@ -934,8 +938,6 @@ namespace PICML
           }
 
         std::set<CollocationGroup_Members_Base> comp_types = cg.members ();
-    // The set of assemblies containing the Components.
-    std::set<PICML::ComponentAssembly> containing_assemblies;
 		for (std::set<CollocationGroup_Members_Base>::const_iterator comp_type_iter = comp_types.begin();
 			 comp_type_iter != comp_types.end (); ++comp_type_iter)
 		  {
@@ -944,12 +946,20 @@ namespace PICML
 			  {
 			    ComponentRef component_ref = ComponentRef::Cast (comp_type);
 				Component comp = component_ref.ref();
-
-        containing_assemblies.insert(PICML::ComponentAssembly(comp.ComponentAssembly_parent()));
-
-        throw comp_name;
-
-        this->push();
+                containing_assemblies.insert(comp.ComponentAssembly_parent());
+				Component typeParent;
+				if (comp.isInstance())
+				{
+					typeParent = comp.Archetype();
+					while (typeParent.isInstance())
+						typeParent = typeParent.Archetype();
+				}
+				std::string refName = typeParent.name();
+				if (this->monoimpls_.find (refName) != this->monoimpls_.end ())
+				  {
+				    mimpl = this->monoimpls_[refName];
+				  }
+			    this->push();
                 DOMElement* ele = this->doc_->createElement (XStr ("instance"));
 				std::string uniqueName = comp.getPath ("_",false,true);
 	            ele->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
@@ -957,23 +967,40 @@ namespace PICML
                 ele->appendChild (this->createSimpleContent ("node", refName));
                 this->curr_->appendChild (ele);
 				this->curr_ = ele;
+				std::string mimpl_name = mimpl.getPath ("_",false,true);
+	            this->curr_->appendChild (this->createSimpleContent ("implementation", mimpl_name));
+				const std::set<ConfigProperty> cps = mimpl.dstConfigProperty();
+				for (std::set<ConfigProperty>::const_iterator it2 = cps.begin();
+					it2 != cps.end();
+					++it2)
+				{
+					ConfigProperty cp = *it2;
+					cp.Accept (*this);
+				}
                 this->pop();
 			  }
 		    else if (Udm::IsDerivedFrom (comp_type.type(), ComponentAssemblyReference::meta))
 			  {
 			    ComponentAssemblyReference comp_assembly_ref = ComponentAssemblyReference::Cast (comp_type);
 				ComponentAssembly comp_assembly = comp_assembly_ref.ref ();
+				containing_assemblies.insert(comp_assembly);
 				comp_assembly.Accept (*this);
 			  }
 		  }
 	  }
 
+    for (std::set<PICML::ComponentAssembly>::const_iterator assembly_iter = containing_assemblies.begin();
+			 assembly_iter != containing_assemblies.end (); ++assembly_iter)
+		{
+			ComponentAssembly component_assembly = *assembly_iter;
+			update_connections (component_assembly);
+		}
+
     this->pop();
   }
 
-  void FlatPlanVisitor::Visit_ComponentAssembly(const ComponentAssembly& assembly)
+  void FlatPlanVisitor::update_connections(const ComponentAssembly& assembly)
   {
-    this->push ();
     std::set<ComponentAssembly>
       asms = assembly.ComponentAssembly_kind_children();
     for (std::set<ComponentAssembly>::iterator aiter = asms.begin();
@@ -1000,24 +1027,6 @@ namespace PICML
         std::vector<ComponentAssembly> rasms = rassembly.ComponentAssembly_kind_children();
         std::copy (rasms.begin(), rasms.end(), std::back_inserter (nasms));
       }
-
-	for (std::set<Component>::iterator iter = comps.begin();
-         iter != comps.end();
-         ++iter)
-      {
-	    Component comp = *iter;
-		this->push();
-        DOMElement* ele = this->doc_->createElement (XStr ("instance"));
-		std::string uniqueName = comp.getPath ("_",false,true);
-	    ele->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
-		ele->appendChild (this->createSimpleContent ("name", uniqueName));
-        ele->appendChild (this->createSimpleContent ("node", node_reference_name));
-        this->curr_->appendChild (ele);
-		//this->curr_ = ele;
-		this->pop();
-	  }
-
-    this->pop ();
 
     for (std::vector<ComponentAssembly>::iterator iter = assemblies.begin();
          iter != assemblies.end();
@@ -1066,7 +1075,74 @@ namespace PICML
             conn.Accept (*this);
           }
       }
-	  this->pop ();
+  }
+
+  void FlatPlanVisitor::Visit_ComponentAssembly(const ComponentAssembly& assembly)
+  {
+    std::set<ComponentAssembly>
+      asms = assembly.ComponentAssembly_kind_children();
+    for (std::set<ComponentAssembly>::iterator aiter = asms.begin();
+         aiter != asms.end();
+         ++aiter)
+      {
+        ComponentAssembly rassembly  = *aiter;
+        rassembly.Accept (*this);
+      }
+
+    std::string node_reference_name = this->retNodeRefName ();
+
+    std::set<Component> comps = assembly.Component_kind_children();
+    std::vector<ComponentAssembly> nasms = assembly.ComponentAssembly_kind_children();
+    std::vector<ComponentAssembly> assemblies;
+    assemblies.push_back (assembly);
+    while (!nasms.empty())
+      {
+        ComponentAssembly rassembly = nasms.back();
+        assemblies.push_back (rassembly);
+        nasms.pop_back();
+        std::set<Component> rcomps = rassembly.Component_kind_children();
+        comps.insert (rcomps.begin(), rcomps.end());
+        std::vector<ComponentAssembly> rasms = rassembly.ComponentAssembly_kind_children();
+        std::copy (rasms.begin(), rasms.end(), std::back_inserter (nasms));
+      }
+
+    MonolithicImplementation mimpl;
+	for (std::set<Component>::iterator iter = comps.begin();
+         iter != comps.end();
+         ++iter)
+      {
+	    Component comp = *iter;
+		Component typeParent;
+		if (comp.isInstance())
+		{
+		  typeParent = comp.Archetype();
+		  while (typeParent.isInstance())
+			typeParent = typeParent.Archetype();
+		}
+		std::string refName = typeParent.name();
+		if (this->monoimpls_.find (refName) != this->monoimpls_.end ())
+		  {
+		    mimpl = this->monoimpls_[refName];
+		  }
+		this->push();
+        DOMElement* ele = this->doc_->createElement (XStr ("instance"));
+		std::string uniqueName = comp.getPath ("_",false,true);
+	    ele->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
+		ele->appendChild (this->createSimpleContent ("name", uniqueName));
+        ele->appendChild (this->createSimpleContent ("node", node_reference_name));
+        this->curr_->appendChild (ele);
+		std::string mimpl_name = mimpl.getPath ("_",false,true);
+	    this->curr_->appendChild (this->createSimpleContent ("implementation", mimpl_name));
+		const std::set<ConfigProperty> cps = mimpl.dstConfigProperty();
+		for (std::set<ConfigProperty>::const_iterator it2 = cps.begin();
+			it2 != cps.end();
+			++it2)
+		{
+			ConfigProperty cp = *it2;
+			cp.Accept (*this);
+		}
+		this->pop();
+	  } 
   }
 
   void FlatPlanVisitor::Visit_MonolithExecParameter(const MonolithExecParameter&)

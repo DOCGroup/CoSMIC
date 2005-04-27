@@ -101,6 +101,7 @@ namespace PICML
     FlatPlan_Export virtual void Visit_MonolithicImplementation(const MonolithicImplementation&);
     FlatPlan_Export virtual void Visit_MonolithExecParameter(const MonolithExecParameter&);
     FlatPlan_Export virtual void Visit_ComponentAssembly(const ComponentAssembly&);
+	FlatPlan_Export virtual void update_connections(const ComponentAssembly&);
 	FlatPlan_Export virtual void Visit_AssemblyConfigProperty(const AssemblyConfigProperty&);
 	FlatPlan_Export virtual void Visit_DeploymentPlan(const DeploymentPlan&);
     FlatPlan_Export virtual void Visit_DeploymentPlans(const DeploymentPlans&);
@@ -221,6 +222,7 @@ namespace PICML
 
 	// Maintain associations between PublishConnector and event publishers
     std::map<std::string, OutEventPort> publishers_;
+	std::map<std::string, MonolithicImplementation> monoimpls_;
 
     // Maintain associations between PublishConnector and event consumers
     std::multimap<std::string, InEventPort> consumers_;
