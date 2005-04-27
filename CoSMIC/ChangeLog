@@ -1,3 +1,9 @@
+Wed Apr 27 17:56:19 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+       * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp: 
+
+         Added code to find the assembly from the component reference.
+
 Tue Apr 26 18:21:27 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * Installer/CoSMIC-Installer.ise:  Updated to check-in the latest

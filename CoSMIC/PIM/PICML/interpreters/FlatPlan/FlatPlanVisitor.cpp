@@ -942,7 +942,12 @@ namespace PICML
 			  {
 			    ComponentRef component_ref = ComponentRef::Cast (comp_type);
 				Component comp = component_ref.ref();
-				this->push();
+
+        std::string comp_name = PICML::ComponentAssembly(comp.ComponentAssembly_parent()).name();
+
+        throw comp_name;
+
+        this->push();
                 DOMElement* ele = this->doc_->createElement (XStr ("instance"));
 				std::string uniqueName = comp.getPath ("_",false,true);
 	            ele->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
