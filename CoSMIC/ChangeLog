@@ -1,6 +1,17 @@
+Wed Apr 27 22:50:18 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:  Added a fix
+          so that the generated package names for component instances in
+          an assembly correspond to the actual names of the packages in
+          the model.  This fix is partial.
+
+        * PIM/PICML/paradigms/PICML.xmp:  Updated to add a constraint to
+          enforce the condition that ImplementationArtifacts should be
+          unique.
+
 Wed Apr 27 17:56:19 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
 
-       * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp: 
+       * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:
 
          Added code to find the assembly from the component reference.
 
