@@ -934,6 +934,8 @@ namespace PICML
           }
 
         std::set<CollocationGroup_Members_Base> comp_types = cg.members ();
+    // The set of assemblies containing the Components.
+    std::set<PICML::ComponentAssembly> containing_assemblies;
 		for (std::set<CollocationGroup_Members_Base>::const_iterator comp_type_iter = comp_types.begin();
 			 comp_type_iter != comp_types.end (); ++comp_type_iter)
 		  {
@@ -943,7 +945,7 @@ namespace PICML
 			    ComponentRef component_ref = ComponentRef::Cast (comp_type);
 				Component comp = component_ref.ref();
 
-        std::string comp_name = PICML::ComponentAssembly(comp.ComponentAssembly_parent()).name();
+        containing_assemblies.insert(PICML::ComponentAssembly(comp.ComponentAssembly_parent()));
 
         throw comp_name;
 
