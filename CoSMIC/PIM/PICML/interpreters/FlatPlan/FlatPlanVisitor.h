@@ -48,15 +48,15 @@ namespace PICML
 
     // Predefined Types
     FlatPlan_Export virtual void Visit_LongInteger(const LongInteger&);
+	FlatPlan_Export virtual void Visit_Byte(const Byte&);
     FlatPlan_Export virtual void Visit_String(const String&);
+	FlatPlan_Export virtual void Visit_RealNumber(const RealNumber&);
     FlatPlan_Export virtual void Visit_Boolean(const Boolean&);
     FlatPlan_Export virtual void Visit_ShortInteger(const ShortInteger&);
 
     FlatPlan_Export virtual void Visit_GenericValue(const GenericValue&){};
-    FlatPlan_Export virtual void Visit_Byte(const Byte&){};
     FlatPlan_Export virtual void Visit_TypeKind(const TypeKind&){};
     FlatPlan_Export virtual void Visit_GenericObject(const GenericObject&){};
-    FlatPlan_Export virtual void Visit_RealNumber(const RealNumber&){};
     FlatPlan_Export virtual void Visit_PredefinedTypes(const PredefinedTypes&){};
     FlatPlan_Export virtual void Visit_TypeEncoding(const TypeEncoding&){};
     FlatPlan_Export virtual void Visit_GenericValueObject(const GenericValueObject&){};
@@ -96,20 +96,25 @@ namespace PICML
     FlatPlan_Export virtual void Visit_PackageConfBasePackage(const PackageConfBasePackage&);
     FlatPlan_Export virtual void Visit_ComponentPackageReference(const ComponentPackageReference&);
 
-    //
-    FlatPlan_Export virtual void Visit_Requirement(const Requirement&){};
-    FlatPlan_Export virtual void Visit_SatisfierProperty(const SatisfierProperty&){};
-    FlatPlan_Export virtual void Visit_ImplementationDependency(const ImplementationDependency&){};
-    FlatPlan_Export virtual void Visit_Capability(const Capability&){};
-    FlatPlan_Export virtual void Visit_AssemblyselectRequirement(const AssemblyselectRequirement&){};
-    FlatPlan_Export virtual void Visit_AssemblyConfigProperty(const AssemblyConfigProperty&){};
-    FlatPlan_Export virtual void Visit_PublishConnector(const PublishConnector&){};
-    FlatPlan_Export virtual void Visit_publish(const publish&){};
-    FlatPlan_Export virtual void Visit_deliverTo(const deliverTo&){};
-    FlatPlan_Export virtual void Visit_AssemblyDeployRequirement(const AssemblyDeployRequirement&){};
+    FlatPlan_Export virtual void Visit_ComponentImplementations(const ComponentImplementations&);
+	FlatPlan_Export virtual void Visit_ComponentImplementationContainer(const ComponentImplementationContainer&);
+    FlatPlan_Export virtual void Visit_MonolithicImplementation(const MonolithicImplementation&);
+    FlatPlan_Export virtual void Visit_MonolithExecParameter(const MonolithExecParameter&);
     FlatPlan_Export virtual void Visit_ComponentAssembly(const ComponentAssembly&);
-    FlatPlan_Export virtual void Visit_emit(const emit&){};
-    FlatPlan_Export virtual void Visit_invoke(const invoke&){};
+	FlatPlan_Export virtual void Visit_AssemblyConfigProperty(const AssemblyConfigProperty&);
+	FlatPlan_Export virtual void Visit_DeploymentPlan(const DeploymentPlan&);
+    FlatPlan_Export virtual void Visit_DeploymentPlans(const DeploymentPlans&);
+	FlatPlan_Export virtual void Visit_MonolithprimaryArtifact(const MonolithprimaryArtifact&);
+	FlatPlan_Export virtual void Visit_Implements(const Implements&);
+	FlatPlan_Export virtual void Visit_ConfigProperty(const ConfigProperty&);
+	FlatPlan_Export virtual void Visit_publish(const publish&);
+	FlatPlan_Export virtual void Visit_PublishConnector(const PublishConnector&);
+    FlatPlan_Export virtual void Visit_deliverTo(const deliverTo&);
+    FlatPlan_Export virtual void Visit_emit(const emit&);
+    FlatPlan_Export virtual void Visit_invoke(const invoke&);
+
+
+	//
     FlatPlan_Export virtual void Visit_ComponentPackage(const ComponentPackage&){};
     FlatPlan_Export virtual void Visit_ComponentPackages(const ComponentPackages&){};
     FlatPlan_Export virtual void Visit_Implementation(const Implementation&){};
@@ -118,16 +123,17 @@ namespace PICML
     FlatPlan_Export virtual void Visit_PackageInfoProperty(const PackageInfoProperty&){};
     FlatPlan_Export virtual void Visit_PackageInterface(const PackageInterface&){};
     FlatPlan_Export virtual void Visit_InfoProperty(const InfoProperty&){};
-    FlatPlan_Export virtual void Visit_MonolithprimaryArtifact(const MonolithprimaryArtifact&){};
-    FlatPlan_Export virtual void Visit_MonolithDeployRequirement(const MonolithDeployRequirement&){};
+    
+	//
+	FlatPlan_Export virtual void Visit_Requirement(const Requirement&){};
+    FlatPlan_Export virtual void Visit_SatisfierProperty(const SatisfierProperty&){};
+    FlatPlan_Export virtual void Visit_ImplementationDependency(const ImplementationDependency&){};
+    FlatPlan_Export virtual void Visit_Capability(const Capability&){};
+    FlatPlan_Export virtual void Visit_AssemblyselectRequirement(const AssemblyselectRequirement&){};
+    FlatPlan_Export virtual void Visit_AssemblyDeployRequirement(const AssemblyDeployRequirement&){};
+	FlatPlan_Export virtual void Visit_MonolithDeployRequirement(const MonolithDeployRequirement&){};
     FlatPlan_Export virtual void Visit_ComponentImplementationReference(const ComponentImplementationReference&){};
-    FlatPlan_Export virtual void Visit_ConfigProperty(const ConfigProperty&){};
-    FlatPlan_Export virtual void Visit_ComponentImplementationContainer(const ComponentImplementationContainer&){};
-    FlatPlan_Export virtual void Visit_MonolithicImplementation(const MonolithicImplementation&){};
-    FlatPlan_Export virtual void Visit_MonolithExecParameter(const MonolithExecParameter&){};
     FlatPlan_Export virtual void Visit_ImplementationDependsOn(const ImplementationDependsOn&){};
-    FlatPlan_Export virtual void Visit_Implements(const Implements&){};
-    FlatPlan_Export virtual void Visit_ComponentImplementations(const ComponentImplementations&){};
     FlatPlan_Export virtual void Visit_ImplementationCapability(const ImplementationCapability&){};
     FlatPlan_Export virtual void Visit_ComponentContainer(const ComponentContainer&){};
     FlatPlan_Export virtual void Visit_ComponentPropertyDescription(const ComponentPropertyDescription&){};
@@ -135,7 +141,9 @@ namespace PICML
     FlatPlan_Export virtual void Visit_ComponentProperty(const ComponentProperty&){};
     FlatPlan_Export virtual void Visit_ComponentTypes(const ComponentTypes&){};
     FlatPlan_Export virtual void Visit_ComponentConfigProperty(const ComponentConfigProperty&){};
-    FlatPlan_Export virtual void Visit_Resource(const Resource&){};
+
+	//
+	FlatPlan_Export virtual void Visit_Resource(const Resource&){};
     FlatPlan_Export virtual void Visit_SharedResource(const SharedResource&){};
     FlatPlan_Export virtual void Visit_NodeReference(const NodeReference&);
     FlatPlan_Export virtual void Visit_Bridge(const Bridge&){};
@@ -149,8 +157,6 @@ namespace PICML
     FlatPlan_Export virtual void Visit_Interconnect2Node(const Interconnect2Node&){};
     FlatPlan_Export virtual void Visit_Interconnect2Bridge(const Interconnect2Bridge&){};
     FlatPlan_Export virtual void Visit_InstanceMapping(const InstanceMapping&);
-    FlatPlan_Export virtual void Visit_DeploymentPlan(const DeploymentPlan&);
-    FlatPlan_Export virtual void Visit_DeploymentPlans(const DeploymentPlans&);
     FlatPlan_Export virtual void Visit_CollocationGroup(const CollocationGroup&){};
     FlatPlan_Export virtual void Visit_InParameter(const InParameter&){};
     FlatPlan_Export virtual void Visit_TwowayOperation(const TwowayOperation&){};
@@ -212,5 +218,11 @@ namespace PICML
     std::string         outputPath_;
     std::stack<DOMElement*> curr_stack_;
     std::string         node_ref_name_;
+
+	// Maintain associations between PublishConnector and event publishers
+    std::map<std::string, OutEventPort> publishers_;
+
+    // Maintain associations between PublishConnector and event consumers
+    std::multimap<std::string, InEventPort> consumers_;
   };
 }
