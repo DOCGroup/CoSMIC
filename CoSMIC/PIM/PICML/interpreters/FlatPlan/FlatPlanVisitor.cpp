@@ -216,6 +216,7 @@ namespace PICML
 	std::string uniqueName = ia.getPath ("_",false,true);
 	ele->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
 	ele->appendChild (this->createSimpleContent ("name", uniqueName));
+	ele->appendChild (this->createSimpleContent ("node", "<!-- empty-->"));
 	std::string location = ia.location();
     if (!location.empty())
       ele->appendChild (this->createSimpleContent ("location",
@@ -882,7 +883,7 @@ namespace PICML
 	name += dp.name();
     name += ".cdp";
     this->initTarget (name);
-    this->initDocument ("Deployment:DeploymentPlan");
+    this->initDocument ("Deployment:deploymentPlan");
     this->initRootAttributes();
 
     { // Extra scopes to avoid clashing for-loop counter variable names
@@ -944,8 +945,8 @@ namespace PICML
 				  {
 				    mimpl = this->monoimpls_[refName];
 				  }
-			    this->push();
-                DOMElement* ele = this->doc_->createElement (XStr ("instance"));
+			    this->push ();
+			    DOMElement* ele = this->doc_->createElement (XStr ("instance"));
 				std::string uniqueName = comp.getPath ("_",false,true);
 	            ele->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
 				ele->appendChild (this->createSimpleContent ("name", uniqueName));
@@ -962,8 +963,8 @@ namespace PICML
 					ConfigProperty cp = *it2;
 					cp.Accept (*this);
 				}
-                this->pop();
-			  }
+				this->pop ();
+            }
 		    else if (Udm::IsDerivedFrom (comp_type.type(), ComponentAssemblyReference::meta))
 			  {
 			    ComponentAssemblyReference comp_assembly_ref = ComponentAssemblyReference::Cast (comp_type);
@@ -1122,13 +1123,14 @@ namespace PICML
 		  {
 		    mimpl = this->monoimpls_[refName];
 		  }
-		this->push();
-        DOMElement* ele = this->doc_->createElement (XStr ("instance"));
+	    this->push ();
+		DOMElement* ele = this->doc_->createElement (XStr ("instance"));
 		std::string uniqueName = comp.getPath ("_",false,true);
 	    ele->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
 		ele->appendChild (this->createSimpleContent ("name", uniqueName));
         ele->appendChild (this->createSimpleContent ("node", node_reference_name));
         this->curr_->appendChild (ele);
+		this->curr_ = ele;
 		std::string mimpl_name = mimpl.getPath ("_",false,true);
 	    this->curr_->appendChild (this->createSimpleContent ("implementation", mimpl_name));
 		const std::set<ConfigProperty> cps = mimpl.dstConfigProperty();
@@ -1139,8 +1141,8 @@ namespace PICML
 			ConfigProperty cp = *it2;
 			cp.Accept (*this);
 		}
-		this->pop();
-	  } 
+		this->pop ();
+	 } 
   }
 
   void FlatPlanVisitor::Visit_MonolithExecParameter(const MonolithExecParameter&)
