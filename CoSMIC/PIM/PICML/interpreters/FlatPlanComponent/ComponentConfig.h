@@ -5,16 +5,16 @@
 
 
 // COM UUID-s, names and ProgID
-#define TYPELIB_UUID "7e07ab4a-96d7-472c-985f-4892a184ca3f"
-#define TYPELIB_NAME "MGA Interpreter TypeLibrary (DeploymentPlan)"
-#define COCLASS_UUID "44e85e1d-2d5f-4fc2-963f-2df070bbc577"
-#define COCLASS_NAME "MGA Interpreter CoClass (DeploymentPlan)"
-#define COCLASS_PROGID "MGA.Interpreter.DeploymentPlan"
+#define TYPELIB_UUID "0672bab8-06f4-49e5-a285-96b3714124da"
+#define TYPELIB_NAME "MGA Interpreter TypeLibrary (FlatPlan)"
+#define COCLASS_UUID "f4bbce86-3631-4a24-bce5-a0f63b310aa5"
+#define COCLASS_NAME "MGA Interpreter CoClass (FlatPlan)"
+#define COCLASS_PROGID "MGA.Interpreter.FlatPlan"
 
 
 // This name will appear in the popup window for interpreter selection.
 
-#define COMPONENT_NAME "DeploymentPlan"
+#define COMPONENT_NAME "FlatPlan"
 
 // This #define determines the interpreter type:
 #define GME_INTERPRETER
@@ -25,19 +25,19 @@
 
 #define GME_BASE C:/Program Files/GME
 
-#define TOOLTIP_TEXT "Generate DeploymentPlan Descriptors"
+#define TOOLTIP_TEXT "Generate Flattened DeploymentPlan"
 
 #define BON_ICON_SUPPORT
 
 // Just to please the whims of those Microsoft jerks:
-#define COCLASS_UUID_EXPLODED1 0x44e85e1d
-#define COCLASS_UUID_EXPLODED2  0x2d5f
-#define COCLASS_UUID_EXPLODED3  0x4fc2
-#define COCLASS_UUID_EXPLODED4  0x96
-#define COCLASS_UUID_EXPLODED5  0x3f
-#define COCLASS_UUID_EXPLODED6  0x2d
-#define COCLASS_UUID_EXPLODED7  0xf0
-#define COCLASS_UUID_EXPLODED8  0x70
-#define COCLASS_UUID_EXPLODED9  0xbb
-#define COCLASS_UUID_EXPLODED10  0xc5
-#define COCLASS_UUID_EXPLODED11  0x77
+#define COCLASS_UUID_EXPLODED1 0xf4bbce86
+#define COCLASS_UUID_EXPLODED2  0x3631
+#define COCLASS_UUID_EXPLODED3  0x4a24
+#define COCLASS_UUID_EXPLODED4  0xbc
+#define COCLASS_UUID_EXPLODED5  0xe5
+#define COCLASS_UUID_EXPLODED6  0xa0
+#define COCLASS_UUID_EXPLODED7  0xf6
+#define COCLASS_UUID_EXPLODED8  0x3b
+#define COCLASS_UUID_EXPLODED9  0x31
+#define COCLASS_UUID_EXPLODED10  0x0a
+#define COCLASS_UUID_EXPLODED11  0xa5
