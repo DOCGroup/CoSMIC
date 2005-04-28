@@ -1,3 +1,23 @@
+Thu Apr 28 01:54:54 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.h:
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp: Updated to
+          fix bugs with generation of incorrect package names.  This
+          completes the fix that was made previously.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICMLTemplate.xme:  Updated to add a
+          constraint to check that the ImplementationArtifact names are
+          unique, that only instances of component assemblies can be used
+          in a deployment plan, as well as requiring each ComponentPackage
+          to contain a reference to the Component interface that it
+          contains an implementation of.  This is needed to ensure that
+          correct package names are generated as outlined in the fix
+          above.
+
 Wed Apr 27 22:50:18 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/interpreters/Package/PackageVisitor.cpp:  Added a fix

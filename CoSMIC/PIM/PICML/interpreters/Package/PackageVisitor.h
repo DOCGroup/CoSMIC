@@ -225,6 +225,9 @@ namespace PICML
     std::string         outputPath_;
     std::stack<DOMElement*> curr_stack_;
 
+    // Maintain associations between ComponentType and ComponentPackages
+    std::map<std::string, std::string> interfaces_;
+
     // Maintain associations between PublishConnector and event publishers
     std::map<std::string, OutEventPort> publishers_;
 

@@ -115,6 +115,17 @@ namespace PICML
 
   void PackageVisitor::Visit_RootFolder(const RootFolder& rf)
   {
+    {
+      std::set<ComponentPackages>
+        folders = rf.ComponentPackages_kind_children();
+      for (std::set<ComponentPackages>::iterator iter = folders.begin();
+           iter != folders.end();
+           ++iter)
+        {
+          ComponentPackages folder = *iter;
+          folder.Accept (*this);
+        }
+    }
     { // Extra scopes to avoid clashing for-loop counter variable names
       // with MSVC6's compiler. Yuck!
       std::set<ComponentImplementations>
@@ -127,17 +138,7 @@ namespace PICML
           folder.Accept (*this);
         }
     }
-    {
-      std::set<ComponentPackages>
-        folders = rf.ComponentPackages_kind_children();
-      for (std::set<ComponentPackages>::iterator iter = folders.begin();
-           iter != folders.end();
-           ++iter)
-        {
-          ComponentPackages folder = *iter;
-          folder.Accept (*this);
-        }
-    }
+
     {
       std::set<ComponentTypes>
         folders = rf.ComponentTypes_kind_children();
@@ -655,7 +656,13 @@ namespace PICML
 
     PackageInterface pi = cp.dstPackageInterface();
     if (pi != Udm::null)
-      pi.Accept (*this);
+      {
+        const ComponentRef cref = pi.dstPackageInterface_end();
+        const Component comp  = cref.ref();
+        std::string refName (comp.name());
+        this->interfaces_[refName] = cp.name();
+        pi.Accept (*this);
+      }
 
     std::set<Implementation> impls = cp.dstImplementation();
     for (std::set<Implementation>::const_iterator it = impls.begin();
@@ -1134,7 +1141,8 @@ namespace PICML
             while (typeParent.isInstance())
               typeParent = typeParent.Archetype();
           }
-        std::string refName = typeParent.name();
+        std::string interfaceName = typeParent.name();
+        std::string refName = this->interfaces_[interfaceName];
         refName += ".cpd";
         DOMElement* refEle = this->doc_->createElement (XStr ("package"));
         refEle->setAttribute (XStr ("href"), XStr (refName));
