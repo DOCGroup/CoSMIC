@@ -1,3 +1,11 @@
+Thu Apr 28 15:05:14 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:  Updated to fix the error where
+          the constraint enforcing the requirement that each
+          ComponentPackage to contain a reference to the Component
+          interface that it contains an implementation of.
+
 Thu Apr 28 01:54:54 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/interpreters/Package/PackageVisitor.h:

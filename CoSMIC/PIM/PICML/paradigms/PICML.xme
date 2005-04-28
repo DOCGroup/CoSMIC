@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{C2C325C7-1EE1-4A1D-9D89-57C60C99C2B8}" cdate="Mon Apr 18 21:57:17 2005" mdate="Mon Apr 18 21:57:17 2005" version="" metaguid="{FEFF5A03-BF64-4567-A10E-EBFCBDD5C475}" metaversion="" metaname="MetaGME">
+<project guid="{00900699-8E24-464F-83F1-1C72C08D0E8B}" cdate="Mon Apr 18 21:57:17 2005" mdate="Mon Apr 18 21:57:17 2005" version="" metaguid="{FEFF5A03-BF64-4567-A10E-EBFCBDD5C475}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment></comment>
 	<author></author>
@@ -31122,7 +31122,7 @@ RTEventChannel</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>848,481</value>
+							<value>841,425</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -31479,7 +31479,7 @@ RTEventChannel</value>
 					<regnode name="Constraints">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1077,468</value>
+							<value>1077,447</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -31502,16 +31502,13 @@ RTEventChannel</value>
 					<value>false</value>
 				</attribute>
 				<attribute kind="ConstraintDescription">
-					<value>A component package should implement a single component interface</value>
+					<value>A ComponentPackage that contains a reference to a MonolithicImplementation should also refer to the corresponding component interface</value>
 				</attribute>
 				<attribute kind="ConstraintEqn">
-					<value>let interfaces = self.connectedFCOs(PackageInterface) in
-  if interfaces-&gt;size() = 1 
-  then
-     true
-  else 
-     interfaces-&gt;forAll (i : ComponentRef | i.refersTo().kindName() = &quot;ComponentAssembly&quot;)
-  endif</value>
+					<value>self.connectedFCOs(PackageInterface)-&gt;size() = 1 
+or
+self.connectedFCOs(Implementation)-&gt;forAll (i : Reference | i.refersTo().kindName() = &quot;ComponentAssembly&quot;)
+</value>
 				</attribute>
 				<attribute kind="ConstraintParam" status="meta">
 					<value></value>
@@ -32062,7 +32059,7 @@ RTEventChannel</value>
 				<connpoint role="dst" target="id-0066-000000e2"/>
 				<connpoint role="src" target="id-0066-000001e3"/>
 			</connection>
-			<set id="id-0069-00000016" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000d9 id-0067-00000070 id-0066-000000de id-0067-0000001b id-0066-000000dd id-0066-000000e2 id-0066-000000db id-0067-0000001c id-0066-000000df">
+			<set id="id-0069-00000016" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-0000001c id-0066-000000d9 id-0067-00000070 id-0066-000000de id-0067-0000001b id-0066-000000dd id-0066-000000e2 id-0066-000000db id-0066-000000df">
 				<name>CompPkgPackaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -44143,7 +44140,7 @@ rrName = referedbyComponentAssemblyReference</value>
 				<connpoint role="src" target="id-0066-0000015b"/>
 				<connpoint role="dst" target="id-0067-00000035"/>
 			</connection>
-			<set id="id-0069-0000000c" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-0000002e id-0067-0000002f id-0067-0000002d id-0067-00000032 id-0066-00000137 id-0066-00000132 id-0067-00000033 id-0067-00000031 id-0066-0000013e id-0066-0000013a id-0067-00000036 id-0067-00000035 id-0066-0000014a id-0066-0000014b id-0066-00000133 id-0066-00000140 id-0066-00000143 id-0067-00000034 id-0066-00000146 id-0066-0000014d id-0066-0000014f id-0066-00000148 id-0066-0000013d id-0067-00000030 id-0066-00000139">
+			<set id="id-0069-0000000c" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000133 id-0066-00000137 id-0066-00000132 id-0067-00000033 id-0067-0000002e id-0067-0000002f id-0067-0000002d id-0067-00000032 id-0066-00000140 id-0066-00000143 id-0067-00000034 id-0067-00000036 id-0067-00000035 id-0066-0000014a id-0066-0000014b id-0066-00000146 id-0066-0000014d id-0066-0000014f id-0066-00000148 id-0067-00000031 id-0066-0000013e id-0066-0000013a id-0066-0000013d id-0067-00000030 id-0066-00000139">
 				<name>AssemblyPackaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
