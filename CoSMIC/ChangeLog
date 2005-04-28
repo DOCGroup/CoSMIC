@@ -1,3 +1,16 @@
+Thu Apr 28 16:14:46 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        
+          In the OCL constraint that checks for unique operation names
+          over local, inherited, and supported operations, removed the
+          inclusion of model elements FactoryOperation and LookupOperation.
+          In CORBA, valuetype factory operations are not inherited, and
+          the same name may be reused in derived valuetypes. Neither the
+          CCM nor the CORBA spec says anything along these lines about
+          home factory and finder operations, so the same ruls is assumed.
+
 Thu Apr 28 15:05:14 2005  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * PIM/PICML/paradigms/PICML.xme:
