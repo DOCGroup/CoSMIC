@@ -124,28 +124,8 @@ namespace PICML
 
   void FlatPlanVisitor::Visit_RootFolder(const RootFolder& rf)
   {
-    this->push();
-    std::string name = this->outputPath_ + "\\";
-	//name += dp.name();
-    name += "DeploymentPlan.cdp";
-    this->initTarget (name);
-    this->initDocument ("Deployment:DeploymentPlan");
-    this->initRootAttributes();
-
-	{ // Extra scopes to avoid clashing for-loop counter variable names
-      // with MSVC6's compiler. Yuck!
-      std::set<ComponentImplementations>
-        folders = rf.ComponentImplementations_kind_children();
-      for (std::set<ComponentImplementations>::iterator iter = folders.begin();
-           iter != folders.end();
-           ++iter)
-        {
-          ComponentImplementations folder = *iter;
-          folder.Accept (*this);
-        }
-    }
-
-	{
+    {
+	  this->root_folder_ = rf;
       std::set<DeploymentPlans> folders = rf.DeploymentPlans_kind_children();
       for (std::set<DeploymentPlans>::iterator iter = folders.begin();
            iter != folders.end();
@@ -155,21 +135,6 @@ namespace PICML
           folder.Accept (*this);
         }
 	}
-
-	{
-      std::set<ImplementationArtifacts>
-        folders = rf.ImplementationArtifacts_kind_children();
-      for (std::set<ImplementationArtifacts>::iterator iter = folders.begin();
-           iter != folders.end();
-           ++iter)
-        {
-          ImplementationArtifacts folder = *iter;
-          folder.Accept (*this);
-        }
-    }
-
-	this->dumpDocument();
-    this->pop();
   }
 
   // Predefined Types
@@ -913,6 +878,26 @@ namespace PICML
   void FlatPlanVisitor::Visit_DeploymentPlan(const DeploymentPlan& dp)
   {
     this->push();
+    std::string name = this->outputPath_ + "\\";
+	name += dp.name();
+    name += ".cdp";
+    this->initTarget (name);
+    this->initDocument ("Deployment:DeploymentPlan");
+    this->initRootAttributes();
+
+    { // Extra scopes to avoid clashing for-loop counter variable names
+      // with MSVC6's compiler. Yuck!
+      std::set<ComponentImplementations>
+        folders = this->root_folder_.ComponentImplementations_kind_children();
+      for (std::set<ComponentImplementations>::iterator iter = folders.begin();
+           iter != folders.end();
+           ++iter)
+        {
+          ComponentImplementations folder = *iter;
+          folder.Accept (*this);
+        }
+    }
+
 	const std::set<CollocationGroup> dps = dp.CollocationGroup_children();
 	std::set<PICML::ComponentAssembly> containing_assemblies;
 	MonolithicImplementation mimpl;
@@ -996,6 +981,19 @@ namespace PICML
 			update_connections (component_assembly);
 		}
 
+	{
+      std::set<ImplementationArtifacts>
+        folders = this->root_folder_.ImplementationArtifacts_kind_children();
+      for (std::set<ImplementationArtifacts>::iterator iter = folders.begin();
+           iter != folders.end();
+           ++iter)
+        {
+          ImplementationArtifacts folder = *iter;
+          folder.Accept (*this);
+        }
+    }
+
+    this->dumpDocument();
     this->pop();
   }
 

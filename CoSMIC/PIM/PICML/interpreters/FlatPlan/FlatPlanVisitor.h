@@ -219,6 +219,7 @@ namespace PICML
     std::string         outputPath_;
     std::stack<DOMElement*> curr_stack_;
     std::string         node_ref_name_;
+	RootFolder          root_folder_;
 
 	// Maintain associations between PublishConnector and event publishers
     std::map<std::string, OutEventPort> publishers_;
