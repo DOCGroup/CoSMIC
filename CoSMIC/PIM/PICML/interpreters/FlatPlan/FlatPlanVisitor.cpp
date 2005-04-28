@@ -427,8 +427,9 @@ namespace PICML
 	std::string uniqueName = mimpl.getPath ("_",false,true);
 	ele->setAttribute (XStr ("id"), XStr (uniqueName));
 	ele->appendChild (this->createSimpleContent ("name", uniqueName));
+	ele->appendChild (this->doc_->createElement (XStr ("source")));
 	this->curr_->appendChild (ele);
-	this->curr_ = ele;
+    this->curr_ = ele;
 
 	const std::set<MonolithprimaryArtifact>
       mpas = mimpl.dstMonolithprimaryArtifact();
@@ -570,22 +571,22 @@ namespace PICML
       = this->doc_->createElement (XStr ("internalEndpoint"));
     endPoint->appendChild (this->createSimpleContent ("portName",
                                                       facet.name()));
+	endPoint->appendChild (this->createSimpleContent ("kind",
+		                                              "Facet"));
     // Facet instance
-    DOMElement* instance = this->doc_->createElement (XStr ("instance"));
-    instance->setAttribute (XStr ("idref"),
-                            XStr (facet_comp.getPath ("_", false, true)));
-    endPoint->appendChild (instance);
+	std::string uni_facet_insName = facet_comp.getPath ("_",false,true);
+	endPoint->appendChild (this->createSimpleContent ("instance", uni_facet_insName));
     ele->appendChild (endPoint);
 
     // Receptacle endPoint
     endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
     endPoint->appendChild (this->createSimpleContent ("portName",
                                                       receptacle.name()));
+	endPoint->appendChild (this->createSimpleContent ("kind",
+		                                              "SimplexReceptacle"));
     // Receptacle instance
-    instance = this->doc_->createElement (XStr ("instance"));
-    instance->setAttribute (XStr ("idref"),
-                            XStr (recep_comp.getPath ("_", false, true)));
-    endPoint->appendChild (instance);
+	std::string uni_recep_insName = recep_comp.getPath ("_",false,true);
+	endPoint->appendChild (this->createSimpleContent ("instance", uni_recep_insName));
     ele->appendChild (endPoint);
 
     this->pop();
@@ -652,30 +653,31 @@ namespace PICML
     connection += "_";
     connection += emitter.name();
     ele->appendChild (this->createSimpleContent ("name", connection));
-
+	
     // Emitter endPoint
     DOMElement* endPoint
       = this->doc_->createElement (XStr ("internalEndpoint"));
     endPoint->appendChild (this->createSimpleContent ("portName",
                                                       emitter.name()));
-    // Emitter instance
-    DOMElement* instance = this->doc_->createElement (XStr ("instance"));
-    instance->setAttribute (XStr ("idref"),
-                            XStr (emitter_comp.getPath ("_", false, true)));
-    endPoint->appendChild (instance);
-    ele->appendChild (endPoint);
+    endPoint->appendChild (this->createSimpleContent ("kind",
+		                                              "EventEmitter"));
 
+	// Emitter instance
+	std::string emitter_insName = emitter_comp.getPath ("_",false,true);
+	endPoint->appendChild (this->createSimpleContent ("instance", emitter_insName));
+    ele->appendChild (endPoint);
+    
     // Consumer endPoint
     endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
     endPoint->appendChild (this->createSimpleContent ("portName",
                                                       consumer.name()));
+	endPoint->appendChild (this->createSimpleContent ("kind",
+		                                              "SimplexReceptacle"));
     // Consumer instance
-    instance = this->doc_->createElement (XStr ("instance"));
-    instance->setAttribute (XStr ("idref"),
-                            XStr (consumer_comp.getPath ("_", false, true)));
-    endPoint->appendChild (instance);
+	std::string consumer_insName = consumer_comp.getPath ("_",false,true);
+	endPoint->appendChild (this->createSimpleContent ("instance", consumer_insName));
     ele->appendChild (endPoint);
-
+    
     this->pop();
   }
 
@@ -780,26 +782,24 @@ namespace PICML
           = this->doc_->createElement (XStr ("internalEndpoint"));
         endPoint->appendChild (this->createSimpleContent ("portName",
                                                           publisher.name()));
+		endPoint->appendChild (this->createSimpleContent ("kind",
+		                                                  "EventPublisher"));
         // Publisher instance
-        DOMElement* instance = this->doc_->createElement (XStr ("instance"));
-        instance->setAttribute (XStr ("idref"),
-                                XStr (publisher_comp.getPath ("_", false,
-                                                              true)));
-        endPoint->appendChild (instance);
+		std::string publisher_insName = publisher_comp.getPath ("_",false,true);
+	    endPoint->appendChild (this->createSimpleContent ("instance", publisher_insName));
         ele->appendChild (endPoint);
 
         // Consumer endPoint
         endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
         endPoint->appendChild (this->createSimpleContent ("portName",
                                                           consumer.name()));
+		endPoint->appendChild (this->createSimpleContent ("kind",
+		                                                  "EventConsumer"));
         // Consumer instance
-        instance = this->doc_->createElement (XStr ("instance"));
-        instance->setAttribute (XStr ("idref"),
-                                XStr (consumer_comp.getPath ("_", false,
-                                                             true)));
-        endPoint->appendChild (instance);
+		std::string consumer_insName = consumer_comp.getPath ("_",false,true);
+	    endPoint->appendChild (this->createSimpleContent ("instance", consumer_insName));
         ele->appendChild (endPoint);
-
+        
         this->pop();
       }
   }
@@ -959,6 +959,7 @@ namespace PICML
 	            ele->setAttribute (XStr ("id"), XStr (uniqueName));
 				ele->appendChild (this->createSimpleContent ("name", uniqueName));
                 ele->appendChild (this->createSimpleContent ("node", refName));
+				ele->appendChild (this->doc_->createElement (XStr ("source")));
                 this->curr_->appendChild (ele);
 				this->curr_ = ele;
 				std::string mimpl_name = mimpl.getPath ("_",false,true);
@@ -1137,6 +1138,7 @@ namespace PICML
 	    ele->setAttribute (XStr ("id"), XStr (uniqueName));
 		ele->appendChild (this->createSimpleContent ("name", uniqueName));
         ele->appendChild (this->createSimpleContent ("node", node_reference_name));
+		ele->appendChild (this->doc_->createElement (XStr ("source")));
         this->curr_->appendChild (ele);
 		this->curr_ = ele;
 		std::string mimpl_name = mimpl.getPath ("_",false,true);
