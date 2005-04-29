@@ -114,7 +114,7 @@ namespace PICML
   }
 
   DOMElement* FlatPlanVisitor::createSimpleContent (const std::string& name,
-                                                const std::string& value)
+                                                    const std::string& value)
   {
     DOMElement* pName = this->doc_->createElement (XStr (name.c_str()));
     DOMText* pValue = this->doc_->createTextNode (XStr (value.c_str()));
@@ -125,7 +125,7 @@ namespace PICML
   void FlatPlanVisitor::Visit_RootFolder(const RootFolder& rf)
   {
     {
-	  this->root_folder_ = rf;
+      this->root_folder_ = rf;
       std::set<DeploymentPlans> folders = rf.DeploymentPlans_kind_children();
       for (std::set<DeploymentPlans>::iterator iter = folders.begin();
            iter != folders.end();
@@ -134,7 +134,7 @@ namespace PICML
           DeploymentPlans folder = *iter;
           folder.Accept (*this);
         }
-	}
+    }
   }
 
   // Predefined Types
@@ -212,26 +212,26 @@ namespace PICML
   void FlatPlanVisitor::Visit_ImplementationArtifact(const ImplementationArtifact& ia)
   {
     this->push();
-	DOMElement* ele = this->doc_->createElement (XStr ("artifact"));
-	std::string uniqueName = ia.getPath ("_",false,true);
-	ele->setAttribute (XStr ("id"), XStr (uniqueName));
-	ele->appendChild (this->createSimpleContent ("name", uniqueName));
-	//ele->appendChild (this->createSimpleContent ("node", "<!-- empty-->"));
-	ele->appendChild (this->doc_->createElement (XStr ("source")));
-	ele->appendChild (this->doc_->createElement (XStr ("node")));
-	std::string location = ia.location();
+    DOMElement* ele = this->doc_->createElement (XStr ("artifact"));
+    std::string uniqueName = ia.getPath ("_",false,true);
+    ele->setAttribute (XStr ("id"), XStr (uniqueName));
+    ele->appendChild (this->createSimpleContent ("name", uniqueName));
+    //ele->appendChild (this->createSimpleContent ("node", "<!-- empty-->"));
+    ele->appendChild (this->doc_->createElement (XStr ("source")));
+    ele->appendChild (this->doc_->createElement (XStr ("node")));
+    std::string location = ia.location();
     if (!location.empty())
-	{
-      ele->appendChild (this->createSimpleContent ("location",
-                                                           location));
-	}
-	else
-	{
-	  ele->appendChild (this->doc_->createElement (XStr ("location")));
-	}
-	this->curr_->appendChild (ele);
-	this->curr_ = ele;
-	const std::set<ArtifactExecParameter> exec = ia.dstArtifactExecParameter();
+      {
+        ele->appendChild (this->createSimpleContent ("location",
+                                                     location));
+      }
+    else
+      {
+        ele->appendChild (this->doc_->createElement (XStr ("location")));
+      }
+    this->curr_->appendChild (ele);
+    this->curr_ = ele;
+    const std::set<ArtifactExecParameter> exec = ia.dstArtifactExecParameter();
     for (std::set<ArtifactExecParameter>::const_iterator it = exec.begin();
          it != exec.end();
          ++it)
@@ -267,19 +267,19 @@ namespace PICML
   void FlatPlanVisitor::Visit_ArtifactExecParameter(const ArtifactExecParameter& param)
   {
     this->push();
-	/*
-    DOMElement* ele = this->doc_->createElement (XStr ("execParameter"));
-    this->curr_->appendChild (ele);
-    this->curr_ = ele;
+    /*
+      DOMElement* ele = this->doc_->createElement (XStr ("execParameter"));
+      this->curr_->appendChild (ele);
+      this->curr_ = ele;
+      Property ref = param.dstArtifactExecParameter_end();
+      ref.Accept (*this);
+    */
+    DOMElement* value = this->doc_->createElement (XStr ("execParameter"));
+    this->curr_->appendChild (value);
+    this->curr_ = value;
     Property ref = param.dstArtifactExecParameter_end();
     ref.Accept (*this);
-	*/
-	DOMElement* value = this->doc_->createElement (XStr ("execParameter"));
-	this->curr_->appendChild (value);
-	this->curr_ = value;
-	Property ref = param.dstArtifactExecParameter_end();
-	ref.Accept (*this);
-	this->pop();
+    this->pop();
   }
 
   void FlatPlanVisitor::Visit_Property(const Property& property)
@@ -415,23 +415,23 @@ namespace PICML
       {
         MonolithicImplementation mimpl = *iter;
         mimpl.Accept (*this);
-      }  
+      }
   }
 
   void FlatPlanVisitor::Visit_MonolithicImplementation(const MonolithicImplementation& mimpl)
   {
     this->push();
-	DOMElement* ele = this->doc_->createElement (XStr ("implementation"));
-	std::string impl_name = mimpl.name ();
-	this->monoimpls_.insert (make_pair (impl_name, mimpl));
-	std::string uniqueName = mimpl.getPath ("_",false,true);
-	ele->setAttribute (XStr ("id"), XStr (uniqueName));
-	ele->appendChild (this->createSimpleContent ("name", uniqueName));
-	ele->appendChild (this->doc_->createElement (XStr ("source")));
-	this->curr_->appendChild (ele);
+    DOMElement* ele = this->doc_->createElement (XStr ("implementation"));
+    std::string impl_name = mimpl.name ();
+    this->monoimpls_.insert (make_pair (impl_name, mimpl));
+    std::string uniqueName = mimpl.getPath ("_",false,true);
+    ele->setAttribute (XStr ("id"), XStr (uniqueName));
+    ele->appendChild (this->createSimpleContent ("name", uniqueName));
+    ele->appendChild (this->doc_->createElement (XStr ("source")));
+    this->curr_->appendChild (ele);
     this->curr_ = ele;
 
-	const std::set<MonolithprimaryArtifact>
+    const std::set<MonolithprimaryArtifact>
       mpas = mimpl.dstMonolithprimaryArtifact();
     for (std::set<MonolithprimaryArtifact>::const_iterator it = mpas.begin();
          it != mpas.end();
@@ -441,18 +441,18 @@ namespace PICML
         mpa.Accept (*this);
       }
 
-	/*
-	//this->pop();
+    /*
+    //this->pop();
 
     const std::set<ConfigProperty>
-      cps = mimpl.dstConfigProperty();
+    cps = mimpl.dstConfigProperty();
     for (std::set<ConfigProperty>::const_iterator it2 = cps.begin();
-         it2 != cps.end();
-         ++it2)
-      {
-        ConfigProperty cp = *it2;
-        cp.Accept (*this);
-      }
+    it2 != cps.end();
+    ++it2)
+    {
+    ConfigProperty cp = *it2;
+    cp.Accept (*this);
+    }
     */
 
     this->pop();
@@ -477,8 +477,8 @@ namespace PICML
     this->push();
     const ImplementationArtifactReference iaref = mpa.dstMonolithprimaryArtifact_end();
     const ImplementationArtifact ref = iaref.ref();
-	std::string uniqueName = ref.getPath ("_",false,true);
-	this->curr_->appendChild (this->createSimpleContent ("artifact", uniqueName));
+    std::string uniqueName = ref.getPath ("_",false,true);
+    this->curr_->appendChild (this->createSimpleContent ("artifact", uniqueName));
     this->pop();
   }
 
@@ -496,9 +496,9 @@ namespace PICML
   void FlatPlanVisitor::Visit_AssemblyConfigProperty(const AssemblyConfigProperty& acp)
   {
     this->push();
-	DOMElement* value = this->doc_->createElement (XStr ("configProperty"));
-	this->curr_->appendChild (value);
-	this->curr_ = value;
+    DOMElement* value = this->doc_->createElement (XStr ("configProperty"));
+    this->curr_->appendChild (value);
+    this->curr_ = value;
     Property ref = acp.dstAssemblyConfigProperty_end();
     ref.Accept (*this);
     this->pop();
@@ -571,22 +571,22 @@ namespace PICML
       = this->doc_->createElement (XStr ("internalEndpoint"));
     endPoint->appendChild (this->createSimpleContent ("portName",
                                                       facet.name()));
-	endPoint->appendChild (this->createSimpleContent ("kind",
-		                                              "Facet"));
+    endPoint->appendChild (this->createSimpleContent ("kind",
+                                                      "Facet"));
     // Facet instance
-	std::string uni_facet_insName = facet_comp.getPath ("_",false,true);
-	endPoint->appendChild (this->createSimpleContent ("instance", uni_facet_insName));
+    std::string uni_facet_insName = facet_comp.getPath ("_",false,true);
+    endPoint->appendChild (this->createSimpleContent ("instance", uni_facet_insName));
     ele->appendChild (endPoint);
 
     // Receptacle endPoint
     endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
     endPoint->appendChild (this->createSimpleContent ("portName",
                                                       receptacle.name()));
-	endPoint->appendChild (this->createSimpleContent ("kind",
-		                                              "SimplexReceptacle"));
+    endPoint->appendChild (this->createSimpleContent ("kind",
+                                                      "SimplexReceptacle"));
     // Receptacle instance
-	std::string uni_recep_insName = recep_comp.getPath ("_",false,true);
-	endPoint->appendChild (this->createSimpleContent ("instance", uni_recep_insName));
+    std::string uni_recep_insName = recep_comp.getPath ("_",false,true);
+    endPoint->appendChild (this->createSimpleContent ("instance", uni_recep_insName));
     ele->appendChild (endPoint);
 
     this->pop();
@@ -653,31 +653,31 @@ namespace PICML
     connection += "_";
     connection += emitter.name();
     ele->appendChild (this->createSimpleContent ("name", connection));
-	
+
     // Emitter endPoint
     DOMElement* endPoint
       = this->doc_->createElement (XStr ("internalEndpoint"));
     endPoint->appendChild (this->createSimpleContent ("portName",
                                                       emitter.name()));
     endPoint->appendChild (this->createSimpleContent ("kind",
-		                                              "EventEmitter"));
+                                                      "EventEmitter"));
 
-	// Emitter instance
-	std::string emitter_insName = emitter_comp.getPath ("_",false,true);
-	endPoint->appendChild (this->createSimpleContent ("instance", emitter_insName));
+    // Emitter instance
+    std::string emitter_insName = emitter_comp.getPath ("_",false,true);
+    endPoint->appendChild (this->createSimpleContent ("instance", emitter_insName));
     ele->appendChild (endPoint);
-    
+
     // Consumer endPoint
     endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
     endPoint->appendChild (this->createSimpleContent ("portName",
                                                       consumer.name()));
-	endPoint->appendChild (this->createSimpleContent ("kind",
-		                                              "SimplexReceptacle"));
+    endPoint->appendChild (this->createSimpleContent ("kind",
+                                                      "SimplexReceptacle"));
     // Consumer instance
-	std::string consumer_insName = consumer_comp.getPath ("_",false,true);
-	endPoint->appendChild (this->createSimpleContent ("instance", consumer_insName));
+    std::string consumer_insName = consumer_comp.getPath ("_",false,true);
+    endPoint->appendChild (this->createSimpleContent ("instance", consumer_insName));
     ele->appendChild (endPoint);
-    
+
     this->pop();
   }
 
@@ -782,24 +782,24 @@ namespace PICML
           = this->doc_->createElement (XStr ("internalEndpoint"));
         endPoint->appendChild (this->createSimpleContent ("portName",
                                                           publisher.name()));
-		endPoint->appendChild (this->createSimpleContent ("kind",
-		                                                  "EventPublisher"));
+        endPoint->appendChild (this->createSimpleContent ("kind",
+                                                          "EventPublisher"));
         // Publisher instance
-		std::string publisher_insName = publisher_comp.getPath ("_",false,true);
-	    endPoint->appendChild (this->createSimpleContent ("instance", publisher_insName));
+        std::string publisher_insName = publisher_comp.getPath ("_",false,true);
+        endPoint->appendChild (this->createSimpleContent ("instance", publisher_insName));
         ele->appendChild (endPoint);
 
         // Consumer endPoint
         endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
         endPoint->appendChild (this->createSimpleContent ("portName",
                                                           consumer.name()));
-		endPoint->appendChild (this->createSimpleContent ("kind",
-		                                                  "EventConsumer"));
+        endPoint->appendChild (this->createSimpleContent ("kind",
+                                                          "EventConsumer"));
         // Consumer instance
-		std::string consumer_insName = consumer_comp.getPath ("_",false,true);
-	    endPoint->appendChild (this->createSimpleContent ("instance", consumer_insName));
+        std::string consumer_insName = consumer_comp.getPath ("_",false,true);
+        endPoint->appendChild (this->createSimpleContent ("instance", consumer_insName));
         ele->appendChild (endPoint);
-        
+
         this->pop();
       }
   }
@@ -888,7 +888,7 @@ namespace PICML
   {
     this->push();
     std::string name = this->outputPath_ + "\\";
-	name += dp.name();
+    name += dp.name();
     name += ".cdp";
     this->initTarget (name);
     this->initDocument ("Deployment:deploymentPlan");
@@ -907,9 +907,9 @@ namespace PICML
         }
     }
 
-	const std::set<CollocationGroup> dps = dp.CollocationGroup_children();
-	std::set<PICML::ComponentAssembly> containing_assemblies;
-	MonolithicImplementation mimpl;
+    const std::set<CollocationGroup> dps = dp.CollocationGroup_children();
+    std::set<PICML::ComponentAssembly> containing_assemblies;
+    MonolithicImplementation mimpl;
 
     for (std::set<CollocationGroup>::const_iterator iter = dps.begin();
          iter != dps.end();
@@ -928,70 +928,70 @@ namespace PICML
             NodeReference node_ref = cg_ins.dstInstanceMapping_end();
             const Node ref = node_ref.ref();
             refName = (ref.name());
-			this->initNodeRefName (refName);
+            this->initNodeRefName (refName);
           }
 
         std::set<CollocationGroup_Members_Base> comp_types = cg.members ();
-		for (std::set<CollocationGroup_Members_Base>::const_iterator comp_type_iter = comp_types.begin();
-			 comp_type_iter != comp_types.end (); ++comp_type_iter)
-		  {
+        for (std::set<CollocationGroup_Members_Base>::const_iterator comp_type_iter = comp_types.begin();
+             comp_type_iter != comp_types.end (); ++comp_type_iter)
+          {
             CollocationGroup_Members_Base comp_type = *comp_type_iter;
-			if (Udm::IsDerivedFrom (comp_type.type(), ComponentRef::meta))
-			  {
-			    ComponentRef component_ref = ComponentRef::Cast (comp_type);
-				Component comp = component_ref.ref();
+            if (Udm::IsDerivedFrom (comp_type.type(), ComponentRef::meta))
+              {
+                ComponentRef component_ref = ComponentRef::Cast (comp_type);
+                Component comp = component_ref.ref();
                 containing_assemblies.insert(comp.ComponentAssembly_parent());
-				Component typeParent;
-				if (comp.isInstance())
-				{
-					typeParent = comp.Archetype();
-					while (typeParent.isInstance())
-						typeParent = typeParent.Archetype();
-				}
-				std::string refName = typeParent.name();
-				if (this->monoimpls_.find (refName) != this->monoimpls_.end ())
-				  {
-				    mimpl = this->monoimpls_[refName];
-				  }
-			    this->push ();
-			    DOMElement* ele = this->doc_->createElement (XStr ("instance"));
-				std::string uniqueName = comp.getPath ("_",false,true);
-	            ele->setAttribute (XStr ("id"), XStr (uniqueName));
-				ele->appendChild (this->createSimpleContent ("name", uniqueName));
+                Component typeParent;
+                if (comp.isInstance())
+                  {
+                    typeParent = comp.Archetype();
+                    while (typeParent.isInstance())
+                      typeParent = typeParent.Archetype();
+                  }
+                std::string refName = typeParent.name();
+                if (this->monoimpls_.find (refName) != this->monoimpls_.end ())
+                  {
+                    mimpl = this->monoimpls_[refName];
+                  }
+                this->push ();
+                DOMElement* ele = this->doc_->createElement (XStr ("instance"));
+                std::string uniqueName = comp.getPath ("_",false,true);
+                ele->setAttribute (XStr ("id"), XStr (uniqueName));
+                ele->appendChild (this->createSimpleContent ("name", uniqueName));
                 ele->appendChild (this->createSimpleContent ("node", refName));
-				ele->appendChild (this->doc_->createElement (XStr ("source")));
+                ele->appendChild (this->doc_->createElement (XStr ("source")));
                 this->curr_->appendChild (ele);
-				this->curr_ = ele;
-				std::string mimpl_name = mimpl.getPath ("_",false,true);
-	            this->curr_->appendChild (this->createSimpleContent ("implementation", mimpl_name));
-				const std::set<ConfigProperty> cps = mimpl.dstConfigProperty();
-				for (std::set<ConfigProperty>::const_iterator it2 = cps.begin();
-					it2 != cps.end();
-					++it2)
-				{
-					ConfigProperty cp = *it2;
-					cp.Accept (*this);
-				}
-				this->pop ();
-            }
-		    else if (Udm::IsDerivedFrom (comp_type.type(), ComponentAssemblyReference::meta))
-			  {
-			    ComponentAssemblyReference comp_assembly_ref = ComponentAssemblyReference::Cast (comp_type);
-				ComponentAssembly comp_assembly = comp_assembly_ref.ref ();
-				containing_assemblies.insert(comp_assembly);
-				comp_assembly.Accept (*this);
-			  }
-		  }
-	  }
+                this->curr_ = ele;
+                std::string mimpl_name = mimpl.getPath ("_",false,true);
+                this->curr_->appendChild (this->createSimpleContent ("implementation", mimpl_name));
+                const std::set<ConfigProperty> cps = mimpl.dstConfigProperty();
+                for (std::set<ConfigProperty>::const_iterator it2 = cps.begin();
+                     it2 != cps.end();
+                     ++it2)
+                  {
+                    ConfigProperty cp = *it2;
+                    cp.Accept (*this);
+                  }
+                this->pop ();
+              }
+            else if (Udm::IsDerivedFrom (comp_type.type(), ComponentAssemblyReference::meta))
+              {
+                ComponentAssemblyReference comp_assembly_ref = ComponentAssemblyReference::Cast (comp_type);
+                ComponentAssembly comp_assembly = comp_assembly_ref.ref ();
+                containing_assemblies.insert(comp_assembly);
+                comp_assembly.Accept (*this);
+              }
+          }
+      }
 
     for (std::set<PICML::ComponentAssembly>::const_iterator assembly_iter = containing_assemblies.begin();
-			 assembly_iter != containing_assemblies.end (); ++assembly_iter)
-		{
-			ComponentAssembly component_assembly = *assembly_iter;
-			update_connections (component_assembly);
-		}
+         assembly_iter != containing_assemblies.end (); ++assembly_iter)
+      {
+        ComponentAssembly component_assembly = *assembly_iter;
+        update_connections (component_assembly);
+      }
 
-	{
+    {
       std::set<ImplementationArtifacts>
         folders = this->root_folder_.ImplementationArtifacts_kind_children();
       for (std::set<ImplementationArtifacts>::iterator iter = folders.begin();
@@ -1082,6 +1082,12 @@ namespace PICML
             PublishConnector conn = *iter;
             conn.Accept (*this);
           }
+        this->publishers_.erase (this->publishers_.begin(),
+                                 this->publishers_.end());
+
+        this->consumers_.erase (this->consumers_.begin(),
+                                this->consumers_.end());
+
       }
   }
 
@@ -1115,44 +1121,44 @@ namespace PICML
       }
 
     MonolithicImplementation mimpl;
-	for (std::set<Component>::iterator iter = comps.begin();
+    for (std::set<Component>::iterator iter = comps.begin();
          iter != comps.end();
          ++iter)
       {
-	    Component comp = *iter;
-		Component typeParent;
-		if (comp.isInstance())
-		{
-		  typeParent = comp.Archetype();
-		  while (typeParent.isInstance())
-			typeParent = typeParent.Archetype();
-		}
-		std::string refName = typeParent.name();
-		if (this->monoimpls_.find (refName) != this->monoimpls_.end ())
-		  {
-		    mimpl = this->monoimpls_[refName];
-		  }
-	    this->push ();
-		DOMElement* ele = this->doc_->createElement (XStr ("instance"));
-		std::string uniqueName = comp.getPath ("_",false,true);
-	    ele->setAttribute (XStr ("id"), XStr (uniqueName));
-		ele->appendChild (this->createSimpleContent ("name", uniqueName));
+        Component comp = *iter;
+        Component typeParent;
+        if (comp.isInstance())
+          {
+            typeParent = comp.Archetype();
+            while (typeParent.isInstance())
+              typeParent = typeParent.Archetype();
+          }
+        std::string refName = typeParent.name();
+        if (this->monoimpls_.find (refName) != this->monoimpls_.end ())
+          {
+            mimpl = this->monoimpls_[refName];
+          }
+        this->push ();
+        DOMElement* ele = this->doc_->createElement (XStr ("instance"));
+        std::string uniqueName = comp.getPath ("_",false,true);
+        ele->setAttribute (XStr ("id"), XStr (uniqueName));
+        ele->appendChild (this->createSimpleContent ("name", uniqueName));
         ele->appendChild (this->createSimpleContent ("node", node_reference_name));
-		ele->appendChild (this->doc_->createElement (XStr ("source")));
+        ele->appendChild (this->doc_->createElement (XStr ("source")));
         this->curr_->appendChild (ele);
-		this->curr_ = ele;
-		std::string mimpl_name = mimpl.getPath ("_",false,true);
-	    this->curr_->appendChild (this->createSimpleContent ("implementation", mimpl_name));
-		const std::set<ConfigProperty> cps = mimpl.dstConfigProperty();
-		for (std::set<ConfigProperty>::const_iterator it2 = cps.begin();
-			it2 != cps.end();
-			++it2)
-		{
-			ConfigProperty cp = *it2;
-			cp.Accept (*this);
-		}
-		this->pop ();
-	 } 
+        this->curr_ = ele;
+        std::string mimpl_name = mimpl.getPath ("_",false,true);
+        this->curr_->appendChild (this->createSimpleContent ("implementation", mimpl_name));
+        const std::set<ConfigProperty> cps = mimpl.dstConfigProperty();
+        for (std::set<ConfigProperty>::const_iterator it2 = cps.begin();
+             it2 != cps.end();
+             ++it2)
+          {
+            ConfigProperty cp = *it2;
+            cp.Accept (*this);
+          }
+        this->pop ();
+      }
   }
 
   void FlatPlanVisitor::Visit_MonolithExecParameter(const MonolithExecParameter&)

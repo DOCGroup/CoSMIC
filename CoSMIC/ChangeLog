@@ -1,8 +1,15 @@
+Fri Apr 29 17:12:46 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:  Fixed a bug
+          with duplicate connections being generated when publish
+          connections are used.  Thanks to Jai for reporting the problem.
+
 Thu Apr 28 16:14:46 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xmp:
-        
+
           In the OCL constraint that checks for unique operation names
           over local, inherited, and supported operations, removed the
           inclusion of model elements FactoryOperation and LookupOperation.

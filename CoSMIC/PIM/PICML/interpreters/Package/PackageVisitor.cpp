@@ -1204,6 +1204,12 @@ namespace PICML
             PublishConnector conn = *iter;
             conn.Accept (*this);
           }
+        this->publishers_.erase (this->publishers_.begin(),
+                                 this->publishers_.end());
+
+        this->consumers_.erase (this->consumers_.begin(),
+                                this->consumers_.end());
+
       }
 
     this->pop();
