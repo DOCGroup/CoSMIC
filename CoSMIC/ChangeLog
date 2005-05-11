@@ -1,3 +1,9 @@
+Wed May 11 17:50:59 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:  Fixed a
+          bug with using names outside of scope, which resulted in wrong
+          names getting generated for nodes.
+
 Fri Apr 29 17:12:46 2005  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:

@@ -915,7 +915,7 @@ namespace PICML
          iter != dps.end();
          ++iter)
       {
-        std::string refName;
+        std::string nodeRefName;
         CollocationGroup cg = *iter;
 
         const std::set<InstanceMapping> cg_ins_maps = cg.dstInstanceMapping ();
@@ -927,8 +927,8 @@ namespace PICML
             InstanceMapping cg_ins = *cg_ins_map_iter;
             NodeReference node_ref = cg_ins.dstInstanceMapping_end();
             const Node ref = node_ref.ref();
-            refName = (ref.name());
-            this->initNodeRefName (refName);
+            nodeRefName = ref.name();
+            this->initNodeRefName (nodeRefName);
           }
 
         std::set<CollocationGroup_Members_Base> comp_types = cg.members ();
@@ -958,7 +958,7 @@ namespace PICML
                 std::string uniqueName = comp.getPath ("_",false,true);
                 ele->setAttribute (XStr ("id"), XStr (uniqueName));
                 ele->appendChild (this->createSimpleContent ("name", uniqueName));
-                ele->appendChild (this->createSimpleContent ("node", refName));
+                ele->appendChild (this->createSimpleContent ("node", nodeRefName));
                 ele->appendChild (this->doc_->createElement (XStr ("source")));
                 this->curr_->appendChild (ele);
                 this->curr_ = ele;
