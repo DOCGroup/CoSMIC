@@ -14,6 +14,7 @@ using namespace std;
 
 #define PICML_AGGREGATE_NAME           "Aggregate"
 #define PICML_ALIAS_NAME               "Alias"
+#define PICML_ATTRIBUTE_NAME           "Attribute"
 #define PICML_ATTRIBUTEMEMBER_NAME     "AttributeMember"
 #define PICML_BOOLEAN_NAME             "Boolean"
 #define PICML_BOXED_NAME               "Boxed"
@@ -34,6 +35,7 @@ using namespace std;
 #define PICML_OBJECT_NAME              "Object"
 #define PICML_OUTEVENTPORT_NAME        "OutEventPort"
 #define PICML_PROVIDEDREQUESTPORT_NAME "ProvidedRequestPort"
+#define PICML_READONLYATTRIBUTE_NAME   "ReadonlyAttribute"
 #define PICML_REALNUMBER_NAME          "RealNumber"
 #define PICML_REQUIREDREQUESTPORT_NAME "RequiredRequestPort"
 #define PICML_SHORTINTEGER_NAME        "ShortInteger"

@@ -394,7 +394,12 @@ PortDecorator::LoadBitmap()
                                  ? IDB_BITMAP_RECEPTACLE_RT
                                  : IDB_BITMAP_RECEPTACLE_LF );
     }
-    else m_bitmap.ReadFromResource( IDB_BITMAP_FACET );
+    else if ( bstr == PICML_READONLYATTRIBUTE_NAME ) {
+      m_bitmap.ReadFromResource( IDB_BITMAP_READONLYATTRIBUTE );
+    }
+    else if ( bstr == PICML_ATTRIBUTE_NAME ) {
+      m_bitmap.ReadFromResource( IDB_BITMAP_ATTRIBUTE );
+    }
   }
 }
 
