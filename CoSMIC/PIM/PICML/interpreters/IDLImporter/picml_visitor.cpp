@@ -110,6 +110,13 @@ picml_visitor::visit_predefined_type (AST_PredefinedType *)
 int 
 picml_visitor::visit_module (AST_Module *node)
 {
+  // Checks scope recursively. If only nested modules and forward
+  // decls are found, we can skip importing this node.
+  if (this->can_skip_import (node))
+    {
+      return 0;
+    }
+    
   // Since modules can be reopened in IDL, we create a new DOMElement
   // without checking for previous existence. Since a module cannot
   // be referenced by any other AST node, there's no need to store
@@ -3019,4 +3026,44 @@ picml_visitor::check_for_basic_type (AST_Decl *d, ACE_CString &str)
             break;
         }
     }
+}
+
+// If an IDL module contains only other modules and forward decls,
+// we can skip importing it, and at the same time avoid the
+// 'empty package' constraint violation.
+bool
+picml_visitor::can_skip_import (AST_Module *m)
+{
+  for (UTL_ScopeActiveIterator si (m, UTL_Scope::IK_decls);
+       !si.is_done ();
+       si.next ())
+    {
+      AST_Decl *d = si.item ();
+      AST_Module *nested_m = AST_Module::narrow_from_decl (d);
+      
+      if (nested_m != 0 && !this->can_skip_import (nested_m))
+        {
+          return false;
+        }
+        
+      AST_Decl::NodeType nt = d->node_type ();
+      
+      if (nt == AST_Decl::NT_interface_fwd
+          || nt == AST_Decl::NT_valuetype_fwd
+          || nt == AST_Decl::NT_union_fwd
+          || nt == AST_Decl::NT_struct_fwd
+          || nt == AST_Decl::NT_component_fwd
+          || nt == AST_Decl::NT_eventtype_fwd
+          || nt == AST_Decl::NT_pre_defined
+          || nt == AST_Decl::NT_module)
+        {
+          continue;
+        }
+      else
+        {
+          return false;
+        }
+    }
+    
+  return true;
 }

@@ -1,3 +1,15 @@
+Fri May 13 16:43:15 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.h:
+        
+          Added a check for modules that contain only nested modules
+          and/or forward declarations. Such modules need not be imported
+          into PICML, where forward declarations are not necessary.
+          Skipping the importation of such modules also avoids a PICML
+          constraint violation that checks for an empty Package model
+          element.
+
 Fri May 13 15:38:49 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/decorators/Decorator.rc:

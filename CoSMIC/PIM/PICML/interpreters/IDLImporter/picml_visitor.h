@@ -174,6 +174,7 @@ private:
   void set_one_basic_seq (const char *base_type);
   void check_for_basic_seq (AST_Decl *d, ACE_CString &str);
   void check_for_basic_type (AST_Decl *d, ACE_CString &str);
+  bool can_skip_import (AST_Module *m);
 
 private:
   DOMElement *sub_tree_;
