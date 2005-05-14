@@ -1,3 +1,11 @@
+Sat May 14 16:26:05 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/decorators/IDLMDecorators.cpp:
+        
+          Fixed cut and paste error that was keeping facets from beeing displayed 
+          as ports. Thanks to Krishnakumar B <kitty@nospam.invalid.domain> for
+          pointing out the problem.
+
 Fri May 13 16:43:15 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
