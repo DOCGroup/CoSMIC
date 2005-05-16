@@ -327,6 +327,12 @@ namespace PICML
       ele->appendChild (this->createSimpleContent ("name", node.name()));
       this->curr_->appendChild (ele);
 	  this->curr_ = ele;
+
+	  std::string label = node.label();
+      if (!label.empty())
+	    this->curr_->appendChild (this->createSimpleContent ("label",
+															label));
+
 	  const std::set<Resource> resources = node.Resource_children();
 	  for (std::set<Resource>::const_iterator iter = resources.begin();
            iter != resources.end();
@@ -356,6 +362,12 @@ namespace PICML
       ele->appendChild (this->createSimpleContent ("name", ic.name()));
       this->curr_->appendChild (ele);
 	  this->curr_ = ele;
+
+	  std::string label = ic.label();
+      if (!label.empty())
+	    this->curr_->appendChild (this->createSimpleContent ("label",
+															label));
+
 	  const std::set<Resource> resources = ic.Resource_children();
 	  for (std::set<Resource>::const_iterator iter = resources.begin();
            iter != resources.end();
@@ -397,6 +409,15 @@ namespace PICML
       this->initTarget (name);
       this->initDocument ("Deployment:Domain");
 	  this->initRootAttributes();
+
+	  std::string label = domain.label();
+      if (!label.empty())
+	    this->curr_->appendChild (this->createSimpleContent ("label",
+															label));
+	  std::string uuid = domain.UUID();
+	  if (uuid.empty())
+		uuid = domain.getPath ("_",false,true);
+	  this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
 
 	  const std::set<Node> domain_nodes = domain.Node_kind_children();
 

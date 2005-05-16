@@ -894,6 +894,15 @@ namespace PICML
     this->initDocument ("Deployment:deploymentPlan");
     this->initRootAttributes();
 
+	std::string label = dp.label();
+    if (!label.empty())
+      this->curr_->appendChild (this->createSimpleContent ("label",
+                                                           label));
+    std::string uuid = dp.UUID();
+    if (uuid.empty())
+      uuid = dp.getPath ("_",false,true);
+    this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
+
     { // Extra scopes to avoid clashing for-loop counter variable names
       // with MSVC6's compiler. Yuck!
       std::set<ComponentImplementations>
