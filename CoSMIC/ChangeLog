@@ -1,16 +1,44 @@
+Tue May 17 09:47:48 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/decorators/Decorator.rc:
+        * PIM/PICML/decorators/IDMLDecorators.h:
+        * PIM/PICML/decorators/IDMLDecorators.cpp:
+        * PIM/PICML/decorators/resource.h:
+
+          Added support for displaying the referenced type of a DataType.
+
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Updated to add support for attribute mapping, exposing
+          attributes of a component as ports, and associating property
+          values to both attribute mappings and attributes.  Added a bunch
+          of constraints.
+
+        * PIM/PICML/paradigms/icons/DataType.bmp:
+        * PIM/PICML/paradigms/icons/attribute.bmp:
+        * PIM/PICML/paradigms/icons/readonlyattribute.bmp:
+
+          Updated to make these icons look nicer when used as ports.
+
+        * PIM/PICML/paradigms/icons/ExternalReferenceEndPoint.bmp:
+        * PIM/PICML/paradigms/icons/AttributeMapping.bmp:
+
+          New icons for these new elements in the metamodel.
+
 Sat May 14 16:26:05 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/decorators/IDLMDecorators.cpp:
-        
-          Fixed cut and paste error that was keeping facets from beeing displayed 
-          as ports. Thanks to Krishnakumar B <kitty@nospam.invalid.domain> for
-          pointing out the problem.
+
+          Fixed cut and paste error that was keeping facets from beeing
+          displayed as ports. Thanks to Krishnakumar B
+          <kitty@nospam.invalid.domain> for pointing out the problem.
 
 Fri May 13 16:43:15 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
         * PIM/PICML/interpreters/IDLImporter/picml_visitor.h:
-        
+
           Added a check for modules that contain only nested modules
           and/or forward declarations. Such modules need not be imported
           into PICML, where forward declarations are not necessary.
@@ -24,7 +52,7 @@ Fri May 13 15:38:49 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/decorators/IDMLDecorators.cpp:
         * PIM/PICML/decorators/IDMLDecorators.h:
         * PIM/PICML/decorators/resource.h:
-        
+
           Added capability to draw attributes as ports in a PICML model.
           Future changes to PICML will use this capability, so that a
           Property model element can be connected to the attribute 'port',

@@ -167,7 +167,8 @@ void
 MemberDecorator::LoadBitmap()
 {
   if (m_metaName == PICML_MEMBER_NAME 
-      || m_metaName == PICML_ATTRIBUTEMEMBER_NAME) {
+      || m_metaName == PICML_ATTRIBUTEMEMBER_NAME
+      || m_metaName == PICML_DATATYPE_NAME) {
 	  CComPtr<IMgaFCO> mgaFco = m_mgaFco;
     if ( mgaFco ) {
 		  CComPtr<IMgaReference> ref;
@@ -249,7 +250,11 @@ MemberDecorator::LoadBitmap()
 		  mgaFco = NULL;
     }
     else {
-      m_bitmap.ReadFromResource( IDB_BITMAP_MEMBER );
+      if (m_metaName == PICML_MEMBER_NAME 
+         || m_metaName == PICML_ATTRIBUTEMEMBER_NAME)
+         m_bitmap.ReadFromResource(IDB_BITMAP_MEMBER);
+      else
+        m_bitmap.ReadFromResource(IDB_BITMAP_DATATYPE);
     }
   }
 }
@@ -402,6 +407,9 @@ PortDecorator::LoadBitmap()
     }
     else if ( bstr == PICML_ATTRIBUTE_NAME ) {
       m_bitmap.ReadFromResource( IDB_BITMAP_ATTRIBUTE );
+    }
+    else if (bstr == PICML_ATTRIBUTEMAPPING_NAME) {
+      m_bitmap.ReadFromResource (IDB_BITMAP_ATTRIBUTEMAPPING);
     }
   }
 }

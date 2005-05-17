@@ -131,6 +131,8 @@ IDB_BITMAP_AGGREGATEREF BITMAP                  "..\\paradigms\\icons\\aggregate
 IDB_BITMAP_INHERITS     BITMAP                  "..\\paradigms\\icons\\inherits.bmp"
 IDB_BITMAP_ATTRIBUTE    BITMAP                  "..\\paradigms\\icons\\attribute.bmp"
 IDB_BITMAP_READONLYATTRIBUTE BITMAP                  "..\\paradigms\\icons\\readonlyattribute.bmp"
+IDB_BITMAP_ATTRIBUTEMAPPING BITMAP                  "..\\paradigms\\icons\\AttributeMapping.bmp"
+IDB_BITMAP_DATATYPE     BITMAP                  "..\\paradigms\\icons\\DataType.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
