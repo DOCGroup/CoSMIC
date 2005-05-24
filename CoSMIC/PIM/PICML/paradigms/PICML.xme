@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{322AB1DB-5B9E-4719-9DFA-7059631A6073}" cdate="Mon May 16 13:25:21 2005" mdate="Mon May 16 13:25:21 2005" version="" metaguid="{FEFF5A03-BF64-4567-A10E-EBFCBDD5C475}" metaversion="" metaname="MetaGME">
+<project guid="{2B51AD2F-B368-4062-AA7F-F907DECCFFC7}" cdate="Mon May 16 13:25:21 2005" mdate="Mon May 16 13:25:21 2005" version="" metaguid="{FEFF5A03-BF64-4567-A10E-EBFCBDD5C475}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment></comment>
 	<author></author>
@@ -13,7 +13,7 @@
 				<value></value>
 				<regnode name="ComponentLibraries" isopaque="yes">
 					<value></value>
-					<regnode name="MetaRef" isopaque="yes">
+					<regnode name="MetaRef">
 						<value></value>
 						<regnode name="Project" isopaque="yes">
 							<value>1727</value>
@@ -22,7 +22,7 @@
 				</regnode>
 				<regnode name="ComponentMetrics" isopaque="yes">
 					<value></value>
-					<regnode name="MetaRef" isopaque="yes">
+					<regnode name="MetaRef">
 						<value></value>
 						<regnode name="BenchmarkAnalysis" isopaque="yes">
 							<value>1256</value>
@@ -31,7 +31,7 @@
 				</regnode>
 				<regnode name="DataAnalysis" isopaque="yes">
 					<value></value>
-					<regnode name="MetaRef" isopaque="yes">
+					<regnode name="MetaRef">
 						<value></value>
 						<regnode name="Latency" isopaque="yes">
 							<value>1593</value>
@@ -67,7 +67,7 @@
 				</regnode>
 				<regnode name="InterfaceDefinition" isopaque="yes">
 					<value></value>
-					<regnode name="MetaRef" isopaque="yes">
+					<regnode name="MetaRef">
 						<value></value>
 						<regnode name="Aggregate" isopaque="yes">
 							<value>1200</value>
@@ -124,7 +124,7 @@
 				</regnode>
 				<regnode name="LibraryArtifact" isopaque="yes">
 					<value></value>
-					<regnode name="MetaRef" isopaque="yes">
+					<regnode name="MetaRef">
 						<value></value>
 						<regnode name="ExecutorProject" isopaque="yes">
 							<value>1536</value>
@@ -139,7 +139,7 @@
 				</regnode>
 				<regnode name="NodeMapping" isopaque="yes">
 					<value></value>
-					<regnode name="MetaRef" isopaque="yes">
+					<regnode name="MetaRef">
 						<value></value>
 						<regnode name="DeploymentPlan" isopaque="yes">
 							<value>1440</value>
@@ -148,7 +148,7 @@
 				</regnode>
 				<regnode name="Packaging" isopaque="yes">
 					<value></value>
-					<regnode name="MetaRef" isopaque="yes">
+					<regnode name="MetaRef">
 						<value></value>
 						<regnode name="ArtifactContainer" isopaque="yes">
 							<value>1889</value>
@@ -238,7 +238,7 @@
 				</regnode>
 				<regnode name="RtecConfigAspect" isopaque="yes">
 					<value></value>
-					<regnode name="MetaRef" isopaque="yes">
+					<regnode name="MetaRef">
 						<value></value>
 						<regnode name="EventChannelConfiguration" isopaque="yes">
 							<value>1520</value>
@@ -253,7 +253,7 @@
 				</regnode>
 				<regnode name="Target" isopaque="yes">
 					<value></value>
-					<regnode name="MetaRef" isopaque="yes">
+					<regnode name="MetaRef">
 						<value></value>
 						<regnode name="Bridge" isopaque="yes">
 							<value>1898</value>
@@ -277,7 +277,7 @@
 				</regnode>
 				<regnode name="Workspace" isopaque="yes">
 					<value></value>
-					<regnode name="MetaRef" isopaque="yes">
+					<regnode name="MetaRef">
 						<value></value>
 						<regnode name="MPC" isopaque="yes">
 							<value>1607</value>
@@ -288,7 +288,7 @@
 			<regnode name="AspectOrder" isopaque="yes">
 				<value>valid</value>
 				<regnode name="ComponentLibraries" isopaque="yes">
-					<value>6</value>
+					<value>5</value>
 				</regnode>
 				<regnode name="ComponentMetrics" isopaque="yes">
 					<value>10</value>
@@ -303,10 +303,10 @@
 					<value>1</value>
 				</regnode>
 				<regnode name="LibraryArtifact" isopaque="yes">
-					<value>4</value>
+					<value>3</value>
 				</regnode>
 				<regnode name="NodeMapping" isopaque="yes">
-					<value>3</value>
+					<value>2</value>
 				</regnode>
 				<regnode name="Packaging" isopaque="yes">
 					<value>8</value>
@@ -315,13 +315,13 @@
 					<value>7</value>
 				</regnode>
 				<regnode name="RtecConfigAspect" isopaque="yes">
-					<value>7</value>
+					<value>6</value>
 				</regnode>
 				<regnode name="Target" isopaque="yes">
-					<value>2</value>
+					<value>7</value>
 				</regnode>
 				<regnode name="Workspace" isopaque="yes">
-					<value>5</value>
+					<value>4</value>
 				</regnode>
 			</regnode>
 			<regnode name="AspectSelNames" isopaque="yes">
@@ -457,7 +457,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1279</value>
-					<regnode name="ComponentImplementationContainer" isopaque="yes">
+					<regnode name="ComponentImplementationContainer">
 						<value></value>
 						<regnode name="Capability" isopaque="yes">
 							<value>1398</value>
@@ -487,7 +487,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1171</value>
-					<regnode name="ComponentPropertyDescription" isopaque="yes">
+					<regnode name="ComponentPropertyDescription">
 						<value></value>
 						<regnode name="DataType" isopaque="yes">
 							<value>1432</value>
@@ -499,7 +499,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Property" isopaque="yes">
+					<regnode name="Property">
 						<value></value>
 						<regnode name="DataType" isopaque="yes">
 							<value>1734</value>
@@ -511,7 +511,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="SatisfierProperty" isopaque="yes">
+					<regnode name="SatisfierProperty">
 						<value></value>
 						<regnode name="DataType" isopaque="yes">
 							<value>1778</value>
@@ -559,7 +559,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1075</value>
-					<regnode name="ComponentImplementationContainer" isopaque="yes">
+					<regnode name="ComponentImplementationContainer">
 						<value></value>
 						<regnode name="ImplementationDependency" isopaque="yes">
 							<value>1404</value>
@@ -601,7 +601,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1580</value>
-					<regnode name="ComponentImplementationContainer" isopaque="yes">
+					<regnode name="ComponentImplementationContainer">
 						<value></value>
 						<regnode name="ImplementationRequirement" isopaque="yes">
 							<value>1406</value>
@@ -715,7 +715,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1733</value>
-					<regnode name="ArtifactContainer" isopaque="yes">
+					<regnode name="ArtifactContainer">
 						<value></value>
 						<regnode name="Property" isopaque="yes">
 							<value>1209</value>
@@ -727,7 +727,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="Property" isopaque="yes">
 							<value>1314</value>
@@ -739,7 +739,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ComponentContainer" isopaque="yes">
+					<regnode name="ComponentContainer">
 						<value></value>
 						<regnode name="Property" isopaque="yes">
 							<value>1355</value>
@@ -751,7 +751,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ComponentImplementationContainer" isopaque="yes">
+					<regnode name="ComponentImplementationContainer">
 						<value></value>
 						<regnode name="Property" isopaque="yes">
 							<value>1413</value>
@@ -763,7 +763,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Domain" isopaque="yes">
+					<regnode name="Domain">
 						<value></value>
 						<regnode name="Property" isopaque="yes">
 							<value>1453</value>
@@ -775,7 +775,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ImplementationRequirement" isopaque="yes">
+					<regnode name="ImplementationRequirement">
 						<value></value>
 						<regnode name="Property" isopaque="yes">
 							<value>1581</value>
@@ -787,7 +787,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="PackageConfigurationContainer" isopaque="yes">
+					<regnode name="PackageConfigurationContainer">
 						<value></value>
 						<regnode name="Property" isopaque="yes">
 							<value>1689</value>
@@ -799,7 +799,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="PackageContainer" isopaque="yes">
+					<regnode name="PackageContainer">
 						<value></value>
 						<regnode name="Property" isopaque="yes">
 							<value>1710</value>
@@ -811,7 +811,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Requirement" isopaque="yes">
+					<regnode name="Requirement">
 						<value></value>
 						<regnode name="Property" isopaque="yes">
 							<value>1770</value>
@@ -943,7 +943,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1769</value>
-					<regnode name="ArtifactContainer" isopaque="yes">
+					<regnode name="ArtifactContainer">
 						<value></value>
 						<regnode name="Requirement" isopaque="yes">
 							<value>1210</value>
@@ -955,7 +955,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="Requirement" isopaque="yes">
 							<value>1319</value>
@@ -967,7 +967,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="PackageConfigurationContainer" isopaque="yes">
+					<regnode name="PackageConfigurationContainer">
 						<value></value>
 						<regnode name="Requirement" isopaque="yes">
 							<value>1690</value>
@@ -1045,7 +1045,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1777</value>
-					<regnode name="Capability" isopaque="yes">
+					<regnode name="Capability">
 						<value></value>
 						<regnode name="SatisfierProperty" isopaque="yes">
 							<value>1280</value>
@@ -1057,7 +1057,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Resource" isopaque="yes">
+					<regnode name="Resource">
 						<value></value>
 						<regnode name="SatisfierProperty" isopaque="yes">
 							<value>1774</value>
@@ -1069,7 +1069,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="SharedResource" isopaque="yes">
+					<regnode name="SharedResource">
 						<value></value>
 						<regnode name="SatisfierProperty" isopaque="yes">
 							<value>1788</value>
@@ -1120,7 +1120,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1106</value>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="AssemblyConfigProperty" isopaque="yes">
 							<value>1300</value>
@@ -1150,7 +1150,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1107</value>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="AssemblyDeployRequirement" isopaque="yes">
 							<value>1301</value>
@@ -1180,7 +1180,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1108</value>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="AssemblyselectRequirement" isopaque="yes">
 							<value>1302</value>
@@ -1210,7 +1210,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>2010</value>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="AttributeDelegate" isopaque="yes">
 							<value>2012</value>
@@ -1243,7 +1243,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>2018</value>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="AttributeMapping" isopaque="yes">
 							<value>2019</value>
@@ -1267,7 +1267,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>2023</value>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="AttributeMappingDelegate" isopaque="yes">
 							<value>2024</value>
@@ -1291,7 +1291,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>2017</value>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="AttributeMappingValue" isopaque="yes">
 							<value>2020</value>
@@ -1315,7 +1315,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>2007</value>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="AttributeValue" isopaque="yes">
 							<value>2008</value>
@@ -1360,7 +1360,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1299</value>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="ComponentAssembly" isopaque="yes">
 							<value>1304</value>
@@ -1372,7 +1372,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ComponentImplementationContainer" isopaque="yes">
+					<regnode name="ComponentImplementationContainer">
 						<value></value>
 						<regnode name="ComponentAssembly" isopaque="yes">
 							<value>1399</value>
@@ -1420,7 +1420,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>2004</value>
-					<regnode name="DeploymentPlan" isopaque="yes">
+					<regnode name="DeploymentPlan">
 						<value></value>
 						<regnode name="ComponentAssemblyReference" isopaque="yes">
 							<value>2005</value>
@@ -1444,7 +1444,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1116</value>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="EventSinkDelegate" isopaque="yes">
 							<value>1307</value>
@@ -1474,7 +1474,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1117</value>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="EventSourceDelegate" isopaque="yes">
 							<value>1308</value>
@@ -1504,7 +1504,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1119</value>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="ExternalDelegate" isopaque="yes">
 							<value>1309</value>
@@ -1534,7 +1534,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1069</value>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="ExternalReferenceEndPoint" isopaque="yes">
 							<value>1310</value>
@@ -1564,7 +1564,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1120</value>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="FacetDelegate" isopaque="yes">
 							<value>1311</value>
@@ -1594,7 +1594,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1087</value>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="PublishConnector" isopaque="yes">
 							<value>1316</value>
@@ -1624,7 +1624,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1148</value>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="ReceptacleDelegate" isopaque="yes">
 							<value>1317</value>
@@ -1654,7 +1654,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1156</value>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="deliverTo" isopaque="yes">
 							<value>1320</value>
@@ -1684,7 +1684,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1157</value>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="emit" isopaque="yes">
 							<value>1321</value>
@@ -1714,7 +1714,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1158</value>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="invoke" isopaque="yes">
 							<value>1322</value>
@@ -1744,7 +1744,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1160</value>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="publish" isopaque="yes">
 							<value>1323</value>
@@ -1777,13 +1777,13 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1062</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="Average" isopaque="yes">
 							<value>1229</value>
 						</regnode>
 					</regnode>
-					<regnode name="Latency" isopaque="yes">
+					<regnode name="Latency">
 						<value></value>
 						<regnode name="Average" isopaque="yes">
 							<value>1589</value>
@@ -1792,7 +1792,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Throughput" isopaque="yes">
+					<regnode name="Throughput">
 						<value></value>
 						<regnode name="Average" isopaque="yes">
 							<value>1808</value>
@@ -1828,7 +1828,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1109</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="BenchmarkCharacteristics" isopaque="yes">
 							<value>1230</value>
@@ -1861,7 +1861,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1165</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="CompRef" isopaque="yes">
 							<value>1231</value>
@@ -1891,7 +1891,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1113</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="ComponentOperation" isopaque="yes">
 							<value>1232</value>
@@ -1924,7 +1924,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1173</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="EventRef" isopaque="yes">
 							<value>1234</value>
@@ -1948,7 +1948,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1070</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="FixedIterationBenchmarks" isopaque="yes">
 							<value>1236</value>
@@ -1972,13 +1972,13 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1076</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="Jitter" isopaque="yes">
 							<value>1237</value>
 						</regnode>
 					</regnode>
-					<regnode name="Latency" isopaque="yes">
+					<regnode name="Latency">
 						<value></value>
 						<regnode name="Jitter" isopaque="yes">
 							<value>1590</value>
@@ -1987,7 +1987,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Throughput" isopaque="yes">
+					<regnode name="Throughput">
 						<value></value>
 						<regnode name="Jitter" isopaque="yes">
 							<value>1809</value>
@@ -2026,7 +2026,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1588</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="Latency" isopaque="yes">
 							<value>1238</value>
@@ -2050,13 +2050,13 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1080</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="Maximum" isopaque="yes">
 							<value>1240</value>
 						</regnode>
 					</regnode>
-					<regnode name="Latency" isopaque="yes">
+					<regnode name="Latency">
 						<value></value>
 						<regnode name="Maximum" isopaque="yes">
 							<value>1591</value>
@@ -2065,7 +2065,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Throughput" isopaque="yes">
+					<regnode name="Throughput">
 						<value></value>
 						<regnode name="Maximum" isopaque="yes">
 							<value>1810</value>
@@ -2095,7 +2095,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1134</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="MetricConnection" isopaque="yes">
 							<value>1241</value>
@@ -2119,13 +2119,13 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1081</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="Minimum" isopaque="yes">
 							<value>1242</value>
 						</regnode>
 					</regnode>
-					<regnode name="Latency" isopaque="yes">
+					<regnode name="Latency">
 						<value></value>
 						<regnode name="Minimum" isopaque="yes">
 							<value>1592</value>
@@ -2134,7 +2134,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Throughput" isopaque="yes">
+					<regnode name="Throughput">
 						<value></value>
 						<regnode name="Minimum" isopaque="yes">
 							<value>1811</value>
@@ -2173,7 +2173,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1186</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="OperationRef" isopaque="yes">
 							<value>1244</value>
@@ -2197,7 +2197,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1085</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="PeriodicBenchmarks" isopaque="yes">
 							<value>1245</value>
@@ -2221,7 +2221,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1093</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="Task" isopaque="yes">
 							<value>1246</value>
@@ -2245,7 +2245,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1100</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="TaskSet" isopaque="yes">
 							<value>1247</value>
@@ -2278,7 +2278,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1807</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="Throughput" isopaque="yes">
 							<value>1248</value>
@@ -2302,7 +2302,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1094</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="TimeProbe" isopaque="yes">
 							<value>1249</value>
@@ -2326,7 +2326,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1150</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="TimerConnection" isopaque="yes">
 							<value>1250</value>
@@ -2350,7 +2350,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1151</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="TimerEventSinkConn" isopaque="yes">
 							<value>1251</value>
@@ -2374,7 +2374,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1096</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="TriggerBenchmarks" isopaque="yes">
 							<value>1252</value>
@@ -2398,7 +2398,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1154</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="WorkLoadOperationConnection" isopaque="yes">
 							<value>1254</value>
@@ -2422,7 +2422,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1155</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="WorkloadCharacteristics" isopaque="yes">
 							<value>1255</value>
@@ -2512,7 +2512,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1534</value>
-					<regnode name="Project" isopaque="yes">
+					<regnode name="Project">
 						<value></value>
 						<regnode name="ExecutorProject" isopaque="yes">
 							<value>1721</value>
@@ -2536,7 +2536,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1118</value>
-					<regnode name="Project" isopaque="yes">
+					<regnode name="Project">
 						<value></value>
 						<regnode name="ExtResourceConn" isopaque="yes">
 							<value>1722</value>
@@ -2560,7 +2560,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1175</value>
-					<regnode name="Project" isopaque="yes">
+					<regnode name="Project">
 						<value></value>
 						<regnode name="ExternalResources" isopaque="yes">
 							<value>1723</value>
@@ -2638,7 +2638,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1781</value>
-					<regnode name="Project" isopaque="yes">
+					<regnode name="Project">
 						<value></value>
 						<regnode name="ServantProject" isopaque="yes">
 							<value>1725</value>
@@ -2671,7 +2671,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1791</value>
-					<regnode name="Project" isopaque="yes">
+					<regnode name="Project">
 						<value></value>
 						<regnode name="StubProject" isopaque="yes">
 							<value>1726</value>
@@ -2695,7 +2695,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1101</value>
-					<regnode name="MPC" isopaque="yes">
+					<regnode name="MPC">
 						<value></value>
 						<regnode name="Workspaces" isopaque="yes">
 							<value>1606</value>
@@ -2752,7 +2752,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1166</value>
-					<regnode name="PackageContainer" isopaque="yes">
+					<regnode name="PackageContainer">
 						<value></value>
 						<regnode name="ComponentImplementationReference" isopaque="yes">
 							<value>1703</value>
@@ -2788,7 +2788,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1115</value>
-					<regnode name="ComponentImplementationContainer" isopaque="yes">
+					<regnode name="ComponentImplementationContainer">
 						<value></value>
 						<regnode name="ConfigProperty" isopaque="yes">
 							<value>1401</value>
@@ -2818,7 +2818,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1122</value>
-					<regnode name="ComponentImplementationContainer" isopaque="yes">
+					<regnode name="ComponentImplementationContainer">
 						<value></value>
 						<regnode name="ImplementationCapability" isopaque="yes">
 							<value>1403</value>
@@ -2848,7 +2848,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1123</value>
-					<regnode name="ComponentImplementationContainer" isopaque="yes">
+					<regnode name="ComponentImplementationContainer">
 						<value></value>
 						<regnode name="ImplementationDependsOn" isopaque="yes">
 							<value>1405</value>
@@ -2878,7 +2878,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1124</value>
-					<regnode name="ComponentImplementationContainer" isopaque="yes">
+					<regnode name="ComponentImplementationContainer">
 						<value></value>
 						<regnode name="Implements" isopaque="yes">
 							<value>1407</value>
@@ -2908,7 +2908,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1127</value>
-					<regnode name="ComponentImplementationContainer" isopaque="yes">
+					<regnode name="ComponentImplementationContainer">
 						<value></value>
 						<regnode name="InfoProperty" isopaque="yes">
 							<value>1408</value>
@@ -2938,7 +2938,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1135</value>
-					<regnode name="ComponentImplementationContainer" isopaque="yes">
+					<regnode name="ComponentImplementationContainer">
 						<value></value>
 						<regnode name="MonolithDeployRequirement" isopaque="yes">
 							<value>1409</value>
@@ -2968,7 +2968,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1136</value>
-					<regnode name="ComponentImplementationContainer" isopaque="yes">
+					<regnode name="ComponentImplementationContainer">
 						<value></value>
 						<regnode name="MonolithExecParameter" isopaque="yes">
 							<value>1410</value>
@@ -2998,7 +2998,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1082</value>
-					<regnode name="ComponentImplementationContainer" isopaque="yes">
+					<regnode name="ComponentImplementationContainer">
 						<value></value>
 						<regnode name="MonolithicImplementation" isopaque="yes">
 							<value>1411</value>
@@ -3028,7 +3028,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1137</value>
-					<regnode name="ComponentImplementationContainer" isopaque="yes">
+					<regnode name="ComponentImplementationContainer">
 						<value></value>
 						<regnode name="MonolithprimaryArtifact" isopaque="yes">
 							<value>1412</value>
@@ -3061,7 +3061,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1111</value>
-					<regnode name="ComponentContainer" isopaque="yes">
+					<regnode name="ComponentContainer">
 						<value></value>
 						<regnode name="ComponentConfigProperty" isopaque="yes">
 							<value>1350</value>
@@ -3097,7 +3097,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1112</value>
-					<regnode name="ComponentContainer" isopaque="yes">
+					<regnode name="ComponentContainer">
 						<value></value>
 						<regnode name="ComponentInfoProperty" isopaque="yes">
 							<value>1351</value>
@@ -3127,7 +3127,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1114</value>
-					<regnode name="ComponentContainer" isopaque="yes">
+					<regnode name="ComponentContainer">
 						<value></value>
 						<regnode name="ComponentProperty" isopaque="yes">
 							<value>1352</value>
@@ -3169,7 +3169,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1431</value>
-					<regnode name="ComponentContainer" isopaque="yes">
+					<regnode name="ComponentContainer">
 						<value></value>
 						<regnode name="ComponentPropertyDescription" isopaque="yes">
 							<value>1353</value>
@@ -3208,7 +3208,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1065</value>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="ComponentPackage" isopaque="yes">
 							<value>1305</value>
@@ -3220,7 +3220,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="PackageConfigurationContainer" isopaque="yes">
+					<regnode name="PackageConfigurationContainer">
 						<value></value>
 						<regnode name="ComponentPackage" isopaque="yes">
 							<value>1681</value>
@@ -3232,7 +3232,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="PackageContainer" isopaque="yes">
+					<regnode name="PackageContainer">
 						<value></value>
 						<regnode name="ComponentPackage" isopaque="yes">
 							<value>1704</value>
@@ -3280,7 +3280,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1167</value>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="ComponentPackageReference" isopaque="yes">
 							<value>1306</value>
@@ -3292,7 +3292,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="PackageConfigurationContainer" isopaque="yes">
+					<regnode name="PackageConfigurationContainer">
 						<value></value>
 						<regnode name="ComponentPackageReference" isopaque="yes">
 							<value>1682</value>
@@ -3337,7 +3337,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1121</value>
-					<regnode name="PackageContainer" isopaque="yes">
+					<regnode name="PackageContainer">
 						<value></value>
 						<regnode name="Implementation" isopaque="yes">
 							<value>1706</value>
@@ -3367,7 +3367,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1144</value>
-					<regnode name="PackageContainer" isopaque="yes">
+					<regnode name="PackageContainer">
 						<value></value>
 						<regnode name="PackageConfigProperty" isopaque="yes">
 							<value>1707</value>
@@ -3403,7 +3403,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1145</value>
-					<regnode name="PackageContainer" isopaque="yes">
+					<regnode name="PackageContainer">
 						<value></value>
 						<regnode name="PackageInfoProperty" isopaque="yes">
 							<value>1708</value>
@@ -3433,7 +3433,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1146</value>
-					<regnode name="PackageContainer" isopaque="yes">
+					<regnode name="PackageContainer">
 						<value></value>
 						<regnode name="PackageInterface" isopaque="yes">
 							<value>1709</value>
@@ -3490,7 +3490,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1283</value>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="Component" isopaque="yes">
 							<value>1303</value>
@@ -3502,7 +3502,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="File" isopaque="yes">
+					<regnode name="File">
 						<value></value>
 						<regnode name="Component" isopaque="yes">
 							<value>1549</value>
@@ -3511,7 +3511,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Package" isopaque="yes">
+					<regnode name="Package">
 						<value></value>
 						<regnode name="Component" isopaque="yes">
 							<value>1651</value>
@@ -3565,7 +3565,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1363</value>
-					<regnode name="File" isopaque="yes">
+					<regnode name="File">
 						<value></value>
 						<regnode name="ComponentFactory" isopaque="yes">
 							<value>1550</value>
@@ -3574,7 +3574,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Package" isopaque="yes">
+					<regnode name="Package">
 						<value></value>
 						<regnode name="ComponentFactory" isopaque="yes">
 							<value>1652</value>
@@ -3658,7 +3658,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1168</value>
-					<regnode name="ComponentContainer" isopaque="yes">
+					<regnode name="ComponentContainer">
 						<value></value>
 						<regnode name="ComponentRef" isopaque="yes">
 							<value>1354</value>
@@ -3670,7 +3670,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ComponentImplementationContainer" isopaque="yes">
+					<regnode name="ComponentImplementationContainer">
 						<value></value>
 						<regnode name="ComponentRef" isopaque="yes">
 							<value>1400</value>
@@ -3682,7 +3682,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="DeploymentPlan" isopaque="yes">
+					<regnode name="DeploymentPlan">
 						<value></value>
 						<regnode name="ComponentRef" isopaque="yes">
 							<value>1437</value>
@@ -3691,7 +3691,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="EventChannelConfiguration" isopaque="yes">
+					<regnode name="EventChannelConfiguration">
 						<value></value>
 						<regnode name="ComponentRef" isopaque="yes">
 							<value>1509</value>
@@ -3700,7 +3700,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="File" isopaque="yes">
+					<regnode name="File">
 						<value></value>
 						<regnode name="ComponentRef" isopaque="yes">
 							<value>1551</value>
@@ -3709,7 +3709,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Package" isopaque="yes">
+					<regnode name="Package">
 						<value></value>
 						<regnode name="ComponentRef" isopaque="yes">
 							<value>1653</value>
@@ -3718,7 +3718,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="PackageContainer" isopaque="yes">
+					<regnode name="PackageContainer">
 						<value></value>
 						<regnode name="ComponentRef" isopaque="yes">
 							<value>1705</value>
@@ -3814,7 +3814,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1179</value>
-					<regnode name="Component" isopaque="yes">
+					<regnode name="Component">
 						<value></value>
 						<regnode name="InEventPort" isopaque="yes">
 							<value>1285</value>
@@ -3823,7 +3823,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="InEventPort" isopaque="yes">
 							<value>1312</value>
@@ -3835,7 +3835,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="EventChannelConfiguration" isopaque="yes">
+					<regnode name="EventChannelConfiguration">
 						<value></value>
 						<regnode name="InEventPort" isopaque="yes">
 							<value>1510</value>
@@ -3874,7 +3874,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1133</value>
-					<regnode name="File" isopaque="yes">
+					<regnode name="File">
 						<value></value>
 						<regnode name="ManagesComponent" isopaque="yes">
 							<value>1557</value>
@@ -3883,7 +3883,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Package" isopaque="yes">
+					<regnode name="Package">
 						<value></value>
 						<regnode name="ManagesComponent" isopaque="yes">
 							<value>1658</value>
@@ -3937,7 +3937,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1187</value>
-					<regnode name="Component" isopaque="yes">
+					<regnode name="Component">
 						<value></value>
 						<regnode name="OutEventPort" isopaque="yes">
 							<value>1286</value>
@@ -3946,7 +3946,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="OutEventPort" isopaque="yes">
 							<value>1313</value>
@@ -3958,7 +3958,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="EventChannelConfiguration" isopaque="yes">
+					<regnode name="EventChannelConfiguration">
 						<value></value>
 						<regnode name="OutEventPort" isopaque="yes">
 							<value>1511</value>
@@ -4015,7 +4015,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1191</value>
-					<regnode name="Component" isopaque="yes">
+					<regnode name="Component">
 						<value></value>
 						<regnode name="ProvidedRequestPort" isopaque="yes">
 							<value>1287</value>
@@ -4024,7 +4024,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="ProvidedRequestPort" isopaque="yes">
 							<value>1315</value>
@@ -4036,7 +4036,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="EventChannelConfiguration" isopaque="yes">
+					<regnode name="EventChannelConfiguration">
 						<value></value>
 						<regnode name="ProvidedRequestPort" isopaque="yes">
 							<value>1512</value>
@@ -4084,7 +4084,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1193</value>
-					<regnode name="Component" isopaque="yes">
+					<regnode name="Component">
 						<value></value>
 						<regnode name="RequiredRequestPort" isopaque="yes">
 							<value>1289</value>
@@ -4093,7 +4093,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="RequiredRequestPort" isopaque="yes">
 							<value>1318</value>
@@ -4105,7 +4105,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="EventChannelConfiguration" isopaque="yes">
+					<regnode name="EventChannelConfiguration">
 						<value></value>
 						<regnode name="RequiredRequestPort" isopaque="yes">
 							<value>1517</value>
@@ -4133,7 +4133,7 @@
 			</regnode>
 			<regnode name="multiple_connections-25-BooleanAttribute" isopaque="yes">
 				<value></value>
-				<regnode name="MetaRef" isopaque="yes">
+				<regnode name="MetaRef">
 					<value></value>
 					<regnode name="RequiredRequestPort" isopaque="yes">
 						<value>1194</value>
@@ -4148,7 +4148,7 @@
 			</regnode>
 			<regnode name="single_destination-26-BooleanAttribute" isopaque="yes">
 				<value></value>
-				<regnode name="MetaRef" isopaque="yes">
+				<regnode name="MetaRef">
 					<value></value>
 					<regnode name="OutEventPort" isopaque="yes">
 						<value>1188</value>
@@ -4180,7 +4180,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1099</value>
-					<regnode name="DeploymentPlan" isopaque="yes">
+					<regnode name="DeploymentPlan">
 						<value></value>
 						<regnode name="CollocationGroup" isopaque="yes">
 							<value>1436</value>
@@ -4216,7 +4216,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1128</value>
-					<regnode name="DeploymentPlan" isopaque="yes">
+					<regnode name="DeploymentPlan">
 						<value></value>
 						<regnode name="InstanceMapping" isopaque="yes">
 							<value>1438</value>
@@ -4243,7 +4243,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1110</value>
-					<regnode name="Domain" isopaque="yes">
+					<regnode name="Domain">
 						<value></value>
 						<regnode name="Bridge2Interconnect" isopaque="yes">
 							<value>1447</value>
@@ -4279,7 +4279,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1129</value>
-					<regnode name="Domain" isopaque="yes">
+					<regnode name="Domain">
 						<value></value>
 						<regnode name="Interconnect2Bridge" isopaque="yes">
 							<value>1449</value>
@@ -4309,7 +4309,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1130</value>
-					<regnode name="Domain" isopaque="yes">
+					<regnode name="Domain">
 						<value></value>
 						<regnode name="Interconnect2Node" isopaque="yes">
 							<value>1450</value>
@@ -4339,7 +4339,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1138</value>
-					<regnode name="Domain" isopaque="yes">
+					<regnode name="Domain">
 						<value></value>
 						<regnode name="Node2Interconnect" isopaque="yes">
 							<value>1452</value>
@@ -4369,7 +4369,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1149</value>
-					<regnode name="Domain" isopaque="yes">
+					<regnode name="Domain">
 						<value></value>
 						<regnode name="Shares" isopaque="yes">
 							<value>1455</value>
@@ -4408,7 +4408,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1066</value>
-					<regnode name="RTEC_Proxy_Supplier" isopaque="yes">
+					<regnode name="RTEC_Proxy_Supplier">
 						<value></value>
 						<regnode name="ConjunctionGroup" isopaque="yes">
 							<value>1748</value>
@@ -4432,7 +4432,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1067</value>
-					<regnode name="RTEC_Proxy_Supplier" isopaque="yes">
+					<regnode name="RTEC_Proxy_Supplier">
 						<value></value>
 						<regnode name="DisjunctionGroup" isopaque="yes">
 							<value>1749</value>
@@ -4588,7 +4588,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1125</value>
-					<regnode name="RTEC_Proxy_Supplier" isopaque="yes">
+					<regnode name="RTEC_Proxy_Supplier">
 						<value></value>
 						<regnode name="Include_RTEC_Filter_Group" isopaque="yes">
 							<value>1750</value>
@@ -4612,7 +4612,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1126</value>
-					<regnode name="RTEC_Proxy_Supplier" isopaque="yes">
+					<regnode name="RTEC_Proxy_Supplier">
 						<value></value>
 						<regnode name="Include_RT_Info" isopaque="yes">
 							<value>1751</value>
@@ -4636,7 +4636,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1078</value>
-					<regnode name="RTEC_Proxy_Supplier" isopaque="yes">
+					<regnode name="RTEC_Proxy_Supplier">
 						<value></value>
 						<regnode name="LogicalANDGroup" isopaque="yes">
 							<value>1752</value>
@@ -4660,7 +4660,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1083</value>
-					<regnode name="RTEC_Proxy_Consumer" isopaque="yes">
+					<regnode name="RTEC_Proxy_Consumer">
 						<value></value>
 						<regnode name="Null_RT_Info" isopaque="yes">
 							<value>1738</value>
@@ -4669,7 +4669,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="RTEC_Proxy_Supplier" isopaque="yes">
+					<regnode name="RTEC_Proxy_Supplier">
 						<value></value>
 						<regnode name="Null_RT_Info" isopaque="yes">
 							<value>1753</value>
@@ -4699,7 +4699,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1147</value>
-					<regnode name="EventChannelConfiguration" isopaque="yes">
+					<regnode name="EventChannelConfiguration">
 						<value></value>
 						<regnode name="RTEC_Connection" isopaque="yes">
 							<value>1513</value>
@@ -4732,7 +4732,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1737</value>
-					<regnode name="EventChannelConfiguration" isopaque="yes">
+					<regnode name="EventChannelConfiguration">
 						<value></value>
 						<regnode name="RTEC_Proxy_Consumer" isopaque="yes">
 							<value>1514</value>
@@ -4765,7 +4765,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1747</value>
-					<regnode name="EventChannelConfiguration" isopaque="yes">
+					<regnode name="EventChannelConfiguration">
 						<value></value>
 						<regnode name="RTEC_Proxy_Supplier" isopaque="yes">
 							<value>1515</value>
@@ -4789,7 +4789,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1088</value>
-					<regnode name="EventChannelConfiguration" isopaque="yes">
+					<regnode name="EventChannelConfiguration">
 						<value></value>
 						<regnode name="RTEC_Resource_Factory" isopaque="yes">
 							<value>1516</value>
@@ -4813,7 +4813,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1192</value>
-					<regnode name="RTEC_Proxy_Consumer" isopaque="yes">
+					<regnode name="RTEC_Proxy_Consumer">
 						<value></value>
 						<regnode name="RTEC_Resource_Factory_Reference" isopaque="yes">
 							<value>1739</value>
@@ -4837,7 +4837,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1089</value>
-					<regnode name="RTEC_Proxy_Consumer" isopaque="yes">
+					<regnode name="RTEC_Proxy_Consumer">
 						<value></value>
 						<regnode name="RT_Info" isopaque="yes">
 							<value>1740</value>
@@ -4846,7 +4846,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="RTEC_Proxy_Supplier" isopaque="yes">
+					<regnode name="RTEC_Proxy_Supplier">
 						<value></value>
 						<regnode name="RT_Info" isopaque="yes">
 							<value>1754</value>
@@ -4876,7 +4876,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1152</value>
-					<regnode name="EventChannelConfiguration" isopaque="yes">
+					<regnode name="EventChannelConfiguration">
 						<value></value>
 						<regnode name="Use_RTEC_Filter" isopaque="yes">
 							<value>1518</value>
@@ -4900,7 +4900,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1153</value>
-					<regnode name="EventChannelConfiguration" isopaque="yes">
+					<regnode name="EventChannelConfiguration">
 						<value></value>
 						<regnode name="Use_RT_Info" isopaque="yes">
 							<value>1519</value>
@@ -4909,7 +4909,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="RTEC_Proxy_Consumer" isopaque="yes">
+					<regnode name="RTEC_Proxy_Consumer">
 						<value></value>
 						<regnode name="Use_RT_Info" isopaque="yes">
 							<value>1741</value>
@@ -5035,7 +5035,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>2026</value>
-					<regnode name="ArtifactContainer" isopaque="yes">
+					<regnode name="ArtifactContainer">
 						<value></value>
 						<regnode name="ArtifactDependency" isopaque="yes">
 							<value>2027</value>
@@ -5059,7 +5059,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1102</value>
-					<regnode name="ArtifactContainer" isopaque="yes">
+					<regnode name="ArtifactContainer">
 						<value></value>
 						<regnode name="ArtifactDependsOn" isopaque="yes">
 							<value>1203</value>
@@ -5089,7 +5089,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1103</value>
-					<regnode name="ArtifactContainer" isopaque="yes">
+					<regnode name="ArtifactContainer">
 						<value></value>
 						<regnode name="ArtifactDeployRequirement" isopaque="yes">
 							<value>1204</value>
@@ -5119,7 +5119,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1104</value>
-					<regnode name="ArtifactContainer" isopaque="yes">
+					<regnode name="ArtifactContainer">
 						<value></value>
 						<regnode name="ArtifactExecParameter" isopaque="yes">
 							<value>1205</value>
@@ -5149,7 +5149,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1105</value>
-					<regnode name="ArtifactContainer" isopaque="yes">
+					<regnode name="ArtifactContainer">
 						<value></value>
 						<regnode name="ArtifactInfoProperty" isopaque="yes">
 							<value>1206</value>
@@ -5179,7 +5179,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1074</value>
-					<regnode name="ArtifactContainer" isopaque="yes">
+					<regnode name="ArtifactContainer">
 						<value></value>
 						<regnode name="ImplementationArtifact" isopaque="yes">
 							<value>1207</value>
@@ -5191,7 +5191,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Project" isopaque="yes">
+					<regnode name="Project">
 						<value></value>
 						<regnode name="ImplementationArtifact" isopaque="yes">
 							<value>1724</value>
@@ -5215,7 +5215,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1178</value>
-					<regnode name="ArtifactContainer" isopaque="yes">
+					<regnode name="ArtifactContainer">
 						<value></value>
 						<regnode name="ImplementationArtifactReference" isopaque="yes">
 							<value>1208</value>
@@ -5227,7 +5227,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ComponentImplementationContainer" isopaque="yes">
+					<regnode name="ComponentImplementationContainer">
 						<value></value>
 						<regnode name="ImplementationArtifactReference" isopaque="yes">
 							<value>1402</value>
@@ -5239,7 +5239,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ExecutorProject" isopaque="yes">
+					<regnode name="ExecutorProject">
 						<value></value>
 						<regnode name="ImplementationArtifactReference" isopaque="yes">
 							<value>1535</value>
@@ -5248,7 +5248,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ServantProject" isopaque="yes">
+					<regnode name="ServantProject">
 						<value></value>
 						<regnode name="ImplementationArtifactReference" isopaque="yes">
 							<value>1783</value>
@@ -5257,7 +5257,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="StubProject" isopaque="yes">
+					<regnode name="StubProject">
 						<value></value>
 						<regnode name="ImplementationArtifactReference" isopaque="yes">
 							<value>1793</value>
@@ -5371,7 +5371,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1220</value>
-					<regnode name="Component" isopaque="yes">
+					<regnode name="Component">
 						<value></value>
 						<regnode name="Attribute" isopaque="yes">
 							<value>1284</value>
@@ -5380,7 +5380,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="Attribute" isopaque="yes">
 							<value>2011</value>
@@ -5389,7 +5389,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ComponentFactory" isopaque="yes">
+					<regnode name="ComponentFactory">
 						<value></value>
 						<regnode name="Attribute" isopaque="yes">
 							<value>1366</value>
@@ -5398,7 +5398,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Event" isopaque="yes">
+					<regnode name="Event">
 						<value></value>
 						<regnode name="Attribute" isopaque="yes">
 							<value>1475</value>
@@ -5407,7 +5407,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Object" isopaque="yes">
+					<regnode name="Object">
 						<value></value>
 						<regnode name="Attribute" isopaque="yes">
 							<value>1619</value>
@@ -5416,7 +5416,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ValueObject" isopaque="yes">
+					<regnode name="ValueObject">
 						<value></value>
 						<regnode name="Attribute" isopaque="yes">
 							<value>1841</value>
@@ -5485,7 +5485,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1162</value>
-					<regnode name="Attribute" isopaque="yes">
+					<regnode name="Attribute">
 						<value></value>
 						<regnode name="AttributeMember" isopaque="yes">
 							<value>1221</value>
@@ -5494,7 +5494,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ReadonlyAttribute" isopaque="yes">
+					<regnode name="ReadonlyAttribute">
 						<value></value>
 						<regnode name="AttributeMember" isopaque="yes">
 							<value>1764</value>
@@ -5539,13 +5539,13 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1471</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="Event" isopaque="yes">
 							<value>1233</value>
 						</regnode>
 					</regnode>
-					<regnode name="File" isopaque="yes">
+					<regnode name="File">
 						<value></value>
 						<regnode name="Event" isopaque="yes">
 							<value>1554</value>
@@ -5554,7 +5554,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Package" isopaque="yes">
+					<regnode name="Package">
 						<value></value>
 						<regnode name="Event" isopaque="yes">
 							<value>1656</value>
@@ -5599,7 +5599,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1177</value>
-					<regnode name="Attribute" isopaque="yes">
+					<regnode name="Attribute">
 						<value></value>
 						<regnode name="GetException" isopaque="yes">
 							<value>1222</value>
@@ -5608,7 +5608,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ReadonlyAttribute" isopaque="yes">
+					<regnode name="ReadonlyAttribute">
 						<value></value>
 						<regnode name="GetException" isopaque="yes">
 							<value>1765</value>
@@ -5665,7 +5665,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1181</value>
-					<regnode name="ComponentFactory" isopaque="yes">
+					<regnode name="ComponentFactory">
 						<value></value>
 						<regnode name="Inherits" isopaque="yes">
 							<value>1372</value>
@@ -5674,7 +5674,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Event" isopaque="yes">
+					<regnode name="Event">
 						<value></value>
 						<regnode name="Inherits" isopaque="yes">
 							<value>1481</value>
@@ -5683,7 +5683,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Object" isopaque="yes">
+					<regnode name="Object">
 						<value></value>
 						<regnode name="Inherits" isopaque="yes">
 							<value>1624</value>
@@ -5692,7 +5692,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ValueObject" isopaque="yes">
+					<regnode name="ValueObject">
 						<value></value>
 						<regnode name="Inherits" isopaque="yes">
 							<value>1847</value>
@@ -5743,7 +5743,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1183</value>
-					<regnode name="ComponentFactory" isopaque="yes">
+					<regnode name="ComponentFactory">
 						<value></value>
 						<regnode name="LookupKey" isopaque="yes">
 							<value>1373</value>
@@ -5767,7 +5767,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1132</value>
-					<regnode name="Event" isopaque="yes">
+					<regnode name="Event">
 						<value></value>
 						<regnode name="MakeMemberPrivate" isopaque="yes">
 							<value>1482</value>
@@ -5776,7 +5776,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ValueObject" isopaque="yes">
+					<regnode name="ValueObject">
 						<value></value>
 						<regnode name="MakeMemberPrivate" isopaque="yes">
 							<value>1848</value>
@@ -5821,7 +5821,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1614</value>
-					<regnode name="File" isopaque="yes">
+					<regnode name="File">
 						<value></value>
 						<regnode name="Object" isopaque="yes">
 							<value>1558</value>
@@ -5830,7 +5830,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Package" isopaque="yes">
+					<regnode name="Package">
 						<value></value>
 						<regnode name="Object" isopaque="yes">
 							<value>1659</value>
@@ -5860,7 +5860,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1086</value>
-					<regnode name="Event" isopaque="yes">
+					<regnode name="Event">
 						<value></value>
 						<regnode name="PrivateFlag" isopaque="yes">
 							<value>1485</value>
@@ -5869,7 +5869,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ValueObject" isopaque="yes">
+					<regnode name="ValueObject">
 						<value></value>
 						<regnode name="PrivateFlag" isopaque="yes">
 							<value>1851</value>
@@ -5938,7 +5938,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1763</value>
-					<regnode name="Component" isopaque="yes">
+					<regnode name="Component">
 						<value></value>
 						<regnode name="ReadonlyAttribute" isopaque="yes">
 							<value>1288</value>
@@ -5947,7 +5947,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ComponentAssembly" isopaque="yes">
+					<regnode name="ComponentAssembly">
 						<value></value>
 						<regnode name="ReadonlyAttribute" isopaque="yes">
 							<value>2013</value>
@@ -5956,7 +5956,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ComponentFactory" isopaque="yes">
+					<regnode name="ComponentFactory">
 						<value></value>
 						<regnode name="ReadonlyAttribute" isopaque="yes">
 							<value>1376</value>
@@ -5965,7 +5965,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Event" isopaque="yes">
+					<regnode name="Event">
 						<value></value>
 						<regnode name="ReadonlyAttribute" isopaque="yes">
 							<value>1486</value>
@@ -5974,7 +5974,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Object" isopaque="yes">
+					<regnode name="Object">
 						<value></value>
 						<regnode name="ReadonlyAttribute" isopaque="yes">
 							<value>1626</value>
@@ -5983,7 +5983,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ValueObject" isopaque="yes">
+					<regnode name="ValueObject">
 						<value></value>
 						<regnode name="ReadonlyAttribute" isopaque="yes">
 							<value>1852</value>
@@ -6046,7 +6046,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1196</value>
-					<regnode name="Attribute" isopaque="yes">
+					<regnode name="Attribute">
 						<value></value>
 						<regnode name="SetException" isopaque="yes">
 							<value>1223</value>
@@ -6097,7 +6097,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1197</value>
-					<regnode name="Component" isopaque="yes">
+					<regnode name="Component">
 						<value></value>
 						<regnode name="Supports" isopaque="yes">
 							<value>1290</value>
@@ -6106,7 +6106,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ComponentFactory" isopaque="yes">
+					<regnode name="ComponentFactory">
 						<value></value>
 						<regnode name="Supports" isopaque="yes">
 							<value>1377</value>
@@ -6115,7 +6115,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Event" isopaque="yes">
+					<regnode name="Event">
 						<value></value>
 						<regnode name="Supports" isopaque="yes">
 							<value>1487</value>
@@ -6124,7 +6124,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ValueObject" isopaque="yes">
+					<regnode name="ValueObject">
 						<value></value>
 						<regnode name="Supports" isopaque="yes">
 							<value>1853</value>
@@ -6181,7 +6181,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1837</value>
-					<regnode name="File" isopaque="yes">
+					<regnode name="File">
 						<value></value>
 						<regnode name="ValueObject" isopaque="yes">
 							<value>1561</value>
@@ -6190,7 +6190,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Package" isopaque="yes">
+					<regnode name="Package">
 						<value></value>
 						<regnode name="ValueObject" isopaque="yes">
 							<value>1662</value>
@@ -6218,7 +6218,7 @@
 			</regnode>
 			<regnode name="abstract-53-BooleanAttribute" isopaque="yes">
 				<value></value>
-				<regnode name="MetaRef" isopaque="yes">
+				<regnode name="MetaRef">
 					<value></value>
 					<regnode name="Event" isopaque="yes">
 						<value>1472</value>
@@ -6233,7 +6233,7 @@
 			</regnode>
 			<regnode name="local-56-BooleanAttribute" isopaque="yes">
 				<value></value>
-				<regnode name="MetaRef" isopaque="yes">
+				<regnode name="MetaRef">
 					<value></value>
 					<regnode name="Object" isopaque="yes">
 						<value>1616</value>
@@ -6286,7 +6286,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1169</value>
-					<regnode name="ComponentFactory" isopaque="yes">
+					<regnode name="ComponentFactory">
 						<value></value>
 						<regnode name="Constant" isopaque="yes">
 							<value>1368</value>
@@ -6295,7 +6295,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Event" isopaque="yes">
+					<regnode name="Event">
 						<value></value>
 						<regnode name="Constant" isopaque="yes">
 							<value>1477</value>
@@ -6304,7 +6304,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="File" isopaque="yes">
+					<regnode name="File">
 						<value></value>
 						<regnode name="Constant" isopaque="yes">
 							<value>1552</value>
@@ -6313,7 +6313,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Object" isopaque="yes">
+					<regnode name="Object">
 						<value></value>
 						<regnode name="Constant" isopaque="yes">
 							<value>1621</value>
@@ -6322,7 +6322,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Package" isopaque="yes">
+					<regnode name="Package">
 						<value></value>
 						<regnode name="Constant" isopaque="yes">
 							<value>1654</value>
@@ -6331,7 +6331,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ValueObject" isopaque="yes">
+					<regnode name="ValueObject">
 						<value></value>
 						<regnode name="Constant" isopaque="yes">
 							<value>1843</value>
@@ -6424,7 +6424,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1530</value>
-					<regnode name="ComponentFactory" isopaque="yes">
+					<regnode name="ComponentFactory">
 						<value></value>
 						<regnode name="Exception" isopaque="yes">
 							<value>1370</value>
@@ -6433,7 +6433,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Event" isopaque="yes">
+					<regnode name="Event">
 						<value></value>
 						<regnode name="Exception" isopaque="yes">
 							<value>1479</value>
@@ -6442,7 +6442,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="File" isopaque="yes">
+					<regnode name="File">
 						<value></value>
 						<regnode name="Exception" isopaque="yes">
 							<value>1555</value>
@@ -6451,7 +6451,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Object" isopaque="yes">
+					<regnode name="Object">
 						<value></value>
 						<regnode name="Exception" isopaque="yes">
 							<value>1623</value>
@@ -6460,7 +6460,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Package" isopaque="yes">
+					<regnode name="Package">
 						<value></value>
 						<regnode name="Exception" isopaque="yes">
 							<value>1657</value>
@@ -6469,7 +6469,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ValueObject" isopaque="yes">
+					<regnode name="ValueObject">
 						<value></value>
 						<regnode name="Exception" isopaque="yes">
 							<value>1845</value>
@@ -6544,7 +6544,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1174</value>
-					<regnode name="FactoryOperation" isopaque="yes">
+					<regnode name="FactoryOperation">
 						<value></value>
 						<regnode name="ExceptionRef" isopaque="yes">
 							<value>1539</value>
@@ -6553,7 +6553,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="LookupOperation" isopaque="yes">
+					<regnode name="LookupOperation">
 						<value></value>
 						<regnode name="ExceptionRef" isopaque="yes">
 							<value>1599</value>
@@ -6562,7 +6562,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="TwowayOperation" isopaque="yes">
+					<regnode name="TwowayOperation">
 						<value></value>
 						<regnode name="ExceptionRef" isopaque="yes">
 							<value>1826</value>
@@ -6625,7 +6625,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1176</value>
-					<regnode name="File" isopaque="yes">
+					<regnode name="File">
 						<value></value>
 						<regnode name="FileRef" isopaque="yes">
 							<value>1556</value>
@@ -6634,7 +6634,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ServantProject" isopaque="yes">
+					<regnode name="ServantProject">
 						<value></value>
 						<regnode name="FileRef" isopaque="yes">
 							<value>1782</value>
@@ -6643,7 +6643,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="StubProject" isopaque="yes">
+					<regnode name="StubProject">
 						<value></value>
 						<regnode name="FileRef" isopaque="yes">
 							<value>1792</value>
@@ -6700,7 +6700,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1646</value>
-					<regnode name="File" isopaque="yes">
+					<regnode name="File">
 						<value></value>
 						<regnode name="Package" isopaque="yes">
 							<value>1559</value>
@@ -6709,7 +6709,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Package" isopaque="yes">
+					<regnode name="Package">
 						<value></value>
 						<regnode name="Package" isopaque="yes">
 							<value>1660</value>
@@ -6737,7 +6737,7 @@
 			</regnode>
 			<regnode name="value-b3-FieldAttribute" isopaque="yes">
 				<value></value>
-				<regnode name="MetaRef" isopaque="yes">
+				<regnode name="MetaRef">
 					<value></value>
 					<regnode name="Constant" isopaque="yes">
 						<value>1170</value>
@@ -6808,7 +6808,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1198</value>
-					<regnode name="ComponentFactory" isopaque="yes">
+					<regnode name="ComponentFactory">
 						<value></value>
 						<regnode name="Aggregate" isopaque="yes">
 							<value>1364</value>
@@ -6817,7 +6817,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Event" isopaque="yes">
+					<regnode name="Event">
 						<value></value>
 						<regnode name="Aggregate" isopaque="yes">
 							<value>1473</value>
@@ -6826,7 +6826,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="File" isopaque="yes">
+					<regnode name="File">
 						<value></value>
 						<regnode name="Aggregate" isopaque="yes">
 							<value>1545</value>
@@ -6835,7 +6835,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Object" isopaque="yes">
+					<regnode name="Object">
 						<value></value>
 						<regnode name="Aggregate" isopaque="yes">
 							<value>1617</value>
@@ -6844,7 +6844,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Package" isopaque="yes">
+					<regnode name="Package">
 						<value></value>
 						<regnode name="Aggregate" isopaque="yes">
 							<value>1647</value>
@@ -6853,7 +6853,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ValueObject" isopaque="yes">
+					<regnode name="ValueObject">
 						<value></value>
 						<regnode name="Aggregate" isopaque="yes">
 							<value>1839</value>
@@ -6946,7 +6946,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1161</value>
-					<regnode name="ComponentFactory" isopaque="yes">
+					<regnode name="ComponentFactory">
 						<value></value>
 						<regnode name="Alias" isopaque="yes">
 							<value>1365</value>
@@ -6955,7 +6955,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Event" isopaque="yes">
+					<regnode name="Event">
 						<value></value>
 						<regnode name="Alias" isopaque="yes">
 							<value>1474</value>
@@ -6964,7 +6964,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="File" isopaque="yes">
+					<regnode name="File">
 						<value></value>
 						<regnode name="Alias" isopaque="yes">
 							<value>1546</value>
@@ -6973,7 +6973,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Object" isopaque="yes">
+					<regnode name="Object">
 						<value></value>
 						<regnode name="Alias" isopaque="yes">
 							<value>1618</value>
@@ -6982,7 +6982,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Package" isopaque="yes">
+					<regnode name="Package">
 						<value></value>
 						<regnode name="Alias" isopaque="yes">
 							<value>1648</value>
@@ -6991,7 +6991,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ValueObject" isopaque="yes">
+					<regnode name="ValueObject">
 						<value></value>
 						<regnode name="Alias" isopaque="yes">
 							<value>1840</value>
@@ -7060,7 +7060,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1163</value>
-					<regnode name="File" isopaque="yes">
+					<regnode name="File">
 						<value></value>
 						<regnode name="Boxed" isopaque="yes">
 							<value>1547</value>
@@ -7069,7 +7069,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Package" isopaque="yes">
+					<regnode name="Package">
 						<value></value>
 						<regnode name="Boxed" isopaque="yes">
 							<value>1649</value>
@@ -7138,7 +7138,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1164</value>
-					<regnode name="ComponentFactory" isopaque="yes">
+					<regnode name="ComponentFactory">
 						<value></value>
 						<regnode name="Collection" isopaque="yes">
 							<value>1367</value>
@@ -7147,7 +7147,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Event" isopaque="yes">
+					<regnode name="Event">
 						<value></value>
 						<regnode name="Collection" isopaque="yes">
 							<value>1476</value>
@@ -7156,7 +7156,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="File" isopaque="yes">
+					<regnode name="File">
 						<value></value>
 						<regnode name="Collection" isopaque="yes">
 							<value>1548</value>
@@ -7165,7 +7165,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Object" isopaque="yes">
+					<regnode name="Object">
 						<value></value>
 						<regnode name="Collection" isopaque="yes">
 							<value>1620</value>
@@ -7174,7 +7174,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Package" isopaque="yes">
+					<regnode name="Package">
 						<value></value>
 						<regnode name="Collection" isopaque="yes">
 							<value>1650</value>
@@ -7183,7 +7183,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ValueObject" isopaque="yes">
+					<regnode name="ValueObject">
 						<value></value>
 						<regnode name="Collection" isopaque="yes">
 							<value>1842</value>
@@ -7246,7 +7246,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1172</value>
-					<regnode name="SwitchedAggregate" isopaque="yes">
+					<regnode name="SwitchedAggregate">
 						<value></value>
 						<regnode name="Discriminator" isopaque="yes">
 							<value>1798</value>
@@ -7309,7 +7309,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1467</value>
-					<regnode name="ComponentFactory" isopaque="yes">
+					<regnode name="ComponentFactory">
 						<value></value>
 						<regnode name="Enum" isopaque="yes">
 							<value>1369</value>
@@ -7318,7 +7318,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Event" isopaque="yes">
+					<regnode name="Event">
 						<value></value>
 						<regnode name="Enum" isopaque="yes">
 							<value>1478</value>
@@ -7327,7 +7327,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="File" isopaque="yes">
+					<regnode name="File">
 						<value></value>
 						<regnode name="Enum" isopaque="yes">
 							<value>1553</value>
@@ -7336,7 +7336,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Object" isopaque="yes">
+					<regnode name="Object">
 						<value></value>
 						<regnode name="Enum" isopaque="yes">
 							<value>1622</value>
@@ -7345,7 +7345,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Package" isopaque="yes">
+					<regnode name="Package">
 						<value></value>
 						<regnode name="Enum" isopaque="yes">
 							<value>1655</value>
@@ -7354,7 +7354,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ValueObject" isopaque="yes">
+					<regnode name="ValueObject">
 						<value></value>
 						<regnode name="Enum" isopaque="yes">
 							<value>1844</value>
@@ -7408,7 +7408,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1068</value>
-					<regnode name="Enum" isopaque="yes">
+					<regnode name="Enum">
 						<value></value>
 						<regnode name="EnumValue" isopaque="yes">
 							<value>1468</value>
@@ -7432,7 +7432,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1077</value>
-					<regnode name="SwitchedAggregate" isopaque="yes">
+					<regnode name="SwitchedAggregate">
 						<value></value>
 						<regnode name="Label" isopaque="yes">
 							<value>1799</value>
@@ -7456,7 +7456,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1131</value>
-					<regnode name="SwitchedAggregate" isopaque="yes">
+					<regnode name="SwitchedAggregate">
 						<value></value>
 						<regnode name="LabelConnection" isopaque="yes">
 							<value>1800</value>
@@ -7513,7 +7513,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1184</value>
-					<regnode name="Aggregate" isopaque="yes">
+					<regnode name="Aggregate">
 						<value></value>
 						<regnode name="Member" isopaque="yes">
 							<value>1199</value>
@@ -7522,7 +7522,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Event" isopaque="yes">
+					<regnode name="Event">
 						<value></value>
 						<regnode name="Member" isopaque="yes">
 							<value>1483</value>
@@ -7531,7 +7531,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Exception" isopaque="yes">
+					<regnode name="Exception">
 						<value></value>
 						<regnode name="Member" isopaque="yes">
 							<value>1531</value>
@@ -7540,7 +7540,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="SwitchedAggregate" isopaque="yes">
+					<regnode name="SwitchedAggregate">
 						<value></value>
 						<regnode name="Member" isopaque="yes">
 							<value>1801</value>
@@ -7549,7 +7549,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ValueObject" isopaque="yes">
+					<regnode name="ValueObject">
 						<value></value>
 						<regnode name="Member" isopaque="yes">
 							<value>1849</value>
@@ -7636,7 +7636,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1797</value>
-					<regnode name="ComponentFactory" isopaque="yes">
+					<regnode name="ComponentFactory">
 						<value></value>
 						<regnode name="SwitchedAggregate" isopaque="yes">
 							<value>1378</value>
@@ -7645,7 +7645,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Event" isopaque="yes">
+					<regnode name="Event">
 						<value></value>
 						<regnode name="SwitchedAggregate" isopaque="yes">
 							<value>1488</value>
@@ -7654,7 +7654,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="File" isopaque="yes">
+					<regnode name="File">
 						<value></value>
 						<regnode name="SwitchedAggregate" isopaque="yes">
 							<value>1560</value>
@@ -7663,7 +7663,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Object" isopaque="yes">
+					<regnode name="Object">
 						<value></value>
 						<regnode name="SwitchedAggregate" isopaque="yes">
 							<value>1627</value>
@@ -7672,7 +7672,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Package" isopaque="yes">
+					<regnode name="Package">
 						<value></value>
 						<regnode name="SwitchedAggregate" isopaque="yes">
 							<value>1661</value>
@@ -7681,7 +7681,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ValueObject" isopaque="yes">
+					<regnode name="ValueObject">
 						<value></value>
 						<regnode name="SwitchedAggregate" isopaque="yes">
 							<value>1854</value>
@@ -7759,13 +7759,13 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1538</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="FactoryOperation" isopaque="yes">
 							<value>1235</value>
 						</regnode>
 					</regnode>
-					<regnode name="ComponentFactory" isopaque="yes">
+					<regnode name="ComponentFactory">
 						<value></value>
 						<regnode name="FactoryOperation" isopaque="yes">
 							<value>1371</value>
@@ -7774,7 +7774,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Event" isopaque="yes">
+					<regnode name="Event">
 						<value></value>
 						<regnode name="FactoryOperation" isopaque="yes">
 							<value>1480</value>
@@ -7783,7 +7783,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ValueObject" isopaque="yes">
+					<regnode name="ValueObject">
 						<value></value>
 						<regnode name="FactoryOperation" isopaque="yes">
 							<value>1846</value>
@@ -7846,7 +7846,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1180</value>
-					<regnode name="FactoryOperation" isopaque="yes">
+					<regnode name="FactoryOperation">
 						<value></value>
 						<regnode name="InParameter" isopaque="yes">
 							<value>1540</value>
@@ -7855,7 +7855,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="LookupOperation" isopaque="yes">
+					<regnode name="LookupOperation">
 						<value></value>
 						<regnode name="InParameter" isopaque="yes">
 							<value>1600</value>
@@ -7864,7 +7864,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="OnewayOperation" isopaque="yes">
+					<regnode name="OnewayOperation">
 						<value></value>
 						<regnode name="InParameter" isopaque="yes">
 							<value>1643</value>
@@ -7873,7 +7873,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="TwowayOperation" isopaque="yes">
+					<regnode name="TwowayOperation">
 						<value></value>
 						<regnode name="InParameter" isopaque="yes">
 							<value>1827</value>
@@ -7924,7 +7924,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1182</value>
-					<regnode name="TwowayOperation" isopaque="yes">
+					<regnode name="TwowayOperation">
 						<value></value>
 						<regnode name="InoutParameter" isopaque="yes">
 							<value>1828</value>
@@ -7957,13 +7957,13 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1598</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="LookupOperation" isopaque="yes">
 							<value>1239</value>
 						</regnode>
 					</regnode>
-					<regnode name="ComponentFactory" isopaque="yes">
+					<regnode name="ComponentFactory">
 						<value></value>
 						<regnode name="LookupOperation" isopaque="yes">
 							<value>1374</value>
@@ -8014,13 +8014,13 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1642</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="OnewayOperation" isopaque="yes">
 							<value>1243</value>
 						</regnode>
 					</regnode>
-					<regnode name="ComponentFactory" isopaque="yes">
+					<regnode name="ComponentFactory">
 						<value></value>
 						<regnode name="OnewayOperation" isopaque="yes">
 							<value>1375</value>
@@ -8029,7 +8029,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Event" isopaque="yes">
+					<regnode name="Event">
 						<value></value>
 						<regnode name="OnewayOperation" isopaque="yes">
 							<value>1484</value>
@@ -8038,7 +8038,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Object" isopaque="yes">
+					<regnode name="Object">
 						<value></value>
 						<regnode name="OnewayOperation" isopaque="yes">
 							<value>1625</value>
@@ -8047,7 +8047,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ValueObject" isopaque="yes">
+					<regnode name="ValueObject">
 						<value></value>
 						<regnode name="OnewayOperation" isopaque="yes">
 							<value>1850</value>
@@ -8098,7 +8098,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1189</value>
-					<regnode name="TwowayOperation" isopaque="yes">
+					<regnode name="TwowayOperation">
 						<value></value>
 						<regnode name="OutParameter" isopaque="yes">
 							<value>1829</value>
@@ -8131,7 +8131,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1195</value>
-					<regnode name="TwowayOperation" isopaque="yes">
+					<regnode name="TwowayOperation">
 						<value></value>
 						<regnode name="ReturnType" isopaque="yes">
 							<value>1830</value>
@@ -8182,13 +8182,13 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1825</value>
-					<regnode name="BenchmarkAnalysis" isopaque="yes">
+					<regnode name="BenchmarkAnalysis">
 						<value></value>
 						<regnode name="TwowayOperation" isopaque="yes">
 							<value>1253</value>
 						</regnode>
 					</regnode>
-					<regnode name="ComponentFactory" isopaque="yes">
+					<regnode name="ComponentFactory">
 						<value></value>
 						<regnode name="TwowayOperation" isopaque="yes">
 							<value>1379</value>
@@ -8197,7 +8197,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Event" isopaque="yes">
+					<regnode name="Event">
 						<value></value>
 						<regnode name="TwowayOperation" isopaque="yes">
 							<value>1489</value>
@@ -8206,7 +8206,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Object" isopaque="yes">
+					<regnode name="Object">
 						<value></value>
 						<regnode name="TwowayOperation" isopaque="yes">
 							<value>1628</value>
@@ -8215,7 +8215,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="ValueObject" isopaque="yes">
+					<regnode name="ValueObject">
 						<value></value>
 						<regnode name="TwowayOperation" isopaque="yes">
 							<value>1855</value>
@@ -8260,7 +8260,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1139</value>
-					<regnode name="PackageConfigurationContainer" isopaque="yes">
+					<regnode name="PackageConfigurationContainer">
 						<value></value>
 						<regnode name="PackageConfBasePackage" isopaque="yes">
 							<value>1683</value>
@@ -8290,7 +8290,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1140</value>
-					<regnode name="PackageConfigurationContainer" isopaque="yes">
+					<regnode name="PackageConfigurationContainer">
 						<value></value>
 						<regnode name="PackageConfConfigProperty" isopaque="yes">
 							<value>1684</value>
@@ -8320,7 +8320,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1141</value>
-					<regnode name="PackageConfigurationContainer" isopaque="yes">
+					<regnode name="PackageConfigurationContainer">
 						<value></value>
 						<regnode name="PackageConfReference" isopaque="yes">
 							<value>1685</value>
@@ -8350,7 +8350,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1142</value>
-					<regnode name="PackageConfigurationContainer" isopaque="yes">
+					<regnode name="PackageConfigurationContainer">
 						<value></value>
 						<regnode name="PackageConfSelectRequirement" isopaque="yes">
 							<value>1686</value>
@@ -8380,7 +8380,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1143</value>
-					<regnode name="PackageConfigurationContainer" isopaque="yes">
+					<regnode name="PackageConfigurationContainer">
 						<value></value>
 						<regnode name="PackageConfSpecializedConfig" isopaque="yes">
 							<value>1687</value>
@@ -8410,7 +8410,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1084</value>
-					<regnode name="PackageConfigurationContainer" isopaque="yes">
+					<regnode name="PackageConfigurationContainer">
 						<value></value>
 						<regnode name="PackageConfiguration" isopaque="yes">
 							<value>1688</value>
@@ -8446,7 +8446,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1190</value>
-					<regnode name="TopLevelPackageContainer" isopaque="yes">
+					<regnode name="TopLevelPackageContainer">
 						<value></value>
 						<regnode name="PackageConfigurationReference" isopaque="yes">
 							<value>1818</value>
@@ -8572,7 +8572,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1275</value>
-					<regnode name="Domain" isopaque="yes">
+					<regnode name="Domain">
 						<value></value>
 						<regnode name="Bridge" isopaque="yes">
 							<value>1446</value>
@@ -8614,7 +8614,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1584</value>
-					<regnode name="Domain" isopaque="yes">
+					<regnode name="Domain">
 						<value></value>
 						<regnode name="Interconnect" isopaque="yes">
 							<value>1448</value>
@@ -8656,7 +8656,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1610</value>
-					<regnode name="Domain" isopaque="yes">
+					<regnode name="Domain">
 						<value></value>
 						<regnode name="Node" isopaque="yes">
 							<value>1451</value>
@@ -8695,7 +8695,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1185</value>
-					<regnode name="DeploymentPlan" isopaque="yes">
+					<regnode name="DeploymentPlan">
 						<value></value>
 						<regnode name="NodeReference" isopaque="yes">
 							<value>1439</value>
@@ -8749,7 +8749,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1773</value>
-					<regnode name="Bridge" isopaque="yes">
+					<regnode name="Bridge">
 						<value></value>
 						<regnode name="Resource" isopaque="yes">
 							<value>1276</value>
@@ -8761,7 +8761,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Interconnect" isopaque="yes">
+					<regnode name="Interconnect">
 						<value></value>
 						<regnode name="Resource" isopaque="yes">
 							<value>1585</value>
@@ -8773,7 +8773,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<regnode name="Node" isopaque="yes">
+					<regnode name="Node">
 						<value></value>
 						<regnode name="Resource" isopaque="yes">
 							<value>1611</value>
@@ -8833,7 +8833,7 @@
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1787</value>
-					<regnode name="Domain" isopaque="yes">
+					<regnode name="Domain">
 						<value></value>
 						<regnode name="SharedResource" isopaque="yes">
 							<value>1454</value>
@@ -8866,7 +8866,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1095</value>
-					<regnode name="TopLevelPackageContainer" isopaque="yes">
+					<regnode name="TopLevelPackageContainer">
 						<value></value>
 						<regnode name="TopLevelPackage" isopaque="yes">
 							<value>1819</value>
@@ -8908,7 +8908,7 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1159</value>
-					<regnode name="TopLevelPackageContainer" isopaque="yes">
+					<regnode name="TopLevelPackageContainer">
 						<value></value>
 						<regnode name="package" isopaque="yes">
 							<value>1820</value>
@@ -12723,7 +12723,7 @@
 				<connpoint role="dst" target="id-0066-00000019"/>
 				<connpoint role="src" target="id-0067-00000059"/>
 			</connection>
-			<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0x11" members="id-0066-00000017 id-0066-00000011 id-0066-00000021">
+			<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0x11" members="id-0066-00000017 id-0066-00000021 id-0066-00000011">
 				<name>Workspace</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -12738,7 +12738,7 @@
 					<value></value>
 				</attribute>
 			</set>
-			<set id="id-0069-00000002" kind="Aspect" role="Aspect" relid="0x15" members="id-0066-00000012 id-0066-00000019 id-0066-00000014 id-0066-00000018 id-0066-0000001a">
+			<set id="id-0069-00000002" kind="Aspect" role="Aspect" relid="0x15" members="id-0066-00000019 id-0066-00000012 id-0066-0000001a id-0066-00000018 id-0066-00000014">
 				<name>ComponentLibraries</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -12753,7 +12753,7 @@
 					<value></value>
 				</attribute>
 			</set>
-			<set id="id-0069-00000011" kind="Aspect" role="Aspect" relid="0x16" members="id-0067-00000059 id-0067-00000058">
+			<set id="id-0069-00000011" kind="Aspect" role="Aspect" relid="0x16" members="id-0067-00000058 id-0067-00000059">
 				<name>LibraryArtifact</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -14534,8 +14534,8 @@
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000022"/>
 				<connpoint role="src" target="id-0066-00000022"/>
+				<connpoint role="dst" target="id-0066-00000022"/>
 			</connection>
 			<connection id="id-0068-00000045" kind="HasAspect" role="HasAspect" relid="0x54">
 				<name>HasAspect</name>
@@ -15017,7 +15017,7 @@
 				<connpoint role="dst" target="id-0066-00000036"/>
 				<connpoint role="src" target="id-0066-00000039"/>
 			</connection>
-			<set id="id-0069-00000012" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000026 id-0067-0000005f id-0067-00000061 id-0067-00000062 id-0066-00000028 id-0066-00000022 id-0066-00000031 id-0067-00000060 id-0066-00000023 id-0067-00000063 id-0066-00000036 id-0067-0000005e">
+			<set id="id-0069-00000012" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-0000005e id-0066-00000036 id-0067-00000063 id-0066-00000023 id-0067-00000060 id-0066-00000031 id-0066-00000022 id-0066-00000028 id-0067-00000062 id-0067-00000061 id-0067-0000005f id-0066-00000026">
 				<name>InterfaceDefinition</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -16072,7 +16072,7 @@
 				<connpoint role="src" target="id-0066-0000003c"/>
 				<connpoint role="dst" target="id-0066-00000047"/>
 			</connection>
-			<set id="id-0069-00000003" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000047 id-0066-0000003d id-0066-0000003f id-0066-0000003e id-0066-00000044 id-0066-00000040 id-0066-00000042 id-0066-00000041 id-0066-00000043 id-0066-00000045 id-0066-00000046">
+			<set id="id-0069-00000003" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000043 id-0066-00000041 id-0066-00000042 id-0066-00000040 id-0066-00000044 id-0066-0000003e id-0066-0000003f id-0066-0000003d id-0066-00000047 id-0066-00000045 id-0066-00000046">
 				<name>PredefinedTypeAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -18706,7 +18706,7 @@
 				<connpoint role="src" target="id-0066-00000061"/>
 				<connpoint role="dst" target="id-0067-00000065"/>
 			</connection>
-			<set id="id-0069-00000013" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000049 id-0066-0000004a id-0066-0000005e id-0066-0000005b id-0066-00000059 id-0066-00000048 id-0066-0000005d id-0067-00000064 id-0067-00000003 id-0066-0000004b id-0067-00000001 id-0066-0000004d id-0066-0000004c id-0066-0000005c">
+			<set id="id-0069-00000013" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-0000005c id-0066-0000004c id-0066-0000004d id-0067-00000001 id-0066-0000004b id-0067-00000003 id-0067-00000064 id-0066-0000005d id-0066-00000048 id-0066-00000059 id-0066-0000005b id-0066-0000005e id-0066-0000004a id-0066-00000049">
 				<name>NamedTypeAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -22901,7 +22901,7 @@
 				<connpoint role="src" target="id-0066-00000085"/>
 				<connpoint role="dst" target="id-0066-00000087"/>
 			</connection>
-			<set id="id-0069-00000014" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-00000067 id-0066-0000006f id-0067-00000008 id-0066-00000063 id-0067-00000009 id-0066-00000066 id-0066-00000087 id-0066-0000006e id-0067-00000069 id-0066-00000075 id-0066-00000074 id-0066-00000079 id-0067-0000006a id-0066-00000077 id-0067-0000006b id-0067-00000068 id-0066-00000065 id-0066-00000071 id-0066-00000067 id-0067-00000005 id-0067-00000004 id-0067-00000007 id-0067-00000006 id-0066-00000078 id-0067-00000066">
+			<set id="id-0069-00000014" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-00000066 id-0066-00000078 id-0067-00000006 id-0067-00000007 id-0067-00000004 id-0067-00000005 id-0066-00000067 id-0066-00000071 id-0066-00000065 id-0067-00000068 id-0067-0000006b id-0066-00000077 id-0067-0000006a id-0066-00000079 id-0066-00000074 id-0066-00000075 id-0067-00000069 id-0066-0000006e id-0066-00000087 id-0066-00000066 id-0067-00000009 id-0066-00000063 id-0067-00000008 id-0066-0000006f id-0067-00000067">
 				<name>InheritableAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -24346,7 +24346,7 @@
 				<connpoint role="dst" target="id-0066-0000009c"/>
 				<connpoint role="src" target="id-0066-0000009d"/>
 			</connection>
-			<set id="id-0069-00000004" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000090 id-0066-0000009c id-0066-00000091 id-0067-0000000a id-0066-00000092 id-0066-00000093 id-0066-0000008e id-0066-00000099 id-0066-0000009a id-0066-0000009b">
+			<set id="id-0069-00000004" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-0000009c id-0066-0000009b id-0066-0000009a id-0066-00000099 id-0066-0000008e id-0066-00000093 id-0066-00000092 id-0067-0000000a id-0066-00000091 id-0066-00000090">
 				<name>OperationAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -25760,6 +25760,12 @@ RTEventChannel</value>
 							<value>148,293</value>
 						</regnode>
 					</regnode>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,13</value>
+						</regnode>
+					</regnode>
 				</regnode>
 				<attribute kind="Decorator" status="meta">
 					<value></value>
@@ -26093,7 +26099,7 @@ RTEventChannel</value>
 				<connpoint role="dst" target="id-0066-0000009f"/>
 				<connpoint role="src" target="id-0066-000000b1"/>
 			</connection>
-			<set id="id-0069-00000005" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000ac id-0067-0000000c id-0067-0000000d id-0067-0000000e id-0066-000000a4 id-0066-000000a5 id-0066-0000009f id-0066-000000a0 id-0066-0000009e id-0066-000000ad id-0066-000000a9">
+			<set id="id-0069-00000005" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000a0 id-0066-0000009f id-0066-000000a5 id-0066-000000a4 id-0067-0000000e id-0067-0000000d id-0067-0000000c id-0066-000000ac id-0066-000000a9 id-0066-000000ad id-0066-0000009e">
 				<name>ComponentAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -27377,7 +27383,7 @@ RTEventChannel</value>
 				<connpoint role="src" target="id-0066-000000b4"/>
 				<connpoint role="dst" target="id-0067-00000018"/>
 			</connection>
-			<set id="id-0069-00000006" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-00000012 id-0067-00000010 id-0067-00000013 id-0067-00000014 id-0067-00000011">
+			<set id="id-0069-00000006" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-00000010 id-0067-00000012 id-0067-00000011 id-0067-00000014 id-0067-00000013">
 				<name>IdTagAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -28762,7 +28768,7 @@ RTEventChannel</value>
 				<connpoint role="dst" target="id-0066-000000bc"/>
 				<connpoint role="src" target="id-0066-000000c4"/>
 			</connection>
-			<set id="id-0069-00000015" kind="Aspect" role="Aspect" relid="0x2a" members="id-0067-0000006c id-0066-000000c7 id-0066-000000bb id-0066-000000c6 id-0066-000000c4 id-0066-000000c3 id-0066-000000bc id-0066-000000c1">
+			<set id="id-0069-00000015" kind="Aspect" role="Aspect" relid="0x2a" members="id-0066-000000c1 id-0066-000000bc id-0066-000000c3 id-0066-000000c4 id-0066-000000c6 id-0066-000000bb id-0066-000000c7 id-0067-0000006c">
 				<name>Target</name>
 				<regnode name="MetaRef" isopaque="yes">
 					<value></value>
@@ -30673,7 +30679,7 @@ rrName = referedbyDataType</value>
 				<connpoint role="dst" target="id-0066-000000d5"/>
 				<connpoint role="src" target="id-0066-000000d6"/>
 			</connection>
-			<set id="id-0069-00000007" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000ce id-0066-000000ca id-0066-000000cc id-0066-000000d0 id-0066-000000cb id-0066-000000d5">
+			<set id="id-0069-00000007" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000cb id-0066-000000d0 id-0066-000000cc id-0066-000000ca id-0066-000000ce id-0066-000000d5">
 				<name>CommonPackaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -32270,7 +32276,7 @@ self.connectedFCOs(Implementation)-&gt;forAll (i : Reference | i.refersTo().kind
 				<connpoint role="dst" target="id-0066-000000e2"/>
 				<connpoint role="src" target="id-0066-000000e6"/>
 			</connection>
-			<set id="id-0069-00000016" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000df id-0066-000000db id-0066-000000e2 id-0066-000000dd id-0067-0000001b id-0066-000000de id-0067-00000071 id-0066-000000d9 id-0067-0000001c">
+			<set id="id-0069-00000016" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-0000001c id-0066-000000d9 id-0067-00000071 id-0066-000000de id-0067-0000001b id-0066-000000dd id-0066-000000e2 id-0066-000000db id-0066-000000df">
 				<name>CompPkgPackaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -32819,7 +32825,7 @@ self.connectedFCOs(Implementation)-&gt;forAll (i : Reference | i.refersTo().kind
 				<connpoint role="dst" target="id-0066-000000e7"/>
 				<connpoint role="src" target="id-0066-000000ea"/>
 			</connection>
-			<set id="id-0069-00000017" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000ea id-0067-00000072 id-0066-000000e9 id-0066-000000e7">
+			<set id="id-0069-00000017" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000e7 id-0066-000000e9 id-0067-00000072 id-0066-000000ea">
 				<name>Packaging</name>
 				<regnode name="MetaRef" isopaque="yes">
 					<value></value>
@@ -34131,7 +34137,7 @@ self.connectedFCOs(Implementation)-&gt;forAll (i : Reference | i.refersTo().kind
 				<connpoint role="dst" target="id-0066-000000f5"/>
 				<connpoint role="src" target="id-0067-00000020"/>
 			</connection>
-			<set id="id-0069-00000008" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000ef id-0066-000000f7 id-0067-0000001d id-0066-000000f4 id-0066-000000f3 id-0066-000000ee id-0066-000000f0">
+			<set id="id-0069-00000008" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000ee id-0066-000000f3 id-0066-000000f4 id-0067-0000001d id-0066-000000f7 id-0066-000000ef id-0066-000000f0">
 				<name>InterfacePackaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -35296,7 +35302,9 @@ rrName = referedbyImplementationArtifactReference</value>
 					<value></value>
 				</attribute>
 				<attribute kind="GeneralPreferences">
-					<value>labelFormatStr=dependsOn</value>
+					<value>labelFormatStr=dependsOn
+sName = srcArtifactDependency
+dName = dstArtifactDependency</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -35795,7 +35803,7 @@ rrName = referedbyImplementationArtifactReference</value>
 				<connpoint role="dst" target="id-0066-000000ff"/>
 				<connpoint role="src" target="id-0066-00000109"/>
 			</connection>
-			<set id="id-0069-00000009" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000104 id-0066-000000fd id-0066-00000109 id-0066-000000fa id-0067-00000021 id-0066-00000100 id-0066-00000101 id-0066-000000fb id-0066-000000ff id-0067-00000022">
+			<set id="id-0069-00000009" kind="Aspect" role="Aspect" relid="0x0" members="id-0067-00000022 id-0066-000000ff id-0066-000000fb id-0066-00000101 id-0066-00000100 id-0067-00000021 id-0066-000000fa id-0066-00000109 id-0066-000000fd id-0066-00000104">
 				<name>ArtifactPackaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -37634,7 +37642,7 @@ rrName = referedbyImplementationArtifactReference</value>
 				<connpoint role="dst" target="id-0066-0000010e"/>
 				<connpoint role="src" target="id-0066-0000011c"/>
 			</connection>
-			<set id="id-0069-0000000a" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000110 id-0067-00000025 id-0066-00000117 id-0067-00000026 id-0067-00000024 id-0067-00000023 id-0066-0000011b id-0066-00000114 id-0066-00000113 id-0066-0000010d id-0066-0000010b">
+			<set id="id-0069-0000000a" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000113 id-0066-00000114 id-0066-0000011b id-0067-00000023 id-0067-00000024 id-0067-00000026 id-0066-00000117 id-0067-00000025 id-0066-00000110 id-0066-0000010b id-0066-0000010d">
 				<name>PkgConfPackaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -39165,8 +39173,8 @@ rrName = referedbyImplementationArtifactReference</value>
 				<attribute kind="ConstraintParam" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="ConstraintPriority" status="meta">
-					<value>2</value>
+				<attribute kind="ConstraintPriority">
+					<value>1</value>
 				</attribute>
 				<attribute kind="CreateEvent">
 					<value>true</value>
@@ -40308,7 +40316,7 @@ rrName = referedbyImplementationArtifactReference</value>
 				<connpoint role="dst" target="id-0066-00000125"/>
 				<connpoint role="src" target="id-0066-00000135"/>
 			</connection>
-			<set id="id-0069-0000000b" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000126 id-0066-00000129 id-0066-00000125 id-0066-0000012a id-0067-00000028 id-0067-0000002b id-0066-0000011e id-0067-00000027 id-0066-00000122 id-0067-00000029 id-0067-0000002c id-0066-0000012e id-0067-0000002a id-0066-00000120 id-0066-0000012f id-0066-00000130 id-0066-00000132">
+			<set id="id-0069-0000000b" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000125 id-0066-00000129 id-0066-00000126 id-0066-00000132 id-0066-00000130 id-0066-0000012f id-0066-00000120 id-0067-0000002a id-0066-0000012e id-0067-0000002c id-0066-0000012a id-0067-00000029 id-0066-00000122 id-0067-00000027 id-0066-0000011e id-0067-0000002b id-0067-00000028">
 				<name>ImplPackaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -40324,7 +40332,7 @@ rrName = referedbyImplementationArtifactReference</value>
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-00000012" kind="ParadigmSheet" relid="0x12" childrelidcntr="0x12f">
+		<model id="id-0065-00000012" kind="ParadigmSheet" relid="0x12" childrelidcntr="0x146">
 			<name>ComponentAssembly</name>
 			<atom id="id-0066-00000136" kind="Model" role="Model" relid="0xf">
 				<name>ComponentAssembly</name>
@@ -40366,7 +40374,7 @@ rrName = referedbyImplementationArtifactReference</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>239,328</value>
+							<value>218,321</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -40415,8 +40423,8 @@ rrName = referedbyImplementationArtifactReference</value>
 				<attribute kind="IsTypeInfoShown" status="meta">
 					<value>true</value>
 				</attribute>
-				<attribute kind="IsTypeShown" status="meta">
-					<value>false</value>
+				<attribute kind="IsTypeShown">
+					<value>true</value>
 				</attribute>
 				<attribute kind="NamePosition" status="meta">
 					<value>4</value>
@@ -40462,7 +40470,7 @@ rrName = referedbyImplementationArtifactReference</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>22,384</value>
+							<value>8,370</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -40506,7 +40514,7 @@ rrName = referedbyImplementationArtifactReference</value>
 					<value></value>
 				</attribute>
 				<attribute kind="GeneralPreferences">
-					<value>labelFormatStr=invoke
+					<value>labelFormatStr=invokes
           sName = srcinvoke
           dName = dstinvoke</value>
 				</attribute>
@@ -40987,7 +40995,7 @@ rrName = referedbyImplementationArtifactReference</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>302,482</value>
+							<value>155,482</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -41094,7 +41102,7 @@ rrName = referedbyImplementationArtifactReference</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>435,426</value>
+							<value>281,482</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -41412,7 +41420,7 @@ rrName = referedbyImplementationArtifactReference</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>22,475</value>
+							<value>8,440</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -41456,7 +41464,7 @@ rrName = referedbyImplementationArtifactReference</value>
 					<value></value>
 				</attribute>
 				<attribute kind="GeneralPreferences">
-					<value>labelFormatStr=emit
+					<value>labelFormatStr=emits
           sName = srcemit
           dName = dstemit</value>
 				</attribute>
@@ -41589,7 +41597,7 @@ rrName = referedbyImplementationArtifactReference</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>414,559</value>
+							<value>407,503</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -41681,7 +41689,7 @@ rrName = referedbyImplementationArtifactReference</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>29,307</value>
+							<value>15,300</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -41850,7 +41858,7 @@ rrName = referedbyImplementationArtifactReference</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1044,293</value>
+							<value>1093,300</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -42035,7 +42043,7 @@ rrName = referedbyImplementationArtifactReference</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>155,489</value>
+							<value>8,510</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -42157,8 +42165,8 @@ rrName = referedbyImplementationArtifactReference</value>
 				<attribute kind="MoveEvent" status="meta">
 					<value>false</value>
 				</attribute>
-				<attribute kind="NewChildEvent" status="meta">
-					<value>false</value>
+				<attribute kind="NewChildEvent">
+					<value>true</value>
 				</attribute>
 				<attribute kind="ReferenceEvent" status="meta">
 					<value>false</value>
@@ -42408,7 +42416,7 @@ rrName = referedbyImplementationArtifactReference</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>909,328</value>
+							<value>895,363</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -42940,7 +42948,7 @@ rrName = referedbyComponentAssemblyReference</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>267,426</value>
+							<value>15,468</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -43008,7 +43016,7 @@ dName = dstAttributeValue</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>172,452</value>
+							<value>172,494</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -43019,7 +43027,7 @@ dName = dstAttributeValue</value>
 					</regnode>
 				</regnode>
 				<regnode name="autorouterPref" isopaque="yes">
-					<value>sn</value>
+					<value></value>
 				</regnode>
 			</atom>
 			<atom id="id-0066-00000162" kind="Constraint" role="Constraint" relid="0xee">
@@ -43189,13 +43197,13 @@ let props = self.connectedFCOs(AttributeValue) in
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>22,573</value>
+							<value>22,636</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>120,559</value>
+							<value>148,559</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -43257,7 +43265,7 @@ dName = dstAttributeDelegate</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>172,599</value>
+							<value>172,662</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -43360,7 +43368,7 @@ dName = dstAttributeDelegate</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>120,664</value>
+							<value>120,727</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -43515,7 +43523,7 @@ let delegates = self.connectedFCOs(AttributeDelegate) in
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>267,566</value>
+							<value>274,496</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -43583,7 +43591,7 @@ dName = dstAttributeMappingValue</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>228,592</value>
+							<value>242,522</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -43624,7 +43632,7 @@ dName = dstAttributeMappingValue</value>
 					<value>true</value>
 				</attribute>
 				<attribute kind="ConstraintDescription">
-					<value>An attribute can be delegated to only one AttributeMapping</value>
+					<value>An attribute can be delegated to from only one AttributeMapping</value>
 				</attribute>
 				<attribute kind="ConstraintEqn">
 					<value>self.attachingConnections(AttributeDelegate)-&gt;size() &lt;= 1</value>
@@ -43756,7 +43764,7 @@ let props = self.connectedFCOs(AttributeMappingValue) in
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>165,739</value>
+							<value>165,802</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -43783,7 +43791,7 @@ let props = self.connectedFCOs(AttributeMappingValue) in
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>92,762</value>
+							<value>92,825</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -43823,8 +43831,10 @@ let props = self.connectedFCOs(AttributeMappingValue) in
 				<attribute kind="DstAttrLabel2" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
+				<attribute kind="GeneralPreferences">
+					<value>labelFormatStr=delegatesTo
+sName = srcAttributeMappingDelegate
+dName = dstAttributeMappingDelegate</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -43849,7 +43859,7 @@ let props = self.connectedFCOs(AttributeMappingValue) in
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1098,622</value>
+							<value>1098,608</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -43999,7 +44009,7 @@ let props = self.connectedFCOs(AttributeMappingValue) in
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>496,328</value>
+							<value>531,426</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -44332,7 +44342,7 @@ let delegates = self.connectedFCOs(AttributeMappingDelegate) in
 					<value>An AttributeMapping of an assembly can only be delegated to an AttributeMapping in a different assembly</value>
 				</attribute>
 				<attribute kind="ConstraintEqn">
-					<value>self.connectedFCOs(AttributeMappingDelegate)-&gt;forAll (x | x.parent() != self.parent())</value>
+					<value>self.connectedFCOs(AttributeMappingDelegate)-&gt;forAll (x | x.parent() = self.parent() implies x = self)</value>
 				</attribute>
 				<attribute kind="ConstraintParam" status="meta">
 					<value></value>
@@ -44409,7 +44419,7 @@ let delegates = self.connectedFCOs(AttributeMappingDelegate) in
 				<attribute kind="ConstraintEqn">
 					<value>let instances = self.modelParts(Component) in
 let monolithicImpls = project.allInstancesOf (MonolithicImplementation) in
-instances-&gt;forAll (x : FCO | 
+instances-&gt;forAll (x : Component | 
          let type = x.ComponentParentType() in
                  monolithicImpls-&gt;exists ( impl : MonolithicImplementation | 
                      impl.name() = type.name()  or
@@ -44472,12 +44482,17 @@ instances-&gt;forAll (x : FCO |
 					<value>gme::FCO</value>
 				</attribute>
 				<attribute kind="CFuncDefinition">
-					<value>let type = self.type() in
-if type.isInstance()
+					<value>if self.isInstance()
 then
-   type.ComponentParentType()
+   let type = self.type() in
+   if type.isType()
+   then
+      type
+   else
+      type.ComponentParentType()
+   endif
 else
-   type
+   self
 endif</value>
 				</attribute>
 				<attribute kind="CFuncParamList" status="meta">
@@ -44518,6 +44533,695 @@ endif</value>
 					<value>method</value>
 				</attribute>
 			</atom>
+			<atom id="id-0066-000001ff" kind="Constraint" role="Constraint" relid="0x130">
+				<name>RequiredComponentPackage</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>195,258</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>Every component instance in an assembly should have a corresponding ComponentPackage referring either to the component instance&apos;s MonolithicImplementation, or the component type&apos;s MonolithicImplementation.</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value>let instances = self.modelParts(Component) in
+let packages = project.allInstancesOf (ComponentPackage) in
+instances-&gt;forAll (x : Component | 
+   let type = x.ComponentParentType() in
+       packages-&gt;exists (pkg: ComponentPackage | 
+         let impls = pkg.MonolithicImpls() in 
+           impls-&gt;exists  (impl: FCO | 
+             impl.name() = type.name()  or
+               impl.name() = x.name()  )  )  )</value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority" status="meta">
+					<value>2</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000202" kind="Constraint" role="Constraint" relid="0x134">
+				<name>ValidEmitsHierarchy</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>447,405</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent">
+					<value>true</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>Within a single assembly, an InEventPort can be connected to an OutEventPort when they are both ports of component instances</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value>self.attachingConnections(emit)-&gt;forAll (x : Connection | x.parent() &lt;&gt; self.parent()) </value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority">
+					<value>1</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000203" kind="Constraint" role="Constraint" relid="0x135">
+				<name>ValidEmitsHierarchy</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>608,146</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent">
+					<value>true</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>Within a single assembly, an InEventPort can be connected to an OutEventPort when they are both ports of component instances</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value>self.attachingConnections(emit)-&gt;forAll (x : Connection | x.parent() &lt;&gt; self.parent())</value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority">
+					<value>1</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000206" kind="Constraint" role="Constraint" relid="0x13a">
+				<name>ValidPublishHierarchy</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>440,594</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent">
+					<value>true</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>A PublishConnector cannot be used to make connections between In/OutEventPorts that are delegates and not ports of component instances</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value>self.connectedFCOs(publish)-&gt;forAll (x : FCO | x.parent() &lt;&gt; self.parent()) 
+and
+self.connectedFCOs(deliverTo)-&gt;forAll (x : FCO | x.parent() &lt;&gt; self.parent())</value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority">
+					<value>1</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000207" kind="Constraint" role="Constraint" relid="0x13d">
+				<name>ValidInvokesHierarchy</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>818,307</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent">
+					<value>true</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>Within a single assembly, an RequiredRequestPort can only be connected to an ProvidedRequestPort when they are both ports of component instances</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value>self.attachingConnections(invoke)-&gt;forAll (x : Connection | x.parent() &lt;&gt; self.parent()) </value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority">
+					<value>1</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000208" kind="Constraint" role="Constraint" relid="0x13f">
+				<name>ValidInvokesHierarchy</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>958,699</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent">
+					<value>true</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>Within a single assembly, a ProvidedRequestPort can only be connected to a RequiredRequestPort when they are both ports of component instances</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value>self.attachingConnections(invoke)-&gt;forAll (x : Connection | x.parent() &lt;&gt; self.parent()) </value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority">
+					<value>1</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000209" kind="Constraint" role="Constraint" relid="0x141">
+				<name>PropertyAsAttribute</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>552,97</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent">
+					<value>true</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>A Property has the same name as an Attribute of the Component.  To specify values for the Component&apos;s attributes, connect the Property direcly to the attribute available as a port.</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value>let properties = self.connectedFCOs(AssemblyConfigProperty) in
+  properties-&gt;forAll (x : AssemblyConfigProperty |
+        let attributes = self.modelParts(ReadonlyAttribute) in
+             not attributes-&gt;exists (attr : ReadonlyAttribute |
+                           x.name() = attr.name() )) </value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority" status="meta">
+					<value>2</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000020a" kind="Constraint" role="Constraint" relid="0x143">
+				<name>DelegateOrValue</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>737,786</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent">
+					<value>true</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>A value can be specified for an Attribute directly, or it can have a value delegated to it via an AttributeMapping, but not both.</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value>self.attachingConnections(AttributeValue)-&gt;size = 1 implies self.attachingConnections(AttributeDelegate)-&gt;size = 0</value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority">
+					<value>1</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000020b" kind="Constraint" role="Constraint" relid="0x145">
+				<name>NonRedundantProperties</name>
+				<regnode name="PartRegs">
+					<value></value>
+					<regnode name="Constraints">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>513,191</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent">
+					<value>true</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>A Property can be associated with a Component only once.</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value>self.bagConnectedFCOs (AssemblyConfigProperty)-&gt;isUnique( x: Property | x.name().trim())</value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority">
+					<value>1</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
 			<reference id="id-0067-0000002d" kind="AtomProxy" role="AtomProxy" relid="0x6e" referred="id-0066-000000e2">
 				<name>ComponentPackage</name>
 				<regnode name="PartRegs" isopaque="yes">
@@ -44537,7 +45241,7 @@ endif</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>967,26</value>
+							<value>1086,19</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -44609,7 +45313,7 @@ endif</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>575,90</value>
+							<value>911,34</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -44684,7 +45388,7 @@ endif</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>22,202</value>
+							<value>855,790</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -45257,7 +45961,7 @@ endif</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>120,496</value>
+							<value>120,559</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -45769,8 +46473,8 @@ endif</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000136"/>
 				<connpoint role="src" target="id-0066-00000136"/>
+				<connpoint role="dst" target="id-0066-00000136"/>
 			</connection>
 			<connection id="id-0068-0000023d" kind="Containment" role="Containment" relid="0x9d">
 				<name>Containment</name>
@@ -46144,8 +46848,8 @@ endif</value>
 			</connection>
 			<connection id="id-0068-00000260" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0xe8">
 				<name>ConnectorToDestination</name>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
+				<attribute kind="Cardinality">
+					<value>0..1</value>
 				</attribute>
 				<attribute kind="dstRolename" status="meta">
 					<value>dst</value>
@@ -46156,15 +46860,15 @@ endif</value>
 			<connection id="id-0068-00000261" kind="AssociationClass" role="AssociationClass" relid="0xe9">
 				<name>AssociationClass</name>
 				<regnode name="autorouterPref" isopaque="yes">
-					<value>wnE</value>
+					<value>ewEW</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-00000160"/>
 				<connpoint role="src" target="id-0066-00000161"/>
 			</connection>
 			<connection id="id-0068-00000262" kind="SourceToConnector" role="SourceToConnector" relid="0xeb">
 				<name>SourceToConnector</name>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
+				<attribute kind="Cardinality">
+					<value>0..1</value>
 				</attribute>
 				<attribute kind="srcRolename" status="meta">
 					<value>src</value>
@@ -46297,8 +47001,8 @@ endif</value>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ns</value>
 				</regnode>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
+				<attribute kind="Cardinality">
+					<value>0..1</value>
 				</attribute>
 				<attribute kind="srcRolename" status="meta">
 					<value>src</value>
@@ -46309,10 +47013,10 @@ endif</value>
 			<connection id="id-0068-00000270" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x109">
 				<name>ConnectorToDestination</name>
 				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ns</value>
+					<value>eN</value>
 				</regnode>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
+				<attribute kind="Cardinality">
+					<value>0..1</value>
 				</attribute>
 				<attribute kind="dstRolename" status="meta">
 					<value>dst</value>
@@ -46345,8 +47049,8 @@ endif</value>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>w</value>
 				</regnode>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
+				<attribute kind="Cardinality">
+					<value>0..1</value>
 				</attribute>
 				<attribute kind="srcRolename" status="meta">
 					<value>src</value>
@@ -46395,8 +47099,8 @@ endif</value>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>N</value>
 				</regnode>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
+				<attribute kind="Cardinality">
+					<value>0..1</value>
 				</attribute>
 				<attribute kind="srcRolename" status="meta">
 					<value>src</value>
@@ -46460,7 +47164,58 @@ endif</value>
 				<connpoint role="dst" target="id-0066-00000136"/>
 				<connpoint role="src" target="id-0066-00000176"/>
 			</connection>
-			<set id="id-0069-0000000c" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-0000014f id-0066-0000014a id-0066-00000151 id-0066-00000153 id-0066-0000014c id-0067-00000031 id-0066-00000142 id-0066-0000013e id-0066-00000141 id-0067-00000030 id-0066-00000169 id-0066-00000167 id-0066-00000164 id-0066-00000160 id-0067-00000037 id-0066-00000137 id-0066-0000013b id-0066-00000136 id-0067-00000033 id-0066-0000016e id-0067-0000002e id-0067-0000002f id-0067-0000002d id-0067-00000032 id-0066-00000144 id-0066-00000147 id-0067-00000034 id-0067-00000036 id-0067-00000035 id-0066-0000014e id-0066-0000013d">
+			<connection id="id-0068-0000033d" kind="HasConstraint" role="HasConstraint" relid="0x131">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>w</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000136"/>
+				<connpoint role="src" target="id-0066-000001ff"/>
+			</connection>
+			<connection id="id-0068-0000033f" kind="HasConstraint" role="HasConstraint" relid="0x137">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ew</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-00000203"/>
+				<connpoint role="dst" target="id-0067-00000035"/>
+			</connection>
+			<connection id="id-0068-00000340" kind="HasConstraint" role="HasConstraint" relid="0x138">
+				<name>HasConstraint</name>
+				<connpoint role="src" target="id-0066-00000202"/>
+				<connpoint role="dst" target="id-0067-00000036"/>
+			</connection>
+			<connection id="id-0068-00000342" kind="HasConstraint" role="HasConstraint" relid="0x13c">
+				<name>HasConstraint</name>
+				<connpoint role="dst" target="id-0066-0000013e"/>
+				<connpoint role="src" target="id-0066-00000206"/>
+			</connection>
+			<connection id="id-0068-00000343" kind="HasConstraint" role="HasConstraint" relid="0x13e">
+				<name>HasConstraint</name>
+				<connpoint role="src" target="id-0066-00000207"/>
+				<connpoint role="dst" target="id-0067-00000033"/>
+			</connection>
+			<connection id="id-0068-00000344" kind="HasConstraint" role="HasConstraint" relid="0x140">
+				<name>HasConstraint</name>
+				<connpoint role="src" target="id-0066-00000208"/>
+				<connpoint role="dst" target="id-0067-00000034"/>
+			</connection>
+			<connection id="id-0068-00000345" kind="HasConstraint" role="HasConstraint" relid="0x142">
+				<name>HasConstraint</name>
+				<connpoint role="src" target="id-0066-00000209"/>
+				<connpoint role="dst" target="id-0067-00000032"/>
+			</connection>
+			<connection id="id-0068-00000346" kind="HasConstraint" role="HasConstraint" relid="0x144">
+				<name>HasConstraint</name>
+				<connpoint role="src" target="id-0066-0000020a"/>
+				<connpoint role="dst" target="id-0067-00000037"/>
+			</connection>
+			<connection id="id-0068-00000347" kind="HasConstraint" role="HasConstraint" relid="0x146">
+				<name>HasConstraint</name>
+				<connpoint role="src" target="id-0066-0000020b"/>
+				<connpoint role="dst" target="id-0067-00000032"/>
+			</connection>
+			<set id="id-0069-0000000c" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000136 id-0066-0000013b id-0066-00000137 id-0067-00000037 id-0066-00000160 id-0066-00000164 id-0066-00000167 id-0066-00000169 id-0067-00000030 id-0066-00000141 id-0066-0000013d id-0067-00000036 id-0067-00000034 id-0066-00000147 id-0066-00000144 id-0067-00000032 id-0067-0000002d id-0067-0000002f id-0067-0000002e id-0066-0000016e id-0067-00000033 id-0066-0000014e id-0067-00000035 id-0066-0000013e id-0066-00000142 id-0067-00000031 id-0066-0000014c id-0066-00000153 id-0066-00000151 id-0066-0000014a id-0066-0000014f">
 				<name>AssemblyPackaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -47178,7 +47933,7 @@ endif</value>
 				<connpoint role="src" target="id-0066-0000017e"/>
 				<connpoint role="dst" target="id-0067-00000039"/>
 			</connection>
-			<set id="id-0069-00000018" kind="Aspect" role="Aspect" relid="0x1b" members="id-0067-00000039 id-0067-00000038 id-0066-00000179 id-0067-00000079 id-0066-0000017a id-0066-0000017d">
+			<set id="id-0069-00000018" kind="Aspect" role="Aspect" relid="0x1b" members="id-0066-0000017d id-0066-0000017a id-0067-00000079 id-0066-00000179 id-0067-00000038 id-0067-00000039">
 				<name>NodeMapping</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -47946,7 +48701,7 @@ endif</value>
 				<connpoint role="dst" target="id-0066-00000182"/>
 				<connpoint role="src" target="id-0066-00000186"/>
 			</connection>
-			<set id="id-0069-0000000d" kind="Aspect" role="Aspect" relid="0x25" members="id-0066-00000182 id-0066-00000184 id-0067-0000003a">
+			<set id="id-0069-0000000d" kind="Aspect" role="Aspect" relid="0x25" members="id-0067-0000003a id-0066-00000184 id-0066-00000182">
 				<name>ElementsTarget</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -51478,7 +52233,7 @@ dName = dstBenchmarkCharacteristics</value>
 				<connpoint role="dst" target="id-0066-00000197"/>
 				<connpoint role="src" target="id-0066-000001b3"/>
 			</connection>
-			<set id="id-0069-0000000e" kind="Aspect" role="Aspect" relid="0x2c" members="id-0066-000001a9 id-0066-000001b2 id-0066-000001ae id-0066-000001b0 id-0066-00000190 id-0066-00000189 id-0066-00000191 id-0066-00000198 id-0066-0000019e id-0066-000001af id-0066-00000193 id-0066-000001a3 id-0066-00000196 id-0066-000001a2 id-0066-000001a1 id-0066-000001ab id-0066-000001a8 id-0066-0000019d id-0066-00000194">
+			<set id="id-0069-0000000e" kind="Aspect" role="Aspect" relid="0x2c" members="id-0066-00000194 id-0066-0000019d id-0066-000001a8 id-0066-000001ab id-0066-000001a1 id-0066-000001a2 id-0066-00000196 id-0066-000001a3 id-0066-00000193 id-0066-000001af id-0066-0000019e id-0066-00000198 id-0066-00000191 id-0066-00000189 id-0066-00000190 id-0066-000001b0 id-0066-000001ae id-0066-000001b2 id-0066-000001a9">
 				<name>ComponentMetrics</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -51493,7 +52248,7 @@ dName = dstBenchmarkCharacteristics</value>
 					<value></value>
 				</attribute>
 			</set>
-			<set id="id-0069-0000000f" kind="Aspect" role="Aspect" relid="0x3a" members="id-0066-0000018b id-0066-00000197 id-0066-0000018e id-0066-0000018c id-0066-0000018d id-0066-0000018a">
+			<set id="id-0069-0000000f" kind="Aspect" role="Aspect" relid="0x3a" members="id-0066-0000018a id-0066-0000018d id-0066-0000018c id-0066-0000018e id-0066-00000197 id-0066-0000018b">
 				<name>DataAnalysis</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -56750,7 +57505,7 @@ dName = dstUse_RT_Info</value>
 				<connpoint role="src" target="id-0066-000001cb"/>
 				<connpoint role="dst" target="id-0066-000001cf"/>
 			</connection>
-			<set id="id-0069-00000010" kind="Aspect" role="Aspect" relid="0x22" members="id-0067-0000003f id-0066-000001c2 id-0066-000001bf id-0066-000001c5 id-0066-000001b6 id-0066-000001b8 id-0066-000001cc id-0066-000001bc id-0066-000001cf id-0066-000001b7 id-0066-000001c0 id-0066-000001bd id-0066-000001cd id-0066-000001ba id-0066-000001c7 id-0067-00000040 id-0067-0000003e id-0066-000001ca id-0066-000001c8 id-0066-000001c1 id-0066-000001c6">
+			<set id="id-0069-00000010" kind="Aspect" role="Aspect" relid="0x22" members="id-0066-000001c6 id-0066-000001c1 id-0066-000001c8 id-0066-000001ca id-0067-0000003e id-0067-00000040 id-0066-000001c7 id-0066-000001ba id-0066-000001cd id-0066-000001bd id-0066-000001c0 id-0066-000001b7 id-0066-000001cf id-0066-000001bc id-0066-000001cc id-0066-000001b8 id-0066-000001b6 id-0066-000001c5 id-0066-000001bf id-0066-000001c2 id-0067-0000003f">
 				<name>RtecConfigAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
