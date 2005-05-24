@@ -285,11 +285,6 @@ namespace PICML
     if (!label.empty())
       this->curr_->appendChild (this->createSimpleContent ("label",
                                                            label));
-    std::string uuid = dp.UUID();
-    if (uuid.empty())
-      uuid = dp.getPath ("_",false,true);
-    this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
-
     const std::set<CollocationGroup> dps = dp.CollocationGroup_children();
 
     for (std::set<CollocationGroup>::const_iterator iter = dps.begin();

@@ -898,13 +898,9 @@ namespace PICML
     if (!label.empty())
       this->curr_->appendChild (this->createSimpleContent ("label",
                                                            label));
-    std::string uuid = dp.UUID();
-    if (uuid.empty())
-      uuid = dp.getPath ("_",false,true);
-    this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
 
-    { // Extra scopes to avoid clashing for-loop counter variable names
-      // with MSVC6's compiler. Yuck!
+
+    { 
       std::set<ComponentImplementations>
         folders = this->root_folder_.ComponentImplementations_kind_children();
       for (std::set<ComponentImplementations>::iterator iter = folders.begin();
@@ -949,19 +945,27 @@ namespace PICML
               {
                 ComponentRef component_ref = ComponentRef::Cast (comp_type);
                 Component comp = component_ref.ref();
+				std::string component_name = comp.name ();
                 containing_assemblies.insert(comp.ComponentAssembly_parent());
                 Component typeParent;
-                if (comp.isInstance())
+				if (this->monoimpls_.find (component_name) != this->monoimpls_.end ())
                   {
-                    typeParent = comp.Archetype();
-                    while (typeParent.isInstance())
-                      typeParent = typeParent.Archetype();
-                  }
-                std::string refName = typeParent.name();
-                if (this->monoimpls_.find (refName) != this->monoimpls_.end ())
-                  {
-                    mimpl = this->monoimpls_[refName];
-                  }
+					  mimpl = this->monoimpls_[component_name];
+				  }
+				else
+				  {
+					if (comp.isInstance())
+                      {
+                        typeParent = comp.Archetype();
+                        while (typeParent.isInstance())
+                          typeParent = typeParent.Archetype();
+                      }
+                    std::string refName = typeParent.name();
+                    if (this->monoimpls_.find (refName) != this->monoimpls_.end ())
+                      {
+                        mimpl = this->monoimpls_[refName];
+                      }
+				  }
                 this->push ();
                 DOMElement* ele = this->doc_->createElement (XStr ("instance"));
                 std::string uniqueName = comp.getPath ("_",false,true);
