@@ -5,6 +5,7 @@
 
 #include <memory>
 #include <stack>
+#include <map>
 #include "PICML.h"
 
 // Xerces includes
@@ -32,18 +33,6 @@ namespace PICML
     PackageVisitor (const std::string& outputPath);
     ~PackageVisitor();
 
-    void init();
-    void initTarget (const std::string& fileName);
-    void initDocument (const std::string& rootName);
-    void initRootAttributes();
-    void dumpDocument();
-
-    void push();
-    void pop();
-
-    DOMElement* createSimpleContent (const std::string& name,
-                                     const std::string& value);
-
     // Lord Of the Rings..
     virtual void Visit_RootFolder(const RootFolder&);
 
@@ -68,6 +57,7 @@ namespace PICML
     virtual void Visit_ArtifactContainer(const ArtifactContainer&);
     virtual void Visit_ImplementationArtifact(const ImplementationArtifact&);
     virtual void Visit_ArtifactDependsOn(const ArtifactDependsOn&);
+    virtual void Visit_ArtifactDependency(const ArtifactDependency&);
     virtual void Visit_ImplementationArtifactReference(const ImplementationArtifactReference&);
     virtual void Visit_ArtifactExecParameter(const ArtifactExecParameter&);
     virtual void Visit_Property(const Property&);
@@ -147,6 +137,7 @@ namespace PICML
     virtual void Visit_ComponentAssembly(const ComponentAssembly&);
     virtual void Visit_emit(const emit&);
     virtual void Visit_invoke(const invoke&);
+
     virtual void Visit_InfoProperty(const InfoProperty&);
     virtual void Visit_MonolithprimaryArtifact(const MonolithprimaryArtifact&);
     virtual void Visit_MonolithDeployRequirement(const MonolithDeployRequirement&);
@@ -154,7 +145,15 @@ namespace PICML
     virtual void Visit_ImplementationDependsOn(const ImplementationDependsOn&);
     virtual void Visit_Implements(const Implements&);
     virtual void Visit_ImplementationCapability(const ImplementationCapability&);
-    //
+    // Component Attribute related operations
+    virtual void Visit_ReadonlyAttribute(const ReadonlyAttribute&);
+    virtual void Visit_AttributeValue(const AttributeValue&);
+    virtual void Visit_AttributeDelegate(const AttributeDelegate&);
+    virtual void Visit_AttributeMapping(const AttributeMapping&);
+    virtual void Visit_AttributeMappingValue(const AttributeMappingValue&);
+    virtual void Visit_AttributeMappingDelegate(const AttributeMappingDelegate&);
+
+
 
     virtual void Visit_Resource(const Resource&){};
     virtual void Visit_SharedResource(const SharedResource&){};
@@ -202,7 +201,6 @@ namespace PICML
     virtual void Visit_SetException(const SetException&){};
     virtual void Visit_LookupKey(const LookupKey&){};
     virtual void Visit_Attribute(const Attribute&){};
-    virtual void Visit_ReadonlyAttribute(const ReadonlyAttribute&){};
     virtual void Visit_MakeMemberPrivate(const MakeMemberPrivate&){};
     virtual void Visit_PrivateFlag(const PrivateFlag&){};
     virtual void Visit_GetException(const GetException&){};
@@ -233,6 +231,57 @@ namespace PICML
 
     // Maintain associations between PublishConnector and event consumers
     std::multimap<std::string, InEventPort> consumers_;
+
+    // Maintain association between pair<Component, Readonlyattribute> and
+    // Property
+    std::map<std::pair<std::string, std::string>, Property> attrValues_;
+
+    void init();
+    void initTarget (const std::string& fileName);
+    void initDocument (const std::string& rootName);
+    void initRootAttributes();
+    void dumpDocument();
+
+    void push();
+    void pop();
+    std::string ExtractName (Udm::Object obj);
+    DOMElement* createSimpleContent (const std::string& name,
+                                     const std::string& value);
+
+    void GetReceptacleComponents (const RequiredRequestPort& receptacle,
+                                  std::map<Component,std::string>& output);
+
+    void GetFacetComponents (const ProvidedRequestPort& facet,
+                             std::map<Component,std::string>& output);
+
+    void GetEventSinkComponents (const InEventPort& consumer,
+                                 std::map<Component,std::string>& output);
+
+    void GetEventSourceComponents (const OutEventPort& publisher,
+                                   std::map<Component,std::string>& output);
+
+    void GetAttributeComponents (const AttributeMapping& mapping,
+                                 std::set<std::pair<std::string, std::string> >& output);
+
+    template <typename T, typename Del, typename DelRet, typename DelEndRet>
+      void GetComponents (const T& port,
+                          DelRet (T::*srcDel)() const,
+                          DelRet (T::*dstDel) () const,
+                          DelEndRet (Del::*srcDelEnd)() const,
+                          DelEndRet (Del::*dstDelEnd)() const,
+                          std::map<Component, std::string>& output,
+                          std::set<T>& visited);
+
+    void CreateConnections (const std::map<Component, std::string>& src,
+                            const std::map<Component, std::string>& dst);
+
+    void CreateConnection (const Component& srcComp,
+                           const std::string& srcPortName,
+                           const Component& dstComp,
+                           const std::string& dstPortName);
+    void CreateAssemblyInstances (std::set<Component>& comps);
+    void CreateAssemblyConnections (std::vector<ComponentAssembly>& assemblies);
+    void CreateAttributeMappings (std::vector<ComponentAssembly>& assemblies);
   };
 }
 

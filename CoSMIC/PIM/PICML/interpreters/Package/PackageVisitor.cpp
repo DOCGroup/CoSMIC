@@ -1,3 +1,5 @@
+#include <algorithm>
+#include <functional>
 #include "PackageVisitor.h"
 #include "UmlExt.h"
 
@@ -115,74 +117,60 @@ namespace PICML
 
   void PackageVisitor::Visit_RootFolder(const RootFolder& rf)
   {
-    {
-      std::set<ComponentPackages>
-        folders = rf.ComponentPackages_kind_children();
-      for (std::set<ComponentPackages>::iterator iter = folders.begin();
-           iter != folders.end();
-           ++iter)
-        {
-          ComponentPackages folder = *iter;
-          folder.Accept (*this);
-        }
-    }
-    { // Extra scopes to avoid clashing for-loop counter variable names
-      // with MSVC6's compiler. Yuck!
-      std::set<ComponentImplementations>
-        folders = rf.ComponentImplementations_kind_children();
-      for (std::set<ComponentImplementations>::iterator iter = folders.begin();
-           iter != folders.end();
-           ++iter)
-        {
-          ComponentImplementations folder = *iter;
-          folder.Accept (*this);
-        }
-    }
-
-    {
-      std::set<ComponentTypes>
-        folders = rf.ComponentTypes_kind_children();
-      for (std::set<ComponentTypes>::iterator iter = folders.begin();
-           iter != folders.end();
-           ++iter)
-        {
-          ComponentTypes folder = *iter;
-          folder.Accept (*this);
-        }
-    }
-    {
-      std::set<ImplementationArtifacts>
-        folders = rf.ImplementationArtifacts_kind_children();
-      for (std::set<ImplementationArtifacts>::iterator iter = folders.begin();
-           iter != folders.end();
-           ++iter)
-        {
-          ImplementationArtifacts folder = *iter;
-          folder.Accept (*this);
-        }
-    }
-    {
-      std::set<TopLevelPackages>
-        folders = rf.TopLevelPackages_kind_children();
-      for (std::set<TopLevelPackages>::iterator iter = folders.begin();
-           iter != folders.end();
-           ++iter)
-        {
-          TopLevelPackages folder = *iter;
-          folder.Accept (*this);
-        }
-    }
-    {
-      std::set<PackageConfigurations>
-        folders = rf.PackageConfigurations_kind_children();
-      for (std::set<PackageConfigurations>::iterator iter = folders.begin();
-           iter != folders.end();
-           ++iter)
-        {
-          PackageConfigurations folder = *iter;
-          folder.Accept (*this);
-        }
-    }
+    std::set<ComponentPackages>
+      pkgs = rf.ComponentPackages_kind_children();
+    for (std::set<ComponentPackages>::iterator iter = pkgs.begin();
+         iter != pkgs.end();
+         ++iter)
+      {
+        ComponentPackages folder = *iter;
+        folder.Accept (*this);
+      }
+    std::set<ComponentImplementations>
+      impls = rf.ComponentImplementations_kind_children();
+    for (std::set<ComponentImplementations>::iterator iter = impls.begin();
+         iter != impls.end();
+         ++iter)
+      {
+        ComponentImplementations folder = *iter;
+        folder.Accept (*this);
+      }
+    std::set<ComponentTypes>
+      comps = rf.ComponentTypes_kind_children();
+    for (std::set<ComponentTypes>::iterator iter = comps.begin();
+         iter != comps.end();
+         ++iter)
+      {
+        ComponentTypes folder = *iter;
+        folder.Accept (*this);
+      }
+    std::set<ImplementationArtifacts>
+      artifacts = rf.ImplementationArtifacts_kind_children();
+    for (std::set<ImplementationArtifacts>::iterator iter = artifacts.begin();
+         iter != artifacts.end();
+         ++iter)
+      {
+        ImplementationArtifacts folder = *iter;
+        folder.Accept (*this);
+      }
+    std::set<TopLevelPackages>
+      tlpkgs = rf.TopLevelPackages_kind_children();
+    for (std::set<TopLevelPackages>::iterator iter = tlpkgs.begin();
+         iter != tlpkgs.end();
+         ++iter)
+      {
+        TopLevelPackages folder = *iter;
+        folder.Accept (*this);
+      }
+    std::set<PackageConfigurations>
+      pkgConfs = rf.PackageConfigurations_kind_children();
+    for (std::set<PackageConfigurations>::iterator iter = pkgConfs.begin();
+         iter != pkgConfs.end();
+         ++iter)
+      {
+        PackageConfigurations folder = *iter;
+        folder.Accept (*this);
+      }
   }
 
   // Implementation Artifact operations
@@ -246,6 +234,15 @@ namespace PICML
         ad.Accept (*this);
       }
 
+    const std::set<ArtifactDependency> adps = ia.dstArtifactDependency();
+    for (std::set<ArtifactDependency>::const_iterator iter = adps.begin();
+         iter != adps.end();
+         ++iter)
+      {
+        ArtifactDependency ad = *iter;
+        ad.Accept (*this);
+      }
+
     const std::set<ArtifactExecParameter> exec = ia.dstArtifactExecParameter();
     for (std::set<ArtifactExecParameter>::const_iterator it = exec.begin();
          it != exec.end();
@@ -254,6 +251,7 @@ namespace PICML
         ArtifactExecParameter aep = *it;
         aep.Accept (*this);
       }
+
     // Dump out an ImplementationArtifactDescription file
     this->dumpDocument();
     this->pop();
@@ -263,6 +261,22 @@ namespace PICML
   {
     ImplementationArtifactReference ref = ado.dstArtifactDependsOn_end();
     ref.Accept (*this);
+  }
+
+  void PackageVisitor::Visit_ArtifactDependency(const ArtifactDependency& ado)
+  {
+    this->push();
+    ImplementationArtifact ia = ado.dstArtifactDependency_end();
+    DOMElement* ele = this->doc_->createElement (XStr ("dependsOn"));
+    ele->appendChild (this->createSimpleContent ("name", ia.name()));
+    std::string iaName (ia.name());
+    iaName += ".iad";
+    DOMElement*
+      iaEle = this->doc_->createElement (XStr ("referencedArtifact"));
+    iaEle->setAttribute (XStr ("href"), XStr (iaName));
+    ele->appendChild (iaEle);
+    this->curr_->appendChild (ele);
+    this->pop();
   }
 
   void PackageVisitor::Visit_ImplementationArtifactReference(const ImplementationArtifactReference& iar)
@@ -767,17 +781,6 @@ namespace PICML
       uuid = comp.getPath ("_",false,true);
     this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
 
-//     Package parent = comp.Package_parent();
-//     std::string pkg = "";
-//     for (; parent != Udm::null; parent = parent.Package_parent())
-//       {
-//         std::string pcomp = parent.name();
-//         pkg = pcomp + "_" + pkg;
-//       }
-//     std::string specificType = "IDL:" + pkg + std::string (comp.name())+ ":1.0";
-//     this->curr_->appendChild (this->createSimpleContent ("specificType",
-//                                                          specificType));
-
     const std::set<OutEventPort> oeps = comp.OutEventPort_kind_children();
     for (std::set<OutEventPort>::const_iterator it1 = oeps.begin();
          it1 != oeps.end();
@@ -1074,15 +1077,6 @@ namespace PICML
 
   void PackageVisitor::Visit_ComponentAssembly(const ComponentAssembly& assembly)
   {
-    std::set<ComponentAssembly>
-      asms = assembly.ComponentAssembly_kind_children();
-    for (std::set<ComponentAssembly>::iterator aiter = asms.begin();
-         aiter != asms.end();
-         ++aiter)
-      {
-        ComponentAssembly rassembly  = *aiter;
-        rassembly.Accept (*this);
-      }
 
     this->push();
     std::string name = this->outputPath_ + "\\";
@@ -1106,21 +1100,154 @@ namespace PICML
     this->curr_->appendChild (ele);
     this->curr_ = ele;
 
+    // Collect all the Components of this assembly into a set.
     std::set<Component> comps = assembly.Component_kind_children();
-    std::vector<ComponentAssembly> nasms = assembly.ComponentAssembly_kind_children();
+
+    // Collect all the immediate ComponentAssembly children of this assembly
+    std::vector<ComponentAssembly>
+      subasms = assembly.ComponentAssembly_kind_children();
+
+    // Maintain a list of all ComponentAssemblies in this assembly
     std::vector<ComponentAssembly> assemblies;
+
+    // Put ourselves in the global list first.
     assemblies.push_back (assembly);
-    while (!nasms.empty())
+
+    // Do a Depth-First search and collect all the ComponentAssembly,
+    // Component children of this assembly, and add them to the
+    // assembly-specific list.
+    while (!subasms.empty())
       {
-        ComponentAssembly rassembly = nasms.back();
+        ComponentAssembly rassembly = subasms.back();
+        // Put the first assembly from the current list to the
+        // assembly-specific list.
         assemblies.push_back (rassembly);
-        nasms.pop_back();
+
+        subasms.pop_back();
+
+        // Get the components of the current assembly, and insert them into
+        // the component list
         std::set<Component> rcomps = rassembly.Component_kind_children();
         comps.insert (rcomps.begin(), rcomps.end());
-        std::vector<ComponentAssembly> rasms = rassembly.ComponentAssembly_kind_children();
-        std::copy (rasms.begin(), rasms.end(), std::back_inserter (nasms));
+
+        // Get the subassemblies of the first assembly.
+        std::vector<ComponentAssembly>
+          rasms = rassembly.ComponentAssembly_kind_children();
+
+        // Insert them to the current list.
+        std::copy (rasms.begin(), rasms.end(), std::back_inserter (subasms));
       }
 
+    // Create the appropriate component attribute value mappings
+    this->CreateAttributeMappings (assemblies);
+    this->CreateAssemblyInstances (comps);
+    this->CreateAssemblyConnections (assemblies);
+    this->pop();
+
+    // Dump out an ComponentImplementationDescription file
+    this->dumpDocument();
+    this->pop();
+  }
+
+  void PackageVisitor::CreateAttributeMappings (std::vector<ComponentAssembly>& assemblies)
+  {
+    for (std::vector<ComponentAssembly>::iterator iter = assemblies.begin();
+         iter != assemblies.end();
+         ++iter)
+      {
+        ComponentAssembly assembly = *iter;
+        std::string assemblyName = this->ExtractName (assembly);
+        const std::set<AttributeMapping>
+          mappings = assembly.AttributeMapping_kind_children();
+        for (std::set<AttributeMapping>::const_iterator iter = mappings.begin();
+             iter != mappings.end();
+             ++iter)
+          {
+            AttributeMapping mapping = *iter;
+            mapping.Accept (*this);
+          }
+      }
+  }
+
+  void PackageVisitor::Visit_AttributeMapping(const AttributeMapping& mapping)
+  {
+    std::string mappingName = this->ExtractName (mapping);
+    AttributeMappingValue value = mapping.dstAttributeMappingValue();
+    if (value != Udm::null)
+      {
+        Property prop = value.dstAttributeMappingValue_end();
+        std::set<std::pair<std::string, std::string> > compAttrs;
+        this->GetAttributeComponents (mapping, compAttrs);
+        for (std::set<std::pair<std::string, std::string> >::const_iterator
+               iter = compAttrs.begin();
+             iter != compAttrs.end();
+             ++iter)
+          {
+            // Get the component, attribute pair
+            pair<std::string, std::string> compAttr = *iter;
+            // Set the name of the associated property to the attribute name
+            prop.name() = compAttr.second;
+            // If this component's attribute hasn't been assigned a value,
+            // i.e., a value hasn't been propagated from a higher-level assembly,
+            // set it to the current value.
+            if (this->attrValues_.find (compAttr) == this->attrValues_.end())
+              this->attrValues_[compAttr] = prop;
+          }
+      }
+  }
+
+  void PackageVisitor::GetAttributeComponents (const AttributeMapping& mapping,
+                                               std::set<std::pair<std::string, std::string> >& output)
+  {
+    std::string mappingName = this->ExtractName (mapping);
+    std::set<AttributeDelegate> delegates = mapping.dstAttributeDelegate();
+    if (delegates.empty())
+      {
+        std::set<AttributeMappingDelegate>
+          mapDelegates = mapping.dstAttributeMappingDelegate();
+        if (mapDelegates.empty())
+          {
+            std::string mapPath = mapping.getPath ("_", false, true);
+
+            throw udm_exception (std::string ("AttributeMapping " +
+                                              mapPath +
+                                              " is not connected to any attributes or delegated to another AttributeMapping"));
+          }
+        else
+          {
+            for (std::set<AttributeMappingDelegate>::const_iterator
+                   iter = mapDelegates.begin();
+                 iter != mapDelegates.end();
+                 ++iter)
+              {
+                AttributeMappingDelegate mapDelegate = *iter;
+                AttributeMapping
+                  delegate = mapDelegate.dstAttributeMappingDelegate_end();
+                std::string delegateName = this->ExtractName (delegate);
+                this->GetAttributeComponents (delegate, output);
+              }
+          }
+      }
+    else
+      {
+        for (std::set<AttributeDelegate>::const_iterator
+               iter = delegates.begin();
+             iter != delegates.end();
+             ++iter)
+          {
+            AttributeDelegate delegate = *iter;
+            ReadonlyAttribute attr = delegate.dstAttributeDelegate_end();
+            std::string attrName = this->ExtractName (attr);
+            Component parent = attr.Component_parent();
+            std::string parentName = this->ExtractName (parent);
+            std::string compName = parent.getPath ("_", false, true);
+            output.insert (make_pair (compName, attr.name()));
+          }
+      }
+  }
+
+  void PackageVisitor::CreateAssemblyInstances (std::set<Component>& comps)
+  {
     for (std::set<Component>::iterator iter = comps.begin();
          iter != comps.end();
          ++iter)
@@ -1147,8 +1274,7 @@ namespace PICML
         DOMElement* refEle = this->doc_->createElement (XStr ("package"));
         refEle->setAttribute (XStr ("href"), XStr (refName));
         instance->appendChild (refEle);
-        const std::set<AssemblyConfigProperty>
-          cps = comp.dstAssemblyConfigProperty();
+        std::set<AssemblyConfigProperty> cps = comp.dstAssemblyConfigProperty();
         for (std::set<AssemblyConfigProperty>::const_iterator it2 = cps.begin();
              it2 != cps.end();
              ++it2)
@@ -1156,8 +1282,60 @@ namespace PICML
             AssemblyConfigProperty cp = *it2;
             cp.Accept (*this);
           }
+        std::set<ReadonlyAttribute> attrs = comp.ReadonlyAttribute_children();
+        for (std::set<ReadonlyAttribute>::const_iterator iter = attrs.begin();
+             iter != attrs.end();
+             ++iter)
+          {
+            ReadonlyAttribute attr = *iter;
+            attr.Accept (*this);
+          }
+        for (std::map<std::pair<std::string, std::string>, Property>::const_iterator iter = this->attrValues_.begin();
+             iter != this->attrValues_.end();
+             ++iter)
+          {
+            std::pair<std::pair<std::string, std::string>, Property>
+              attrVal = *iter;
+            std::pair<std::string, std::string> compAttr = attrVal.first;
+            if (compAttr.first == uniqueName)
+              {
+                DOMElement*
+                  ele = this->doc_->createElement (XStr ("configProperty"));
+                this->curr_->appendChild (ele);
+                Property val = attrVal.second;
+                val.Accept (*this);
+              }
+          }
         this->pop();
       }
+  }
+
+  void PackageVisitor::Visit_ReadonlyAttribute(const ReadonlyAttribute& attr)
+  {
+    AttributeValue attValue = attr.dstAttributeValue();
+    if (attValue != Udm::null)
+      attValue.Accept (*this);
+  }
+
+  void PackageVisitor::Visit_AttributeValue(const AttributeValue& value)
+  {
+    this->push();
+    DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
+    this->curr_->appendChild (ele);
+    this->curr_ = ele;
+    Property ref = value.dstAttributeValue_end();
+    ReadonlyAttribute attr = value.srcAttributeValue_end();
+    ref.name() = attr.name();
+    ref.Accept (*this);
+    this->pop();
+  }
+
+  void PackageVisitor::Visit_AttributeDelegate(const AttributeDelegate&){}
+  void PackageVisitor::Visit_AttributeMappingValue(const AttributeMappingValue&){}
+  void PackageVisitor::Visit_AttributeMappingDelegate(const AttributeMappingDelegate&){}
+
+  void PackageVisitor::CreateAssemblyConnections (std::vector<ComponentAssembly>& assemblies)
+  {
     for (std::vector<ComponentAssembly>::iterator iter = assemblies.begin();
          iter != assemblies.end();
          ++iter)
@@ -1204,195 +1382,204 @@ namespace PICML
             PublishConnector conn = *iter;
             conn.Accept (*this);
           }
-        this->publishers_.erase (this->publishers_.begin(),
-                                 this->publishers_.end());
-
-        this->consumers_.erase (this->consumers_.begin(),
-                                this->consumers_.end());
-
+        this->publishers_.clear();
+        this->consumers_.clear();
       }
 
-    this->pop();
 
-    // Dump out an ComponentImplementationDescription file
-    this->dumpDocument();
-    this->pop();
+  }
+
+  template <typename T, typename Del, typename DelRet, typename DelEndRet>
+  void PackageVisitor::GetComponents (const T& port,
+                                      DelRet (T::*srcDel)() const,
+                                      DelRet (T::*dstDel) () const,
+                                      DelEndRet (Del::*srcDelEnd)() const,
+                                      DelEndRet (Del::*dstDelEnd)() const,
+                                      std::map<Component, std::string>& output,
+                                      std::set<T>& visited)
+  {
+    visited.insert (port);
+    Udm::Object par = port.parent();
+    std::string recepName = port.name();
+    std::string parentName = this->ExtractName (par);
+    if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
+      {
+        std::set<Del> delegates = (port.*dstDel)();
+        for (std::set<Del>::const_iterator iter = delegates.begin();
+             iter != delegates.end();
+             ++iter)
+          {
+            Del delegate = *iter;
+            T srcPort = (delegate.*dstDelEnd)();
+            std::string srcPortName = this->ExtractName(srcPort);
+            if (std::find (visited.begin(),
+                           visited.end(),
+                           srcPort) == visited.end())
+              this->GetComponents(srcPort, srcDel, dstDel,
+                                  srcDelEnd, dstDelEnd, output, visited);
+          }
+        delegates = (port.*srcDel)();
+        for (std::set<Del>::const_iterator iter = delegates.begin();
+             iter != delegates.end();
+             ++iter)
+          {
+            Del delegate = *iter;
+            T dstPort = (delegate.*srcDelEnd)();
+            std::string dstPortName = this->ExtractName(dstPort);
+            if (std::find (visited.begin(),
+                           visited.end(),
+                           dstPort) == visited.end())
+              this->GetComponents(dstPort, srcDel, dstDel,
+                                  srcDelEnd, dstDelEnd, output, visited);
+          }
+      }
+    else if (Udm::IsDerivedFrom (par.type(), Component::meta))
+      {
+        Component recep_comp = Component::Cast (par);
+        output.insert (make_pair (recep_comp, port.name()));
+      }
+    visited.erase (port);
+    return;
+  }
+
+
+
+  void PackageVisitor::GetReceptacleComponents (const RequiredRequestPort& receptacle,
+                                                std::map<Component,std::string>& output)
+  {
+    std::set<RequiredRequestPort> visited;
+    this->GetComponents (receptacle,
+                        &RequiredRequestPort::srcReceptacleDelegate,
+                        &RequiredRequestPort::dstReceptacleDelegate,
+                        &ReceptacleDelegate::srcReceptacleDelegate_end,
+                        &ReceptacleDelegate::dstReceptacleDelegate_end,
+                        output,
+                        visited);
+  }
+
+  void PackageVisitor::GetFacetComponents (const ProvidedRequestPort& facet,
+                                           std::map<Component,std::string>& output)
+  {
+    std::set<ProvidedRequestPort> visited;
+    this->GetComponents (facet,
+                         &ProvidedRequestPort::srcFacetDelegate,
+                         &ProvidedRequestPort::dstFacetDelegate,
+                         &FacetDelegate::srcFacetDelegate_end,
+                         &FacetDelegate::dstFacetDelegate_end,
+                         output,
+                         visited);
+  }
+
+  void PackageVisitor::GetEventSinkComponents (const InEventPort& consumer,
+                                               std::map<Component,std::string>& output)
+  {
+    std::set<InEventPort> visited;
+    this->GetComponents (consumer,
+                         &InEventPort::srcEventSinkDelegate,
+                         &InEventPort::dstEventSinkDelegate,
+                         &EventSinkDelegate::srcEventSinkDelegate_end,
+                         &EventSinkDelegate::dstEventSinkDelegate_end,
+                         output,
+                         visited);
+  }
+
+    void PackageVisitor::GetEventSourceComponents (const OutEventPort& publisher,
+                                                   std::map<Component,std::string>& output)
+  {
+    std::set<OutEventPort> visited;
+    this->GetComponents (publisher,
+                         &OutEventPort::srcEventSourceDelegate,
+                         &OutEventPort::dstEventSourceDelegate,
+                         &EventSourceDelegate::srcEventSourceDelegate_end,
+                         &EventSourceDelegate::dstEventSourceDelegate_end,
+                         output,
+                         visited);
+  }
+
+  void PackageVisitor::CreateConnections (const std::map<Component, std::string>& src,
+                                          const std::map<Component, std::string>& dst)
+  {
+    for (std::map<Component,std::string>::const_iterator iter = src.begin();
+         iter != src.end();
+         ++iter)
+      {
+        Component srcComp = iter->first;
+        std::string srcPortName = iter->second;
+        for (std::map<Component, std::string>::const_iterator iter = dst.begin();
+             iter != dst.end();
+             ++iter)
+          {
+            Component dstComp = iter->first;
+            std::string dstPortName = iter->second;
+            this->CreateConnection (srcComp, srcPortName, dstComp, dstPortName);
+          }
+      }
+  }
+
+  void PackageVisitor::CreateConnection (const Component& srcComp,
+                                         const std::string& srcPortName,
+                                         const Component& dstComp,
+                                         const std::string& dstPortName)
+  {
+    // Create a connection
+    DOMElement* ele = this->doc_->createElement (XStr ("connection"));
+    this->curr_->appendChild (ele);
+
+    std::string connection = srcPortName + "_" + dstPortName;
+    ele->appendChild (this->createSimpleContent ("name", connection));
+
+    // Source endPoint
+    DOMElement* endPoint
+      = this->doc_->createElement (XStr ("internalEndpoint"));
+    endPoint->appendChild (this->createSimpleContent ("portName",
+                                                      srcPortName));
+    // Source instance
+    DOMElement* instance = this->doc_->createElement (XStr ("instance"));
+    instance->setAttribute (XStr ("xmi:idref"),
+                            XStr (srcComp.getPath ("_", false, true)));
+    endPoint->appendChild (instance);
+    ele->appendChild (endPoint);
+
+    // Destination endPoint
+    endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
+    endPoint->appendChild (this->createSimpleContent ("portName",
+                                                      dstPortName));
+    // Destination instance
+    instance = this->doc_->createElement (XStr ("instance"));
+    instance->setAttribute (XStr ("xmi:idref"),
+                            XStr (dstComp.getPath ("_", false, true)));
+    endPoint->appendChild (instance);
+    ele->appendChild (endPoint);
   }
 
   void PackageVisitor::Visit_invoke(const invoke& iv)
   {
-    this->push();
-
-    DOMElement* ele = this->doc_->createElement (XStr ("connection"));
-    this->curr_->appendChild (ele);
-    this->curr_ = ele;
-
     // Get the receptacle end
     RequiredRequestPort receptacle = iv.srcinvoke_end();
-    Component recep_comp;
-    while (true)
-      {
-        Udm::Object par = receptacle.parent();
-        if (Udm::IsDerivedFrom (par.type(), Component::meta))
-          {
-            recep_comp = Component::Cast (par);
-            break;
-          }
-        else if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
-          {
-            ReceptacleDelegate delegate = receptacle.dstReceptacleDelegate();
-            if (delegate != Udm::null)
-              receptacle = delegate.dstReceptacleDelegate_end();
-            else
-              {
-                delegate = receptacle.srcReceptacleDelegate();
-                receptacle = delegate.srcReceptacleDelegate_end();
-              }
-          }
-      }
 
     // Get the facet end
     ProvidedRequestPort facet = iv.dstinvoke_end();
-    Component facet_comp;
-    while (true)
-      {
-        Udm::Object par = facet.parent();
-        if (Udm::IsDerivedFrom (par.type(), Component::meta))
-          {
-            facet_comp = Component::Cast (par);
-            break;
-          }
-        else if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
-          {
-            FacetDelegate delegate = facet.dstFacetDelegate();
-            if (delegate != Udm::null)
-              facet = delegate.dstFacetDelegate_end();
-            else
-              {
-                delegate = facet.srcFacetDelegate();
-                facet = delegate.srcFacetDelegate_end();
-              }
-          }
-      }
 
-    // Create a connection
-    std::string connection = receptacle.name();
-    connection += "_";
-    connection += facet.name();
-    ele->appendChild (this->createSimpleContent ("name", connection));
-
-    // Facet endPoint
-    DOMElement* endPoint
-      = this->doc_->createElement (XStr ("internalEndpoint"));
-    endPoint->appendChild (this->createSimpleContent ("portName",
-                                                      facet.name()));
-    // Facet instance
-    DOMElement* instance = this->doc_->createElement (XStr ("instance"));
-    instance->setAttribute (XStr ("xmi:idref"),
-                            XStr (facet_comp.getPath ("_", false, true)));
-    endPoint->appendChild (instance);
-    ele->appendChild (endPoint);
-
-    // Receptacle endPoint
-    endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
-    endPoint->appendChild (this->createSimpleContent ("portName",
-                                                      receptacle.name()));
-    // Receptacle instance
-    instance = this->doc_->createElement (XStr ("instance"));
-    instance->setAttribute (XStr ("xmi:idref"),
-                            XStr (recep_comp.getPath ("_", false, true)));
-    endPoint->appendChild (instance);
-    ele->appendChild (endPoint);
-
-    this->pop();
+    std::map<Component,std::string> receptacles;
+    std::map<Component,std::string> facets;
+    this->GetReceptacleComponents (receptacle, receptacles);
+    this->GetFacetComponents (facet, facets);
+    this->CreateConnections (receptacles, facets);
   }
 
   void PackageVisitor::Visit_emit(const emit& ev)
   {
-    this->push();
-
-    DOMElement* ele = this->doc_->createElement (XStr ("connection"));
-    this->curr_->appendChild (ele);
-    this->curr_ = ele;
-
     // Get the emitter end
     OutEventPort emitter = ev.srcemit_end();
-    Component emitter_comp;
-    while (true)
-      {
-        Udm::Object par = emitter.parent();
-        if (Udm::IsDerivedFrom (par.type(), Component::meta))
-          {
-            emitter_comp = Component::Cast (par);
-            break;
-          }
-        else if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
-          {
-            EventSourceDelegate delegate = emitter.dstEventSourceDelegate();
-            if (delegate != Udm::null)
-              emitter = delegate.dstEventSourceDelegate_end();
-            else
-              {
-                delegate = emitter.srcEventSourceDelegate();
-                emitter = delegate.srcEventSourceDelegate_end();
-              }
-          }
-      }
 
     // Get the consumer end
     InEventPort consumer = ev.dstemit_end();
-    Component consumer_comp;
-    while (true)
-      {
-        Udm::Object par = consumer.parent();
-        if (Udm::IsDerivedFrom (par.type(), Component::meta))
-          {
-            consumer_comp = Component::Cast (par);
-            break;
-          }
-        else if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
-          {
-            EventSinkDelegate delegate = consumer.dstEventSinkDelegate();
-            if (delegate != Udm::null)
-              consumer = delegate.dstEventSinkDelegate_end();
-            else
-              {
-                delegate = consumer.srcEventSinkDelegate();
-                consumer = delegate.srcEventSinkDelegate_end();
-              }
-          }
-      }
 
-    // Create a connection
-    std::string connection = consumer.name();
-    connection += "_";
-    connection += emitter.name();
-    ele->appendChild (this->createSimpleContent ("name", connection));
-
-    // Emitter endPoint
-    DOMElement* endPoint
-      = this->doc_->createElement (XStr ("internalEndpoint"));
-    endPoint->appendChild (this->createSimpleContent ("portName",
-                                                      emitter.name()));
-    // Emitter instance
-    DOMElement* instance = this->doc_->createElement (XStr ("instance"));
-    instance->setAttribute (XStr ("xmi:idref"),
-                            XStr (emitter_comp.getPath ("_", false, true)));
-    endPoint->appendChild (instance);
-    ele->appendChild (endPoint);
-
-    // Consumer endPoint
-    endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
-    endPoint->appendChild (this->createSimpleContent ("portName",
-                                                      consumer.name()));
-    // Consumer instance
-    instance = this->doc_->createElement (XStr ("instance"));
-    instance->setAttribute (XStr ("xmi:idref"),
-                            XStr (consumer_comp.getPath ("_", false, true)));
-    endPoint->appendChild (instance);
-    ele->appendChild (endPoint);
-
-    this->pop();
+    std::map<Component,std::string> emitters;
+    std::map<Component,std::string> consumers;
+    this->GetEventSourceComponents (emitter, emitters);
+    this->GetEventSinkComponents (consumer, consumers);
+    this->CreateConnections (emitters, consumers);
   }
 
   void PackageVisitor::Visit_publish(const publish& ev)
@@ -1416,8 +1603,7 @@ namespace PICML
     const InEventPort consumer = dv.dstdeliverTo_end();
 
     // Create an entry in the consumers_ map
-    this->consumers_.insert (make_pair (std::string (connector.name()),
-                                        consumer));
+    this->consumers_.insert (make_pair (connector.name(), consumer));
   }
 
   void PackageVisitor::Visit_PublishConnector(const PublishConnector& pubctor)
@@ -1426,97 +1612,37 @@ namespace PICML
 
     // Get Publisher
     OutEventPort publisher = this->publishers_[ctor];
-    Component publisher_comp;
+    std::map<Component,std::string> publishers;
+    this->GetEventSourceComponents (publisher, publishers);
 
-    while (true)
-      {
-        Udm::Object par = publisher.parent();
-        if (Udm::IsDerivedFrom (par.type(), Component::meta))
-          {
-            publisher_comp = Component::Cast (par);
-            break;
-          }
-        else if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
-          {
-            EventSourceDelegate delegate = publisher.dstEventSourceDelegate();
-            if (delegate != Udm::null)
-              publisher = delegate.dstEventSourceDelegate_end();
-            else
-              {
-                delegate = publisher.srcEventSourceDelegate();
-                publisher = delegate.srcEventSourceDelegate_end();
-              }
-          }
-      }
-
-    for (std::multimap<std::string, InEventPort>::const_iterator
-           iter = this->consumers_.lower_bound (ctor);
-         iter != this->consumers_.upper_bound (ctor);
+    for (std::map<Component,std::string>::const_iterator
+           iter = publishers.begin();
+         iter != publishers.end();
          ++iter)
       {
-        this->push();
+        Component srcComp = iter->first;
+        std::string srcPortName = iter->second;
 
-        DOMElement* ele = this->doc_->createElement (XStr ("connection"));
-        this->curr_->appendChild (ele);
-        this->curr_ = ele;
-
-        // Get Consumer
-        InEventPort consumer = iter->second;
-        Component consumer_comp;
-
-        while (true)
+        for (std::multimap<std::string, InEventPort>::const_iterator
+               iter = this->consumers_.lower_bound (ctor);
+             iter != this->consumers_.upper_bound (ctor);
+             ++iter)
           {
-            Udm::Object par = consumer.parent();
-            if (Udm::IsDerivedFrom (par.type(), Component::meta))
+            // Get Consumer
+            InEventPort consumer = iter->second;
+            std::map<Component,std::string> consumers;
+            this->GetEventSinkComponents (consumer, consumers);
+            for (std::map<Component,std::string>::const_iterator
+                   iter = consumers.begin();
+                 iter != consumers.end();
+                 ++iter)
               {
-                consumer_comp = Component::Cast (par);
-                break;
-              }
-            else if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
-              {
-                EventSinkDelegate delegate = consumer.dstEventSinkDelegate();
-                if (delegate != Udm::null)
-                  consumer = delegate.dstEventSinkDelegate_end();
-                else
-                  {
-                    delegate = consumer.srcEventSinkDelegate();
-                    consumer = delegate.srcEventSinkDelegate_end();
-                  }
+                Component dstComp = iter->first;
+                std::string dstPortName = iter->second;
+                this->CreateConnection (srcComp, srcPortName, dstComp,
+                                        dstPortName);
               }
           }
-
-        // Create connection(s)
-        std::string connection = consumer.name();
-        connection += "_";
-        connection += publisher.name();
-        ele->appendChild (this->createSimpleContent ("name", connection));
-
-        // Publisher endPoint
-        DOMElement* endPoint
-          = this->doc_->createElement (XStr ("internalEndpoint"));
-        endPoint->appendChild (this->createSimpleContent ("portName",
-                                                          publisher.name()));
-        // Publisher instance
-        DOMElement* instance = this->doc_->createElement (XStr ("instance"));
-        instance->setAttribute (XStr ("xmi:idref"),
-                                XStr (publisher_comp.getPath ("_", false,
-                                                              true)));
-        endPoint->appendChild (instance);
-        ele->appendChild (endPoint);
-
-        // Consumer endPoint
-        endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
-        endPoint->appendChild (this->createSimpleContent ("portName",
-                                                          consumer.name()));
-        // Consumer instance
-        instance = this->doc_->createElement (XStr ("instance"));
-        instance->setAttribute (XStr ("xmi:idref"),
-                                XStr (consumer_comp.getPath ("_", false,
-                                                             true)));
-        endPoint->appendChild (instance);
-        ele->appendChild (endPoint);
-
-        this->pop();
       }
   }
 
@@ -1557,4 +1683,29 @@ namespace PICML
 
   void PackageVisitor::Visit_ImplementationCapability(const ImplementationCapability&)
   {}
+
+  std::string PackageVisitor::ExtractName(Udm::Object ob)
+  {
+    Uml::Class cls= ob.type();
+    set<Uml::Attribute> attrs=cls.attributes();
+
+    // Adding parent attributes
+    set<Uml::Attribute> aattrs=Uml::AncestorAttributes(cls);
+    attrs.insert(aattrs.begin(),aattrs.end());
+
+    for(set<Uml::Attribute>::iterator ai = attrs.begin();ai != attrs.end(); ai++)
+      {
+        if(string(ai->type())=="String")
+          {
+            string str=ai->name();
+            if(str=="name")
+              {
+                string value=ob.getStringAttr(*ai);
+                if(value.empty())value="<empty string>";
+                return value;
+              }
+          }
+      }
+    return string("<no name specified>");
+  }
 }

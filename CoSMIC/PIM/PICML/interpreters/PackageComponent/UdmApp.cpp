@@ -109,8 +109,8 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
         }
       catch(udm_exception &e)
         {
-
-          AfxMessageBox ("Caught UDM Exception: " + CString (e.what()));
+          AfxMessageBox ("Interpretation Failed. Caught UDM Exception: "
+                         + CString (e.what()));
           return;
         }
       catch (const DOMException& e)
@@ -140,38 +140,3 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
                  MB_OK| MB_ICONINFORMATION);
   return;
 }
-
-#ifdef _DEBUG
-/*****************************************************/
-/* Debug time helper function. If the object has an  */
-/* attribute called "name", this function retreives  */
-/* it to help you to find it in the model during the */
-/* application development.	Usualy every GME Object	 */
-/* has a "name" attribute. If an object hapens not	 */
-/* to have it,function retreives <no name specified>.*/
-/*****************************************************/
-string CUdmApp::ExtractName(Udm::Object ob)
-{
-  Uml::Class cls= ob.type();
-  set<Uml::Attribute> attrs=cls.attributes();
-
-  // Adding parent attributes
-  set<Uml::Attribute> aattrs=Uml::AncestorAttributes(cls);
-  attrs.insert(aattrs.begin(),aattrs.end());
-
-  for(set<Uml::Attribute>::iterator ai = attrs.begin();ai != attrs.end(); ai++)
-    {
-      if(string(ai->type())=="String")
-        {
-          string str=ai->name();
-          if(str=="name")
-            {
-              string value=ob.getStringAttr(*ai);
-              if(value.empty())value="<empty string>";
-              return value;
-            }
-        }
-    }
-  return string("<no name specified>");
-}
-#endif

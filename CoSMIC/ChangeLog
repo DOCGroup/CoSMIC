@@ -1,3 +1,20 @@
+Wed May 25 20:02:39 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.h:
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp:  Updated the
+          interpreter to add support for the items mentioned in the
+          changelog entry below.
+
+        * PIM/PICML/interpreters/TargetComponent/StdAfx.cpp:  Fixed some
+          warnings related to pre-compiled headers.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:  Updated to add more constraints
+          and fixed some cardinalities.
+
 Tue May 24 20:26:00 2005  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
