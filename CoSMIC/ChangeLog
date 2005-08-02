@@ -1,3 +1,12 @@
+Tue Aug  2 18:30:02 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.h:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
+        
+          Add no-op (for now) implementation of visit_valuebox(),
+          since a  pure virtual version was added to the base class
+          ast_visitor.
+
 Wed May 25 20:02:39 2005  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * PIM/PICML/interpreters/Package/PackageVisitor.h:

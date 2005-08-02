@@ -1209,6 +1209,12 @@ picml_visitor::visit_native (AST_Native *)
   return 0;
 }
 
+int
+picml_visitor::visit_valuebox (AST_ValueBox *)
+{
+  return 0;
+}
+
 ACE_CString
 picml_visitor::set_id_attr (DOMElement *elem, BE_GlobalData::kind_id kind)
 {

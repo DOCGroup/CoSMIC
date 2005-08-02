@@ -90,6 +90,7 @@ public:
   virtual int visit_typedef (AST_Typedef *node);
   virtual int visit_root (AST_Root *node);
   virtual int visit_native (AST_Native *node);
+  virtual int visit_valuebox (AST_ValueBox *node);
   
 private:
   typedef ACE_Unbounded_Queue_Iterator<AST_Component::port_description>
