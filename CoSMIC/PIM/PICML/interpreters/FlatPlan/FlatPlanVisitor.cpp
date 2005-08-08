@@ -613,7 +613,9 @@ namespace PICML
   }
 
   void FlatPlanVisitor::CreateConnections (const std::map<Component, std::string>& src,
-                                          const std::map<Component, std::string>& dst)
+                                          const std::map<Component, std::string>& dst,
+										  const std::string& source_kind,
+										  const std::string& dest_kind)
   {
     for (std::map<Component,std::string>::const_iterator iter = src.begin();
          iter != src.end();
@@ -627,7 +629,7 @@ namespace PICML
           {
             Component dstComp = iter->first;
             std::string dstPortName = iter->second;
-            this->CreateConnection (srcComp, srcPortName, dstComp, dstPortName);
+            this->CreateConnection (srcComp, srcPortName, dstComp, dstPortName, source_kind, dest_kind);
           }
       }
   }
@@ -635,7 +637,9 @@ namespace PICML
   void FlatPlanVisitor::CreateConnection (const Component& srcComp,
                                          const std::string& srcPortName,
                                          const Component& dstComp,
-                                         const std::string& dstPortName)
+                                         const std::string& dstPortName,
+										 const std::string& source_kind,
+										 const std::string& dest_kind)
   {
     // Create a connection
     DOMElement* ele = this->doc_->createElement (XStr ("connection"));
@@ -649,6 +653,8 @@ namespace PICML
       = this->doc_->createElement (XStr ("internalEndpoint"));
     endPoint->appendChild (this->createSimpleContent ("portName",
                                                       srcPortName));
+	endPoint->appendChild (this->createSimpleContent ("kind",
+                                                      source_kind));
     // Source instance
 
     // DOMElement* instance = this->doc_->createElement (XStr ("instance"));
@@ -664,6 +670,8 @@ namespace PICML
     endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
     endPoint->appendChild (this->createSimpleContent ("portName",
                                                       dstPortName));
+	endPoint->appendChild (this->createSimpleContent ("kind",
+                                                      dest_kind));
     // Destination instance
 
     // instance = this->doc_->createElement (XStr ("instance"));
@@ -712,9 +720,11 @@ namespace PICML
 
     std::map<Component,std::string> receptacles;
     std::map<Component,std::string> facets;
+	std::string source_kind = "Facet";
+	std::string dest_kind = "SimplexReceptacle";
     this->GetReceptacleComponents (receptacle, receptacles);
     this->GetFacetComponents (facet, facets);
-    this->CreateConnections (receptacles, facets);
+    this->CreateConnections (receptacles, facets, source_kind, dest_kind);
 
 	//this->push();
 
@@ -764,9 +774,11 @@ namespace PICML
 
     std::map<Component,std::string> emitters;
     std::map<Component,std::string> consumers;
+	std::string source_kind = "EventEmitter";
+	std::string dest_kind = "SimplexReceptacle";
     this->GetEventSourceComponents (emitter, emitters);
     this->GetEventSinkComponents (consumer, consumers);
-    this->CreateConnections (emitters, consumers);
+    this->CreateConnections (emitters, consumers, source_kind, dest_kind);
 
     //this->push();
 
@@ -865,8 +877,10 @@ namespace PICML
               {
                 Component dstComp = iter->first;
                 std::string dstPortName = iter->second;
+				std::string source_kind = "EventPublisher";
+				std::string dest_kind = "EventConsumer";
                 this->CreateConnection (srcComp, srcPortName, dstComp,
-                                        dstPortName);
+                                        dstPortName, source_kind, dest_kind);
               }
           }
       }
@@ -1116,16 +1130,16 @@ namespace PICML
                 ele->appendChild (this->doc_->createElement (XStr ("source")));
                 this->curr_->appendChild (ele);
                 this->curr_ = ele;
-                // std::string mimpl_name = mimpl.getPath ("_",false,true);
-                // this->curr_->appendChild (this->createSimpleContent ("implementation", mimpl_name));
-                /*const std::set<ConfigProperty> cps = mimpl.dstConfigProperty();
+                std::string mimpl_name = mimpl.getPath ("_",false,true);
+                this->curr_->appendChild (this->createSimpleContent ("implementation", mimpl_name));
+                const std::set<ConfigProperty> cps = mimpl.dstConfigProperty();
                 for (std::set<ConfigProperty>::const_iterator it2 = cps.begin();
                      it2 != cps.end();
                      ++it2)
                   {
                     ConfigProperty cp = *it2;
                     cp.Accept (*this);
-                  }*/
+                  }
                 this->pop ();
               }
             else if (Udm::IsDerivedFrom (comp_type.type(), ComponentAssemblyReference::meta))

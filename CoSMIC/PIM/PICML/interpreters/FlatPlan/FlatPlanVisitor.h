@@ -232,12 +232,16 @@ namespace PICML
                           std::set<T>& visited);
 
     FlatPlan_Export void CreateConnections (const std::map<Component, std::string>& src,
-                            const std::map<Component, std::string>& dst);
+                            const std::map<Component, std::string>& dst,
+							const std::string& source_kind,
+							const std::string& dest_kind);
 
     FlatPlan_Export void CreateConnection (const Component& srcComp,
                            const std::string& srcPortName,
                            const Component& dstComp,
-                           const std::string& dstPortName);
+                           const std::string& dstPortName,
+						   const std::string& source_kind,
+						   const std::string& dest_kind);
     FlatPlan_Export void CreateAssemblyInstances (std::set<Component>& comps);
     FlatPlan_Export void CreateAssemblyConnections (std::vector<ComponentAssembly>& assemblies);
     FlatPlan_Export void CreateAttributeMappings (std::vector<ComponentAssembly>& assemblies);
