@@ -650,10 +650,14 @@ namespace PICML
     endPoint->appendChild (this->createSimpleContent ("portName",
                                                       srcPortName));
     // Source instance
-    DOMElement* instance = this->doc_->createElement (XStr ("instance"));
-    instance->setAttribute (XStr ("xmi:idref"),
-                            XStr (srcComp.getPath ("_", false, true)));
-    endPoint->appendChild (instance);
+
+    // DOMElement* instance = this->doc_->createElement (XStr ("instance"));
+    // instance->setAttribute (XStr ("xmi:idref"),
+    //                         XStr (srcComp.getPath ("_", false, true)));
+    // endPoint->appendChild (instance);
+
+    std::string source_comp_instance = srcComp.getPath ("_",false,true);
+	endPoint->appendChild (this->createSimpleContent ("instance", source_comp_instance));
     ele->appendChild (endPoint);
 
     // Destination endPoint
@@ -661,10 +665,14 @@ namespace PICML
     endPoint->appendChild (this->createSimpleContent ("portName",
                                                       dstPortName));
     // Destination instance
-    instance = this->doc_->createElement (XStr ("instance"));
-    instance->setAttribute (XStr ("xmi:idref"),
-                            XStr (dstComp.getPath ("_", false, true)));
-    endPoint->appendChild (instance);
+
+    // instance = this->doc_->createElement (XStr ("instance"));
+    // instance->setAttribute (XStr ("xmi:idref"),
+    //                        XStr (dstComp.getPath ("_", false, true)));
+    // endPoint->appendChild (instance);
+
+	std::string dest_comp_instance = dstComp.getPath ("_",false,true);
+	endPoint->appendChild (this->createSimpleContent ("instance", dest_comp_instance));
     ele->appendChild (endPoint);
   }
 
@@ -1033,7 +1041,6 @@ namespace PICML
       this->curr_->appendChild (this->createSimpleContent ("label",
                                                            label));
 
-
     { 
       std::set<ComponentImplementations>
         folders = this->root_folder_.ComponentImplementations_kind_children();
@@ -1109,16 +1116,16 @@ namespace PICML
                 ele->appendChild (this->doc_->createElement (XStr ("source")));
                 this->curr_->appendChild (ele);
                 this->curr_ = ele;
-                std::string mimpl_name = mimpl.getPath ("_",false,true);
-                this->curr_->appendChild (this->createSimpleContent ("implementation", mimpl_name));
-                const std::set<ConfigProperty> cps = mimpl.dstConfigProperty();
+                // std::string mimpl_name = mimpl.getPath ("_",false,true);
+                // this->curr_->appendChild (this->createSimpleContent ("implementation", mimpl_name));
+                /*const std::set<ConfigProperty> cps = mimpl.dstConfigProperty();
                 for (std::set<ConfigProperty>::const_iterator it2 = cps.begin();
                      it2 != cps.end();
                      ++it2)
                   {
                     ConfigProperty cp = *it2;
                     cp.Accept (*this);
-                  }
+                  }*/
                 this->pop ();
               }
             else if (Udm::IsDerivedFrom (comp_type.type(), ComponentAssemblyReference::meta))
