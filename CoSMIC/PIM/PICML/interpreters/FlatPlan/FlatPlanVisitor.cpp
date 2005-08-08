@@ -1,4 +1,7 @@
+#include <algorithm>
+#include <functional>
 #include "FlatPlanVisitor.h"
+#include "UmlExt.h"
 
 using xercesc::LocalFileFormatTarget;
 using xercesc::DOMImplementationRegistry;
@@ -504,181 +507,296 @@ namespace PICML
     this->pop();
   }
 
-  void FlatPlanVisitor::Visit_invoke(const invoke& iv)
+  template <typename T, typename Del, typename DelRet, typename DelEndRet>
+  void FlatPlanVisitor::GetComponents (const T& port,
+                                      DelRet (T::*srcDel)() const,
+                                      DelRet (T::*dstDel) () const,
+                                      DelEndRet (Del::*srcDelEnd)() const,
+                                      DelEndRet (Del::*dstDelEnd)() const,
+                                      std::map<Component, std::string>& output,
+                                      std::set<T>& visited)
   {
-    this->push();
+    visited.insert (port);
+    Udm::Object par = port.parent();
+    std::string recepName = port.name();
+    std::string parentName = this->ExtractName (par);
+    if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
+      {
+        std::set<Del> delegates = (port.*dstDel)();
+        for (std::set<Del>::const_iterator iter = delegates.begin();
+             iter != delegates.end();
+             ++iter)
+          {
+            Del delegate = *iter;
+            T srcPort = (delegate.*dstDelEnd)();
+            std::string srcPortName = this->ExtractName(srcPort);
+            if (std::find (visited.begin(),
+                           visited.end(),
+                           srcPort) == visited.end())
+              this->GetComponents(srcPort, srcDel, dstDel,
+                                  srcDelEnd, dstDelEnd, output, visited);
+          }
+        delegates = (port.*srcDel)();
+        for (std::set<Del>::const_iterator iter = delegates.begin();
+             iter != delegates.end();
+             ++iter)
+          {
+            Del delegate = *iter;
+            T dstPort = (delegate.*srcDelEnd)();
+            std::string dstPortName = this->ExtractName(dstPort);
+            if (std::find (visited.begin(),
+                           visited.end(),
+                           dstPort) == visited.end())
+              this->GetComponents(dstPort, srcDel, dstDel,
+                                  srcDelEnd, dstDelEnd, output, visited);
+          }
+      }
+    else if (Udm::IsDerivedFrom (par.type(), Component::meta))
+      {
+        Component recep_comp = Component::Cast (par);
+        output.insert (make_pair (recep_comp, port.name()));
+      }
+    visited.erase (port);
+    return;
+  }
 
+  void FlatPlanVisitor::GetReceptacleComponents (const RequiredRequestPort& receptacle,
+                                                std::map<Component,std::string>& output)
+  {
+    std::set<RequiredRequestPort> visited;
+    this->GetComponents (receptacle,
+                        &RequiredRequestPort::srcReceptacleDelegate,
+                        &RequiredRequestPort::dstReceptacleDelegate,
+                        &ReceptacleDelegate::srcReceptacleDelegate_end,
+                        &ReceptacleDelegate::dstReceptacleDelegate_end,
+                        output,
+                        visited);
+  }
+
+  void FlatPlanVisitor::GetFacetComponents (const ProvidedRequestPort& facet,
+                                           std::map<Component,std::string>& output)
+  {
+    std::set<ProvidedRequestPort> visited;
+    this->GetComponents (facet,
+                         &ProvidedRequestPort::srcFacetDelegate,
+                         &ProvidedRequestPort::dstFacetDelegate,
+                         &FacetDelegate::srcFacetDelegate_end,
+                         &FacetDelegate::dstFacetDelegate_end,
+                         output,
+                         visited);
+  }
+
+  void FlatPlanVisitor::GetEventSinkComponents (const InEventPort& consumer,
+                                               std::map<Component,std::string>& output)
+  {
+    std::set<InEventPort> visited;
+    this->GetComponents (consumer,
+                         &InEventPort::srcEventSinkDelegate,
+                         &InEventPort::dstEventSinkDelegate,
+                         &EventSinkDelegate::srcEventSinkDelegate_end,
+                         &EventSinkDelegate::dstEventSinkDelegate_end,
+                         output,
+                         visited);
+  }
+
+    void FlatPlanVisitor::GetEventSourceComponents (const OutEventPort& publisher,
+                                                   std::map<Component,std::string>& output)
+  {
+    std::set<OutEventPort> visited;
+    this->GetComponents (publisher,
+                         &OutEventPort::srcEventSourceDelegate,
+                         &OutEventPort::dstEventSourceDelegate,
+                         &EventSourceDelegate::srcEventSourceDelegate_end,
+                         &EventSourceDelegate::dstEventSourceDelegate_end,
+                         output,
+                         visited);
+  }
+
+  void FlatPlanVisitor::CreateConnections (const std::map<Component, std::string>& src,
+                                          const std::map<Component, std::string>& dst)
+  {
+    for (std::map<Component,std::string>::const_iterator iter = src.begin();
+         iter != src.end();
+         ++iter)
+      {
+        Component srcComp = iter->first;
+        std::string srcPortName = iter->second;
+        for (std::map<Component, std::string>::const_iterator iter = dst.begin();
+             iter != dst.end();
+             ++iter)
+          {
+            Component dstComp = iter->first;
+            std::string dstPortName = iter->second;
+            this->CreateConnection (srcComp, srcPortName, dstComp, dstPortName);
+          }
+      }
+  }
+
+  void FlatPlanVisitor::CreateConnection (const Component& srcComp,
+                                         const std::string& srcPortName,
+                                         const Component& dstComp,
+                                         const std::string& dstPortName)
+  {
+    // Create a connection
     DOMElement* ele = this->doc_->createElement (XStr ("connection"));
     this->curr_->appendChild (ele);
-    this->curr_ = ele;
 
-    // Get the receptacle end
-    RequiredRequestPort receptacle = iv.srcinvoke_end();
-    Component recep_comp;
-    while (true)
-      {
-        Udm::Object par = receptacle.parent();
-        if (Udm::IsDerivedFrom (par.type(), Component::meta))
-          {
-            recep_comp = Component::Cast (par);
-            break;
-          }
-        else if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
-          {
-            ReceptacleDelegate delegate = receptacle.dstReceptacleDelegate();
-            if (delegate != Udm::null)
-              receptacle = delegate.dstReceptacleDelegate_end();
-            else
-              {
-                delegate = receptacle.srcReceptacleDelegate();
-                receptacle = delegate.srcReceptacleDelegate_end();
-              }
-          }
-      }
-
-    // Get the facet end
-    ProvidedRequestPort facet = iv.dstinvoke_end();
-    Component facet_comp;
-    while (true)
-      {
-        Udm::Object par = facet.parent();
-        if (Udm::IsDerivedFrom (par.type(), Component::meta))
-          {
-            facet_comp = Component::Cast (par);
-            break;
-          }
-        else if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
-          {
-            FacetDelegate delegate = facet.dstFacetDelegate();
-            if (delegate != Udm::null)
-              facet = delegate.dstFacetDelegate_end();
-            else
-              {
-                delegate = facet.srcFacetDelegate();
-                facet = delegate.srcFacetDelegate_end();
-              }
-          }
-      }
-
-    // Create a connection
-    std::string connection = receptacle.name();
-    connection += "_";
-    connection += facet.name();
+    std::string connection = srcPortName + "_" + dstPortName;
     ele->appendChild (this->createSimpleContent ("name", connection));
 
-    // Facet endPoint
+    // Source endPoint
     DOMElement* endPoint
       = this->doc_->createElement (XStr ("internalEndpoint"));
     endPoint->appendChild (this->createSimpleContent ("portName",
-                                                      facet.name()));
-    endPoint->appendChild (this->createSimpleContent ("kind",
-                                                      "Facet"));
-    // Facet instance
-    std::string uni_facet_insName = facet_comp.getPath ("_",false,true);
-    endPoint->appendChild (this->createSimpleContent ("instance", uni_facet_insName));
+                                                      srcPortName));
+    // Source instance
+    DOMElement* instance = this->doc_->createElement (XStr ("instance"));
+    instance->setAttribute (XStr ("xmi:idref"),
+                            XStr (srcComp.getPath ("_", false, true)));
+    endPoint->appendChild (instance);
     ele->appendChild (endPoint);
 
-    // Receptacle endPoint
+    // Destination endPoint
     endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
     endPoint->appendChild (this->createSimpleContent ("portName",
-                                                      receptacle.name()));
-    endPoint->appendChild (this->createSimpleContent ("kind",
-                                                      "SimplexReceptacle"));
-    // Receptacle instance
-    std::string uni_recep_insName = recep_comp.getPath ("_",false,true);
-    endPoint->appendChild (this->createSimpleContent ("instance", uni_recep_insName));
+                                                      dstPortName));
+    // Destination instance
+    instance = this->doc_->createElement (XStr ("instance"));
+    instance->setAttribute (XStr ("xmi:idref"),
+                            XStr (dstComp.getPath ("_", false, true)));
+    endPoint->appendChild (instance);
     ele->appendChild (endPoint);
+  }
 
-    this->pop();
+  std::string FlatPlanVisitor::ExtractName(Udm::Object ob)
+  {
+    Uml::Class cls= ob.type();
+    set<Uml::Attribute> attrs=cls.attributes();
+
+    // Adding parent attributes
+    set<Uml::Attribute> aattrs=Uml::AncestorAttributes(cls);
+    attrs.insert(aattrs.begin(),aattrs.end());
+
+    for(set<Uml::Attribute>::iterator ai = attrs.begin();ai != attrs.end(); ai++)
+      {
+        if(string(ai->type())=="String")
+          {
+            string str=ai->name();
+            if(str=="name")
+              {
+                string value=ob.getStringAttr(*ai);
+                if(value.empty())value="<empty string>";
+                return value;
+              }
+          }
+      }
+    return string("<no name specified>");
+  }
+
+  void FlatPlanVisitor::Visit_invoke(const invoke& iv)
+  {
+
+    // Get the receptacle end
+    RequiredRequestPort receptacle = iv.srcinvoke_end();
+
+    // Get the facet end
+    ProvidedRequestPort facet = iv.dstinvoke_end();
+
+    std::map<Component,std::string> receptacles;
+    std::map<Component,std::string> facets;
+    this->GetReceptacleComponents (receptacle, receptacles);
+    this->GetFacetComponents (facet, facets);
+    this->CreateConnections (receptacles, facets);
+
+	//this->push();
+
+    //DOMElement* ele = this->doc_->createElement (XStr ("connection"));
+    //this->curr_->appendChild (ele);
+    //this->curr_ = ele;
+
+    //// Create a connection
+    //std::string connection = receptacle.name();
+    //connection += "_";
+    //connection += facet.name();
+    //ele->appendChild (this->createSimpleContent ("name", connection));
+
+    //// Facet endPoint
+    //DOMElement* endPoint
+    //  = this->doc_->createElement (XStr ("internalEndpoint"));
+    //endPoint->appendChild (this->createSimpleContent ("portName",
+    //                                                  facet.name()));
+    //endPoint->appendChild (this->createSimpleContent ("kind",
+    //                                                  "Facet"));
+    //// Facet instance
+    //std::string uni_facet_insName = facet_comp.getPath ("_",false,true);
+    //endPoint->appendChild (this->createSimpleContent ("instance", uni_facet_insName));
+    //ele->appendChild (endPoint);
+
+    //// Receptacle endPoint
+    //endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
+    //endPoint->appendChild (this->createSimpleContent ("portName",
+    //                                                  receptacle.name()));
+    //endPoint->appendChild (this->createSimpleContent ("kind",
+    //                                                  "SimplexReceptacle"));
+    //// Receptacle instance
+    //std::string uni_recep_insName = recep_comp.getPath ("_",false,true);
+    //endPoint->appendChild (this->createSimpleContent ("instance", uni_recep_insName));
+    //ele->appendChild (endPoint);
+
+    //this->pop();
   }
 
   void FlatPlanVisitor::Visit_emit(const emit& ev)
   {
-    this->push();
-
-    DOMElement* ele = this->doc_->createElement (XStr ("connection"));
-    this->curr_->appendChild (ele);
-    this->curr_ = ele;
-
     // Get the emitter end
     OutEventPort emitter = ev.srcemit_end();
-    Component emitter_comp;
-    while (true)
-      {
-        Udm::Object par = emitter.parent();
-        if (Udm::IsDerivedFrom (par.type(), Component::meta))
-          {
-            emitter_comp = Component::Cast (par);
-            break;
-          }
-        else if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
-          {
-            EventSourceDelegate delegate = emitter.dstEventSourceDelegate();
-            if (delegate != Udm::null)
-              emitter = delegate.dstEventSourceDelegate_end();
-            else
-              {
-                delegate = emitter.srcEventSourceDelegate();
-                emitter = delegate.srcEventSourceDelegate_end();
-              }
-          }
-      }
 
     // Get the consumer end
     InEventPort consumer = ev.dstemit_end();
-    Component consumer_comp;
-    while (true)
-      {
-        Udm::Object par = consumer.parent();
-        if (Udm::IsDerivedFrom (par.type(), Component::meta))
-          {
-            consumer_comp = Component::Cast (par);
-            break;
-          }
-        else if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
-          {
-            EventSinkDelegate delegate = consumer.dstEventSinkDelegate();
-            if (delegate != Udm::null)
-              consumer = delegate.dstEventSinkDelegate_end();
-            else
-              {
-                delegate = consumer.srcEventSinkDelegate();
-                consumer = delegate.srcEventSinkDelegate_end();
-              }
-          }
-      }
 
-    // Create a connection
-    std::string connection = consumer.name();
-    connection += "_";
-    connection += emitter.name();
-    ele->appendChild (this->createSimpleContent ("name", connection));
+    std::map<Component,std::string> emitters;
+    std::map<Component,std::string> consumers;
+    this->GetEventSourceComponents (emitter, emitters);
+    this->GetEventSinkComponents (consumer, consumers);
+    this->CreateConnections (emitters, consumers);
 
-    // Emitter endPoint
-    DOMElement* endPoint
-      = this->doc_->createElement (XStr ("internalEndpoint"));
-    endPoint->appendChild (this->createSimpleContent ("portName",
-                                                      emitter.name()));
-    endPoint->appendChild (this->createSimpleContent ("kind",
-                                                      "EventEmitter"));
+    //this->push();
 
-    // Emitter instance
-    std::string emitter_insName = emitter_comp.getPath ("_",false,true);
-    endPoint->appendChild (this->createSimpleContent ("instance", emitter_insName));
-    ele->appendChild (endPoint);
+    //DOMElement* ele = this->doc_->createElement (XStr ("connection"));
+    //this->curr_->appendChild (ele);
+    //this->curr_ = ele;
 
-    // Consumer endPoint
-    endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
-    endPoint->appendChild (this->createSimpleContent ("portName",
-                                                      consumer.name()));
-    endPoint->appendChild (this->createSimpleContent ("kind",
-                                                      "SimplexReceptacle"));
-    // Consumer instance
-    std::string consumer_insName = consumer_comp.getPath ("_",false,true);
-    endPoint->appendChild (this->createSimpleContent ("instance", consumer_insName));
-    ele->appendChild (endPoint);
+    //// Create a connection
+    //std::string connection = consumer.name();
+    //connection += "_";
+    //connection += emitter.name();
+    //ele->appendChild (this->createSimpleContent ("name", connection));
 
-    this->pop();
+    //// Emitter endPoint
+    //DOMElement* endPoint
+    //  = this->doc_->createElement (XStr ("internalEndpoint"));
+    //endPoint->appendChild (this->createSimpleContent ("portName",
+    //                                                  emitter.name()));
+    //endPoint->appendChild (this->createSimpleContent ("kind",
+    //                                                  "EventEmitter"));
+
+    //// Emitter instance
+    //std::string emitter_insName = emitter_comp.getPath ("_",false,true);
+    //endPoint->appendChild (this->createSimpleContent ("instance", emitter_insName));
+    //ele->appendChild (endPoint);
+
+    //// Consumer endPoint
+    //endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
+    //endPoint->appendChild (this->createSimpleContent ("portName",
+    //                                                  consumer.name()));
+    //endPoint->appendChild (this->createSimpleContent ("kind",
+    //                                                  "SimplexReceptacle"));
+    //// Consumer instance
+    //std::string consumer_insName = consumer_comp.getPath ("_",false,true);
+    //endPoint->appendChild (this->createSimpleContent ("instance", consumer_insName));
+    //ele->appendChild (endPoint);
+
+    //this->pop();
   }
 
   void FlatPlanVisitor::Visit_publish(const publish& ev)
@@ -712,96 +830,112 @@ namespace PICML
 
     // Get Publisher
     OutEventPort publisher = this->publishers_[ctor];
-    Component publisher_comp;
+    std::map<Component,std::string> publishers;
+    this->GetEventSourceComponents (publisher, publishers);
 
-    while (true)
-      {
-        Udm::Object par = publisher.parent();
-        if (Udm::IsDerivedFrom (par.type(), Component::meta))
-          {
-            publisher_comp = Component::Cast (par);
-            break;
-          }
-        else if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
-          {
-            EventSourceDelegate delegate = publisher.dstEventSourceDelegate();
-            if (delegate != Udm::null)
-              publisher = delegate.dstEventSourceDelegate_end();
-            else
-              {
-                delegate = publisher.srcEventSourceDelegate();
-                publisher = delegate.srcEventSourceDelegate_end();
-              }
-          }
-      }
-
-    for (std::multimap<std::string, InEventPort>::const_iterator
-           iter = this->consumers_.lower_bound (ctor);
-         iter != this->consumers_.upper_bound (ctor);
+    for (std::map<Component,std::string>::const_iterator
+           iter = publishers.begin();
+         iter != publishers.end();
          ++iter)
       {
-        this->push();
+        Component srcComp = iter->first;
+        std::string srcPortName = iter->second;
 
-        DOMElement* ele = this->doc_->createElement (XStr ("connection"));
-        this->curr_->appendChild (ele);
-        this->curr_ = ele;
-
-        // Get Consumer
-        InEventPort consumer = iter->second;
-        Component consumer_comp;
-
-        while (true)
+        for (std::multimap<std::string, InEventPort>::const_iterator
+               iter = this->consumers_.lower_bound (ctor);
+             iter != this->consumers_.upper_bound (ctor);
+             ++iter)
           {
-            Udm::Object par = consumer.parent();
-            if (Udm::IsDerivedFrom (par.type(), Component::meta))
+            // Get Consumer
+            InEventPort consumer = iter->second;
+            std::map<Component,std::string> consumers;
+            this->GetEventSinkComponents (consumer, consumers);
+            for (std::map<Component,std::string>::const_iterator
+                   iter = consumers.begin();
+                 iter != consumers.end();
+                 ++iter)
               {
-                consumer_comp = Component::Cast (par);
-                break;
-              }
-            else if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
-              {
-                EventSinkDelegate delegate = consumer.dstEventSinkDelegate();
-                if (delegate != Udm::null)
-                  consumer = delegate.dstEventSinkDelegate_end();
-                else
-                  {
-                    delegate = consumer.srcEventSinkDelegate();
-                    consumer = delegate.srcEventSinkDelegate_end();
-                  }
+                Component dstComp = iter->first;
+                std::string dstPortName = iter->second;
+                this->CreateConnection (srcComp, srcPortName, dstComp,
+                                        dstPortName);
               }
           }
-
-        // Create connection(s)
-        std::string connection = consumer.name();
-        connection += "_";
-        connection += publisher.name();
-        ele->appendChild (this->createSimpleContent ("name", connection));
-
-        // Publisher endPoint
-        DOMElement* endPoint
-          = this->doc_->createElement (XStr ("internalEndpoint"));
-        endPoint->appendChild (this->createSimpleContent ("portName",
-                                                          publisher.name()));
-        endPoint->appendChild (this->createSimpleContent ("kind",
-                                                          "EventPublisher"));
-        // Publisher instance
-        std::string publisher_insName = publisher_comp.getPath ("_",false,true);
-        endPoint->appendChild (this->createSimpleContent ("instance", publisher_insName));
-        ele->appendChild (endPoint);
-
-        // Consumer endPoint
-        endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
-        endPoint->appendChild (this->createSimpleContent ("portName",
-                                                          consumer.name()));
-        endPoint->appendChild (this->createSimpleContent ("kind",
-                                                          "EventConsumer"));
-        // Consumer instance
-        std::string consumer_insName = consumer_comp.getPath ("_",false,true);
-        endPoint->appendChild (this->createSimpleContent ("instance", consumer_insName));
-        ele->appendChild (endPoint);
-
-        this->pop();
       }
+	  
+	//std::string ctor = pubctor.name();
+
+    //// Get Publisher
+    //OutEventPort publisher = this->publishers_[ctor];
+    //Component publisher_comp;
+
+    //for (std::multimap<std::string, InEventPort>::const_iterator
+    //       iter = this->consumers_.lower_bound (ctor);
+    //     iter != this->consumers_.upper_bound (ctor);
+    //     ++iter)
+    //  {
+    //    this->push();
+
+    //    DOMElement* ele = this->doc_->createElement (XStr ("connection"));
+    //    this->curr_->appendChild (ele);
+    //    this->curr_ = ele;
+
+    //    // Get Consumer
+    //    InEventPort consumer = iter->second;
+    //    Component consumer_comp;
+
+    //    while (true)
+    //      {
+    //        Udm::Object par = consumer.parent();
+    //        if (Udm::IsDerivedFrom (par.type(), Component::meta))
+    //          {
+    //            consumer_comp = Component::Cast (par);
+    //            break;
+    //          }
+    //        else if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
+    //          {
+    //            EventSinkDelegate delegate = consumer.dstEventSinkDelegate();
+    //            if (delegate != Udm::null)
+    //              consumer = delegate.dstEventSinkDelegate_end();
+    //            else
+    //              {
+    //                delegate = consumer.srcEventSinkDelegate();
+    //                consumer = delegate.srcEventSinkDelegate_end();
+    //              }
+    //          }
+    //      }
+
+    //    // Create connection(s)
+    //    std::string connection = consumer.name();
+    //    connection += "_";
+    //    connection += publisher.name();
+    //    ele->appendChild (this->createSimpleContent ("name", connection));
+
+    //    // Publisher endPoint
+    //    DOMElement* endPoint
+    //      = this->doc_->createElement (XStr ("internalEndpoint"));
+    //    endPoint->appendChild (this->createSimpleContent ("portName",
+    //                                                      publisher.name()));
+    //    endPoint->appendChild (this->createSimpleContent ("kind",
+    //                                                      "EventPublisher"));
+    //    // Publisher instance
+    //    std::string publisher_insName = publisher_comp.getPath ("_",false,true);
+    //    endPoint->appendChild (this->createSimpleContent ("instance", publisher_insName));
+    //    ele->appendChild (endPoint);
+
+    //    // Consumer endPoint
+    //    endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
+    //    endPoint->appendChild (this->createSimpleContent ("portName",
+    //                                                      consumer.name()));
+    //    endPoint->appendChild (this->createSimpleContent ("kind",
+    //                                                      "EventConsumer"));
+    //    // Consumer instance
+    //    std::string consumer_insName = consumer_comp.getPath ("_",false,true);
+    //    endPoint->appendChild (this->createSimpleContent ("instance", consumer_insName));
+    //    ele->appendChild (endPoint);
+
+    //    this->pop();
+    //  }
   }
 
   void FlatPlanVisitor::Visit_ArtifactDeployRequirement(const ArtifactDeployRequirement&)
@@ -1172,6 +1306,246 @@ namespace PICML
           }
         this->pop ();
       }
+  }
+
+  void FlatPlanVisitor::CreateAttributeMappings (std::vector<ComponentAssembly>& assemblies)
+  {
+    for (std::vector<ComponentAssembly>::iterator iter = assemblies.begin();
+         iter != assemblies.end();
+         ++iter)
+      {
+        ComponentAssembly assembly = *iter;
+        std::string assemblyName = this->ExtractName (assembly);
+        const std::set<AttributeMapping>
+          mappings = assembly.AttributeMapping_kind_children();
+        for (std::set<AttributeMapping>::const_iterator iter = mappings.begin();
+             iter != mappings.end();
+             ++iter)
+          {
+            AttributeMapping mapping = *iter;
+            mapping.Accept (*this);
+          }
+      }
+  }
+
+  void FlatPlanVisitor::Visit_AttributeMapping(const AttributeMapping& mapping)
+  {
+    std::string mappingName = this->ExtractName (mapping);
+    AttributeMappingValue value = mapping.dstAttributeMappingValue();
+    if (value != Udm::null)
+      {
+        Property prop = value.dstAttributeMappingValue_end();
+        std::set<std::pair<std::string, std::string> > compAttrs;
+        this->GetAttributeComponents (mapping, compAttrs);
+        for (std::set<std::pair<std::string, std::string> >::const_iterator
+               iter = compAttrs.begin();
+             iter != compAttrs.end();
+             ++iter)
+          {
+            // Get the component, attribute pair
+            pair<std::string, std::string> compAttr = *iter;
+            // Set the name of the associated property to the attribute name
+            prop.name() = compAttr.second;
+            // If this component's attribute hasn't been assigned a value,
+            // i.e., a value hasn't been propagated from a higher-level assembly,
+            // set it to the current value.
+            if (this->attrValues_.find (compAttr) == this->attrValues_.end())
+              this->attrValues_[compAttr] = prop;
+          }
+      }
+  }
+
+  void FlatPlanVisitor::GetAttributeComponents (const AttributeMapping& mapping,
+                                               std::set<std::pair<std::string, std::string> >& output)
+  {
+    std::string mappingName = this->ExtractName (mapping);
+    std::set<AttributeDelegate> delegates = mapping.dstAttributeDelegate();
+    if (delegates.empty())
+      {
+        std::set<AttributeMappingDelegate>
+          mapDelegates = mapping.dstAttributeMappingDelegate();
+        if (mapDelegates.empty())
+          {
+            std::string mapPath = mapping.getPath ("_", false, true);
+
+            throw udm_exception (std::string ("AttributeMapping " +
+                                              mapPath +
+                                              " is not connected to any attributes or delegated to another AttributeMapping"));
+          }
+        else
+          {
+            for (std::set<AttributeMappingDelegate>::const_iterator
+                   iter = mapDelegates.begin();
+                 iter != mapDelegates.end();
+                 ++iter)
+              {
+                AttributeMappingDelegate mapDelegate = *iter;
+                AttributeMapping
+                  delegate = mapDelegate.dstAttributeMappingDelegate_end();
+                std::string delegateName = this->ExtractName (delegate);
+                this->GetAttributeComponents (delegate, output);
+              }
+          }
+      }
+    else
+      {
+        for (std::set<AttributeDelegate>::const_iterator
+               iter = delegates.begin();
+             iter != delegates.end();
+             ++iter)
+          {
+            AttributeDelegate delegate = *iter;
+            ReadonlyAttribute attr = delegate.dstAttributeDelegate_end();
+            std::string attrName = this->ExtractName (attr);
+            Component parent = attr.Component_parent();
+            std::string parentName = this->ExtractName (parent);
+            std::string compName = parent.getPath ("_", false, true);
+            output.insert (make_pair (compName, attr.name()));
+          }
+      }
+  }
+
+  void FlatPlanVisitor::CreateAssemblyInstances (std::set<Component>& comps)
+  {
+    for (std::set<Component>::iterator iter = comps.begin();
+         iter != comps.end();
+         ++iter)
+      {
+        Component comp = *iter;
+        DOMElement* instance = this->doc_->createElement (XStr ("instance"));
+        this->curr_->appendChild (instance);
+        this->push();
+        this->curr_ = instance;
+        std::string uniqueName = comp.getPath ("_",false,true);
+        instance->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
+        instance->appendChild (this->createSimpleContent ("name",
+                                                          uniqueName));
+        Component typeParent;
+        if (comp.isInstance())
+          {
+           typeParent = comp.Archetype();
+            while (typeParent.isInstance())
+              typeParent = typeParent.Archetype();
+          }
+        std::string interfaceName = typeParent.name();
+        std::string refName = this->interfaces_[interfaceName];
+        refName += ".cpd";
+        DOMElement* refEle = this->doc_->createElement (XStr ("package"));
+        refEle->setAttribute (XStr ("href"), XStr (refName));
+        instance->appendChild (refEle);
+        std::set<AssemblyConfigProperty> cps = comp.dstAssemblyConfigProperty();
+        for (std::set<AssemblyConfigProperty>::const_iterator it2 = cps.begin();
+             it2 != cps.end();
+             ++it2)
+          {
+            AssemblyConfigProperty cp = *it2;
+            cp.Accept (*this);
+          }
+        std::set<ReadonlyAttribute> attrs = comp.ReadonlyAttribute_children();
+        for (std::set<ReadonlyAttribute>::const_iterator iter = attrs.begin();
+             iter != attrs.end();
+             ++iter)
+          {
+            ReadonlyAttribute attr = *iter;
+            attr.Accept (*this);
+          }
+        for (std::map<std::pair<std::string, std::string>, Property>::const_iterator iter = this->attrValues_.begin();
+             iter != this->attrValues_.end();
+             ++iter)
+          {
+            std::pair<std::pair<std::string, std::string>, Property>
+              attrVal = *iter;
+            std::pair<std::string, std::string> compAttr = attrVal.first;
+            if (compAttr.first == uniqueName)
+              {
+                DOMElement*
+                  ele = this->doc_->createElement (XStr ("configProperty"));
+                this->curr_->appendChild (ele);
+                Property val = attrVal.second;
+                val.Accept (*this);
+              }
+          }
+        this->pop();
+      }
+  }
+
+  void FlatPlanVisitor::Visit_ReadonlyAttribute(const ReadonlyAttribute& attr)
+  {
+    AttributeValue attValue = attr.dstAttributeValue();
+    if (attValue != Udm::null)
+      attValue.Accept (*this);
+  }
+
+  void FlatPlanVisitor::Visit_AttributeValue(const AttributeValue& value)
+  {
+    this->push();
+    DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
+    this->curr_->appendChild (ele);
+    this->curr_ = ele;
+    Property ref = value.dstAttributeValue_end();
+    ReadonlyAttribute attr = value.srcAttributeValue_end();
+    ref.name() = attr.name();
+    ref.Accept (*this);
+    this->pop();
+  }
+
+  void FlatPlanVisitor::Visit_AttributeDelegate(const AttributeDelegate&){}
+  void FlatPlanVisitor::Visit_AttributeMappingValue(const AttributeMappingValue&){}
+  void FlatPlanVisitor::Visit_AttributeMappingDelegate(const AttributeMappingDelegate&){}
+
+  void FlatPlanVisitor::CreateAssemblyConnections (std::vector<ComponentAssembly>& assemblies)
+  {
+    for (std::vector<ComponentAssembly>::iterator iter = assemblies.begin();
+         iter != assemblies.end();
+         ++iter)
+      {
+        ComponentAssembly subasm = *iter;
+        const std::set<invoke> invokes = subasm.invoke_kind_children();
+        for (std::set<invoke>::const_iterator iter = invokes.begin();
+             iter != invokes.end();
+             ++iter)
+          {
+            invoke iv = *iter;
+            iv.Accept (*this);
+          }
+        const std::set<emit> emits = subasm.emit_kind_children();
+        for (std::set<emit>::const_iterator iter = emits.begin();
+             iter != emits.end();
+             ++iter)
+          {
+            emit ev = *iter;
+            ev.Accept (*this);
+          }
+        const std::set<publish> publishers = subasm.publish_kind_children();
+        for (std::set<publish>::const_iterator iter = publishers.begin();
+             iter != publishers.end();
+             ++iter)
+          {
+            publish ev = *iter;
+            ev.Accept (*this);
+          }
+        const std::set<deliverTo> deliverTos = subasm.deliverTo_kind_children();
+        for (std::set<deliverTo>::const_iterator iter = deliverTos.begin();
+             iter != deliverTos.end();
+             ++iter)
+          {
+            deliverTo dv = *iter;
+            dv.Accept (*this);
+          }
+        const std::set<PublishConnector>
+          connectors = subasm.PublishConnector_kind_children();
+        for (std::set<PublishConnector>::const_iterator iter = connectors.begin();
+             iter != connectors.end();
+             ++iter)
+          {
+            PublishConnector conn = *iter;
+            conn.Accept (*this);
+          }
+        this->publishers_.clear();
+        this->consumers_.clear();
+      }
+
+
   }
 
   void FlatPlanVisitor::Visit_MonolithExecParameter(const MonolithExecParameter&)

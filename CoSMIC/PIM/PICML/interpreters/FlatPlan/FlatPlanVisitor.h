@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <stack>
+#include <map>
 #include "PICML.h"
 
 // Xerces includes
@@ -188,7 +189,6 @@ namespace PICML
     FlatPlan_Export virtual void Visit_SetException(const SetException&){};
     FlatPlan_Export virtual void Visit_LookupKey(const LookupKey&){};
     FlatPlan_Export virtual void Visit_Attribute(const Attribute&){};
-    FlatPlan_Export virtual void Visit_ReadonlyAttribute(const ReadonlyAttribute&){};
     FlatPlan_Export virtual void Visit_Supports(const Supports&){};
     FlatPlan_Export virtual void Visit_MakeMemberPrivate(const MakeMemberPrivate&){};
     FlatPlan_Export virtual void Visit_PrivateFlag(const PrivateFlag&){};
@@ -207,6 +207,47 @@ namespace PICML
     FlatPlan_Export virtual void Visit_ComponentRef(const ComponentRef&){};
     FlatPlan_Export virtual void Visit_ComponentFactory(const ComponentFactory&){};
     FlatPlan_Export virtual void Visit_Object(const Udm::Object&){};
+	FlatPlan_Export void GetReceptacleComponents (const RequiredRequestPort& receptacle,
+                                  std::map<Component,std::string>& output);
+
+    FlatPlan_Export void GetFacetComponents (const ProvidedRequestPort& facet,
+                             std::map<Component,std::string>& output);
+
+    FlatPlan_Export void GetEventSinkComponents (const InEventPort& consumer,
+                                 std::map<Component,std::string>& output);
+
+    FlatPlan_Export void GetEventSourceComponents (const OutEventPort& publisher,
+                                   std::map<Component,std::string>& output);
+
+    FlatPlan_Export void GetAttributeComponents (const AttributeMapping& mapping,
+                                 std::set<std::pair<std::string, std::string> >& output);
+
+    template <typename T, typename Del, typename DelRet, typename DelEndRet>
+      void GetComponents (const T& port,
+                          DelRet (T::*srcDel)() const,
+                          DelRet (T::*dstDel) () const,
+                          DelEndRet (Del::*srcDelEnd)() const,
+                          DelEndRet (Del::*dstDelEnd)() const,
+                          std::map<Component, std::string>& output,
+                          std::set<T>& visited);
+
+    FlatPlan_Export void CreateConnections (const std::map<Component, std::string>& src,
+                            const std::map<Component, std::string>& dst);
+
+    FlatPlan_Export void CreateConnection (const Component& srcComp,
+                           const std::string& srcPortName,
+                           const Component& dstComp,
+                           const std::string& dstPortName);
+    FlatPlan_Export void CreateAssemblyInstances (std::set<Component>& comps);
+    FlatPlan_Export void CreateAssemblyConnections (std::vector<ComponentAssembly>& assemblies);
+    FlatPlan_Export void CreateAttributeMappings (std::vector<ComponentAssembly>& assemblies);
+	FlatPlan_Export virtual void Visit_ReadonlyAttribute(const ReadonlyAttribute&);
+    FlatPlan_Export virtual void Visit_AttributeValue(const AttributeValue&);
+    FlatPlan_Export virtual void Visit_AttributeDelegate(const AttributeDelegate&);
+    FlatPlan_Export virtual void Visit_AttributeMapping(const AttributeMapping&);
+    FlatPlan_Export virtual void Visit_AttributeMappingValue(const AttributeMappingValue&);
+    FlatPlan_Export virtual void Visit_AttributeMappingDelegate(const AttributeMappingDelegate&);
+	FlatPlan_Export std::string ExtractName (Udm::Object obj);
 
   private:
 
@@ -227,5 +268,8 @@ namespace PICML
 
     // Maintain associations between PublishConnector and event consumers
     std::multimap<std::string, InEventPort> consumers_;
+
+	std::map<std::string, std::string> interfaces_;
+	std::map<std::pair<std::string, std::string>, Property> attrValues_;
   };
 }
