@@ -111,7 +111,9 @@ private:
                                     const char *type,
                                     unsigned long &model_slot,
                                     unsigned long pdt_slot);
-  DOMElement *add_file_element (DOMElement *parent, AST_Root *node);
+  DOMElement *add_file_element (DOMElement *parent,
+                                AST_Root *node,
+                                unsigned long rel_id);
   void add_prefix_element (DOMElement *parent, AST_Decl *node);
   void add_replace_id_element (DOMElement *parent, AST_Decl *node);
   void add_version_element (DOMElement *parent, AST_Decl *node);
@@ -126,7 +128,8 @@ private:
                      DOMElement *parent,
                      size_t slot,
                      AST_Attribute *a = 0,
-                     idl_bool is_connected = I_FALSE);
+                     idl_bool is_connected = I_FALSE,
+                     const char *aspect = "InterfaceDefinition");
   void add_pos_element (UTL_Scope *container,
                         DOMElement *parent,
                         size_t slot,
@@ -176,6 +179,20 @@ private:
   void check_for_basic_seq (AST_Decl *d, ACE_CString &str);
   void check_for_basic_type (AST_Decl *d, ACE_CString &str);
   bool can_skip_import (AST_Module *m);
+  DOMElement *imported_dom_element (AST_Decl *d);
+  
+  void add_picml_boilerplate (void);
+  void add_ComponentImplementations (void);
+  void add_ImplementationArtifacts (void);
+  void add_ComponentTypes (void);
+  void add_PackageConfigurations (void);
+  void add_ComponentPackages (void);
+  void add_DeploymentPlans (void);
+  void add_Targets (void);
+  void add_TopLevelPackages (void);
+  void add_ComponentBuild (void);
+  
+  void add_defalt_container (DOMElement *elem, AST_Component *node);
 
 private:
   DOMElement *sub_tree_;

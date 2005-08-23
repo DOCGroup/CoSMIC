@@ -33,6 +33,7 @@
 #include "idl_bool.h"
 
 #include "xercesc/dom/DOM.hpp"
+#include "xercesc/dom/DOMElement.hpp"
 #include "xercesc/framework/LocalFileFormatTarget.hpp"
 
 #define X(str) XStr (ACE_TEXT (str))
@@ -115,6 +116,9 @@ public:
   const char* output_dir (void) const;
   void output_dir (const char* s);
   
+  const char* input_xme (void) const;
+  void input_xme (const char* s);
+  
   // Access or increment these project-wide values.
   
   unsigned long models_seen (void) const;
@@ -149,6 +153,18 @@ public:
   
   xercesc::DOMDocument *doc (void) const;
   // Readonly accessor for the member.
+  
+  xercesc::DOMElement *root_folder (void) const;
+  void root_folder (xercesc::DOMElement *elem);
+  // Accessors for the member.
+  
+  xercesc::DOMElement *component_types_folder (void) const;
+  void component_types_folder (xercesc::DOMElement *elem);
+  // Accessors for the member.
+  
+  unsigned long component_types_rel_id (void) const;
+  void incr_component_types_rel_id (void);
+  // Read and increment the rel_id index for ComponentTypes.
   
   DECL_ID_TABLE &decl_id_table (void);
   DECL_ELEM_TABLE &decl_elem_table (void);
@@ -201,6 +217,9 @@ private:
   // Directory where the generated file is to be
   // kept. Default value is 0 for this string which means the current
   // directory from which the <tao_picml> is called.
+  
+  char *input_xme_;
+  // URL of the XME file to input, if any.
 
   unsigned long models_seen_;
   unsigned long atoms_seen_;
@@ -227,7 +246,12 @@ private:
   xercesc::DOMDocument *doc_;
   xercesc::DOMWriter *writer_;
   xercesc::XMLFormatTarget *target_;
+  xercesc::DOMElement *root_folder_;
+  xercesc::DOMElement *component_types_folder_;
   // DOM items we need to cache.
+  
+  unsigned long component_types_rel_id_;
+  // Cache of rel_id indices for the extra folders.
   
   DECL_ID_TABLE decl_id_table_;
   // Hash map of GME ids, keyed by repository id.

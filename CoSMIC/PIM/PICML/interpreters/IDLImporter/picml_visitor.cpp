@@ -171,21 +171,31 @@ picml_visitor::visit_interface (AST_Interface *node)
 {
   DOMElement *elem = 0;
   int result = be_global->decl_elem_table ().find (node->repoID (), elem);
+  bool dom_elem_imported = false;
 
   if (result != 0)
     {
-      // Create a DOMElement and a GME id and store them in their
+      // See if it's been imported with an XME file.
+      elem = this->imported_dom_element (node);
+      dom_elem_imported = (elem != 0);
+      
+      // If not, create it.
+      if (!dom_elem_imported)
+        {
+          elem = this->doc_->createElement (X ("model"));
+          this->set_id_attr (elem, BE_GlobalData::MODEL);
+        }
+      
+      // Store the DOMElement and GME id in their
       // respective tables. These actions are idempotent, so we
       // don't care about the return values of bind().
-      elem = this->doc_->createElement (X ("model"));
       be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
                                           elem);
-      this->set_id_attr (elem, BE_GlobalData::MODEL);
       be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
                                         elem->getAttribute (X ("id")));
     }
     
-  if (!node->imported ())
+  if (!node->imported () && !dom_elem_imported)
     {
       this->set_relid_attr (elem);
       this->set_childrelidcntr_attr (elem, node);
@@ -338,9 +348,12 @@ picml_visitor::visit_component (AST_Component *node)
                                     node,
                                     node->supports (),
                                     node->n_supports ());
-      this->add_ports (elem, node);
-      
+      this->add_ports (elem, node);      
       this->sub_tree_->appendChild (elem);
+      
+      // Add the ComponentContainer model element, and its
+      // contents.
+      this->add_defalt_container (elem, node);
     }
     
   unsigned long start_id = (node->base_component () == 0 ? 0UL : 1UL)
@@ -1149,14 +1162,15 @@ picml_visitor::visit_root (AST_Root *node)
       author->appendChild (author_val);
       sub_tree_->appendChild (author);
       
-      DOMElement *root_folder = doc_->createElement (X ("folder"));
-      this->set_id_attr (root_folder, BE_GlobalData::FOLDER);
-      this->set_relid_attr (root_folder);
-      root_folder->setAttribute (X ("childrelidcntr"), X ("0x2"));
-      root_folder->setAttribute (X ("kind"), X ("RootFolder"));
-      sub_tree_->appendChild (root_folder);      
-      this->add_name_element (root_folder, project_name.c_str ());     
-      this->add_predefined_types (root_folder);   
+      DOMElement *rf = doc_->createElement (X ("folder"));
+      be_global->root_folder (rf);
+      this->set_id_attr (rf, BE_GlobalData::FOLDER);
+      this->set_relid_attr (rf);
+      rf->setAttribute (X ("childrelidcntr"), X ("0x2"));
+      rf->setAttribute (X ("kind"), X ("RootFolder"));
+      sub_tree_->appendChild (rf);      
+      this->add_name_element (rf, project_name.c_str ());     
+      this->add_predefined_types (rf);   
          
       interface_definitions =
         doc_->createElement (X ("folder"));
@@ -1170,18 +1184,24 @@ picml_visitor::visit_root (AST_Root *node)
                                            X ("InterfaceDefinitions"));
       this->add_name_element (interface_definitions, 
                               "InterfaceDefinitions");
-      root_folder->appendChild (interface_definitions);
-      
-      be_global->first_file (I_FALSE);
+      rf->appendChild (interface_definitions);
     }
     
-  // The pass for the first file creates DOM elements at several levels
-  // so we have to reset the relative id counter here to get correct
-  // values for the File models under InterfaceDefinitions.
+  // If we aren't modifying an exisiting XME file, add the
+  // boilerplate PICML elements.
+  if (be_global->input_xme () == 0 && be_global->first_file ())
+    {
+      this->add_picml_boilerplate ();
+    }
+
+  // The call to add a file element below is outside the normal
+  // scope visitor mechanism, so we have to maintain a separate
+  // rel_id counter for files.
   static unsigned long pass = 1UL;
-  this->rel_id_ = pass++;
   
-  DOMElement *file = this->add_file_element (interface_definitions, node);
+  DOMElement *file =
+    this->add_file_element (interface_definitions, node, pass++);
+    
   unsigned long start_relid =
     this->user_includes () + this->n_basic_seqs_ + 1UL;
   picml_visitor scope_visitor (file, start_relid);
@@ -1199,7 +1219,9 @@ picml_visitor::visit_root (AST_Root *node)
     
   // Reset this, in case it was modified.  
   this->n_basic_seqs_ = 0UL;
-
+  
+  be_global->first_file (I_FALSE);
+      
   return 0;
 }
 
@@ -1209,9 +1231,10 @@ picml_visitor::visit_native (AST_Native *)
   return 0;
 }
 
-int
+int 
 picml_visitor::visit_valuebox (AST_ValueBox *)
 {
+  // TODO
   return 0;
 }
 
@@ -1232,8 +1255,8 @@ picml_visitor::set_relid_attr (DOMElement *elem)
 
 void
 picml_visitor::set_childrelidcntr_attr (DOMElement *elem,
-                                       UTL_Scope *s,
-                                       AST_Attribute *a)
+                                        UTL_Scope *s,
+                                        AST_Attribute *a)
 {
   unsigned long nkids = this->nmembers_gme (s, a);
   
@@ -1477,7 +1500,9 @@ picml_visitor::add_one_predefined_sequence (DOMElement *parent,
 }
 
 DOMElement *
-picml_visitor::add_file_element (DOMElement *parent, AST_Root *node)
+picml_visitor::add_file_element (DOMElement *parent,
+                                AST_Root *node,
+                                unsigned long rel_id)
 {
   ACE_CString tmp (idl_global->stripped_filename ()->get_string ());
   tmp = tmp.substr (0, tmp.rfind ('.'));
@@ -1497,7 +1522,8 @@ picml_visitor::add_file_element (DOMElement *parent, AST_Root *node)
       exit (99);
     }
     
-  this->set_relid_attr (file);
+  char *hex_relid = be_global->hex_string (rel_id);
+  file->setAttribute (X ("relid"), X (hex_relid));
   file->setAttribute (X ("kind"), X ("File"));
   
   XMLCh *file_id = 0;
@@ -1704,22 +1730,36 @@ picml_visitor::add_include_elements (UTL_Scope *container, DOMElement *parent)
 
 void
 picml_visitor::add_regnodes (UTL_Scope *container,
-                            DOMElement *parent,
-                            size_t slot,
-                            AST_Attribute *a,
-                            idl_bool is_connected)
+                             DOMElement *parent,
+                             size_t slot,
+                             AST_Attribute *a,
+                             idl_bool is_connected,
+                             const char *aspect)
 {
+  bool ifacedef_aspect =
+    (ACE_OS::strcmp (aspect, "InterfaceDefinition") == 0);
+    
   DOMElement *outer = this->doc_->createElement (X ("regnode"));
   outer->setAttribute (X ("name"), X ("PartRegs"));
-  outer->setAttribute (X ("isopaque"), X ("yes"));
+  
+  if (ifacedef_aspect)
+    {
+      outer->setAttribute (X ("isopaque"), X ("yes"));
+    }
+    
   DOMElement *ovalue = this->doc_->createElement (X ("value"));
   DOMText *oval = this->doc_->createTextNode (X (""));
   ovalue->appendChild (oval);
   outer->appendChild (ovalue);
   
   DOMElement *middle = this->doc_->createElement (X ("regnode"));
-  middle->setAttribute (X ("name"), X ("InterfaceDefinition"));
-  middle->setAttribute (X ("isopaque"), X ("yes"));
+  middle->setAttribute (X ("name"), X (aspect));
+  
+  if (ifacedef_aspect)
+    {
+      middle->setAttribute (X ("isopaque"), X ("yes"));
+    }
+    
   DOMElement *mvalue = this->doc_->createElement (X ("value"));
   DOMText *mval = this->doc_->createTextNode (X (""));
   mvalue->appendChild (mval);
@@ -1728,6 +1768,7 @@ picml_visitor::add_regnodes (UTL_Scope *container,
   DOMElement *inner = this->doc_->createElement (X ("regnode"));
   inner->setAttribute (X ("name"), X ("Position"));
   inner->setAttribute (X ("isopaque"), X ("yes"));
+    
   DOMElement *ivalue = this->doc_->createElement (X ("value"));
   
   this->add_pos_element (container, ivalue, slot, a, is_connected);
@@ -1751,7 +1792,8 @@ picml_visitor::add_pos_element (UTL_Scope *container,
                   '\0',
                   9);
   
-  unsigned long nslices = this->nmembers_gme (container, a) + 1;
+  unsigned long nslices =
+    (container == 0 ? 2UL : this->nmembers_gme (container, a) + 1UL);
     
   unsigned long slice_width = XMAX_ / nslices;
   unsigned long slice_height = YMAX_ / nslices;
@@ -3073,3 +3115,230 @@ picml_visitor::can_skip_import (AST_Module *m)
     
   return true;
 }
+
+DOMElement *
+picml_visitor::imported_dom_element (AST_Decl *d)
+{
+  // Can't already be in the DOM tree if we didn't read in an XME file.
+  if (be_global->input_xme () == 0)
+    {
+      return 0;
+    }
+    
+  const char *ln = d->local_name ()->get_string ();
+
+  DOMNodeList *children =
+    this->sub_tree_->getElementsByTagName (X ("model"));
+  
+  for (XMLSize_t index = 0; index < children->getLength (); ++index)
+    {
+      DOMElement *child = (DOMElement *) children->item (index);
+      
+      if (child == 0)
+        {
+          continue;
+        }
+      
+      // There should be only one "name" node.  
+      DOMNodeList *namelist = child->getElementsByTagName (X ("name"));
+      
+      DOMNode *name_elem = namelist->item (0);
+      DOMNode *name_item = name_elem->getFirstChild ();
+      DOMText *name = (DOMText *) name_item;
+      const XMLCh *text = name->getData ();
+      
+      if (X (ln) == text)
+        {
+          return child;
+        }
+    }
+    
+  return 0;
+}
+
+void
+picml_visitor::add_picml_boilerplate (void)
+{
+  this->add_ComponentImplementations ();
+  this->add_ImplementationArtifacts ();
+  this->add_ComponentTypes ();
+  this->add_PackageConfigurations ();
+  this->add_ComponentPackages ();
+  this->add_DeploymentPlans ();
+  this->add_Targets ();
+  this->add_TopLevelPackages ();
+  this->add_ComponentBuild ();
+}
+
+void
+picml_visitor::add_ComponentImplementations (void)
+{
+  DOMElement *component_implementations =
+    doc_->createElement (X ("folder"));
+  this->set_id_attr (component_implementations, BE_GlobalData::FOLDER);
+  this->set_relid_attr (component_implementations);
+  component_implementations->setAttribute (X ("childrelidcntr"), X ("0x0")); // TODO
+  component_implementations->setAttribute (X ("kind"), 
+                                           X ("ComponentImplementations"));
+  this->add_name_element (component_implementations, 
+                          "ComponentImplementations");
+  be_global->root_folder ()->appendChild (component_implementations);
+}
+
+void
+picml_visitor::add_ImplementationArtifacts (void)
+{
+  DOMElement *implementation_artifacts =
+    doc_->createElement (X ("folder"));
+  this->set_id_attr (implementation_artifacts, BE_GlobalData::FOLDER);
+  this->set_relid_attr (implementation_artifacts);
+  implementation_artifacts->setAttribute (X ("childrelidcntr"), X ("0x0")); // TODO
+  implementation_artifacts->setAttribute (X ("kind"), 
+                                          X ("ImplementationArtifacts"));
+  this->add_name_element (implementation_artifacts, 
+                          "ImplementationArtifacts");
+  be_global->root_folder ()->appendChild (implementation_artifacts);
+}
+
+void
+picml_visitor::add_ComponentTypes (void)
+{
+  DOMElement *component_types = doc_->createElement (X ("folder"));
+  be_global->component_types_folder (component_types);
+  this->set_id_attr (component_types, BE_GlobalData::FOLDER);
+  this->set_relid_attr (component_types);
+  component_types->setAttribute (X ("childrelidcntr"), X ("0x0")); // TODO
+  component_types->setAttribute (X ("kind"), 
+                                 X ("ComponentTypes"));
+  this->add_name_element (component_types, 
+                          "ComponentTypes");
+  be_global->root_folder ()->appendChild (component_types);
+}
+
+void
+picml_visitor::add_PackageConfigurations (void)
+{
+  DOMElement *package_configurations =
+    doc_->createElement (X ("folder"));
+  this->set_id_attr (package_configurations, BE_GlobalData::FOLDER);
+  this->set_relid_attr (package_configurations);
+  package_configurations->setAttribute (X ("childrelidcntr"), X ("0x0")); // TODO
+  package_configurations->setAttribute (X ("kind"), 
+                                        X ("PackageConfigurations"));
+  this->add_name_element (package_configurations, 
+                          "PackageConfigurations");
+  be_global->root_folder ()->appendChild (package_configurations);
+}
+
+void
+picml_visitor::add_ComponentPackages (void)
+{
+  DOMElement *component_packages =
+    doc_->createElement (X ("folder"));
+  this->set_id_attr (component_packages, BE_GlobalData::FOLDER);
+  this->set_relid_attr (component_packages);
+  component_packages->setAttribute (X ("childrelidcntr"), X ("0x0")); // TODO
+  component_packages->setAttribute (X ("kind"), 
+                                    X ("ComponentPackages"));
+  this->add_name_element (component_packages, 
+                          "ComponentPackages");
+  be_global->root_folder ()->appendChild (component_packages);
+}
+
+void
+picml_visitor::add_DeploymentPlans (void)
+{
+  DOMElement *deployment_plans =
+    doc_->createElement (X ("folder"));
+  this->set_id_attr (deployment_plans, BE_GlobalData::FOLDER);
+  this->set_relid_attr (deployment_plans);
+  deployment_plans->setAttribute (X ("childrelidcntr"), X ("0x0")); // TODO
+  deployment_plans->setAttribute (X ("kind"), 
+                                  X ("DeploymentPlans"));
+  this->add_name_element (deployment_plans, 
+                          "DeploymentPlans");
+  be_global->root_folder ()->appendChild (deployment_plans);
+}
+
+void
+picml_visitor::add_Targets (void)
+{
+  DOMElement *targets =
+    doc_->createElement (X ("folder"));
+  this->set_id_attr (targets, BE_GlobalData::FOLDER);
+  this->set_relid_attr (targets);
+  targets->setAttribute (X ("childrelidcntr"), X ("0x0")); // TODO
+  targets->setAttribute (X ("kind"), 
+                         X ("Targets"));
+  this->add_name_element (targets, 
+                          "Targets");
+  be_global->root_folder ()->appendChild (targets);
+}
+
+void
+picml_visitor::add_TopLevelPackages (void)
+{
+  DOMElement *top_level_packages =
+    doc_->createElement (X ("folder"));
+  this->set_id_attr (top_level_packages, BE_GlobalData::FOLDER);
+  this->set_relid_attr (top_level_packages);
+  top_level_packages->setAttribute (X ("childrelidcntr"), X ("0x0")); // TODO
+  top_level_packages->setAttribute (X ("kind"), 
+                                    X ("TopLevelPackages"));
+  this->add_name_element (top_level_packages, 
+                          "TopLevelPackages");
+  be_global->root_folder ()->appendChild (top_level_packages);
+}
+
+void
+picml_visitor::add_ComponentBuild (void)
+{
+  DOMElement *component_build =
+    doc_->createElement (X ("folder"));
+  this->set_id_attr (component_build, BE_GlobalData::FOLDER);
+  this->set_relid_attr (component_build);
+  component_build->setAttribute (X ("childrelidcntr"), X ("0x0")); // TODO
+  component_build->setAttribute (X ("kind"), 
+                                 X ("ComponentBuild"));
+  this->add_name_element (component_build, 
+                          "ComponentBuild");
+  be_global->root_folder ()->appendChild (component_build);
+}
+
+void
+picml_visitor::add_defalt_container (DOMElement *elem, AST_Component *node)
+{
+  DOMElement *container = doc_->createElement (X ("model"));
+  this->set_id_attr (container, BE_GlobalData::MODEL);
+  char *hex_relid =
+    be_global->hex_string (be_global->component_types_rel_id ());
+  container->setAttribute (X ("relid"), X (hex_relid));
+  be_global->incr_component_types_rel_id ();
+  container->setAttribute (X ("childrelidcntr"), X ("0x1"));
+  container->setAttribute (X ("kind"), 
+                           X ("ComponentContainer"));
+  container->setAttribute (X ("role"), 
+                           X ("ComponentContainer"));
+  ACE_CString name (node->local_name ()->get_string ());
+  name += "Container";
+  this->add_name_element (container, name.c_str ());
+  
+  DOMElement *reference = doc_->createElement (X ("reference"));
+  this->set_id_attr (reference, BE_GlobalData::REF);
+  reference->setAttribute (X ("kind"), X ("ComponentRef"));
+  reference->setAttribute (X ("role"), X ("ComponentRef"));
+  reference->setAttribute (X ("relid"), X ("0x1"));
+  reference->setAttribute (X ("referred"), this->lookup_id (node));
+  ACE_CString refname (node->local_name ()->get_string ());
+  refname += "Ref";
+  this->add_name_element (reference, refname.c_str ());
+  this->add_regnodes (0, reference, 1UL, 0, I_FALSE, "Packaging");
+  
+  container->appendChild (reference);
+  
+  DOMElement *ctf = be_global->component_types_folder ();
+  ctf->appendChild (container);
+}
+
+
+

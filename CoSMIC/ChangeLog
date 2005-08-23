@@ -1,3 +1,26 @@
+Tue Aug 23 22:17:32 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.h:
+        
+          Add generation of XML elements corresponding to the top-level
+          folders in PICML, apart from InterfaceDefinitions and
+          PredefinedTypes, which were already generated. These folders
+          are all empty at this point except for ComponentTypes,
+          which contains a ComponentContainer model for each component
+          processed in IDL, with a default name of the component's
+          local name with "Container" appended. Each of these models
+          in turn contains a reference to the component type in
+          the InterfaceDefinitions folder, the reference having the
+          default name of the component's local name with "Ref"
+          appended. This checkin is the first of several that will
+          eventually generate the boilerplate model elements needed
+          for a complete PICML model, guided in some cases by
+          interaction with the modeler.
+
 Wed Aug 10 19:45:04 UTC 2005  Jaiganesh B  <jai@dre.vanderbilt.edu>
 
 	* PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:

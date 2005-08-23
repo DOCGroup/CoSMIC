@@ -113,8 +113,10 @@ BE_produce (void)
                   ACE_TEXT ("No Root\n")));
       BE_abort ();
     }
-    
-  picml_visitor visitor (be_global->doc ()->getDocumentElement ());
+  
+  DOMDocument *doc = be_global->doc ();
+  DOMElement *sub_tree = doc->getDocumentElement ();  
+  picml_visitor visitor (sub_tree);
 
   if (visitor.visit_root (ast_root) == -1)
     {

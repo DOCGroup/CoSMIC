@@ -37,6 +37,7 @@ TAO_PICML_BE_Export BE_GlobalData *be_global = 0;
 BE_GlobalData::BE_GlobalData (void)
   : filename_ (0),
     output_dir_ (0),
+    input_xme_ (0),
     models_seen_ (1UL),
     atoms_seen_ (1UL),
     refs_seen_ (1UL),
@@ -49,6 +50,9 @@ BE_GlobalData::BE_GlobalData (void)
     doc_ (0),
     writer_ (0),
     target_ (0),
+    root_folder_ (0),
+    component_types_folder_ (0),
+    component_types_rel_id_ (1UL),
     basic_seq_suffix_ ("Seq_from_IDL_include")
 {
 }
@@ -80,6 +84,19 @@ BE_GlobalData::output_dir (const char* s)
 {
   delete [] this->output_dir_;
   this->output_dir_ = ACE::strnew (s);
+}
+
+const char*
+BE_GlobalData::input_xme (void) const
+{
+  return this->input_xme_;
+}
+
+void
+BE_GlobalData::input_xme (const char* s)
+{
+  delete [] this->input_xme_;
+  this->input_xme_ = ACE::strnew (s);
 }
 
 unsigned long
@@ -209,6 +226,42 @@ BE_GlobalData::doc (void) const
   return this->doc_;
 }
 
+xercesc::DOMElement *
+BE_GlobalData::root_folder (void) const
+{
+  return this->root_folder_;
+}
+
+void
+BE_GlobalData::root_folder (DOMElement *elem)
+{
+  this->root_folder_ = elem;
+}
+
+xercesc::DOMElement *
+BE_GlobalData::component_types_folder (void) const
+{
+  return this->component_types_folder_;
+}
+
+void
+BE_GlobalData::component_types_folder (DOMElement *elem)
+{
+  this->component_types_folder_ = elem;
+}
+
+unsigned long
+BE_GlobalData::component_types_rel_id (void) const
+{
+  return this->component_types_rel_id_;
+}
+
+void
+BE_GlobalData::incr_component_types_rel_id (void)
+{
+  ++this->component_types_rel_id_;
+}
+
 BE_GlobalData::DECL_ID_TABLE &
 BE_GlobalData::decl_id_table (void)
 {
@@ -255,6 +308,17 @@ BE_GlobalData::parse_args (long &i, char **av)
         else
           {
             be_global->output_dir (av[i] + 2);
+          }
+        break;
+      case 'i':
+        if (av[i][2] == '\0')
+          {
+            be_global->input_xme (av [i + 1]);
+            i++;
+          }
+        else
+          {
+            be_global->input_xme (av[i] + 2);
           }
         break;
       default:
@@ -325,8 +389,10 @@ BE_GlobalData::xerces_init (void)
       ACE_OS::exit (99);
     }
 
+  XMLCh tempStr[100];
+  XMLString::transcode("LS", tempStr, 99);
   xercesc::DOMImplementation *impl = 
-    xercesc::DOMImplementationRegistry::getDOMImplementation (XStr ("LS"));
+    xercesc::DOMImplementationRegistry::getDOMImplementation (tempStr);
 
   if (impl == 0)
     {
@@ -335,36 +401,77 @@ BE_GlobalData::xerces_init (void)
       ACE_OS::exit (99);
     }
 
+  this->writer_ =
+    ((xercesc::DOMImplementationLS *)impl)->createDOMWriter ();  
+  this->writer_->setNewLine (XStr ("\n"));
+  bool can_pretty_print =
+    this->writer_->canSetFeature (
+        xercesc::XMLUni::fgDOMWRTFormatPrettyPrint,
+        true
+      );
+  
+  if (can_pretty_print)
+    {
+      this->writer_->setFeature (
+          xercesc::XMLUni::fgDOMWRTFormatPrettyPrint,
+          true
+        );
+    }
+        
   try
     {
-      xercesc::DOMDocumentType *doc_type = 
-        impl->createDocumentType (X (DOCTYPE),
-                                  0,
-                                  X (SYS_ID));  
-      this->doc_ = impl->createDocument (0,
-                                         X (DOCTYPE),
-                                         doc_type);
-                                               
-      this->doc_->setEncoding (X (ENCODING));
-      this->doc_->setVersion (X (VERSION));
-
-      this->writer_ =
-        ((xercesc::DOMImplementationLS *)impl)->createDOMWriter ();  
-      this->writer_->setNewLine (XStr ("\n"));
-      bool can_pretty_print =
-        this->writer_->canSetFeature (
-            xercesc::XMLUni::fgDOMWRTFormatPrettyPrint,
-            true
-          );
+      const char *xme = this->input_xme ();
       
-      if (can_pretty_print)
+      // If we are inputting an existing XME file, use that to create
+      // the DOM tree, else create an empty one.
+      if (xme == 0)
         {
-          this->writer_->setFeature (
-              xercesc::XMLUni::fgDOMWRTFormatPrettyPrint,
-              true
-            );
+          xercesc::DOMDocumentType *doc_type = 
+            impl->createDocumentType (X (DOCTYPE),
+                                      0,
+                                      X (SYS_ID));  
+          this->doc_ = impl->createDocument (0,
+                                             X (DOCTYPE),
+                                             doc_type);
+                                                   
+          this->doc_->setEncoding (X (ENCODING));
+          this->doc_->setVersion (X (VERSION));
         }
-        
+      else
+        {
+          DOMBuilder *parser =
+            ((DOMImplementationLS*)impl)->createDOMBuilder (
+                DOMImplementationLS::MODE_SYNCHRONOUS,
+                0
+              );
+              
+          if (parser->canSetFeature(XMLUni::fgDOMValidation, true))
+            {
+              parser->setFeature(XMLUni::fgDOMValidation, true);
+            }
+            
+          if (parser->canSetFeature(XMLUni::fgDOMNamespaces, true))
+            {
+              parser->setFeature(XMLUni::fgDOMNamespaces, true);
+            }
+            
+          if (parser->canSetFeature(XMLUni::fgDOMDatatypeNormalization, true))
+            {
+              parser->setFeature(XMLUni::fgDOMDatatypeNormalization, true);
+            }
+
+/*              
+          parser->setFeature (XMLUni::fgDOMComments, false);
+          parser->setFeature (XMLUni::fgDOMEntities, false);
+          parser->setFeature (XMLUni::fgDOMNamespaces, true);
+          parser->setFeature (XMLUni::fgDOMValidation, true);
+          parser->setFeature (XMLUni::fgDOMWhitespaceInElementContent, false);
+          parser->setFeature (XMLUni::fgXercesSchema, true);
+*/          
+          this->doc_ = parser->parseURI (xme);
+//          parser->release ();
+        }
+
       ACE_CString target_name;
       const char *path = be_global->output_dir ();
       
