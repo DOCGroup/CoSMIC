@@ -353,7 +353,10 @@ picml_visitor::visit_component (AST_Component *node)
       
       // Add the ComponentContainer model element, and its
       // contents.
-      this->add_defalt_container (elem, node);
+      this->add_defalt_container (node);
+      
+      // Add default implementation artifact model elements.
+      this->add_implementation_artifacts (node);
     }
     
   unsigned long start_id = (node->base_component () == 0 ? 0UL : 1UL)
@@ -1734,7 +1737,8 @@ picml_visitor::add_regnodes (UTL_Scope *container,
                              size_t slot,
                              AST_Attribute *a,
                              idl_bool is_connected,
-                             const char *aspect)
+                             const char *aspect,
+                             unsigned long num_slices)
 {
   bool ifacedef_aspect =
     (ACE_OS::strcmp (aspect, "InterfaceDefinition") == 0);
@@ -1771,7 +1775,7 @@ picml_visitor::add_regnodes (UTL_Scope *container,
     
   DOMElement *ivalue = this->doc_->createElement (X ("value"));
   
-  this->add_pos_element (container, ivalue, slot, a, is_connected);
+  this->add_pos_element (container, ivalue, slot, a, is_connected, num_slices);
 
   inner->appendChild (ivalue);
   middle->appendChild (inner);
@@ -1782,10 +1786,11 @@ picml_visitor::add_regnodes (UTL_Scope *container,
 
 void
 picml_visitor::add_pos_element (UTL_Scope *container, 
-                               DOMElement *parent,
-                               size_t slot,
-                               AST_Attribute *a,
-                               idl_bool is_connected)
+                                DOMElement *parent,
+                                size_t slot,
+                                AST_Attribute *a,
+                                idl_bool is_connected,
+                                unsigned long num_slices)
 {
   static char holder[9];
   ACE_OS::memset (holder,
@@ -1793,7 +1798,11 @@ picml_visitor::add_pos_element (UTL_Scope *container,
                   9);
   
   unsigned long nslices =
-    (container == 0 ? 2UL : this->nmembers_gme (container, a) + 1UL);
+    (num_slices != 0
+      ? num_slices 
+      : (container != 0
+          ? this->nmembers_gme (container, a) + 1UL
+          : 2UL));
     
   unsigned long slice_width = XMAX_ / nslices;
   unsigned long slice_height = YMAX_ / nslices;
@@ -1989,8 +1998,9 @@ picml_visitor::add_labels (AST_UnionBranch *ub,
       this->set_id_attr (connection, BE_GlobalData::CONN);
       connection->setAttribute (X ("kind"), X ("LabelConnection"));
       connection->setAttribute (X ("role"), X ("LabelConnection"));
-      connection->setAttribute(X ("relid"),
-                               X (be_global->hex_string (label_base + 2 * i + 1)));
+      char *hex_id =
+        be_global->hex_string (label_base + 2 * i + 1);
+      connection->setAttribute(X ("relid"), X (hex_id));
       this->add_name_element (connection, "LabelConnection");
       
       DOMElement *conn_reg = this->doc_->createElement (X ("regnode"));
@@ -2017,7 +2027,9 @@ picml_visitor::add_labels (AST_UnionBranch *ub,
 }
 
 void
-picml_visitor::add_label_name (DOMElement *label, AST_UnionLabel *ul, UTL_Scope *s)
+picml_visitor::add_label_name (DOMElement *label,
+                               AST_UnionLabel *ul,
+                               UTL_Scope *s)
 {
   ACE_CString name;
   AST_Expression *e = ul->label_val ();
@@ -3190,6 +3202,7 @@ picml_visitor::add_ImplementationArtifacts (void)
 {
   DOMElement *implementation_artifacts =
     doc_->createElement (X ("folder"));
+  be_global->implementation_artifacts_folder (implementation_artifacts);
   this->set_id_attr (implementation_artifacts, BE_GlobalData::FOLDER);
   this->set_relid_attr (implementation_artifacts);
   implementation_artifacts->setAttribute (X ("childrelidcntr"), X ("0x0")); // TODO
@@ -3306,7 +3319,7 @@ picml_visitor::add_ComponentBuild (void)
 }
 
 void
-picml_visitor::add_defalt_container (DOMElement *elem, AST_Component *node)
+picml_visitor::add_defalt_container (AST_Component *node)
 {
   DOMElement *container = doc_->createElement (X ("model"));
   this->set_id_attr (container, BE_GlobalData::MODEL);
@@ -3315,10 +3328,8 @@ picml_visitor::add_defalt_container (DOMElement *elem, AST_Component *node)
   container->setAttribute (X ("relid"), X (hex_relid));
   be_global->incr_component_types_rel_id ();
   container->setAttribute (X ("childrelidcntr"), X ("0x1"));
-  container->setAttribute (X ("kind"), 
-                           X ("ComponentContainer"));
-  container->setAttribute (X ("role"), 
-                           X ("ComponentContainer"));
+  container->setAttribute (X ("kind"), X ("ComponentContainer"));
+  container->setAttribute (X ("role"), X ("ComponentContainer"));
   ACE_CString name (node->local_name ()->get_string ());
   name += "Container";
   this->add_name_element (container, name.c_str ());
@@ -3340,5 +3351,246 @@ picml_visitor::add_defalt_container (DOMElement *elem, AST_Component *node)
   ctf->appendChild (container);
 }
 
+void
+picml_visitor::add_implementation_artifacts (AST_Component *node)
+{
+  DOMElement *container = doc_->createElement (X ("model"));
+  this->set_id_attr (container, BE_GlobalData::MODEL);
+  char *hex_relid =
+    be_global->hex_string (be_global->implementation_artifacts_rel_id ());
+  container->setAttribute (X ("relid"), X (hex_relid));
+  be_global->incr_implementation_artifacts_rel_id ();
+  container->setAttribute (X ("childrelidcntr"), X ("0x9"));
+  container->setAttribute (X ("kind"), X ("ArtifactContainer"));
+  ACE_CString name (node->local_name ()->get_string ());
+  name += "Artifacts";
+  this->add_name_element (container, name.c_str ());
+  
+  DOMElement *artifacts[3] = {0};
+  unsigned long i = 0;
+  
+  for (i = 0; i < 3; ++i)
+    {
+      artifacts[i] = this->add_one_impl_artifact (container, node, i);
+      
+      if (i > 0)
+        {
+          this->add_artifact_depends (container,
+                                      artifacts[i],
+                                      artifacts [i - 1],
+                                      i - 1);
+        }
+    }
+  
+  this->add_artifact_depends (container,
+                              artifacts[2],
+                              artifacts [0],
+                              i - 1);
 
+  DOMElement *iaf = be_global->implementation_artifacts_folder ();
+  iaf->appendChild (container);
+}
+
+DOMElement *
+picml_visitor::add_one_impl_artifact (DOMElement *container,
+                                      AST_Component *node,
+                                      unsigned long index)
+{
+  static const char *artifact_suffixes[] =
+  {
+    "_stub",
+    "_svnt",
+    "_exec"
+  };
+  
+  DOMElement *artifact = doc_->createElement (X ("atom"));
+  this->set_id_attr (artifact, BE_GlobalData::ATOM);
+  char *hex_relid = be_global->hex_string (2 * index + 1);
+  artifact->setAttribute (X ("relid"), X (hex_relid));
+  artifact->setAttribute (X ("kind"), X ("ImplementationArtifact"));
+  artifact->setAttribute (X ("role"), X ("ImplementationArtifact"));
+  
+  ACE_CString name (node->local_name ()->get_string ());
+  name += artifact_suffixes[index];
+  this->add_name_element (artifact, name.c_str ());
+  
+  this->add_regnodes (0,
+                      artifact,
+                      2 * index + 1,
+                      0,
+                      I_FALSE,
+                      "Packaging",
+                      6UL);
+  
+  DOMElement *uuid = doc_->createElement (X ("attribute"));
+  uuid->setAttribute (X ("kind"), X ("UUID"));
+  uuid->setAttribute (X ("status"), X ("meta"));
+  artifact->appendChild (uuid);
+  
+  DOMElement *value_elem = doc_->createElement (X ("value"));
+  uuid->appendChild (value_elem);
+  DOMText *value = doc_->createTextNode (X (""));
+  value_elem->appendChild (value);
+  
+  DOMElement *configuration = doc_->createElement (X ("attribute"));
+  configuration->setAttribute (X ("kind"), X ("configuration"));
+  configuration->setAttribute (X ("status"), X ("meta"));
+  artifact->appendChild (configuration);
+  
+  value_elem = doc_->createElement (X ("value"));
+  configuration->appendChild (value_elem);
+  value = doc_->createTextNode (X (""));
+  value_elem->appendChild (value);
+  
+  DOMElement *label = doc_->createElement (X ("attribute"));
+  label->setAttribute (X ("kind"), X ("label"));
+  artifact->appendChild (label);
+  
+  value_elem = doc_->createElement (X ("value"));
+  label->appendChild (value_elem);
+  value = doc_->createTextNode (X (""));
+  value_elem->appendChild (value);
+  
+  DOMElement *location = doc_->createElement (X ("attribute"));
+  location->setAttribute (X ("kind"), X ("location"));
+  artifact->appendChild (location);
+  
+  value_elem = doc_->createElement (X ("value"));
+  location->appendChild (value_elem);
+  value = doc_->createTextNode (X (name.c_str ()));
+  value_elem->appendChild (value);
+  
+  container->appendChild (artifact);
+  
+  // If the artifact is a 'stub', this is a no-op.
+  this->add_entrypoint (container, artifact, node, index);
+  
+  return artifact;
+}
+
+void
+picml_visitor::add_entrypoint (DOMElement *container,
+                               DOMElement *artifact,
+                               AST_Component *node,
+                               unsigned long index)
+{
+  ACE_CString suffix;
+  
+  switch (index)
+    {
+      case 1:
+        suffix = "Home_Servant";
+        break;
+      case 2:
+        suffix = "Home_Impl";
+        break; 
+      default:
+        return;
+    }
+    
+  DOMElement *entry_point = doc_->createElement (X ("model"));
+  ACE_CString dst_id (this->set_id_attr (entry_point, BE_GlobalData::MODEL));
+  char *hex_relid = be_global->hex_string (2 * index);
+  entry_point->setAttribute (X ("relid"), X (hex_relid));
+  entry_point->setAttribute (X ("kind"), X ("Property"));
+  entry_point->setAttribute (X ("role"), X ("Property"));
+  entry_point->setAttribute (X ("childrelidcntr"), X ("0x2"));
+  this->add_name_element (entry_point, "entryPoint");
+  
+  this->add_regnodes (0,
+                      entry_point,
+                      2 * index,
+                      0,
+                      I_FALSE,
+                      "Packaging",
+                      6UL);
+  
+  DOMElement *data_value = doc_->createElement (X ("attribute"));
+  data_value->setAttribute (X ("kind"), X ("DataValue"));
+  entry_point->appendChild (data_value);
+  
+  DOMElement *value_elem = doc_->createElement (X ("value"));
+  data_value->appendChild (value_elem);
+  ACE_CString value_string ("create");
+  value_string += node->local_name ()->get_string ();
+  value_string += suffix;
+  DOMText *value = doc_->createTextNode (X (value_string.c_str ()));
+  value_elem->appendChild (value);
+  
+  DOMElement *data_type = doc_->createElement (X ("reference"));
+  this->set_id_attr (data_type, BE_GlobalData::REF);
+  data_type->setAttribute (X ("relid"), X ("0x2"));
+  data_type->setAttribute (X ("kind"), X ("DataType"));
+  data_type->setAttribute (X ("role"), X ("DataType"));
+  this->add_name_element (data_type, "String");
+  
+  const char **pdts = be_global->pdt_names ();
+  XMLCh *pdt_id = 0;
+  
+  // The slot for the predefined type 'string' is 2.
+  int result = be_global->decl_id_table ().find (pdts[2UL], pdt_id);
+  
+  if (result != 0)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "picml_visitor::add_entrypoint - "
+                  "lookup of data type id for %s failed\n",
+                  value_string.c_str ()));
+      return;
+    }
+    
+  data_type->setAttribute (X ("referred"), pdt_id);
+    
+  this->add_regnodes (0, data_type, 1UL, 0, I_FALSE, "Packaging", 2UL);
+  
+  entry_point->appendChild (data_type);
+  container->appendChild (entry_point);
+  
+  DOMElement *connection = this->doc_->createElement (X ("connection"));
+  this->set_id_attr (connection, BE_GlobalData::CONN);
+  connection->setAttribute (X ("kind"), X ("ArtifactExecParameter"));
+  connection->setAttribute (X ("role"), X ("ArtifactExecParameter"));
+  char *hex_id = be_global->hex_string (index + 6);
+  connection->setAttribute(X ("relid"), X (hex_id));
+  this->add_name_element (connection, "ArtifactExecParameter");
+
+  DOMElement *dst = doc_->createElement (X ("connpoint"));
+  dst->setAttribute (X ("role"), X ("dst"));
+  dst->setAttribute (X ("target"), X (dst_id.c_str ()));
+  connection->appendChild (dst);
+      
+  DOMElement *src = doc_->createElement (X ("connpoint"));
+  src->setAttribute (X ("role"), X ("src"));
+  src->setAttribute (X ("target"), artifact->getAttribute (X ("id")));
+  connection->appendChild (src);
+      
+  container->appendChild (connection);  
+}
+
+void
+picml_visitor::add_artifact_depends (DOMElement *container,
+                                     DOMElement *src,
+                                     DOMElement *dst,
+                                     unsigned long index)
+{
+  DOMElement *connection = doc_->createElement (X ("connection"));
+  this->set_id_attr (connection, BE_GlobalData::CONN);
+  connection->setAttribute (X ("kind"), X ("ArtifactDependency"));
+  connection->setAttribute (X ("role"), X ("ArtifactDependency"));
+  char *hex_id = be_global->hex_string (index + 8);
+  connection->setAttribute(X ("relid"), X (hex_id));
+  this->add_name_element (connection, "ArtifactDependency");
+
+  DOMElement *dst_elem = doc_->createElement (X ("connpoint"));
+  dst_elem->setAttribute (X ("role"), X ("dst"));
+  dst_elem->setAttribute (X ("target"), dst->getAttribute (X ("id")));
+  connection->appendChild (dst_elem);
+      
+  DOMElement *src_elem = doc_->createElement (X ("connpoint"));
+  src_elem->setAttribute (X ("role"), X ("src"));
+  src_elem->setAttribute (X ("target"), src->getAttribute (X ("id")));
+  connection->appendChild (src_elem);
+      
+  container->appendChild (connection);  
+}
 

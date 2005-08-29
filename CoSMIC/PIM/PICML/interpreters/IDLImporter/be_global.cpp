@@ -52,7 +52,9 @@ BE_GlobalData::BE_GlobalData (void)
     target_ (0),
     root_folder_ (0),
     component_types_folder_ (0),
+    implementation_artifacts_folder_ (0),
     component_types_rel_id_ (1UL),
+    implementation_artifacts_rel_id_ (1UL),
     basic_seq_suffix_ ("Seq_from_IDL_include")
 {
 }
@@ -250,6 +252,18 @@ BE_GlobalData::component_types_folder (DOMElement *elem)
   this->component_types_folder_ = elem;
 }
 
+xercesc::DOMElement *
+BE_GlobalData::implementation_artifacts_folder (void) const
+{
+  return this->implementation_artifacts_folder_;
+}
+
+void
+BE_GlobalData::implementation_artifacts_folder (DOMElement *elem)
+{
+  this->implementation_artifacts_folder_ = elem;
+}
+
 unsigned long
 BE_GlobalData::component_types_rel_id (void) const
 {
@@ -260,6 +274,18 @@ void
 BE_GlobalData::incr_component_types_rel_id (void)
 {
   ++this->component_types_rel_id_;
+}
+
+unsigned long
+BE_GlobalData::implementation_artifacts_rel_id (void) const
+{
+  return this->component_types_rel_id_;
+}
+
+void
+BE_GlobalData::incr_implementation_artifacts_rel_id (void)
+{
+  ++this->implementation_artifacts_rel_id_;
 }
 
 BE_GlobalData::DECL_ID_TABLE &

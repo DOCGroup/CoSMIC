@@ -17,8 +17,8 @@
 //
 // ============================================================================
 
-#ifndef TAO_IFR_BE_GLOBAL_H
-#define TAO_IFR_BE_GLOBAL_H
+#ifndef TAO_PICML_BE_GLOBAL_H
+#define TAO_PICML_BE_GLOBAL_H
 
 #include "TAO_PICML_BE_Export.h"
 #include "ace/SString.h"
@@ -162,9 +162,17 @@ public:
   void component_types_folder (xercesc::DOMElement *elem);
   // Accessors for the member.
   
+  xercesc::DOMElement *implementation_artifacts_folder (void) const;
+  void implementation_artifacts_folder (xercesc::DOMElement *elem);
+  // Accessors for the member.
+  
   unsigned long component_types_rel_id (void) const;
   void incr_component_types_rel_id (void);
   // Read and increment the rel_id index for ComponentTypes.
+  
+  unsigned long implementation_artifacts_rel_id (void) const;
+  void incr_implementation_artifacts_rel_id (void);
+  // Read and increment the rel_id index for ImplementationArtifacts.
   
   DECL_ID_TABLE &decl_id_table (void);
   DECL_ELEM_TABLE &decl_elem_table (void);
@@ -248,9 +256,11 @@ private:
   xercesc::XMLFormatTarget *target_;
   xercesc::DOMElement *root_folder_;
   xercesc::DOMElement *component_types_folder_;
+  xercesc::DOMElement *implementation_artifacts_folder_;
   // DOM items we need to cache.
   
   unsigned long component_types_rel_id_;
+  unsigned long implementation_artifacts_rel_id_;
   // Cache of rel_id indices for the extra folders.
   
   DECL_ID_TABLE decl_id_table_;
@@ -263,4 +273,4 @@ private:
   // Appended to name of basic type to get corresponding sequence.
 };
 
-#endif /* TAO_IFR_BE_GLOBAL_H */
+#endif /* TAO_PICML_BE_GLOBAL_H */

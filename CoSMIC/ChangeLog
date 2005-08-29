@@ -1,3 +1,16 @@
+Mon Aug 29 23:35:05 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.h:
+        
+          Added more generation of boilerplate model elements to
+          the ImplementationArtifacts folder, now including the
+          *_stub, *_svnt, and *_exec artifacts, the entryPoint
+          properties, the dependsOn connections and the execParameter
+          connections.
+
 Tue Aug 23 22:17:32 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/be_global.cpp:

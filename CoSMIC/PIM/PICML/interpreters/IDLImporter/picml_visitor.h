@@ -129,12 +129,14 @@ private:
                      size_t slot,
                      AST_Attribute *a = 0,
                      idl_bool is_connected = I_FALSE,
-                     const char *aspect = "InterfaceDefinition");
+                     const char *aspect = "InterfaceDefinition",
+                     unsigned long num_slices = 0UL);
   void add_pos_element (UTL_Scope *container,
                         DOMElement *parent,
                         size_t slot,
                         AST_Attribute *a = 0,
-                        idl_bool is_connected = I_FALSE);
+                        idl_bool is_connected = I_FALSE,
+                        unsigned long num_slices = 0UL);
   void add_inherited_elements (DOMElement *parent, AST_Interface *node);
   void add_one_inherited (DOMElement *parent,
                           AST_Interface *node,
@@ -192,7 +194,20 @@ private:
   void add_TopLevelPackages (void);
   void add_ComponentBuild (void);
   
-  void add_defalt_container (DOMElement *elem, AST_Component *node);
+  void add_defalt_container (AST_Component *node);
+  void add_implementation_artifacts (AST_Component *node);
+  DOMElement *add_one_impl_artifact (DOMElement *container,
+                                     AST_Component *node,
+                                     unsigned long index);
+  void add_entrypoint (DOMElement *container,
+                       DOMElement *artifact,
+                       AST_Component *node,
+                       unsigned long index);
+                       
+  void add_artifact_depends (DOMElement *container,
+                             DOMElement *src,
+                             DOMElement *dst,
+                             unsigned long index);
 
 private:
   DOMElement *sub_tree_;
