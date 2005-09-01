@@ -195,19 +195,45 @@ private:
   void add_ComponentBuild (void);
   
   void add_defalt_container (AST_Component *node);
-  void add_implementation_artifacts (AST_Component *node);
+  DOMElement *add_implementation_artifacts (AST_Component *node);
   DOMElement *add_one_impl_artifact (DOMElement *container,
                                      AST_Component *node,
                                      unsigned long index);
   void add_entrypoint (DOMElement *container,
                        DOMElement *artifact,
                        AST_Component *node,
-                       unsigned long index);
-                       
+                       unsigned long index);                      
   void add_artifact_depends (DOMElement *container,
                              DOMElement *src,
                              DOMElement *dst,
                              unsigned long index);
+   void add_implementation (const char *gme_id,
+                            AST_Component *node,
+                            DOMElement *artifact_contaienr);
+   DOMElement *add_property (const char *name,
+                             unsigned long rel_id,
+                             unsigned long slot,
+                             unsigned long nslices,
+                             const char *value);
+   DOMElement *add_connection (DOMElement *source,
+                               DOMElement *destination,
+                               const char *name,
+                               unsigned long rel_id);
+   void add_attribute (DOMElement *container,
+                       const char *kind,
+                       bool meta,
+                       const char *value);
+   void add_artifact_refs (DOMElement *impl_container,
+                           DOMElement *impl,
+                           DOMElement *artifact_container);
+   void add_one_artifact_ref (DOMElement *impl_container,
+                              DOMElement *impl,
+                              DOMElement *artifact,
+                              XMLSize_t index);
+   void add_component_ref (DOMElement *container,
+                           DOMElement *impl,
+                           const char *gme_id,
+                           AST_Component *node);
 
 private:
   DOMElement *sub_tree_;

@@ -1,3 +1,14 @@
+Thu Sep  1 21:13:26 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.h:
+        
+          Add generation of model elements in the ComponentImplementations
+          folder, for each component a collection of model elements
+          representing a monolithic implementation is generated.
+
 Mon Aug 29 23:35:05 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
