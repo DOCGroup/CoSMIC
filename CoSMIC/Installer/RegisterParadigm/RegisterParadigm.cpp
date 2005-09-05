@@ -120,7 +120,7 @@ char* GetRegistryValue (HKEY key, const char* keyName, const char* name)
 }
 
 
-bool Register (const std::string& paradigm)
+bool RegisterParadigm (const std::string& paradigm)
 {
   //Initialize the OLE libraries
   HRESULT hr = ::CoInitialize(NULL);
@@ -147,7 +147,7 @@ bool Register (const std::string& paradigm)
   BSTR parname = NULL;
 
   hr = reg->RegisterParadigmFromData(connstr, &parname,
-                                     REGACCESS_BOTH);
+                                     REGACCESS_SYSTEM);
   if (FAILED(hr))
     return false;
 
@@ -162,7 +162,7 @@ bool Register (const std::string& paradigm)
 
 
 
-UINT __stdcall RegisterParadigm (MSIHANDLE hInstall)
+int RegisterParadigms(MSIHANDLE hInstall)
 {
   // installable paradigm number
   int nParadigmNum = 1;
@@ -187,7 +187,7 @@ UINT __stdcall RegisterParadigm (MSIHANDLE hInstall)
     SendMsgToProgressBar(hInstall, svParadigmName.c_str());
     std::string targetParadigm ("XML=");
     targetParadigm += std::string(value) + "\\paradigms\\" + svParadigmName;
-    if (!Register (targetParadigm))
+    if (!RegisterParadigm (targetParadigm))
       {
         std::string errorMsg ("Unable to register Paradigm " + targetParadigm);
         errorMsg += ". Please check if you have a valid GME installation. \n";
@@ -203,7 +203,7 @@ UINT __stdcall RegisterParadigm (MSIHANDLE hInstall)
     SendMsgToProgressBar(hInstall, svParadigmName.c_str());
     std::string targetParadigm ("XML=");
     targetParadigm += std::string(value) + "\\paradigms\\" + svParadigmName;
-    if (!Register (targetParadigm))
+    if (!RegisterParadigm (targetParadigm))
       {
         std::string errorMsg ("Unable to register Paradigm " + targetParadigm);
         errorMsg += ". Please check if you have a valid GME installation. \n";
@@ -216,7 +216,7 @@ UINT __stdcall RegisterParadigm (MSIHANDLE hInstall)
   return 1;
 }
 
-bool UnRegister (const std::string& paradigmName)
+bool UnRegisterParadigm (const std::string& paradigmName)
 {
   //Initialize the OLE libraries
   HRESULT hr = ::CoInitialize(NULL);
@@ -255,7 +255,7 @@ bool UnRegister (const std::string& paradigmName)
   return true;
 }
 
-UINT __stdcall UnRegisterParadigm (MSIHANDLE hInstall)
+int UnRegisterParadigms (MSIHANDLE hInstall)
 {
   // installable paradigm number
   int nParadigmNum = 1;
@@ -269,7 +269,7 @@ UINT __stdcall UnRegisterParadigm (MSIHANDLE hInstall)
   {
     std::string svParadigmName = "PICML";
     SendMsgToProgressBar(hInstall, svParadigmName.c_str());
-    if (!UnRegister (svParadigmName))
+    if (!UnRegisterParadigm (svParadigmName))
       {
         std::string errorMsg ("Unable to unregister Paradigm " +
                               svParadigmName);
@@ -283,7 +283,7 @@ UINT __stdcall UnRegisterParadigm (MSIHANDLE hInstall)
   {
     std::string svParadigmName = "OCML";
     SendMsgToProgressBar(hInstall, svParadigmName.c_str());
-    if (!UnRegister (svParadigmName))
+    if (!UnRegisterParadigm (svParadigmName))
       {
         std::string errorMsg ("Unable to unregister Paradigm " +
                               svParadigmName);
@@ -296,4 +296,157 @@ UINT __stdcall UnRegisterParadigm (MSIHANDLE hInstall)
   return 1;
 }
 
+bool RegisterComponent (const std::string& component)
+{
+  //Initialize the OLE libraries
+  HRESULT hr = ::CoInitialize(NULL);
+  if (FAILED(hr))
+    return false;
 
+  CLSID clsid;
+
+  hr = ::CLSIDFromProgID(OLESTR("Mga.MgaRegistrar"), &clsid);
+  if (FAILED(hr))
+    return false;
+
+  IMgaRegistrar *reg;
+  hr = ::CoCreateInstance(clsid, NULL, CLSCTX_ALL, __uuidof(IMgaRegistrar),
+                          reinterpret_cast<void**>(&reg));
+  if (FAILED(hr))
+    return false;
+
+  UINT cp = GetACP ();
+  int len = ::MultiByteToWideChar (cp, 0, component.c_str(), -1, 0, 0);
+  wchar_t *wstr = new wchar_t[len];
+  ::MultiByteToWideChar (cp, 0, component.c_str(), -1, wstr, len);
+  BSTR pathstr = ::SysAllocString(wstr);
+  
+  hr = reg->RegisterComponentLibrary(pathstr, REGACCESS_SYSTEM);
+  if (FAILED(hr))
+    return false;
+
+  ::SysFreeString(pathstr);
+  
+  reg->Release();
+
+  ::CoUninitialize();
+  return true;
+}
+
+
+
+UINT RegisterComponents (MSIHANDLE hInstall)
+{
+  // installable component number
+  int nParadigmNum = 1;
+
+  // Initialize progress bar
+  InitProgressBar(hInstall, nParadigmNum, PARADIGMCOST,
+                  "Paradigm Install",
+                  "Registering Paradigms into GME.", "Registering [1]");
+  const char* value = GetRegistryValue (HKEY_LOCAL_MACHINE,
+                                  "SOFTWARE\\ISIS\\CoSMIC",
+                                  "TargetDir");
+  if (value == 0)
+    {
+      SendErrorMsg (hInstall, "Unable to access Registry Key "
+                    "HKEY_LOCAL_MACHINE\\SOFTWARE\\ISIS\\CoSMIC\\TargetDir", 1);
+      return ERROR_FUNCTION_FAILED;
+    }
+
+  // Register the PackageComponent interpreter
+  {
+    std::string componentName = "PackageComponent";
+    SendMsgToProgressBar(hInstall, componentName.c_str());
+    std::string componentPath (value);
+    componentPath += "\\bin\\" + componentName + ".dll";
+    if (!RegisterComponent (componentPath))
+      {
+        std::string errorMsg ("Unable to register Interpreter" + componentName);
+        errorMsg += ". Please check if you have a valid GME installation. \n";
+        errorMsg += LastError();
+        SendErrorMsg (hInstall, errorMsg.c_str(), 1);
+        return ERROR_FUNCTION_FAILED;
+      }
+  }
+
+  // Don't change this return value or BAD THINGS[TM] will happen.
+  return 1;
+}
+
+bool UnRegisterComponent (const std::string& componentName)
+{
+  //Initialize the OLE libraries
+  HRESULT hr = ::CoInitialize(NULL);
+  if (FAILED(hr))
+    return false;
+
+  CLSID clsid;
+
+  hr = ::CLSIDFromProgID(OLESTR("Mga.MgaRegistrar"), &clsid);
+  if (FAILED(hr))
+    return false;
+
+  IMgaRegistrar *reg;
+  hr = ::CoCreateInstance(clsid, NULL, CLSCTX_ALL, __uuidof(IMgaRegistrar),
+                          reinterpret_cast<void**>(&reg));
+  if (FAILED(hr))
+    return false;
+
+  std::string progId = "Mga.Interpreter." + componentName;
+  UINT cp = GetACP ();
+  int len = ::MultiByteToWideChar (cp, 0, progId.c_str(), -1, 0, 0);
+  wchar_t *wstr = new wchar_t[len];
+  ::MultiByteToWideChar (cp, 0, progId.c_str(), -1, wstr, len);
+  BSTR name = ::SysAllocString(wstr);
+
+  hr = reg->UnregisterComponent(name, REGACCESS_BOTH);
+  
+  if (FAILED(hr))
+    return false;
+
+  ::SysFreeString(name);
+  
+  reg->Release();
+  
+  ::CoUninitialize();
+  
+  return true;
+}
+
+UINT UnRegisterComponents (MSIHANDLE hInstall)
+{
+  // installable component number
+  int nParadigmNum = 1;
+
+  // Initialize progress bar
+  InitProgressBar(hInstall, nParadigmNum, PARADIGMCOST,
+                  "Paradigm Install",
+                  "Registering Paradigms into GME.", "Registering [1]");
+  
+  // Unregister the PackageComponent interpreter
+  {
+    std::string componentName = "PackageComponent";
+    SendMsgToProgressBar(hInstall, componentName.c_str());
+    if (!UnRegisterComponent (componentName))
+      {
+        std::string errorMsg ("Unable to unregister Interpreter" + componentName + " .");
+        errorMsg += LastError();
+        SendErrorMsg (hInstall, errorMsg.c_str(), 1);
+        return ERROR_FUNCTION_FAILED;
+      }
+  }
+
+  // Don't change this return value or BAD THINGS[TM] will happen.
+  return 1;
+}
+
+UINT __stdcall RegisterAll (MSIHANDLE hInstall)
+{
+  return RegisterParadigms (hInstall);
+}
+
+UINT __stdcall UnRegisterAll (MSIHANDLE hInstall)
+{
+  return UnRegisterParadigms (hInstall);
+}

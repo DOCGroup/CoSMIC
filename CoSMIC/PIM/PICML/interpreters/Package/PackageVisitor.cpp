@@ -217,7 +217,7 @@ namespace PICML
                                                            label));
     std::string uuid = ia.UUID();
     if (uuid.empty())
-      uuid = ia.getPath ("_",false,true);
+      uuid = ia.getPath ("_", false, true, "name", true);
     this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
 
     std::string location = ia.location();
@@ -665,7 +665,7 @@ namespace PICML
                                                            label));
     std::string uuid = cp.UUID();
     if (uuid.empty())
-      uuid = cp.getPath ("_",false,true);
+      uuid = cp.getPath ("_", false, true, "name", true);
     this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
 
     PackageInterface pi = cp.dstPackageInterface();
@@ -778,7 +778,7 @@ namespace PICML
                                                            label));
     std::string uuid = comp.UUID();
     if (uuid.empty())
-      uuid = comp.getPath ("_",false,true);
+      uuid = comp.getPath ("_", false, true, "name", true);
     this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
 
     const std::set<OutEventPort> oeps = comp.OutEventPort_kind_children();
@@ -981,7 +981,7 @@ namespace PICML
                                                            label));
     std::string uuid = mimpl.UUID();
     if (uuid.empty())
-      uuid = mimpl.getPath ("_",false,true);
+      uuid = mimpl.getPath ("_", false, true, "name", true);
     this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
 
     const std::set<Implements> impls = mimpl.dstImplements();
@@ -1077,7 +1077,6 @@ namespace PICML
 
   void PackageVisitor::Visit_ComponentAssembly(const ComponentAssembly& assembly)
   {
-
     this->push();
     std::string name = this->outputPath_ + "\\";
     name += assembly.name();
@@ -1092,7 +1091,7 @@ namespace PICML
                                                            label));
     std::string uuid = assembly.UUID();
     if (uuid.empty())
-      uuid = assembly.getPath ("_",false,true);
+      uuid = assembly.getPath ("_", false, true, "name", true);
     this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
 
     this->push();
@@ -1207,7 +1206,7 @@ namespace PICML
           mapDelegates = mapping.dstAttributeMappingDelegate();
         if (mapDelegates.empty())
           {
-            std::string mapPath = mapping.getPath ("_", false, true);
+            std::string mapPath = mapping.getPath ("_", false, true, "name", true);
 
             throw udm_exception (std::string ("AttributeMapping " +
                                               mapPath +
@@ -1240,7 +1239,7 @@ namespace PICML
             std::string attrName = this->ExtractName (attr);
             Component parent = attr.Component_parent();
             std::string parentName = this->ExtractName (parent);
-            std::string compName = parent.getPath ("_", false, true);
+            std::string compName = parent.getPath ("_", false, true, "name", true);
             output.insert (make_pair (compName, attr.name()));
           }
       }
@@ -1257,7 +1256,7 @@ namespace PICML
         this->curr_->appendChild (instance);
         this->push();
         this->curr_ = instance;
-        std::string uniqueName = comp.getPath ("_",false,true);
+        std::string uniqueName = comp.getPath ("_", false, true, "name", true);
         instance->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
         instance->appendChild (this->createSimpleContent ("name",
                                                           uniqueName));
@@ -1299,11 +1298,14 @@ namespace PICML
             std::pair<std::string, std::string> compAttr = attrVal.first;
             if (compAttr.first == uniqueName)
               {
+                this->push();
                 DOMElement*
                   ele = this->doc_->createElement (XStr ("configProperty"));
                 this->curr_->appendChild (ele);
+                this->curr_ = ele;
                 Property val = attrVal.second;
                 val.Accept (*this);
+                this->pop();
               }
           }
         this->pop();
@@ -1536,7 +1538,7 @@ namespace PICML
     // Source instance
     DOMElement* instance = this->doc_->createElement (XStr ("instance"));
     instance->setAttribute (XStr ("xmi:idref"),
-                            XStr (srcComp.getPath ("_", false, true)));
+                            XStr (srcComp.getPath ("_", false, true, "name", true)));
     endPoint->appendChild (instance);
     ele->appendChild (endPoint);
 
@@ -1547,7 +1549,7 @@ namespace PICML
     // Destination instance
     instance = this->doc_->createElement (XStr ("instance"));
     instance->setAttribute (XStr ("xmi:idref"),
-                            XStr (dstComp.getPath ("_", false, true)));
+                            XStr (dstComp.getPath ("_", false, true, "name", true)));
     endPoint->appendChild (instance);
     ele->appendChild (endPoint);
   }
