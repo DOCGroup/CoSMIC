@@ -216,7 +216,7 @@ namespace PICML
   {
     this->push();
     DOMElement* ele = this->doc_->createElement (XStr ("artifact"));
-    std::string uniqueName = ia.getPath ("_",false,true);
+    std::string uniqueName = ia.getPath ("_",false,true,"name",true);
     ele->setAttribute (XStr ("id"), XStr (uniqueName));
     ele->appendChild (this->createSimpleContent ("name", uniqueName));
     //ele->appendChild (this->createSimpleContent ("node", "<!-- empty-->"));
@@ -427,7 +427,7 @@ namespace PICML
     DOMElement* ele = this->doc_->createElement (XStr ("implementation"));
     std::string impl_name = mimpl.name ();
     this->monoimpls_.insert (make_pair (impl_name, mimpl));
-    std::string uniqueName = mimpl.getPath ("_",false,true);
+    std::string uniqueName = mimpl.getPath ("_",false,true,"name",true);
     ele->setAttribute (XStr ("id"), XStr (uniqueName));
     ele->appendChild (this->createSimpleContent ("name", uniqueName));
     ele->appendChild (this->doc_->createElement (XStr ("source")));
@@ -444,9 +444,6 @@ namespace PICML
         mpa.Accept (*this);
       }
 
-    /*
-    //this->pop();
-
     const std::set<ConfigProperty>
     cps = mimpl.dstConfigProperty();
     for (std::set<ConfigProperty>::const_iterator it2 = cps.begin();
@@ -456,7 +453,6 @@ namespace PICML
     ConfigProperty cp = *it2;
     cp.Accept (*this);
     }
-    */
 
     this->pop();
   }
@@ -480,7 +476,7 @@ namespace PICML
     this->push();
     const ImplementationArtifactReference iaref = mpa.dstMonolithprimaryArtifact_end();
     const ImplementationArtifact ref = iaref.ref();
-    std::string uniqueName = ref.getPath ("_",false,true);
+    std::string uniqueName = ref.getPath ("_",false,true,"name",true);
     this->curr_->appendChild (this->createSimpleContent ("artifact", uniqueName));
     this->pop();
   }
@@ -659,10 +655,10 @@ namespace PICML
 
     // DOMElement* instance = this->doc_->createElement (XStr ("instance"));
     // instance->setAttribute (XStr ("xmi:idref"),
-    //                         XStr (srcComp.getPath ("_", false, true)));
+    //                         XStr (srcComp.getPath ("_", false, true,"name",true)));
     // endPoint->appendChild (instance);
 
-    std::string source_comp_instance = srcComp.getPath ("_",false,true);
+    std::string source_comp_instance = srcComp.getPath ("_",false,true,"name",true);
 	endPoint->appendChild (this->createSimpleContent ("instance", source_comp_instance));
     ele->appendChild (endPoint);
 
@@ -676,10 +672,10 @@ namespace PICML
 
     // instance = this->doc_->createElement (XStr ("instance"));
     // instance->setAttribute (XStr ("xmi:idref"),
-    //                        XStr (dstComp.getPath ("_", false, true)));
+    //                        XStr (dstComp.getPath ("_", false, true,"name",true)));
     // endPoint->appendChild (instance);
 
-	std::string dest_comp_instance = dstComp.getPath ("_",false,true);
+	std::string dest_comp_instance = dstComp.getPath ("_",false,true,"name",true);
 	endPoint->appendChild (this->createSimpleContent ("instance", dest_comp_instance));
     ele->appendChild (endPoint);
   }
@@ -746,7 +742,7 @@ namespace PICML
     //endPoint->appendChild (this->createSimpleContent ("kind",
     //                                                  "Facet"));
     //// Facet instance
-    //std::string uni_facet_insName = facet_comp.getPath ("_",false,true);
+    //std::string uni_facet_insName = facet_comp.getPath ("_",false,true,"name",true);
     //endPoint->appendChild (this->createSimpleContent ("instance", uni_facet_insName));
     //ele->appendChild (endPoint);
 
@@ -757,7 +753,7 @@ namespace PICML
     //endPoint->appendChild (this->createSimpleContent ("kind",
     //                                                  "SimplexReceptacle"));
     //// Receptacle instance
-    //std::string uni_recep_insName = recep_comp.getPath ("_",false,true);
+    //std::string uni_recep_insName = recep_comp.getPath ("_",false,true,"name",true);
     //endPoint->appendChild (this->createSimpleContent ("instance", uni_recep_insName));
     //ele->appendChild (endPoint);
 
@@ -801,7 +797,7 @@ namespace PICML
     //                                                  "EventEmitter"));
 
     //// Emitter instance
-    //std::string emitter_insName = emitter_comp.getPath ("_",false,true);
+    //std::string emitter_insName = emitter_comp.getPath ("_",false,true,"name",true);
     //endPoint->appendChild (this->createSimpleContent ("instance", emitter_insName));
     //ele->appendChild (endPoint);
 
@@ -812,7 +808,7 @@ namespace PICML
     //endPoint->appendChild (this->createSimpleContent ("kind",
     //                                                  "SimplexReceptacle"));
     //// Consumer instance
-    //std::string consumer_insName = consumer_comp.getPath ("_",false,true);
+    //std::string consumer_insName = consumer_comp.getPath ("_",false,true,"name",true);
     //endPoint->appendChild (this->createSimpleContent ("instance", consumer_insName));
     //ele->appendChild (endPoint);
 
@@ -941,7 +937,7 @@ namespace PICML
     //    endPoint->appendChild (this->createSimpleContent ("kind",
     //                                                      "EventPublisher"));
     //    // Publisher instance
-    //    std::string publisher_insName = publisher_comp.getPath ("_",false,true);
+    //    std::string publisher_insName = publisher_comp.getPath ("_",false,true,"name",true);
     //    endPoint->appendChild (this->createSimpleContent ("instance", publisher_insName));
     //    ele->appendChild (endPoint);
 
@@ -952,7 +948,7 @@ namespace PICML
     //    endPoint->appendChild (this->createSimpleContent ("kind",
     //                                                      "EventConsumer"));
     //    // Consumer instance
-    //    std::string consumer_insName = consumer_comp.getPath ("_",false,true);
+    //    std::string consumer_insName = consumer_comp.getPath ("_",false,true,"name",true);
     //    endPoint->appendChild (this->createSimpleContent ("instance", consumer_insName));
     //    ele->appendChild (endPoint);
 
@@ -1123,14 +1119,14 @@ namespace PICML
 				  }
                 this->push ();
                 DOMElement* ele = this->doc_->createElement (XStr ("instance"));
-                std::string uniqueName = comp.getPath ("_",false,true);
+                std::string uniqueName = comp.getPath ("_",false,true,"name",true);
                 ele->setAttribute (XStr ("id"), XStr (uniqueName));
                 ele->appendChild (this->createSimpleContent ("name", uniqueName));
                 ele->appendChild (this->createSimpleContent ("node", nodeRefName));
                 ele->appendChild (this->doc_->createElement (XStr ("source")));
                 this->curr_->appendChild (ele);
                 this->curr_ = ele;
-                std::string mimpl_name = mimpl.getPath ("_",false,true);
+                std::string mimpl_name = mimpl.getPath ("_",false,true,"name",true);
                 this->curr_->appendChild (this->createSimpleContent ("implementation", mimpl_name));
                 const std::set<ConfigProperty> cps = mimpl.dstConfigProperty();
                 for (std::set<ConfigProperty>::const_iterator it2 = cps.begin();
@@ -1288,6 +1284,9 @@ namespace PICML
         std::copy (rasms.begin(), rasms.end(), std::back_inserter (nasms));
       }
 
+    // Create the appropriate component attribute value mappings
+    this->CreateAttributeMappings (assemblies);
+
     MonolithicImplementation mimpl;
     for (std::set<Component>::iterator iter = comps.begin();
          iter != comps.end();
@@ -1308,23 +1307,58 @@ namespace PICML
           }
         this->push ();
         DOMElement* ele = this->doc_->createElement (XStr ("instance"));
-        std::string uniqueName = comp.getPath ("_",false,true);
+        std::string uniqueName = comp.getPath ("_",false,true,"name",true);
         ele->setAttribute (XStr ("id"), XStr (uniqueName));
         ele->appendChild (this->createSimpleContent ("name", uniqueName));
         ele->appendChild (this->createSimpleContent ("node", node_reference_name));
         ele->appendChild (this->doc_->createElement (XStr ("source")));
         this->curr_->appendChild (ele);
         this->curr_ = ele;
-        std::string mimpl_name = mimpl.getPath ("_",false,true);
+        std::string mimpl_name = mimpl.getPath ("_",false,true,"name",true);
         this->curr_->appendChild (this->createSimpleContent ("implementation", mimpl_name));
-        const std::set<ConfigProperty> cps = mimpl.dstConfigProperty();
-        for (std::set<ConfigProperty>::const_iterator it2 = cps.begin();
+		std::set<AssemblyConfigProperty> cps = comp.dstAssemblyConfigProperty();
+        for (std::set<AssemblyConfigProperty>::const_iterator it2 = cps.begin();
              it2 != cps.end();
              ++it2)
           {
-            ConfigProperty cp = *it2;
+            AssemblyConfigProperty cp = *it2;
             cp.Accept (*this);
           }
+        std::set<ReadonlyAttribute> attrs = comp.ReadonlyAttribute_children();
+        for (std::set<ReadonlyAttribute>::const_iterator iter = attrs.begin();
+             iter != attrs.end();
+             ++iter)
+          {
+            ReadonlyAttribute attr = *iter;
+            attr.Accept (*this);
+          }
+        for (std::map<std::pair<std::string, std::string>, Property>::const_iterator iter = this->attrValues_.begin();
+             iter != this->attrValues_.end();
+             ++iter)
+          {
+            std::pair<std::pair<std::string, std::string>, Property>
+              attrVal = *iter;
+            std::pair<std::string, std::string> compAttr = attrVal.first;
+            if (compAttr.first == uniqueName)
+              {
+                DOMElement*
+                  ele = this->doc_->createElement (XStr ("configProperty"));
+                this->curr_->appendChild (ele);
+                Property val = attrVal.second;
+                val.Accept (*this);
+              }
+          }
+		/*
+        const std::set<ConfigProperty> mcps = mimpl.dstConfigProperty();
+        for (std::set<ConfigProperty>::const_iterator it2 = mcps.begin();
+             it2 != mcps.end();
+             ++it2)
+          {
+            ConfigProperty mcp = *it2;
+            mcp.Accept (*this);
+          }
+        */
+
         this->pop ();
       }
   }
@@ -1387,7 +1421,7 @@ namespace PICML
           mapDelegates = mapping.dstAttributeMappingDelegate();
         if (mapDelegates.empty())
           {
-            std::string mapPath = mapping.getPath ("_", false, true);
+            std::string mapPath = mapping.getPath ("_", false, true,"name",true);
 
             throw udm_exception (std::string ("AttributeMapping " +
                                               mapPath +
@@ -1420,7 +1454,7 @@ namespace PICML
             std::string attrName = this->ExtractName (attr);
             Component parent = attr.Component_parent();
             std::string parentName = this->ExtractName (parent);
-            std::string compName = parent.getPath ("_", false, true);
+            std::string compName = parent.getPath ("_", false, true,"name",true);
             output.insert (make_pair (compName, attr.name()));
           }
       }
@@ -1437,7 +1471,7 @@ namespace PICML
         this->curr_->appendChild (instance);
         this->push();
         this->curr_ = instance;
-        std::string uniqueName = comp.getPath ("_",false,true);
+        std::string uniqueName = comp.getPath ("_",false,true,"name",true);
         instance->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
         instance->appendChild (this->createSimpleContent ("name",
                                                           uniqueName));
@@ -1479,11 +1513,14 @@ namespace PICML
             std::pair<std::string, std::string> compAttr = attrVal.first;
             if (compAttr.first == uniqueName)
               {
+                this->push();
                 DOMElement*
                   ele = this->doc_->createElement (XStr ("configProperty"));
                 this->curr_->appendChild (ele);
+				this->curr_ = ele;
                 Property val = attrVal.second;
                 val.Accept (*this);
+				this->pop();
               }
           }
         this->pop();
