@@ -32,8 +32,10 @@ namespace PICML
 
     FlatPlan_Export void init();
     FlatPlan_Export void initTarget (const std::string& fileName);
-	  FlatPlan_Export void initNodeRefName (const std::string& nodeRefName);
-	  FlatPlan_Export std::string retNodeRefName ();
+	FlatPlan_Export void initNodeRefName (const std::string& nodeRefName);
+	FlatPlan_Export std::string retNodeRefName ();
+	FlatPlan_Export void initcgName (const std::string& cgName);
+	FlatPlan_Export std::string retcgName ();
     FlatPlan_Export void initDocument (const std::string& rootName);
     FlatPlan_Export void initRootAttributes();
     FlatPlan_Export void dumpDocument();
@@ -264,6 +266,7 @@ namespace PICML
     std::string         outputPath_;
     std::stack<DOMElement*> curr_stack_;
     std::string         node_ref_name_;
+	std::string         cg_name_;
 	RootFolder          root_folder_;
 
 	// Maintain associations between PublishConnector and event publishers

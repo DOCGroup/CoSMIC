@@ -63,6 +63,16 @@ namespace PICML
     return this->node_ref_name_;
   }
 
+  void FlatPlanVisitor::initcgName (const std::string& cgName)
+  {
+    this->cg_name_ = cgName;
+  }
+
+  std::string FlatPlanVisitor::retcgName ()
+  {
+    return this->cg_name_;
+  }
+
   void FlatPlanVisitor::initDocument (const std::string& rootName)
   {
     if (this->doc_)
@@ -444,7 +454,7 @@ namespace PICML
         mpa.Accept (*this);
       }
 
-    const std::set<ConfigProperty>
+    /*const std::set<ConfigProperty>
     cps = mimpl.dstConfigProperty();
     for (std::set<ConfigProperty>::const_iterator it2 = cps.begin();
     it2 != cps.end();
@@ -452,7 +462,7 @@ namespace PICML
     {
     ConfigProperty cp = *it2;
     cp.Accept (*this);
-    }
+    }*/
 
     this->pop();
   }
@@ -1072,7 +1082,10 @@ namespace PICML
          ++iter)
       {
         std::string nodeRefName;
+		std::string cgName;
         CollocationGroup cg = *iter;
+		cgName = cg.name();
+		this->initcgName (cgName);
 
         const std::set<InstanceMapping> cg_ins_maps = cg.dstInstanceMapping ();
 
@@ -1120,6 +1133,10 @@ namespace PICML
                 this->push ();
                 DOMElement* ele = this->doc_->createElement (XStr ("instance"));
                 std::string uniqueName = comp.getPath ("_",false,true,"name",true);
+				uniqueName += "_";
+				uniqueName += nodeRefName;
+				uniqueName += "_";
+				uniqueName += cgName;
                 ele->setAttribute (XStr ("id"), XStr (uniqueName));
                 ele->appendChild (this->createSimpleContent ("name", uniqueName));
                 ele->appendChild (this->createSimpleContent ("node", nodeRefName));
@@ -1268,6 +1285,7 @@ namespace PICML
       }
 
     std::string node_reference_name = this->retNodeRefName ();
+	std::string cg_name = this->retcgName ();
 
     std::set<Component> comps = assembly.Component_kind_children();
     std::vector<ComponentAssembly> nasms = assembly.ComponentAssembly_kind_children();
@@ -1308,6 +1326,10 @@ namespace PICML
         this->push ();
         DOMElement* ele = this->doc_->createElement (XStr ("instance"));
         std::string uniqueName = comp.getPath ("_",false,true,"name",true);
+		uniqueName += "_";
+		uniqueName += node_reference_name;
+		uniqueName += "_";
+		uniqueName += cg_name;
         ele->setAttribute (XStr ("id"), XStr (uniqueName));
         ele->appendChild (this->createSimpleContent ("name", uniqueName));
         ele->appendChild (this->createSimpleContent ("node", node_reference_name));
@@ -1341,11 +1363,14 @@ namespace PICML
             std::pair<std::string, std::string> compAttr = attrVal.first;
             if (compAttr.first == uniqueName)
               {
+                this->push();
                 DOMElement*
                   ele = this->doc_->createElement (XStr ("configProperty"));
                 this->curr_->appendChild (ele);
+				this->curr_ = ele;
                 Property val = attrVal.second;
                 val.Accept (*this);
+				this->pop();
               }
           }
 		/*
