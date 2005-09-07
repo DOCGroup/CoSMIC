@@ -1190,7 +1190,7 @@ namespace PICML
 
   void FlatPlanVisitor::update_connections(const ComponentAssembly& assembly)
   {
-    std::set<ComponentAssembly>
+    /*std::set<ComponentAssembly>
       asms = assembly.ComponentAssembly_kind_children();
     for (std::set<ComponentAssembly>::iterator aiter = asms.begin();
          aiter != asms.end();
@@ -1198,11 +1198,11 @@ namespace PICML
       {
         ComponentAssembly rassembly  = *aiter;
         rassembly.Accept (*this);
-      }
+      }*/
 
     std::string node_reference_name = this->retNodeRefName ();
 
-    std::set<Component> comps = assembly.Component_kind_children();
+    /*std::set<Component> comps = assembly.Component_kind_children();
     std::vector<ComponentAssembly> nasms = assembly.ComponentAssembly_kind_children();
     std::vector<ComponentAssembly> assemblies;
     assemblies.push_back (assembly);
@@ -1215,6 +1215,44 @@ namespace PICML
         comps.insert (rcomps.begin(), rcomps.end());
         std::vector<ComponentAssembly> rasms = rassembly.ComponentAssembly_kind_children();
         std::copy (rasms.begin(), rasms.end(), std::back_inserter (nasms));
+      }*/
+
+	// Collect all the Components of this assembly into a set.
+    std::set<Component> comps = assembly.Component_kind_children();
+
+    // Collect all the immediate ComponentAssembly children of this assembly
+    std::vector<ComponentAssembly>
+      subasms = assembly.ComponentAssembly_kind_children();
+
+    // Maintain a list of all ComponentAssemblies in this assembly
+    std::vector<ComponentAssembly> assemblies;
+
+    // Put ourselves in the global list first.
+    assemblies.push_back (assembly);
+
+    // Do a Depth-First search and collect all the ComponentAssembly,
+    // Component children of this assembly, and add them to the
+    // assembly-specific list.
+    while (!subasms.empty())
+      {
+        ComponentAssembly rassembly = subasms.back();
+        // Put the first assembly from the current list to the
+        // assembly-specific list.
+        assemblies.push_back (rassembly);
+
+        subasms.pop_back();
+
+        // Get the components of the current assembly, and insert them into
+        // the component list
+        std::set<Component> rcomps = rassembly.Component_kind_children();
+        comps.insert (rcomps.begin(), rcomps.end());
+
+        // Get the subassemblies of the first assembly.
+        std::vector<ComponentAssembly>
+          rasms = rassembly.ComponentAssembly_kind_children();
+
+        // Insert them to the current list.
+        std::copy (rasms.begin(), rasms.end(), std::back_inserter (subasms));
       }
 
     for (std::vector<ComponentAssembly>::iterator iter = assemblies.begin();
@@ -1274,7 +1312,7 @@ namespace PICML
 
   void FlatPlanVisitor::Visit_ComponentAssembly(const ComponentAssembly& assembly)
   {
-    std::set<ComponentAssembly>
+    /*std::set<ComponentAssembly>
       asms = assembly.ComponentAssembly_kind_children();
     for (std::set<ComponentAssembly>::iterator aiter = asms.begin();
          aiter != asms.end();
@@ -1282,12 +1320,12 @@ namespace PICML
       {
         ComponentAssembly rassembly  = *aiter;
         rassembly.Accept (*this);
-      }
+      }*/
 
     std::string node_reference_name = this->retNodeRefName ();
 	std::string cg_name = this->retcgName ();
 
-    std::set<Component> comps = assembly.Component_kind_children();
+    /*std::set<Component> comps = assembly.Component_kind_children();
     std::vector<ComponentAssembly> nasms = assembly.ComponentAssembly_kind_children();
     std::vector<ComponentAssembly> assemblies;
     assemblies.push_back (assembly);
@@ -1300,6 +1338,44 @@ namespace PICML
         comps.insert (rcomps.begin(), rcomps.end());
         std::vector<ComponentAssembly> rasms = rassembly.ComponentAssembly_kind_children();
         std::copy (rasms.begin(), rasms.end(), std::back_inserter (nasms));
+      }*/
+
+	// Collect all the Components of this assembly into a set.
+    std::set<Component> comps = assembly.Component_kind_children();
+
+    // Collect all the immediate ComponentAssembly children of this assembly
+    std::vector<ComponentAssembly>
+      subasms = assembly.ComponentAssembly_kind_children();
+
+    // Maintain a list of all ComponentAssemblies in this assembly
+    std::vector<ComponentAssembly> assemblies;
+
+    // Put ourselves in the global list first.
+    assemblies.push_back (assembly);
+
+    // Do a Depth-First search and collect all the ComponentAssembly,
+    // Component children of this assembly, and add them to the
+    // assembly-specific list.
+    while (!subasms.empty())
+      {
+        ComponentAssembly rassembly = subasms.back();
+        // Put the first assembly from the current list to the
+        // assembly-specific list.
+        assemblies.push_back (rassembly);
+
+        subasms.pop_back();
+
+        // Get the components of the current assembly, and insert them into
+        // the component list
+        std::set<Component> rcomps = rassembly.Component_kind_children();
+        comps.insert (rcomps.begin(), rcomps.end());
+
+        // Get the subassemblies of the first assembly.
+        std::vector<ComponentAssembly>
+          rasms = rassembly.ComponentAssembly_kind_children();
+
+        // Insert them to the current list.
+        std::copy (rasms.begin(), rasms.end(), std::back_inserter (subasms));
       }
 
     // Create the appropriate component attribute value mappings

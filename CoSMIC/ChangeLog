@@ -1,3 +1,12 @@
+Wed Sep 7 16:50:35 2005  Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+	* PIM/PICML/interpreters/FlatPlanVisitor.cpp:
+	* PIM/PICML/interpreters/FlatPlanVisitor.h:
+
+	  Made changes to the flat plan interpreter to generate
+	  configProperty along with instance tags of the
+	  deployment plan.
+
 Wed Sep 7 15:50:35 2005 Jaiganesh B  <jai@dre.vanderbilt.edu>
 
 	* PIM/PICML/interpreters/FlatPlanVisitor.cpp:
