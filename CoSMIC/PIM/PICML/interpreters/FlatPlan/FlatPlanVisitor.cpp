@@ -1133,10 +1133,10 @@ namespace PICML
                 this->push ();
                 DOMElement* ele = this->doc_->createElement (XStr ("instance"));
                 std::string uniqueName = comp.getPath ("_",false,true,"name",true);
-				uniqueName += "_";
+				/*uniqueName += "_";
 				uniqueName += nodeRefName;
 				uniqueName += "_";
-				uniqueName += cgName;
+				uniqueName += cgName;*/
                 ele->setAttribute (XStr ("id"), XStr (uniqueName));
                 ele->appendChild (this->createSimpleContent ("name", uniqueName));
                 ele->appendChild (this->createSimpleContent ("node", nodeRefName));
@@ -1402,10 +1402,10 @@ namespace PICML
         this->push ();
         DOMElement* ele = this->doc_->createElement (XStr ("instance"));
         std::string uniqueName = comp.getPath ("_",false,true,"name",true);
-		uniqueName += "_";
+		/*uniqueName += "_";
 		uniqueName += node_reference_name;
 		uniqueName += "_";
-		uniqueName += cg_name;
+		uniqueName += cg_name;*/
         ele->setAttribute (XStr ("id"), XStr (uniqueName));
         ele->appendChild (this->createSimpleContent ("name", uniqueName));
         ele->appendChild (this->createSimpleContent ("node", node_reference_name));
