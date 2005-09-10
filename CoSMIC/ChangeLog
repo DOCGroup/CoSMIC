@@ -1,3 +1,11 @@
+Sat Sep 10 21:40:55 2005 Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+	* PIM/PICML/interpreters/FlatPlanVisitor.cpp:
+
+	Fixed the flat plan interpreter to create the
+	right port kinds within the connections of the
+	deployment plan.
+
 Wed Sep 7 16:50:35 2005  Jaiganesh B  <jai@dre.vanderbilt.edu>
 
 	* PIM/PICML/interpreters/FlatPlanVisitor.cpp:

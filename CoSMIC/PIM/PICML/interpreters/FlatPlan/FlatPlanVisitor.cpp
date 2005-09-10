@@ -660,7 +660,7 @@ namespace PICML
     endPoint->appendChild (this->createSimpleContent ("portName",
                                                       srcPortName));
 	endPoint->appendChild (this->createSimpleContent ("kind",
-                                                      source_kind));
+                                                      dest_kind));
     // Source instance
 
     // DOMElement* instance = this->doc_->createElement (XStr ("instance"));
@@ -677,7 +677,7 @@ namespace PICML
     endPoint->appendChild (this->createSimpleContent ("portName",
                                                       dstPortName));
 	endPoint->appendChild (this->createSimpleContent ("kind",
-                                                      dest_kind));
+                                                      source_kind));
     // Destination instance
 
     // instance = this->doc_->createElement (XStr ("instance"));
@@ -780,8 +780,8 @@ namespace PICML
 
     std::map<Component,std::string> emitters;
     std::map<Component,std::string> consumers;
-	std::string source_kind = "EventEmitter";
-	std::string dest_kind = "SimplexReceptacle";
+	std::string source_kind = "EventConsumer";
+	std::string dest_kind = "EventPublisher";
     this->GetEventSourceComponents (emitter, emitters);
     this->GetEventSinkComponents (consumer, consumers);
     this->CreateConnections (emitters, consumers, source_kind, dest_kind);
@@ -883,8 +883,8 @@ namespace PICML
               {
                 Component dstComp = iter->first;
                 std::string dstPortName = iter->second;
-				std::string source_kind = "EventPublisher";
-				std::string dest_kind = "EventConsumer";
+				std::string source_kind = "EventConsumer";
+				std::string dest_kind = "EventPublisher";
                 this->CreateConnection (srcComp, srcPortName, dstComp,
                                         dstPortName, source_kind, dest_kind);
               }
