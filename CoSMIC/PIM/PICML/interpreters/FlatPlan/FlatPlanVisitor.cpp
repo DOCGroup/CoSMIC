@@ -1160,6 +1160,7 @@ namespace PICML
                 ComponentAssemblyReference comp_assembly_ref = ComponentAssemblyReference::Cast (comp_type);
                 ComponentAssembly comp_assembly = comp_assembly_ref.ref ();
                 containing_assemblies.insert(comp_assembly);
+				containing_assemblies.insert(comp_assembly.ComponentAssembly_parent());
                 comp_assembly.Accept (*this);
               }
           }
