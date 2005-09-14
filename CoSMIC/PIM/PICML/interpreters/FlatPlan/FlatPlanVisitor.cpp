@@ -669,14 +669,15 @@ namespace PICML
     // endPoint->appendChild (instance);
 
     std::string source_comp_instance = srcComp.getPath ("_",false,true,"name",true);
-	endPoint->appendChild (this->createSimpleContent ("instance", source_comp_instance));
+    endPoint->appendChild 
+       (this->createSimpleContent ("instance", source_comp_instance));
     ele->appendChild (endPoint);
 
     // Destination endPoint
     endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
     endPoint->appendChild (this->createSimpleContent ("portName",
                                                       dstPortName));
-	endPoint->appendChild (this->createSimpleContent ("kind",
+    endPoint->appendChild (this->createSimpleContent ("kind",
                                                       source_kind));
     // Destination instance
 
@@ -685,8 +686,10 @@ namespace PICML
     //                        XStr (dstComp.getPath ("_", false, true,"name",true)));
     // endPoint->appendChild (instance);
 
-	std::string dest_comp_instance = dstComp.getPath ("_",false,true,"name",true);
-	endPoint->appendChild (this->createSimpleContent ("instance", dest_comp_instance));
+    std::string dest_comp_instance = dstComp.
+                                     getPath ("_",false,true,"name",true);
+    endPoint->appendChild 
+       (this->createSimpleContent ("instance", dest_comp_instance));
     ele->appendChild (endPoint);
   }
 
@@ -699,7 +702,8 @@ namespace PICML
     set<Uml::Attribute> aattrs=Uml::AncestorAttributes(cls);
     attrs.insert(aattrs.begin(),aattrs.end());
 
-    for(set<Uml::Attribute>::iterator ai = attrs.begin();ai != attrs.end(); ai++)
+    for(set<Uml::Attribute>::iterator ai = attrs.begin();
+        ai != attrs.end(); ai++)
       {
         if(string(ai->type())=="String")
           {
@@ -726,13 +730,13 @@ namespace PICML
 
     std::map<Component,std::string> receptacles;
     std::map<Component,std::string> facets;
-	std::string source_kind = "Facet";
-	std::string dest_kind = "SimplexReceptacle";
+    std::string source_kind = "Facet";
+    std::string dest_kind = "SimplexReceptacle";
     this->GetReceptacleComponents (receptacle, receptacles);
     this->GetFacetComponents (facet, facets);
     this->CreateConnections (receptacles, facets, source_kind, dest_kind);
 
-	//this->push();
+    //this->push();
 
     //DOMElement* ele = this->doc_->createElement (XStr ("connection"));
     //this->curr_->appendChild (ele);
@@ -780,8 +784,8 @@ namespace PICML
 
     std::map<Component,std::string> emitters;
     std::map<Component,std::string> consumers;
-	std::string source_kind = "EventConsumer";
-	std::string dest_kind = "EventPublisher";
+    std::string source_kind = "EventConsumer";
+    std::string dest_kind = "EventPublisher";
     this->GetEventSourceComponents (emitter, emitters);
     this->GetEventSinkComponents (consumer, consumers);
     this->CreateConnections (emitters, consumers, source_kind, dest_kind);
@@ -868,7 +872,7 @@ namespace PICML
         std::string srcPortName = iter->second;
 
         for (std::multimap<std::string, InEventPort>::const_iterator
-               iter = this->consumers_.lower_bound (ctor);
+             iter = this->consumers_.lower_bound (ctor);
              iter != this->consumers_.upper_bound (ctor);
              ++iter)
           {
@@ -877,14 +881,14 @@ namespace PICML
             std::map<Component,std::string> consumers;
             this->GetEventSinkComponents (consumer, consumers);
             for (std::map<Component,std::string>::const_iterator
-                   iter = consumers.begin();
+                 iter = consumers.begin();
                  iter != consumers.end();
                  ++iter)
               {
                 Component dstComp = iter->first;
                 std::string dstPortName = iter->second;
-				std::string source_kind = "EventConsumer";
-				std::string dest_kind = "EventPublisher";
+                std::string source_kind = "EventConsumer";
+                std::string dest_kind = "EventPublisher";
                 this->CreateConnection (srcComp, srcPortName, dstComp,
                                         dstPortName, source_kind, dest_kind);
               }
@@ -1056,7 +1060,7 @@ namespace PICML
     this->initDocument ("Deployment:deploymentPlan");
     this->initRootAttributes();
 
-	std::string label = dp.label();
+    std::string label = dp.label();
     if (!label.empty())
       this->curr_->appendChild (this->createSimpleContent ("label",
                                                            label));
@@ -1082,14 +1086,15 @@ namespace PICML
          ++iter)
       {
         std::string nodeRefName;
-		std::string cgName;
+	std::string cgName;
         CollocationGroup cg = *iter;
-		cgName = cg.name();
-		this->initcgName (cgName);
+        cgName = cg.name();
+        this->initcgName (cgName);
 
         const std::set<InstanceMapping> cg_ins_maps = cg.dstInstanceMapping ();
 
-        for (std::set<InstanceMapping>::const_iterator cg_ins_map_iter = cg_ins_maps.begin();
+        for (std::set<InstanceMapping>::const_iterator 
+             cg_ins_map_iter = cg_ins_maps.begin();
              cg_ins_map_iter != cg_ins_maps.end ();
              ++cg_ins_map_iter)
           {
@@ -1101,7 +1106,8 @@ namespace PICML
           }
 
         std::set<CollocationGroup_Members_Base> comp_types = cg.members ();
-        for (std::set<CollocationGroup_Members_Base>::const_iterator comp_type_iter = comp_types.begin();
+        for (std::set<CollocationGroup_Members_Base>::const_iterator 
+             comp_type_iter = comp_types.begin();
              comp_type_iter != comp_types.end (); ++comp_type_iter)
           {
             CollocationGroup_Members_Base comp_type = *comp_type_iter;
@@ -1109,42 +1115,49 @@ namespace PICML
               {
                 ComponentRef component_ref = ComponentRef::Cast (comp_type);
                 Component comp = component_ref.ref();
-				std::string component_name = comp.name ();
+                std::string component_name = comp.name ();
                 containing_assemblies.insert(comp.ComponentAssembly_parent());
                 Component typeParent;
-				if (this->monoimpls_.find (component_name) != this->monoimpls_.end ())
+                if (this->monoimpls_.find (component_name) 
+                    != this->monoimpls_.end ())
                   {
-					  mimpl = this->monoimpls_[component_name];
-				  }
-				else
-				  {
-					if (comp.isInstance())
+		    mimpl = this->monoimpls_[component_name];
+		  }
+                else
+                  {
+	            if (comp.isInstance())
                       {
                         typeParent = comp.Archetype();
                         while (typeParent.isInstance())
                           typeParent = typeParent.Archetype();
                       }
                     std::string refName = typeParent.name();
-                    if (this->monoimpls_.find (refName) != this->monoimpls_.end ())
+                    if (this->monoimpls_.find (refName) 
+                        != this->monoimpls_.end ())
                       {
                         mimpl = this->monoimpls_[refName];
                       }
-				  }
+                  }
                 this->push ();
                 DOMElement* ele = this->doc_->createElement (XStr ("instance"));
-                std::string uniqueName = comp.getPath ("_",false,true,"name",true);
-				/*uniqueName += "_";
-				uniqueName += nodeRefName;
-				uniqueName += "_";
-				uniqueName += cgName;*/
+                std::string uniqueName = 
+                   comp.getPath ("_",false,true,"name",true);
+                /*uniqueName += "_";
+	        uniqueName += nodeRefName;
+                uniqueName += "_";
+                uniqueName += cgName;*/
                 ele->setAttribute (XStr ("id"), XStr (uniqueName));
-                ele->appendChild (this->createSimpleContent ("name", uniqueName));
-                ele->appendChild (this->createSimpleContent ("node", nodeRefName));
+                ele->appendChild 
+                  (this->createSimpleContent ("name", uniqueName));
+                ele->appendChild 
+                  (this->createSimpleContent ("node", nodeRefName));
                 ele->appendChild (this->doc_->createElement (XStr ("source")));
                 this->curr_->appendChild (ele);
                 this->curr_ = ele;
-                std::string mimpl_name = mimpl.getPath ("_",false,true,"name",true);
-                this->curr_->appendChild (this->createSimpleContent ("implementation", mimpl_name));
+                std::string mimpl_name = 
+                  mimpl.getPath ("_",false,true,"name",true);
+                this->curr_->appendChild 
+                   (this->createSimpleContent ("implementation", mimpl_name));
                 const std::set<ConfigProperty> cps = mimpl.dstConfigProperty();
                 for (std::set<ConfigProperty>::const_iterator it2 = cps.begin();
                      it2 != cps.end();
@@ -1155,27 +1168,33 @@ namespace PICML
                   }
                 this->pop ();
               }
-            else if (Udm::IsDerivedFrom (comp_type.type(), ComponentAssemblyReference::meta))
+            else if (Udm::IsDerivedFrom 
+                     (comp_type.type(), ComponentAssemblyReference::meta))
               {
-                ComponentAssemblyReference comp_assembly_ref = ComponentAssemblyReference::Cast (comp_type);
+                ComponentAssemblyReference comp_assembly_ref = 
+                    ComponentAssemblyReference::Cast (comp_type);
                 ComponentAssembly comp_assembly = comp_assembly_ref.ref ();
-				ComponentAssembly comp_assembly_parent;
+                ComponentAssembly comp_assembly_parent;
                 // containing_assemblies.insert(comp_assembly);
-				if (comp_assembly.isInstance())
+                if (comp_assembly.isInstance())
                 {
                   //comp_assembly_parent = comp_assembly.Archetype();
-                  comp_assembly_parent = comp_assembly.ComponentAssembly_parent();
+                  comp_assembly_parent = 
+                      comp_assembly.ComponentAssembly_parent();
                   while (comp_assembly_parent.isInstance())
-                    comp_assembly_parent = comp_assembly_parent.ComponentAssembly_parent();
+                    comp_assembly_parent = 
+                      comp_assembly_parent.ComponentAssembly_parent();
                 }
-				//containing_assemblies.insert(comp_assembly.ComponentAssembly_parent());
-				containing_assemblies.insert(comp_assembly_parent);
+                //containing_assemblies.
+                   // insert(comp_assembly.ComponentAssembly_parent());
+                containing_assemblies.insert(comp_assembly_parent);
                 comp_assembly.Accept (*this);
               }
           }
       }
 
-    for (std::set<PICML::ComponentAssembly>::const_iterator assembly_iter = containing_assemblies.begin();
+    for (std::set<PICML::ComponentAssembly>::const_iterator assembly_iter = 
+         containing_assemblies.begin();
          assembly_iter != containing_assemblies.end (); ++assembly_iter)
       {
         ComponentAssembly component_assembly = *assembly_iter;
@@ -1304,7 +1323,8 @@ namespace PICML
           }
         const std::set<PublishConnector>
           connectors = subasm.PublishConnector_kind_children();
-        for (std::set<PublishConnector>::const_iterator iter = connectors.begin();
+        for (std::set<PublishConnector>::const_iterator iter = 
+             connectors.begin();
              iter != connectors.end();
              ++iter)
           {
@@ -1333,7 +1353,7 @@ namespace PICML
       }*/
 
     std::string node_reference_name = this->retNodeRefName ();
-	std::string cg_name = this->retcgName ();
+    std::string cg_name = this->retcgName ();
 
     /*std::set<Component> comps = assembly.Component_kind_children();
     std::vector<ComponentAssembly> nasms = assembly.ComponentAssembly_kind_children();
@@ -1412,10 +1432,10 @@ namespace PICML
         this->push ();
         DOMElement* ele = this->doc_->createElement (XStr ("instance"));
         std::string uniqueName = comp.getPath ("_",false,true,"name",true);
-		/*uniqueName += "_";
-		uniqueName += node_reference_name;
-		uniqueName += "_";
-		uniqueName += cg_name;*/
+        /*uniqueName += "_";
+        uniqueName += node_reference_name;
+        uniqueName += "_";
+        uniqueName += cg_name;*/
         ele->setAttribute (XStr ("id"), XStr (uniqueName));
         ele->appendChild (this->createSimpleContent ("name", uniqueName));
         ele->appendChild (this->createSimpleContent ("node", node_reference_name));
@@ -1424,7 +1444,7 @@ namespace PICML
         this->curr_ = ele;
         std::string mimpl_name = mimpl.getPath ("_",false,true,"name",true);
         this->curr_->appendChild (this->createSimpleContent ("implementation", mimpl_name));
-		std::set<AssemblyConfigProperty> cps = comp.dstAssemblyConfigProperty();
+        std::set<AssemblyConfigProperty> cps = comp.dstAssemblyConfigProperty();
         for (std::set<AssemblyConfigProperty>::const_iterator it2 = cps.begin();
              it2 != cps.end();
              ++it2)
@@ -1440,7 +1460,8 @@ namespace PICML
             ReadonlyAttribute attr = *iter;
             attr.Accept (*this);
           }
-        for (std::map<std::pair<std::string, std::string>, Property>::const_iterator iter = this->attrValues_.begin();
+        for (std::map<std::pair<std::string, std::string>, Property>::
+             const_iterator iter = this->attrValues_.begin();
              iter != this->attrValues_.end();
              ++iter)
           {
@@ -1474,7 +1495,8 @@ namespace PICML
       }
   }
 
-  void FlatPlanVisitor::CreateAttributeMappings (std::vector<ComponentAssembly>& assemblies)
+  void FlatPlanVisitor::CreateAttributeMappings (
+        std::vector<ComponentAssembly>& assemblies)
   {
     for (std::vector<ComponentAssembly>::iterator iter = assemblies.begin();
          iter != assemblies.end();
