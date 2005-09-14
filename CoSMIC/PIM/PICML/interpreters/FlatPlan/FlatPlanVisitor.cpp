@@ -1159,8 +1159,17 @@ namespace PICML
               {
                 ComponentAssemblyReference comp_assembly_ref = ComponentAssemblyReference::Cast (comp_type);
                 ComponentAssembly comp_assembly = comp_assembly_ref.ref ();
-                containing_assemblies.insert(comp_assembly);
-				containing_assemblies.insert(comp_assembly.ComponentAssembly_parent());
+				ComponentAssembly comp_assembly_parent;
+                // containing_assemblies.insert(comp_assembly);
+				if (comp_assembly.isInstance())
+                {
+                  //comp_assembly_parent = comp_assembly.Archetype();
+                  comp_assembly_parent = comp_assembly.ComponentAssembly_parent();
+                  while (comp_assembly_parent.isInstance())
+                    comp_assembly_parent = comp_assembly_parent.ComponentAssembly_parent();
+                }
+				//containing_assemblies.insert(comp_assembly.ComponentAssembly_parent());
+				containing_assemblies.insert(comp_assembly_parent);
                 comp_assembly.Accept (*this);
               }
           }
