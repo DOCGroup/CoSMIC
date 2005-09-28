@@ -533,7 +533,7 @@ MPCStream::create_skeleton_definition (const PICML::ServantProject &skel)
 	if (file_ref != Udm::null)
 		this->create_project_defn (proj_name, "ciao_servant_dnc");
 	else 
-		this->create_project_defn (proj_name, "ciao_server");
+		this->create_project_defn (proj_name, "ciao_server_dnc");
 	
 	// Obtain what libraries this depends on -- Name of dependent
 	// libraries
