@@ -27,8 +27,14 @@
 
 namespace
 {
-  void getPath( const std::string& message, std::string& path )
+  // This method prompts a dialog to allow the user to specify a folder
+  bool getPath (const std::string& description, std::string& path)
   {
+    // Initalize the com library
+    HRESULT hr = ::CoInitialize(NULL);
+    if (FAILED(hr))
+      return false;
+
     // Dialog instruction
     char display_buffer[MAX_PATH];
     BROWSEINFO folder_browsinfo;
@@ -36,35 +42,30 @@ namespace
 
     // Set GME as the owner of the dialog
     folder_browsinfo.hwndOwner = GetForegroundWindow();
-    // Start the brows from desktop
+    // Start the browse from desktop
     folder_browsinfo.pidlRoot = NULL;
     // Pointer to the folder name display buffer
     folder_browsinfo.pszDisplayName = &display_buffer[0];
-    // Diaglog instruction string
-    folder_browsinfo.lpszTitle = message.c_str();
+    // Dialog instruction string
+    folder_browsinfo.lpszTitle = description.c_str();
     // Use new GUI style and allow edit plus file view
-    folder_browsinfo.ulFlags = BIF_BROWSEINCLUDEFILES | BIF_RETURNONLYFSDIRS;
+    folder_browsinfo.ulFlags = BIF_RETURNONLYFSDIRS|BIF_USENEWUI;
     // No callback function
     folder_browsinfo.lpfn = NULL;
     // No parameter passing into the dialog
     folder_browsinfo.lParam = 0;
 
-    LPITEMIDLIST folder_pidl;
-    folder_pidl = SHBrowseForFolder(&folder_browsinfo);
+    LPITEMIDLIST folder_pidl = SHBrowseForFolder(&folder_browsinfo);
 
-    if (folder_pidl == NULL)
-      {
-        return;
-      }
+    if(folder_pidl == NULL)
+      return false;
     else
       {
         TCHAR FolderNameBuffer[MAX_PATH];
 
         // Convert the selection into a path
         if (SHGetPathFromIDList (folder_pidl, FolderNameBuffer))
-          {
-            path = FolderNameBuffer;
-          }
+          path = FolderNameBuffer;
 
         // Free the ItemIDList object returned from the call to
         // SHBrowseForFolder using Gawp utility function
@@ -75,6 +76,8 @@ namespace
             imalloc->Release ( );
           }
       }
+    ::CoUninitialize();
+    return true;
   }
 }
 
@@ -149,7 +152,11 @@ void Component::invokeEx( Project& project,
 {
   std::string outputPath;
   std::string message = "Please specify the Output Directory";
-  getPath (message, outputPath);
+  
+  if (!getPath (message, outputPath))
+    {
+      return;
+    }
   
   std::set<Object> selected = project->findByKind ("File");
   

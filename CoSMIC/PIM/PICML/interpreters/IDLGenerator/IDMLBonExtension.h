@@ -89,6 +89,8 @@ DECLARE_BONEXTENSION( BON::Reference, SupportsImpl, Supports );
 class OrderableImpl : virtual public BON::FCOImpl
 {
 public:
+  virtual void initialize (void);
+
   std::set<Orderable> depends_on_me;
   std::set<std::pair<Orderable, int> > fwd_decl_children;
   std::vector<Orderable> ordered_children;

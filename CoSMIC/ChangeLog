@@ -1,3 +1,27 @@
+Thu Sep 29 15:19:28 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
+        
+          Modified the getPath() method, which pops up a message box
+          prompting the user for an output directory, to return a
+          boolean, and modified the usage to return immediately if
+          getPath() returns 'false'. This enables the interpreter
+          to correctly abort if the user clicks on 'Cancel' in
+          the message box.
+          
+        * PIM/PICML/interpreters/IDLGenerator/DependencyVisitor.cpp:
+        
+          Added code to make sure a component's parent (if any) gets
+          handled when dependencies, and therefore code generation
+          order, are getting sorted out.
+          
+        * PIM/PICML/interpreters/IDLGenerator/IDMLBonExtension.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDMLBonExtension.h:
+          
+          Added virtual initialize() method for inserted class Orderable,
+          to remove ambiguity about which method in the inheritance
+          hierarchy will get called.
+
 Wed Sep 28 16:02:36 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
       * PIM/PICML/interpreters/MPC/MPCStream.cpp:
 

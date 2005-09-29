@@ -16,50 +16,49 @@ namespace IDML
     
     // If we're not a model, we're done.
     BON::Model model (object);
-    if (model)
-      { 
-        Component comp (object);
-            
-        if (comp 
-            || ComponentFactory (object) 
-            || Event (object))
-          {
-            this->set_include_components_idl (object);
-          }
-      
-        std::set<BON::FCO>& children = model->getChildFCOs ();
+    if (!model) return;
+    
+    Component comp (object);
         
-        for (std::set<BON::FCO>::const_iterator it = children.begin ();
-             it != children.end ();
-             it++)
-          {
-            Orderable child (*it);
-            if (!child) continue;
+    if (comp 
+        || ComponentFactory (object) 
+        || Event (object))
+      {
+        this->set_include_components_idl (object);
+      }
+  
+    std::set<BON::FCO>& children = model->getChildFCOs ();
+    
+    for (std::set<BON::FCO>::const_iterator it = children.begin ();
+          it != children.end ();
+          it++)
+      {
+        Orderable child (*it);
+        if (!child) continue;
             object->ordered_children.push_back (child);
-		        this->visitOrderableImpl (child);
-		      }
-		      
-		    if (comp)
+		    this->visitOrderableImpl (child);
+		  }
+		  
+		if (comp)
+		  {
+		    BON::FCOPtr spFCO;
+		    COMTHROW (comp->getFCOI ()->get_DerivedFrom (spFCO.Addr ()));
+		    
+		    if (spFCO)
 		      {
-		        BON::FCOPtr spFCO;
-		        COMTHROW (comp->getFCOI ()->get_DerivedFrom (spFCO.Addr ()));
+		        Component base (BON::FCOImpl::attach (spFCO));
+		        if (!base) return;
+		        comp->base_component (base);
 		        
-		        if (spFCO)
-		          {
-		            Component base (BON::FCOImpl::attach (spFCO));
-		            if (!base) return;
-		            comp->base_component (base);
-		            
-		            // Just insert the derived component into the
-		            // depends_on_me container of the base. Since
-		            // this is an inheritance relationship, we won't
-		            // have any problems with incomplete types in
-		            // the IDL, so we can just call order_children()
-		            // as usual.
-		            base->depends_on_me.insert (comp);
-		          }
+		        // Just insert the derived component into the
+		        // depends_on_me container of the base. Since
+		        // this is an inheritance relationship, we won't
+		        // have any problems with incomplete types in
+		        // the IDL, so we can just call order_children()
+		        // as usual.
+		        base->depends_on_me.insert (comp);
 		      }
-		  } 
+		  }
   }
 
   void DependencyVisitor::set_include_components_idl( const BON::Model& mod )
