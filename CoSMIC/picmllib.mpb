@@ -8,6 +8,11 @@ project : xerces {
    libpaths += $(COSMIC_ROOT)/lib $(UDM_PATH)/lib \
                $(UDM_PATH)/3rdParty/zlib \
 
+  specific {
+     midl_flags += /server none /client none
+     midl_includes += $(GME_ROOT) $(GME_ROOT)/Interfaces .
+   }
+
   Define_Custom(UDM) {
       automatic         = 0
       dependent         = $(UDM_PATH)/bin/Udm
@@ -16,19 +21,7 @@ project : xerces {
       inputext          = .xml
       header_outputext  = .h
       source_outputext  = .cpp
-//      postcommand       = <%quote%>$(COSMIC_ROOT)<%quote%>/bin/fix.py <%header_file%>
    }
-
-  Define_Custom(MIDL) {
-    automatic            = 0
-    command              = midl
-    commandflags         = -win32 -I. -server none -client none
-    source_pre_extension = _i,_p
-    source_outputext     = .c
-    header_outputext     = .h
-    resource_outputext   = .tlb
-    inputext             = .idl
-  }
 
   Define_Custom(Register) {
     automatic           = 0

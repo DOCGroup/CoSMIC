@@ -984,14 +984,9 @@ namespace PICML
       uuid = mimpl.getPath ("_", false, true, "name", true);
     this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
 
-    const std::set<Implements> impls = mimpl.dstImplements();
-    for (std::set<Implements>::const_iterator iter = impls.begin();
-         iter != impls.end();
-         ++iter)
-      {
-        Implements impl = *iter;
-        impl.Accept (*this);
-      }
+    Implements iface = mimpl.dstImplements();
+    iface.Accept (*this);
+
     this->push();
     DOMElement* ele = this->doc_->createElement (XStr ("monolithicImpl"));
     this->curr_->appendChild (ele);
@@ -1006,6 +1001,7 @@ namespace PICML
         mpa.Accept (*this);
       }
     this->pop();
+
     const std::set<ConfigProperty>
       cps = mimpl.dstConfigProperty();
     for (std::set<ConfigProperty>::const_iterator it2 = cps.begin();

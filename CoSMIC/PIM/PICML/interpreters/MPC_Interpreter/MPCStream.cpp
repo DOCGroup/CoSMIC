@@ -464,25 +464,21 @@ MPCStream::create_cidl_defn (PICML::ImplementationArtifact& artifact)
 			// Step 2: Obtain the Component name that is present within this
 			// Implements folder
 			PICML::ComponentImplementation child = parent.ComponentImplementation_child ();
-			std::set<PICML::Implements> impls = child.dstImplements();
+      PICML::Implements impls = child.dstImplements();
 			
-			for (std::set<PICML::Implements>::iterator impl_iter = impls.begin ();
-				impl_iter != impls.end ();
-				impl_iter ++)
-			{
-				PICML::ComponentRef type = impl_iter->dstImplements_end();
+			PICML::ComponentRef type = impls.dstImplements_end();
 				
-				// Get the name of the ComponentType
-				PICML::Component comp = type.ref ();
+			// Get the name of the ComponentType
+			PICML::Component comp = type.ref ();
 				
-				// Step 3: The name of the cidl will be based on the component idl
-				// file name
-				std::string name;
-				comp.GetStrValue ("name", name);
-				std::string message = "Cidl_file_name" + name;
-			    this->cidl_file_.push_back (name);
-			}
-		}catch (udm_exception& )
+			// Step 3: The name of the cidl will be based on the component idl
+			// file name
+			std::string name;
+			comp.GetStrValue ("name", name);
+			std::string message = "Cidl_file_name" + name;
+			this->cidl_file_.push_back (name);
+		}
+    catch (udm_exception& )
 		{
 			
 		}

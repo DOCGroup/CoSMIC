@@ -1,30 +1,12 @@
-project (EQAL): mfc {
-   sharedname = EQAL
-   libout = $(COSMIC_ROOT)/lib
-   dllout = $(COSMIC_ROOT)/bin
-   includes += . $(GME_ROOT)/SDK/BON \
-               $(COSMIC_ROOT)/PIM/PICML/interpreters/EQAL
+project (EQAL): mfc, picmllib {
    libpaths += $(COSMIC_ROOT)/lib
    macros += BUILDER_OBJECT_NETWORK_V2 _WINDLL _USRDLL
-
-  Define_Custom(MIDL) {
-    automatic            = 0
-    command              = midl
-    commandflags         = -win32 -I. -server none -client none
-    source_pre_extension = _i,_p
-    source_outputext     = .c
-    header_outputext     = .h
-    resource_outputext   = .tlb
-    inputext             = .idl
-  }
-
-   MIDL_Files {
-     gendir = .
-     $(GME_ROOT)/SDK/BON/ComponentLib.idl
-   }
+   sharedname = EQAL
+   includes += . $(GME_ROOT)/SDK/BON \
+               $(COSMIC_ROOT)/PIM/PICML/interpreters/EQAL
 
    specific {
-     use_lib_modifier =
+      use_lib_modifier =
    }
 
    specific (vc6,vc7,vc71,vc8) {
@@ -32,6 +14,7 @@ project (EQAL): mfc {
    }
 
    Source_Files {
+     $(GME_ROOT)/SDK/BON/ComponentLib.idl
      $(GME_ROOT)/SDK/BON/BON.cpp
      BON2Component.cpp
      $(GME_ROOT)/SDK/BON/BONImpl.cpp
@@ -74,17 +57,9 @@ project (EQAL): mfc {
    }
 }
 
-project (RegisterEQAL) {
+project (RegisterEQAL) : picmllib {
   after += EQAL
   custom_only = 1
-
-  Define_Custom(Register) {
-    automatic           = 0
-    command             = regsvr32.exe
-    inputext            = .dll
-    generic_outputext   = .trg
-    postcommand         = echo regsvr32 exec. time <%gt%> <%output%>
-  }
 
   Register_Files {
     $(COSMIC_ROOT)\bin\EQAL.dll

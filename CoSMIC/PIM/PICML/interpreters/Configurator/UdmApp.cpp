@@ -87,21 +87,22 @@ int CUdmApp::Initialize()
   udm_exception::what() to form an error message.
 */
 
-struct addon_info 
+struct addon_info
 {
   std::string schema;
   std::string rules;
   std::string attr;
 };
 
-HANDLE launchViaCreateProcess(LPCTSTR program, LPCTSTR args)
+void launchViaCreateProcess(LPCTSTR program, LPCTSTR args)
 {
   HANDLE hProcess = NULL;
   PROCESS_INFORMATION processInfo;
   STARTUPINFO startupInfo;
   ::ZeroMemory(&startupInfo, sizeof(startupInfo));
   startupInfo.cb = sizeof(startupInfo);
-  if(::CreateProcess(program, (LPTSTR)args, 
+  ::ZeroMemory(&processInfo, sizeof(processInfo));
+  if(!::CreateProcess(program, (LPTSTR)args,
                     NULL,  // process security
                     NULL,  // thread security
                     FALSE, // no inheritance
@@ -110,10 +111,17 @@ HANDLE launchViaCreateProcess(LPCTSTR program, LPCTSTR args)
                     NULL,  // default startup directory
                     &startupInfo,
                     &processInfo))
-    { /* success */
-      hProcess = processInfo.hProcess;
-    } /* success */
-  return hProcess;
+    {
+      std::string errorMsg ("Unable to launch process using");
+      errorMsg += program;
+      errorMsg += " to create configurator GUI.";
+      throw udm_exception (errorMsg);
+    }
+
+  WaitForSingleObject (processInfo.hProcess, INFINITE);
+  CloseHandle (processInfo.hProcess);
+  CloseHandle (processInfo.hThread);
+
 }
 
 /***********************************************/
@@ -190,8 +198,8 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
           AfxMessageBox (error_msg.str().c_str());
           return;
         }
-      
-      // display the gui. 
+
+      // display the gui.
       std::string old_value;
       active_object_ptr->GetStrValue(info_iter->second.attr, old_value);
 
@@ -219,8 +227,6 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
       std::string application_s = application.str();
       std::string arguments_s = arguments.str();
       launchViaCreateProcess(application_s.c_str(), arguments_s.c_str());
-//      launchViaCreateProcess("c:\\cosmic\\bin\\config_exe.exe",
-//                             "orb_tree.xml -v WatchSettingManager_exec_svc.conf");
       {
         std::ifstream value_file(temp_file_name.c_str());
         std::copy(std::istream_iterator<char>(value_file),

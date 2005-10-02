@@ -1,10 +1,6 @@
 project (BGMLComponent): mfc, picmllib {
   after += PICML BGML
 
-  MIDL_Files {
-    gendir = .
-    $(GME_ROOT)/SDK/BON/ComponentLib.idl
-  }
   macros += PICML_HAS_DLL _USRDLL _WINDLL
   sharedname = BGMLComponent
   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML \
@@ -23,6 +19,7 @@ project (BGMLComponent): mfc, picmllib {
   }
 
   Source_Files {
+    $(GME_ROOT)/SDK/BON/ComponentLib.idl
     StdAfx.cpp
     $(GME_ROOT)/SDK/BON/ComHelp.cpp
     $(GME_ROOT)/SDK/BON/ComponentDll.cpp

@@ -1,23 +1,111 @@
+Sun Oct  2 21:20:07 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * Installer/CoSMIC-Installer.ise:  Updated in preparation for
+          CoSMIC release 0.4.6.  Specifically, the installer now creates
+          the registry entries for all the interpreters manually instead
+          of relying on regsvr32.exe to register.
+
+        * Installer/RegisterParadigm/RegisterParadigm.def:  Updated to
+          point to the correct functions to export.
+
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:  Refactored the
+          code to remove unused code, and made it more modular.
+
+        * Installer/RegisterParadigm/RegisterParadigm.mpc:  Created a new
+          file with the contents of Register_Paradigm.mpc which was
+          removed.
+
+        * PIM/OCML/interpreters/OCML_Interpreter/ComponentLib_p.c:
+          Removed this file.
+
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLBON2Component.vcproj:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLInterpreter.sln:
+
+          Updated to include the paths to the directory on my machine.  We
+          should write an MPC file to get rid of this file altogether.
+
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLVisitor.h:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLVisitor.cpp:
+
+          Fixed line-endings and whitespaces.
+
+        * PIM/PICML/interpreters/Configurator/UdmApp.cpp:  Fixed problem
+          with the OCML configurator GUI not waiting for the user to enter
+          values before proceeding to set the value of the attribute
+          "value".
+
+        * PIM/PICML/decorators/DecoratorConfig.h:
+        * PIM/PICML/decorators/PICMLDecorator.mpc:
+        * PIM/PICML/interpreters/BGMLComponent/BGMLComponent.mpc:
+        * PIM/PICML/interpreters/BGMLComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponent.mpc:
+        * PIM/PICML/interpreters/CIDLComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/ConfigExport/ComponentConfig.h:
+        * PIM/PICML/interpreters/ConfigExport/ConfigExport.mpc:
+        * PIM/PICML/interpreters/Configurator/ComponentConfig.h:
+        * PIM/PICML/interpreters/Configurator/Configurator.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/EQAL/ComponentConfig.h:
+        * PIM/PICML/interpreters/EQAL/EQAL.mpc:
+        * PIM/PICML/interpreters/FlatPlanComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/FlatPlanComponent/FlatPlanComponent.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/ComponentConfig.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+        * PIM/PICML/interpreters/MPCComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/MPCComponent/MPCComponent.mpc:
+        * PIM/PICML/interpreters/PackageComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        * PIM/PICML/interpreters/TargetComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/TargetComponent/DomainComponent.mpc:
+
+          Updated ComponentConfig.h in all the above directories to define
+          the appropriate value of GME_INTERFACES_BASE and GME_BASE
+          instead of hardcoding them to C:\Program Files\GME, which
+          doesn't work on Windows x64.  Also updated the MPC files to
+          build using the MPC built-in MIDL keyword instead of defining a
+          custom build.  This fixes some annoying problems with spaces in
+          file paths, which causes problems with midl.exe on Windows x64
+          (unlike Windows x86).
+
+        * picmllib.mpb:  Removed the MIDL custom definition.
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:
+        * PIM/PICML/interpreters/MPC_Interpreter/MPCStream.cpp:  Updated
+          to accomodate the change in the metamodel, where the cardinality
+          of <implements> connection was changed from 0..* to 0..1.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:  Updated the metamodel to fix
+          problems with constraint definitions for catching invalid uses
+          of the publish connection.  Specifically, the metamodel will
+          flag violations when trying to connect a publish event port
+          using an emit connection.  Add a bunch of constraint related to
+          the same.
+
+
 Thu Sep 29 15:19:28 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
-        
+
           Modified the getPath() method, which pops up a message box
           prompting the user for an output directory, to return a
           boolean, and modified the usage to return immediately if
           getPath() returns 'false'. This enables the interpreter
           to correctly abort if the user clicks on 'Cancel' in
           the message box.
-          
+
         * PIM/PICML/interpreters/IDLGenerator/DependencyVisitor.cpp:
-        
+
           Added code to make sure a component's parent (if any) gets
           handled when dependencies, and therefore code generation
           order, are getting sorted out.
-          
+
         * PIM/PICML/interpreters/IDLGenerator/IDMLBonExtension.cpp:
         * PIM/PICML/interpreters/IDLGenerator/IDMLBonExtension.h:
-          
+
           Added virtual initialize() method for inserted class Orderable,
           to remove ambiguity about which method in the inheritance
           hierarchy will get called.
@@ -25,74 +113,74 @@ Thu Sep 29 15:19:28 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 Wed Sep 28 16:02:36 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
       * PIM/PICML/interpreters/MPC/MPCStream.cpp:
 
-        Fixed a bug in the MPC interpreter reported by an user. The 
+        Fixed a bug in the MPC interpreter reported by an user. The
         issue was the interpreter was generating projects without the
         _dnc suffix.
 
 Wed Sep 14 16:31:05 2005 Jaiganesh B  <jai@dre.vanderbilt.edu>
 
-	* PIM/PICML/interpreters/FlatPlanVisitor.cpp:
+        * PIM/PICML/interpreters/FlatPlanVisitor.cpp:
 
-	Made some cosmetic changes.
+        Made some cosmetic changes.
 
 Wed Sep 14 14:46:08 2005 Jaiganesh B  <jai@dre.vanderbilt.edu>
 
-	* PIM/PICML/interpreters/FlatPlanVisitor.cpp:
+        * PIM/PICML/interpreters/FlatPlanVisitor.cpp:
 
-	Fixed the interpreter to get rid of duplicate connections
-	from the parent assembly.
+        Fixed the interpreter to get rid of duplicate connections
+        from the parent assembly.
 
 Mon Sep 12 10:00:05 2005 Jaiganesh B  <jai@dre.vanderbilt.edu>
 
-	* PIM/PICML/interpreters/FlatPlanVisitor.cpp:
+        * PIM/PICML/interpreters/FlatPlanVisitor.cpp:
 
-	Fixed the flat plan interpreter to create connections
-	involving the parents of an assembly, when an assembly
-	is chosen as an instance in the deployment plan
-	paradigm sheet.
+        Fixed the flat plan interpreter to create connections
+        involving the parents of an assembly, when an assembly
+        is chosen as an instance in the deployment plan
+        paradigm sheet.
 
 Sat Sep 10 21:40:55 2005 Jaiganesh B  <jai@dre.vanderbilt.edu>
 
-	* PIM/PICML/interpreters/FlatPlanVisitor.cpp:
+        * PIM/PICML/interpreters/FlatPlanVisitor.cpp:
 
-	Fixed the flat plan interpreter to create the
-	right port kinds within the connections of the
-	deployment plan.
+        Fixed the flat plan interpreter to create the
+        right port kinds within the connections of the
+        deployment plan.
 
 Wed Sep 7 16:50:35 2005  Jaiganesh B  <jai@dre.vanderbilt.edu>
 
-	* PIM/PICML/interpreters/FlatPlanVisitor.cpp:
-	* PIM/PICML/interpreters/FlatPlanVisitor.h:
+        * PIM/PICML/interpreters/FlatPlanVisitor.cpp:
+        * PIM/PICML/interpreters/FlatPlanVisitor.h:
 
-	  Made changes to the flat plan interpreter to generate
-	  configProperty along with instance tags of the
-	  deployment plan.
+          Made changes to the flat plan interpreter to generate
+          configProperty along with instance tags of the
+          deployment plan.
 
 Wed Sep 7 15:50:35 2005 Jaiganesh B  <jai@dre.vanderbilt.edu>
 
-	* PIM/PICML/interpreters/FlatPlanVisitor.cpp:
-	* PIM/PICML/interpreters/FlatPlanVisitor.h:
+        * PIM/PICML/interpreters/FlatPlanVisitor.cpp:
+        * PIM/PICML/interpreters/FlatPlanVisitor.h:
 
-	  Made changes to the flat plan interpreter to attach
-	  node and collocation group name while creating
-	  an unique ID for the instances within the deployment
-	  plan.
+          Made changes to the flat plan interpreter to attach
+          node and collocation group name while creating
+          an unique ID for the instances within the deployment
+          plan.
 
 Mon Sep 5 20:37:37 2005 Jaiganesh B  <jai@dre.vanderbilt.edu>
 
-	* PIM/PICML/interpreters/FlatPlanVisitor.cpp:
+        * PIM/PICML/interpreters/FlatPlanVisitor.cpp:
 
-	  Fixed the flat plan interpreter to generate
-	  configProperty elements for InstanceDeploymentDescription
-	  elements.
+          Fixed the flat plan interpreter to generate
+          configProperty elements for InstanceDeploymentDescription
+          elements.
 
-	  Using the configProperty elements, InstanceDeploymentDescriptions
-	  could have properties like CPU Utilization associated with
-	  components.
+          Using the configProperty elements, InstanceDeploymentDescriptions
+          could have properties like CPU Utilization associated with
+          components.
 
-	  Thanks to Josh Chattin <jchattin@atl.lmco.com> and
-	  Krishnakumar Balasubramanian <kitty@dre.vanderbilt.edu>
-	  for reporting the problem.
+          Thanks to Josh Chattin <jchattin@atl.lmco.com> and
+          Krishnakumar Balasubramanian <kitty@dre.vanderbilt.edu>
+          for reporting the problem.
 
 Mon Sep  5 18:57:22 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
 

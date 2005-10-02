@@ -1,27 +1,8 @@
-project (IDLGenerator): mfc {
+project (IDLGenerator): mfc,picmllib {
+   macros += BUILDER_OBJECT_NETWORK_V2
    sharedname = IDLGenerator
-   libout = $(COSMIC_ROOT)/lib
-   dllout = $(COSMIC_ROOT)/bin
    includes += . $(GME_ROOT)/SDK/BON \
                $(COSMIC_ROOT)/PIM/PICML/interpreters/IDLGenerator
-   libpaths += $(COSMIC_ROOT)/lib
-   macros += BUILDER_OBJECT_NETWORK_V2 _WINDLL _USRDLL
-
-  Define_Custom(MIDL) {
-    automatic            = 0
-    command              = midl
-    commandflags         = -win32 -I. -server none -client none
-    source_pre_extension = _i,_p
-    source_outputext     = .c
-    header_outputext     = .h
-    resource_outputext   = .tlb
-    inputext             = .idl
-  }
-
-   MIDL_Files {
-     gendir = .
-     $(GME_ROOT)/SDK/BON/ComponentLib.idl
-   }
 
    specific {
      use_lib_modifier =
@@ -32,13 +13,13 @@ project (IDLGenerator): mfc {
    }
 
    Source_Files {
+     $(GME_ROOT)/SDK/BON/ComponentLib.idl
      $(GME_ROOT)/SDK/BON/BON.cpp
      BON2Component.cpp
      $(GME_ROOT)/SDK/BON/BONImpl.cpp
      $(GME_ROOT)/SDK/BON/ComHelp.cpp
      $(GME_ROOT)/SDK/BON/Common.cpp
      Component.rc
-     Component.def
      $(GME_ROOT)/SDK/BON/ComponentDll.cpp
      $(GME_ROOT)/SDK/BON/ComponentObj.cpp
      DependencyVisitor.cpp
@@ -82,17 +63,9 @@ project (IDLGenerator): mfc {
    }
 }
 
-project (RegisterIDLGenerator) {
+project (RegisterIDLGenerator) : picmllib {
   after += IDLGenerator
   custom_only = 1
-
-  Define_Custom(Register) {
-    automatic           = 0
-    command             = regsvr32.exe
-    inputext            = .dll
-    generic_outputext   = .trg
-    postcommand         = echo regsvr32 exec. time <%gt%> <%output%>
-  }
 
   Register_Files {
     $(COSMIC_ROOT)\bin\IDLGenerator.dll

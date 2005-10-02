@@ -3,7 +3,6 @@
 	ProjectType="Visual C++"
 	Version="7.10"
 	Name="OCML"
-	RootNamespace="OCML"
 	SccProjectName=""
 	SccLocalPath=""
 	Keyword="MFCProj">
@@ -50,7 +49,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				Outputs="$(OutDir)\regsvr32.trg"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="xerces-c.lib"
+				AdditionalDependencies="xerces-c_2_5.lib"
 				OutputFile="..\..\..\..\..\bin\OCML.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
@@ -87,7 +86,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="..\..\..\bin"
+			OutputDirectory=".\..\..\..\..\..\lib"
 			IntermediateDirectory=".\Debug"
 			ConfigurationType="2"
 			UseOfMFC="2"
@@ -122,8 +121,8 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				Outputs="$(OutDir)\regsvr32.trg"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="xerces-cd.lib"
-				OutputFile="..\..\..\bin\OCML.dll"
+				AdditionalDependencies="xerces-c_2_5D.lib"
+				OutputFile="..\..\..\..\..\bin\OCML.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(XERCESCROOT)\lib"
@@ -166,7 +165,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\BON.cpp">
+				RelativePath="C:\Program Files\GME\sdk\BON\BON.cpp">
 				<FileConfiguration
 					Name="Release|Win32">
 					<Tool
@@ -212,7 +211,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\BONImpl.cpp">
+				RelativePath="C:\Program Files\GME\sdk\BON\BONImpl.cpp">
 				<FileConfiguration
 					Name="Release|Win32">
 					<Tool
@@ -235,7 +234,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\ComHelp.cpp">
+				RelativePath="C:\Program Files\GME\sdk\BON\ComHelp.cpp">
 				<FileConfiguration
 					Name="Release|Win32">
 					<Tool
@@ -256,7 +255,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\Common.cpp">
+				RelativePath="C:\Program Files\GME\sdk\BON\Common.cpp">
 				<FileConfiguration
 					Name="Release|Win32">
 					<Tool
@@ -299,7 +298,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\ComponentDll.cpp">
+				RelativePath="C:\Program Files\GME\sdk\BON\ComponentDll.cpp">
 				<FileConfiguration
 					Name="Release|Win32">
 					<Tool
@@ -320,7 +319,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\ComponentLib.idl">
+				RelativePath="C:\Program Files\GME\sdk\BON\ComponentLib.idl">
 				<FileConfiguration
 					Name="Release|Win32">
 					<Tool
@@ -341,7 +340,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\ComponentObj.cpp">
+				RelativePath="C:\Program Files\GME\sdk\BON\ComponentObj.cpp">
 				<FileConfiguration
 					Name="Release|Win32">
 					<Tool
@@ -362,7 +361,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\Events.cpp">
+				RelativePath="C:\Program Files\GME\sdk\BON\Events.cpp">
 				<FileConfiguration
 					Name="Release|Win32">
 					<Tool
@@ -385,7 +384,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\Exceptions.cpp">
+				RelativePath="C:\Program Files\GME\sdk\BON\Exceptions.cpp">
 				<FileConfiguration
 					Name="Release|Win32">
 					<Tool
@@ -408,7 +407,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\Extensions.cpp">
+				RelativePath="C:\Program Files\GME\sdk\BON\Extensions.cpp">
 				<FileConfiguration
 					Name="Release|Win32">
 					<Tool
@@ -431,7 +430,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\MON.cpp">
+				RelativePath="C:\Program Files\GME\sdk\BON\MON.cpp">
 				<FileConfiguration
 					Name="Release|Win32">
 					<Tool
@@ -454,7 +453,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\MONImpl.cpp">
+				RelativePath="C:\Program Files\GME\sdk\BON\MONImpl.cpp">
 				<FileConfiguration
 					Name="Release|Win32">
 					<Tool
@@ -543,6 +542,28 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="OCMLVisitor.cpp">
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath="StdAfx.cpp">
 				<FileConfiguration
 					Name="Release|Win32">
@@ -566,7 +587,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\Utils.cpp">
+				RelativePath="C:\Program Files\GME\sdk\BON\Utils.cpp">
 				<FileConfiguration
 					Name="Release|Win32">
 					<Tool
@@ -593,46 +614,46 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\BON.h">
+				RelativePath="C:\Program Files\GME\sdk\BON\BON.h">
 			</File>
 			<File
 				RelativePath="BON2Component.h">
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\BONImpl.h">
+				RelativePath="C:\Program Files\GME\sdk\BON\BONImpl.h">
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\ComHelp.h">
+				RelativePath="C:\Program Files\GME\sdk\BON\ComHelp.h">
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\Common.h">
+				RelativePath="C:\Program Files\GME\sdk\BON\Common.h">
 			</File>
 			<File
 				RelativePath="ComponentConfig.h">
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\ComponentDll.h">
+				RelativePath="C:\Program Files\GME\sdk\BON\ComponentDll.h">
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\ComponentObj.h">
+				RelativePath="C:\Program Files\GME\sdk\BON\ComponentObj.h">
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\Events.h">
+				RelativePath="C:\Program Files\GME\sdk\BON\Events.h">
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\Exceptions.h">
+				RelativePath="C:\Program Files\GME\sdk\BON\Exceptions.h">
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\Extensions.h">
+				RelativePath="C:\Program Files\GME\sdk\BON\Extensions.h">
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\GMECOM.h">
+				RelativePath="C:\Program Files\GME\sdk\BON\GMECOM.h">
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\MON.h">
+				RelativePath="C:\Program Files\GME\sdk\BON\MON.h">
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\MONImpl.h">
+				RelativePath="C:\Program Files\GME\sdk\BON\MONImpl.h">
 			</File>
 			<File
 				RelativePath="OCMLBonX.h">
@@ -644,13 +665,16 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				RelativePath="OCMLUtils.h">
 			</File>
 			<File
+				RelativePath="OCMLVisitor.h">
+			</File>
+			<File
 				RelativePath="Resource.h">
 			</File>
 			<File
 				RelativePath="StdAfx.h">
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\..\Program Files\GME\sdk\BON\Utils.h">
+				RelativePath="C:\Program Files\GME\sdk\BON\Utils.h">
 			</File>
 		</Filter>
 		<Filter

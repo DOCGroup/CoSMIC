@@ -6,23 +6,9 @@ project (PICMLDecorator): mfc {
    libpaths += $(COSMIC_ROOT)/lib
    macros += _WINDLL _USRDLL _ATL_DLL
 
-  Define_Custom(MIDL) {
-    automatic            = 0
-    command              = midl
-    commandflags         = -win32 -I. -server none -client none
-    source_pre_extension = _i,_p
-    source_outputext     = .c
-    header_outputext     = .h
-    resource_outputext   = .tlb
-    inputext             = .idl
-  }
-
-   MIDL_Files {
-     gendir = .
-     DecoratorLib.idl
-   }
-
    specific {
+     midl_flags += /client none /server none
+     midl_includes += $(GME_ROOT) .
      use_lib_modifier =
    }
 
@@ -31,6 +17,7 @@ project (PICMLDecorator): mfc {
    }
 
    Source_Files {
+     DecoratorLib.idl
      CommonError.cpp
      Decorator.cpp
      Decorator.rc

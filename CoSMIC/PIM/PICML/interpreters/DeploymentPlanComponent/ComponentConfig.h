@@ -21,9 +21,9 @@
 #define PARADIGMS "PICML"
 
 // This is the location of the GME2000 interfaces file (Mga.idl, Meta.idl, etc)
-#define GME_INTERFACES_BASE C:/Program Files/GME/Interfaces
+#define GME_INTERFACES_BASE Interfaces
 
-#define GME_BASE C:/Program Files/GME
+#define GME_BASE .
 
 #define TOOLTIP_TEXT "Generate DeploymentPlan Descriptors"
 

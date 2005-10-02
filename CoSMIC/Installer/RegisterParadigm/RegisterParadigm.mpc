@@ -8,23 +8,19 @@ project: picmllib {
   specific (vc6,vc7,vc71,vc8) {
      link_options += /DEF:RegisterParadigm.def
   }
-  
+
   specific {
      use_lib_modifier =
+     runtime_library = 1
   }
 
   Source_Files {
+    $(GME_ROOT)/Interfaces/MgaUtil.idl
+    $(GME_ROOT)/Interfaces/Mga.idl
     RegisterParadigm.cpp
   }
 
   Header_Files {
-  }
-  
-  MIDL_Files {
-    gendir = .
-    commandflags += -I. -I<%quote%>$(GME_ROOT)/Interfaces<%quote%>
-    $(GME_ROOT)/Interfaces/Meta.idl
-    $(GME_ROOT)/Interfaces/Mga.idl
-    $(GME_ROOT)/Interfaces/MgaUtil.idl
+    MgaUtil.h
   }
 }

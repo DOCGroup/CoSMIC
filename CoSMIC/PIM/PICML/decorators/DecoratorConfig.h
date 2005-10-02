@@ -25,6 +25,7 @@
 // #define GME_INTERFACES_BASE /GME/Interfaces
 // #define GME_INTERFACES_BASE ../../GME/Interfaces
 // #define GME_INTERFACES_BASE ../GME/Interfaces
-#define GME_INTERFACES_BASE C:/Program Files/GME/interfaces
+
+#define GME_INTERFACES_BASE interfaces
 // #define GME_INTERFACES_BASE D:/volgy/GME/interfaces
 // #define GME_INTERFACES_BASE D:/backup/GMEReleases/11-06-00/GME/interfaces

@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 8.00
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OCML", "OCMLBON2Component.vcproj", "{E10876E9-809A-4BF9-9B74-324155249750}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OCML", "OCMLBON2Component.vcproj", "{5081FF61-7E88-4FA7-9029-EC7C5118AB91}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
@@ -9,10 +9,10 @@ Global
 		Release = Release
 	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
-		{E10876E9-809A-4BF9-9B74-324155249750}.Debug.ActiveCfg = Debug|Win32
-		{E10876E9-809A-4BF9-9B74-324155249750}.Debug.Build.0 = Debug|Win32
-		{E10876E9-809A-4BF9-9B74-324155249750}.Release.ActiveCfg = Release|Win32
-		{E10876E9-809A-4BF9-9B74-324155249750}.Release.Build.0 = Release|Win32
+		{5081FF61-7E88-4FA7-9029-EC7C5118AB91}.Debug.ActiveCfg = Debug|Win32
+		{5081FF61-7E88-4FA7-9029-EC7C5118AB91}.Debug.Build.0 = Debug|Win32
+		{5081FF61-7E88-4FA7-9029-EC7C5118AB91}.Release.ActiveCfg = Release|Win32
+		{5081FF61-7E88-4FA7-9029-EC7C5118AB91}.Release.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

@@ -4,5 +4,5 @@
 ;
 LIBRARY    "RegisterParadigm"
 EXPORTS
-        RegisterAll @1
-        UnRegisterAll @2
+        RegisterParadigms @1
+        UnRegisterParadigms @2
