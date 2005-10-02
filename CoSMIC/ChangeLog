@@ -1,3 +1,9 @@
+Sun Oct 02 21:55:05 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+          Removed the ComponentLib.idl from under a separate MIDL_Files
+          section.
+
 Sun Oct  2 21:20:07 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * Installer/CoSMIC-Installer.ise:  Updated in preparation for

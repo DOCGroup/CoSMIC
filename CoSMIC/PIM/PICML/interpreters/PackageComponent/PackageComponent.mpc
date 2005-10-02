@@ -21,9 +21,7 @@ project (PackageComponent): mfc, picmllib {
   }
 
   Source_Files {
-    MIDL_Files {
-      $(GME_ROOT)/SDK/BON/ComponentLib.idl
-    }
+    $(GME_ROOT)/SDK/BON/ComponentLib.idl
     StdAfx.cpp
     $(GME_ROOT)/SDK/BON/ComHelp.cpp
     $(GME_ROOT)/SDK/BON/ComponentDll.cpp
