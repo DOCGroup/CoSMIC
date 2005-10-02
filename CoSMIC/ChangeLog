@@ -1,3 +1,10 @@
+Sun Oct  2 22:14:06 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+
+        * Installer/RegisterParadigm/Register_Paradigm.mpc:
+
+          Removed this file.
+
 Sun Oct 02 21:55:05 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
