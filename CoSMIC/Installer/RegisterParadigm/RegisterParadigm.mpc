@@ -17,10 +17,10 @@ project: picmllib {
   Source_Files {
     $(GME_ROOT)/Interfaces/MgaUtil.idl
     $(GME_ROOT)/Interfaces/Mga.idl
+    $(GME_ROOT)/Interfaces/Meta.idl
     RegisterParadigm.cpp
   }
 
   Header_Files {
-    MgaUtil.h
   }
 }

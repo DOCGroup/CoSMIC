@@ -282,6 +282,7 @@ namespace PICML
     void CreateAssemblyInstances (std::set<Component>& comps);
     void CreateAssemblyConnections (std::vector<ComponentAssembly>& assemblies);
     void CreateAttributeMappings (std::vector<ComponentAssembly>& assemblies);
+	void CreatePropertyElement (std::string name, const Property& property);
   };
 }
 
