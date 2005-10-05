@@ -1086,7 +1086,7 @@ namespace PICML
          ++iter)
       {
         std::string nodeRefName;
-	std::string cgName;
+	    std::string cgName;
         CollocationGroup cg = *iter;
         cgName = cg.name();
         this->initcgName (cgName);
@@ -1121,11 +1121,11 @@ namespace PICML
                 if (this->monoimpls_.find (component_name) 
                     != this->monoimpls_.end ())
                   {
-		    mimpl = this->monoimpls_[component_name];
-		  }
+		            mimpl = this->monoimpls_[component_name];
+		          }
                 else
                   {
-	            if (comp.isInstance())
+	                if (comp.isInstance())
                       {
                         typeParent = comp.Archetype();
                         while (typeParent.isInstance())
@@ -1143,7 +1143,7 @@ namespace PICML
                 std::string uniqueName = 
                    comp.getPath ("_",false,true,"name",true);
                 /*uniqueName += "_";
-	        uniqueName += nodeRefName;
+	            uniqueName += nodeRefName;
                 uniqueName += "_";
                 uniqueName += cgName;*/
                 ele->setAttribute (XStr ("id"), XStr (uniqueName));
@@ -1158,15 +1158,26 @@ namespace PICML
                   mimpl.getPath ("_",false,true,"name",true);
                 this->curr_->appendChild 
                    (this->createSimpleContent ("implementation", mimpl_name));
-                const std::set<ConfigProperty> cps = mimpl.dstConfigProperty();
-                for (std::set<ConfigProperty>::const_iterator it2 = cps.begin();
-                     it2 != cps.end();
+
+                const std::set<ConfigProperty> imcps = mimpl.dstConfigProperty();
+                for (std::set<ConfigProperty>::const_iterator it2 = imcps.begin();
+                     it2 != imcps.end();
                      ++it2)
                   {
-                    ConfigProperty cp = *it2;
-                    cp.Accept (*this);
+                    ConfigProperty imcp = *it2;
+                    imcp.Accept (*this);
                   }
-                this->pop ();
+
+			    std::set<ReadonlyAttribute> attrs = comp.ReadonlyAttribute_children();
+                for (std::set<ReadonlyAttribute>::const_iterator iter = attrs.begin();
+                     iter != attrs.end();
+                     ++iter)
+                  {
+                    ReadonlyAttribute attr = *iter;
+                    attr.Accept (*this);
+                  }
+
+			    this->pop ();
               }
             else if (Udm::IsDerivedFrom 
                      (comp_type.type(), ComponentAssemblyReference::meta))
