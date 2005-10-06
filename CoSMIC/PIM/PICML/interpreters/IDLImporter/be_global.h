@@ -21,6 +21,7 @@
 #define TAO_PICML_BE_GLOBAL_H
 
 #include "TAO_PICML_BE_Export.h"
+#include "ast_type.h"
 #include "ace/SString.h"
 #include "ace/Hash_Map_Manager_T.h"
 #include "ace/Null_Mutex.h"
@@ -36,8 +37,11 @@
 #include "xercesc/dom/DOMElement.hpp"
 #include "xercesc/framework/LocalFileFormatTarget.hpp"
 
+using namespace xercesc;
+
 #define X(str) XStr (ACE_TEXT (str))
 class AST_Generator;
+class AST_Module;
 
 // Defines a class containing all back end global data.
 
@@ -81,22 +85,40 @@ public:
   // looked up and completed when the full definition is seen.
   
   typedef ACE_Hash_Map_Entry<const char *,
-                             xercesc::DOMElement *>
+                             DOMElement *>
     DECL_ELEM_TABLE_ENTRY;
     
   typedef ACE_Hash_Map_Manager_Ex<const char *,
-                                  xercesc::DOMElement *,
+                                  DOMElement *,
                                   ACE_Hash<const char *>,
                                   ACE_Equal_To<const char *>,
                                   ACE_Null_Mutex>
     DECL_ELEM_TABLE;
 
   typedef ACE_Hash_Map_Iterator_Ex<const char *,
-                                   xercesc::DOMElement *,
+                                   DOMElement *,
                                    ACE_Hash<const char *>,
                                    ACE_Equal_To<const char *>,
                                    ACE_Null_Mutex>
     DECL_ELEM_TABLE_ITERATOR;
+    
+  typedef ACE_Hash_Map_Entry<const char *,
+                             AST_Type *>
+    REF_DECL_TABLE_ENTRY;
+    
+  typedef ACE_Hash_Map_Iterator_Ex<const char *,
+                                   AST_Type *,
+                                   ACE_Hash<const char *>,
+                                   ACE_Equal_To<const char *>,
+                                   ACE_Null_Mutex>
+    REF_DECL_TABLE_ITERATOR;
+    
+  typedef ACE_Hash_Map_Manager_Ex<const char *,
+                                  AST_Type *,
+                                  ACE_Hash<const char *>,
+                                  ACE_Equal_To<const char *>,
+                                  ACE_Null_Mutex>
+    REF_DECL_TABLE;
 
   // Maps GME model element type to hex string used in GME id.
   enum kind_id
@@ -151,23 +173,26 @@ public:
   void output_file (const char *val);
   // Accessors for the member.
   
-  xercesc::DOMDocument *doc (void) const;
+  DOMDocument *doc (void) const;
   // Readonly accessor for the member.
   
-  xercesc::DOMElement *root_folder (void) const;
-  void root_folder (xercesc::DOMElement *elem);
+  DOMElement *root_folder (void) const;
+  void root_folder (DOMElement *elem);
   // Accessors for the member.
   
-  xercesc::DOMElement *component_types_folder (void) const;
-  void component_types_folder (xercesc::DOMElement *elem);
+  DOMElement *component_types_folder (void) const;
+  void component_types_folder (DOMElement *elem);
   // Accessors for the member.
   
-  xercesc::DOMElement *implementation_artifacts_folder (void) const;
-  void implementation_artifacts_folder (xercesc::DOMElement *elem);
+  DOMElement *implementation_artifacts_folder (void) const;
+  void implementation_artifacts_folder (DOMElement *elem);
   // Accessors for the member.
   
-  xercesc::DOMElement *implementations_folder (void) const;
-  void implementations_folder (xercesc::DOMElement *elem);
+  DOMElement *implementations_folder (void) const;
+  void implementations_folder (DOMElement *elem);
+  
+  DOMElement *interface_definitions_folder (void) const;
+  void interface_definitions_folder (DOMElement *elem);
   
   unsigned long component_types_rel_id (void) const;
   void incr_component_types_rel_id (void);
@@ -183,6 +208,7 @@ public:
   
   DECL_ID_TABLE &decl_id_table (void);
   DECL_ELEM_TABLE &decl_elem_table (void);
+  REF_DECL_TABLE &ref_decl_table (void);
   // Read/write accessors for the members.
   
   // Utility methods.
@@ -223,6 +249,30 @@ public:
 
   ACE_CString make_gme_id (kind_id kind);
   // Create a unique GME id based on the model element type.
+  
+  DOMElement *imported_dom_element (DOMElement *sub_tree,
+                                    const char *local_name,
+                                    kind_id elem_kind = MODEL,
+                                    bool by_referred = false);
+  // Have we already imported <local_name> in scope <sub_tree>?
+  
+  DOMElement *imported_module_dom_elem (DOMElement *sub_tree,
+                                        AST_Module *node);
+  // Specialization for IDL modules of above method.
+  
+  void set_working_folders (void);
+  // If we are importing an XME file, set root folder and
+  // interface definitions folder from it.
+  
+  DOMElement *lookup_by_tag_and_kind (DOMElement *scope,
+                                      const char *tag_name,
+                                      const char *kind_name);
+  // Utility operation.
+  
+  void init_ids (DOMElement *sub_tree);
+  // Recursive functions that traverses the imported DOM tree and
+  // initializes models_seen_, atoms_seen_, etc. so IDs added from
+  // IDL files will be not clash.
 
 private:
   char *filename_;
@@ -258,13 +308,14 @@ private:
   ACE_CString output_file_;
   // Set from command line or had default value.
   
-  xercesc::DOMDocument *doc_;
-  xercesc::DOMWriter *writer_;
-  xercesc::XMLFormatTarget *target_;
-  xercesc::DOMElement *root_folder_;
-  xercesc::DOMElement *component_types_folder_;
-  xercesc::DOMElement *implementation_artifacts_folder_;
-  xercesc::DOMElement *implementations_folder_;
+  DOMDocument *doc_;
+  DOMWriter *writer_;
+  XMLFormatTarget *target_;
+  DOMElement *root_folder_;
+  DOMElement *component_types_folder_;
+  DOMElement *implementation_artifacts_folder_;
+  DOMElement *implementations_folder_;
+  DOMElement *interface_definitions_folder_;
   // DOM items we need to cache.
   
   unsigned long component_types_rel_id_;
@@ -277,6 +328,10 @@ private:
   
   DECL_ELEM_TABLE decl_elem_table_;
   // Hash map of DOMElements, keyed by repository id.
+  
+  REF_DECL_TABLE ref_decl_table_;
+  // Hash map of AST nodes, keyed by GME id, used to look up
+  // referenced elements in the DOM tree.
   
   ACE_CString basic_seq_suffix_;
   // Appended to name of basic type to get corresponding sequence.

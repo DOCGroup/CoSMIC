@@ -106,7 +106,7 @@ BE_produce (void)
   AST_Decl *d = idl_global->root ();
   AST_Root *ast_root = AST_Root::narrow_from_decl (d);
 
-  if (ast_root == 0)
+  if (0 == ast_root)
     {
       ACE_ERROR ((LM_ERROR,
                   ACE_TEXT ("(%N:%l) BE_produce - ")

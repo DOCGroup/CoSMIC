@@ -95,6 +95,8 @@ public:
 private:
   typedef ACE_Unbounded_Queue_Iterator<AST_Component::port_description>
     PORT_ITER;
+    
+  typedef void (BE_GlobalData::*folder_setter) (DOMElement *);
   
 private:
   ACE_CString set_id_attr (DOMElement *elem, BE_GlobalData::kind_id kind);
@@ -104,7 +106,7 @@ private:
                                 AST_Attribute *a = 0);
                                 
   void add_name_element (DOMElement *elem, const char *name);
-  void add_predefined_types (DOMElement *root_folder);
+  void add_predefined_types (void);
   void add_predefined_sequences (DOMElement *parent, AST_Root *node);
   void add_one_predefined_sequence (DOMElement *parent,
                                     AST_Root *node,
@@ -180,21 +182,12 @@ private:
   void set_one_basic_seq (const char *base_type);
   void check_for_basic_seq (AST_Decl *d, ACE_CString &str);
   void check_for_basic_type (AST_Decl *d, ACE_CString &str);
-  bool can_skip_import (AST_Module *m);
-  DOMElement *imported_dom_element (AST_Decl *d);
+  bool can_skip_import (UTL_Scope *node, DOMElement *parent);
   
   void add_picml_boilerplate (void);
-  void add_ComponentImplementations (void);
-  void add_ImplementationArtifacts (void);
-  void add_ComponentTypes (void);
-  void add_PackageConfigurations (void);
-  void add_ComponentPackages (void);
-  void add_DeploymentPlans (void);
-  void add_Targets (void);
-  void add_TopLevelPackages (void);
-  void add_ComponentBuild (void);
+  void add_folder (const char *kind, folder_setter pmf = 0);
   
-  void add_defalt_container (AST_Component *node);
+  void add_default_container (AST_Component *node);
   DOMElement *add_implementation_artifacts (AST_Component *node);
   DOMElement *add_one_impl_artifact (DOMElement *container,
                                      AST_Component *node,
@@ -234,9 +227,12 @@ private:
                            DOMElement *impl,
                            const char *gme_id,
                            AST_Component *node);
+                           
+   void insert_element (DOMElement *elem);
 
 private:
   DOMElement *sub_tree_;
+  DOMElement *previous_;
   DOMDocument *doc_;
   unsigned long rel_id_;
   const unsigned long XMAX_;
@@ -244,6 +240,7 @@ private:
   const unsigned long ICON_SIZE_;
   unsigned long private_relid_offset_;
   unsigned long manages_relid_offset_;
+  unsigned long import_relid_offset_;
   unsigned long n_basic_seqs_;
 };
 

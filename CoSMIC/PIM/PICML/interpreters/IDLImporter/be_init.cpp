@@ -24,5 +24,6 @@ BE_post_init (const char *files[], long nfiles)
 {
   be_global->xerces_init ();
   be_global->cache_files (files, nfiles);
+  be_global->init_ids (be_global->root_folder ());
 }
 

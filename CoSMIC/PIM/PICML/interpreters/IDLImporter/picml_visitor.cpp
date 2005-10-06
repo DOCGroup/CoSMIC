@@ -40,6 +40,7 @@
 picml_visitor::picml_visitor (DOMElement *sub_tree,
                               unsigned long rel_id)
   : sub_tree_ (sub_tree),
+    previous_ (0),
     doc_ (sub_tree->getOwnerDocument ()),
     rel_id_ (rel_id),
     XMAX_ (1100UL),
@@ -47,8 +48,36 @@ picml_visitor::picml_visitor (DOMElement *sub_tree,
     ICON_SIZE_ (64UL),
     private_relid_offset_ (0UL),
     manages_relid_offset_ (0UL),
+    import_relid_offset_ (0UL),
     n_basic_seqs_ (0UL)
 {
+  if (be_global->first_file ())
+    {
+      DOMNodeList *children = sub_tree->getChildNodes ();
+      
+      for (XMLSize_t index = 0; index < children->getLength (); ++index)
+        {
+          DOMElement *child = (DOMElement *) children->item (index);
+          
+          if (child == 0)
+            {
+              continue;
+            }
+            
+          const XMLCh *tag = child->getTagName ();
+          
+          if (X ("model") == tag
+              || X ("folder") == tag
+              || X ("reference") == tag
+              || X ("atom") == tag
+              || X ("connection") == tag)
+            {
+              ++this->import_relid_offset_;
+            }
+        }
+    }
+    
+  this->rel_id_ += this->import_relid_offset_;
 }
 
 picml_visitor::~picml_visitor (void)
@@ -69,8 +98,9 @@ picml_visitor::visit_scope (UTL_Scope *node)
        si.next ())
     {
       AST_Decl *d = si.item ();
+      AST_Decl::NodeType nt = d->node_type ();
       
-      if (d->node_type () == AST_Decl::NT_pre_defined)
+      if (nt == AST_Decl::NT_pre_defined)
         {
           continue;
         }
@@ -78,11 +108,11 @@ picml_visitor::visit_scope (UTL_Scope *node)
       // Want to skip the uses_xxxConnection structs added by uses
       // multiple ports.
       if (ScopeAsDecl (node)->node_type () == AST_Decl::NT_component
-          && d->node_type () != AST_Decl::NT_attr)
+          && nt != AST_Decl::NT_attr)
         {
           continue;
         }
-      
+        
       if (d->ast_accept (this) != 0)
         {
           ACE_ERROR_RETURN ((LM_ERROR,
@@ -110,43 +140,50 @@ picml_visitor::visit_predefined_type (AST_PredefinedType *)
 int 
 picml_visitor::visit_module (AST_Module *node)
 {
-  // Checks scope recursively. If only nested modules and forward
-  // decls are found, we can skip importing this node.
-  if (this->can_skip_import (node))
+  // First see if it's been imported with an XME file.
+  DOMElement *elem =
+    be_global->imported_module_dom_elem (this->sub_tree_, node);
+  unsigned long holder = 0;
+      
+  if (0 == elem)
     {
-      return 0;
+      elem = this->doc_->createElement (X ("model"));
+      this->set_id_attr (elem, BE_GlobalData::MODEL);
+      
+      // Simple check to see if the stuff in the block below
+      // has been set already. If the elem was not imported,
+      // the table entry, if any, could be from an interface_fwd.  
+      const XMLCh *relid = elem->getAttribute (X ("relid"));
+
+      // We don't add the stuff below unless the elem
+      // has not been imported, and we're in
+      // the IDL file where the node is defined.
+      if (!node->imported ())
+        {
+          // Homes can be declared at global scope or in (possibly nested)
+          // modules, so we need to preserve the value of the offset for
+          // the outer scope, and reset it for the inner scope.
+          holder = this->manages_relid_offset_;
+          this->manages_relid_offset_ = 0UL;
+            
+          this->set_id_attr (elem, BE_GlobalData::MODEL);
+          this->set_relid_attr (elem);
+          this->set_childrelidcntr_attr (elem, node);
+          elem->setAttribute (X ("kind"), X ("Package"));
+          elem->setAttribute (X ("role"), X ("Package"));
+          this->add_name_element (elem, node->local_name ()->get_string ());
+          this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
+          this->add_prefix_element (elem, node);
+          this->add_replace_id_element (elem, node);
+          this->add_version_element (elem, node);
+          
+          this->insert_element (elem);
+        }
     }
     
-  // Since modules can be reopened in IDL, we create a new DOMElement
-  // without checking for previous existence. Since a module cannot
-  // be referenced by any other AST node, there's no need to store
-  // anything in either of the tables we use in the backend.
-
-  DOMElement *elem = this->doc_->createElement (X ("model"));
-  int result = 0;
-  unsigned long holder = 0;
-  
-  if (!node->imported ())
-    {
-      // Homes can be declared at global scope or in (possibly nested)
-      // modules, so we need to preserve the value of the offset for
-      // the outer scope, and reset it for the inner scope.
-      holder = this->manages_relid_offset_;
-      this->manages_relid_offset_ = 0UL;
-        
-      this->set_id_attr (elem, BE_GlobalData::MODEL);
-      this->set_relid_attr (elem);
-      this->set_childrelidcntr_attr (elem, node);
-      elem->setAttribute (X ("kind"), X ("Package"));
-      elem->setAttribute (X ("role"), X ("Package"));
-      this->add_name_element (elem, node->local_name ()->get_string ());
-      this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
-      this->add_prefix_element (elem, node);
-      this->add_replace_id_element (elem, node);
-      this->add_version_element (elem, node);
-      
-      this->sub_tree_->appendChild (elem);
-    }
+  // Keep track of where we are in the DOM tree so the next
+  // new element can be inserted in the correct position.  
+  this->previous_ = elem;
     
   picml_visitor scope_visitor (elem);
   if (scope_visitor.visit_scope (node) == -1)
@@ -169,51 +206,76 @@ picml_visitor::visit_module (AST_Module *node)
 int 
 picml_visitor::visit_interface (AST_Interface *node)
 {
-  DOMElement *elem = 0;
-  int result = be_global->decl_elem_table ().find (node->repoID (), elem);
-  bool dom_elem_imported = false;
-
-  if (result != 0)
-    {
-      // See if it's been imported with an XME file.
-      elem = this->imported_dom_element (node);
-      dom_elem_imported = (elem != 0);
+  // First see if it's been imported with an XME file.
+  DOMElement *elem =
+    be_global->imported_dom_element (
+        this->sub_tree_,
+        node->local_name ()->get_string ()
+      );
       
-      // If not, create it.
-      if (!dom_elem_imported)
+  // Also see if it's been put in the decl table.
+  DOMElement *table_elem = 0;
+  int result =
+    be_global->decl_elem_table ().find (node->repoID (), table_elem);
+
+  if (0 == elem)
+    {
+      if (0 == result)
+        {
+          elem = table_elem;
+        }
+      else
         {
           elem = this->doc_->createElement (X ("model"));
           this->set_id_attr (elem, BE_GlobalData::MODEL);
         }
       
-      // Store the DOMElement and GME id in their
-      // respective tables. These actions are idempotent, so we
-      // don't care about the return values of bind().
+      // Simple check to see if the stuff in the block below
+      // has been set already. If the elem was not imported,
+      // the table entry, if any, could be from an interface_fwd.  
+      const XMLCh *relid = elem->getAttribute (X ("relid"));
+
+      // We add the elem to the table the first time the node is
+      // seen, but we don't add the stuff below unless the elem
+      // has not been imported, and we're in
+      // the IDL file where the node is defined.
+      if (!node->imported ())
+        {
+          this->set_relid_attr (elem);
+          this->set_childrelidcntr_attr (elem, node);
+          elem->setAttribute (X ("kind"), X ("Object"));
+          elem->setAttribute (X ("role"), X ("Object"));
+          this->add_name_element (elem,
+                                  node->local_name ()->get_string ());
+          this->add_regnodes (node->defined_in (),
+                              elem,
+                              this->rel_id_ - 1);
+          this->add_prefix_element (elem, node);
+          this->add_replace_id_element (elem, node);
+          this->add_version_element (elem, node);
+          this->add_abstract_element (elem, node);
+          this->add_local_element (elem, node);
+          this->add_inherited_elements (elem, node);
+          
+          this->insert_element (elem);
+        }
+    }
+    
+  // Keep track of where we are in the DOM tree so the next
+  // new element can be inserted in the correct position.  
+  this->previous_ = elem;
+      
+  if (0 != result)
+    {
+      // Store the DOMElement and GME id in their respective tables.
       be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
                                           elem);
       be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
                                         elem->getAttribute (X ("id")));
     }
     
-  if (!node->imported () && !dom_elem_imported)
-    {
-      this->set_relid_attr (elem);
-      this->set_childrelidcntr_attr (elem, node);
-      elem->setAttribute (X ("kind"), X ("Object"));
-      elem->setAttribute (X ("role"), X ("Object"));
-      this->add_name_element (elem, node->local_name ()->get_string ());
-      this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
-      this->add_prefix_element (elem, node);
-      this->add_replace_id_element (elem, node);
-      this->add_version_element (elem, node);
-      this->add_abstract_element (elem, node);
-      this->add_local_element (elem, node);
-      this->add_inherited_elements (elem, node);
-      
-      this->sub_tree_->appendChild (elem);
-    }
-    
   picml_visitor scope_visitor (elem, node->n_inherits () + 1);
+  
   if (scope_visitor.visit_scope (node) == -1)
     {
       ACE_ERROR_RETURN ((LM_ERROR,
@@ -229,17 +291,42 @@ int
 picml_visitor::visit_interface_fwd (AST_InterfaceFwd *node)
 {
   DOMElement *elem = 0;
-  int result = be_global->decl_elem_table ().find (node->repoID (), elem);
+  int result =
+    be_global->decl_elem_table ().find (node->repoID (), elem);
   
-  // If there is an entry in the table, there has been a
-  // previous declaration or definition, and we can just return.
-  if (result == 0)
+  // If there is an entry in the table, there has been a previous
+  // declaration/definition or an import, and we can just return.
+  if (0 == result)
     {
       return 0;
     }
     
+  // See if it's been imported with an XME file.
+  elem =
+    be_global->imported_dom_element (
+        this->sub_tree_,
+        node->local_name ()->get_string ()
+      );
+   
+  // If we have imported this element, just put it in the tables
+  // and return.    
+  if (0 != elem)
+    {
+      (void) be_global->decl_elem_table ().bind (
+          ACE::strnew (node->repoID ()),
+          elem
+        );
+        
+      (void) be_global->decl_id_table ().bind (
+          ACE::strnew (node->repoID ()),
+          elem->getAttribute (X ("id"))
+        );
+        
+      return 0;
+    }
+  
   // Create a DOMElement and a GME id and store them in their
-  // respective tables. These actions are idempotent.
+  // respective tables.
   elem = this->doc_->createElement (X ("model"));
   (void) be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
                                              elem);
@@ -252,49 +339,76 @@ picml_visitor::visit_interface_fwd (AST_InterfaceFwd *node)
 int 
 picml_visitor::visit_valuetype (AST_ValueType *node)
 {
-  DOMElement *elem = 0;
-  int result = be_global->decl_elem_table ().find (node->repoID (), elem);
+  // First see if it's been imported with an XME file.
+  DOMElement *elem =
+    be_global->imported_dom_element (
+        this->sub_tree_,
+        node->local_name ()->get_string ()
+      );
+      
+  // Also see if it's been put in the decl table.
+  DOMElement *table_elem = 0;
+  int result =
+    be_global->decl_elem_table ().find (node->repoID (), table_elem);
 
-  if (result != 0)
+  if (0 == elem)
     {
-      // Create a DOMElement and a GME id and store them in their
-      // respective tables. These actions are idempotent, so we
-      // don't care about the return values of bind().
-      elem = this->doc_->createElement (X ("model"));
+      if (0 == result)
+        {
+          elem = table_elem;
+        }
+      else
+        {
+          elem = this->doc_->createElement (X ("model"));
+          this->set_id_attr (elem, BE_GlobalData::MODEL);
+        }
+      
+      // We add the elem to the table the first time the node is
+      // seen, but we don't add the stuff below unless the elem
+      // has not been imported, and we're in
+      // the IDL file where the node is defined.
+      if (!node->imported ())
+        {
+          this->set_relid_attr (elem);
+          this->set_childrelidcntr_attr (elem, node);
+          AST_Decl::NodeType nt = node->node_type ();
+          const char *kind =
+            nt == AST_Decl::NT_valuetype ? "ValueObject" : "Event";
+          elem->setAttribute (X ("kind"), X (kind));
+          elem->setAttribute (X ("role"), X (kind));
+          this->add_name_element (elem, node->local_name ()->get_string ());
+          this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
+          this->add_prefix_element (elem, node);
+          this->add_replace_id_element (elem, node);
+          this->add_version_element (elem, node);
+          this->add_abstract_element (elem, node);
+          this->add_inherited_elements (elem, node);
+          this->add_supported_elements (elem,
+                                        node,
+                                        node->supports (),
+                                        node->n_supports ());
+          
+          this->insert_element (elem);
+        }
+    }
+      
+  // Keep track of where we are in the DOM tree so the next
+  // new element can be inserted in the correct position.  
+  this->previous_ = elem;
+      
+  if (0 != result)
+    {
+      // Store the DOMElement and GME id in their respective tables.
       be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
                                           elem);
-      this->set_id_attr (elem, BE_GlobalData::MODEL);
       be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
                                         elem->getAttribute (X ("id")));
     }
     
-  if (!node->imported ())
-    {
-      this->set_relid_attr (elem);
-      this->set_childrelidcntr_attr (elem, node);
-      AST_Decl::NodeType nt = node->node_type ();
-      const char *kind =
-        nt == AST_Decl::NT_valuetype ? "ValueObject" : "Event";
-      elem->setAttribute (X ("kind"), X (kind));
-      elem->setAttribute (X ("role"), X (kind));
-      this->add_name_element (elem, node->local_name ()->get_string ());
-      this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
-      this->add_prefix_element (elem, node);
-      this->add_replace_id_element (elem, node);
-      this->add_version_element (elem, node);
-      this->add_abstract_element (elem, node);
-      this->add_inherited_elements (elem, node);
-      this->add_supported_elements (elem,
-                                    node,
-                                    node->supports (),
-                                    node->n_supports ());
-      
-      this->sub_tree_->appendChild (elem);
-    }
-    
-  unsigned long start_id = static_cast<unsigned long> (node->n_inherits ()
-                                                       + node->n_supports ()
-                                                       + 1);
+  unsigned long start_id =
+    static_cast<unsigned long> (node->n_inherits ()
+                                + node->n_supports ()
+                                + 1);
   
   picml_visitor scope_visitor (elem, start_id);
   if (scope_visitor.visit_scope (node) == -1)
@@ -317,66 +431,96 @@ picml_visitor::visit_valuetype_fwd (AST_ValueTypeFwd *node)
 int
 picml_visitor::visit_component (AST_Component *node)
 {
-  DOMElement *elem = 0;
-  int result = be_global->decl_elem_table ().find (node->repoID (), elem);
-  ACE_CString gme_id;
-
-  if (result != 0)
-    {
-      // Create a DOMElement and a GME id and store them in their
-      // respective tables. These actions are idempotent, so we
-      // don't care about the return values of bind().
-      elem = this->doc_->createElement (X ("model"));
-      be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
-                                          elem);
-      gme_id = this->set_id_attr (elem, BE_GlobalData::MODEL);
-      be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
-                                        elem->getAttribute (X ("id")));
-    }
-    
-  if (!node->imported ())
-    {
-      this->set_relid_attr (elem);
-      this->set_childrelidcntr_attr (elem, node);
-      elem->setAttribute (X ("kind"), X ("Component"));
-      elem->setAttribute (X ("role"), X ("Component"));
-      this->add_base_component (elem, node);
-      this->add_name_element (elem, node->local_name ()->get_string ());
-      this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
-      this->add_replace_id_element (elem, node);
-      this->add_version_element (elem, node);
-      this->add_supported_elements (elem,
-                                    node,
-                                    node->supports (),
-                                    node->n_supports ());
-      this->add_ports (elem, node);      
-      this->sub_tree_->appendChild (elem);
+  // First see if it's been imported with an XME file.
+  DOMElement *elem =
+    be_global->imported_dom_element (
+        this->sub_tree_,
+        node->local_name ()->get_string ()
+      );
       
-      if (result != 0)
+  // Also see if it's been put in the decl table.
+  DOMElement *table_elem = 0;
+  int result =
+    be_global->decl_elem_table ().find (node->repoID (), table_elem);
+
+  if (0 == elem)
+    {
+      if (0 == result)
         {
+          elem = table_elem;
+        }
+      else
+        {
+          elem = this->doc_->createElement (X ("model"));
+          this->set_id_attr (elem, BE_GlobalData::MODEL);
+        }
+      
+      // We add the elem to the table the first time the node is
+      // seen, but we don't add the stuff below unless the elem
+      // has not been imported, and we're in
+      // the IDL file where the node is defined.
+      if (!node->imported ())
+        {
+          this->set_relid_attr (elem);
+          this->set_childrelidcntr_attr (elem, node);
+          elem->setAttribute (X ("kind"), X ("Component"));
+          elem->setAttribute (X ("role"), X ("Component"));
+          this->add_base_component (elem, node);
+          this->add_name_element (elem,
+                                  node->local_name ()->get_string ());
+          this->add_regnodes (node->defined_in (),
+                              elem,
+                              this->rel_id_ - 1);
+          this->add_replace_id_element (elem, node);
+          this->add_version_element (elem, node);
+          this->add_supported_elements (elem,
+                                        node,
+                                        node->supports (),
+                                        node->n_supports ());
+          this->add_ports (elem, node);      
+          this->insert_element (elem);
+          
           // Add the ComponentContainer model element, and its
           // contents.
-          this->add_defalt_container (node);
+          this->add_default_container (node);
           
           // Add default implementation artifact model elements.
           DOMElement *artifact_container =
             this->add_implementation_artifacts (node);
           
           // Add default implementation for single component.
-          this->add_implementation (gme_id.c_str (),
+          ACE_Auto_Basic_Ptr<char> safety (
+              XMLString::transcode (elem->getAttribute (X ("id")))
+            );
+          this->add_implementation (safety.get (),
                                     node,
                                     artifact_container);
         }
     }
+      
+  // Keep track of where we are in the DOM tree so the next
+  // new element can be inserted in the correct position.  
+  this->previous_ = elem;
+      
+  if (0 != result)
+    {
+      // Store the DOMElement and GME id in their respective tables.
+      be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
+                                          elem);
+      be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
+                                        elem->getAttribute (X ("id")));
+    }
     
-  unsigned long start_id = (node->base_component () == 0 ? 0UL : 1UL)
-                           + static_cast<unsigned long> (node->n_supports ())
-                           + node->provides ().size ()
-                           + node->uses ().size ()
-                           + node->publishes ().size ()
-                           + node->emits ().size ()
-                           + node->consumes ().size ()
-                           + 1;
+  unsigned long start_id =
+    (0 == node->base_component () ? 0UL : 1UL)
+    + static_cast<unsigned long> (node->n_supports ())
+    + node->provides ().size ()
+    + node->uses ().size ()
+    + node->publishes ().size ()
+    + node->emits ().size ()
+    + node->consumes ().size ()
+    + 1;
+    
   picml_visitor scope_visitor (elem, start_id);
   if (scope_visitor.visit_scope (node) == -1)
     {
@@ -410,48 +554,74 @@ picml_visitor::visit_eventtype_fwd (AST_EventTypeFwd *node)
 int
 picml_visitor::visit_home (AST_Home *node)
 {
-  DOMElement *elem = 0;
-  int result = be_global->decl_elem_table ().find (node->repoID (), elem);
+  // First see if it's been imported with an XME file.
+  DOMElement *elem =
+    be_global->imported_dom_element (
+        this->sub_tree_,
+        node->local_name ()->get_string ()
+      );
+      
+  // Also see if it's been put in the decl table.
+  DOMElement *table_elem = 0;
+  int result =
+    be_global->decl_elem_table ().find (node->repoID (), table_elem);
 
-  if (result != 0)
+  if (0 == elem)
     {
-      // Create a DOMElement and a GME id and store them in their
-      // respective tables. These actions are idempotent, so we
-      // don't care about the return values of bind().
-      elem = this->doc_->createElement (X ("model"));
+      if (0 == result)
+        {
+          elem = table_elem;
+        }
+      else
+        {
+          elem = this->doc_->createElement (X ("model"));
+          this->set_id_attr (elem, BE_GlobalData::MODEL);
+        }
+      
+      // We add the elem to the table the first time the node is
+      // seen, but we don't add the stuff below unless the elem
+      // has not been imported, and we're in
+      // the IDL file where the node is defined.
+      if (!node->imported ())
+        {
+          this->set_relid_attr (elem);
+          this->set_childrelidcntr_attr (elem, node);
+          elem->setAttribute (X ("kind"), X ("ComponentFactory"));
+          elem->setAttribute (X ("role"), X ("ComponentFactory"));
+          this->add_name_element (elem, node->local_name ()->get_string ());
+          this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
+          this->add_replace_id_element (elem, node);
+          this->add_version_element (elem, node);
+          this->add_base_home (elem, node);
+          this->add_supported_elements (elem,
+                                        node,
+                                        node->supports (),
+                                        node->n_supports ());
+          this->add_manages (node);
+          this->add_lookup_key (elem, node);
+          this->add_home_factories (elem, node);
+          this->add_finders (elem, node);
+          
+          this->insert_element (elem);
+        }
+    }
+      
+  // Keep track of where we are in the DOM tree so the next
+  // new element can be inserted in the correct position.  
+  this->previous_ = elem;
+      
+  if (0 != result)
+    {
+      // Store the DOMElement and GME id in their respective tables.
       be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
                                           elem);
-      this->set_id_attr (elem, BE_GlobalData::MODEL);
       be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
                                         elem->getAttribute (X ("id")));
     }
     
-  if (!node->imported ())
-    {
-      this->set_relid_attr (elem);
-      this->set_childrelidcntr_attr (elem, node);
-      elem->setAttribute (X ("kind"), X ("ComponentFactory"));
-      elem->setAttribute (X ("role"), X ("ComponentFactory"));
-      this->add_name_element (elem, node->local_name ()->get_string ());
-      this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
-      this->add_replace_id_element (elem, node);
-      this->add_version_element (elem, node);
-      this->add_base_home (elem, node);
-      this->add_supported_elements (elem,
-                                    node,
-                                    node->supports (),
-                                    node->n_supports ());
-      this->add_manages (node);
-      this->add_lookup_key (elem, node);
-      this->add_home_factories (elem, node);
-      this->add_finders (elem, node);
-      
-      this->sub_tree_->appendChild (elem);
-    }
-    
-  unsigned long start_id = (node->base_home () == 0 ? 0UL : 1UL)
+  unsigned long start_id = (0 == node->base_home () ? 0UL : 1UL)
                            + static_cast<unsigned long> (node->n_supports ())
-                           + (node->primary_key () == 0 ? 0UL : 1UL)
+                           + (0 == node->primary_key () ? 0UL : 1UL)
                            + node->factories ().size ()
                            + node->finders ().size ()
                            + 1;
@@ -475,16 +645,29 @@ picml_visitor::visit_factory (AST_Factory *node)
       return 0;
     }
     
-  DOMElement *elem = this->doc_->createElement (X ("model"));
-  this->set_id_attr (elem, BE_GlobalData::MODEL);
-  elem->setAttribute (X ("kind"), X ("FactoryOperation"));
-  elem->setAttribute (X ("role"), X ("FactoryOperation"));
-  this->set_relid_attr (elem);
-  this->set_childrelidcntr_attr (elem, node);
-  this->add_name_element (elem, node->local_name ()->get_string ());
-  this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
-  this->add_replace_id_element (elem, node);
-  this->add_version_element (elem, node);
+  DOMElement *elem = 0;
+  
+  // See if it's been imported with an XME file.
+  elem =
+    be_global->imported_dom_element (
+        this->sub_tree_,
+        node->local_name ()->get_string ()
+      );
+  
+  // If not, create it.
+  if (0 == elem)
+    {
+      elem = this->doc_->createElement (X ("model"));
+      this->set_id_attr (elem, BE_GlobalData::MODEL);
+      elem->setAttribute (X ("kind"), X ("FactoryOperation"));
+      elem->setAttribute (X ("role"), X ("FactoryOperation"));
+      this->set_relid_attr (elem);
+      this->set_childrelidcntr_attr (elem, node);
+      this->add_name_element (elem, node->local_name ()->get_string ());
+      this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
+      this->add_replace_id_element (elem, node);
+      this->add_version_element (elem, node);
+    }
   
   picml_visitor scope_visitor (elem);
   if (scope_visitor.visit_scope (node) != 0)
@@ -501,53 +684,84 @@ picml_visitor::visit_factory (AST_Factory *node)
                                 node->exceptions (),
                                 "ExceptionRef",
                                 scope_visitor.rel_id_);
-  this->sub_tree_->appendChild (elem);
+                                
+  this->insert_element (elem);
   
+  // Keep track of where we are in the DOM tree so the next
+  // new element can be inserted in the correct position.  
+  this->previous_ = elem;
+      
   return 0;
 }
 
 int 
 picml_visitor::visit_structure (AST_Structure *node)
 {
-  DOMElement *elem = 0;
-  int result = be_global->decl_elem_table ().find (node->repoID (), elem);
+  // First see if it's been imported with an XME file.
+  DOMElement *elem =
+    be_global->imported_dom_element (
+        this->sub_tree_,
+        node->local_name ()->get_string ()
+      );
+      
+  // Also see if it's been put in the decl table.
+  DOMElement *table_elem = 0;
+  int result =
+    be_global->decl_elem_table ().find (node->repoID (), table_elem);
 
-  if (result != 0)
+  if (0 == elem)
     {
-      // Create a DOMElement and a GME id and store them in their
-      // respective tables. These actions are idempotent, so we
-      // don't care about the return values of bind().
-      elem = this->doc_->createElement (X ("model"));
+      if (0 == result)
+        {
+          elem = table_elem;
+        }
+      else
+        {
+          elem = this->doc_->createElement (X ("model"));
+          this->set_id_attr (elem, BE_GlobalData::MODEL);
+        }
+      
+      // We add the elem to the table the first time the node is
+      // seen, but we don't add the stuff below unless the elem
+      // has not been imported, and we're in
+      // the IDL file where the node is defined.
+      if (!node->imported ())
+        {
+          elem->setAttribute (X ("kind"), X ("Aggregate"));
+          elem->setAttribute (X ("role"), X ("Aggregate"));
+          this->set_relid_attr (elem);
+          this->set_childrelidcntr_attr (elem, node);
+          this->add_name_element (elem, node->local_name ()->get_string ());
+          this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
+          this->add_replace_id_element (elem, node);
+          this->add_version_element (elem, node);
+          
+          this->insert_element (elem);
+        }
+    }
+
+  // Keep track of where we are in the DOM tree so the next
+  // new element can be inserted in the correct position.  
+  this->previous_ = elem;
+      
+  if (0 != result)
+    {
+      // If in_recursion() returns TRUE and this node is already in the
+      // decl id table, we are in the first level of recursion and do
+      // not need to visit the scope.    
+      ACE_Unbounded_Queue<AST_Type *> list;
+      if (node->in_recursion (list))
+        {
+          return 0;
+        }
+     
+      // Store the DOMElement and GME id in their respective tables.
       be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
                                           elem);
-      this->set_id_attr (elem, BE_GlobalData::MODEL);
       be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
                                         elem->getAttribute (X ("id")));
     }
     
-  if (!node->imported ())
-    {
-      elem->setAttribute (X ("kind"), X ("Aggregate"));
-      elem->setAttribute (X ("role"), X ("Aggregate"));
-      this->set_relid_attr (elem);
-      this->set_childrelidcntr_attr (elem, node);
-      this->add_name_element (elem, node->local_name ()->get_string ());
-      this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
-      this->add_replace_id_element (elem, node);
-      this->add_version_element (elem, node);
-      
-      this->sub_tree_->appendChild (elem);
-    }
-
-  // If in_recursion() returns TRUE and this node is already in the
-  // decl id table, we are in the first level of recursion and do
-  // not need to visit the scope.    
-  ACE_Unbounded_Queue<AST_Type *> list;
-  if (result != 0 && node->in_recursion (list))
-    {
-      return 0;
-    }
-
   picml_visitor scope_visitor (elem);
   if (scope_visitor.visit_scope (node) != 0)
     {
@@ -564,20 +778,45 @@ int
 picml_visitor::visit_structure_fwd (AST_StructureFwd *node)
 {
   DOMElement *elem = 0;
-  int result = be_global->decl_elem_table ().find (node->repoID (), elem);
+  int result =
+    be_global->decl_elem_table ().find (node->repoID (), elem);
   
-  // If there is an entry in the table, there has been a
-  // previous declaration or definition, and we can just return.
-  if (result == 0)
+  // If there is an entry in the table, there has been a previous
+  // declaration/definition or an import, and we can just return.
+  if (0 == result)
     {
       return 0;
     }
     
+  // See if it's been imported with an XME file.
+  elem =
+    be_global->imported_dom_element (
+        this->sub_tree_,
+        node->local_name ()->get_string ()
+      );
+   
+  // If we have imported this element, just put it in the tables
+  // and return.    
+  if (0 != elem)
+    {
+      (void) be_global->decl_elem_table ().bind (
+          ACE::strnew (node->repoID ()),
+          elem
+        );
+        
+      (void) be_global->decl_id_table ().bind (
+          ACE::strnew (node->repoID ()),
+          elem->getAttribute (X ("id"))
+        );
+        
+      return 0;
+    }
+  
   // Create a DOMElement and a GME id and store them in their
-  // respective tables. These actions are idempotent.
+  // respective tables.
   elem = this->doc_->createElement (X ("model"));
   (void) be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
-                                            elem);
+                                             elem);
   this->set_id_attr (elem, BE_GlobalData::MODEL);
   (void) be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
                                            elem->getAttribute (X ("id")));
@@ -587,34 +826,63 @@ picml_visitor::visit_structure_fwd (AST_StructureFwd *node)
 int 
 picml_visitor::visit_exception (AST_Exception *node)
 {
-  DOMElement *elem = 0;
-  int result = be_global->decl_elem_table ().find (node->repoID (), elem);
+  // First see if it's been imported with an XME file.
+  DOMElement *elem =
+    be_global->imported_dom_element (
+        this->sub_tree_,
+        node->local_name ()->get_string ()
+      );
+      
+  // Also see if it's been put in the decl table.
+  DOMElement *table_elem = 0;
+  int result =
+    be_global->decl_elem_table ().find (node->repoID (), table_elem);
 
-  if (result != 0)
+  if (0 == elem)
     {
-      // Create a DOMElement and a GME id and store them in their
-      // respective tables. These actions are idempotent, so we
-      // don't care about the return values of bind().
-      elem = this->doc_->createElement (X ("model"));
-      be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
-                                          elem);
-      this->set_id_attr (elem, BE_GlobalData::MODEL);
-      be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
-                                        elem->getAttribute (X ("id")));
+      if (0 == result)
+        {
+          elem = table_elem;
+        }
+      else
+        {
+          elem = this->doc_->createElement (X ("model"));
+          this->set_id_attr (elem, BE_GlobalData::MODEL);
+        }
+      
+      // We add the elem to the table the first time the node is
+      // seen, but we don't add the stuff below unless the elem
+      // has not been imported, and we're in
+      // the IDL file where the node is defined.
+      if (!node->imported ())
+        {
+          elem->setAttribute (X ("kind"), X ("Exception"));
+          elem->setAttribute (X ("role"), X ("Exception"));
+          this->set_relid_attr (elem);
+          this->set_childrelidcntr_attr (elem, node);
+          this->add_name_element (elem, node->local_name ()->get_string ());
+          this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
+          this->add_replace_id_element (elem, node);
+          this->add_version_element (elem, node);
+          
+          this->insert_element (elem);
+        }
     }
     
-  if (!node->imported ())
-    {
-      elem->setAttribute (X ("kind"), X ("Exception"));
-      elem->setAttribute (X ("role"), X ("Exception"));
-      this->set_relid_attr (elem);
-      this->set_childrelidcntr_attr (elem, node);
-      this->add_name_element (elem, node->local_name ()->get_string ());
-      this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
-      this->add_replace_id_element (elem, node);
-      this->add_version_element (elem, node);
+  DOMAttr *attr = elem->getAttributeNode (X ("id"));
+  bool is_it = attr->isId ();
+    
+  // Keep track of where we are in the DOM tree so the next
+  // new element can be inserted in the correct position.  
+  this->previous_ = elem;
       
-      this->sub_tree_->appendChild (elem);
+  if (0 != result)
+    {
+      // Store the DOMElement and GME id in their respective tables.
+      be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
+                                          elem);
+      be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
+                                        elem->getAttribute (X ("id")));
     }
     
   picml_visitor scope_visitor (elem);
@@ -638,34 +906,60 @@ picml_visitor::visit_expression (AST_Expression *)
 int 
 picml_visitor::visit_enum (AST_Enum *node)
 {
-  DOMElement *elem = 0;
-  int result = be_global->decl_elem_table ().find (node->repoID (), elem);
+  // First see if it's been imported with an XME file.
+  DOMElement *elem =
+    be_global->imported_dom_element (
+        this->sub_tree_,
+        node->local_name ()->get_string ()
+      );
+      
+  // Also see if it's been put in the decl table.
+  DOMElement *table_elem = 0;
+  int result =
+    be_global->decl_elem_table ().find (node->repoID (), table_elem);
 
-  if (result != 0)
+  if (0 == elem)
     {
-      // Create a DOMElement and a GME id and store them in their
-      // respective tables. These actions are idempotent, so we
-      // don't care about the return values of bind().
-      elem = this->doc_->createElement (X ("model"));
-      be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
-                                          elem);
-      this->set_id_attr (elem, BE_GlobalData::MODEL);
-      be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
-                                        elem->getAttribute (X ("id")));
+      if (0 == result)
+        {
+          elem = table_elem;
+        }
+      else
+        {
+          elem = this->doc_->createElement (X ("model"));
+          this->set_id_attr (elem, BE_GlobalData::MODEL);
+        }
+      
+      // We add the elem to the table the first time the node is
+      // seen, but we don't add the stuff below unless the elem
+      // has not been imported, and we're in
+      // the IDL file where the node is defined.
+      if (!node->imported ())
+        {
+          elem->setAttribute (X ("kind"), X ("Enum"));
+          elem->setAttribute (X ("role"), X ("Enum"));
+          this->set_relid_attr (elem);
+          this->set_childrelidcntr_attr (elem, node);
+          this->add_name_element (elem, node->local_name ()->get_string ());
+          this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
+          this->add_replace_id_element (elem, node);
+          this->add_version_element (elem, node);
+          
+          this->insert_element (elem);
+        }
     }
     
-  if (!node->imported ())
-    {
-      elem->setAttribute (X ("kind"), X ("Enum"));
-      elem->setAttribute (X ("role"), X ("Enum"));
-      this->set_relid_attr (elem);
-      this->set_childrelidcntr_attr (elem, node);
-      this->add_name_element (elem, node->local_name ()->get_string ());
-      this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
-      this->add_replace_id_element (elem, node);
-      this->add_version_element (elem, node);
+  // Keep track of where we are in the DOM tree so the next
+  // new element can be inserted in the correct position.  
+  this->previous_ = elem;
       
-      this->sub_tree_->appendChild (elem);
+  if (0 != result)
+    {
+      // Store the DOMElement and GME id in their respective tables.
+      be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
+                                          elem);
+      be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
+                                        elem->getAttribute (X ("id")));
     }
     
   picml_visitor scope_visitor (elem);
@@ -688,38 +982,79 @@ picml_visitor::visit_operation (AST_Operation *node)
       return 0;
     }
     
-  DOMElement *elem = this->doc_->createElement (X ("model"));
-  this->set_id_attr (elem, BE_GlobalData::MODEL);
-  ACE_CString kind =
-    node->flags () == AST_Operation::OP_oneway ? "Oneway" : "Twoway";
-  kind += "Operation";
-  elem->setAttribute (X ("kind"), X (kind.c_str ()));
-  elem->setAttribute (X ("role"), X (kind.c_str ()));
-  this->set_relid_attr (elem);
-  this->set_childrelidcntr_attr (elem, node);
-  this->add_name_element (elem, node->local_name ()->get_string ());
-  this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
-  this->add_replace_id_element (elem, node);
-  this->add_version_element (elem, node);
-  
-  idl_bool vrt = (node->void_return_type () != 0);
-  
+  // See if it's been imported with an XME file.
+  DOMElement *elem =
+    be_global->imported_dom_element (
+        this->sub_tree_,
+        node->local_name ()->get_string ()
+      );
+      
+  DOMElement *return_type = 0;
+  bool vrt = (node->void_return_type () != 0);
+      
+  if (0 == elem)
+    {
+      elem = this->doc_->createElement (X ("model"));
+      this->set_id_attr (elem, BE_GlobalData::MODEL);
+      ACE_CString kind =
+        node->flags () == AST_Operation::OP_oneway ? "Oneway" : "Twoway";
+      kind += "Operation";
+      elem->setAttribute (X ("kind"), X (kind.c_str ()));
+      elem->setAttribute (X ("role"), X (kind.c_str ()));
+      this->set_relid_attr (elem);
+      this->set_childrelidcntr_attr (elem, node);
+      this->add_name_element (elem, node->local_name ()->get_string ());
+      this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
+      this->add_replace_id_element (elem, node);
+      this->add_version_element (elem, node);
+                                
+      this->insert_element (elem);
+    }
+      
   if (!vrt)
     {
       AST_Type *rt = node->return_type ();
-      DOMElement *return_type = this->doc_->createElement (X ("reference"));
-      this->set_id_attr (return_type, BE_GlobalData::REF);
-      return_type->setAttribute (X ("kind"), X ("ReturnType"));
-      return_type->setAttribute (X ("role"), X ("ReturnType"));
-      return_type->setAttribute (X ("relid"),
-                                 X (be_global->hex_string (1UL)));
-      return_type->setAttribute (X ("referred"), this->lookup_id (rt));
-      this->add_name_element (return_type, "ReturnType");
-      this->add_regnodes (node, return_type, 1UL);
-      elem->appendChild (return_type);
+      DOMNodeList *children = elem->getElementsByTagName (X ("reference"));
+      
+      for (XMLSize_t i = 0; i < children->getLength (); ++i)
+        {
+          DOMElement *child = (DOMElement *) children->item (i);
+          
+          if (0 == child)
+            {
+              continue;
+            }
+            
+          const XMLCh *kind = child->getAttribute (X ("kind"));
+          
+          if (X ("ReturnType") == kind)
+            {
+              return_type = child;
+              break;
+            }
+        }
+                                         
+      if (0 == return_type)
+        {
+          return_type = this->doc_->createElement (X ("reference"));
+          this->set_id_attr (return_type, BE_GlobalData::REF);
+          return_type->setAttribute (X ("kind"), X ("ReturnType"));
+          return_type->setAttribute (X ("role"), X ("ReturnType"));
+          return_type->setAttribute (X ("relid"),
+                                     X (be_global->hex_string (1UL)));
+          XMLCh *gme_id  = this->lookup_id (rt);
+          return_type->setAttribute (X ("referred"), gme_id);
+          this->add_name_element (return_type, "ReturnType");
+          this->add_regnodes (node, return_type, 1UL);
+          
+          // This should be the first element in the operation's scope.
+          elem->appendChild (return_type);
+        }
     }
     
   picml_visitor scope_visitor (elem, vrt ? 1 : 2);
+  scope_visitor.previous_ = return_type;
+    
   if (scope_visitor.visit_scope (node) != 0)
     {
       ACE_ERROR_RETURN ((LM_ERROR,
@@ -734,8 +1069,11 @@ picml_visitor::visit_operation (AST_Operation *node)
                                 node->exceptions (),
                                 "ExceptionRef",
                                 scope_visitor.rel_id_);
-  this->sub_tree_->appendChild (elem);
   
+  // Keep track of where we are in the DOM tree so the next
+  // new element can be inserted in the correct position.  
+  this->previous_ = elem;
+      
   return 0;
 }
 
@@ -747,70 +1085,103 @@ picml_visitor::visit_field (AST_Field *node)
       return 0;
     }
     
-  AST_Type *ft = node->field_type ();
-  AST_Decl::NodeType nt = ft->node_type ();
-  
-  if (nt == AST_Decl::NT_array || nt == AST_Decl::NT_sequence)
+  // See if it's been imported with an XME file.
+  DOMElement *elem =
+    be_global->imported_dom_element (
+        this->sub_tree_,
+        node->local_name ()->get_string (),
+        BE_GlobalData::REF
+      );
+      
+  if (0 == elem)
     {
-      ACE_ERROR_RETURN ((LM_ERROR,
-                         "picml_visitor::visit_field - "
-                         "anonymous types not supported: %s\n",
-                         ft->full_name ()),
-                        -1);
+      AST_Type *ft = node->field_type ();
+      AST_Decl::NodeType nt = ft->node_type ();
+      
+      if (nt == AST_Decl::NT_array || nt == AST_Decl::NT_sequence)
+        {
+          ACE_ERROR_RETURN ((LM_ERROR,
+                            "picml_visitor::visit_field - "
+                            "anonymous types not supported: %s\n",
+                            ft->full_name ()),
+                            -1);
+        }
+        
+      elem = this->doc_->createElement (X ("reference"));
+      ACE_CString id = this->set_id_attr (elem, BE_GlobalData::REF);
+      elem->setAttribute (X ("kind"), X ("Member"));
+      elem->setAttribute (X ("role"), X ("Member"));
+      this->set_relid_attr (elem);
+      XMLCh *gme_id = this->lookup_id (ft);
+      elem->setAttribute (X ("referred"), gme_id);
+      this->add_name_element (elem, node->local_name ()->get_string ());
+      unsigned long slot = this->rel_id_ - 1;
+      this->add_regnodes (node->defined_in (), elem, slot);
+      
+      this->insert_element (elem);
+      
+      if (node->visibility () == AST_Field::vis_PRIVATE)
+        {
+          this->add_private (node, id, slot);
+        }
     }
-    
-  DOMElement *elem = this->doc_->createElement (X ("reference"));
-  ACE_CString id = this->set_id_attr (elem, BE_GlobalData::REF);
-  elem->setAttribute (X ("kind"), X ("Member"));
-  elem->setAttribute (X ("role"), X ("Member"));
-  this->set_relid_attr (elem);
-  elem->setAttribute (X ("referred"), this->lookup_id (ft));
-  this->add_name_element (elem, node->local_name ()->get_string ());
-  unsigned long slot = this->rel_id_ - 1;
-  this->add_regnodes (node->defined_in (), elem, slot);
   
-  this->sub_tree_->appendChild (elem);
-  
-  if (node->visibility () == AST_Field::vis_PRIVATE)
-    {
-      this->add_private (node, id, slot);
-    }
-  
+  // Keep track of where we are in the DOM tree so the next
+  // new element can be inserted in the correct position.  
+  this->previous_ = elem;
+      
   return 0;
 }
 
 int 
 picml_visitor::visit_argument (AST_Argument *node)
 {
-  DOMElement *arg = this->doc_->createElement (X ("reference"));
-  this->set_id_attr (arg, BE_GlobalData::REF);
-  ACE_CString kind;
-  
-  switch (node->direction ())
+  // See if it's been imported with an XME file.
+  DOMElement *arg =
+    be_global->imported_dom_element (
+        this->sub_tree_,
+        node->local_name ()->get_string (),
+        BE_GlobalData::REF
+      );
+      
+  if (0 == arg)
     {
-      case AST_Argument::dir_IN:
-        kind = "In";
-        break;
-      case AST_Argument::dir_INOUT:
-        kind = "Inout";
-        break;
-      case AST_Argument::dir_OUT:
-        kind = "Out";
-        break;
-      default:
-        break;
+      arg = this->doc_->createElement (X ("reference"));
+      this->set_id_attr (arg, BE_GlobalData::REF);
+      ACE_CString kind;
+      
+      switch (node->direction ())
+        {
+          case AST_Argument::dir_IN:
+            kind = "In";
+            break;
+          case AST_Argument::dir_INOUT:
+            kind = "Inout";
+            break;
+          case AST_Argument::dir_OUT:
+            kind = "Out";
+            break;
+          default:
+            break;
+        }
+        
+      kind += "Parameter";
+      arg->setAttribute (X ("kind"), X (kind.c_str ()));
+      arg->setAttribute (X ("role"), X (kind.c_str ()));
+      this->set_relid_attr (arg);
+      AST_Type *ft = node->field_type ();
+      XMLCh *gme_id = this->lookup_id (ft);
+      arg->setAttribute (X ("referred"), gme_id);
+      this->add_name_element (arg, node->local_name ()->get_string ());
+      this->add_regnodes (node->defined_in (), arg, this->rel_id_ - 1);
+      
+      this->insert_element (arg);
     }
     
-  kind += "Parameter";
-  arg->setAttribute (X ("kind"), X (kind.c_str ()));
-  arg->setAttribute (X ("role"), X (kind.c_str ()));
-  this->set_relid_attr (arg);
-  arg->setAttribute (X ("referred"), this->lookup_id (node->field_type ()));
-  this->add_name_element (arg, node->local_name ()->get_string ());
-  this->add_regnodes (node->defined_in (), arg, this->rel_id_ - 1);
-  
-  this->sub_tree_->appendChild (arg);
-    
+  // Keep track of where we are in the DOM tree so the next
+  // new element can be inserted in the correct position.  
+  this->previous_ = arg;
+      
   return 0;
 }
 
@@ -822,91 +1193,124 @@ picml_visitor::visit_attribute (AST_Attribute *node)
       return 0;
     }
     
-  DOMElement *elem = this->doc_->createElement (X ("model"));
-  this->set_id_attr (elem, BE_GlobalData::MODEL);
-  idl_bool read_only = node->readonly ();
-  const char *kind = read_only ? "ReadonlyAttribute" : "Attribute";
-  elem->setAttribute (X ("kind"), X (kind));
-  elem->setAttribute (X ("role"), X (kind));
-  this->set_relid_attr (elem);
-  this->set_childrelidcntr_attr (elem, 0, node);
-  this->add_name_element (elem, node->local_name ()->get_string ());
-  this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
-  this->add_replace_id_element (elem, node);
-  this->add_version_element (elem, node);
-  
-  AST_Type *ft = node->field_type ();
-  DOMElement *member = this->doc_->createElement (X ("reference"));
-  this->set_id_attr (member, BE_GlobalData::REF);
-  member->setAttribute (X ("kind"), X ("AttributeMember"));
-  member->setAttribute (X ("role"), X ("AttributeMember"));
-  member->setAttribute (X ("relid"), X (be_global->hex_string (1UL)));
-  this->add_name_element (member, "AttributeMember");
-  this->add_regnodes (0, member, 1UL, node);
-  member->setAttribute (X ("referred"), this->lookup_id (ft));
-  elem->appendChild (member);
-  
-  UTL_ExceptList *get_ex = node->get_get_exceptions ();
-  this->add_exception_elements (elem,
-                                0,
-                                node,
-                                node->get_get_exceptions (),
-                                "GetException",
-                                2UL);
-   
-  if (!node->readonly ())
+  // See if it's been imported with an XME file.
+  DOMElement *elem =
+    be_global->imported_dom_element (
+        this->sub_tree_,
+        node->local_name ()->get_string (),
+        BE_GlobalData::REF
+      );
+      
+  if (0 == elem)
     {
-      unsigned long slot =
-        (get_ex != 0 ? get_ex->length () : 0) + 2UL;                         
-      this->add_exception_elements (
-                elem,
-                0,
-                node,
-                node->get_set_exceptions (),
-                "SetException",
-                slot
-              );
+      DOMElement *elem = this->doc_->createElement (X ("model"));
+      this->set_id_attr (elem, BE_GlobalData::MODEL);
+      idl_bool read_only = node->readonly ();
+      const char *kind = read_only ? "ReadonlyAttribute" : "Attribute";
+      elem->setAttribute (X ("kind"), X (kind));
+      elem->setAttribute (X ("role"), X (kind));
+      this->set_relid_attr (elem);
+      this->set_childrelidcntr_attr (elem, 0, node);
+      this->add_name_element (elem, node->local_name ()->get_string ());
+      this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
+      this->add_replace_id_element (elem, node);
+      this->add_version_element (elem, node);
+      
+      AST_Type *ft = node->field_type ();
+      DOMElement *member = this->doc_->createElement (X ("reference"));
+      this->set_id_attr (member, BE_GlobalData::REF);
+      member->setAttribute (X ("kind"), X ("AttributeMember"));
+      member->setAttribute (X ("role"), X ("AttributeMember"));
+      member->setAttribute (X ("relid"), X (be_global->hex_string (1UL)));
+      this->add_name_element (member, "AttributeMember");
+      this->add_regnodes (0, member, 1UL, node);
+      XMLCh *gme_id = this->lookup_id (ft);
+      member->setAttribute (X ("referred"), gme_id);
+      elem->appendChild (member);
+      
+      UTL_ExceptList *get_ex = node->get_get_exceptions ();
+      this->add_exception_elements (elem,
+                                    0,
+                                    node,
+                                    node->get_get_exceptions (),
+                                    "GetException",
+                                    2UL);
+       
+      if (!node->readonly ())
+        {
+          unsigned long slot =
+            (get_ex != 0 ? get_ex->length () : 0) + 2UL;                         
+          this->add_exception_elements (
+                    elem,
+                    0,
+                    node,
+                    node->get_set_exceptions (),
+                    "SetException",
+                    slot
+                  );
+        }
+      
+      this->insert_element (elem);
     }
   
-  this->sub_tree_->appendChild (elem);
-  
+  // Keep track of where we are in the DOM tree so the next
+  // new element can be inserted in the correct position.  
+  this->previous_ = elem;
+      
   return 0;
 }
 
 int 
 picml_visitor::visit_union (AST_Union *node)
 {
-  DOMElement *elem = 0;
-  int result = be_global->decl_elem_table ().find (node->repoID (), elem);
-
-  if (result != 0)
-    {
-      // Create a DOMElement and a GME id and store them in their
-      // respective tables. These actions are idempotent, so we
-      // don't care about the return values of bind().
-      elem = this->doc_->createElement (X ("model"));
-      be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
-                                          elem);
-      this->set_id_attr (elem, BE_GlobalData::MODEL);
-      be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
-                                        elem->getAttribute (X ("id")));
-    }
-    
-  if (!node->imported ())
-    {    
-      elem->setAttribute (X ("kind"), X ("SwitchedAggregate"));
-      elem->setAttribute (X ("role"), X ("SwitchedAggregate"));
-      this->set_relid_attr (elem);
-      this->set_childrelidcntr_attr (elem, node);
-      this->add_name_element (elem, node->local_name ()->get_string ());
-      this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
-      this->add_replace_id_element (elem, node);
-      this->add_version_element (elem, node);
-      this->add_discriminator (elem, node);
+  // First see if it's been imported with an XME file.
+  DOMElement *elem =
+    be_global->imported_dom_element (
+        this->sub_tree_,
+        node->local_name ()->get_string ()
+      );
       
-      this->sub_tree_->appendChild (elem);
+  // Also see if it's been put in the decl table.
+  DOMElement *table_elem = 0;
+  int result =
+    be_global->decl_elem_table ().find (node->repoID (), table_elem);
+
+  if (0 == elem)
+    {
+      if (0 == result)
+        {
+          elem = table_elem;
+        }
+      else
+        {
+          elem = this->doc_->createElement (X ("model"));
+          this->set_id_attr (elem, BE_GlobalData::MODEL);
+        }
+      
+      // We add the elem to the table the first time the node is
+      // seen, but we don't add the stuff below unless the elem
+      // has not been imported, and we're in
+      // the IDL file where the node is defined.
+      if (!node->imported ())
+        {    
+          elem->setAttribute (X ("kind"), X ("SwitchedAggregate"));
+          elem->setAttribute (X ("role"), X ("SwitchedAggregate"));
+          this->set_relid_attr (elem);
+          this->set_childrelidcntr_attr (elem, node);
+          this->add_name_element (elem, node->local_name ()->get_string ());
+          this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
+          this->add_replace_id_element (elem, node);
+          this->add_version_element (elem, node);
+          this->add_discriminator (elem, node);
+          
+          this->insert_element (elem);
+        }
     }
     
+  // Keep track of where we are in the DOM tree so the next
+  // new element can be inserted in the correct position.  
+  this->previous_ = elem;
+      
   // If in_recursion() returns TRUE and this node is already in the
   // decl id table, we are in the first level of recursion and do
   // not need to visit the scope.    
@@ -916,6 +1320,15 @@ picml_visitor::visit_union (AST_Union *node)
       return 0;
     }
 
+  if (0 != result)
+    {
+      // Store the DOMElement and GME id in their respective tables.
+      be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
+                                          elem);
+      be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
+                                        elem->getAttribute (X ("id")));
+    }
+    
   // Bump the rel_id by 1 since we've already added the discriminator.
   picml_visitor scope_visitor (elem, 2UL);
   if (scope_visitor.visit_scope (node) != 0)
@@ -943,31 +1356,47 @@ picml_visitor::visit_union_branch (AST_UnionBranch *node)
       return 0;
     }
     
-  AST_Type *ft = node->field_type ();
-  AST_Decl::NodeType nt = ft->node_type ();
-  
-  if (nt == AST_Decl::NT_array || nt == AST_Decl::NT_sequence)
+  // See if it's been imported with an XME file.
+  DOMElement *elem =
+    be_global->imported_dom_element (
+        this->sub_tree_,
+        node->local_name ()->get_string (),
+        BE_GlobalData::REF
+      );
+      
+  if (0 == elem)
     {
-      ACE_ERROR_RETURN ((LM_ERROR,
-                         "picml_visitor::visit_union_branch - "
-                         "anonymous types not supported: %s\n",
-                         ft->full_name ()),
-                        -1);
+      AST_Type *ft = node->field_type ();
+      AST_Decl::NodeType nt = ft->node_type ();
+      
+      if (nt == AST_Decl::NT_array || nt == AST_Decl::NT_sequence)
+        {
+          ACE_ERROR_RETURN ((LM_ERROR,
+                            "picml_visitor::visit_union_branch - "
+                            "anonymous types not supported: %s\n",
+                            ft->full_name ()),
+                            -1);
+        }
+        
+      DOMElement *elem = this->doc_->createElement (X ("reference"));
+      ACE_CString id = this->set_id_attr (elem, BE_GlobalData::REF);
+      elem->setAttribute (X ("kind"), X ("Member"));
+      elem->setAttribute (X ("role"), X ("Member"));
+      this->set_relid_attr (elem);
+      XMLCh *gme_id = this->lookup_id (ft);
+      elem->setAttribute (X ("referred"), gme_id);
+      this->add_name_element (elem, node->local_name ()->get_string ());
+      unsigned long slot = this->rel_id_ - 1;
+      this->add_regnodes (node->defined_in (), elem, slot);
+      
+      this->insert_element (elem);
+      this->add_labels (node, id, slot);
     }
-    
-  DOMElement *elem = this->doc_->createElement (X ("reference"));
-  ACE_CString id = this->set_id_attr (elem, BE_GlobalData::REF);
-  elem->setAttribute (X ("kind"), X ("Member"));
-  elem->setAttribute (X ("role"), X ("Member"));
-  this->set_relid_attr (elem);
-  elem->setAttribute (X ("referred"), this->lookup_id (ft));
-  this->add_name_element (elem, node->local_name ()->get_string ());
-  unsigned long slot = this->rel_id_ - 1;
-  this->add_regnodes (node->defined_in (), elem, slot);
   
-  this->sub_tree_->appendChild (elem);
-  this->add_labels (node, id, slot);
-  
+  // Keep track of where we are in the DOM tree so the next
+  // new element can be inserted in the correct position.  
+  this->previous_ = elem;
+      
   return 0;
 }
 
@@ -980,46 +1409,72 @@ picml_visitor::visit_union_label (AST_UnionLabel *)
 int 
 picml_visitor::visit_constant (AST_Constant *node)
 {
-  DOMElement *elem = 0;
-  int result = be_global->decl_elem_table ().find (node->repoID (), elem);
+  // First see if it's been imported with an XME file.
+  DOMElement *elem =
+    be_global->imported_dom_element (
+        this->sub_tree_,
+        node->local_name ()->get_string ()
+      );
+      
+  // Also see if it's been put in the decl table.
+  DOMElement *table_elem = 0;
+  int result =
+    be_global->decl_elem_table ().find (node->repoID (), table_elem);
 
-  if (result != 0)
+  if (0 == elem)
     {
-      // Create a DOMElement and a GME id and store them in their
-      // respective tables. These actions are idempotent, so we
-      // don't care about the return values of bind().
-      elem = this->doc_->createElement (X ("reference"));
-      be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
-                                          elem);
-      this->set_id_attr (elem, BE_GlobalData::REF);
-      be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
-                                        elem->getAttribute (X ("id")));
+      if (0 == result)
+        {
+          elem = table_elem;
+        }
+      else
+        {
+          elem = this->doc_->createElement (X ("model"));
+          this->set_id_attr (elem, BE_GlobalData::MODEL);
+        }
+      
+      // We add the elem to the table the first time the node is
+      // seen, but we don't add the stuff below unless the elem
+      // has not been imported, and we're in
+      // the IDL file where the node is defined.
+      if (!node->imported ())
+        {
+          elem->setAttribute (X ("kind"), X ("Constant"));
+          elem->setAttribute (X ("role"), X ("Constant"));
+          this->set_relid_attr (elem);
+          
+          XMLCh *const_type_id = this->lookup_constant_type (node);
+          
+          if (0 == const_type_id)
+            {
+              ACE_ERROR_RETURN ((LM_ERROR,
+                                "picml_visitor::visit_constant - "
+                                "constant type id lookup failed\n"),
+                                -1);
+            }
+            
+          elem->setAttribute (X ("referred"), const_type_id);
+          this->add_name_element (elem, node->local_name ()->get_string ());
+          this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
+          this->add_replace_id_element (elem, node);
+          this->add_version_element (elem, node);
+          this->add_constant_value (elem, node);
+          
+          this->insert_element (elem);
+        }
     }
     
-  if (!node->imported ())
+  // Keep track of where we are in the DOM tree so the next
+  // new element can be inserted in the correct position.  
+  this->previous_ = elem;
+      
+  if (0 != result)
     {
-      elem->setAttribute (X ("kind"), X ("Constant"));
-      elem->setAttribute (X ("role"), X ("Constant"));
-      this->set_relid_attr (elem);
-      
-      XMLCh *const_type_id = this->lookup_constant_type (node);
-      
-      if (const_type_id == 0)
-        {
-          ACE_ERROR_RETURN ((LM_ERROR,
-                            "picml_visitor::visit_constant - "
-                            "constant type id lookup failed\n"),
-                            -1);
-        }
-        
-      elem->setAttribute (X ("referred"), const_type_id);
-      this->add_name_element (elem, node->local_name ()->get_string ());
-      this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
-      this->add_replace_id_element (elem, node);
-      this->add_version_element (elem, node);
-      this->add_constant_value (elem, node);
-      
-      this->sub_tree_->appendChild (elem);
+      // Store the DOMElement and GME id in their respective tables.
+      be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
+                                          elem);
+      be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
+                                        elem->getAttribute (X ("id")));
     }
     
   return 0;
@@ -1036,31 +1491,57 @@ picml_visitor::visit_enum_val (AST_EnumVal *node)
       return 0;
     }
     
-  DOMElement *elem = 0;
-  int result = be_global->decl_elem_table ().find (node->repoID (), elem);
+  // First see if it's been imported with an XME file.
+  DOMElement *elem =
+    be_global->imported_dom_element (
+        this->sub_tree_,
+        node->local_name ()->get_string ()
+      );
+      
+  // Also see if it's been put in the decl table.
+  DOMElement *table_elem = 0;
+  int result =
+    be_global->decl_elem_table ().find (node->repoID (), table_elem);
 
-  if (result != 0)
+  if (0 == elem)
     {
-      // Create a DOMElement and a GME id and store them in their
-      // respective tables. These actions are idempotent, so we
-      // don't care about the return values of bind().
-      elem = this->doc_->createElement (X ("atom"));
-      be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
-                                          elem);
-      this->set_id_attr (elem, BE_GlobalData::ATOM);
-      be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
-                                        elem->getAttribute (X ("id")));
+      if (0 == result)
+        {
+          elem = table_elem;
+        }
+      else
+        {
+          elem = this->doc_->createElement (X ("model"));
+          this->set_id_attr (elem, BE_GlobalData::MODEL);
+        }
+      
+      // We add the elem to the table the first time the node is
+      // seen, but we don't add the stuff below unless the elem
+      // has not been imported, and we're in
+      // the IDL file where the node is defined.
+      if (!node->imported ())
+        {
+          elem->setAttribute (X ("kind"), X ("EnumValue"));
+          elem->setAttribute (X ("role"), X ("EnumValue"));
+          this->set_relid_attr (elem);
+          this->add_name_element (elem, node->local_name ()->get_string ());
+          this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
+          
+          this->insert_element (elem);
+        }
     }
     
-  if (!node->imported ())
-    {
-      elem->setAttribute (X ("kind"), X ("EnumValue"));
-      elem->setAttribute (X ("role"), X ("EnumValue"));
-      this->set_relid_attr (elem);
-      this->add_name_element (elem, node->local_name ()->get_string ());
-      this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
+  // Keep track of where we are in the DOM tree so the next
+  // new element can be inserted in the correct position.  
+  this->previous_ = elem;
       
-      this->sub_tree_->appendChild (elem);
+  if (0 != result)
+    {
+      // Store the DOMElement and GME id in their respective tables.
+      be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
+                                          elem);
+      be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
+                                        elem->getAttribute (X ("id")));
     }
     
   return 0;
@@ -1091,53 +1572,79 @@ picml_visitor::visit_string (AST_String *)
 int 
 picml_visitor::visit_typedef (AST_Typedef *node)
 {
-  DOMElement *elem = 0;
-  int result = be_global->decl_elem_table ().find (node->repoID (), elem);
-
-  if (result != 0)
-    {
-      // Create a DOMElement and a GME id and store them in their
-      // respective tables. These actions are idempotent, so we
-      // don't care about the return values of bind().
-      elem = this->doc_->createElement (X ("reference"));
-      be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
-                                          elem);
-      this->set_id_attr (elem, BE_GlobalData::REF);
-      be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
-                                        elem->getAttribute (X ("id")));
-    }
-    
-  if (!node->imported ())
-    {
-      AST_Type *bt = node->base_type ();
-      const char *role = "Alias";
+  // First see if it's been imported with an XME file.
+  DOMElement *elem =
+    be_global->imported_dom_element (
+        this->sub_tree_,
+        node->local_name ()->get_string ()
+      );
       
-      // Collection types in IDML are generated as IDL typedefs, so we
-      // want the reverse of that as the behavior here.
-      switch (bt->node_type ())
+  // Also see if it's been put in the decl table.
+  DOMElement *table_elem = 0;
+  int result =
+    be_global->decl_elem_table ().find (node->repoID (), table_elem);
+
+  if (0 == elem)
+    {
+      if (0 == result)
         {
-          case AST_Decl::NT_array:
-            role = "Collection";
-            bt = AST_Array::narrow_from_decl (bt)->base_type ();
-            break;
-          case AST_Decl::NT_sequence:
-            role = "Collection";
-            bt = AST_Sequence::narrow_from_decl (bt)->base_type ();
-            break;
-          default:
-            break;
+          elem = table_elem;
+        }
+      else
+        {
+          elem = this->doc_->createElement (X ("model"));
+          this->set_id_attr (elem, BE_GlobalData::MODEL);
         }
       
-      elem->setAttribute (X ("kind"), X (role));
-      elem->setAttribute (X ("role"), X (role));      
-      this->set_relid_attr (elem);
-      elem->setAttribute (X ("referred"), this->lookup_id (bt));
-      this->add_name_element (elem, node->local_name ()->get_string ());
-      this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
-      this->add_replace_id_element (elem, node);
-      this->add_version_element (elem, node);
+      // We add the elem to the table the first time the node is
+      // seen, but we don't add the stuff below unless the elem
+      // has not been imported, and we're in
+      // the IDL file where the node is defined.
+      if (!node->imported ())
+        {
+          AST_Type *bt = node->base_type ();
+          const char *role = "Alias";
+          
+          // Collection types in IDML are generated as IDL typedefs, so we
+          // want the reverse of that as the behavior here.
+          switch (bt->node_type ())
+            {
+              case AST_Decl::NT_array:
+                role = "Collection";
+                bt = AST_Array::narrow_from_decl (bt)->base_type ();
+                break;
+              case AST_Decl::NT_sequence:
+                role = "Collection";
+                bt = AST_Sequence::narrow_from_decl (bt)->base_type ();
+                break;
+              default:
+                break;
+            }
+          
+          elem->setAttribute (X ("kind"), X (role));
+          elem->setAttribute (X ("role"), X (role));      
+          this->set_relid_attr (elem);
+          elem->setAttribute (X ("referred"), this->lookup_id (bt));
+          this->add_name_element (elem, node->local_name ()->get_string ());
+          this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
+          this->add_replace_id_element (elem, node);
+          this->add_version_element (elem, node);
+          
+          this->insert_element (elem);
+        }
+    }
+    
+  // Keep track of where we are in the DOM tree so the next
+  // new element can be inserted in the correct position.  
+  this->previous_ = elem;
       
-      this->sub_tree_->appendChild (elem);
+  if (0 != result)
+    {
+      // Store the DOMElement and GME id in their respective tables.
+      be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
+                                          elem);
+      be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
+                                        elem->getAttribute (X ("id")));
     }
     
   return 0;
@@ -1146,74 +1653,84 @@ picml_visitor::visit_typedef (AST_Typedef *node)
 int 
 picml_visitor::visit_root (AST_Root *node)
 {
-  static DOMElement *interface_definitions;
-
   if (be_global->first_file ())
     {
-      sub_tree_->setAttribute (X ("guid"),
-                               X ("{00000000-0000-0000-0000-000000000000}"));
-      
-      ACE_TCHAR day_and_time[27];
-      ACE_TCHAR *s = this->timestamp (day_and_time, sizeof day_and_time);
-      
-      sub_tree_->setAttribute (X ("cdate"), X (s));
-      sub_tree_->setAttribute (X ("mdate"), X (s));
-      sub_tree_->setAttribute (X ("metaguid"), 
-                               X ("{1D244777-DEAD-BEEF-FEED-DAD000000001}"));
-      sub_tree_->setAttribute (X ("metaname"), X ("PICML"));
-      
-      ACE_CString project_name = be_global->output_file ();
-      this->add_name_element (sub_tree_, project_name.c_str ());
-      
-      DOMElement *comment = doc_->createElement (X ("comment"));
-      DOMText *comment_val = doc_->createTextNode (X (""));
-      comment->appendChild (comment_val);
-      sub_tree_->appendChild (comment);
-      
-      DOMElement *author = doc_->createElement (X ("author"));
-      DOMText *author_val = doc_->createTextNode (X (""));
-      author->appendChild (author_val);
-      sub_tree_->appendChild (author);
-      
-      DOMElement *rf = doc_->createElement (X ("folder"));
-      be_global->root_folder (rf);
-      this->set_id_attr (rf, BE_GlobalData::FOLDER);
-      this->set_relid_attr (rf);
-      rf->setAttribute (X ("childrelidcntr"), X ("0x2"));
-      rf->setAttribute (X ("kind"), X ("RootFolder"));
-      sub_tree_->appendChild (rf);      
-      this->add_name_element (rf, project_name.c_str ());     
-      this->add_predefined_types (rf);   
-         
-      interface_definitions =
-        doc_->createElement (X ("folder"));
-      this->set_id_attr (interface_definitions, BE_GlobalData::FOLDER);
-      this->set_relid_attr (interface_definitions);
-      interface_definitions->setAttribute (
-          X ("childrelidcntr"), 
-          X (be_global->hex_string (be_global->nfiles ()))
-        );
-      interface_definitions->setAttribute (X ("kind"), 
-                                           X ("InterfaceDefinitions"));
-      this->add_name_element (interface_definitions, 
-                              "InterfaceDefinitions");
-      rf->appendChild (interface_definitions);
-    }
-    
-  // If we aren't modifying an exisiting XME file, add the
-  // boilerplate PICML elements.
-  if (be_global->input_xme () == 0 && be_global->first_file ())
-    {
+      // If we are importing, root folder and interface definitions
+      // folder are set in BE_GlobalData::cache_files().
+      if (0 == be_global->input_xme ())
+        {
+          sub_tree_->setAttribute (
+              X ("guid"),
+              X ("{00000000-0000-0000-0000-000000000000}")
+            );
+          
+          ACE_TCHAR day_and_time[27];
+          ACE_TCHAR *s =
+            this->timestamp (day_and_time, sizeof day_and_time);
+          
+          sub_tree_->setAttribute (X ("cdate"), X (s));
+          sub_tree_->setAttribute (X ("mdate"), X (s));
+          sub_tree_->setAttribute (
+              X ("metaguid"), 
+              X ("{1D244777-DEAD-BEEF-FEED-DAD000000001}")
+            );
+          sub_tree_->setAttribute (X ("metaname"), X ("PICML"));
+          
+          ACE_CString project_name = be_global->output_file ();
+          this->add_name_element (sub_tree_, project_name.c_str ());
+          
+          DOMElement *comment = doc_->createElement (X ("comment"));
+          DOMText *comment_val = doc_->createTextNode (X (""));
+          comment->appendChild (comment_val);
+          sub_tree_->appendChild (comment);
+          
+          DOMElement *author = doc_->createElement (X ("author"));
+          DOMText *author_val = doc_->createTextNode (X (""));
+          author->appendChild (author_val);
+          sub_tree_->appendChild (author);
+          
+          DOMElement *rf = doc_->createElement (X ("folder"));
+          be_global->root_folder (rf);
+          this->set_id_attr (rf, BE_GlobalData::FOLDER);
+          this->set_relid_attr (rf);
+          rf->setAttribute (X ("childrelidcntr"), X ("0x2"));
+          rf->setAttribute (X ("kind"), X ("RootFolder"));
+          sub_tree_->appendChild (rf);      
+          this->add_name_element (rf, project_name.c_str ());     
+             
+          DOMElement *interface_definitions =
+            doc_->createElement (X ("folder"));
+          this->set_id_attr (interface_definitions,
+                             BE_GlobalData::FOLDER);
+          this->set_relid_attr (interface_definitions);
+          interface_definitions->setAttribute (
+              X ("childrelidcntr"), 
+              X (be_global->hex_string (be_global->nfiles ()))
+            );
+          interface_definitions->setAttribute (
+              X ("kind"), 
+              X ("InterfaceDefinitions")
+            );
+          this->add_name_element (interface_definitions, 
+                                  "InterfaceDefinitions");
+          rf->appendChild (interface_definitions);
+          
+          be_global->interface_definitions_folder (interface_definitions);
+        }
+
+      this->add_predefined_types ();     
       this->add_picml_boilerplate ();
     }
-
+    
   // The call to add a file element below is outside the normal
   // scope visitor mechanism, so we have to maintain a separate
   // rel_id counter for files.
   static unsigned long pass = 1UL;
   
   DOMElement *file =
-    this->add_file_element (interface_definitions, node, pass++);
+    this->add_file_element (be_global->interface_definitions_folder (),
+                            node,
+                            pass++);
     
   unsigned long start_relid =
     this->user_includes () + this->n_basic_seqs_ + 1UL;
@@ -1256,6 +1773,7 @@ picml_visitor::set_id_attr (DOMElement *elem, BE_GlobalData::kind_id kind)
 {
   ACE_CString val = be_global->make_gme_id (kind);
   elem->setAttribute (X ("id"), X (val.c_str ()));
+  elem->setIdAttribute (X ("id"));
   return val;
 }
 
@@ -1337,40 +1855,62 @@ picml_visitor::add_name_element (DOMElement *elem, const char *name)
 }
 
 void
-picml_visitor::add_predefined_types (DOMElement *root_folder)
+picml_visitor::add_predefined_types (void)
 {
-  DOMElement *pdt_folder = doc_->createElement (X ("folder"));
-  this->set_id_attr (pdt_folder, BE_GlobalData::FOLDER);
-  pdt_folder->setAttribute (X ("relid"), X ("0x1"));
-  
   unsigned long npdt = be_global->npredefined ();
-  pdt_folder->setAttribute (X ("childrelidcntr"),
-                            X (be_global->hex_string (npdt)));
-                            
-  pdt_folder->setAttribute (X ("kind"), X ("PredefinedTypes"));
-  this->add_name_element (pdt_folder, "PredefinedTypes");
+  DOMElement *pdt_folder = 0;
+
+  if (0 == be_global->input_xme ())
+    {
+      pdt_folder = doc_->createElement (X ("folder"));
+      this->set_id_attr (pdt_folder, BE_GlobalData::FOLDER);
+      pdt_folder->setAttribute (X ("relid"), X ("0x1"));
+      
+      pdt_folder->setAttribute (X ("childrelidcntr"),
+                                X (be_global->hex_string (npdt)));
+                                
+      pdt_folder->setAttribute (X ("kind"), X ("PredefinedTypes"));
+      this->add_name_element (pdt_folder, "PredefinedTypes");
+      be_global->root_folder ()->appendChild (pdt_folder);
+    }
+  else
+    {
+      pdt_folder =
+        be_global->lookup_by_tag_and_kind (be_global->root_folder (),
+                                           "folder",
+                                           "PredefinedTypes");
+    }
   
   for (unsigned long i = 0; i < npdt; ++i)
     {
-      DOMElement *pdt = doc_->createElement (X ("atom"));
-      this->set_id_attr (pdt, BE_GlobalData::ATOM);
-      pdt->setAttribute (X ("kind"), X (be_global->pdt_names ()[i]));
+      DOMElement *pdt = 0;
+      const char *pdt_name = be_global->pdt_names ()[i];
+    
+      if (0 == be_global->input_xme ())
+        {
+          pdt = doc_->createElement (X ("atom"));
+          this->set_id_attr (pdt, BE_GlobalData::ATOM);
+          pdt->setAttribute (X ("kind"), X (pdt_name));
+                                            
+          // The relid attributes are numbered in reverse order in all sample
+          // files - don't know if it's true for all attached libraries or not.
+          char *relid_str = be_global->hex_string (npdt - i);
+          pdt->setAttribute (X ("relid"), X (relid_str));     
+          this->add_name_element (pdt, pdt_name);     
+          pdt_folder->appendChild (pdt);
+        }
+      else
+        {
+          pdt =
+            be_global->lookup_by_tag_and_kind (pdt_folder,
+                                               "atom",
+                                               pdt_name);
+        }
       
       // Store the GME id for possible rererence by other XML elements.
-      be_global->decl_id_table ().bind (ACE::strnew (be_global->pdt_names ()[i]),
+      be_global->decl_id_table ().bind (ACE::strnew (pdt_name),
                                         pdt->getAttribute (X ("id")));
-                                        
-      // The relid attributes are numbered in reverse order in all sample
-      // files - don't know if it's true for all attached libraries or not.
-      char *relid_str = be_global->hex_string (npdt - i);
-      pdt->setAttribute (X ("relid"), X (relid_str));
-      
-      this->add_name_element (pdt, be_global->pdt_names ()[i]);
-      
-      pdt_folder->appendChild (pdt);
     }
-  
-  root_folder->appendChild (pdt_folder);
 }
 
 void
@@ -1466,7 +2006,7 @@ picml_visitor::add_one_predefined_sequence (DOMElement *parent,
   name += be_global->basic_seq_suffix ();
   int result = be_global->decl_id_table ().find (name.c_str (), gme_id);
   
-  if (result == 0)
+  if (0 == result)
     {
       return;
     }
@@ -1514,14 +2054,22 @@ picml_visitor::add_one_predefined_sequence (DOMElement *parent,
 
 DOMElement *
 picml_visitor::add_file_element (DOMElement *parent,
-                                AST_Root *node,
-                                unsigned long rel_id)
+                                 AST_Root *node,
+                                 unsigned long rel_id)
 {
   ACE_CString tmp (idl_global->stripped_filename ()->get_string ());
   tmp = tmp.substr (0, tmp.rfind ('.'));
   const char *tmp_cstr = tmp.c_str ();
   
-  DOMElement *file = 0;
+  // See if we have already imported this file. If so, just return it.
+  DOMElement *file = be_global->imported_dom_element (parent,
+                                                      tmp_cstr);
+                                                      
+  if (file != 0)
+    {
+      return file;
+    }
+    
   int result = be_global->decl_elem_table ().find (tmp_cstr, file);
 
   // All files should have been stored as part of BE_init(). If 
@@ -1590,7 +2138,7 @@ picml_visitor::add_prefix_element (DOMElement *parent, AST_Decl *node)
       // should set it to the empty string here.
       if (s != 0)
         {
-          if (ACE_OS::strcmp (prefix, ScopeAsDecl (s)->prefix ()) == 0)
+          if (0 == ACE_OS::strcmp (prefix, ScopeAsDecl (s)->prefix ()))
             {
               prefix = "";
             }
@@ -1605,7 +2153,7 @@ picml_visitor::add_replace_id_element (DOMElement *parent, AST_Decl *node)
 {
   const char *id = 0;
   
-  if (node == 0 || !node->typeid_set ())
+  if (0 == node || !node->typeid_set ())
     {
       id = "";
     }
@@ -1622,7 +2170,7 @@ picml_visitor::add_version_element (DOMElement *parent, AST_Decl *node)
 {
   const char *version = 0;
   
-  if (node == 0)
+  if (0 == node)
     {
       version = "";
     }
@@ -1631,7 +2179,7 @@ picml_visitor::add_version_element (DOMElement *parent, AST_Decl *node)
       version = node->version ();
    
       // If it's the default version, set the attribute to the empty string.
-      if (ACE_OS::strcmp (version, "1.0") == 0)
+      if (0 == ACE_OS::strcmp (version, "1.0"))
         {
           version = "";
         }
@@ -1642,16 +2190,16 @@ picml_visitor::add_version_element (DOMElement *parent, AST_Decl *node)
 
 void
 picml_visitor::add_tag_common (const char *value,
-                              const char *name,
-                              DOMElement *parent,
-                              idl_bool is_meta)
+                               const char *name,
+                               DOMElement *parent,
+                               idl_bool is_meta)
 {
   DOMElement *tag_elem = this->doc_->createElement (X ("attribute"));
   tag_elem->setAttribute (X ("kind"), X (name));
   
   if (is_meta)
     {
-      tag_elem->setAttribute (X ("status"), X("meta"));
+      tag_elem->setAttribute (X ("status"), X ("meta"));
     }
     
   DOMElement *value_elem = this->doc_->createElement (X ("value"));
@@ -1751,7 +2299,7 @@ picml_visitor::add_regnodes (UTL_Scope *container,
                              unsigned long num_slices)
 {
   bool ifacedef_aspect =
-    (ACE_OS::strcmp (aspect, "InterfaceDefinition") == 0);
+    (0 == ACE_OS::strcmp (aspect, "InterfaceDefinition"));
     
   DOMElement *outer = this->doc_->createElement (X ("regnode"));
   outer->setAttribute (X ("name"), X ("PartRegs"));
@@ -1813,7 +2361,7 @@ picml_visitor::add_pos_element (UTL_Scope *container,
       : (container != 0
           ? this->nmembers_gme (container, a) + 1UL
           : 2UL));
-    
+ 
   unsigned long slice_width = XMAX_ / nslices;
   unsigned long slice_height = YMAX_ / nslices;
   
@@ -1905,13 +2453,13 @@ picml_visitor::add_supported_elements (DOMElement *parent,
       case AST_Decl::NT_component:
         {
           AST_Component *c = AST_Component::narrow_from_decl (node);
-          nparents = (c->base_component () == 0 ? 0 : 1);
+          nparents = (0 == c->base_component () ? 0 : 1);
           break;
         }
       case AST_Decl::NT_home:
         {
           AST_Home *h = AST_Home::narrow_from_decl (node);
-          nparents = (h->base_home () == 0 ? 0 : 1);
+          nparents = (0 == h->base_home () ? 0 : 1);
           break;
         }
       default:
@@ -1936,26 +2484,54 @@ picml_visitor::add_supported_elements (DOMElement *parent,
 
 void
 picml_visitor::add_exception_elements (DOMElement *parent,
-                                      UTL_Scope *s,
-                                      AST_Attribute *a,
-                                      UTL_ExceptList *el,
-                                      const char *name,
-                                      unsigned long start_slot)
+                                       UTL_Scope *s,
+                                       AST_Attribute *a,
+                                       UTL_ExceptList *el,
+                                       const char *name,
+                                       unsigned long start_slot)
 {
   for (UTL_ExceptlistActiveIterator ei (el);
        !ei.is_done ();
        ei.next ())
     {
-      DOMElement *elem = this->doc_->createElement (X ("reference"));
-      this->set_id_attr (elem, BE_GlobalData::REF);
-      elem->setAttribute (X ("kind"), X (name));
-      elem->setAttribute (X ("role"), X (name));
-      elem->setAttribute (X ("relid"), 
-                          X (be_global->hex_string (start_slot)));
-      elem->setAttribute (X ("referred"), this->lookup_id (ei.item ()));
-      this->add_name_element (elem, name);
-      this->add_regnodes (s, elem, start_slot++, a);
-      parent->appendChild (elem);
+      AST_Exception *ex = ei.item ();
+      XMLCh *gme_id = this->lookup_id (ex);
+      
+      // Since the members of an exception list must be unique, we
+      // just check for a DOM element in this scope that refers to
+      // the exception. If there already is one, we can assume it
+      // came from importing a previous version of the IDL file.
+      DOMElement *elem = 
+        be_global->imported_dom_element (parent,
+                                         ex->local_name ()->get_string (),
+                                         BE_GlobalData::REF,
+                                         true);
+                                         
+      if (elem == 0)
+        {
+          elem = this->doc_->createElement (X ("reference"));
+          this->set_id_attr (elem, BE_GlobalData::REF);
+          elem->setAttribute (X ("kind"), X (name));
+          elem->setAttribute (X ("role"), X (name));
+          elem->setAttribute (X ("relid"), 
+                              X (be_global->hex_string (start_slot)));
+          elem->setAttribute (X ("referred"), gme_id);
+          this->add_name_element (elem, name);
+          this->add_regnodes (s, elem, start_slot++, a);
+          parent->appendChild (elem);
+        }
+
+      ACE_Auto_Basic_Ptr<char> safety (XMLString::transcode (gme_id));
+      int result =
+        be_global->ref_decl_table ().bind (safety.get (), ex);
+        
+      // Has a reference to this exception already been added?  
+      if (result == 0)
+        {
+          // If not, the table takes over the memory and it will be
+          // cleaned up later.
+          (void) safety.release ();
+        }           
     }
 }
 
@@ -1986,8 +2562,8 @@ picml_visitor::add_discriminator (DOMElement *parent, AST_Union *u)
 
 void
 picml_visitor::add_labels (AST_UnionBranch *ub,
-                          ACE_CString &ub_id,
-                          unsigned long member_slot)
+                           ACE_CString &ub_id,
+                           unsigned long member_slot)
 {
   UTL_Scope *u = ub->defined_in ();
   unsigned long label_base = this->nmembers_gme (u) + member_slot - 1;
@@ -2055,7 +2631,7 @@ picml_visitor::add_label_name (DOMElement *label,
         {
           UTL_Scope *parent = u->disc_type ()->defined_in ();
           
-          if (parent == 0)
+          if (0 == parent)
             {
               name = this->print_scoped_name (e->n ());
             }
@@ -2135,7 +2711,8 @@ void
 picml_visitor::add_base_component (DOMElement *elem, AST_Component *node)
 {
   AST_Component *base = node->base_component ();
-  if (base == 0)
+  
+  if (0 == base)
     {
       return;
     }
@@ -2164,7 +2741,7 @@ void
 picml_visitor::add_base_home (DOMElement *parent, AST_Home *node)
 {
   AST_Home *base = node->base_home ();
-  if (base == 0)
+  if (0 == base)
     {
       return;
     }
@@ -2176,7 +2753,7 @@ void
 picml_visitor::add_ports (DOMElement *parent, AST_Component *node)
 {
   AST_Component::port_description *pd = 0;
-  unsigned long slot = (node->base_component () == 0 ? 0 : 1)
+  unsigned long slot = (0 == node->base_component () ? 0 : 1)
                        + node->n_supports ()
                        + 1;
 
@@ -2187,19 +2764,33 @@ picml_visitor::add_ports (DOMElement *parent, AST_Component *node)
     {
       provides_iter.next (pd);
       DOMElement *provides_port =
-        this->doc_->createElement (X ("reference"));
-      this->set_id_attr (provides_port, BE_GlobalData::REF);
-      provides_port->setAttribute (X ("kind"), X ("ProvidedRequestPort"));
-      provides_port->setAttribute (X ("role"), X ("ProvidedRequestPort"));
-      provides_port->setAttribute (X ("relid"),
-                                   X (be_global->hex_string (slot)));
-      provides_port->setAttribute (X ("referred"),
-                                   this->lookup_id (pd->impl));
-      this->add_name_element (provides_port, pd->id->get_string ());
-      this->add_regnodes (node, provides_port, slot++);
-      this->add_replace_id_element (provides_port, 0);
-      this->add_version_element (provides_port, 0);
-      parent->appendChild (provides_port);
+        be_global->imported_dom_element (parent,
+                                         pd->id->get_string (),
+                                         BE_GlobalData::REF);
+                                         
+      if (0 == provides_port)
+        {
+          provides_port =
+            this->doc_->createElement (X ("reference"));
+          this->set_id_attr (provides_port, BE_GlobalData::REF);
+          provides_port->setAttribute (X ("kind"),
+                                       X ("ProvidedRequestPort"));
+          provides_port->setAttribute (X ("role"),
+                                       X ("ProvidedRequestPort"));
+          provides_port->setAttribute (X ("relid"),
+                                       X (be_global->hex_string (slot)));
+          provides_port->setAttribute (X ("referred"),
+                                       this->lookup_id (pd->impl));
+          this->add_name_element (provides_port, pd->id->get_string ());
+          this->add_regnodes (node, provides_port, slot++);
+          this->add_replace_id_element (provides_port, 0);
+          this->add_version_element (provides_port, 0);
+          
+          // Since we aren't adding port elements by visiting the scope of
+          // the AST_Component, using insert_element won't work here. The
+          // order of port declarations in IDL shouldn't matter anyway.
+          parent->appendChild (provides_port);
+        }
     }
 
   // Uses ports.
@@ -2209,27 +2800,42 @@ picml_visitor::add_ports (DOMElement *parent, AST_Component *node)
     {
       uses_iter.next (pd);
       DOMElement *uses_port =
-        this->doc_->createElement (X ("reference"));
-      this->set_id_attr (uses_port, BE_GlobalData::REF);
-      uses_port->setAttribute (X ("kind"), X ("RequiredRequestPort"));
-      uses_port->setAttribute (X ("role"), X ("RequiredRequestPort"));
-      uses_port->setAttribute (X ("relid"),
-                               X (be_global->hex_string (slot)));
-      uses_port->setAttribute (X ("referred"),
-                               this->lookup_id (pd->impl));
-      this->add_name_element (uses_port, pd->id->get_string ());
-      this->add_regnodes (node, uses_port, slot++);
-      this->add_replace_id_element (uses_port, 0);
-      this->add_version_element (uses_port, 0);
-      DOMElement *mult_attr = this->doc_->createElement (X ("attribute"));
-      mult_attr->setAttribute (X ("kind"), X ("multiple_connections"));
-      DOMElement *value_elem = this->doc_->createElement (X ("value"));
-      DOMText *value =
-        this->doc_->createTextNode (X (pd->is_multiple ? "true" : "false"));
-      value_elem->appendChild (value);
-      mult_attr->appendChild (value_elem);
-      uses_port->appendChild (mult_attr);
-      parent->appendChild (uses_port);
+        be_global->imported_dom_element (parent,
+                                         pd->id->get_string (),
+                                         BE_GlobalData::REF);
+                                         
+      if (0 == uses_port)
+        {
+          uses_port =
+            this->doc_->createElement (X ("reference"));
+          this->set_id_attr (uses_port, BE_GlobalData::REF);
+          uses_port->setAttribute (X ("kind"), X ("RequiredRequestPort"));
+          uses_port->setAttribute (X ("role"), X ("RequiredRequestPort"));
+          uses_port->setAttribute (X ("relid"),
+                                  X (be_global->hex_string (slot)));
+          uses_port->setAttribute (X ("referred"),
+                                   this->lookup_id (pd->impl));
+          this->add_name_element (uses_port, pd->id->get_string ());
+          this->add_regnodes (node, uses_port, slot++);
+          this->add_replace_id_element (uses_port, 0);
+          this->add_version_element (uses_port, 0);
+          DOMElement *mult_attr =
+            this->doc_->createElement (X ("attribute"));
+          mult_attr->setAttribute (X ("kind"), X ("multiple_connections"));
+          DOMElement *value_elem = this->doc_->createElement (X ("value"));
+          DOMText *value =
+            this->doc_->createTextNode (
+                X (pd->is_multiple ? "true" : "false")
+              );
+          value_elem->appendChild (value);
+          mult_attr->appendChild (value_elem);
+          uses_port->appendChild (mult_attr);
+           
+          // Since we aren't adding port elements by visiting the scope of
+          // the AST_Component, using insert_element won't work here. The
+          // order of port declarations in IDL shouldn't matter anyway.
+          parent->appendChild (uses_port);
+        }
     }
 
   // Emits ports.
@@ -2239,26 +2845,39 @@ picml_visitor::add_ports (DOMElement *parent, AST_Component *node)
     {
       emits_iter.next (pd);
       DOMElement *emits_port =
-        this->doc_->createElement (X ("reference"));
-      this->set_id_attr (emits_port, BE_GlobalData::REF);
-      emits_port->setAttribute (X ("kind"), X ("OutEventPort"));
-      emits_port->setAttribute (X ("role"), X ("OutEventPort"));
-      emits_port->setAttribute (X ("relid"),
-                                X (be_global->hex_string (slot)));
-      emits_port->setAttribute (X ("referred"),
-                                this->lookup_id (pd->impl));
-      this->add_name_element (emits_port, pd->id->get_string ());
-      this->add_regnodes (node, emits_port, slot++);
-      this->add_replace_id_element (emits_port, 0);
-      this->add_version_element (emits_port, 0);
-      DOMElement *single_attr = this->doc_->createElement (X ("attribute"));
-      single_attr->setAttribute (X ("kind"), X ("single_destination"));
-      DOMElement *value_elem = this->doc_->createElement (X ("value"));
-      DOMText *value = this->doc_->createTextNode (X ("true"));
-      value_elem->appendChild (value);
-      single_attr->appendChild (value_elem);
-      emits_port->appendChild (single_attr);
-      parent->appendChild (emits_port);
+        be_global->imported_dom_element (parent,
+                                         pd->id->get_string (),
+                                         BE_GlobalData::REF);
+                                         
+      if (0 == emits_port)
+        {
+          emits_port =
+            this->doc_->createElement (X ("reference"));
+          this->set_id_attr (emits_port, BE_GlobalData::REF);
+          emits_port->setAttribute (X ("kind"), X ("OutEventPort"));
+          emits_port->setAttribute (X ("role"), X ("OutEventPort"));
+          emits_port->setAttribute (X ("relid"),
+                                    X (be_global->hex_string (slot)));
+          emits_port->setAttribute (X ("referred"),
+                                    this->lookup_id (pd->impl));
+          this->add_name_element (emits_port, pd->id->get_string ());
+          this->add_regnodes (node, emits_port, slot++);
+          this->add_replace_id_element (emits_port, 0);
+          this->add_version_element (emits_port, 0);
+          DOMElement *single_attr =
+            this->doc_->createElement (X ("attribute"));
+          single_attr->setAttribute (X ("kind"), X ("single_destination"));
+          DOMElement *value_elem = this->doc_->createElement (X ("value"));
+          DOMText *value = this->doc_->createTextNode (X ("true"));
+          value_elem->appendChild (value);
+          single_attr->appendChild (value_elem);
+          emits_port->appendChild (single_attr);
+           
+          // Since we aren't adding port elements by visiting the scope of
+          // the AST_Component, using insert_element won't work here. The
+          // order of port declarations in IDL shouldn't matter anyway.
+          parent->appendChild (emits_port);
+        }
     }
 
   // Publishes ports.
@@ -2268,26 +2887,38 @@ picml_visitor::add_ports (DOMElement *parent, AST_Component *node)
     {
       publishes_iter.next (pd);
       DOMElement *publishes_port =
-        this->doc_->createElement (X ("reference"));
-      this->set_id_attr (publishes_port, BE_GlobalData::REF);
-      publishes_port->setAttribute (X ("kind"), X ("OutEventPort"));
-      publishes_port->setAttribute (X ("role"), X ("OutEventPort"));
-      publishes_port->setAttribute (X ("relid"),
-                                    X (be_global->hex_string (slot)));
-      publishes_port->setAttribute (X ("referred"),
-                                    this->lookup_id (pd->impl));
-      this->add_name_element (publishes_port, pd->id->get_string ());
-      this->add_regnodes (node, publishes_port, slot++);
-      this->add_replace_id_element (publishes_port, 0);
-      this->add_version_element (publishes_port, 0);
-      DOMElement *single_attr = this->doc_->createElement (X ("attribute"));
-      single_attr->setAttribute (X ("kind"), X ("single_destination"));
-      DOMElement *value_elem = this->doc_->createElement (X ("value"));
-      DOMText *value = this->doc_->createTextNode (X ("false"));
-      value_elem->appendChild (value);
-      single_attr->appendChild (value_elem);
-      publishes_port->appendChild (single_attr);
-      parent->appendChild (publishes_port);
+        be_global->imported_dom_element (parent,
+                                         pd->id->get_string (),
+                                         BE_GlobalData::REF);
+                                         
+      if (0 == publishes_port)
+        {
+          publishes_port =
+            this->doc_->createElement (X ("reference"));
+          this->set_id_attr (publishes_port, BE_GlobalData::REF);
+          publishes_port->setAttribute (X ("kind"), X ("OutEventPort"));
+          publishes_port->setAttribute (X ("role"), X ("OutEventPort"));
+          publishes_port->setAttribute (X ("relid"),
+                                        X (be_global->hex_string (slot)));
+          publishes_port->setAttribute (X ("referred"),
+                                        this->lookup_id (pd->impl));
+          this->add_name_element (publishes_port, pd->id->get_string ());
+          this->add_regnodes (node, publishes_port, slot++);
+          this->add_replace_id_element (publishes_port, 0);
+          this->add_version_element (publishes_port, 0);
+          DOMElement *single_attr = this->doc_->createElement (X ("attribute"));
+          single_attr->setAttribute (X ("kind"), X ("single_destination"));
+          DOMElement *value_elem = this->doc_->createElement (X ("value"));
+          DOMText *value = this->doc_->createTextNode (X ("false"));
+          value_elem->appendChild (value);
+          single_attr->appendChild (value_elem);
+          publishes_port->appendChild (single_attr);
+           
+          // Since we aren't adding port elements by visiting the scope of
+          // the AST_Component, using insert_element won't work here. The
+          // order of port declarations in IDL shouldn't matter anyway.
+          parent->appendChild (publishes_port);
+        }
     }
 
   // Consumes ports.
@@ -2297,19 +2928,31 @@ picml_visitor::add_ports (DOMElement *parent, AST_Component *node)
     {
       consumes_iter.next (pd);
       DOMElement *consumes_port =
-        this->doc_->createElement (X ("reference"));
-      this->set_id_attr (consumes_port, BE_GlobalData::REF);
-      consumes_port->setAttribute (X ("kind"), X ("InEventPort"));
-      consumes_port->setAttribute (X ("role"), X ("InEventPort"));
-      consumes_port->setAttribute (X ("relid"),
-                                   X (be_global->hex_string (slot)));
-      consumes_port->setAttribute (X ("referred"),
-                                   this->lookup_id (pd->impl));
-      this->add_name_element (consumes_port, pd->id->get_string ());
-      this->add_regnodes (node, consumes_port, slot++);
-      this->add_replace_id_element (consumes_port, 0);
-      this->add_version_element (consumes_port, 0);
-      parent->appendChild (consumes_port);
+        be_global->imported_dom_element (parent,
+                                         pd->id->get_string (),
+                                         BE_GlobalData::REF);
+                                         
+      if (0 == consumes_port)
+        {
+          consumes_port =
+            this->doc_->createElement (X ("reference"));
+          this->set_id_attr (consumes_port, BE_GlobalData::REF);
+          consumes_port->setAttribute (X ("kind"), X ("InEventPort"));
+          consumes_port->setAttribute (X ("role"), X ("InEventPort"));
+          consumes_port->setAttribute (X ("relid"),
+                                      X (be_global->hex_string (slot)));
+          consumes_port->setAttribute (X ("referred"),
+                                      this->lookup_id (pd->impl));
+          this->add_name_element (consumes_port, pd->id->get_string ());
+          this->add_regnodes (node, consumes_port, slot++);
+          this->add_replace_id_element (consumes_port, 0);
+          this->add_version_element (consumes_port, 0);
+           
+          // Since we aren't adding port elements by visiting the scope of
+          // the AST_Component, using insert_element won't work here. The
+          // order of port declarations in IDL shouldn't matter anyway.
+          parent->appendChild (consumes_port);
+        }
     }
 }
 
@@ -2379,33 +3022,68 @@ void
 picml_visitor::add_lookup_key (DOMElement *parent, AST_Home *node)
 {
   AST_ValueType *pk = node->primary_key ();
-  if (pk == 0)
+  
+  if (0 == pk)
     {
       return;
     }
     
-  unsigned long slot = (node->base_home () == 0 ? 0UL : 1UL)
+  unsigned long slot = (0 == node->base_home () ? 0UL : 1UL)
                        + static_cast<unsigned long> (node->n_supports ())
                        + 1;
                        
-  DOMElement *lookup_key = this->doc_->createElement (X ("reference"));
-  this->set_id_attr (lookup_key, BE_GlobalData::REF);
-  lookup_key->setAttribute (X ("kind"), X ("LookupKey"));
-  lookup_key->setAttribute (X ("role"), X ("LookupKey"));
-  lookup_key->setAttribute (X ("relid"), X (be_global->hex_string (slot)));
-  lookup_key->setAttribute (X ("referred"), this->lookup_id (pk ));
-  this->add_name_element (lookup_key, "LookupKey");
-  this->add_regnodes (node, lookup_key, slot);
-  parent->appendChild (lookup_key);
+  DOMElement *lookup_key = 0;
+  DOMNodeList *children = parent->getChildNodes ();
+  
+  for (XMLSize_t i = 0; i < children->getLength (); ++i)
+    {
+      DOMElement *child = (DOMElement *) children->item (i);
+      
+      if (0 == child)
+        {
+          continue;
+        }
+        
+      // There should be only one "name" node.  
+      DOMNode *name_elem = child->getFirstChild ();
+      DOMNode *name_node = name_elem->getFirstChild ();
+      DOMText *name_text = (DOMText *) name_node;
+      const XMLCh *name = name_text->getData ();
+      
+      if (X ("LookupKey") = name)
+        {
+          lookup_key = child;
+          break;
+        }
+    }
+   
+  if (0 == lookup_key)
+    {  
+      lookup_key = this->doc_->createElement (X ("reference"));
+      this->set_id_attr (lookup_key, BE_GlobalData::REF);
+      lookup_key->setAttribute (X ("kind"), X ("LookupKey"));
+      lookup_key->setAttribute (X ("role"), X ("LookupKey"));
+      lookup_key->setAttribute (X ("relid"),
+                                X (be_global->hex_string (slot)));
+      lookup_key->setAttribute (X ("referred"), this->lookup_id (pk));
+      this->add_name_element (lookup_key, "LookupKey");
+      this->add_regnodes (node, lookup_key, slot);
+      parent->appendChild (lookup_key);
+    }
+  else
+    {
+      // Just in case the primary key is now a different valuetype.
+      lookup_key->setAttribute (X ("referred"), this->lookup_id (pk));
+    }
 }
 
 void
 picml_visitor::add_home_factories (DOMElement *parent, AST_Home *node)
 {
   AST_Operation **op = 0;
-  unsigned long slot = (node->base_home () == 0 ? 0UL : 1UL)
+  unsigned long slot = (0 == node->base_home () ? 0UL : 1UL)
                        + static_cast<unsigned long> (node->n_supports ())
-                       + (node->primary_key () == 0 ? 0UL : 1UL)
+                       + (0 == node->primary_key () ? 0UL : 1UL)
                        + 1;
 
   for (ACE_Unbounded_Queue_Iterator<AST_Operation *> i (node->factories ());
@@ -2413,16 +3091,26 @@ picml_visitor::add_home_factories (DOMElement *parent, AST_Home *node)
        i.advance ())
     {
       i.next (op);
-      DOMElement *factory = this->doc_->createElement (X ("model"));
-      this->set_id_attr (factory, BE_GlobalData::MODEL);
-      this->set_childrelidcntr_attr (factory, *op);
-      factory->setAttribute (X ("relid"), X (be_global->hex_string (slot)));
-      factory->setAttribute (X ("kind"), X ("FactoryOperation"));
-      factory->setAttribute (X ("role"), X ("FactoryOperation"));
-      this->add_name_element (factory, (*op)->local_name ()->get_string ());
-      this->add_regnodes (node, factory, slot++);
-      this->add_replace_id_element (factory, *op);
-      this->add_version_element (factory, *op);
+      DOMElement *factory = 
+        be_global->imported_dom_element (parent,
+                                         (*op)->local_name ()->get_string ());
+      
+      if (0 == factory)
+        {
+          factory = this->doc_->createElement (X ("model"));
+          this->set_id_attr (factory, BE_GlobalData::MODEL);
+          this->set_childrelidcntr_attr (factory, *op);
+          factory->setAttribute (X ("relid"),
+                                 X (be_global->hex_string (slot)));
+          factory->setAttribute (X ("kind"), X ("FactoryOperation"));
+          factory->setAttribute (X ("role"), X ("FactoryOperation"));
+          this->add_name_element (factory,
+                                  (*op)->local_name ()->get_string ());
+          this->add_regnodes (node, factory, slot++);
+          this->add_replace_id_element (factory, *op);
+          this->add_version_element (factory, *op);
+          parent->appendChild (factory);
+        }
       
       picml_visitor scope_visitor (factory);
       if (scope_visitor.visit_scope (*op) != 0)
@@ -2438,7 +3126,6 @@ picml_visitor::add_home_factories (DOMElement *parent, AST_Home *node)
                                     (*op)->exceptions (),
                                     "ExceptionRef",
                                     scope_visitor.rel_id_);
-      parent->appendChild (factory); 
     }
 }
 
@@ -2446,9 +3133,9 @@ void
 picml_visitor::add_finders (DOMElement *parent, AST_Home *node)
 {
   AST_Operation **op = 0;
-  unsigned long slot = (node->base_home () == 0 ? 0UL : 1UL)
+  unsigned long slot = (0 == node->base_home () ? 0UL : 1UL)
                        + static_cast<unsigned long> (node->n_supports ())
-                       + (node->primary_key () == 0 ? 0UL : 1UL)
+                       + (0 == node->primary_key () ? 0UL : 1UL)
                        + node->factories ().size ()
                        + 1;
 
@@ -2457,16 +3144,26 @@ picml_visitor::add_finders (DOMElement *parent, AST_Home *node)
        i.advance ())
     {
       i.next (op);
-      DOMElement *finder = this->doc_->createElement (X ("model"));
-      this->set_id_attr (finder, BE_GlobalData::MODEL);
-      this->set_childrelidcntr_attr (finder, *op);
-      finder->setAttribute (X ("relid"), X (be_global->hex_string (slot)));
-      finder->setAttribute (X ("kind"), X ("LookupOperation"));
-      finder->setAttribute (X ("role"), X ("LookupOperation"));
-      this->add_name_element (finder, (*op)->local_name ()->get_string ());
-      this->add_regnodes (node, finder, slot++);
-      this->add_replace_id_element (finder, *op);
-      this->add_version_element (finder, *op);
+      DOMElement *finder =
+        be_global->imported_dom_element (parent,
+                                         (*op)->local_name ()->get_string ());
+                                         
+      if (0 == finder)
+        {
+          finder = this->doc_->createElement (X ("model"));
+          this->set_id_attr (finder, BE_GlobalData::MODEL);
+          this->set_childrelidcntr_attr (finder, *op);
+          finder->setAttribute (X ("relid"),
+                                X (be_global->hex_string (slot)));
+          finder->setAttribute (X ("kind"), X ("LookupOperation"));
+          finder->setAttribute (X ("role"), X ("LookupOperation"));
+          this->add_name_element (finder,
+                                  (*op)->local_name ()->get_string ());
+          this->add_regnodes (node, finder, slot++);
+          this->add_replace_id_element (finder, *op);
+          this->add_version_element (finder, *op);
+          parent->appendChild (finder); 
+        }
       
       picml_visitor scope_visitor (finder);
       if (scope_visitor.visit_scope (*op) != 0)
@@ -2482,13 +3179,12 @@ picml_visitor::add_finders (DOMElement *parent, AST_Home *node)
                                     (*op)->exceptions (),
                                     "ExceptionRef",
                                     scope_visitor.rel_id_);
-      parent->appendChild (finder); 
     }
 }
 
 ACE_TCHAR *
 picml_visitor::timestamp (ACE_TCHAR date_and_time[],
-                         int length)
+                          int length)
 {
   if (length < 27)
     {
@@ -2621,11 +3317,11 @@ picml_visitor::nmembers_gme (UTL_Scope *s, AST_Attribute *a)
       // are implicit in IDML.
       if (ScopeAsDecl (op->defined_in ())->node_type () != AST_Decl::NT_home)
         {
-          retval += op->void_return_type () == 0 ? 1 : 0;
+          retval += (0 == op->void_return_type () ? 1 : 0);
         }
         
       UTL_ExceptList *ex = op->exceptions ();  
-      retval += (ex == 0 ? 0UL : ex->length ());
+      retval += (0 == ex ? 0UL : ex->length ());
       return retval;
     }
     
@@ -2633,7 +3329,7 @@ picml_visitor::nmembers_gme (UTL_Scope *s, AST_Attribute *a)
   if (f != 0)
     {
       UTL_ExceptList *ex = f->exceptions ();
-      retval += (ex == 0 ? 0UL : ex->length ());
+      retval += (0 == ex ? 0UL : ex->length ());
       return retval;
     }
     
@@ -3082,11 +3778,11 @@ picml_visitor::check_for_basic_type (AST_Decl *d, ACE_CString &str)
             {
               const char *pseudo_name = d->local_name ()->get_string ();
               
-              if (ACE_OS::strcmp (pseudo_name, "TypeCode") == 0)
+              if (0 == ACE_OS::strcmp (pseudo_name, "TypeCode"))
                 {
                   str = namelist[1UL];
                 }
-              else if (ACE_OS::strcmp (pseudo_name, "TCKind") == 0)
+              else if (0 == ACE_OS::strcmp (pseudo_name, "TCKind"))
                 {
                   str = namelist[0UL];
                 }
@@ -3102,34 +3798,50 @@ picml_visitor::check_for_basic_type (AST_Decl *d, ACE_CString &str)
 // we can skip importing it, and at the same time avoid the
 // 'empty package' constraint violation.
 bool
-picml_visitor::can_skip_import (AST_Module *m)
+picml_visitor::can_skip_import (UTL_Scope *node, DOMElement *parent)
 {
-  for (UTL_ScopeActiveIterator si (m, UTL_Scope::IK_decls);
+  for (UTL_ScopeActiveIterator si (node, UTL_Scope::IK_decls);
        !si.is_done ();
        si.next ())
     {
       AST_Decl *d = si.item ();
-      AST_Module *nested_m = AST_Module::narrow_from_decl (d);
-      
-      if (nested_m != 0 && !this->can_skip_import (nested_m))
-        {
-          return false;
-        }
-        
       AST_Decl::NodeType nt = d->node_type ();
       
+      // These are not in the DOM tree or have no effect.
       if (nt == AST_Decl::NT_interface_fwd
           || nt == AST_Decl::NT_valuetype_fwd
           || nt == AST_Decl::NT_union_fwd
           || nt == AST_Decl::NT_struct_fwd
           || nt == AST_Decl::NT_component_fwd
           || nt == AST_Decl::NT_eventtype_fwd
-          || nt == AST_Decl::NT_pre_defined
-          || nt == AST_Decl::NT_module)
+          || nt == AST_Decl::NT_pre_defined)
         {
           continue;
         }
-      else
+        
+      DOMElement *elem =
+        be_global->imported_dom_element (
+            parent,
+            d->local_name ()->get_string ()
+          );
+      
+      // If it's not one of the above types and not in the
+      // DOM tree, we can't skip importing the IDL.
+      if (0 == elem)
+        {
+          return false;
+        }
+
+      UTL_Scope *nested_node = DeclAsScope (d);
+      
+      // If this item is not a scope, don't recurse on it.
+      if (0 == nested_node)
+        {
+          continue;
+        }
+      
+      // Recurse on the scope member.
+      if (!this->can_skip_import (nested_node, elem))
         {
           return false;
         }
@@ -3138,199 +3850,54 @@ picml_visitor::can_skip_import (AST_Module *m)
   return true;
 }
 
-DOMElement *
-picml_visitor::imported_dom_element (AST_Decl *d)
-{
-  // Can't already be in the DOM tree if we didn't read in an XME file.
-  if (be_global->input_xme () == 0)
-    {
-      return 0;
-    }
-    
-  const char *ln = d->local_name ()->get_string ();
-
-  DOMNodeList *children =
-    this->sub_tree_->getElementsByTagName (X ("model"));
-  
-  for (XMLSize_t index = 0; index < children->getLength (); ++index)
-    {
-      DOMElement *child = (DOMElement *) children->item (index);
-      
-      if (child == 0)
-        {
-          continue;
-        }
-      
-      // There should be only one "name" node.  
-      DOMNodeList *namelist = child->getElementsByTagName (X ("name"));
-      
-      DOMNode *name_elem = namelist->item (0);
-      DOMNode *name_item = name_elem->getFirstChild ();
-      DOMText *name = (DOMText *) name_item;
-      const XMLCh *text = name->getData ();
-      
-      if (X (ln) == text)
-        {
-          return child;
-        }
-    }
-    
-  return 0;
-}
-
 void
 picml_visitor::add_picml_boilerplate (void)
 {
-  this->add_ComponentImplementations ();
-  this->add_ImplementationArtifacts ();
-  this->add_ComponentTypes ();
-  this->add_PackageConfigurations ();
-  this->add_ComponentPackages ();
-  this->add_DeploymentPlans ();
-  this->add_Targets ();
-  this->add_TopLevelPackages ();
-  this->add_ComponentBuild ();
+  this->add_folder ("ComponentImplementations",
+                    &BE_GlobalData::implementations_folder);
+  this->add_folder ("ImplementationArtifacts",
+                    &BE_GlobalData::implementation_artifacts_folder);
+  this->add_folder ("ComponentTypes",
+                    &BE_GlobalData::component_types_folder);
+  this->add_folder ("PackageConfigurations");
+  this->add_folder ("ComponentPackages");
+  this->add_folder ("DeploymentPlans");
+  this->add_folder ("Targets");
+  this->add_folder ("TopLevelPackages");
+  this->add_folder ("ComponentBuild");
 }
 
 void
-picml_visitor::add_ComponentImplementations (void)
+picml_visitor::add_folder (const char *kind, folder_setter pmf)
 {
-  DOMElement *component_implementations =
-    doc_->createElement (X ("folder"));
-  be_global->implementations_folder (component_implementations);
-  this->set_id_attr (component_implementations, BE_GlobalData::FOLDER);
-  this->set_relid_attr (component_implementations);
-  component_implementations->setAttribute (X ("childrelidcntr"), X ("0x0")); // TODO
-  component_implementations->setAttribute (X ("kind"), 
-                                           X ("ComponentImplementations"));
-  this->add_name_element (component_implementations, 
-                          "ComponentImplementations");
-  be_global->root_folder ()->appendChild (component_implementations);
+  DOMElement *new_folder = 0;
+  
+  if (0 == be_global->input_xme ())
+    {
+      new_folder = doc_->createElement (X ("folder"));
+      this->set_id_attr (new_folder, BE_GlobalData::FOLDER);
+      this->set_relid_attr (new_folder);
+      new_folder->setAttribute (X ("childrelidcntr"), X ("0x0")); // TODO
+      new_folder->setAttribute (X ("kind"), X (kind));
+      this->add_name_element (new_folder, kind);
+      be_global->root_folder ()->appendChild (new_folder);
+    }
+  else
+    {
+      new_folder =
+        be_global->lookup_by_tag_and_kind (be_global->root_folder (),
+                                           "folder",
+                                           kind);
+    }
+  
+  if (0 != pmf)
+    {
+      (be_global->*pmf) (new_folder);
+    }
 }
 
 void
-picml_visitor::add_ImplementationArtifacts (void)
-{
-  DOMElement *implementation_artifacts =
-    doc_->createElement (X ("folder"));
-  be_global->implementation_artifacts_folder (implementation_artifacts);
-  this->set_id_attr (implementation_artifacts, BE_GlobalData::FOLDER);
-  this->set_relid_attr (implementation_artifacts);
-  implementation_artifacts->setAttribute (X ("childrelidcntr"), X ("0x0")); // TODO
-  implementation_artifacts->setAttribute (X ("kind"), 
-                                          X ("ImplementationArtifacts"));
-  this->add_name_element (implementation_artifacts, 
-                          "ImplementationArtifacts");
-  be_global->root_folder ()->appendChild (implementation_artifacts);
-}
-
-void
-picml_visitor::add_ComponentTypes (void)
-{
-  DOMElement *component_types = doc_->createElement (X ("folder"));
-  be_global->component_types_folder (component_types);
-  this->set_id_attr (component_types, BE_GlobalData::FOLDER);
-  this->set_relid_attr (component_types);
-  component_types->setAttribute (X ("childrelidcntr"), X ("0x0")); // TODO
-  component_types->setAttribute (X ("kind"), 
-                                 X ("ComponentTypes"));
-  this->add_name_element (component_types, 
-                          "ComponentTypes");
-  be_global->root_folder ()->appendChild (component_types);
-}
-
-void
-picml_visitor::add_PackageConfigurations (void)
-{
-  DOMElement *package_configurations =
-    doc_->createElement (X ("folder"));
-  this->set_id_attr (package_configurations, BE_GlobalData::FOLDER);
-  this->set_relid_attr (package_configurations);
-  package_configurations->setAttribute (X ("childrelidcntr"), X ("0x0")); // TODO
-  package_configurations->setAttribute (X ("kind"), 
-                                        X ("PackageConfigurations"));
-  this->add_name_element (package_configurations, 
-                          "PackageConfigurations");
-  be_global->root_folder ()->appendChild (package_configurations);
-}
-
-void
-picml_visitor::add_ComponentPackages (void)
-{
-  DOMElement *component_packages =
-    doc_->createElement (X ("folder"));
-  this->set_id_attr (component_packages, BE_GlobalData::FOLDER);
-  this->set_relid_attr (component_packages);
-  component_packages->setAttribute (X ("childrelidcntr"), X ("0x0")); // TODO
-  component_packages->setAttribute (X ("kind"), 
-                                    X ("ComponentPackages"));
-  this->add_name_element (component_packages, 
-                          "ComponentPackages");
-  be_global->root_folder ()->appendChild (component_packages);
-}
-
-void
-picml_visitor::add_DeploymentPlans (void)
-{
-  DOMElement *deployment_plans =
-    doc_->createElement (X ("folder"));
-  this->set_id_attr (deployment_plans, BE_GlobalData::FOLDER);
-  this->set_relid_attr (deployment_plans);
-  deployment_plans->setAttribute (X ("childrelidcntr"), X ("0x0")); // TODO
-  deployment_plans->setAttribute (X ("kind"), 
-                                  X ("DeploymentPlans"));
-  this->add_name_element (deployment_plans, 
-                          "DeploymentPlans");
-  be_global->root_folder ()->appendChild (deployment_plans);
-}
-
-void
-picml_visitor::add_Targets (void)
-{
-  DOMElement *targets =
-    doc_->createElement (X ("folder"));
-  this->set_id_attr (targets, BE_GlobalData::FOLDER);
-  this->set_relid_attr (targets);
-  targets->setAttribute (X ("childrelidcntr"), X ("0x0")); // TODO
-  targets->setAttribute (X ("kind"), 
-                         X ("Targets"));
-  this->add_name_element (targets, 
-                          "Targets");
-  be_global->root_folder ()->appendChild (targets);
-}
-
-void
-picml_visitor::add_TopLevelPackages (void)
-{
-  DOMElement *top_level_packages =
-    doc_->createElement (X ("folder"));
-  this->set_id_attr (top_level_packages, BE_GlobalData::FOLDER);
-  this->set_relid_attr (top_level_packages);
-  top_level_packages->setAttribute (X ("childrelidcntr"), X ("0x0")); // TODO
-  top_level_packages->setAttribute (X ("kind"), 
-                                    X ("TopLevelPackages"));
-  this->add_name_element (top_level_packages, 
-                          "TopLevelPackages");
-  be_global->root_folder ()->appendChild (top_level_packages);
-}
-
-void
-picml_visitor::add_ComponentBuild (void)
-{
-  DOMElement *component_build =
-    doc_->createElement (X ("folder"));
-  this->set_id_attr (component_build, BE_GlobalData::FOLDER);
-  this->set_relid_attr (component_build);
-  component_build->setAttribute (X ("childrelidcntr"), X ("0x0")); // TODO
-  component_build->setAttribute (X ("kind"), 
-                                 X ("ComponentBuild"));
-  this->add_name_element (component_build, 
-                          "ComponentBuild");
-  be_global->root_folder ()->appendChild (component_build);
-}
-
-void
-picml_visitor::add_defalt_container (AST_Component *node)
+picml_visitor::add_default_container (AST_Component *node)
 {
   DOMElement *container = doc_->createElement (X ("model"));
   this->set_id_attr (container, BE_GlobalData::MODEL);
@@ -3697,7 +4264,10 @@ picml_visitor::add_one_artifact_ref (DOMElement *impl_container,
     dynamic_cast<DOMElement *> (artifact->getFirstChild ());
   DOMText *artifact_name =
     dynamic_cast<DOMText *> (artifact_name_node->getFirstChild ());
-  ACE_CString ref_name (XMLString::transcode (artifact_name->getData ()));
+  ACE_Auto_Basic_Ptr<char> safety (
+      XMLString::transcode (artifact_name->getData ())
+    );
+  ACE_CString ref_name (safety.get ());
   ref_name += "Ref";                           
   this->add_name_element (artifact_ref, ref_name.c_str ());
                               
@@ -3742,4 +4312,47 @@ picml_visitor::add_component_ref (DOMElement *container,
   DOMElement *connection =
     this->add_connection (impl, ref, "Implements", 11);
   container->appendChild (connection);
+}
+
+void
+picml_visitor::insert_element (DOMElement *elem)
+{
+  DOMElement *next = 0;
+  
+  // If we have no previous_, then get the first element in this DOM
+  // tree scope corresonding to an IDL declaration. Otherwise, get
+  // the next DOM element after previous_, if any.
+  if (0 == this->previous_)
+    {
+      DOMNodeList *children = this->sub_tree_->getChildNodes ();
+      
+      for (XMLSize_t i = 0; i < children->getLength (); ++i)
+        {
+          
+          DOMElement *child = (DOMElement *) children->item (i);
+          
+          if (0 == child)
+            {
+              continue;
+            }
+            
+          const XMLCh *tag = child->getTagName ();
+          
+          // An element corresponding to something in the IDL file
+          // will have to be one of these.
+          if (X ("model") == tag
+              || X ("reference") == tag
+              || X ("atom") == tag)
+            {
+              next = child;
+              break;
+            }
+        }
+    }
+  else
+    {
+      next = (DOMElement *) this->previous_->getNextSibling ();
+    }
+  // Behaves like appendChild() if next == 0. 
+  (void) this->sub_tree_->insertBefore (elem, next);
 }

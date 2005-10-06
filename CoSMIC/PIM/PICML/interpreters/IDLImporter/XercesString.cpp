@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include "XercesString.h"
+#include "ace/ACE.h"
 
 using xercesc::XMLString;
 
@@ -98,7 +99,7 @@ bool XStr::erase (const XMLCh *head, const XMLCh *tail)
   return bOK;
 }
 
-int XStr::size () const
+int XStr::size (void) const
 {
   return XMLString::stringLen (_wstr);
 }
@@ -115,7 +116,7 @@ const XMLCh XStr::operator [] (const int i) const
 
 bool XStr::operator== (const XMLCh* wstr) const
 {
-  return XMLString::compareIString (wstr, this->_wstr) == 0;
+  return (0 == XMLString::compareIString (wstr, this->_wstr));
 }
 
 bool operator== (const XStr& lhs, const XStr& rhs)

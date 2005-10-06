@@ -17,6 +17,7 @@ project(TAO_PICML_BE) : acedefaults, core, crosscompile, xerces {
     be_produce.cpp
     picml_visitor.cpp
     XercesString.cpp
+    XML_Error_Handler.cpp
   }
 
   Header_Files {
@@ -24,6 +25,8 @@ project(TAO_PICML_BE) : acedefaults, core, crosscompile, xerces {
     picml_visitor.h
     XercesString.h
     be_extern.h
+    be_global.h
+    XML_Error_Handler.h
   }
 }
 

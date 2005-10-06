@@ -19,7 +19,7 @@
 class XStr
 {
 public:
-  XStr() : _wstr (0L) { };
+  XStr (void) : _wstr (0L) { };
 
   XStr (const char* str);
 
@@ -31,18 +31,18 @@ public:
 
   XStr& operator= (const XStr& rhs);
 
-  ~XStr();
+  ~XStr (void);
 
-  const XMLCh* begin() const;
+  const XMLCh* begin (void) const;
 
-  const XMLCh* end() const;
+  const XMLCh* end (void) const;
 
-  bool append(const XMLCh* tail);
+  bool append (const XMLCh* tail);
 
-  bool erase(const XMLCh* head, const XMLCh* tail);
+  bool erase (const XMLCh* head, const XMLCh* tail);
 
-  int size() const;
-
+  int size (void) const;
+  
   XMLCh operator [] (const int i);
 
   const XMLCh operator [] (const int i) const;

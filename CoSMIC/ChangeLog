@@ -1,3 +1,37 @@
+Thu Oct  6 22:49:51 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIOM/PICML/interpreters/ILDImporter/XML_Error_Handler.cpp:
+        * PIOM/PICML/interpreters/ILDImporter/XML_Error_Handler.h:
+        
+          New files defining an error handler which is then attached
+          to a DOM parser before it reads in an XML file (see new
+          feature added below).
+          
+        * PIOM/PICML/interpreters/ILDImporter/IDLImporter.mpc:
+        
+          Added new files above to the project generator.
+          
+        * PIOM/PICML/interpreters/ILDImporter/XercesString.cpp:
+        * PIOM/PICML/interpreters/ILDImporter/XercesString.h:
+        * PIOM/PICML/interpreters/ILDImporter/be_produce.cpp:
+        
+          Cosmetic changes.
+          
+        * PIOM/PICML/interpreters/ILDImporter/be_global.cpp:
+        * PIOM/PICML/interpreters/ILDImporter/be_global.h:
+        * PIOM/PICML/interpreters/ILDImporter/be_init.cpp:
+        * PIOM/PICML/interpreters/ILDImporter/picml_visitor.cpp:
+        * PIOM/PICML/interpreters/ILDImporter/picml_visitor.h:
+        
+          Added capability to read in an XML file, with the new
+          option '-i <xxx.xme>' and, when processing the IDL
+          files, check for the existence of each IDL declaration
+          and reference in the resulting DOM tree before adding
+          it. This means that IDL files updated WITH ADDITIONS ONLY
+          can be processed to create an XME file which preserves
+          all existing PICML assemblies, packages, implementations,
+          etc.
+
 Wed Oct  5 17:23:34 2005  Jaiganesh B  <jai@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:
