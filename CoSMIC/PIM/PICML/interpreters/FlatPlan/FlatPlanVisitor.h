@@ -247,6 +247,7 @@ namespace PICML
     FlatPlan_Export void CreateAssemblyInstances (std::set<Component>& comps);
     FlatPlan_Export void CreateAssemblyConnections (std::vector<ComponentAssembly>& assemblies);
     FlatPlan_Export void CreateAttributeMappings (std::vector<ComponentAssembly>& assemblies);
+	FlatPlan_Export void CreatePropertyElement (std::string name, const Property& property);
 	FlatPlan_Export virtual void Visit_ReadonlyAttribute(const ReadonlyAttribute&);
     FlatPlan_Export virtual void Visit_AttributeValue(const AttributeValue&);
     FlatPlan_Export virtual void Visit_AttributeDelegate(const AttributeDelegate&);

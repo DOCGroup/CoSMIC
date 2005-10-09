@@ -297,9 +297,13 @@ namespace PICML
 
   void FlatPlanVisitor::Visit_Property(const Property& property)
   {
+    this->CreatePropertyElement (property.name(), property);
+  }
+
+  void FlatPlanVisitor::CreatePropertyElement (std::string name, const Property& property)
+  {
     this->push();
-    this->curr_->appendChild (this->createSimpleContent ("name",
-                                                         property.name()));
+    this->curr_->appendChild (this->createSimpleContent ("name", name));
     // Property's value
     DOMElement* value = this->doc_->createElement (XStr ("value"));
     this->curr_->appendChild (value);
@@ -1503,7 +1507,8 @@ namespace PICML
                 this->curr_->appendChild (ele);
 				this->curr_ = ele;
                 Property val = attrVal.second;
-                val.Accept (*this);
+				this->CreatePropertyElement (compAttr.second, val);
+                //val.Accept (*this);
 				this->pop();
               }
           }
@@ -1560,7 +1565,7 @@ namespace PICML
             // Get the component, attribute pair
             pair<std::string, std::string> compAttr = *iter;
             // Set the name of the associated property to the attribute name
-            prop.name() = compAttr.second;
+            // prop.name() = compAttr.second;
             // If this component's attribute hasn't been assigned a value,
             // i.e., a value hasn't been propagated from a higher-level assembly,
             // set it to the current value.
@@ -1679,7 +1684,8 @@ namespace PICML
                 this->curr_->appendChild (ele);
 				this->curr_ = ele;
                 Property val = attrVal.second;
-                val.Accept (*this);
+                //val.Accept (*this);
+				this->CreatePropertyElement (compAttr.second, val);
 				this->pop();
               }
           }
