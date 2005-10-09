@@ -1,3 +1,10 @@
+Sun Oct  9 19:46:31 2005  Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:
+
+          Added changes to create config property tags for individual
+          component instances in a flattened deployment plan.
+
 Thu Oct  6 23:26:05 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/docs/Importing_IDL.doc:

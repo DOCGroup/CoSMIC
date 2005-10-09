@@ -1116,7 +1116,23 @@ namespace PICML
                 ComponentRef component_ref = ComponentRef::Cast (comp_type);
                 Component comp = component_ref.ref();
                 std::string component_name = comp.name ();
-                containing_assemblies.insert(comp.ComponentAssembly_parent());
+                ComponentAssembly component_assembly_parent;
+				component_assembly_parent = comp.ComponentAssembly_parent();
+                //containing_assemblies.insert(comp.ComponentAssembly_parent());
+                // containing_assemblies.insert(comp_assembly);
+                if (component_assembly_parent.isInstance())
+                {
+                  //comp_assembly_parent = comp_assembly.Archetype();
+                  component_assembly_parent = 
+                      component_assembly_parent.ComponentAssembly_parent();
+                  while (component_assembly_parent.isInstance())
+                    component_assembly_parent = 
+                      component_assembly_parent.ComponentAssembly_parent();
+                }
+                //containing_assemblies.
+                   // insert(comp_assembly.ComponentAssembly_parent());
+                containing_assemblies.insert(component_assembly_parent);
+
                 Component typeParent;
                 if (this->monoimpls_.find (component_name) 
                     != this->monoimpls_.end ())
