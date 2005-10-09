@@ -179,7 +179,7 @@ UINT __stdcall RegisterParadigms(MSIHANDLE hInstall)
     {
       SendErrorMsg (hInstall, "Unable to access Registry Key "
                     "HKEY_CURRENT_USER\\SOFTWARE\\ISIS\\CoSMIC\\TargetDir", 1);
-      return ERROR_INSTALL_FAILURE;
+      return 0;
     }
 
   std::vector<std::string> paradigms;
@@ -201,7 +201,7 @@ UINT __stdcall RegisterParadigms(MSIHANDLE hInstall)
         errorMsg += ". Please check if you have a valid GME installation. \n";
         errorMsg += LastError();
         SendErrorMsg (hInstall, errorMsg.c_str(), 1);
-        return ERROR_INSTALL_FAILURE;
+        return 0;
       }
     }
   // Don't change this return value or BAD THINGS[TM] will happen.
@@ -274,7 +274,7 @@ UINT __stdcall UnRegisterParadigms (MSIHANDLE hInstall)
                                 svParadigmName);
           errorMsg += LastError();
           SendErrorMsg (hInstall, errorMsg.c_str(), 1);
-          return ERROR_INSTALL_FAILURE;
+          return 0;
         }
     }
   // Don't change this return value or BAD THINGS[TM] will happen.

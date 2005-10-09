@@ -1,3 +1,16 @@
+Sun Oct  9 21:56:25 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * Installer/CoSMIC-Installer.ise:  Updated to correspond to
+          CoSMIC-0.4.6
+
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:  Return 0 from
+          the custom actions so that the installation rolls back instead
+          of proceeding as if nothing happened.
+
+        * PIM/PICML/Readme.rtf:
+        * PIM/PICML/ReleaseNotes.rtf:  Updated to reflect the changes
+          corresponding to CoSMIC-0.4.6.
+
 Sun Oct  9 20:33:54 2005  Jaiganesh B  <jai@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:
@@ -17,34 +30,34 @@ Thu Oct  6 23:26:05 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/docs/Importing_IDL.doc:
         * PIM/PICML/docs/Importing_IDL.pdf:
-        
+
           Updated IDL importing documentation.
 
 Thu Oct  6 22:49:51 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/ILDImporter/XML_Error_Handler.cpp:
         * PIM/PICML/interpreters/ILDImporter/XML_Error_Handler.h:
-        
+
           New files defining an error handler which is then attached
           to a DOM parser before it reads in an XML file (see new
           feature added below).
-          
+
         * PIM/PICML/interpreters/ILDImporter/IDLImporter.mpc:
-        
+
           Added new files above to the project generator.
-          
+
         * PIM/PICML/interpreters/ILDImporter/XercesString.cpp:
         * PIM/PICML/interpreters/ILDImporter/XercesString.h:
         * PIM/PICML/interpreters/ILDImporter/be_produce.cpp:
-        
+
           Cosmetic changes.
-          
+
         * PIM/PICML/interpreters/ILDImporter/be_global.cpp:
         * PIM/PICML/interpreters/ILDImporter/be_global.h:
         * PIM/PICML/interpreters/ILDImporter/be_init.cpp:
         * PIM/PICML/interpreters/ILDImporter/picml_visitor.cpp:
         * PIM/PICML/interpreters/ILDImporter/picml_visitor.h:
-        
+
           Added capability to read in an XML file, with the new
           option '-i <xxx.xme>' and, when processing the IDL
           files, check for the existence of each IDL declaration
