@@ -1,3 +1,11 @@
+Sun Oct  9 20:33:54 2005  Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:
+        * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.h:
+
+          Added changes to visit the property elements like
+          config property using a separate helper function.
+
 Sun Oct  9 19:46:31 2005  Jaiganesh B  <jai@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:
