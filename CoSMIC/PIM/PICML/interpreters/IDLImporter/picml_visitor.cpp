@@ -440,8 +440,9 @@ picml_visitor::visit_component (AST_Component *node)
       
   // Also see if it's been put in the decl table.
   DOMElement *table_elem = 0;
+  const char *node_id = node->repoID ();
   int result =
-    be_global->decl_elem_table ().find (node->repoID (), table_elem);
+    be_global->decl_elem_table ().find (node_id, table_elem);
 
   if (0 == elem)
     {
@@ -452,7 +453,14 @@ picml_visitor::visit_component (AST_Component *node)
       else
         {
           elem = this->doc_->createElement (X ("model"));
-          this->set_id_attr (elem, BE_GlobalData::MODEL);
+          ACE_CString gme_id =
+            this->set_id_attr (elem, BE_GlobalData::MODEL);
+          
+          // Store the DOMElement and GME id in their respective tables.
+          be_global->decl_elem_table ().bind (ACE::strnew (node_id),
+                                              elem);
+          be_global->decl_id_table ().bind (ACE::strnew (node_id),
+                                            X (gme_id.c_str ()));
         }
       
       // We add the elem to the table the first time the node is
@@ -502,15 +510,6 @@ picml_visitor::visit_component (AST_Component *node)
   // new element can be inserted in the correct position.  
   this->previous_ = elem;
       
-  if (0 != result)
-    {
-      // Store the DOMElement and GME id in their respective tables.
-      be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
-                                          elem);
-      be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
-                                        elem->getAttribute (X ("id")));
-    }
-    
   unsigned long start_id =
     (0 == node->base_component () ? 0UL : 1UL)
     + static_cast<unsigned long> (node->n_supports ())
@@ -575,7 +574,14 @@ picml_visitor::visit_home (AST_Home *node)
       else
         {
           elem = this->doc_->createElement (X ("model"));
-          this->set_id_attr (elem, BE_GlobalData::MODEL);
+          ACE_CString gme_id =
+            this->set_id_attr (elem, BE_GlobalData::MODEL);
+
+          // Store the DOMElement and GME id in their respective tables.
+          be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
+                                              elem);
+          be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
+                                            X (gme_id.c_str ()));
         }
       
       // We add the elem to the table the first time the node is
@@ -610,15 +616,6 @@ picml_visitor::visit_home (AST_Home *node)
   // new element can be inserted in the correct position.  
   this->previous_ = elem;
       
-  if (0 != result)
-    {
-      // Store the DOMElement and GME id in their respective tables.
-      be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
-                                          elem);
-      be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
-                                        elem->getAttribute (X ("id")));
-    }
-    
   unsigned long start_id = (0 == node->base_home () ? 0UL : 1UL)
                            + static_cast<unsigned long> (node->n_supports ())
                            + (0 == node->primary_key () ? 0UL : 1UL)

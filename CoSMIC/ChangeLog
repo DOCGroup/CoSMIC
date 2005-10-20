@@ -1,3 +1,14 @@
+Fri Oct 21 000:10:58 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
+        
+          Fixed a bug in visit_component() and visit_home() where
+          an attemp to access the GME id of the component or home
+          (in an internally maintained table) is made before the 
+          GME is stored there. Thanks to Like Ma <likemartinma@gmail.com>
+          and Hubert Talbot <Hubert.Talbot@criq.qc.ca> for reporting
+          the resulting lookup failure.
+
 Sun Oct  9 21:56:25 2005  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * Installer/CoSMIC-Installer.ise:  Updated to correspond to
