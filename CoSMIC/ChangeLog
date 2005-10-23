@@ -1,10 +1,79 @@
+Sun Oct 23 19:10:00 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * Installer/CoSMIC-Installer.ise:  Updated to reflect the change
+          in version.
+
+        * PIM/PICML/Readme.rtf:
+        * PIM/PICML/ReleaseNotes.rtf: Updated to reflect CoSMIC version
+          0.4.7.
+
+        * PIM/PICML/interpreters/Interpreters.mwc:  Removed the
+          default.features argument passed to the command-line.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:  Relax the rule that prohibited a
+          single Property from being used to provide values for multiple
+          AttributeMappings.  Thanks to Steven D Baker
+          <steven_d_baker@raytheon.com> for motivating this change.
+
+        * Installer/MergeModules/atl.msm:
+        * Installer/MergeModules/comcat.msm:
+        * Installer/MergeModules/comct232.msm:
+        * Installer/MergeModules/comct332.msm:
+        * Installer/MergeModules/comctl32.msm:
+        * Installer/MergeModules/comdlg32.msm:
+        * Installer/MergeModules/dbgrid32.msm:
+        * Installer/MergeModules/dblist32.msm:
+        * Installer/MergeModules/mci32.msm:
+        * Installer/MergeModules/mfc42.msm:
+        * Installer/MergeModules/mfc42u.msm:
+        * Installer/MergeModules/msadodc.msm:
+        * Installer/MergeModules/msbind.msm:
+        * Installer/MergeModules/mschrt20.msm:
+        * Installer/MergeModules/mscomct2.msm:
+        * Installer/MergeModules/mscomctl.msm:
+        * Installer/MergeModules/mscomm32.msm:
+        * Installer/MergeModules/msdatgrd.msm:
+        * Installer/MergeModules/msdatlst.msm:
+        * Installer/MergeModules/msdatrep.msm:
+        * Installer/MergeModules/msdbrptr.msm:
+        * Installer/MergeModules/msderun.msm:
+        * Installer/MergeModules/msflxgrd.msm:
+        * Installer/MergeModules/mshflxgd.msm:
+        * Installer/MergeModules/mshtmpgr.msm:
+        * Installer/MergeModules/msinet.msm:
+        * Installer/MergeModules/msmapi32.msm:
+        * Installer/MergeModules/msmask32.msm:
+        * Installer/MergeModules/msrdc20.msm:
+        * Installer/MergeModules/msrdo20.msm:
+        * Installer/MergeModules/msstdfmt.msm:
+        * Installer/MergeModules/msstkprp.msm:
+        * Installer/MergeModules/msvbvm60.msm:
+        * Installer/MergeModules/msvcirt.msm:
+        * Installer/MergeModules/msvcp60.msm:
+        * Installer/MergeModules/msvcrt.msm:
+        * Installer/MergeModules/mswcrun.msm:
+        * Installer/MergeModules/mswinsck.msm:
+        * Installer/MergeModules/oareg.msm:
+        * Installer/MergeModules/oleaut32.msm:
+        * Installer/MergeModules/picclp32.msm:
+        * Installer/MergeModules/sysinfo.msm:
+        * Installer/MergeModules/tabctl32.msm:
+
+        * PIM/PICML/interpreters/default.features:
+        * PIM/PICML/interpreters/picmllib.mpb:
+
+          Removed these files as we don't need them anymore.
+
 Fri Oct 21 000:10:58 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
-        
+
           Fixed a bug in visit_component() and visit_home() where
           an attemp to access the GME id of the component or home
-          (in an internally maintained table) is made before the 
+          (in an internally maintained table) is made before the
           GME is stored there. Thanks to Like Ma <likemartinma@gmail.com>
           and Hubert Talbot <Hubert.Talbot@criq.qc.ca> for reporting
           the resulting lookup failure.
