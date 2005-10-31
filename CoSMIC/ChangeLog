@@ -1,3 +1,11 @@
+Mon Oct 31 15:57:54 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/ILDImporter/picml_visitor.cpp:
+        
+          Fixed cut-and-paste error that was causing incorrect XML to
+          me generated for IDL typedefs. Thanks to Peter Oslej
+          <peter.oslej@vrm.sk> for reporting the problem.
+
 Sun Oct 23 19:10:00 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * Installer/CoSMIC-Installer.ise:  Updated to reflect the change
