@@ -148,7 +148,6 @@ picml_visitor::visit_module (AST_Module *node)
   if (0 == elem)
     {
       elem = this->doc_->createElement (X ("model"));
-      this->set_id_attr (elem, BE_GlobalData::MODEL);
       
       // Simple check to see if the stuff in the block below
       // has been set already. If the elem was not imported,
@@ -453,14 +452,13 @@ picml_visitor::visit_component (AST_Component *node)
       else
         {
           elem = this->doc_->createElement (X ("model"));
-          ACE_CString gme_id =
-            this->set_id_attr (elem, BE_GlobalData::MODEL);
+          (void) this->set_id_attr (elem, BE_GlobalData::MODEL);
           
           // Store the DOMElement and GME id in their respective tables.
           be_global->decl_elem_table ().bind (ACE::strnew (node_id),
                                               elem);
           be_global->decl_id_table ().bind (ACE::strnew (node_id),
-                                            X (gme_id.c_str ()));
+                                            elem->getAttribute (X ("id")));
         }
       
       // We add the elem to the table the first time the node is
@@ -574,14 +572,13 @@ picml_visitor::visit_home (AST_Home *node)
       else
         {
           elem = this->doc_->createElement (X ("model"));
-          ACE_CString gme_id =
-            this->set_id_attr (elem, BE_GlobalData::MODEL);
+          (void) this->set_id_attr (elem, BE_GlobalData::MODEL);
 
           // Store the DOMElement and GME id in their respective tables.
           be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
                                               elem);
           be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
-                                            X (gme_id.c_str ()));
+                                            elem->getAttribute (X ("id")));
         }
       
       // We add the elem to the table the first time the node is
