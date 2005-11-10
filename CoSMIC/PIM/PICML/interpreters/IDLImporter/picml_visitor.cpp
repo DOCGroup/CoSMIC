@@ -1423,8 +1423,8 @@ picml_visitor::visit_constant (AST_Constant *node)
         }
       else
         {
-          elem = this->doc_->createElement (X ("model"));
-          this->set_id_attr (elem, BE_GlobalData::MODEL);
+          elem = this->doc_->createElement (X ("reference"));
+          this->set_id_attr (elem, BE_GlobalData::REF);
         }
       
       // We add the elem to the table the first time the node is
