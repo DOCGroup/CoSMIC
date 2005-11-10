@@ -1505,8 +1505,8 @@ picml_visitor::visit_enum_val (AST_EnumVal *node)
         }
       else
         {
-          elem = this->doc_->createElement (X ("model"));
-          this->set_id_attr (elem, BE_GlobalData::MODEL);
+          elem = this->doc_->createElement (X ("atom"));
+          this->set_id_attr (elem, BE_GlobalData::ATOM);
         }
       
       // We add the elem to the table the first time the node is
