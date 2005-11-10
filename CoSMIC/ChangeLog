@@ -1,8 +1,14 @@
+Fri Nov 11 01:09:24 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
+        
+          Fixed incorrect XML generation for IDL enum values.
+
 Thu Nov 10 23:18:05 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
         
-          Fixed incorrect XML generation for IDL constant.
+          Fixed incorrect XML generation for IDL constants.
 
 Mon Nov  7 23:12:05 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
