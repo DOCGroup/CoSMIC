@@ -1,19 +1,42 @@
+Sun Nov 13 19:15:06 2005  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme: 
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:  
+
+          Added support for capturing internal behaviour of components.  
+          We use I/O Automata to represent behaviour of components.  Also
+          merged in changes from Nilabja for determining individual control
+          flows in an assembly. 
+
+        * PIM/PICML/paradigms/icons/InOutAction.bmp:
+        * PIM/PICML/paradigms/icons/InputAction.bmp:
+        * PIM/PICML/paradigms/icons/InputState.bmp:
+        * PIM/PICML/paradigms/icons/InternalAction.bmp:
+        * PIM/PICML/paradigms/icons/OutputAction.bmp:
+        * PIM/PICML/paradigms/icons/OutputState.bmp:
+        * PIM/PICML/paradigms/icons/StartState.bmp:
+        * PIM/PICML/paradigms/icons/State.bmp: 
+ 
+          Added icons for the I/O Automata extensions.
+
 Fri Nov 11 01:09:24 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
-        
+
           Fixed incorrect XML generation for IDL enum values.
 
 Thu Nov 10 23:18:05 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
-        
+
           Fixed incorrect XML generation for IDL constants.
 
 Mon Nov  7 23:12:05 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
-        
+
           Fixed a problem with passing a string to an internal table
           that was later deleted and was thus retrieved from the
           table as a garbage value.
@@ -21,7 +44,7 @@ Mon Nov  7 23:12:05 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 Mon Oct 31 15:57:54 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/ILDImporter/picml_visitor.cpp:
-        
+
           Fixed cut-and-paste error that was causing incorrect XML to
           me generated for IDL typedefs. Thanks to Peter Oslej
           <peter.oslej@vrm.sk> for reporting the problem.
