@@ -75,7 +75,7 @@ public:
   // Project related definitions
   MPC_Export void create_project (const PICML::Project &project);
   MPC_Export void create_stub_definition (const PICML::StubProject &);
-  MPC_Export void create_skeleton_definition (const PICML::ServantProject &);
+  MPC_Export void create_skeleton_definition (const PICML::ServantProject &, bool);
   MPC_Export void create_executor_definition (const PICML::ExecutorProject &);
   MPC_Export bool dependent_project (PICML::ImplementationArtifact &artifact, 
 									 std::string &dependent_proj);

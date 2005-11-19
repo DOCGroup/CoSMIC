@@ -511,7 +511,7 @@ MPCStream::create_cidl_defn (PICML::ImplementationArtifact& artifact)
 }
 
 void
-MPCStream::create_skeleton_definition (const PICML::ServantProject &skel)
+MPCStream::create_skeleton_definition (const PICML::ServantProject &skel, bool exec_not_present)
 {
 	// Obtain the library name -- Name of the artifact 
 	PICML::ImplementationArtifactReference art_ref = 
@@ -526,10 +526,7 @@ MPCStream::create_skeleton_definition (const PICML::ServantProject &skel)
 	/// Check if File ref is present 
 	PICML::FileRef file_ref = skel.FileRef_child ();
 	
-	if (file_ref != Udm::null)
-		this->create_project_defn (proj_name, "ciao_servant_dnc");
-	else 
-		this->create_project_defn (proj_name, "ciao_server_dnc");
+	this->create_project_defn (proj_name, "ciao_servant_dnc");
 	
 	// Obtain what libraries this depends on -- Name of dependent
 	// libraries
@@ -574,7 +571,16 @@ MPCStream::create_skeleton_definition (const PICML::ServantProject &skel)
 	this->create_dynamic_flags_defn (shared_name);
 	
 	std::vector<std::string> source_file_names;
-	if (file_ref != Udm::null)
+
+	// check if the executor project is also present; if 
+	// so then create the cidl files
+	if (exec_not_present)
+	{
+		// Write out the source file definitions
+	   for (size_t i = 0; i < this->idl_files_.size (); i++)	
+		   source_file_names.push_back (this->idl_files_[i] + "S.cpp");
+	}
+	else
 	{
 		// Write out CIDL file definitions
 		this->create_cidl_defn (artifact);
@@ -595,13 +601,7 @@ MPCStream::create_skeleton_definition (const PICML::ServantProject &skel)
 		// Write out the IDL file definitions
 		this->create_idl_file_defn (idl_file_names);
 	}
-	else
-	{
-		// Write out the source file definitions
-	   for (size_t i = 0; i < this->idl_files_.size (); i++)
-		   source_file_names.push_back (this->idl_files_[i] + "S.cpp");
-	}
-
+	
 	// Write out the Source file definitions
 	this->create_source_file_defn (source_file_names);
 
@@ -736,18 +736,21 @@ MPCStream::create_project (const PICML::Project &project)
 	
 	// There should be atmost one project -- Constraint checked via constraints
 	assert (skel.size () <= 1);
-	if (skel.size ())
-	{
-		std::set<PICML::ServantProject>::iterator skel_iter = skel.begin ();
-		this->create_skeleton_definition (* skel_iter);	
-	}
-	
-	// Step 3: Generating the executor part --> Depends on this skeleton and
-	// External libraries if any
+
+	// If there is an executor project modeled, then CIDL files should be generated
+	// for the servant. Otherwise it should be a plain vanilla servant.
 	std::set<PICML::ExecutorProject> exec = project.ExecutorProject_kind_children ();
 	
 	// There should be atmost one project -- Constraint checked via constraints
 	assert (exec.size () <= 1);
+	if (skel.size ())
+	{
+		std::set<PICML::ServantProject>::iterator skel_iter = skel.begin ();
+		this->create_skeleton_definition (* skel_iter, (exec.size () == 0));	
+	}
+	
+	// Step 3: Generating the executor part --> Depends on this skeleton and
+	// External libraries if any
 	if (exec.size ())
 	{
 		std::set<PICML::ExecutorProject>::iterator exec_iter = exec.begin ();

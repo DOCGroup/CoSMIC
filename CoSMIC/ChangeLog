@@ -1,3 +1,13 @@
+Sat Nov 19 15:21:26 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+        * PIM/PICML/interpreters/MPC_Interpreter/MPCStream.h:
+        * PIM/PICML/interpreters/MPC_Interpreter/MPCStream.cpp:
+        * PIM/PICML/interpreters/MPC_Interpreter/MPC_Visitor.cpp:
+
+          Added fix to the MPC generation based on problem reported by
+          Vasili Goutos. The fix was to update the dependencies between
+          the implementation artifacts when there was a base project
+          associated.
+
 Sun Nov 13 19:15:06 2005  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme: 
