@@ -1,3 +1,14 @@
+Mon Nov 21 15:10:05 2005  Stoyan Paunov  <spaunov@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+             
+	  Integrated the QoSPML metamodel in PICML. 
+	  Will add the interpreter soon.
+          
+
 Sat Nov 19 15:21:26 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/MPC_Interpreter/MPCStream.h:
         * PIM/PICML/interpreters/MPC_Interpreter/MPCStream.cpp:
@@ -10,15 +21,15 @@ Sat Nov 19 15:21:26 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
 
 Sun Nov 13 19:15:06 2005  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
 
-        * PIM/PICML/paradigms/PICML-uml.xme: 
+        * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
-        * PIM/PICML/paradigms/PICML.xmp:  
+        * PIM/PICML/paradigms/PICML.xmp:
 
-          Added support for capturing internal behaviour of components.  
+          Added support for capturing internal behaviour of components.
           We use I/O Automata to represent behaviour of components.  Also
           merged in changes from Nilabja for determining individual control
-          flows in an assembly. 
+          flows in an assembly.
 
         * PIM/PICML/paradigms/icons/InOutAction.bmp:
         * PIM/PICML/paradigms/icons/InputAction.bmp:
@@ -27,8 +38,8 @@ Sun Nov 13 19:15:06 2005  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
         * PIM/PICML/paradigms/icons/OutputAction.bmp:
         * PIM/PICML/paradigms/icons/OutputState.bmp:
         * PIM/PICML/paradigms/icons/StartState.bmp:
-        * PIM/PICML/paradigms/icons/State.bmp: 
- 
+        * PIM/PICML/paradigms/icons/State.bmp:
+
           Added icons for the I/O Automata extensions.
 
 Fri Nov 11 01:09:24 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
