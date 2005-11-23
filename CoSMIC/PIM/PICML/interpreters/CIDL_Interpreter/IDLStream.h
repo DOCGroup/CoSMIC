@@ -4,7 +4,7 @@
 #include <ostream>
 #include <string>
 
-#include "CIDL_Export.h"
+#include "CIDL_Interpreter/CIDL_Export.h"
 
 // A dummy structure to inform TAO_OutStream's << operator to  put a newline
 // and use the current indentation for the succeeding line
@@ -96,7 +96,7 @@ public:
 private:
   std::ostream& strm_;
   int indent_level_;
-  
+
 private:
   void upcase (const char *);
 };

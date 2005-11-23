@@ -1,13 +1,292 @@
+Wed Nov 23 17:07:01 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/OCML/interpreters/OCML_Interpreter/BON2Component.h:
+        * PIM/OCML/interpreters/OCML_Interpreter/Component.rc:
+        * PIM/OCML/interpreters/OCML_Interpreter/ComponentConfig.h:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLInterpreter.mpc:
+        * PIM/OCML/interpreters/OCML_Interpreter/component.def:
+
+          Futile attempt to get OCML in a better shape.  It seems that
+          some elements have been removed from the metamodel, and the BON
+          Xtender code has not been updated.  Checking it in just in case,
+          we want to make it work in the future.
+
+        * PIM/PICML/interpreters/BGML/BGML.mpc:
+        * PIM/PICML/interpreters/BGML/BGML_Visitor.h:
+        * PIM/PICML/interpreters/BGML/BGML_Visitor.cpp:
+        * PIM/PICML/interpreters/BGML/Benchmark_Stream.h:
+        * PIM/PICML/interpreters/BGML/Benchmark_Stream.cpp:
+        * PIM/PICML/interpreters/BGML/Global_Data.h:
+        * PIM/PICML/interpreters/BGML/IDL_Util.h:
+        * PIM/PICML/interpreters/BGML/IDL_Util.cpp:
+        * PIM/PICML/interpreters/BGML/MetricEmitter.h:
+        * PIM/PICML/interpreters/BGML/MetricEmitter.cpp:
+        * PIM/PICML/interpreters/BGML/Timer_Stream.h:
+        * PIM/PICML/interpreters/BGML/Timer_Stream.cpp:
+        * PIM/PICML/interpreters/BGML/TypeEmitter.h:
+        * PIM/PICML/interpreters/BGML/TypeEmitter.cpp:
+        * PIM/PICML/interpreters/BGMLComponent/BGMLComponent.mpc:
+        * PIM/PICML/interpreters/BGMLComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/BGMLComponent/UdmConfig.h:
+        * PIM/PICML/interpreters/BGML_Base/BGML_Base.mpc:
+        * PIM/PICML/interpreters/BGML_Base/BGML_Task_Base.h:
+        * PIM/PICML/interpreters/BGML_Base/BGML_Task_Base.cpp:
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponent.mpc:
+        * PIM/PICML/interpreters/CIDLComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/CIDLComponent/UdmConfig.h:
+        * PIM/PICML/interpreters/CIDL_Interpreter/CIDL_Interpreter.mpc:
+        * PIM/PICML/interpreters/CIDL_Interpreter/Cidlc_Visitor.h:
+        * PIM/PICML/interpreters/CIDL_Interpreter/Cidlc_Visitor.cpp:
+        * PIM/PICML/interpreters/CIDL_Interpreter/IDLStream.h:
+        * PIM/PICML/interpreters/CIDL_Interpreter/IDLStream.cpp:
+        * PIM/PICML/interpreters/ConfigExport/ConfigExport.mpc:
+        * PIM/PICML/interpreters/ConfigExport/ConfigExportVisitor.h:
+        * PIM/PICML/interpreters/ConfigExport/ConfigExportVisitor.cpp:
+        * PIM/PICML/interpreters/ConfigExport/UdmApp.cpp:
+        * PIM/PICML/interpreters/ConfigExport/UdmConfig.h:
+        * PIM/PICML/interpreters/Configurator/Configurator.mpc:
+        * PIM/PICML/interpreters/Configurator/UdmApp.cpp:
+        * PIM/PICML/interpreters/Configurator/UdmConfig.h:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlan.mpc:
+        * PIM/PICML/interpreters/DeploymentPlan/PlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlan/PlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Component.rc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmConfig.h:
+        * PIM/PICML/interpreters/FlatPlan/FlatPlan.mpc:
+        * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.h:
+        * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:
+        * PIM/PICML/interpreters/FlatPlanComponent/Component.rc:
+        * PIM/PICML/interpreters/FlatPlanComponent/FlatPlanComponent.mpc:
+        * PIM/PICML/interpreters/FlatPlanComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/FlatPlanComponent/UdmConfig.h:
+        * PIM/PICML/interpreters/IDLImporter/XML_Error_Handler.cpp:
+        * PIM/PICML/interpreters/IDLImporter/XercesString.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
+        * PIM/PICML/interpreters/MPCComponent/MPCComponent.mpc:
+        * PIM/PICML/interpreters/MPCComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/MPCComponent/UdmConfig.h:
+        * PIM/PICML/interpreters/MPC_Interpreter/MPCStream.h:
+        * PIM/PICML/interpreters/MPC_Interpreter/MPCStream.cpp:
+        * PIM/PICML/interpreters/MPC_Interpreter/MPC_Interpreter.mpc:
+        * PIM/PICML/interpreters/MPC_Interpreter/MPC_Visitor.h:
+        * PIM/PICML/interpreters/MPC_Interpreter/MPC_Visitor.cpp:
+        * PIM/PICML/interpreters/PICML/PICML.mpc:
+        * PIM/PICML/interpreters/PICML/Utils.h:
+        * PIM/PICML/interpreters/PICML/Utils.cpp:
+        * PIM/PICML/interpreters/PICML/XercesString.h:
+        * PIM/PICML/interpreters/PICML/XercesString.cpp:
+        * PIM/PICML/interpreters/Package/Package.mpc:
+        * PIM/PICML/interpreters/Package/PackageVisitor.h:
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/PackageComponent/UdmConfig.h:
+        * PIM/PICML/interpreters/Target/Domain.mpc:
+        * PIM/PICML/interpreters/Target/DomainVisitor.h:
+        * PIM/PICML/interpreters/Target/DomainVisitor.cpp:
+        * PIM/PICML/interpreters/TargetComponent/Component.rc:
+        * PIM/PICML/interpreters/TargetComponent/DomainComponent.mpc:
+        * PIM/PICML/interpreters/TargetComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/TargetComponent/UdmConfig.h:
+
+          Updated the files to fix the include directives.  The preferred
+          method to include the files is to use the format:
+
+          #include "PICML/PICML.h"
+          #include "Package/PackageVisitor.h"
+
+          instead of
+
+          #include "PICML.h"
+          #include "PackageVisitor.h"
+
+        * PIM/PICML/paradigms/icons/Any.bmp:
+        * PIM/PICML/paradigms/icons/Assembly.bmp:
+        * PIM/PICML/paradigms/icons/AttributeMapping.bmp:
+        * PIM/PICML/paradigms/icons/Average.bmp:
+        * PIM/PICML/paradigms/icons/Bridge.bmp:
+        * PIM/PICML/paradigms/icons/Capability.bmp:
+        * PIM/PICML/paradigms/icons/ComponentPackage.bmp:
+        * PIM/PICML/paradigms/icons/ComponentProperty.bmp:
+        * PIM/PICML/paradigms/icons/ComponentSet.bmp:
+        * PIM/PICML/paradigms/icons/DataType.bmp:
+        * PIM/PICML/paradigms/icons/Discrete-Benchmark.bmp:
+        * PIM/PICML/paradigms/icons/Domain.bmp:
+        * PIM/PICML/paradigms/icons/ExternalReferenceEndPoint.bmp:
+        * PIM/PICML/paradigms/icons/ImplementationArtifact.bmp:
+        * PIM/PICML/paradigms/icons/ImplementationArtifactReference.bmp:
+        * PIM/PICML/paradigms/icons/ImplementationDependency.bmp:
+        * PIM/PICML/paradigms/icons/ImplementationReference.bmp:
+        * PIM/PICML/paradigms/icons/ImplementationRequirement.bmp:
+        * PIM/PICML/paradigms/icons/InputState.bmp:
+        * PIM/PICML/paradigms/icons/Interconnect.bmp:
+        * PIM/PICML/paradigms/icons/Jitter.bmp:
+        * PIM/PICML/paradigms/icons/Latency.bmp:
+        * PIM/PICML/paradigms/icons/Max.bmp:
+        * PIM/PICML/paradigms/icons/Min.bmp:
+        * PIM/PICML/paradigms/icons/MonolithicImplementation.bmp:
+        * PIM/PICML/paradigms/icons/Node.bmp:
+        * PIM/PICML/paradigms/icons/OutputState.bmp:
+        * PIM/PICML/paradigms/icons/PackageConfiguration.bmp:
+        * PIM/PICML/paradigms/icons/PackageConfigurationReference.bmp:
+        * PIM/PICML/paradigms/icons/PackageReference.bmp:
+        * PIM/PICML/paradigms/icons/Periodic-Bench.bmp:
+        * PIM/PICML/paradigms/icons/Property.bmp:
+        * PIM/PICML/paradigms/icons/Requirement.bmp:
+        * PIM/PICML/paradigms/icons/Resource.bmp:
+        * PIM/PICML/paradigms/icons/SatisfierProperty.bmp:
+        * PIM/PICML/paradigms/icons/SharedResource.bmp:
+        * PIM/PICML/paradigms/icons/StartState.bmp:
+        * PIM/PICML/paradigms/icons/State.bmp:
+        * PIM/PICML/paradigms/icons/Throughput.bmp:
+        * PIM/PICML/paradigms/icons/TopLevelPackage.bmp:
+        * PIM/PICML/paradigms/icons/Trigger-Bench.bmp:
+        * PIM/PICML/paradigms/icons/aggregate.bmp:
+        * PIM/PICML/paradigms/icons/aggregateref.bmp:
+        * PIM/PICML/paradigms/icons/alias.bmp:
+        * PIM/PICML/paradigms/icons/aliasref.bmp:
+        * PIM/PICML/paradigms/icons/attribute.bmp:
+        * PIM/PICML/paradigms/icons/boolean.bmp:
+        * PIM/PICML/paradigms/icons/boxed.bmp:
+        * PIM/PICML/paradigms/icons/boxedref.bmp:
+        * PIM/PICML/paradigms/icons/byte.bmp:
+        * PIM/PICML/paradigms/icons/comp-proj.bmp:
+        * PIM/PICML/paradigms/icons/componentfactory.bmp:
+        * PIM/PICML/paradigms/icons/componentfactoryref.bmp:
+        * PIM/PICML/paradigms/icons/conjunction_group.bmp:
+        * PIM/PICML/paradigms/icons/const.bmp:
+        * PIM/PICML/paradigms/icons/discriminator.bmp:
+        * PIM/PICML/paradigms/icons/disjunction_group.bmp:
+        * PIM/PICML/paradigms/icons/ec_consumer.bmp:
+        * PIM/PICML/paradigms/icons/ec_dependency.bmp:
+        * PIM/PICML/paradigms/icons/ec_event.bmp:
+        * PIM/PICML/paradigms/icons/ec_option.bmp:
+        * PIM/PICML/paradigms/icons/ec_proxy.bmp:
+        * PIM/PICML/paradigms/icons/ec_proxy_consumer.bmp:
+        * PIM/PICML/paradigms/icons/ec_proxy_supplier.bmp:
+        * PIM/PICML/paradigms/icons/ec_resource_factory.bmp:
+        * PIM/PICML/paradigms/icons/ec_supplier.bmp:
+        * PIM/PICML/paradigms/icons/ec_supplier_id.bmp:
+        * PIM/PICML/paradigms/icons/enum.bmp:
+        * PIM/PICML/paradigms/icons/enumref.bmp:
+        * PIM/PICML/paradigms/icons/enumvalue.bmp:
+        * PIM/PICML/paradigms/icons/event.bmp:
+        * PIM/PICML/paradigms/icons/event_sink.bmp:
+        * PIM/PICML/paradigms/icons/event_source.bmp:
+        * PIM/PICML/paradigms/icons/eventref.bmp:
+        * PIM/PICML/paradigms/icons/eventtype-port.bmp:
+        * PIM/PICML/paradigms/icons/eventtype.bmp:
+        * PIM/PICML/paradigms/icons/exception.bmp:
+        * PIM/PICML/paradigms/icons/exceptionref.bmp:
+        * PIM/PICML/paradigms/icons/factory.bmp:
+        * PIM/PICML/paradigms/icons/fileref.bmp:
+        * PIM/PICML/paradigms/icons/genericobject.bmp:
+        * PIM/PICML/paradigms/icons/genericvalue.bmp:
+        * PIM/PICML/paradigms/icons/genericvalueobject.bmp:
+        * PIM/PICML/paradigms/icons/getexception.bmp:
+        * PIM/PICML/paradigms/icons/in.bmp:
+        * PIM/PICML/paradigms/icons/inevent_lf.bmp:
+        * PIM/PICML/paradigms/icons/inevent_rt.bmp:
+        * PIM/PICML/paradigms/icons/ineventport.bmp:
+        * PIM/PICML/paradigms/icons/inherits.bmp:
+        * PIM/PICML/paradigms/icons/inout.bmp:
+        * PIM/PICML/paradigms/icons/label.bmp:
+        * PIM/PICML/paradigms/icons/logical_and_group.bmp:
+        * PIM/PICML/paradigms/icons/long.bmp:
+        * PIM/PICML/paradigms/icons/lookup.bmp:
+        * PIM/PICML/paradigms/icons/lookupkey.bmp:
+        * PIM/PICML/paradigms/icons/member.bmp:
+        * PIM/PICML/paradigms/icons/ns_admin.bmp:
+        * PIM/PICML/paradigms/icons/ns_config.bmp:
+        * PIM/PICML/paradigms/icons/ns_constraint.bmp:
+        * PIM/PICML/paradigms/icons/ns_consumer.bmp:
+        * PIM/PICML/paradigms/icons/ns_event.bmp:
+        * PIM/PICML/paradigms/icons/ns_filter-port.bmp:
+        * PIM/PICML/paradigms/icons/ns_filter.bmp:
+        * PIM/PICML/paradigms/icons/ns_option.bmp:
+        * PIM/PICML/paradigms/icons/ns_proxy.bmp:
+        * PIM/PICML/paradigms/icons/ns_proxy_consumer.bmp:
+        * PIM/PICML/paradigms/icons/ns_proxy_supplier.bmp:
+        * PIM/PICML/paradigms/icons/ns_qos-port.bmp:
+        * PIM/PICML/paradigms/icons/ns_qos.bmp:
+        * PIM/PICML/paradigms/icons/ns_resource_factory-port.bmp:
+        * PIM/PICML/paradigms/icons/ns_resource_factory.bmp:
+        * PIM/PICML/paradigms/icons/ns_supplier.bmp:
+        * PIM/PICML/paradigms/icons/object.bmp:
+        * PIM/PICML/paradigms/icons/objectref.bmp:
+        * PIM/PICML/paradigms/icons/oneway.bmp:
+        * PIM/PICML/paradigms/icons/operationref.bmp:
+        * PIM/PICML/paradigms/icons/out.bmp:
+        * PIM/PICML/paradigms/icons/outevent_lf.bmp:
+        * PIM/PICML/paradigms/icons/outevent_rt.bmp:
+        * PIM/PICML/paradigms/icons/outeventport.bmp:
+        * PIM/PICML/paradigms/icons/package.bmp:
+        * PIM/PICML/paradigms/icons/private.bmp:
+        * PIM/PICML/paradigms/icons/project.bmp:
+        * PIM/PICML/paradigms/icons/providedrequestport.bmp:
+        * PIM/PICML/paradigms/icons/readonlyattribute.bmp:
+        * PIM/PICML/paradigms/icons/realnumber.bmp:
+        * PIM/PICML/paradigms/icons/receptacle_lf.bmp:
+        * PIM/PICML/paradigms/icons/receptacle_rt.bmp:
+        * PIM/PICML/paradigms/icons/requiredrequestport.bmp:
+        * PIM/PICML/paradigms/icons/return.bmp:
+        * PIM/PICML/paradigms/icons/rt_info-port.bmp:
+        * PIM/PICML/paradigms/icons/rt_info.bmp:
+        * PIM/PICML/paradigms/icons/rtec_proxy_consumer.bmp:
+        * PIM/PICML/paradigms/icons/rtec_proxy_supplier.bmp:
+        * PIM/PICML/paradigms/icons/rtec_resource_factory-port.bmp:
+        * PIM/PICML/paradigms/icons/rtec_resource_factory.bmp:
+        * PIM/PICML/paradigms/icons/setexception.bmp:
+        * PIM/PICML/paradigms/icons/setexceptionref.bmp:
+        * PIM/PICML/paradigms/icons/short.bmp:
+        * PIM/PICML/paradigms/icons/string.bmp:
+        * PIM/PICML/paradigms/icons/supports.bmp:
+        * PIM/PICML/paradigms/icons/switchedaggregate.bmp:
+        * PIM/PICML/paradigms/icons/switchedaggregateref.bmp:
+        * PIM/PICML/paradigms/icons/task.bmp:
+        * PIM/PICML/paradigms/icons/taskset.bmp:
+        * PIM/PICML/paradigms/icons/timer.bmp:
+        * PIM/PICML/paradigms/icons/twoway.bmp:
+        * PIM/PICML/paradigms/icons/typeencoding.bmp:
+        * PIM/PICML/paradigms/icons/typekind.bmp:
+        * PIM/PICML/paradigms/icons/value.bmp:
+        * PIM/PICML/paradigms/icons/valueref.bmp:
+        * PIM/PICML/paradigms/icons/variablecollection.bmp:
+        * PIM/PICML/paradigms/icons/variablecollectionref.bmp:
+        * PIM/PICML/paradigms/icons/workspace.bmp:
+
+          Scaled down the icons to be 32x32 pixels, since we were losing a
+          lot of screen real-estate to icons, especially at lower
+          resolutions.  It looks fine even at 1600x1200.  This will be our
+          future standard icon size.
+
+        * picmllib.mpb:  Updated to fix the include paths as noted above.
+
+        * PIM/OCML/interpreters/OCML_Interpreter/ComponentConfig.old:
+        * PIM/OCML/interpreters/OCML_Interpreter/ConfigureComponent.exe:
+        * PIM/OCML/interpreters/OCML_Interpreter/GMESources.txt:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLBON2Component.dsp:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLBON2Component.vcproj:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLInterpreter.dsw:
+        * PIM/PICML/interpreters/domain/PICML.xsd:
+        * PIM/PICML/interpreters/domain/UdmConfig.h:
+
+          Removed these files.
+
 Mon Nov 21 15:10:05 2005  Stoyan Paunov  <spaunov@isis.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
-             
-	  Integrated the QoSPML metamodel in PICML. 
-	  Will add the interpreter soon.
-          
+
+          Integrated the QoSPML metamodel in PICML.
+          Will add the interpreter soon.
+
 
 Sat Nov 19 15:21:26 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/MPC_Interpreter/MPCStream.h:

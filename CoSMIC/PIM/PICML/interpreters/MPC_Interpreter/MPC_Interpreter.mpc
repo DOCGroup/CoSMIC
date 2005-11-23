@@ -2,7 +2,6 @@ project(MPC): picmllib {
    after += PICML
    sharedname = MPC
    macros += MPC_BUILD_DLL PICML_HAS_DLL
-   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML
    libs += PICML
 
    Source_Files {

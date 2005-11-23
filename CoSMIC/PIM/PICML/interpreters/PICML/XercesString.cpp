@@ -4,7 +4,7 @@
 #include <memory>
 
 
-#include "XercesString.h"
+#include "PICML/XercesString.h"
 
 using xercesc::XMLString;
 

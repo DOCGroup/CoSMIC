@@ -34,9 +34,9 @@
 #include "UdmApp.h"
 #include "UdmConfig.h"
 
-#include "../PICML/Utils.h"
-#include "PICML.h"
-#include "PackageVisitor.h"
+#include "PICML/Utils.h"
+#include "PICML/PICML.h"
+#include "Package/PackageVisitor.h"
 
 using xercesc::XMLPlatformUtils;
 using xercesc::XMLException;

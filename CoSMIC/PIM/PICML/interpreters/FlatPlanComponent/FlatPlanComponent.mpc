@@ -3,9 +3,6 @@ project (FlatPlanComponent): mfc, picmllib {
 
   macros += PICML_HAS_DLL _USRDLL _WINDLL
   sharedname = FlatPlanComponent
-  includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML \
-              $(COSMIC_ROOT)/PIM/PICML/interpreters/FlatPlan \
-              $(COSMIC_ROOT)/PIM/PICML/interpreters/FlatPlanComponent
   libs += PICML FlatPlan
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp

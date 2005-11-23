@@ -1,5 +1,5 @@
-#include "IDLStream.h"
-#include "ctype.h"
+#include "CIDL_Interpreter/IDLStream.h"
+#include <ctype.h>
 
 NL::NL (void)
 {
@@ -50,7 +50,7 @@ IDLStream::decr_indent (unsigned short flag)
     {
       --this->indent_level_;
     }
-    
+
   if (flag != 0)
     {
       this->indent ();
@@ -152,7 +152,7 @@ IDLStream::gen_cidlc_implements_decl (std::string &component_name)
 	this->nl ();
 }
 
-void 
+void
 IDLStream::gen_cidlc_manages_decl (std::string &component_name)
 {
 	this->strm_ << "manages ";
@@ -250,10 +250,9 @@ IDLStream::upcase (const char *str)
 {
   int i = 0;
   char c;
-  
+
   while ((c = str[i++]) != '\0')
     {
       this->strm_ << static_cast<char> (toupper (c));
     }
 }
-

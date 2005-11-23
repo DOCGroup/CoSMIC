@@ -5,9 +5,9 @@
 #include "stdafx.h"
 #include "UdmApp.h"
 #include "UdmConfig.h"
-#include "BGML_Visitor.h"
+#include "BGML/BGML_Visitor.h"
 
-#include "../PICML/Utils.h"
+#include "PICML/Utils.h"
 
 #define SetUpVisitor(type, root, visitor)                               \
   do                                                                    \

@@ -32,7 +32,7 @@
 #include <xercesc/framework/LocalFileFormatTarget.hpp>
 
 // Utility includes
-#include "XercesString.h"
+#include "PICML/XercesString.h"
 
 #include "UdmStatic.h"
 #include "UmlExt.h"
@@ -41,9 +41,9 @@
 #include "UdmApp.h"
 #include "UdmConfig.h"
 
-#include "../PICML/Utils.h"
-#include "PICML.h"
-#include "FlatPlanVisitor.h"
+#include "PICML/Utils.h"
+#include "PICML/PICML.h"
+#include "FlatPlan/FlatPlanVisitor.h"
 
 using xercesc::XMLPlatformUtils;
 using xercesc::XMLException;

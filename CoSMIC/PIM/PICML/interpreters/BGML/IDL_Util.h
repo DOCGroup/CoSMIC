@@ -1,8 +1,8 @@
 #ifndef IDL_UTIL_H
 #define IDL_UTIL_H
 
-#include "PICML.h"
-#include "BGML_Export.h"
+#include "PICML/PICML.h"
+#include "BGML/BGML_Export.h"
 
 class BGML_Export IDL_Util
 {
@@ -18,7 +18,7 @@ public:
 
 protected:
 	static std::string scope_name (PICML::TwowayOperation &operation_name);
-	
+
 };
 
 #endif /* IDL_UTIL_H */

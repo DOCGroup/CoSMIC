@@ -1,8 +1,8 @@
 // $Id$
 
 #include <iterator>
-#include "PICML.h"
-#include "IDLStream.h"
+#include "PICML/PICML.h"
+#include "CIDL_Interpreter/IDLStream.h"
 #include "UdmBase.h"
 #include "Uml.h"
 #include "UmlExt.h"
@@ -10,7 +10,7 @@
 
 namespace PICML
 
-#include "CIDL_Export.h"
+#include "CIDL_Interpreter/CIDL_Export.h"
 {
   class Cidlc_Visitor: public Visitor
   {

@@ -1,6 +1,6 @@
 #include "StdAfx.h"
 
-#include "ConfigExportVisitor.h"
+#include "ConfigExport/ConfigExportVisitor.h"
 
 #include <fstream>
 
@@ -12,7 +12,7 @@ namespace PICML
     : output_path_ (output_path)
   {
   }
- 
+
   void ConfigExportVisitor::
   Visit_RootFolder(const RootFolder& rf)
   {
@@ -27,7 +27,7 @@ namespace PICML
         folder.Accept (*this);
       }
   }
- 
+
   void ConfigExportVisitor::
   Visit_ImplementationArtifacts(const ImplementationArtifacts& ias)
   {
@@ -70,5 +70,5 @@ namespace PICML
         f << ia.configuration();
       }
   }
-    
+
 } // namespace PICML

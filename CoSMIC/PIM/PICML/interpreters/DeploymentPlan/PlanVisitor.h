@@ -2,7 +2,7 @@
 
 #include <memory>
 #include <stack>
-#include "PICML.h"
+#include "PICML/PICML.h"
 
 // Xerces includes
 #include <xercesc/util/PlatformUtils.hpp>
@@ -11,8 +11,8 @@
 #include <xercesc/framework/LocalFileFormatTarget.hpp>
 
 // Utility includes
-#include "XercesString.h"
-#include "Plan_Export.h"
+#include "PICML/XercesString.h"
+#include "DeploymentPlan/Plan_Export.h"
 
 namespace PICML
 {

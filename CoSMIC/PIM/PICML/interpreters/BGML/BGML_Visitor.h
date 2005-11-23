@@ -1,20 +1,20 @@
-// $Id$ 
+// $Id$
 
 #ifndef BGML_VISITOR_H
 #define BGML_VISITOR_H
 
-#include "PICML.h"
+#include "PICML/PICML.h"
 #include <string>
 
-#include "Global_Data.h"
-#include "BGML_Export.h"
+#include "BGML/Global_Data.h"
+#include "BGML/BGML_Export.h"
 
 class BGML_Export BGML_Visitor: public PICML::Visitor
 {
 public:
     BGML_Visitor (std::string &outputPath);
     ~BGML_Visitor();
-	
+
 	// Visitor Operations
 	void Visit_BenchmarkAnalysis (const PICML::BenchmarkAnalysis &model);
 	void Visit_TimeProbe (const PICML::TimeProbe &probe);

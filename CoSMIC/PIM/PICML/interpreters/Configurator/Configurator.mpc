@@ -6,8 +6,7 @@ project (Configurator): mfc, picmllib {
 
    macros += PICML_HAS_DLL _USRDLL _WINDLL \
              OCML_CONFIGURATOR_INTERPRETER_BUILD_DLL
-   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML \
-               $(COSMIC_ROOT)/PIM/OCML .. .
+   includes += $(COSMIC_ROOT)/PIM/OCML
    libs += PICML ocml_configurator_ui
    pch_header = StdAfx.h
    pch_source = StdAfx.cpp

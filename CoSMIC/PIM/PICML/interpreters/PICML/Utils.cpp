@@ -1,6 +1,6 @@
 // $Id$
 
-#include "Utils.h"
+#include "PICML/Utils.h"
 
 namespace PICML
 {
@@ -58,4 +58,23 @@ namespace PICML
     return true;
   }
 
+  std::string CreateUuid (void)
+  {
+    std::string idstr ("");
+    UUID* uuid = new UUID;
+    std::auto_ptr<UUID> cleanup_uuid (uuid);
+    HRESULT hr = UuidCreate (uuid);
+    if (hr == RPC_S_OK)
+    {
+      unsigned char* temp = 0;
+      hr = UuidToString (uuid, &temp);
+      if (hr == RPC_S_OK)
+      {
+	idstr.assign ((const char*)temp);
+	std::transform (idstr.begin(), idstr.end(), idstr.begin(), std::toupper);
+	RpcStringFree (&temp);
+      }
+    }
+    return idstr;
+  }
 } // namespace PICML

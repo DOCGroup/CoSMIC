@@ -3,7 +3,7 @@
 #include <memory>
 #include <stack>
 #include <map>
-#include "PICML.h"
+#include "PICML/PICML.h"
 
 // Xerces includes
 #include <xercesc/util/PlatformUtils.hpp>
@@ -12,8 +12,8 @@
 #include <xercesc/framework/LocalFileFormatTarget.hpp>
 
 // Utility includes
-#include "XercesString.h"
-#include "FlatPlan_Export.h"
+#include "PICML/XercesString.h"
+#include "FlatPlan/FlatPlan_Export.h"
 
 namespace PICML
 {
@@ -127,7 +127,7 @@ namespace PICML
     FlatPlan_Export virtual void Visit_PackageInfoProperty(const PackageInfoProperty&){};
     FlatPlan_Export virtual void Visit_PackageInterface(const PackageInterface&){};
     FlatPlan_Export virtual void Visit_InfoProperty(const InfoProperty&){};
-    
+
 	//
 	FlatPlan_Export virtual void Visit_Requirement(const Requirement&){};
     FlatPlan_Export virtual void Visit_SatisfierProperty(const SatisfierProperty&){};

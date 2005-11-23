@@ -3,9 +3,6 @@ project (BGMLComponent): mfc, picmllib {
 
   macros += PICML_HAS_DLL _USRDLL _WINDLL
   sharedname = BGMLComponent
-  includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML \
-              $(COSMIC_ROOT)/PIM/PICML/interpreters/BGML \
-              $(COSMIC_ROOT)/PIM/PICML/interpreters/BGMLComponent
   libs += PICML BGML
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp

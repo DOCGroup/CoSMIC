@@ -1,23 +1,23 @@
 #ifndef METRIC_EMITTER_H
 #define METRIC_EMITTER_H
 
-#include "PICML.h"
+#include "PICML/PICML.h"
 
 #include <string>
 #include <vector>
 
-#include "Global_Data.h"
+#include "BGML/Global_Data.h"
 
 template <class T>
-class MetricEmitter 
+class MetricEmitter
 {
 public:
-	MetricEmitter (PICML::OperationRef &base, 
+	MetricEmitter (PICML::OperationRef &base,
 				   T& latency,
 			       std::string& metric,
 				   BGML_Data &state);
 	~MetricEmitter ();
-	
+
 	void generate_benchmark ();
 
 	std::string component_name (PICML::TwowayOperation& op);
@@ -36,7 +36,7 @@ protected:
 							   bool is_main);
 	// Generate the header file information
 
-	void create_build_file (std::vector<std::string>& file_list, 
+	void create_build_file (std::vector<std::string>& file_list,
 							std::string& project_name,
 							std::string& dependancy_list);
 	// Generate the build file building benchmarking library
@@ -60,9 +60,9 @@ private:
 	T& latency_;
 	std::string& metric_;
 	BGML_Data &bgml_state_;
-		
+
 };
 
-#include "MetricEmitter.cpp"
+#include "BGML/MetricEmitter.cpp"
 
 #endif /* LATENCY_EMITTER_H */

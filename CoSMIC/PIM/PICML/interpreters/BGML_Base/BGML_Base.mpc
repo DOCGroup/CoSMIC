@@ -10,7 +10,7 @@ project (BGML_Base): acelib {
   Source_Files {
     BGML_Task_Base.cpp
   }
-  
+
   Header_Files {
     BGML_Export.h
   }

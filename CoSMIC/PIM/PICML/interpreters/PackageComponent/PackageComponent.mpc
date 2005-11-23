@@ -4,9 +4,6 @@ project (PackageComponent): mfc, picmllib {
 
   macros += PICML_HAS_DLL _USRDLL _WINDLL
   sharedname = PackageComponent
-  includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML \
-              $(COSMIC_ROOT)/PIM/PICML/interpreters/Package \
-              $(COSMIC_ROOT)/PIM/PICML/interpreters/PackageComponent
   libs += PICML Package
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp

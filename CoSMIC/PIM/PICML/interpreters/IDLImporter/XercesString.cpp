@@ -78,7 +78,7 @@ bool XStr::append (const XMLCh *tail)
 bool XStr::erase (const XMLCh *head, const XMLCh *tail)
 {
   bool bOK = head <= tail && head >= begin() && tail <= end();
-  
+
   if (bOK)
     {
       XMLCh *result = new XMLCh [size() - (tail - head) + 1];
@@ -134,9 +134,8 @@ std::ostream&
 operator<< (std::ostream& o, XStr const& str)
 {
   std::string conv (XMLString::transcode (str));
-  
+
   o << conv;
-  
+
   return o;
 }
-

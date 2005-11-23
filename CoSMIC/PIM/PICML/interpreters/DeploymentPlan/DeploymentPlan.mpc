@@ -2,7 +2,6 @@ project(DeploymentPlan): picmllib {
    after += PICML
    sharedname = DeploymentPlan
    macros += PLAN_BUILD_DLL PICML_HAS_DLL
-   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML
    libs += PICML
 
    Source_Files {

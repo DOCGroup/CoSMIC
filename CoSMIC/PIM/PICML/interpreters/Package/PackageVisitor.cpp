@@ -1,6 +1,6 @@
 #include <algorithm>
 #include <functional>
-#include "PackageVisitor.h"
+#include "Package/PackageVisitor.h"
 #include "UmlExt.h"
 
 using xercesc::LocalFileFormatTarget;
@@ -217,7 +217,8 @@ namespace PICML
                                                            label));
     std::string uuid = ia.UUID();
     if (uuid.empty())
-      uuid = ia.getPath ("_", false, true, "name", true);
+      ia.UUID() = uuid = ::PICML::CreateUuid();
+      // uuid = ia.getPath ("_", false, true, "name", true);
     this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
 
     std::string location = ia.location();

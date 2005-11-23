@@ -1,4 +1,4 @@
-#include "Cidlc_Visitor.h"
+#include "CIDL_Interpreter/Cidlc_Visitor.h"
 
 
 namespace PICML
@@ -6,12 +6,12 @@ namespace PICML
   Cidlc_Visitor::Cidlc_Visitor (const std::string& outputPath)
     : outputPath_ (outputPath)
   {
-    
+
   }
 
   Cidlc_Visitor::~Cidlc_Visitor ()
   {
-    
+
   }
 
   void Cidlc_Visitor::process_Factory_decl(std::set<PICML::ComponentFactory> &factory)
@@ -25,7 +25,7 @@ namespace PICML
 	  }
 
 	  // Write the cidl files by visiting the components
-	  std::map<PICML::Component, std::vector<std::string> >::iterator iter = 
+	  std::map<PICML::Component, std::vector<std::string> >::iterator iter =
 		  this->table_.begin ();
 	  for (; iter != this->table_.end (); iter ++)
 		  this->Visit_Component ((* iter).first);
@@ -35,19 +35,19 @@ namespace PICML
   // Visit the File
   void Cidlc_Visitor::Visit_File (const File &file)
   {
-	  // Obtain the name of the IDL file 
+	  // Obtain the name of the IDL file
 	  file.GetStrValue ("name", this->idl_file_name_);
 
 	  // check if there are any componentFactory definitions
 	  // present
-	  std::set<PICML::ComponentFactory> factory = 
+	  std::set<PICML::ComponentFactory> factory =
 		file.ComponentFactory_kind_children();
 
 	  //For each Component Factory Definitions visit the Factory
 	  this->process_Factory_decl (factory);
 
 	  // Check for Packages
-	  std::set<PICML::Package> packages = 
+	  std::set<PICML::Package> packages =
 		  file.Package_kind_children ();
 
 	  if (packages.size () != 0)
@@ -59,22 +59,22 @@ namespace PICML
 				   // For each iteration set the package size
 				   (* iter).GetStrValue ("name", this->package_name_);
 
-				  std::set<PICML::ComponentFactory> p_factory = 
-					(* iter).ComponentFactory_kind_children();	
+				  std::set<PICML::ComponentFactory> p_factory =
+					(* iter).ComponentFactory_kind_children();
 
 				  this->process_Factory_decl (p_factory);
 			   }
 	  }
   }
 
-  void 
+  void
   Cidlc_Visitor::Visit_ComponentFactory (const ComponentFactory &factory)
   {
 	 // 1: Get the name of this Factory
 	 std::string factory_name;
 	 factory.GetStrValue ("name", factory_name);
 
-	 // Get the Corresponding name of the Component associated with the 
+	 // Get the Corresponding name of the Component associated with the
 	 // factory
 	 const PICML::ManagesComponent conn = factory.dstManagesComponent();
 	 PICML::Manageable base = conn.dstManagesComponent_end();
@@ -85,9 +85,9 @@ namespace PICML
 	 PICML::Component component;
 	 if (kindName == "Component")
 		 component = PICML::Component::Cast (base);
-	 else 
-	 {	
-		 PICML::ComponentRef ref = 
+	 else
+	 {
+		 PICML::ComponentRef ref =
 			 PICML::ComponentRef::Cast (base);
 		 component = ref.ref ();
 	 }
@@ -97,7 +97,7 @@ namespace PICML
 
 	 if (this->table_.find (component) != this->table_.end ())
 		 values = this->table_ [component];
-	 
+
 	 values.push_back (factory_name);
 	 this->table_[component] = values;
   }
@@ -113,7 +113,7 @@ namespace PICML
   Cidlc_Visitor::Visit_Component (const Component& component)
   {
 	 // Simple Algorithm to write out the cidlc file
-	 // Step 1: Read the names of the homes thats are associated with 
+	 // Step 1: Read the names of the homes thats are associated with
 	 //         this component
 	 // Step 2: Write out the cidlc files starting from the #ifdef macros
 	 //         for each of the home factory components associated
@@ -150,7 +150,7 @@ namespace PICML
 			  idl_writer.incr_indent (0);
 			  idl_writer.indent ();
 			  idl_writer.gen_cidlc_home_decl (component_name);
-			  
+
 			  // Write the implements decl
 			  std::string home_name;
 			  if (this->package_name_.size () != 0)

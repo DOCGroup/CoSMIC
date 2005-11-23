@@ -3,9 +3,6 @@ project (DomainComponent): mfc, picmllib {
 
   macros += PICML_HAS_DLL _USRDLL _WINDLL
   sharedname = DomainComponent
-  includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML \
-              $(COSMIC_ROOT)/PIM/PICML/interpreters/Target \
-              $(COSMIC_ROOT)/PIM/PICML/interpreters/TargetComponent
   libs += PICML Domain
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp

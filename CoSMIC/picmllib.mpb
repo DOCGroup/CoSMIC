@@ -3,7 +3,8 @@ project : xerces {
    libs += UdmDll zlib
    libout = $(COSMIC_ROOT)/lib
    dllout = $(COSMIC_ROOT)/bin
-   includes += $(GME_ROOT)/SDK/BON $(UDM_PATH)/include
+   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters \
+               $(GME_ROOT)/SDK/BON $(UDM_PATH)/include .        
    macros += UDM_DYNAMIC_LINKING
    libpaths += $(COSMIC_ROOT)/lib $(UDM_PATH)/lib \
                $(UDM_PATH)/3rdParty/zlib \

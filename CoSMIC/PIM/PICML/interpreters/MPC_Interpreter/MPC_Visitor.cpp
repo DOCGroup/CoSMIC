@@ -1,4 +1,4 @@
-#include "MPC_Visitor.h"
+#include "MPC_Interpreter/MPC_Visitor.h"
 #include <fstream>
 
 namespace PICML
@@ -6,17 +6,17 @@ namespace PICML
   MPC_Visitor::MPC_Visitor (const std::string& outputPath)
     : outputPath_ (outputPath)
   {
-    
+
   }
 
   MPC_Visitor::~MPC_Visitor ()
   {
-    
+
   }
 
   void MPC_Visitor::Visit_StubProject (const StubProject &stub_proj)
   {
-	  
+
   }
 
   void MPC_Visitor::Visit_ServantProject (const ServantProject &skeleton_proj)
@@ -40,9 +40,9 @@ namespace PICML
 	  iter ++)
 	  {
 		  // Step 1: Get the name of the workspace to be generated
-		  std::string wspace_name;	
+		  std::string wspace_name;
 		  iter->GetStrValue ("name", wspace_name);
-		  
+
 		  // Step 2: Write out the header for the workspace
 		  // Outputpath refers to a directory
 		  // The target file is : <dir> + "\" + fileName + ".cidl"
@@ -71,5 +71,5 @@ namespace PICML
 		  mpc_stream.create_project (* proj_iter);
 	  }
   }
-  
+
 }

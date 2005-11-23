@@ -1,15 +1,15 @@
 
-#include "IDL_Util.h"
-#include "TypeEmitter.h"
+#include "BGML/IDL_Util.h"
+#include "BGML/TypeEmitter.h"
 #include "Uml.h"
 
 
-std::string 
+std::string
 IDL_Util::component_name (PICML::OperationRef& op_ref)
 {
 	PICML::OperationBase op_base = PICML::OperationBase::Cast (op_ref.ref ());
 	PICML::TwowayOperation op = PICML::TwowayOperation::Cast (op_base);
-    
+
 	PICML::ComponentOperation op_end = op_ref.dstComponentOperation();
 
 	PICML::Component parent;
@@ -36,7 +36,7 @@ IDL_Util::component_name (PICML::OperationRef& op_ref)
 		PICML::CompRef component_ref = op_end.dstComponentOperation_end();
 		parent = component_ref.ref ();
 	}
-	
+
 	std::string name;
 	parent.GetStrValue ("name", name);
 	return name;
@@ -50,7 +50,7 @@ IDL_Util::dependant_idls (PICML::TwowayOperation& op)
 	PICML::Object object = PICML::Object::Cast (has_op);
 	std::vector<std::string> return_set;
 	std::set<PICML::RequiredRequestPort> receptacle_set = object.referedbyRequiredRequestPort();
-	
+
 	for (std::set<PICML::RequiredRequestPort>::iterator iter = receptacle_set.begin ();
 	iter != receptacle_set.end ();
 	iter ++)
@@ -120,23 +120,23 @@ void IDL_Util::return_type_signature (PICML::MemberType& mem_type,
 	std::string kindName = mem_type.type().name();
 	std::string scope_name;
 	mem_type.GetStrValue ("name", scope_name);
-	
+
 	/// Append the package name
 	if (package.size ())
 		scope_name = package + "::" + scope_name;
 
 	switch (type)
 	{
-	case 0: 
+	case 0:
 		{
-			std::string& return_type = 
-				ReturnTypeEmitter::generate_type_defn (kindName, scope_name); 
+			std::string& return_type =
+				ReturnTypeEmitter::generate_type_defn (kindName, scope_name);
 			operation_name.append (return_type);
 			break;
 		}
 	case 1:
 		{
-			std::string& in_param_name = 
+			std::string& in_param_name =
 				InTypeEmitter::generate_type_defn (kindName, scope_name);
 			operation_name.append (in_param_name);
 			break;
@@ -163,12 +163,12 @@ std::string IDL_Util::operation_name (PICML::TwowayOperation& op)
 	std::string op_name;
 	op.GetStrValue ("name", op_name);
 	return op_name;
-	
+
 }
 
-std::string 
+std::string
 IDL_Util::scope_name (PICML::TwowayOperation &two_way)
-{	
+{
 	PICML::NamedType type_parent = two_way.HasOperations_parent ();
 	PICML::Package package_parent = type_parent.Package_parent ();
 	std::string parent_name;
@@ -182,7 +182,7 @@ IDL_Util::scope_name (PICML::TwowayOperation &two_way)
 	return parent_name;
 }
 
-std::vector<std::string> 
+std::vector<std::string>
 IDL_Util::argument_list (PICML::TwowayOperation& op)
 {
 	std::vector<std::string> arg_list;
@@ -190,18 +190,18 @@ IDL_Util::argument_list (PICML::TwowayOperation& op)
 	// Operation consists of: "return_type" operation_name (arg_list)"
 	// The arg list inturn can be any of the following: in, out, in out
 	// Ignore the Return and Exception types for now. Need not consider them
-	// part of the operation signature we are looking for 
+	// part of the operation signature we are looking for
 	//////////////////////////////////////////////////////////////////////
-	
-	
+
+
 	/// Operation parameters
 	std::set<PICML::InoutParameter> inout_param_set = op.InoutParameter_children();
 	std::set<PICML::OutParameter> out_param_set = op.OutParameter_children ();
 	std::set<PICML::InParameter> in_param_set = op.InParameter_children ();
 
-	// Identify the scope name 
+	// Identify the scope name
 	std::string scope_name = IDL_Util::scope_name (op);
-	
+
 	if (in_param_set.size () != 0)
 	{
 		std::string temp;
@@ -217,7 +217,7 @@ IDL_Util::argument_list (PICML::TwowayOperation& op)
 			first_iter = false;
 		}
 	}
-	
+
 	if (out_param_set.size () != 0)
 	{
 		std::string temp;
@@ -232,7 +232,7 @@ IDL_Util::argument_list (PICML::TwowayOperation& op)
 			first_iter = false;
 		}
 	}
-	
+
 	if (inout_param_set.size () != 0)
 	{
 		std::string temp;
@@ -247,7 +247,6 @@ IDL_Util::argument_list (PICML::TwowayOperation& op)
 			first_iter = false;
 		}
 	}
-	
+
 	return arg_list;
 }
-

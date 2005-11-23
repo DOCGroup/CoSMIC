@@ -3,9 +3,6 @@ project (CIDLComponent): mfc, picmllib {
 
   macros += PICML_HAS_DLL _USRDLL _WINDLL
   sharedname = CIDLComponent
-  includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML \
-              $(COSMIC_ROOT)/PIM/PICML/interpreters/CIDL_Interpreter \
-              $(COSMIC_ROOT)/PIM/PICML/interpreters/CIDLComponent
   libs += PICML CIDL
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp

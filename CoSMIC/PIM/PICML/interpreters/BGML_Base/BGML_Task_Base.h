@@ -8,7 +8,7 @@
 #include /**/ "ace/pre.h"
 #include "ace/Task.h"
 
-#include "BGML_Export.h"
+#include "BGML/BGML_Export.h"
 
 #if !defined (ACE_LACKS_PRAGMA_ONCE)
 # pragma once
@@ -22,7 +22,7 @@ public:
   // Constructor for Task_Base
 
   BGML_Task_Base ();
-  // Constructor that uses FIFO priority 
+  // Constructor that uses FIFO priority
 
   virtual ~BGML_Task_Base ();
   // Destructor

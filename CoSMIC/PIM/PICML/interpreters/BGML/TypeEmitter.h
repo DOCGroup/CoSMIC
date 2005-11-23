@@ -2,9 +2,9 @@
 #define TYPE_EMITTER_H
 
 #include <string>
-#include "BGML_Export.h"
+#include "BGML/BGML_Export.h"
 
-class BGML_Export ReturnTypeEmitter 
+class BGML_Export ReturnTypeEmitter
 {
 public:
 	static std::string generate_type_defn (std::string& kindName,
@@ -29,7 +29,7 @@ public:
 
 class BGML_Export OutTypeEmitter
 {
-	
+
 public:
 	static std::string generate_type_defn (std::string& kindName,
 		std::string& scope_name);

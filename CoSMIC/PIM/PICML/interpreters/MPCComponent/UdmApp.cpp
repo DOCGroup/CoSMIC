@@ -7,8 +7,8 @@
 #include "stdafx.h"
 #include "UdmApp.h"
 #include "UdmConfig.h"
-#include "MPC_Visitor.h"
-#include "../PICML/Utils.h"
+#include "MPC_Interpreter/MPC_Visitor.h"
+#include "PICML/Utils.h"
 
 #define SetUpVisitor(type, root, visitor)                               \
   do                                                                    \
@@ -37,9 +37,9 @@ static void showUsage()
 }
 
 
-/* 
+/*
 Remarks to CUdmApp::UdmMain(...):
-0.	The p_backend points to an already open backend, and the framework 
+0.	The p_backend points to an already open backend, and the framework
 	closes it automatically. DO NOT OPEN OR CLOSE IT!
 	To commit changes use p_backend->CommitEditSequence().
 	To abort changes use p_backend->AbortEditSequence().
@@ -58,8 +58,8 @@ Remarks to CUdmApp::UdmMain(...):
 	METAMODEL_CHECK_SYNTAX	= 101
 
  3. The framework catches all the exceptions and reports the error in a message box,
-	clean up and close the transactions aborting the changes. You can override this 
-	behavior by catching udm_exception. Use udm_exception::what() to form an error 
+	clean up and close the transactions aborting the changes. You can override this
+	behavior by catching udm_exception. Use udm_exception::what() to form an error
 	message.
 */
 
@@ -82,7 +82,7 @@ void CUdmApp::UdmMain(
 
 		bool valid_interpretation = 0;
 
-		if (focusObject != Udm::null || 
+		if (focusObject != Udm::null ||
 			!selectedObjects.empty())
         {
 			std::set<Udm::Object> mySet (selectedObjects);
@@ -96,7 +96,7 @@ void CUdmApp::UdmMain(
 				// Interpretation should start from Benchmarking Aspect
 				Udm::Object root = *iter;
 				std::string kindName = (*iter).type().name();
-				
+
 				// Generate MPC file only for the Component
 				if (kindName == "MPC")
 				{
@@ -141,7 +141,7 @@ void CUdmApp::UdmMain(
         }
 
 /****************************** Demo Code End *************************/
-													
+
 }
 
 
@@ -157,14 +157,14 @@ void CUdmApp::UdmMain(
 /*****************************************************/
 string CUdmApp::ExtractName(Udm::Object ob)
 {
-	Uml::Class cls= ob.type();				
-	set<Uml::Attribute> attrs=cls.attributes();		
-	
+	Uml::Class cls= ob.type();
+	set<Uml::Attribute> attrs=cls.attributes();
+
 	// Adding parent attributes
 	set<Uml::Attribute> aattrs=Uml::AncestorAttributes(cls);
 	attrs.insert(aattrs.begin(),aattrs.end());
 
-	for(set<Uml::Attribute>::iterator ai = attrs.begin();ai != attrs.end(); ai++) 
+	for(set<Uml::Attribute>::iterator ai = attrs.begin();ai != attrs.end(); ai++)
 	{
 		if(string(ai->type())=="String")
 		{
@@ -174,9 +174,9 @@ string CUdmApp::ExtractName(Udm::Object ob)
 				string value=ob.getStringAttr(*ai);
 				if(value.empty())value="<empty string>";
 				return value;
-			}			
-		}				
-	}	
+			}
+		}
+	}
 	return string("<no name specified>");
 }
 #endif

@@ -1,7 +1,7 @@
-#include "Benchmark_Stream.h"
-#include "ctype.h"
-#include "Global_Data.h"
-#include "IDL_Util.h"
+#include "BGML/Benchmark_Stream.h"
+#include <ctype.h>
+#include "BGML/Global_Data.h"
+#include "BGML/IDL_Util.h"
 #include "Uml.h"
 #include <algorithm>
 
@@ -25,12 +25,12 @@ const INDENT idt_nl (1);
 const UNINDENT uidt;
 const UNINDENT uidt_nl (1);
 
-BenchmarkStream::BenchmarkStream (std::string& component_name, 
-								  std::string& operation_name, 
+BenchmarkStream::BenchmarkStream (std::string& component_name,
+								  std::string& operation_name,
 								  std::vector<std::string>& arg_list,
-								  std::ostream& strm, 
+								  std::ostream& strm,
 								  BGML_Data &state)
-								  
+
 : component_name_ (component_name),
   operation_name_ (operation_name),
   arg_list_ (arg_list),
@@ -38,7 +38,7 @@ BenchmarkStream::BenchmarkStream (std::string& component_name,
   bgml_state_ (state),
   indent_level_ (0)
 {
-	
+
 }
 
 BenchmarkStream::~BenchmarkStream (void)
@@ -136,7 +136,7 @@ BenchmarkStream::gen_private_mem_decl (bool is_main)
 	this->indent ();
 	this->strm_ << "T* remote_ref_;";
 	this->nl ();
-		
+
 	for (size_t i = 0; i < this->arg_list_.size (); i++)
 	{
 		this->indent ();
@@ -181,11 +181,11 @@ BenchmarkStream::gen_run_method (std::string &name)
 {
 	this->indent ();
 	this->strm_ << "template <class T> void \n";
-	
+
 	this->indent ();
 	this->strm_ << name << ":: run (";
 	this->strm_ << " (T* remote_ref";
-	
+
 	if (this->arg_list_.size ())
 		for (size_t i=0; i < this->arg_list_.size (); i++)
 		{
@@ -218,12 +218,12 @@ BenchmarkStream::gen_run_method (std::string &name)
 	}
 
 	/// Default case same as "Trigger Benchmarks"
-	
+
 
 }
 
 void
-BenchmarkStream::generate_task_header (std::string& header_name, 
+BenchmarkStream::generate_task_header (std::string& header_name,
 									   bool is_main_class)
 {
 	// Generate the tool description
@@ -231,7 +231,7 @@ BenchmarkStream::generate_task_header (std::string& header_name,
 
 	///// Generate the #ifdef macros
 	this->gen_ifdef_macro (header_name);
-	
+
 	///// Step 2 generate the include files necessary
 	std::string base_task = "BGML_Task_Base.h";
 	std::string component_exec_header = this->component_name_ + "_exec.h";
@@ -250,7 +250,7 @@ BenchmarkStream::generate_task_header (std::string& header_name,
 	*/
 
 	/// Check for ACE_Barrier in the list
-	if (std::find (this->arg_list_.begin (), this->arg_list_.end (), "ACE_Barrier&") != 
+	if (std::find (this->arg_list_.begin (), this->arg_list_.end (), "ACE_Barrier&") !=
 		this->arg_list_.end ())
 	{
 		std::string barrier_include = "ace/Barrier.h";
@@ -278,7 +278,7 @@ BenchmarkStream::generate_task_header (std::string& header_name,
 	this->nl ();
 	this->strm_ << "public:";
 	this->nl ();
-	
+
 	//// Step 4: Write out the constructor/Destructor for the tasks
 	this->gen_constructor_decl (header_name);
 	this->gen_destructor_decl  (header_name);
@@ -308,7 +308,7 @@ BenchmarkStream::generate_task_header (std::string& header_name,
 	this->nl ();
 	this->indent ();
 	this->strm_ << "int svc (void);";
-	
+
 	// If main task generate the get_stats operation
 	if (is_main_class)
 	{
@@ -321,29 +321,29 @@ BenchmarkStream::generate_task_header (std::string& header_name,
 
 	this->decr_indent ();
 	this->nl ();
-	
+
 	//// Step 6: Write out the private members
 	this->gen_private_mem_decl (is_main_class);
-	
+
 	/// Step 7: Write out the close the class
 	this->nl ();
 	this->strm_ << "};";
 	this->nl ();
 
-	/// Step 8: Include the template 
+	/// Step 8: Include the template
 	this->nl ();
 	this->strm_ << "#include ";
 	this->strm_ << "\"";
 	this->strm_ << header_name.c_str ();
 	this->strm_ << ".cpp\"";
-	
+
 	//// Step 9: Close the header file
 	this->gen_endif (header_name.c_str ());
 }
 
 
 void
-BenchmarkStream::create_export_macro (std::string& shared_name, 
+BenchmarkStream::create_export_macro (std::string& shared_name,
 									  std::string& output_path)
 {
 	// Generate the stub export file name as well
@@ -353,7 +353,7 @@ BenchmarkStream::create_export_macro (std::string& shared_name,
 	const char* str = shared_name.c_str ();
 	int i = 0;
 	char c;
-	
+
 	while ((c = str[i++]) != '\0')
     {
 		command += toupper (c);
@@ -375,13 +375,13 @@ BenchmarkStream::create_export_macro (std::string& shared_name,
 	system (command.c_str ());
 }
 
-void 
+void
 BenchmarkStream::gen_template_function_def (const std::string& name,
 											const std::string& class_name,
 											const std::string& return_type,
 											const std::vector<std::string>& param_list)
 {
-	
+
 	this->strm_ << "template <typename T>\n";
 	this->strm_ << return_type;
 	this->nl ();
@@ -408,7 +408,7 @@ BenchmarkStream::gen_template_function_def (const std::string& name,
 	this->strm_ << ")\n";
 
 	this->strm_ << "{\n";
-	
+
 }
 
 void
@@ -428,7 +428,7 @@ BenchmarkStream::gen_warmup_iterations (__int64 iterations,
 		this->strm_ << (int) benchmark_priority;
 		this->strm_ << ");\n";
 	}
-	
+
 	this->nl ();
 	this->indent ();
 	this->strm_ << "// Warm up the system before benchmark generation \n";
@@ -483,7 +483,7 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
 				   << (int) this->bgml_state_.benchmark_rate
 				   << ") * gsf * ACE_HR_SCALE_CONVERSION; \n";
    }
-   
+
    this->nl ();
    this->indent ();
    this->strm_ << "ACE_hrtime_t test_start = ACE_OS::gethrtime ();\n";
@@ -493,14 +493,14 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
    this->strm_ << "i < ";
    this->strm_ << (long) iter;
    this->strm_ << "; i++)\n";
-   
+
    this->indent ();
    this->strm_ << "{\n";
 
    this->incr_indent ();
    this->indent ();
    this->strm_ << "ACE_hrtime_t start = ACE_OS::gethrtime ();\n";
-   
+
 
    // Check for rate based events
    if (this->bgml_state_.benchmark_rate != -1)
@@ -517,7 +517,7 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
    this->strm_ << "(void)this->remote_ref_->";
    this->strm_ << this->operation_name_;
    this->strm_ << " (";
-   
+
    for (size_t i =0; i < this->arg_list_.size (); i++)
 	{
 		if (i)
@@ -530,7 +530,7 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
 
    this->indent ();
    this->strm_ << "ACE_CHECK;";
-   
+
    this->nl ();
    this->indent ();
    this->strm_ << "ACE_hrtime_t now = ACE_OS::gethrtime ();\n";
@@ -577,11 +577,11 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
 
    __int64 total_task_counter = 0; // Count of total number of tasks
 
-   for (__int64 counter = 0; 
-		counter < this->bgml_state_.task_group_data.size (); 
+   for (__int64 counter = 0;
+		counter < this->bgml_state_.task_group_data.size ();
 		counter++)
    {
-	 for (size_t inner_counter = 0; 
+	 for (size_t inner_counter = 0;
 	       inner_counter < this->bgml_state_.task_group_data[ (int) counter].size;
 		   inner_counter ++)
 		 {
@@ -592,7 +592,7 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
 			this->nl ();
 		  }
    }
-   
+
    this->nl ();
    this->indent ();
    this->strm_ << "ACE_DEBUG ((LM_DEBUG, \"test finished \\n\"));";
@@ -615,7 +615,7 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
    this->nl ();
    this->nl ();
 
-   /// Find the resolution of the individual samples 
+   /// Find the resolution of the individual samples
    if (this->bgml_state_.resolution == "miliseconds")
    {
 	   this->indent ();
@@ -639,11 +639,11 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
    {
 	   this->nl ();
 	   this->indent ();
-	   
+
 	   // Dump samples to the file
 	   this->strm_ << "FILE *output_file= ACE_OS::fopen ("
 		   << "\""
-		   << this->bgml_state_.file_name 
+		   << this->bgml_state_.file_name
 		   << "\""
 		   << ", \"w\");\n";
 
@@ -669,7 +669,7 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
 	   this->indent ();
 	   this->strm_ << "ACE_OS::fprintf (output_file, \"%d %u\\n\", j, val);";
 	   this->decr_indent ();
-	   
+
 	   this->nl ();
 	   this->indent ();
 	   this->strm_ << "}\n";
@@ -697,13 +697,13 @@ BenchmarkStream::gen_bench_def (__int64 iterations)
    this->strm_ << "this->benchmark_data_.min_ = stats.min_ / gsf;\n";
    this->indent ();
    this->strm_ << "this->benchmark_data_.max_ = stats.max_ / gsf; \n";
-   
+
    this->indent ();
    this->strm_ << "this->benchmark_data_.average_ = stats.sum_ / stats.samples_count_; \n";
    this->indent ();
-   this->strm_ << "this->benchmark_data_.average_ /= gsf; \n"; 
+   this->strm_ << "this->benchmark_data_.average_ /= gsf; \n";
    this->nl ();
-   
+
 
    // Return success status
    this->indent ();
@@ -723,7 +723,7 @@ BenchmarkStream::generate_workload_def (__int64 iterations,
 	std::string macro_name = this->component_name_ + "_" + this->operation_name_ + "_Workload";
 	this->gen_ifdefc_macro (macro_name);
 	this->nl ();
-	
+
 	//// Step 1.1: Generate the #include definitions
 	std::string include_file = macro_name + ".h";
 	this->gen_include_file (include_file);
@@ -791,7 +791,7 @@ BenchmarkStream::generate_workload_def (__int64 iterations,
    __int64 iter = (iterations) ? iterations : BGML_DEFAULT_BENCH_ITER;
    this->strm_ << (long) iter;
    this->strm_ << "; i++)\n";
-   
+
    this->indent ();
    this->strm_ << "{\n";
    this->incr_indent ();
@@ -807,14 +807,14 @@ BenchmarkStream::generate_workload_def (__int64 iterations,
 	  this->strm_ << "deadline_for_call += test_start; \n";
 	  this->nl ();
 	}
-   
+
    /// Cast the operation return-type as a (void)
    this->indent ();
    this->strm_ << "(void)this->remote_ref_->";
    this->strm_ << this->operation_name_;
    this->strm_ << " (";
 
-   // Stop one short of the size as ACE_Barrier& is the last 
+   // Stop one short of the size as ACE_Barrier& is the last
    // argument
    for (size_t i =0; i < this->arg_list_.size () - 1; i++)
 	{
@@ -866,7 +866,7 @@ BenchmarkStream::generate_workload_def (__int64 iterations,
 
    //// Step 5: Generate the endif macro to close the cpp file
    this->gen_endifc (macro_name);
-	
+
 }
 
 void
@@ -878,7 +878,7 @@ BenchmarkStream::gen_constructor_defn (std::string& name)
 	this->strm_ << "<T>::";
 	this->strm_ << name.c_str ();
 	this->strm_ << " (T* remote_ref";
-	
+
 	if (this->arg_list_.size ())
 		for (size_t i=0; i < this->arg_list_.size (); i++)
 		{
@@ -952,12 +952,12 @@ BenchmarkStream::generate_rate_helper ()
 void
 BenchmarkStream::gen_background_load (std::string& class_name, __int64 start_index, __int64 end_index)
 {
-	
+
 	for (; start_index < end_index; start_index++)
 	{
 		this->indent ();
 		this->strm_ << class_name.c_str ();
-		
+
 		// Instantiate the workload template
 		this->strm_ << "<T>";
 
@@ -979,7 +979,7 @@ BenchmarkStream::gen_background_load (std::string& class_name, __int64 start_ind
 	}
 }
 
-void 
+void
 BenchmarkStream::activate_background_tasks (int task_size)
 {
 	if (task_size)
@@ -1021,17 +1021,17 @@ BenchmarkStream::gen_barrier ()
 
 	if (total_size)
 	{
-		// For the number of tasks assigned 
+		// For the number of tasks assigned
 		this->nl ();
 		this->indent ();
 
 		// Create Barrier
-		this->strm_ << "ACE_Barrier barrier (" 
+		this->strm_ << "ACE_Barrier barrier ("
 					<<  (total_size + 1)
 					<< ");";
 		this->nl ();
 	}
-	
+
 	/// Return this information
 	return total_size;
 }
@@ -1059,7 +1059,7 @@ BenchmarkStream::generate_task_def (std::string& metrics,
 
 	if (this->bgml_state_.task_group_data.size ())
 	{
-		std::string workload_name = 
+		std::string workload_name =
 			this->component_name_ + "_" + this->operation_name_ + "_Workload.h";
 		this->gen_include_file (workload_name);
 
@@ -1067,7 +1067,7 @@ BenchmarkStream::generate_task_def (std::string& metrics,
 		include_file = "ace/Barrier.h";
 		this->gen_include_file (include_file);
 	}
-	
+
 	this->nl ();
 
 	this->gen_constructor_defn (header_name);
@@ -1087,7 +1087,7 @@ BenchmarkStream::generate_task_def (std::string& metrics,
 									 param_list);
 
 	/// Step 3: Generate the warm_up iterations
-	this->gen_warmup_iterations (this->bgml_state_.warmup_iterations, 
+	this->gen_warmup_iterations (this->bgml_state_.warmup_iterations,
 								 this->bgml_state_.benchmark_priority);
 
 	/// Generate barrier information if there are background tasks
@@ -1105,13 +1105,13 @@ BenchmarkStream::generate_task_def (std::string& metrics,
 
 	for (size_t i = 0; i < this->bgml_state_.task_group_data.size (); i++)
 	{
-		BGML_Task_Group_Data &task_data = 
+		BGML_Task_Group_Data &task_data =
 			this->bgml_state_.task_group_data [i];
 
 		if (! task_data.background_operations.size ())
 		{
 			std::string class_name = this->component_name_ + "_" + this->operation_name_ + "_Workload";
-			end_index = start_index + task_data.size;	
+			end_index = start_index + task_data.size;
 			this->gen_background_load (class_name, start_index, end_index);
 
 		} else if (task_data.background_operations.size () == task_data.size)
@@ -1119,10 +1119,10 @@ BenchmarkStream::generate_task_def (std::string& metrics,
 			end_index = start_index + task_data.size;
 			for (size_t j = 0; j < task_data.background_operations.size (); j++)
 			{
-				PICML::TwowayOperation twoway_op = 
+				PICML::TwowayOperation twoway_op =
 					PICML::TwowayOperation::Cast (task_data.background_operations [j]);
 				std::string& operation_name = IDL_Util::operation_name (twoway_op);
-				std::string class_name = this->component_name_ + "_" + 
+				std::string class_name = this->component_name_ + "_" +
 					this->operation_name_ + "_Workload";
 				this->gen_background_load (class_name, start_index, start_index + 1);
 				++ start_index;
@@ -1134,10 +1134,10 @@ BenchmarkStream::generate_task_def (std::string& metrics,
 			end_index = start_index + task_data.background_operations.size () ;
 			for (size_t j = 0; j < task_data.background_operations.size (); j++)
 			{
-				PICML::TwowayOperation twoway_op = 
+				PICML::TwowayOperation twoway_op =
 					PICML::TwowayOperation::Cast (task_data.background_operations [j]);
 				std::string& operation_name = IDL_Util::operation_name (twoway_op);
-				std::string class_name = this->component_name_ + "_" + 
+				std::string class_name = this->component_name_ + "_" +
 					operation_name + "_Workload";
 				this->gen_background_load (class_name, start_index, start_index + 1);
 				start_index ++;
@@ -1147,7 +1147,7 @@ BenchmarkStream::generate_task_def (std::string& metrics,
 			start_index = end_index;
 
 			std::string class_name = this->component_name_ + "_" + this->operation_name_ + "_Workload";
-			end_index = start_index + task_data.size -1;	
+			end_index = start_index + task_data.size -1;
 			this->gen_background_load (class_name, start_index, end_index);
 		}
 
@@ -1171,7 +1171,7 @@ BenchmarkStream::generate_task_def (std::string& metrics,
 	this->decr_indent ();
 	this->indent ();
 	this->strm_ << "}\n";
-	
+
 	//// Step 5: Generate the endif macro to close the cpp file
 	this->gen_endifc (header_name);
 }
@@ -1235,12 +1235,12 @@ BenchmarkStream &
 BenchmarkStream::operator<< (const INDENT& i)
 {
 	this->incr_indent (0);
-	
+
 	if (i.do_now_)
     {
 		(void) this->nl ();
     }
-	
+
 	return *this;
 }
 
@@ -1248,12 +1248,12 @@ BenchmarkStream &
 BenchmarkStream::operator<< (const UNINDENT& i)
 {
 	this->decr_indent (0);
-	
+
 	if (i.do_now_)
     {
 		this->nl ();
     }
-	
+
 	return *this;
 }
 
@@ -1262,7 +1262,7 @@ BenchmarkStream::upcase (const char *str)
 {
 	int i = 0;
 	char c;
-	
+
 	while ((c = str[i++]) != '\0')
     {
 		this->strm_ << static_cast<char> (toupper (c));

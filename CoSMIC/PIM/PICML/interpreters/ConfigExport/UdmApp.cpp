@@ -34,9 +34,9 @@
 #include "UdmApp.h"
 #include "UdmConfig.h"
 
-#include "PICML.h"
-#include <PICML/Utils.h>
-#include "ConfigExportVisitor.h"
+#include "PICML/PICML.h"
+#include "PICML/Utils.h"
+#include "ConfigExport/ConfigExportVisitor.h"
 
 extern void dummy(void); // Dummy function for UDM meta initialization
 

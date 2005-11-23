@@ -1,4 +1,4 @@
-#include "TypeEmitter.h"
+#include "BGML/TypeEmitter.h"
 
 std::string ReturnTypeEmitter::generate_type_defn (std::string &kind_name,
 												   std::string& scope_name)
@@ -25,18 +25,18 @@ std::string ReturnTypeEmitter::generate_type_defn (std::string &kind_name,
 		return "::CORBA::TypeCode_ptr";
 	else if (kind_name == "TypeKind")
 		return "::CORBA::TCKind";
-	
+
 	//// Named Types /////////////////
 	else if (kind_name == "Enum")
 		return scope_name;
-	
+
 	//@@@ Need to check if these are fixed/un-bounded
 	else if (kind_name == "SwitchedAggregate" ||
 			     kind_name == "Aggregate")
 				 return (scope_name + " *");
-	
+
 	return "";
-}	
+}
 
 
 std::string InTypeEmitter::generate_type_defn (std::string &kind_name,
@@ -61,14 +61,14 @@ std::string InTypeEmitter::generate_type_defn (std::string &kind_name,
 	else if (kind_name == "GenericValueObject" ||
 		     kind_name == "ValueObject")
 		return "::CORBA::ValueBase *";
-	
+
 	//// Named Types /////////////////
 	else if (kind_name == "Enum")
 		return scope_name;
 	else if (kind_name == "SwitchedAggregate" ||
 			     kind_name == "Aggregate")
 				 return ("const " + scope_name + " &");
-	
+
 	return "";
 }
 
@@ -101,12 +101,12 @@ std::string InoutTypeEmitter::generate_type_defn (std::string& kind_name,
 	else if (kind_name == "SwitchedAggregate" ||
 			     kind_name == "Aggregate")
 				 return (scope_name + " &");
-	
+
 	return "";
-	
+
 }
 
-std::string OutTypeEmitter::generate_type_defn (std::string& kind_name, 
+std::string OutTypeEmitter::generate_type_defn (std::string& kind_name,
 												std::string& scope_name)
 {
 	if (kind_name == "Boolean")
@@ -133,6 +133,6 @@ std::string OutTypeEmitter::generate_type_defn (std::string& kind_name,
 	else if (kind_name == "SwitchedAggregate" ||
 			     kind_name == "Aggregate")
 				 return (scope_name + "_out");
-	
+
 	return "";
 }

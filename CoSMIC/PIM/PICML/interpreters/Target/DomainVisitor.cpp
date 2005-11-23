@@ -1,5 +1,4 @@
-#include "DomainVisitor.h"
-//#include "UuidString.h"
+#include "Target/DomainVisitor.h"
 
 using xercesc::LocalFileFormatTarget;
 using xercesc::DOMImplementationRegistry;
@@ -125,7 +124,7 @@ namespace PICML
           Targets folder = *iter;
           folder.Accept (*this);
         }
-    } 
+    }
   }
 
   // Predefined Types
@@ -142,47 +141,47 @@ namespace PICML
 
   void DomainVisitor::Visit_ImplementationArtifacts(const ImplementationArtifacts& ia)
   {
-    
+
   }
 
   void DomainVisitor::Visit_ArtifactContainer(const ArtifactContainer& ac)
   {
-    
+
   }
 
   void DomainVisitor::Visit_ImplementationArtifact(const ImplementationArtifact& ia)
   {
-    
+
   }
 
   void DomainVisitor::Visit_ArtifactDependsOn(const ArtifactDependsOn& ado)
   {
-    
+
   }
 
   void DomainVisitor::Visit_ImplementationArtifactReference(const ImplementationArtifactReference& iar)
   {
-    
+
   }
 
   void DomainVisitor::Visit_ArtifactExecParameter(const ArtifactExecParameter& param)
   {
-    
+
   }
 
   void DomainVisitor::Visit_Property(const Property& property)
   {
-    
+
   }
 
   void DomainVisitor::Visit_DataType(const DataType& type)
   {
-    
+
   }
 
   void DomainVisitor::Visit_String(const String& str)
   {
-    
+
   }
 
   void DomainVisitor::Visit_ArtifactDeployRequirement(const ArtifactDeployRequirement&)
@@ -196,43 +195,43 @@ namespace PICML
 
   void DomainVisitor::Visit_TopLevelPackages(const TopLevelPackages& tp)
   {
-    
+
   }
 
 
   void DomainVisitor::Visit_TopLevelPackageContainer(const TopLevelPackageContainer& tpc)
   {
-    
+
   }
 
   void DomainVisitor::Visit_TopLevelPackage(const TopLevelPackage& tp)
   {
-    
+
   }
 
   void DomainVisitor::Visit_package(const package& pkg)
   {
-    
+
   }
 
   void DomainVisitor::Visit_PackageConfigurationReference(const PackageConfigurationReference& pcr)
   {
-    
+
   }
 
   void DomainVisitor::Visit_PackageConfigurations(const PackageConfigurations& pcs)
   {
-    
+
   }
 
   void DomainVisitor::Visit_PackageConfigurationContainer(const PackageConfigurationContainer& pcc)
   {
-    
+
   }
 
   void DomainVisitor::Visit_PackageConfiguration(const PackageConfiguration& pc)
   {
-    
+
   }
 
   void DomainVisitor::Visit_PackageConfConfigProperty(const PackageConfConfigProperty&)

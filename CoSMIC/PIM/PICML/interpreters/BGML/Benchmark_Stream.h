@@ -5,8 +5,8 @@
 #include <string>
 #include <vector>
 
-#include "Global_Data.h"
-#include "BGML_Export.h"
+#include "BGML/Global_Data.h"
+#include "BGML/BGML_Export.h"
 
 // A dummy structure to inform TAO_OutStream's << operator to  put a newline
 // and use the current indentation for the succeeding line
@@ -48,10 +48,10 @@ const int BGML_DEFAULT_BENCH_ITER  = 5000;
 class BGML_Export BenchmarkStream
 {
 public:
-  BenchmarkStream (std::string& component_name, 
-				   std::string& operation_name, 
+  BenchmarkStream (std::string& component_name,
+				   std::string& operation_name,
 				   std::vector<std::string>& arg_list,
-				   std::ostream& strm, 
+				   std::ostream& strm,
 				   BGML_Data &state);
   // constructor.for generating workloads
 
@@ -95,7 +95,7 @@ public:
   void gen_endif (const char *);
   void gen_endifc (const std::string &);
   void gen_endifc (const char *);
-  
+
   // generate a #if !defined, #defined macro
 
   void generate_task_header (std::string& class_name, bool is_main_class);
@@ -121,7 +121,7 @@ public:
 								  const std::string& return_type,
 								  const std::vector<std::string>& param_list);
 
-  void gen_warmup_iterations (__int64 iterations, 
+  void gen_warmup_iterations (__int64 iterations,
 							  __int64 benchmark_priority);
   // Generate the warmup iterations
 
@@ -137,7 +137,7 @@ public:
   void gen_background_load (std::string& class_name, __int64 start, __int64 finish);
   // Generate Background load
 
-  void generate_workload_def (__int64 interations, 
+  void generate_workload_def (__int64 interations,
 							  BGML_Task_Group_Data &data);
   // Generates the workload definition
 
@@ -155,12 +155,12 @@ public:
 
 private:
   std::string& component_name_;
-  std::string& operation_name_; 
+  std::string& operation_name_;
   std::vector<std::string>& arg_list_;
   std::ostream& strm_;
   int indent_level_;
   BGML_Data &bgml_state_;
-  
+
   void upcase (const char *);
   void generate_rate_helper ();
 };

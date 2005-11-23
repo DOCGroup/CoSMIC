@@ -3,7 +3,7 @@
 #ifndef CONFIG_EXPORT_VISITOR_H
 #define CONFIG_EXPORT_VISITOR_H
 
-#include "PICML.h"
+#include "PICML/PICML.h"
 
 namespace PICML
 {

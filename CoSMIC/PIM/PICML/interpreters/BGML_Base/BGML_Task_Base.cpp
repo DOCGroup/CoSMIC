@@ -1,7 +1,7 @@
 //
 // $Id$
 //
-#include "BGML_Task_Base.h"
+#include "BGML_Base/BGML_Task_Base.h"
 #include "ace/Sched_Params.h"
 #include "ace/High_Res_Timer.h"
 

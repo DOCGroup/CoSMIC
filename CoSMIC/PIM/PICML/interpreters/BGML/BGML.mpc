@@ -2,7 +2,6 @@ project(BGML): picmllib {
    after += PICML
    sharedname = BGML
    macros += BGML_BUILD_DLL PICML_HAS_DLL
-   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML
    libs += PICML
 
    Source_Files {

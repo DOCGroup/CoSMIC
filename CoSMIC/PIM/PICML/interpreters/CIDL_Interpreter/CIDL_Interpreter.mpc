@@ -2,7 +2,6 @@ project(CIDL): picmllib {
    after += PICML
    sharedname = CIDL
    macros += CIDL_BUILD_DLL PICML_HAS_DLL
-   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML
    libs += PICML
 
    Source_Files {

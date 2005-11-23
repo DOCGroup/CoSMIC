@@ -4,9 +4,9 @@
 #include <ostream>
 #include <string>
 #include <vector>
-#include "PICML.h"
+#include "PICML/PICML.h"
 
-#include "MPC_Export.h"
+#include "MPC_Interpreter/MPC_Export.h"
 
 // A dummy structure to inform TAO_OutStream's << operator to  put a newline
 // and use the current indentation for the succeeding line
@@ -77,9 +77,9 @@ public:
   MPC_Export void create_stub_definition (const PICML::StubProject &);
   MPC_Export void create_skeleton_definition (const PICML::ServantProject &, bool);
   MPC_Export void create_executor_definition (const PICML::ExecutorProject &);
-  MPC_Export bool dependent_project (PICML::ImplementationArtifact &artifact, 
+  MPC_Export bool dependent_project (PICML::ImplementationArtifact &artifact,
 									 std::string &dependent_proj);
-  MPC_Export void create_project_defn (std::string& proj_name, 
+  MPC_Export void create_project_defn (std::string& proj_name,
 									   std::string root_proj);
   MPC_Export void create_after_defn (std::string& deo_proj_name);
   MPC_Export void create_shared_defn (std::string& name);
@@ -115,7 +115,7 @@ private:
   int indent_level_;
   std::vector<std::string> cidl_file_;
   std::vector<std::string> idl_files_;
-  
+
 private:
   void upcase (const char *);
 };

@@ -1,5 +1,5 @@
-#include "Timer_Stream.h"
-#include "ctype.h"
+#include "BGML/Timer_Stream.h"
+#include <ctype.h>
 
 void
 Timer_Stream::incr_indent (unsigned short flag)
@@ -63,7 +63,7 @@ Timer_Stream::operator<< (const char *str)
 Timer_Stream::Timer_Stream (std::ostream& fstream)
 : strm_(fstream), indent_level_ (0)
 {
-  
+
 }
 
 Timer_Stream::~Timer_Stream ()
@@ -77,11 +77,11 @@ Timer_Stream::write_includes (void)
 	this->strm_ << "//-- c++ --";
 	this->nl ();
 	this->nl ();
-	
+
 	this->strm_ << "// This is the static header class that is included that has all the timing information";
 	this->strm_ <<"#include \"ace/High_Res_Timer.h\"";
 	this->nl ();
-	
+
 	this->strm_ << "#include \"ace/Sched_Params.h\"";
 	this->nl ();
 
@@ -129,16 +129,16 @@ Timer_Stream::write_stop_time_probe ()
 	this->nl ();
 	this->strm_ << "void stop_time_probe ()\n";
 	this->strm_ << "{\n";
-	
+
 	this->incr_indent ();
 	this->indent ();
-	
+
 	this->strm_ << "finish_timer_probe = ACE_OS::gethrtime ();\n";
 	this->indent ();
-	
+
 	this->strm_ << "history.sample (finish_timer_probe - start_timer_probe);\n";
 	this->indent ();
-	
+
 	this->strm_ << "ACE_DEBUG ((LM_DEBUG, \"iteration %d \\n\", ++ timer_count));\n";
 	this->indent ();
 
