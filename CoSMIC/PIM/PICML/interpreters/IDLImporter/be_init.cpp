@@ -4,7 +4,7 @@
 #include "be_extern.h"
 #include "../../tao/Version.h"
 
-TAO_PICML_BE_Export void
+IDL_TO_PICML_BE_Export void
 BE_version (void)
 {
   ACE_DEBUG ((LM_DEBUG,
@@ -13,13 +13,13 @@ BE_version (void)
               ACE_TEXT (TAO_VERSION)));
 }
 
-TAO_PICML_BE_Export int
+IDL_TO_PICML_BE_Export int
 BE_init (int &argc, char *argv[])
 {
   return 0;
 }
 
-TAO_PICML_BE_Export void
+IDL_TO_PICML_BE_Export void
 BE_post_init (const char *files[], long nfiles)
 {
   be_global->xerces_init ();

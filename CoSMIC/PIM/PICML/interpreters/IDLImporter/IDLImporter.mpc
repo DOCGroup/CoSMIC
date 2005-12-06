@@ -1,14 +1,14 @@
 // -*- MPC -*-
 // $Id$
 
-project(TAO_PICML_BE) : acedefaults, core, crosscompile, xerces {
+project(IDL_TO_PICML_BE) : acedefaults, core, crosscompile, xerces {
   after       += TAO_IDL_FE
-  sharedname   = TAO_PICML_BE
+  sharedname   = IDL_TO_PICML_BE
   libout       = $(COSMIC_ROOT)/lib
   dllout       = $(COSMIC_ROOT)/bin
   libpaths    += $(ACE_ROOT)/lib 
   libs        += ACE TAO_IDL_FE
-  dynamicflags = TAO_PICML_BE_BUILD_DLL
+  dynamicflags = IDL_TO_PICML_BE_BUILD_DLL
   includes    += $(TAO_ROOT)/TAO_IDL/include $(TAO_ROOT)/TAO_IDL/fe
 
   Source_Files {
@@ -21,7 +21,7 @@ project(TAO_PICML_BE) : acedefaults, core, crosscompile, xerces {
   }
 
   Header_Files {
-    TAO_PICML_BE_Export.h
+    IDL_TO_PICML_BE_Export.h
     picml_visitor.h
     XercesString.h
     be_extern.h
@@ -31,10 +31,10 @@ project(TAO_PICML_BE) : acedefaults, core, crosscompile, xerces {
 }
 
 
-project(TAO_PICML_EXE) : aceexe, core, crosscompile, xerces {
-  after          += TAO_PICML_BE TAO_IDL_FE
-  exename         = tao_picml
-  libs           += TAO_PICML_BE TAO_IDL_FE
+project(IDL_TO_PICML_EXE) : aceexe, core, crosscompile, xerces {
+  after          += IDL_TO_PICML_BE TAO_IDL_FE
+  exename         = idl_to_picml
+  libs           += IDL_TO_PICML_BE TAO_IDL_FE
   includes       += . $(TAO_ROOT)/TAO_IDL/include $(TAO_ROOT)/TAO_IDL/fe
   libpaths       += $(COSMIC_ROOT)/lib $(TAO_ROOT)/TAO_IDL
   install         = $(COSMIC_ROOT)/bin

@@ -35,7 +35,7 @@ const char *DOCTYPE = "project";
 const char *SYS_ID = "mga.dtd";
 const char *FILE_EXT = ".xme";
 
-TAO_PICML_BE_Export BE_GlobalData *be_global = 0;
+IDL_TO_PICML_BE_Export BE_GlobalData *be_global = 0;
 
 BE_GlobalData::BE_GlobalData (void)
   : filename_ (0),

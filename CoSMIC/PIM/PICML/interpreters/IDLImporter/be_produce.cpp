@@ -64,7 +64,7 @@ trademarks or registered trademarks of Sun Microsystems, Inc.
 
  */
 
-#include "TAO_PICML_BE_Export.h"
+#include "IDL_TO_PICML_BE_Export.h"
 #include "global_extern.h"
 #include "be_extern.h"
 #include "ast_root.h"
@@ -87,7 +87,7 @@ BE_cleanup (void)
 }
 
 // Abort this run of the BE.
-TAO_PICML_BE_Export void
+IDL_TO_PICML_BE_Export void
 BE_abort (void)
 {
   ACE_ERROR ((LM_ERROR,
@@ -99,7 +99,7 @@ BE_abort (void)
 }
 
 // Do the work of this BE. This is the starting point for code generation.
-TAO_PICML_BE_Export void
+IDL_TO_PICML_BE_Export void
 BE_produce (void)
 {
   // Get the root node.

@@ -67,19 +67,19 @@ trademarks or registered trademarks of Sun Microsystems, Inc.
 #ifndef TAO_IFR_BE_EXTERN_H
 #define TAO_IFR_BE_EXTERN_H
 
-#include "TAO_PICML_BE_Export.h"
+#include "IDL_TO_PICML_BE_Export.h"
 #include "be_global.h"
 
 #if !defined (ACE_LACKS_PRAGMA_ONCE)
 # pragma once
 #endif /* ACE_LACKS_PRAGMA_ONCE */
 
-extern TAO_PICML_BE_Export BE_GlobalData *be_global;
+extern IDL_TO_PICML_BE_Export BE_GlobalData *be_global;
 
-extern TAO_PICML_BE_Export int BE_init (int &, char*[]);
-extern TAO_PICML_BE_Export void BE_post_init (const char *[], long);
-extern TAO_PICML_BE_Export void BE_version (void);
-extern TAO_PICML_BE_Export void BE_produce (void);
-extern TAO_PICML_BE_Export void BE_abort (void);
+extern IDL_TO_PICML_BE_Export int BE_init (int &, char*[]);
+extern IDL_TO_PICML_BE_Export void BE_post_init (const char *[], long);
+extern IDL_TO_PICML_BE_Export void BE_version (void);
+extern IDL_TO_PICML_BE_Export void BE_produce (void);
+extern IDL_TO_PICML_BE_Export void BE_abort (void);
 
 #endif /* TAO_IFR_BE_EXTERN_H */

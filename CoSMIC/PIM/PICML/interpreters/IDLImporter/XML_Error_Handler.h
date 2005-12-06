@@ -14,7 +14,7 @@
 
 #include /**/ "ace/pre.h"
 
-#include "TAO_PICML_BE_Export.h"
+#include "IDL_TO_PICML_BE_Export.h"
 
 #if !defined (ACE_LACKS_PRAGMA_ONCE)
 #pragma once
@@ -31,7 +31,7 @@ using xercesc::DOMError;
   * @brief Error handler for XERCES
   *
   */
-class TAO_PICML_BE_Export XML_Error_Handler
+class IDL_TO_PICML_BE_Export XML_Error_Handler
   : public DOMErrorHandler
 {
 public:

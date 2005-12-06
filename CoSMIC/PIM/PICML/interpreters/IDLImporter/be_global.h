@@ -20,7 +20,7 @@
 #ifndef TAO_PICML_BE_GLOBAL_H
 #define TAO_PICML_BE_GLOBAL_H
 
-#include "TAO_PICML_BE_Export.h"
+#include "IDL_TO_PICML_BE_Export.h"
 #include "ast_type.h"
 #include "ace/SString.h"
 #include "ace/Hash_Map_Manager_T.h"
@@ -45,7 +45,7 @@ class AST_Module;
 
 // Defines a class containing all back end global data.
 
-class TAO_PICML_BE_Export BE_GlobalData
+class IDL_TO_PICML_BE_Export BE_GlobalData
 {
 public:
   // = TITLE
