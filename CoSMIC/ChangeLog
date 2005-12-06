@@ -20,6 +20,11 @@ Wed Dec  7 000:31:42 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/Interpreters/TAO_PICML_BE_Export.h:
         
           Removed file, the results of the renaming described above.
+          
+        * PIM/PICML/docs/Importing_IDL.doc:
+        * PIM/PICML/docs/Importing_IDL.pdf:
+        
+          Updated documentation to reflect the above changes.
 
 Tue Dec  6 20:44:18 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 

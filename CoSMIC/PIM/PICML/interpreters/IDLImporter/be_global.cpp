@@ -372,7 +372,7 @@ BE_GlobalData::parse_args (long &i, char **av)
         break;
       // Directory where the generated file is to
       // be kept. Default is the current directory from which
-      // <tao_picml> is called.
+      // <idl_to_picml> is called.
       case 'o':
         if (av[i][2] == '\0')
           {

@@ -281,7 +281,7 @@ private:
   char *output_dir_;
   // Directory where the generated file is to be
   // kept. Default value is 0 for this string which means the current
-  // directory from which the <tao_picml> is called.
+  // directory from which the <idl_to_picml> is called.
   
   char *input_xme_;
   // URL of the XME file to input, if any.
