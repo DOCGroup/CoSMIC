@@ -185,7 +185,8 @@ void Component::invokeEx( Project& project,
       emit_visitor.visitOrderableImpl (root);
     }
 
-  AfxMessageBox ("IDL generation completed.");
+  AfxMessageBox ("IDL generation completed.",
+                 MB_OK | MB_ICONINFORMATION);
 }
 
 // ====================================================
