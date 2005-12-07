@@ -64,8 +64,8 @@ trademarks or registered trademarks of Sun Microsystems, Inc.
 
 */
 
-#ifndef TAO_IFR_BE_EXTERN_H
-#define TAO_IFR_BE_EXTERN_H
+#ifndef IDL_TO_PICML_BE_EXTERN_H
+#define IDL_TO_PICML_BE_EXTERN_H
 
 #include "IDL_TO_PICML_BE_Export.h"
 #include "be_global.h"
@@ -82,4 +82,4 @@ extern IDL_TO_PICML_BE_Export void BE_version (void);
 extern IDL_TO_PICML_BE_Export void BE_produce (void);
 extern IDL_TO_PICML_BE_Export void BE_abort (void);
 
-#endif /* TAO_IFR_BE_EXTERN_H */
+#endif /* IDL_TO_PICML_BE_EXTERN_H */

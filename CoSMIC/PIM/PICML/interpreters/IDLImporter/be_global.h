@@ -17,8 +17,8 @@
 //
 // ============================================================================
 
-#ifndef TAO_PICML_BE_GLOBAL_H
-#define TAO_PICML_BE_GLOBAL_H
+#ifndef IDL_TO_PICML_BE_GLOBAL_H
+#define IDL_TO_PICML_BE_GLOBAL_H
 
 #include "IDL_TO_PICML_BE_Export.h"
 #include "ast_type.h"
@@ -340,4 +340,4 @@ private:
   // Location of the DTD for GME's XML format.
 };
 
-#endif /* TAO_PICML_BE_GLOBAL_H */
+#endif /* IDL_TO_PICML_BE_GLOBAL_H */

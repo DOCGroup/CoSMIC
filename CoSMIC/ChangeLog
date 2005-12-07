@@ -1,3 +1,11 @@
+Wed Dec  7 21:18:21 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/ILDImporter/be_extern.h:
+        * PIM/PICML/interpreters/ILDImporter/be_global.h:
+        * PIM/PICML/interpreters/ILDImporter/picml_visitor.h:
+        
+          Changed 'TAO_PICML_' prefix in ifdef guards to 'IDL_TO_PICML_'.
+
 Wed Dec  7 18:29:19 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/ILDImporter/EntityResolver.cpp:

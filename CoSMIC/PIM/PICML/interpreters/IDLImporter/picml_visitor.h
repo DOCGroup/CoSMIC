@@ -17,8 +17,8 @@
 //
 // ============================================================================
 
-#ifndef TAO_PICML_VISITOR_H
-#define TAO_PICML_VISITOR_H
+#ifndef IDL_TO_PICML_PICML_VISITOR_H
+#define IDL_TO_PICML_PICML_VISITOR_H
 
 #include "ast_visitor.h"
 #include "ast_expression.h"
@@ -244,4 +244,4 @@ private:
   unsigned long n_basic_seqs_;
 };
 
-#endif /* TAO_PICML_VISITOR_H */
+#endif /* IDL_TO_PICML_PICML_VISITOR_H */
