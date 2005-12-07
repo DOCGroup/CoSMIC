@@ -597,7 +597,8 @@ BE_GlobalData::xerces_init (void)
 
           if (handler.getErrors ())
             {
-              throw;
+              // The error handler will output a message.
+              exit (99);
             }
         }
 
