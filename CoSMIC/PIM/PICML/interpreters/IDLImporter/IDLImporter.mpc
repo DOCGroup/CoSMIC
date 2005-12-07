@@ -15,17 +15,19 @@ project(IDL_TO_PICML_BE) : acedefaults, core, crosscompile, xerces {
     be_global.cpp
     be_init.cpp
     be_produce.cpp
+    EntityResolver.cpp
     picml_visitor.cpp
     XercesString.cpp
     XML_Error_Handler.cpp
   }
 
   Header_Files {
+    be_extern.h
+    be_global.h
+    EntityResolver.h
     IDL_TO_PICML_BE_Export.h
     picml_visitor.h
     XercesString.h
-    be_extern.h
-    be_global.h
     XML_Error_Handler.h
   }
 }

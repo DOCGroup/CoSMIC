@@ -4,7 +4,7 @@
 //
 //
 // = LIBRARY
-//    TAO_PICML_BE_DLL
+//    IDL_TO_PICML_BE_DLL
 //
 // = FILENAME
 //    be_global.cpp
@@ -20,6 +20,7 @@
 #include "picml_visitor.h"
 #include "XercesString.h"
 #include "XML_Error_Handler.h"
+#include "EntityResolver.h"
 #include "be_global.h"
 #include "ast_generator.h"
 #include "ast_module.h"
@@ -27,6 +28,7 @@
 #include "global_extern.h"
 #include "idl_defines.h"
 #include "ace/OS_NS_stdio.h"
+#include "ace/Env_Value_T.h"
 
 // Some magic strings.
 const char *VERSION = "1.0";
@@ -63,6 +65,20 @@ BE_GlobalData::BE_GlobalData (void)
     implementations_rel_id_ (1UL),
     basic_seq_suffix_ ("Seq_from_IDL_include")
 {
+  ACE_Env_Value<const char *> path ("GME_ROOT", 0);
+  
+  // Need an extra step here because some C++ compilers can't
+  // match ACE_CString's assignment from char* operator with
+  // ACE_Env_Value's cast operator.
+  const char *path_str = path;
+  
+  if (path_str != 0)
+    {
+      this->schema_path_ = path_str;
+      
+      // The GME installer sets GME_ROOT to end with a backslash.
+      this->schema_path_ += "bin/";
+    }
 }
 
 BE_GlobalData::~BE_GlobalData (void)
@@ -395,6 +411,17 @@ BE_GlobalData::parse_args (long &i, char **av)
             be_global->input_xme (av[i] + 2);
           }
         break;
+      case 'm':
+        if (av[i][2] == '\0')
+          {
+            this->schema_path_ = av [i + 1];
+            i++;
+          }
+        else
+          {
+            this->schema_path_ = av[i] + 2;
+          }
+        break;
       default:
         ACE_ERROR ((
             LM_ERROR,
@@ -432,6 +459,16 @@ BE_GlobalData::usage (void) const
       LM_DEBUG,
       ACE_TEXT (" -o <dir>\t\tOutput directory for the generated file.")
       ACE_TEXT (" Default is current directory\n")
+    ));
+  ACE_DEBUG ((
+      LM_DEBUG,
+      ACE_TEXT (" -i <filepath>\t\tPath to XME input file.")
+      ACE_TEXT (" Default is no XME input file\n")
+    ));
+  ACE_DEBUG ((
+      LM_DEBUG,
+      ACE_TEXT (" -m <filepath>\t\tPath to GME's mga.dtd file.")
+      ACE_TEXT (" Default is c:\\Program Files\\GME\bin\n")
     ));
 }
 
@@ -544,6 +581,16 @@ BE_GlobalData::xerces_init (void)
 
           XML_Error_Handler handler;
           parser->setErrorHandler (&handler);
+          
+          if (this->schema_path_ == "" && this->input_xme_ != 0)
+            {
+              ACE_DEBUG ((LM_WARNING,
+                          "No schema path found or supplied - schema or "
+                          "DTD file must be in directory of execution\n"));
+            }
+            
+          EntityResolver resolver (this->schema_path_.c_str ());
+          parser->setEntityResolver (&resolver);
 
           this->doc_ = parser->parseURI (xme);
 //          parser->release ();

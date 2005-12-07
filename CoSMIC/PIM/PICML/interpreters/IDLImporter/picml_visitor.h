@@ -4,7 +4,7 @@
 // ============================================================================
 //
 // = LIBRARY
-//    TAO_PICML_BE_DLL
+//    IDL_TO_PICML_BE_DLL
 //
 // = FILENAME
 //    picml_visitor.h

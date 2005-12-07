@@ -4,7 +4,7 @@
 // ============================================================================
 //
 // = LIBRARY
-//    TAO_IFR_BE_DLL
+//    IDL_TO_PICML_BE_DLL
 //
 // = FILENAME
 //    be_global.h
@@ -335,6 +335,9 @@ private:
   
   ACE_CString basic_seq_suffix_;
   // Appended to name of basic type to get corresponding sequence.
+  
+  ACE_CString schema_path_;
+  // Location of the DTD for GME's XML format.
 };
 
 #endif /* TAO_PICML_BE_GLOBAL_H */

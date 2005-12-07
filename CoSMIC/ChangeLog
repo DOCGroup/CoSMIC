@@ -1,3 +1,26 @@
+Wed Dec  7 18:29:19 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/ILDImporter/EntityResolver.cpp:
+        * PIM/PICML/interpreters/ILDImporter/EntityResolver.h:
+        
+          New files containing a subclass of DOMEntityResolver, used in
+          the change below.
+          
+        * PIM/PICML/interpreters/ILDImporter/IDLImporter.mpc:
+        * PIM/PICML/interpreters/ILDImporter/be_global.cpp:
+        * PIM/PICML/interpreters/ILDImporter/be_global.h:
+        
+          Added code for the IDL importer to locate mga.dtd, which
+          is the DTD file used by GME for its XML imports/exports.
+          Locating this file is necessary if the IDL importer is
+          inputting an XME file to modify instead of creating one
+          from scratch. Thanks to Will Otte <wotte@dre.vanderbilt.edu>
+          for the CIAO code example that these changes are based on.
+          
+        * PIM/PICML/interpreters/ILDImporter/picml_visitor.h:
+        
+          Updated a comment.
+
 Wed Dec  7 000:31:42 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/Interpreters/IDLImporter.mpc:
