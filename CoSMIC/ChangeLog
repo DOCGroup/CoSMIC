@@ -1,3 +1,10 @@
+Thu Dec  8 23:54:16 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/docs/Importing_IDL.doc:
+        * PIM/PICML/docs/Importing_IDL.pdf:
+        
+          Corrections and updates to IDL Importer documentation.
+
 Wed Dec  7 21:18:21 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/ILDImporter/be_extern.h:
