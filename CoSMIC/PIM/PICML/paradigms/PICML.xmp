@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="PICML" guid="{BDA67F9A-0403-4DB8-B91E-FE9D646852C2}" cdate="Mon Nov 21 14:04:19 2005" mdate="Mon Nov 21 14:04:19 2005" >
+<paradigm name="PICML" guid="{6B7FBA3B-ED00-4E45-BD6A-C30D24050687}" cdate="Fri Dec 09 10:07:20 2005" mdate="Fri Dec 09 10:07:20 2005" >
 
 	<comment>This tool supports $CIAO_ROOT/docs/schema/CIAOServerResources.xsd version 1.7. 
 Please check the cvs repository if this is the most recent version of this file.</comment>
 
 	<author>Stoyan Paunov</author>
 
-	<folder name = "RootFolder" metaref = "1000"  subfolders = "ComponentAnalyses ComponentBuild ComponentImplementations ComponentPackages ComponentTypes DeploymentPlans EventChannelConfig ImplementationArtifacts InterfaceDefinitions PackageConfigurations PathDiagram PredefinedTypes Targets TopLevelPackages" rootobjects = "QoSConfiguration" >
+	<folder name = "RootFolder" metaref = "1000"  subfolders = "ComponentAnalyses ComponentBuild ComponentImplementations ComponentPackages ComponentTypes DeploymentPlans EventChannelConfig ImplementationArtifacts InterfaceDefinitions PackageConfigurations PathDiagram PredefinedTypes QoSModeling Targets TopLevelPackages" rootobjects = "QoSConfiguration" >
 		<constraint name="PriorityDispatching_Constraint" eventmask = "0x0" depth = "1" priority = "2">
 			<![CDATA[true]]>
 			<dispname>Priority dispatching requires priorities for all connected ports</dispname>
@@ -111,6 +111,12 @@ endif]]>
           (let supported = ref.refersTo ().oclAsType (gme::Model) in
           supported.localOps () + supported.inheritedOps (supported)))]]>
 		</constraint>
+		<attrdef name="Arch" metaref = "2400" valuetype = "enum" defvalue = "i386">
+			<dispname>Archetecture</dispname>
+			<enumitem dispname = "i386" value = "i386"></enumitem>
+			<enumitem dispname = "PPC" value = "PPC"></enumitem>
+			<enumitem dispname = "SPARC" value = "SPARC"></enumitem>
+		</attrdef>
 		<attrdef name="CmdLineOptions" metaref = "2125" valuetype = "string" defvalue = "">
 		</attrdef>
 		<attrdef name="DataValue" metaref = "1001" valuetype = "string" defvalue = "">
@@ -197,6 +203,14 @@ endif]]>
 		</attrdef>
 		<attrdef name="ECUseORBId" metaref = "1021" valuetype = "string" defvalue = "">
 		</attrdef>
+		<attrdef name="Latency" metaref = "2401" valuetype = "double" defvalue = "">
+			<dispname>Latency (ms)</dispname>
+		</attrdef>
+		<attrdef name="LinkSpeed" metaref = "2402" valuetype = "double" defvalue = "0">
+			<dispname>Link Speed (kBps)</dispname>
+		</attrdef>
+		<attrdef name="MaxRequests" metaref = "2403" valuetype = "double" defvalue = "">
+		</attrdef>
 		<attrdef name="ORBServices" metaref = "1022" valuetype = "string" defvalue = "">
 		</attrdef>
 		<attrdef name="PrefixTag" metaref = "1023" valuetype = "string" defvalue = "">
@@ -207,6 +221,21 @@ endif]]>
 			<enumitem dispname = "CLIENT_PROPAGATED" value = "CLIENT_PROPAGATED"></enumitem>
 			<enumitem dispname = "SERVER_DECLARED" value = "SERVER_DECLARED"></enumitem>
 		</attrdef>
+		<attrdef name="ProcessPriority" metaref = "2404" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="Protocol" metaref = "2405" valuetype = "enum" defvalue = "TCP">
+			<dispname>Protocol</dispname>
+			<enumitem dispname = "TCP" value = "TCP"></enumitem>
+			<enumitem dispname = "UDP" value = "UDP"></enumitem>
+			<enumitem dispname = "SCTP" value = "SCTP"></enumitem>
+		</attrdef>
+		<attrdef name="Qualification" metaref = "2309" valuetype = "enum" defvalue = "Gaurantee">
+			<enumitem dispname = "Gaurantee" value = "Gaurantee"></enumitem>
+			<enumitem dispname = "BestEffort" value = "BestEffort"></enumitem>
+			<enumitem dispname = "ThresholdBestEffort" value = "ThresholdBestEffort"></enumitem>
+			<enumitem dispname = "CompulsoryBestEffort" value = "CompulsoryBestEffort"></enumitem>
+			<enumitem dispname = "None" value = "None"></enumitem>
+		</attrdef>
 		<attrdef name="ResourceUsageKind" metaref = "1024" valuetype = "enum" defvalue = "None">
 			<dispname>resourceUsage</dispname>
 			<enumitem dispname = "None" value = "None"></enumitem>
@@ -214,6 +243,9 @@ endif]]>
 			<enumitem dispname = "ResourceUsesInstance" value = "ResourceUsesInstance"></enumitem>
 			<enumitem dispname = "PortUsesResource" value = "PortUsesResource"></enumitem>
 			<enumitem dispname = "ResourceUsesPort" value = "ResourceUsesPort"></enumitem>
+		</attrdef>
+		<attrdef name="SMP" metaref = "2406" valuetype = "integer" defvalue = "1">
+			<dispname>No. of Proc</dispname>
 		</attrdef>
 		<attrdef name="SatisfierPropertyKind" metaref = "1025" valuetype = "enum" defvalue = "Quantity">
 			<dispname>kind</dispname>
@@ -223,6 +255,11 @@ endif]]>
 			<enumitem dispname = "Maximum" value = "Maximum"></enumitem>
 			<enumitem dispname = "Selection" value = "Selection"></enumitem>
 			<enumitem dispname = "Attribute" value = "Attribute"></enumitem>
+		</attrdef>
+		<attrdef name="Scheduling" metaref = "2407" valuetype = "enum" defvalue = "FIFO">
+			<enumitem dispname = "FIFO" value = "FIFO"></enumitem>
+			<enumitem dispname = "RR" value = "RR"></enumitem>
+			<enumitem dispname = "OTHER" value = "OTHER"></enumitem>
 		</attrdef>
 		<attrdef name="SpecifyIdTag" metaref = "1026" valuetype = "string" defvalue = "">
 		</attrdef>
@@ -250,6 +287,12 @@ endif]]>
 			<enumitem dispname = "MEDIUM_CRITICALITY" value = "MEDIUM_CRITICALITY"></enumitem>
 			<enumitem dispname = "HIGH_CRITICALITY" value = "HIGH_CRITICALITY"></enumitem>
 			<enumitem dispname = "VERY_HIGH_CRITICALITY" value = "VERY_HIGH_CRITICALITY"></enumitem>
+		</attrdef>
+		<attrdef name="direction" metaref = "2310" valuetype = "enum" defvalue = "Undefined">
+			<dispname>Order relation</dispname>
+			<enumitem dispname = "Increasing" value = "Increasing"></enumitem>
+			<enumitem dispname = "Decreasing" value = "Decreasing"></enumitem>
+			<enumitem dispname = "Undefined" value = "Undefined"></enumitem>
 		</attrdef>
 		<attrdef name="dynamic_threads" metaref = "2131" valuetype = "integer" defvalue = "0">
 		</attrdef>
@@ -280,6 +323,11 @@ endif]]>
 			<enumitem dispname = "CONJUNCTION" value = "CONJUNCTION"></enumitem>
 			<enumitem dispname = "DISJUNCTION" value = "DISJUNCTION"></enumitem>
 			<enumitem dispname = "REMOTE_DEPENDANT" value = "REMOTE_DEPENDANT"></enumitem>
+		</attrdef>
+		<attrdef name="isInvariant" metaref = "2311" valuetype = "boolean" defvalue = "false">
+			<dispname>Updateable at runtime?</dispname>
+		</attrdef>
+		<attrdef name="isQoSObservation" metaref = "2312" valuetype = "boolean" defvalue = "false">
 		</attrdef>
 		<attrdef name="iterations" metaref = "1041" valuetype = "integer" defvalue = "">
 		</attrdef>
@@ -332,11 +380,26 @@ endif]]>
 		</attrdef>
 		<attrdef name="static_threads" metaref = "2138" valuetype = "integer" defvalue = "1">
 		</attrdef>
+		<attrdef name="statisticalQualifier" metaref = "2313" valuetype = "enum" defvalue = "MaxValue">
+			<dispname>Relational Comparitor?</dispname>
+			<enumitem dispname = "MaxValue" value = "MaxValue"></enumitem>
+			<enumitem dispname = "MinValue" value = "MinValue"></enumitem>
+			<enumitem dispname = "Range" value = "Range"></enumitem>
+			<enumitem dispname = "Mean" value = "Mean"></enumitem>
+			<enumitem dispname = "Variance" value = "Variance"></enumitem>
+			<enumitem dispname = "StdDev" value = "StdDev"></enumitem>
+			<enumitem dispname = "Percentile" value = "Percentile"></enumitem>
+			<enumitem dispname = "Frequency" value = "Frequency"></enumitem>
+			<enumitem dispname = "Moment" value = "Moment"></enumitem>
+			<enumitem dispname = "Distribution" value = "Distribution"></enumitem>
+		</attrdef>
 		<attrdef name="threads" metaref = "1058" valuetype = "integer" defvalue = "1">
 		</attrdef>
 		<attrdef name="timeperiod" metaref = "1059" valuetype = "integer" defvalue = "">
 		</attrdef>
 		<attrdef name="typical_execution_time" metaref = "1060" valuetype = "integer" defvalue = "">
+		</attrdef>
+		<attrdef name="units" metaref = "2314" valuetype = "string" defvalue = "">
 		</attrdef>
 		<attrdef name="warmup" metaref = "1061" valuetype = "integer" defvalue = "">
 		</attrdef>
@@ -647,12 +710,34 @@ and
 self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				<dispname>A PublishConnector cannot be used to make connections between In/OutEventPorts that are delegates and not ports of component instances</dispname>
 			</constraint>
-			<constraint name="ValidpublishsrcCardinality147" eventmask = "0x800" depth = "1" priority = "1">
+			<constraint name="ValidpublishsrcCardinality151" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", publish ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to PublishConnector as "src" over publish, has to match 0..1.</dispname>
 			</constraint>
 				<regnode name = "icon" value ="Connector.bmp"></regnode>
+		</atom>
+		<atom name = "QoSContract" metaref = "2384"  attributes = "Qualification">
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "QoSDimension" metaref = "2315"  attributes = "statisticalQualifier units direction">
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "QoSDimensionSlot" metaref = "2612"  attributes = "value">
+				<regnode name = "namePosition" value ="4"></regnode>
+			<attrdef name="value" metaref = "2613" valuetype = "string" defvalue = "">
+			</attrdef>
+		</atom>
+		<atom name = "QoSOffered" metaref = "2385"  attributes = "Qualification">
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "QoSParameter" metaref = "2318"  attributes = "value">
+				<regnode name = "namePosition" value ="4"></regnode>
+			<attrdef name="value" metaref = "2319" valuetype = "string" defvalue = "">
+			</attrdef>
+		</atom>
+		<atom name = "QoSRequired" metaref = "2386"  attributes = "Qualification">
+				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
 		<atom name = "RTEC_Resource_Factory" metaref = "1089"  attributes = "ECConsumerLock ECSupplierFiltering ECDispatching ECTimeout ECConsumerControlPeriod ECSupplierLock ECSupplierControl ECObserver ECFiltering ECConsumerControl ECProxyPushConsumerCollectionSynch ECUseORBId ECProxyPushConsumerCollectionFlag ECScheduling ECSupplierControlPeriod ECProxyPushConsumerCollectionIterator ECProxyPushSupplierCollectionFlag ECDispatchingThreads ECProxyPushSupplierCollectionIterator ECProxyPushSupplierCollectionSynch">
 				<regnode name = "namePosition" value ="4"></regnode>
@@ -716,7 +801,7 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 		</atom>
 		<atom name = "Task" metaref = "1094" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidWorkLoadOperationConnectionsrcCardinality135" eventmask = "0x800" depth = "1" priority = "1">
+			<constraint name="ValidWorkLoadOperationConnectionsrcCardinality139" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", WorkLoadOperationConnection ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to Task as "src" over WorkLoadOperationConnection, has to match 0..1.</dispname>
@@ -728,12 +813,12 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 		</atom>
 		<atom name = "TimeProbe" metaref = "1095" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidTimerConnectionsrcCardinality127" eventmask = "0x800" depth = "1" priority = "1">
+			<constraint name="ValidTimerConnectionsrcCardinality131" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", TimerConnection ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to TimeProbe as "src" over TimerConnection, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidTimerEventSinkConnsrcCardinality129" eventmask = "0x800" depth = "1" priority = "1">
+			<constraint name="ValidTimerEventSinkConnsrcCardinality133" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", TimerEventSinkConn ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to TimeProbe as "src" over TimerEventSinkConn, has to match 0..1.</dispname>
@@ -742,7 +827,7 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 		</atom>
 		<atom name = "TopLevelPackage" metaref = "1096" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidpackagedstCardinality146" eventmask = "0x800" depth = "1" priority = "1">
+			<constraint name="ValidpackagedstCardinality150" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", package ) -> size in
                      (dstCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to TopLevelPackage as "dst" over package, has to match 1.</dispname>
@@ -787,7 +872,7 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				<regnode name = "mName" value ="members"></regnode>
 				<regnode name = "sName" value ="setTaskSet"></regnode>
 				<regnode name = "icon" value ="taskset.bmp"></regnode>
-			<constraint name="ValidWorkloadCharacteristicssrcCardinality137" eventmask = "0x800" depth = "1" priority = "1">
+			<constraint name="ValidWorkloadCharacteristicssrcCardinality141" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", WorkloadCharacteristics ) -> size in
                      (srcCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to TaskSet as "src" over WorkloadCharacteristics, has to match 1.</dispname>
@@ -1852,6 +1937,41 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
+		<connection name = "QoSDecoration" metaref = "2664" >
+				<regnode name = "sName" value ="srcQoSDecoration"></regnode>
+				<regnode name = "dName" value ="dstQoSDecoration"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "QoSValue"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Component"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "QoSDimensionQualifier" metaref = "2321" >
+				<regnode name = "sName" value ="srcQoSDimensionQualifier"></regnode>
+				<regnode name = "dName" value ="dstQoSDimensionQualifier"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "QoSDimensionSlot"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "CPU QoSDimension"></pointeritem>
+					<pointeritem desc = "Concurrency QoSDimension"></pointeritem>
+					<pointeritem desc = "Process QoSDimension"></pointeritem>
+					<pointeritem desc = "QoSCharacteristic QoSDimension"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
 		<connection name = "RTEC_Connection" metaref = "1153" >
 				<regnode name = "sName" value ="srcRTEC_Connection"></regnode>
 				<regnode name = "dName" value ="dstRTEC_Connection"></regnode>
@@ -2836,12 +2956,12 @@ let props = self.connectedFCOs(AttributeMappingValue) in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to OperationRef as "dst" over MetricConnection, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidTimerConnectiondstCardinality128" eventmask = "0x800" depth = "1" priority = "1">
+			<constraint name="ValidTimerConnectiondstCardinality132" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", TimerConnection ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to OperationRef as "dst" over TimerConnection, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidWorkLoadOperationConnectiondstCardinality136" eventmask = "0x800" depth = "1" priority = "1">
+			<constraint name="ValidWorkLoadOperationConnectiondstCardinality140" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", WorkLoadOperationConnection ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to OperationRef as "dst" over WorkLoadOperationConnection, has to match 0..1.</dispname>
@@ -2908,12 +3028,12 @@ endif
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<constraint name="ValidemitdstCardinality142" eventmask = "0x800" depth = "1" priority = "1">
+			<constraint name="ValidemitdstCardinality146" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", emit ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to OutEventPort as "dst" over emit, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidpublishdstCardinality148" eventmask = "0x800" depth = "1" priority = "1">
+			<constraint name="ValidpublishdstCardinality152" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", publish ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to OutEventPort as "dst" over publish, has to match 0..1.</dispname>
@@ -2967,7 +3087,7 @@ endif
 				<![CDATA[not self.refersTo().isNull()]]>
 				<dispname>PackageConfigurationReference cannot be null</dispname>
 			</constraint>
-			<constraint name="ValidpackagesrcCardinality145" eventmask = "0x800" depth = "1" priority = "1">
+			<constraint name="ValidpackagesrcCardinality149" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", package ) -> size in
                      (srcCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to PackageConfigurationReference as "src" over package, has to match 1.</dispname>
@@ -3168,7 +3288,7 @@ endif
    artifacts->isUnique (i : ImplementationArtifact | i.name.trim())]]>
 				<dispname>Implementation Artifacts should have unique names</dispname>
 			</constraint>
-			<constraint name="ValidArtifactContainerPartCardinality149" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidArtifactContainerPartCardinality153" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ImplementationArtifact" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ArtifactContainer, has to match 1..*.</dispname>
@@ -3238,7 +3358,7 @@ let props = self.connectedFCOs(AttributeValue) in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to ReadonlyAttribute as "dst" over AttributeValue, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidReadonlyAttributePartCardinality174" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidReadonlyAttributePartCardinality179" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "AttributeMember" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ReadonlyAttribute, has to match 1.</dispname>
@@ -3258,13 +3378,13 @@ let props = self.connectedFCOs(AttributeValue) in
 		</model>
 		<model name = "BandedConnection" metaref = "2146" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidBandedConnectionPartCardinality150" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidBandedConnectionPartCardinality154" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ConnectionBand" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by BandedConnection, has to match 1..*.</dispname>
 			</constraint>
 			<role name = "ConnectionBand" metaref = "2147" kind = "ConnectionBand"></role>
-			<aspect name = "QoSAspect" metaref = "2148" >
+			<aspect name = "QoSAspect" metaref = "2322" >
 				<part metaref = "2149" role = "ConnectionBand" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
@@ -3334,6 +3454,29 @@ let props = self.connectedFCOs(AttributeValue) in
 			<role name = "Resource" metaref = "1286" kind = "Resource"></role>
 			<aspect name = "Target" metaref = "1287" attributes = "label" >
 				<part metaref = "1288" role = "Resource" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "CPU" metaref = "2554" attributes = "Arch SMP isInvariant" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidQoSCharacteristicPartCardinality176" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "QoSDimension" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by QoSCharacteristic, has to match 1..*.</dispname>
+			</constraint>
+			<role name = "CPU" metaref = "2555" kind = "CPU"></role>
+			<role name = "Concurrency" metaref = "2556" kind = "Concurrency"></role>
+			<role name = "Process" metaref = "2557" kind = "Process"></role>
+			<role name = "QoSCharacteristic" metaref = "2443" kind = "QoSCharacteristic"></role>
+			<role name = "QoSDimension" metaref = "2444" kind = "QoSDimension"></role>
+			<role name = "QoSParameter" metaref = "2445" kind = "QoSParameter"></role>
+			<aspect name = "QoSModelAspect" metaref = "2614" attributes = "Arch SMP isInvariant" >
+				<dispname>QoS Modeling</dispname>
+				<part metaref = "2615" role = "CPU" primary = "yes" linked = "no"></part>
+				<part metaref = "2616" role = "Concurrency" primary = "yes" linked = "no"></part>
+				<part metaref = "2617" role = "Process" primary = "yes" linked = "no"></part>
+				<part metaref = "2618" role = "QoSCharacteristic" primary = "yes" linked = "no"></part>
+				<part metaref = "2619" role = "QoSDimension" primary = "yes" linked = "yes"></part>
+				<part metaref = "2620" role = "QoSParameter" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Capability" metaref = "1289" attributes = "resourceType" >
@@ -3551,6 +3694,8 @@ instances->forAll (x : Component |
 			<role name = "Property" metaref = "1329" kind = "Property"></role>
 			<role name = "ProvidedRequestPort" metaref = "1330" kind = "ProvidedRequestPort"></role>
 			<role name = "PublishConnector" metaref = "1331" kind = "PublishConnector"></role>
+			<role name = "QoSDecoration" metaref = "2674" kind = "QoSDecoration"></role>
+			<role name = "QoSValue" metaref = "2667" kind = "QoSValue"></role>
 			<role name = "ReceptacleDelegate" metaref = "1332" kind = "ReceptacleDelegate"></role>
 			<role name = "RequiredRequestPort" metaref = "1333" kind = "RequiredRequestPort"></role>
 			<role name = "Requirement" metaref = "1334" kind = "Requirement"></role>
@@ -3589,10 +3734,17 @@ instances->forAll (x : Component |
 				<part metaref = "1367" role = "invoke" primary = "yes" linked = "no"></part>
 				<part metaref = "1368" role = "publish" primary = "yes" linked = "no"></part>
 			</aspect>
+			<aspect name = "QoSModelAspect" metaref = "2666" attributes = "UUID label" >
+				<dispname>QoS Modeling</dispname>
+				<part metaref = "2671" role = "Component" primary = "yes" linked = "no"></part>
+				<part metaref = "2672" role = "ComponentAssembly" primary = "yes" linked = "no"></part>
+				<part metaref = "2675" role = "QoSDecoration" primary = "yes" linked = "no"></part>
+				<part metaref = "2668" role = "QoSValue" primary = "yes" linked = "no"></part>
+			</aspect>
 		</model>
 		<model name = "ComponentContainer" metaref = "1369" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidComponentContainerPartCardinality151" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidComponentContainerPartCardinality155" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentContainer, has to match 0..1.</dispname>
@@ -3646,7 +3798,7 @@ instances->forAll (x : Component |
           ]]>
 				<dispname>Local, inherited and supported operations must all have unique names</dispname>
 			</constraint>
-			<constraint name="ValidComponentFactoryPartCardinality152" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidComponentFactoryPartCardinality156" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "LookupKey" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentFactory, has to match 0..1.</dispname>
@@ -3706,18 +3858,18 @@ instances->forAll (x : Component |
           (self.atomParts (MonolithicImplementation)->size = 1 implies self.modelParts (ComponentAssembly)->size = 0)]]>
 				<dispname>ComponentImplementation can either be Monolithic or be assembly based, but not both</dispname>
 			</constraint>
-			<constraint name="ValidComponentImplementationContainerPartCardinality153" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidComponentImplementationContainerPartCardinality157" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ComponentImplementation" ) -> size + self.parts( "MonolithicImplementation" ) -> size + self.parts( "ComponentAssembly" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidComponentImplementationContainerPartCardinality154" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Implements" ) -> size in
+			<constraint name="ValidComponentImplementationContainerPartCardinality158" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidComponentImplementationContainerPartCardinality155" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
+			<constraint name="ValidComponentImplementationContainerPartCardinality159" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Implements" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -3737,6 +3889,7 @@ instances->forAll (x : Component |
 			<role name = "MonolithicImplementation" metaref = "1431" kind = "MonolithicImplementation"></role>
 			<role name = "MonolithprimaryArtifact" metaref = "1432" kind = "MonolithprimaryArtifact"></role>
 			<role name = "Property" metaref = "1433" kind = "Property"></role>
+			<role name = "QoSValue" metaref = "2669" kind = "QoSValue"></role>
 			<aspect name = "Packaging" metaref = "1434" >
 				<part metaref = "1435" role = "Capability" primary = "yes" linked = "no"></part>
 				<part metaref = "1436" role = "ComponentAssembly" primary = "yes" linked = "no"></part>
@@ -3755,11 +3908,16 @@ instances->forAll (x : Component |
 				<part metaref = "1449" role = "MonolithprimaryArtifact" primary = "yes" linked = "no"></part>
 				<part metaref = "1450" role = "Property" primary = "yes" linked = "no"></part>
 			</aspect>
+			<aspect name = "QoSModelAspect" metaref = "2665" >
+				<dispname>QoS Modeling</dispname>
+				<part metaref = "2673" role = "ComponentAssembly" primary = "yes" linked = "no"></part>
+				<part metaref = "2670" role = "QoSValue" primary = "yes" linked = "no"></part>
+			</aspect>
 		</model>
 		<model name = "ComponentPropertyDescription" metaref = "1451" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="ComponentProperty.bmp"></regnode>
-			<constraint name="ValidComponentPropertyDescriptionPartCardinality156" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidComponentPropertyDescriptionPartCardinality160" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "DataType" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentPropertyDescription, has to match 1.</dispname>
@@ -3767,6 +3925,29 @@ instances->forAll (x : Component |
 			<role name = "DataType" metaref = "1452" kind = "DataType"></role>
 			<aspect name = "Packaging" metaref = "1453" >
 				<part metaref = "1454" role = "DataType" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "Concurrency" metaref = "2562" attributes = "isInvariant MaxRequests" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidQoSCharacteristicPartCardinality176" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "QoSDimension" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by QoSCharacteristic, has to match 1..*.</dispname>
+			</constraint>
+			<role name = "CPU" metaref = "2563" kind = "CPU"></role>
+			<role name = "Concurrency" metaref = "2564" kind = "Concurrency"></role>
+			<role name = "Process" metaref = "2565" kind = "Process"></role>
+			<role name = "QoSCharacteristic" metaref = "2458" kind = "QoSCharacteristic"></role>
+			<role name = "QoSDimension" metaref = "2459" kind = "QoSDimension"></role>
+			<role name = "QoSParameter" metaref = "2460" kind = "QoSParameter"></role>
+			<aspect name = "QoSModelAspect" metaref = "2621" attributes = "isInvariant MaxRequests" >
+				<dispname>QoS Modeling</dispname>
+				<part metaref = "2622" role = "CPU" primary = "yes" linked = "no"></part>
+				<part metaref = "2623" role = "Concurrency" primary = "yes" linked = "no"></part>
+				<part metaref = "2624" role = "Process" primary = "yes" linked = "no"></part>
+				<part metaref = "2625" role = "QoSCharacteristic" primary = "yes" linked = "no"></part>
+				<part metaref = "2626" role = "QoSDimension" primary = "yes" linked = "yes"></part>
+				<part metaref = "2627" role = "QoSParameter" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "ConnectedComponent" metaref = "2011" >
@@ -3832,7 +4013,7 @@ instances->forAll (x : Component |
 				<![CDATA[atomParts ()->forAll (x, y : gme::Atom | x <> y implies x.name <> y.name)]]>
 				<dispname>An enum's member names must be unique</dispname>
 			</constraint>
-			<constraint name="ValidEnumPartCardinality157" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidEnumPartCardinality161" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "EnumValue" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Enum, has to match 1..*.</dispname>
@@ -3973,7 +4154,7 @@ instances->forAll (x : Component |
 		<model name = "ExecutorProject" metaref = "1556" attributes = "libraryexport sharedname ORBServices" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="project.bmp"></regnode>
-			<constraint name="ValidExecutorProjectPartCardinality158" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidExecutorProjectPartCardinality162" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ImplementationArtifactReference" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ExecutorProject, has to match 1.</dispname>
@@ -4097,7 +4278,7 @@ instances->forAll (x : Component |
                      (srcCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to MetricsBase as "src" over MetricConnection, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidWorkloadCharacteristicsdstCardinality138" eventmask = "0x800" depth = "1" priority = "1">
+			<constraint name="ValidWorkloadCharacteristicsdstCardinality142" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", WorkloadCharacteristics ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to MetricsBase as "dst" over WorkloadCharacteristics, has to match 0..1.</dispname>
@@ -4319,35 +4500,35 @@ instances->forAll (x : Component |
           xor self.atomParts(ComponentPackage)->size = 1]]>
 				<dispname>A PackageConfiguration can either specialize another PackageConfiguration, or contain a ComponentPackage, or contain a reference to a ComponentPackage</dispname>
 			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality159" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfiguration" ) -> size in
-                     (partCount >= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 1..*.</dispname>
-			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality160" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality161" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality162" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPackageConfigurationContainerPartCardinality163" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PackageConfBasePackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality163" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPackageConfigurationContainerPartCardinality164" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality164" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPackageConfigurationContainerPartCardinality165" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPackageConfigurationContainerPartCardinality166" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PackageConfSpecializedConfig" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPackageConfigurationContainerPartCardinality167" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPackageConfigurationContainerPartCardinality168" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PackageConfiguration" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 1..*.</dispname>
 			</constraint>
 			<role name = "ComponentPackage" metaref = "1703" kind = "ComponentPackage"></role>
 			<role name = "ComponentPackageReference" metaref = "1704" kind = "ComponentPackageReference"></role>
@@ -4374,18 +4555,18 @@ instances->forAll (x : Component |
 		</model>
 		<model name = "PackageContainer" metaref = "1724" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidPackageContainerPartCardinality165" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPackageContainerPartCardinality169" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidPackageContainerPartCardinality166" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageInterface" ) -> size in
+			<constraint name="ValidPackageContainerPartCardinality170" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidPackageContainerPartCardinality167" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
+			<constraint name="ValidPackageContainerPartCardinality171" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PackageInterface" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -4429,17 +4610,17 @@ instances->forAll (x : Component |
 		</model>
 		<model name = "PolicySet" metaref = "2150" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidPolicySetPartCardinality168" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPolicySetPartCardinality172" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ThreadPoolRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PolicySet, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidPolicySetPartCardinality169" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPolicySetPartCardinality173" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PriorityModelPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PolicySet, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidPolicySetPartCardinality170" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPolicySetPartCardinality174" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "BandedConnectionRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PolicySet, has to match 0..1.</dispname>
@@ -4447,10 +4628,33 @@ instances->forAll (x : Component |
 			<role name = "BandedConnectionRef" metaref = "2151" kind = "BandedConnectionRef"></role>
 			<role name = "PriorityModelPolicy" metaref = "2152" kind = "PriorityModelPolicy"></role>
 			<role name = "ThreadPoolRef" metaref = "2153" kind = "ThreadPoolRef"></role>
-			<aspect name = "QoSAspect" metaref = "2154" >
+			<aspect name = "QoSAspect" metaref = "2323" >
 				<part metaref = "2155" role = "BandedConnectionRef" primary = "yes" kindaspect = "QoSAspect" linked = "no"></part>
 				<part metaref = "2156" role = "PriorityModelPolicy" primary = "yes" linked = "no"></part>
 				<part metaref = "2157" role = "ThreadPoolRef" primary = "yes" kindaspect = "QoSAspect" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "Process" metaref = "2570" attributes = "isInvariant Scheduling ProcessPriority" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidQoSCharacteristicPartCardinality176" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "QoSDimension" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by QoSCharacteristic, has to match 1..*.</dispname>
+			</constraint>
+			<role name = "CPU" metaref = "2571" kind = "CPU"></role>
+			<role name = "Concurrency" metaref = "2572" kind = "Concurrency"></role>
+			<role name = "Process" metaref = "2573" kind = "Process"></role>
+			<role name = "QoSCharacteristic" metaref = "2488" kind = "QoSCharacteristic"></role>
+			<role name = "QoSDimension" metaref = "2489" kind = "QoSDimension"></role>
+			<role name = "QoSParameter" metaref = "2490" kind = "QoSParameter"></role>
+			<aspect name = "QoSModelAspect" metaref = "2628" attributes = "isInvariant Scheduling ProcessPriority" >
+				<dispname>QoS Modeling</dispname>
+				<part metaref = "2629" role = "CPU" primary = "yes" linked = "no"></part>
+				<part metaref = "2630" role = "Concurrency" primary = "yes" linked = "no"></part>
+				<part metaref = "2631" role = "Process" primary = "yes" linked = "no"></part>
+				<part metaref = "2632" role = "QoSCharacteristic" primary = "yes" linked = "no"></part>
+				<part metaref = "2633" role = "QoSDimension" primary = "yes" linked = "yes"></part>
+				<part metaref = "2634" role = "QoSParameter" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Project" metaref = "1742" >
@@ -4478,7 +4682,7 @@ instances->forAll (x : Component |
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to Property as "src" over AttributeMappingValue, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidPropertyPartCardinality171" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPropertyPartCardinality175" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "DataType" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Property, has to match 1.</dispname>
@@ -4488,16 +4692,75 @@ instances->forAll (x : Component |
 				<part metaref = "1758" role = "DataType" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
+		<model name = "QoSCategory" metaref = "2324" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<role name = "CPU" metaref = "2578" kind = "CPU"></role>
+			<role name = "Concurrency" metaref = "2579" kind = "Concurrency"></role>
+			<role name = "Process" metaref = "2580" kind = "Process"></role>
+			<role name = "QoSCharacteristic" metaref = "2325" kind = "QoSCharacteristic"></role>
+			<aspect name = "QoSModelAspect" metaref = "2635" >
+				<dispname>QoS Modeling</dispname>
+				<part metaref = "2636" role = "CPU" primary = "yes" linked = "no"></part>
+				<part metaref = "2637" role = "Concurrency" primary = "yes" linked = "no"></part>
+				<part metaref = "2638" role = "Process" primary = "yes" linked = "no"></part>
+				<part metaref = "2639" role = "QoSCharacteristic" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "QoSCharacteristic" metaref = "2326" attributes = "isInvariant" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidQoSCharacteristicPartCardinality176" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "QoSDimension" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by QoSCharacteristic, has to match 1..*.</dispname>
+			</constraint>
+			<role name = "CPU" metaref = "2585" kind = "CPU"></role>
+			<role name = "Concurrency" metaref = "2586" kind = "Concurrency"></role>
+			<role name = "Process" metaref = "2587" kind = "Process"></role>
+			<role name = "QoSCharacteristic" metaref = "2388" kind = "QoSCharacteristic"></role>
+			<role name = "QoSDimension" metaref = "2327" kind = "QoSDimension"></role>
+			<role name = "QoSParameter" metaref = "2328" kind = "QoSParameter"></role>
+			<aspect name = "QoSModelAspect" metaref = "2640" attributes = "isInvariant" >
+				<dispname>QoS Modeling</dispname>
+				<part metaref = "2641" role = "CPU" primary = "yes" linked = "no"></part>
+				<part metaref = "2642" role = "Concurrency" primary = "yes" linked = "no"></part>
+				<part metaref = "2643" role = "Process" primary = "yes" linked = "no"></part>
+				<part metaref = "2644" role = "QoSCharacteristic" primary = "yes" linked = "no"></part>
+				<part metaref = "2645" role = "QoSDimension" primary = "yes" linked = "yes"></part>
+				<part metaref = "2646" role = "QoSParameter" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
 		<model name = "QoSConfiguration" metaref = "2158" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidQoSConfigurationPartCardinality172" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidQoSConfigurationPartCardinality177" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "QoSModel" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by QoSConfiguration, has to match 1..*.</dispname>
 			</constraint>
 			<role name = "QoSModel" metaref = "2159" kind = "QoSModel"></role>
-			<aspect name = "QoSAspect" metaref = "2160" >
+			<aspect name = "QoSAspect" metaref = "2329" >
 				<part metaref = "2161" role = "QoSModel" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "QoSContext" metaref = "2330" attributes = "isQoSObservation" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<role name = "CPU" metaref = "2592" kind = "CPU"></role>
+			<role name = "Concurrency" metaref = "2593" kind = "Concurrency"></role>
+			<role name = "Process" metaref = "2594" kind = "Process"></role>
+			<role name = "QoSCharacteristic" metaref = "2331" kind = "QoSCharacteristic"></role>
+			<role name = "QoSContext" metaref = "2391" kind = "QoSContext"></role>
+			<role name = "QoSContract" metaref = "2392" kind = "QoSContract"></role>
+			<role name = "QoSOffered" metaref = "2393" kind = "QoSOffered"></role>
+			<role name = "QoSRequired" metaref = "2394" kind = "QoSRequired"></role>
+			<aspect name = "QoSModelAspect" metaref = "2647" attributes = "isQoSObservation" >
+				<dispname>QoS Modeling</dispname>
+				<part metaref = "2648" role = "CPU" primary = "yes" linked = "no"></part>
+				<part metaref = "2649" role = "Concurrency" primary = "yes" linked = "no"></part>
+				<part metaref = "2650" role = "Process" primary = "yes" linked = "no"></part>
+				<part metaref = "2651" role = "QoSCharacteristic" primary = "yes" linked = "no"></part>
+				<part metaref = "2652" role = "QoSContext" primary = "yes" linked = "no"></part>
+				<part metaref = "2676" role = "QoSContract" primary = "yes" linked = "no"></part>
+				<part metaref = "2677" role = "QoSOffered" primary = "yes" linked = "no"></part>
+				<part metaref = "2678" role = "QoSRequired" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "QoSModel" metaref = "2162" >
@@ -4506,17 +4769,53 @@ instances->forAll (x : Component |
 			<role name = "PolicySet" metaref = "2164" kind = "PolicySet"></role>
 			<role name = "PolicySetRef" metaref = "2165" kind = "PolicySetRef"></role>
 			<role name = "ResourceContainer" metaref = "2166" kind = "ResourceContainer"></role>
-			<aspect name = "QoSAspect" metaref = "2167" >
+			<aspect name = "QoSAspect" metaref = "2332" >
 				<part metaref = "2168" role = "EnvironmentConf" primary = "yes" linked = "no"></part>
 				<part metaref = "2169" role = "PolicySet" primary = "yes" linked = "no"></part>
 				<part metaref = "2170" role = "PolicySetRef" primary = "yes" kindaspect = "QoSAspect" linked = "no"></part>
 				<part metaref = "2171" role = "ResourceContainer" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
+		<model name = "QoSModel1" metaref = "2369" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<role name = "CPU" metaref = "2599" kind = "CPU"></role>
+			<role name = "Concurrency" metaref = "2600" kind = "Concurrency"></role>
+			<role name = "Process" metaref = "2601" kind = "Process"></role>
+			<role name = "QoSCategory" metaref = "2370" kind = "QoSCategory"></role>
+			<role name = "QoSCharacteristic" metaref = "2371" kind = "QoSCharacteristic"></role>
+			<role name = "QoSValue" metaref = "2372" kind = "QoSValue"></role>
+			<aspect name = "QoSModelAspect" metaref = "2419" >
+				<dispname>QoS Modeling</dispname>
+				<part metaref = "2653" role = "CPU" primary = "yes" linked = "no"></part>
+				<part metaref = "2654" role = "Concurrency" primary = "yes" linked = "no"></part>
+				<part metaref = "2655" role = "Process" primary = "yes" linked = "no"></part>
+				<part metaref = "2420" role = "QoSCategory" primary = "yes" linked = "no"></part>
+				<part metaref = "2421" role = "QoSCharacteristic" primary = "yes" linked = "no"></part>
+				<part metaref = "2422" role = "QoSValue" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "QoSValue" metaref = "2333" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<role name = "CPU" metaref = "2605" kind = "CPU"></role>
+			<role name = "Concurrency" metaref = "2606" kind = "Concurrency"></role>
+			<role name = "Process" metaref = "2607" kind = "Process"></role>
+			<role name = "QoSCharacteristic" metaref = "2334" kind = "QoSCharacteristic"></role>
+			<role name = "QoSDimensionQualifier" metaref = "2381" kind = "QoSDimensionQualifier"></role>
+			<role name = "QoSDimensionSlot" metaref = "2656" kind = "QoSDimensionSlot"></role>
+			<aspect name = "QoSModelAspect" metaref = "2657" >
+				<dispname>QoS Modeling</dispname>
+				<part metaref = "2658" role = "CPU" primary = "yes" linked = "no"></part>
+				<part metaref = "2659" role = "Concurrency" primary = "yes" linked = "no"></part>
+				<part metaref = "2660" role = "Process" primary = "yes" linked = "no"></part>
+				<part metaref = "2661" role = "QoSCharacteristic" primary = "yes" linked = "no"></part>
+				<part metaref = "2662" role = "QoSDimensionQualifier" primary = "yes" linked = "no"></part>
+				<part metaref = "2663" role = "QoSDimensionSlot" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
 		<model name = "RTEC_Proxy_Consumer" metaref = "1759" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="rtec_proxy_consumer.bmp"></regnode>
-			<constraint name="ValidRTEC_Proxy_ConsumerPartCardinality173" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidRTEC_Proxy_ConsumerPartCardinality178" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "RTEC_Resource_Factory_Reference" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RTEC_Proxy_Consumer, has to match 1.</dispname>
@@ -4595,7 +4894,7 @@ let props = self.connectedFCOs(AttributeValue) in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to ReadonlyAttribute as "dst" over AttributeValue, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidReadonlyAttributePartCardinality174" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidReadonlyAttributePartCardinality179" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "AttributeMember" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ReadonlyAttribute, has to match 1.</dispname>
@@ -4632,7 +4931,7 @@ let props = self.connectedFCOs(AttributeValue) in
 			<role name = "BandedConnection" metaref = "2173" kind = "BandedConnection"></role>
 			<role name = "SimpleThreadPool" metaref = "2174" kind = "SimpleThreadPool"></role>
 			<role name = "ThreadPoolWithLanes" metaref = "2175" kind = "ThreadPoolWithLanes"></role>
-			<aspect name = "QoSAspect" metaref = "2176" >
+			<aspect name = "QoSAspect" metaref = "2336" >
 				<part metaref = "2177" role = "BandedConnection" primary = "yes" linked = "no"></part>
 				<part metaref = "2178" role = "SimpleThreadPool" primary = "yes" linked = "no"></part>
 				<part metaref = "2179" role = "ThreadPoolWithLanes" primary = "yes" linked = "no"></part>
@@ -4641,7 +4940,7 @@ let props = self.connectedFCOs(AttributeValue) in
 		<model name = "SatisfierProperty" metaref = "1799" attributes = "DataValue SatisfierPropertyKind" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="SatisfierProperty.bmp"></regnode>
-			<constraint name="ValidSatisfierPropertyPartCardinality175" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSatisfierPropertyPartCardinality180" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "DataType" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SatisfierProperty, has to match 1.</dispname>
@@ -4654,15 +4953,15 @@ let props = self.connectedFCOs(AttributeValue) in
 		<model name = "ServantProject" metaref = "1803" attributes = "libraryexport sharedname ORBServices" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="project.bmp"></regnode>
-			<constraint name="ValidServantProjectPartCardinality176" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "FileRef" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by ServantProject, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidServantProjectPartCardinality177" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidServantProjectPartCardinality181" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ImplementationArtifactReference" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ServantProject, has to match 1.</dispname>
+			</constraint>
+			<constraint name="ValidServantProjectPartCardinality182" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "FileRef" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by ServantProject, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="servantOneInstance" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[self.instances ()->size <= 1]]>
@@ -4678,7 +4977,7 @@ let props = self.connectedFCOs(AttributeValue) in
 		<model name = "SharedResource" metaref = "1809" attributes = "resourceType" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="SharedResource"></regnode>
-			<constraint name="ValidSharessrcCardinality123" eventmask = "0x800" depth = "1" priority = "1">
+			<constraint name="ValidSharessrcCardinality127" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", Shares ) -> size in
                      (srcCount >= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to SharedResource as "src" over Shares, has to match 1..*.</dispname>
@@ -4690,26 +4989,26 @@ let props = self.connectedFCOs(AttributeValue) in
 		</model>
 		<model name = "SimpleThreadPool" metaref = "2180" attributes = "max_buffered_requests allow_request_buffering stacksize max_buffer_size" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidSimpleThreadPoolPartCardinality178" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSimpleThreadPoolPartCardinality183" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ThreadPoolLane" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SimpleThreadPool, has to match 1.</dispname>
 			</constraint>
 			<role name = "ThreadPoolLane" metaref = "2181" kind = "ThreadPoolLane"></role>
-			<aspect name = "QoSAspect" metaref = "2182" attributes = "max_buffered_requests allow_request_buffering stacksize max_buffer_size" >
+			<aspect name = "QoSAspect" metaref = "2337" attributes = "max_buffered_requests allow_request_buffering stacksize max_buffer_size" >
 				<part metaref = "2183" role = "ThreadPoolLane" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "StubProject" metaref = "1813" attributes = "libraryexport sharedname ORBServices" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="project.bmp"></regnode>
-			<constraint name="ValidStubProjectPartCardinality179" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "FileRef" ) -> size in
+			<constraint name="ValidStubProjectPartCardinality184" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ImplementationArtifactReference" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by StubProject, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidStubProjectPartCardinality180" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ImplementationArtifactReference" ) -> size in
+			<constraint name="ValidStubProjectPartCardinality185" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "FileRef" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by StubProject, has to match 1.</dispname>
 			</constraint>
@@ -4755,18 +5054,18 @@ let props = self.connectedFCOs(AttributeValue) in
 				<![CDATA[name.trim().match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<dispname>Not a valid identifier</dispname>
 			</constraint>
-			<constraint name="ValidSwitchedAggregatePartCardinality181" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSwitchedAggregatePartCardinality186" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Label" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
+			</constraint>
+			<constraint name="ValidSwitchedAggregatePartCardinality187" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidSwitchedAggregatePartCardinality182" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSwitchedAggregatePartCardinality188" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
-                     (partCount >= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
-			</constraint>
-			<constraint name="ValidSwitchedAggregatePartCardinality183" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Label" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
@@ -4787,13 +5086,13 @@ let props = self.connectedFCOs(AttributeValue) in
 		</model>
 		<model name = "ThreadPoolWithLanes" metaref = "2184" attributes = "max_buffered_requests allow_request_buffering stacksize max_buffer_size allow_borrowing" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidThreadPoolWithLanesPartCardinality184" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidThreadPoolWithLanesPartCardinality189" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ThreadPoolLane" ) -> size in
                      (partCount >= 2)]]>
 				<dispname>Multiplicity of parts, which are contained by ThreadPoolWithLanes, has to match 2..*.</dispname>
 			</constraint>
 			<role name = "ThreadPoolLane" metaref = "2185" kind = "ThreadPoolLane"></role>
-			<aspect name = "QoSAspect" metaref = "2186" attributes = "max_buffered_requests allow_request_buffering stacksize max_buffer_size allow_borrowing" >
+			<aspect name = "QoSAspect" metaref = "2338" attributes = "max_buffered_requests allow_request_buffering stacksize max_buffer_size allow_borrowing" >
 				<part metaref = "2187" role = "ThreadPoolLane" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
@@ -4810,7 +5109,7 @@ let props = self.connectedFCOs(AttributeValue) in
                      (srcCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to MetricsBase as "src" over MetricConnection, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidWorkloadCharacteristicsdstCardinality138" eventmask = "0x800" depth = "1" priority = "1">
+			<constraint name="ValidWorkloadCharacteristicsdstCardinality142" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", WorkloadCharacteristics ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to MetricsBase as "dst" over WorkloadCharacteristics, has to match 0..1.</dispname>
@@ -4829,18 +5128,18 @@ let props = self.connectedFCOs(AttributeValue) in
 		<model name = "TopLevelPackageContainer" metaref = "1839" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="TopLevelPackageConfiguration.bmp"></regnode>
-			<constraint name="ValidTopLevelPackageContainerPartCardinality185" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidTopLevelPackageContainerPartCardinality190" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PackageConfigurationReference" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidTopLevelPackageContainerPartCardinality186" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
+			<constraint name="ValidTopLevelPackageContainerPartCardinality191" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "package" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidTopLevelPackageContainerPartCardinality187" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "package" ) -> size in
+			<constraint name="ValidTopLevelPackageContainerPartCardinality192" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -4870,7 +5169,7 @@ let props = self.connectedFCOs(AttributeValue) in
 				<![CDATA[AllParams ()->forAll (x, y : gme::FCO | x <> y implies x.name <> y.name)]]>
 				<dispname>An operation's parameters must have unique names</dispname>
 			</constraint>
-			<constraint name="ValidTwowayOperationPartCardinality188" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidTwowayOperationPartCardinality193" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ReturnType" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TwowayOperation, has to match 0..1.</dispname>
@@ -5005,6 +5304,8 @@ let props = self.connectedFCOs(AttributeValue) in
 		<folder name = "PathDiagram" metaref = "2124"  rootobjects = "Path" >
 		</folder>
 		<folder name = "PredefinedTypes" metaref = "1906"  rootobjects = "Boolean Byte GenericObject GenericValue GenericValueObject LongInteger RealNumber ShortInteger String TypeEncoding TypeKind" >
+		</folder>
+		<folder name = "QoSModeling" metaref = "2365"  rootobjects = "CPU Concurrency Process QoSCategory QoSCharacteristic QoSModel1" >
 		</folder>
 		<folder name = "Targets" metaref = "1907"  rootobjects = "Domain" >
 		</folder>

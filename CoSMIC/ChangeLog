@@ -1,3 +1,12 @@
+2005-12-09  William Otte <wotte@dre.vanderbilt.edu>
+
+	* PIM/PICML/paradigms/PICML-uml.xme
+	* PIM/PICML/paradigms/PICML.xme
+	* PIM/PICML/paradigms/PICML.xml
+	* PIM/PICML/paradigms/PICML.xmp
+
+	Added initial cut of QoSModeling.
+
 Thu Dec  8 23:54:16 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/docs/Importing_IDL.doc:
@@ -71,6 +80,7 @@ Tue Dec  6 20:44:18 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
           Corrected the type of message box that appears when IDL
           generation completes successfully.
 
+>>>>>>> 1.237
 Wed Nov 23 17:07:01 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/OCML/interpreters/OCML_Interpreter/BON2Component.h:
