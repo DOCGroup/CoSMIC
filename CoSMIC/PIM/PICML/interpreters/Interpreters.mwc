@@ -19,6 +19,6 @@ workspace {
    CIDL_Interpreter
    CIDLComponent
    EQAL
-   QoSMapping
-   QoSMappingComponent
+//   QoSMapping
+//   QoSMappingComponent
 }

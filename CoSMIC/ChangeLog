@@ -1,3 +1,9 @@
+2005-12-11  William Otte   <wotte@dre.vanderbilt.edu>
+
+	* PIM/PICML/interpreters/Interpreters.mwc
+
+	Removed QoSMapping/Component from the workspace.
+
 2005-12-09  William Otte <wotte@dre.vanderbilt.edu>
 
 	* PIM/PICML/paradigms/PICML-uml.xme
