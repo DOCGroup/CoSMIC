@@ -1,3 +1,27 @@
+Tue Dec 13 20:50:05 2005  Stoyan Paunov  <spaunov@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/icons/BandedConnection.bmp
+        * PIM/PICML/paradigms/icons/BandedConnectionRef.bmp
+        * PIM/PICML/paradigms/icons/ConnectionBand.bmp
+        * PIM/PICML/paradigms/icons/EnvironmentConf.bmp
+        * PIM/PICML/paradigms/icons/PolicySet.bmp
+        * PIM/PICML/paradigms/icons/PolicySetRef.bmp
+        * PIM/PICML/paradigms/icons/PriorityModelPolicy.bmp
+        * PIM/PICML/paradigms/icons/RTModel.bmp
+        * PIM/PICML/paradigms/icons/ResourceContainer.bmp
+        * PIM/PICML/paradigms/icons/SimpleThreadPool.bmp
+        * PIM/PICML/paradigms/icons/ThreadPoolLane.bmp
+        * PIM/PICML/paradigms/icons/ThreadPoolRef.bmp
+        * PIM/PICML/paradigms/icons/ThreadPoolWithLanes.bmp
+
+          Checking in newest changes to the paradigm and the icons.
+	    As per Will's request QoS* has been changed to RT*.
+
+
 Tue Dec 13 22:59:45 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
