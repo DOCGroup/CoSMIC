@@ -1,3 +1,10 @@
+Tue Dec 13 22:59:45 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
+        
+          Fixed bug in IDL generation from PICML Components - eliminated
+          generation of attribute declarations from parent Components.
+
 2005-12-13  William Otte <wotte@dre.vanderbilt.edu>
 
 	* PIM/PICML/interpreters/Interpreters.mwc

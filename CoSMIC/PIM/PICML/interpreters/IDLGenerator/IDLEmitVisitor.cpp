@@ -1421,15 +1421,16 @@ namespace IDML
 		     it != object->ordered_children.end (); 
 		     it++)
 		  {
-		    if (not_first) ofs << nl;
-		    if ((*it)->getParent () != object) continue;
-		    this->visitOrderableImpl (*it);
-        // Relative IDs of derived GME ports have one of the
+        // Relative IDs of derived GME children have one of the
         // digits in the number below added to their base value
         // - easy way to check.
 		    long rel_id;
 		    (*it)->getFCOI ()->get_RelID (&rel_id);
 		    if (rel_id & 0x18000000) continue;
+		    
+		    if (not_first) ofs << nl;
+		    if ((*it)->getParent () != object) continue;
+		    this->visitOrderableImpl (*it);
 		    not_first = true;
 		  }
   }
