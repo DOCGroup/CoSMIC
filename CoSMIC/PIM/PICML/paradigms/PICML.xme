@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{CEE1C4C6-06C8-4C50-B92F-2487185A3D7E}" cdate="Fri Dec 09 10:07:20 2005" mdate="Fri Dec 09 10:07:20 2005" version="" metaguid="{B155EEE7-1CDC-4E1F-B6C2-A7B680779457}" metaversion="" metaname="MetaGME">
+<project guid="{DFE76EB0-DDD5-4867-8476-8445BF1B732F}" cdate="Mon Dec 12 22:37:55 2005" mdate="Mon Dec 12 22:37:55 2005" version="" metaguid="{B155EEE7-1CDC-4E1F-B6C2-A7B680779457}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment>This tool supports $CIAO_ROOT/docs/schema/CIAOServerResources.xsd version 1.7. 
 Please check the cvs repository if this is the most recent version of this file.</comment>
@@ -333,6 +333,9 @@ Please check the cvs repository if this is the most recent version of this file.
 						</regnode>
 						<regnode name="Concurrency" isopaque="yes">
 							<value>2621</value>
+						</regnode>
+						<regnode name="Connection" isopaque="yes">
+							<value>2692</value>
 						</regnode>
 						<regnode name="Process" isopaque="yes">
 							<value>2628</value>
@@ -12155,6 +12158,12 @@ Please check the cvs repository if this is the most recent version of this file.
 							<value> </value>
 						</regnode>
 					</regnode>
+					<regnode name="Connection:CPU" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
 					<regnode name="Process:CPU" status="undefined">
 						<value></value>
 						<regnode name="Aspect" isopaque="yes">
@@ -12233,6 +12242,15 @@ Please check the cvs repository if this is the most recent version of this file.
 							</regnode>
 							<regnode name="QoSModelAspect" isopaque="yes">
 								<value>2622</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="Connection" status="undefined">
+						<value></value>
+						<regnode name="CPU" isopaque="yes">
+							<value>2685</value>
+							<regnode name="QoSModelAspect" isopaque="yes">
+								<value>2693</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -12329,6 +12347,12 @@ Please check the cvs repository if this is the most recent version of this file.
 							<value>yes</value>
 						</regnode>
 					</regnode>
+					<regnode name="Connection:CPU" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
 					<regnode name="Process:CPU" status="undefined">
 						<value></value>
 						<regnode name="Aspect" isopaque="yes">
@@ -12403,6 +12427,12 @@ Please check the cvs repository if this is the most recent version of this file.
 						<regnode name="Aspect" isopaque="yes">
 							<value> </value>
 						</regnode>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+					<regnode name="Connection:Concurrency" status="undefined">
+						<value></value>
 						<regnode name="QoSModelAspect" isopaque="yes">
 							<value> </value>
 						</regnode>
@@ -12485,6 +12515,15 @@ Please check the cvs repository if this is the most recent version of this file.
 							</regnode>
 							<regnode name="QoSModelAspect" isopaque="yes">
 								<value>2623</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="Connection" status="undefined">
+						<value></value>
+						<regnode name="Concurrency" isopaque="yes">
+							<value>2686</value>
+							<regnode name="QoSModelAspect" isopaque="yes">
+								<value>2694</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -12577,6 +12616,12 @@ Please check the cvs repository if this is the most recent version of this file.
 						<regnode name="Aspect" isopaque="yes">
 							<value>yes</value>
 						</regnode>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Connection:Concurrency" status="undefined">
+						<value></value>
 						<regnode name="QoSModelAspect" isopaque="yes">
 							<value>yes</value>
 						</regnode>
@@ -12851,6 +12896,207 @@ Please check the cvs repository if this is the most recent version of this file.
 					<regnode name="QoSValue:Concurrency" status="undefined">
 						<value></value>
 						<regnode name="Aspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+			<regnode name="Connection-45-Model" status="undefined">
+				<value></value>
+				<regnode name="KindAspects" status="undefined">
+					<value></value>
+					<regnode name="CPU:Connection" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+					<regnode name="Concurrency:Connection" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+					<regnode name="Connection:Connection" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+					<regnode name="Process:Connection" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+					<regnode name="QoSCategory:Connection" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+					<regnode name="QoSCharacteristic:Connection" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+					<regnode name="QoSContext:Connection" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+					<regnode name="QoSModel1:Connection" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+					<regnode name="QoSValue:Connection" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>2684</value>
+					<regnode name="CPU" status="undefined">
+						<value></value>
+						<regnode name="Connection" isopaque="yes">
+							<value>2680</value>
+							<regnode name="QoSModelAspect" isopaque="yes">
+								<value>2681</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="Concurrency" status="undefined">
+						<value></value>
+						<regnode name="Connection" isopaque="yes">
+							<value>2682</value>
+							<regnode name="QoSModelAspect" isopaque="yes">
+								<value>2683</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="Connection" status="undefined">
+						<value></value>
+						<regnode name="Connection" isopaque="yes">
+							<value>2687</value>
+							<regnode name="QoSModelAspect" isopaque="yes">
+								<value>2695</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="Process" status="undefined">
+						<value></value>
+						<regnode name="Connection" isopaque="yes">
+							<value>2700</value>
+							<regnode name="QoSModelAspect" isopaque="yes">
+								<value>2701</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="QoSCategory" status="undefined">
+						<value></value>
+						<regnode name="Connection" isopaque="yes">
+							<value>2702</value>
+							<regnode name="QoSModelAspect" isopaque="yes">
+								<value>2703</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="QoSCharacteristic" status="undefined">
+						<value></value>
+						<regnode name="Connection" isopaque="yes">
+							<value>2704</value>
+							<regnode name="QoSModelAspect" isopaque="yes">
+								<value>2705</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="QoSContext" status="undefined">
+						<value></value>
+						<regnode name="Connection" isopaque="yes">
+							<value>2706</value>
+							<regnode name="QoSModelAspect" isopaque="yes">
+								<value>2707</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="QoSModel1" status="undefined">
+						<value></value>
+						<regnode name="Connection" isopaque="yes">
+							<value>2708</value>
+							<regnode name="QoSModelAspect" isopaque="yes">
+								<value>2709</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="QoSValue" status="undefined">
+						<value></value>
+						<regnode name="Connection" isopaque="yes">
+							<value>2710</value>
+							<regnode name="QoSModelAspect" isopaque="yes">
+								<value>2711</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="CPU:Connection" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Concurrency:Connection" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Connection:Connection" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Process:Connection" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="QoSCategory:Connection" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="QoSCharacteristic:Connection" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="QoSContext:Connection" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="QoSModel1:Connection" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="QoSValue:Connection" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -13334,6 +13580,12 @@ Please check the cvs repository if this is the most recent version of this file.
 							<value> </value>
 						</regnode>
 					</regnode>
+					<regnode name="Connection:Process" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
 					<regnode name="Process:Process" status="undefined">
 						<value></value>
 						<regnode name="Aspect" isopaque="yes">
@@ -13412,6 +13664,15 @@ Please check the cvs repository if this is the most recent version of this file.
 							</regnode>
 							<regnode name="QoSModelAspect" isopaque="yes">
 								<value>2624</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="Connection" status="undefined">
+						<value></value>
+						<regnode name="Process" isopaque="yes">
+							<value>2688</value>
+							<regnode name="QoSModelAspect" isopaque="yes">
+								<value>2696</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -13508,6 +13769,12 @@ Please check the cvs repository if this is the most recent version of this file.
 							<value>yes</value>
 						</regnode>
 					</regnode>
+					<regnode name="Connection:Process" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
 					<regnode name="Process:Process" status="undefined">
 						<value></value>
 						<regnode name="Aspect" isopaque="yes">
@@ -13586,6 +13853,12 @@ Please check the cvs repository if this is the most recent version of this file.
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>2407</value>
+				</regnode>
+			</regnode>
+			<regnode name="Transport-48-EnumAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>2679</value>
 				</regnode>
 			</regnode>
 		</regnode>
@@ -14234,6 +14507,12 @@ Please check the cvs repository if this is the most recent version of this file.
 							<value> </value>
 						</regnode>
 					</regnode>
+					<regnode name="Connection:QoSCharacteristic" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
 					<regnode name="Network:QoSCharacteristic" status="undefined">
 						<value></value>
 						<regnode name="Aspect" isopaque="yes">
@@ -14327,6 +14606,15 @@ Please check the cvs repository if this is the most recent version of this file.
 							</regnode>
 							<regnode name="QoSModelAspect" isopaque="yes">
 								<value>2625</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="Connection" status="undefined">
+						<value></value>
+						<regnode name="QoSCharacteristic" isopaque="yes">
+							<value>2689</value>
+							<regnode name="QoSModelAspect" isopaque="yes">
+								<value>2697</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -14444,6 +14732,12 @@ Please check the cvs repository if this is the most recent version of this file.
 							<value>yes</value>
 						</regnode>
 					</regnode>
+					<regnode name="Connection:QoSCharacteristic" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
 					<regnode name="Network:QoSCharacteristic" status="undefined">
 						<value></value>
 						<regnode name="Aspect" isopaque="yes">
@@ -14519,6 +14813,123 @@ Please check the cvs repository if this is the most recent version of this file.
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>2320</value>
+				</regnode>
+			</regnode>
+			<regnode name="QoSCharacteristicRef-69-Reference" status="undefined">
+				<value></value>
+				<regnode name="KindAspects" status="undefined">
+					<value></value>
+					<regnode name="CPU:QoSCharacteristicRef" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value>QoSModelAspect</value>
+						</regnode>
+					</regnode>
+					<regnode name="Concurrency:QoSCharacteristicRef" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value>QoSModelAspect</value>
+						</regnode>
+					</regnode>
+					<regnode name="Connection:QoSCharacteristicRef" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value>QoSModelAspect</value>
+						</regnode>
+					</regnode>
+					<regnode name="Process:QoSCharacteristicRef" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value>QoSModelAspect</value>
+						</regnode>
+					</regnode>
+					<regnode name="QoSCharacteristic:QoSCharacteristicRef" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value>QoSModelAspect</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>2712</value>
+					<regnode name="CPU" status="undefined">
+						<value></value>
+						<regnode name="QoSCharacteristicRef" isopaque="yes">
+							<value>2713</value>
+							<regnode name="QoSModelAspect" isopaque="yes">
+								<value>2718</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="Concurrency" status="undefined">
+						<value></value>
+						<regnode name="QoSCharacteristicRef" isopaque="yes">
+							<value>2714</value>
+							<regnode name="QoSModelAspect" isopaque="yes">
+								<value>2719</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="Connection" status="undefined">
+						<value></value>
+						<regnode name="QoSCharacteristicRef" isopaque="yes">
+							<value>2715</value>
+							<regnode name="QoSModelAspect" isopaque="yes">
+								<value>2720</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="Process" status="undefined">
+						<value></value>
+						<regnode name="QoSCharacteristicRef" isopaque="yes">
+							<value>2716</value>
+							<regnode name="QoSModelAspect" isopaque="yes">
+								<value>2721</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="QoSCharacteristic" status="undefined">
+						<value></value>
+						<regnode name="QoSCharacteristicRef" isopaque="yes">
+							<value>2717</value>
+							<regnode name="QoSModelAspect" isopaque="yes">
+								<value>2722</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="CPU:QoSCharacteristicRef" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Concurrency:QoSCharacteristicRef" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Connection:QoSCharacteristicRef" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Process:QoSCharacteristicRef" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="QoSCharacteristic:QoSCharacteristicRef" status="undefined">
+						<value></value>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
 				</regnode>
 			</regnode>
 			<regnode name="QoSContext-20-Model" status="undefined">
@@ -14645,6 +15056,15 @@ Please check the cvs repository if this is the most recent version of this file.
 							</regnode>
 						</regnode>
 					</regnode>
+					<regnode name="Connection" status="undefined">
+						<value></value>
+						<regnode name="QoSDimension" isopaque="yes">
+							<value>2690</value>
+							<regnode name="QoSModelAspect" isopaque="yes">
+								<value>2698</value>
+							</regnode>
+						</regnode>
+					</regnode>
 					<regnode name="Network" status="undefined">
 						<value></value>
 						<regnode name="QoSDimension" isopaque="yes">
@@ -14695,6 +15115,12 @@ Please check the cvs repository if this is the most recent version of this file.
 						<regnode name="Aspect" isopaque="yes">
 							<value>yes</value>
 						</regnode>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Connection:QoSDimension" status="undefined">
+						<value></value>
 						<regnode name="QoSModelAspect" isopaque="yes">
 							<value>yes</value>
 						</regnode>
@@ -14879,6 +15305,15 @@ Please check the cvs repository if this is the most recent version of this file.
 							</regnode>
 						</regnode>
 					</regnode>
+					<regnode name="Connection" status="undefined">
+						<value></value>
+						<regnode name="QoSParameter" isopaque="yes">
+							<value>2691</value>
+							<regnode name="QoSModelAspect" isopaque="yes">
+								<value>2699</value>
+							</regnode>
+						</regnode>
+					</regnode>
 					<regnode name="Network" status="undefined">
 						<value></value>
 						<regnode name="QoSParameter" isopaque="yes">
@@ -14929,6 +15364,12 @@ Please check the cvs repository if this is the most recent version of this file.
 						<regnode name="Aspect" isopaque="yes">
 							<value>yes</value>
 						</regnode>
+						<regnode name="QoSModelAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Connection:QoSParameter" status="undefined">
+						<value></value>
 						<regnode name="QoSModelAspect" isopaque="yes">
 							<value>yes</value>
 						</regnode>
@@ -16070,7 +16511,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<reference id="id-0067-00000050" kind="ModelProxy" role="ModelProxy" relid="0x28" referred="id-0066-0000009e">
+			<reference id="id-0067-00000055" kind="ModelProxy" role="ModelProxy" relid="0x28" referred="id-0066-0000009e">
 				<name>Component</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -16145,7 +16586,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000051" kind="ModelProxy" role="ModelProxy" relid="0x66" referred="id-0066-000000bc">
+			<reference id="id-0067-00000056" kind="ModelProxy" role="ModelProxy" relid="0x66" referred="id-0066-000000bc">
 				<name>Domain</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -16214,7 +16655,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000052" kind="ModelProxy" role="ModelProxy" relid="0xc" referred="id-0066-000000cc">
+			<reference id="id-0067-00000057" kind="ModelProxy" role="ModelProxy" relid="0xc" referred="id-0066-000000cc">
 				<name>SatisfierProperty</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -16289,7 +16730,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000053" kind="AtomProxy" role="AtomProxy" relid="0xe" referred="id-0066-000000ca">
+			<reference id="id-0067-00000058" kind="AtomProxy" role="AtomProxy" relid="0xe" referred="id-0066-000000ca">
 				<name>ImplementationDependency</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -16361,7 +16802,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000054" kind="AtomProxy" role="AtomProxy" relid="0x1a" referred="id-0066-00000104">
+			<reference id="id-0067-00000059" kind="AtomProxy" role="AtomProxy" relid="0x1a" referred="id-0066-00000104">
 				<name>ImplementationArtifact</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -16433,7 +16874,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000055" kind="FCOProxy" role="FCOProxy" relid="0x1e" referred="id-0066-000000f7">
+			<reference id="id-0067-0000005a" kind="FCOProxy" role="FCOProxy" relid="0x1e" referred="id-0066-000000f7">
 				<name>CommonPortAttrs</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -16505,7 +16946,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000056" kind="ModelProxy" role="ModelProxy" relid="0x51" referred="id-0066-000000ce">
+			<reference id="id-0067-0000005b" kind="ModelProxy" role="ModelProxy" relid="0x51" referred="id-0066-000000ce">
 				<name>RequirementSatisfier</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -16580,7 +17021,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000057" kind="FCOProxy" role="FCOProxy" relid="0x32" referred="id-0066-0000012f">
+			<reference id="id-0067-0000005c" kind="FCOProxy" role="FCOProxy" relid="0x32" referred="id-0066-0000012f">
 				<name>ComponentImplementation</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -16652,7 +17093,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000058" kind="AtomProxy" role="AtomProxy" relid="0x35" referred="id-0066-000000e2">
+			<reference id="id-0067-0000005d" kind="AtomProxy" role="AtomProxy" relid="0x35" referred="id-0066-000000e2">
 				<name>ComponentPackage</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -16724,7 +17165,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000059" kind="ReferenceProxy" role="ReferenceProxy" relid="0x49" referred="id-0066-000000e3">
+			<reference id="id-0067-0000005e" kind="ReferenceProxy" role="ReferenceProxy" relid="0x49" referred="id-0066-000000e3">
 				<name>ComponentPackageReference</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -16796,7 +17237,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-0000005a" kind="ModelProxy" role="ModelProxy" relid="0x5d" referred="id-0066-000000d0">
+			<reference id="id-0067-0000005f" kind="ModelProxy" role="ModelProxy" relid="0x5d" referred="id-0066-000000d0">
 				<name>RequirementBase</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -16871,7 +17312,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-0000005b" kind="ModelProxy" role="ModelProxy" relid="0x59" referred="id-0066-000000d2">
+			<reference id="id-0067-00000060" kind="ModelProxy" role="ModelProxy" relid="0x59" referred="id-0066-000000d2">
 				<name>ImplementationRequirement</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -16946,7 +17387,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-0000005c" kind="ModelProxy" role="ModelProxy" relid="0x5f" referred="id-0066-000000cb">
+			<reference id="id-0067-00000061" kind="ModelProxy" role="ModelProxy" relid="0x5f" referred="id-0066-000000cb">
 				<name>Property</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -17015,7 +17456,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-0000005d" kind="AtomProxy" role="AtomProxy" relid="0x63" referred="id-0066-0000011b">
+			<reference id="id-0067-00000062" kind="AtomProxy" role="AtomProxy" relid="0x63" referred="id-0066-0000011b">
 				<name>PackageConfiguration</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -17081,7 +17522,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-0000005e" kind="ModelProxy" role="ModelProxy" relid="0x69" referred="id-0066-0000018e">
+			<reference id="id-0067-00000063" kind="ModelProxy" role="ModelProxy" relid="0x69" referred="id-0066-0000018e">
 				<name>Interconnect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -17150,7 +17591,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-0000005f" kind="ModelProxy" role="ModelProxy" relid="0x6b" referred="id-0066-0000018f">
+			<reference id="id-0067-00000064" kind="ModelProxy" role="ModelProxy" relid="0x6b" referred="id-0066-0000018f">
 				<name>Node</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -17219,7 +17660,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000060" kind="ModelProxy" role="ModelProxy" relid="0x6d" referred="id-0066-00000192">
+			<reference id="id-0067-00000065" kind="ModelProxy" role="ModelProxy" relid="0x6d" referred="id-0066-00000192">
 				<name>Resource</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -17288,7 +17729,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000061" kind="ModelProxy" role="ModelProxy" relid="0x6f" referred="id-0066-0000018d">
+			<reference id="id-0067-00000066" kind="ModelProxy" role="ModelProxy" relid="0x6f" referred="id-0066-0000018d">
 				<name>Bridge</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -17357,7 +17798,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000062" kind="ModelProxy" role="ModelProxy" relid="0x71" referred="id-0066-00000191">
+			<reference id="id-0067-00000067" kind="ModelProxy" role="ModelProxy" relid="0x71" referred="id-0066-00000191">
 				<name>SharedResource</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -17426,7 +17867,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000063" kind="ModelProxy" role="ModelProxy" relid="0x73" referred="id-0066-00000187">
+			<reference id="id-0067-00000068" kind="ModelProxy" role="ModelProxy" relid="0x73" referred="id-0066-00000187">
 				<name>DeploymentPlan</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -17495,7 +17936,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000064" kind="AtomProxy" role="AtomProxy" relid="0x75" referred="id-0066-00000152">
+			<reference id="id-0067-00000069" kind="AtomProxy" role="AtomProxy" relid="0x75" referred="id-0066-00000152">
 				<name>ExternalReferenceEndPoint</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -17564,177 +18005,177 @@ ResourceUsesPort</value>
 			<connection id="id-0068-00000001" kind="HasAttribute" role="HasAttribute" relid="0xd">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000004"/>
-				<connpoint role="dst" target="id-0067-00000052"/>
+				<connpoint role="dst" target="id-0067-00000057"/>
 			</connection>
 			<connection id="id-0068-00000002" kind="HasAttribute" role="HasAttribute" relid="0x1b">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000002"/>
-				<connpoint role="dst" target="id-0067-00000054"/>
+				<connpoint role="dst" target="id-0067-00000059"/>
 			</connection>
 			<connection id="id-0068-00000003" kind="HasAttribute" role="HasAttribute" relid="0x1c">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000001"/>
-				<connpoint role="dst" target="id-0067-00000054"/>
+				<connpoint role="dst" target="id-0067-00000059"/>
 			</connection>
 			<connection id="id-0068-00000004" kind="HasAttribute" role="HasAttribute" relid="0x1d">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000006"/>
-				<connpoint role="dst" target="id-0067-00000054"/>
+				<connpoint role="dst" target="id-0067-00000059"/>
 			</connection>
 			<connection id="id-0068-00000005" kind="HasAttribute" role="HasAttribute" relid="0x20">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000007"/>
-				<connpoint role="dst" target="id-0067-00000055"/>
+				<connpoint role="dst" target="id-0067-0000005a"/>
 			</connection>
 			<connection id="id-0068-00000006" kind="HasAttribute" role="HasAttribute" relid="0x25">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000008"/>
-				<connpoint role="dst" target="id-0067-00000055"/>
+				<connpoint role="dst" target="id-0067-0000005a"/>
 			</connection>
 			<connection id="id-0068-00000007" kind="HasAttribute" role="HasAttribute" relid="0x27">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000009"/>
-				<connpoint role="dst" target="id-0067-00000055"/>
+				<connpoint role="dst" target="id-0067-0000005a"/>
 			</connection>
 			<connection id="id-0068-00000008" kind="HasAttribute" role="HasAttribute" relid="0x29">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000002"/>
-				<connpoint role="dst" target="id-0067-00000050"/>
+				<connpoint role="dst" target="id-0067-00000055"/>
 			</connection>
 			<connection id="id-0068-00000009" kind="HasAttribute" role="HasAttribute" relid="0x2a">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000001"/>
-				<connpoint role="dst" target="id-0067-00000050"/>
+				<connpoint role="dst" target="id-0067-00000055"/>
 			</connection>
 			<connection id="id-0068-0000000a" kind="HasAttribute" role="HasAttribute" relid="0x33">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000002"/>
-				<connpoint role="dst" target="id-0067-00000057"/>
+				<connpoint role="dst" target="id-0067-0000005c"/>
 			</connection>
 			<connection id="id-0068-0000000b" kind="HasAttribute" role="HasAttribute" relid="0x34">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000001"/>
-				<connpoint role="dst" target="id-0067-00000057"/>
+				<connpoint role="dst" target="id-0067-0000005c"/>
 			</connection>
 			<connection id="id-0068-0000000c" kind="HasAttribute" role="HasAttribute" relid="0x36">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000002"/>
-				<connpoint role="dst" target="id-0067-00000058"/>
+				<connpoint role="dst" target="id-0067-0000005d"/>
 			</connection>
 			<connection id="id-0068-0000000d" kind="HasAttribute" role="HasAttribute" relid="0x37">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000001"/>
-				<connpoint role="dst" target="id-0067-00000058"/>
+				<connpoint role="dst" target="id-0067-0000005d"/>
 			</connection>
 			<connection id="id-0068-0000000e" kind="HasAttribute" role="HasAttribute" relid="0x4d">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-0000000f"/>
-				<connpoint role="dst" target="id-0067-00000053"/>
+				<connpoint role="dst" target="id-0067-00000058"/>
 			</connection>
 			<connection id="id-0068-0000000f" kind="HasAttribute" role="HasAttribute" relid="0x4e">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-0000000d"/>
-				<connpoint role="dst" target="id-0067-00000059"/>
+				<connpoint role="dst" target="id-0067-0000005e"/>
 			</connection>
 			<connection id="id-0068-00000010" kind="HasAttribute" role="HasAttribute" relid="0x4f">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-0000000e"/>
-				<connpoint role="dst" target="id-0067-00000059"/>
+				<connpoint role="dst" target="id-0067-0000005e"/>
 			</connection>
 			<connection id="id-0068-00000011" kind="HasAttribute" role="HasAttribute" relid="0x50">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-0000000f"/>
-				<connpoint role="dst" target="id-0067-00000059"/>
+				<connpoint role="dst" target="id-0067-0000005e"/>
 			</connection>
 			<connection id="id-0068-00000012" kind="HasAttribute" role="HasAttribute" relid="0x52">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000003"/>
-				<connpoint role="dst" target="id-0067-00000056"/>
+				<connpoint role="dst" target="id-0067-0000005b"/>
 			</connection>
 			<connection id="id-0068-00000013" kind="HasAttribute" role="HasAttribute" relid="0x5e">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000003"/>
-				<connpoint role="dst" target="id-0067-0000005a"/>
+				<connpoint role="dst" target="id-0067-0000005f"/>
 			</connection>
 			<connection id="id-0068-00000014" kind="HasAttribute" role="HasAttribute" relid="0x5c">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-0000000c"/>
-				<connpoint role="dst" target="id-0067-0000005b"/>
+				<connpoint role="dst" target="id-0067-00000060"/>
 			</connection>
 			<connection id="id-0068-00000015" kind="HasAttribute" role="HasAttribute" relid="0x5a">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-0000000a"/>
-				<connpoint role="dst" target="id-0067-0000005b"/>
+				<connpoint role="dst" target="id-0067-00000060"/>
 			</connection>
 			<connection id="id-0068-00000016" kind="HasAttribute" role="HasAttribute" relid="0x5b">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-0000000b"/>
-				<connpoint role="dst" target="id-0067-0000005b"/>
+				<connpoint role="dst" target="id-0067-00000060"/>
 			</connection>
 			<connection id="id-0068-00000017" kind="HasAttribute" role="HasAttribute" relid="0x61">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000005"/>
-				<connpoint role="dst" target="id-0067-00000052"/>
+				<connpoint role="dst" target="id-0067-00000057"/>
 			</connection>
 			<connection id="id-0068-00000018" kind="HasAttribute" role="HasAttribute" relid="0x62">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000005"/>
-				<connpoint role="dst" target="id-0067-0000005c"/>
+				<connpoint role="dst" target="id-0067-00000061"/>
 			</connection>
 			<connection id="id-0068-00000019" kind="HasAttribute" role="HasAttribute" relid="0x64">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000002"/>
-				<connpoint role="dst" target="id-0067-0000005d"/>
+				<connpoint role="dst" target="id-0067-00000062"/>
 			</connection>
 			<connection id="id-0068-0000001a" kind="HasAttribute" role="HasAttribute" relid="0x65">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000001"/>
-				<connpoint role="dst" target="id-0067-0000005d"/>
+				<connpoint role="dst" target="id-0067-00000062"/>
 			</connection>
 			<connection id="id-0068-0000001b" kind="HasAttribute" role="HasAttribute" relid="0x67">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000001"/>
-				<connpoint role="dst" target="id-0067-00000051"/>
+				<connpoint role="dst" target="id-0067-00000056"/>
 			</connection>
 			<connection id="id-0068-0000001c" kind="HasAttribute" role="HasAttribute" relid="0x68">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000002"/>
-				<connpoint role="dst" target="id-0067-00000051"/>
+				<connpoint role="dst" target="id-0067-00000056"/>
 			</connection>
 			<connection id="id-0068-0000001d" kind="HasAttribute" role="HasAttribute" relid="0x6a">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000002"/>
-				<connpoint role="dst" target="id-0067-0000005e"/>
+				<connpoint role="dst" target="id-0067-00000063"/>
 			</connection>
 			<connection id="id-0068-0000001e" kind="HasAttribute" role="HasAttribute" relid="0x6c">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000002"/>
-				<connpoint role="dst" target="id-0067-0000005f"/>
+				<connpoint role="dst" target="id-0067-00000064"/>
 			</connection>
 			<connection id="id-0068-0000001f" kind="HasAttribute" role="HasAttribute" relid="0x6e">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000003"/>
-				<connpoint role="dst" target="id-0067-00000060"/>
+				<connpoint role="dst" target="id-0067-00000065"/>
 			</connection>
 			<connection id="id-0068-00000020" kind="HasAttribute" role="HasAttribute" relid="0x70">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000002"/>
-				<connpoint role="dst" target="id-0067-00000061"/>
+				<connpoint role="dst" target="id-0067-00000066"/>
 			</connection>
 			<connection id="id-0068-00000021" kind="HasAttribute" role="HasAttribute" relid="0x72">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000003"/>
-				<connpoint role="dst" target="id-0067-00000062"/>
+				<connpoint role="dst" target="id-0067-00000067"/>
 			</connection>
 			<connection id="id-0068-00000022" kind="HasAttribute" role="HasAttribute" relid="0x74">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000002"/>
-				<connpoint role="dst" target="id-0067-00000063"/>
+				<connpoint role="dst" target="id-0067-00000068"/>
 			</connection>
 			<connection id="id-0068-00000023" kind="HasAttribute" role="HasAttribute" relid="0x76">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000006"/>
-				<connpoint role="dst" target="id-0067-00000064"/>
+				<connpoint role="dst" target="id-0067-00000069"/>
 			</connection>
 		</model>
 		<model id="id-0065-00000002" kind="ParadigmSheet" relid="0x2b" childrelidcntr="0x26">
@@ -18816,7 +19257,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<reference id="id-0067-00000065" kind="AtomProxy" role="AtomProxy" relid="0x1c" referred="id-0066-00000104">
+			<reference id="id-0067-0000006a" kind="AtomProxy" role="AtomProxy" relid="0x1c" referred="id-0066-00000104">
 				<name>ImplementationArtifact</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -18888,7 +19329,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000066" kind="ReferenceProxy" role="ReferenceProxy" relid="0x1f" referred="id-0066-000000fa">
+			<reference id="id-0067-0000006b" kind="ReferenceProxy" role="ReferenceProxy" relid="0x1f" referred="id-0066-000000fa">
 				<name>ImplementationArtifactReference</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -18960,7 +19401,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000067" kind="ReferenceProxy" role="ReferenceProxy" relid="0x23" referred="id-0066-00000031">
+			<reference id="id-0067-0000006c" kind="ReferenceProxy" role="ReferenceProxy" relid="0x23" referred="id-0066-00000031">
 				<name>FileRef</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -19199,17 +19640,17 @@ ResourceUsesPort</value>
 			<connection id="id-0068-00000037" kind="HasAspect" role="HasAspect" relid="0x17">
 				<name>HasAspect</name>
 				<connpoint role="dst" target="id-0066-0000001a"/>
-				<connpoint role="src" target="id-0069-00000016"/>
+				<connpoint role="src" target="id-0069-00000017"/>
 			</connection>
 			<connection id="id-0068-00000038" kind="HasAspect" role="HasAspect" relid="0x18">
 				<name>HasAspect</name>
 				<connpoint role="dst" target="id-0066-00000019"/>
-				<connpoint role="src" target="id-0069-00000016"/>
+				<connpoint role="src" target="id-0069-00000017"/>
 			</connection>
 			<connection id="id-0068-00000039" kind="HasAspect" role="HasAspect" relid="0x19">
 				<name>HasAspect</name>
 				<connpoint role="dst" target="id-0066-00000018"/>
-				<connpoint role="src" target="id-0069-00000016"/>
+				<connpoint role="src" target="id-0069-00000017"/>
 			</connection>
 			<connection id="id-0068-0000003a" kind="HasAspect" role="HasAspect" relid="0x1a">
 				<name>HasAspect</name>
@@ -19227,7 +19668,7 @@ ResourceUsesPort</value>
 			<connection id="id-0068-0000003c" kind="ReferTo" role="ReferTo" relid="0x1d">
 				<name>ReferTo</name>
 				<connpoint role="src" target="id-0066-00000012"/>
-				<connpoint role="dst" target="id-0067-00000065"/>
+				<connpoint role="dst" target="id-0067-0000006a"/>
 			</connection>
 			<connection id="id-0068-0000003d" kind="Containment" role="Containment" relid="0x1e">
 				<name>Containment</name>
@@ -19241,7 +19682,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-00000011"/>
-				<connpoint role="src" target="id-0067-00000065"/>
+				<connpoint role="src" target="id-0067-0000006a"/>
 			</connection>
 			<connection id="id-0068-0000003e" kind="Containment" role="Containment" relid="0x20">
 				<name>Containment</name>
@@ -19255,7 +19696,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-00000018"/>
-				<connpoint role="src" target="id-0067-00000066"/>
+				<connpoint role="src" target="id-0067-0000006b"/>
 			</connection>
 			<connection id="id-0068-0000003f" kind="Containment" role="Containment" relid="0x21">
 				<name>Containment</name>
@@ -19269,7 +19710,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-00000019"/>
-				<connpoint role="src" target="id-0067-00000066"/>
+				<connpoint role="src" target="id-0067-0000006b"/>
 			</connection>
 			<connection id="id-0068-00000040" kind="Containment" role="Containment" relid="0x22">
 				<name>Containment</name>
@@ -19283,7 +19724,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-0000001a"/>
-				<connpoint role="src" target="id-0067-00000066"/>
+				<connpoint role="src" target="id-0067-0000006b"/>
 			</connection>
 			<connection id="id-0068-00000041" kind="Containment" role="Containment" relid="0x24">
 				<name>Containment</name>
@@ -19297,7 +19738,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-00000018"/>
-				<connpoint role="src" target="id-0067-00000067"/>
+				<connpoint role="src" target="id-0067-0000006c"/>
 			</connection>
 			<connection id="id-0068-00000042" kind="Containment" role="Containment" relid="0x25">
 				<name>Containment</name>
@@ -19328,7 +19769,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-00000019"/>
-				<connpoint role="src" target="id-0067-00000067"/>
+				<connpoint role="src" target="id-0067-0000006c"/>
 			</connection>
 			<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0x11" members="id-0066-00000011 id-0066-00000017 id-0066-00000021">
 				<name>Workspace</name>
@@ -19360,7 +19801,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</set>
-			<set id="id-0069-00000016" kind="Aspect" role="Aspect" relid="0x16" members="id-0067-00000066 id-0067-00000067">
+			<set id="id-0069-00000017" kind="Aspect" role="Aspect" relid="0x16" members="id-0067-0000006b id-0067-0000006c">
 				<name>LibraryArtifact</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -20650,7 +21091,7 @@ ResourceUsesPort</value>
 					<value>false</value>
 				</attribute>
 			</atom>
-			<reference id="id-0067-00000068" kind="AspectProxy" role="AspectProxy" relid="0x9e" referred="id-0069-00000004">
+			<reference id="id-0067-0000006d" kind="AspectProxy" role="AspectProxy" relid="0x9e" referred="id-0069-00000004">
 				<name>OperationAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -20662,7 +21103,7 @@ ResourceUsesPort</value>
 					</regnode>
 				</regnode>
 			</reference>
-			<reference id="id-0067-00000069" kind="AspectProxy" role="AspectProxy" relid="0xa2" referred="id-0069-00000005">
+			<reference id="id-0067-0000006e" kind="AspectProxy" role="AspectProxy" relid="0xa2" referred="id-0069-00000005">
 				<name>ComponentAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -20674,7 +21115,7 @@ ResourceUsesPort</value>
 					</regnode>
 				</regnode>
 			</reference>
-			<reference id="id-0067-0000006a" kind="AspectProxy" role="AspectProxy" relid="0xa8" referred="id-0069-00000006">
+			<reference id="id-0067-0000006f" kind="AspectProxy" role="AspectProxy" relid="0xa8" referred="id-0069-00000006">
 				<name>IdTagAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -20686,7 +21127,7 @@ ResourceUsesPort</value>
 					</regnode>
 				</regnode>
 			</reference>
-			<reference id="id-0067-0000006b" kind="AspectProxy" role="AspectProxy" relid="0xe3" referred="id-0069-00000003">
+			<reference id="id-0067-00000070" kind="AspectProxy" role="AspectProxy" relid="0xe3" referred="id-0069-00000003">
 				<name>PredefinedTypeAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -20698,7 +21139,7 @@ ResourceUsesPort</value>
 					</regnode>
 				</regnode>
 			</reference>
-			<reference id="id-0067-0000006c" kind="FCOProxy" role="FCOProxy" relid="0xf7" referred="id-0066-0000003b">
+			<reference id="id-0067-00000071" kind="FCOProxy" role="FCOProxy" relid="0xf7" referred="id-0066-0000003b">
 				<name>PredefinedType</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -20770,7 +21211,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-0000006d" kind="ModelProxy" role="ModelProxy" relid="0xf8" referred="id-0066-00000048">
+			<reference id="id-0067-00000072" kind="ModelProxy" role="ModelProxy" relid="0xf8" referred="id-0066-00000048">
 				<name>Enum</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -20845,7 +21286,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-0000006e" kind="ReferenceProxy" role="ReferenceProxy" relid="0x101" referred="id-0066-0000005e">
+			<reference id="id-0067-00000073" kind="ReferenceProxy" role="ReferenceProxy" relid="0x101" referred="id-0066-0000005e">
 				<name>Member</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -20917,7 +21358,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-0000006f" kind="FCOProxy" role="FCOProxy" relid="0x106" referred="id-0066-0000005a">
+			<reference id="id-0067-00000074" kind="FCOProxy" role="FCOProxy" relid="0x106" referred="id-0066-0000005a">
 				<name>NamedType</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -20989,7 +21430,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000070" kind="ReferenceProxy" role="ReferenceProxy" relid="0x10e" referred="id-0066-000000a9">
+			<reference id="id-0067-00000075" kind="ReferenceProxy" role="ReferenceProxy" relid="0x10e" referred="id-0066-000000a9">
 				<name>ComponentRef</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -21061,7 +21502,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000071" kind="ConnectionProxy" role="ConnectionProxy" relid="0x111" referred="id-0066-000000ad">
+			<reference id="id-0067-00000076" kind="ConnectionProxy" role="ConnectionProxy" relid="0x111" referred="id-0066-000000ad">
 				<name>ManagesComponent</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -21103,7 +21544,7 @@ ResourceUsesPort</value>
 					<value>false</value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000089" kind="AspectProxy" role="AspectProxy" relid="0xa6" referred="id-0069-00000019">
+			<reference id="id-0067-0000008f" kind="AspectProxy" role="AspectProxy" relid="0xa6" referred="id-0069-0000001a">
 				<name>InheritableAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -21115,7 +21556,7 @@ ResourceUsesPort</value>
 					</regnode>
 				</regnode>
 			</reference>
-			<reference id="id-0067-0000008a" kind="AspectProxy" role="AspectProxy" relid="0xe2" referred="id-0069-00000018">
+			<reference id="id-0067-00000090" kind="AspectProxy" role="AspectProxy" relid="0xe2" referred="id-0069-00000019">
 				<name>NamedTypeAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -21150,7 +21591,7 @@ ResourceUsesPort</value>
 					<value>We</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-00000022"/>
-				<connpoint role="src" target="id-0069-00000017"/>
+				<connpoint role="src" target="id-0069-00000018"/>
 			</connection>
 			<connection id="id-0068-00000046" kind="SameAspectRight" role="SameAspectRight" relid="0x59">
 				<name>SameAspectRight</name>
@@ -21158,7 +21599,7 @@ ResourceUsesPort</value>
 					<value>Ew</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-00000024"/>
-				<connpoint role="src" target="id-0069-00000017"/>
+				<connpoint role="src" target="id-0069-00000018"/>
 			</connection>
 			<connection id="id-0068-00000047" kind="SameAspectRight" role="SameAspectRight" relid="0x5b">
 				<name>SameAspectRight</name>
@@ -21166,7 +21607,7 @@ ResourceUsesPort</value>
 					<value>w</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-00000025"/>
-				<connpoint role="src" target="id-0069-00000017"/>
+				<connpoint role="src" target="id-0069-00000018"/>
 			</connection>
 			<connection id="id-0068-00000048" kind="HasAspect" role="HasAspect" relid="0x5d">
 				<name>HasAspect</name>
@@ -21174,7 +21615,7 @@ ResourceUsesPort</value>
 					<value>Ns</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-00000023"/>
-				<connpoint role="src" target="id-0069-00000017"/>
+				<connpoint role="src" target="id-0069-00000018"/>
 			</connection>
 			<connection id="id-0068-00000049" kind="HasAspect" role="HasAspect" relid="0x62">
 				<name>HasAspect</name>
@@ -21182,7 +21623,7 @@ ResourceUsesPort</value>
 					<value>Ws</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-00000026"/>
-				<connpoint role="src" target="id-0069-00000017"/>
+				<connpoint role="src" target="id-0069-00000018"/>
 			</connection>
 			<connection id="id-0068-0000004a" kind="SameAspectRight" role="SameAspectRight" relid="0x71">
 				<name>SameAspectRight</name>
@@ -21190,7 +21631,7 @@ ResourceUsesPort</value>
 					<value>Ew</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-00000027"/>
-				<connpoint role="src" target="id-0069-00000017"/>
+				<connpoint role="src" target="id-0069-00000018"/>
 			</connection>
 			<connection id="id-0068-0000004b" kind="Containment" role="Containment" relid="0x8f">
 				<name>Containment</name>
@@ -21257,7 +21698,7 @@ ResourceUsesPort</value>
 					<value>Ew</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-00000029"/>
-				<connpoint role="src" target="id-0069-00000017"/>
+				<connpoint role="src" target="id-0069-00000018"/>
 			</connection>
 			<connection id="id-0068-00000050" kind="SameAspectLeft" role="SameAspectLeft" relid="0xa1">
 				<name>SameAspectLeft</name>
@@ -21265,7 +21706,7 @@ ResourceUsesPort</value>
 					<value>Ew</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-00000029"/>
-				<connpoint role="dst" target="id-0067-00000068"/>
+				<connpoint role="dst" target="id-0067-0000006d"/>
 			</connection>
 			<connection id="id-0068-00000051" kind="SameAspectRight" role="SameAspectRight" relid="0xa4">
 				<name>SameAspectRight</name>
@@ -21273,7 +21714,7 @@ ResourceUsesPort</value>
 					<value>Ew</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-0000002a"/>
-				<connpoint role="src" target="id-0069-00000017"/>
+				<connpoint role="src" target="id-0069-00000018"/>
 			</connection>
 			<connection id="id-0068-00000052" kind="SameAspectLeft" role="SameAspectLeft" relid="0xa5">
 				<name>SameAspectLeft</name>
@@ -21281,7 +21722,7 @@ ResourceUsesPort</value>
 					<value>Ew</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-0000002a"/>
-				<connpoint role="dst" target="id-0067-00000069"/>
+				<connpoint role="dst" target="id-0067-0000006e"/>
 			</connection>
 			<connection id="id-0068-00000053" kind="SameAspectLeft" role="SameAspectLeft" relid="0xa7">
 				<name>SameAspectLeft</name>
@@ -21289,7 +21730,7 @@ ResourceUsesPort</value>
 					<value>Ew</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-00000027"/>
-				<connpoint role="dst" target="id-0067-00000089"/>
+				<connpoint role="dst" target="id-0067-0000008f"/>
 			</connection>
 			<connection id="id-0068-00000054" kind="SameAspectRight" role="SameAspectRight" relid="0xaa">
 				<name>SameAspectRight</name>
@@ -21297,7 +21738,7 @@ ResourceUsesPort</value>
 					<value>Ew</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-0000002b"/>
-				<connpoint role="src" target="id-0069-00000017"/>
+				<connpoint role="src" target="id-0069-00000018"/>
 			</connection>
 			<connection id="id-0068-00000055" kind="SameAspectLeft" role="SameAspectLeft" relid="0xab">
 				<name>SameAspectLeft</name>
@@ -21305,7 +21746,7 @@ ResourceUsesPort</value>
 					<value>Ew</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-0000002b"/>
-				<connpoint role="dst" target="id-0067-0000006a"/>
+				<connpoint role="dst" target="id-0067-0000006f"/>
 			</connection>
 			<connection id="id-0068-00000056" kind="HasConstraint" role="HasConstraint" relid="0xb8">
 				<name>HasConstraint</name>
@@ -21381,7 +21822,7 @@ ResourceUsesPort</value>
 					<value>Ew</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-00000024"/>
-				<connpoint role="dst" target="id-0067-0000008a"/>
+				<connpoint role="dst" target="id-0067-00000090"/>
 			</connection>
 			<connection id="id-0068-0000005e" kind="SameAspectLeft" role="SameAspectLeft" relid="0xe7">
 				<name>SameAspectLeft</name>
@@ -21389,7 +21830,7 @@ ResourceUsesPort</value>
 					<value>Ew</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-00000025"/>
-				<connpoint role="dst" target="id-0067-0000006b"/>
+				<connpoint role="dst" target="id-0067-00000070"/>
 			</connection>
 			<connection id="id-0068-0000005f" kind="BaseInheritance" role="BaseInheritance" relid="0xf3">
 				<name>BaseInheritance</name>
@@ -21405,7 +21846,7 @@ ResourceUsesPort</value>
 					<value>Se</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-00000034"/>
-				<connpoint role="dst" target="id-0067-0000006c"/>
+				<connpoint role="dst" target="id-0067-00000071"/>
 			</connection>
 			<connection id="id-0068-00000061" kind="DerivedInheritance" role="DerivedInheritance" relid="0xfa">
 				<name>DerivedInheritance</name>
@@ -21413,7 +21854,7 @@ ResourceUsesPort</value>
 					<value>Sw</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-00000034"/>
-				<connpoint role="dst" target="id-0067-0000006d"/>
+				<connpoint role="dst" target="id-0067-00000072"/>
 			</connection>
 			<connection id="id-0068-00000062" kind="HasAttribute" role="HasAttribute" relid="0xfd">
 				<name>HasAttribute</name>
@@ -21472,7 +21913,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-00000026"/>
-				<connpoint role="src" target="id-0067-0000006e"/>
+				<connpoint role="src" target="id-0067-00000073"/>
 			</connection>
 			<connection id="id-0068-00000066" kind="Containment" role="Containment" relid="0x107">
 				<name>Containment</name>
@@ -21489,7 +21930,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-00000023"/>
-				<connpoint role="src" target="id-0067-0000006f"/>
+				<connpoint role="src" target="id-0067-00000074"/>
 			</connection>
 			<connection id="id-0068-00000067" kind="Containment" role="Containment" relid="0x108">
 				<name>Containment</name>
@@ -21506,7 +21947,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-00000022"/>
-				<connpoint role="src" target="id-0067-0000006f"/>
+				<connpoint role="src" target="id-0067-00000074"/>
 			</connection>
 			<connection id="id-0068-00000068" kind="HasConstraint" role="HasConstraint" relid="0x10c">
 				<name>HasConstraint</name>
@@ -21539,7 +21980,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-00000023"/>
-				<connpoint role="src" target="id-0067-00000070"/>
+				<connpoint role="src" target="id-0067-00000075"/>
 			</connection>
 			<connection id="id-0068-0000006b" kind="Containment" role="Containment" relid="0x110">
 				<name>Containment</name>
@@ -21556,7 +21997,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-00000022"/>
-				<connpoint role="src" target="id-0067-00000070"/>
+				<connpoint role="src" target="id-0067-00000075"/>
 			</connection>
 			<connection id="id-0068-0000006c" kind="Containment" role="Containment" relid="0x112">
 				<name>Containment</name>
@@ -21573,7 +22014,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-00000023"/>
-				<connpoint role="src" target="id-0067-00000071"/>
+				<connpoint role="src" target="id-0067-00000076"/>
 			</connection>
 			<connection id="id-0068-0000006d" kind="Containment" role="Containment" relid="0x113">
 				<name>Containment</name>
@@ -21590,7 +22031,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-00000022"/>
-				<connpoint role="src" target="id-0067-00000071"/>
+				<connpoint role="src" target="id-0067-00000076"/>
 			</connection>
 			<connection id="id-0068-0000006e" kind="ReferTo" role="ReferTo" relid="0x114">
 				<name>ReferTo</name>
@@ -21624,7 +22065,7 @@ ResourceUsesPort</value>
 				<connpoint role="dst" target="id-0066-00000036"/>
 				<connpoint role="src" target="id-0066-00000039"/>
 			</connection>
-			<set id="id-0069-00000017" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000022 id-0066-00000023 id-0066-00000026 id-0066-00000028 id-0066-00000031 id-0066-00000036 id-0067-0000006c id-0067-0000006d id-0067-0000006e id-0067-0000006f id-0067-00000070 id-0067-00000071">
+			<set id="id-0069-00000018" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000022 id-0066-00000023 id-0066-00000026 id-0066-00000028 id-0066-00000031 id-0066-00000036 id-0067-00000071 id-0067-00000072 id-0067-00000073 id-0067-00000074 id-0067-00000075 id-0067-00000076">
 				<name>InterfaceDefinition</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -24737,7 +25178,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000072" kind="ModelProxy" role="ModelProxy" relid="0xa0" referred="id-0066-0000006b">
+			<reference id="id-0067-00000077" kind="ModelProxy" role="ModelProxy" relid="0xa0" referred="id-0066-0000006b">
 				<name>Inheritable</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -24812,7 +25253,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000073" kind="ModelProxy" role="ModelProxy" relid="0x143" referred="id-0066-0000009e">
+			<reference id="id-0067-00000078" kind="ModelProxy" role="ModelProxy" relid="0x143" referred="id-0066-0000009e">
 				<name>Component</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -25126,7 +25567,7 @@ ResourceUsesPort</value>
 					<value>Sn</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-00000048"/>
-				<connpoint role="src" target="id-0069-00000018"/>
+				<connpoint role="src" target="id-0069-00000019"/>
 			</connection>
 			<connection id="id-0068-00000096" kind="HasAspect" role="HasAspect" relid="0x125">
 				<name>HasAspect</name>
@@ -25134,7 +25575,7 @@ ResourceUsesPort</value>
 					<value>Sn</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-0000004b"/>
-				<connpoint role="src" target="id-0069-00000018"/>
+				<connpoint role="src" target="id-0069-00000019"/>
 			</connection>
 			<connection id="id-0068-00000097" kind="HasAspect" role="HasAspect" relid="0x126">
 				<name>HasAspect</name>
@@ -25142,7 +25583,7 @@ ResourceUsesPort</value>
 					<value>We</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-0000004a"/>
-				<connpoint role="src" target="id-0069-00000018"/>
+				<connpoint role="src" target="id-0069-00000019"/>
 			</connection>
 			<connection id="id-0068-00000098" kind="HasConstraint" role="HasConstraint" relid="0x127">
 				<name>HasConstraint</name>
@@ -25246,7 +25687,7 @@ ResourceUsesPort</value>
 					<value>Sn</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-00000061"/>
-				<connpoint role="dst" target="id-0067-00000072"/>
+				<connpoint role="dst" target="id-0067-00000077"/>
 			</connection>
 			<connection id="id-0068-000000a5" kind="Containment" role="Containment" relid="0x139">
 				<name>Containment</name>
@@ -25311,9 +25752,9 @@ ResourceUsesPort</value>
 					<value>Sn</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-00000061"/>
-				<connpoint role="dst" target="id-0067-00000073"/>
+				<connpoint role="dst" target="id-0067-00000078"/>
 			</connection>
-			<set id="id-0069-00000018" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000048 id-0066-00000049 id-0066-0000004a id-0066-0000004b id-0066-0000004c id-0066-0000004d id-0066-00000059 id-0066-0000005b id-0066-0000005c id-0066-0000005d id-0066-0000005e id-0067-00000001 id-0067-00000003 id-0067-00000072">
+			<set id="id-0069-00000019" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000048 id-0066-00000049 id-0066-0000004a id-0066-0000004b id-0066-0000004c id-0066-0000004d id-0066-00000059 id-0066-0000005b id-0066-0000005c id-0066-0000005d id-0066-0000005e id-0067-00000001 id-0067-00000003 id-0067-00000077">
 				<name>NamedTypeAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -28356,7 +28797,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000074" kind="ModelProxy" role="ModelProxy" relid="0x4f" referred="id-0066-00000093">
+			<reference id="id-0067-00000079" kind="ModelProxy" role="ModelProxy" relid="0x4f" referred="id-0066-00000093">
 				<name>OnewayOperation</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -28431,7 +28872,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000075" kind="ModelProxy" role="ModelProxy" relid="0x94" referred="id-0066-00000091">
+			<reference id="id-0067-0000007a" kind="ModelProxy" role="ModelProxy" relid="0x94" referred="id-0066-00000091">
 				<name>LookupOperation</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -28506,7 +28947,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000076" kind="ModelProxy" role="ModelProxy" relid="0x96" referred="id-0066-00000090">
+			<reference id="id-0067-0000007b" kind="ModelProxy" role="ModelProxy" relid="0x96" referred="id-0066-00000090">
 				<name>FactoryOperation</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -28581,7 +29022,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000077" kind="ModelProxy" role="ModelProxy" relid="0x99" referred="id-0066-00000092">
+			<reference id="id-0067-0000007c" kind="ModelProxy" role="ModelProxy" relid="0x99" referred="id-0066-00000092">
 				<name>TwowayOperation</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -28656,7 +29097,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000078" kind="ModelProxy" role="ModelProxy" relid="0xa1" referred="id-0066-0000009e">
+			<reference id="id-0067-0000007d" kind="ModelProxy" role="ModelProxy" relid="0xa1" referred="id-0066-0000009e">
 				<name>Component</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -28731,7 +29172,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000079" kind="ModelProxy" role="ModelProxy" relid="0x10d" referred="id-0066-000000ac">
+			<reference id="id-0067-0000007e" kind="ModelProxy" role="ModelProxy" relid="0x10d" referred="id-0066-000000ac">
 				<name>ComponentFactory</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -28877,7 +29318,7 @@ ResourceUsesPort</value>
 					<value>Ew</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-0000006b"/>
-				<connpoint role="src" target="id-0069-00000019"/>
+				<connpoint role="src" target="id-0069-0000001a"/>
 			</connection>
 			<connection id="id-0068-000000b4" kind="ReferTo" role="ReferTo" relid="0x3d">
 				<name>ReferTo</name>
@@ -28927,7 +29368,7 @@ ResourceUsesPort</value>
 					<value>We</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-0000006f"/>
-				<connpoint role="src" target="id-0069-00000019"/>
+				<connpoint role="src" target="id-0069-0000001a"/>
 			</connection>
 			<connection id="id-0068-000000b8" kind="BaseInheritance" role="BaseInheritance" relid="0x49">
 				<name>BaseInheritance</name>
@@ -28960,7 +29401,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-0000006c"/>
-				<connpoint role="src" target="id-0067-00000074"/>
+				<connpoint role="src" target="id-0067-00000079"/>
 			</connection>
 			<connection id="id-0068-000000bb" kind="HasAttribute" role="HasAttribute" relid="0x55">
 				<name>HasAttribute</name>
@@ -29066,7 +29507,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-00000076"/>
-				<connpoint role="src" target="id-0067-00000076"/>
+				<connpoint role="src" target="id-0067-0000007b"/>
 			</connection>
 			<connection id="id-0068-000000c6" kind="Containment" role="Containment" relid="0x9a">
 				<name>Containment</name>
@@ -29083,7 +29524,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-0000006c"/>
-				<connpoint role="src" target="id-0067-00000077"/>
+				<connpoint role="src" target="id-0067-0000007c"/>
 			</connection>
 			<connection id="id-0068-000000c7" kind="DerivedInheritance" role="DerivedInheritance" relid="0xa3">
 				<name>DerivedInheritance</name>
@@ -29091,7 +29532,7 @@ ResourceUsesPort</value>
 					<value>Sn</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-0000006a"/>
-				<connpoint role="dst" target="id-0067-00000078"/>
+				<connpoint role="dst" target="id-0067-0000007d"/>
 			</connection>
 			<connection id="id-0068-000000c8" kind="ReferTo" role="ReferTo" relid="0xaf">
 				<name>ReferTo</name>
@@ -29349,7 +29790,7 @@ ResourceUsesPort</value>
 					<value>Sn</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-0000006a"/>
-				<connpoint role="dst" target="id-0067-00000079"/>
+				<connpoint role="dst" target="id-0067-0000007e"/>
 			</connection>
 			<connection id="id-0068-000000e0" kind="DerivedInheritance" role="DerivedInheritance" relid="0x10f">
 				<name>DerivedInheritance</name>
@@ -29357,7 +29798,7 @@ ResourceUsesPort</value>
 					<value>Sn</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-00000069"/>
-				<connpoint role="dst" target="id-0067-00000079"/>
+				<connpoint role="dst" target="id-0067-0000007e"/>
 			</connection>
 			<connection id="id-0068-000000e1" kind="Containment" role="Containment" relid="0x110">
 				<name>Containment</name>
@@ -29373,8 +29814,8 @@ ResourceUsesPort</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="src" target="id-0067-00000076"/>
-				<connpoint role="dst" target="id-0067-00000079"/>
+				<connpoint role="src" target="id-0067-0000007b"/>
+				<connpoint role="dst" target="id-0067-0000007e"/>
 			</connection>
 			<connection id="id-0068-000000e2" kind="Containment" role="Containment" relid="0x111">
 				<name>Containment</name>
@@ -29391,7 +29832,7 @@ ResourceUsesPort</value>
 					<value></value>
 				</attribute>
 				<connpoint role="src" target="id-0066-00000074"/>
-				<connpoint role="dst" target="id-0067-00000079"/>
+				<connpoint role="dst" target="id-0067-0000007e"/>
 			</connection>
 			<connection id="id-0068-000000e3" kind="Containment" role="Containment" relid="0x112">
 				<name>Containment</name>
@@ -29407,8 +29848,8 @@ ResourceUsesPort</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="src" target="id-0067-00000075"/>
-				<connpoint role="dst" target="id-0067-00000079"/>
+				<connpoint role="src" target="id-0067-0000007a"/>
+				<connpoint role="dst" target="id-0067-0000007e"/>
 			</connection>
 			<connection id="id-0068-000000e4" kind="HasConstraint" role="HasConstraint" relid="0x113">
 				<name>HasConstraint</name>
@@ -29416,7 +29857,7 @@ ResourceUsesPort</value>
 					<value>Ew</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-0000007f"/>
-				<connpoint role="dst" target="id-0067-00000078"/>
+				<connpoint role="dst" target="id-0067-0000007d"/>
 			</connection>
 			<connection id="id-0068-000000e5" kind="HasConstraint" role="HasConstraint" relid="0x114">
 				<name>HasConstraint</name>
@@ -29424,7 +29865,7 @@ ResourceUsesPort</value>
 					<value>We</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-0000007f"/>
-				<connpoint role="dst" target="id-0067-00000079"/>
+				<connpoint role="dst" target="id-0067-0000007e"/>
 			</connection>
 			<connection id="id-0068-000000e6" kind="ReferTo" role="ReferTo" relid="0x117">
 				<name>ReferTo</name>
@@ -29490,7 +29931,7 @@ ResourceUsesPort</value>
 					<value>Ws</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-0000008d"/>
-				<connpoint role="dst" target="id-0067-00000079"/>
+				<connpoint role="dst" target="id-0067-0000007e"/>
 			</connection>
 			<connection id="id-0068-000000ec" kind="HasConstraint" role="HasConstraint" relid="0x128">
 				<name>HasConstraint</name>
@@ -29498,7 +29939,7 @@ ResourceUsesPort</value>
 					<value>Es</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-0000008d"/>
-				<connpoint role="dst" target="id-0067-00000078"/>
+				<connpoint role="dst" target="id-0067-0000007d"/>
 			</connection>
 			<connection id="id-0068-000000ed" kind="HasConstraint" role="HasConstraint" relid="0x12c">
 				<name>HasConstraint</name>
@@ -29508,7 +29949,7 @@ ResourceUsesPort</value>
 				<connpoint role="src" target="id-0066-00000085"/>
 				<connpoint role="dst" target="id-0066-00000087"/>
 			</connection>
-			<set id="id-0069-00000019" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000063 id-0066-00000065 id-0066-00000066 id-0066-00000067 id-0066-0000006e id-0066-0000006f id-0066-00000071 id-0066-00000074 id-0066-00000075 id-0066-00000077 id-0066-00000078 id-0066-00000079 id-0066-00000087 id-0067-00000004 id-0067-00000005 id-0067-00000006 id-0067-00000007 id-0067-00000008 id-0067-00000009 id-0067-00000074 id-0067-00000075 id-0067-00000076 id-0067-00000077 id-0067-00000078 id-0067-00000079">
+			<set id="id-0069-0000001a" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-00000063 id-0066-00000065 id-0066-00000066 id-0066-00000067 id-0066-0000006e id-0066-0000006f id-0066-00000071 id-0066-00000074 id-0066-00000075 id-0066-00000077 id-0066-00000078 id-0066-00000079 id-0066-00000087 id-0067-00000004 id-0067-00000005 id-0067-00000006 id-0067-00000007 id-0067-00000008 id-0067-00000009 id-0067-00000079 id-0067-0000007a id-0067-0000007b id-0067-0000007c id-0067-0000007d id-0067-0000007e">
 				<name>InheritableAspect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -34693,7 +35134,7 @@ RTEventChannel</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<reference id="id-0067-0000007a" kind="ModelProxy" role="ModelProxy" relid="0x138" referred="id-0066-000000cb">
+			<reference id="id-0067-0000007f" kind="ModelProxy" role="ModelProxy" relid="0x138" referred="id-0066-000000cb">
 				<name>Property</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -34768,7 +35209,7 @@ RTEventChannel</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-0000007b" kind="ModelProxy" role="ModelProxy" relid="0x140" referred="id-0066-0000018f">
+			<reference id="id-0067-00000080" kind="ModelProxy" role="ModelProxy" relid="0x140" referred="id-0066-0000018f">
 				<name>Node</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -34843,7 +35284,7 @@ RTEventChannel</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-0000007c" kind="ModelProxy" role="ModelProxy" relid="0x141" referred="id-0066-0000018e">
+			<reference id="id-0067-00000081" kind="ModelProxy" role="ModelProxy" relid="0x141" referred="id-0066-0000018e">
 				<name>Interconnect</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -34918,7 +35359,7 @@ RTEventChannel</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-0000007d" kind="ModelProxy" role="ModelProxy" relid="0x142" referred="id-0066-0000018d">
+			<reference id="id-0067-00000082" kind="ModelProxy" role="ModelProxy" relid="0x142" referred="id-0066-0000018d">
 				<name>Bridge</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -34993,7 +35434,7 @@ RTEventChannel</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-0000007e" kind="ModelProxy" role="ModelProxy" relid="0x143" referred="id-0066-00000191">
+			<reference id="id-0067-00000083" kind="ModelProxy" role="ModelProxy" relid="0x143" referred="id-0066-00000191">
 				<name>SharedResource</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -35074,7 +35515,7 @@ RTEventChannel</value>
 					<value>En</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-000000bc"/>
-				<connpoint role="src" target="id-0069-0000001a"/>
+				<connpoint role="src" target="id-0069-0000001b"/>
 			</connection>
 			<connection id="id-0068-00000138" kind="BaseInheritance" role="BaseInheritance" relid="0xb6">
 				<name>BaseInheritance</name>
@@ -35107,7 +35548,7 @@ RTEventChannel</value>
 					<value>Sn</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-000000ba"/>
-				<connpoint role="dst" target="id-0067-0000007b"/>
+				<connpoint role="dst" target="id-0067-00000080"/>
 			</connection>
 			<connection id="id-0068-0000013b" kind="DerivedInheritance" role="DerivedInheritance" relid="0x146">
 				<name>DerivedInheritance</name>
@@ -35115,7 +35556,7 @@ RTEventChannel</value>
 					<value>Sn</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-000000ba"/>
-				<connpoint role="dst" target="id-0067-0000007d"/>
+				<connpoint role="dst" target="id-0067-00000082"/>
 			</connection>
 			<connection id="id-0068-0000013c" kind="DerivedInheritance" role="DerivedInheritance" relid="0x147">
 				<name>DerivedInheritance</name>
@@ -35123,7 +35564,7 @@ RTEventChannel</value>
 					<value>Sn</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-000000ba"/>
-				<connpoint role="dst" target="id-0067-0000007e"/>
+				<connpoint role="dst" target="id-0067-00000083"/>
 			</connection>
 			<connection id="id-0068-0000013d" kind="Containment" role="Containment" relid="0x148">
 				<name>Containment</name>
@@ -35140,7 +35581,7 @@ RTEventChannel</value>
 					<value></value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-000000bc"/>
-				<connpoint role="src" target="id-0067-0000007a"/>
+				<connpoint role="src" target="id-0067-0000007f"/>
 			</connection>
 			<connection id="id-0068-0000013e" kind="FolderContainment" role="FolderContainment" relid="0x14a">
 				<name>FolderContainment</name>
@@ -35159,7 +35600,7 @@ RTEventChannel</value>
 					<value>src</value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-000000bf"/>
-				<connpoint role="src" target="id-0067-0000007b"/>
+				<connpoint role="src" target="id-0067-00000080"/>
 			</connection>
 			<connection id="id-0068-00000140" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x152">
 				<name>ConnectorToDestination</name>
@@ -35170,7 +35611,7 @@ RTEventChannel</value>
 					<value>dst</value>
 				</attribute>
 				<connpoint role="src" target="id-0066-000000bf"/>
-				<connpoint role="dst" target="id-0067-0000007e"/>
+				<connpoint role="dst" target="id-0067-00000083"/>
 			</connection>
 			<connection id="id-0068-00000141" kind="AssociationClass" role="AssociationClass" relid="0x153">
 				<name>AssociationClass</name>
@@ -35192,7 +35633,7 @@ RTEventChannel</value>
 					<value>src</value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-000000c0"/>
-				<connpoint role="src" target="id-0067-0000007b"/>
+				<connpoint role="src" target="id-0067-00000080"/>
 			</connection>
 			<connection id="id-0068-00000143" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x155">
 				<name>ConnectorToDestination</name>
@@ -35206,7 +35647,7 @@ RTEventChannel</value>
 					<value>dst</value>
 				</attribute>
 				<connpoint role="src" target="id-0066-000000c0"/>
-				<connpoint role="dst" target="id-0067-0000007c"/>
+				<connpoint role="dst" target="id-0067-00000081"/>
 			</connection>
 			<connection id="id-0068-00000144" kind="SourceToConnector" role="SourceToConnector" relid="0x157">
 				<name>SourceToConnector</name>
@@ -35217,7 +35658,7 @@ RTEventChannel</value>
 					<value>src</value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-000000c2"/>
-				<connpoint role="src" target="id-0067-0000007c"/>
+				<connpoint role="src" target="id-0067-00000081"/>
 			</connection>
 			<connection id="id-0068-00000145" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x158">
 				<name>ConnectorToDestination</name>
@@ -35228,7 +35669,7 @@ RTEventChannel</value>
 					<value>dst</value>
 				</attribute>
 				<connpoint role="src" target="id-0066-000000c2"/>
-				<connpoint role="dst" target="id-0067-0000007b"/>
+				<connpoint role="dst" target="id-0067-00000080"/>
 			</connection>
 			<connection id="id-0068-00000146" kind="SourceToConnector" role="SourceToConnector" relid="0x15b">
 				<name>SourceToConnector</name>
@@ -35242,7 +35683,7 @@ RTEventChannel</value>
 					<value>src</value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-000000be"/>
-				<connpoint role="src" target="id-0067-0000007c"/>
+				<connpoint role="src" target="id-0067-00000081"/>
 			</connection>
 			<connection id="id-0068-00000147" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x15c">
 				<name>ConnectorToDestination</name>
@@ -35256,7 +35697,7 @@ RTEventChannel</value>
 					<value>dst</value>
 				</attribute>
 				<connpoint role="src" target="id-0066-000000be"/>
-				<connpoint role="dst" target="id-0067-0000007d"/>
+				<connpoint role="dst" target="id-0067-00000082"/>
 			</connection>
 			<connection id="id-0068-00000148" kind="SourceToConnector" role="SourceToConnector" relid="0x15e">
 				<name>SourceToConnector</name>
@@ -35267,7 +35708,7 @@ RTEventChannel</value>
 					<value>src</value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-000000c5"/>
-				<connpoint role="src" target="id-0067-0000007d"/>
+				<connpoint role="src" target="id-0067-00000082"/>
 			</connection>
 			<connection id="id-0068-00000149" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x15f">
 				<name>ConnectorToDestination</name>
@@ -35278,7 +35719,7 @@ RTEventChannel</value>
 					<value>dst</value>
 				</attribute>
 				<connpoint role="src" target="id-0066-000000c5"/>
-				<connpoint role="dst" target="id-0067-0000007c"/>
+				<connpoint role="dst" target="id-0067-00000081"/>
 			</connection>
 			<connection id="id-0068-0000014a" kind="DerivedInheritance" role="DerivedInheritance" relid="0x162">
 				<name>DerivedInheritance</name>
@@ -35286,7 +35727,7 @@ RTEventChannel</value>
 					<value>Sn</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-000000ba"/>
-				<connpoint role="dst" target="id-0067-0000007c"/>
+				<connpoint role="dst" target="id-0067-00000081"/>
 			</connection>
 			<connection id="id-0068-0000014b" kind="AssociationClass" role="AssociationClass" relid="0x164">
 				<name>AssociationClass</name>
@@ -35381,7 +35822,7 @@ RTEventChannel</value>
 				<connpoint role="dst" target="id-0066-000000bc"/>
 				<connpoint role="src" target="id-0066-000000c4"/>
 			</connection>
-			<set id="id-0069-0000001a" kind="Aspect" role="Aspect" relid="0x2a" members="id-0066-000000bb id-0066-000000bc id-0066-000000c1 id-0066-000000c3 id-0066-000000c4 id-0066-000000c6 id-0066-000000c7 id-0067-0000007a">
+			<set id="id-0069-0000001b" kind="Aspect" role="Aspect" relid="0x2a" members="id-0066-000000bb id-0066-000000bc id-0066-000000c1 id-0066-000000c3 id-0066-000000c4 id-0066-000000c6 id-0066-000000c7 id-0067-0000007f">
 				<name>Target</name>
 				<regnode name="MetaRef" isopaque="yes">
 					<value></value>
@@ -37126,7 +37567,7 @@ rrName = referedbyDataType</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-0000008b" kind="AspectProxy" role="AspectProxy" relid="0x18" referred="id-0069-0000001c">
+			<reference id="id-0067-00000091" kind="AspectProxy" role="AspectProxy" relid="0x18" referred="id-0069-0000001d">
 				<name>Packaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -37146,7 +37587,7 @@ rrName = referedbyDataType</value>
 			<connection id="id-0068-00000155" kind="SameAspectLeft" role="SameAspectLeft" relid="0x1b">
 				<name>SameAspectLeft</name>
 				<connpoint role="src" target="id-0066-000000c8"/>
-				<connpoint role="dst" target="id-0067-0000008b"/>
+				<connpoint role="dst" target="id-0067-00000091"/>
 			</connection>
 			<connection id="id-0068-00000156" kind="SameAspectRight" role="SameAspectRight" relid="0x1a">
 				<name>SameAspectRight</name>
@@ -38527,7 +38968,7 @@ self.connectedFCOs(Implementation)-&gt;forAll (i : Reference | i.refersTo().kind
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-0000007f" kind="ReferenceProxy" role="ReferenceProxy" relid="0x38" referred="id-0066-00000125">
+			<reference id="id-0067-00000084" kind="ReferenceProxy" role="ReferenceProxy" relid="0x38" referred="id-0066-00000125">
 				<name>ComponentImplementationReference</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -38599,7 +39040,7 @@ self.connectedFCOs(Implementation)-&gt;forAll (i : Reference | i.refersTo().kind
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-0000008c" kind="AspectProxy" role="AspectProxy" relid="0x3f" referred="id-0069-0000001c">
+			<reference id="id-0067-00000092" kind="AspectProxy" role="AspectProxy" relid="0x3f" referred="id-0069-0000001d">
 				<name>Packaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -38614,7 +39055,7 @@ self.connectedFCOs(Implementation)-&gt;forAll (i : Reference | i.refersTo().kind
 			<connection id="id-0068-00000168" kind="SameAspectLeft" role="SameAspectLeft" relid="0x41">
 				<name>SameAspectLeft</name>
 				<connpoint role="src" target="id-0066-000000d8"/>
-				<connpoint role="dst" target="id-0067-0000008c"/>
+				<connpoint role="dst" target="id-0067-00000092"/>
 			</connection>
 			<connection id="id-0068-00000169" kind="SameAspectRight" role="SameAspectRight" relid="0x40">
 				<name>SameAspectRight</name>
@@ -38622,7 +39063,7 @@ self.connectedFCOs(Implementation)-&gt;forAll (i : Reference | i.refersTo().kind
 					<value>w</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-000000d8"/>
-				<connpoint role="src" target="id-0069-0000001b"/>
+				<connpoint role="src" target="id-0069-0000001c"/>
 			</connection>
 			<connection id="id-0068-0000016a" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x50">
 				<name>ConnectorToDestination</name>
@@ -38652,7 +39093,7 @@ self.connectedFCOs(Implementation)-&gt;forAll (i : Reference | i.refersTo().kind
 					<value>dst</value>
 				</attribute>
 				<connpoint role="src" target="id-0066-000000dc"/>
-				<connpoint role="dst" target="id-0067-0000007f"/>
+				<connpoint role="dst" target="id-0067-00000084"/>
 			</connection>
 			<connection id="id-0068-0000016d" kind="AssociationClass" role="AssociationClass" relid="0x5a">
 				<name>AssociationClass</name>
@@ -38710,7 +39151,7 @@ self.connectedFCOs(Implementation)-&gt;forAll (i : Reference | i.refersTo().kind
 					<value></value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-000000dd"/>
-				<connpoint role="src" target="id-0067-0000007f"/>
+				<connpoint role="src" target="id-0067-00000084"/>
 			</connection>
 			<connection id="id-0068-00000172" kind="Containment" role="Containment" relid="0x65">
 				<name>Containment</name>
@@ -38761,7 +39202,7 @@ self.connectedFCOs(Implementation)-&gt;forAll (i : Reference | i.refersTo().kind
 			<connection id="id-0068-00000177" kind="HasAspect" role="HasAspect" relid="0x71">
 				<name>HasAspect</name>
 				<connpoint role="dst" target="id-0066-000000dd"/>
-				<connpoint role="src" target="id-0069-0000001b"/>
+				<connpoint role="src" target="id-0069-0000001c"/>
 			</connection>
 			<connection id="id-0068-00000178" kind="Containment" role="Containment" relid="0x72">
 				<name>Containment</name>
@@ -38889,7 +39330,7 @@ self.connectedFCOs(Implementation)-&gt;forAll (i : Reference | i.refersTo().kind
 				<connpoint role="dst" target="id-0066-000000e2"/>
 				<connpoint role="src" target="id-0066-000000e6"/>
 			</connection>
-			<set id="id-0069-0000001b" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000d9 id-0066-000000db id-0066-000000dd id-0066-000000de id-0066-000000df id-0066-000000e2 id-0067-0000001b id-0067-0000001c id-0067-0000007f">
+			<set id="id-0069-0000001c" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000d9 id-0066-000000db id-0066-000000dd id-0066-000000de id-0066-000000df id-0066-000000e2 id-0067-0000001b id-0067-0000001c id-0067-00000084">
 				<name>CompPkgPackaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -39281,7 +39722,7 @@ self.connectedFCOs(Implementation)-&gt;forAll (i : Reference | i.refersTo().kind
 					<value></value>
 				</regnode>
 			</atom>
-			<reference id="id-0067-00000080" kind="ReferenceProxy" role="ReferenceProxy" relid="0xec" referred="id-0066-0000010e">
+			<reference id="id-0067-00000085" kind="ReferenceProxy" role="ReferenceProxy" relid="0xec" referred="id-0066-0000010e">
 				<name>PackageConfigurationReference</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -39362,7 +39803,7 @@ self.connectedFCOs(Implementation)-&gt;forAll (i : Reference | i.refersTo().kind
 					<value></value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-000000e7"/>
-				<connpoint role="src" target="id-0067-00000080"/>
+				<connpoint role="src" target="id-0067-00000085"/>
 			</connection>
 			<connection id="id-0068-00000185" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0xed">
 				<name>ConnectorToDestination</name>
@@ -39376,12 +39817,12 @@ self.connectedFCOs(Implementation)-&gt;forAll (i : Reference | i.refersTo().kind
 					<value>dst</value>
 				</attribute>
 				<connpoint role="src" target="id-0066-000000eb"/>
-				<connpoint role="dst" target="id-0067-00000080"/>
+				<connpoint role="dst" target="id-0067-00000085"/>
 			</connection>
 			<connection id="id-0068-00000186" kind="HasAspect" role="HasAspect" relid="0xd8">
 				<name>HasAspect</name>
 				<connpoint role="dst" target="id-0066-000000e7"/>
-				<connpoint role="src" target="id-0069-0000001c"/>
+				<connpoint role="src" target="id-0069-0000001d"/>
 			</connection>
 			<connection id="id-0068-00000187" kind="FolderContainment" role="FolderContainment" relid="0xc9">
 				<name>FolderContainment</name>
@@ -39438,7 +39879,7 @@ self.connectedFCOs(Implementation)-&gt;forAll (i : Reference | i.refersTo().kind
 				<connpoint role="dst" target="id-0066-000000e7"/>
 				<connpoint role="src" target="id-0066-000000ea"/>
 			</connection>
-			<set id="id-0069-0000001c" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000e7 id-0066-000000e9 id-0066-000000ea id-0067-00000080">
+			<set id="id-0069-0000001d" kind="Aspect" role="Aspect" relid="0x0" members="id-0066-000000e7 id-0066-000000e9 id-0066-000000ea id-0067-00000085">
 				<name>Packaging</name>
 				<regnode name="MetaRef" isopaque="yes">
 					<value></value>
@@ -40509,7 +40950,7 @@ self.connectedFCOs(Implementation)-&gt;forAll (i : Reference | i.refersTo().kind
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000081" kind="AspectProxy" role="AspectProxy" relid="0x7" referred="id-0069-0000001c">
+			<reference id="id-0067-00000086" kind="AspectProxy" role="AspectProxy" relid="0x7" referred="id-0069-0000001d">
 				<name>Packaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -40524,7 +40965,7 @@ self.connectedFCOs(Implementation)-&gt;forAll (i : Reference | i.refersTo().kind
 			<connection id="id-0068-0000018c" kind="SameAspectLeft" role="SameAspectLeft" relid="0xa">
 				<name>SameAspectLeft</name>
 				<connpoint role="src" target="id-0066-000000ed"/>
-				<connpoint role="dst" target="id-0067-00000081"/>
+				<connpoint role="dst" target="id-0067-00000086"/>
 			</connection>
 			<connection id="id-0068-0000018d" kind="SameAspectRight" role="SameAspectRight" relid="0x9">
 				<name>SameAspectRight</name>
@@ -42097,7 +42538,7 @@ dName = dstArtifactDependency</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000082" kind="AspectProxy" role="AspectProxy" relid="0x8" referred="id-0069-0000001c">
+			<reference id="id-0067-00000087" kind="AspectProxy" role="AspectProxy" relid="0x8" referred="id-0069-0000001d">
 				<name>Packaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -42112,7 +42553,7 @@ dName = dstArtifactDependency</value>
 			<connection id="id-0068-000001a3" kind="SameAspectLeft" role="SameAspectLeft" relid="0xa">
 				<name>SameAspectLeft</name>
 				<connpoint role="src" target="id-0066-000000f9"/>
-				<connpoint role="dst" target="id-0067-00000082"/>
+				<connpoint role="dst" target="id-0067-00000087"/>
 			</connection>
 			<connection id="id-0068-000001a4" kind="SameAspectRight" role="SameAspectRight" relid="0x9">
 				<name>SameAspectRight</name>
@@ -43908,7 +44349,7 @@ dName = dstArtifactDependency</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000083" kind="AspectProxy" role="AspectProxy" relid="0x1b" referred="id-0069-0000001c">
+			<reference id="id-0067-00000088" kind="AspectProxy" role="AspectProxy" relid="0x1b" referred="id-0069-0000001d">
 				<name>Packaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -44121,7 +44562,7 @@ dName = dstArtifactDependency</value>
 					<value>Ew</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-00000115"/>
-				<connpoint role="dst" target="id-0067-00000083"/>
+				<connpoint role="dst" target="id-0067-00000088"/>
 			</connection>
 			<connection id="id-0068-000001d6" kind="HasAspect" role="HasAspect" relid="0x1d">
 				<name>HasAspect</name>
@@ -46420,7 +46861,7 @@ dName = dstArtifactDependency</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000084" kind="ModelProxy" role="ModelProxy" relid="0xf8" referred="id-0066-00000137">
+			<reference id="id-0067-00000089" kind="ModelProxy" role="ModelProxy" relid="0xf8" referred="id-0066-00000137">
 				<name>ComponentAssembly</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -46495,7 +46936,7 @@ dName = dstArtifactDependency</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000085" kind="AspectProxy" role="AspectProxy" relid="0x3e" referred="id-0069-0000001c">
+			<reference id="id-0067-0000008a" kind="AspectProxy" role="AspectProxy" relid="0x3e" referred="id-0069-0000001d">
 				<name>Packaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -46542,7 +46983,7 @@ dName = dstArtifactDependency</value>
 			<connection id="id-0068-000001e9" kind="SameAspectLeft" role="SameAspectLeft" relid="0x40">
 				<name>SameAspectLeft</name>
 				<connpoint role="src" target="id-0066-00000124"/>
-				<connpoint role="dst" target="id-0067-00000085"/>
+				<connpoint role="dst" target="id-0067-0000008a"/>
 			</connection>
 			<connection id="id-0068-000001ea" kind="SameAspectRight" role="SameAspectRight" relid="0x3f">
 				<name>SameAspectRight</name>
@@ -46770,7 +47211,7 @@ dName = dstArtifactDependency</value>
 					<value>S</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-0000012c"/>
-				<connpoint role="dst" target="id-0067-00000084"/>
+				<connpoint role="dst" target="id-0067-00000089"/>
 			</connection>
 			<connection id="id-0068-00000202" kind="Containment" role="Containment" relid="0xfb">
 				<name>Containment</name>
@@ -53056,7 +53497,7 @@ endif
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000086" kind="AspectProxy" role="AspectProxy" relid="0x40" referred="id-0069-0000001c">
+			<reference id="id-0067-0000008b" kind="AspectProxy" role="AspectProxy" relid="0x40" referred="id-0069-0000001d">
 				<name>Packaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -53126,7 +53567,7 @@ endif
 					<value>E</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-0000013a"/>
-				<connpoint role="dst" target="id-0067-00000086"/>
+				<connpoint role="dst" target="id-0067-0000008b"/>
 			</connection>
 			<connection id="id-0068-0000021d" kind="HasAspect" role="HasAspect" relid="0x43">
 				<name>HasAspect</name>
@@ -54778,7 +55219,7 @@ endif
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000087" kind="ReferenceProxy" role="ReferenceProxy" relid="0xc" referred="id-0066-00000190">
+			<reference id="id-0067-0000008c" kind="ReferenceProxy" role="ReferenceProxy" relid="0xc" referred="id-0066-00000190">
 				<name>NodeReference</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -54859,7 +55300,7 @@ endif
 					<value>dst</value>
 				</attribute>
 				<connpoint role="src" target="id-0066-00000189"/>
-				<connpoint role="dst" target="id-0067-00000087"/>
+				<connpoint role="dst" target="id-0067-0000008c"/>
 			</connection>
 			<connection id="id-0068-00000290" kind="AssociationClass" role="AssociationClass" relid="0x12">
 				<name>AssociationClass</name>
@@ -54878,7 +55319,7 @@ endif
 					<value></value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-00000187"/>
-				<connpoint role="src" target="id-0067-00000087"/>
+				<connpoint role="src" target="id-0067-0000008c"/>
 			</connection>
 			<connection id="id-0068-00000292" kind="Containment" role="Containment" relid="0x15">
 				<name>Containment</name>
@@ -54897,7 +55338,7 @@ endif
 			<connection id="id-0068-00000293" kind="HasAspect" role="HasAspect" relid="0x1c">
 				<name>HasAspect</name>
 				<connpoint role="dst" target="id-0066-00000187"/>
-				<connpoint role="src" target="id-0069-0000001d"/>
+				<connpoint role="src" target="id-0069-0000001e"/>
 			</connection>
 			<connection id="id-0068-00000294" kind="FolderContainment" role="FolderContainment" relid="0x1e">
 				<name>FolderContainment</name>
@@ -54989,7 +55430,7 @@ endif
 				<connpoint role="src" target="id-0066-0000018c"/>
 				<connpoint role="dst" target="id-0067-00000039"/>
 			</connection>
-			<set id="id-0069-0000001d" kind="Aspect" role="Aspect" relid="0x1b" members="id-0066-00000187 id-0066-00000188 id-0066-0000018b id-0067-00000038 id-0067-00000039 id-0067-00000087">
+			<set id="id-0069-0000001e" kind="Aspect" role="Aspect" relid="0x1b" members="id-0066-00000187 id-0066-00000188 id-0066-0000018b id-0067-00000038 id-0067-00000039 id-0067-0000008c">
 				<name>NodeMapping</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -55621,7 +56062,7 @@ endif
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000088" kind="AspectProxy" role="AspectProxy" relid="0x27" referred="id-0069-0000001a">
+			<reference id="id-0067-0000008d" kind="AspectProxy" role="AspectProxy" relid="0x27" referred="id-0069-0000001b">
 				<name>Target</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -55727,7 +56168,7 @@ endif
 					<value>E</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-00000193"/>
-				<connpoint role="dst" target="id-0067-00000088"/>
+				<connpoint role="dst" target="id-0067-0000008d"/>
 			</connection>
 			<connection id="id-0068-000002a6" kind="HasAspect" role="HasAspect" relid="0x2b">
 				<name>HasAspect</name>
@@ -70218,7 +70659,7 @@ rrName = referedbyPolicySetRef</value>
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-0000001a" kind="ParadigmSheet" relid="0x2" childrelidcntr="0x68">
+		<model id="id-0065-0000001a" kind="ParadigmSheet" relid="0x2" childrelidcntr="0x6b">
 			<name>QoSModeling</name>
 			<atom id="id-0066-00000254" kind="Model" role="Model" relid="0x1">
 				<name>QoSCharacteristic</name>
@@ -70320,7 +70761,7 @@ rrName = referedbyPolicySetRef</value>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>674,408</value>
+							<value>659,389</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -71083,81 +71524,6 @@ None</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000265" kind="Model" role="Model" relid="0x35">
-				<name>QoSModel1</name>
-				<regnode name="PartRegs" status="undefined">
-					<value></value>
-					<regnode name="Attributes" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>534,37</value>
-						</regnode>
-					</regnode>
-					<regnode name="ClassDiagram" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>288,13</value>
-						</regnode>
-					</regnode>
-					<regnode name="Constraints" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>534,37</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>498,13</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="Decorator" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="Icon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="InRootFolder" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="InstanceIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="IsAbstract" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="IsHotspotEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsNameEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsTypeInfoShown" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsTypeShown" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NamePosition" status="meta">
-					<value>4</value>
-				</attribute>
-				<attribute kind="NameWrapNum" status="meta">
-					<value>0</value>
-				</attribute>
-				<attribute kind="PortIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="SubTypeIcon" status="meta">
-					<value></value>
-				</attribute>
-			</atom>
 			<atom id="id-0066-00000266" kind="Folder" role="Folder" relid="0x3a">
 				<name>QoSModeling</name>
 				<regnode name="PartRegs" status="undefined">
@@ -71512,14 +71878,14 @@ None</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000281" kind="Connector" role="Connector" relid="0x5d">
+			<atom id="id-0066-0000026c" kind="Connector" role="Connector" relid="0x5d">
 				<name>Connector</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>828,44</value>
+							<value>886,53</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" status="undefined">
@@ -71530,7 +71896,7 @@ None</value>
 					</regnode>
 				</regnode>
 			</atom>
-			<atom id="id-0066-00000282" kind="Connection" role="Connection" relid="0x5e">
+			<atom id="id-0066-0000026d" kind="Connection" role="Connection" relid="0x5e">
 				<name>QoSDecoration</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -71601,32 +71967,32 @@ dName = dstQoSDecoration</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<reference id="id-0067-0000004d" kind="ModelProxy" role="ModelProxy" relid="0xf" referred="id-0066-00000254">
-				<name>QoSParentCharacteristic</name>
+			<atom id="id-0066-0000027c" kind="Reference" role="Reference" relid="0x69">
+				<name>QoSCharacteristicRef</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
 					<regnode name="Attributes" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>8,13</value>
+							<value>632,492</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>372,104</value>
+							<value>632,492</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>8,13</value>
+							<value>632,492</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>771,139</value>
+							<value>632,492</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -71636,8 +72002,10 @@ dName = dstQoSDecoration</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
+				<attribute kind="GeneralPreferences">
+					<value>
+rName = ref
+rrName = referedbyQoSCharacteristicRef</value>
 				</attribute>
 				<attribute kind="Icon" status="meta">
 					<value></value>
@@ -71657,9 +72025,6 @@ dName = dstQoSDecoration</value>
 				<attribute kind="IsNameEnabled" status="meta">
 					<value>true</value>
 				</attribute>
-				<attribute kind="IsTypeInfoShown" status="meta">
-					<value>true</value>
-				</attribute>
 				<attribute kind="IsTypeShown" status="meta">
 					<value>false</value>
 				</attribute>
@@ -71675,7 +72040,7 @@ dName = dstQoSDecoration</value>
 				<attribute kind="SubTypeIcon" status="meta">
 					<value></value>
 				</attribute>
-			</reference>
+			</atom>
 			<reference id="id-0067-0000004e" kind="ModelProxy" role="ModelProxy" relid="0x23" referred="id-0066-00000254">
 				<name>QoSBasedOn</name>
 				<regnode name="PartRegs" status="undefined">
@@ -71826,19 +72191,7 @@ dName = dstQoSDecoration</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000090" kind="AspectProxy" role="AspectProxy" relid="0x56" referred="id-0069-0000001e">
-				<name>PredefinedQoS</name>
-				<regnode name="PartRegs" status="undefined">
-					<value></value>
-					<regnode name="Visualization" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>1247,398</value>
-						</regnode>
-					</regnode>
-				</regnode>
-			</reference>
-			<reference id="id-0067-00000095" kind="ModelProxy" role="ModelProxy" relid="0x5c" referred="id-0066-0000009e">
+			<reference id="id-0067-00000050" kind="ModelProxy" role="ModelProxy" relid="0x5c" referred="id-0066-0000009e">
 				<name>Component</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -71901,7 +72254,7 @@ dName = dstQoSDecoration</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000096" kind="ModelProxy" role="ModelProxy" relid="0x62" referred="id-0066-00000130">
+			<reference id="id-0067-00000051" kind="ModelProxy" role="ModelProxy" relid="0x62" referred="id-0066-00000130">
 				<name>ComponentImplementationContainer</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -71964,7 +72317,7 @@ dName = dstQoSDecoration</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<reference id="id-0067-00000097" kind="ModelProxy" role="ModelProxy" relid="0x64" referred="id-0066-00000137">
+			<reference id="id-0067-00000052" kind="ModelProxy" role="ModelProxy" relid="0x64" referred="id-0066-00000137">
 				<name>ComponentAssembly</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -72027,13 +72380,25 @@ dName = dstQoSDecoration</value>
 					<value></value>
 				</attribute>
 			</reference>
+			<reference id="id-0067-0000008e" kind="AspectProxy" role="AspectProxy" relid="0x56" referred="id-0069-00000016">
+				<name>PredefinedQoS</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1247,398</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</reference>
 			<connection id="id-0068-000003ba" kind="Containment" role="Containment" relid="0x4">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>s</value>
 				</regnode>
 				<attribute kind="Cardinality">
-					<value>1..*</value>
+					<value>0..*</value>
 				</attribute>
 				<attribute kind="IsPort">
 					<value>true</value>
@@ -72066,8 +72431,8 @@ dName = dstQoSDecoration</value>
 			</connection>
 			<connection id="id-0068-000003bf" kind="Containment" role="Containment" relid="0x19">
 				<name>Containment</name>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
+				<attribute kind="Cardinality">
+					<value>1..*</value>
 				</attribute>
 				<attribute kind="IsPort" status="meta">
 					<value>false</value>
@@ -72164,8 +72529,8 @@ dName = dstQoSDecoration</value>
 			</connection>
 			<connection id="id-0068-000003c9" kind="Containment" role="Containment" relid="0x31">
 				<name>Containment</name>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
+				<attribute kind="Cardinality">
+					<value>1</value>
 				</attribute>
 				<attribute kind="IsPort" status="meta">
 					<value>false</value>
@@ -72175,56 +72540,6 @@ dName = dstQoSDecoration</value>
 				</attribute>
 				<connpoint role="src" target="id-0066-00000254"/>
 				<connpoint role="dst" target="id-0066-00000263"/>
-			</connection>
-			<connection id="id-0068-000003ca" kind="Containment" role="Containment" relid="0x36">
-				<name>Containment</name>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<attribute kind="IsPort" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="Rolename" status="meta">
-					<value></value>
-				</attribute>
-				<connpoint role="src" target="id-0066-0000025a"/>
-				<connpoint role="dst" target="id-0066-00000265"/>
-			</connection>
-			<connection id="id-0068-000003cb" kind="Containment" role="Containment" relid="0x37">
-				<name>Containment</name>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<attribute kind="IsPort" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="Rolename" status="meta">
-					<value></value>
-				</attribute>
-				<connpoint role="src" target="id-0066-00000254"/>
-				<connpoint role="dst" target="id-0066-00000265"/>
-			</connection>
-			<connection id="id-0068-000003cc" kind="Containment" role="Containment" relid="0x39">
-				<name>Containment</name>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<attribute kind="IsPort" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="Rolename" status="meta">
-					<value></value>
-				</attribute>
-				<connpoint role="src" target="id-0066-00000263"/>
-				<connpoint role="dst" target="id-0066-00000265"/>
-			</connection>
-			<connection id="id-0068-000003cd" kind="FolderContainment" role="FolderContainment" relid="0x3b">
-				<name>FolderContainment</name>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<connpoint role="src" target="id-0066-00000265"/>
-				<connpoint role="dst" target="id-0066-00000266"/>
 			</connection>
 			<connection id="id-0068-000003ce" kind="Containment" role="Containment" relid="0x3e">
 				<name>Containment</name>
@@ -72309,51 +72624,32 @@ dName = dstQoSDecoration</value>
 				<connpoint role="dst" target="id-0066-0000025d"/>
 				<connpoint role="src" target="id-0066-00000267"/>
 			</connection>
-			<connection id="id-0068-000003d8" kind="Containment" role="Containment" relid="0x50">
-				<name>Containment</name>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<attribute kind="IsPort" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="Rolename" status="meta">
-					<value></value>
-				</attribute>
-				<connpoint role="dst" target="id-0066-00000254"/>
-				<connpoint role="src" target="id-0067-0000004d"/>
-			</connection>
-			<connection id="id-0068-000003e7" kind="HasAspect" role="HasAspect" relid="0x54">
-				<name>HasAspect</name>
-				<connpoint role="dst" target="id-0066-00000265"/>
-				<connpoint role="src" target="id-0069-00000014"/>
-			</connection>
-			<connection id="id-0068-00000405" kind="HasAspect" role="HasAspect" relid="0x58">
+			<connection id="id-0068-000003da" kind="HasAspect" role="HasAspect" relid="0x58">
 				<name>HasAspect</name>
 				<connpoint role="dst" target="id-0066-00000254"/>
 				<connpoint role="src" target="id-0069-00000014"/>
 			</connection>
-			<connection id="id-0068-00000406" kind="HasAspect" role="HasAspect" relid="0x59">
+			<connection id="id-0068-000003db" kind="HasAspect" role="HasAspect" relid="0x59">
 				<name>HasAspect</name>
 				<connpoint role="dst" target="id-0066-0000025a"/>
 				<connpoint role="src" target="id-0069-00000014"/>
 			</connection>
-			<connection id="id-0068-00000407" kind="HasAspect" role="HasAspect" relid="0x5a">
+			<connection id="id-0068-000003dc" kind="HasAspect" role="HasAspect" relid="0x5a">
 				<name>HasAspect</name>
 				<connpoint role="dst" target="id-0066-00000263"/>
 				<connpoint role="src" target="id-0069-00000014"/>
 			</connection>
-			<connection id="id-0068-00000408" kind="HasAspect" role="HasAspect" relid="0x5b">
+			<connection id="id-0068-000003dd" kind="HasAspect" role="HasAspect" relid="0x5b">
 				<name>HasAspect</name>
 				<connpoint role="dst" target="id-0066-0000025d"/>
 				<connpoint role="src" target="id-0069-00000014"/>
 			</connection>
-			<connection id="id-0068-00000409" kind="AssociationClass" role="AssociationClass" relid="0x5f">
+			<connection id="id-0068-000003de" kind="AssociationClass" role="AssociationClass" relid="0x5f">
 				<name>AssociationClass</name>
-				<connpoint role="src" target="id-0066-00000281"/>
-				<connpoint role="dst" target="id-0066-00000282"/>
+				<connpoint role="src" target="id-0066-0000026c"/>
+				<connpoint role="dst" target="id-0066-0000026d"/>
 			</connection>
-			<connection id="id-0068-0000040a" kind="SourceToConnector" role="SourceToConnector" relid="0x60">
+			<connection id="id-0068-000003df" kind="SourceToConnector" role="SourceToConnector" relid="0x60">
 				<name>SourceToConnector</name>
 				<attribute kind="Cardinality" status="meta">
 					<value>0..*</value>
@@ -72362,9 +72658,9 @@ dName = dstQoSDecoration</value>
 					<value>src</value>
 				</attribute>
 				<connpoint role="src" target="id-0066-00000263"/>
-				<connpoint role="dst" target="id-0066-00000281"/>
+				<connpoint role="dst" target="id-0066-0000026c"/>
 			</connection>
-			<connection id="id-0068-0000040b" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x61">
+			<connection id="id-0068-000003e0" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x61">
 				<name>ConnectorToDestination</name>
 				<attribute kind="Cardinality" status="meta">
 					<value>0..*</value>
@@ -72372,20 +72668,20 @@ dName = dstQoSDecoration</value>
 				<attribute kind="dstRolename" status="meta">
 					<value>dst</value>
 				</attribute>
-				<connpoint role="src" target="id-0066-00000281"/>
-				<connpoint role="dst" target="id-0067-00000095"/>
+				<connpoint role="src" target="id-0066-0000026c"/>
+				<connpoint role="dst" target="id-0067-00000050"/>
 			</connection>
-			<connection id="id-0068-0000040c" kind="HasAspect" role="HasAspect" relid="0x63">
+			<connection id="id-0068-000003e1" kind="HasAspect" role="HasAspect" relid="0x63">
 				<name>HasAspect</name>
-				<connpoint role="dst" target="id-0067-00000096"/>
+				<connpoint role="dst" target="id-0067-00000051"/>
 				<connpoint role="src" target="id-0069-00000014"/>
 			</connection>
-			<connection id="id-0068-0000040d" kind="HasAspect" role="HasAspect" relid="0x65">
+			<connection id="id-0068-000003e2" kind="HasAspect" role="HasAspect" relid="0x65">
 				<name>HasAspect</name>
-				<connpoint role="dst" target="id-0067-00000097"/>
+				<connpoint role="dst" target="id-0067-00000052"/>
 				<connpoint role="src" target="id-0069-00000014"/>
 			</connection>
-			<connection id="id-0068-0000040e" kind="Containment" role="Containment" relid="0x66">
+			<connection id="id-0068-000003e4" kind="Containment" role="Containment" relid="0x67">
 				<name>Containment</name>
 				<attribute kind="Cardinality" status="meta">
 					<value>0..*</value>
@@ -72397,9 +72693,9 @@ dName = dstQoSDecoration</value>
 					<value></value>
 				</attribute>
 				<connpoint role="src" target="id-0066-00000263"/>
-				<connpoint role="dst" target="id-0067-00000096"/>
+				<connpoint role="dst" target="id-0067-00000052"/>
 			</connection>
-			<connection id="id-0068-0000040f" kind="Containment" role="Containment" relid="0x67">
+			<connection id="id-0068-000003e5" kind="Containment" role="Containment" relid="0x68">
 				<name>Containment</name>
 				<attribute kind="Cardinality" status="meta">
 					<value>0..*</value>
@@ -72410,10 +72706,15 @@ dName = dstQoSDecoration</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="src" target="id-0066-00000263"/>
-				<connpoint role="dst" target="id-0067-00000097"/>
+				<connpoint role="src" target="id-0066-0000026d"/>
+				<connpoint role="dst" target="id-0067-00000052"/>
 			</connection>
-			<connection id="id-0068-00000410" kind="Containment" role="Containment" relid="0x68">
+			<connection id="id-0068-000003f1" kind="ReferTo" role="ReferTo" relid="0x6a">
+				<name>ReferTo</name>
+				<connpoint role="dst" target="id-0066-00000254"/>
+				<connpoint role="src" target="id-0066-0000027c"/>
+			</connection>
+			<connection id="id-0068-000003f2" kind="Containment" role="Containment" relid="0x6b">
 				<name>Containment</name>
 				<attribute kind="Cardinality" status="meta">
 					<value>0..*</value>
@@ -72424,10 +72725,10 @@ dName = dstQoSDecoration</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="src" target="id-0066-00000282"/>
-				<connpoint role="dst" target="id-0067-00000097"/>
+				<connpoint role="dst" target="id-0066-00000254"/>
+				<connpoint role="src" target="id-0066-0000027c"/>
 			</connection>
-			<set id="id-0069-00000014" kind="Aspect" role="Aspect" relid="0x5" members="id-0066-00000254 id-0066-00000255 id-0066-0000025a id-0066-0000025b id-0066-0000025d id-0066-0000025f id-0066-00000261 id-0066-00000263 id-0066-00000265 id-0066-00000267 id-0066-00000282 id-0067-0000004d id-0067-0000004e id-0067-00000095 id-0067-00000097">
+			<set id="id-0069-00000014" kind="Aspect" role="Aspect" relid="0x5" members="id-0066-00000254 id-0066-00000255 id-0066-0000025a id-0066-0000025b id-0066-0000025d id-0066-0000025f id-0066-00000261 id-0066-00000263 id-0066-00000267 id-0066-0000026d id-0066-0000027c id-0067-0000004e id-0067-00000050 id-0067-00000052">
 				<name>QoSModelAspect</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -72458,9 +72759,9 @@ dName = dstQoSDecoration</value>
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-0000001b" kind="ParadigmSheet" relid="0x4" childrelidcntr="0x44">
+		<model id="id-0065-0000001b" kind="ParadigmSheet" relid="0x4" childrelidcntr="0x49">
 			<name>QoSCharacterizations</name>
-			<atom id="id-0066-00000270" kind="EnumAttribute" role="EnumAttribute" relid="0x6">
+			<atom id="id-0066-0000026e" kind="EnumAttribute" role="EnumAttribute" relid="0x6">
 				<name>Arch</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -72492,7 +72793,7 @@ SPARC</value>
 					<value>Archetecture</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000271" kind="FieldAttribute" role="FieldAttribute" relid="0x7">
+			<atom id="id-0066-0000026f" kind="FieldAttribute" role="FieldAttribute" relid="0x7">
 				<name>SMP</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -72525,7 +72826,7 @@ SPARC</value>
 					<value>No. of Proc</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000272" kind="EnumAttribute" role="EnumAttribute" relid="0xa">
+			<atom id="id-0066-00000270" kind="EnumAttribute" role="EnumAttribute" relid="0xa">
 				<name>Protocol</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -72557,7 +72858,7 @@ SCTP</value>
 					<value>Protocol</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000274" kind="FieldAttribute" role="FieldAttribute" relid="0xc">
+			<atom id="id-0066-00000271" kind="FieldAttribute" role="FieldAttribute" relid="0xc">
 				<name>LinkSpeed</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -72590,7 +72891,7 @@ SCTP</value>
 					<value>Link Speed (kBps)</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000275" kind="FieldAttribute" role="FieldAttribute" relid="0xd">
+			<atom id="id-0066-00000272" kind="FieldAttribute" role="FieldAttribute" relid="0xd">
 				<name>Latency</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -72623,14 +72924,14 @@ SCTP</value>
 					<value>Latency (ms)</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000276" kind="FieldAttribute" role="FieldAttribute" relid="0x11">
+			<atom id="id-0066-00000273" kind="FieldAttribute" role="FieldAttribute" relid="0x11">
 				<name>MaxRequests</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
 					<regnode name="Attributes" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>184,443</value>
+							<value>162,461</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -72656,7 +72957,7 @@ SCTP</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000277" kind="EnumAttribute" role="EnumAttribute" relid="0x13">
+			<atom id="id-0066-00000274" kind="EnumAttribute" role="EnumAttribute" relid="0x13">
 				<name>Scheduling</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -72688,7 +72989,7 @@ OTHER</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000278" kind="FieldAttribute" role="FieldAttribute" relid="0x14">
+			<atom id="id-0066-00000275" kind="FieldAttribute" role="FieldAttribute" relid="0x14">
 				<name>ProcessPriority</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -72721,7 +73022,7 @@ OTHER</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000027d" kind="Inheritance" role="Inheritance" relid="0x37">
+			<atom id="id-0066-00000276" kind="Inheritance" role="Inheritance" relid="0x37">
 				<name>Inheritance</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -72751,7 +73052,7 @@ OTHER</value>
 					</regnode>
 				</regnode>
 			</atom>
-			<atom id="id-0066-0000027e" kind="Model" role="Model" relid="0x3a">
+			<atom id="id-0066-00000277" kind="Model" role="Model" relid="0x3a">
 				<name>CPU</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -72826,7 +73127,7 @@ OTHER</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000027f" kind="Model" role="Model" relid="0x3b">
+			<atom id="id-0066-00000278" kind="Model" role="Model" relid="0x3b">
 				<name>Concurrency</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -72901,7 +73202,7 @@ OTHER</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000280" kind="Model" role="Model" relid="0x3c">
+			<atom id="id-0066-00000279" kind="Model" role="Model" relid="0x3c">
 				<name>Process</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -72976,26 +73277,32 @@ OTHER</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<reference id="id-0067-00000092" kind="ModelProxy" role="ModelProxy" relid="0x2c" referred="id-0066-00000265">
-				<name>QoSModel1</name>
+			<atom id="id-0066-0000027a" kind="Model" role="Model" relid="0x45">
+				<name>Connection</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
 					<regnode name="Attributes" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>8,13</value>
+							<value>170,394</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>197,48</value>
+							<value>170,394</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>170,394</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>8,13</value>
+							<value>170,394</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -73044,8 +73351,39 @@ OTHER</value>
 				<attribute kind="SubTypeIcon" status="meta">
 					<value></value>
 				</attribute>
-			</reference>
-			<reference id="id-0067-00000094" kind="ModelProxy" role="ModelProxy" relid="0x36" referred="id-0066-00000254">
+			</atom>
+			<atom id="id-0066-0000027b" kind="EnumAttribute" role="EnumAttribute" relid="0x48">
+				<name>Transport</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>30,282</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="DefaultItem">
+					<value>IPv4</value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="MenuItems">
+					<value>IPv4
+IPv6</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<reference id="id-0067-00000054" kind="ModelProxy" role="ModelProxy" relid="0x36" referred="id-0066-00000254">
 				<name>QoSCharacteristic</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -73114,52 +73452,62 @@ OTHER</value>
 					<value></value>
 				</attribute>
 			</reference>
-			<connection id="id-0068-000003fc" kind="BaseInheritance" role="BaseInheritance" relid="0x39">
+			<connection id="id-0068-000003e6" kind="BaseInheritance" role="BaseInheritance" relid="0x39">
 				<name>BaseInheritance</name>
-				<connpoint role="dst" target="id-0066-0000027d"/>
-				<connpoint role="src" target="id-0067-00000094"/>
+				<connpoint role="dst" target="id-0066-00000276"/>
+				<connpoint role="src" target="id-0067-00000054"/>
 			</connection>
-			<connection id="id-0068-000003fd" kind="DerivedInheritance" role="DerivedInheritance" relid="0x3d">
+			<connection id="id-0068-000003e7" kind="DerivedInheritance" role="DerivedInheritance" relid="0x3d">
 				<name>DerivedInheritance</name>
-				<connpoint role="src" target="id-0066-0000027d"/>
-				<connpoint role="dst" target="id-0066-0000027e"/>
-			</connection>
-			<connection id="id-0068-000003fe" kind="DerivedInheritance" role="DerivedInheritance" relid="0x3e">
-				<name>DerivedInheritance</name>
-				<connpoint role="src" target="id-0066-0000027d"/>
-				<connpoint role="dst" target="id-0066-0000027f"/>
-			</connection>
-			<connection id="id-0068-000003ff" kind="DerivedInheritance" role="DerivedInheritance" relid="0x3f">
-				<name>DerivedInheritance</name>
-				<connpoint role="src" target="id-0066-0000027d"/>
-				<connpoint role="dst" target="id-0066-00000280"/>
-			</connection>
-			<connection id="id-0068-00000400" kind="HasAttribute" role="HasAttribute" relid="0x40">
-				<name>HasAttribute</name>
-				<connpoint role="src" target="id-0066-00000270"/>
-				<connpoint role="dst" target="id-0066-0000027e"/>
-			</connection>
-			<connection id="id-0068-00000401" kind="HasAttribute" role="HasAttribute" relid="0x41">
-				<name>HasAttribute</name>
-				<connpoint role="src" target="id-0066-00000271"/>
-				<connpoint role="dst" target="id-0066-0000027e"/>
-			</connection>
-			<connection id="id-0068-00000402" kind="HasAttribute" role="HasAttribute" relid="0x42">
-				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-00000276"/>
-				<connpoint role="dst" target="id-0066-0000027f"/>
+				<connpoint role="dst" target="id-0066-00000277"/>
 			</connection>
-			<connection id="id-0068-00000403" kind="HasAttribute" role="HasAttribute" relid="0x43">
+			<connection id="id-0068-000003e8" kind="DerivedInheritance" role="DerivedInheritance" relid="0x3e">
+				<name>DerivedInheritance</name>
+				<connpoint role="src" target="id-0066-00000276"/>
+				<connpoint role="dst" target="id-0066-00000278"/>
+			</connection>
+			<connection id="id-0068-000003e9" kind="DerivedInheritance" role="DerivedInheritance" relid="0x3f">
+				<name>DerivedInheritance</name>
+				<connpoint role="src" target="id-0066-00000276"/>
+				<connpoint role="dst" target="id-0066-00000279"/>
+			</connection>
+			<connection id="id-0068-000003ea" kind="HasAttribute" role="HasAttribute" relid="0x40">
 				<name>HasAttribute</name>
-				<connpoint role="src" target="id-0066-00000277"/>
-				<connpoint role="dst" target="id-0066-00000280"/>
+				<connpoint role="src" target="id-0066-0000026e"/>
+				<connpoint role="dst" target="id-0066-00000277"/>
 			</connection>
-			<connection id="id-0068-00000404" kind="HasAttribute" role="HasAttribute" relid="0x44">
+			<connection id="id-0068-000003eb" kind="HasAttribute" role="HasAttribute" relid="0x41">
 				<name>HasAttribute</name>
-				<connpoint role="src" target="id-0066-00000278"/>
-				<connpoint role="dst" target="id-0066-00000280"/>
+				<connpoint role="src" target="id-0066-0000026f"/>
+				<connpoint role="dst" target="id-0066-00000277"/>
 			</connection>
-			<set id="id-0069-0000001e" kind="Aspect" role="Aspect" relid="0x5" members="id-0066-0000027e id-0066-0000027f id-0066-00000280">
+			<connection id="id-0068-000003ec" kind="HasAttribute" role="HasAttribute" relid="0x42">
+				<name>HasAttribute</name>
+				<connpoint role="src" target="id-0066-00000273"/>
+				<connpoint role="dst" target="id-0066-00000278"/>
+			</connection>
+			<connection id="id-0068-000003ed" kind="HasAttribute" role="HasAttribute" relid="0x43">
+				<name>HasAttribute</name>
+				<connpoint role="src" target="id-0066-00000274"/>
+				<connpoint role="dst" target="id-0066-00000279"/>
+			</connection>
+			<connection id="id-0068-000003ee" kind="HasAttribute" role="HasAttribute" relid="0x44">
+				<name>HasAttribute</name>
+				<connpoint role="src" target="id-0066-00000275"/>
+				<connpoint role="dst" target="id-0066-00000279"/>
+			</connection>
+			<connection id="id-0068-000003ef" kind="DerivedInheritance" role="DerivedInheritance" relid="0x47">
+				<name>DerivedInheritance</name>
+				<connpoint role="src" target="id-0066-00000276"/>
+				<connpoint role="dst" target="id-0066-0000027a"/>
+			</connection>
+			<connection id="id-0068-000003f0" kind="HasAttribute" role="HasAttribute" relid="0x49">
+				<name>HasAttribute</name>
+				<connpoint role="dst" target="id-0066-0000027a"/>
+				<connpoint role="src" target="id-0066-0000027b"/>
+			</connection>
+			<set id="id-0069-00000016" kind="Aspect" role="Aspect" relid="0x5" members="id-0066-00000277 id-0066-00000278 id-0066-00000279">
 				<name>PredefinedQoS</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>

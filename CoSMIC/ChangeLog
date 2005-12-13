@@ -1,3 +1,38 @@
+2005-12-13  William Otte <wotte@dre.vanderbilt.edu>
+
+	* PIM/PICML/interpreters/Interpreters.mwc
+	* PIM/PICML/interpreters/QoSMapping/QoSMapping.mpc
+	* PIM/PICML/interpreters/QoSMapping/QoSMappingVisitor.cpp
+	* PIM/PICML/interpreters/QoSMapping/QoSMappingVisitor.h
+	* PIM/PICML/interpreters/QoSMapping/QoSMapping_Export.h
+	* PIM/PICML/interpreters/QoSMappingComponent/CompIcon.ico
+	* PIM/PICML/interpreters/QoSMappingComponent/Component.def
+	* PIM/PICML/interpreters/QoSMappingComponent/Component.rc
+	* PIM/PICML/interpreters/QoSMappingComponent/ComponentConfig.h
+	* PIM/PICML/interpreters/QoSMappingComponent/ComponentLib.h
+	* PIM/PICML/interpreters/QoSMappingComponent/ComponentLib.tlb
+	* PIM/PICML/interpreters/QoSMappingComponent/ComponentLib_i.c
+	* PIM/PICML/interpreters/QoSMappingComponent/ComponentLib_p.c
+	* PIM/PICML/interpreters/QoSMappingComponent/QoSMappingComponent.mpc
+	* PIM/PICML/interpreters/QoSMappingComponent/RawComponent.cpp
+	* PIM/PICML/interpreters/QoSMappingComponent/StdAfx.cpp
+	* PIM/PICML/interpreters/QoSMappingComponent/StdAfx.h
+	* PIM/PICML/interpreters/QoSMappingComponent/UdmApp.cpp
+	* PIM/PICML/interpreters/QoSMappingComponent/UdmApp.h
+	* PIM/PICML/interpreters/QoSMappingComponent/UdmConfig.h
+	* PIM/PICML/interpreters/QoSMappingComponent/dlldata.c
+	* PIM/PICML/interpreters/QoSMappingComponent/resource.h
+
+	Added first cut of QoSMapping interpreters.  These will likely be
+	redesigned copmletely in the coming weeks.
+	
+	* PIM/PICML/paradigms/PICML-uml.xme
+	* PIM/PICML/paradigms/PICML.xme
+	* PIM/PICML/paradigms/PICML.xml
+	* PIM/PICML/paradigms/PICML.xmp
+
+	Changes to the model necessary to accomodate the interpreters. 
+	
 2005-12-11  William Otte   <wotte@dre.vanderbilt.edu>
 
 	* PIM/PICML/interpreters/Interpreters.mwc
