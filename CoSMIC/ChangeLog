@@ -1,3 +1,31 @@
+Wed Dec 14 00:13:05 2005  Stoyan Paunov  <spaunov@isis.vanderbilt.edu>
+
+	  * PIM/PICML/interpreters/Interpreters.mwc
+	  * PIM/PICML/interpreters/RTConfig/CIAOServerResources.xsd
+	  * PIM/PICML/interpreters/RTConfig/RTConfig.mpc
+	  * PIM/PICML/interpreters/RTConfig/RTConfigVisitor.cpp
+	  * PIM/PICML/interpreters/RTConfig/RTConfigVisitor.h
+	  * PIM/PICML/interpreters/RTConfig/RTConfig_Export.h
+	  * PIM/PICML/interpreters/RTConfig/constraints.txt
+	  * PIM/PICML/interpreters/RTConfigComponent/CompIcon_RTConfig.ico
+	  * PIM/PICML/interpreters/RTConfigComponent/Component.def
+	  * PIM/PICML/interpreters/RTConfigComponent/Component.rc
+	  * PIM/PICML/interpreters/RTConfigComponent/ComponentConfig.h
+	  * PIM/PICML/interpreters/RTConfigComponent/RTConfigComponent.mpc
+	  * PIM/PICML/interpreters/RTConfigComponent/RawComponent.cpp
+	  * PIM/PICML/interpreters/RTConfigComponent/RawComponent.h
+	  * PIM/PICML/interpreters/RTConfigComponent/StdAfx.cpp
+	  * PIM/PICML/interpreters/RTConfigComponent/StdAfx.h
+	  * PIM/PICML/interpreters/RTConfigComponent/UdmApp.cpp
+	  * PIM/PICML/interpreters/RTConfigComponent/UdmApp.h
+	  * PIM/PICML/interpreters/RTConfigComponent/UdmConfig.h
+	  * PIM/PICML/interpreters/RTConfigComponent/resource.h
+
+	    Checking in the RTConfig and the RTConfigComponent which comprise
+	    the interpreter for what was formerly known as QoSML and QoSPML.
+	    This interpreter is complient with CIAOServerResources.xsd version 1.8
+
+
 Tue Dec 13 20:50:05 2005  Stoyan Paunov  <spaunov@isis.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:

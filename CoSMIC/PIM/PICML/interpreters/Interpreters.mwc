@@ -2,6 +2,8 @@ workspace {
    PICML
    Package
    PackageComponent
+   RTConfig
+   RTConfigComponent
    Target
    TargetComponent
    DeploymentPlan
