@@ -21,6 +21,8 @@ workspace {
    CIDL_Interpreter
    CIDLComponent
    EQAL
+   IOAutomata
+   IOAutomataComponent
    QoSMapping
    QoSMappingComponent
 }

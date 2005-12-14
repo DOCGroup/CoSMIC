@@ -1,41 +1,89 @@
+Wed Dec 14 21:10:33 2005  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IOAutomata/IOAutomata.mpc:
+        * PIM/PICML/interpreters/IOAutomata/IOAutomataVisitor.h:
+        * PIM/PICML/interpreters/IOAutomata/IOAutomataVisitor.cpp:
+        * PIM/PICML/interpreters/IOAutomata/IOAutomata_Export.h:
+
+	Added the IOAutomata interpreter. IOAutomata is used to model the intra-component
+	behavior in PICML. To find out the capabilities of the interpreter as of this date
+	please see www.dre.vanderbilt.edu/~sutambe/files/IOAutomta_report_Dec_13.doc
+
+        * PIM/PICML/interpreters/IOAutomataComponent/CompIcon.ico:
+        * PIM/PICML/interpreters/IOAutomataComponent/Component.aps:
+        * PIM/PICML/interpreters/IOAutomataComponent/Component.def:
+        * PIM/PICML/interpreters/IOAutomataComponent/Component.rc:
+        * PIM/PICML/interpreters/IOAutomataComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/IOAutomataComponent/IOAutomataComponent.mpc:
+        * PIM/PICML/interpreters/IOAutomataComponent/RawComponent.h:
+        * PIM/PICML/interpreters/IOAutomataComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/IOAutomataComponent/StdAfx.h:
+        * PIM/PICML/interpreters/IOAutomataComponent/StdAfx.cpp:
+        * PIM/PICML/interpreters/IOAutomataComponent/UdmApp.h:
+        * PIM/PICML/interpreters/IOAutomataComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/IOAutomataComponent/UdmConfig.h:
+        * PIM/PICML/interpreters/IOAutomataComponent/resource.h:
+
+	The IOAutomataComponent implementation for integration with GME
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+
+	Changed mwc file to build the IOAutomata interpreter and the IOAutomataComponent 
+        as a part of the CoSMIC solution.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+	Changed the PICML meta-model to support behavior representation within a component.
+
+        * PIM/PICML/paradigms/icons/InternalAction.bmp:
+        * PIM/PICML/paradigms/icons/ShutdownState.bmp:
+        * PIM/PICML/paradigms/icons/StartupState.bmp:
+        * PIM/PICML/paradigms/icons/TimerState.bmp:
+
+	Added a few extra icons for the behavior representation of PICML components
+        in GME
+
 Wed Dec 14 14:14:42 2005  William Otte  <wotte@dre.vanderbilt.edu>
 
-	* PIM/PICML/interpreters/QoSMapping/QoSMappingVisitor.tpp
+        * PIM/PICML/interpreters/QoSMapping/QoSMappingVisitor.tpp
 
-	Added a file that should have been part of my previous
-	commit. 
+        Added a file that should have been part of my previous
+        commit.
 
-	* PIM/PICML/interpreters/QoSMapping/QoSMappingVisitor.cpp
-	* PIM/PICML/interpreters/QoSMapping/QoSMappingVisitor.h
+        * PIM/PICML/interpreters/QoSMapping/QoSMappingVisitor.cpp
+        * PIM/PICML/interpreters/QoSMapping/QoSMappingVisitor.h
 
-	Fixes for compile problems caused by the QoSConfiguration rename.
+        Fixes for compile problems caused by the QoSConfiguration rename.
 
 Wed Dec 14 00:13:05 2005  Stoyan Paunov  <spaunov@isis.vanderbilt.edu>
 
-	  * PIM/PICML/interpreters/Interpreters.mwc
-	  * PIM/PICML/interpreters/RTConfig/CIAOServerResources.xsd
-	  * PIM/PICML/interpreters/RTConfig/RTConfig.mpc
-	  * PIM/PICML/interpreters/RTConfig/RTConfigVisitor.cpp
-	  * PIM/PICML/interpreters/RTConfig/RTConfigVisitor.h
-	  * PIM/PICML/interpreters/RTConfig/RTConfig_Export.h
-	  * PIM/PICML/interpreters/RTConfig/constraints.txt
-	  * PIM/PICML/interpreters/RTConfigComponent/CompIcon_RTConfig.ico
-	  * PIM/PICML/interpreters/RTConfigComponent/Component.def
-	  * PIM/PICML/interpreters/RTConfigComponent/Component.rc
-	  * PIM/PICML/interpreters/RTConfigComponent/ComponentConfig.h
-	  * PIM/PICML/interpreters/RTConfigComponent/RTConfigComponent.mpc
-	  * PIM/PICML/interpreters/RTConfigComponent/RawComponent.cpp
-	  * PIM/PICML/interpreters/RTConfigComponent/RawComponent.h
-	  * PIM/PICML/interpreters/RTConfigComponent/StdAfx.cpp
-	  * PIM/PICML/interpreters/RTConfigComponent/StdAfx.h
-	  * PIM/PICML/interpreters/RTConfigComponent/UdmApp.cpp
-	  * PIM/PICML/interpreters/RTConfigComponent/UdmApp.h
-	  * PIM/PICML/interpreters/RTConfigComponent/UdmConfig.h
-	  * PIM/PICML/interpreters/RTConfigComponent/resource.h
+          * PIM/PICML/interpreters/Interpreters.mwc
+          * PIM/PICML/interpreters/RTConfig/CIAOServerResources.xsd
+          * PIM/PICML/interpreters/RTConfig/RTConfig.mpc
+          * PIM/PICML/interpreters/RTConfig/RTConfigVisitor.cpp
+          * PIM/PICML/interpreters/RTConfig/RTConfigVisitor.h
+          * PIM/PICML/interpreters/RTConfig/RTConfig_Export.h
+          * PIM/PICML/interpreters/RTConfig/constraints.txt
+          * PIM/PICML/interpreters/RTConfigComponent/CompIcon_RTConfig.ico
+          * PIM/PICML/interpreters/RTConfigComponent/Component.def
+          * PIM/PICML/interpreters/RTConfigComponent/Component.rc
+          * PIM/PICML/interpreters/RTConfigComponent/ComponentConfig.h
+          * PIM/PICML/interpreters/RTConfigComponent/RTConfigComponent.mpc
+          * PIM/PICML/interpreters/RTConfigComponent/RawComponent.cpp
+          * PIM/PICML/interpreters/RTConfigComponent/RawComponent.h
+          * PIM/PICML/interpreters/RTConfigComponent/StdAfx.cpp
+          * PIM/PICML/interpreters/RTConfigComponent/StdAfx.h
+          * PIM/PICML/interpreters/RTConfigComponent/UdmApp.cpp
+          * PIM/PICML/interpreters/RTConfigComponent/UdmApp.h
+          * PIM/PICML/interpreters/RTConfigComponent/UdmConfig.h
+          * PIM/PICML/interpreters/RTConfigComponent/resource.h
 
-	    Checking in the RTConfig and the RTConfigComponent which comprise
-	    the interpreter for what was formerly known as QoSML and QoSPML.
-	    This interpreter is complient with CIAOServerResources.xsd version 1.8
+            Checking in the RTConfig and the RTConfigComponent which comprise
+            the interpreter for what was formerly known as QoSML and QoSPML.
+            This interpreter is complient with CIAOServerResources.xsd version 1.8
 
 
 Tue Dec 13 20:50:05 2005  Stoyan Paunov  <spaunov@isis.vanderbilt.edu>
@@ -59,71 +107,71 @@ Tue Dec 13 20:50:05 2005  Stoyan Paunov  <spaunov@isis.vanderbilt.edu>
         * PIM/PICML/paradigms/icons/ThreadPoolWithLanes.bmp
 
           Checking in newest changes to the paradigm and the icons.
-	    As per Will's request QoS* has been changed to RT*.
+            As per Will's request QoS* has been changed to RT*.
 
 
 Tue Dec 13 22:59:45 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
-        
+
           Fixed bug in IDL generation from PICML Components - eliminated
           generation of attribute declarations from parent Components.
 
 2005-12-13  William Otte <wotte@dre.vanderbilt.edu>
 
-	* PIM/PICML/interpreters/Interpreters.mwc
-	* PIM/PICML/interpreters/QoSMapping/QoSMapping.mpc
-	* PIM/PICML/interpreters/QoSMapping/QoSMappingVisitor.cpp
-	* PIM/PICML/interpreters/QoSMapping/QoSMappingVisitor.h
-	* PIM/PICML/interpreters/QoSMapping/QoSMapping_Export.h
-	* PIM/PICML/interpreters/QoSMappingComponent/CompIcon.ico
-	* PIM/PICML/interpreters/QoSMappingComponent/Component.def
-	* PIM/PICML/interpreters/QoSMappingComponent/Component.rc
-	* PIM/PICML/interpreters/QoSMappingComponent/ComponentConfig.h
-	* PIM/PICML/interpreters/QoSMappingComponent/ComponentLib.h
-	* PIM/PICML/interpreters/QoSMappingComponent/ComponentLib.tlb
-	* PIM/PICML/interpreters/QoSMappingComponent/ComponentLib_i.c
-	* PIM/PICML/interpreters/QoSMappingComponent/ComponentLib_p.c
-	* PIM/PICML/interpreters/QoSMappingComponent/QoSMappingComponent.mpc
-	* PIM/PICML/interpreters/QoSMappingComponent/RawComponent.cpp
-	* PIM/PICML/interpreters/QoSMappingComponent/StdAfx.cpp
-	* PIM/PICML/interpreters/QoSMappingComponent/StdAfx.h
-	* PIM/PICML/interpreters/QoSMappingComponent/UdmApp.cpp
-	* PIM/PICML/interpreters/QoSMappingComponent/UdmApp.h
-	* PIM/PICML/interpreters/QoSMappingComponent/UdmConfig.h
-	* PIM/PICML/interpreters/QoSMappingComponent/dlldata.c
-	* PIM/PICML/interpreters/QoSMappingComponent/resource.h
+        * PIM/PICML/interpreters/Interpreters.mwc
+        * PIM/PICML/interpreters/QoSMapping/QoSMapping.mpc
+        * PIM/PICML/interpreters/QoSMapping/QoSMappingVisitor.cpp
+        * PIM/PICML/interpreters/QoSMapping/QoSMappingVisitor.h
+        * PIM/PICML/interpreters/QoSMapping/QoSMapping_Export.h
+        * PIM/PICML/interpreters/QoSMappingComponent/CompIcon.ico
+        * PIM/PICML/interpreters/QoSMappingComponent/Component.def
+        * PIM/PICML/interpreters/QoSMappingComponent/Component.rc
+        * PIM/PICML/interpreters/QoSMappingComponent/ComponentConfig.h
+        * PIM/PICML/interpreters/QoSMappingComponent/ComponentLib.h
+        * PIM/PICML/interpreters/QoSMappingComponent/ComponentLib.tlb
+        * PIM/PICML/interpreters/QoSMappingComponent/ComponentLib_i.c
+        * PIM/PICML/interpreters/QoSMappingComponent/ComponentLib_p.c
+        * PIM/PICML/interpreters/QoSMappingComponent/QoSMappingComponent.mpc
+        * PIM/PICML/interpreters/QoSMappingComponent/RawComponent.cpp
+        * PIM/PICML/interpreters/QoSMappingComponent/StdAfx.cpp
+        * PIM/PICML/interpreters/QoSMappingComponent/StdAfx.h
+        * PIM/PICML/interpreters/QoSMappingComponent/UdmApp.cpp
+        * PIM/PICML/interpreters/QoSMappingComponent/UdmApp.h
+        * PIM/PICML/interpreters/QoSMappingComponent/UdmConfig.h
+        * PIM/PICML/interpreters/QoSMappingComponent/dlldata.c
+        * PIM/PICML/interpreters/QoSMappingComponent/resource.h
 
-	Added first cut of QoSMapping interpreters.  These will likely be
-	redesigned copmletely in the coming weeks.
-	
-	* PIM/PICML/paradigms/PICML-uml.xme
-	* PIM/PICML/paradigms/PICML.xme
-	* PIM/PICML/paradigms/PICML.xml
-	* PIM/PICML/paradigms/PICML.xmp
+        Added first cut of QoSMapping interpreters.  These will likely be
+        redesigned copmletely in the coming weeks.
 
-	Changes to the model necessary to accomodate the interpreters. 
-	
+        * PIM/PICML/paradigms/PICML-uml.xme
+        * PIM/PICML/paradigms/PICML.xme
+        * PIM/PICML/paradigms/PICML.xml
+        * PIM/PICML/paradigms/PICML.xmp
+
+        Changes to the model necessary to accomodate the interpreters.
+
 2005-12-11  William Otte   <wotte@dre.vanderbilt.edu>
 
-	* PIM/PICML/interpreters/Interpreters.mwc
+        * PIM/PICML/interpreters/Interpreters.mwc
 
-	Removed QoSMapping/Component from the workspace.
+        Removed QoSMapping/Component from the workspace.
 
 2005-12-09  William Otte <wotte@dre.vanderbilt.edu>
 
-	* PIM/PICML/paradigms/PICML-uml.xme
-	* PIM/PICML/paradigms/PICML.xme
-	* PIM/PICML/paradigms/PICML.xml
-	* PIM/PICML/paradigms/PICML.xmp
+        * PIM/PICML/paradigms/PICML-uml.xme
+        * PIM/PICML/paradigms/PICML.xme
+        * PIM/PICML/paradigms/PICML.xml
+        * PIM/PICML/paradigms/PICML.xmp
 
-	Added initial cut of QoSModeling.
+        Added initial cut of QoSModeling.
 
 Thu Dec  8 23:54:16 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/docs/Importing_IDL.doc:
         * PIM/PICML/docs/Importing_IDL.pdf:
-        
+
           Corrections and updates to IDL Importer documentation.
 
 Wed Dec  7 21:18:21 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
@@ -131,30 +179,30 @@ Wed Dec  7 21:18:21 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/interpreters/ILDImporter/be_extern.h:
         * PIM/PICML/interpreters/ILDImporter/be_global.h:
         * PIM/PICML/interpreters/ILDImporter/picml_visitor.h:
-        
+
           Changed 'TAO_PICML_' prefix in ifdef guards to 'IDL_TO_PICML_'.
 
 Wed Dec  7 18:29:19 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/ILDImporter/EntityResolver.cpp:
         * PIM/PICML/interpreters/ILDImporter/EntityResolver.h:
-        
+
           New files containing a subclass of DOMEntityResolver, used in
           the change below.
-          
+
         * PIM/PICML/interpreters/ILDImporter/IDLImporter.mpc:
         * PIM/PICML/interpreters/ILDImporter/be_global.cpp:
         * PIM/PICML/interpreters/ILDImporter/be_global.h:
-        
+
           Added code for the IDL importer to locate mga.dtd, which
           is the DTD file used by GME for its XML imports/exports.
           Locating this file is necessary if the IDL importer is
           inputting an XME file to modify instead of creating one
           from scratch. Thanks to Will Otte <wotte@dre.vanderbilt.edu>
           for the CIAO code example that these changes are based on.
-          
+
         * PIM/PICML/interpreters/ILDImporter/picml_visitor.h:
-        
+
           Updated a comment.
 
 Wed Dec  7 000:31:42 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
@@ -166,29 +214,29 @@ Wed Dec  7 000:31:42 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/Interpreters/be_global.h:
         * PIM/PICML/Interpreters/be_init.cpp:
         * PIM/PICML/Interpreters/be_produce.cpp:
-        
+
           Renamed executable, backend library, export file and
           export macro contain 'IDL_TO_PICML_' instead of
           'TAO_PICML_', since this tool has nothing to do with
           TAO, and the name was confusing to users.
-          
+
         * PIM/PICML/Interpreters/IDL_TO_PICML_BE_Export.h:
-        
+
           New file, the result of the renaming described above.
-          
+
         * PIM/PICML/Interpreters/TAO_PICML_BE_Export.h:
-        
+
           Removed file, the results of the renaming described above.
-          
+
         * PIM/PICML/docs/Importing_IDL.doc:
         * PIM/PICML/docs/Importing_IDL.pdf:
-        
+
           Updated documentation to reflect the above changes.
 
 Tue Dec  6 20:44:18 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/Interpreters/IDLGenerator/BON2Component.cpp:
-        
+
           Corrected the type of message box that appears when IDL
           generation completes successfully.
 
