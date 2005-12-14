@@ -69,17 +69,17 @@ namespace PICML
     template <typename T>
     size_t visit_kind_children (std::set <T> &kind_set);
     
-    QoSModel qos_model_;
+    RTModel qos_model_;
     
     std::ofstream outFile_;
 
-    QoSConfiguration qos_config_;
+    RTConfiguration qos_config_;
 
     // Context
     std::string ctx_comp_name_;
     
     bool ctx_qos_model_created_;
-    QoSModel ctx_qos_model_;
+    RTModel ctx_qos_model_;
 
     bool ctx_res_cont_created_;
     ResourceContainer ctx_res_cont_;

@@ -5,6 +5,11 @@ Wed Dec 14 14:14:42 2005  William Otte  <wotte@dre.vanderbilt.edu>
 	Added a file that should have been part of my previous
 	commit. 
 
+	* PIM/PICML/interpreters/QoSMapping/QoSMappingVisitor.cpp
+	* PIM/PICML/interpreters/QoSMapping/QoSMappingVisitor.h
+
+	Fixes for compile problems caused by the QoSConfiguration rename.
+
 Wed Dec 14 00:13:05 2005  Stoyan Paunov  <spaunov@isis.vanderbilt.edu>
 
 	  * PIM/PICML/interpreters/Interpreters.mwc

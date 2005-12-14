@@ -32,9 +32,9 @@ namespace PICML
 	
     outFile_ << "Beginning visitation..." << std::endl << std::flush;
     
-    this->qos_config_ = QoSConfiguration::Create (rf,
-						  RootFolder::meta_QoSConfiguration_children);
-	this->qos_config_.name () = "QoSConfiguration";
+    this->qos_config_ = RTConfiguration::Create (rf,
+						  RootFolder::meta_RTConfiguration_children);
+	this->qos_config_.name () = "RTConfiguration";
 	
 	visit_kind_children (std::set <PredefinedTypes> (rf.PredefinedTypes_kind_children ()));
 	
@@ -76,7 +76,7 @@ namespace PICML
 
   void QoSMappingVisitor::Visit_QoSModeling(const QoSModeling&)
   {
-    outFile_ << "Entering QoSModeling...\n";
+    outFile_ << "Entering RTModeling...\n";
   }
 
 
@@ -322,7 +322,7 @@ namespace PICML
 	  }
       }
 	  	ec = EnvironmentConf::Create (this->ctx_qos_model_,
-				      QoSModel::meta_EnvironmentConf_children);
+				      RTModel::meta_EnvironmentConf_child);
 	ec.CmdLineOptions () = cmdline; 
 	ec.name () = this->ctx_comp_name_ + "CLO";
   }
@@ -356,8 +356,8 @@ namespace PICML
     if (this->ctx_qos_model_created_)
       return;
     
-    this->ctx_qos_model_ = QoSModel::Create (this->qos_config_,
-					     QoSConfiguration::meta_QoSModel_children);
+    this->ctx_qos_model_ = RTModel::Create (this->qos_config_,
+					     RTConfiguration::meta_RTModel_children);
     this->ctx_qos_model_.name () = this->ctx_comp_name_ + "QM";
     this->ctx_qos_model_created_ = true;
   }
@@ -370,7 +370,7 @@ namespace PICML
     this->prepare_qos_model ();
 
     this->ctx_policy_set_ = PolicySet::Create (this->ctx_qos_model_,
-					       QoSModel::meta_PolicySet_children);
+					       RTModel::meta_PolicySet_children);
     this->ctx_policy_set_.name () = this->ctx_comp_name_ + "PS";
     this->ctx_policy_set_created_ = true;
   }
@@ -383,7 +383,7 @@ namespace PICML
     this->prepare_qos_model ();
     
     this->ctx_res_cont_ = ResourceContainer::Create (this->ctx_qos_model_,
-					    QoSModel::meta_ResourceContainer_children);
+					    RTModel::meta_ResourceContainer_child);
     this->ctx_res_cont_.name () = this->ctx_comp_name_ + "RC";
     this->ctx_res_cont_created_ = true;
   }
