@@ -1,3 +1,12 @@
+Thu Dec 15 17:55:07 2005  Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+	* PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:
+
+	Made changes to the monolithic implementation visitor
+	to keep track of the interface or the type name, so that
+	they can be referenced and matched, when creating the deployment
+	plan.
+
 Wed Dec 14 21:10:33 2005  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/IOAutomata/IOAutomata.mpc:

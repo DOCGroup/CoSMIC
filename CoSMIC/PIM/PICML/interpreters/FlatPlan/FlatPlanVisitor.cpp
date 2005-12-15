@@ -439,8 +439,15 @@ namespace PICML
   {
     this->push();
     DOMElement* ele = this->doc_->createElement (XStr ("implementation"));
-    std::string impl_name = mimpl.name ();
-    this->monoimpls_.insert (make_pair (impl_name, mimpl));
+
+	Implements iface = mimpl.dstImplements();
+	const ComponentRef iface_ref = iface.dstImplements_end();
+    const Component comp_ref = iface_ref.ref();
+    std::string refName (comp_ref.name());
+
+    // std::string impl_name = mimpl.name ();
+    this->monoimpls_.insert (make_pair (refName, mimpl));
+
     std::string uniqueName = mimpl.getPath ("_",false,true,"name",true);
     ele->setAttribute (XStr ("id"), XStr (uniqueName));
     ele->appendChild (this->createSimpleContent ("name", uniqueName));
