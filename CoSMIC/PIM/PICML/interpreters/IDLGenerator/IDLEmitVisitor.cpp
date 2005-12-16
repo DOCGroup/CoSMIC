@@ -8,6 +8,9 @@
 #include <fstream>
 #endif
 
+const char *IDL_INCLUDE_SUFFIX = "_from_IDL_include";
+size_t IDL_INCLUDE_SUFFIX_LEN = strlen (IDL_INCLUDE_SUFFIX);
+
 namespace IDML
 {
   IDLEmitVisitor::IDLEmitVisitor( std::ostream& strm )
@@ -585,7 +588,7 @@ namespace IDML
     ofs << nl 
         << "typedef ";
         
-    this->emitMemberType (object);
+    this->emitAliasMemberType (object);
     
     ofs << " " << object->getName () << ";";
     
@@ -626,7 +629,9 @@ namespace IDML
   bool IDLEmitVisitor::visitCollection( const Collection& object )
   {
     if (!object) return false;
-    if (this->is_predefined_sequence (object)) return true;
+    
+    // This will generate the proper #include if true.
+    if (this->is_included_predefined_sequence (object)) return true;
     
     ofs << nl 
         << "typedef sequence<";
@@ -1255,23 +1260,30 @@ namespace IDML
     return this->scoped_name (e->getParentModel ());
   }
   
-  bool IDLEmitVisitor::is_predefined_sequence( const Collection& c )
+  bool IDLEmitVisitor::is_included_predefined_sequence( const Collection& c )
   {
     if (!c) return false;
+    std::string name (c->getName ());
+    long pos = name.length () - IDL_INCLUDE_SUFFIX_LEN;
+    if (pos <= 0) return false;      
+    if (name.substr ((size_t) pos) != IDL_INCLUDE_SUFFIX) return false;
+    
+    
+    ofs << nl << "#include \"tao/";
   
     MemberType mt = c->getMemberType ();
-    if (String (mt)
-        || LongInteger (mt)
-        || RealNumber (mt)
-        || ShortInteger (mt)
-        || Boolean (mt)
-        || Byte (mt)
-        || GenericValue (mt))
-      {
-        return true;
-      }
+    if (String (mt))              ofs << "String";
+    else if (LongInteger (mt))    ofs << "Long";
+    else if (RealNumber (mt))     ofs << "Double";
+    else if (ShortInteger (mt))   ofs << "Short";
+    else if (Boolean (mt))        ofs << "Boolean";
+    else if (Byte (mt))           ofs << "Octet";
+    else if (GenericValue (mt))   ofs << "AnyTypeCode/Any";
+    else return false;
+    
+    ofs << "Seq.pidl\"";
       
-    return false;
+    return true;
   }
 
   void IDLEmitVisitor::emitIncludedFiles( const File& f )
@@ -1574,14 +1586,22 @@ namespace IDML
   
   void IDLEmitVisitor::emitMemberType( const NamedType& nt )
   {
-    Alias a (nt);
     Boxed b (nt);
     Collection c (nt);
-    if (!a && !b && !c) return;
+    if (!b && !c) return;
     MemberType mt;
-    if (a) mt = a->getMemberType ();
-    else if (b) mt = b->getMemberType ();
+    if (b) mt = b->getMemberType ();
     else mt = c->getMemberType ();
+    BON::Model m_parent = mt->getParentModel ();
+    BON::Model n_parent = nt->getParentModel ();
+    if (m_parent == n_parent) ofs << mt->getName ();
+    else ofs << this->scoped_name (mt);
+  }
+  
+  void IDLEmitVisitor::emitAliasMemberType( const NamedType& nt )
+  {
+    Alias a (nt);
+    MemberType mt = a->getMemberType ();
     if (this->emitPredefinedSequence (mt)) return;
     BON::Model m_parent = mt->getParentModel ();
     BON::Model n_parent = nt->getParentModel ();

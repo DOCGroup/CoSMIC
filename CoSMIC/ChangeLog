@@ -1,3 +1,12 @@
+Fri Dec 16 16:21:14 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.h:
+        
+          Fixed a bug in which a Collection of PredefinedType was not
+          getting mapped to generated IDL. Thanks to Prakash Manghwani
+          <pmanghwani@bbn.com> for reporting the problem.
+
 Thu Dec 15 17:55:07 2005  Jaiganesh B  <jai@dre.vanderbilt.edu>
 
 	* PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:

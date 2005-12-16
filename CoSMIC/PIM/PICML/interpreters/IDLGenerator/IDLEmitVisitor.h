@@ -100,7 +100,7 @@ namespace IDML
     std::string scoped_name( const BON::FCO& object );
     std::string basic_name( const PredefinedType& pdt );
     std::string label_scope_prefix( const Discriminator& d );
-    bool is_predefined_sequence( const Collection& c);
+    bool is_included_predefined_sequence( const Collection& c);
     
     void emitIncludedFiles( const File& f );
     void emitPrefix( const File& f);
@@ -112,6 +112,7 @@ namespace IDML
 	  void emitUnionMembers (const SwitchedAggregate& s);
 	  void emitAttributeMember( const ReadonlyAttribute& ra );
 	  void emitMemberType( const NamedType& nt );
+	  void emitAliasMemberType( const NamedType& nt );
 	  void emitConstantType( const Constant& c );
 	  void emitInherits( const Inheritable& object );
 	  void emitComponentInherits( const Component& comp );
