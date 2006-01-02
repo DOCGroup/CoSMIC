@@ -364,6 +364,12 @@ BE_GlobalData::ref_decl_table (void)
   return this->ref_decl_table_;
 }
 
+BE_GlobalData::GME_ID_SET &
+BE_GlobalData::gme_id_set (void)
+{
+  return this->gme_id_set_;
+}
+
 ACE_CString
 BE_GlobalData::spawn_options (void)
 {
@@ -411,6 +417,17 @@ BE_GlobalData::parse_args (long &i, char **av)
             be_global->input_xme (av[i] + 2);
           }
         break;
+      case 'r':
+        if (av[i][2] == '\0')
+          {
+            idl_global->recursion_start (av [i + 1]);
+            i++;
+          }
+        else
+          {
+            idl_global->recursion_start (av[i] + 2);
+          }
+        break;
       case 'm':
         if (av[i][2] == '\0')
           {
@@ -453,7 +470,17 @@ BE_GlobalData::usage (void) const
   ACE_DEBUG ((
       LM_DEBUG,
       ACE_TEXT (" -x <filename>\t\tName of the generated file.")
-      ACE_TEXT (" Default is \"PICML_default_xme_file.xme\"\n")
+      ACE_TEXT (" Default is \"PICML_default_xme_file.xme\".\n")
+    ));
+  ACE_DEBUG ((
+      LM_DEBUG,
+      ACE_TEXT (" -i <filename>\t\tName of the imported XME file.")
+      ACE_TEXT (" Default is no import.\n")
+    ));
+  ACE_DEBUG ((
+      LM_DEBUG,
+      ACE_TEXT (" -r <pathname>\t\tPath of the directory to iterate")
+      ACE_TEXT (" over recursively, processing each IDL file found.\n")
     ));
   ACE_DEBUG ((
       LM_DEBUG,
@@ -725,7 +752,7 @@ BE_GlobalData::destroy (void)
        id_iter.next (id_entry) != 0;
        id_iter.advance ())
     {
-      delete const_cast<char *> (id_entry->ext_id_);
+      delete [] const_cast<char *> (id_entry->ext_id_);
     }
 
   DECL_ELEM_TABLE_ENTRY *fwd_entry = 0;
@@ -733,7 +760,7 @@ BE_GlobalData::destroy (void)
        fwd_iter.next (fwd_entry) != 0;
        fwd_iter.advance ())
     {
-      delete const_cast<char *> (fwd_entry->ext_id_);
+      delete [] const_cast<char *> (fwd_entry->ext_id_);
     }
 
   REF_DECL_TABLE_ENTRY *ref_entry = 0;
@@ -741,8 +768,10 @@ BE_GlobalData::destroy (void)
        ref_iter.next (ref_entry) != 0;
        ref_iter.advance ())
     {
-      delete const_cast<char *> (ref_entry->ext_id_);
+      delete [] const_cast<char *> (ref_entry->ext_id_);
     }
+    
+  this->gme_id_set_.reset ();
 }
 
 char *

@@ -24,6 +24,7 @@
 #include "ast_type.h"
 #include "ace/SString.h"
 #include "ace/Hash_Map_Manager_T.h"
+#include "ace/Unbounded_Set.h"
 #include "ace/Null_Mutex.h"
 
 #if !defined (ACE_LACKS_PRAGMA_ONCE)
@@ -119,6 +120,8 @@ public:
                                   ACE_Equal_To<const char *>,
                                   ACE_Null_Mutex>
     REF_DECL_TABLE;
+    
+  typedef ACE_Unbounded_Set<const XMLCh *> GME_ID_SET;
 
   // Maps GME model element type to hex string used in GME id.
   enum kind_id
@@ -209,6 +212,7 @@ public:
   DECL_ID_TABLE &decl_id_table (void);
   DECL_ELEM_TABLE &decl_elem_table (void);
   REF_DECL_TABLE &ref_decl_table (void);
+  GME_ID_SET &gme_id_set (void);
   // Read/write accessors for the members.
   
   // Utility methods.
@@ -332,6 +336,9 @@ private:
   REF_DECL_TABLE ref_decl_table_;
   // Hash map of AST nodes, keyed by GME id, used to look up
   // referenced elements in the DOM tree.
+  
+  GME_ID_SET gme_id_set_;
+  // Cache of all GME ids created from IDL parsing.
   
   ACE_CString basic_seq_suffix_;
   // Appended to name of basic type to get corresponding sequence.

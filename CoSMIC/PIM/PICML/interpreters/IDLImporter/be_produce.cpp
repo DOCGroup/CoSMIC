@@ -70,6 +70,7 @@ trademarks or registered trademarks of Sun Microsystems, Inc.
 #include "ast_root.h"
 #include "utl_string.h"
 #include "picml_visitor.h"
+#include "picml_dom_visitor.h"
 #include "XercesString.h"
 
 #include "xercesc/util/XMLUniDefs.hpp"
@@ -114,15 +115,28 @@ BE_produce (void)
       BE_abort ();
     }
 
+  // Visit the AST.
   DOMDocument *doc = be_global->doc ();
   DOMElement *sub_tree = doc->getDocumentElement ();
-  picml_visitor visitor (sub_tree);
+  picml_visitor ast_visitor (sub_tree);
 
-  if (visitor.visit_root (ast_root) == -1)
+  if (ast_visitor.visit_root (ast_root) == -1)
     {
       ACE_ERROR ((LM_ERROR,
                   ACE_TEXT ("(%N:%l) BE_produce -")
-                  ACE_TEXT (" failed to accept visitor\n")));
+                  ACE_TEXT (" failed to accept AST visitor\n")));
+      BE_abort ();
+    }
+    
+  // Visit the DOM tree.
+  picml_dom_visitor dom_visitor;
+  
+  if (!dom_visitor.visit_dom_element (sub_tree))
+    {
+      ACE_ERROR ((LM_ERROR,
+                  ACE_TEXT ("(%N:%l) BE_produce -")
+                  ACE_TEXT (" failed to accept DOM visitor\n")));
+      BE_abort ();
     }
 
   // Clean up.

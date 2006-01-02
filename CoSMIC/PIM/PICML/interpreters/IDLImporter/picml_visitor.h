@@ -10,7 +10,7 @@
 //    picml_visitor.h
 //
 // = DESCRIPTION
-//    The IDML importer visitor base class.
+//    The PICML IDL importer AST visitor class.
 //
 // = AUTHOR
 //    Jeff Parsons <j.parsons@vanderbilt.edu>
@@ -45,9 +45,9 @@ class picml_visitor : public ast_visitor
   //    picml_visitor.
   //
   // = DESCRIPTION
-  //    Base class for the IDML importer visitors. The methods are
-  //    not pure virtual to facilitate the implementation of some
-  //    derived visitors that override only a few.
+  //    PICML IDL importer AST visitor. This visitor traverses
+  //    the AST constructed by the IDL compiler front end,
+  //    and creates/extends the corresponding DOM tree.
   //
 public:
   picml_visitor (DOMElement *sub_tree,

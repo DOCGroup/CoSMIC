@@ -179,6 +179,12 @@ picml_visitor::visit_module (AST_Module *node)
           this->insert_element (elem);
         }
     }
+  
+  // Add to list used in check for removed IDL decls.  
+  if (!node->imported () && be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
+    }
 
   // Keep track of where we are in the DOM tree so the next
   // new element can be inserted in the correct position.
@@ -258,6 +264,12 @@ picml_visitor::visit_interface (AST_Interface *node)
 
           this->insert_element (elem);
         }
+    }
+
+  // Add to list used in check for removed IDL decls.  
+  if (!node->imported () && be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
     }
 
   // Keep track of where we are in the DOM tree so the next
@@ -391,6 +403,12 @@ picml_visitor::visit_valuetype (AST_ValueType *node)
         }
     }
 
+  // Add to list used in check for removed IDL decls.  
+  if (!node->imported () && be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
+    }
+
   // Keep track of where we are in the DOM tree so the next
   // new element can be inserted in the correct position.
   this->previous_ = elem;
@@ -504,6 +522,12 @@ picml_visitor::visit_component (AST_Component *node)
         }
     }
 
+  // Add to list used in check for removed IDL decls.  
+  if (!node->imported () && be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
+    }
+
   // Keep track of where we are in the DOM tree so the next
   // new element can be inserted in the correct position.
   this->previous_ = elem;
@@ -609,8 +633,14 @@ picml_visitor::visit_home (AST_Home *node)
         }
     }
 
+  // Add to list used in check for removed IDL decls.  
+  if (!node->imported () && be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
+    }
+
   // Keep track of where we are in the DOM tree so the next
-  // new element can be inserted in the correct position.
+  // element can be inserted in the correct position.
   this->previous_ = elem;
 
   unsigned long start_id = (0 == node->base_home () ? 0UL : 1UL)
@@ -661,6 +691,12 @@ picml_visitor::visit_factory (AST_Factory *node)
       this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
       this->add_replace_id_element (elem, node);
       this->add_version_element (elem, node);
+    }
+
+  // Add to list used in check for removed IDL decls.  
+  if (!node->imported () && be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
     }
 
   picml_visitor scope_visitor (elem);
@@ -732,6 +768,12 @@ picml_visitor::visit_structure (AST_Structure *node)
 
           this->insert_element (elem);
         }
+    }
+
+  // Add to list used in check for removed IDL decls.  
+  if (!node->imported () && be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
     }
 
   // Keep track of where we are in the DOM tree so the next
@@ -863,8 +905,11 @@ picml_visitor::visit_exception (AST_Exception *node)
         }
     }
 
-  DOMAttr *attr = elem->getAttributeNode (X ("id"));
-  bool is_it = attr->isId ();
+  // Add to list used in check for removed IDL decls.  
+  if (!node->imported () && be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
+    }
 
   // Keep track of where we are in the DOM tree so the next
   // new element can be inserted in the correct position.
@@ -941,6 +986,12 @@ picml_visitor::visit_enum (AST_Enum *node)
 
           this->insert_element (elem);
         }
+    }
+
+  // Add to list used in check for removed IDL decls.  
+  if (!node->imported () && be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
     }
 
   // Keep track of where we are in the DOM tree so the next
@@ -1064,6 +1115,12 @@ picml_visitor::visit_operation (AST_Operation *node)
                                 "ExceptionRef",
                                 scope_visitor.rel_id_);
 
+  // Add to list used in check for removed IDL decls.  
+  if (!node->imported () && be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
+    }
+
   // Keep track of where we are in the DOM tree so the next
   // new element can be inserted in the correct position.
   this->previous_ = elem;
@@ -1120,6 +1177,12 @@ picml_visitor::visit_field (AST_Field *node)
         }
     }
 
+  // Add to list used in check for removed IDL decls.  
+  if (!node->imported () && be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
+    }
+
   // Keep track of where we are in the DOM tree so the next
   // new element can be inserted in the correct position.
   this->previous_ = elem;
@@ -1172,6 +1235,12 @@ picml_visitor::visit_argument (AST_Argument *node)
       this->insert_element (arg);
     }
 
+  // Add to list used in check for removed IDL decls.  
+  if (!node->imported () && be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (arg->getAttribute (X ("id")));
+    }
+
   // Keep track of where we are in the DOM tree so the next
   // new element can be inserted in the correct position.
   this->previous_ = arg;
@@ -1197,7 +1266,7 @@ picml_visitor::visit_attribute (AST_Attribute *node)
 
   if (0 == elem)
     {
-      DOMElement *elem = this->doc_->createElement (X ("model"));
+      elem = this->doc_->createElement (X ("model"));
       this->set_id_attr (elem, BE_GlobalData::MODEL);
       idl_bool read_only = node->readonly ();
       const char *kind = read_only ? "ReadonlyAttribute" : "Attribute";
@@ -1245,6 +1314,12 @@ picml_visitor::visit_attribute (AST_Attribute *node)
         }
 
       this->insert_element (elem);
+    }
+
+  // Add to list used in check for removed IDL decls.  
+  if (be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
     }
 
   // Keep track of where we are in the DOM tree so the next
@@ -1299,6 +1374,12 @@ picml_visitor::visit_union (AST_Union *node)
 
           this->insert_element (elem);
         }
+    }
+
+  // Add to list used in check for removed IDL decls.  
+  if (!node->imported () && be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
     }
 
   // Keep track of where we are in the DOM tree so the next
@@ -1387,6 +1468,12 @@ picml_visitor::visit_union_branch (AST_UnionBranch *node)
       this->add_labels (node, id, slot);
     }
 
+  // Add to list used in check for removed IDL decls.  
+  if (!node->imported () && be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
+    }
+
   // Keep track of where we are in the DOM tree so the next
   // new element can be inserted in the correct position.
   this->previous_ = elem;
@@ -1458,6 +1545,12 @@ picml_visitor::visit_constant (AST_Constant *node)
         }
     }
 
+  // Add to list used in check for removed IDL decls.  
+  if (!node->imported () && be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
+    }
+
   // Keep track of where we are in the DOM tree so the next
   // new element can be inserted in the correct position.
   this->previous_ = elem;
@@ -1523,6 +1616,12 @@ picml_visitor::visit_enum_val (AST_EnumVal *node)
 
           this->insert_element (elem);
         }
+    }
+
+  // Add to list used in check for removed IDL decls.  
+  if (!node->imported () && be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
     }
 
   // Keep track of where we are in the DOM tree so the next
@@ -1626,6 +1725,12 @@ picml_visitor::visit_typedef (AST_Typedef *node)
 
           this->insert_element (elem);
         }
+    }
+
+  // Add to list used in check for removed IDL decls.  
+  if (!node->imported () && be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
     }
 
   // Keep track of where we are in the DOM tree so the next
@@ -2279,6 +2384,12 @@ picml_visitor::add_include_elements (UTL_Scope *container, DOMElement *parent)
       this->add_name_element (fileref, "FileRef");
       this->add_regnodes (container, fileref, slot++);
 
+      // Add to list used in check for removed IDL decls.  
+      if (be_global->input_xme () != 0)
+        {
+          be_global->gme_id_set ().insert (fileref->getAttribute (X ("id")));
+        }
+
       parent->appendChild (fileref);
     }
 }
@@ -2397,9 +2508,9 @@ picml_visitor::add_inherited_elements (DOMElement *parent, AST_Interface *node)
 
 void
 picml_visitor::add_one_inherited (DOMElement *parent,
-                                 AST_Interface *node,
-                                 AST_Interface *base,
-                                 unsigned long slot)
+                                  AST_Interface *node,
+                                  AST_Interface *base,
+                                  unsigned long slot)
 {
   DOMElement *elem = this->doc_->createElement (X ("reference"));
   this->set_id_attr (elem, BE_GlobalData::REF);
@@ -2419,6 +2530,12 @@ picml_visitor::add_one_inherited (DOMElement *parent,
                   base->full_name ()));
     }
 
+  // Add to list used in check for removed IDL decls.  
+  if (!node->imported () && be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
+    }
+
   elem->setAttribute (X ("referred"), id);
   this->add_name_element (elem, "Inherits");
 
@@ -2431,9 +2548,9 @@ picml_visitor::add_one_inherited (DOMElement *parent,
 
 void
 picml_visitor::add_supported_elements (DOMElement *parent,
-                                      AST_Interface *node,
-                                      AST_Interface **supports,
-                                      long n_supports)
+                                       AST_Interface *node,
+                                       AST_Interface **supports,
+                                       long n_supports)
 {
   unsigned long nparents = 0;
 
@@ -2470,6 +2587,13 @@ picml_visitor::add_supported_elements (DOMElement *parent,
                                X (be_global->hex_string (nparents + i + 1)));
       supported->setAttribute (X ("referred"),
                                this->lookup_id (supports[i]));
+                               
+      // Add to list used in check for removed IDL decls.  
+      if (!node->imported () && be_global->input_xme () != 0)
+        {
+          be_global->gme_id_set ().insert (supported->getAttribute (X ("id")));
+        }
+
       this->add_name_element (supported, "Supports");
       this->add_regnodes (node, supported, nparents + i + 1);
       parent->appendChild (supported);
@@ -2513,6 +2637,12 @@ picml_visitor::add_exception_elements (DOMElement *parent,
           this->add_name_element (elem, name);
           this->add_regnodes (s, elem, start_slot++, a);
           parent->appendChild (elem);
+        }
+
+      // Add to list used in check for removed IDL decls.  
+      if (be_global->input_xme () != 0)
+        {
+          be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
         }
 
       ACE_Auto_Basic_Ptr<char> safety (XMLString::transcode (gme_id));
@@ -2573,6 +2703,12 @@ picml_visitor::add_labels (AST_UnionBranch *ub,
       this->add_label_name (label, ub->label (i), u);
       this->add_regnodes (u, label, member_slot, 0, I_TRUE);
       this->sub_tree_->appendChild (label);
+
+      // Add to list used in check for removed IDL decls.  
+      if (be_global->input_xme () != 0)
+        {
+          be_global->gme_id_set ().insert (label->getAttribute (X ("id")));
+        }
 
       DOMElement *connection = this->doc_->createElement (X ("connection"));
       this->set_id_attr (connection, BE_GlobalData::CONN);
@@ -2669,6 +2805,12 @@ picml_visitor::add_private (AST_Field *f,
   this->add_name_element (pflag, "PrivateFlag");
   this->add_regnodes (f->defined_in (), pflag, this->rel_id_ - 1, 0, I_TRUE);
 
+  // Add to list used in check for removed IDL decls.  
+  if (be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (pflag->getAttribute (X ("id")));
+    }
+
   DOMElement *connection = this->doc_->createElement (X ("connection"));
   this->set_id_attr (connection, BE_GlobalData::CONN);
   connection->setAttribute (X ("kind"), X ("MakeMemberPrivate"));
@@ -2722,7 +2864,7 @@ picml_visitor::add_base_component (DOMElement *elem, AST_Component *node)
                   base->full_name ()));
     }
 
-  // XML generated from GEM models has these attributes also for
+  // XML generated from GME models has these attributes also for
   // derived ports, but it seems we don't need all that for
   // correct importing, so we just generate the attributes for
   // the derived component.
@@ -2780,6 +2922,14 @@ picml_visitor::add_ports (DOMElement *parent, AST_Component *node)
           this->add_replace_id_element (provides_port, 0);
           this->add_version_element (provides_port, 0);
 
+          // Add to list used in check for removed IDL decls.  
+          if (!node->imported () && be_global->input_xme () != 0)
+            {
+              be_global->gme_id_set ().insert (
+                  provides_port->getAttribute (X ("id"))
+                );
+            }
+
           // Since we aren't adding port elements by visiting the scope of
           // the AST_Component, using insert_element won't work here. The
           // order of port declarations in IDL shouldn't matter anyway.
@@ -2825,6 +2975,14 @@ picml_visitor::add_ports (DOMElement *parent, AST_Component *node)
           mult_attr->appendChild (value_elem);
           uses_port->appendChild (mult_attr);
 
+          // Add to list used in check for removed IDL decls.  
+          if (!node->imported () && be_global->input_xme () != 0)
+            {
+              be_global->gme_id_set ().insert (
+                  uses_port->getAttribute (X ("id"))
+                );
+            }
+
           // Since we aren't adding port elements by visiting the scope of
           // the AST_Component, using insert_element won't work here. The
           // order of port declarations in IDL shouldn't matter anyway.
@@ -2867,6 +3025,14 @@ picml_visitor::add_ports (DOMElement *parent, AST_Component *node)
           single_attr->appendChild (value_elem);
           emits_port->appendChild (single_attr);
 
+          // Add to list used in check for removed IDL decls.  
+          if (!node->imported () && be_global->input_xme () != 0)
+            {
+              be_global->gme_id_set ().insert (
+                  emits_port->getAttribute (X ("id"))
+                );
+            }
+
           // Since we aren't adding port elements by visiting the scope of
           // the AST_Component, using insert_element won't work here. The
           // order of port declarations in IDL shouldn't matter anyway.
@@ -2908,6 +3074,14 @@ picml_visitor::add_ports (DOMElement *parent, AST_Component *node)
           single_attr->appendChild (value_elem);
           publishes_port->appendChild (single_attr);
 
+          // Add to list used in check for removed IDL decls.  
+          if (!node->imported () && be_global->input_xme () != 0)
+            {
+              be_global->gme_id_set ().insert (
+                  publishes_port->getAttribute (X ("id"))
+                );
+            }
+
           // Since we aren't adding port elements by visiting the scope of
           // the AST_Component, using insert_element won't work here. The
           // order of port declarations in IDL shouldn't matter anyway.
@@ -2941,6 +3115,14 @@ picml_visitor::add_ports (DOMElement *parent, AST_Component *node)
           this->add_regnodes (node, consumes_port, slot++);
           this->add_replace_id_element (consumes_port, 0);
           this->add_version_element (consumes_port, 0);
+
+          // Add to list used in check for removed IDL decls.  
+          if (!node->imported () && be_global->input_xme () != 0)
+            {
+              be_global->gme_id_set ().insert (
+                  consumes_port->getAttribute (X ("id"))
+                );
+            }
 
           // Since we aren't adding port elements by visiting the scope of
           // the AST_Component, using insert_element won't work here. The
@@ -3069,6 +3251,14 @@ picml_visitor::add_lookup_key (DOMElement *parent, AST_Home *node)
       // Just in case the primary key is now a different valuetype.
       lookup_key->setAttribute (X ("referred"), this->lookup_id (pk));
     }
+    
+  // Add to list used in check for removed IDL decls.  
+  if (!node->imported () && be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (
+          lookup_key->getAttribute (X ("id"))
+        );
+    }
 }
 
 void
@@ -3104,6 +3294,14 @@ picml_visitor::add_home_factories (DOMElement *parent, AST_Home *node)
           this->add_replace_id_element (factory, *op);
           this->add_version_element (factory, *op);
           parent->appendChild (factory);
+        }
+    
+      // Add to list used in check for removed IDL decls.  
+      if (!node->imported () && be_global->input_xme () != 0)
+        {
+          be_global->gme_id_set ().insert (
+              factory->getAttribute (X ("id"))
+            );
         }
 
       picml_visitor scope_visitor (factory);
@@ -3157,6 +3355,14 @@ picml_visitor::add_finders (DOMElement *parent, AST_Home *node)
           this->add_replace_id_element (finder, *op);
           this->add_version_element (finder, *op);
           parent->appendChild (finder);
+        }
+    
+      // Add to list used in check for removed IDL decls.  
+      if (!node->imported () && be_global->input_xme () != 0)
+        {
+          be_global->gme_id_set ().insert (
+              finder->getAttribute (X ("id"))
+            );
         }
 
       picml_visitor scope_visitor (finder);

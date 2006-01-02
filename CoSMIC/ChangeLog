@@ -1,3 +1,26 @@
+Mon Jan  2 14:42:14 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.h:
+        
+          Added backend option '-r <path>' to be passed instead
+          of a list of IDL files. This option will cause the
+          IDL importer to process every file having '.idl' or
+          '.pidl' as an extension in the passed directory and
+          all of its subdirectories.
+            
+        * PIM/PICML/interpreters/IDLImporter/picml_dom_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/picml_dom_visitor.h:
+
+          New files defining a visitor that will traverse the 
+          in-memory DOM tree and remove items not found in the
+          corresponding AST formed from IDL files. This visitor
+          is in development and is currently a no-op.          
+
 Fri Dec 16 16:21:14 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
