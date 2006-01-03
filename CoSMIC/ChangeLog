@@ -1,3 +1,38 @@
+Tue Jan  3 16:25:16 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * Installer/CoSMIC-Installer.ise:
+
+          Updated to reflect the addition of two new interpreters.
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:
+
+          Updated to fix the generation of UUIDs.  We no longer use the
+          path of each element as the UUID, but generate UUIDs and store
+          in the corresponding model element as an attribute.  This
+          ensures that the UUIDs are not only unique, but also that they
+          can be reused across multiple invocations of the interpreter.
+
+        * PIM/PICML/paradigms/icons/boolean.bmp:
+        * PIM/PICML/paradigms/icons/byte.bmp:
+        * PIM/PICML/paradigms/icons/genericobject.bmp:
+        * PIM/PICML/paradigms/icons/genericvalue.bmp:
+        * PIM/PICML/paradigms/icons/genericvalueobject.bmp:
+        * PIM/PICML/paradigms/icons/realnumber.bmp:
+        * PIM/PICML/paradigms/icons/short.bmp:
+        * PIM/PICML/paradigms/icons/string.bmp:
+        * PIM/PICML/paradigms/icons/typeencoding.bmp:
+        * PIM/PICML/paradigms/icons/typekind.bmp:
+
+          Reverted the reduction in size to 32x32 pixels for these images,
+          as they look awful at the lower resolution because they get
+          stretched.
+
+        * PIM/PICML/interpreters/QoSMappingComponent/ComponentLib.h:
+        * PIM/PICML/interpreters/QoSMappingComponent/ComponentLib_i.c:
+        * PIM/PICML/interpreters/QoSMappingComponent/ComponentLib_p.c:
+
+          Removed these files.
+
 Mon Jan  2 14:42:14 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
@@ -6,38 +41,38 @@ Mon Jan  2 14:42:14 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
         * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
         * PIM/PICML/interpreters/IDLImporter/picml_visitor.h:
-        
+
           Added backend option '-r <path>' to be passed instead
           of a list of IDL files. This option will cause the
           IDL importer to process every file having '.idl' or
           '.pidl' as an extension in the passed directory and
           all of its subdirectories.
-            
+
         * PIM/PICML/interpreters/IDLImporter/picml_dom_visitor.cpp:
         * PIM/PICML/interpreters/IDLImporter/picml_dom_visitor.h:
 
-          New files defining a visitor that will traverse the 
+          New files defining a visitor that will traverse the
           in-memory DOM tree and remove items not found in the
           corresponding AST formed from IDL files. This visitor
-          is in development and is currently a no-op.          
+          is in development and is currently a no-op.
 
 Fri Dec 16 16:21:14 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
         * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.h:
-        
+
           Fixed a bug in which a Collection of PredefinedType was not
           getting mapped to generated IDL. Thanks to Prakash Manghwani
           <pmanghwani@bbn.com> for reporting the problem.
 
 Thu Dec 15 17:55:07 2005  Jaiganesh B  <jai@dre.vanderbilt.edu>
 
-	* PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:
+        * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:
 
-	Made changes to the monolithic implementation visitor
-	to keep track of the interface or the type name, so that
-	they can be referenced and matched, when creating the deployment
-	plan.
+        Made changes to the monolithic implementation visitor
+        to keep track of the interface or the type name, so that
+        they can be referenced and matched, when creating the deployment
+        plan.
 
 Wed Dec 14 21:10:33 2005  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
 
@@ -46,9 +81,9 @@ Wed Dec 14 21:10:33 2005  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/IOAutomata/IOAutomataVisitor.cpp:
         * PIM/PICML/interpreters/IOAutomata/IOAutomata_Export.h:
 
-	Added the IOAutomata interpreter. IOAutomata is used to model the intra-component
-	behavior in PICML. To find out the capabilities of the interpreter as of this date
-	please see www.dre.vanderbilt.edu/~sutambe/files/IOAutomta_report_Dec_13.doc
+        Added the IOAutomata interpreter. IOAutomata is used to model the intra-component
+        behavior in PICML. To find out the capabilities of the interpreter as of this date
+        please see www.dre.vanderbilt.edu/~sutambe/files/IOAutomta_report_Dec_13.doc
 
         * PIM/PICML/interpreters/IOAutomataComponent/CompIcon.ico:
         * PIM/PICML/interpreters/IOAutomataComponent/Component.aps:
@@ -65,11 +100,11 @@ Wed Dec 14 21:10:33 2005  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/IOAutomataComponent/UdmConfig.h:
         * PIM/PICML/interpreters/IOAutomataComponent/resource.h:
 
-	The IOAutomataComponent implementation for integration with GME
+        The IOAutomataComponent implementation for integration with GME
 
         * PIM/PICML/interpreters/Interpreters.mwc:
 
-	Changed mwc file to build the IOAutomata interpreter and the IOAutomataComponent 
+        Changed mwc file to build the IOAutomata interpreter and the IOAutomataComponent
         as a part of the CoSMIC solution.
 
         * PIM/PICML/paradigms/PICML-uml.xme:
@@ -77,14 +112,14 @@ Wed Dec 14 21:10:33 2005  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
 
-	Changed the PICML meta-model to support behavior representation within a component.
+        Changed the PICML meta-model to support behavior representation within a component.
 
         * PIM/PICML/paradigms/icons/InternalAction.bmp:
         * PIM/PICML/paradigms/icons/ShutdownState.bmp:
         * PIM/PICML/paradigms/icons/StartupState.bmp:
         * PIM/PICML/paradigms/icons/TimerState.bmp:
 
-	Added a few extra icons for the behavior representation of PICML components
+        Added a few extra icons for the behavior representation of PICML components
         in GME
 
 Wed Dec 14 14:14:42 2005  William Otte  <wotte@dre.vanderbilt.edu>
@@ -281,7 +316,6 @@ Tue Dec  6 20:44:18 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
           Corrected the type of message box that appears when IDL
           generation completes successfully.
 
->>>>>>> 1.237
 Wed Nov 23 17:07:01 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/OCML/interpreters/OCML_Interpreter/BON2Component.h:

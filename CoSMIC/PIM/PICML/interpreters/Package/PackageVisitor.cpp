@@ -215,10 +215,9 @@ namespace PICML
     if (!label.empty())
       this->curr_->appendChild (this->createSimpleContent ("label",
                                                            label));
-    std::string uuid = ia.UUID();
+    std::string uuid (ia.UUID());
     if (uuid.empty())
-      ia.UUID() = uuid = ::PICML::CreateUuid();
-      // uuid = ia.getPath ("_", false, true, "name", true);
+      ia.UUID() = uuid = std::string ("_") + ::PICML::CreateUuid();
     this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
 
     std::string location = ia.location();
@@ -309,7 +308,7 @@ namespace PICML
 
   void PackageVisitor::Visit_Property(const Property& property)
   {
-	this->CreatePropertyElement (property.name(), property);
+    this->CreatePropertyElement (property.name(), property);
   }
 
   void PackageVisitor::CreatePropertyElement (std::string name, const Property& property)
@@ -670,7 +669,7 @@ namespace PICML
                                                            label));
     std::string uuid = cp.UUID();
     if (uuid.empty())
-      uuid = cp.getPath ("_", false, true, "name", true);
+      cp.UUID() = uuid = std::string ("_") + ::PICML::CreateUuid();
     this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
 
     PackageInterface pi = cp.dstPackageInterface();
@@ -783,7 +782,7 @@ namespace PICML
                                                            label));
     std::string uuid = comp.UUID();
     if (uuid.empty())
-      uuid = comp.getPath ("_", false, true, "name", true);
+      comp.UUID() = uuid = std::string ("_") + ::PICML::CreateUuid();
     this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
 
     const std::set<OutEventPort> oeps = comp.OutEventPort_kind_children();
@@ -845,19 +844,19 @@ namespace PICML
     // Check whether it is a RT_Event_Channel out port
     std::string out_port_type = oep.out_event_port_type ();
     if (oep.exclusiveProvider())
-    {
-      if (out_port_type == "DirectConnect")
-        ele->appendChild (this->createSimpleContent ("kind", "EventEmitter"));
-      else // must be RT Event Channel
-        ele->appendChild (this->createSimpleContent ("kind", "rtecEventEmitter"));
-    }
+      {
+        if (out_port_type == "DirectConnect")
+          ele->appendChild (this->createSimpleContent ("kind", "EventEmitter"));
+        else // must be RT Event Channel
+          ele->appendChild (this->createSimpleContent ("kind", "rtecEventEmitter"));
+      }
     else
-    {
-      if (out_port_type == "DirectConnect")
-        ele->appendChild (this->createSimpleContent ("kind", "EventPublisher"));
-      else // must be RT Event Channel
-        ele->appendChild (this->createSimpleContent ("kind", "rtecEventPublisher"));
-    }
+      {
+        if (out_port_type == "DirectConnect")
+          ele->appendChild (this->createSimpleContent ("kind", "EventPublisher"));
+        else // must be RT Event Channel
+          ele->appendChild (this->createSimpleContent ("kind", "rtecEventPublisher"));
+      }
 
     this->curr_->appendChild (ele);
     this->pop();
@@ -986,7 +985,7 @@ namespace PICML
                                                            label));
     std::string uuid = mimpl.UUID();
     if (uuid.empty())
-      uuid = mimpl.getPath ("_", false, true, "name", true);
+      mimpl.UUID() = uuid = std::string ("_") + ::PICML::CreateUuid();
     this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
 
     Implements iface = mimpl.dstImplements();
@@ -1090,9 +1089,23 @@ namespace PICML
     if (!label.empty())
       this->curr_->appendChild (this->createSimpleContent ("label",
                                                            label));
+
     std::string uuid = assembly.UUID();
     if (uuid.empty())
-      uuid = assembly.getPath ("_", false, true, "name", true);
+      assembly.UUID() = uuid = std::string ("_") + ::PICML::CreateUuid();
+    else
+      {
+        // Make a copy as opposed to casting away constness
+        ComponentAssembly casm = assembly;
+        // Make sure that every instance has a UUID
+        if (assembly.isInstance())
+          {
+            ComponentAssembly typeParent = casm.Archetype();
+            std::string parentName (typeParent.UUID());
+            if (uuid == parentName)
+              casm.UUID() = uuid = std::string ("_") + ::PICML::CreateUuid();
+          }
+      }
     this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
 
     this->push();
@@ -1207,7 +1220,7 @@ namespace PICML
           mapDelegates = mapping.dstAttributeMappingDelegate();
         if (mapDelegates.empty())
           {
-            std::string mapPath = mapping.getPath ("_", false, true, "name", true);
+            std::string mapPath = mapping.getPath (".", false, true, "name", true);
 
             throw udm_exception (std::string ("AttributeMapping " +
                                               mapPath +
@@ -1240,7 +1253,7 @@ namespace PICML
             std::string attrName = this->ExtractName (attr);
             Component parent = attr.Component_parent();
             std::string parentName = this->ExtractName (parent);
-            std::string compName = parent.getPath ("_", false, true, "name", true);
+            std::string compName = parent.getPath (".", false, true, "name", true);
             output.insert (make_pair (compName, attr.name()));
           }
       }
@@ -1257,14 +1270,29 @@ namespace PICML
         this->curr_->appendChild (instance);
         this->push();
         this->curr_ = instance;
-        std::string uniqueName = comp.getPath ("_", false, true, "name", true);
+        Component typeParent;
+        std::string uniqueName = comp.UUID();
+        // If the component's UUID is empty, then simply assign one.
+        if (uniqueName.empty())
+          comp.UUID() = uniqueName = std::string ("_") + ::PICML::CreateUuid();
+        else
+          {
+            // Make sure that every instance has a uniue UUID.
+            if (comp.isInstance())
+              {
+                typeParent = comp.Archetype();
+                std::string parentName (typeParent.UUID());
+                if (uniqueName == parentName)
+                  comp.UUID() = uniqueName = std::string ("_") + ::PICML::CreateUuid();
+              }
+          }
         instance->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
         instance->appendChild (this->createSimpleContent ("name",
-                                                          uniqueName));
-        Component typeParent;
+                                                          comp.getPath (".", false, true, "name", true)));
+
         if (comp.isInstance())
           {
-           typeParent = comp.Archetype();
+            typeParent = comp.Archetype();
             while (typeParent.isInstance())
               typeParent = typeParent.Archetype();
           }
@@ -1305,7 +1333,7 @@ namespace PICML
                 this->curr_->appendChild (ele);
                 this->curr_ = ele;
                 Property val = attrVal.second;
-				this->CreatePropertyElement (compAttr.second, val);
+                this->CreatePropertyElement (compAttr.second, val);
                 this->pop();
               }
           }
@@ -1452,12 +1480,12 @@ namespace PICML
   {
     std::set<RequiredRequestPort> visited;
     this->GetComponents (receptacle,
-                        &RequiredRequestPort::srcReceptacleDelegate,
-                        &RequiredRequestPort::dstReceptacleDelegate,
-                        &ReceptacleDelegate::srcReceptacleDelegate_end,
-                        &ReceptacleDelegate::dstReceptacleDelegate_end,
-                        output,
-                        visited);
+                         &RequiredRequestPort::srcReceptacleDelegate,
+                         &RequiredRequestPort::dstReceptacleDelegate,
+                         &ReceptacleDelegate::srcReceptacleDelegate_end,
+                         &ReceptacleDelegate::dstReceptacleDelegate_end,
+                         output,
+                         visited);
   }
 
   void PackageVisitor::GetFacetComponents (const ProvidedRequestPort& facet,
@@ -1486,8 +1514,8 @@ namespace PICML
                          visited);
   }
 
-    void PackageVisitor::GetEventSourceComponents (const OutEventPort& publisher,
-                                                   std::map<Component,std::string>& output)
+  void PackageVisitor::GetEventSourceComponents (const OutEventPort& publisher,
+                                                 std::map<Component,std::string>& output)
   {
     std::set<OutEventPort> visited;
     this->GetComponents (publisher,
@@ -1539,7 +1567,7 @@ namespace PICML
     // Source instance
     DOMElement* instance = this->doc_->createElement (XStr ("instance"));
     instance->setAttribute (XStr ("xmi:idref"),
-                            XStr (srcComp.getPath ("_", false, true, "name", true)));
+                            XStr (std::string (srcComp.UUID())));
     endPoint->appendChild (instance);
     ele->appendChild (endPoint);
 
@@ -1550,7 +1578,7 @@ namespace PICML
     // Destination instance
     instance = this->doc_->createElement (XStr ("instance"));
     instance->setAttribute (XStr ("xmi:idref"),
-                            XStr (dstComp.getPath ("_", false, true, "name", true)));
+                            XStr (std::string (dstComp.UUID())));
     endPoint->appendChild (instance);
     ele->appendChild (endPoint);
   }
