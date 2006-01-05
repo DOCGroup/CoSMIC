@@ -1,3 +1,21 @@
+Thu Jan  5 08:42:17 2006  hillj  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/CIDL_Interpreter/Cidlc_Visitor.h:
+        * PIM/PICML/interpreters/CIDL_Interpreter/Cidlc_Visitor.cpp:
+
+          Fixed a bug in the CIDL interpreter involving the usage
+          of modules. If multiple ComponentFactorys had the same name
+          but in seperate Packages, it would create a single file and 
+          overwrite each the CIDL definitions. Now, each IDL file in a 
+          model generates its own CIDL file. All factories defined in 
+          that file are defined in the CIDL file. The interpreter also 
+          preserves Package location, which is represented as a module.
+
+        * PIM/PICML/interpreters/CIDL_Interpreter/IDLStream.h:
+        * PIM/PICML/interpreters/CIDL_Interpreter/IDLStream.cpp:
+
+          Updated the IDL stream generator to reflect the changes above.
+
 Tue Jan  3 16:25:16 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * Installer/CoSMIC-Installer.ise:

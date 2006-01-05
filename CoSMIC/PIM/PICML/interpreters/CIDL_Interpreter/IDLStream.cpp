@@ -1,4 +1,4 @@
-#include "CIDL_Interpreter/IDLStream.h"
+#include "IDLStream.h"
 #include <ctype.h>
 
 NL::NL (void)
@@ -29,97 +29,91 @@ IDLStream::IDLStream (std::ostream& strm)
 
 IDLStream::~IDLStream (void)
 {
+
 }
 
-void
-IDLStream::incr_indent (unsigned short flag)
+void IDLStream::incr_indent (unsigned short flag)
 {
-  ++indent_level_;
+  ++ indent_level_;
 
   if (flag != 0)
-    {
-      this->indent ();
-    }
+  {
+    this->indent ();
+  }
 }
 
 // Indentation
-void
-IDLStream::decr_indent (unsigned short flag)
+void IDLStream::decr_indent (unsigned short flag)
 {
   if (this->indent_level_ > 0)
-    {
-      --this->indent_level_;
-    }
+  {
+    -- this->indent_level_;
+  }
 
   if (flag != 0)
-    {
-      this->indent ();
-    }
+  {
+    this->indent ();
+  }
 }
 
-void
-IDLStream::reset (void)
+void IDLStream::reset (void)
 {
   this->indent_level_ = 0;
 }
 
-// Indented print.
-void
-IDLStream::indent (void)
+//
+// indent
+//
+void IDLStream::indent (void)
 {
   // Based on the current indentation level, leave appropriate number of blank
   // spaces in the output.
   if (this->indent_level_ > 0)
     {
-      for (int i = 0; i < this->indent_level_; ++i)
+      for (int i = 0; i < this->indent_level_; i ++)
         {
           this->strm_ << "  ";
         }
     }
 }
 
-void
-IDLStream::nl (void)
+void IDLStream::nl (void)
 {
+  // Insert a new line and return to the proper location.
   this->strm_ << std::endl;
+  indent ();
 }
 
 // Macro generation.
-void
-IDLStream::gen_ifdef_macro (const std::string &name)
+void IDLStream::gen_ifdef_macro (const std::string &name)
 {
   this->gen_ifdef_macro (name.c_str ());
 }
 
-void
-IDLStream::gen_ifdef_macro (const char *name)
+void IDLStream::gen_ifdef_macro (const char *name)
 {
-  this->strm_ << "\n#ifndef ";
-  this->upcase (name);
-  this->strm_ << "_CIDL\n"
-              << "#define ";
-  this->upcase (name);
-  this->strm_ << "_CIDL";
-  this->strm_ << std::endl;
-  this->indent ();
+  this->strm_ << "#ifndef ";
+  upcase (name);
+  this->strm_ << "_CIDL" << std::endl;
+  this->strm_ << "#define ";
+  upcase (name);
+  this->strm_ << "_CIDL" << std::endl
+              << std::endl;
 }
 
-void
-IDLStream::gen_endif (const std::string &name)
+void IDLStream::gen_endif (const std::string &name)
 {
   this->gen_endif (name.c_str ());
 }
 
-void
-IDLStream::gen_endif (const char *name)
+void IDLStream::gen_endif (const char *name)
 {
-  this->strm_ << "\n\n#endif // ";
-  this->upcase (name);
-  this->strm_ << "_CIDL\n\n";
+  this->strm_ << "#endif // !defined ";
+  upcase (name);
+  this->strm_ << "_CIDL" << std::endl;
 }
 
-void
-IDLStream::gen_cidlc_composition (std::string &component_name)
+void IDLStream::gen_cidlc_composition (std::string &component_name)
 {
 	this->strm_ << "composition session ";
 	this->strm_ << component_name;
@@ -131,8 +125,7 @@ IDLStream::gen_cidlc_composition (std::string &component_name)
 	this->nl ();
 }
 
-void
-IDLStream::gen_cidlc_home_decl (std::string &component_name)
+void IDLStream::gen_cidlc_home_decl (std::string &component_name)
 {
 	this->strm_ << "home executor ";
 	this->strm_ << component_name;
@@ -143,8 +136,7 @@ IDLStream::gen_cidlc_home_decl (std::string &component_name)
 	this->nl ();
 }
 
-void
-IDLStream::gen_cidlc_implements_decl (std::string &component_name)
+void IDLStream::gen_cidlc_implements_decl (std::string &component_name)
 {
 	this->strm_ << "implements ";
 	this->strm_ << component_name;
@@ -152,8 +144,7 @@ IDLStream::gen_cidlc_implements_decl (std::string &component_name)
 	this->nl ();
 }
 
-void
-IDLStream::gen_cidlc_manages_decl (std::string &component_name)
+void IDLStream::gen_cidlc_manages_decl (std::string &component_name)
 {
 	this->strm_ << "manages ";
 	this->strm_ << component_name;
@@ -161,98 +152,94 @@ IDLStream::gen_cidlc_manages_decl (std::string &component_name)
 	this->nl ();
 }
 
-void
-IDLStream::gen_cidlc_include (std::string &file_name)
+void IDLStream::gen_cidlc_include (std::string &file_name)
 {
-	this->strm_ << "#include \"";
-	this->strm_ << file_name;
-	this->strm_ << ".idl";
-	this->strm_ << "\"";
+	this->strm_ 
+    << "#include \"" << file_name << ".idl" << "\"" << std::endl;
 }
 
-IDLStream &
-IDLStream::operator<< (const std::string &s)
+IDLStream & IDLStream::operator << (const std::string &s)
 {
-  this->strm_ << s.c_str ();
+  for ( std::string::const_iterator iter = s.begin ();
+        iter != s.end ();
+        iter ++)
+  {
+    (*this) << *iter;
+  }
   return *this;
 }
 
-IDLStream &
-IDLStream::operator<< (const char *str)
+IDLStream & IDLStream::operator << (const char *str)
 {
-  this->strm_ << str;
+  while (*str != '\0')
+  {
+    (*this) << *str ++;
+  }
   return *this;
 }
 
-IDLStream &
-IDLStream::operator<< (const long &l)
+IDLStream & IDLStream::operator << (const long &l)
 {
   this->strm_ << l;
   return *this;
 }
 
-IDLStream &
-IDLStream::operator<< (const unsigned long &ul)
+IDLStream & IDLStream::operator << (const unsigned long &ul)
 {
   this->strm_ << ul;
   return *this;
 }
 
-IDLStream &
-IDLStream::operator<< (const double &d)
+IDLStream & IDLStream::operator << (const double &d)
 {
   this->strm_ << d;
   return *this;
 }
 
-IDLStream &
-IDLStream::operator<< (const char &c)
+IDLStream & IDLStream::operator << (const char &c)
 {
-  this->strm_ << c;
-  return *this;
-}
+  switch (c)
+  {
+  case '\n':
+    nl ();
+    break;
 
-IDLStream &
-IDLStream::operator<< (const NL&)
-{
-  (void) this->nl ();
-  return *this;
-}
+  case '\t':
+    // Increment the indentation.
+    incr_indent ();
+    break;
 
-IDLStream &
-IDLStream::operator<< (const INDENT& i)
-{
-  this->incr_indent (0);
+  case '{':
+    // Increment the indentation accordingly.
+    nl ();
+    this->strm_ << '{';
+    incr_indent (0);
+    nl ();
+    break;
 
-  if (i.do_now_)
-    {
-      (void) this->nl ();
-    }
+  case '}':
+    this->strm_ << std::endl;
+    decr_indent ();
+    this->strm_ << "}";
+    break;
 
-  return *this;
-}
-
-IDLStream &
-IDLStream::operator<< (const UNINDENT& i)
-{
-  this->decr_indent (0);
-
-  if (i.do_now_)
-    {
-      this->nl ();
-    }
+  default:
+    // Insert the character into the stream.
+    this->strm_ << c;
+  };
 
   return *this;
 }
 
-void
-IDLStream::upcase (const char *str)
+void IDLStream::upcase (const char *str)
 {
-  int i = 0;
-  char c;
+  while (*str != '\0')
+  {
+    this->strm_ << static_cast<char> (toupper (*str ++));
+  }
+}
 
-  while ((c = str[i++]) != '\0')
-    {
-      this->strm_ << static_cast<char> (toupper (c));
-    }
+void IDLStream::gen_cidlc_scope (std::stack <std::string> & scope)
+{
+
 }

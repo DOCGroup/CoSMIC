@@ -3,6 +3,7 @@
 
 #include <ostream>
 #include <string>
+#include <stack>
 
 #include "CIDL_Interpreter/CIDL_Export.h"
 
@@ -74,6 +75,8 @@ public:
   void gen_cidlc_implements_decl (std::string &);
   void gen_cidlc_manages_decl (std::string &);
   void gen_cidlc_include (std::string &);
+  void gen_cidlc_scope (std::stack <std::string> &);
+
   // generate the composition information
 
   void gen_endif (const std::string &);
@@ -89,7 +92,6 @@ public:
 
   // = MANIPULATORS
 
-  IDLStream &operator<< (const NL &);
   IDLStream &operator<< (const INDENT &);
   IDLStream &operator<< (const UNINDENT &);
 
