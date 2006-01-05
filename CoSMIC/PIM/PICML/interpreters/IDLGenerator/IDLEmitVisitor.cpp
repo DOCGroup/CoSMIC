@@ -20,46 +20,46 @@ namespace IDML
 
   bool IDLEmitVisitor::visitBoolean( const Boolean& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitByte( const Byte& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitEnumValue( const EnumValue& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitGenericObject( const GenericObject& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitGenericValue( const GenericValue& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
@@ -67,82 +67,82 @@ namespace IDML
       const GenericValueObject& object
     )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitLabel( const Label& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitLongInteger( const LongInteger& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitPrivateFlag( const PrivateFlag& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitRealNumber( const RealNumber& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitShortInteger( const ShortInteger& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitString( const String& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitTypeEncoding( const TypeEncoding& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitTypeKind( const TypeKind& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
@@ -198,8 +198,8 @@ namespace IDML
     this->emitPorts (object);
     
     // Just attributes, no need to order them first.
-		this->visitChildren (object);
-		  
+    this->visitChildren (object);
+      
     ofs << uidt_nl
         << "};";
      
@@ -230,10 +230,10 @@ namespace IDML
         << "{" << idt;
         
     this->emitPreprocDirectives (object);    
-		this->visitChildren (object);
-		
-		ofs << uidt_nl
-		    << "};";
+    this->visitChildren (object);
+    
+    ofs << uidt_nl
+        << "};";
 
     return true;
   }
@@ -304,18 +304,18 @@ namespace IDML
 
   bool IDLEmitVisitor::visitFile( const File& object )
   {
-	  if (!object) return false;
+    if (!object) return false;
 
     ofs.gen_ifdef_macro (object->getName ());
     
     this->emitIncludedFiles (object);
     this->emitPrefix (object);
-		this->emitFwdDecls (object);
-		this->visitChildren (object);
-		  
+    this->emitFwdDecls (object);
+    this->visitChildren (object);
+      
     ofs.gen_endif (object->getName ());
     
-	  return true;
+    return true;
   }
 
 
@@ -333,19 +333,19 @@ namespace IDML
 
   bool IDLEmitVisitor::visitHasOperations( const HasOperations& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitInheritable( const Inheritable& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
@@ -378,7 +378,7 @@ namespace IDML
         << "{" << idt;
 
     this->emitPreprocDirectives (object);       
-		this->visitChildren (object);
+    this->visitChildren (object);
     
     ofs << uidt_nl
         << "};";
@@ -432,10 +432,10 @@ namespace IDML
 
   bool IDLEmitVisitor::visitOperationBase( const OperationBase& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
@@ -448,8 +448,8 @@ namespace IDML
         << "{" << idt;
         
     this->emitPreprocDirectives (object);       
-		this->emitFwdDecls (object);
-		this->visitChildren (object);
+    this->emitFwdDecls (object);
+    this->visitChildren (object);
     
     ofs << uidt_nl
         << "};";
@@ -460,10 +460,10 @@ namespace IDML
 
   bool IDLEmitVisitor::visitPrefixable( const Prefixable& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
@@ -492,10 +492,10 @@ namespace IDML
       const SupportsInterfaces& object
     )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
@@ -552,10 +552,10 @@ namespace IDML
       const LabelConnection& object
     )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
@@ -563,10 +563,10 @@ namespace IDML
       const MakeMemberPrivate& object
     )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
@@ -574,10 +574,10 @@ namespace IDML
       const ManagesComponent& object
     )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
@@ -602,10 +602,10 @@ namespace IDML
       const AttributeMember& object
     )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
@@ -648,10 +648,10 @@ namespace IDML
 
   bool IDLEmitVisitor::visitComponentRef( const ComponentRef& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
@@ -673,37 +673,37 @@ namespace IDML
 
   bool IDLEmitVisitor::visitDiscriminator( const Discriminator& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitExceptionRef( const ExceptionRef& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitFileRef( const FileRef& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitGetException( const GetException& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
@@ -739,10 +739,10 @@ namespace IDML
 
   bool IDLEmitVisitor::visitInherits( const Inherits& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
@@ -758,19 +758,19 @@ namespace IDML
 
   bool IDLEmitVisitor::visitLookupKey( const LookupKey& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitMember( const Member& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
@@ -847,100 +847,100 @@ namespace IDML
 
   bool IDLEmitVisitor::visitReturnType( const ReturnType& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitSetException( const SetException& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitSupports( const Supports& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitConstantType( const ConstantType& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitManageable( const Manageable& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitMemberType( const MemberType& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitNamedType( const NamedType& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitNoInheritable( const NoInheritable& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitPort( const Port& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitPredefinedType( const PredefinedType& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
   bool IDLEmitVisitor::visitTaggable( const Taggable& object )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
@@ -948,10 +948,10 @@ namespace IDML
       const InterfaceDefinitions& object
     )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
@@ -959,10 +959,10 @@ namespace IDML
       const PredefinedTypes& object
     )
   {
-	  if ( !object)
-		  return false;
+    if ( !object)
+      return false;
 
-	  return true;
+    return true;
   }
 
 
@@ -972,158 +972,158 @@ namespace IDML
 
   void IDLEmitVisitor::visitFCOImpl( const BON::FCO& fco )
   {
-	  if ( !visitConstantType( fco))
-	  if ( !visitManageable( fco))
-	  if ( !visitMemberType( fco))
-	  if ( !visitNamedType( fco))
-	  if ( !visitNoInheritable( fco))
-	  if ( !visitPort( fco))
-	  if ( !visitPredefinedType( fco))
-	  if ( !visitTaggable( fco))
-	  {
-		  // visiting other fco
-	  }
+    if ( !visitConstantType( fco))
+    if ( !visitManageable( fco))
+    if ( !visitMemberType( fco))
+    if ( !visitNamedType( fco))
+    if ( !visitNoInheritable( fco))
+    if ( !visitPort( fco))
+    if ( !visitPredefinedType( fco))
+    if ( !visitTaggable( fco))
+    {
+      // visiting other fco
+    }
   }
 
 
   void IDLEmitVisitor::visitAtomImpl( const BON::Atom& atom )
   {
-	  if ( !visitBoolean( atom))
-	  if ( !visitByte( atom))
-	  if ( !visitEnumValue( atom))
-	  if ( !visitGenericObject( atom))
-	  if ( !visitGenericValue( atom))
-	  if ( !visitGenericValueObject( atom))
-	  if ( !visitLabel( atom))
-	  if ( !visitLongInteger( atom))
-	  if ( !visitPrivateFlag( atom))
-	  if ( !visitRealNumber( atom))
-	  if ( !visitShortInteger( atom))
-	  if ( !visitString( atom))
-	  if ( !visitTypeEncoding( atom))
-	  if ( !visitTypeKind( atom))
-	  {
-		  // visiting other Atom
-	  }
+    if ( !visitBoolean( atom))
+    if ( !visitByte( atom))
+    if ( !visitEnumValue( atom))
+    if ( !visitGenericObject( atom))
+    if ( !visitGenericValue( atom))
+    if ( !visitGenericValueObject( atom))
+    if ( !visitLabel( atom))
+    if ( !visitLongInteger( atom))
+    if ( !visitPrivateFlag( atom))
+    if ( !visitRealNumber( atom))
+    if ( !visitShortInteger( atom))
+    if ( !visitString( atom))
+    if ( !visitTypeEncoding( atom))
+    if ( !visitTypeKind( atom))
+    {
+      // visiting other Atom
+    }
   }
 
 
   void IDLEmitVisitor::visitReferenceImpl( const BON::Reference& ref )
   {
-	  if ( !visitAlias( ref))
-	  if ( !visitAttributeMember( ref))
-	  if ( !visitBoxed( ref))
-	  if ( !visitCollection( ref))
-	  if ( !visitComponentRef( ref))
-	  if ( !visitConstant( ref))
-	  if ( !visitDiscriminator( ref))
-	  if ( !visitExceptionRef( ref))
-	  if ( !visitFileRef( ref))
-	  if ( !visitGetException( ref))
-	  if ( !visitInEventPort( ref))
-	  if ( !visitInParameter( ref))
-	  if ( !visitInherits( ref))
-	  if ( !visitInoutParameter( ref))
-	  if ( !visitLookupKey( ref))
-	  if ( !visitMember( ref))
-	  if ( !visitOutEventPort( ref))
-	  if ( !visitOutParameter( ref))
-	  if ( !visitProvidedRequestPort( ref))
-	  if ( !visitRequiredRequestPort( ref))
-	  if ( !visitReturnType( ref))
-	  if ( !visitSetException( ref))
-	  if ( !visitSupports( ref))
-	  {
-		  // visiting other Reference
-	  }
+    if ( !visitAlias( ref))
+    if ( !visitAttributeMember( ref))
+    if ( !visitBoxed( ref))
+    if ( !visitCollection( ref))
+    if ( !visitComponentRef( ref))
+    if ( !visitConstant( ref))
+    if ( !visitDiscriminator( ref))
+    if ( !visitExceptionRef( ref))
+    if ( !visitFileRef( ref))
+    if ( !visitGetException( ref))
+    if ( !visitInEventPort( ref))
+    if ( !visitInParameter( ref))
+    if ( !visitInherits( ref))
+    if ( !visitInoutParameter( ref))
+    if ( !visitLookupKey( ref))
+    if ( !visitMember( ref))
+    if ( !visitOutEventPort( ref))
+    if ( !visitOutParameter( ref))
+    if ( !visitProvidedRequestPort( ref))
+    if ( !visitRequiredRequestPort( ref))
+    if ( !visitReturnType( ref))
+    if ( !visitSetException( ref))
+    if ( !visitSupports( ref))
+    {
+      // visiting other Reference
+    }
   }
 
 
   void IDLEmitVisitor::visitConnectionImpl( const BON::Connection& conn )
   {
-	  if ( !visitLabelConnection( conn))
-	  if ( !visitMakeMemberPrivate( conn))
-	  if ( !visitManagesComponent( conn))
-	  {
-		  // visiting other Connection
-	  }
+    if ( !visitLabelConnection( conn))
+    if ( !visitMakeMemberPrivate( conn))
+    if ( !visitManagesComponent( conn))
+    {
+      // visiting other Connection
+    }
   }
 
 
   void IDLEmitVisitor::visitModelImpl( const BON::Model& model )
   {
-	  if ( !visitAggregate( model))
-	  if ( !visitAttribute( model))
-	  if ( !visitComponent( model))
-	  if ( !visitComponentFactory( model))
-	  if ( !visitEnum( model))
-	  if ( !visitEvent( model))
-	  if ( !visitException( model))
-	  if ( !visitFactoryOperation( model))
-	  if ( !visitFile( model))
-	  if ( !visitHasExceptions( model))
-	  if ( !visitHasOperations( model))
-	  if ( !visitInheritable( model))
-	  if ( !visitLookupOperation( model))
-	  if ( !visitObject( model))
-	  if ( !visitObjectByValue( model))
-	  if ( !visitOnewayOperation( model))
-	  if ( !visitOperationBase( model))
-	  if ( !visitPackage( model))
-	  if ( !visitPrefixable( model))
-	  if ( !visitReadonlyAttribute( model))
-	  if ( !visitSupportsInterfaces( model))
-	  if ( !visitSwitchedAggregate( model))
-	  if ( !visitTwowayOperation( model))
-	  if ( !visitValueObject( model))
-	  {
-		  // visiting other Model
-	  }
+    if ( !visitAggregate( model))
+    if ( !visitAttribute( model))
+    if ( !visitComponent( model))
+    if ( !visitComponentFactory( model))
+    if ( !visitEnum( model))
+    if ( !visitEvent( model))
+    if ( !visitException( model))
+    if ( !visitFactoryOperation( model))
+    if ( !visitFile( model))
+    if ( !visitHasExceptions( model))
+    if ( !visitHasOperations( model))
+    if ( !visitInheritable( model))
+    if ( !visitLookupOperation( model))
+    if ( !visitObject( model))
+    if ( !visitObjectByValue( model))
+    if ( !visitOnewayOperation( model))
+    if ( !visitOperationBase( model))
+    if ( !visitPackage( model))
+    if ( !visitPrefixable( model))
+    if ( !visitReadonlyAttribute( model))
+    if ( !visitSupportsInterfaces( model))
+    if ( !visitSwitchedAggregate( model))
+    if ( !visitTwowayOperation( model))
+    if ( !visitValueObject( model))
+    {
+      // visiting other Model
+    }
   }
 
 
   void IDLEmitVisitor::visitFolderImpl( const BON::Folder& fold )
   {
-	  if ( !visitInterfaceDefinitions( fold))
-	  if ( !visitPredefinedTypes( fold))
-	  {
-		  // visiting other Folder
-	  }
+    if ( !visitInterfaceDefinitions( fold))
+    if ( !visitPredefinedTypes( fold))
+    {
+      // visiting other Folder
+    }
   }
   
   void IDLEmitVisitor::visitOrderableImpl( const Orderable& object )
   {
-	  if ( !visitAggregate( object))
-	  if ( !visitAttribute( object))
-	  if ( !visitComponent( object))
-	  if ( !visitComponentFactory( object))
-	  if ( !visitEnum( object))
-	  if ( !visitEvent( object))
-	  if ( !visitException( object))
-	  if ( !visitFactoryOperation( object))
-	  if ( !visitFile( object))
-//	  if ( !visitHasExceptions( object))
-//	  if ( !visitHasOperations( object))
-//	  if ( !visitInheritable( object))
-	  if ( !visitLookupOperation( object))
-	  if ( !visitObject( object))
-//	  if ( !visitObjectByValue( object))
-	  if ( !visitOnewayOperation( object))
-//	  if ( !visitOperationBase( object))
-	  if ( !visitPackage( object))
-//	  if ( !visitPrefixable( object))
-	  if ( !visitReadonlyAttribute( object))
-//	  if ( !visitSupportsInterfaces( object))
-	  if ( !visitSwitchedAggregate( object))
-	  if ( !visitTwowayOperation( object))
-	  if ( !visitValueObject( object))
-	  if ( !visitAlias( object))
-	  if ( !visitBoxed( object))
-	  if ( !visitCollection( object))
-	  if ( !visitConstant( object))
-	  {
-		  // visiting other Model
-	  }
+    if ( !visitAggregate( object))
+    if ( !visitAttribute( object))
+    if ( !visitComponent( object))
+    if ( !visitComponentFactory( object))
+    if ( !visitEnum( object))
+    if ( !visitEvent( object))
+    if ( !visitException( object))
+    if ( !visitFactoryOperation( object))
+    if ( !visitFile( object))
+//    if ( !visitHasExceptions( object))
+//    if ( !visitHasOperations( object))
+//    if ( !visitInheritable( object))
+    if ( !visitLookupOperation( object))
+    if ( !visitObject( object))
+//    if ( !visitObjectByValue( object))
+    if ( !visitOnewayOperation( object))
+//    if ( !visitOperationBase( object))
+    if ( !visitPackage( object))
+//    if ( !visitPrefixable( object))
+    if ( !visitReadonlyAttribute( object))
+//    if ( !visitSupportsInterfaces( object))
+    if ( !visitSwitchedAggregate( object))
+    if ( !visitTwowayOperation( object))
+    if ( !visitValueObject( object))
+    if ( !visitAlias( object))
+    if ( !visitBoxed( object))
+    if ( !visitCollection( object))
+    if ( !visitConstant( object))
+    {
+      // visiting other Model
+    }
   }
   
   void IDLEmitVisitor::order_children( const Orderable& object )
@@ -1310,35 +1310,35 @@ namespace IDML
     
     // If a file in this list is also in the list below, skip it.
     std::set<FileRef> file_includes = f->getFileRef ();    
-		for (std::set<FileRef>::const_iterator it = file_includes.begin (); 
-		     it != file_includes.end ();
-		     it++)
-		  {
-		    if (first) ofs << nl;
-		    
-		    fi = (*it)->getFile ();
-		    if (!fi) continue;
-		    found = std::find (f->discovered_includes_.begin (),
-		                       f->discovered_includes_.end (),
-		                       fi);
-		    if (found != f->discovered_includes_.end ()) continue;
-		    
-		    ofs << "#include \"" << fi->getName () << ".idl\"" << nl;
-		        
-		    first = false;
-		  }
-		  
-		// Now emit the discovered includes.
-		for (std::set<File>::const_iterator i = f->discovered_includes_.begin ();
-		     i != f->discovered_includes_.end ();
-		     ++i)
-		  {
-		    if (first) ofs << nl;
-		    
-		    ofs << "#include \"" << (*i)->getName () << ".idl\"" << nl;
-		    
-		    first = false;
-		  }
+    for (std::set<FileRef>::const_iterator it = file_includes.begin (); 
+         it != file_includes.end ();
+         it++)
+      {
+        if (first) ofs << nl;
+        
+        fi = (*it)->getFile ();
+        if (!fi) continue;
+        found = std::find (f->discovered_includes_.begin (),
+                           f->discovered_includes_.end (),
+                           fi);
+        if (found != f->discovered_includes_.end ()) continue;
+        
+        ofs << "#include \"" << fi->getName () << ".idl\"" << nl;
+            
+        first = false;
+      }
+      
+    // Now emit the discovered includes.
+    for (std::set<File>::const_iterator i = f->discovered_includes_.begin ();
+         i != f->discovered_includes_.end ();
+         ++i)
+      {
+        if (first) ofs << nl;
+        
+        ofs << "#include \"" << (*i)->getName () << ".idl\"" << nl;
+        
+        first = false;
+      }
   }
   
   void IDLEmitVisitor::emitPrefix( const File& f )
@@ -1428,23 +1428,23 @@ namespace IDML
     Component comp (object);
     bool not_first = false;
     
-		for (std::vector<Orderable>::iterator it =
-		       object->ordered_children.begin ();
-		     it != object->ordered_children.end (); 
-		     it++)
-		  {
+    for (std::vector<Orderable>::iterator it =
+           object->ordered_children.begin ();
+         it != object->ordered_children.end (); 
+         it++)
+      {
         // Relative IDs of derived GME children have one of the
         // digits in the number below added to their base value
         // - easy way to check.
-		    long rel_id;
-		    (*it)->getFCOI ()->get_RelID (&rel_id);
-		    if (rel_id & 0x18000000) continue;
-		    
-		    if (not_first) ofs << nl;
-		    if ((*it)->getParent () != object) continue;
-		    this->visitOrderableImpl (*it);
-		    not_first = true;
-		  }
+        long rel_id;
+        (*it)->getFCOI ()->get_RelID (&rel_id);
+        if (rel_id & 0x18000000) continue;
+        
+        if (not_first) ofs << nl;
+        if ((*it)->getParent () != object) continue;
+        this->visitOrderableImpl (*it);
+        not_first = true;
+      }
   }
   
   void IDLEmitVisitor::emitPreprocDirectives( const Taggable& t )
@@ -1918,13 +1918,13 @@ namespace IDML
         // Relative IDs of derived GME ports have one of the
         // digits in the number below added to their base value
         // - easy way to check.
-		    long rel_id;
-		    (*i)->getFCOI ()->get_RelID (&rel_id);
-		    if (rel_id & 0x18000000) continue;
-		    
+        long rel_id;
+        (*i)->getFCOI ()->get_RelID (&rel_id);
+        if (rel_id & 0x18000000) continue;
+        
         if (not_first) ofs << nl;
         
-		    ofs << nl;
+        ofs << nl;
         this->visitReferenceImpl (*i);
         this->emitPreprocDirectives (*i);
         not_first = true;
@@ -1939,13 +1939,13 @@ namespace IDML
              oci != c->ordered_children.end ();
              oci++)
           {
-		        long oc_rel_id;
-		        (*oci)->getFCOI ()->get_RelID (&oc_rel_id);
-		        if (oc_rel_id & 0x18000000) continue;
-		        ofs << nl;
-		        break;
-		      }
-		  }
+            long oc_rel_id;
+            (*oci)->getFCOI ()->get_RelID (&oc_rel_id);
+            if (oc_rel_id & 0x18000000) continue;
+            ofs << nl;
+            break;
+          }
+      }
   }
 
   void
@@ -2012,14 +2012,14 @@ namespace IDML
   void IDLEmitVisitor::emitEnumValues( const Enum& e )
   {
     std::set<EnumValue> values = e->getEnumValue ();
-		for (std::set<EnumValue>::const_iterator it = values.begin (); 
-		     it != values.end (); 
-		     it++)
-		  {
-		    if (it != values.begin ()) ofs << ",";
-		    ofs << nl
-		        << (*it)->getName ();
-		  }
+    for (std::set<EnumValue>::const_iterator it = values.begin (); 
+         it != values.end (); 
+         it++)
+      {
+        if (it != values.begin ()) ofs << ",";
+        ofs << nl
+            << (*it)->getName ();
+      }
   }
   
   void IDLEmitVisitor::emitDiscriminator( const SwitchedAggregate& sa)

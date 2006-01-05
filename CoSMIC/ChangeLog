@@ -1,3 +1,10 @@
+Thu Jan  5 20:07:26 2006  hillj  <hillj@isis.vanderbilt.edu>
+        * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
+
+          Updated the IDL generator to skip IDL models/files that
+          are defined in GME read-only libraries.
+
 Thu Jan  5 08:42:17 2006  hillj  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/CIDL_Interpreter/Cidlc_Visitor.h:
@@ -5,10 +12,10 @@ Thu Jan  5 08:42:17 2006  hillj  <hillj@isis.vanderbilt.edu>
 
           Fixed a bug in the CIDL interpreter involving the usage
           of modules. If multiple ComponentFactorys had the same name
-          but in seperate Packages, it would create a single file and 
-          overwrite each the CIDL definitions. Now, each IDL file in a 
-          model generates its own CIDL file. All factories defined in 
-          that file are defined in the CIDL file. The interpreter also 
+          but in seperate Packages, it would create a single file and
+          overwrite each the CIDL definitions. Now, each IDL file in a
+          model generates its own CIDL file. All factories defined in
+          that file are defined in the CIDL file. The interpreter also
           preserves Package location, which is represented as a module.
 
         * PIM/PICML/interpreters/CIDL_Interpreter/IDLStream.h:
