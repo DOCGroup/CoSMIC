@@ -4,7 +4,6 @@
 //
 #define IDS_PROJNAME                    100
 #define IDR_XSD2                        207
-#define IDR_XSD1                        210
 
 // Next default values for new objects
 // 

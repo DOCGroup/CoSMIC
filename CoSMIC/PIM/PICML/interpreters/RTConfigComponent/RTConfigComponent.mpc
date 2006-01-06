@@ -44,7 +44,7 @@ project (RTConfigComponent): mfc, picmllib {
   }
 
   Resource_Files {
-    CompIcon_RTConfig.ico
+    CompIcon.ico
   }
 }
 

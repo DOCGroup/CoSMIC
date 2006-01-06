@@ -1,3 +1,32 @@
+Sat Jan  7 05:13:29 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/QoSMappingComponent/CompIcon.ico:
+          Updated icon to be different from PackageComponent.
+
+        * PIM/PICML/interpreters/RTConfigComponent/CompIcon.ico:
+        * PIM/PICML/interpreters/RTConfigComponent/Component.rc:
+        * PIM/PICML/interpreters/RTConfigComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/RTConfigComponent/RTConfigComponent.mpc:
+        * PIM/PICML/interpreters/RTConfigComponent/resource.h:
+
+          Fixed icon to show up differently than the PackageComponent.
+          The problem was due to two different image types, one at 32x32
+          pixels and 16 colours, and another at 16x16 pixels and 16
+          colours, being present within the same file.  This file
+          was originally copied from PackageComponent's CompIcon.ico and
+          only the 32x32 pixels, 16 colours was overridden.  But GME uses
+          16x16 pixels, 16 colours by default.  So both this interpreter
+          and PackageComponent ended up showing the same icon :-(
+
+        * PIM/PICML/interpreters/IOAutomataComponent/Component.aps:
+        * PIM/PICML/interpreters/QoSMappingComponent/ComponentLib.tlb:
+        * PIM/PICML/interpreters/RTConfigComponent/CompIcon_RTConfig.ico:
+        * PSM/CCM/EQAL/interpreters/ComponentConfig.old:
+        * PSM/CCM/MIDCESS/interpreters/ComponentConfig.old:
+        * PSM/CCM/OCML/interpreters/OCML_Interpreter/ComponentConfig.old:
+
+          Removed these files.
+
 Thu Jan  5 20:07:26 2006  hillj  <hillj@isis.vanderbilt.edu>
         * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
         * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
