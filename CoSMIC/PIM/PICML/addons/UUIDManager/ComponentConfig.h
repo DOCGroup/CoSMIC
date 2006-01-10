@@ -29,8 +29,10 @@
 #define PARADIGMS "PICML"
 
 
+#define GME_INTERFACES_BASE Interfaces
+
 // This is the location of the GME interfaces file (Mga.idl, Meta.idl, etc)
-#define GME_BASE C:/Program Files/GME
+#define GME_BASE .
 
 
 // not defined: #define BON_ICON_SUPPORT

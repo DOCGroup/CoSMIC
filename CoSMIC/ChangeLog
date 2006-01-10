@@ -1,10 +1,19 @@
+Wed Jan 11 02:36:07 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/addons/UUIDManager/ComponentConfig.h:  Fixed the
+          hardcoded path to GME_ROOT to get this project to compile on
+          Windows XP x64.
+
+        * PIM/PICML/interpreters/QoSMappingComponent/RawComponent.h:
+          Added required but missing file to the directory.
+
 Tue Jan 10 16:41:18 2006  James H. Hill <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/UUIDManager/BON2Component.h:
         * PIM/PICML/addons/UUIDManager/BON2Component.cpp:
-        
+
           Fixed compilation issues.
-        
+
         * PIM/PICML/interpreters/PICML/Utils.cpp:
 
           The validation routine for UUIDs does uses a UUID data
