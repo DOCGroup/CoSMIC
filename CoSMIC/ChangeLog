@@ -1,3 +1,16 @@
+Tue Jan 10 16:41:18 2006  James H. Hill <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/UUIDManager/BON2Component.h:
+        * PIM/PICML/addons/UUIDManager/BON2Component.cpp:
+        
+          Fixed compilation issues.
+        
+        * PIM/PICML/interpreters/PICML/Utils.cpp:
+
+          The validation routine for UUIDs does uses a UUID data
+          structure on the stack to temporarily store the UUID instead
+          of dynamically allocating a structure each time.
+
 Tue Jan 10 02:32:47 2006  James H. Hill <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/UUIDManager/BON2Component.h:
@@ -12,20 +25,20 @@ Tue Jan 10 02:32:47 2006  James H. Hill <hillj@isis.vanderbilt.edu>
 
           Created an add-on to managed the specification of UUIDs on
           Component and ComponentAssembly elements. Whenever an
-          Component or ComponentAssembly is inserted into the model, 
-          a UUID is generated and stored in the model. Whenever an 
+          Component or ComponentAssembly is inserted into the model,
+          a UUID is generated and stored in the model. Whenever an
           instance of a Component or a ComponentAssembly is inserted
           a UUID is generated and stored into the model. Also, if
           the UUID is manually changed by the user and its invalid,
           a new UUID is generated.
-          
+
         * PIM/PICML/interpreters/PICML/Utils.h:
         * PIM/PICML/interpreters/PICML/Utils.cpp:
 
           Added a routine that validates an existing UUID.
-          
+
         * cosmic.mwc:
-        
+
           Excluded CUTS from the default build of CoSMIC since its
           not ready for nightly builds.
 

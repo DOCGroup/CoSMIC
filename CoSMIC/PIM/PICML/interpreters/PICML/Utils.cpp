@@ -80,10 +80,10 @@ namespace PICML
 
   bool ValidUuid (const std::string & uuid)
   {
-    std::auto_ptr <UUID> cleanup_uuid (new UUID);
+    UUID uuid_placeholder;
 
     HRESULT result = 
-      UuidFromString ((unsigned char *)uuid.c_str (), cleanup_uuid.get ());
+      UuidFromString ((unsigned char *)uuid.c_str (), &uuid_placeholder);
 
     return result == RPC_S_OK;
   }

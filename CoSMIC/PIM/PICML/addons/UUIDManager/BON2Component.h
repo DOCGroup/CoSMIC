@@ -26,9 +26,6 @@
 #include "BONImpl.h"
 #include <ComponentConfig.h>
 
-// forward declaration
-class UUID_Manager;
-
 namespace BON
 {
 
@@ -70,10 +67,6 @@ class Component
     void globalEventPerformed( globalevent_enum event );
     void objectEventPerformed( Object& object, unsigned long event, VARIANT v );
   #endif
-
-private:
-  /// The UUID manager for the add-on.
-  std::auto_ptr <UUID_Manager> uuid_manager_;
 };
 
 }; // namespace BON

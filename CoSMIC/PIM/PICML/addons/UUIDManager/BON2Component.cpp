@@ -21,7 +21,6 @@
 
 #include "StdAfx.h"
 #include "BON2Component.h"
-#include "UUIDManager.h"
 #include <PICML/Utils.h>
 
 namespace BON
@@ -34,8 +33,7 @@ namespace BON
 //###############################################################################################################################################
 
 Component::Component (void)
-: m_bIsInteractive (false),
-  uuid_manager_ (0)
+: m_bIsInteractive (false)
 {
 
 }
@@ -59,7 +57,6 @@ void Component::initialize( Project& project )
   // Turn off the auto commit for the project while using the
   // add-on. This prevents exceptions from occurring.
   project->setAutoCommit (false);
-  this->uuid_manager_.reset (new UUID_Manager ());
 }
 
 // ====================================================
@@ -68,7 +65,7 @@ void Component::initialize( Project& project )
 
 void Component::finalize( Project& project )
 {
-  this->uuid_manager_.reset ();
+
 }
 
 // ====================================================
