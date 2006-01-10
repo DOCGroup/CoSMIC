@@ -25,4 +25,6 @@ workspace {
    IOAutomataComponent
    QoSMapping
    QoSMappingComponent
+   Path
+   PathComponent
 }

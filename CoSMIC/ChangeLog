@@ -1,3 +1,48 @@
+Wed Jan 11 03:10:54 UTC 2006  Nilabja R  <nilabjar@dre.vanderbilt.edu>
+
+        * Installer/CoSMIC-Installer.ise:
+          Changed to prepare for the release of CoSMIC 0.4.8
+
+        * PIM/OCML/interpreters/TAOServiceConfExporter/GNUmakefile:
+        * PIM/OCML/interpreters/TAOServiceConfExporter/GNUmakefile.SvcConfExporter:
+
+        * PIM/PICML/Readme.rtf:
+        * PIM/PICML/ReleaseNotes.rtf:
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+          Changed to include the new interpreter for Path Diagram
+
+        * PIM/PICML/interpreters/Path/Path.mpc:
+        * PIM/PICML/interpreters/Path/Path.vcproj:
+        * PIM/PICML/interpreters/Path/PathVisitor.h:
+        * PIM/PICML/interpreters/Path/PathVisitor.cpp:
+        * PIM/PICML/interpreters/Path/Path_Export.h:
+
+        * PIM/PICML/interpreters/PathComponent/Component.aps:
+        * PIM/PICML/interpreters/PathComponent/Component.def:
+        * PIM/PICML/interpreters/PathComponent/Component.rc:
+        * PIM/PICML/interpreters/PathComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/PathComponent/PathComponent.mpc:
+        * PIM/PICML/interpreters/PathComponent/PathComponent.vcproj:
+        * PIM/PICML/interpreters/PathComponent/Pathicon.ico:
+        * PIM/PICML/interpreters/PathComponent/RawComponent.h:
+        * PIM/PICML/interpreters/PathComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/PathComponent/RegisterPathComponent.vcproj:
+        * PIM/PICML/interpreters/PathComponent/StdAfx.h:
+        * PIM/PICML/interpreters/PathComponent/StdAfx.cpp:
+        * PIM/PICML/interpreters/PathComponent/UdmApp.h:
+        * PIM/PICML/interpreters/PathComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/PathComponent/UdmConfig.h:
+        * PIM/PICML/interpreters/PathComponent/resource.h:
+
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Changed to add the new extension of PICML , Path Diagrams.
+          This module generates all the possible paths that can take
+          place in the run-time.
+
 Wed Jan 11 02:36:07 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/addons/UUIDManager/ComponentConfig.h:  Fixed the

@@ -8,7 +8,7 @@
 # this file will be lost the next time it is generated.
 #
 # MPC Command:
-# /build/turkaye/ACE_wrappers/bin/mwc.pl -include /build/turkaye/ACE_wrappers/MPC/config -include /build/turkaye/ACE_wrappers/MPC/templates
+# C:\ACE_wrappers\bin\mwc.pl -include C:\ACE_wrappers/MPC/config -include C:\ACE_wrappers/MPC/templates
 #
 #-------------------------------------------------------------------------
 MAKEFILE = GNUmakefile
@@ -20,7 +20,6 @@ endif
 include $(ACE_ROOT)/include/makeinclude/macros.GNU
 
 all: SvcConfExporter
-	$(KEEP_GOING)@cd test && $(MAKE) -f $(MAKEFILE) $(@)
 
 .PHONY: SvcConfExporter
 SvcConfExporter:
@@ -29,5 +28,4 @@ SvcConfExporter:
 REMAINING_TARGETS := $(subst all, , $(TARGETS_NESTED:.nested=)) $(CUSTOM_TARGETS)
 $(REMAINING_TARGETS):
 	$(KEEP_GOING)@$(MAKE) -f GNUmakefile.SvcConfExporter $(@)
-	$(KEEP_GOING)@cd test && $(MAKE) -f $(MAKEFILE) $(@)
 

@@ -16,19 +16,24 @@ DEPENDENCY_FILE  = .depend.SvcConfExporter
 ## LIB may be set to empty later on in this file
 LIB_UNCHECKED    = libOCMLSvcConfExporter.a
 LIB              = $(LIB_UNCHECKED)
+LIB_NAME         = libOCMLSvcConfExporter
 
 ## SHLIB may be set to empty later on in this file
 SHLIB_UNCHECKED  = libOCMLSvcConfExporter.$(SOEXT)
 SHLIB            = $(SHLIB_UNCHECKED)
 
 FILES = \
-  SvcConfExporter \
-  ../Common/XercesHelpers
+  SvcConfExporter.cpp \
+  ../Common/XercesHelpers.cpp
+
+VPATH = .:../Common
 
 #----------------------------------------------------------------------------
 #       Include macros and targets
 #----------------------------------------------------------------------------
 ACE_SHLIBS = -lxerces-c_2
+
+PRJ_TYPE = library
 
 INSLIB ?= $(COSMIC_ROOT)/bin
 ifeq ($(INSLIB),.)
@@ -48,14 +53,11 @@ ACELIB =
 # The compiler/linker isn't too smart about instantiating templates...
 ifdef TEMPINCDIR
 TEMPINCDIR := $(TEMPINCDIR)/SvcConfExporter
-
 all: $(TEMPINCDIR)
-
 endif
 
 ifneq ($(OUTPUT_DIRECTORY),)
 all: $(OUTPUT_DIRECTORY)
-
 $(OUTPUT_DIRECTORY):
 	-@$(MKDIR) "$(OUTPUT_DIRECTORY)"
 endif
@@ -68,7 +70,7 @@ else
   ifeq ($(findstring k, $(MAKEFLAGS)),k)
     LIBCHECK = 1
   else
-    LIBCHECK ?= $(filter-out $(foreach lib,xerces-c_2,$(findstring $(lib),$(foreach libpath,$(XERCESCROOT)/lib /usr/lib $(INSLIB),$(wildcard $(libpath)/lib$(lib).* $(libpath)/$(lib).lib)))),xerces-c_2)
+    LIBCHECK ?= $(filter-out $(foreach lib,xerces-c_2,$(findstring $(lib),$(foreach libpath,. $(XERCESCROOT)/lib /usr/lib $(INSLIB),$(wildcard $(libpath)/lib$(lib).* $(libpath)/$(lib).lib)))),xerces-c_2)
     ifeq ($(LIBCHECK),)
       LIBCHECK = 1
     endif
@@ -80,11 +82,7 @@ ifneq ($(LIBCHECK), 1)
   all: lib_warning
 endif
 
-ifneq (,$(RC))
-  FILES += $(RESOURCES)
-endif
-
-LSRC   = $(addsuffix .cpp, $(FILES))
+LSRC   = $(FILES)
 
 include $(ACE_ROOT)/include/makeinclude/macros.GNU
 include $(ACE_ROOT)/include/makeinclude/rules.common.GNU
@@ -96,9 +94,9 @@ include $(TGT_DIR)/h/make/rules.$(PRJ_TYPE)
 endif
 
 ifeq ($(VXWORKSLINK),true)
-LDLIBPATH     = -L$(XERCESCROOT)/lib
+LDLIBPATH     = -L. -L$(XERCESCROOT)/lib
 else
-LDFLAGS      += -L$(XERCESCROOT)/lib
+LDFLAGS      += -L. -L$(XERCESCROOT)/lib
 endif
 CPPFLAGS     += -I$(XERCESCROOT)/include
 CPPFLAGS     += -DSVC_CONF_EXPORTER_DLL_ENTRY_EXPORTS -D_USRDLL -DWXMAKINGDLL
