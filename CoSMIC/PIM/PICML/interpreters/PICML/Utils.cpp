@@ -70,11 +70,21 @@ namespace PICML
       hr = UuidToString (uuid, &temp);
       if (hr == RPC_S_OK)
       {
-	idstr.assign ((const char*)temp);
-	std::transform (idstr.begin(), idstr.end(), idstr.begin(), std::toupper);
-	RpcStringFree (&temp);
+        idstr.assign ((const char*)temp);
+        std::transform (idstr.begin(), idstr.end(), idstr.begin(), std::toupper);
+        RpcStringFree (&temp);
       }
     }
     return idstr;
+  }
+
+  bool ValidUuid (const std::string & uuid)
+  {
+    std::auto_ptr <UUID> cleanup_uuid (new UUID);
+
+    HRESULT result = 
+      UuidFromString ((unsigned char *)uuid.c_str (), cleanup_uuid.get ());
+
+    return result == RPC_S_OK;
   }
 } // namespace PICML

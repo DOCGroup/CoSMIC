@@ -1,3 +1,34 @@
+Tue Jan 10 02:32:47 2006  James H. Hill <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/UUIDManager/BON2Component.h:
+        * PIM/PICML/addons/UUIDManager/BON2Component.cpp:
+        * PIM/PICML/addons/UUIDManager/Component.rc:
+        * PIM/PICML/addons/UUIDManager/ComponentConfig.h:
+        * PIM/PICML/addons/UUIDManager/Resource.h:
+        * PIM/PICML/addons/UUIDManager/StdAfx.h:
+        * PIM/PICML/addons/UUIDManager/StdAfx.cpp:
+        * PIM/PICML/addons/UUIDManager/UUIDManager.mpc:
+        * PIM/PICML/addons/UUIDManager/component.def:
+
+          Created an add-on to managed the specification of UUIDs on
+          Component and ComponentAssembly elements. Whenever an
+          Component or ComponentAssembly is inserted into the model, 
+          a UUID is generated and stored in the model. Whenever an 
+          instance of a Component or a ComponentAssembly is inserted
+          a UUID is generated and stored into the model. Also, if
+          the UUID is manually changed by the user and its invalid,
+          a new UUID is generated.
+          
+        * PIM/PICML/interpreters/PICML/Utils.h:
+        * PIM/PICML/interpreters/PICML/Utils.cpp:
+
+          Added a routine that validates an existing UUID.
+          
+        * cosmic.mwc:
+        
+          Excluded CUTS from the default build of CoSMIC since its
+          not ready for nightly builds.
+
 Sat Jan  7 05:13:29 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/interpreters/QoSMappingComponent/CompIcon.ico:
