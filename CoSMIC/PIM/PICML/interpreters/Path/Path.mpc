@@ -2,7 +2,7 @@ project(Path): picmllib {
    after += PICML
    sharedname = Path
    macros += PATH_BUILD_DLL PICML_HAS_DLL
-   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML
+   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML $(BOOST_ROOT)/include/$(BOOST_VERSION)
    libs += PICML
 
    Source_Files {

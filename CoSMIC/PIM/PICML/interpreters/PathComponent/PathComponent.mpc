@@ -6,7 +6,8 @@ project (PathComponent): mfc, picmllib {
   sharedname = PathComponent
   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML \
               $(COSMIC_ROOT)/PIM/PICML/interpreters/Path \
-              $(COSMIC_ROOT)/PIM/PICML/interpreters/PathComponent
+              $(COSMIC_ROOT)/PIM/PICML/interpreters/PathComponent \
+              $(BOOST_ROOT)/include/$(BOOST_VERSION)
   libs += PICML Path
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp

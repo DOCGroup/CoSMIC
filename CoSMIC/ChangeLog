@@ -1,3 +1,24 @@
+Fri Jan 13 21:48:05 UTC 2006  Nilabja R  <nilabjar@dre.vanderbilt.edu>
+
+        * PIM/PICML/Readme.rtf:
+        * PIM/PICML/ReleaseNotes.rtf:
+          The format of the Release Note and the Readme updated
+
+        * PIM/PICML/interpreters/Path/Path.mpc:
+        * PIM/PICML/interpreters/PathComponent/PathComponent.mpc:
+          These are done to add the BOOST path to the Path Project
+          
+        * PIM/PICML/interpreters/PathComponent/Component.rc:
+        * PIM/PICML/interpreters/PathComponent/resource.h:
+          These are to change the icon file in the Path Project
+
+        * PIM/PICML/interpreters/Path/Path.vcproj:
+
+        * PIM/PICML/interpreters/PathComponent/Component.aps:
+        * PIM/PICML/interpreters/PathComponent/PathComponent.vcproj:
+
+          Removed these files. Unnecessary files
+
 Wed Jan 11 03:10:54 UTC 2006  Nilabja R  <nilabjar@dre.vanderbilt.edu>
 
         * Installer/CoSMIC-Installer.ise:
