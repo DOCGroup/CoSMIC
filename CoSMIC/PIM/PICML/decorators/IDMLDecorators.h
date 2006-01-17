@@ -45,6 +45,7 @@ using namespace std;
 #define PICML_TYPEKIND_NAME            "TypeKind"
 #define PICML_VALUEOBJECT_NAME         "ValueObject"
 #define PICML_COMPONENTASSEMBLY_NAME   "ComponentAssembly"
+#define PICML_COMPONENTASMREF_NAME     "ComponentAssemblyReference"
 #define PICML_DATATYPE_NAME            "DataType"
 #define PICML_ATTRIBUTEMAPPING_NAME    "AttributeMapping"
 

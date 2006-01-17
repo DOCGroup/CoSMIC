@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="PICML" guid="{1B0D2E44-51AC-4A14-BF57-FADB2F5F9C86}" cdate="Thu Jan 12 21:22:03 2006" mdate="Thu Jan 12 21:22:03 2006" >
+<paradigm name="PICML" guid="{DC3C779E-14D5-4721-8451-6D3FA21362D1}" cdate="Tue Jan 10 21:40:44 2006" mdate="Tue Jan 10 21:40:44 2006" >
 
 	<comment>This tool supports $CIAO_ROOT/docs/schema/CIAOServerResources.xsd version 1.7. 
 Please check the cvs repository if this is the most recent version of this file.</comment>
@@ -31,6 +31,10 @@ then
 else
    self
 endif]]>
+		</constraint>
+		<constraint type="function" name="ConnectorParents">
+			<![CDATA[method;gme::Reference;;ocl::Bag;
+			self.connectedFCOs(publish)->iterate (c : gme::FCO; acc = Bag{} | acc + Bag{c.parent()})]]>
 		</constraint>
 		<constraint type="function" name="MonolithicImpls">
 			<![CDATA[method;gme::Atom;;ocl::Set;
@@ -502,7 +506,7 @@ self.connectedFCOs(Implementation)->forAll (i : Reference | i.refersTo().kindNam
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="EnvironmentConf.bmp"></regnode>
 		</atom>
-		<atom name = "ExternalReferenceEndPoint" metaref = "1070"  attributes = "location">
+		<atom name = "ExternalReferenceEndPoint" metaref = "2847"  attributes = "location">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="ExternalReferenceEndPoint.bmp"></regnode>
 		</atom>
@@ -738,7 +742,7 @@ self.connectedFCOs(Implementation)->forAll (i : Reference | i.refersTo().kindNam
 				<regnode name = "icon" value ="private.bmp"></regnode>
 				<regnode name = "isNameEnabled" value ="false"></regnode>
 		</atom>
-		<atom name = "PublishConnector" metaref = "1088" >
+		<atom name = "PublishConnector" metaref = "2848" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="MatchingPublishConsumer" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let consumers = self.connectedFCOs(deliverTo) in
@@ -1109,7 +1113,7 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "AssemblyConfigProperty" metaref = "1108" >
+		<connection name = "AssemblyConfigProperty" metaref = "2849" >
 				<regnode name = "labelFormatStr" value ="configProperty"></regnode>
 				<regnode name = "sName" value ="srcAssemblyConfigProperty"></regnode>
 				<regnode name = "dName" value ="dstAssemblyConfigProperty"></regnode>
@@ -1126,7 +1130,7 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "AssemblyDeployRequirement" metaref = "1109" >
+		<connection name = "AssemblyDeployRequirement" metaref = "2850" >
 				<regnode name = "labelFormatStr" value ="deployRequirement"></regnode>
 				<regnode name = "sName" value ="srcAssemblyDeployRequirement"></regnode>
 				<regnode name = "dName" value ="dstAssemblyDeployRequirement"></regnode>
@@ -1143,7 +1147,7 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "AssemblyselectRequirement" metaref = "1110" >
+		<connection name = "AssemblyselectRequirement" metaref = "2851" >
 				<regnode name = "labelFormatStr" value ="selectRequirement"></regnode>
 				<regnode name = "sName" value ="srcAssemblyselectRequirement"></regnode>
 				<regnode name = "dName" value ="dstAssemblyselectRequirement"></regnode>
@@ -1160,7 +1164,7 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "AttributeDelegate" metaref = "1111" >
+		<connection name = "AttributeDelegate" metaref = "2852" >
 				<regnode name = "labelFormatStr" value ="delegatesTo"></regnode>
 				<regnode name = "sName" value ="srcAttributeDelegate"></regnode>
 				<regnode name = "dName" value ="dstAttributeDelegate"></regnode>
@@ -1172,14 +1176,17 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				<pointerspec name = "src">
 					<pointeritem desc = "AttributeMapping"></pointeritem>
 					<pointeritem desc = "ComponentAssembly AttributeMapping"></pointeritem>
+					<pointeritem desc = "ComponentAssemblyReference AttributeMapping"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
 					<pointeritem desc = "Component Attribute"></pointeritem>
 					<pointeritem desc = "Component ReadonlyAttribute"></pointeritem>
+					<pointeritem desc = "ComponentRef Attribute"></pointeritem>
+					<pointeritem desc = "ComponentRef ReadonlyAttribute"></pointeritem>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "AttributeMappingDelegate" metaref = "1112" >
+		<connection name = "AttributeMappingDelegate" metaref = "2853" >
 				<regnode name = "labelFormatStr" value ="delegatesTo"></regnode>
 				<regnode name = "sName" value ="srcAttributeMappingDelegate"></regnode>
 				<regnode name = "dName" value ="dstAttributeMappingDelegate"></regnode>
@@ -1191,14 +1198,16 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				<pointerspec name = "src">
 					<pointeritem desc = "AttributeMapping"></pointeritem>
 					<pointeritem desc = "ComponentAssembly AttributeMapping"></pointeritem>
+					<pointeritem desc = "ComponentAssemblyReference AttributeMapping"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
 					<pointeritem desc = "AttributeMapping"></pointeritem>
 					<pointeritem desc = "ComponentAssembly AttributeMapping"></pointeritem>
+					<pointeritem desc = "ComponentAssemblyReference AttributeMapping"></pointeritem>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "AttributeMappingValue" metaref = "1113" >
+		<connection name = "AttributeMappingValue" metaref = "2854" >
 				<regnode name = "labelFormatStr" value ="attValue"></regnode>
 				<regnode name = "sName" value ="srcAttributeMappingValue"></regnode>
 				<regnode name = "dName" value ="dstAttributeMappingValue"></regnode>
@@ -1210,13 +1219,14 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				<pointerspec name = "src">
 					<pointeritem desc = "AttributeMapping"></pointeritem>
 					<pointeritem desc = "ComponentAssembly AttributeMapping"></pointeritem>
+					<pointeritem desc = "ComponentAssemblyReference AttributeMapping"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
 					<pointeritem desc = "Property"></pointeritem>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "AttributeValue" metaref = "1114" >
+		<connection name = "AttributeValue" metaref = "2855" >
 				<regnode name = "labelFormatStr" value ="attValue"></regnode>
 				<regnode name = "sName" value ="srcAttributeValue"></regnode>
 				<regnode name = "dName" value ="dstAttributeValue"></regnode>
@@ -1228,6 +1238,8 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				<pointerspec name = "src">
 					<pointeritem desc = "Component Attribute"></pointeritem>
 					<pointeritem desc = "Component ReadonlyAttribute"></pointeritem>
+					<pointeritem desc = "ComponentRef Attribute"></pointeritem>
+					<pointeritem desc = "ComponentRef ReadonlyAttribute"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
 					<pointeritem desc = "Property"></pointeritem>
@@ -1396,7 +1408,7 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "EventSinkDelegate" metaref = "1122" >
+		<connection name = "EventSinkDelegate" metaref = "2856" >
 				<regnode name = "labelFormatStr" value ="delegatesTo"></regnode>
 				<regnode name = "sName" value ="srcEventSinkDelegate"></regnode>
 				<regnode name = "dName" value ="dstEventSinkDelegate"></regnode>
@@ -1408,16 +1420,20 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				<pointerspec name = "src">
 					<pointeritem desc = "Component InEventPort"></pointeritem>
 					<pointeritem desc = "ComponentAssembly InEventPort"></pointeritem>
+					<pointeritem desc = "ComponentAssemblyReference InEventPort"></pointeritem>
+					<pointeritem desc = "ComponentRef InEventPort"></pointeritem>
 					<pointeritem desc = "InEventPort"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
 					<pointeritem desc = "Component InEventPort"></pointeritem>
 					<pointeritem desc = "ComponentAssembly InEventPort"></pointeritem>
+					<pointeritem desc = "ComponentAssemblyReference InEventPort"></pointeritem>
+					<pointeritem desc = "ComponentRef InEventPort"></pointeritem>
 					<pointeritem desc = "InEventPort"></pointeritem>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "EventSourceDelegate" metaref = "1123" >
+		<connection name = "EventSourceDelegate" metaref = "2857" >
 				<regnode name = "labelFormatStr" value ="delegatesTo"></regnode>
 				<regnode name = "sName" value ="srcEventSourceDelegate"></regnode>
 				<regnode name = "dName" value ="dstEventSourceDelegate"></regnode>
@@ -1429,11 +1445,15 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				<pointerspec name = "src">
 					<pointeritem desc = "Component OutEventPort"></pointeritem>
 					<pointeritem desc = "ComponentAssembly OutEventPort"></pointeritem>
+					<pointeritem desc = "ComponentAssemblyReference OutEventPort"></pointeritem>
+					<pointeritem desc = "ComponentRef OutEventPort"></pointeritem>
 					<pointeritem desc = "OutEventPort"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
 					<pointeritem desc = "Component OutEventPort"></pointeritem>
 					<pointeritem desc = "ComponentAssembly OutEventPort"></pointeritem>
+					<pointeritem desc = "ComponentAssemblyReference OutEventPort"></pointeritem>
+					<pointeritem desc = "ComponentRef OutEventPort"></pointeritem>
 					<pointeritem desc = "OutEventPort"></pointeritem>
 				</pointerspec>
 			</connjoint>
@@ -1456,7 +1476,7 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "ExternalDelegate" metaref = "1125" >
+		<connection name = "ExternalDelegate" metaref = "2858" >
 				<regnode name = "labelFormatStr" value ="references"></regnode>
 				<regnode name = "sName" value ="srcExternalDelegate"></regnode>
 				<regnode name = "dName" value ="dstExternalDelegate"></regnode>
@@ -1473,7 +1493,7 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "FacetDelegate" metaref = "1126" >
+		<connection name = "FacetDelegate" metaref = "2859" >
 				<regnode name = "labelFormatStr" value ="delegatesTo"></regnode>
 				<regnode name = "sName" value ="srcFacetDelegate"></regnode>
 				<regnode name = "dName" value ="dstFacetDelegate"></regnode>
@@ -1485,11 +1505,15 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				<pointerspec name = "src">
 					<pointeritem desc = "Component ProvidedRequestPort"></pointeritem>
 					<pointeritem desc = "ComponentAssembly ProvidedRequestPort"></pointeritem>
+					<pointeritem desc = "ComponentAssemblyReference ProvidedRequestPort"></pointeritem>
+					<pointeritem desc = "ComponentRef ProvidedRequestPort"></pointeritem>
 					<pointeritem desc = "ProvidedRequestPort"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
 					<pointeritem desc = "Component ProvidedRequestPort"></pointeritem>
 					<pointeritem desc = "ComponentAssembly ProvidedRequestPort"></pointeritem>
+					<pointeritem desc = "ComponentAssemblyReference ProvidedRequestPort"></pointeritem>
+					<pointeritem desc = "ComponentRef ProvidedRequestPort"></pointeritem>
 					<pointeritem desc = "ProvidedRequestPort"></pointeritem>
 				</pointerspec>
 			</connjoint>
@@ -2155,7 +2179,7 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "ReceptacleDelegate" metaref = "1154" >
+		<connection name = "ReceptacleDelegate" metaref = "2860" >
 				<regnode name = "labelFormatStr" value ="delegatesTo"></regnode>
 				<regnode name = "sName" value ="srcReceptacleDelegate"></regnode>
 				<regnode name = "dName" value ="dstReceptacleDelegate"></regnode>
@@ -2167,11 +2191,15 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				<pointerspec name = "src">
 					<pointeritem desc = "Component RequiredRequestPort"></pointeritem>
 					<pointeritem desc = "ComponentAssembly RequiredRequestPort"></pointeritem>
+					<pointeritem desc = "ComponentAssemblyReference RequiredRequestPort"></pointeritem>
+					<pointeritem desc = "ComponentRef RequiredRequestPort"></pointeritem>
 					<pointeritem desc = "RequiredRequestPort"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
 					<pointeritem desc = "Component RequiredRequestPort"></pointeritem>
 					<pointeritem desc = "ComponentAssembly RequiredRequestPort"></pointeritem>
+					<pointeritem desc = "ComponentAssemblyReference RequiredRequestPort"></pointeritem>
+					<pointeritem desc = "ComponentRef RequiredRequestPort"></pointeritem>
 					<pointeritem desc = "RequiredRequestPort"></pointeritem>
 				</pointerspec>
 			</connjoint>
@@ -2358,7 +2386,7 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "deliverTo" metaref = "1162" >
+		<connection name = "deliverTo" metaref = "2861" >
 				<regnode name = "labelFormatStr" value ="deliverTo"></regnode>
 				<regnode name = "sName" value ="srcdeliverTo"></regnode>
 				<regnode name = "dName" value ="dstdeliverTo"></regnode>
@@ -2373,11 +2401,13 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				<pointerspec name = "dst">
 					<pointeritem desc = "Component InEventPort"></pointeritem>
 					<pointeritem desc = "ComponentAssembly InEventPort"></pointeritem>
+					<pointeritem desc = "ComponentAssemblyReference InEventPort"></pointeritem>
+					<pointeritem desc = "ComponentRef InEventPort"></pointeritem>
 					<pointeritem desc = "InEventPort"></pointeritem>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "emit" metaref = "1163" >
+		<connection name = "emit" metaref = "2862" >
 				<regnode name = "labelFormatStr" value ="emits"></regnode>
 				<regnode name = "sName" value ="srcemit"></regnode>
 				<regnode name = "dName" value ="dstemit"></regnode>
@@ -2389,16 +2419,20 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				<pointerspec name = "src">
 					<pointeritem desc = "Component OutEventPort"></pointeritem>
 					<pointeritem desc = "ComponentAssembly OutEventPort"></pointeritem>
+					<pointeritem desc = "ComponentAssemblyReference OutEventPort"></pointeritem>
+					<pointeritem desc = "ComponentRef OutEventPort"></pointeritem>
 					<pointeritem desc = "OutEventPort"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
 					<pointeritem desc = "Component InEventPort"></pointeritem>
 					<pointeritem desc = "ComponentAssembly InEventPort"></pointeritem>
+					<pointeritem desc = "ComponentAssemblyReference InEventPort"></pointeritem>
+					<pointeritem desc = "ComponentRef InEventPort"></pointeritem>
 					<pointeritem desc = "InEventPort"></pointeritem>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "invoke" metaref = "1164" >
+		<connection name = "invoke" metaref = "2863" >
 				<regnode name = "labelFormatStr" value ="invokes"></regnode>
 				<regnode name = "sName" value ="srcinvoke"></regnode>
 				<regnode name = "dName" value ="dstinvoke"></regnode>
@@ -2410,11 +2444,15 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				<pointerspec name = "src">
 					<pointeritem desc = "Component RequiredRequestPort"></pointeritem>
 					<pointeritem desc = "ComponentAssembly RequiredRequestPort"></pointeritem>
+					<pointeritem desc = "ComponentAssemblyReference RequiredRequestPort"></pointeritem>
+					<pointeritem desc = "ComponentRef RequiredRequestPort"></pointeritem>
 					<pointeritem desc = "RequiredRequestPort"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
 					<pointeritem desc = "Component ProvidedRequestPort"></pointeritem>
 					<pointeritem desc = "ComponentAssembly ProvidedRequestPort"></pointeritem>
+					<pointeritem desc = "ComponentAssemblyReference ProvidedRequestPort"></pointeritem>
+					<pointeritem desc = "ComponentRef ProvidedRequestPort"></pointeritem>
 					<pointeritem desc = "ProvidedRequestPort"></pointeritem>
 				</pointerspec>
 			</connjoint>
@@ -2436,7 +2474,7 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "publish" metaref = "1166" >
+		<connection name = "publish" metaref = "2864" >
 				<regnode name = "labelFormatStr" value ="publish"></regnode>
 				<regnode name = "sName" value ="srcpublish"></regnode>
 				<regnode name = "dName" value ="dstpublish"></regnode>
@@ -2448,6 +2486,8 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				<pointerspec name = "src">
 					<pointeritem desc = "Component OutEventPort"></pointeritem>
 					<pointeritem desc = "ComponentAssembly OutEventPort"></pointeritem>
+					<pointeritem desc = "ComponentAssemblyReference OutEventPort"></pointeritem>
+					<pointeritem desc = "ComponentRef OutEventPort"></pointeritem>
 					<pointeritem desc = "OutEventPort"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
@@ -2497,7 +2537,7 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				<pointeritem desc = "ValueObject"></pointeritem>
 			</pointerspec>
 		</reference>
-		<reference name = "AttributeMapping" metaref = "1168">
+		<reference name = "AttributeMapping" metaref = "2865">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyAttributeMapping"></regnode>
@@ -2520,6 +2560,10 @@ let props = self.connectedFCOs(AttributeMappingValue) in
                       props->forAll (x : Property | x.referenceParts(DataType)->forAll (prop : Reference |
                          myType.refersTo().kindName() = prop.refersTo().kindName()   )  )  )]]>
 				<dispname>An AttributeMapping can only be used to delegate property values to attributes of the same type</dispname>
+			</constraint>
+			<constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[not self.refersTo().isNull()]]>
+				<dispname>Null references are prohibited</dispname>
 			</constraint>
 			<constraint name="SingleValue" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[self.attachingConnections(AttributeMappingValue)->size() <= 1]]>
@@ -2697,7 +2741,7 @@ let props = self.connectedFCOs(AttributeMappingValue) in
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyComponentAssemblyReference"></regnode>
-			<constraint name="ComponentInstanceOnly" eventmask = "0x0" depth = "1" priority = "2">
+			<constraint name="InstanceOnly" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let parent = self.parent() in
    if (parent.isNull()) then
       true
@@ -2706,6 +2750,25 @@ let props = self.connectedFCOs(AttributeMappingValue) in
    endif]]>
 				<dispname>A Deployment Plan can only contain references to instances of components/component assemblies; references to component/assembly types are not allowed.</dispname>
 			</constraint>
+			<constraint name="InstanceReferenceOnly" eventmask = "0x80000004" depth = "1" priority = "1">
+				<![CDATA[let parent = self.parent() in
+   if (parent.isNull()) then
+      true
+   else
+      parent.kindName = "ComponentAssembly" => self.refersTo().isInstance()
+   endif]]>
+				<dispname>A ComponentAssemblyReference or a ComponentRef within a component assembly can only refer to an assembly instance, or a component instance respectively. </dispname>
+			</constraint>
+			<constraint name="NonNullReference" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[not self.refersTo().isNull()]]>
+				<dispname>Null references are prohibited</dispname>
+			</constraint>
+			<constraint name="ValidParent" eventmask = "0x80000000" depth = "1" priority = "1">
+				<![CDATA[self.refersTo().parent() <> self.parent()]]>
+				<dispname>A ComponentAssemblyReference/ComponentRef cannot be defined within the same assembly that contains the referred ComponentAssembly/Component.</dispname>
+			</constraint>
+			<regnode name = "icon" value ="componentref.bmp"></regnode>
+			<regnode name = "decorator" value ="MGA.Decorator.IDMLDecorator"></regnode>
 			<pointerspec name = "ref">
 				<pointeritem desc = "ComponentAssembly"></pointeritem>
 			</pointerspec>
@@ -2740,7 +2803,7 @@ let props = self.connectedFCOs(AttributeMappingValue) in
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyComponentRef"></regnode>
-			<constraint name="ComponentInstanceOnly" eventmask = "0x0" depth = "1" priority = "2">
+			<constraint name="InstanceOnly" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let parent = self.parent() in
    if (parent.isNull()) then
       true
@@ -2748,6 +2811,15 @@ let props = self.connectedFCOs(AttributeMappingValue) in
       parent.kindName = "DeploymentPlan" implies self.refersTo().isInstance()
    endif]]>
 				<dispname>A Deployment Plan can only contain references to instances of components/component assemblies; references to component/assembly types are not allowed.</dispname>
+			</constraint>
+			<constraint name="InstanceReferenceOnly" eventmask = "0x80000004" depth = "1" priority = "1">
+				<![CDATA[let parent = self.parent() in
+   if (parent.isNull()) then
+      true
+   else
+      parent.kindName = "ComponentAssembly" => self.refersTo().isInstance()
+   endif]]>
+				<dispname>A ComponentAssemblyReference or a ComponentRef within a component assembly can only refer to an assembly instance, or a component instance respectively. </dispname>
 			</constraint>
 			<constraint name="NoNullReference" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[not self.refersTo ().isNull ()]]>
@@ -2762,6 +2834,10 @@ let props = self.connectedFCOs(AttributeMappingValue) in
 				<![CDATA[let srcCount = self.attachingConnections( "dst", PackageInterface ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to ComponentRef as "src" over PackageInterface, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidParent" eventmask = "0x80000000" depth = "1" priority = "1">
+				<![CDATA[self.refersTo().parent() <> self.parent()]]>
+				<dispname>A ComponentAssemblyReference/ComponentRef cannot be defined within the same assembly that contains the referred ComponentAssembly/Component.</dispname>
 			</constraint>
 			<regnode name = "icon" value ="componentref.bmp"></regnode>
 			<regnode name = "decorator" value ="MGA.Decorator.IDMLDecorator"></regnode>
@@ -3213,7 +3289,7 @@ let props = self.connectedFCOs(AttributeMappingValue) in
 			</constraint>
 			<constraint name="ValidEmitsHierarchy" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[self.attachingConnections(emit)->forAll (x : Connection | x.parent() <> self.parent()) ]]>
-				<dispname>Within a single assembly, an InEventPort can be connected to an OutEventPort when they are both ports of component instances</dispname>
+				<dispname>Within a single assembly, an InEventPort can be connected to an OutEventPort only when they are both ports of component instances</dispname>
 			</constraint>
 			<constraint name="ValidEventConnection" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[if self.single_destination
@@ -3229,6 +3305,11 @@ endif
 				<![CDATA[self.connectedFCOs(EventSourceDelegate)->forAll ( x | x.parent() = self.parent() implies x <> self)]]>
 				<dispname>Only OutEventPorts of a component instance can be delegated</dispname>
 			</constraint>
+			<constraint name="ValidPublishConnection" eventmask = "0x800" depth = "1" priority = "1">
+				<![CDATA[let connectors = self.connectedFCOs (publish) in
+     connectors->forAll ( c1, c2 |  c1 <> c2 => c1.parent() <> c2.parent() )]]>
+				<dispname>An OutEventPort can only be connected to multiple PublishConnectors  when shared between a ComponentAssembly/Component and it's reference.</dispname>
+			</constraint>
 			<constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
@@ -3237,11 +3318,6 @@ endif
 				<![CDATA[let dstCount = self.attachingConnections( "src", emit ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to OutEventPort as "dst" over emit, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidpublishdstCardinality160" eventmask = "0x800" depth = "1" priority = "1">
-				<![CDATA[let dstCount = self.attachingConnections( "src", publish ) -> size in
-                     (dstCount <= 1)]]>
-				<dispname>Multiplicity of objects, which are associated to OutEventPort as "dst" over publish, has to match 0..1.</dispname>
 			</constraint>
 			<attrdef name="single_destination" metaref = "1196" valuetype = "boolean" defvalue = "false">
 			</attrdef>
@@ -3710,14 +3786,14 @@ let props = self.connectedFCOs(AttributeValue) in
 				<regnode name = "icon" value ="component.bmp"></regnode>
 				<regnode name = "decorator" value ="MGA.Decorator.IDMLDecorator"></regnode>
 				<regnode name = "isTypeShown" value ="true"></regnode>
-			<constraint name="ComponentInstanceOnly" eventmask = "0x80000000" depth = "1" priority = "1">
+			<constraint name="InstanceOnly" eventmask = "0x80000004" depth = "1" priority = "1">
 				<![CDATA[let parent = self.parent() in
-          if ( parent.isNull() ) then
-          true
-          else
-          parent.kindName = "ComponentAssembly" implies self.isInstance()
-          endif]]>
-				<dispname>Only Component Instances can be created inside a Component Assembly (Press Alt)</dispname>
+   if (parent.isNull()) then
+      true
+   else
+      parent.kindName = "ComponentAssembly" implies self.isInstance()
+   endif]]>
+				<dispname>Only assembly or component instances can be created inside a Component Assembly</dispname>
 			</constraint>
 			<constraint name="NoDeriveAndSupport" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[referenceParts ("Inherits")->size > 0 implies referenceParts ("Supports")->size = 0]]>
@@ -3825,16 +3901,17 @@ let props = self.connectedFCOs(AttributeValue) in
 		</model>
 		<model name = "ComponentAssembly" metaref = "1309" attributes = "UUID label" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="component.bmp"></regnode>
 				<regnode name = "decorator" value ="MGA.Decorator.IDMLDecorator"></regnode>
 				<regnode name = "isTypeShown" value ="true"></regnode>
-			<constraint name="AssemblyInstanceOnly" eventmask = "0x80000004" depth = "1" priority = "1">
+			<constraint name="InstanceOnly" eventmask = "0x80000004" depth = "1" priority = "1">
 				<![CDATA[let parent = self.parent() in
    if (parent.isNull()) then
       true
    else
       parent.kindName = "ComponentAssembly" implies self.isInstance()
    endif]]>
-				<dispname>Only Assembly Instances can be created inside a Component Assembly (Press Alt)</dispname>
+				<dispname>Only assembly or component instances can be created inside a Component Assembly</dispname>
 			</constraint>
 			<constraint name="RequiredComponentPackage" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let instances = self.modelParts(Component) in
@@ -3902,67 +3979,71 @@ instances->forAll (x : Component |
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to ComponentImplementation as "dst" over Implements, has to match 0..1.</dispname>
 			</constraint>
-			<role name = "AssemblyConfigProperty" metaref = "1310" kind = "AssemblyConfigProperty"></role>
-			<role name = "AssemblyDeployRequirement" metaref = "1311" kind = "AssemblyDeployRequirement"></role>
-			<role name = "AssemblyselectRequirement" metaref = "1312" kind = "AssemblyselectRequirement"></role>
-			<role name = "AttributeDelegate" metaref = "1313" kind = "AttributeDelegate"></role>
-			<role name = "AttributeMapping" metaref = "1314" kind = "AttributeMapping"></role>
-			<role name = "AttributeMappingDelegate" metaref = "1315" kind = "AttributeMappingDelegate"></role>
-			<role name = "AttributeMappingValue" metaref = "1316" kind = "AttributeMappingValue"></role>
-			<role name = "AttributeValue" metaref = "1317" kind = "AttributeValue"></role>
+			<role name = "AssemblyConfigProperty" metaref = "2866" kind = "AssemblyConfigProperty"></role>
+			<role name = "AssemblyDeployRequirement" metaref = "2867" kind = "AssemblyDeployRequirement"></role>
+			<role name = "AssemblyselectRequirement" metaref = "2868" kind = "AssemblyselectRequirement"></role>
+			<role name = "AttributeDelegate" metaref = "2869" kind = "AttributeDelegate"></role>
+			<role name = "AttributeMapping" metaref = "2870" kind = "AttributeMapping"></role>
+			<role name = "AttributeMappingDelegate" metaref = "2871" kind = "AttributeMappingDelegate"></role>
+			<role name = "AttributeMappingValue" metaref = "2872" kind = "AttributeMappingValue"></role>
+			<role name = "AttributeValue" metaref = "2873" kind = "AttributeValue"></role>
 			<role name = "Component" metaref = "1318" kind = "Component"></role>
 			<role name = "ComponentAssembly" metaref = "1319" kind = "ComponentAssembly"></role>
+			<role name = "ComponentAssemblyReference" metaref = "2874" kind = "ComponentAssemblyReference"></role>
 			<role name = "ComponentPackage" metaref = "1320" kind = "ComponentPackage"></role>
 			<role name = "ComponentPackageReference" metaref = "1321" kind = "ComponentPackageReference"></role>
-			<role name = "EventSinkDelegate" metaref = "1322" kind = "EventSinkDelegate"></role>
-			<role name = "EventSourceDelegate" metaref = "1323" kind = "EventSourceDelegate"></role>
-			<role name = "ExternalDelegate" metaref = "1324" kind = "ExternalDelegate"></role>
-			<role name = "ExternalReferenceEndPoint" metaref = "1325" kind = "ExternalReferenceEndPoint"></role>
-			<role name = "FacetDelegate" metaref = "1326" kind = "FacetDelegate"></role>
+			<role name = "ComponentRef" metaref = "2875" kind = "ComponentRef"></role>
+			<role name = "EventSinkDelegate" metaref = "2876" kind = "EventSinkDelegate"></role>
+			<role name = "EventSourceDelegate" metaref = "2877" kind = "EventSourceDelegate"></role>
+			<role name = "ExternalDelegate" metaref = "2878" kind = "ExternalDelegate"></role>
+			<role name = "ExternalReferenceEndPoint" metaref = "2879" kind = "ExternalReferenceEndPoint"></role>
+			<role name = "FacetDelegate" metaref = "2880" kind = "FacetDelegate"></role>
 			<role name = "InEventPort" metaref = "1327" kind = "InEventPort"></role>
 			<role name = "OutEventPort" metaref = "1328" kind = "OutEventPort"></role>
 			<role name = "Property" metaref = "1329" kind = "Property"></role>
 			<role name = "ProvidedRequestPort" metaref = "1330" kind = "ProvidedRequestPort"></role>
-			<role name = "PublishConnector" metaref = "1331" kind = "PublishConnector"></role>
+			<role name = "PublishConnector" metaref = "2881" kind = "PublishConnector"></role>
 			<role name = "QoSDecoration" metaref = "2674" kind = "QoSDecoration"></role>
 			<role name = "QoSValue" metaref = "2667" kind = "QoSValue"></role>
-			<role name = "ReceptacleDelegate" metaref = "1332" kind = "ReceptacleDelegate"></role>
+			<role name = "ReceptacleDelegate" metaref = "2882" kind = "ReceptacleDelegate"></role>
 			<role name = "RequiredRequestPort" metaref = "1333" kind = "RequiredRequestPort"></role>
 			<role name = "Requirement" metaref = "1334" kind = "Requirement"></role>
-			<role name = "deliverTo" metaref = "1335" kind = "deliverTo"></role>
-			<role name = "emit" metaref = "1336" kind = "emit"></role>
-			<role name = "invoke" metaref = "1337" kind = "invoke"></role>
-			<role name = "publish" metaref = "1338" kind = "publish"></role>
+			<role name = "deliverTo" metaref = "2883" kind = "deliverTo"></role>
+			<role name = "emit" metaref = "2884" kind = "emit"></role>
+			<role name = "invoke" metaref = "2885" kind = "invoke"></role>
+			<role name = "publish" metaref = "2886" kind = "publish"></role>
 			<aspect name = "Packaging" metaref = "1339" attributes = "UUID label" >
-				<part metaref = "1340" role = "AssemblyConfigProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "1341" role = "AssemblyDeployRequirement" primary = "yes" linked = "no"></part>
-				<part metaref = "1342" role = "AssemblyselectRequirement" primary = "yes" linked = "no"></part>
-				<part metaref = "1343" role = "AttributeDelegate" primary = "yes" linked = "no"></part>
-				<part metaref = "1344" role = "AttributeMapping" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
-				<part metaref = "1345" role = "AttributeMappingDelegate" primary = "yes" linked = "no"></part>
-				<part metaref = "1346" role = "AttributeMappingValue" primary = "yes" linked = "no"></part>
-				<part metaref = "1347" role = "AttributeValue" primary = "yes" linked = "no"></part>
+				<part metaref = "2887" role = "AssemblyConfigProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "2888" role = "AssemblyDeployRequirement" primary = "yes" linked = "no"></part>
+				<part metaref = "2889" role = "AssemblyselectRequirement" primary = "yes" linked = "no"></part>
+				<part metaref = "2890" role = "AttributeDelegate" primary = "yes" linked = "no"></part>
+				<part metaref = "2891" role = "AttributeMapping" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
+				<part metaref = "2892" role = "AttributeMappingDelegate" primary = "yes" linked = "no"></part>
+				<part metaref = "2893" role = "AttributeMappingValue" primary = "yes" linked = "no"></part>
+				<part metaref = "2894" role = "AttributeValue" primary = "yes" linked = "no"></part>
 				<part metaref = "1348" role = "Component" primary = "yes" linked = "no"></part>
 				<part metaref = "1349" role = "ComponentAssembly" primary = "yes" linked = "no"></part>
+				<part metaref = "2895" role = "ComponentAssemblyReference" primary = "yes" kindaspect = "Packaging" linked = "no"></part>
 				<part metaref = "1350" role = "ComponentPackage" primary = "yes" linked = "no"></part>
 				<part metaref = "1351" role = "ComponentPackageReference" primary = "yes" linked = "no"></part>
-				<part metaref = "1352" role = "EventSinkDelegate" primary = "yes" linked = "no"></part>
-				<part metaref = "1353" role = "EventSourceDelegate" primary = "yes" linked = "no"></part>
-				<part metaref = "1354" role = "ExternalDelegate" primary = "yes" linked = "no"></part>
-				<part metaref = "1355" role = "ExternalReferenceEndPoint" primary = "yes" linked = "no"></part>
-				<part metaref = "1356" role = "FacetDelegate" primary = "yes" linked = "no"></part>
+				<part metaref = "2896" role = "ComponentRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "2897" role = "EventSinkDelegate" primary = "yes" linked = "no"></part>
+				<part metaref = "2898" role = "EventSourceDelegate" primary = "yes" linked = "no"></part>
+				<part metaref = "2899" role = "ExternalDelegate" primary = "yes" linked = "no"></part>
+				<part metaref = "2900" role = "ExternalReferenceEndPoint" primary = "yes" linked = "no"></part>
+				<part metaref = "2901" role = "FacetDelegate" primary = "yes" linked = "no"></part>
 				<part metaref = "1357" role = "InEventPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
 				<part metaref = "1358" role = "OutEventPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
 				<part metaref = "1359" role = "Property" primary = "yes" linked = "no"></part>
 				<part metaref = "1360" role = "ProvidedRequestPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
-				<part metaref = "1361" role = "PublishConnector" primary = "yes" linked = "no"></part>
-				<part metaref = "1362" role = "ReceptacleDelegate" primary = "yes" linked = "no"></part>
+				<part metaref = "2902" role = "PublishConnector" primary = "yes" linked = "no"></part>
+				<part metaref = "2903" role = "ReceptacleDelegate" primary = "yes" linked = "no"></part>
 				<part metaref = "1363" role = "RequiredRequestPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
 				<part metaref = "1364" role = "Requirement" primary = "yes" linked = "no"></part>
-				<part metaref = "1365" role = "deliverTo" primary = "yes" linked = "no"></part>
-				<part metaref = "1366" role = "emit" primary = "yes" linked = "no"></part>
-				<part metaref = "1367" role = "invoke" primary = "yes" linked = "no"></part>
-				<part metaref = "1368" role = "publish" primary = "yes" linked = "no"></part>
+				<part metaref = "2904" role = "deliverTo" primary = "yes" linked = "no"></part>
+				<part metaref = "2905" role = "emit" primary = "yes" linked = "no"></part>
+				<part metaref = "2906" role = "invoke" primary = "yes" linked = "no"></part>
+				<part metaref = "2907" role = "publish" primary = "yes" linked = "no"></part>
 			</aspect>
 			<aspect name = "QoSModelAspect" metaref = "2666" attributes = "UUID label" >
 				<dispname>QoS Modeling</dispname>
@@ -4089,14 +4170,14 @@ instances->forAll (x : Component |
 				<dispname>ComponentImplementation can either be Monolithic or be assembly based, but not both</dispname>
 			</constraint>
 			<constraint name="ValidComponentImplementationContainerPartCardinality166" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidComponentImplementationContainerPartCardinality167" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ComponentImplementation" ) -> size + self.parts( "MonolithicImplementation" ) -> size + self.parts( "ComponentAssembly" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 1.</dispname>
+			</constraint>
+			<constraint name="ValidComponentImplementationContainerPartCardinality167" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidComponentImplementationContainerPartCardinality168" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Implements" ) -> size in
@@ -4730,22 +4811,22 @@ instances->forAll (x : Component |
 				<dispname>A PackageConfiguration can either specialize another PackageConfiguration, or contain a ComponentPackage, or contain a reference to a ComponentPackage</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality172" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
+				<![CDATA[let partCount = self.parts( "PackageConfSpecializedConfig" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality173" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfiguration" ) -> size in
-                     (partCount >= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 1..*.</dispname>
+				<![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality174" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
+				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality175" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfSpecializedConfig" ) -> size in
+				<![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -4755,9 +4836,9 @@ instances->forAll (x : Component |
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality177" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
+				<![CDATA[let partCount = self.parts( "PackageConfiguration" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 1..*.</dispname>
 			</constraint>
 			<role name = "ComponentPackage" metaref = "1703" kind = "ComponentPackage"></role>
 			<role name = "ComponentPackageReference" metaref = "1704" kind = "ComponentPackageReference"></role>
@@ -4785,17 +4866,17 @@ instances->forAll (x : Component |
 		<model name = "PackageContainer" metaref = "1724" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="ValidPackageContainerPartCardinality178" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
+				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageContainerPartCardinality179" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageInterface" ) -> size in
+				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageContainerPartCardinality180" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
+				<![CDATA[let partCount = self.parts( "PackageInterface" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -4851,17 +4932,17 @@ instances->forAll (x : Component |
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="PolicySet.bmp"></regnode>
 			<constraint name="ValidPolicySetPartCardinality181" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ThreadPoolRef" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PolicySet, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPolicySetPartCardinality182" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PriorityModelPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PolicySet, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidPolicySetPartCardinality183" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPolicySetPartCardinality182" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "BandedConnectionRef" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PolicySet, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPolicySetPartCardinality183" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ThreadPoolRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PolicySet, has to match 0..1.</dispname>
 			</constraint>
@@ -5063,12 +5144,12 @@ instances->forAll (x : Component |
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="RTModel.bmp"></regnode>
 			<constraint name="ValidRTModelPartCardinality189" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "EnvironmentConf" ) -> size in
+				<![CDATA[let partCount = self.parts( "ResourceContainer" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RTModel, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidRTModelPartCardinality190" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ResourceContainer" ) -> size in
+				<![CDATA[let partCount = self.parts( "EnvironmentConf" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RTModel, has to match 0..1.</dispname>
 			</constraint>
@@ -5364,19 +5445,19 @@ let props = self.connectedFCOs(AttributeValue) in
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="TopLevelPackageConfiguration.bmp"></regnode>
 			<constraint name="ValidTopLevelPackageContainerPartCardinality202" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidTopLevelPackageContainerPartCardinality203" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "package" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidTopLevelPackageContainerPartCardinality204" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidTopLevelPackageContainerPartCardinality203" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PackageConfigurationReference" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 1.</dispname>
+			</constraint>
+			<constraint name="ValidTopLevelPackageContainerPartCardinality204" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>
 			<role name = "PackageConfigurationReference" metaref = "1840" kind = "PackageConfigurationReference"></role>
 			<role name = "TopLevelPackage" metaref = "1841" kind = "TopLevelPackage"></role>

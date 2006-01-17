@@ -47,7 +47,8 @@ STDMETHODIMP CDecorator::Initialize( IMgaProject *project,
           metaFco->get_Name ( &bstr );
 
           // ComponentDecorator draws ComponentRefs too.
-          if ( bstr == PICML_COMPONENTREF_NAME )
+          if ( bstr == PICML_COMPONENTREF_NAME 
+               || bstr == PICML_COMPONENTASMREF_NAME)
 				    m_pDecorator = new ComponentDecorator( metaPart );
           else if ( bstr == PICML_INHERITS_NAME )
             m_pDecorator = new InheritsDecorator;

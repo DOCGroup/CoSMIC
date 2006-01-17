@@ -1,9 +1,26 @@
+Tue Jan 17 20:07:45 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/decorators/Decorator.cpp:
+        * PIM/PICML/decorators/IDMLDecorators.h:
+        * PIM/PICML/decorators/IDMLDecorators.cpp:  Updated the decorator
+          to display shared components and component assemblies.
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:  Updated the
+          interpreter to add support for sharing components and component
+          assemblies across different component assemblies.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:  Updated the metamodel to support
+          shared components and component assemblies.
+
 Sat Jan 14 00:46:12 UTC 2006  Nilabja Roy  <nilabjar@invalid.domain>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
-           
+
           Updated paradigms to reflect CoSMIC-0.4.8 release.
 
 Fri Jan 13 21:48:05 UTC 2006  Nilabja R  <nilabjar@dre.vanderbilt.edu>

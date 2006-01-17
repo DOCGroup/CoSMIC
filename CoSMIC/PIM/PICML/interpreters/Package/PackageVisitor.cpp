@@ -1101,8 +1101,8 @@ namespace PICML
         if (assembly.isInstance())
           {
             ComponentAssembly typeParent = casm.Archetype();
-            std::string parentName (typeParent.UUID());
-            if (uuid == parentName)
+            std::string parentUuid (typeParent.UUID());
+            if (uuid == parentUuid)
               casm.UUID() = uuid = std::string ("_") + ::PICML::CreateUuid();
           }
       }
@@ -1116,9 +1116,36 @@ namespace PICML
     // Collect all the Components of this assembly into a set.
     std::set<Component> comps = assembly.Component_kind_children();
 
+    // Add all the shared Components of this assembly into the set.  A
+    // shared Component is implemented as a reference to a Component.  So
+    // just traverse the reference and add it to the set.
+    std::set<ComponentRef> scomps = assembly.ComponentRef_kind_children();
+    for (std::set<ComponentRef>::const_iterator
+           iter = scomps.begin();
+         iter != scomps.end();
+         ++iter)
+      {
+        const ComponentRef compRef = *iter;
+        comps.insert (compRef.ref());
+      }
+
     // Collect all the immediate ComponentAssembly children of this assembly
-    std::vector<ComponentAssembly>
+    std::set<ComponentAssembly>
       subasms = assembly.ComponentAssembly_kind_children();
+
+    // Add all the shared ComponentAssemblies of the current assembly.
+    // Like shared components, shared assemblies are also implemented as
+    // references.  So just traverse the references, and add them to the set.
+    std::set<ComponentAssemblyReference>
+      sasms = assembly.ComponentAssemblyReference_kind_children();
+    for (std::set<ComponentAssemblyReference>::const_iterator
+           iter = sasms.begin();
+         iter != sasms.end();
+         ++iter)
+      {
+        const ComponentAssemblyReference asmRef = *iter;
+        subasms.insert (asmRef.ref());
+      }
 
     // Maintain a list of all ComponentAssemblies in this assembly
     std::vector<ComponentAssembly> assemblies;
@@ -1131,24 +1158,51 @@ namespace PICML
     // assembly-specific list.
     while (!subasms.empty())
       {
-        ComponentAssembly rassembly = subasms.back();
+        ComponentAssembly rassembly = *subasms.begin();
         // Put the first assembly from the current list to the
         // assembly-specific list.
         assemblies.push_back (rassembly);
 
-        subasms.pop_back();
+        // Remove this assembly so that we don't process it again.
+        subasms.erase (rassembly);
 
-        // Get the components of the current assembly, and insert them into
-        // the component list
+        // Get the components of the current assembly
         std::set<Component> rcomps = rassembly.Component_kind_children();
+
+        // Get the shared components of the current assembly
+        scomps = rassembly.ComponentRef_kind_children();
+        for (std::set<ComponentRef>::const_iterator
+               iter = scomps.begin();
+               iter != scomps.end();
+             ++iter)
+          {
+            const ComponentRef compRef = *iter;
+            rcomps.insert (compRef.ref());
+          }
+        // Insert both into the component list.
         comps.insert (rcomps.begin(), rcomps.end());
 
         // Get the subassemblies of the first assembly.
-        std::vector<ComponentAssembly>
+        std::set<ComponentAssembly>
           rasms = rassembly.ComponentAssembly_kind_children();
 
+        // Add all the shared ComponentAssemblies of the current assembly.
+        // Like shared components, shared assemblies are also implemented
+        // as references.  So just traverse the references, and add them to
+        // the set.
+        std::set<ComponentAssemblyReference>
+          sasms = rassembly.ComponentAssemblyReference_kind_children();
+        for (std::set<ComponentAssemblyReference>::const_iterator
+               iter = sasms.begin();
+             iter != sasms.end();
+             ++iter)
+          {
+            const ComponentAssemblyReference asmRef = *iter;
+            rasms.insert (asmRef.ref());
+          }
+
         // Insert them to the current list.
-        std::copy (rasms.begin(), rasms.end(), std::back_inserter (subasms));
+        subasms.insert (rasms.begin(), rasms.end());
       }
 
     // Create the appropriate component attribute value mappings
