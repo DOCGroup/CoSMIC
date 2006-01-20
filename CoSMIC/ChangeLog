@@ -1,3 +1,17 @@
+Fri Jan 20 15:30:17 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IOAutomata/README.txt: Added new into the repo.
+
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Simplified/changed I/O Automata meta-model. Actions are changed from atoms
+          to models which contain properties. Due to this change, the I/O Automata
+          interpreter will not build in the CoSMIC source. Please checkout my Dec 14
+          version if you want to build that interpreter.
+
+        * PIM/PICML/paradigms/icons/State.bmp: Added a 'S'!
+
 Tue Jan 17 20:07:45 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/decorators/Decorator.cpp:
