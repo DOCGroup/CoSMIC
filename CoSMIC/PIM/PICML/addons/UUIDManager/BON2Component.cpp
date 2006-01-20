@@ -21,7 +21,7 @@
 
 #include "StdAfx.h"
 #include "BON2Component.h"
-#include <PICML/Utils.h>
+#include "PICML/Utils.h"
 
 namespace BON
 {
@@ -56,7 +56,7 @@ void Component::initialize( Project& project )
 {
   // Turn off the auto commit for the project while using the
   // add-on. This prevents exceptions from occurring.
-  project->setAutoCommit (false);
+  //project->setAutoCommit (false);
 }
 
 // ====================================================
@@ -123,34 +123,41 @@ void Component::globalEventPerformed( globalevent_enum event )
 
 void Component::objectEventPerformed( Object& object, unsigned long event, VARIANT v )
 {
-  // Get the name of the object type. Only monitor <Component> 
-  // and <ComponentAssembly> objects.
-  std::string name = object->getObjectMeta ().name ();
+  //try
+  //{
+  //  // Get the name of the object type. Only monitor <Component> 
+  //  // and <ComponentAssembly> objects.
+  //  std::string name = object->getObjectMeta ().name ();
 
-  if (name == "Component" || name == "ComponentAssembly")
-  {
-    BON::FCO fco = object;
-    BON::Attribute uuid = fco->getAttribute ("UUID");
+  //  if (name == "Component" || name == "ComponentAssembly")
+  //  {
+  //    BON::FCO fco = object;
+  //    BON::Attribute uuid = fco->getAttribute ("UUID");
 
-    if (uuid)
-    {
-      // We only handle the creation events at this stage.
-      if (event == MON::OET_ObjectCreated)
-      {
-        // Create an UUID and add the <uuid_manager_> event
-        // listener to the object.
-        uuid->setStringValue (PICML::CreateUuid ());     
-      }
-      else if (event == MON::OET_AttributeChanged)
-      {
-        // Validate the UUID of the object.
-        if (!PICML::ValidUuid (uuid->getStringValue ()))
-        {
-          uuid->setStringValue (PICML::CreateUuid ());
-        }
-      }
-    }
-  }
+  //    if (uuid)
+  //    {
+  //      // We only handle the creation events at this stage.
+  //      if (event == MON::OET_ObjectCreated)
+  //      {
+  //        // Create an UUID and add the <uuid_manager_> event
+  //        // listener to the object.
+  //        uuid->setStringValue (PICML::CreateUuid ());     
+  //      }
+  //      else if (event == MON::OET_AttributeChanged)
+  //      {
+  //        // Validate the UUID of the object.
+  //        if (!PICML::ValidUuid (uuid->getStringValue ()))
+  //        {
+  //          uuid->setStringValue (PICML::CreateUuid ());
+  //        }
+  //      }
+  //    }
+  //  }
+  //}
+  //catch (...)
+  //{
+  //  AfxMessageBox ("Gotcha");
+  //}
 }
 
 #endif // GME_ADDON

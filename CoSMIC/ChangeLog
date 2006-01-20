@@ -1,3 +1,25 @@
+Fri Jan 20 19:29:35 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/UUIDManager/BON2Component.cpp:
+
+          Tried to fix bug WRT to importing a PICML model, but it's located
+          in the BON library.
+
+        * PIM/PICML/interpreters/PICML/Utils.cpp:
+
+          Browse for folder dialog is displayed as a a modal dialog box.
+          Also fixed bug where displaying dialog would cause GME to
+          hide and the dialog would not show.
+
+        * cosmic.mwc:
+
+          Removed the UUIDManager from the default project build. It will remain
+          this way until the bug in BON mentioned above is fixed.
+
+        * PIM/PICML/interpreters/PathComponent/RegisterPathComponent.vcproj:
+
+          Removed this file.
+
 Fri Jan 20 15:30:17 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/IOAutomata/README.txt: Added new into the repo.
