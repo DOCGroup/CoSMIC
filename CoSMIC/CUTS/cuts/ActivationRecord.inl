@@ -52,20 +52,20 @@ void CUTS_Activation_Record::log_time_measurement (size_t reps,
 }
 
 //
+// activate
+//
+CUTS_INLINE
+void CUTS_Activation_Record::activate (void)
+{
+  this->active_ = true;
+  this->start_time_ = ACE_OS::gettimeofday ();
+}
+
+//
 // reset
 //
 CUTS_INLINE
 void CUTS_Activation_Record::reset (void)
 {
   this->entries_.c.clear ();
-}
-
-//
-// activate
-//
-CUTS_INLINE
-void CUTS_Activation_Record::activate (void)
-{
-  this->start_time_ = ACE_OS::gettimeofday ();
-  this->active_ = true;
 }

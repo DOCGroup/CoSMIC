@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{704C909C-37A0-448B-BA49-08E203D96DA6}" cdate="Tue Jan 24 19:52:31 2006" mdate="Tue Jan 24 19:52:31 2006" version="" metaguid="{A2EB5B26-0A08-4420-81C5-AF2CE643286B}" metaversion="" metaname="PICML">
+<project guid="{3DE5F009-D290-488A-A0DB-C2E839EF4095}" cdate="Thu Jan 26 18:01:21 2006" mdate="Thu Jan 26 18:01:21 2006" version="" metaguid="{BF14A520-C2EC-4809-9320-ECA1D3DAE7E7}" metaversion="" metaname="PICML">
 	<name>CUTS</name>
 	<comment></comment>
 	<author></author>
@@ -661,7 +661,7 @@
 								<regnode name="InterfaceDefinition" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>793,493</value>
+										<value>111,195</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -691,7 +691,7 @@
 								<regnode name="InterfaceDefinition" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>1068,668</value>
+										<value>111,279</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -721,7 +721,7 @@
 								<regnode name="InterfaceDefinition" isopaque="yes">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>243,143</value>
+										<value>111,104</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -1281,27 +1281,6 @@
 							<value></value>
 						</attribute>
 					</reference>
-					<reference id="id-0067-00000032" kind="Constant" role="Constant" relid="0xb" referred="id-0066-00000008">
-						<name>INVALID_ID</name>
-						<regnode name="PartRegs" isopaque="yes">
-							<value></value>
-							<regnode name="InterfaceDefinition" isopaque="yes">
-								<value></value>
-								<regnode name="Position" isopaque="yes">
-									<value>160,90</value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<attribute kind="SpecifyIdTag" status="meta">
-							<value></value>
-						</attribute>
-						<attribute kind="VersionTag" status="meta">
-							<value></value>
-						</attribute>
-						<attribute kind="value">
-							<value>-1</value>
-						</attribute>
-					</reference>
 				</model>
 			</model>
 		</folder>
@@ -1690,9 +1669,6 @@
 			<name>WorkerLibraries</name>
 			<model id="id-0065-00000026" kind="WorkerLibrary" relid="0x1" childrelidcntr="0x3">
 				<name>CUTS</name>
-				<attribute kind="Location" status="meta">
-					<value></value>
-				</attribute>
 				<model id="id-0065-00000027" kind="Worker" role="Worker" relid="0x1" childrelidcntr="0x2">
 					<name>CUTS_Memory_Worker</name>
 					<regnode name="PartRegs" status="undefined">
@@ -1700,13 +1676,10 @@
 						<regnode name="Behavior" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>110,27</value>
+								<value>96,20</value>
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="Location">
-						<value>cuts/MemoryWorker.h</value>
-					</attribute>
 					<model id="id-0065-00000028" kind="WorkerAction" role="WorkerAction" relid="0x1" childrelidcntr="0x1">
 						<name>Allocate_Memory</name>
 						<regnode name="PartRegs" status="undefined">
@@ -1718,9 +1691,6 @@
 								</regnode>
 							</regnode>
 						</regnode>
-						<attribute kind="Enabled" status="meta">
-							<value>true</value>
-						</attribute>
 						<attribute kind="LogAction" status="meta">
 							<value>false</value>
 						</attribute>
@@ -1766,9 +1736,6 @@
 								</regnode>
 							</regnode>
 						</regnode>
-						<attribute kind="Enabled" status="meta">
-							<value>true</value>
-						</attribute>
 						<attribute kind="LogAction" status="meta">
 							<value>false</value>
 						</attribute>
@@ -1811,13 +1778,10 @@
 						<regnode name="Behavior" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>114,114</value>
+								<value>96,195</value>
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="Location">
-						<value>cuts/CPUWorker.h</value>
-					</attribute>
 					<model id="id-0065-0000002d" kind="WorkerAction" role="WorkerAction" relid="0x1" childrelidcntr="0x1">
 						<name>Run_Processor</name>
 						<regnode name="PartRegs" status="undefined">
@@ -1829,9 +1793,6 @@
 								</regnode>
 							</regnode>
 						</regnode>
-						<attribute kind="Enabled" status="meta">
-							<value>true</value>
-						</attribute>
 						<attribute kind="LogAction" status="meta">
 							<value>false</value>
 						</attribute>
@@ -1847,13 +1808,10 @@
 						<regnode name="Behavior" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>110,202</value>
+								<value>96,111</value>
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="Location">
-						<value>cuts/DatabaseWorker.h</value>
-					</attribute>
 				</model>
 			</model>
 		</folder>

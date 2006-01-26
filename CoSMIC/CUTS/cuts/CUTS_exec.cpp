@@ -9,6 +9,27 @@
 
 namespace CUTS
 {
+  ostream & operator << (ostream & out, const Port_Measurement & port)
+  {
+    out
+      << "| " << port.port << endl
+      << "| Transit Time: " << port.transit_time.time.max << endl
+      << "| Process Time: " << port.process_time.time.max;
+    return out;
+  }
+
+  ostream & operator << (ostream & out, const Port_Measurement_Seq & ports)
+  {
+    size_t length = ports.length ();
+
+    for (size_t i = 0; i < length; i ++)
+    {
+      out << endl << ports[i] << endl << "|" << endl;
+    }
+
+    return out;
+  }
+
   ostream & operator << (ostream & out, const Benchmark_Data_var & data)
   {
     out
@@ -16,7 +37,8 @@ namespace CUTS
       << "| CoWorkEr " << data->owner << endl
       << "| " << CUTS_string_time (data->timestamp, "%#c") << endl
       << "============================================================" << endl
-      << "|" << endl
+      << "| " << data->ports
+      << "| " << endl
       << "============================================================" << endl;
 
     return out;

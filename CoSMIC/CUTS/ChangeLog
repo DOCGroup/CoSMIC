@@ -1,3 +1,17 @@
+Thu Jan 26 20:05:11 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/ActivationRecord.inl:
+
+        Redefined a method as inline
+
+        * cuts/CUTS.xme:
+
+        Updated the CUTS GME library.
+
+        * cuts/CUTS_exec.cpp:
+
+        Updated the BDC implementation.
+
 Thu Jan 26 02:05:42 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * CUTS.mwc:

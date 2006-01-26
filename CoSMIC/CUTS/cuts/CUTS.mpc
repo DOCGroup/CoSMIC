@@ -82,7 +82,9 @@ project (CUTS) : ciao_component_dnc, cuts_base {
   }
 
   Source_Files {
+    ActivationRecord.cpp
     BenchmarkAgent.cpp
+    ComponentMetric.cpp
     Counter.cpp
     CPUWorker.cpp
     DatabaseWorker.cpp
@@ -91,10 +93,12 @@ project (CUTS) : ciao_component_dnc, cuts_base {
     MemoryWorker.cpp
     PortAgent.cpp
     PortMeasurement.cpp
-    Timing.cpp
-    Worker.cpp
-    ActivationRecord.cpp
+    PortMetric.cpp
     Time.cpp
+    TimeMetric.cpp
+    Timing.cpp
+    SystemMetric.cpp
+    Worker.cpp
   }
 
   Template_Files {
