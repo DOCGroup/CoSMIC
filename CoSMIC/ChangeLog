@@ -1,3 +1,23 @@
+Thu Jan 26 20:25:58 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+
+          Stubbed out the IOAutomata interpreter since we are no longer
+          using configuration file in the new version of CUTS.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Updated the PICML paradigm with the CUTS modeling elements. This
+          includes a new folder for containing workers and the ability for
+          components to contain instances of worker actions and worker types.
+
+        * PIM/PICML/paradigms/icons/worker.gif:
+
+          GME image for the worker elements.
+
 Fri Jan 20 19:29:35 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/UUIDManager/BON2Component.cpp:
