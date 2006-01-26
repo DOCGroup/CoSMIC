@@ -1,0 +1,13 @@
+// $Id$
+
+project (PICML_CIAO_Impl) : gme_bon2, cuts_base {
+  sharedname = CUTS_PICML_CIAO_Impl
+
+  libs += CUTS_FE_PICML CUTS_PIR CUTS_BE_CIAO
+
+  after += CUTS_FE_PICML CUTS_PIR CUTS_BE_CIAO
+
+  Source_Files {
+
+  }
+}

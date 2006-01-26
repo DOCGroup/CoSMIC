@@ -1,0 +1,5 @@
+// $Id$
+
+project : cuts_client_dnc {
+  libs += CUTS_stub
+}

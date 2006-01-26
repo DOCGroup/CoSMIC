@@ -1,0 +1,35 @@
+// $Id$
+
+project : gme_base {
+  after += GMEBON
+
+  libs += GMEBON
+
+  includes += $(CUTS_ROOT)
+
+  midlflags += -I <%quote%>$(CUTS_ROOT)<%quote%>
+
+  specific {
+    link_options += /DEF:component.def
+  }
+
+  Source_Files {
+    $(GME_ROOT)/SDK/BON/ComHelp.cpp
+    $(GME_ROOT)/SDK/BON/ComponentDll.cpp
+    $(GME_ROOT)/SDK/BON/ComponentObj.cpp
+  }
+
+  Header_Files {
+    $(GME_ROOT)/SDK/BON/GMECOM.h
+    ComponentConfig.h
+    Resource.h
+  }
+
+  Resource_Files {
+    Component.rc
+  }
+
+  MIDL_Files {
+    ComponentLib.idl
+  }
+}

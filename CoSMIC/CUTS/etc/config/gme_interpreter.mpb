@@ -1,0 +1,10 @@
+project {
+  Source_Files {
+    
+  }
+  
+  Header_Files {
+    ComponentConfig.h
+    Resource.h
+  }
+}

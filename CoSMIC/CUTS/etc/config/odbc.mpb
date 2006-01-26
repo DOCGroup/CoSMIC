@@ -1,0 +1,12 @@
+project {
+	specific (automake, bmake, borland, cbx, em3, ghs, gnuace, sle) {
+		libpaths += $(UNIXODBC_ROOT)/lib
+		includes += $(UNIXODBC_ROOT)/include
+
+		libs += odbc odbcinst
+	}
+
+	specific (vc6, vc7, vc71, vc8, nmake) {
+		lit_libs += odbc32 odbcbcp odbcCP32
+	}
+}

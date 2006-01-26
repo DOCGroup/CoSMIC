@@ -1,0 +1,163 @@
+// -*- IDL -*-
+
+//=============================================================================
+/**
+ * @file    CUTS.idl
+ *
+ * $Id$
+ *
+ * This file contains the information shared between all components in
+ * Component Workload Emulator (CoWorkEr) Utilization Test Suite (CUTS).
+ *
+ * All the event and value types are declared in the central location to
+ * better manage them. In a component in CUTS has more specific information
+ * for the value types, they are declared in that components IDL file. There
+ * is only one interface definition contained in this file, which is the base
+ * interface supported by all components that consider themselves capable of
+ * producing workloads.
+ *
+ * @author James H. Hill <hillj@isis.vanderbilt.edu>
+ */
+//=============================================================================
+
+#ifndef _CUTS_IDL_
+#define _CUTS_IDL_
+
+#include <Components.idl>
+#include <cuts/performance.idl>
+
+module CUTS
+{
+  //===========================================================================
+  /**
+   * Base type for all events in CUTS. Each event must defined an <event_type>
+   * and a <dispatch_time>. The <dispatch_time> is when the event was sent
+   * across the wire. The <event_type> is determined at compile-time by
+   * parameterizing the Event_Traits template class.
+   *
+   * Ex: Event_Traits <Event_Class>::event_type_;
+   */
+  //===========================================================================
+
+  eventtype CUTS_Event
+  {
+    /// Dispatch time for the event
+    public long dispatch_time;
+  };
+
+  //===========================================================================
+  /**
+   * This is the base type for events that want associate a data payload
+   * with tranmitting an event. The system will generate a data payload
+   * for your event depending on your specifications in the modeling lanauge.
+   */
+  //===========================================================================
+  eventtype Data_Event : CUTS::CUTS_Event
+  {
+    /// Data payload associated with the event
+    public string data;
+  };
+
+  //===========================================================================
+  /**
+   *
+   */
+  //===========================================================================
+
+  struct CoWorkEr_Info
+  {
+    /// Unique ID of the CoWorkEr.
+    long id_tag;
+
+    /// IP address of the CoWorkEr.
+    long ipaddr;
+  };
+
+  //===========================================================================
+  /**
+   *
+   */
+  //===========================================================================
+
+  interface Benchmark_Agent
+  {
+    /// Get the performance data from the agent.
+    Benchmark_Data performance_data ();
+  };
+
+  struct Path_Element
+  {
+    long UUID;
+  };
+
+  typedef sequence <Path_Element> Path_Sequence;
+
+  interface Path_Measurment
+  {
+    long bind_to_path (in Path_Sequence path);
+
+    void unbind_to_path (in long path_id);
+
+    long execution_time (in long path_id);
+  };
+
+  interface BDC_Control_Handle
+  {
+    void collect_performance_data ();
+  };
+
+  //===========================================================================
+  /**
+   *
+   */
+  //===========================================================================
+
+  component Benchmark_Data_Collector
+    supports BDC_Control_Handle
+  {
+    /// get the <Data_Collector> facet
+    uses multiple Benchmark_Agent benchmark_agents;
+
+    provides Path_Measurment online_measurements;
+
+    provides BDC_Control_Handle controls;
+
+    /// Name of the server hosting the database
+    attribute string server_name;
+
+    /// The timeout value for collecting performance metrics.
+    attribute long timeout;
+  };
+
+  //===========================================================================
+  /**
+   *
+   */
+  //===========================================================================
+
+  home Benchmark_Data_Collector_Home
+    manages Benchmark_Data_Collector
+  {
+
+  };
+
+  //===========================================================================
+  /**
+   *
+   */
+  //===========================================================================
+
+  component CoWorkEr
+  {
+    /// connection to the <BenchmarkCollector> for submitting data
+    provides Benchmark_Agent benchmark_agent;
+
+    /// Unique ID for the CoWorkEr.
+    attribute long unique_id;
+
+    /// Host name for the database worker
+    attribute string server_name;
+  };
+};
+
+#endif  // !defined _CUTS_IDL_

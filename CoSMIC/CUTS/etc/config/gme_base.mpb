@@ -1,0 +1,26 @@
+// $Id$
+
+project : mfc {
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
+
+  includes += . $(GME_ROOT)/SDK/BON $(GME_ROOT)
+
+  specific {
+    midl      = midl
+    midl_deps = midl
+  }
+
+  Define_Custom (MIDL) {
+    automatic         = 0
+    command           = $(MIDL)
+    dependent         = $(MIDL_DEPS)
+    inputext          = idl
+    keyword midlflags = commandflags
+    commandflags      = -I <%quote%>$(GME_ROOT)Interfaces<%quote%>
+
+    generic_outputext     = .tlb
+    source_outputext      = .c
+    header_outputext      = .h
+  }
+}

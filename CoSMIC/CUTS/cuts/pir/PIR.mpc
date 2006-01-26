@@ -1,0 +1,20 @@
+// $Id$
+
+project (CUTS_PIR) : cuts_base {
+  sharedname = CUTS_PIR
+
+  Source_Files {
+    Element.cpp
+    Component.cpp
+    ComponentHome.cpp
+    Event.cpp
+    EventManager.cpp
+    EventSink.cpp
+    File.cpp
+    Method.cpp
+    Module.cpp
+    Project.cpp
+    Scope.cpp
+    Visitor.cpp
+  }
+}

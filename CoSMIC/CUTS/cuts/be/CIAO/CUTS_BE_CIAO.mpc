@@ -1,0 +1,17 @@
+// $Id$
+
+project (CUTS_BE_CIAO) : cuts_base {
+  sharedname = CUTS_BE_CIAO
+
+  after += CUTS_PIR
+
+  includes +=  $(CIAO_ROOT)\CCF $(ACE_ROOT)\contrib\utility
+
+  libpaths += $(CIAO_ROOT)\CCF\CCF
+
+  libs += CUTS_PIR CodeGenerationKits CUTS_Utils
+
+  Source_Files {
+    CIAO_Visitor.cpp
+  }
+}

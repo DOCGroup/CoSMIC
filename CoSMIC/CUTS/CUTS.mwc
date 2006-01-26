@@ -1,0 +1,11 @@
+// $Id$
+
+workspace (CUTS) {
+  cmdline += -include $CUTS_ROOT/etc/config
+
+  cuts
+
+  exclude {
+    cuts/GME/BON
+  }
+}
