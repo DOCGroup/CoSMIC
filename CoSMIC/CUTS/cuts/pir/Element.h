@@ -97,6 +97,22 @@ namespace CUTS_PIR
 
       }
     }
+
+    virtual void accept (VISITOR * visitor) const
+    {
+      try
+      {
+        // Since we are using templates and this is a base class for
+        // another class, we have to cast the element to the appropriate
+        // type in order to visit it.
+        const ELEMENT * element = dynamic_cast <const ELEMENT *> (this);
+        (visitor->*METHOD) (*element);
+      }
+      catch (...)
+      {
+
+      }
+    }
   };
 }
 

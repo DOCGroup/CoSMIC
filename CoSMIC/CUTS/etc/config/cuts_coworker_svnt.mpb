@@ -1,5 +1,22 @@
 // $Id$
 
 project : cuts_servant_dnc {
-  libs += CUTS_svnt
+  libs += CUTS_svnt CUTS_BenchmarkAgent_svnt
+
+  // -- set the appropriate flags
+  idlflags += \
+    -Wb,export_macro=CUTS_SVNT_Export -Wb,export_include=cuts/CUTS_svnt_export.h
+
+  cidlflags -= --
+  cidlflags += \
+    --exec-export-macro CUTS_EXEC_Export --exec-export-include cuts/CUTS_exec_export.h \
+    --svnt-export-macro CUTS_SVNT_Export --svnt-export-include cuts/CUTS_svnt_export.h
+  cidlflags += --
+
+  dynamicflags += CUTS_SVNT_BUILD_DLL
+
+  // -- place all files in a common location
+  libpaths += ./lib
+  libout    = ./lib
+  dllout    = ./bin
 }

@@ -86,9 +86,6 @@ namespace CUTS_CIAO
     /// Source file output stream.
     std::ofstream sofs_;
 
-    /// Name of the export macro.
-    std::string export_;
-
     /// Name of the current component.
     std::string component_;
 

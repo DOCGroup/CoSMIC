@@ -102,6 +102,7 @@ void Component::invokeEx (Project& project,
     std::auto_ptr <CUTS_CIAO::Project_Visitor> project_visitor (
       new CUTS_CIAO::Project_Visitor ("C:\\TEMP"));
 
+    CUTS_PIR::Project::instance ()->name (project->getName ().c_str ());
     CUTS_PIR::Project::instance ()->accept (project_visitor.get ());
   }
 

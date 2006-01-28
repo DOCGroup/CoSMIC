@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{3DE5F009-D290-488A-A0DB-C2E839EF4095}" cdate="Thu Jan 26 18:01:21 2006" mdate="Thu Jan 26 18:01:21 2006" version="" metaguid="{BF14A520-C2EC-4809-9320-ECA1D3DAE7E7}" metaversion="" metaname="PICML">
+<project guid="{2EF2E499-0F9C-491F-8781-5654D9A71934}" cdate="Fri Jan 27 00:50:39 2006" mdate="Fri Jan 27 00:50:39 2006" version="" metaguid="{BA916305-24C5-4C3A-8F22-E3DF92A2013E}" metaversion="" metaname="PICML">
 	<name>CUTS</name>
 	<comment></comment>
 	<author></author>
@@ -914,7 +914,7 @@
 						<attribute kind="VersionTag" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000036" kind="Member" role="Member" relid="0x1" referred="id-0067-00000031">
+						<reference id="id-0067-00000035" kind="Member" role="Member" relid="0x1" referred="id-0067-00000031">
 							<name>total</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -926,7 +926,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000037" kind="Member" role="Member" relid="0x2" referred="id-0067-00000031">
+						<reference id="id-0067-00000036" kind="Member" role="Member" relid="0x2" referred="id-0067-00000031">
 							<name>max</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -938,7 +938,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000038" kind="Member" role="Member" relid="0x3" referred="id-0067-00000031">
+						<reference id="id-0067-00000037" kind="Member" role="Member" relid="0x3" referred="id-0067-00000031">
 							<name>min</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -1196,7 +1196,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000039" kind="Member" role="Member" relid="0x2" referred="id-0067-00000031">
+						<reference id="id-0067-00000038" kind="Member" role="Member" relid="0x2" referred="id-0067-00000031">
 							<name>timestamp</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -1357,7 +1357,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000033" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x3" referred="id-0066-0000000b">
+				<reference id="id-0067-00000032" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x3" referred="id-0066-0000000b">
 					<name>BDC_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1369,7 +1369,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000034" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-0000000c">
+				<reference id="id-0067-00000033" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-0000000c">
 					<name>BDC_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1381,7 +1381,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000035" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x5" referred="id-0066-0000000d">
+				<reference id="id-0067-00000034" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x5" referred="id-0066-0000000d">
 					<name>BDC_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1396,17 +1396,17 @@
 				<connection id="id-0068-00000002" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x6">
 					<name>MonolithprimaryArtifact</name>
 					<connpoint role="src" target="id-0066-0000000a"/>
-					<connpoint role="dst" target="id-0067-00000033"/>
+					<connpoint role="dst" target="id-0067-00000032"/>
 				</connection>
 				<connection id="id-0068-00000003" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x7">
 					<name>MonolithprimaryArtifact</name>
 					<connpoint role="src" target="id-0066-0000000a"/>
-					<connpoint role="dst" target="id-0067-00000034"/>
+					<connpoint role="dst" target="id-0067-00000033"/>
 				</connection>
 				<connection id="id-0068-00000004" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x8">
 					<name>MonolithprimaryArtifact</name>
 					<connpoint role="src" target="id-0066-0000000a"/>
-					<connpoint role="dst" target="id-0067-00000035"/>
+					<connpoint role="dst" target="id-0067-00000034"/>
 				</connection>
 				<connection id="id-0068-00000005" kind="Implements" role="Implements" relid="0xc">
 					<name>Implements</name>
@@ -1669,6 +1669,9 @@
 			<name>WorkerLibraries</name>
 			<model id="id-0065-00000026" kind="WorkerLibrary" relid="0x1" childrelidcntr="0x3">
 				<name>CUTS</name>
+				<attribute kind="Location">
+					<value></value>
+				</attribute>
 				<model id="id-0065-00000027" kind="Worker" role="Worker" relid="0x1" childrelidcntr="0x2">
 					<name>CUTS_Memory_Worker</name>
 					<regnode name="PartRegs" status="undefined">
@@ -1680,6 +1683,9 @@
 							</regnode>
 						</regnode>
 					</regnode>
+					<attribute kind="Location">
+						<value>cuts/MemoryWorker.h</value>
+					</attribute>
 					<model id="id-0065-00000028" kind="WorkerAction" role="WorkerAction" relid="0x1" childrelidcntr="0x1">
 						<name>Allocate_Memory</name>
 						<regnode name="PartRegs" status="undefined">
@@ -1782,6 +1788,9 @@
 							</regnode>
 						</regnode>
 					</regnode>
+					<attribute kind="Location">
+						<value>cuts/CPUWorker.h</value>
+					</attribute>
 					<model id="id-0065-0000002d" kind="WorkerAction" role="WorkerAction" relid="0x1" childrelidcntr="0x1">
 						<name>Run_Processor</name>
 						<regnode name="PartRegs" status="undefined">
@@ -1812,6 +1821,9 @@
 							</regnode>
 						</regnode>
 					</regnode>
+					<attribute kind="Location">
+						<value>cuts/DatabaseWorker.h</value>
+					</attribute>
 				</model>
 			</model>
 		</folder>

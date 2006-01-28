@@ -24,7 +24,8 @@
 #define _CUTS_IDL_
 
 #include <Components.idl>
-#include <cuts/performance.idl>
+#include "cuts/performance.idl"
+#include "cuts/BenchmarkAgent.idl"
 
 module CUTS
 {
@@ -78,12 +79,6 @@ module CUTS
    *
    */
   //===========================================================================
-
-  interface Benchmark_Agent
-  {
-    /// Get the performance data from the agent.
-    Benchmark_Data performance_data ();
-  };
 
   struct Path_Element
   {
@@ -150,13 +145,13 @@ module CUTS
   component CoWorkEr
   {
     /// connection to the <BenchmarkCollector> for submitting data
-    provides Benchmark_Agent benchmark_agent;
+    provides Benchmark_Agent cuts_benchmark_agent;
 
     /// Unique ID for the CoWorkEr.
-    attribute long unique_id;
+    attribute long cuts_coworker_id;
 
     /// Host name for the database worker
-    attribute string server_name;
+    attribute string cuts_coworker_database;
   };
 };
 

@@ -16,8 +16,6 @@
 #define _CUTS_COWORKER_T_H_
 
 #include "cuts/CCM_CoWorkEr.h"
-#include "cuts/CCM_BenchmarkAgent_T.h"
-#include "cuts/PortAgent.h"
 #include <string>
 
 //=============================================================================
@@ -37,14 +35,17 @@
  */
 //=============================================================================
 
-template <typename COMPONENT_EXEC, typename BENCHMARK_AGENT_EXEC>
+template <typename COMPONENT, typename COMPONENT_CONTEXT>
 class CUTS_CCM_CoWorkEr_T :
-  virtual public CUTS_CCM_CoWorkEr,
-  virtual public COMPONENT_EXEC
+  public virtual COMPONENT,
+  public virtual CUTS_CCM_CoWorkEr
 {
 public:
+  /// Type of component wrapped by this class.
+  typedef COMPONENT Component_Type;
+
   /// Type definition for component type.
-  typedef COMPONENT_EXEC Component_Type;
+  typedef COMPONENT_CONTEXT Component_Context;
 
   /// Constructor.
   CUTS_CCM_CoWorkEr_T (void);
@@ -52,49 +53,56 @@ public:
   /// Destructor.
   virtual ~CUTS_CCM_CoWorkEr_T (void);
 
-  ::CUTS::CCM_Benchmark_Agent_ptr get_benchmark_agent (
+  /// Set the session context for the component.
+  virtual void set_session_context (
+    ::Components::SessionContext_ptr ctx
+    ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+    ACE_THROW_SPEC ((::CORBA::SystemException,
+                     ::Components::CCMException));
+
+  /// Get the benchmark agent for the component.
+  ::CUTS::CCM_Benchmark_Agent_ptr get_cuts_benchmark_agent (
     ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
-    ACE_THROW_SPEC ((CORBA::SystemException));
+  {
+    return CUTS_CCM_CoWorkEr::get_cuts_benchmark_agent ();
+  }
 
   /// Get the unique ID of the CoWorkEr.
-  ::CORBA::Long unique_id (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
-    ACE_THROW_SPEC ((CORBA::SystemException));
+  ::CORBA::Long cuts_coworker_id (
+    ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+    ACE_THROW_SPEC ((CORBA::SystemException))
+  {
+    return CUTS_CCM_CoWorkEr::cuts_coworker_id ();
+  }
 
   /// Set the unique ID of the CoWorkEr.
-  void unique_id (::CORBA::Long unique_id ACE_ENV_ARG_DECL_WITH_DEFAULTS)
-    ACE_THROW_SPEC ((CORBA::SystemException));
+  void cuts_coworker_id (
+    ::CORBA::Long coworker_id
+    ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+    ACE_THROW_SPEC ((CORBA::SystemException))
+  {
+    CUTS_CCM_CoWorkEr::cuts_coworker_id (coworker_id);
+  }
 
-  /// Set the session context for the component.
-  virtual void set_session_context (::Components::SessionContext_ptr ctx
-                                    ACE_ENV_ARG_DECL_WITH_DEFAULTS)
-    ACE_THROW_SPEC ((::CORBA::SystemException,::Components::CCMException));
+  /// Get the name of the server used by this CoWorkEr component.
+  char * cuts_coworker_database (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+    ACE_THROW_SPEC ((CORBA::SystemException))
+  {
+    return CUTS_CCM_CoWorkEr::cuts_coworker_database ();
+  }
 
-  /// Enter the preactivate state.
-  virtual void ciao_preactivate (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
-    ACE_THROW_SPEC ((::CORBA::SystemException,::Components::CCMException));
-
-  /// Enter the activate state.
-  virtual void ccm_activate (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
-    ACE_THROW_SPEC ((::CORBA::SystemException, ::Components::CCMException));
-
-  /// Enter the postactivate state.
-  virtual void ciao_postactivate (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
-    ACE_THROW_SPEC ((::CORBA::SystemException, ::Components::CCMException));
-
-  /// Enter the passivate state.
-  virtual void ccm_passivate (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
-    ACE_THROW_SPEC ((::CORBA::SystemException, ::Components::CCMException));
-
-  /// The component is being remove from the system.
-  virtual void ccm_remove (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
-    ACE_THROW_SPEC ((::CORBA::SystemException, ::Components::CCMException));
+  /// Change the name of the server used by this CoWorkEr component.
+  void cuts_coworker_database (
+    const char * database
+    ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+    ACE_THROW_SPEC ((CORBA::SystemException))
+  {
+    CUTS_CCM_CoWorkEr::cuts_coworker_database (database);
+  }
 
 protected:
-  /// The benchmark agent for the CoWorkEr.
-  typedef CUTS_CCM_Benchmark_Agent_T <
-    BENCHMARK_AGENT_EXEC> This_Benchmark_Agent;
-
-  ACE_Auto_Ptr <This_Benchmark_Agent> benchmark_agent_;
+  /// Context for the component.
+  COMPONENT_CONTEXT * context_;
 };
 
 #if defined (__CUTS_INLINE__)

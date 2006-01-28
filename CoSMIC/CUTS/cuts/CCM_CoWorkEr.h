@@ -4,6 +4,8 @@
 #include "cuts/config.h"
 #include "cuts/CUTS_exec_export.h"
 #include "cuts/CUTSC.h"
+#include "cuts/CCM_BenchmarkAgent.h"
+#include "ComponentsC.h"
 #include <string>
 
 class CUTS_EXEC_Export CUTS_CCM_CoWorkEr
@@ -15,12 +17,24 @@ public:
   /// Destructor.
   virtual ~CUTS_CCM_CoWorkEr (void);
 
+  ::CUTS::CCM_Benchmark_Agent_ptr get_cuts_benchmark_agent (
+    ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+    ACE_THROW_SPEC ((CORBA::SystemException));
+
+  /// Get the unique ID of the CoWorkEr.
+  ::CORBA::Long cuts_coworker_id (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+    ACE_THROW_SPEC ((CORBA::SystemException));
+
+  /// Set the unique ID of the CoWorkEr.
+  void cuts_coworker_id (::CORBA::Long unique_id ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+    ACE_THROW_SPEC ((CORBA::SystemException));
+
   /// Get the name of the server used by this CoWorkEr component.
-  virtual char * server_name (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+  char * cuts_coworker_database (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
     ACE_THROW_SPEC ((CORBA::SystemException));
 
   /// Change the name of the server used by this CoWorkEr component.
-  virtual void server_name (const char * name ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+  void cuts_coworker_database (const char * name ACE_ENV_ARG_DECL_WITH_DEFAULTS)
     ACE_THROW_SPEC ((CORBA::SystemException));
 
 protected:
@@ -28,9 +42,13 @@ protected:
   void generate_event_data (
     ::CUTS::Data_Event * event, size_t lower, size_t upper);
 
+  /// The benchmark agent for the CoWorkEr.
+  ACE_Auto_Ptr <CUTS_CCM_Benchmark_Agent> benchmark_agent_;
+
 private:
   /// Name of the server used by this CoWorkEr's database.
   std::string server_name_;
+
 };
 
 #if defined (__CUTS_INLINE__)

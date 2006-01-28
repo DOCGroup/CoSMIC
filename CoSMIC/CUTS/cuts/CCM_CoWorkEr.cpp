@@ -10,6 +10,7 @@
 #endif
 
 CUTS_CCM_CoWorkEr::CUTS_CCM_CoWorkEr (void)
+: benchmark_agent_ (new CUTS_CCM_Benchmark_Agent ())
 {
   ACE_OS::srand (ACE_OS::time (0));
 }
@@ -22,8 +23,9 @@ CUTS_CCM_CoWorkEr::~CUTS_CCM_CoWorkEr (void)
 //
 // server_name
 //
-char * CUTS_CCM_CoWorkEr::server_name (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
-ACE_THROW_SPEC ((CORBA::SystemException))
+char * CUTS_CCM_CoWorkEr::cuts_coworker_database (
+  ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+  ACE_THROW_SPEC ((CORBA::SystemException))
 {
   // Create a duplicate copy of the string and it to the client.
   ::CORBA::String_var str =

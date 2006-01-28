@@ -15,14 +15,14 @@
 #ifndef _CUTS_CIDL_
 #define _CUTS_CIDL_
 
-#include "CUTS.idl"
+#include "cuts/CUTS.idl"
 
 module CUTS
 {
   composition session Benchmark_Data_Collector_Impl
   {
     home executor Benchmark_Data_Collector_Home_Exec
-    { 
+    {
       implements Benchmark_Data_Collector_Home;
       manages Benchmark_Data_Collector_Exec;
     };

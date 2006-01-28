@@ -13,5 +13,10 @@ project (CUTS_BE_CIAO) : cuts_base {
 
   Source_Files {
     CIAO_Visitor.cpp
+    Exec_Project.cpp
+    MPC_Visitor.cpp
+    MWC_Visitor.cpp
+    Stub_Project.cpp
+    Svnt_Project.cpp
   }
 }

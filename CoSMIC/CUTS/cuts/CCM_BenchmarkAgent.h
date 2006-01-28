@@ -11,7 +11,7 @@
 
 #include "cuts/config.h"
 #include "cuts/CUTS_exec_export.h"
-#include "cuts/CUTSC.h"
+#include "cuts/BenchmarkAgentEC.h"
 #include "cuts/BenchmarkAgent.h"
 
 //=============================================================================
@@ -21,6 +21,7 @@
 //=============================================================================
 
 class CUTS_EXEC_Export CUTS_CCM_Benchmark_Agent :
+  virtual public ::CUTS::CCM_Benchmark_Agent,
   public CUTS_Benchmark_Agent
 {
 public:

@@ -50,6 +50,18 @@ namespace PICML_BON
     this->file_->name (object->getName ().c_str ());
     CUTS_PIR::Project::instance ()->files ().insert (this->file_);
 
+    // Get all the referenced files.
+    Child_FCOs filerefs = object->getChildFCOsAs("FileRef");
+    for ( Child_FCOs::const_iterator iter = filerefs.begin ();
+          iter != filerefs.end ();
+          iter ++)
+    {
+      FileRef fileref = (*iter);
+
+      this->file_->includes ().insert (
+        fileref->getFile ()->getName ().c_str ());
+    }
+
     // Visit the contents of the module.
     this->module_ = this->file_;
     visitPackageContents (object);
@@ -241,6 +253,7 @@ namespace PICML_BON
     // Create a <Event_Sink> for the <InEventPort>.
     CUTS_PIR::Event_Sink * event_sink = new CUTS_PIR::Event_Sink (this->event_);
     event_sink->name (object->getName ().c_str ());
+    event_sink->uuid (object->getID ().c_str ());
 
     // Inser the <event_type> and <event_sink> into this component.
     this->component_->event_sinks ().insert (event_sink);

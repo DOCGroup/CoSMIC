@@ -1,3 +1,72 @@
+Sat Jan 28 20:43:33 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BenchmarkAgent.idl
+
+          Moved the benchmark agent to its own IDL so that we could
+          force to generation of the local executor mappings and
+          implement it in its own shared library to be linked with
+          all CoWorkEr executor projects.
+
+        * cuts/CCM_BenchmarkAgent.h:
+        * cuts/CCM_CoWorkEr.h:
+        * cuts/CCM_CoWorkEr.inl:
+        * cuts/CCM_CoWorkEr.cpp:
+        * cuts/CCM_CoWorkEr_T.h:
+        * cuts/CCM_CoWorkEr_T.inl:
+        * cuts/CCM_CoWorkEr_T.cpp:
+        * cuts/CUTS.cidl:
+        * cuts/CUTS.idl:
+        * cuts/CUTS.mpc:
+        * cuts/CUTS.xme:
+
+          Modified the CCM CoWorkErs so that they are build directly on
+          top of the executor mappings instead on top of an executor. This
+          removed the dependency of having to know the name of the executor
+          component when generating the code. It also removes the dependency
+          of needing any executor component implementation and the emulated
+          CoWorkErs can stand-alone.
+
+        * cuts/GME/interpreters/PICML_CIAO_Impl/BON2Component.cpp:
+
+          The interpreter now saves the name of the project in the PIR
+          for the project.
+
+        * cuts/be/CIAO/CIAO_Visitor.h:
+        * cuts/be/CIAO/CIAO_Visitor.cpp:
+        * cuts/be/CIAO/CUTS_BE_CIAO.mpc:
+        * cuts/be/CIAO/Exec_Project.h:
+        * cuts/be/CIAO/Exec_Project.cpp:
+        * cuts/be/CIAO/MPC_Visitor.h:
+        * cuts/be/CIAO/MPC_Visitor.cpp:
+        * cuts/be/CIAO/MWC_Visitor.h:
+        * cuts/be/CIAO/MWC_Visitor.cpp:
+        * cuts/be/CIAO/Stub_Project.h:
+        * cuts/be/CIAO/Stub_Project.cpp:
+        * cuts/be/CIAO/Svnt_Project.h:
+        * cuts/be/CIAO/Svnt_Project.cpp:
+
+          Added support for generating a predetermined MWC and MPC file
+          for the project. This will simply building the system since
+          the MPC and MWC file will have all the necessary information
+          for creating the solution space and building the system without
+          any modifications.
+
+        * cuts/fe/PICML/CUTS_PICMLVisitor.cpp:
+
+          Added support for generating the MWC and MPC files.
+
+        * cuts/pir/Element.h:
+
+          Added a const version of the accept () method.
+
+        * etc/config/cuts_coworker_exec.mpb:
+        * etc/config/cuts_coworker_stub.mpb:
+        * etc/config/cuts_coworker_svnt.mpb:
+
+          Modified the base projects so that all generated files
+          are placed in a common location and the flags for the
+          CoWorkEr projects are predetermined.
+
 Thu Jan 26 20:05:11 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/ActivationRecord.inl:
