@@ -6,8 +6,7 @@
 
 namespace CUTS_PIR
 {
-  Event_Sink::Event_Sink (Event * event_type)
-    : event_type_ (event_type)
+  Event_Sink::Event_Sink (void)
   {
 
   }

@@ -95,6 +95,15 @@ bool PICMLVisitor::visitEnumValue( const EnumValue& object )
 }
 
 
+bool PICMLVisitor::visitEnvironment( const Environment& object )
+{
+	if ( !object)
+		return false;
+
+	return true;
+}
+
+
 bool PICMLVisitor::visitEnvironmentConf( const EnvironmentConf& object )
 {
 	if ( !object)
@@ -231,15 +240,6 @@ bool PICMLVisitor::visitMonolithicImplementation( const MonolithicImplementation
 
 
 bool PICMLVisitor::visitNull_RT_Info( const Null_RT_Info& object )
-{
-	if ( !object)
-		return false;
-
-	return true;
-}
-
-
-bool PICMLVisitor::visitPOA( const POA& object )
 {
 	if ( !object)
 		return false;
@@ -1230,6 +1230,51 @@ bool PICMLVisitor::visitTwowayOperation( const TwowayOperation& object )
 
 
 bool PICMLVisitor::visitValueObject( const ValueObject& object )
+{
+	if ( !object)
+		return false;
+
+	return true;
+}
+
+
+bool PICMLVisitor::visitWorker( const Worker& object )
+{
+	if ( !object)
+		return false;
+
+	return true;
+}
+
+
+bool PICMLVisitor::visitWorkerAction( const WorkerAction& object )
+{
+	if ( !object)
+		return false;
+
+	return true;
+}
+
+
+bool PICMLVisitor::visitWorkerFile( const WorkerFile& object )
+{
+	if ( !object)
+		return false;
+
+	return true;
+}
+
+
+bool PICMLVisitor::visitWorkerLibrary( const WorkerLibrary& object )
+{
+	if ( !object)
+		return false;
+
+	return true;
+}
+
+
+bool PICMLVisitor::visitWorkerPackage( const WorkerPackage& object )
 {
 	if ( !object)
 		return false;
@@ -2282,16 +2327,7 @@ bool PICMLVisitor::visitThreadPoolRef( const ThreadPoolRef& object )
 }
 
 
-bool PICMLVisitor::visitAbstractInPort( const AbstractInPort& object )
-{
-	if ( !object)
-		return false;
-
-	return true;
-}
-
-
-bool PICMLVisitor::visitAbstractOutPort( const AbstractOutPort& object )
+bool PICMLVisitor::visitWorkerType( const WorkerType& object )
 {
 	if ( !object)
 		return false;
@@ -2364,6 +2400,15 @@ bool PICMLVisitor::visitElements( const Elements& object )
 
 
 bool PICMLVisitor::visitGraphVertex( const GraphVertex& object )
+{
+	if ( !object)
+		return false;
+
+	return true;
+}
+
+
+bool PICMLVisitor::visitInPort( const InPort& object )
 {
 	if ( !object)
 		return false;
@@ -2606,14 +2651,21 @@ bool PICMLVisitor::visitTopLevelPackages( const TopLevelPackages& object )
 }
 
 
+bool PICMLVisitor::visitWorkerLibraries( const WorkerLibraries& object )
+{
+	if ( !object)
+		return false;
+
+	return true;
+}
+
+
 void PICMLVisitor::visitObjectImpl( const BON::Object& obj )
 {}
 
 
 void PICMLVisitor::visitFCOImpl( const BON::FCO& fco )
 {
-	if ( !visitAbstractInPort( fco))
-	if ( !visitAbstractOutPort( fco))
 	if ( !visitBenchmarkType( fco))
 	if ( !visitCommonPortAttrs( fco))
 	if ( !visitComponentImplementation( fco))
@@ -2622,6 +2674,7 @@ void PICMLVisitor::visitFCOImpl( const BON::FCO& fco )
 	if ( !visitDataAnalysisBase( fco))
 	if ( !visitElements( fco))
 	if ( !visitGraphVertex( fco))
+	if ( !visitInPort( fco))
 	if ( !visitManageable( fco))
 	if ( !visitMemberType( fco))
 	if ( !visitNamedType( fco))
@@ -2651,6 +2704,7 @@ void PICMLVisitor::visitAtomImpl( const BON::Atom& atom )
 	if ( !visitDisplayNode( atom))
 	if ( !visitEdge( atom))
 	if ( !visitEnumValue( atom))
+	if ( !visitEnvironment( atom))
 	if ( !visitEnvironmentConf( atom))
 	if ( !visitExternalReferenceEndPoint( atom))
 	if ( !visitFixedIterationBenchmarks( atom))
@@ -2667,7 +2721,6 @@ void PICMLVisitor::visitAtomImpl( const BON::Atom& atom )
 	if ( !visitMinimum( atom))
 	if ( !visitMonolithicImplementation( atom))
 	if ( !visitNull_RT_Info( atom))
-	if ( !visitPOA( atom))
 	if ( !visitPackageConfiguration( atom))
 	if ( !visitPeriodicBenchmarks( atom))
 	if ( !visitPriorityModelPolicy( atom))
@@ -2753,6 +2806,7 @@ void PICMLVisitor::visitReferenceImpl( const BON::Reference& ref )
 	if ( !visitSetException( ref))
 	if ( !visitSupports( ref))
 	if ( !visitThreadPoolRef( ref))
+	if ( !visitWorkerType( ref))
 	{
 		// visiting other Reference
 	}
@@ -2926,6 +2980,11 @@ void PICMLVisitor::visitModelImpl( const BON::Model& model )
 	if ( !visitTopLevelPackageContainer( model))
 	if ( !visitTwowayOperation( model))
 	if ( !visitValueObject( model))
+	if ( !visitWorker( model))
+	if ( !visitWorkerAction( model))
+	if ( !visitWorkerFile( model))
+	if ( !visitWorkerLibrary( model))
+	if ( !visitWorkerPackage( model))
 	{
 		// visiting other Model
 	}
@@ -2949,6 +3008,7 @@ void PICMLVisitor::visitFolderImpl( const BON::Folder& fold )
 	if ( !visitQoSModeling( fold))
 	if ( !visitTargets( fold))
 	if ( !visitTopLevelPackages( fold))
+	if ( !visitWorkerLibraries( fold))
 	{
 		// visiting other Folder
 	}

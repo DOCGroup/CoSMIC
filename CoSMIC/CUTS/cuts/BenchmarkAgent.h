@@ -52,15 +52,22 @@ public:
   void parent (long parent);
 
 protected:
+  /// Type definition for the collection of port agents.
+  typedef std::set <CUTS_Port_Agent *> Port_Agents;
+
+  /// Get the collection of port agents.
+  Port_Agents & port_agents (void);
+
+private:
   /// Owner of this object.
   long parent_;
 
   /// Set of port agents managed by this benchmark agent.
-  std::set <CUTS_Port_Agent *> port_agents_;
+  Port_Agents port_agents_;
 };
 
 #if defined (__CUTS_INLINE__)
-# include "cuts/BenchmarkAgent.inl"
+#include "cuts/BenchmarkAgent.inl"
 #endif
 
 #endif  // !defined _CUTS_BENCHMARK_AGENT_H_

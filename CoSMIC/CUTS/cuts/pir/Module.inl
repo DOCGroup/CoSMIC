@@ -2,6 +2,9 @@
 
 namespace CUTS_PIR
 {
+  //
+  // components
+  //
   CUTS_INLINE
   Module::Components & Module::components (void)
   {
@@ -14,6 +17,9 @@ namespace CUTS_PIR
     return this->components_;
   }
 
+  //
+  // modules
+  //
   CUTS_INLINE
   Module::Modules & Module::modules (void)
   {
@@ -26,6 +32,24 @@ namespace CUTS_PIR
     return this->modules_;
   }
 
+  //
+  // modules
+  //
+  CUTS_INLINE
+  Module::Objects & Module::objects (void)
+  {
+    return this->objects_;
+  }
+
+  CUTS_INLINE
+  const Module::Objects & Module::objects (void) const
+  {
+    return this->objects_;
+  }
+
+  //
+  // parent
+  //
   CUTS_INLINE
   const Module * Module::parent (void) const
   {

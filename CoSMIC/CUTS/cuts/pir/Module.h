@@ -7,11 +7,19 @@
 
 namespace CUTS_PIR
 {
+  /// forward declarations
   class Component;
+  class Component_Home;
+
+  //===========================================================================
+  /**
+   * @class Module
+   */
+  //===========================================================================
 
   class CUTS_Export Module :
-    public Visitor_Element_T <Visitor, Module, &Visitor::visit_module>,
-    public Element
+    public Element,
+    public Visitor_Element_T <Visitor, Module, &Visitor::visit_module>
   {
   public:
     /// Type definition for the collection of components.
@@ -20,19 +28,35 @@ namespace CUTS_PIR
     /// Type definition for the collection of modules.
     typedef std::set <Module *> Modules;
 
+    /// Type definition for the collection of objects.
+    typedef std::set <Object *> Objects;
+
+    /// Constructor.
     Module (const Module * parent = 0);
 
+    /// Destructor.
     virtual ~Module (void);
 
+    /// Get the modules defined in this module.
     Modules & modules (void);
 
+    /// Get the modules defined in thie module.
     const Modules & modules (void) const;
 
+    /// Get the components defined in this module.
     Components & components (void);
 
+    /// Get the components defined in this module.
     const Components & components (void) const;
 
+    /// Get the parent of this module.
     const Module * parent (void) const;
+
+    /// Get the objects defined in this module.
+    Objects & objects (void);
+
+    /// Get the objects defined in this module.
+    const Objects & objects (void) const;
 
   private:
     /// Components contained in this module.
@@ -41,6 +65,10 @@ namespace CUTS_PIR
     /// Modules contained in this module.
     Modules modules_;
 
+    /// Objects contained in this module.
+    Objects objects_;
+
+    /// The parent of this module.
     const Module * parent_;
   };
 }

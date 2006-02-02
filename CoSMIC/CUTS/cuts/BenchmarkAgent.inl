@@ -32,3 +32,13 @@ long CUTS_Benchmark_Agent::parent (void) const
 {
   return this->parent_;
 }
+
+//
+// port_agents
+//
+CUTS_INLINE
+CUTS_Benchmark_Agent::Port_Agents &
+CUTS_Benchmark_Agent::port_agents (void)
+{
+  return this->port_agents_;
+}

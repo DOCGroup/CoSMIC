@@ -3,19 +3,17 @@
 #ifndef _CUTS_PORT_AGENT_H_
 #define _CUTS_PORT_AGENT_H_
 
-#include "cuts/config.h"
+#include "cuts/ActivationRecord.h"
 #include "ace/Thread_Mutex.h"
 #include "ace/Task.h"
 #include "ace/Message_Queue_T.h"
 #include "ace/Auto_Ptr.h"
 #include "ace/Reactor_Notification_Strategy.h"
-
 #include <string>
 #include <set>
 #include <stack>
 
 // forward declarations
-class CUTS_Activation_Record;
 class CUTS_Port_Measurement;
 
 //=============================================================================

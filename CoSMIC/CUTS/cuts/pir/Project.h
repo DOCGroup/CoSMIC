@@ -4,13 +4,14 @@
 #include "cuts/pir/Element.h"
 #include "cuts/pir/Visitor.h"
 #include "cuts/pir/EventManager.h"
+#include "cuts/pir/Worker_Manager.h"
 #include <set>
 
 namespace CUTS_PIR
 {
   class CUTS_Export Project :
-    public Visitor_Element_T <Visitor, Project, &Visitor::visit_project>,
-    public Element
+    public Element,
+    public Visitor_Element_T <Visitor, Project, &Visitor::visit_project>
   {
   public:
     /// Type definition for the collection of files.
@@ -28,9 +29,15 @@ namespace CUTS_PIR
     /// Get the list of files in the project.
     const Files & files (void) const;
 
+    /// Get the event manager for the project.
     Event_Manager & event_manager (void);
 
+    /// Get the event manager for the project.
     const Event_Manager & event_manager (void) const;
+
+    Worker_Manager & worker_manager (void);
+
+    const Worker_Manager & worker_manager (void) const;
 
   private:
     /// Constructor.
@@ -47,6 +54,9 @@ namespace CUTS_PIR
 
     /// The event manger for the project.
     Event_Manager event_manager_;
+
+    /// The worker manager for the project.
+    Worker_Manager worker_manager_;
   };
 }
 

@@ -10,10 +10,13 @@ namespace CUTS_PIR
   class Component_Home;
   class Event;
   class Event_Sink;
+  class Facet;
   class File;
   class Project;
   class Method;
   class Module;
+  class Object;
+  class Worker_Type;
 
   //===========================================================================
   /**
@@ -50,6 +53,14 @@ namespace CUTS_PIR
 
     /// Visit an event.
     virtual void visit_event_sink (const Event_Sink & event_sink);
+
+    /// Visit an object.
+    virtual void visit_object (const Object & object);
+
+    /// Visit a facet.
+    virtual void visit_facet (const Facet & facet);
+
+    virtual void visit_worker_type (const Worker_Type & type);
 
   protected:
     /// Constructor.

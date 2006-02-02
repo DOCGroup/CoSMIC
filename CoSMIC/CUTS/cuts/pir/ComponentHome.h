@@ -6,8 +6,11 @@
 
 namespace CUTS_PIR
 {
+  class Component;
+
   class CUTS_Export Component_Home :
-    public Module_Element,
+    virtual public Module_Element,
+    virtual public Reference_Element,
     public Visitor_Element_T <
       Visitor, Component_Home, &Visitor::visit_component_home>
   {
@@ -15,6 +18,15 @@ namespace CUTS_PIR
     Component_Home (Module * module = 0);
 
     virtual ~Component_Home (void);
+
+    Component * manages (void);
+
+    const Component * manages (void) const;
+
+    void manages (Component * component);
+
+  private:
+    Component * manages_;
   };
 }
 

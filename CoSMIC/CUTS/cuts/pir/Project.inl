@@ -25,4 +25,16 @@ namespace CUTS_PIR
   {
     return this->event_manager_;
   }
+
+  CUTS_INLINE
+  const Worker_Manager & Project::worker_manager (void) const
+  {
+    return this->worker_manager_;
+  }
+
+  CUTS_INLINE
+  Worker_Manager & Project::worker_manager (void)
+  {
+    return this->worker_manager_;
+  }
 }

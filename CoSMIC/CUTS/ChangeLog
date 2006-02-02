@@ -1,3 +1,105 @@
+Thu Feb  2 23:12:40 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BenchmarkAgent.h:
+        * cuts/BenchmarkAgent.cpp:
+        * cuts/BenchmarkAgent.idl:
+        * cuts/BenchmarkAgent.inl:
+        * cuts/CCM_BenchmarkAgent.cpp:
+
+          The BenchmarkAgent local executor is now built and stored
+          in a library to be imported by components.
+
+        * cuts/CUTS.xme:
+
+          Updated the PICML model for CUTS.
+
+        * cuts/PortMetric.h:
+        * cuts/PortMetric.inl:
+        * cuts/PortMetric.cpp:
+        * cuts/SystemMetric.h:
+        * cuts/SystemMetric.inl:
+        * cuts/SystemMetric.cpp:
+        * cuts/TimeMetric.h:
+        * cuts/TimeMetric.inl:
+        * cuts/TimeMetric.cpp:
+        * cuts/ComponentMetric.h:
+        * cuts/ComponentMetric.inl:
+        * cuts/ComponentMetric.cpp:
+
+          Data collection handlers for the server side (Benchmark_Data_Collector).
+
+        * cuts/GME/interpreters/PICML_CIAO_Impl/BON2Component.cpp:
+
+          Moved most of the initial to the PICML visitor.
+
+        * cuts/PortAgent.h:
+        * cuts/PortAgent.cpp:
+
+          Updated the documentation.
+
+        * cuts/be/CIAO/CUTS_BE_CIAO.mpc:
+        * cuts/be/CIAO/File_Visitor.h:
+        * cuts/be/CIAO/File_Visitor.cpp:
+        * cuts/be/CIAO/Project_Visitor.h:
+        * cuts/be/CIAO/Project_Visitor.cpp:
+        * cuts/be/CIAO/Stub_Project.cpp:
+
+          Added other visitors to decouple the implemenation.
+
+        * cuts/fe/PICML/CUTS_PICMLVisitor.h:
+        * cuts/fe/PICML/CUTS_PICMLVisitor.cpp:
+        * cuts/fe/PICML/PICMLBonX.h:
+        * cuts/fe/PICML/PICMLBonX.cpp:
+        * cuts/fe/PICML/PICMLVisitor.h:
+        * cuts/fe/PICML/PICMLVisitor.cpp:
+
+          Updated BON extensions for the PICML metamodel.
+
+        * cuts/pir/Component.h:
+        * cuts/pir/Component.inl:
+        * cuts/pir/Component.cpp:
+        * cuts/pir/ComponentHome.h:
+        * cuts/pir/ComponentHome.inl:
+        * cuts/pir/Element.h:
+        * cuts/pir/Element.inl:
+        * cuts/pir/Element.cpp:
+        * cuts/pir/Event.h:
+        * cuts/pir/EventManager.h:
+        * cuts/pir/EventSink.h:
+        * cuts/pir/EventSink.inl:
+        * cuts/pir/EventSink.cpp:
+        * cuts/pir/Facet.h:
+        * cuts/pir/Facet.cpp:
+        * cuts/pir/File.h:
+        * cuts/pir/Module.h:
+        * cuts/pir/Module.inl:
+        * cuts/pir/Module.cpp:
+        * cuts/pir/Object.h:
+        * cuts/pir/Object.cpp:
+        * cuts/pir/PIR.mpc:
+        * cuts/pir/Project.h:
+        * cuts/pir/Project.inl:
+        * cuts/pir/Visitor.h:
+        * cuts/pir/Visitor.inl:
+        * cuts/pir/Worker.h:
+        * cuts/pir/Worker.cpp:
+        * cuts/pir/Worker_Manager.h:
+        * cuts/pir/Worker_Manager.cpp:
+        * cuts/pir/Worker_Type.h:
+        * cuts/pir/Worker_Type.cpp:
+
+          Can now build the platform-independent representation for a component,
+          excluding its attributes and workload behavior.
+
+        * cuts/BenchmarkAgentE.idl:
+        * cuts/be/CIAO/CIAO_Visitor.h:
+        * cuts/be/CIAO/CIAO_Visitor.cpp:
+        * cuts/pir/Scope.h:
+        * cuts/pir/Scope.inl:
+        * cuts/pir/Scope.cpp:
+
+          Removed these files.
+
 Sat Jan 28 20:43:33 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BenchmarkAgent.idl

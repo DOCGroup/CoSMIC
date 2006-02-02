@@ -6,7 +6,6 @@
 #include "cuts/PortAgent.inl"
 #endif
 
-#include "cuts/ActivationRecord.h"
 #include "cuts/PortMeasurement.h"
 #include "cuts/Time.h"
 #include "ace/Reactor.h"

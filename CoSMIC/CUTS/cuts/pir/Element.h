@@ -8,7 +8,7 @@ namespace CUTS_PIR
 {
   //===========================================================================
   /**
-   *
+   * @class Element
    */
   //===========================================================================
 
@@ -44,6 +44,12 @@ namespace CUTS_PIR
   // forward declaration
   class Module;
 
+  //===========================================================================
+  /**
+   * @class Module_Element
+   */
+  //===========================================================================
+
   class CUTS_Export Module_Element :
     virtual public Element
   {
@@ -57,17 +63,49 @@ namespace CUTS_PIR
     /// Get the module of the element.
     Module * module (void) const;
 
+    /// Get the full scoped name of the element.
     const char * scoped_name (const char * seperator) const;
 
+    /// Get the scope of the element.
+    const char * scope (const char * seperator) const;
+
   private:
+    /// Parent module for the element.
     Module * module_;
 
+    /// Temporary string for creating the scoped name.
     static std::string str_;
   };
 
   //===========================================================================
   /**
-   *
+   * @class Visitor_Element_T
+   */
+  //===========================================================================
+
+  class CUTS_Export Reference_Element
+  {
+  public:
+    /// Constructor.
+    Reference_Element (void);
+
+    /// Destructor.
+    virtual ~Reference_Element (void);
+
+    /// Set the referenced element.
+    void reference (Element * reference);
+
+    /// Get the referenced element.
+    Element * reference (void) const;
+
+  private:
+    /// Pointer to the referenced element.
+    Element * reference_;
+  };
+
+  //===========================================================================
+  /**
+   * @class Visitor_Element_T
    */
   //===========================================================================
 
@@ -77,11 +115,13 @@ namespace CUTS_PIR
   class Visitor_Element_T
   {
   public:
+    /// Constructor.
     virtual ~Visitor_Element_T (void)
     {
 
     }
 
+    /// Accept the visitor.
     virtual void accept (VISITOR * visitor)
     {
       try
@@ -98,6 +138,7 @@ namespace CUTS_PIR
       }
     }
 
+    /// Accept the visitor.
     virtual void accept (VISITOR * visitor) const
     {
       try

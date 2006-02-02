@@ -13,9 +13,11 @@ namespace CUTS_PIR
     public std::map <std::string, Event *>
   {
   public:
+    /// Constructor.
     Event_Manager (void);
 
-    ~Event_Manager (void);
+    /// Destructor.
+    virtual ~Event_Manager (void);
   };
 }
 

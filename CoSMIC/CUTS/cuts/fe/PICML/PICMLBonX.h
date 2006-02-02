@@ -34,13 +34,13 @@ DECLARE_BONEXTENSION( BON::Folder, PredefinedTypesImpl, PredefinedTypes );
 DECLARE_BONEXTENSION( BON::Folder, QoSModelingImpl, QoSModeling );
 DECLARE_BONEXTENSION( BON::Folder, TargetsImpl, Targets );
 DECLARE_BONEXTENSION( BON::Folder, TopLevelPackagesImpl, TopLevelPackages );
+DECLARE_BONEXTENSION( BON::Folder, WorkerLibrariesImpl, WorkerLibraries );
 DECLARE_ABSTRACT_BONEXTENSION( BON::Model, PrefixableImpl, Prefixable );
 DECLARE_ABSTRACT_BONEXTENSION( BON::Model, SupportsInterfacesImpl, SupportsInterfaces );
-DECLARE_ABSTRACT_BONEXTENSION( BON::FCO, AbstractInPortImpl, AbstractInPort );
-DECLARE_ABSTRACT_BONEXTENSION( BON::FCO, AbstractOutPortImpl, AbstractOutPort );
 DECLARE_ABSTRACT_BONEXTENSION( BON::FCO, CommonPortAttrsImpl, CommonPortAttrs );
 DECLARE_ABSTRACT_BONEXTENSION( BON::FCO, ConstantTypeImpl, ConstantType );
 DECLARE_ABSTRACT_BONEXTENSION( BON::FCO, GraphVertexImpl, GraphVertex );
+DECLARE_ABSTRACT_BONEXTENSION( BON::FCO, InPortImpl, InPort );
 DECLARE_ABSTRACT_BONEXTENSION( BON::FCO, ManageableImpl, Manageable );
 DECLARE_ABSTRACT_BONEXTENSION( BON::FCO, MemberTypeImpl, MemberType );
 DECLARE_ABSTRACT_BONEXTENSION( BON::FCO, ProvideableImpl, Provideable );
@@ -52,21 +52,21 @@ DECLARE_ABSTRACT_BONEXTENSION2( BON::Model, Taggable, OperationBaseImpl, Operati
 DECLARE_BONEXTENSION2( Taggable, Prefixable, PackageImpl, Package );
 DECLARE_BONEXTENSION2( BON::Model, Taggable, ReadonlyAttributeImpl, ReadonlyAttribute );
 DECLARE_ABSTRACT_BONEXTENSION2( Taggable, MemberType, NamedTypeImpl, NamedType );
-DECLARE_ABSTRACT_BONEXTENSION3( GraphVertex, CommonPortAttrs, Taggable, PortImpl, Port );
-DECLARE_ABSTRACT_BONEXTENSION2( MemberType, ConstantType, PredefinedTypeImpl, PredefinedType );
+DECLARE_ABSTRACT_BONEXTENSION3( Taggable, GraphVertex, CommonPortAttrs, PortImpl, Port );
+DECLARE_ABSTRACT_BONEXTENSION2( ConstantType, MemberType, PredefinedTypeImpl, PredefinedType );
 DECLARE_BONEXTENSION2( BON::Atom, GraphVertex, DisplayNodeImpl, DisplayNode );
-DECLARE_BONEXTENSION2( BON::Atom, AbstractInPort, POAImpl, POA );
+DECLARE_BONEXTENSION2( BON::Atom, InPort, EnvironmentImpl, Environment );
 DECLARE_BONEXTENSION2( BON::Reference, Manageable, ComponentRefImpl, ComponentRef );
 DECLARE_BONEXTENSION2( BON::Reference, Taggable, ConstantImpl, Constant );
 DECLARE_BONEXTENSION( ReadonlyAttribute, AttributeImpl, Attribute );
-DECLARE_BONEXTENSION3( Manageable, SupportsInterfaces, NamedType, ComponentImpl, Component );
+DECLARE_BONEXTENSION3( SupportsInterfaces, Manageable, NamedType, ComponentImpl, Component );
 DECLARE_ABSTRACT_BONEXTENSION( OperationBase, HasExceptionsImpl, HasExceptions );
 DECLARE_ABSTRACT_BONEXTENSION2( BON::Model, NamedType, InheritableImpl, Inheritable );
 DECLARE_BONEXTENSION( OperationBase, OnewayOperationImpl, OnewayOperation );
 DECLARE_ABSTRACT_BONEXTENSION( NamedType, NoInheritableImpl, NoInheritable );
 DECLARE_BONEXTENSION2( BON::Atom, PredefinedType, BooleanImpl, Boolean );
 DECLARE_BONEXTENSION2( BON::Atom, PredefinedType, ByteImpl, Byte );
-DECLARE_BONEXTENSION3( BON::Atom, Provideable, PredefinedType, GenericObjectImpl, GenericObject );
+DECLARE_BONEXTENSION3( BON::Atom, PredefinedType, Provideable, GenericObjectImpl, GenericObject );
 DECLARE_BONEXTENSION2( BON::Atom, PredefinedType, GenericValueImpl, GenericValue );
 DECLARE_BONEXTENSION2( BON::Atom, PredefinedType, GenericValueObjectImpl, GenericValueObject );
 DECLARE_BONEXTENSION2( BON::Atom, PredefinedType, LongIntegerImpl, LongInteger );
@@ -76,12 +76,12 @@ DECLARE_BONEXTENSION2( BON::Atom, PredefinedType, StringImpl, String );
 DECLARE_BONEXTENSION2( BON::Atom, PredefinedType, TypeEncodingImpl, TypeEncoding );
 DECLARE_BONEXTENSION2( BON::Atom, PredefinedType, TypeKindImpl, TypeKind );
 DECLARE_BONEXTENSION2( BON::Reference, NamedType, BoxedImpl, Boxed );
-DECLARE_BONEXTENSION3( BON::Reference, AbstractInPort, Port, InEventPortImpl, InEventPort );
-DECLARE_BONEXTENSION3( BON::Reference, AbstractOutPort, Port, OutEventPortImpl, OutEventPort );
-DECLARE_BONEXTENSION3( BON::Reference, AbstractInPort, Port, ProvidedRequestPortImpl, ProvidedRequestPort );
-DECLARE_BONEXTENSION3( BON::Reference, AbstractOutPort, Port, RequiredRequestPortImpl, RequiredRequestPort );
+DECLARE_BONEXTENSION3( BON::Reference, InPort, Port, InEventPortImpl, InEventPort );
+DECLARE_BONEXTENSION2( BON::Reference, Port, OutEventPortImpl, OutEventPort );
+DECLARE_BONEXTENSION3( BON::Reference, InPort, Port, ProvidedRequestPortImpl, ProvidedRequestPort );
+DECLARE_BONEXTENSION2( BON::Reference, Port, RequiredRequestPortImpl, RequiredRequestPort );
 DECLARE_BONEXTENSION2( BON::Model, NoInheritable, AggregateImpl, Aggregate );
-DECLARE_BONEXTENSION3( BON::Model, NoInheritable, ConstantType, EnumImpl, Enum );
+DECLARE_BONEXTENSION3( BON::Model, ConstantType, NoInheritable, EnumImpl, Enum );
 DECLARE_BONEXTENSION( HasExceptions, FactoryOperationImpl, FactoryOperation );
 DECLARE_ABSTRACT_BONEXTENSION( Inheritable, HasOperationsImpl, HasOperations );
 DECLARE_BONEXTENSION( HasExceptions, LookupOperationImpl, LookupOperation );
@@ -90,21 +90,22 @@ DECLARE_BONEXTENSION( HasExceptions, TwowayOperationImpl, TwowayOperation );
 DECLARE_BONEXTENSION2( BON::Reference, NoInheritable, AliasImpl, Alias );
 DECLARE_BONEXTENSION2( BON::Reference, NoInheritable, CollectionImpl, Collection );
 DECLARE_BONEXTENSION2( SupportsInterfaces, HasOperations, ComponentFactoryImpl, ComponentFactory );
-DECLARE_BONEXTENSION3( Prefixable, Provideable, HasOperations, ObjectImpl, Object );
-DECLARE_ABSTRACT_BONEXTENSION3( Prefixable, SupportsInterfaces, HasOperations, ObjectByValueImpl, ObjectByValue );
+DECLARE_BONEXTENSION3( HasOperations, Prefixable, Provideable, ObjectImpl, Object );
+DECLARE_ABSTRACT_BONEXTENSION3( SupportsInterfaces, HasOperations, Prefixable, ObjectByValueImpl, ObjectByValue );
 DECLARE_BONEXTENSION( ObjectByValue, EventImpl, Event );
 DECLARE_BONEXTENSION( ObjectByValue, ValueObjectImpl, ValueObject );
+DECLARE_ABSTRACT_BONEXTENSION( BON::Model, ActionBaseImpl, ActionBase );
+DECLARE_BONEXTENSION( ActionBase, ActionImpl, Action );
+DECLARE_BONEXTENSION( ActionBase, InputActionImpl, InputAction );
+DECLARE_BONEXTENSION( ActionBase, OutputActionImpl, OutputAction );
+DECLARE_BONEXTENSION( InputAction, PeriodicActionImpl, PeriodicAction );
+DECLARE_BONEXTENSION( Action, WorkerActionImpl, WorkerAction );
 DECLARE_ABSTRACT_BONEXTENSION( BON::Model, ProxyImpl, Proxy );
 DECLARE_ABSTRACT_BONEXTENSION( BON::Model, RTEC_ProxyImpl, RTEC_Proxy );
 DECLARE_ABSTRACT_BONEXTENSION( Proxy, Proxy_ConsumerImpl, Proxy_Consumer );
 DECLARE_ABSTRACT_BONEXTENSION( Proxy, Proxy_SupplierImpl, Proxy_Supplier );
 DECLARE_BONEXTENSION2( Proxy_Consumer, RTEC_Proxy, RTEC_Proxy_ConsumerImpl, RTEC_Proxy_Consumer );
-DECLARE_BONEXTENSION2( Proxy_Supplier, RTEC_Proxy, RTEC_Proxy_SupplierImpl, RTEC_Proxy_Supplier );
-DECLARE_ABSTRACT_BONEXTENSION( BON::Model, ActionBaseImpl, ActionBase );
-DECLARE_BONEXTENSION( ActionBase, ActionImpl, Action );
-DECLARE_BONEXTENSION( ActionBase, InputActionImpl, InputAction );
-DECLARE_BONEXTENSION( ActionBase, OutputActionImpl, OutputAction );
-DECLARE_ABSTRACT_BONEXTENSION( InputAction, PeriodicActionImpl, PeriodicAction );
+DECLARE_BONEXTENSION2( RTEC_Proxy, Proxy_Supplier, RTEC_Proxy_SupplierImpl, RTEC_Proxy_Supplier );
 DECLARE_BONEXTENSION( BON::Model, QoSCharacteristicImpl, QoSCharacteristic );
 DECLARE_BONEXTENSION( QoSCharacteristic, CPUImpl, CPU );
 DECLARE_BONEXTENSION( QoSCharacteristic, ConcurrencyImpl, Concurrency );
@@ -159,6 +160,10 @@ DECLARE_BONEXTENSION( BON::Model, ResourceImpl, Resource );
 DECLARE_BONEXTENSION( BON::Model, ResourceContainerImpl, ResourceContainer );
 DECLARE_BONEXTENSION( BON::Model, SatisfierPropertyImpl, SatisfierProperty );
 DECLARE_BONEXTENSION( BON::Model, TopLevelPackageContainerImpl, TopLevelPackageContainer );
+DECLARE_BONEXTENSION( BON::Model, WorkerImpl, Worker );
+DECLARE_BONEXTENSION( BON::Model, WorkerFileImpl, WorkerFile );
+DECLARE_BONEXTENSION( BON::Model, WorkerLibraryImpl, WorkerLibrary );
+DECLARE_BONEXTENSION( BON::Model, WorkerPackageImpl, WorkerPackage );
 DECLARE_ABSTRACT_BONEXTENSION( BON::FCO, BenchmarkTypeImpl, BenchmarkType );
 DECLARE_BONEXTENSION2( BON::Atom, BenchmarkType, FixedIterationBenchmarksImpl, FixedIterationBenchmarks );
 DECLARE_BONEXTENSION2( BON::Atom, BenchmarkType, PeriodicBenchmarksImpl, PeriodicBenchmarks );
@@ -308,6 +313,7 @@ DECLARE_BONEXTENSION( BON::Reference, ReturnTypeImpl, ReturnType );
 DECLARE_BONEXTENSION( BON::Reference, SetExceptionImpl, SetException );
 DECLARE_BONEXTENSION( BON::Reference, SupportsImpl, Supports );
 DECLARE_BONEXTENSION( BON::Reference, ThreadPoolRefImpl, ThreadPoolRef );
+DECLARE_BONEXTENSION( BON::Reference, WorkerTypeImpl, WorkerType );
 
 
 //*******************************************************************
@@ -1098,6 +1104,39 @@ public:
 
 
 //*******************************************************************
+//   C  L  A  S  S   WorkerLibrariesImpl
+//*******************************************************************
+class WorkerLibrariesImpl :
+	  public BON::FolderImpl
+{
+public:
+	//
+	// kind and subfolder getters
+	//********************************************************************************
+	// getter for kind "WorkerLibrary"
+	//********************************************************************************
+	template <class T>
+	std::set<WorkerLibrary, T>		getWorkerLibrary(TDP)
+	{
+		std::set<WorkerLibrary, T> res;
+		std::set<BON::Object> kinds = getChildObjects("WorkerLibrary");
+		for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
+		{
+			WorkerLibrary elem(*i);
+			ASSERT(elem);
+			res.insert(elem);
+		}
+		return res;
+	}
+
+
+	///BUP
+	// add your own members here
+	///EUP
+};
+
+
+//*******************************************************************
 //   C  L  A  S  S   PrefixableImpl
 //*******************************************************************
 class PrefixableImpl :
@@ -1142,75 +1181,6 @@ public:
 		}
 		return res;
 	}
-
-
-	///BUP
-	// add your own members here
-	///EUP
-};
-
-
-//*******************************************************************
-//   C  L  A  S  S   AbstractInPortImpl
-//*******************************************************************
-class AbstractInPortImpl :
-	  virtual public BON::FCOImpl
-{
-public:
-
-	//
-	// connectionEnd getters
-	//********************************************************************************
-	// returns dst InputActions
-	//********************************************************************************
-	template <class T>
-	std::multiset<InputAction, T>		getInputDsts(TDP)
-	{
-		std::multiset<InputAction, T> res;
-		{
-			std::multiset<BON::ConnectionEnd> out_ends = BON::ConnectionEndImpl::getOutConnEnds("Input");
-			for ( std::multiset<BON::ConnectionEnd>::iterator cit = out_ends.begin() ; cit != out_ends.end() ; ++cit )
-			{
-				InputAction dst( *cit );
-				ASSERT(dst);
-				res.insert( dst);
-			}
-		}
-		return res;
-	}
-
-	//********************************************************************************
-	// 
-	//********************************************************************************
-	template <class T>
-	std::set<Input, T>		getOutInputLinks(TDP)
-	{
-		std::set<Input, T> result;
-		std::set<BON::Connection> conns = ConnectionEndImpl::getOutConnLinks();
-		std::set<BON::Connection>::iterator it = conns.begin();
-		for( ; it != conns.end(); ++it)
-		{
-			Input c( *it);
-			if (c)
-				result.insert( c);
-		}
-		return result;
-	}
-
-
-	///BUP
-	// add your own members here
-	///EUP
-};
-
-
-//*******************************************************************
-//   C  L  A  S  S   AbstractOutPortImpl
-//*******************************************************************
-class AbstractOutPortImpl :
-	  virtual public BON::FCOImpl
-{
-public:
 
 
 	///BUP
@@ -1339,6 +1309,60 @@ public:
 			}
 		}
 		return res;
+	}
+
+
+	///BUP
+	// add your own members here
+	///EUP
+};
+
+
+//*******************************************************************
+//   C  L  A  S  S   InPortImpl
+//*******************************************************************
+class InPortImpl :
+	  virtual public BON::FCOImpl
+{
+public:
+
+	//
+	// connectionEnd getters
+	//********************************************************************************
+	// returns dst InputActions
+	//********************************************************************************
+	template <class T>
+	std::multiset<InputAction, T>		getInputDsts(TDP)
+	{
+		std::multiset<InputAction, T> res;
+		{
+			std::multiset<BON::ConnectionEnd> out_ends = BON::ConnectionEndImpl::getOutConnEnds("Input");
+			for ( std::multiset<BON::ConnectionEnd>::iterator cit = out_ends.begin() ; cit != out_ends.end() ; ++cit )
+			{
+				InputAction dst( *cit );
+				ASSERT(dst);
+				res.insert( dst);
+			}
+		}
+		return res;
+	}
+
+	//********************************************************************************
+	// 
+	//********************************************************************************
+	template <class T>
+	std::set<Input, T>		getOutInputLinks(TDP)
+	{
+		std::set<Input, T> result;
+		std::set<BON::Connection> conns = ConnectionEndImpl::getOutConnLinks();
+		std::set<BON::Connection>::iterator it = conns.begin();
+		for( ; it != conns.end(); ++it)
+		{
+			Input c( *it);
+			if (c)
+				result.insert( c);
+		}
+		return result;
 	}
 
 
@@ -2444,9 +2468,9 @@ public:
 //   C  L  A  S  S   PortImpl
 //*******************************************************************
 class PortImpl :
-	  public GraphVertexImpl
+	  public TaggableImpl
+	, public GraphVertexImpl
 	, public CommonPortAttrsImpl
-	, public TaggableImpl
 {
 public:
 
@@ -2461,8 +2485,8 @@ public:
 //   C  L  A  S  S   PredefinedTypeImpl
 //*******************************************************************
 class PredefinedTypeImpl :
-	  public MemberTypeImpl
-	, public ConstantTypeImpl
+	  public ConstantTypeImpl
+	, public MemberTypeImpl
 {
 public:
 
@@ -2490,11 +2514,11 @@ public:
 
 
 //*******************************************************************
-//   C  L  A  S  S   POAImpl
+//   C  L  A  S  S   EnvironmentImpl
 //*******************************************************************
-class POAImpl :
+class EnvironmentImpl :
 	  virtual public BON::AtomImpl
-	, public AbstractInPortImpl
+	, public InPortImpl
 {
 public:
 
@@ -2772,8 +2796,8 @@ public:
 //   C  L  A  S  S   ComponentImpl
 //*******************************************************************
 class ComponentImpl :
-	  public ManageableImpl
-	, public SupportsInterfacesImpl
+	  public SupportsInterfacesImpl
+	, public ManageableImpl
 	, public NamedTypeImpl
 {
 public:
@@ -2960,11 +2984,13 @@ public:
 	std::set<ActionBase, T>		getActionBase(TDP)
 	{
 		std::set<ActionBase, T> res;
-		const int len = 3;
+		const int len = 5;
 		std::set<BON::FCO> roles_vec[ len];
 		roles_vec[0] = getChildFCOsAs("Action");
 		roles_vec[1] = getChildFCOsAs("InputAction");
 		roles_vec[2] = getChildFCOsAs("OutputAction");
+		roles_vec[3] = getChildFCOsAs("PeriodicAction");
+		roles_vec[4] = getChildFCOsAs("WorkerAction");
 		for( int k = 0; k < len; ++k)
 			for( std::set<BON::FCO>::iterator i = roles_vec[k].begin(); i != roles_vec[k].end(); ++i)
 			{
@@ -3003,6 +3029,23 @@ public:
 		for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
 		{
 			Effect elem(*i);
+			ASSERT(elem);
+			res.insert(elem);
+		}
+		return res;
+	}
+
+	//********************************************************************************
+	// getter for role "Environment" among "Environment"s
+	//********************************************************************************
+	template <class T>
+	std::set<Environment, T>		getEnvironment(TDP)
+	{
+		std::set<Environment, T> res;
+		std::set<BON::FCO> roles = getChildFCOsAs("Environment");
+		for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+		{
+			Environment elem(*i);
 			ASSERT(elem);
 			res.insert(elem);
 		}
@@ -3112,16 +3155,16 @@ public:
 	}
 
 	//********************************************************************************
-	// getter for role "POA" among "POA"s
+	// getter for role "PeriodicAction" among "ActionBase"s and its descendants
 	//********************************************************************************
 	template <class T>
-	std::set<POA, T>		getPOA(TDP)
+	std::set<PeriodicAction, T>		getPeriodicAction(TDP)
 	{
-		std::set<POA, T> res;
-		std::set<BON::FCO> roles = getChildFCOsAs("POA");
+		std::set<PeriodicAction, T> res;
+		std::set<BON::FCO> roles = getChildFCOsAs("PeriodicAction");
 		for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
 		{
-			POA elem(*i);
+			PeriodicAction elem(*i);
 			ASSERT(elem);
 			res.insert(elem);
 		}
@@ -3251,6 +3294,40 @@ public:
 		for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
 		{
 			Transition elem(*i);
+			ASSERT(elem);
+			res.insert(elem);
+		}
+		return res;
+	}
+
+	//********************************************************************************
+	// getter for role "WorkerAction" among "ActionBase"s and its descendants
+	//********************************************************************************
+	template <class T>
+	std::set<WorkerAction, T>		getWorkerAction(TDP)
+	{
+		std::set<WorkerAction, T> res;
+		std::set<BON::FCO> roles = getChildFCOsAs("WorkerAction");
+		for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+		{
+			WorkerAction elem(*i);
+			ASSERT(elem);
+			res.insert(elem);
+		}
+		return res;
+	}
+
+	//********************************************************************************
+	// getter for role "WorkerType" among "WorkerType"s
+	//********************************************************************************
+	template <class T>
+	std::set<WorkerType, T>		getWorkerType(TDP)
+	{
+		std::set<WorkerType, T> res;
+		std::set<BON::FCO> roles = getChildFCOsAs("WorkerType");
+		for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+		{
+			WorkerType elem(*i);
 			ASSERT(elem);
 			res.insert(elem);
 		}
@@ -3455,8 +3532,8 @@ public:
 //*******************************************************************
 class GenericObjectImpl :
 	  virtual public BON::AtomImpl
-	, public ProvideableImpl
 	, public PredefinedTypeImpl
+	, public ProvideableImpl
 {
 public:
 
@@ -3619,7 +3696,7 @@ public:
 //*******************************************************************
 class InEventPortImpl :
 	  virtual public BON::ReferenceImpl
-	, public AbstractInPortImpl
+	, public InPortImpl
 	, public PortImpl
 {
 public:
@@ -3817,7 +3894,6 @@ public:
 //*******************************************************************
 class OutEventPortImpl :
 	  virtual public BON::ReferenceImpl
-	, public AbstractOutPortImpl
 	, public PortImpl
 {
 public:
@@ -4026,7 +4102,7 @@ public:
 //*******************************************************************
 class ProvidedRequestPortImpl :
 	  virtual public BON::ReferenceImpl
-	, public AbstractInPortImpl
+	, public InPortImpl
 	, public PortImpl
 {
 public:
@@ -4150,7 +4226,6 @@ public:
 //*******************************************************************
 class RequiredRequestPortImpl :
 	  virtual public BON::ReferenceImpl
-	, public AbstractOutPortImpl
 	, public PortImpl
 {
 public:
@@ -4313,8 +4388,8 @@ public:
 //*******************************************************************
 class EnumImpl :
 	  virtual public BON::ModelImpl
-	, public NoInheritableImpl
 	, public ConstantTypeImpl
+	, public NoInheritableImpl
 {
 public:
 
@@ -4872,9 +4947,9 @@ public:
 //   C  L  A  S  S   ObjectImpl
 //*******************************************************************
 class ObjectImpl :
-	  public PrefixableImpl
+	  public HasOperationsImpl
+	, public PrefixableImpl
 	, public ProvideableImpl
-	, public HasOperationsImpl
 {
 public:
 
@@ -4895,9 +4970,9 @@ public:
 //   C  L  A  S  S   ObjectByValueImpl
 //*******************************************************************
 class ObjectByValueImpl :
-	  public PrefixableImpl
-	, public SupportsInterfacesImpl
+	  public SupportsInterfacesImpl
 	, public HasOperationsImpl
+	, public PrefixableImpl
 {
 public:
 
@@ -5005,6 +5080,283 @@ class ValueObjectImpl :
 {
 public:
 
+
+	///BUP
+	// add your own members here
+	///EUP
+};
+
+
+//*******************************************************************
+//   C  L  A  S  S   ActionBaseImpl
+//*******************************************************************
+class ActionBaseImpl :
+	  virtual public BON::ModelImpl
+{
+public:
+
+	//
+	// connectionEnd getters
+	//********************************************************************************
+	// returns dst States
+	//********************************************************************************
+	template <class T>
+	std::multiset<State, T>		getEffectDsts(TDP)
+	{
+		std::multiset<State, T> res;
+		{
+			std::multiset<BON::ConnectionEnd> out_ends = BON::ConnectionEndImpl::getOutConnEnds("Effect");
+			for ( std::multiset<BON::ConnectionEnd>::iterator cit = out_ends.begin() ; cit != out_ends.end() ; ++cit )
+			{
+				State dst( *cit );
+				ASSERT(dst);
+				res.insert( dst);
+			}
+		}
+		return res;
+	}
+
+	//********************************************************************************
+	// 
+	//********************************************************************************
+	template <class T>
+	std::set<Transition, T>		getInTransitionLinks(TDP)
+	{
+		std::set<Transition, T> result;
+		std::set<BON::Connection> conns = ConnectionEndImpl::getInConnLinks();
+		std::set<BON::Connection>::iterator it = conns.begin();
+		for( ; it != conns.end(); ++it)
+		{
+			Transition c( *it);
+			if (c)
+				result.insert( c);
+		}
+		return result;
+	}
+
+	//********************************************************************************
+	// 
+	//********************************************************************************
+	template <class T>
+	std::set<Effect, T>		getOutEffectLinks(TDP)
+	{
+		std::set<Effect, T> result;
+		std::set<BON::Connection> conns = ConnectionEndImpl::getOutConnLinks();
+		std::set<BON::Connection>::iterator it = conns.begin();
+		for( ; it != conns.end(); ++it)
+		{
+			Effect c( *it);
+			if (c)
+				result.insert( c);
+		}
+		return result;
+	}
+
+	//********************************************************************************
+	// returns src States
+	//********************************************************************************
+	template <class T>
+	std::multiset<State, T>		getTransitionSrcs(TDP)
+	{
+		std::multiset<State, T> res;
+		{
+			std::multiset<BON::ConnectionEnd> in_ends = BON::ConnectionEndImpl::getInConnEnds("Transition");
+			for ( std::multiset<BON::ConnectionEnd>::iterator cit = in_ends.begin() ; cit != in_ends.end() ; ++cit )
+			{
+				State dst( *cit );
+				ASSERT(dst);
+				res.insert( dst);
+			}
+		}
+		return res;
+	}
+
+	//
+	// kind and role getters
+	//********************************************************************************
+	// getter for role "Property" among "Property"s
+	//********************************************************************************
+	template <class T>
+	std::set<Property, T>		getProperty(TDP)
+	{
+		std::set<Property, T> res;
+		std::set<BON::FCO> roles = getChildFCOsAs("Property");
+		for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+		{
+			Property elem(*i);
+			ASSERT(elem);
+			res.insert(elem);
+		}
+		return res;
+	}
+
+
+	///BUP
+	// add your own members here
+	///EUP
+};
+
+
+//*******************************************************************
+//   C  L  A  S  S   ActionImpl
+//*******************************************************************
+class ActionImpl :
+	  public ActionBaseImpl
+{
+public:
+
+	//
+	// attribute getters and setters
+	virtual long        getRepetitions() ;
+	virtual void        setRepetitions( const long val);
+
+	///BUP
+	// add your own members here
+	///EUP
+};
+
+
+//*******************************************************************
+//   C  L  A  S  S   InputActionImpl
+//*******************************************************************
+class InputActionImpl :
+	  public ActionBaseImpl
+{
+public:
+
+	//
+	// connectionEnd getters
+	//********************************************************************************
+	// returns src States
+	//********************************************************************************
+	template <class T>
+	std::multiset<State, T>		getFinishSrcs(TDP)
+	{
+		std::multiset<State, T> res;
+		{
+			std::multiset<BON::ConnectionEnd> in_ends = BON::ConnectionEndImpl::getInConnEnds("Finish");
+			for ( std::multiset<BON::ConnectionEnd>::iterator cit = in_ends.begin() ; cit != in_ends.end() ; ++cit )
+			{
+				State dst( *cit );
+				ASSERT(dst);
+				res.insert( dst);
+			}
+		}
+		return res;
+	}
+
+	//********************************************************************************
+	// 
+	//********************************************************************************
+	template <class T>
+	std::set<Finish, T>		getInFinishLinks(TDP)
+	{
+		std::set<Finish, T> result;
+		std::set<BON::Connection> conns = ConnectionEndImpl::getInConnLinks();
+		std::set<BON::Connection>::iterator it = conns.begin();
+		for( ; it != conns.end(); ++it)
+		{
+			Finish c( *it);
+			if (c)
+				result.insert( c);
+		}
+		return result;
+	}
+
+	//********************************************************************************
+	// 
+	//********************************************************************************
+	template <class T>
+	std::set<Input, T>		getInInputLinks(TDP)
+	{
+		std::set<Input, T> result;
+		std::set<BON::Connection> conns = ConnectionEndImpl::getInConnLinks();
+		std::set<BON::Connection>::iterator it = conns.begin();
+		for( ; it != conns.end(); ++it)
+		{
+			Input c( *it);
+			if (c)
+				result.insert( c);
+		}
+		return result;
+	}
+
+	//********************************************************************************
+	// returns src InPorts
+	//********************************************************************************
+	template <class T>
+	std::multiset<InPort, T>		getInputSrcs(TDP)
+	{
+		std::multiset<InPort, T> res;
+		{
+			std::multiset<BON::ConnectionEnd> in_ends = BON::ConnectionEndImpl::getInConnEnds("Input");
+			for ( std::multiset<BON::ConnectionEnd>::iterator cit = in_ends.begin() ; cit != in_ends.end() ; ++cit )
+			{
+				InPort dst( *cit );
+				ASSERT(dst);
+				res.insert( dst);
+			}
+		}
+		return res;
+	}
+
+
+	///BUP
+	// add your own members here
+	///EUP
+};
+
+
+//*******************************************************************
+//   C  L  A  S  S   OutputActionImpl
+//*******************************************************************
+class OutputActionImpl :
+	  public ActionBaseImpl
+{
+public:
+
+	//
+	// attribute getters and setters
+	virtual long        getRepetitions() ;
+	virtual void        setRepetitions( const long val);
+
+	///BUP
+	// add your own members here
+	///EUP
+};
+
+
+//*******************************************************************
+//   C  L  A  S  S   PeriodicActionImpl
+//*******************************************************************
+class PeriodicActionImpl :
+	  public InputActionImpl
+{
+public:
+
+	//
+	// attribute getters and setters
+	virtual long        getPeriod() ;
+	virtual void        setPeriod( const long val);
+
+	///BUP
+	// add your own members here
+	///EUP
+};
+
+
+//*******************************************************************
+//   C  L  A  S  S   WorkerActionImpl
+//*******************************************************************
+class WorkerActionImpl :
+	  public ActionImpl
+{
+public:
+
+	//
+	// attribute getters and setters
+	virtual bool        isLogAction() ;
+	virtual void        setLogAction( bool val);
 
 	///BUP
 	// add your own members here
@@ -5185,8 +5537,8 @@ public:
 //   C  L  A  S  S   RTEC_Proxy_SupplierImpl
 //*******************************************************************
 class RTEC_Proxy_SupplierImpl :
-	  public Proxy_SupplierImpl
-	, public RTEC_ProxyImpl
+	  public RTEC_ProxyImpl
+	, public Proxy_SupplierImpl
 {
 public:
 
@@ -5299,268 +5651,6 @@ public:
 		return res;
 	}
 
-
-	///BUP
-	// add your own members here
-	///EUP
-};
-
-
-//*******************************************************************
-//   C  L  A  S  S   ActionBaseImpl
-//*******************************************************************
-class ActionBaseImpl :
-	  virtual public BON::ModelImpl
-{
-public:
-
-	//
-	// connectionEnd getters
-	//********************************************************************************
-	// returns dst States
-	//********************************************************************************
-	template <class T>
-	std::multiset<State, T>		getEffectDsts(TDP)
-	{
-		std::multiset<State, T> res;
-		{
-			std::multiset<BON::ConnectionEnd> out_ends = BON::ConnectionEndImpl::getOutConnEnds("Effect");
-			for ( std::multiset<BON::ConnectionEnd>::iterator cit = out_ends.begin() ; cit != out_ends.end() ; ++cit )
-			{
-				State dst( *cit );
-				ASSERT(dst);
-				res.insert( dst);
-			}
-		}
-		return res;
-	}
-
-	//********************************************************************************
-	// 
-	//********************************************************************************
-	template <class T>
-	std::set<Transition, T>		getInTransitionLinks(TDP)
-	{
-		std::set<Transition, T> result;
-		std::set<BON::Connection> conns = ConnectionEndImpl::getInConnLinks();
-		std::set<BON::Connection>::iterator it = conns.begin();
-		for( ; it != conns.end(); ++it)
-		{
-			Transition c( *it);
-			if (c)
-				result.insert( c);
-		}
-		return result;
-	}
-
-	//********************************************************************************
-	// 
-	//********************************************************************************
-	template <class T>
-	std::set<Effect, T>		getOutEffectLinks(TDP)
-	{
-		std::set<Effect, T> result;
-		std::set<BON::Connection> conns = ConnectionEndImpl::getOutConnLinks();
-		std::set<BON::Connection>::iterator it = conns.begin();
-		for( ; it != conns.end(); ++it)
-		{
-			Effect c( *it);
-			if (c)
-				result.insert( c);
-		}
-		return result;
-	}
-
-	//********************************************************************************
-	// returns src States
-	//********************************************************************************
-	template <class T>
-	std::multiset<State, T>		getTransitionSrcs(TDP)
-	{
-		std::multiset<State, T> res;
-		{
-			std::multiset<BON::ConnectionEnd> in_ends = BON::ConnectionEndImpl::getInConnEnds("Transition");
-			for ( std::multiset<BON::ConnectionEnd>::iterator cit = in_ends.begin() ; cit != in_ends.end() ; ++cit )
-			{
-				State dst( *cit );
-				ASSERT(dst);
-				res.insert( dst);
-			}
-		}
-		return res;
-	}
-
-	//
-	// attribute getters and setters
-	virtual bool        isEnabled() ;
-	virtual void        setEnabled( bool val);
-	//
-	// kind and role getters
-	//********************************************************************************
-	// getter for role "Property" among "Property"s
-	//********************************************************************************
-	template <class T>
-	std::set<Property, T>		getProperty(TDP)
-	{
-		std::set<Property, T> res;
-		std::set<BON::FCO> roles = getChildFCOsAs("Property");
-		for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-		{
-			Property elem(*i);
-			ASSERT(elem);
-			res.insert(elem);
-		}
-		return res;
-	}
-
-
-	///BUP
-	// add your own members here
-	///EUP
-};
-
-
-//*******************************************************************
-//   C  L  A  S  S   ActionImpl
-//*******************************************************************
-class ActionImpl :
-	  public ActionBaseImpl
-{
-public:
-
-	//
-	// attribute getters and setters
-	virtual long        getRepetitions() ;
-	virtual void        setRepetitions( const long val);
-
-	///BUP
-	// add your own members here
-	///EUP
-};
-
-
-//*******************************************************************
-//   C  L  A  S  S   InputActionImpl
-//*******************************************************************
-class InputActionImpl :
-	  public ActionBaseImpl
-{
-public:
-
-	//
-	// connectionEnd getters
-	//********************************************************************************
-	// returns src States
-	//********************************************************************************
-	template <class T>
-	std::multiset<State, T>		getFinishSrcs(TDP)
-	{
-		std::multiset<State, T> res;
-		{
-			std::multiset<BON::ConnectionEnd> in_ends = BON::ConnectionEndImpl::getInConnEnds("Finish");
-			for ( std::multiset<BON::ConnectionEnd>::iterator cit = in_ends.begin() ; cit != in_ends.end() ; ++cit )
-			{
-				State dst( *cit );
-				ASSERT(dst);
-				res.insert( dst);
-			}
-		}
-		return res;
-	}
-
-	//********************************************************************************
-	// 
-	//********************************************************************************
-	template <class T>
-	std::set<Finish, T>		getInFinishLinks(TDP)
-	{
-		std::set<Finish, T> result;
-		std::set<BON::Connection> conns = ConnectionEndImpl::getInConnLinks();
-		std::set<BON::Connection>::iterator it = conns.begin();
-		for( ; it != conns.end(); ++it)
-		{
-			Finish c( *it);
-			if (c)
-				result.insert( c);
-		}
-		return result;
-	}
-
-	//********************************************************************************
-	// 
-	//********************************************************************************
-	template <class T>
-	std::set<Input, T>		getInInputLinks(TDP)
-	{
-		std::set<Input, T> result;
-		std::set<BON::Connection> conns = ConnectionEndImpl::getInConnLinks();
-		std::set<BON::Connection>::iterator it = conns.begin();
-		for( ; it != conns.end(); ++it)
-		{
-			Input c( *it);
-			if (c)
-				result.insert( c);
-		}
-		return result;
-	}
-
-	//********************************************************************************
-	// returns src AbstractInPorts
-	//********************************************************************************
-	template <class T>
-	std::multiset<AbstractInPort, T>		getInputSrcs(TDP)
-	{
-		std::multiset<AbstractInPort, T> res;
-		{
-			std::multiset<BON::ConnectionEnd> in_ends = BON::ConnectionEndImpl::getInConnEnds("Input");
-			for ( std::multiset<BON::ConnectionEnd>::iterator cit = in_ends.begin() ; cit != in_ends.end() ; ++cit )
-			{
-				AbstractInPort dst( *cit );
-				ASSERT(dst);
-				res.insert( dst);
-			}
-		}
-		return res;
-	}
-
-
-	///BUP
-	// add your own members here
-	///EUP
-};
-
-
-//*******************************************************************
-//   C  L  A  S  S   OutputActionImpl
-//*******************************************************************
-class OutputActionImpl :
-	  public ActionBaseImpl
-{
-public:
-
-	//
-	// attribute getters and setters
-	virtual long        getRepetitions() ;
-	virtual void        setRepetitions( const long val);
-
-	///BUP
-	// add your own members here
-	///EUP
-};
-
-
-//*******************************************************************
-//   C  L  A  S  S   PeriodicActionImpl
-//*******************************************************************
-class PeriodicActionImpl :
-	  public InputActionImpl
-{
-public:
-
-	//
-	// attribute getters and setters
-	virtual long        getPeriod() ;
-	virtual void        setPeriod( const long val);
 
 	///BUP
 	// add your own members here
@@ -12291,6 +12381,167 @@ public:
 
 
 //*******************************************************************
+//   C  L  A  S  S   WorkerImpl
+//*******************************************************************
+class WorkerImpl :
+	  virtual public BON::ModelImpl
+{
+public:
+
+	//
+	// kind and role getters
+	//********************************************************************************
+	// getter for role "WorkerAction" among "WorkerAction"s
+	//********************************************************************************
+	template <class T>
+	std::set<WorkerAction, T>		getWorkerAction(TDP)
+	{
+		std::set<WorkerAction, T> res;
+		std::set<BON::FCO> roles = getChildFCOsAs("WorkerAction");
+		for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+		{
+			WorkerAction elem(*i);
+			ASSERT(elem);
+			res.insert(elem);
+		}
+		return res;
+	}
+
+
+	///BUP
+	// add your own members here
+	///EUP
+};
+
+
+//*******************************************************************
+//   C  L  A  S  S   WorkerFileImpl
+//*******************************************************************
+class WorkerFileImpl :
+	  virtual public BON::ModelImpl
+{
+public:
+
+	//
+	// attribute getters and setters
+	virtual std::string getLocation() ;
+	virtual void        setLocation( const std::string& val);
+	//
+	// kind and role getters
+	//********************************************************************************
+	// getter for role "Worker" among "Worker"s
+	//********************************************************************************
+	template <class T>
+	std::set<Worker, T>		getWorker(TDP)
+	{
+		std::set<Worker, T> res;
+		std::set<BON::FCO> roles = getChildFCOsAs("Worker");
+		for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+		{
+			Worker elem(*i);
+			ASSERT(elem);
+			res.insert(elem);
+		}
+		return res;
+	}
+
+
+	///BUP
+	// add your own members here
+	///EUP
+};
+
+
+//*******************************************************************
+//   C  L  A  S  S   WorkerLibraryImpl
+//*******************************************************************
+class WorkerLibraryImpl :
+	  virtual public BON::ModelImpl
+{
+public:
+
+	//
+	// attribute getters and setters
+	virtual std::string getLocation() ;
+	virtual void        setLocation( const std::string& val);
+	//
+	// kind and role getters
+	//********************************************************************************
+	// getter for role "WorkerFile" among "WorkerFile"s
+	//********************************************************************************
+	template <class T>
+	std::set<WorkerFile, T>		getWorkerFile(TDP)
+	{
+		std::set<WorkerFile, T> res;
+		std::set<BON::FCO> roles = getChildFCOsAs("WorkerFile");
+		for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+		{
+			WorkerFile elem(*i);
+			ASSERT(elem);
+			res.insert(elem);
+		}
+		return res;
+	}
+
+
+	///BUP
+	// add your own members here
+	///EUP
+};
+
+
+//*******************************************************************
+//   C  L  A  S  S   WorkerPackageImpl
+//*******************************************************************
+class WorkerPackageImpl :
+	  virtual public BON::ModelImpl
+{
+public:
+
+	//
+	// kind and role getters
+	//********************************************************************************
+	// getter for role "Worker" among "Worker"s
+	//********************************************************************************
+	template <class T>
+	std::set<Worker, T>		getWorker(TDP)
+	{
+		std::set<Worker, T> res;
+		std::set<BON::FCO> roles = getChildFCOsAs("Worker");
+		for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+		{
+			Worker elem(*i);
+			ASSERT(elem);
+			res.insert(elem);
+		}
+		return res;
+	}
+
+	//********************************************************************************
+	// getter for role "WorkerPackage" among "WorkerPackage"s
+	//********************************************************************************
+	template <class T>
+	std::set<WorkerPackage, T>		getWorkerPackage(TDP)
+	{
+		std::set<WorkerPackage, T> res;
+		std::set<BON::FCO> roles = getChildFCOsAs("WorkerPackage");
+		for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+		{
+			WorkerPackage elem(*i);
+			ASSERT(elem);
+			res.insert(elem);
+		}
+		return res;
+	}
+
+
+	///BUP
+	// add your own members here
+	///EUP
+};
+
+
+//*******************************************************************
 //   C  L  A  S  S   BenchmarkTypeImpl
 //*******************************************************************
 class BenchmarkTypeImpl :
@@ -15486,7 +15737,7 @@ public:
 	//
 	// connectionEnd getters
 	virtual InputAction getDst();
-	virtual AbstractInPort                  getSrc();
+	virtual InPort      getSrc();
 
 	///BUP
 	// add your own members here
@@ -17832,6 +18083,24 @@ public:
 	//
 	// ref getters
 	virtual ThreadPool  getThreadPool();
+
+	///BUP
+	// add your own members here
+	///EUP
+};
+
+
+//*******************************************************************
+//   C  L  A  S  S   WorkerTypeImpl
+//*******************************************************************
+class WorkerTypeImpl :
+	  virtual public BON::ReferenceImpl
+{
+public:
+
+	//
+	// ref getters
+	virtual Worker      getWorker();
 
 	///BUP
 	// add your own members here

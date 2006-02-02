@@ -8,17 +8,24 @@
 
 namespace CUTS_PIR
 {
-  // forward declarations
-  class Component_Home;
-  class Method;
+  //===========================================================================
+  /**
+   * @class Component
+   */
+  //===========================================================================
 
   class CUTS_Export Component :
-    public Visitor_Element_T <Visitor, Component, &Visitor::visit_component>,
-    public Element
+    public Element,
+    public Visitor_Element_T <Visitor, Component, &Visitor::visit_component>
   {
   public:
-    typedef std::set <const Event *> Event_Types ;
+    /// Type definition for the component event sinks.
     typedef std::set <Event_Sink *> Event_Sinks;
+
+    /// Type definition for the component facets.
+    typedef std::set <Facet *> Facets;
+
+    typedef std::set <Worker_Type *> Worker_Types;
 
     /// Constructor.
     Component (void);
@@ -26,32 +33,42 @@ namespace CUTS_PIR
     /// Destructor.
     virtual ~Component (void);
 
-    /// Get the home for the component.
-    Component_Home * home (void) const;
-
-    /// Set the home for the component.
-    void home (Component_Home * home);
-
+    /// Get the collection of event sinks.
     Event_Sinks & event_sinks (void);
 
+    /// Get the collection of event sinks.
     const Event_Sinks & event_sinks (void) const;
 
-    const Event_Types & in_events_types (void) const;
+    /// Get the home for the component.
+    Component_Home * home (void);
 
-    Event_Types & in_events_types (void);
+    /// Get the home for the component.
+    const Component_Home * home (void) const;
+
+    /// Get the home for the component.
+    void home (Component_Home * home);
+
+    /// Get the facets for the component.
+    Facets & facets (void);
+
+    /// Get the facets for the component.
+    const Facets & facets (void) const;
+
+    Worker_Types & worker_types (void);
+
+    const Worker_Types & worker_types (void) const;
 
   private:
-    /// Name of the component factory.
-    std::string factory_;
-
-    /// Home for the component.
+    /// The home for this component.
     std::auto_ptr <Component_Home> home_;
 
     /// Set of methods in the component.
     Event_Sinks event_sinks_;
 
-    /// Set of event types recieved at this component.
-    Event_Types in_events_types_;
+    /// Collection of facets provided by this component.
+    Facets facets_;
+
+    Worker_Types worker_types_;
   };
 }
 

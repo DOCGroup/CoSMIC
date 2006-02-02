@@ -6,25 +6,19 @@
 namespace CUTS_PIR
 {
   class CUTS_Export Event_Sink :
-    public Method,
+    virtual public Method,
+    virtual public Reference_Element,
     public Visitor_Element_T <Visitor, Event_Sink, &Visitor::visit_event_sink>
   {
   public:
     /// Constructor.
-    Event_Sink (Event * event_type);
+    Event_Sink (void);
 
     /// Destructor.
     virtual ~Event_Sink (void);
 
-    /// Get the event type.
-    Event * event_type (void) const;
-
     using Visitor_Element_T <
       Visitor, Event_Sink, &Visitor::visit_event_sink>::accept;
-
-  private:
-    /// Type of event receieved at sink.
-    Event * event_type_;
   };
 }
 

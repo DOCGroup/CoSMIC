@@ -20,13 +20,13 @@ IMPLEMENT_BONEXTENSION( PICML_BON::PredefinedTypes, "PredefinedTypes" );
 IMPLEMENT_BONEXTENSION( PICML_BON::QoSModeling, "QoSModeling" );
 IMPLEMENT_BONEXTENSION( PICML_BON::Targets, "Targets" );
 IMPLEMENT_BONEXTENSION( PICML_BON::TopLevelPackages, "TopLevelPackages" );
+IMPLEMENT_BONEXTENSION( PICML_BON::WorkerLibraries, "WorkerLibraries" );
 IMPLEMENT_ABSTRACT_BONEXTENSION( PICML_BON::Prefixable );
 IMPLEMENT_ABSTRACT_BONEXTENSION( PICML_BON::SupportsInterfaces );
-IMPLEMENT_ABSTRACT_BONEXTENSION( PICML_BON::AbstractInPort );
-IMPLEMENT_ABSTRACT_BONEXTENSION( PICML_BON::AbstractOutPort );
 IMPLEMENT_ABSTRACT_BONEXTENSION( PICML_BON::CommonPortAttrs );
 IMPLEMENT_ABSTRACT_BONEXTENSION( PICML_BON::ConstantType );
 IMPLEMENT_ABSTRACT_BONEXTENSION( PICML_BON::GraphVertex );
+IMPLEMENT_ABSTRACT_BONEXTENSION( PICML_BON::InPort );
 IMPLEMENT_ABSTRACT_BONEXTENSION( PICML_BON::Manageable );
 IMPLEMENT_ABSTRACT_BONEXTENSION( PICML_BON::MemberType );
 IMPLEMENT_ABSTRACT_BONEXTENSION( PICML_BON::Provideable );
@@ -41,7 +41,7 @@ IMPLEMENT_ABSTRACT_BONEXTENSION( PICML_BON::NamedType );
 IMPLEMENT_ABSTRACT_BONEXTENSION( PICML_BON::Port );
 IMPLEMENT_ABSTRACT_BONEXTENSION( PICML_BON::PredefinedType );
 IMPLEMENT_BONEXTENSION( PICML_BON::DisplayNode, "DisplayNode" );
-IMPLEMENT_BONEXTENSION( PICML_BON::POA, "POA" );
+IMPLEMENT_BONEXTENSION( PICML_BON::Environment, "Environment" );
 IMPLEMENT_BONEXTENSION( PICML_BON::ComponentRef, "ComponentRef" );
 IMPLEMENT_BONEXTENSION( PICML_BON::Constant, "Constant" );
 IMPLEMENT_BONEXTENSION( PICML_BON::Attribute, "Attribute" );
@@ -80,17 +80,18 @@ IMPLEMENT_BONEXTENSION( PICML_BON::Object, "Object" );
 IMPLEMENT_ABSTRACT_BONEXTENSION( PICML_BON::ObjectByValue );
 IMPLEMENT_BONEXTENSION( PICML_BON::Event, "Event" );
 IMPLEMENT_BONEXTENSION( PICML_BON::ValueObject, "ValueObject" );
+IMPLEMENT_ABSTRACT_BONEXTENSION( PICML_BON::ActionBase );
+IMPLEMENT_BONEXTENSION( PICML_BON::Action, "Action" );
+IMPLEMENT_BONEXTENSION( PICML_BON::InputAction, "InputAction" );
+IMPLEMENT_BONEXTENSION( PICML_BON::OutputAction, "OutputAction" );
+IMPLEMENT_BONEXTENSION( PICML_BON::PeriodicAction, "PeriodicAction" );
+IMPLEMENT_BONEXTENSION( PICML_BON::WorkerAction, "WorkerAction" );
 IMPLEMENT_ABSTRACT_BONEXTENSION( PICML_BON::Proxy );
 IMPLEMENT_ABSTRACT_BONEXTENSION( PICML_BON::RTEC_Proxy );
 IMPLEMENT_ABSTRACT_BONEXTENSION( PICML_BON::Proxy_Consumer );
 IMPLEMENT_ABSTRACT_BONEXTENSION( PICML_BON::Proxy_Supplier );
 IMPLEMENT_BONEXTENSION( PICML_BON::RTEC_Proxy_Consumer, "RTEC_Proxy_Consumer" );
 IMPLEMENT_BONEXTENSION( PICML_BON::RTEC_Proxy_Supplier, "RTEC_Proxy_Supplier" );
-IMPLEMENT_ABSTRACT_BONEXTENSION( PICML_BON::ActionBase );
-IMPLEMENT_BONEXTENSION( PICML_BON::Action, "Action" );
-IMPLEMENT_BONEXTENSION( PICML_BON::InputAction, "InputAction" );
-IMPLEMENT_BONEXTENSION( PICML_BON::OutputAction, "OutputAction" );
-IMPLEMENT_ABSTRACT_BONEXTENSION( PICML_BON::PeriodicAction );
 IMPLEMENT_BONEXTENSION( PICML_BON::QoSCharacteristic, "QoSCharacteristic" );
 IMPLEMENT_BONEXTENSION( PICML_BON::CPU, "CPU" );
 IMPLEMENT_BONEXTENSION( PICML_BON::Concurrency, "Concurrency" );
@@ -145,6 +146,10 @@ IMPLEMENT_BONEXTENSION( PICML_BON::Resource, "Resource" );
 IMPLEMENT_BONEXTENSION( PICML_BON::ResourceContainer, "ResourceContainer" );
 IMPLEMENT_BONEXTENSION( PICML_BON::SatisfierProperty, "SatisfierProperty" );
 IMPLEMENT_BONEXTENSION( PICML_BON::TopLevelPackageContainer, "TopLevelPackageContainer" );
+IMPLEMENT_BONEXTENSION( PICML_BON::Worker, "Worker" );
+IMPLEMENT_BONEXTENSION( PICML_BON::WorkerFile, "WorkerFile" );
+IMPLEMENT_BONEXTENSION( PICML_BON::WorkerLibrary, "WorkerLibrary" );
+IMPLEMENT_BONEXTENSION( PICML_BON::WorkerPackage, "WorkerPackage" );
 IMPLEMENT_ABSTRACT_BONEXTENSION( PICML_BON::BenchmarkType );
 IMPLEMENT_BONEXTENSION( PICML_BON::FixedIterationBenchmarks, "FixedIterationBenchmarks" );
 IMPLEMENT_BONEXTENSION( PICML_BON::PeriodicBenchmarks, "PeriodicBenchmarks" );
@@ -294,6 +299,7 @@ IMPLEMENT_BONEXTENSION( PICML_BON::ReturnType, "ReturnType" );
 IMPLEMENT_BONEXTENSION( PICML_BON::SetException, "SetException" );
 IMPLEMENT_BONEXTENSION( PICML_BON::Supports, "Supports" );
 IMPLEMENT_BONEXTENSION( PICML_BON::ThreadPoolRef, "ThreadPoolRef" );
+IMPLEMENT_BONEXTENSION( PICML_BON::WorkerType, "WorkerType" );
 
 
 }; // end namespace BON
@@ -673,24 +679,6 @@ void ObjectByValueImpl::setabstract( bool val)
 //********************************************************************************
 // 
 //********************************************************************************
-bool ActionBaseImpl::isEnabled() 
-{
-	return FCOImpl::getAttribute("Enabled")->getBooleanValue();
-}
-
-
-//********************************************************************************
-// 
-//********************************************************************************
-void ActionBaseImpl::setEnabled( bool val)
-{
-	FCOImpl::getAttribute("Enabled")->setBooleanValue( val);
-}
-
-
-//********************************************************************************
-// 
-//********************************************************************************
 long ActionImpl::getRepetitions() 
 {
 	return FCOImpl::getAttribute("Repetitions")->getIntegerValue();
@@ -739,6 +727,24 @@ long PeriodicActionImpl::getPeriod()
 void PeriodicActionImpl::setPeriod( const long val)
 {
 	FCOImpl::getAttribute("Period")->setIntegerValue( val);
+}
+
+
+//********************************************************************************
+// 
+//********************************************************************************
+bool WorkerActionImpl::isLogAction() 
+{
+	return FCOImpl::getAttribute("LogAction")->getBooleanValue();
+}
+
+
+//********************************************************************************
+// 
+//********************************************************************************
+void WorkerActionImpl::setLogAction( bool val)
+{
+	FCOImpl::getAttribute("LogAction")->setBooleanValue( val);
 }
 
 
@@ -1539,6 +1545,42 @@ void SatisfierPropertyImpl::setSatisfierPropertyKind( SatisfierPropertyImpl::Sat
 	else throw("None of the possible items");
 
 	FCOImpl::getAttribute("SatisfierPropertyKind")->setStringValue( str_val);
+}
+
+
+//********************************************************************************
+// 
+//********************************************************************************
+std::string WorkerFileImpl::getLocation() 
+{
+	return FCOImpl::getAttribute("Location")->getStringValue();
+}
+
+
+//********************************************************************************
+// 
+//********************************************************************************
+void WorkerFileImpl::setLocation( const std::string& val)
+{
+	FCOImpl::getAttribute("Location")->setStringValue( val);
+}
+
+
+//********************************************************************************
+// 
+//********************************************************************************
+std::string WorkerLibraryImpl::getLocation() 
+{
+	return FCOImpl::getAttribute("Location")->getStringValue();
+}
+
+
+//********************************************************************************
+// 
+//********************************************************************************
+void WorkerLibraryImpl::setLocation( const std::string& val)
+{
+	FCOImpl::getAttribute("Location")->setStringValue( val);
 }
 
 
@@ -3844,16 +3886,16 @@ InputAction InputImpl::getDst()
 
 
 //********************************************************************************
-// getSrc() return value is a ConnectionEnd casted to AbstractInPort
+// getSrc() return value is a ConnectionEnd casted to InPort
 //********************************************************************************
-AbstractInPort InputImpl::getSrc()
+InPort InputImpl::getSrc()
 {
 	BON::ConnectionEnd ce = ConnectionImpl::getSrc();
-	AbstractInPort sp( ce);
+	InPort sp( ce);
 	if ( sp)
 		return sp;
 
-	AbstractInPort empty;
+	InPort empty;
 	return empty;
 }
 
@@ -5347,6 +5389,16 @@ ThreadPool ThreadPoolRefImpl::getThreadPool()
 {
 	BON::FCO r = BON::ReferenceImpl::getReferred();
 	return ThreadPool(r);
+}
+
+
+//********************************************************************************
+// 
+//********************************************************************************
+Worker WorkerTypeImpl::getWorker()
+{
+	BON::FCO r = BON::ReferenceImpl::getReferred();
+	return Worker(r);
 }
 
 

@@ -49,4 +49,23 @@ namespace CUTS_PIR
   {
 
   }
+
+
+  CUTS_INLINE
+  void Visitor::visit_object (const Object & object)
+  {
+
+  }
+
+  CUTS_INLINE
+  void Visitor::visit_facet (const Facet & facet)
+  {
+
+  }
+
+  CUTS_INLINE
+  void Visitor::visit_worker_type (const Worker_Type & type)
+  {
+
+  }
 }

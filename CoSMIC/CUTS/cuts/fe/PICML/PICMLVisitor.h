@@ -32,6 +32,7 @@ class PICMLVisitor
 		virtual bool visitDisplayNode( const DisplayNode& object );
 		virtual bool visitEdge( const Edge& object );
 		virtual bool visitEnumValue( const EnumValue& object );
+		virtual bool visitEnvironment( const Environment& object );
 		virtual bool visitEnvironmentConf( const EnvironmentConf& object );
 		virtual bool visitExternalReferenceEndPoint( const ExternalReferenceEndPoint& object );
 		virtual bool visitFixedIterationBenchmarks( const FixedIterationBenchmarks& object );
@@ -48,7 +49,6 @@ class PICMLVisitor
 		virtual bool visitMinimum( const Minimum& object );
 		virtual bool visitMonolithicImplementation( const MonolithicImplementation& object );
 		virtual bool visitNull_RT_Info( const Null_RT_Info& object );
-		virtual bool visitPOA( const POA& object );
 		virtual bool visitPackageConfiguration( const PackageConfiguration& object );
 		virtual bool visitPeriodicBenchmarks( const PeriodicBenchmarks& object );
 		virtual bool visitPriorityModelPolicy( const PriorityModelPolicy& object );
@@ -159,6 +159,11 @@ class PICMLVisitor
 		virtual bool visitTopLevelPackageContainer( const TopLevelPackageContainer& object );
 		virtual bool visitTwowayOperation( const TwowayOperation& object );
 		virtual bool visitValueObject( const ValueObject& object );
+		virtual bool visitWorker( const Worker& object );
+		virtual bool visitWorkerAction( const WorkerAction& object );
+		virtual bool visitWorkerFile( const WorkerFile& object );
+		virtual bool visitWorkerLibrary( const WorkerLibrary& object );
+		virtual bool visitWorkerPackage( const WorkerPackage& object );
 		virtual bool visitArtifactDependency( const ArtifactDependency& object );
 		virtual bool visitArtifactDependsOn( const ArtifactDependsOn& object );
 		virtual bool visitArtifactDeployRequirement( const ArtifactDeployRequirement& object );
@@ -275,8 +280,7 @@ class PICMLVisitor
 		virtual bool visitSetException( const SetException& object );
 		virtual bool visitSupports( const Supports& object );
 		virtual bool visitThreadPoolRef( const ThreadPoolRef& object );
-		virtual bool visitAbstractInPort( const AbstractInPort& object );
-		virtual bool visitAbstractOutPort( const AbstractOutPort& object );
+		virtual bool visitWorkerType( const WorkerType& object );
 		virtual bool visitBenchmarkType( const BenchmarkType& object );
 		virtual bool visitCommonPortAttrs( const CommonPortAttrs& object );
 		virtual bool visitComponentImplementation( const ComponentImplementation& object );
@@ -285,6 +289,7 @@ class PICMLVisitor
 		virtual bool visitDataAnalysisBase( const DataAnalysisBase& object );
 		virtual bool visitElements( const Elements& object );
 		virtual bool visitGraphVertex( const GraphVertex& object );
+		virtual bool visitInPort( const InPort& object );
 		virtual bool visitManageable( const Manageable& object );
 		virtual bool visitMemberType( const MemberType& object );
 		virtual bool visitNamedType( const NamedType& object );
@@ -311,6 +316,7 @@ class PICMLVisitor
 		virtual bool visitQoSModeling( const QoSModeling& object );
 		virtual bool visitTargets( const Targets& object );
 		virtual bool visitTopLevelPackages( const TopLevelPackages& object );
+		virtual bool visitWorkerLibraries( const WorkerLibraries& object );
 };
 
 }; // namespace

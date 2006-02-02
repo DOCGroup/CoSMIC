@@ -11,8 +11,10 @@ namespace CUTS_PIR
     public Visitor_Element_T <Visitor, Event, &Visitor::visit_event>
   {
   public:
+    /// Constructor.
     Event (Module * module = 0);
 
+    /// Destructor.
     virtual ~Event (void);
   };
 }

@@ -7,9 +7,15 @@
 
 namespace CUTS_PIR
 {
+  //===========================================================================
+  /**
+   * @class File
+   */
+  //===========================================================================
+
   class CUTS_Export File :
-    public Visitor_Element_T <Visitor, File, &Visitor::visit_file>,
-    public Module
+    public Module,
+    public Visitor_Element_T <Visitor, File, &Visitor::visit_file>
   {
   public:
     typedef std::set <std::string> Includes;
@@ -30,8 +36,10 @@ namespace CUTS_PIR
     using Visitor_Element_T <
       Visitor, File, &Visitor::visit_file>::accept;
 
+    /// Get the <has_events_> flag.
     bool has_events (void) const;
 
+    /// Set the <has_events_> flag.
     void has_events (bool has_events);
 
   private:

@@ -12,10 +12,11 @@ project (CUTS_BE_CIAO) : cuts_base {
   libs += CUTS_PIR CodeGenerationKits CUTS_Utils
 
   Source_Files {
-    CIAO_Visitor.cpp
     Exec_Project.cpp
+    File_Visitor.cpp
     MPC_Visitor.cpp
     MWC_Visitor.cpp
+    Project_Visitor.cpp
     Stub_Project.cpp
     Svnt_Project.cpp
   }

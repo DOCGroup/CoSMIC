@@ -225,11 +225,11 @@ CUTS_CCM_Benchmark_Agent::~CUTS_CCM_Benchmark_Agent (void)
   CUTS::Benchmark_Data_var benchmark_data (new ::CUTS::Benchmark_Data);
 
   // Initialize the collection bundle with the correct information.
-  benchmark_data->ports.length (this->port_agents_.size ());
+  benchmark_data->ports.length (this->port_agents ().size ());
 
   // Collect all the measurements from the port agents.
-  std::for_each ( this->port_agents_.begin (),
-                  this->port_agents_.end (),
+  std::for_each ( this->port_agents ().begin (),
+                  this->port_agents ().end (),
                   Collect_Port_Measurement (benchmark_data.ptr ()));
 
   benchmark_data->owner = this->parent ();
