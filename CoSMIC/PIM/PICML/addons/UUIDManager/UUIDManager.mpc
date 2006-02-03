@@ -1,14 +1,15 @@
 project (UUIDManager): mfc, picmllib {
-  macros += BUILDER_OBJECT_NETWORK_V2
-  
   sharedname = UUIDManager
-  
+
   includes +=  . $(GME_ROOT)/SDK/BON
-  
+
   libs += PICML
 
   after += PICML
-  
+
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
+
   specific {
     use_lib_modifier =
   }
@@ -18,43 +19,24 @@ project (UUIDManager): mfc, picmllib {
   }
 
   Source_Files {
-    $(GME_ROOT)/SDK/BON/ComponentLib.idl
-    BON2Component.cpp
-    $(GME_ROOT)/SDK/BON/BON.cpp
-    $(GME_ROOT)/SDK/BON/BONImpl.cpp
+    RawComponent.cpp
     $(GME_ROOT)/SDK/BON/ComHelp.cpp
-    $(GME_ROOT)/SDK/BON/Common.cpp
     $(GME_ROOT)/SDK/BON/ComponentDll.cpp
     $(GME_ROOT)/SDK/BON/ComponentObj.cpp
-    $(GME_ROOT)/SDK/BON/Events.cpp
-    $(GME_ROOT)/SDK/BON/Exceptions.cpp
-    $(GME_ROOT)/SDK/BON/Extensions.cpp
-    $(GME_ROOT)/SDK/BON/MON.cpp
-    $(GME_ROOT)/SDK/BON/MONImpl.cpp
-    $(GME_ROOT)/SDK/BON/Utils.cpp
+    Component_Listener.cpp
   }
 
   Header_Files {
-    $(GME_ROOT)/SDK/BON/BON.h
-    BON2Component.h
-    $(GME_ROOT)/SDK/BON/BONImpl.h
-    $(GME_ROOT)/SDK/BON/ComHelp.h
-    ComponentConfig.h
+    Resource.h
     ComponentLib.h
+    ComponentConfig.h
+    $(GME_ROOT)/SDK/BON/ComHelp.h
     $(GME_ROOT)/SDK/BON/ComponentDll.h
     $(GME_ROOT)/SDK/BON/ComponentObj.h
-    $(GME_ROOT)/SDK/BON/Events.h
-    $(GME_ROOT)/SDK/BON/Exceptions.h
-    $(GME_ROOT)/SDK/BON/Extensions.h
-    $(GME_ROOT)/SDK/BON/MON.h
-    $(GME_ROOT)/SDK/BON/MONImpl.h
-    Resource.h
-    StdAfx.h
-    $(GME_ROOT)/SDK/BON/Utils.h
   }
-   
+
   Resource_Files {
-  
+
   }
 }
 

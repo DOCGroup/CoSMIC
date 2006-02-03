@@ -18,7 +18,7 @@
 
 
 // This text will appear in the toolbar icon tooltip and in the menu.
-#define TOOLTIP_TEXT "UUIDManager AddOn"
+#define TOOLTIP_TEXT "PICML Component UUID Manager"
 
 
 // This #define determines the interpreter type:

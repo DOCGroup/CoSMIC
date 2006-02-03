@@ -1,3 +1,29 @@
+Fri Feb  3 00:51:05 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/UUIDManager/Component.rc:
+        * PIM/PICML/addons/UUIDManager/ComponentConfig.h:
+        * PIM/PICML/addons/UUIDManager/StdAfx.h:
+        * PIM/PICML/addons/UUIDManager/UUIDManager.mpc:
+        * PIM/PICML/addons/UUIDManager/component.def:
+        * PIM/PICML/addons/UUIDManager/RawComponent.cpp
+        * PIM/PICML/addons/UUIDManager/RawComponent.h
+        * PIM/PICML/addons/UUIDManager/Component_Listener.cpp
+        * PIM/PICML/addons/UUIDManager/Component_Listener.h
+
+          Implemented the UUIDManager as a RawComponent.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Updated the CUTS/WML portion of PICML. Added constaints
+          and simplified the I/O Automata and WML DSMLs.
+
+        * cosmic.mwc:
+
+          Added the UUIDManager back to the regular build.
+
 Thu Jan 26 20:25:58 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/Interpreters.mwc:
