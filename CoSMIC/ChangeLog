@@ -1,3 +1,18 @@
+Mon Feb  6 16:49:10 UTC 2006  Stoyan Paunov  <spaunov@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/UUIDManager/UUIDManager.mpc:
+
+          fixs for the compile error for the UUIDManager project.
+
+        * PIM/PICML/interpreters/RTConfig/RTConfigVisitor.h:
+        * PIM/PICML/interpreters/RTConfig/RTConfigVisitor.cpp:
+
+          Tying up couple of loose screws in the RTConfig interpreter.
+
+        * PIM/OCML/interpreters/TAOServiceConfExporter/SvcConfExporter.vcproj:
+
+          Removed this file.
+
 Fri Feb  3 00:51:05 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/UUIDManager/Component.rc:

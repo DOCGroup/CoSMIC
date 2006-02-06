@@ -51,39 +51,39 @@ namespace PICML
     virtual void Visit_TypeEncoding(const TypeEncoding&){};
     virtual void Visit_GenericValueObject(const GenericValueObject&){};
 
-	//RTConfig-related elements
+    //RTConfig-related elements
 
-	virtual void Visit_RTConfiguration (const RTConfiguration& qc);
-	virtual void Visit_RTModel (const RTModel& qm);
-	
-	virtual void Visit_ResourceContainer (const ResourceContainer& rc);
-	virtual void Visit_resource (const resource& r);
-	virtual void Visit_EnvironmentConf (const EnvironmentConf& ec);
-		
-	virtual void Visit_BandedConnection (const BandedConnection& bc);
-	virtual void Visit_BandedConnectionRef (const BandedConnectionRef& bcr);
-	virtual void Visit_ConnectionBand (const ConnectionBand& cb);
-	
-	virtual void Visit_ThreadPool (const ThreadPool& tp);
-	virtual void Visit_ThreadPoolRef (const ThreadPoolRef& tpr);
-	virtual void Visit_SimpleThreadPool (const SimpleThreadPool& stp);
-	virtual void Visit_ThreadPoolWithLanes (const ThreadPoolWithLanes& tpwl);
-	virtual void Visit_ThreadPoolLane (const ThreadPoolLane& tpl);
-	
-	virtual void Visit_PriorityModelPolicy (const PriorityModelPolicy& pmp);
-	virtual void Visit_PolicySet (const PolicySet& ps);
-	virtual void Visit_PolicySetRef (const PolicySetRef& psr);
- 
+    virtual void Visit_RTConfiguration (const RTConfiguration& qc);
+    virtual void Visit_RTModel (const RTModel& qm);
+
+    virtual void Visit_ResourceContainer (const ResourceContainer& rc);
+    virtual void Visit_resource (const resource& r);
+    virtual void Visit_EnvironmentConf (const EnvironmentConf& ec);
+
+    virtual void Visit_BandedConnection (const BandedConnection& bc);
+    virtual void Visit_BandedConnectionRef (const BandedConnectionRef& bcr);
+    virtual void Visit_ConnectionBand (const ConnectionBand& cb);
+
+    virtual void Visit_ThreadPool (const ThreadPool& tp);
+    virtual void Visit_ThreadPoolRef (const ThreadPoolRef& tpr);
+    virtual void Visit_SimpleThreadPool (const SimpleThreadPool& stp);
+    virtual void Visit_ThreadPoolWithLanes (const ThreadPoolWithLanes& tpwl);
+    virtual void Visit_ThreadPoolLane (const ThreadPoolLane& tpl);
+
+    virtual void Visit_PriorityModelPolicy (const PriorityModelPolicy& pmp);
+    virtual void Visit_PolicySet (const PolicySet& ps);
+    virtual void Visit_PolicySetRef (const PolicySetRef& psr);
+
   private:
 
-    DOMImplementation*  impl_;
-    DOMDocument*        doc_;
-    DOMElement*         root_;
-    DOMElement*         curr_;
-	DOMElement*			resources_;
-    DOMWriter*          serializer_;
-    XMLFormatTarget*    target_;
-    std::string         outputPath_;
+    DOMImplementation*      impl_;
+    DOMDocument*            doc_;
+    DOMElement*             root_;
+    DOMElement*             curr_;
+    DOMElement*             resources_;
+    DOMWriter*              serializer_;
+    XMLFormatTarget*        target_;
+    std::string             outputPath_;
     std::stack<DOMElement*> curr_stack_;
 
     void init();
@@ -99,11 +99,11 @@ namespace PICML
                                      const std::string& value);
 
 
-	//maps to maintain the elements that were added already 
-	//on a per-file basis. Needed for consistency
-	std::map<PICML::SimpleThreadPool, bool> simpletp_;
-	std::map<PICML::ThreadPoolWithLanes, bool> tpWithLanes_;
-	std::map<PICML::BandedConnection, bool> connections_;
+    //maps to maintain the elements that were added already
+    //on a per-file basis. Needed for consistency
+    std::map<PICML::SimpleThreadPool, bool> simpletp_;
+    std::map<PICML::ThreadPoolWithLanes, bool> tpWithLanes_;
+    std::map<PICML::BandedConnection, bool> connections_;
 
   };
 }
