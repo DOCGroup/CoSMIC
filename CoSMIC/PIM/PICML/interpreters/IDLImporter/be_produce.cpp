@@ -69,8 +69,8 @@ trademarks or registered trademarks of Sun Microsystems, Inc.
 #include "be_extern.h"
 #include "ast_root.h"
 #include "utl_string.h"
-#include "picml_visitor.h"
-#include "picml_dom_visitor.h"
+#include "adding_visitor.h"
+#include "removing_visitor.h"
 #include "XercesString.h"
 
 #include "xercesc/util/XMLUniDefs.hpp"
@@ -111,31 +111,80 @@ BE_produce (void)
     {
       ACE_ERROR ((LM_ERROR,
                   ACE_TEXT ("(%N:%l) BE_produce - ")
-                  ACE_TEXT ("No Root\n")));
+                  ACE_TEXT ("AST Root is  null\n")));
       BE_abort ();
     }
 
   // Visit the AST.
   DOMDocument *doc = be_global->doc ();
-  DOMElement *sub_tree = doc->getDocumentElement ();
-  picml_visitor ast_visitor (sub_tree);
-
-  if (ast_visitor.visit_root (ast_root) == -1)
+  
+  if (0 == doc)
     {
       ACE_ERROR ((LM_ERROR,
-                  ACE_TEXT ("(%N:%l) BE_produce -")
-                  ACE_TEXT (" failed to accept AST visitor\n")));
+                  ACE_TEXT ("(%N:%l) BE_produce - ")
+                  ACE_TEXT ("DOM document is null\n")));
       BE_abort ();
     }
-    
-  // Visit the DOM tree.
-  picml_dom_visitor dom_visitor;
-  
-  if (!dom_visitor.visit_dom_element (sub_tree))
+  try
+    {  
+      DOMElement *dom_root = doc->getDocumentElement ();
+      
+      if (0 == dom_root)
+        {
+          ACE_ERROR ((LM_ERROR,
+                      ACE_TEXT ("(%N:%l) BE_produce - ")
+                      ACE_TEXT ("DOM document root element is null\n")));
+          BE_abort ();
+        }
+        
+      adding_visitor ast_visitor (dom_root);
+
+      if (ast_visitor.visit_root (ast_root) == -1)
+        {
+          ACE_ERROR ((LM_ERROR,
+                      ACE_TEXT ("BE_produce - ")
+                      ACE_TEXT ("failed to accept AST visitor\n")));
+          BE_abort ();
+        }
+      
+      // Launch this visitor only if we have imported an XML document
+      // and pruning hasn't been suppressed from the command line.
+      if (0 != be_global->input_xme () && be_global->do_removal ())  
+        {
+          // Visit the DOM tree.
+          removing_visitor dom_visitor;
+          
+          if (!dom_visitor.visit_root (be_global->current_idl_file ()))
+            {
+              ACE_ERROR ((LM_ERROR,
+                          ACE_TEXT ("BE_produce - ")
+                          ACE_TEXT ("failed to accept DOM visitor\n")));
+              BE_abort ();
+            }
+        }
+    }
+  catch (const DOMException &e)
     {
       ACE_ERROR ((LM_ERROR,
-                  ACE_TEXT ("(%N:%l) BE_produce -")
-                  ACE_TEXT (" failed to accept DOM visitor\n")));
+                  ACE_TEXT ("BE_produce - ")
+                  ACE_TEXT ("DOMException code is:  %d\n"),
+                  e.code));
+      BE_abort ();
+    }
+  catch (const XMLException &e)
+    {
+      char *message = XMLString::transcode (e.getMessage ());
+      ACE_ERROR ((LM_DEBUG,
+                  ACE_TEXT ("BE_produce - ")
+                  ACE_TEXT ("XMLException message is: %s\n"),
+                  message));
+      XMLString::release (&message);
+      BE_abort ();
+    }
+  catch (...)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  ACE_TEXT ("Unknown exception in BE_produce\n")));
       BE_abort ();
     }
 

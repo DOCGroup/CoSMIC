@@ -7,7 +7,7 @@
 //    IDL_TO_PICML_BE_DLL
 //
 // = FILENAME
-//    picml_visitor.h
+//    adding_visitor.h
 //
 // = DESCRIPTION
 //    The PICML IDL importer AST visitor class.
@@ -17,8 +17,8 @@
 //
 // ============================================================================
 
-#ifndef IDL_TO_PICML_PICML_VISITOR_H
-#define IDL_TO_PICML_PICML_VISITOR_H
+#ifndef IDL_TO_PICML_ADDING_VISITOR_H
+#define IDL_TO_PICML_ADDING_VISITOR_H
 
 #include "ast_visitor.h"
 #include "ast_expression.h"
@@ -38,21 +38,21 @@ using namespace xercesc;
 class UTL_ExceptList;
 class UTL_IdList;
 
-class picml_visitor : public ast_visitor
+class adding_visitor : public ast_visitor
 {
   //
   // = TITLE
-  //    picml_visitor.
+  //    adding_visitor
   //
   // = DESCRIPTION
   //    PICML IDL importer AST visitor. This visitor traverses
   //    the AST constructed by the IDL compiler front end,
-  //    and creates/extends the corresponding DOM tree.
+  //    and creates or extends the corresponding DOM tree.
   //
 public:
-  picml_visitor (DOMElement *sub_tree,
-                unsigned long relid = 1UL);
-  virtual ~picml_visitor (void);
+  adding_visitor (DOMElement *sub_tree,
+                  unsigned long relid = 1UL);
+  virtual ~adding_visitor (void);
 
   virtual int visit_decl (AST_Decl *d);
   virtual int visit_scope (UTL_Scope *node);
@@ -157,12 +157,14 @@ private:
   void add_constant_value (DOMElement *parent, AST_Constant *node);
   void add_discriminator (DOMElement *parent, AST_Union *u);
   void add_labels (AST_UnionBranch *ub,
-                   ACE_CString &ub_id,
+                   const XMLCh *ub_id,
                    unsigned long member_slot);
-  void add_label_name (DOMElement *label, AST_UnionLabel *ul, UTL_Scope *u);
+  ACE_CString get_label_name (AST_UnionLabel *ul, UTL_Scope *u);
   void add_private (AST_Field *f,
-                    ACE_CString &id,
+                    const XMLCh *member_id,
                     unsigned long member_slot);
+  DOMElement *find_connection (const XMLCh *endpoint_id,
+                               const char *role);
   void add_base_component (DOMElement *parent, AST_Component *node);
   void add_base_home (DOMElement *parent, AST_Home *node);
   void add_ports (DOMElement *parent, AST_Component *node);
@@ -244,4 +246,4 @@ private:
   unsigned long n_basic_seqs_;
 };
 
-#endif /* IDL_TO_PICML_PICML_VISITOR_H */
+#endif /* IDL_TO_PICML_ADDING_VISITOR_H */

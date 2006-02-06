@@ -43,6 +43,7 @@ using namespace xercesc;
 #define X(str) XStr (ACE_TEXT (str))
 class AST_Generator;
 class AST_Module;
+class AST_Component;
 
 // Defines a class containing all back end global data.
 
@@ -133,6 +134,12 @@ public:
       FOLDER = 0x6a
     };
     
+  enum diagnostic_type
+    {
+      ADDING,
+      REMOVING
+    };
+    
   // Data accessors.
 
   const char *filename (void) const;
@@ -176,6 +183,10 @@ public:
   void output_file (const char *val);
   // Accessors for the member.
   
+  bool do_removal (void) const;
+  void do_removal (bool val);
+  // Accessors for the member.
+  
   DOMDocument *doc (void) const;
   // Readonly accessor for the member.
   
@@ -196,6 +207,9 @@ public:
   
   DOMElement *interface_definitions_folder (void) const;
   void interface_definitions_folder (DOMElement *elem);
+  
+  DOMElement *current_idl_file (void) const;
+  void current_idl_file (DOMElement *elem);
   
   unsigned long component_types_rel_id (void) const;
   void incr_component_types_rel_id (void);
@@ -257,7 +271,8 @@ public:
   DOMElement *imported_dom_element (DOMElement *sub_tree,
                                     const char *local_name,
                                     kind_id elem_kind = MODEL,
-                                    bool by_referred = false);
+                                    bool by_referred = false,
+                                    bool in_file_iteration = false);
   // Have we already imported <local_name> in scope <sub_tree>?
   
   DOMElement *imported_module_dom_elem (DOMElement *sub_tree,
@@ -277,6 +292,37 @@ public:
   // Recursive functions that traverses the imported DOM tree and
   // initializes models_seen_, atoms_seen_, etc. so IDs added from
   // IDL files will be not clash.
+  
+  void release_node (DOMElement *node);
+  // Remove a subtree from the DOM tree and release its resources.
+  
+  void emit_diagnostic (DOMElement *node, diagnostic_type dt = ADDING);
+  // Report each model element added or removed.
+  
+  void emit_attribute_diagnostic (DOMElement *node,
+                                  const char *name,
+                                  const char *new_value,
+                                  DOMText *old_value);
+  // Report a change in a GME attribute value.
+  
+  void type_change_diagnostic (DOMElement *node,
+                               const XMLCh *new_ref);
+  // Will emit a diagnostic if the 'referred' attribute
+  // value of node is about to be changed.
+  
+  void base_component_diagnostic (DOMElement *elem,
+                                  AST_Component *node,
+                                  AST_Component *base,
+                                  bool was_derived,
+                                  const XMLCh *base_id_from_idl = 0);
+  // Specialized method for reporting additions, removals,
+  // or changes to a component's parent.
+
+private:  
+  char *get_name (DOMElement *node);
+  // Utility function that gets the value of the child with
+  // tag 'name'. Caller must release return value with
+  // XMLString::release().
 
 private:
   char *filename_;
@@ -312,6 +358,9 @@ private:
   ACE_CString output_file_;
   // Set from command line or had default value.
   
+  bool do_removal_;
+  // Do we spawn the removing visitor?
+  
   DOMDocument *doc_;
   DOMWriter *writer_;
   XMLFormatTarget *target_;
@@ -320,6 +369,7 @@ private:
   DOMElement *implementation_artifacts_folder_;
   DOMElement *implementations_folder_;
   DOMElement *interface_definitions_folder_;
+  DOMElement *current_idl_file_;
   // DOM items we need to cache.
   
   unsigned long component_types_rel_id_;

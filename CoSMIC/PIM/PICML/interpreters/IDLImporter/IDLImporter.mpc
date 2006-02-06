@@ -12,23 +12,25 @@ project(IDL_TO_PICML_BE) : acedefaults, core, crosscompile, xerces {
   includes    += $(TAO_ROOT)/TAO_IDL/include $(TAO_ROOT)/TAO_IDL/fe
 
   Source_Files {
+    adding_visitor.cpp
     be_global.cpp
     be_init.cpp
     be_produce.cpp
     EntityResolver.cpp
-    picml_dom_visitor.cpp
-    picml_visitor.cpp
+    removing_visitor.cpp
+    removing_closure_visitor.cpp
     XercesString.cpp
     XML_Error_Handler.cpp
   }
 
   Header_Files {
+    adding_visitsor.h
     be_extern.h
     be_global.h
     EntityResolver.h
     IDL_TO_PICML_BE_Export.h
-    picml_dom_visitor.h
-    picml_visitor.h
+    removing_visitor.h
+    removing_closure_visitor.h
     XercesString.h
     XML_Error_Handler.h
   }
