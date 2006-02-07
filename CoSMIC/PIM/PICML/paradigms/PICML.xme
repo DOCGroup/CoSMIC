@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{146BCBFD-38BD-45EA-BD88-408C276DB9EC}" cdate="Mon Feb 06 16:37:54 2006" mdate="Mon Feb 06 16:37:54 2006" version="" metaguid="{B155EEE7-1CDC-4E1F-B6C2-A7B680779457}" metaversion="" metaname="MetaGME">
+<project guid="{DFB157F1-C411-4CDC-98EE-76A0C7A60C46}" cdate="Mon Feb 06 16:37:54 2006" mdate="Mon Feb 06 16:37:54 2006" version="" metaguid="{B155EEE7-1CDC-4E1F-B6C2-A7B680779457}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment>This tool supports $CIAO_ROOT/docs/schema/CIAOServerResources.xsd version 1.7. 
 Please check the cvs repository if this is the most recent version of this file.</comment>
@@ -173,6 +173,9 @@ Please check the cvs repository if this is the most recent version of this file.
 								<regnode name="Behavior" isopaque="yes">
 									<value> </value>
 								</regnode>
+								<regnode name="WorkerBehavior" isopaque="yes">
+									<value> </value>
+								</regnode>
 							</regnode>
 							<regnode name="WorkerLibrary:Worker" status="undefined">
 								<value></value>
@@ -188,6 +191,9 @@ Please check the cvs repository if this is the most recent version of this file.
 								<regnode name="Behavior" isopaque="yes">
 									<value> </value>
 								</regnode>
+								<regnode name="WorkerBehavior" isopaque="yes">
+									<value> </value>
+								</regnode>
 							</regnode>
 						</regnode>
 						<regnode name="MetaRef" isopaque="yes">
@@ -201,6 +207,9 @@ Please check the cvs repository if this is the most recent version of this file.
 									</regnode>
 									<regnode name="Behavior" isopaque="yes">
 										<value>2991</value>
+									</regnode>
+									<regnode name="WorkerBehavior" isopaque="yes">
+										<value>3031</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -223,6 +232,9 @@ Please check the cvs repository if this is the most recent version of this file.
 									<regnode name="Behavior" isopaque="yes">
 										<value>2994</value>
 									</regnode>
+									<regnode name="WorkerBehavior" isopaque="yes">
+										<value>3035</value>
+									</regnode>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -234,6 +246,9 @@ Please check the cvs repository if this is the most recent version of this file.
 									<value>yes</value>
 								</regnode>
 								<regnode name="Behavior" isopaque="yes">
+									<value>yes</value>
+								</regnode>
+								<regnode name="WorkerBehavior" isopaque="yes">
 									<value>yes</value>
 								</regnode>
 							</regnode>
@@ -251,6 +266,9 @@ Please check the cvs repository if this is the most recent version of this file.
 								<regnode name="Behavior" isopaque="yes">
 									<value>yes</value>
 								</regnode>
+								<regnode name="WorkerBehavior" isopaque="yes">
+									<value>yes</value>
+								</regnode>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -263,10 +281,16 @@ Please check the cvs repository if this is the most recent version of this file.
 								<regnode name="Behavior" isopaque="yes">
 									<value> </value>
 								</regnode>
+								<regnode name="WorkerBehavior" isopaque="yes">
+									<value> </value>
+								</regnode>
 							</regnode>
 							<regnode name="Worker:WorkerAction" status="undefined">
 								<value></value>
 								<regnode name="Behavior" isopaque="yes">
+									<value> </value>
+								</regnode>
+								<regnode name="WorkerBehavior" isopaque="yes">
 									<value> </value>
 								</regnode>
 							</regnode>
@@ -280,6 +304,9 @@ Please check the cvs repository if this is the most recent version of this file.
 									<regnode name="Behavior" isopaque="yes">
 										<value>2954</value>
 									</regnode>
+									<regnode name="WorkerBehavior" isopaque="yes">
+										<value>3018</value>
+									</regnode>
 								</regnode>
 							</regnode>
 							<regnode name="Worker" status="undefined">
@@ -288,6 +315,9 @@ Please check the cvs repository if this is the most recent version of this file.
 									<value>2957</value>
 									<regnode name="Behavior" isopaque="yes">
 										<value>2959</value>
+									</regnode>
+									<regnode name="WorkerBehavior" isopaque="yes">
+										<value>3027</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -299,10 +329,16 @@ Please check the cvs repository if this is the most recent version of this file.
 								<regnode name="Behavior" isopaque="yes">
 									<value>yes</value>
 								</regnode>
+								<regnode name="WorkerBehavior" isopaque="yes">
+									<value>yes</value>
+								</regnode>
 							</regnode>
 							<regnode name="Worker:WorkerAction" status="undefined">
 								<value></value>
 								<regnode name="Behavior" isopaque="yes">
+									<value>yes</value>
+								</regnode>
+								<regnode name="WorkerBehavior" isopaque="yes">
 									<value>yes</value>
 								</regnode>
 							</regnode>
@@ -317,6 +353,9 @@ Please check the cvs repository if this is the most recent version of this file.
 								<regnode name="Behavior" isopaque="yes">
 									<value> </value>
 								</regnode>
+								<regnode name="WorkerBehavior" isopaque="yes">
+									<value> </value>
+								</regnode>
 							</regnode>
 						</regnode>
 						<regnode name="MetaRef" isopaque="yes">
@@ -328,6 +367,9 @@ Please check the cvs repository if this is the most recent version of this file.
 									<regnode name="Behavior" isopaque="yes">
 										<value>2979</value>
 									</regnode>
+									<regnode name="WorkerBehavior" isopaque="yes">
+										<value>3033</value>
+									</regnode>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -336,6 +378,9 @@ Please check the cvs repository if this is the most recent version of this file.
 							<regnode name="WorkerLibrary:WorkerFile" status="undefined">
 								<value></value>
 								<regnode name="Behavior" isopaque="yes">
+									<value>yes</value>
+								</regnode>
+								<regnode name="WorkerBehavior" isopaque="yes">
 									<value>yes</value>
 								</regnode>
 							</regnode>
@@ -380,6 +425,9 @@ Please check the cvs repository if this is the most recent version of this file.
 								<regnode name="Behavior" isopaque="yes">
 									<value> </value>
 								</regnode>
+								<regnode name="WorkerBehavior" isopaque="yes">
+									<value> </value>
+								</regnode>
 							</regnode>
 						</regnode>
 						<regnode name="MetaRef" isopaque="yes">
@@ -415,6 +463,9 @@ Please check the cvs repository if this is the most recent version of this file.
 									<regnode name="Behavior" isopaque="yes">
 										<value>2995</value>
 									</regnode>
+									<regnode name="WorkerBehavior" isopaque="yes">
+										<value>3036</value>
+									</regnode>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -443,6 +494,9 @@ Please check the cvs repository if this is the most recent version of this file.
 								<regnode name="Behavior" isopaque="yes">
 									<value>yes</value>
 								</regnode>
+								<regnode name="WorkerBehavior" isopaque="yes">
+									<value>yes</value>
+								</regnode>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -455,6 +509,9 @@ Please check the cvs repository if this is the most recent version of this file.
 								<regnode name="Behavior" isopaque="yes">
 									<value>Behavior</value>
 								</regnode>
+								<regnode name="WorkerBehavior" isopaque="yes">
+									<value>WorkerBehavior</value>
+								</regnode>
 							</regnode>
 						</regnode>
 						<regnode name="MetaRef" isopaque="yes">
@@ -466,6 +523,9 @@ Please check the cvs repository if this is the most recent version of this file.
 									<regnode name="Behavior" isopaque="yes">
 										<value>2989</value>
 									</regnode>
+									<regnode name="WorkerBehavior" isopaque="yes">
+										<value>3019</value>
+									</regnode>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -474,6 +534,9 @@ Please check the cvs repository if this is the most recent version of this file.
 							<regnode name="Component:WorkerType" status="undefined">
 								<value></value>
 								<regnode name="Behavior" isopaque="yes">
+									<value>yes</value>
+								</regnode>
+								<regnode name="WorkerBehavior" isopaque="yes">
 									<value>yes</value>
 								</regnode>
 							</regnode>
@@ -547,7 +610,7 @@ Please check the cvs repository if this is the most recent version of this file.
 						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>127,41</value>
+								<value>141,41</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -583,7 +646,7 @@ Please check the cvs repository if this is the most recent version of this file.
 						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>134,152</value>
+								<value>148,152</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -1992,13 +2055,13 @@ rrName = referedbyWorkerType</value>
 					<connpoint role="src" target="id-0069-00000001"/>
 				</connection>
 				<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0x12" members="id-0066-00000002 id-0066-00000003 id-0066-00000004 id-0066-0000000f id-0066-00000010 id-0066-00000011">
-					<name>Behavior</name>
+					<name>WorkerBehavior</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>22,153</value>
+								<value>8,153</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -2444,6 +2507,42 @@ rrName = referedbyWorkerType</value>
 						</regnode>
 					</regnode>
 				</regnode>
+				<regnode name="WorkerBehavior" status="undefined">
+					<value></value>
+					<regnode name="MetaRef" status="undefined">
+						<value></value>
+						<regnode name="Action" isopaque="yes">
+							<value>3003</value>
+						</regnode>
+						<regnode name="Component" isopaque="yes">
+							<value>3005</value>
+						</regnode>
+						<regnode name="InputAction" isopaque="yes">
+							<value>3020</value>
+						</regnode>
+						<regnode name="OutputAction" isopaque="yes">
+							<value>3022</value>
+						</regnode>
+						<regnode name="PeriodicAction" isopaque="yes">
+							<value>3024</value>
+						</regnode>
+						<regnode name="Worker" isopaque="yes">
+							<value>3026</value>
+						</regnode>
+						<regnode name="WorkerAction" isopaque="yes">
+							<value>3028</value>
+						</regnode>
+						<regnode name="WorkerFile" isopaque="yes">
+							<value>3030</value>
+						</regnode>
+						<regnode name="WorkerLibrary" isopaque="yes">
+							<value>3032</value>
+						</regnode>
+						<regnode name="WorkerPackage" isopaque="yes">
+							<value>3034</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="Workspace" isopaque="yes">
 					<value></value>
 					<regnode name="MetaRef" status="undefined">
@@ -2490,19 +2589,19 @@ rrName = referedbyWorkerType</value>
 					<value>12</value>
 				</regnode>
 				<regnode name="PathAspect" isopaque="yes">
-					<value>12</value>
+					<value>11</value>
 				</regnode>
 				<regnode name="PredefinedQoS" isopaque="yes">
-					<value>16</value>
+					<value>15</value>
 				</regnode>
 				<regnode name="QoSAspect" isopaque="yes">
-					<value>13</value>
+					<value>12</value>
 				</regnode>
 				<regnode name="QoSModelAspect" isopaque="yes">
-					<value>14</value>
+					<value>13</value>
 				</regnode>
 				<regnode name="QoSValueAspect" isopaque="yes">
-					<value>15</value>
+					<value>14</value>
 				</regnode>
 				<regnode name="QosModelAspectProxy" isopaque="yes">
 					<value>16</value>
@@ -2513,12 +2612,24 @@ rrName = referedbyWorkerType</value>
 				<regnode name="Target" isopaque="yes">
 					<value>3</value>
 				</regnode>
+				<regnode name="WorkerBehavior" isopaque="yes">
+					<value>16</value>
+				</regnode>
 				<regnode name="Workspace" isopaque="yes">
 					<value>5</value>
 				</regnode>
 			</regnode>
 			<regnode name="AspectSelNames" isopaque="yes">
 				<value></value>
+				<regnode name="Behavior" status="undefined">
+					<value></value>
+					<regnode name="myDisplayedNameIs" isopaque="yes">
+						<value></value>
+					</regnode>
+					<regnode name="myNameIs" isopaque="yes">
+						<value>WorkerBehavior</value>
+					</regnode>
+				</regnode>
 				<regnode name="ElementsTarget" isopaque="yes">
 					<value></value>
 					<regnode name="myDisplayedNameIs" isopaque="yes">
@@ -2570,6 +2681,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Packaging" isopaque="yes">
 								<value>2887</value>
 							</regnode>
+							<regnode name="PkgConfPackaging" isopaque="yes">
+								<value>3037</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -2578,6 +2692,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="ComponentAssembly:AssemblyConfigProperty" status="undefined">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="PkgConfPackaging" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -2594,6 +2711,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Packaging" isopaque="yes">
 								<value>2888</value>
 							</regnode>
+							<regnode name="PkgConfPackaging" isopaque="yes">
+								<value>3038</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -2602,6 +2722,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="ComponentAssembly:AssemblyDeployRequirement" status="undefined">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="PkgConfPackaging" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -2618,6 +2741,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Packaging" isopaque="yes">
 								<value>2889</value>
 							</regnode>
+							<regnode name="PkgConfPackaging" isopaque="yes">
+								<value>3039</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -2626,6 +2752,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="ComponentAssembly:AssemblyselectRequirement" status="undefined">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="PkgConfPackaging" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -2642,6 +2771,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Packaging" isopaque="yes">
 								<value>2890</value>
 							</regnode>
+							<regnode name="PkgConfPackaging" isopaque="yes">
+								<value>3040</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -2650,6 +2782,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="ComponentAssembly:AttributeDelegate" status="undefined">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="PkgConfPackaging" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -2664,6 +2799,9 @@ rrName = referedbyWorkerType</value>
 						<regnode name="Packaging" isopaque="yes">
 							<value>InterfaceDefinition</value>
 						</regnode>
+						<regnode name="PkgConfPackaging" isopaque="yes">
+							<value>InterfaceDefinition</value>
+						</regnode>
 					</regnode>
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
@@ -2675,6 +2813,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Packaging" isopaque="yes">
 								<value>2891</value>
 							</regnode>
+							<regnode name="PkgConfPackaging" isopaque="yes">
+								<value>3041</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -2683,6 +2824,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="ComponentAssembly:AttributeMapping" status="undefined">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="PkgConfPackaging" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -2699,6 +2843,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Packaging" isopaque="yes">
 								<value>2892</value>
 							</regnode>
+							<regnode name="PkgConfPackaging" isopaque="yes">
+								<value>3042</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -2707,6 +2854,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="ComponentAssembly:AttributeMappingDelegate" status="undefined">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="PkgConfPackaging" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -2723,6 +2873,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Packaging" isopaque="yes">
 								<value>2893</value>
 							</regnode>
+							<regnode name="PkgConfPackaging" isopaque="yes">
+								<value>3043</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -2731,6 +2884,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="ComponentAssembly:AttributeMappingValue" status="undefined">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="PkgConfPackaging" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -2747,6 +2903,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Packaging" isopaque="yes">
 								<value>2894</value>
 							</regnode>
+							<regnode name="PkgConfPackaging" isopaque="yes">
+								<value>3044</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -2755,6 +2914,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="ComponentAssembly:AttributeValue" status="undefined">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="PkgConfPackaging" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -2771,6 +2933,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Packaging" isopaque="yes">
 								<value>2897</value>
 							</regnode>
+							<regnode name="PkgConfPackaging" isopaque="yes">
+								<value>3047</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -2779,6 +2944,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="ComponentAssembly:EventSinkDelegate" status="undefined">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="PkgConfPackaging" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -2795,6 +2963,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Packaging" isopaque="yes">
 								<value>2898</value>
 							</regnode>
+							<regnode name="PkgConfPackaging" isopaque="yes">
+								<value>3048</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -2803,6 +2974,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="ComponentAssembly:EventSourceDelegate" status="undefined">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="PkgConfPackaging" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -2819,6 +2993,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Packaging" isopaque="yes">
 								<value>2899</value>
 							</regnode>
+							<regnode name="PkgConfPackaging" isopaque="yes">
+								<value>3049</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -2827,6 +3004,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="ComponentAssembly:ExternalDelegate" status="undefined">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="PkgConfPackaging" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -2843,6 +3023,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Packaging" isopaque="yes">
 								<value>2900</value>
 							</regnode>
+							<regnode name="PkgConfPackaging" isopaque="yes">
+								<value>3050</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -2851,6 +3034,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="ComponentAssembly:ExternalReferenceEndPoint" status="undefined">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="PkgConfPackaging" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -2867,6 +3053,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Packaging" isopaque="yes">
 								<value>2901</value>
 							</regnode>
+							<regnode name="PkgConfPackaging" isopaque="yes">
+								<value>3051</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -2875,6 +3064,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="ComponentAssembly:FacetDelegate" status="undefined">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="PkgConfPackaging" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -2891,6 +3083,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Packaging" isopaque="yes">
 								<value>2902</value>
 							</regnode>
+							<regnode name="PkgConfPackaging" isopaque="yes">
+								<value>3052</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -2899,6 +3094,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="ComponentAssembly:PublishConnector" status="undefined">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="PkgConfPackaging" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -2915,6 +3113,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Packaging" isopaque="yes">
 								<value>2903</value>
 							</regnode>
+							<regnode name="PkgConfPackaging" isopaque="yes">
+								<value>3053</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -2923,6 +3124,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="ComponentAssembly:ReceptacleDelegate" status="undefined">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="PkgConfPackaging" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -2939,6 +3143,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Packaging" isopaque="yes">
 								<value>2904</value>
 							</regnode>
+							<regnode name="PkgConfPackaging" isopaque="yes">
+								<value>3054</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -2947,6 +3154,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="ComponentAssembly:deliverTo" status="undefined">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="PkgConfPackaging" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -2963,6 +3173,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Packaging" isopaque="yes">
 								<value>2905</value>
 							</regnode>
+							<regnode name="PkgConfPackaging" isopaque="yes">
+								<value>3055</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -2971,6 +3184,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="ComponentAssembly:emit" status="undefined">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="PkgConfPackaging" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -2987,6 +3203,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Packaging" isopaque="yes">
 								<value>2906</value>
 							</regnode>
+							<regnode name="PkgConfPackaging" isopaque="yes">
+								<value>3056</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -2995,6 +3214,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="ComponentAssembly:invoke" status="undefined">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="PkgConfPackaging" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -3011,6 +3233,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Packaging" isopaque="yes">
 								<value>2907</value>
 							</regnode>
+							<regnode name="PkgConfPackaging" isopaque="yes">
+								<value>3057</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -3019,6 +3244,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="ComponentAssembly:publish" status="undefined">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="PkgConfPackaging" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -7317,6 +7545,9 @@ rrName = referedbyWorkerType</value>
 						<regnode name="Behavior" isopaque="yes">
 							<value> </value>
 						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
+							<value> </value>
+						</regnode>
 					</regnode>
 					<regnode name="ArtifactContainer:Property" isopaque="yes">
 						<value></value>
@@ -7392,6 +7623,9 @@ rrName = referedbyWorkerType</value>
 						<regnode name="Behavior" isopaque="yes">
 							<value> </value>
 						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
+							<value> </value>
+						</regnode>
 					</regnode>
 					<regnode name="InternalAction:Property" isopaque="yes">
 						<value></value>
@@ -7408,6 +7642,9 @@ rrName = referedbyWorkerType</value>
 							<value> </value>
 						</regnode>
 						<regnode name="Behavior" isopaque="yes">
+							<value> </value>
+						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
 							<value> </value>
 						</regnode>
 					</regnode>
@@ -7440,6 +7677,9 @@ rrName = referedbyWorkerType</value>
 						<regnode name="Behavior" isopaque="yes">
 							<value> </value>
 						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
+							<value> </value>
+						</regnode>
 					</regnode>
 					<regnode name="Requirement:Property" isopaque="yes">
 						<value></value>
@@ -7455,6 +7695,9 @@ rrName = referedbyWorkerType</value>
 						<regnode name="Behavior" isopaque="yes">
 							<value> </value>
 						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
+							<value> </value>
+						</regnode>
 					</regnode>
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
@@ -7465,6 +7708,9 @@ rrName = referedbyWorkerType</value>
 							<value>2916</value>
 							<regnode name="Behavior" isopaque="yes">
 								<value>2918</value>
+							</regnode>
+							<regnode name="WorkerBehavior" isopaque="yes">
+								<value>3004</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -7565,6 +7811,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Behavior" isopaque="yes">
 								<value>2935</value>
 							</regnode>
+							<regnode name="WorkerBehavior" isopaque="yes">
+								<value>3021</value>
+							</regnode>
 						</regnode>
 					</regnode>
 					<regnode name="InternalAction" status="undefined">
@@ -7585,6 +7834,9 @@ rrName = referedbyWorkerType</value>
 							<value>2939</value>
 							<regnode name="Behavior" isopaque="yes">
 								<value>2039</value>
+							</regnode>
+							<regnode name="WorkerBehavior" isopaque="yes">
+								<value>3023</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -7628,6 +7880,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Behavior" isopaque="yes">
 								<value>2943</value>
 							</regnode>
+							<regnode name="WorkerBehavior" isopaque="yes">
+								<value>3025</value>
+							</regnode>
 						</regnode>
 					</regnode>
 					<regnode name="Requirement" status="undefined">
@@ -7649,6 +7904,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Behavior" isopaque="yes">
 								<value>2963</value>
 							</regnode>
+							<regnode name="WorkerBehavior" isopaque="yes">
+								<value>3029</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -7657,6 +7915,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="Action:Property" status="undefined">
 						<value></value>
 						<regnode name="Behavior" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -7734,6 +7995,9 @@ rrName = referedbyWorkerType</value>
 						<regnode name="Behavior" isopaque="yes">
 							<value>yes</value>
 						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
+							<value>yes</value>
+						</regnode>
 					</regnode>
 					<regnode name="InternalAction:Property" isopaque="yes">
 						<value></value>
@@ -7750,6 +8014,9 @@ rrName = referedbyWorkerType</value>
 							<value>yes</value>
 						</regnode>
 						<regnode name="Behavior" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -7782,6 +8049,9 @@ rrName = referedbyWorkerType</value>
 						<regnode name="Behavior" isopaque="yes">
 							<value>yes</value>
 						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
+							<value>yes</value>
+						</regnode>
 					</regnode>
 					<regnode name="Requirement:Property" isopaque="yes">
 						<value></value>
@@ -7795,6 +8065,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="WorkerAction:Property" status="undefined">
 						<value></value>
 						<regnode name="Behavior" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -8375,6 +8648,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Packaging" isopaque="yes">
 								<value>2895</value>
 							</regnode>
+							<regnode name="PkgConfPackaging" isopaque="yes">
+								<value>3045</value>
+							</regnode>
 						</regnode>
 					</regnode>
 					<regnode name="DeploymentPlan" status="undefined">
@@ -8392,6 +8668,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="ComponentAssembly:ComponentAssemblyReference" status="undefined">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="PkgConfPackaging" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -10670,6 +10949,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Packaging" isopaque="yes">
 								<value>2896</value>
 							</regnode>
+							<regnode name="PkgConfPackaging" isopaque="yes">
+								<value>3046</value>
+							</regnode>
 						</regnode>
 					</regnode>
 					<regnode name="ComponentContainer" status="undefined">
@@ -10761,6 +11043,9 @@ rrName = referedbyWorkerType</value>
 						<regnode name="Packaging" isopaque="yes">
 							<value>yes</value>
 						</regnode>
+						<regnode name="PkgConfPackaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
 					</regnode>
 					<regnode name="ComponentContainer:ComponentRef" isopaque="yes">
 						<value></value>
@@ -10833,6 +11118,9 @@ rrName = referedbyWorkerType</value>
 						<regnode name="InterfaceDefinition" isopaque="yes">
 							<value>InterfaceDefinition</value>
 						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
+							<value>InterfaceDefinition</value>
+						</regnode>
 					</regnode>
 					<regnode name="ComponentAssembly:InEventPort" isopaque="yes">
 						<value></value>
@@ -10891,6 +11179,9 @@ rrName = referedbyWorkerType</value>
 							</regnode>
 							<regnode name="InterfaceDefinition" isopaque="yes">
 								<value>1303</value>
+							</regnode>
+							<regnode name="WorkerBehavior" isopaque="yes">
+								<value>3010</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -10963,6 +11254,9 @@ rrName = referedbyWorkerType</value>
 							<value>no</value>
 						</regnode>
 						<regnode name="InterfaceDefinition" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -11256,6 +11550,9 @@ rrName = referedbyWorkerType</value>
 						<regnode name="InterfaceDefinition" isopaque="yes">
 							<value>InterfaceDefinition</value>
 						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
+							<value>InterfaceDefinition</value>
+						</regnode>
 					</regnode>
 					<regnode name="ComponentAssembly:ProvidedRequestPort" isopaque="yes">
 						<value></value>
@@ -11308,6 +11605,9 @@ rrName = referedbyWorkerType</value>
 							</regnode>
 							<regnode name="InterfaceDefinition" isopaque="yes">
 								<value>1305</value>
+							</regnode>
+							<regnode name="WorkerBehavior" isopaque="yes">
+								<value>3015</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -11377,6 +11677,9 @@ rrName = referedbyWorkerType</value>
 							<value>no</value>
 						</regnode>
 						<regnode name="InterfaceDefinition" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -12954,6 +13257,9 @@ rrName = referedbyWorkerType</value>
 						<regnode name="Behavior" isopaque="yes">
 							<value> </value>
 						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
+							<value> </value>
+						</regnode>
 					</regnode>
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
@@ -12965,6 +13271,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Behavior" isopaque="yes">
 								<value>2946</value>
 							</regnode>
+							<regnode name="WorkerBehavior" isopaque="yes">
+								<value>3006</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -12973,6 +13282,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="Component:Action" status="undefined">
 						<value></value>
 						<regnode name="Behavior" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -13037,6 +13349,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Behavior" isopaque="yes">
 								<value>2927</value>
 							</regnode>
+							<regnode name="WorkerBehavior" isopaque="yes">
+								<value>3007</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -13045,6 +13360,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="Component:Effect" status="undefined">
 						<value></value>
 						<regnode name="Behavior" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -13130,6 +13448,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Behavior" isopaque="yes">
 								<value>2825</value>
 							</regnode>
+							<regnode name="WorkerBehavior" isopaque="yes">
+								<value>3008</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -13138,6 +13459,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="Component:Environment" status="undefined">
 						<value></value>
 						<regnode name="Behavior" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -13352,6 +13676,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Behavior" isopaque="yes">
 								<value>2826</value>
 							</regnode>
+							<regnode name="WorkerBehavior" isopaque="yes">
+								<value>3009</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -13360,6 +13687,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="Component:Finish" status="undefined">
 						<value></value>
 						<regnode name="Behavior" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -13583,6 +13913,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Behavior" isopaque="yes">
 								<value>2827</value>
 							</regnode>
+							<regnode name="WorkerBehavior" isopaque="yes">
+								<value>3011</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -13591,6 +13924,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="Component:Input" status="undefined">
 						<value></value>
 						<regnode name="Behavior" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -13716,6 +14052,9 @@ rrName = referedbyWorkerType</value>
 						<regnode name="Behavior" isopaque="yes">
 							<value> </value>
 						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
+							<value> </value>
+						</regnode>
 					</regnode>
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
@@ -13727,6 +14066,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Behavior" isopaque="yes">
 								<value>2928</value>
 							</regnode>
+							<regnode name="WorkerBehavior" isopaque="yes">
+								<value>3012</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -13735,6 +14077,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="Component:InputAction" status="undefined">
 						<value></value>
 						<regnode name="Behavior" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -14367,6 +14712,9 @@ rrName = referedbyWorkerType</value>
 						<regnode name="Behavior" isopaque="yes">
 							<value> </value>
 						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
+							<value> </value>
+						</regnode>
 					</regnode>
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
@@ -14378,6 +14726,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Behavior" isopaque="yes">
 								<value>2930</value>
 							</regnode>
+							<regnode name="WorkerBehavior" isopaque="yes">
+								<value>3013</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -14386,6 +14737,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="Component:OutputAction" status="undefined">
 						<value></value>
 						<regnode name="Behavior" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -14679,6 +15033,9 @@ rrName = referedbyWorkerType</value>
 						<regnode name="Behavior" isopaque="yes">
 							<value> </value>
 						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
+							<value> </value>
+						</regnode>
 					</regnode>
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
@@ -14690,6 +15047,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Behavior" isopaque="yes">
 								<value>3001</value>
 							</regnode>
+							<regnode name="WorkerBehavior" isopaque="yes">
+								<value>3014</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -14698,6 +15058,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="Component:PeriodicAction" status="undefined">
 						<value></value>
 						<regnode name="Behavior" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -15017,6 +15380,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Behavior" isopaque="yes">
 								<value>2840</value>
 							</regnode>
+							<regnode name="WorkerBehavior" isopaque="yes">
+								<value>3016</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -15025,6 +15391,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="Component:State" status="undefined">
 						<value></value>
 						<regnode name="Behavior" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -15113,6 +15482,9 @@ rrName = referedbyWorkerType</value>
 							<regnode name="Behavior" isopaque="yes">
 								<value>2950</value>
 							</regnode>
+							<regnode name="WorkerBehavior" isopaque="yes">
+								<value>3017</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -15121,6 +15493,9 @@ rrName = referedbyWorkerType</value>
 					<regnode name="Component:Transition" status="undefined">
 						<value></value>
 						<regnode name="Behavior" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="WorkerBehavior" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -28606,7 +28981,7 @@ ResourceUsesPort</value>
           (x.isTypeOf (Boolean) implies ((y = 0 or y = 1) or (let z = value.trim ().toUpper () in z = &quot;TRUE&quot; or z = &quot;FALSE&quot;))) and
           (x.isTypeOf (Byte) implies (y &gt;= 0 and y &lt; 256)) and
           (x.isTypeOf (ShortInteger) implies (y &gt; -32769 and y &lt; 32768)) and
-          (x.isTypeOf (LongInteger) implies (y &gt;= -2147483648 and y &lt;= 2147483647)) and
+          (x.isTypeOf (LongInteger) implies (value.toReal () &gt;= -2147483648 and value.toReal () &lt;= 2147483647)) and
           (x.isTypeOf (RealNumber) implies value.trim ().match (&quot;^\-?[0-9]+\.[0-9]*$&quot;)) and
           (x.isTypeOf (Enum) implies x.oclAsType (gme::Model).parts ()-&gt;collect (w : gme::FCO | w.name)-&gt;exists (z : ocl::String | z = value.trim ()))</value>
 				</attribute>

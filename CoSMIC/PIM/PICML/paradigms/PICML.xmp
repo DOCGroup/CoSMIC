@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="PICML" guid="{EFD5F325-A76A-4650-8EED-04A5FE9EC108}" cdate="Mon Feb 06 16:37:54 2006" mdate="Mon Feb 06 16:37:54 2006" >
+<paradigm name="PICML" guid="{58ED11F6-942A-49D6-9283-7540EBF6BC6E}" cdate="Mon Feb 06 16:37:54 2006" mdate="Mon Feb 06 16:37:54 2006" >
 
 	<comment>This tool supports $CIAO_ROOT/docs/schema/CIAOServerResources.xsd version 1.7. 
 Please check the cvs repository if this is the most recent version of this file.</comment>
@@ -2612,7 +2612,7 @@ let props = self.connectedFCOs(AttributeMappingValue) in
           (x.isTypeOf (Boolean) implies ((y = 0 or y = 1) or (let z = value.trim ().toUpper () in z = "TRUE" or z = "FALSE"))) and
           (x.isTypeOf (Byte) implies (y >= 0 and y < 256)) and
           (x.isTypeOf (ShortInteger) implies (y > -32769 and y < 32768)) and
-          (x.isTypeOf (LongInteger) implies (y >= -2147483648 and y <= 2147483647)) and
+          (x.isTypeOf (LongInteger) implies (value.toReal () >= -2147483648 and value.toReal () <= 2147483647)) and
           (x.isTypeOf (RealNumber) implies value.trim ().match ("^\-?[0-9]+\.[0-9]*$")) and
           (x.isTypeOf (Enum) implies x.oclAsType (gme::Model).parts ()->collect (w : gme::FCO | w.name)->exists (z : ocl::String | z = value.trim ()))]]>
 				<dispname>Constant's value does not match type or is out of range</dispname>
@@ -3335,8 +3335,8 @@ endif
 				<dispname>Multiplicity of objects, which are associated to ActionBase as "src" over Transition, has to match 0..1.</dispname>
 			</constraint>
 			<role name = "Property" metaref = "2916" kind = "Property"></role>
-			<aspect name = "Behavior" metaref = "2917" attributes = "Repetitions" >
-				<part metaref = "2918" role = "Property" primary = "yes" linked = "no"></part>
+			<aspect name = "WorkerBehavior" metaref = "3003" attributes = "Repetitions" >
+				<part metaref = "3004" role = "Property" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Aggregate" metaref = "1206" attributes = "VersionTag SpecifyIdTag" >
@@ -3664,21 +3664,21 @@ actions.forAll (action : WorkerAction |
 				<part metaref = "1307" role = "RequiredRequestPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
 				<part metaref = "1308" role = "Supports" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 			</aspect>
-			<aspect name = "Behavior" metaref = "1978" attributes = "VersionTag SpecifyIdTag UUID label" >
-				<part metaref = "2946" role = "Action" primary = "yes" linked = "no"></part>
-				<part metaref = "2927" role = "Effect" primary = "yes" linked = "no"></part>
-				<part metaref = "2825" role = "Environment" primary = "yes" linked = "no"></part>
-				<part metaref = "2826" role = "Finish" primary = "yes" linked = "no"></part>
-				<part metaref = "2000" role = "InEventPort" primary = "no" kindaspect = "InterfaceDefinition" linked = "yes"></part>
-				<part metaref = "2827" role = "Input" primary = "yes" linked = "no"></part>
-				<part metaref = "2928" role = "InputAction" primary = "yes" linked = "no"></part>
-				<part metaref = "2930" role = "OutputAction" primary = "yes" linked = "no"></part>
-				<part metaref = "3001" role = "PeriodicAction" primary = "yes" linked = "no"></part>
-				<part metaref = "2002" role = "ProvidedRequestPort" primary = "no" kindaspect = "InterfaceDefinition" linked = "yes"></part>
-				<part metaref = "2840" role = "State" primary = "yes" linked = "no"></part>
-				<part metaref = "2950" role = "Transition" primary = "yes" linked = "no"></part>
-				<part metaref = "2954" role = "WorkerAction" primary = "yes" linked = "no"></part>
-				<part metaref = "2989" role = "WorkerType" primary = "yes" kindaspect = "Behavior" linked = "no"></part>
+			<aspect name = "WorkerBehavior" metaref = "3005" attributes = "VersionTag SpecifyIdTag UUID label" >
+				<part metaref = "3006" role = "Action" primary = "yes" linked = "no"></part>
+				<part metaref = "3007" role = "Effect" primary = "yes" linked = "no"></part>
+				<part metaref = "3008" role = "Environment" primary = "yes" linked = "no"></part>
+				<part metaref = "3009" role = "Finish" primary = "yes" linked = "no"></part>
+				<part metaref = "3010" role = "InEventPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
+				<part metaref = "3011" role = "Input" primary = "yes" linked = "no"></part>
+				<part metaref = "3012" role = "InputAction" primary = "yes" linked = "no"></part>
+				<part metaref = "3013" role = "OutputAction" primary = "yes" linked = "no"></part>
+				<part metaref = "3014" role = "PeriodicAction" primary = "yes" linked = "no"></part>
+				<part metaref = "3015" role = "ProvidedRequestPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
+				<part metaref = "3016" role = "State" primary = "yes" linked = "no"></part>
+				<part metaref = "3017" role = "Transition" primary = "yes" linked = "no"></part>
+				<part metaref = "3018" role = "WorkerAction" primary = "yes" linked = "no"></part>
+				<part metaref = "3019" role = "WorkerType" primary = "yes" kindaspect = "WorkerBehavior" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "ComponentAssembly" metaref = "1309" attributes = "UUID label" >
@@ -3952,7 +3952,7 @@ instances->forAll (x : Component |
 				<dispname>ComponentImplementation can either be Monolithic or be assembly based, but not both</dispname>
 			</constraint>
 			<constraint name="ValidComponentImplementationContainerPartCardinality152" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
+				<![CDATA[let partCount = self.parts( "Implements" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -3962,7 +3962,7 @@ instances->forAll (x : Component |
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidComponentImplementationContainerPartCardinality154" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Implements" ) -> size in
+				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -4367,8 +4367,8 @@ instances->forAll (x : Component |
 				<dispname>Multiplicity of objects, which are associated to ActionBase as "src" over Transition, has to match 0..1.</dispname>
 			</constraint>
 			<role name = "Property" metaref = "2023" kind = "Property"></role>
-			<aspect name = "Behavior" metaref = "2934" >
-				<part metaref = "2935" role = "Property" primary = "yes" linked = "no"></part>
+			<aspect name = "WorkerBehavior" metaref = "3020" >
+				<part metaref = "3021" role = "Property" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Interconnect" metaref = "1606" attributes = "label" >
@@ -4575,8 +4575,8 @@ instances->forAll (x : Component |
 				<dispname>Multiplicity of objects, which are associated to ActionBase as "src" over Transition, has to match 0..1.</dispname>
 			</constraint>
 			<role name = "Property" metaref = "2939" kind = "Property"></role>
-			<aspect name = "Behavior" metaref = "2038" attributes = "Repetitions" >
-				<part metaref = "2039" role = "Property" primary = "yes" linked = "no"></part>
+			<aspect name = "WorkerBehavior" metaref = "3022" attributes = "Repetitions" >
+				<part metaref = "3023" role = "Property" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Package" metaref = "1668" attributes = "VersionTag PrefixTag SpecifyIdTag" >
@@ -4658,17 +4658,17 @@ instances->forAll (x : Component |
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 1..*.</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality161" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality162" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PackageConfSpecializedConfig" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality163" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPackageConfigurationContainerPartCardinality162" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPackageConfigurationContainerPartCardinality163" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -4698,17 +4698,17 @@ instances->forAll (x : Component |
 		<model name = "PackageContainer" metaref = "1724" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="ValidPackageContainerPartCardinality164" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPackageContainerPartCardinality165" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PackageInterface" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidPackageContainerPartCardinality166" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPackageContainerPartCardinality165" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPackageContainerPartCardinality166" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -4789,20 +4789,20 @@ instances->forAll (x : Component |
 				<dispname>Multiplicity of objects, which are associated to ActionBase as "src" over Transition, has to match 0..1.</dispname>
 			</constraint>
 			<role name = "Property" metaref = "2941" kind = "Property"></role>
-			<aspect name = "Behavior" metaref = "2942" attributes = "Period" >
-				<part metaref = "2943" role = "Property" primary = "yes" linked = "no"></part>
+			<aspect name = "WorkerBehavior" metaref = "3024" attributes = "Period" >
+				<part metaref = "3025" role = "Property" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PolicySet" metaref = "2747" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="PolicySet.bmp"></regnode>
 			<constraint name="ValidPolicySetPartCardinality167" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ThreadPoolRef" ) -> size in
+				<![CDATA[let partCount = self.parts( "PriorityModelPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PolicySet, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPolicySetPartCardinality168" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PriorityModelPolicy" ) -> size in
+				<![CDATA[let partCount = self.parts( "ThreadPoolRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PolicySet, has to match 0..1.</dispname>
 			</constraint>
@@ -5306,7 +5306,7 @@ let props = self.connectedFCOs(AttributeValue) in
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="TopLevelPackageConfiguration.bmp"></regnode>
 			<constraint name="ValidTopLevelPackageContainerPartCardinality188" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "package" ) -> size in
+				<![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -5316,7 +5316,7 @@ let props = self.connectedFCOs(AttributeValue) in
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidTopLevelPackageContainerPartCardinality190" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
+				<![CDATA[let partCount = self.parts( "package" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -5462,8 +5462,8 @@ let props = self.connectedFCOs(AttributeValue) in
 				<dispname>Worker contains duplicate actions</dispname>
 			</constraint>
 			<role name = "WorkerAction" metaref = "2957" kind = "WorkerAction"></role>
-			<aspect name = "Behavior" metaref = "2958" >
-				<part metaref = "2959" role = "WorkerAction" primary = "yes" linked = "no"></part>
+			<aspect name = "WorkerBehavior" metaref = "3026" >
+				<part metaref = "3027" role = "WorkerAction" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "WorkerAction" metaref = "2960" attributes = "LogAction Repetitions" >
@@ -5482,16 +5482,16 @@ let props = self.connectedFCOs(AttributeValue) in
 				<dispname>Multiplicity of objects, which are associated to ActionBase as "src" over Transition, has to match 0..1.</dispname>
 			</constraint>
 			<role name = "Property" metaref = "2961" kind = "Property"></role>
-			<aspect name = "Behavior" metaref = "2962" attributes = "LogAction Repetitions" >
-				<part metaref = "2963" role = "Property" primary = "yes" linked = "no"></part>
+			<aspect name = "WorkerBehavior" metaref = "3028" attributes = "LogAction Repetitions" >
+				<part metaref = "3029" role = "Property" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "WorkerFile" metaref = "2971" attributes = "Location" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="file.bmp"></regnode>
 			<role name = "Worker" metaref = "2972" kind = "Worker"></role>
-			<aspect name = "Behavior" metaref = "2990" attributes = "Location" >
-				<part metaref = "2991" role = "Worker" primary = "yes" linked = "no"></part>
+			<aspect name = "WorkerBehavior" metaref = "3030" attributes = "Location" >
+				<part metaref = "3031" role = "Worker" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "WorkerLibrary" metaref = "2964" attributes = "Location" >
@@ -5502,8 +5502,8 @@ let props = self.connectedFCOs(AttributeValue) in
 				<dispname>Worker library constains duplicate worker names</dispname>
 			</constraint>
 			<role name = "WorkerFile" metaref = "2977" kind = "WorkerFile"></role>
-			<aspect name = "Behavior" metaref = "2966" attributes = "Location" >
-				<part metaref = "2979" role = "WorkerFile" primary = "yes" linked = "no"></part>
+			<aspect name = "WorkerBehavior" metaref = "3032" attributes = "Location" >
+				<part metaref = "3033" role = "WorkerFile" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "WorkerPackage" metaref = "2981" >
@@ -5511,9 +5511,9 @@ let props = self.connectedFCOs(AttributeValue) in
 				<regnode name = "icon" value ="package.bmp"></regnode>
 			<role name = "Worker" metaref = "2982" kind = "Worker"></role>
 			<role name = "WorkerPackage" metaref = "2983" kind = "WorkerPackage"></role>
-			<aspect name = "Behavior" metaref = "2993" >
-				<part metaref = "2994" role = "Worker" primary = "yes" linked = "no"></part>
-				<part metaref = "2995" role = "WorkerPackage" primary = "yes" linked = "no"></part>
+			<aspect name = "WorkerBehavior" metaref = "3034" >
+				<part metaref = "3035" role = "Worker" primary = "yes" linked = "no"></part>
+				<part metaref = "3036" role = "WorkerPackage" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<folder name = "ComponentAnalyses" metaref = "1896"  rootobjects = "BenchmarkAnalysis" >

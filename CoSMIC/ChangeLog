@@ -1,3 +1,19 @@
+Tue Feb  7 17:24:46 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML.xml:
+          
+          Changed the LegalConstantValue constraint to use the toReal()
+          conversion for the attribute value when bounds checking
+          a PICML LongInteger constant type. The toInteger() conversion
+          has a 32-bit bound, the same as that intended for LongInteger,
+          so any rhs literal integer would get wrapped around to a 
+          legal value. Thanks again to Zoltan Molnar
+          <zolmol@isis.vanderbilt.edu> and to Steve Baker
+          <Stever_D_Baker@Raytheon.com> for their suggestions.
+
 Mon Feb  6 23:18:59 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
