@@ -1355,7 +1355,7 @@ adding_visitor::visit_attribute (AST_Attribute *node)
     {
       elem = this->doc_->createElement (X ("model"));
       this->set_id_attr (elem, BE_GlobalData::MODEL);
-      idl_bool read_only = node->readonly ();
+      bool read_only = node->readonly ();
       const char *kind = read_only ? "ReadonlyAttribute" : "Attribute";
       elem->setAttribute (X ("kind"), X (kind));
       elem->setAttribute (X ("role"), X (kind));
@@ -2512,7 +2512,7 @@ void
 adding_visitor::add_tag_common (const char *value,
                                 const char *name,
                                 DOMElement *parent,
-                                idl_bool is_meta)
+                                bool is_meta)
 {
   DOMElement *tag_elem =
     be_global->lookup_by_tag_and_kind (parent, "attribute", name);
@@ -2667,7 +2667,7 @@ adding_visitor::add_regnodes (UTL_Scope *container,
                               DOMElement *parent,
                               size_t slot,
                               AST_Attribute *a,
-                              idl_bool is_connected,
+                              bool is_connected,
                               const char *aspect,
                               unsigned long num_slices)
 {
@@ -2720,7 +2720,7 @@ adding_visitor::add_pos_element (UTL_Scope *container,
                                  DOMElement *parent,
                                  size_t slot,
                                  AST_Attribute *a,
-                                 idl_bool is_connected,
+                                 bool is_connected,
                                  unsigned long num_slices)
 {
   static char holder[9];
@@ -3640,7 +3640,7 @@ adding_visitor::add_manages (AST_Home *node)
 
       AST_Component *c = node->managed_component ();
       const XMLCh *comp_id = this->lookup_id (c);
-      idl_bool same_scope = (c->defined_in () == s);
+      bool same_scope = (c->defined_in () == s);
       ACE_CString comp_ref_id;
 
       if (!same_scope)

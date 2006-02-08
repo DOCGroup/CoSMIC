@@ -32,7 +32,6 @@
 #endif /* ACE_LACKS_PRAGMA_ONCE */
 
 #include "idl_defines.h"
-#include "idl_bool.h"
 
 #include "xercesc/dom/DOM.hpp"
 #include "xercesc/dom/DOMElement.hpp"
@@ -175,8 +174,8 @@ public:
   void nfiles (long val);
   // Accessors for the member.
   
-  idl_bool first_file (void) const;
-  void first_file (idl_bool val);
+  bool first_file (void) const;
+  void first_file (bool val);
   // Accessors for the member.
   
   ACE_CString output_file (void) const;
@@ -352,7 +351,7 @@ private:
   long nfiles_;
   // Actual length of the above list.
   
-  idl_bool first_file_;
+  bool first_file_;
   // Are we processing the first file on the command line?
   
   ACE_CString output_file_;

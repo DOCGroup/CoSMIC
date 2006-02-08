@@ -223,14 +223,14 @@ BE_GlobalData::nfiles (long val)
   this->nfiles_ = val;
 }
 
-idl_bool
+bool
 BE_GlobalData::first_file (void) const
 {
   return this->first_file_;
 }
 
 void
-BE_GlobalData::first_file (idl_bool val)
+BE_GlobalData::first_file (bool val)
 {
   this->first_file_ = val;
 }

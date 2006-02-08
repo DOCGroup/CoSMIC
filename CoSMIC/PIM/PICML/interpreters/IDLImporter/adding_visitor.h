@@ -122,7 +122,7 @@ private:
   void add_tag_common (const char *value,
                        const char *name,
                        DOMElement *parent,
-                       idl_bool is_meta = I_TRUE);
+                       bool is_meta = I_TRUE);
   void add_local_element (DOMElement *parent, AST_Decl *node);
   void add_abstract_element (DOMElement *parent, AST_Decl *node);
   void add_include_elements (UTL_Scope *container, DOMElement *parent);
@@ -130,14 +130,14 @@ private:
                      DOMElement *parent,
                      size_t slot,
                      AST_Attribute *a = 0,
-                     idl_bool is_connected = I_FALSE,
+                     bool is_connected = I_FALSE,
                      const char *aspect = "InterfaceDefinition",
                      unsigned long num_slices = 0UL);
   void add_pos_element (UTL_Scope *container,
                         DOMElement *parent,
                         size_t slot,
                         AST_Attribute *a = 0,
-                        idl_bool is_connected = I_FALSE,
+                        bool is_connected = I_FALSE,
                         unsigned long num_slices = 0UL);
   void add_inherited_elements (DOMElement *parent, AST_Interface *node);
   void add_one_inherited (DOMElement *parent,
