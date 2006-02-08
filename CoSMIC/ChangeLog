@@ -1,3 +1,9 @@
+Wed Feb  8 17:16:49 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp (visit_valuebox):
+        
+          Added support for boxed valuetypes.
+
 Tue Feb  7 17:24:46 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:

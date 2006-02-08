@@ -23,6 +23,7 @@
 #include "ast_union_branch.h"
 #include "ast_union_fwd.h"
 #include "ast_union_label.h"
+#include "ast_valuebox.h"
 #include "ast_valuetype_fwd.h"
 #include "utl_exceptlist.h"
 #include "utl_identifier.h"
@@ -2002,9 +2003,80 @@ adding_visitor::visit_native (AST_Native *)
 }
 
 int
-adding_visitor::visit_valuebox (AST_ValueBox *)
+adding_visitor::visit_valuebox (AST_ValueBox *node)
 {
-  // TODO
+  // First see if it's been imported with an XME file.
+  DOMElement *elem =
+    be_global->imported_dom_element (
+        this->sub_tree_,
+        node->local_name ()->get_string (),
+        BE_GlobalData::REF
+      );
+
+  // Also see if it's been put in the decl table.
+  DOMElement *table_elem = 0;
+  int result =
+    be_global->decl_elem_table ().find (node->repoID (), table_elem);
+
+  AST_Type *bt = node->boxed_type ();
+
+  if (0 == elem)
+    {
+      if (0 == result)
+        {
+          elem = table_elem;
+        }
+      else
+        {
+          elem = this->doc_->createElement (X ("reference"));
+          this->set_id_attr (elem, BE_GlobalData::REF);
+        }
+
+      // We add the elem to the table the first time the node is
+      // seen, but we don't add the stuff below unless the elem
+      // has not been imported, and we're in
+      // the IDL file where the node is defined.
+      if (!node->imported ())
+        {
+          elem->setAttribute (X ("kind"), X ("Boxed"));
+          elem->setAttribute (X ("role"), X ("Boxed"));
+          this->set_relid_attr (elem);
+          this->add_name_element (elem, node->local_name ()->get_string ());
+          this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
+
+          this->insert_element (elem);
+          be_global->emit_diagnostic (elem);
+        }
+    }
+
+  if (!node->imported ())
+    {
+      XMLCh *new_id = this->lookup_id (bt);
+      be_global->type_change_diagnostic (elem, new_id);
+      elem->setAttribute (X ("referred"), new_id);
+      this->add_replace_id_element (elem, node);
+      this->add_version_element (elem, node);
+
+      // Add to list used in check for removed IDL decls.  
+      if (be_global->input_xme () != 0)
+        {
+          be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
+        }
+    }
+
+  // Keep track of where we are in the DOM tree so the next
+  // new element can be inserted in the correct position.
+  this->previous_ = elem;
+
+  if (0 != result)
+    {
+      // Store the DOMElement and GME id in their respective tables.
+      be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
+                                          elem);
+      be_global->decl_id_table ().bind (ACE::strnew (node->repoID ()),
+                                        elem->getAttribute (X ("id")));
+    }
+
   return 0;
 }
 
