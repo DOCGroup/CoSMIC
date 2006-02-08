@@ -1523,7 +1523,8 @@ namespace IDML
   {
     std::set<Discriminator> disc = s->getDiscriminator ();
     std::set<Discriminator>::iterator di = disc.begin ();
-    std::string label_prefix = this->label_scope_prefix (*di);  
+    std::string label_prefix = this->label_scope_prefix (*di);
+    Byte is_char_disc = (*di)->getReferred ();
           
     std::set<Member> members = s->getMember ();
     BON::Model s_dad = s->getParentModel ();
@@ -1549,7 +1550,11 @@ namespace IDML
                     << (label_prefix != "" ? "::" : "");
               }
             
-            ofs << tmp << ":";
+            // If is_char_disc is true, label_prefix will be empty.
+            ofs << (is_char_disc ? "'" : "")
+                << tmp 
+                << (is_char_disc ? "'" : "")
+                << ":";
           }
           
         mt = (*i)->getMemberType ();
@@ -2026,10 +2031,21 @@ namespace IDML
   {
     std::set<Discriminator> disc = sa->getDiscriminator ();
     std::set<Discriminator>::iterator i = disc.begin ();
-    ConstantType ct = (*i)->getReferred ();
-    BON::Model sa_parent = sa->getParentModel ();
-    BON::Model d_parent = ct->getParentModel ();
-    ofs << (sa_parent == d_parent ? ct->getName () : this->scoped_name (ct));
+    Byte bt = (*i)->getReferred ();
+    
+    // The default output name for a Byte is "octet" which is an
+    // illegal discriminator type in IDL.
+    if (bt)
+      {
+        ofs << "char";
+      }
+    else
+      {
+        ConstantType ct = (*i)->getReferred ();
+        BON::Model sa_parent = sa->getParentModel ();
+        BON::Model d_parent = ct->getParentModel ();
+        ofs << (sa_parent == d_parent ? ct->getName () : this->scoped_name (ct));
+      }
   }
   
   bool IDLEmitVisitor::emitPredefinedSequence( const MemberType& m )
