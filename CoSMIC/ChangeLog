@@ -1,3 +1,19 @@
+Wed Feb  8 19:30:10 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        
+          Added 'cmdline' items to:
+          
+          - use the feature file at $COSMIC_ROOT/default.features
+          - include $COSMIC_ROOT in the search path for base
+            projects
+            
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        
+          Added overlooked files to the MPC project. Thanks to Will
+          Otte <wotte@dre.vanderbilt.edu> for pointing out the
+          oversight.
+
 Wed Feb  8 18:26:11 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:

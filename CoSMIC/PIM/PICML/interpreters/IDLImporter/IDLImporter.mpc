@@ -20,6 +20,7 @@ project(IDL_TO_PICML_BE) : acedefaults, core, crosscompile, xerces {
     removing_visitor.cpp
     removing_closure_visitor.cpp
     XercesString.cpp
+    xme_dom_visitor.cpp
     XML_Error_Handler.cpp
   }
 
@@ -32,6 +33,7 @@ project(IDL_TO_PICML_BE) : acedefaults, core, crosscompile, xerces {
     removing_visitor.h
     removing_closure_visitor.h
     XercesString.h
+    xme_dom_visitor.h
     XML_Error_Handler.h
   }
 }
