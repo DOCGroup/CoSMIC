@@ -1,3 +1,12 @@
+Wed Feb  8 20:58:10 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * picmllib.mpb:
+        
+          Added compile flag specific to Visual Studio that disables
+          warning C4251, which is a bogus warning about exporting
+          class members that are instantiations of some STL container
+          template type.
+
 Wed Feb  8 19:30:10 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/Interpreters.mwc:

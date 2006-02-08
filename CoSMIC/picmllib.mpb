@@ -14,6 +14,10 @@ project : xerces {
      midl_includes += $(GME_ROOT) $(GME_ROOT)/Interfaces .
    }
 
+  specific(nmake, vc71, vc8) {
+    compile_flags += /wd4251
+  }
+
   Define_Custom(UDM) {
       automatic         = 0
       dependent         = $(UDM_PATH)/bin/Udm
