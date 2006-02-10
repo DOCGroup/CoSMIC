@@ -185,8 +185,8 @@ adding_visitor::visit_module (AST_Module *node)
       this->add_prefix_element (elem, node);
       this->add_replace_id_element (elem, node);
       this->add_version_element (elem, node);
-  
-      // Add to list used in check for removed IDL decls.  
+
+      // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
@@ -262,7 +262,7 @@ adding_visitor::visit_interface (AST_Interface *node)
           this->add_regnodes (node->defined_in (),
                               elem,
                               this->rel_id_ - 1);
-                              
+
           this->insert_element (elem);
           be_global->emit_diagnostic (elem);
         }
@@ -273,7 +273,7 @@ adding_visitor::visit_interface (AST_Interface *node)
       // An XME-imported interface may still have additional base classes
       // in modified IDL.
       this->add_inherited_elements (elem, node);
-      
+
       // These will modify existing values if necessary.
       this->add_prefix_element (elem, node);
       this->add_replace_id_element (elem, node);
@@ -281,7 +281,7 @@ adding_visitor::visit_interface (AST_Interface *node)
       this->add_abstract_element (elem, node);
       this->add_local_element (elem, node);
 
-      // Add to list used in check for removed IDL decls.  
+      // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
@@ -397,7 +397,7 @@ adding_visitor::visit_valuetype (AST_ValueType *node)
           be_global->emit_diagnostic (elem);
         }
     }
-    
+
   if (!node->imported ())
     {
       this->add_prefix_element (elem, node);
@@ -410,7 +410,7 @@ adding_visitor::visit_valuetype (AST_ValueType *node)
                                     node->supports (),
                                     node->n_supports ());
 
-      // Add to list used in check for removed IDL decls.  
+      // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
@@ -502,7 +502,7 @@ adding_visitor::visit_component (AST_Component *node)
           this->add_regnodes (node->defined_in (),
                               elem,
                               this->rel_id_ - 1);
-           
+
           this->insert_element (elem);
           be_global->emit_diagnostic (elem);
 
@@ -539,13 +539,13 @@ adding_visitor::visit_component (AST_Component *node)
       this->add_base_component (elem, node);
       this->add_replace_id_element (elem, node);
       this->add_version_element (elem, node);
-      this->add_ports (elem, node);          
+      this->add_ports (elem, node);
       this->add_supported_elements (elem,
                                     node,
                                     node->supports (),
                                     node->n_supports ());
 
-      // Add to list used in check for removed IDL decls.  
+      // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
@@ -662,7 +662,7 @@ adding_visitor::visit_home (AST_Home *node)
       this->add_home_factories (elem, node);
       this->add_finders (elem, node);
 
-      // Add to list used in check for removed IDL decls.  
+      // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
@@ -720,11 +720,11 @@ adding_visitor::visit_factory (AST_Factory *node)
       this->add_name_element (elem, node->local_name ()->get_string ());
       this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
     }
-    
+
   this->add_replace_id_element (elem, node);
   this->add_version_element (elem, node);
 
-  // Add to list used in check for removed IDL decls.  
+  // Add to list used in check for removed IDL decls.
   if (be_global->input_xme () != 0)
     {
       be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
@@ -800,13 +800,13 @@ adding_visitor::visit_structure (AST_Structure *node)
           be_global->emit_diagnostic (elem);
         }
     }
-    
+
   if (!node->imported ())
     {
       this->add_replace_id_element (elem, node);
       this->add_version_element (elem, node);
 
-      // Add to list used in check for removed IDL decls.  
+      // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
@@ -940,13 +940,13 @@ adding_visitor::visit_exception (AST_Exception *node)
           be_global->emit_diagnostic (elem);
         }
     }
-    
+
   if (!node->imported ())
     {
       this->add_replace_id_element (elem, node);
       this->add_version_element (elem, node);
 
-      // Add to list used in check for removed IDL decls.  
+      // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
@@ -1028,13 +1028,13 @@ adding_visitor::visit_enum (AST_Enum *node)
           be_global->emit_diagnostic (elem);
         }
     }
-    
+
   if (!node->imported ())
     {
       this->add_replace_id_element (elem, node);
       this->add_version_element (elem, node);
 
-      // Add to list used in check for removed IDL decls.  
+      // Add to list used in check for removed IDL decls.
       if (!node->imported () && be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
@@ -1148,7 +1148,7 @@ adding_visitor::visit_operation (AST_Operation *node)
       be_global->type_change_diagnostic (return_type, gme_id);
       return_type->setAttribute (X ("referred"), gme_id);
 
-      // Add to list used in check for removed IDL decls.  
+      // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (
@@ -1175,7 +1175,7 @@ adding_visitor::visit_operation (AST_Operation *node)
                                 "ExceptionRef",
                                 scope_visitor.rel_id_);
 
-  // Add to list used in check for removed IDL decls.  
+  // Add to list used in check for removed IDL decls.
   if (!node->imported () && be_global->input_xme () != 0)
     {
       be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
@@ -1195,9 +1195,9 @@ adding_visitor::visit_field (AST_Field *node)
     {
       return 0;
     }
-    
+
   unsigned long slot = 0UL;
-    
+
   // See if it's been imported with an XME file.
   DOMElement *elem =
     be_global->imported_dom_element (
@@ -1232,14 +1232,14 @@ adding_visitor::visit_field (AST_Field *node)
    }
 
   const XMLCh *elem_id = elem->getAttribute (X ("id"));
-  
+
   if (node->visibility () == AST_Field::vis_PRIVATE)
     {
       // If the member was imported from XML as private, this call just
       // stores the relevant ids for the removing visitors to check.
       this->add_private (node, elem_id, slot);
     }
-  
+
   AST_Type *ft = node->field_type ();
   AST_Decl::NodeType nt = ft->node_type ();
 
@@ -1258,7 +1258,7 @@ adding_visitor::visit_field (AST_Field *node)
   be_global->type_change_diagnostic (elem, gme_id);
   elem->setAttribute (X ("referred"), gme_id);
 
-  // Add to list used in check for removed IDL decls.  
+  // Add to list used in check for removed IDL decls.
   if (0 != be_global->input_xme ())
     {
       be_global->gme_id_set ().insert (elem_id);
@@ -1321,7 +1321,7 @@ adding_visitor::visit_argument (AST_Argument *node)
   be_global->type_change_diagnostic (arg, gme_id);
   arg->setAttribute (X ("referred"), gme_id);
 
-  // Add to list used in check for removed IDL decls.  
+  // Add to list used in check for removed IDL decls.
   if (be_global->input_xme () != 0)
     {
       be_global->gme_id_set ().insert (arg->getAttribute (X ("id")));
@@ -1399,7 +1399,7 @@ adding_visitor::visit_attribute (AST_Attribute *node)
       be_global->emit_diagnostic (elem);
       be_global->emit_diagnostic (member);
     }
-    
+
   this->add_replace_id_element (elem, node);
   this->add_version_element (elem, node);
 
@@ -1412,7 +1412,7 @@ adding_visitor::visit_attribute (AST_Attribute *node)
   be_global->type_change_diagnostic (member, gme_id);
   member->setAttribute (X ("referred"), gme_id);
 
-  // Add to list used in check for removed IDL decls.  
+  // Add to list used in check for removed IDL decls.
   if (be_global->input_xme () != 0)
     {
       be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
@@ -1470,14 +1470,14 @@ adding_visitor::visit_union (AST_Union *node)
           be_global->emit_diagnostic (elem);
         }
     }
-    
+
   if (!node->imported ())
     {
       this->add_discriminator (elem, node);
       this->add_replace_id_element (elem, node);
-      this->add_version_element (elem, node);    
+      this->add_version_element (elem, node);
 
-      // Add to list used in check for removed IDL decls.  
+      // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
@@ -1532,7 +1532,7 @@ adding_visitor::visit_union_branch (AST_UnionBranch *node)
     {
       return 0;
     }
-    
+
   unsigned long slot = 0UL;
   AST_Type *ft = node->field_type ();
 
@@ -1584,11 +1584,11 @@ adding_visitor::visit_union_branch (AST_UnionBranch *node)
   XMLCh *field_type_id = this->lookup_id (ft);
   be_global->type_change_diagnostic (elem, field_type_id);
   elem->setAttribute (X ("referred"), field_type_id);
-  
-  const XMLCh *elem_id = elem->getAttribute (X ("id"));
-  this->add_labels (node, elem_id, slot); 
 
-  // Add to list used in check for removed IDL decls.  
+  const XMLCh *elem_id = elem->getAttribute (X ("id"));
+  this->add_labels (node, elem_id, slot);
+
+  // Add to list used in check for removed IDL decls.
   if (!node->imported () && be_global->input_xme () != 0)
     {
       be_global->gme_id_set ().insert (elem_id);
@@ -1654,9 +1654,9 @@ adding_visitor::visit_constant (AST_Constant *node)
           be_global->emit_diagnostic (elem);
         }
     }
-    
+
   if (!node->imported ())
-    {  
+    {
       XMLCh *const_type_id = this->lookup_constant_type (node);
 
       if (0 == const_type_id)
@@ -1676,7 +1676,7 @@ adding_visitor::visit_constant (AST_Constant *node)
       this->add_replace_id_element (elem, node);
       this->add_version_element (elem, node);
 
-      // Add to list used in check for removed IDL decls.  
+      // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           const XMLCh *id = elem->getAttribute (X ("id"));
@@ -1752,7 +1752,7 @@ adding_visitor::visit_enum_val (AST_EnumVal *node)
         }
     }
 
-  // Add to list used in check for removed IDL decls.  
+  // Add to list used in check for removed IDL decls.
   if (!node->imported () && be_global->input_xme () != 0)
     {
       be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
@@ -1868,7 +1868,7 @@ adding_visitor::visit_typedef (AST_Typedef *node)
       this->add_replace_id_element (elem, node);
       this->add_version_element (elem, node);
 
-      // Add to list used in check for removed IDL decls.  
+      // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
@@ -1991,7 +1991,7 @@ adding_visitor::visit_root (AST_Root *node)
   // Reset this, in case it was modified.
   this->n_basic_seqs_ = 0UL;
 
-  be_global->first_file (I_FALSE);
+  be_global->first_file (false);
 
   return 0;
 }
@@ -2057,7 +2057,7 @@ adding_visitor::visit_valuebox (AST_ValueBox *node)
       this->add_replace_id_element (elem, node);
       this->add_version_element (elem, node);
 
-      // Add to list used in check for removed IDL decls.  
+      // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
@@ -2392,7 +2392,7 @@ adding_visitor::add_file_element (DOMElement *parent,
 
           exit (99);
         }
-    
+
       char *hex_relid = be_global->hex_string (rel_id);
       file->setAttribute (X ("relid"), X (hex_relid));
       file->setAttribute (X ("kind"), X ("File"));
@@ -2410,7 +2410,7 @@ adding_visitor::add_file_element (DOMElement *parent,
 
           exit (99);
         }
-        
+
       file->setAttribute (X ("id"), file_id);
       this->add_name_element (file, tmp_cstr);
       this->add_prefix_element (file, node);
@@ -2433,10 +2433,10 @@ adding_visitor::add_file_element (DOMElement *parent,
   // Update the global state.
   be_global->current_idl_file (file);
 
-  // Add to list used in check for removed IDL decls.  
+  // Add to list used in check for removed IDL decls.
   result =
     be_global->gme_id_set ().insert (file->getAttribute (X ("id")));
-    
+
   return file;
 }
 
@@ -2519,11 +2519,11 @@ adding_visitor::add_tag_common (const char *value,
   DOMElement *value_elem = 0;
   DOMText *old_tag_value = 0;
   DOMText *new_tag_value = 0;
-   
+
   // If we are importing XME, tag_elem will always exist,
-  // otherwise not.  
+  // otherwise not.
   if (0 == tag_elem)
-    {  
+    {
       tag_elem = this->doc_->createElement (X ("attribute"));
       tag_elem->setAttribute (X ("kind"), X (name));
 
@@ -2541,11 +2541,11 @@ adding_visitor::add_tag_common (const char *value,
     }
   else
     {
-      // Just replace whether the value has changed or not. 
+      // Just replace whether the value has changed or not.
       value_elem = (DOMElement *) tag_elem->getFirstChild ();
       old_tag_value = (DOMText *) value_elem->getFirstChild ();
       new_tag_value = this->doc_->createTextNode (X (value));
-      
+
       // For some reason, we must set the parser feature that
       // tells it to leave out text nodes with just whitespace.
       // Otherwise there is a crash at init time. So we check
@@ -2558,7 +2558,7 @@ adding_visitor::add_tag_common (const char *value,
         {
           value_elem->replaceChild (new_tag_value, old_tag_value);
         }
-        
+
       be_global->emit_attribute_diagnostic (parent,
                                             name,
                                             value,
@@ -2608,7 +2608,7 @@ adding_visitor::add_include_elements (UTL_Scope *container, DOMElement *parent)
         {
           continue;
         }
-        
+
       ACE_CString lname_noext = lname.substr (0, lname.rfind ('.'));
       const char *tmp = lname_noext.c_str ();
       XMLCh *id = 0;
@@ -2647,12 +2647,12 @@ adding_visitor::add_include_elements (UTL_Scope *container, DOMElement *parent)
           fileref->setAttribute (X ("referred"), id);
           this->add_name_element (fileref, "FileRef");
           this->add_regnodes (container, fileref, slot++);
-          
+
           parent->appendChild (fileref);
           be_global->emit_diagnostic (fileref);
         }
 
-      // Add to list used in check for removed IDL decls.  
+      // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (
@@ -2820,8 +2820,8 @@ adding_visitor::add_one_inherited (DOMElement *parent,
       parent->appendChild (elem);
       be_global->emit_diagnostic (elem);
     }
-    
-  // Add to list used in check for removed IDL decls.  
+
+  // Add to list used in check for removed IDL decls.
   if (be_global->input_xme () != 0)
     {
       be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
@@ -2888,8 +2888,8 @@ adding_visitor::add_supported_elements (DOMElement *parent,
           parent->appendChild (supported);
           be_global->emit_diagnostic (supported);
         }
-                               
-      // Add to list used in check for removed IDL decls.  
+
+      // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (
@@ -2939,7 +2939,7 @@ adding_visitor::add_exception_elements (DOMElement *parent,
           be_global->emit_diagnostic (elem);
         }
 
-      // Add to list used in check for removed IDL decls.  
+      // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
@@ -2966,7 +2966,7 @@ adding_visitor::add_constant_value (DOMElement *parent, AST_Constant *c)
   ACE_CString value = (c->et () == AST_Expression::EV_enum
                        ? this->print_scoped_name (cv->n ())
                        : this->expr_val_to_string (cv->ev ()));
-  this->add_tag_common (value.c_str (), "value", parent, I_FALSE);
+  this->add_tag_common (value.c_str (), "value", parent, false);
 }
 
 void
@@ -2976,9 +2976,9 @@ adding_visitor::add_discriminator (DOMElement *parent, AST_Union *u)
     be_global->imported_dom_element (parent,
                                      "Discriminator",
                                      BE_GlobalData::REF);
-  
+
   if (0 == elem)
-    {  
+    {
       elem = this->doc_->createElement (X ("reference"));
       this->set_id_attr (elem, BE_GlobalData::REF);
       elem->setAttribute (X ("kind"), X ("Discriminator"));
@@ -2995,7 +2995,7 @@ adding_visitor::add_discriminator (DOMElement *parent, AST_Union *u)
   be_global->type_change_diagnostic (elem, dtype);
   elem->setAttribute (X ("referred"), dtype);
 
-  // Add to list used in check for removed IDL decls.  
+  // Add to list used in check for removed IDL decls.
   if (be_global->input_xme () != 0)
     {
       be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
@@ -3014,12 +3014,12 @@ adding_visitor::add_labels (AST_UnionBranch *ub,
   for (unsigned long i = 0; i < ub->label_list_length (); ++i)
     {
       ACE_CString label_name = this->get_label_name (ub->label (i), u);
-                                                     
+
       DOMElement *label =
         be_global->imported_dom_element (this->sub_tree_,
                                          label_name.c_str (),
                                          BE_GlobalData::ATOM);
-    
+
       if (0 == label)
         {
           label = this->doc_->createElement (X ("atom"));
@@ -3032,7 +3032,7 @@ adding_visitor::add_labels (AST_UnionBranch *ub,
               X (be_global->hex_string (label_base + 2 * i))
             );
           this->add_name_element (label, label_name.c_str ());
-          this->add_regnodes (u, label, member_slot, 0, I_TRUE);
+          this->add_regnodes (u, label, member_slot, 0, true);
           this->sub_tree_->appendChild (label);
           be_global->emit_diagnostic (label);
 
@@ -3066,7 +3066,7 @@ adding_visitor::add_labels (AST_UnionBranch *ub,
           src->setAttribute (X ("role"), X ("src"));
           src->setAttribute (X ("target"), X (ub_id));
           connection->appendChild (src);
-          
+
           this->sub_tree_->appendChild (connection);
           be_global->emit_diagnostic (connection);
         }
@@ -3076,13 +3076,13 @@ adding_visitor::add_labels (AST_UnionBranch *ub,
             this->find_connection (label->getAttribute (X ("id")), "dst");
         }
 
-      // Add to list used in check for removed IDL decls.  
+      // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (
               label->getAttribute (X ("id"))
             );
-            
+
           be_global->gme_id_set ().insert (
               connection->getAttribute (X ("id"))
             );
@@ -3141,7 +3141,7 @@ adding_visitor::add_private (AST_Field *f,
   // We can't use imported_dom_element() here because PrivateFlag
   // atoms have no unique name.
   DOMElement *connection = this->find_connection (member_id, "src");
-  
+
   // If the private flag is already there, just return.
   if (0 != connection)
     {
@@ -3150,16 +3150,16 @@ adding_visitor::add_private (AST_Field *f,
       be_global->gme_id_set ().insert (
           connection->getAttribute (X ("id"))
         );
-        
+
       DOMNodeList *endpoints =
         connection->getElementsByTagName (X ("connpoint"));
-        
+
       for (XMLSize_t index = 0; index < endpoints->getLength (); ++index)
         {
           DOMElement *endpoint = (DOMElement *) endpoints->item (index);
           const XMLCh *role = endpoint->getAttribute (X ("role"));
           const XMLCh *target = endpoint->getAttribute (X ("target"));
-          
+
           if (X ("dst") == role)
             {
               // Have to go this circuitous route because the set stores
@@ -3174,7 +3174,7 @@ adding_visitor::add_private (AST_Field *f,
 
       return;
     }
-    
+
   unsigned long base = this->nmembers_gme (f->defined_in ())
                        + this->private_relid_offset_
                        + 1;
@@ -3187,9 +3187,9 @@ adding_visitor::add_private (AST_Field *f,
                        X (be_global->hex_string (base++)));
   ++this->private_relid_offset_;
   this->add_name_element (pflag, "PrivateFlag");
-  this->add_regnodes (f->defined_in (), pflag, this->rel_id_ - 1, 0, I_TRUE);
+  this->add_regnodes (f->defined_in (), pflag, this->rel_id_ - 1, 0, true);
 
-  // Add to list used in check for removed IDL decls.  
+  // Add to list used in check for removed IDL decls.
   if (be_global->input_xme () != 0)
     {
       be_global->gme_id_set ().insert (
@@ -3206,7 +3206,7 @@ adding_visitor::add_private (AST_Field *f,
   ++this->private_relid_offset_;
   this->add_name_element (connection, "MakeMemberPrivate");
 
-  // Add to list used in check for removed IDL decls.  
+  // Add to list used in check for removed IDL decls.
   if (be_global->input_xme () != 0)
     {
       be_global->gme_id_set ().insert (
@@ -3246,27 +3246,27 @@ adding_visitor::find_connection (const XMLCh *endpoint_id,
   DOMElement *connection = 0;
   DOMNodeList *connections =
     this->sub_tree_->getElementsByTagName (X ("connection"));
-    
+
   for (XMLSize_t index = 0; index < connections->getLength (); ++ index)
     {
       connection = (DOMElement *) connections->item (index);
-              
+
       DOMNodeList *endpoints =
         connection->getElementsByTagName (X ("connpoint"));
-        
+
       for (XMLSize_t i = 0; i < endpoints->getLength (); ++i)
         {
           DOMElement *endpoint = (DOMElement *) endpoints->item (i);
           const XMLCh *target_attr = endpoint->getAttribute (X ("target"));
           const XMLCh *role_attr = endpoint->getAttribute (X ("role"));
-          
+
           if (X (role) == role_attr && X (endpoint_id) == target_attr)
             {
               return connection;
             }
         }
     }
-    
+
   return 0;
 }
 
@@ -3292,7 +3292,7 @@ adding_visitor::add_base_component (DOMElement *elem, AST_Component *node)
           elem->removeAttribute (X ("isinstance"));
           elem->removeAttribute (X ("isprimary"));
         }
-        
+
       return;
     }
 
@@ -3307,7 +3307,7 @@ adding_visitor::add_base_component (DOMElement *elem, AST_Component *node)
                   "lookup of parent %s failed\n",
                   base->full_name ()));
     }
-    
+
   be_global->base_component_diagnostic (elem,
                                         node,
                                         base,
@@ -3374,7 +3374,7 @@ adding_visitor::add_ports (DOMElement *parent, AST_Component *node)
           parent->appendChild (provides_port);
           be_global->emit_diagnostic (provides_port);
         }
-      
+
       // These emit diagnostics if changed, idempotent otherwise.
       const XMLCh *referred = this->lookup_id (pd->impl);
       be_global->type_change_diagnostic (provides_port, referred);
@@ -3382,7 +3382,7 @@ adding_visitor::add_ports (DOMElement *parent, AST_Component *node)
       this->add_replace_id_element (provides_port, 0);
       this->add_version_element (provides_port, 0);
 
-      // Add to list used in check for removed IDL decls.  
+      // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (
@@ -3430,9 +3430,9 @@ adding_visitor::add_ports (DOMElement *parent, AST_Component *node)
       this->add_tag_common (pd->is_multiple ? "true" : "false",
                             "multiple_connections",
                             uses_port,
-                            I_FALSE);
+                            false);
 
-      // Add to list used in check for removed IDL decls.  
+      // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (
@@ -3479,9 +3479,9 @@ adding_visitor::add_ports (DOMElement *parent, AST_Component *node)
       this->add_tag_common ("true",
                             "single_destination",
                             emits_port,
-                            I_FALSE);
-      
-      // Add to list used in check for removed IDL decls.  
+                            false);
+
+      // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (
@@ -3528,9 +3528,9 @@ adding_visitor::add_ports (DOMElement *parent, AST_Component *node)
       this->add_tag_common ("false",
                             "single_destination",
                             publishes_port,
-                            I_FALSE);
-      
-      // Add to list used in check for removed IDL decls.  
+                            false);
+
+      // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (
@@ -3575,7 +3575,7 @@ adding_visitor::add_ports (DOMElement *parent, AST_Component *node)
       this->add_replace_id_element (consumes_port, 0);
       this->add_version_element (consumes_port, 0);
 
-      // Add to list used in check for removed IDL decls.  
+      // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (
@@ -3591,20 +3591,20 @@ adding_visitor::add_manages (AST_Home *node)
   DOMElement *connection = 0;
   DOMNodeList *connections =
     this->sub_tree_->getElementsByTagName (X ("connection"));
-    
+
   for (XMLSize_t index = 0; index < connections->getLength (); ++index)
     {
       DOMElement *holder = (DOMElement *) connections->item (index);
-      
+
       if (0 == holder)
         {
           continue;
         }
-        
-      // This depends on the "src" connpoint being added last.  
+
+      // This depends on the "src" connpoint being added last.
       DOMElement *src = (DOMElement *) holder->getLastChild ();
       const XMLCh *target = src->getAttribute (X ("target"));
-      
+
       // A ComponentFactory has exactly one connection.
       if (X (target) == this->lookup_id (node))
         {
@@ -3628,7 +3628,7 @@ adding_visitor::add_manages (AST_Home *node)
                                 X (be_global->hex_string (base++)));
       ++this->manages_relid_offset_;
       this->add_name_element (connection, "ManagesComponent");
-        
+
       DOMElement *conn_reg = this->doc_->createElement (X ("regnode"));
       conn_reg->setAttribute (X ("name"), X ("autorouterPref"));
       conn_reg->setAttribute (X ("isopaque"), X ("yes"));
@@ -3649,8 +3649,8 @@ adding_visitor::add_manages (AST_Home *node)
           // ManagesComponent connection.
           DOMElement *comp_ref = this->doc_->createElement (X ("reference"));
           comp_ref_id = this->set_id_attr (comp_ref, BE_GlobalData::REF);
-            
-          // Add to list used in check for removed IDL decls.  
+
+          // Add to list used in check for removed IDL decls.
           if (be_global->input_xme () != 0)
             {
               be_global->gme_id_set ().insert (
@@ -3665,7 +3665,7 @@ adding_visitor::add_manages (AST_Home *node)
           ++this->manages_relid_offset_;
           comp_ref->setAttribute (X ("referred"), comp_id);
           this->add_name_element (comp_ref, "ComponentRef");
-          this->add_regnodes (s, comp_ref, this->rel_id_ - 1, 0, I_TRUE);
+          this->add_regnodes (s, comp_ref, this->rel_id_ - 1, 0, true);
           this->sub_tree_->appendChild (comp_ref);
         }
 
@@ -3683,8 +3683,8 @@ adding_visitor::add_manages (AST_Home *node)
 
       this->sub_tree_->appendChild (connection);
     }
-  
-  // Add to list used in check for removed IDL decls.  
+
+  // Add to list used in check for removed IDL decls.
   if (be_global->input_xme () != 0)
     {
       be_global->gme_id_set ().insert (
@@ -3745,13 +3745,13 @@ adding_visitor::add_lookup_key (DOMElement *parent, AST_Home *node)
       parent->appendChild (lookup_key);
       be_global->emit_diagnostic (lookup_key);
     }
-    
+
   // Just in case the primary key is now a different valuetype.
   const XMLCh *pk_id = this->lookup_id (pk);
   be_global->type_change_diagnostic (lookup_key, pk_id);
   lookup_key->setAttribute (X ("referred"), pk_id);
-    
-  // Add to list used in check for removed IDL decls.  
+
+  // Add to list used in check for removed IDL decls.
   if (be_global->input_xme () != 0)
     {
       be_global->gme_id_set ().insert (
@@ -3793,12 +3793,12 @@ adding_visitor::add_home_factories (DOMElement *parent, AST_Home *node)
           parent->appendChild (factory);
           be_global->emit_diagnostic (factory);
         }
-    
+
       // Emits diagnostic if changed, idempotent otherwise.
       this->add_replace_id_element (factory, *op);
       this->add_version_element (factory, *op);
 
-      // Add to list used in check for removed IDL decls.  
+      // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (
@@ -3857,15 +3857,15 @@ adding_visitor::add_finders (DOMElement *parent, AST_Home *node)
           parent->appendChild (finder);
           be_global->emit_diagnostic (finder);
         }
-    
-      // Add to list used in check for removed IDL decls.  
+
+      // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (
               finder->getAttribute (X ("id"))
             );
         }
-        
+
       // Emits diagnostic if changed, idempotent otherwise.
       this->add_replace_id_element (finder, *op);
       this->add_version_element (finder, *op);
@@ -4135,7 +4135,7 @@ adding_visitor::lookup_constant_type (AST_Constant *c)
     {
       case AST_Expression::EV_enum:
         enum_type =
-          c->defined_in ()->lookup_by_name (c->enum_full_name (), I_TRUE);
+          c->defined_in ()->lookup_by_name (c->enum_full_name (), true);
         ext_id = enum_type->repoID ();
         break;
       case AST_Expression::EV_short:
@@ -4187,8 +4187,8 @@ adding_visitor::lookup_constant_type (AST_Constant *c)
 ACE_CString
 adding_visitor::print_scoped_name (UTL_IdList *sn)
 {
-  long first = I_TRUE;
-  long second = I_FALSE;
+  long first = true;
+  long second = false;
   Identifier *id = 0;
   ACE_CString retval;
 
@@ -4200,7 +4200,7 @@ adding_visitor::print_scoped_name (UTL_IdList *sn)
         }
       else if (second)
         {
-          first = second = I_FALSE;
+          first = second = false;
         }
 
       // Print the identifier.
@@ -4212,11 +4212,11 @@ adding_visitor::print_scoped_name (UTL_IdList *sn)
           if (ACE_OS::strcmp (id->get_string (), "") != 0)
             {
               // Does not start with a "".
-              first = I_FALSE;
+              first = false;
             }
           else
             {
-              second = I_TRUE;
+              second = true;
             }
         }
     }
@@ -4627,7 +4627,7 @@ adding_visitor::add_default_container (AST_Component *node)
   ACE_CString refname (node->local_name ()->get_string ());
   refname += "Ref";
   this->add_name_element (reference, refname.c_str ());
-  this->add_regnodes (0, reference, 1UL, 0, I_FALSE, "Packaging");
+  this->add_regnodes (0, reference, 1UL, 0, false, "Packaging");
 
   container->appendChild (reference);
 
@@ -4708,7 +4708,7 @@ adding_visitor::add_one_impl_artifact (DOMElement *container,
                       artifact,
                       2 * index + 1,
                       0,
-                      I_FALSE,
+                      false,
                       "Packaging",
                       6UL);
 
@@ -4807,7 +4807,7 @@ adding_visitor::add_implementation (const char *id,
   impl_name += "MonolithicImpl";
   this->add_name_element (impl, impl_name.c_str ());
 
-  this->add_regnodes (0, impl, 1UL, 0, I_FALSE, "Packaging", 7UL);
+  this->add_regnodes (0, impl, 1UL, 0, false, "Packaging", 7UL);
   container->appendChild (impl);
 
   ACE_CString ior_name (component_name);
@@ -4847,7 +4847,7 @@ adding_visitor::add_property (const char *name,
                       property,
                       rel_id,
                       0,
-                      I_FALSE,
+                      false,
                       "Packaging",
                       nslices);
 
@@ -4877,7 +4877,7 @@ adding_visitor::add_property (const char *name,
 
   data_type->setAttribute (X ("referred"), pdt_id);
 
-  this->add_regnodes (0, data_type, 1UL, 0, I_FALSE, "Packaging", 2UL);
+  this->add_regnodes (0, data_type, 1UL, 0, false, "Packaging", 2UL);
 
   property->appendChild (data_type);
 
@@ -4982,7 +4982,7 @@ adding_visitor::add_one_artifact_ref (DOMElement *impl_container,
                       artifact_ref,
                       index + 3,
                       0,
-                      I_FALSE,
+                      false,
                       "Packaging",
                       7UL);
 
@@ -5012,7 +5012,7 @@ adding_visitor::add_component_ref (DOMElement *container,
   ref_name += "Ref";
   this->add_name_element (ref, ref_name.c_str ());
 
-  this->add_regnodes (0, ref, 6UL, 0, I_FALSE, "Packaging", 7UL);
+  this->add_regnodes (0, ref, 6UL, 0, false, "Packaging", 7UL);
 
   DOMElement *connection =
     this->add_connection (impl, ref, "Implements", 11);
@@ -5058,7 +5058,7 @@ adding_visitor::insert_element (DOMElement *elem)
     {
       next = (DOMElement *) this->previous_->getNextSibling ();
     }
-    
+
   // Behaves like appendChild() if next == 0.
   (void) this->sub_tree_->insertBefore (elem, next);
 }

@@ -1,7 +1,20 @@
+Fri Feb 10 22:04:41 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+
+          Replaced usage of 'I_TRUE' and 'I_FALSE' with 'true'
+          and 'false' respectively, to correspond with the changes
+          in
+
+          Wed Feb  8 18:26:11 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+
 Wed Feb  8 20:58:10 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * picmllib.mpb:
-        
+
           Added compile flag specific to Visual Studio that disables
           warning C4251, which is a bogus warning about exporting
           class members that are instantiations of some STL container
@@ -10,15 +23,15 @@ Wed Feb  8 20:58:10 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 Wed Feb  8 19:30:10 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/Interpreters.mwc:
-        
+
           Added 'cmdline' items to:
-          
+
           - use the feature file at $COSMIC_ROOT/default.features
           - include $COSMIC_ROOT in the search path for base
             projects
-            
+
         * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
-        
+
           Added overlooked files to the MPC project. Thanks to Will
           Otte <wotte@dre.vanderbilt.edu> for pointing out the
           oversight.
@@ -29,20 +42,20 @@ Wed Feb  8 18:26:11 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:
         * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
         * PIM/PICML/interpreters/IDLImporter/be_global.h:
-        
+
           Removed all use of 'idl_bool' (typedef of long) and replaced
           with native 'bool'.
 
 Wed Feb  8 17:54:02 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
-        
+
           Added support for union discriminators of type char.
 
 Wed Feb  8 17:16:49 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp (visit_valuebox):
-        
+
           Added support for boxed valuetypes.
 
 Tue Feb  7 17:24:46 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
@@ -51,12 +64,12 @@ Tue Feb  7 17:24:46 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xmp:
         * PIM/PICML/paradigms/PICML.xml:
-          
+
           Changed the LegalConstantValue constraint to use the toReal()
           conversion for the attribute value when bounds checking
           a PICML LongInteger constant type. The toInteger() conversion
           has a 32-bit bound, the same as that intended for LongInteger,
-          so any rhs literal integer would get wrapped around to a 
+          so any rhs literal integer would get wrapped around to a
           legal value. Thanks again to Zoltan Molnar
           <zolmol@isis.vanderbilt.edu> and to Steve Baker
           <Stever_D_Baker@Raytheon.com> for their suggestions.
@@ -67,7 +80,7 @@ Mon Feb  6 23:18:59 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xmp:
         * PIM/PICML/paradigms/PICML.xml:
-          
+
           - Added an aspect to WorkerFile.
           - Changed the name of the aspect in the WML paradigm sheet
             from Behavior to WorkerBehavior, to avoid an aspect name
@@ -87,13 +100,13 @@ Mon Feb  6 21:52:28 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
         * PIM/PICML/interpreters/IDLImporter/picml_visitor.h:
-        
+
           Renamed these files (by removing them) to the pair of
           (added) files below.
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:
-        
+
           New name for removed files above.
 
         * PIM/PICML/interpreters/IDLImporter/picml_dom_visitor.cpp:
@@ -111,7 +124,7 @@ Mon Feb  6 21:52:28 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/interpreters/IDLImporter/removing_closure_visitor.h:
         * PIM/PICML/interpreters/IDLImporter/removing_visitor.cpp:
         * PIM/PICML/interpreters/IDLImporter/removing_visitor.h:
-        
+
           New files, containing visitors which are subclasses of the
           base class visitor in xme_dom_visitor.{h,cpp}. The removing
           visitor traverses the DOM tree and removes anything whose
@@ -129,12 +142,12 @@ Mon Feb  6 21:52:28 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
         * PIM/PICML/interpreters/IDLImporter/be_global.h:
         * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
-        
+
           Changes to assist and stay in sync with the above changes.
-        
+
         * PIM/PICML/docs/Importing_IDL.doc:
         * PIM/PICML/docs/Importing_IDL.pdf:
-        
+
           Updates to documentation reflecting the above changes.
 
 Mon Feb  6 16:49:10 UTC 2006  Stoyan Paunov  <spaunov@isis.vanderbilt.edu>

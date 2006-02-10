@@ -51,7 +51,7 @@ BE_GlobalData::BE_GlobalData (void)
     folders_seen_ (0UL),
     npredefined_ (11UL),
     nfiles_ (0L),
-    first_file_ (I_TRUE),
+    first_file_ (true),
     output_file_ ("PICML_default_xme_file"),
     do_removal_ (true),
     doc_ (0),
