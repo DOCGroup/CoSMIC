@@ -41,23 +41,3 @@ size_t CUTS_Time_Measurement::count (void) const
 {
   return this->count_;
 }
-
-//=============================================================================
-/*
- * CUTS_Timer
- */
-//=============================================================================
-
-CUTS_INLINE
-ACE_Time_Value CUTS_Timer::elapsed (void) const
-{
-  // The checkpoint is the current time minus the stored time
-  // when the timer was created.
-  return ACE_OS::gettimeofday () -= this->time_;
-}
-
-CUTS_INLINE
-const ACE_Time_Value & CUTS_Timer::time (void) const
-{
-  return this->time_;
-}

@@ -10,6 +10,7 @@ namespace CUTS_PIR
   {
   public:
     Worker (void);
+
     virtual ~Worker (void);
   };
 }

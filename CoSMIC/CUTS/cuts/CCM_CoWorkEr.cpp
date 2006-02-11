@@ -53,3 +53,17 @@ void CUTS_CCM_CoWorkEr::generate_event_data (::CUTS::Data_Event * event,
   // Initialize the buffer with garbage data.
   event->data (buffer);
 }
+
+//
+// cuts_coworker_id
+//
+char * CUTS_CCM_CoWorkEr::cuts_coworker_id (
+  ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+  ACE_THROW_SPEC ((CORBA::SystemException))
+{
+  CORBA::String_var str =
+    CORBA::string_dup (this->benchmark_agent_->parent ().c_str ());
+
+  return str._retn ();
+}
+

@@ -6,12 +6,18 @@
 
 namespace CUTS_PIR
 {
-  Component_Home::Component_Home (Module * module)
+  //
+  // Component_Home
+  //
+  Component_Home::Component_Home (const Module * module)
     : Module_Element (module)
   {
 
   }
 
+  //
+  // ~Component_Home
+  //
   Component_Home::~Component_Home (void)
   {
 

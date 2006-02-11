@@ -8,6 +8,7 @@ namespace CUTS_PIR
   class Component;
   class File;
   class Module;
+  class Method;
 
   class Element;
   class Reference_Element;
@@ -61,7 +62,23 @@ namespace PICML_BON
     /// Visit a PICML worker type.
     bool visitWorkerType (const WorkerType &object);
 
-    bool visitWorker (const Worker & worker);
+    bool visitWorker (const Worker & object);
+
+    bool visitInputAction (const InputAction &object);
+
+    bool visitState (const State & object);
+
+    bool visitWorkerAction (const WorkerAction & object);
+
+    bool visitProperty (const Property &object);
+
+    bool visitOutEventPort (const OutEventPort & object);
+
+    bool visitOutputAction (const OutputAction & object);
+
+    bool visitPeriodicAction (const PeriodicAction & object);
+
+    bool visitEnvironment (const Environment & env);
 
   private:
     /// Type definition for mapping IDs to elements.
@@ -77,6 +94,9 @@ namespace PICML_BON
     /// Resolve the home for the specified component.
     bool resolveComponentHome (const BON::FCO & component);
 
+    void resolveReference (const std::string & uuid,
+                           CUTS_PIR::Reference_Element * element);
+
     /// The current file.
     CUTS_PIR::File * file_;
 
@@ -86,11 +106,17 @@ namespace PICML_BON
     /// The current component.
     CUTS_PIR::Component * component_;
 
+    /// The current method.
+    CUTS_PIR::Method * method_;
+
     /// Collection of elements that can be referenced.
     Reference_Map ref_elements_;
 
     /// Collection of unresolved references.
     Unresolved_References unresolved_references_;
+
+    /// ID of the input action.
+    std::string input_action_id_;
   };
 }
 

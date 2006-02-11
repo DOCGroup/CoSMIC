@@ -18,6 +18,7 @@ namespace CUTS_PIR
     public Visitor_Element_T <Visitor, File, &Visitor::visit_file>
   {
   public:
+    /// Type definition for the file includes.
     typedef std::set <std::string> Includes;
 
     /// Constructor.
@@ -48,6 +49,9 @@ namespace CUTS_PIR
 
     /// Flags specifying if the file has events.
     bool has_events_;
+
+    File (const File &);
+    const File & operator = (const File &);
   };
 }
 

@@ -27,17 +27,9 @@ CUTS_CCM_CoWorkEr::get_cuts_benchmark_agent (
 // cuts_coworker_id
 //
 CUTS_INLINE
-::CORBA::Long
-CUTS_CCM_CoWorkEr::cuts_coworker_id (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
-ACE_THROW_SPEC ((CORBA::SystemException))
-{
-  return this->benchmark_agent_->parent ();
-}
-
-CUTS_INLINE
-void CUTS_CCM_CoWorkEr::cuts_coworker_id (::CORBA::Long unique_id
+void CUTS_CCM_CoWorkEr::cuts_coworker_id (const char * parent
                                           ACE_ENV_ARG_DECL_WITH_DEFAULTS)
 ACE_THROW_SPEC ((CORBA::SystemException))
 {
-  this->benchmark_agent_->parent (unique_id);
+  this->benchmark_agent_->parent (parent);
 }

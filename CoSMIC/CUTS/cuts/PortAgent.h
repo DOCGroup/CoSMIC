@@ -18,7 +18,7 @@ class CUTS_Port_Measurement;
 
 //=============================================================================
 /**
- *
+ * @class CUTS_Port_Agent
  */
 //=============================================================================
 
@@ -26,6 +26,9 @@ class CUTS_Export CUTS_Port_Agent :
   protected ACE_Task_Base
 {
 public:
+  /// Constructor.
+  CUTS_Port_Agent (void);
+
   /// Constructor.
   CUTS_Port_Agent (const char * uuid, const char * name);
 
@@ -58,6 +61,8 @@ public:
   const CUTS_Port_Measurement * release_measurements (void);
 
 private:
+  void initialize (void);
+
   /// Service handler for the port agent.
   int svc (void);
 

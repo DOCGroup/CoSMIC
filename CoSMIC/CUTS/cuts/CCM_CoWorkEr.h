@@ -22,19 +22,24 @@ public:
     ACE_THROW_SPEC ((CORBA::SystemException));
 
   /// Get the unique ID of the CoWorkEr.
-  ::CORBA::Long cuts_coworker_id (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+  char * cuts_coworker_id (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
     ACE_THROW_SPEC ((CORBA::SystemException));
 
   /// Set the unique ID of the CoWorkEr.
-  void cuts_coworker_id (::CORBA::Long unique_id ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+  void cuts_coworker_id (
+    const char * coworker_id
+    ACE_ENV_ARG_DECL_WITH_DEFAULTS)
     ACE_THROW_SPEC ((CORBA::SystemException));
 
   /// Get the name of the server used by this CoWorkEr component.
-  char * cuts_coworker_database (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+  char * cuts_coworker_database (
+    ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
     ACE_THROW_SPEC ((CORBA::SystemException));
 
   /// Change the name of the server used by this CoWorkEr component.
-  void cuts_coworker_database (const char * name ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+  void cuts_coworker_database (
+    const char * name
+    ACE_ENV_ARG_DECL_WITH_DEFAULTS)
     ACE_THROW_SPEC ((CORBA::SystemException));
 
 protected:

@@ -88,6 +88,15 @@ module CUTS
   /// Type definition for a <Data_Sample> sequence.
   typedef sequence <Worker_Measurement> Worker_Measurement_Seq;
 
+  struct Exit_Point_Time
+  {
+    string exit_point_;
+
+    Time_Sample time_sample_;
+  };
+
+  typedef sequence <Exit_Point_Time> Exit_Point_Time_Seq;
+
   struct Port_Measurement
   {
     /// event id associated with the data samples
@@ -98,6 +107,9 @@ module CUTS
 
     /// Time taken to process an event.
     Time_Sample process_time;
+
+    /// Exit point times for this port.
+    Exit_Point_Time_Seq exit_times;
 
     /// data samples associated with this benchmark sample
     Worker_Measurement_Seq workers;
@@ -111,7 +123,7 @@ module CUTS
   struct Benchmark_Data
   {
     /// id of the CoWorkEr transmitting the data
-    long owner;
+    string owner;
 
     /// time at which the data was reported
     Time_Stamp timestamp;

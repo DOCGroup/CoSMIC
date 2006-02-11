@@ -43,6 +43,14 @@ namespace CUTS_CIAO
 
     void visit_worker_type (const CUTS_PIR::Worker_Type & type);
 
+    void visit_method (const CUTS_PIR::Method & method);
+
+    void visit_worker_action (const CUTS_PIR::Worker_Action & action);
+
+    void visit_output_action (const CUTS_PIR::Output_Action & action);
+
+    void visit_periodic_action (const CUTS_PIR::Periodic_Action & action);
+
   private:
     /// Visit the contents of a module.
     void visit_module_contents (const CUTS_PIR::Module & module);
@@ -59,8 +67,17 @@ namespace CUTS_CIAO
     /// Write the ciao_preactivate method.
     void write_ciao_preactivate (const CUTS_PIR::Component & component);
 
+    /// Write the ccm_activate method.
+    void write_ccm_activate (const CUTS_PIR::Component & component);
+
+    /// Write the ciao_postactivate method.
+    void write_ciao_postactivate (const CUTS_PIR::Component & component);
+
     /// Write the ccm_passivate method.
     void write_ccm_passivate (const CUTS_PIR::Component & component);
+
+    /// Write the ccm_remove method.
+    void write_ccm_remove (const CUTS_PIR::Component & component);
 
     /// Write the member variables.
     void write_member_variables (const CUTS_PIR::Component & component);

@@ -10,14 +10,22 @@ project (CUTS_PIR) : cuts_base {
     Event.cpp
     EventManager.cpp
     EventSink.cpp
+    Event_Source.cpp
     Facet.cpp
     File.cpp
     Method.cpp
     Module.cpp
+    Module_Element.cpp
     Object.cpp
+    Output_Action.cpp
+    Periodic_Action.cpp
+    Port.cpp
     Project.cpp
+    Reference_Element.cpp
     Visitor.cpp
     Worker.cpp
+    Action_Property.cpp
+    Worker_Action.cpp
     Worker_Type.cpp
     Worker_Manager.cpp
   }

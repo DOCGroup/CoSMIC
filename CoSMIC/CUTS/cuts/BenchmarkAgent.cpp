@@ -12,7 +12,6 @@
 // CUTS_Benchmark_Agent
 //
 CUTS_Benchmark_Agent::CUTS_Benchmark_Agent (void)
-: parent_ (-1)
 {
 
 }

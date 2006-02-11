@@ -49,17 +49,17 @@ DECLARE_BONEXTENSION2( BON::Model, GraphVertex, ConnectedComponentImpl, Connecte
 DECLARE_BONEXTENSION2( BON::Model, Taggable, ExceptionImpl, Exception );
 DECLARE_BONEXTENSION( Prefixable, FileImpl, File );
 DECLARE_ABSTRACT_BONEXTENSION2( BON::Model, Taggable, OperationBaseImpl, OperationBase );
-DECLARE_BONEXTENSION2( Taggable, Prefixable, PackageImpl, Package );
+DECLARE_BONEXTENSION2( Prefixable, Taggable, PackageImpl, Package );
 DECLARE_BONEXTENSION2( BON::Model, Taggable, ReadonlyAttributeImpl, ReadonlyAttribute );
-DECLARE_ABSTRACT_BONEXTENSION2( Taggable, MemberType, NamedTypeImpl, NamedType );
-DECLARE_ABSTRACT_BONEXTENSION3( Taggable, GraphVertex, CommonPortAttrs, PortImpl, Port );
-DECLARE_ABSTRACT_BONEXTENSION2( ConstantType, MemberType, PredefinedTypeImpl, PredefinedType );
+DECLARE_ABSTRACT_BONEXTENSION2( MemberType, Taggable, NamedTypeImpl, NamedType );
+DECLARE_ABSTRACT_BONEXTENSION3( CommonPortAttrs, GraphVertex, Taggable, PortImpl, Port );
+DECLARE_ABSTRACT_BONEXTENSION2( MemberType, ConstantType, PredefinedTypeImpl, PredefinedType );
 DECLARE_BONEXTENSION2( BON::Atom, GraphVertex, DisplayNodeImpl, DisplayNode );
 DECLARE_BONEXTENSION2( BON::Atom, InPort, EnvironmentImpl, Environment );
 DECLARE_BONEXTENSION2( BON::Reference, Manageable, ComponentRefImpl, ComponentRef );
 DECLARE_BONEXTENSION2( BON::Reference, Taggable, ConstantImpl, Constant );
 DECLARE_BONEXTENSION( ReadonlyAttribute, AttributeImpl, Attribute );
-DECLARE_BONEXTENSION3( SupportsInterfaces, Manageable, NamedType, ComponentImpl, Component );
+DECLARE_BONEXTENSION3( NamedType, SupportsInterfaces, Manageable, ComponentImpl, Component );
 DECLARE_ABSTRACT_BONEXTENSION( OperationBase, HasExceptionsImpl, HasExceptions );
 DECLARE_ABSTRACT_BONEXTENSION2( BON::Model, NamedType, InheritableImpl, Inheritable );
 DECLARE_BONEXTENSION( OperationBase, OnewayOperationImpl, OnewayOperation );
@@ -81,7 +81,7 @@ DECLARE_BONEXTENSION2( BON::Reference, Port, OutEventPortImpl, OutEventPort );
 DECLARE_BONEXTENSION3( BON::Reference, InPort, Port, ProvidedRequestPortImpl, ProvidedRequestPort );
 DECLARE_BONEXTENSION2( BON::Reference, Port, RequiredRequestPortImpl, RequiredRequestPort );
 DECLARE_BONEXTENSION2( BON::Model, NoInheritable, AggregateImpl, Aggregate );
-DECLARE_BONEXTENSION3( BON::Model, ConstantType, NoInheritable, EnumImpl, Enum );
+DECLARE_BONEXTENSION3( BON::Model, NoInheritable, ConstantType, EnumImpl, Enum );
 DECLARE_BONEXTENSION( HasExceptions, FactoryOperationImpl, FactoryOperation );
 DECLARE_ABSTRACT_BONEXTENSION( Inheritable, HasOperationsImpl, HasOperations );
 DECLARE_BONEXTENSION( HasExceptions, LookupOperationImpl, LookupOperation );
@@ -89,9 +89,9 @@ DECLARE_BONEXTENSION2( BON::Model, NoInheritable, SwitchedAggregateImpl, Switche
 DECLARE_BONEXTENSION( HasExceptions, TwowayOperationImpl, TwowayOperation );
 DECLARE_BONEXTENSION2( BON::Reference, NoInheritable, AliasImpl, Alias );
 DECLARE_BONEXTENSION2( BON::Reference, NoInheritable, CollectionImpl, Collection );
-DECLARE_BONEXTENSION2( SupportsInterfaces, HasOperations, ComponentFactoryImpl, ComponentFactory );
-DECLARE_BONEXTENSION3( HasOperations, Prefixable, Provideable, ObjectImpl, Object );
-DECLARE_ABSTRACT_BONEXTENSION3( SupportsInterfaces, HasOperations, Prefixable, ObjectByValueImpl, ObjectByValue );
+DECLARE_BONEXTENSION2( HasOperations, SupportsInterfaces, ComponentFactoryImpl, ComponentFactory );
+DECLARE_BONEXTENSION3( HasOperations, Provideable, Prefixable, ObjectImpl, Object );
+DECLARE_ABSTRACT_BONEXTENSION3( HasOperations, SupportsInterfaces, Prefixable, ObjectByValueImpl, ObjectByValue );
 DECLARE_BONEXTENSION( ObjectByValue, EventImpl, Event );
 DECLARE_BONEXTENSION( ObjectByValue, ValueObjectImpl, ValueObject );
 DECLARE_ABSTRACT_BONEXTENSION( BON::Model, ActionBaseImpl, ActionBase );
@@ -2013,8 +2013,8 @@ public:
 //   C  L  A  S  S   PackageImpl
 //*******************************************************************
 class PackageImpl :
-	  public TaggableImpl
-	, public PrefixableImpl
+	  public PrefixableImpl
+	, public TaggableImpl
 {
 public:
 
@@ -2452,8 +2452,8 @@ public:
 //   C  L  A  S  S   NamedTypeImpl
 //*******************************************************************
 class NamedTypeImpl :
-	  public TaggableImpl
-	, public MemberTypeImpl
+	  public MemberTypeImpl
+	, public TaggableImpl
 {
 public:
 
@@ -2468,9 +2468,9 @@ public:
 //   C  L  A  S  S   PortImpl
 //*******************************************************************
 class PortImpl :
-	  public TaggableImpl
+	  public CommonPortAttrsImpl
 	, public GraphVertexImpl
-	, public CommonPortAttrsImpl
+	, public TaggableImpl
 {
 public:
 
@@ -2485,8 +2485,8 @@ public:
 //   C  L  A  S  S   PredefinedTypeImpl
 //*******************************************************************
 class PredefinedTypeImpl :
-	  public ConstantTypeImpl
-	, public MemberTypeImpl
+	  public MemberTypeImpl
+	, public ConstantTypeImpl
 {
 public:
 
@@ -2796,9 +2796,9 @@ public:
 //   C  L  A  S  S   ComponentImpl
 //*******************************************************************
 class ComponentImpl :
-	  public SupportsInterfacesImpl
+	  public NamedTypeImpl
+	, public SupportsInterfacesImpl
 	, public ManageableImpl
-	, public NamedTypeImpl
 {
 public:
 
@@ -4388,8 +4388,8 @@ public:
 //*******************************************************************
 class EnumImpl :
 	  virtual public BON::ModelImpl
-	, public ConstantTypeImpl
 	, public NoInheritableImpl
+	, public ConstantTypeImpl
 {
 public:
 
@@ -4839,8 +4839,8 @@ public:
 //   C  L  A  S  S   ComponentFactoryImpl
 //*******************************************************************
 class ComponentFactoryImpl :
-	  public SupportsInterfacesImpl
-	, public HasOperationsImpl
+	  public HasOperationsImpl
+	, public SupportsInterfacesImpl
 {
 public:
 
@@ -4948,8 +4948,8 @@ public:
 //*******************************************************************
 class ObjectImpl :
 	  public HasOperationsImpl
-	, public PrefixableImpl
 	, public ProvideableImpl
+	, public PrefixableImpl
 {
 public:
 
@@ -4970,8 +4970,8 @@ public:
 //   C  L  A  S  S   ObjectByValueImpl
 //*******************************************************************
 class ObjectByValueImpl :
-	  public SupportsInterfacesImpl
-	, public HasOperationsImpl
+	  public HasOperationsImpl
+	, public SupportsInterfacesImpl
 	, public PrefixableImpl
 {
 public:
@@ -5337,7 +5337,9 @@ public:
 	//
 	// attribute getters and setters
 	virtual long        getPeriod() ;
+	virtual double      getProbability() ;
 	virtual void        setPeriod( const long val);
+	virtual void        setProbability( const double val);
 
 	///BUP
 	// add your own members here

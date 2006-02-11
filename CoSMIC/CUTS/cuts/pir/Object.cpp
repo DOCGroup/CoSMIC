@@ -5,7 +5,7 @@ namespace CUTS_PIR
   //
   // Object
   //
-  Object::Object (Module * module)
+  Object::Object (const Module * module)
     : Module_Element (module)
   {
 

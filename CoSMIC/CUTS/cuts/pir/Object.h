@@ -1,7 +1,7 @@
 #ifndef _CUTS_PIR_OBJECT_H_
 #define _CUTS_PIR_OBJECT_H_
 
-#include "cuts/pir/Element.h"
+#include "cuts/pir/Module_Element.h"
 #include "cuts/pir/Visitor.h"
 
 namespace CUTS_PIR
@@ -12,7 +12,7 @@ namespace CUTS_PIR
   {
   public:
     /// Constructor.
-    Object (Module * module);
+    Object (const Module * module);
 
     /// Destructor.
     virtual ~Object (void);

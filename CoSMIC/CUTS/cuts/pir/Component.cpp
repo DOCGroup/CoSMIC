@@ -6,8 +6,12 @@
 
 #include "cuts/pir/ComponentHome.h"
 #include "cuts/pir/EventSink.h"
+#include "cuts/pir/Event_Source.h"
+#include "cuts/pir/Periodic_Action.h"
 #include "cuts/pir/Worker_Type.h"
 #include "cuts/pir/Facet.h"
+#include "cuts/utils/Functor_T.h"
+#include <algorithm>
 
 namespace CUTS_PIR
 {
@@ -25,26 +29,30 @@ namespace CUTS_PIR
   //
   Component::~Component (void)
   {
-    for ( Event_Sinks::iterator iter = this->event_sinks_.begin ();
-          iter != this->event_sinks_.end ();
-          iter ++)
-    {
-      delete (*iter);
-    }
+    std::for_each (
+      this->event_sinks_.begin (),
+      this->event_sinks_.end (),
+      Delete_Element_T <Event_Sinks::value_type> ());
 
-    for ( Facets::iterator iter = this->facets_.begin ();
-          iter != this->facets_.end ();
-          iter ++)
-    {
-      delete (*iter);
-    }
+    std::for_each (
+      this->event_sources_.begin (),
+      this->event_sources_.end (),
+      Delete_Element_T <Event_Sources::value_type> ());
 
-    for ( Worker_Types::iterator iter = this->worker_types_.begin ();
-          iter != this->worker_types_.end ();
-          iter ++)
-    {
-      delete (*iter);
-    }
+    std::for_each (
+      this->facets_.begin (),
+      this->facets_.end (),
+      Delete_Element_T <Facets::value_type> ());
+
+    std::for_each (
+      this->worker_types_.begin (),
+      this->worker_types_.end (),
+      Delete_Element_T <Worker_Types::value_type> ());
+
+    std::for_each (
+      this->periodic_actions_.begin (),
+      this->periodic_actions_.end (),
+      Delete_Element_T <Periodic_Actions::value_type> ());
   }
 
   //

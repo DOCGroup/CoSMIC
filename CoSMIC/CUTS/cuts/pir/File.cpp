@@ -10,6 +10,7 @@ namespace CUTS_PIR
   // File
   //
   File::File (void)
+    : has_events_ (false)
   {
 
   }

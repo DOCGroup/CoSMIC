@@ -7,6 +7,13 @@
 #include "cuts/pir/Component.h"
 #include "cuts/pir/ComponentHome.h"
 #include "cuts/pir/Object.h"
+#include "cuts/utils/Functor_T.h"
+#include <algorithm>
+
+void delete_element (void * element)
+{
+  delete element;
+}
 
 namespace CUTS_PIR
 {
@@ -24,28 +31,21 @@ namespace CUTS_PIR
   //
   Module::~Module (void)
   {
-    // Delete all the components.
-    for ( Components::iterator iter = this->components_.begin ();
-          iter != this->components_.end ();
-          iter ++)
-    {
-      delete (*iter);
-    }
+    std::for_each (
+      this->components_.begin (),
+      this->components_.end (),
+      Delete_Element_T <Components::value_type> ());
 
-    // Delete all the modules.
-    for ( Modules::iterator iter = this->modules_.begin ();
-          iter != this->modules_.end ();
-          iter ++)
-    {
-      delete (*iter);
-    }
+    // Delete all the components.
+    std::for_each (
+      this->modules_.begin (),
+      this->modules_.end (),
+      Delete_Element_T <Modules::value_type> ());
 
     // Delete all the objects.
-    for ( Objects::iterator iter = this->objects_.begin ();
-          iter != this->objects_.end ();
-          iter ++)
-    {
-      delete (*iter);
-    }
+    std::for_each (
+      this->objects_.begin (),
+      this->objects_.end (),
+      Delete_Element_T <Objects::value_type> ());
   }
 }

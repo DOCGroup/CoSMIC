@@ -2,25 +2,25 @@
 
 //=============================================================================
 /**
- * @file    Timing.h
+ * @file    Time_Measurement.h
  *
  * $Id$
  *
  * This file contains the classes for performing timing operations in CUTS.
  *
- * @author James H. Hill <hillj@isis.vanderbilt.edu>
+ * @author  James H. Hill <hillj@isis.vanderbilt.edu>
  */
 //=============================================================================
 
-#ifndef _CUTS_TIMING_H_
-#define _CUTS_TIMING_H_
+#ifndef _CUTS_TIME_MEASUREMENT_H_
+#define _CUTS_TIME_MEASUREMENT_H_
 
 #include "cuts/config.h"
 #include "ace/Time_Value.h"
 #include "ace/OS_NS_sys_time.h"
 
 #if !defined (ACE_LACKS_PRAGMA_ONCE)
-# pragma once
+#pragma once
 #endif  // ACE_LACKS_PRAGMA_ONCE
 
 //=============================================================================
@@ -80,41 +80,8 @@ private:
   ACE_Time_Value min_;
 };
 
-//=============================================================================
-/**
- * @class CUTS_Timer
- *
- * @brief Timing operations using collecting timing information.
- *
- * This class contains operations that assist with collecting timing
- * measurements such as the maximum and minimum timing values. Also,
- * this class will accumulate timing values and keep track of the number
- * of timing samples.
- */
-//=============================================================================
-
-class CUTS_Export CUTS_Timer
-{
-public:
-  /// Constructor.
-  CUTS_Timer (void);
-
-  /// Destructor.
-  ~CUTS_Timer (void);
-
-  /// Get the amount of time elapsed since the timer started.
-  ACE_Time_Value elapsed (void) const;
-
-  /// Get the current value of the timer.
-  const ACE_Time_Value & time (void) const;
-
-private:
-  /// The current timer vulue.
-  ACE_Time_Value time_;
-};
-
 #if defined (__CUTS_INLINE__)
-# include "cuts/Timing.inl"
-#endif // defined __CUTS_INLINE__
+#include "cuts/Time_Measurement.inl"
+#endif
 
-#endif  // !defined _CUTS_TIMING_H_
+#endif  // !defined _CUTS_TIME_MEASUREMENT_H_

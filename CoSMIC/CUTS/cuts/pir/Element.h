@@ -15,92 +15,34 @@ namespace CUTS_PIR
   class CUTS_Export Element
   {
   public:
+    /// Destructor.
+    virtual ~Element (void) = 0;
+
+    /// Get the name of the element.
+    const std::string & name (void) const;
+
+    /// Set the name of the element.
+    void name (std::string & name);
+
+    /// Get the unique ID for the element.
+    const std::string & uuid (void) const;
+
+    /// Set the unique ID for the element.
+    void uuid (std::string & uuid);
+
+  protected:
     /// Constructor.
     Element (void);
 
-    /// Destructor.
-    virtual ~Element (void);
-
-    /// Get the name of the element.
-    const char * name (void) const;
-
-    /// Set the name of the element.
-    void name (const char * name);
-
-    /// Get the unique ID for the element.
-    const char * uuid (void) const;
-
-    /// Set the unique ID for the element.
-    void uuid (const char * uuid);
-
-  private:
     /// Name of the element.
     std::string name_;
 
     /// Unique ID for the element.
     std::string uuid_;
-  };
-
-  // forward declaration
-  class Module;
-
-  //===========================================================================
-  /**
-   * @class Module_Element
-   */
-  //===========================================================================
-
-  class CUTS_Export Module_Element :
-    virtual public Element
-  {
-  public:
-    /// Constructor.
-    Module_Element (Module * module = 0);
-
-    /// Destructor.
-    virtual ~Module_Element (void);
-
-    /// Get the module of the element.
-    Module * module (void) const;
-
-    /// Get the full scoped name of the element.
-    const char * scoped_name (const char * seperator) const;
-
-    /// Get the scope of the element.
-    const char * scope (const char * seperator) const;
 
   private:
-    /// Parent module for the element.
-    Module * module_;
-
-    /// Temporary string for creating the scoped name.
-    static std::string str_;
-  };
-
-  //===========================================================================
-  /**
-   * @class Visitor_Element_T
-   */
-  //===========================================================================
-
-  class CUTS_Export Reference_Element
-  {
-  public:
-    /// Constructor.
-    Reference_Element (void);
-
-    /// Destructor.
-    virtual ~Reference_Element (void);
-
-    /// Set the referenced element.
-    void reference (Element * reference);
-
-    /// Get the referenced element.
-    Element * reference (void) const;
-
-  private:
-    /// Pointer to the referenced element.
-    Element * reference_;
+    Element (const Element &);
+    const Element & operator = (const Element &);
   };
 
   //===========================================================================

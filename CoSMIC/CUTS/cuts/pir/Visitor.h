@@ -6,17 +6,22 @@
 namespace CUTS_PIR
 {
   // forward declarations
+  class Action_Property;
   class Component;
   class Component_Home;
   class Event;
   class Event_Sink;
+  class Event_Source;
   class Facet;
   class File;
+  class Periodic_Action;
   class Project;
   class Method;
   class Module;
   class Object;
+  class Output_Action;
   class Worker_Type;
+  class Worker_Action;
 
   //===========================================================================
   /**
@@ -61,6 +66,14 @@ namespace CUTS_PIR
     virtual void visit_facet (const Facet & facet);
 
     virtual void visit_worker_type (const Worker_Type & type);
+
+    virtual void visit_worker_action (const Worker_Action & action);
+
+    virtual void visit_action_property (const Action_Property & prop);
+
+    virtual void visit_output_action (const Output_Action & action);
+
+    virtual void visit_periodic_action (const Periodic_Action & action);
 
   protected:
     /// Constructor.

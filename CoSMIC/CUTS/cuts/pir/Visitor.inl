@@ -68,4 +68,28 @@ namespace CUTS_PIR
   {
 
   }
+
+  CUTS_INLINE
+  void Visitor::visit_worker_action (const Worker_Action & action)
+  {
+
+  }
+
+  CUTS_INLINE
+  void Visitor::visit_output_action (const Output_Action & action)
+  {
+
+  }
+
+  CUTS_INLINE
+  void Visitor::visit_action_property (const Action_Property & prop)
+  {
+
+  }
+
+  CUTS_INLINE
+  void Visitor::visit_periodic_action (const Periodic_Action & action)
+  {
+
+  }
 }

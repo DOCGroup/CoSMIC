@@ -25,7 +25,12 @@ namespace CUTS_PIR
     /// Type definition for the component facets.
     typedef std::set <Facet *> Facets;
 
+    /// Type definition for the workers for the component.
     typedef std::set <Worker_Type *> Worker_Types;
+
+    typedef std::set <Event_Source *> Event_Sources;
+
+    typedef std::set <Periodic_Action *> Periodic_Actions;
 
     /// Constructor.
     Component (void);
@@ -54,21 +59,46 @@ namespace CUTS_PIR
     /// Get the facets for the component.
     const Facets & facets (void) const;
 
+    /// Get the workers for this component.
     Worker_Types & worker_types (void);
 
+    /// Get the workers for this component.
     const Worker_Types & worker_types (void) const;
+
+    Event_Sources & event_sources (void);
+
+    const Event_Sources & event_sources (void) const;
+
+    Periodic_Actions & periodic_actions (void);
+
+    const Periodic_Actions & periodic_actions (void) const;
+
+    const Method * activate_method (void) const;
+
+    void activate_method (const Method * method);
 
   private:
     /// The home for this component.
     std::auto_ptr <Component_Home> home_;
 
-    /// Set of methods in the component.
+    std::auto_ptr <const Method> activate_method_;
+
+    /// Set of event sinks in the component.
     Event_Sinks event_sinks_;
+
+    /// Set of event sources in the component.
+    Event_Sources event_sources_;
 
     /// Collection of facets provided by this component.
     Facets facets_;
 
+    /// The workers used by this component.
     Worker_Types worker_types_;
+
+    Periodic_Actions periodic_actions_;
+
+    Component (const Component &);
+    const Component & operator = (const Component &);
   };
 }
 

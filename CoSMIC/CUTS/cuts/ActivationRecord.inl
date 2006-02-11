@@ -69,3 +69,29 @@ void CUTS_Activation_Record::reset (void)
 {
   this->entries_.c.clear ();
 }
+
+//
+// exit_points
+//
+CUTS_INLINE
+const CUTS_Activation_Record::Exit_Points &
+CUTS_Activation_Record::exit_points (void) const
+{
+  return this->exit_points_;
+}
+
+//
+// dispatch_time
+//
+CUTS_INLINE
+void CUTS_Activation_Record::transit_time (
+  const ACE_Time_Value & transit_time)
+{
+  this->transit_time_ = transit_time;
+}
+
+CUTS_INLINE
+const ACE_Time_Value & CUTS_Activation_Record::transit_time (void) const
+{
+  return this->transit_time_;
+}

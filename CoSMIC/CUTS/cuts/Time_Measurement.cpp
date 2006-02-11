@@ -1,9 +1,9 @@
 // $Id$
 
-#include "Timing.h"
+#include "cuts/Time_Measurement.h"
 
 #if !defined (__CUTS_INLINE__)
-# include "Timing.inl"
+#include "cuts/Time_Measurement.inl"
 #endif
 
 //=============================================================================
@@ -21,7 +21,7 @@ CUTS_Time_Measurement::CUTS_Time_Measurement (void)
   max_ (ACE_Time_Value::zero),
   min_ (ACE_Time_Value::zero)
 {
-  
+
 }
 
 CUTS_Time_Measurement::CUTS_Time_Measurement (const CUTS_Time_Measurement &tm)
@@ -82,21 +82,4 @@ void CUTS_Time_Measurement::operator += (const ACE_Time_Value & time_value)
   // Accumulate the new time value.
   this->sum_ += time_value;
   this->count_ ++;
-}
-
-//=============================================================================
-/*
- * CUTS_Timer
- */
-//=============================================================================
-
-CUTS_Timer::CUTS_Timer (void)
-: time_ (ACE_OS::gettimeofday ())
-{
-
-}
-
-CUTS_Timer::~CUTS_Timer (void)
-{
-
 }

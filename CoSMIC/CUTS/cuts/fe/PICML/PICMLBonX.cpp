@@ -724,9 +724,27 @@ long PeriodicActionImpl::getPeriod()
 //********************************************************************************
 // 
 //********************************************************************************
+double PeriodicActionImpl::getProbability() 
+{
+	return FCOImpl::getAttribute("Probability")->getRealValue();
+}
+
+
+//********************************************************************************
+// 
+//********************************************************************************
 void PeriodicActionImpl::setPeriod( const long val)
 {
 	FCOImpl::getAttribute("Period")->setIntegerValue( val);
+}
+
+
+//********************************************************************************
+// 
+//********************************************************************************
+void PeriodicActionImpl::setProbability( const double val)
+{
+	FCOImpl::getAttribute("Probability")->setRealValue( val);
 }
 
 

@@ -1,7 +1,7 @@
 #ifndef _CUTS_PIR_FACET_H_
 #define _CUTS_PIR_FACET_H_
 
-#include "cuts/pir/Element.h"
+#include "cuts/pir/Reference_Element.h"
 #include "cuts/pir/Visitor.h"
 
 namespace CUTS_PIR
@@ -14,7 +14,6 @@ namespace CUTS_PIR
 
   class CUTS_Export Facet :
     public Reference_Element,
-    public Element,
     public Visitor_Element_T <Visitor, Facet, &Visitor::visit_facet>
   {
   public:
@@ -23,6 +22,10 @@ namespace CUTS_PIR
 
     /// Destructor.
     virtual ~Facet (void);
+
+  private:
+    Facet (const Facet &);
+    const Facet & operator = (const Facet &);
   };
 }
 

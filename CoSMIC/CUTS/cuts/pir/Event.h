@@ -1,7 +1,7 @@
 #ifndef _CUTS_PIR_EVENT_H_
 #define _CUTS_PIR_EVENT_H_
 
-#include "cuts/pir/Element.h"
+#include "cuts/pir/Module_Element.h"
 #include "cuts/pir/Visitor.h"
 
 namespace CUTS_PIR
@@ -12,10 +12,14 @@ namespace CUTS_PIR
   {
   public:
     /// Constructor.
-    Event (Module * module = 0);
+    Event (const Module * module = 0);
 
     /// Destructor.
     virtual ~Event (void);
+
+  private:
+    Event (const Event &);
+    const Event & operator = (const Event &);
   };
 }
 

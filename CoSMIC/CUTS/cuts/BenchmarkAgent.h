@@ -17,7 +17,9 @@
 #define _CUTS_BENCHMARK_AGENT_H_
 
 #include "cuts/config.h"
+#include <map>
 #include <set>
+#include <string>
 
 // forward declarations
 class CUTS_Port_Agent;
@@ -46,10 +48,17 @@ public:
   void unregister_port_agent (CUTS_Port_Agent * agent);
 
   /// Get the parent ID of the agent.
-  long parent (void) const;
+  const std::string & parent (void) const;
 
   /// Set the parent ID of the agent.
-  void parent (long parent);
+  void parent (const std::string &parent);
+
+  /// Register an exit point w/ the agent.
+  bool register_exit_point (const std::string & uuid,
+                            const std::string & name);
+
+  /// Unregister an exit point w/ the agent.
+  void unregister_exit_point (const std::string & uuid);
 
 protected:
   /// Type definition for the collection of port agents.
@@ -58,9 +67,15 @@ protected:
   /// Get the collection of port agents.
   Port_Agents & port_agents (void);
 
+  /// Type definition for mapping exit point UUIDs to names.
+  typedef std::map <std::string, std::string> Exit_Points;
+
+  /// Collection of exit points available to the agent.
+  Exit_Points exit_points_;
+
 private:
   /// Owner of this object.
-  long parent_;
+  std::string parent_;
 
   /// Set of port agents managed by this benchmark agent.
   Port_Agents port_agents_;

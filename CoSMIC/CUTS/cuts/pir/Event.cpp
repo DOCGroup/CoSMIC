@@ -8,7 +8,7 @@
 
 namespace CUTS_PIR
 {
-  Event::Event (Module * module)
+  Event::Event (const Module * module)
     : Module_Element (module)
   {
 

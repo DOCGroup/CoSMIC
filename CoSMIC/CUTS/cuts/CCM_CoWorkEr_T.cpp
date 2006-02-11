@@ -35,6 +35,7 @@ void CUTS_CCM_CoWorkEr_T
   ACE_THROW_SPEC ((::CORBA::SystemException,
                    ::Components::CCMException))
 {
+  cerr << "entered CUTS_CCM_CoWorkEr_T::set_session_context" << std::endl;
   // Narrow the context to the one for this component type.
   this->context_ =
     Component_Context::_narrow (ctx ACE_ENV_ARG_PARAMETER);
@@ -45,6 +46,12 @@ void CUTS_CCM_CoWorkEr_T
   // Verify the context was properly narrowed.
   if (this->context_ == 0)
   {
+    cerr << "[error]: the context is NULL!!" << std::endl;
     ACE_THROW (CORBA::INTERNAL ());
   }
+  else
+  {
+    cerr << "[status]: my context_ is set" << std::endl;
+  }
+  cerr << "exiting CUTS_CCM_CoWorkEr_T::set_session_context" << std::endl;
 }

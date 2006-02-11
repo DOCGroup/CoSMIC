@@ -16,29 +16,6 @@
 #include "cuts/config.h"
 #include "cuts/CUTS_exec_export.h"
 
-#define CUTS_COWORKER_CREATE_EVENT(eventtype, obj) \
-  ::eventtype##_var obj = new CUTS_Event_T < ::OBV_##eventtype >
-
-#define CUTS_COWORKER_CREATE_EVENT_EX(eventtype, obj, minsize, maxsize) \
-  CUTS_COWORKER_CREATE_EVENT (eventtype, obj); \
-  CoWorkEr_Type::generate_event_data (obj, minsize, maxsize)
-
-#define CUTS_COWORKER_PUBLISH_EVENT(event, method) \
-  event->dispatch_time (ACE_OS::time ()); \
-  this->context_->method (event.in ())
-
-#define CUTS_REGISTER_EVENTTYPE(eventtype) \
-  CIAO_REGISTER_OBV_FACTORY (CUTS_Event_init_T < CUTS_Event_T < ::OBV_##eventtype > >, \
-                             CUTS_Event_T < ::OBV_##eventtype >)
-
-#define CUTS_DEFINE_EVENT_INFO(eventtpye, id) \
-  template < > \
-  class CUTS_Event_Info <eventtpye> \
-  { \
-  public: \
-    static const long event_id_ = id; \
-  }
-
 //=============================================================================
 /**
  * @class CUTS_EventInfo

@@ -68,7 +68,7 @@ public:
   }
 
   /// Get the unique ID of the CoWorkEr.
-  ::CORBA::Long cuts_coworker_id (
+  char * cuts_coworker_id (
     ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
     ACE_THROW_SPEC ((CORBA::SystemException))
   {
@@ -77,7 +77,7 @@ public:
 
   /// Set the unique ID of the CoWorkEr.
   void cuts_coworker_id (
-    ::CORBA::Long coworker_id
+    const char * coworker_id
     ACE_ENV_ARG_DECL_WITH_DEFAULTS)
     ACE_THROW_SPEC ((CORBA::SystemException))
   {
@@ -85,7 +85,8 @@ public:
   }
 
   /// Get the name of the server used by this CoWorkEr component.
-  char * cuts_coworker_database (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+  char * cuts_coworker_database (
+    ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
     ACE_THROW_SPEC ((CORBA::SystemException))
   {
     return CUTS_CCM_CoWorkEr::cuts_coworker_database ();

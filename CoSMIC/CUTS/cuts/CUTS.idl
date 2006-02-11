@@ -67,8 +67,8 @@ module CUTS
 
   struct CoWorkEr_Info
   {
-    /// Unique ID of the CoWorkEr.
-    long id_tag;
+    /// UUID of the CoWorkEr.
+    string UUID;
 
     /// IP address of the CoWorkEr.
     long ipaddr;
@@ -76,15 +76,23 @@ module CUTS
 
   //===========================================================================
   /**
-   *
+   * @struct Path_Element
    */
   //===========================================================================
 
   struct Path_Element
   {
-    long UUID;
+    /// UUID of the component.
+    string UUID;
+
+    /// Name of the source port.
+    string src;
+
+    /// Name of the destination port.
+    string dst;
   };
 
+  /// Type definition for a path sequence.
   typedef sequence <Path_Element> Path_Sequence;
 
   interface Path_Measurment
@@ -108,7 +116,6 @@ module CUTS
   //===========================================================================
 
   component Benchmark_Data_Collector
-    supports BDC_Control_Handle
   {
     /// get the <Data_Collector> facet
     uses multiple Benchmark_Agent benchmark_agents;
@@ -148,7 +155,7 @@ module CUTS
     provides Benchmark_Agent cuts_benchmark_agent;
 
     /// Unique ID for the CoWorkEr.
-    attribute long cuts_coworker_id;
+    attribute string cuts_coworker_id;
 
     /// Host name for the database worker
     attribute string cuts_coworker_database;

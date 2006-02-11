@@ -29,16 +29,3 @@ CUTS_Single_Event_Handler::~CUTS_Single_Event_Handler (void)
 {
 
 }
-
-//
-// handle_event
-//
-void CUTS_Single_Event_Handler::handle_event (void)
-{
-  for ( CUTS_Counter_Set::iterator iter = this->counter_.begin ();
-        iter != this->counter_.end ();
-        iter ++)
-  {
-    (*iter)->increment ();
-  }
-}

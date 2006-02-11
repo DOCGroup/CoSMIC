@@ -13,8 +13,8 @@
  */
 //=============================================================================
 
-#ifndef _CUTS_H_
-#define _CUTS_H_
+#ifndef _CUTS_CONFIG_H_
+#define _CUTS_CONFIG_H_
 
 #include "cuts/CUTS_Export.h"
 
@@ -29,4 +29,4 @@
 #define CUTS_DEFAULT_HOSTNAME   "localhost"
 #define CUTS_DEFAULT_PORT       3306
 
-#endif  // !defined _CUTS_H_
+#endif  // !defined _CUTS_CONFIG_H_

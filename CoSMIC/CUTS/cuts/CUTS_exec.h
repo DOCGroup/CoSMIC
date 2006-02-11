@@ -17,11 +17,21 @@
 #include "ace/Time_Value.h"
 #include "ace/Message_Queue_T.h"
 #include "ace/Reactor_Notification_Strategy.h"
+#include "ace/Event.h"
 
 namespace CUTS
 {
   namespace CIDL_Benchmark_Data_Collector_Impl
   {
+    // forward declarations
+    class Benchmark_Data_Collector_exec_i;
+
+    //=========================================================================
+    /**
+     * @class Path_Measurement_exec_i
+     */
+    //=========================================================================
+
     class CUTS_EXEC_Export Path_Measurement_exec_i :
       public virtual ::CUTS::CCM_Path_Measurment,
       public virtual TAO_Local_RefCounted_Object
@@ -50,6 +60,39 @@ namespace CUTS
       // pointer to shared measurements container
     };
 
+    //=========================================================================
+    /**
+     * @class BDC_Control_Handle_exec_i
+     */
+    //=========================================================================
+
+    class CUTS_EXEC_Export BDC_Control_Handle_exec_i :
+      public virtual ::CUTS::CCM_BDC_Control_Handle,
+      public virtual TAO_Local_RefCounted_Object
+    {
+    public:
+      /// Constructor.
+      BDC_Control_Handle_exec_i (Benchmark_Data_Collector_exec_i * bdc_exec);
+
+      /// Destructor.
+      virtual ~BDC_Control_Handle_exec_i (void);
+
+      virtual void
+        collect_performance_data (
+        ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+        ACE_THROW_SPEC ((::CORBA::SystemException));
+
+    private:
+      /// Pointer reference to the benchmark data collector.
+      Benchmark_Data_Collector_exec_i * bdc_exec_;
+    };
+
+    //=========================================================================
+    /**
+     * @class Benchmark_Data_Collector_exec_i
+     */
+    //=========================================================================
+
     class CUTS_EXEC_Export Benchmark_Data_Collector_exec_i
     : public virtual Benchmark_Data_Collector_Exec,
       public virtual TAO_Local_RefCounted_Object,
@@ -65,6 +108,8 @@ namespace CUTS
       void deactivate (void);
 
       bool is_active (void) const;
+
+      void collect_performance_data (void);
 
       virtual char *
       server_name (
@@ -87,11 +132,6 @@ namespace CUTS
         ::CORBA::Long
         ACE_ENV_ARG_DECL_WITH_DEFAULTS)
         ACE_THROW_SPEC ((CORBA::SystemException));
-
-      virtual void
-        collect_performance_data (
-        ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
-        ACE_THROW_SPEC ((::CORBA::SystemException));
 
       virtual ::CUTS::CCM_BDC_Control_Handle_ptr
         get_controls (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
@@ -180,7 +220,19 @@ namespace CUTS
       ACE_Message_Queue_Ex <
         ::CUTS::Benchmark_Agent,
         ACE_MT_SYNCH> bma_queue_;
+
+      ACE_Auto_Ptr <BDC_Control_Handle_exec_i> bdc_control_handle_;
+
+      ACE_Thread_Mutex collection_mutex_;
+
+      ACE_Thread_Mutex write_mutex_;
     };
+
+    //=========================================================================
+    /**
+     * @class Benchmark_Data_Collector_Home_exec_i
+     */
+    //=========================================================================
 
     class CUTS_EXEC_Export Benchmark_Data_Collector_Home_exec_i
     : public virtual Benchmark_Data_Collector_Home_Exec,

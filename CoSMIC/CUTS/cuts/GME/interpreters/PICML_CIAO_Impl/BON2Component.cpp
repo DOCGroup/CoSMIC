@@ -45,7 +45,7 @@ namespace BON
   //
   void Component::initialize( Project& project )
   {
-    CUTS_PIR::Project::instance ()->name (project->getName ().c_str ());
+    CUTS_PIR::Project::instance ()->name (project->getName ());
   }
 
   //

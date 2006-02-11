@@ -3,6 +3,21 @@
 namespace CUTS_PIR
 {
   //
+  // activate_method
+  //
+  CUTS_INLINE
+  void Component::activate_method (const Method * method)
+  {
+    this->activate_method_.reset (method);
+  }
+
+  CUTS_INLINE
+  const Method * Component::activate_method (void) const
+  {
+    return this->activate_method_.get ();
+  }
+
+  //
   // home
   //
   CUTS_INLINE
@@ -60,5 +75,35 @@ namespace CUTS_PIR
   const Component::Event_Sinks & Component::event_sinks (void) const
   {
     return this->event_sinks_;
+  }
+
+  //
+  // event_sources
+  //
+  CUTS_INLINE
+  const Component::Event_Sources & Component::event_sources (void) const
+  {
+    return this->event_sources_;
+  }
+
+  CUTS_INLINE
+  Component::Event_Sources & Component::event_sources (void)
+  {
+    return this->event_sources_;
+  }
+
+  //
+  // periodic_actions
+  //
+  CUTS_INLINE
+  Component::Periodic_Actions & Component::periodic_actions (void)
+  {
+    return this->periodic_actions_;
+  }
+
+  CUTS_INLINE
+  const Component::Periodic_Actions & Component::periodic_actions (void) const
+  {
+    return this->periodic_actions_;
   }
 }

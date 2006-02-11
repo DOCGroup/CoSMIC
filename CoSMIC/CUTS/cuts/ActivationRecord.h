@@ -2,14 +2,30 @@
 #ifndef _CUTS_ACTIVATION_RECORD_H_
 #define _CUTS_ACTIVATION_RECORD_H_
 
-#include "cuts/Timing.h"
+#include "cuts/Time_Measurement.h"
 #include <queue>
+#include <map>
+#include <string>
+
+//=============================================================================
+/**
+ * @class CUTS_Activation_Record
+ */
+//=============================================================================
 
 class CUTS_Export CUTS_Activation_Record
 {
 public:
+  //===========================================================================
+  /**
+   * @struct Entry
+   */
+  //===========================================================================
   struct Entry
   {
+    //
+    // Entry
+    //
     Entry (size_t reps, long worker_id, long action_id,
       ACE_Time_Value & start, ACE_Time_Value &stop)
       : reps_ (reps),
@@ -21,6 +37,9 @@ public:
 
     }
 
+    //
+    // operator =
+    //
     const Entry & operator = (const Entry & entry)
     {
       this->reps_ = entry.reps_;
@@ -47,7 +66,11 @@ public:
     ACE_Time_Value stop_time_;
   };
 
+  /// Type definition for entries contained in the record.
   typedef std::queue <Entry> Entries;
+
+  /// Type definition for mapping exit points to time.
+  typedef std::map <std::string, ACE_Time_Value> Exit_Points;
 
   /// Constructor.
   CUTS_Activation_Record (void);
@@ -75,6 +98,9 @@ public:
 
   /// Get the entries for the record.
   const Entries & entries (void) const;
+
+  /// Get the exit points for the record.
+  const Exit_Points & exit_points (void) const;
 
   /// Perform the specified action without any logging.
   template <typename ACTION>
@@ -108,6 +134,23 @@ public:
       CUTS_Action_Traits <ACTION>::action_id_);
   }
 
+  //
+  // record_exit_point_time
+  //
+  template <typename ACTION>
+  void record_exit_point (const std::string & uuid, ACTION & action)
+  {
+    // Save the current time as the exit point time.
+    this->exit_points_[uuid] = ACE_OS::gettimeofday ();
+
+    // Perform the action.
+    action ();
+  }
+
+  const ACE_Time_Value & transit_time (void) const;
+
+  void transit_time (const ACE_Time_Value & transit_time);
+
 private:
   /// Log the timing measurement.
   void log_time_measurement (size_t reps, long worker_id, long action_id);
@@ -127,8 +170,14 @@ private:
   /// Stop time of the operation.
   ACE_Time_Value action_stop_time_;
 
+  /// Transit time for the event cause the record.
+  ACE_Time_Value transit_time_;
+
   /// Entries in the activation record.
   Entries entries_;
+
+  /// Collection of exit points
+  Exit_Points exit_points_;
 
   /// Disallowed operation.
   CUTS_Activation_Record (const CUTS_Activation_Record &);

@@ -1,3 +1,184 @@
+Fri Feb 10 18:36:40 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * bin/cuts_manager.pl:
+        * bin/cuts_node.pl:
+        * bin/cuts_planner.pl:
+        * bin/cuts_test.pl:
+
+          - Helper scripts for launching the appropriate DAnCE executables.
+
+        * cuts/ActivationRecord.h:
+        * cuts/ActivationRecord.inl:
+
+          - Update the implemenation to allow inclusion of transient times.
+          - Improve the implemenation to automatically calculate
+            transient/process times at creation/closing
+          - Change implementation to delay the setting of the activation
+            time to as late as possible to negate instrumentation code
+
+        * cuts/BenchmarkAgent.h:
+        * cuts/BenchmarkAgent.inl:
+        * cuts/BenchmarkAgent.cpp:
+
+          Updated benchmark agent code to collect the transient time from
+          each of the port agents as well.
+
+        * cuts/CCM_BenchmarkAgent.cpp:
+        * cuts/CCM_CoWorkEr.h:
+        * cuts/CCM_CoWorkEr.inl:
+        * cuts/CCM_CoWorkEr.cpp:
+        * cuts/CCM_CoWorkEr_T.h:
+        * cuts/CCM_CoWorkEr_T.cpp:
+        * cuts/CCM_Event_Handler_T.h:
+        * cuts/CCM_Event_Handler_T.cpp:
+
+        * cuts/CCM_Event_Producer_T.h:
+        * cuts/CCM_Event_Producer_T.inl:
+        * cuts/CCM_Event_Producer_T.cpp:
+
+          First implementation of the event producer for CoWorkErs since events
+          are synchronous. Once asynchonous events are implemented, this class
+          will probably be removed.
+
+        * cuts/CCM_Events_T.h:
+
+          Removed unnecessary macro definitions for creating/registering events.
+
+        * cuts/CUTS.idl:
+
+          - Updated the CoWorkEr component definition to use a string type for its
+            ID.
+          - Updated the path analysis IDL to specify paths by the CoWorkEr ID and the
+            source and destination ports.
+
+        * cuts/CUTS.mpc:
+
+          Add the neccessary files to the project space.
+
+        * cuts/CUTS_exec.h:
+        * cuts/CUTS_exec.cpp:
+
+          Update the benchmark data collector implementation to use an asynchronous
+          method for collecting information from the components.
+
+        * cuts/EventHandler.h:
+        * cuts/EventHandler.inl:
+        * cuts/EventHandler.cpp:
+        * cuts/EventHandler_T.h:
+        * cuts/EventHandler_T.inl:
+        * cuts/EventHandler_T.cpp:
+
+          First draft of the event handler class for components.
+
+        * cuts/GME/interpreters/PICML_CIAO_Impl/BON2Component.cpp:
+
+        * cuts/Operation_Measurement.h:
+        * cuts/Operation_Measurement.inl:
+        * cuts/Operation_Measurement.cpp:
+        * cuts/PortAgent.h:
+        * cuts/PortAgent.cpp:
+        * cuts/PortMetric.inl:
+        * cuts/Port_Measurement.h:
+        * cuts/Port_Measurement.inl:
+        * cuts/Port_Measurement.cpp:
+        * cuts/TimeMetric.cpp:
+        * cuts/Time_Measurement.h:
+        * cuts/Time_Measurement.inl:
+        * cuts/Time_Measurement.cpp:
+        * cuts/Trigger_T.cpp:
+        * cuts/Worker_Measurement.h:
+        * cuts/Worker_Measurement.inl:
+        * cuts/Worker_Measurement.cpp:
+
+          First cut of the benchmark data collectors structures for saving
+          performance data.
+
+        * cuts/pir/Action_Property.h:
+        * cuts/pir/Action_Property.inl:
+        * cuts/pir/Action_Property.cpp:
+        * cuts/pir/Component.h:
+        * cuts/pir/Component.inl:
+        * cuts/pir/Component.cpp:
+        * cuts/pir/ComponentHome.h:
+        * cuts/pir/ComponentHome.inl:
+        * cuts/pir/ComponentHome.cpp:
+        * cuts/pir/Element.h:
+        * cuts/pir/Element.inl:
+        * cuts/pir/Element.cpp:
+        * cuts/pir/Event.h:
+        * cuts/pir/Event.cpp:
+        * cuts/pir/EventSink.h:
+        * cuts/pir/Event_Source.h:
+        * cuts/pir/Event_Source.inl:
+        * cuts/pir/Event_Source.cpp:
+        * cuts/pir/Facet.h:
+        * cuts/pir/File.h:
+        * cuts/pir/File.cpp:
+        * cuts/pir/Method.h:
+        * cuts/pir/Method.inl:
+        * cuts/pir/Method.cpp:
+        * cuts/pir/Module.cpp:
+        * cuts/pir/Module_Element.h:
+        * cuts/pir/Module_Element.inl:
+        * cuts/pir/Module_Element.cpp:
+        * cuts/pir/Object.h:
+        * cuts/pir/Object.cpp:
+        * cuts/pir/Output_Action.h:
+        * cuts/pir/Output_Action.inl:
+        * cuts/pir/Output_Action.cpp:
+        * cuts/pir/PIR.mpc:
+        * cuts/pir/Periodic_Action.h:
+        * cuts/pir/Periodic_Action.inl:
+        * cuts/pir/Periodic_Action.cpp:
+        * cuts/pir/Port.h:
+        * cuts/pir/Port.inl:
+        * cuts/pir/Port.cpp:
+        * cuts/pir/Project.cpp:
+        * cuts/pir/Reference_Element.h:
+        * cuts/pir/Reference_Element.inl:
+        * cuts/pir/Reference_Element.cpp:
+        * cuts/pir/Visitor.h:
+        * cuts/pir/Visitor.inl:
+        * cuts/pir/Worker.h:
+        * cuts/pir/Worker_Action.h:
+        * cuts/pir/Worker_Action.inl:
+        * cuts/pir/Worker_Action.cpp:
+        * cuts/pir/Worker_Type.h:
+
+          Final classes in the first draft of the platform-independent
+          representation (PIR) of the PICML model used to generate source code.
+
+        * cuts/be/CIAO/File_Visitor.h:
+        * cuts/be/CIAO/File_Visitor.cpp:
+
+          Updated the CIAO backend to handle the additions to the PIR.
+
+        * cuts/config.h:
+
+        * cuts/fe/PICML/CUTS_PICMLVisitor.h:
+        * cuts/fe/PICML/CUTS_PICMLVisitor.cpp:
+        * cuts/fe/PICML/PICMLBonX.h:
+        * cuts/fe/PICML/PICMLBonX.cpp:
+
+          Updated the BON extension to reflect changes in the metamodel.
+
+        * cuts/performance.idl:
+
+          Added support for timing exit points.
+
+        * cuts/utils/Functor_T.h:
+
+          Implemented some delete functors.
+
+        * cuts/PortMeasurement.h:
+        * cuts/PortMeasurement.inl:
+        * cuts/PortMeasurement.cpp:
+        * cuts/Timing.h:
+        * cuts/Timing.inl:
+        * cuts/Timing.cpp:
+
+          Removed these files.
+
 Thu Feb  2 23:12:40 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BenchmarkAgent.h:

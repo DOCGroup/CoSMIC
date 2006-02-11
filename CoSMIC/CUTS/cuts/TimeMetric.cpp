@@ -1,6 +1,6 @@
 #include "cuts/TimeMetric.h"
 
-#if defined (__CUTS_INLINE__)
+#if !defined (__CUTS_INLINE__)
 #include "cuts/TimeMetric.inl"
 #endif
 

@@ -2,53 +2,62 @@
 
 #include "StdAfx.h"
 #include "cuts/fe/PICML/CUTS_PICMLVisitor.h"
+#include "cuts/pir/Action_Property.h"
 #include "cuts/pir/Component.h"
 #include "cuts/pir/ComponentHome.h"
 #include "cuts/pir/EventManager.h"
 #include "cuts/pir/Event.h"
 #include "cuts/pir/EventSink.h"
+#include "cuts/pir/Event_Source.h"
 #include "cuts/pir/Facet.h"
 #include "cuts/pir/File.h"
+#include "cuts/pir/Method.h"
 #include "cuts/pir/Object.h"
+#include "cuts/pir/Output_Action.h"
+#include "cuts/pir/Periodic_Action.h"
 #include "cuts/pir/Project.h"
 #include "cuts/pir/Worker.h"
+#include "cuts/pir/Worker_Action.h"
 #include "cuts/pir/Worker_Type.h"
 
 #include <functional>
 #include <algorithm>
+#include <strstream>
 
 namespace PICML_BON
 {
-  //===========================================================================
-  /**
-   * @struct Alphabetical_Order
-   */
-  //===========================================================================
-
-  template <typename ELEMENT_TYPE>
-  struct Alphabetical_Order
+  struct Find_Element_By_Name_Ptr
   {
-    bool operator () (const ELEMENT_TYPE & left,
-                      const ELEMENT_TYPE & right)
+    Find_Element_By_Name_Ptr (const std::string & name)
+      : name_ (name)
     {
-      return left->getName () < right->getName ();
+
     }
+
+    bool operator () (const CUTS_PIR::Element * element)
+    {
+      return element->name () == this->name_;
+    }
+
+  private:
+    std::string name_;
   };
 
-  //===========================================================================
-  /**
-   * @struct Reverse_Alphabetical_Order
-   */
-  //===========================================================================
-
-  template <typename ELEMENT_TYPE>
-  struct Reverse_Alphabetical_Order
+  struct Find_Element_By_UUID_Ptr
   {
-    bool operator () (const ELEMENT_TYPE & left,
-                      const ELEMENT_TYPE & right)
+    Find_Element_By_UUID_Ptr (const std::string & uuid)
+      : uuid_ (uuid)
     {
-      return left->getName () > right->getName ();
+
     }
+
+    bool operator () (const CUTS_PIR::Element * element)
+    {
+      return element->uuid () == this->uuid_;
+    }
+
+  private:
+    std::string uuid_;
   };
 
   //===========================================================================
@@ -69,29 +78,7 @@ namespace PICML_BON
       BON::Point rp =
         BON::FCOExRegistryNode (left->getRegistry ())->getLocation ();
 
-      return (lp.first < rp.first) && (left.second > right.second);
-    }
-  };
-
-  //===========================================================================
-  /**
-   * @struct Location_Ordering_R2L
-   */
-  //===========================================================================
-
-  template <typename ELEMENT_TYPE>
-  struct Location_Ordering_R2L
-  {
-    bool operator () (const ELEMENT_TYPE & left,
-                      const ELEMENT_TYPE & right)
-    {
-      BON::Point lp =
-        BON::FCOExRegistryNode (left->getRegistry ())->getLocation ();
-
-      BON::Point rp =
-        BON::FCOExRegistryNode (left->getRegistry ())->getLocation ();
-
-      return lp.first > rp.first;
+      return (lp.first < rp.first) && (lp.second > lp.second);
     }
   };
 
@@ -129,8 +116,8 @@ namespace PICML_BON
 
     // Create a new file and insert it into the <CUTS_PIR::Project>.
     this->file_ = new CUTS_PIR::File ();
-    this->file_->name (object->getName ().c_str ());
-    this->file_->uuid (object->getID ().c_str ());
+    this->file_->name (object->getName ());
+    this->file_->uuid (object->getID ());
     CUTS_PIR::Project::instance ()->files ().insert (this->file_);
 
     // Visit the contents of the module.
@@ -152,8 +139,8 @@ namespace PICML_BON
     // Create a new <CUTS_PIR::Module> and insert it into the
     // current module.
     CUTS_PIR::Module * module = new CUTS_PIR::Module (this->module_);
-    module->name (object->getName ().c_str ());
-    module->uuid (object->getID ().c_str ());
+    module->name (object->getName ());
+    module->uuid (object->getID ());
     this->module_->modules ().insert (module);
 
     // Cache the current <module_> and switch to the new <module>.
@@ -175,9 +162,9 @@ namespace PICML_BON
 
     // Create a new <CUTS_PIR::Component> and insert it into the
     // current module.
-    this->component_ = new CUTS_PIR::Component;
-    this->component_->name (object->getName ().c_str ());
-    this->component_->uuid (object->getID ().c_str ());
+    this->component_ = new CUTS_PIR::Component ();
+    this->component_->name (object->getName ());
+    this->component_->uuid (object->getID ());
     this->module_->components ().insert (this->component_);
 
     if (!resolveComponentHome (object))
@@ -190,6 +177,30 @@ namespace PICML_BON
       {
         resolveComponentHome ((*component_refs.begin ()));
       }
+    }
+
+    // Get the types of workers.
+    std::set <WorkerType> worker_types =
+      object->getWorkerType <std::less <WorkerType> > ();
+
+    for ( std::set <WorkerType>::const_iterator iter =
+          worker_types.begin ();
+          iter != worker_types.end ();
+          iter ++)
+    {
+      visitWorkerType (*iter);
+    }
+
+    // Get all the <OutEventPort> objects for this component.
+    std::set <OutEventPort> out_event_ports =
+      object->getOutEventPort <std::less <OutEventPort> > ();
+
+    for ( std::set <OutEventPort>::const_iterator iter =
+          out_event_ports.begin ();
+          iter != out_event_ports.end ();
+          iter ++)
+    {
+      visitOutEventPort (*iter);
     }
 
     // Get all the <InEventPort> objects for this component.
@@ -216,17 +227,30 @@ namespace PICML_BON
       visitProvidedRequestPort (*iter);
     }
 
-    // Get the types of workers.
-    std::set <WorkerType> worker_types =
-      object->getWorkerType <std::less <WorkerType> > ();
+    // Get all the <ProvidedRequestPort> objects for this component.
+    std::set <PeriodicAction> periodic_actions =
+      object->getPeriodicAction <std::less <PeriodicAction> > ();
 
-    for ( std::set <WorkerType>::const_iterator iter =
-          worker_types.begin ();
-          iter != worker_types.end ();
+    for ( std::set <PeriodicAction>::const_iterator iter =
+          periodic_actions.begin ();
+          iter != periodic_actions.end ();
           iter ++)
     {
-      visitWorkerType (*iter);
+      visitPeriodicAction (*iter);
     }
+
+    // Get all the <Environment> objects for this component.
+    std::set <Environment> environment =
+      object->getEnvironment <std::less <Environment> > ();
+
+    for ( std::set <Environment>::const_iterator iter =
+          environment.begin ();
+          iter != environment.end ();
+          iter ++)
+    {
+      visitEnvironment (*iter);
+    }
+
     return true;
   }
 
@@ -242,7 +266,7 @@ namespace PICML_BON
           iter != children.end ();
           iter ++)
     {
-      this->visitEvent (*iter);
+      visitEvent (*iter);
     }
 
     // Visit all the <Object> models.
@@ -252,7 +276,7 @@ namespace PICML_BON
           iter != children.end ();
           iter ++)
     {
-      this->visitObject (*iter);
+      visitObject (*iter);
     }
 
     // Visit all the <Component> models.
@@ -262,7 +286,7 @@ namespace PICML_BON
           iter != children.end ();
           iter ++)
     {
-      this->visitComponent (*iter);
+      visitComponent (*iter);
     }
 
     // Get all the <Package> models.
@@ -273,7 +297,7 @@ namespace PICML_BON
           iter != children.end ();
           iter ++)
     {
-      this->visitPackage (*iter);
+      visitPackage (*iter);
     }
   }
 
@@ -307,8 +331,8 @@ namespace PICML_BON
 
    // Create a new <event> since we have never seen this one.
    CUTS_PIR::Event  * event = new CUTS_PIR::Event (this->module_);
-   event->name (object->getName ().c_str ());
-   event->uuid (object->getID ().c_str ());
+   event->name (object->getName ());
+   event->uuid (object->getID ());
 
    // Insert the element into the referenced elements since it
    // can be referenced by event ports.
@@ -319,6 +343,8 @@ namespace PICML_BON
     CUTS_PIR::Project::instance ()->event_manager ().insert (
       CUTS_PIR::Event_Manager::value_type (object->getID (), event));
 
+    // Set the <has_events> flag to true.
+    this->file_->has_events (true);
     return true;
   }
 
@@ -332,8 +358,8 @@ namespace PICML_BON
 
     // Create a new object and initialize it properly.
     CUTS_PIR::Object * object = new CUTS_PIR::Object (this->module_);
-    object->name (obj->getName ().c_str ());
-    object->uuid (obj->getID ().c_str ());
+    object->name (obj->getName ());
+    object->uuid (obj->getID ());
     this->module_->objects ().insert (object);
 
     // Insert the object into the reference map since it can be
@@ -354,26 +380,27 @@ namespace PICML_BON
     // Create a <Event_Sink> for the <InEventPort> and insert
     // it into the current component.
     CUTS_PIR::Event_Sink * event_sink = new CUTS_PIR::Event_Sink ();
-    event_sink->name (object->getName ().c_str ());
-    event_sink->uuid (object->getID ().c_str ());
+    event_sink->name (object->getName ());
+    event_sink->uuid (object->getID ());
+
     this->component_->event_sinks ().insert (event_sink);
+    this->method_ = event_sink;
 
-    // Set the reference ID for the <event_sink>.
+    // Resolve the reference for the event sink.
     Event event = object->getEvent ();
+    resolveReference (object->getEvent ()->getID (), event_sink);
 
-    // Locate the <reference> in the <ref_elements_>.
-    Reference_Map::iterator iter =
-      this->ref_elements_.find (event->getID ());
+    // Get the <InputAction> associated w/ this input port.
+    std::multiset <InputAction> inputs =
+      object->getInputDsts <std::less <InputAction> > ();
 
-    if (iter == this->ref_elements_.end ())
+    for ( std::multiset <InputAction>::iterator iter = inputs.begin ();
+          iter != inputs.end ();
+          iter ++)
     {
-      this->unresolved_references_.insert (
-        Unresolved_References::value_type (event->getID (), event_sink));
+      visitInputAction (*iter);
     }
-    else
-    {
-      event_sink->reference (iter->second);
-    }
+
     return true;
   }
 
@@ -435,8 +462,8 @@ namespace PICML_BON
     CUTS_PIR::Component_Home * home =
       new CUTS_PIR::Component_Home (this->module_);
 
-    home->name (factory->getName ().c_str ());
-    home->uuid (factory->getID ().c_str ());
+    home->name (factory->getName ());
+    home->uuid (factory->getID ());
 
     // Assign the <home> to the <component_>.
     this->component_->home (home);
@@ -457,8 +484,8 @@ namespace PICML_BON
         // Create a new <facet> and appropriately initialize it.
       CUTS_PIR::Facet * facet = new CUTS_PIR::Facet ();
       this->component_->facets ().insert (facet);
-      facet->name (object->getName ().c_str ());
-      facet->uuid (object->getID ().c_str ());
+      facet->name (object->getName ());
+      facet->uuid (object->getID ());
 
       PICML_BON::Object facet_type = object->getReferred ();
 
@@ -509,8 +536,8 @@ namespace PICML_BON
     {
       // Get the reference worker.
       CUTS_PIR::Worker_Type * worker_type = new CUTS_PIR::Worker_Type ();
-      worker_type->name (object->getName ().c_str ());
-      worker_type->uuid (object->getID ().c_str ());
+      worker_type->name (object->getName ());
+      worker_type->uuid (object->getID ());
 
       // Save the worker type for the worker.
       worker_type->reference (result->second);
@@ -539,8 +566,8 @@ namespace PICML_BON
     {
       // Create a new worker and insert it into the
       CUTS_PIR::Worker * worker = new CUTS_PIR::Worker ();
-      worker->name (object->getName ().c_str ());
-      worker->uuid (object->getID ().c_str ());
+      worker->name (object->getName ());
+      worker->uuid (object->getID ());
 
       CUTS_PIR::Project::instance ()->worker_manager ().insert (
         CUTS_PIR::Worker_Manager::value_type (object->getID (), worker));
@@ -554,6 +581,312 @@ namespace PICML_BON
     } while (model->getObjectMeta ().name () != "WorkerFile");
 
     this->file_->includes ().insert (model->getName () + ".h");
+
+    return true;
+  }
+
+  //
+  // visitInputAction
+  //
+  bool CUTS_PICMLVisitor::visitInputAction (const InputAction & input)
+  {
+    if (!input)
+      return false;
+
+    // Get the <State> which this action transitions.
+    std::multiset <State> states =
+      input->getEffectDsts <std::less <State> > ();
+
+    // Visit the state.
+    visitState (*states.begin ());
+    return true;
+  }
+
+  //
+  // visitState
+  //
+  bool CUTS_PICMLVisitor::visitState (const State & object)
+  {
+    if (!object)
+      return false;
+
+    // Determine if this is the end of the sequeunce.
+    std::multiset <InputAction> inputs =
+      object->getFinishDsts <std::less <InputAction> > ();
+
+    for ( std::multiset <InputAction>::iterator iter = inputs.begin ();
+          iter != inputs.end ();
+          iter ++)
+    {
+      if ((*iter)->getID () == this->input_action_id_)
+        return true;
+    }
+
+    // Get the <State> which this action transitions.
+    std::multiset <ActionBase> actions =
+      object->getTransitionDsts <std::less <ActionBase> > ();
+
+    for ( std::multiset <ActionBase>::iterator iter = actions.begin ();
+          iter != actions.end ();
+          iter ++)
+    {
+      if (!visitWorkerAction (*iter))
+      {
+        visitOutputAction (*iter);
+      }
+    }
+    return true;
+  }
+
+  //
+  // visitWorkerAction
+  //
+  bool CUTS_PICMLVisitor::visitWorkerAction (const WorkerAction & object)
+  {
+    if (!object)
+      return false;
+
+    // Verify the type is an instance.
+    BON::TypeInhObject type_inheritance
+      = BON::TypeInhObject (object->getTypeInhObject ());
+
+    if (!type_inheritance->isInstance ())
+      return true;
+
+    // Get the type of the instance.
+    BON::FCO type = type_inheritance->getType ()->getFCO ();
+
+    CUTS_PIR::Component::Worker_Types::iterator result =
+      std::find_if (
+        this->component_->worker_types ().begin (),
+        this->component_->worker_types ().end (),
+        Find_Element_By_Name_Ptr (object->getName ()));
+
+    if (result != this->component_->worker_types ().end ())
+    {
+      // Create a new worker action.
+      CUTS_PIR::Worker_Action * action
+        = new CUTS_PIR::Worker_Action (*result);
+
+      action->name (type->getName ());
+      action->uuid (object->getID ());
+      action->repetitions (object->getRepetitions ());
+      action->log_action (object->isLogAction ());
+
+      if (this->method_)
+      {
+        // Get all the properties associate with this action.
+        typedef std::set <
+          Property, Position_Ordering_L2R_T2B <Property> > Property_Set;
+
+        Property_Set properties =
+          object->getProperty <Position_Ordering_L2R_T2B <Property> > ();
+
+        // Create a new <property>.
+        CUTS_PIR::Action_Property * property =
+          new CUTS_PIR::Action_Property ();
+
+        for ( Property_Set::iterator iter = properties.begin ();
+              iter != properties.end ();
+              iter ++)
+        {
+          property->name ((*iter)->getName ());
+          property->value ((*iter)->getDataValue ());
+
+          // Insert the property into the action.
+          action->properties ().push (property);
+        }
+
+        // Insert the <action> into the <method_>.
+        this->method_->actions ().push (action);
+
+        // Get the <State> which this action transitions.
+        std::multiset <State> states =
+          object->getEffectDsts <std::less <State> > ();
+
+        // Visit the state.
+        visitState (*states.begin ());
+      }
+    }
+    return true;
+  }
+
+  //
+  // visitOutEventPort
+  //
+  bool CUTS_PICMLVisitor::visitOutEventPort (const OutEventPort & object)
+  {
+    if (!object)
+      return false;
+
+    // Create a <Event_Sink> for the <InEventPort> and insert
+    // it into the current component.
+    CUTS_PIR::Event_Source * event_source = new CUTS_PIR::Event_Source ();
+    event_source->name (object->getName ());
+    event_source->uuid (object->getID ());
+
+    this->component_->event_sources ().insert (event_source);
+
+    // Set the reference ID for the <event_sink>.
+    resolveReference (object->getEvent ()->getID (), event_source);
+    return true;
+  }
+
+  //
+  // visitOutputAction
+  //
+  bool CUTS_PICMLVisitor::visitOutputAction (const OutputAction & object)
+  {
+    if (!object)
+      return false;
+
+    CUTS_PIR::Component::Event_Sources::iterator iter =
+      std::find_if (this->component_->event_sources ().begin (),
+                    this->component_->event_sources ().end (),
+                    Find_Element_By_Name_Ptr (object->getName ()));
+
+    if (iter == this->component_->event_sources ().end ())
+      return true;
+
+    // Create a new output action.
+    CUTS_PIR::Output_Action * action = new CUTS_PIR::Output_Action ();
+    action->uuid (object->getID ());
+    action->name (object->getName ());
+    action->event_source (*iter);
+
+    // Get the properties for the action.
+    typedef std::set <
+      Property, Position_Ordering_L2R_T2B <Property> > Property_Set;
+
+    Property_Set properties =
+      object->getProperty <Position_Ordering_L2R_T2B <Property> > ();
+
+    for ( Property_Set::iterator iter = properties.begin ();
+          iter != properties.end ();
+          iter ++)
+    {
+      // We are only concerned w/ the size property.
+      if ((*iter)->getName () == "size")
+      {
+        // Get the size of the event.
+        std::string string_data = (*iter)->getDataValue ();
+
+        // Convert string to an integer.
+        std::strstream temp;
+        temp << string_data << std::ends;
+
+        size_t size;
+        temp >> size;
+
+        // Store the size of the event.
+        action->size (size);
+      }
+    }
+
+    // Insert the <action> into the current method.
+    this->method_->actions ().push (action);
+
+    // Get the <State> which this action transitions.
+    std::multiset <State> states =
+      object->getEffectDsts <std::less <State> > ();
+
+    // Visit the state.
+    visitState (*states.begin ());
+    return true;
+  }
+
+  //
+  // visitProperty
+  //
+  bool CUTS_PICMLVisitor::visitProperty (const Property & object)
+  {
+    if (!object)
+      return false;
+
+    return true;
+  }
+
+  //
+  // resolveReference
+  //
+  void CUTS_PICMLVisitor::resolveReference (
+    const std::string & uuid,
+    CUTS_PIR::Reference_Element * element)
+  {
+    // Locate the <reference> in the <ref_elements_>.
+    Reference_Map::iterator iter =
+      this->ref_elements_.find (uuid);
+
+    if (iter == this->ref_elements_.end ())
+    {
+      this->unresolved_references_.insert (
+        Unresolved_References::value_type (uuid, element));
+    }
+    else
+    {
+      element->reference (iter->second);
+    }
+  }
+
+  //
+  // visitPeriodicAction
+  //
+  bool CUTS_PICMLVisitor::visitPeriodicAction (
+    const PeriodicAction & object)
+  {
+    if (!object)
+      return false;
+
+    // Create a new periodic action.
+    CUTS_PIR::Periodic_Action * periodic_action =
+      new CUTS_PIR::Periodic_Action ();
+    periodic_action->name (object->getName ());
+    periodic_action->uuid (object->getID ());
+    periodic_action->period (object->getPeriod ());
+    periodic_action->probability (object->getProbability ());
+
+
+    // Insert the action into the component.
+    this->component_->periodic_actions ().insert (periodic_action);
+    this->method_ = periodic_action;
+
+    // Visit the string of connected actions.
+    visitInputAction (object);
+    return true;
+  }
+
+  //
+  // visitEnvironment
+  //
+  bool CUTS_PICMLVisitor::visitEnvironment (const Environment & object)
+  {
+    if (!object)
+      return false;
+
+    // Get the <InputAction> associated w/ this input port.
+    std::multiset <InputAction> inputs =
+      object->getInputDsts <std::less <InputAction> > ();
+
+    for ( std::multiset <InputAction>::iterator iter = inputs.begin ();
+          iter != inputs.end ();
+          iter ++)
+    {
+      if ((*iter)->getName () == "activate")
+      {
+        // Create the method and set as the <activate_method> for the
+        // current component.
+        CUTS_PIR::Method * method = new CUTS_PIR::Method;
+        method->name ((*iter)->getName ());
+        this->component_->activate_method (method);
+
+        // Save the method as the current method.
+        this->method_ = method;
+
+        // Visit the input action to finish creating the method.
+        visitInputAction (*iter);
+        break;
+      }
+    }
 
     return true;
   }

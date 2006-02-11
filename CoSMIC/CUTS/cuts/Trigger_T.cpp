@@ -6,6 +6,7 @@
 
 #include "ace/OS_NS_stdlib.h"
 #include "ace/OS_NS_time.h"
+#include "ace/streams.h"
 
 //=============================================================================
 /*
@@ -135,7 +136,7 @@ bool CUTS_Periodic_Trigger_T <COMPONENT>::activate (void)
   }
 
   // Signal the <Trigger_Type> to activate itself.
-  return this->timer_ != -1 ? Trigger_Type::activate () : false;
+  return Trigger_Type::activate () && this->timer_ != -1;
 }
 
 //
@@ -159,7 +160,7 @@ void CUTS_Periodic_Trigger_T <COMPONENT>::deactivate (void)
 // handle_timeout
 //
 template <typename COMPONENT>
-int CUTS_Periodic_Trigger_T <COMPONENT>::handle_timeout (const ACE_Time_Value &current_time, 
+int CUTS_Periodic_Trigger_T <COMPONENT>::handle_timeout (const ACE_Time_Value &current_time,
                                                          const void * act)
 {
   // Calculate the score for this <timeout_> event.

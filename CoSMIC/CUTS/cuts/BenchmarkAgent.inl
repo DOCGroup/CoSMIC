@@ -22,15 +22,32 @@ void CUTS_Benchmark_Agent::unregister_port_agent (CUTS_Port_Agent * agent)
 // parent
 //
 CUTS_INLINE
-void CUTS_Benchmark_Agent::parent (long parent)
+void CUTS_Benchmark_Agent::parent (const std::string & parent)
 {
   this->parent_ = parent;
 }
 
 CUTS_INLINE
-long CUTS_Benchmark_Agent::parent (void) const
+const std::string & CUTS_Benchmark_Agent::parent (void) const
 {
   return this->parent_;
+}
+
+//
+// unregister_exit_point
+//
+CUTS_INLINE
+void CUTS_Benchmark_Agent::unregister_exit_point (const std::string & uuid)
+{
+  this->exit_points_.erase (uuid);
+}
+
+CUTS_INLINE
+bool CUTS_Benchmark_Agent::register_exit_point (const std::string & uuid,
+                                                const std::string & name)
+{
+  return this->exit_points_.insert (
+    Exit_Points::value_type (uuid, name)).second;
 }
 
 //

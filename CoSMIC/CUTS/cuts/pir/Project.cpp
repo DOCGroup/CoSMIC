@@ -5,6 +5,8 @@
 #endif
 
 #include "cuts/pir/File.h"
+#include "cuts/utils/Functor_T.h"
+#include <algorithm>
 
 namespace CUTS_PIR
 {
@@ -50,11 +52,9 @@ namespace CUTS_PIR
   //
   Project::~Project (void)
   {
-    for ( Files::iterator iter = this->files_.begin ();
-          iter != this->files_.end ();
-          iter ++)
-    {
-      delete (*iter);
-    }
+    std::for_each (
+      this->files_.begin (),
+      this->files_.end (),
+      Delete_Element_T <Files::value_type> ());
   }
 }
