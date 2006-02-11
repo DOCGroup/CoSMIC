@@ -1,3 +1,25 @@
+Sat Feb 11 02:31:30 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * Installer/RegisterParadigm/RegisterParadigm.mpc:  Updated file
+          to include dependencies.
+
+        * PIM/PICML/decorators/PICMLDecorator.mpc:  Fixed file to depend
+          on the global picmllib.mpb and not duplicate settings.
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:  Visit the
+          RootFolders inside RootFolder.  This takes care of handling
+          libraries.  But this can also lead to problems, if the
+          component/assembly instances in libraries don't have UUIDs.
+
+        * PIM/PICML/interpreters/PathComponent/UdmApp.cpp:  Fixed a
+          warning.
+
+        * picmllib.mpb:  Updated to include a generic outputext.
+
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLInterpreter.sln:
+
+          Removed this file.
+
 Fri Feb 10 22:04:41 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:

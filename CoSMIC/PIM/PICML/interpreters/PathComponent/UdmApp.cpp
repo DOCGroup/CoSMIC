@@ -105,7 +105,7 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
       }
       PICML::Port::Cast (*selectedObjects.begin ());
     }
-    catch (udm_exception &e)
+    catch (udm_exception &)
     {
       AfxMessageBox ("Please select a valid Port");
       throw;

@@ -117,6 +117,15 @@ namespace PICML
 
   void PackageVisitor::Visit_RootFolder(const RootFolder& rf)
   {
+    std::set<RootFolder> rfolders = rf.RootFolder_kind_children();
+    for (std::set<RootFolder>::iterator iter = rfolders.begin();
+         iter != rfolders.end();
+         ++iter)
+      {
+        RootFolder rfolder = *iter;
+        rfolder.Accept (*this);
+      }
+
     std::set<ComponentPackages>
       pkgs = rf.ComponentPackages_kind_children();
     for (std::set<ComponentPackages>::iterator iter = pkgs.begin();

@@ -22,5 +22,8 @@ project: picmllib {
   }
 
   Header_Files {
+    Mga.h
+    Meta.h
+    MgaUtil.h << Mga.h
   }
 }

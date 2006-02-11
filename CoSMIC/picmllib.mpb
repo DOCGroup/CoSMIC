@@ -4,7 +4,7 @@ project : xerces {
    libout = $(COSMIC_ROOT)/lib
    dllout = $(COSMIC_ROOT)/bin
    includes += $(COSMIC_ROOT)/PIM/PICML/interpreters \
-               $(GME_ROOT)/SDK/BON $(UDM_PATH)/include .        
+               $(GME_ROOT)/SDK/BON $(UDM_PATH)/include .
    macros += UDM_DYNAMIC_LINKING
    libpaths += $(COSMIC_ROOT)/lib $(UDM_PATH)/lib \
                $(UDM_PATH)/3rdParty/zlib \
@@ -26,6 +26,7 @@ project : xerces {
       inputext          = .xml
       header_outputext  = .h
       source_outputext  = .cpp
+      generic_outputext = .xsd
    }
 
   Define_Custom(Register) {
