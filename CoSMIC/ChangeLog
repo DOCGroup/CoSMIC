@@ -1,3 +1,17 @@
+Sun Feb 12 19:33:44 UTC 2006  NilabjaR  <nilabjar@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Path/PathVisitor.h:
+        * PIM/PICML/interpreters/Path/PathVisitor.cpp:
+
+        * PIM/PICML/interpreters/PathComponent/UdmApp.cpp:
+          Updated for the Path Diagram Interpreter
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+          Updated for changes in the Critical Path Component
+
 Sat Feb 11 02:31:30 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * Installer/RegisterParadigm/RegisterParadigm.mpc:  Updated file

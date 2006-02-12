@@ -110,7 +110,8 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
       AfxMessageBox ("Please select a valid Port");
       throw;
     }
-    PICML::PathVisitor visitor (*selectedObjects.begin ());
+    //PICML::PathVisitor visitor (*selectedObjects.begin ());
+    PICML::PathVisitor visitor (selectedObjects);
     PICML::RootFolder start 
 		= PICML::RootFolder::Cast (p_backend->GetRootObject());
     start.Accept (visitor);

@@ -31,15 +31,20 @@ namespace PICML
   struct Component_Port_Vertex
   {
     std::string vertex_name_;
-    Component the_component_;
+    Udm::Object the_component_;
     Port  the_port_;
     bool is_drawn;
     DisplayNode node_;
   
-    Component_Port_Vertex ()
+    Component_Port_Vertex (Port a_port , string par_name);
+
+    Component_Port_Vertex () {};
+
+/*    Component_Port_Vertex ()
     {
       is_drawn = 0;
     }
+    */
   };
   struct Edge_Numbers
   {
@@ -50,6 +55,7 @@ namespace PICML
   class Path_Export PathVisitor: public Visitor
   {
   public:
+    PathVisitor (set<Udm::Object>& selections);
     PathVisitor (Udm::Object port);
     ~PathVisitor ();
 
@@ -332,23 +338,73 @@ namespace PICML
     // Maintain associations Component-Port to a id
 	  // which represents its graph-vertex 
   	//std::map<int, std::string> graph_vertex_indices_;
+
+    /// Contains the mapping with
+    /// key node index , value Component_Vertex
     std::map<int, Component_Port_Vertex> graph_vertex_indices_;
-	  std::map<std::string, int> graph_vertex_;
-    public:
+	  
+    /// Contains a mapping with
+    /// key Component_port , value node index
+    std::map<std::string, int> graph_vertex_;
+    
+  public:
     // port mappings ....
       std::vector<Edge_Numbers> dfs_edges;
+
       std::list <Edge_Numbers> all_edges;
+
       std::vector <Edge_Numbers> forward_edges_;
-    protected:
-    // mapping of port and number 
+
+//  protected:
+      ///The list of Paths , stored here 
+      typedef std::list <int> A_Path;
+
+      A_Path current_path_;
+
+      /// A list of paths
+      typedef std::list <A_Path>  PathList;
+
+      /// A Paths variable
+      PathList all_the_paths_;
+
+      /// The Start port index , usually 0
+      int start_port_;
+
+      /// The end port index , usually 1
+      int end_port_;
+
+      /// flag to to indicate , dfs going on in tree with
+      /// root as end_port_
+      bool searching_end_tree_;
+
+      /// all path calculated , ignore any more path
+      bool got_all_path_;
+
+      /// searches previous paths
+      void search_node_in_previous_paths (int node);
+
+      /// Extracs the UUID
+      std::string extract_uuid (Udm::Object obj);
+    
+  protected:
+
+    // mapping of port and number , not used now ...
       std::map <int , Port> port_map_;
-    // total number of vertex count ..
+
+      // total number of vertex count ..
 	    int vertex_count_;
+
+      /// The function which draws the path
+      void draw_path (A_Path* a_path);
+
+      /// current path diagram 
+      Path the_current_path_flow_;
 
   
   // The container which contains the sorted vertices
     typedef std::vector< Vertex > container;
-	  container sorted_vertices;
+
+    container sorted_vertices;
 
 
   };
