@@ -76,7 +76,7 @@ public:
   CUTS_Activation_Record (void);
 
   /// Destructor.
-  ~CUTS_Activation_Record (void);
+  virtual ~CUTS_Activation_Record (void);
 
   /// Get the start time for the activation record.
   const ACE_Time_Value & start_time (void) const;
@@ -184,6 +184,43 @@ private:
 
   /// Disallowed operation.
   const CUTS_Activation_Record & operator = (const CUTS_Activation_Record &);
+};
+
+//=============================================================================
+/**
+ * @class CUTS_Cached_Activation_Record
+ *
+ * @brief Implementation of a CUTS_Activation_Record to be used with the
+ * ACE_Free_List class.
+ *
+ * This class is intended to be used w/ the ACE_Free_List class. Do so
+ * simplies the implementation of a free list becuase it does not have
+ * be implemented using a heavyweight STL class. In order to use this
+ * class within the ACE_Free_List, it defines and implements the set_next ()
+ * and get_next () methods. Since this class is a subclass of a
+ * CUTS_Activation_Record, clients will notice any difference.
+ */
+//=============================================================================
+
+class CUTS_Export CUTS_Cached_Activation_Record :
+  public CUTS_Activation_Record
+{
+public:
+  /// Constructor.
+  CUTS_Cached_Activation_Record (void);
+
+  /// Destructor.
+  virtual ~CUTS_Cached_Activation_Record (void);
+
+  /// Set the next cached activation record.
+  void set_next (CUTS_Cached_Activation_Record * next);
+
+  /// Get the next cached activation record.
+  CUTS_Cached_Activation_Record * get_next (void) const;
+
+private:
+  /// Pointer to the next cached record.
+  CUTS_Cached_Activation_Record * next_;
 };
 
 #if defined (__CUTS_INLINE__)

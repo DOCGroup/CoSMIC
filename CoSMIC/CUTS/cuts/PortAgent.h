@@ -9,6 +9,7 @@
 #include "ace/Message_Queue_T.h"
 #include "ace/Auto_Ptr.h"
 #include "ace/Reactor_Notification_Strategy.h"
+#include "ace/Free_List.h"
 #include <string>
 #include <set>
 #include <stack>
@@ -61,6 +62,7 @@ public:
   const CUTS_Port_Measurement * release_measurements (void);
 
 private:
+  /// Initialized the port agent.
   void initialize (void);
 
   /// Service handler for the port agent.
@@ -68,12 +70,6 @@ private:
 
   /// Handle the input to the message queue.
   int handle_input (ACE_HANDLE fd);
-
-  /// Type definition for the collection of all records
-  typedef std::set <CUTS_Activation_Record *> Record_List;
-
-  /// The collection of active and inactive records.
-  Record_List records_;
 
   /// Name of the port.
   std::string name_;
@@ -88,10 +84,12 @@ private:
   ACE_Auto_Ptr <ACE_Reactor_Notification_Strategy> notify_strategy_;
 
   /// Collection of free activation records.
-  ACE_Message_Queue_Ex <CUTS_Activation_Record, ACE_MT_SYNCH> free_list_;
+  ACE_Locked_Free_List <
+    CUTS_Cached_Activation_Record, ACE_Thread_Mutex> free_list_;
 
   /// Collection of unprocessed closed activation records.
-  ACE_Message_Queue_Ex <CUTS_Activation_Record, ACE_MT_SYNCH> closed_list_;
+  ACE_Message_Queue_Ex <
+    CUTS_Cached_Activation_Record, ACE_MT_SYNCH> closed_list_;
 
   /// Thread lock for synchronization.
   ACE_Thread_Mutex lock_;

@@ -7,6 +7,12 @@
 #include "ace/OS_NS_sys_time.h"
 #endif
 
+//=============================================================================
+/*
+ * CUTS_Activation_Record
+ */
+//=============================================================================
+
 //
 // CUTS_Activation_Record
 //
@@ -23,3 +29,21 @@ CUTS_Activation_Record::~CUTS_Activation_Record (void)
 {
 
 }
+
+//=============================================================================
+/*
+ * CUTS_Cached_Activation_Record
+ */
+//=============================================================================
+
+CUTS_Cached_Activation_Record::CUTS_Cached_Activation_Record (void)
+: next_ (0)
+{
+
+}
+
+CUTS_Cached_Activation_Record::~CUTS_Cached_Activation_Record (void)
+{
+
+}
+

@@ -269,7 +269,6 @@ namespace CUTS
     //
     int Benchmark_Data_Collector_exec_i::svc (void)
     {
-      std::cerr << "entered Benchmark_Data_Collector_exec_i::svc" << std::endl;
       // If this is the an <ACE_TP_Reactor> implmentation then
       // this is a <noop>. Otherwise, it will set the owner
       // of the <reactor> to the current thread.
@@ -279,8 +278,6 @@ namespace CUTS
       {
         this->reactor ()->handle_events ();
       }
-
-      std::cerr << "exiting Benchmark_Data_Collector_exec_i::svc" << std::endl;
       return 0;
     }
 
@@ -304,7 +301,7 @@ namespace CUTS
 
         // 2. Push the references into a queue to be processed asynchronously.
         size_t length = bma_connections->length ();
-        std::cerr << "There are " << length << " CoWorkEr(s) connected to me..." << std::endl;
+        std::cout << "There are " << length << " CoWorkEr(s) connected to me..." << std::endl;
 
         for (size_t i = 0; i < length; i ++)
         {
@@ -335,8 +332,6 @@ namespace CUTS
     //
     int Benchmark_Data_Collector_exec_i::handle_input (ACE_HANDLE fd)
     {
-      std::cerr << "entered Benchmark_Data_Collector_exec_i::handle_input" << std::endl;
-
       // Get the next <Benchmark_Agent> reference.
       ::CUTS::Benchmark_Agent * agent;
       this->bma_queue_.dequeue (agent);
@@ -352,29 +347,23 @@ namespace CUTS
           // Get the performance data.
           if (this->active_)
           {
-            std::cerr << "[debug]: requesting performance data" << std::endl;
             ::CUTS::Benchmark_Data_var data = agent_var->performance_data ();
-            std::cerr << "[debug]: receieved performance data" << std::endl;
-
-            // Buffer the data into an output string.
-            std::ostrstream str;
-            str << data << std::ends;
 
             //// Print the buffer to the screen.
             //ACE_GUARD_RETURN (ACE_Thread_Mutex,
             //                  write_guard,
             //                  this->write_mutex_ , 0);
 
-            std::cerr << str.str () << std::endl;
+            std::cout << data << std::endl;
           }
         }
         catch (::CORBA::SystemException & ex)
         {
-          std::cerr << ex << std::endl;
+          std::cout << ex << std::endl;
         }
         catch (...)
         {
-          std::cerr << "*** error: unknown exception occured" << std::endl;
+          std::cerr << "[error]: unknown exception occured" << std::endl;
         }
       }
       else
@@ -390,7 +379,6 @@ namespace CUTS
       if (this->bma_queue_.is_empty ())
         this->collection_mutex_.release ();
 
-      std::cerr << "exiting Benchmark_Data_Collector_exec_i::handle_input" << std::endl;
       return 0;
     }
 
@@ -512,9 +500,9 @@ namespace CUTS
                       ::CORBA::SystemException,
                       ::Components::CCMException))
     {
-      std::cerr << "entered Benchmark_Data_Collector_exec_i::ccm_passivate" << std::endl;
+      std::cout << "entered Benchmark_Data_Collector_exec_i::ccm_passivate" << std::endl;
       deactivate ();
-      std::cerr << "exiting Benchmark_Data_Collector_exec_i::ccm_passivate" << std::endl;
+      std::cout << "exiting Benchmark_Data_Collector_exec_i::ccm_passivate" << std::endl;
     }
 
     void

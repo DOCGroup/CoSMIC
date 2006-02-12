@@ -1,5 +1,11 @@
 // $Id$
 
+//=============================================================================
+/*
+ * CUTS_Activation_Record
+ */
+//=============================================================================
+
 //
 // start_time
 //
@@ -94,4 +100,30 @@ CUTS_INLINE
 const ACE_Time_Value & CUTS_Activation_Record::transit_time (void) const
 {
   return this->transit_time_;
+}
+
+//=============================================================================
+/*
+ * CUTS_Cached_Activation_Record
+ */
+//=============================================================================
+
+//
+// set_next
+//
+CUTS_INLINE
+void CUTS_Cached_Activation_Record::set_next (
+  CUTS_Cached_Activation_Record * next)
+{
+  this->next_ = next;
+}
+
+//
+// get_next
+//
+CUTS_INLINE
+CUTS_Cached_Activation_Record *
+CUTS_Cached_Activation_Record::get_next (void) const
+{
+  return this->next_;
 }

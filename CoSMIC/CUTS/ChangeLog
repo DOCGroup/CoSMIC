@@ -1,3 +1,33 @@
+Sun Feb 12 02:26:03 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/ActivationRecord.h:
+        * cuts/ActivationRecord.inl:
+        * cuts/ActivationRecord.cpp:
+
+          Implemented a cached activation record class to be used
+          with ACE_Free_List.
+
+        * cuts/CUTS_exec.cpp:
+
+          Remove some of the debugging messages. Still haven't solved
+          the shutdown problem.
+
+        * cuts/EventHandler_T.h:
+        * cuts/EventHandler_T.inl:
+        * cuts/EventHandler_T.cpp:
+
+          Reimplemented the event queue holding the dispatch times
+          using ACE_Unbounded_Queue and an external ACE_Thread_Mutex.
+          The ACE_Message_Queue_Ex was too heavyweight for the job.
+
+        * cuts/PortAgent.h:
+        * cuts/PortAgent.inl:
+        * cuts/PortAgent.cpp:
+
+          Reimplemented the free list for the activation records
+          using ACE_Free_List and the cached version of the
+          activation records.
+
 Fri Feb 10 18:36:40 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * bin/cuts_manager.pl:

@@ -10,46 +10,14 @@
 #include "cuts/Time.h"
 #include "ace/Reactor.h"
 #include "ace/TP_Reactor.h"
-#include "ace/streams.h"
 #include "ace/Guard_T.h"
+#include <iostream>
 
-static const int DEFAULT_THREAD_COUNT = 5;
-
-//=============================================================================
-/**
- * struct Print_Record_Entry
- */
-//=============================================================================
-
-struct Print_Record_Entry
-{
-  void operator () (const CUTS_Activation_Record::Entry & entry)
-  {
-    cout
-      << "Repetitions : " << entry.reps_ << endl
-      << "Worker Type : " << entry.worker_id_ << endl
-      << "Action Type : " << entry.action_id_ << endl
-      << " Start Time : " << entry.start_time_.msec () << endl
-      << "  Stop Time : " << entry.stop_time_.msec () << endl
-      << endl;
-  }
-};
-
-//=============================================================================
-/**
- * struct Print_Exit_Point_Entry
- */
-//=============================================================================
-
-struct Print_Exit_Point_Entry
-{
-  void operator () (
-    const CUTS_Activation_Record::Exit_Points::value_type & entry)
-  {
-    cout
-      << entry.first << " <-> " << entry.second  << endl;
-  }
-};
+// We only use one thread of control for consolidating the
+// data in the activation records. If we introduce more threads
+// of control then we are going intefere with the QoS of the
+// experiment.
+static const int DEFAULT_THREAD_COUNT = 1;
 
 //=============================================================================
 /**
@@ -73,8 +41,6 @@ struct Record_Record_Entry
   }
 
 private:
-  Print_Record_Entry print_;
-
   CUTS_Port_Measurement * port_measurement_;
 };
 
@@ -103,14 +69,20 @@ struct Record_Exit_Point
   }
 
 private:
-  Print_Exit_Point_Entry print_;
-
   /// Pointer to the target port measurement.
   CUTS_Port_Measurement * port_measurement_;
 
   /// Associated start time for all the exit times.
   const ACE_Time_Value & start_time_;
 };
+
+//=============================================================================
+/*
+ * CUTS_Port_Agent
+ */
+//=============================================================================
+
+static const int DEFAULT_FREE_LIST_SIZE = 5;
 
 //
 // CUTS_Port_Agent
@@ -120,6 +92,7 @@ CUTS_Port_Agent::CUTS_Port_Agent (void)
   uuid_ ("unknown"),
   active_ (false),
   notify_strategy_ (0),
+  free_list_ (ACE_FREE_LIST_WITH_POOL, DEFAULT_FREE_LIST_SIZE),
   port_measurement_ (new CUTS_Port_Measurement ())
 {
   initialize ();
@@ -143,14 +116,6 @@ CUTS_Port_Agent::~CUTS_Port_Agent (void)
   // Delete the <reactor_>.
   delete this->reactor ();
   this->reactor (0);
-
-  // Delete all the <records_>.
-  for ( Record_List::iterator iter = this->records_.begin ();
-        iter != this->records_.end ();
-        iter ++)
-  {
-    delete *iter;
-  }
 }
 
 //
@@ -159,7 +124,7 @@ CUTS_Port_Agent::~CUTS_Port_Agent (void)
 void CUTS_Port_Agent::initialize (void)
 {
   // Create a new <ACE_Reactor> for the <ACE_Task_Base>.
-  ACE_Reactor * reactor = new ACE_Reactor (new ACE_TP_Reactor (), 1);
+  ACE_Reactor * reactor = new ACE_Reactor ();
   this->reactor (reactor);
 
   // Create the notification strategy.
@@ -194,7 +159,7 @@ int CUTS_Port_Agent::svc (void)
 int CUTS_Port_Agent::handle_input (ACE_HANDLE fd)
 {
   // Get the next activation record from the <closed_list_>.
-  CUTS_Activation_Record * record;
+  CUTS_Cached_Activation_Record * record = 0;
   this->closed_list_.dequeue (record);
 
   // Get the lock for the map.
@@ -223,30 +188,9 @@ int CUTS_Port_Agent::handle_input (ACE_HANDLE fd)
 
   // Insert the activation record into the <free_list_>.
   record->reset ();
-  this->free_list_.enqueue (record);
+  this->free_list_.add (record);
 
   return 0;
-}
-
-//
-// create_activation_record
-//
-CUTS_Activation_Record * CUTS_Port_Agent::create_activation_record (void)
-{
-  CUTS_Activation_Record * record;
-  if (!this->free_list_.is_empty ())
-  {
-    // Get a record from the <free_list_>.
-    this->free_list_.dequeue (record);
-  }
-  else
-  {
-    // Create a new <CUTS_Activation_Record>
-    ACE_NEW_RETURN (record, CUTS_Activation_Record, 0);
-    this->records_.insert (record);
-  }
-
-  return record;
 }
 
 //
@@ -288,16 +232,21 @@ void CUTS_Port_Agent::close_activation_record (CUTS_Activation_Record * record)
   // Close the record.
   record->close ();
 
-  // If the port agent is active then we have to process the
-  // activation record. If the agent is not active then we
-  // can discard its contents.
+  // Cast the activation record to its cached version.
+  CUTS_Cached_Activation_Record * car =
+    dynamic_cast <CUTS_Cached_Activation_Record *> (record);
+
   if (this->active_)
   {
-    this->closed_list_.enqueue (record);
+    // Place the record on the <closed_list_>. This will give
+    // notify the sweeper thread to collect its data.
+    this->closed_list_.enqueue (car);
   }
   else
   {
-    this->free_list_.enqueue (record);
+    // Reset the record and place it on the <free_list_>.
+    record->reset ();
+    this->free_list_.add (car);
   }
 }
 
@@ -306,6 +255,10 @@ void CUTS_Port_Agent::close_activation_record (CUTS_Activation_Record * record)
 //
 const CUTS_Port_Measurement * CUTS_Port_Agent::release_measurements (void)
 {
+  // Right now this is going to affect the performance of the experiment.
+  // Each time we are allocating a new <CUTS_Port_Measurement> and its
+  // being deallocated eventually. It would better to have two <CUTS_Port_Measurement>
+  // buffers that can be switched between when signaled.
   CUTS_Port_Measurement * pm = 0;
 
   try

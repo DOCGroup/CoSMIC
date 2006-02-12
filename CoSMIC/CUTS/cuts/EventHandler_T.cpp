@@ -21,15 +21,6 @@ CUTS_Event_Handler_T <COMPONENT>::CUTS_Event_Handler_T (
   // Create a new <ACE_Reactor> for the <ACE_Task_Base>.
   ACE_Reactor * reactor = new ACE_Reactor (new ACE_TP_Reactor (), 1);
   this->reactor (reactor);
-
-  // Create the notification strategy.
-  this->notify_strategy_.reset (
-    new ACE_Reactor_Notification_Strategy (
-    reactor, this, ACE_Event_Handler::READ_MASK));
-
-  // Attach the notification strategy to the event queue.
-  this->event_queue_.notification_strategy (
-    this->notify_strategy_.get ());
 }
 
 template <typename COMPONENT>
@@ -44,31 +35,32 @@ int CUTS_Event_Handler_T <COMPONENT>::handle_input (ACE_HANDLE handle)
   // Get the current time of day.
   ACE_Time_Value curr_time = ACE_OS::gettimeofday ();
 
-  // Get the next dispatch time from the queue.
-  long * dispatch_time;
-  this->event_queue_.dequeue (dispatch_time);
+  long dispatch_time;
 
-  //cerr
-  //  << "[receiver]: dispatch time = " << *dispatch_time
-  //  << "; current time = " << curr_time.msec () << endl;
+  do
+  {
+    // Get the next dispatch time from the queue.
+    ACE_GUARD_RETURN (ACE_Thread_Mutex, guard, this->event_queue_lock_, 0)
+    this->event_queue_.dequeue_head (dispatch_time);
+  } while (false);
 
   ACE_Time_Value tmp_tv;
-  tmp_tv.msec (*dispatch_time);
+  tmp_tv.msec (dispatch_time);
 
   // Create a new activation record.
   CUTS_Activation_Record * record =
     this->port_agent_->create_activation_record ();
+
+  // Set the transit time and activate the record.
   record->transit_time (curr_time - tmp_tv);
+  record->activate ();
 
   // Invoke the method and give it a new activation record.
-  record->activate ();
   (this->component_->*this->method_) (record);
 
   // Close the activation record.
   this->port_agent_->close_activation_record (record);
 
-  // Destroy the allocated memory.
-  delete dispatch_time;
   return 0;
 }
 
@@ -100,7 +92,9 @@ void CUTS_Event_Handler_T <COMPONENT>::activate (void)
   // Right now we are only initializing the <reactor_> of the task
   // with one thread. In the future, you will be able to specify how
   // many threads of execution are available to the event handler.
-  ACE_Task_Base::activate (THR_NEW_LWP | THR_JOINABLE | THR_INHERIT_SCHED, 1);
+  ACE_Task_Base::activate (
+    THR_NEW_LWP | THR_JOINABLE | THR_INHERIT_SCHED,
+    DEFAULT_THREAD_COUNT);
 }
 
 //
@@ -114,4 +108,28 @@ void CUTS_Event_Handler_T <COMPONENT>::deactivate (void)
 
   // Wait for all the threads of execution to return.
   this->wait ();
+}
+
+//
+// handle_event
+//
+template <typename COMPONENT>
+void CUTS_Event_Handler_T <COMPONENT>::handle_event (long dispatch_time)
+{
+  if (this->active_)
+  {
+    do
+    {
+      ACE_GUARD (ACE_Thread_Mutex, guard, this->event_queue_lock_);
+      this->event_queue_.enqueue_tail (dispatch_time);
+    } while (false);
+
+    // Notify the reactor. This will call the handle_input () method
+    // to be invoked. In the future, this notify will cause the
+    // handle_timeout () method to be invoked. Doing so will allow
+    // us to calculate the "queue" time for the event since
+    // handle_timeout () passes along the time value when it was
+    // signaled for execution, not invoked by the middleware!!
+    this->reactor ()->notify (this, ACE_Event_Handler::READ_MASK);
+  }
 }

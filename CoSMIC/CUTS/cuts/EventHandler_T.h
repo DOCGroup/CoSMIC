@@ -13,54 +13,75 @@
 
 #include "cuts/config.h"
 #include "ace/Task.h"
-#include "ace/Message_Queue_T.h"
 #include "ace/Auto_Ptr.h"
-#include "ace/Reactor_Notification_Strategy.h"
+#include "ace/Unbounded_Queue.h"
+#include "ace/Thread_Mutex.h"
 
 class CUTS_Activation_Record;
 class CUTS_Port_Agent;
+
+//=============================================================================
+/**
+ * @class CUTS_Event_Handler_T
+ */
+//=============================================================================
 
 template <typename COMPONENT>
 class CUTS_Export CUTS_Event_Handler_T :
   public ACE_Task_Base
 {
 public:
+  /// Type definition for the component owning the event handler.
   typedef COMPONENT Component_Type;
 
+  /// Type definition for the callback method.
   typedef void (COMPONENT::*Event_Method) (CUTS_Activation_Record *);
 
+  /// Constructor.
   CUTS_Event_Handler_T (Component_Type * component);
 
+  /// Destructor.
   virtual ~CUTS_Event_Handler_T (void);
 
+  /// Bind the event handler to the port agent and callback method.
   void bind (CUTS_Port_Agent * agent, Event_Method method);
 
+  /// Unbind the event handler from the agent and method.
   void unbind (void);
 
+  /// Handle the event. This will invoke the callback method.
   void handle_event (long dispatch_time);
 
+  /// Activate the event handler.
   void activate (void);
 
+  /// Deactivate the event handler.
   void deactivate (void);
 
 private:
+  /// Service handler for the event handler.
   int svc (void);
 
+  /// Input callback method.
   int handle_input (ACE_HANDLE handle);
 
+  /// Pointer to the component that owns the event handler.
   Component_Type * component_;
 
+  /// Method invoked when an event is received.
   Event_Method method_;
 
+  /// The active state of the event handler.
   bool active_;
 
+  /// Port agent attached to this event handler.
   CUTS_Port_Agent * port_agent_;
 
-  /// Notification strategy for the <closed_list_>.
-  ACE_Auto_Ptr <ACE_Reactor_Notification_Strategy> notify_strategy_;
+  /// Locking mechanism for the <event_queue_>.
+  ACE_Thread_Mutex event_queue_lock_;
 
   /// Collection of free activation records.
-  ACE_Message_Queue_Ex <long, ACE_MT_SYNCH> event_queue_;
+  ACE_Unbounded_Queue <long> event_queue_;
 };
 
 #if defined (__CUTS_INLINE__)
