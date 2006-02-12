@@ -3,9 +3,11 @@
 project (PICML_CIAO_Impl) : gme_bon2, cuts_base {
   sharedname = CUTS_PICML_CIAO_Impl
 
-  libs += CUTS_FE_PICML CUTS_PIR CUTS_BE_CIAO
+  libs += CUTS_FE_PICML CUTS_PIR CUTS_BE_CIAO PICML
 
   after += CUTS_FE_PICML CUTS_PIR CUTS_BE_CIAO
+
+  includes += $(COSMIC_ROOT)/PIM/PICML/interpreters
 
   Source_Files {
 

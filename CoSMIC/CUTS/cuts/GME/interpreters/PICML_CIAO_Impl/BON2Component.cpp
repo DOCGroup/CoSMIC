@@ -3,6 +3,7 @@
 #include "StdAfx.h"
 #include "BON2Component.h"
 
+#include "PICML/Utils.h"
 #include "cuts/fe/PICML/CUTS_PICMLVisitor.h"
 #include "cuts/pir/Project.h"
 #include "cuts/be/CIAO/Project_Visitor.h"
@@ -79,19 +80,23 @@ namespace BON
                             long lParam)
   {
     // Get the output directory for the project.
+    std::string output_directory;
+    if (PICML::getPath ("Select output directory for generated CoWorkErs",
+                        output_directory))
+    {
+      // Create the implementation visitor.
+      PICML_BON::CUTS_PICMLVisitor visitor;
+      visitor.visitProject (project);
 
-    // Create the implementation visitor.
-    PICML_BON::CUTS_PICMLVisitor visitor;
-    visitor.visitProject (project);
+      // Create a CIAO visitor for the CUTS_PIR and visit the project.
+      std::auto_ptr <CUTS_CIAO::Project_Visitor> project_visitor (
+        new CUTS_CIAO::Project_Visitor (output_directory.c_str ()));
 
-    // Create a CIAO visitor for the CUTS_PIR and visit the project.
-    std::auto_ptr <CUTS_CIAO::Project_Visitor> project_visitor (
-      new CUTS_CIAO::Project_Visitor ("C:\\TEMP"));
+      CUTS_PIR::Project::instance ()->accept (project_visitor.get ());
 
-    CUTS_PIR::Project::instance ()->accept (project_visitor.get ());
-
-    // Print a status message to the user.
-    AfxMessageBox ("Successfully generated CoWorkEr implementation");
+      // Print a status message to the user.
+      AfxMessageBox ("Successfully generated CoWorkEr implementation");
+    }
   }
 
 
