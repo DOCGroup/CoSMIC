@@ -69,16 +69,16 @@ BE_GlobalData::BE_GlobalData (void)
     basic_seq_suffix_ ("Seq_from_IDL_include")
 {
   ACE_Env_Value<const char *> path ("GME_ROOT", 0);
-  
+
   // Need an extra step here because some C++ compilers can't
   // match ACE_CString's assignment from char* operator with
   // ACE_Env_Value's cast operator.
   const char *path_str = path;
-  
+
   if (path_str != 0)
     {
       this->schema_path_ = path_str;
-      
+
       // The GME installer sets GME_ROOT to end with a backslash.
       this->schema_path_ += "bin/";
     }
@@ -515,11 +515,6 @@ BE_GlobalData::usage (void) const
     ));
   ACE_DEBUG ((
       LM_DEBUG,
-      ACE_TEXT (" -i <filename>\t\tName of the imported XME file.")
-      ACE_TEXT (" Default is no import.\n")
-    ));
-  ACE_DEBUG ((
-      LM_DEBUG,
       ACE_TEXT (" -r <pathname>\t\tPath of the directory to iterate")
       ACE_TEXT (" over recursively, processing each IDL file found.\n")
     ));
@@ -540,7 +535,7 @@ BE_GlobalData::usage (void) const
     ));
   ACE_DEBUG ((
       LM_DEBUG,
-      ACE_TEXT (" -Sp \t\tSuppress pruning of elements removed")
+      ACE_TEXT (" -Sp \t\t\tSuppress pruning of elements removed")
       ACE_TEXT (" in modified IDL.")
       ACE_TEXT (" Default is to do pruning\n")
     ));
@@ -641,14 +636,14 @@ BE_GlobalData::xerces_init (void)
 
           XML_Error_Handler handler;
           parser->setErrorHandler (&handler);
-          
+
           if (this->schema_path_ == "" && this->input_xme_ != 0)
             {
               ACE_DEBUG ((LM_WARNING,
                           "No schema path found or supplied - schema or "
                           "DTD file must be in directory of execution\n"));
             }
-            
+
           EntityResolver resolver (this->schema_path_.c_str ());
           parser->setEntityResolver (&resolver);
 
@@ -807,7 +802,7 @@ BE_GlobalData::destroy (void)
     {
       delete [] const_cast<char *> (ref_entry->ext_id_);
     }
-    
+
   this->gme_id_set_.reset ();
 }
 
@@ -881,9 +876,9 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
     {
       return 0;
     }
-  
+
   // At global scope, we may be visiting an included file, so we
-  // may have to look in all File elements to find an XML import.  
+  // may have to look in all File elements to find an XML import.
   if (!in_file_iteration && idl_global->import ())
     {
       if (X ("File") == sub_tree->getAttribute (X ("kind")))
@@ -892,15 +887,15 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
           // folder are Files.
           DOMNodeList *files =
             this->interface_definitions_folder_->getChildNodes ();
-              
+
           DOMElement *file = 0;
           DOMElement *retval = 0;
-            
-          // Iterate over the list of Files.    
+
+          // Iterate over the list of Files.
           for (XMLSize_t i = 0; i < files->getLength (); ++i)
             {
               file = (DOMElement *) files->item (i);
-              
+
               // Skip any other children, like <name>.
               if (X ("model") == file->getTagName ())
                 {
@@ -909,15 +904,15 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
                                                       elem_kind,
                                                       by_referred,
                                                       true);
-                                                       
+
                   if (retval != 0)
                     {
                       return retval;
                     }
                 }
             }
-           
-          // Not found in any file.  
+
+          // Not found in any file.
           return 0;
         }
     }
@@ -945,12 +940,12 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
     {
       DOMElement *child =
         (DOMElement *) children->item (index);
-        
+
       if (tag != X (child->getTagName ()))
         {
           continue;
         }
-        
+
       DOMElement *compared_elem = child;
 
       // Elements of an exception list have no names, so we have to
@@ -960,7 +955,7 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
       if (by_referred)
         {
           const XMLCh *referred = child->getAttribute (X ("referred"));
-          
+
           // Compare the 'referred' but return the 'reference'.
           compared_elem = this->doc_->getElementById (referred);
         }
@@ -970,7 +965,7 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
         compared_elem->getElementsByTagName (X ("name"));
 
       DOMNode *name_elem = namelist->item (0);
-      
+
       DOMNode *name_item = name_elem->getFirstChild ();
       DOMText *name = (DOMText *) name_item;
       const XMLCh *text = name->getData ();
@@ -1228,16 +1223,16 @@ BE_GlobalData::emit_diagnostic (DOMElement *node, diagnostic_type dt)
     {
       return;
     }
-   
+
   const XMLCh *kindX = node->getAttribute (X ("kind"));
   char *kind = XMLString::transcode (kindX);
   const XMLCh *tagX = node->getTagName ();
   char *tag = XMLString::transcode (tagX);
   char *name = this->get_name (node);
-  
+
   ACE_CString ref_name ("<no name>");
   bool no_name = (ACE_OS::strcmp (name, kind) == 0);
-  
+
   // If the model element is tagged 'reference' and contains no
   // 'name' element, use the named of the referenced type.
   if (no_name && ACE_OS::strcmp (tag, "reference") == 0)
@@ -1246,18 +1241,18 @@ BE_GlobalData::emit_diagnostic (DOMElement *node, diagnostic_type dt)
         this->doc_->getElementById (node->getAttribute (X ("referred")));
       const XMLCh *id = referred->getAttribute (X ("id"));
       char *r_name = this->get_name (referred);
-        
+
       char *r_kind = 0;
       DOMElement *parent = (DOMElement *) referred->getParentNode ();
       const XMLCh *parent_kind = parent->getAttribute (X ("kind"));
       ACE_CString r_kind_str;
-      
+
       if (X ("PredefinedTypes") == parent_kind)
         {
           // Here, the name and kind are the same, so we use the
           // parent kind, minus the final letter, see below.
           r_kind = XMLString::transcode (parent_kind);
-          
+
           // Anally remove the final 's' from 'PredefinedTypes'.
           r_kind_str =
             ACE_CString (r_kind).substr (0, ACE_OS::strlen (r_kind) - 1);
@@ -1268,7 +1263,7 @@ BE_GlobalData::emit_diagnostic (DOMElement *node, diagnostic_type dt)
             XMLString::transcode (referred->getAttribute (X ("kind")));
           r_kind_str = r_kind;
         }
-      
+
       ref_name = "(referencing ";
       ref_name += r_kind_str.c_str ();
       ref_name += " ";
@@ -1277,20 +1272,20 @@ BE_GlobalData::emit_diagnostic (DOMElement *node, diagnostic_type dt)
       XMLString::release (&r_kind);
       XMLString::release (&r_name);
     }
-  
+
   DOMElement *parent = (DOMElement *) node->getParentNode ();
   kindX = parent->getAttribute (X ("kind"));
   char *p_kind = XMLString::transcode (kindX);
   tagX = parent->getTagName ();
   char *p_tag = XMLString::transcode (tagX);
   char *p_name = this->get_name (parent);
-  
+
   cout << (ADDING == dt ? "Added " : "Removed ") << kind << " "
        << (no_name ? ref_name : name)
        << " in " << p_kind << " "
        << (ACE_OS::strcmp (p_name, p_kind) == 0 ? "<no name>" : p_name)
        << endl;
-       
+
   XMLString::release (&name);
   XMLString::release (&p_name);
   XMLString::release (&kind);
@@ -1306,20 +1301,20 @@ BE_GlobalData::emit_attribute_diagnostic (DOMElement *node,
                                           DOMText *old_value)
 {
   // We are here only if we have imported an XML file.
-  
+
   // Default working value of "" for non-existent text nodes.
   ACE_CString old_val ("");
   ACE_CString new_val (new_value);
-  
+
   if (0 != old_value)
     {
       char *tmp = XMLString::transcode (old_value->getData ());
       old_val = tmp;
       XMLString::release (&tmp);
     }
-  
+
   // No output unless the value has changed, possibly to or from the
-  // empty string.  
+  // empty string.
   if (old_val != new_val)
     {
       const XMLCh *kindX = node->getAttribute (X ("kind"));
@@ -1327,12 +1322,12 @@ BE_GlobalData::emit_attribute_diagnostic (DOMElement *node,
       const XMLCh *tagX = node->getTagName ();
       char *tag = XMLString::transcode (tagX);
       char *node_name = this->get_name (node);
-      
+
       cout << "Changed value of GME attribute \"" << name << "\" of "
            << kind << " " << node_name << " from \""
            << old_val.c_str () << "\" to \"" << new_val.c_str () << "\""
            << endl;
-           
+
       XMLString::release (&kind);
       XMLString::release (&tag);
       XMLString::release (&node_name);
@@ -1344,15 +1339,15 @@ BE_GlobalData::get_name (DOMElement *node)
 {
   DOMNodeList *list = node->getElementsByTagName (X ("name"));
   char *retval = 0;
-  
+
   if (list->getLength () > 0)
     {
       DOMText *text_node =
         (DOMText *) list->item (0)->getFirstChild ();
       retval = XMLString::transcode (text_node->getData ());
     }
-   
-  // Caller must release with XMLString::release.  
+
+  // Caller must release with XMLString::release.
   return retval;
 }
 
@@ -1364,24 +1359,24 @@ BE_GlobalData::type_change_diagnostic (DOMElement *node,
     {
       return;
     }
-    
-  // If it hasn't been set yet, it can't have been changed.  
+
+  // If it hasn't been set yet, it can't have been changed.
   if (!node->hasAttribute (X ("referred")))
     {
       return;
     }
-    
+
   const XMLCh *old_ref = node->getAttribute (X ("referred"));
-  
+
   if (X (new_ref) == old_ref)
     {
       return;
     }
-    
+
   DOMElement *old_type = this->doc_->getElementById (old_ref);
   DOMElement *new_type = this->doc_->getElementById (new_ref);
   DOMElement *parent = (DOMElement *) node->getParentNode ();
-  
+
   char *old_type_name = this->get_name (old_type);
   char *new_type_name = this->get_name (new_type);
   char *child_name = this->get_name (node);
@@ -1390,15 +1385,15 @@ BE_GlobalData::type_change_diagnostic (DOMElement *node,
     XMLString::transcode (node->getAttribute (X ("kind")));
   char *parent_kind =
     XMLString::transcode (parent->getAttribute (X ("kind")));
-  
+
   cout << "type of " << changed_kind << " "
        << (0 == ACE_OS::strcmp (child_name, changed_kind)
              ? "<no name>"
              : child_name)
-       << " in " << parent_kind << " " << parent_name 
+       << " in " << parent_kind << " " << parent_name
        << " changed from " << old_type_name << " to "
        << new_type_name << endl;
-  
+
   XMLString::release (&old_type_name);
   XMLString::release (&new_type_name);
   XMLString::release (&parent_name);
@@ -1418,13 +1413,13 @@ BE_GlobalData::base_component_diagnostic (DOMElement *elem,
     {
       return;
     }
-    
+
   const char *node_name = node->local_name ()->get_string ();
   DOMElement *parent = (DOMElement *) elem->getParentNode ();
   char *parent_name = be_global->get_name (parent);
   const XMLCh *parent_kindX = parent->getAttribute (X ("kind"));
   char *parent_kind = XMLString::transcode (parent_kindX);
-  
+
   const XMLCh *base_id = 0;
   DOMElement *base_elem = 0;
   char *base_name = 0;
@@ -1432,7 +1427,7 @@ BE_GlobalData::base_component_diagnostic (DOMElement *elem,
   char *base_parent_name = 0;
   const XMLCh *base_parent_kindX = 0;
   char *base_parent_kind = 0;
-  
+
   if (was_derived)
     {
       base_id = elem->getAttribute (X ("derivedfrom"));
@@ -1452,11 +1447,11 @@ BE_GlobalData::base_component_diagnostic (DOMElement *elem,
            << " is no longer a subtype of " << base_name
            << " in " << base_parent_kind << " "
            << base_parent_name << endl;
-      
-      XMLString::release (&base_name);    
-      XMLString::release (&base_parent_name);    
+
+      XMLString::release (&base_name);
+      XMLString::release (&base_parent_name);
       XMLString::release (&base_parent_kind);
-      return; 
+      return;
     }
 
   DOMElement *new_base =
@@ -1468,7 +1463,7 @@ BE_GlobalData::base_component_diagnostic (DOMElement *elem,
   char *new_base_parent_kind = XMLString::transcode (new_base_parent_kindX);
   char *new_base_parent_name = this->get_name (new_base_parent);
   char *new_base_name = this->get_name (new_base);
-      
+
   if (was_derived)
     {
       if (X (base_id) != X (base_id_from_idl))
@@ -1489,10 +1484,10 @@ BE_GlobalData::base_component_diagnostic (DOMElement *elem,
            << new_base_name << " in " << new_base_parent_kind
            << " " << new_base_parent_name << endl;
     }
-  
+
   XMLString::release (&parent_name);
   XMLString::release (&parent_kind);
-  XMLString::release (&base_name);  
+  XMLString::release (&base_name);
   XMLString::release (&base_parent_kind);
   XMLString::release (&base_parent_name);
   XMLString::release (&new_base_name);
