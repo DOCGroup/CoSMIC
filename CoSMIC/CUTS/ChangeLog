@@ -1,3 +1,80 @@
+Tue Feb 14 03:15:35 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * CUTS.mwc:
+
+          Added GMEBON back to the regular build.
+
+        * cuts/CCM_BenchmarkAgent.cpp:
+        * cuts/EventHandler_T.inl:
+
+          Optimized some of the code and tried to determine
+          why shutdown is not always consistent.
+
+        * cuts/CUTS.idl:
+
+          Added exceptions to the Path_Measurement interface.
+
+        * cuts/CUTS.mpc:
+
+          Updated the project to reflect the new project files.
+
+        * cuts/CUTS_exec.h:
+        * cuts/CUTS_exec.cpp:
+
+          Finished implemented the first CUTS of all the BDC facets.
+
+        * cuts/GME/BON/GMEBON.mpc:
+        * etc/config/gme_base.mpb:
+        * etc/config/gme_component.mpb:
+
+          Updated project file to reflect MIDL native support in MPC.
+
+        * cuts/Component_Metric.h:
+        * cuts/Component_Metric.inl:
+        * cuts/Component_Metric.cpp:
+        * cuts/Port_Metric.h:
+        * cuts/Port_Metric.inl:
+        * cuts/Port_Metric.cpp:
+        * cuts/System_Metric.h:
+        * cuts/System_Metric.inl:
+        * cuts/System_Metric.cpp:
+        * cuts/Time_Metric.h:
+        * cuts/Time_Metric.inl:
+        * cuts/Time_Metric.cpp:
+
+          Data store for the component information.
+
+        * cuts/be/CIAO/File_Visitor.cpp:
+        * cuts/pir/Component.h:
+        * cuts/pir/Component.inl:
+        * cuts/pir/Component.cpp:
+        * cuts/pir/Method.h:
+        * cuts/pir/Method.inl:
+        * cuts/pir/Method.cpp:
+        * cuts/pir/Module.cpp:
+
+          Fixed compilation error for the Release mode.
+
+        * cuts/utils/CUTS_Utils.mpc:
+
+          Moved the database utils to their own seperate projects
+          so they cane be stubbed out as demmed necessary.
+
+        * cuts/ComponentMetric.h:
+        * cuts/ComponentMetric.inl:
+        * cuts/ComponentMetric.cpp:
+        * cuts/PortMetric.h:
+        * cuts/PortMetric.inl:
+        * cuts/PortMetric.cpp:
+        * cuts/SystemMetric.h:
+        * cuts/SystemMetric.inl:
+        * cuts/SystemMetric.cpp:
+        * cuts/TimeMetric.h:
+        * cuts/TimeMetric.inl:
+        * cuts/TimeMetric.cpp:
+
+          Removed these files.
+
 Sun Feb 12 09:39:30 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/GME/interpreters/PICML_CIAO_Impl/BON2Component.cpp:

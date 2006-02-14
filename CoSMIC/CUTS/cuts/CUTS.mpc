@@ -106,6 +106,10 @@ project (CUTS) : ciao_component_dnc, cuts_base {
 
   after += CUTS_Utils
 
+  specific (vc6, vc7, vc71, vc8, nmake) {
+    after += CUTS_Utils_DBase
+  }
+
   libs += CUTS_stub CUTS_Utils
 
   Header_Files {
@@ -117,7 +121,7 @@ project (CUTS) : ciao_component_dnc, cuts_base {
   Source_Files {
     ActivationRecord.cpp
     BenchmarkAgent.cpp
-    ComponentMetric.cpp
+    Component_Metric.cpp
     Counter.cpp
     CPUWorker.cpp
     DatabaseWorker.cpp
@@ -127,11 +131,11 @@ project (CUTS) : ciao_component_dnc, cuts_base {
     Operation_Measurement.cpp
     PortAgent.cpp
     Port_Measurement.cpp
-    PortMetric.cpp
+    Port_Metric.cpp
     Time.cpp
-    TimeMetric.cpp
+    Time_Metric.cpp
     Time_Measurement.cpp
-    SystemMetric.cpp
+    System_Metric.cpp
     Worker.cpp
     Worker_Measurement.cpp
   }

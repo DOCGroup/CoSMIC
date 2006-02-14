@@ -9,13 +9,6 @@
  * This file contains the information shared between all components in
  * Component Workload Emulator (CoWorkEr) Utilization Test Suite (CUTS).
  *
- * All the event and value types are declared in the central location to
- * better manage them. In a component in CUTS has more specific information
- * for the value types, they are declared in that components IDL file. There
- * is only one interface definition contained in this file, which is the base
- * interface supported by all components that consider themselves capable of
- * producing workloads.
- *
  * @author James H. Hill <hillj@isis.vanderbilt.edu>
  */
 //=============================================================================
@@ -29,6 +22,17 @@
 
 module CUTS
 {
+  exception Binding_Failed { };
+  exception ID_Not_Found { };
+
+  /**
+   * This is a generic exception raised when a operation fails for some
+   * unknown reason, and is not a system exception. Some reasons for
+   * raising this exception would be failing to get a lock or a NULL
+   * reference.
+   */
+  exception Operation_Failed { };
+
   //===========================================================================
   /**
    * Base type for all events in CUTS. Each event must defined an <event_type>
@@ -97,11 +101,13 @@ module CUTS
 
   interface Path_Measurment
   {
-    long bind_to_path (in Path_Sequence path);
+    long bind_to_path (in Path_Sequence path)
+      raises (Binding_Failed);
 
     void unbind_to_path (in long path_id);
 
-    long execution_time (in long path_id);
+    Time_Info execution_time (in long path_id)
+      raises (ID_Not_Found, Operation_Failed);
   };
 
   interface BDC_Control_Handle
@@ -141,24 +147,6 @@ module CUTS
     manages Benchmark_Data_Collector
   {
 
-  };
-
-  //===========================================================================
-  /**
-   *
-   */
-  //===========================================================================
-
-  component CoWorkEr
-  {
-    /// connection to the <BenchmarkCollector> for submitting data
-    provides Benchmark_Agent cuts_benchmark_agent;
-
-    /// Unique ID for the CoWorkEr.
-    attribute string cuts_coworker_id;
-
-    /// Host name for the database worker
-    attribute string cuts_coworker_database;
   };
 };
 

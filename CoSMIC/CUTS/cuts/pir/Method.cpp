@@ -2,7 +2,7 @@
 
 #include "cuts/pir/Method.h"
 
-#if !defined (__CUT_INLINE__)
+#if !defined (__CUTS_INLINE__)
 #include "cuts/pir/Method.inl"
 #endif
 

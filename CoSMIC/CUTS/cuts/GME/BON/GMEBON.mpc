@@ -6,12 +6,13 @@ project (GMEBON) : gme_base, cuts_base {
   staticflags += BUILDER_OBJECT_NETWORK_V2
 
   includes += .
-  
+
   specific (vc6, vc71, vc8, nmake) {
     type_is_static = 1
   }
 
   Source_Files {
+    ComponentLib.idl
     $(GME_ROOT)/SDK/BON/BON.cpp
     $(GME_ROOT)/SDK/BON/BONImpl.cpp
     $(GME_ROOT)/SDK/BON/Common.cpp
@@ -22,12 +23,8 @@ project (GMEBON) : gme_base, cuts_base {
     $(GME_ROOT)/SDK/BON/MONImpl.cpp
     $(GME_ROOT)/SDK/BON/Utils.cpp
   }
-  
+
   Header_Files {
     ComponentConfig.h
-  }
-  
-  MIDL_Files {
-    ComponentLib.idl
   }
 }

@@ -7,13 +7,16 @@ project : gme_base {
 
   includes += $(CUTS_ROOT)
 
-  midlflags += -I <%quote%>$(CUTS_ROOT)<%quote%>
+  specific {
+    midl_includes += $(CUTS_ROOT)
+  }
 
   specific {
     link_options += /DEF:component.def
   }
 
   Source_Files {
+    ComponentLib.idl
     $(GME_ROOT)/SDK/BON/ComHelp.cpp
     $(GME_ROOT)/SDK/BON/ComponentDll.cpp
     $(GME_ROOT)/SDK/BON/ComponentObj.cpp
@@ -27,9 +30,5 @@ project : gme_base {
 
   Resource_Files {
     Component.rc
-  }
-
-  MIDL_Files {
-    ComponentLib.idl
   }
 }

@@ -211,7 +211,7 @@ struct Collect_Port_Measurement :
       this->data_->ports[this->index_ ++];
 
     // Save the processing time and the transit time.
-    port.port = CORBA::string_dup (agent->uuid ());
+    port.port = CORBA::string_dup (agent->name ());
     port.transit_time << port_data->transit_time ();
     port.process_time << port_data->process_time ();
 

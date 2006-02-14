@@ -75,13 +75,13 @@ namespace CUTS_PIR
 
     const Method * activate_method (void) const;
 
-    void activate_method (const Method * method);
+    void activate_method (Method * method);
 
   private:
     /// The home for this component.
     std::auto_ptr <Component_Home> home_;
 
-    std::auto_ptr <const Method> activate_method_;
+    std::auto_ptr <Method> activate_method_;
 
     /// Set of event sinks in the component.
     Event_Sinks event_sinks_;

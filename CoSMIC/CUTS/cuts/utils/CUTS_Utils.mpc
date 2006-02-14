@@ -5,9 +5,25 @@ project (CUTS_Utils) : cuts_base {
 
   dynamicflags += CUTS_BUILD_DLL
 
+  Source_Files {
+    String.cpp
+  }
+
+  Header_Files {
+    Functor_T.h
+  }
+}
+
+project (CUTS_Utils_DBase) : cuts_base {
+  sharedname = CUTS_Utils_DBase
+
+  dynamicflags += CUTS_BUILD_DLL
+
   specific (vc6, vc7, vc71, vc8, nmake) {
     lit_libs += odbc32 odbcbcp odbcCP32
   } else {
+    requires += unix_odbc
+
     libpaths += $(UNIXODBC_ROOT)/lib
     includes += $(UNIXODBC_ROOT)/include
 
@@ -19,10 +35,5 @@ project (CUTS_Utils) : cuts_base {
     ODBC_Connection.cpp
     ODBC_Stmt.cpp
     MyODBC_Connection.cpp
-    String.cpp
-  }
-
-  Header_Files {
-    Functor_T.h
   }
 }

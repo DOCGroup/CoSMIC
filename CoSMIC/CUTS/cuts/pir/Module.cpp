@@ -7,13 +7,9 @@
 #include "cuts/pir/Component.h"
 #include "cuts/pir/ComponentHome.h"
 #include "cuts/pir/Object.h"
+#include "cuts/pir/Method.h"
 #include "cuts/utils/Functor_T.h"
 #include <algorithm>
-
-void delete_element (void * element)
-{
-  delete element;
-}
 
 namespace CUTS_PIR
 {

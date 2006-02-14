@@ -38,4 +38,8 @@ namespace CUTS_PIR
   };
 }
 
+#if defined (__CUTS_INLINE__)
+#include "cuts/pir/Method.inl"
+#endif
+
 #endif  // !defined _CUTS_PIR_METHOD_H_

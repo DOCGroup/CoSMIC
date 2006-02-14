@@ -1,5 +1,8 @@
 // $Id$
 
+//
+// bind
+//
 template <typename COMPONENT>
 CUTS_INLINE
 void CUTS_Event_Handler_T <COMPONENT>::bind (CUTS_Port_Agent * agent,
@@ -9,6 +12,9 @@ void CUTS_Event_Handler_T <COMPONENT>::bind (CUTS_Port_Agent * agent,
   this->method_ = method;
 }
 
+//
+// unbind
+//
 template <typename COMPONENT>
 CUTS_INLINE
 void CUTS_Event_Handler_T <COMPONENT>::unbind (void)

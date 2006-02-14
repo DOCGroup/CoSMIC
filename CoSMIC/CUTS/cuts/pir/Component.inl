@@ -6,7 +6,7 @@ namespace CUTS_PIR
   // activate_method
   //
   CUTS_INLINE
-  void Component::activate_method (const Method * method)
+  void Component::activate_method (Method * method)
   {
     this->activate_method_.reset (method);
   }

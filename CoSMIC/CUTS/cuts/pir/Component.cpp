@@ -10,6 +10,7 @@
 #include "cuts/pir/Periodic_Action.h"
 #include "cuts/pir/Worker_Type.h"
 #include "cuts/pir/Facet.h"
+#include "cuts/pir/Method.h"
 #include "cuts/utils/Functor_T.h"
 #include <algorithm>
 

@@ -503,6 +503,7 @@ namespace CUTS_CIAO
         << "#include \"cuts/CCM_Event_Producer_T.h\"" << std::endl
         << "#include \"cuts/EventHandler_T.h\"" << std::endl
         << "#include \"cuts/PortAgent.h\"" << std::endl
+        << "#include \"ace/Log_Msg.h\"" << std::endl
         << std::endl;
 
       this->sofs_
@@ -1030,7 +1031,10 @@ namespace CUTS_CIAO
 
     this->sofs_
       << "void " << this->component_ << "::" << CIAO_PREACTIVATE
-      << "{";
+      << "{"
+      << "ACE_DEBUG ((LM_TRACE, \"entered "
+      << this->component_ << "::ciao_preactivate\\n\"));";
+
 
     // Print the activation method for the port agents
     this->sofs_
@@ -1050,6 +1054,8 @@ namespace CUTS_CIAO
       Print_Event_Handler_Method (this->sofs_, "activate ()"));
 
     this->sofs_
+      << "ACE_DEBUG ((LM_TRACE, \"exiting "
+      << this->component_ << "::ciao_preactivate\\n\"));"
       << "}";
   }
 
@@ -1143,16 +1149,9 @@ namespace CUTS_CIAO
     // Begin the method definition.
     this->sofs_
       << "void " << this->component_ << "::" << CCM_PASSIVATE
-      << "{";
-
-    // Deactivate all event producer.
-    //this->sofs_
-    //  << "// Deactivate the event producer." << std::endl;
-    //if (!component.event_sources ().empty ())
-    //{
-    //  this->sofs_
-    //    << "this->event_producer_.deactivate ();";
-    //}
+      << "{"
+      << "ACE_DEBUG ((LM_TRACE, \"entered "
+      << this->component_ << "::ccm_passivate\\n\"));";
 
     // Deactivate all the event handlers.
     this->sofs_
@@ -1181,6 +1180,8 @@ namespace CUTS_CIAO
 
     // Close the method definition.
     this->sofs_
+      << "ACE_DEBUG ((LM_TRACE, \"exiting "
+      << this->component_ << "::ccm_passivate\\n\"));"
       << "}";
   }
 
