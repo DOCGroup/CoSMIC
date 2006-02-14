@@ -495,7 +495,7 @@ BE_GlobalData::parse_args (long &i, char **av)
 
 // Does nothing in this backend.
 void
-BE_GlobalData::prep_be_arg (char *s)
+BE_GlobalData::prep_be_arg (char *)
 {
 }
 
@@ -1281,7 +1281,7 @@ BE_GlobalData::emit_diagnostic (DOMElement *node, diagnostic_type dt)
   char *p_name = this->get_name (parent);
 
   cout << (ADDING == dt ? "Added " : "Removed ") << kind << " "
-       << (no_name ? ref_name : name)
+       << (no_name ? ref_name.c_str () : name)
        << " in " << p_kind << " "
        << (ACE_OS::strcmp (p_name, p_kind) == 0 ? "<no name>" : p_name)
        << endl;

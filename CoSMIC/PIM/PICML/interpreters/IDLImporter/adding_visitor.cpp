@@ -3136,7 +3136,7 @@ adding_visitor::get_label_name (AST_UnionLabel *ul,
 void
 adding_visitor::add_private (AST_Field *f,
                              const XMLCh *member_id,
-                             unsigned long member_slot)
+                             unsigned long)
 {
   // We can't use imported_dom_element() here because PrivateFlag
   // atoms have no unique name.
@@ -3672,7 +3672,7 @@ adding_visitor::add_manages (AST_Home *node)
       DOMElement *dst = this->doc_->createElement (X ("connpoint"));
       dst->setAttribute (X ("role"), X ("dst"));
       dst->setAttribute (X ("target"),
-                        same_scope ? comp_id : X (comp_ref_id.c_str ()));
+                        same_scope ? X( comp_id) : X (comp_ref_id.c_str ()));
       connection->appendChild (dst);
 
       // Code above depends on this node being added last.
@@ -4830,7 +4830,7 @@ adding_visitor::add_implementation (const char *id,
 DOMElement *
 adding_visitor::add_property (const char *name,
                               unsigned long rel_id,
-                              unsigned long slot,
+                              unsigned long,
                               unsigned long nslices,
                               const char *value)
 {

@@ -44,7 +44,7 @@ project(IDL_TO_PICML_EXE) : aceexe, core, crosscompile, xerces {
   exename         = idl_to_picml
   libs           += IDL_TO_PICML_BE TAO_IDL_FE
   includes       += . $(TAO_ROOT)/TAO_IDL/include $(TAO_ROOT)/TAO_IDL/fe
-  libpaths       += $(COSMIC_ROOT)/lib $(TAO_ROOT)/TAO_IDL
+  libpaths       += $(COSMIC_ROOT)/lib $(COSMIC_ROOT)/bin $(TAO_ROOT)/TAO_IDL
   install         = $(COSMIC_ROOT)/bin
 
   verbatim(gnuace, local) {

@@ -14,7 +14,7 @@ BE_version (void)
 }
 
 IDL_TO_PICML_BE_Export int
-BE_init (int &argc, char *argv[])
+BE_init (int &, char *[])
 {
   return 0;
 }
