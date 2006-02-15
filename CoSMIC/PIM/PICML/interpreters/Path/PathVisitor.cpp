@@ -1,3 +1,4 @@
+#include <windows.h>
 #include <algorithm>
 #include <functional>
 #include "PathVisitor.h"
@@ -137,7 +138,8 @@ namespace PICML
   }*/
     
   Component_Port_Vertex::Component_Port_Vertex (Port a_port , string par_name)
-    :  the_component_(a_port.parent ()), the_port_(a_port)
+    : the_component_(a_port.parent ()), 
+      the_port_(a_port)
   {
     is_drawn = 0;
 
@@ -196,16 +198,6 @@ namespace PICML
       throw;
     }
 
-    Component_Port_Vertex vertex (startPort, this->extract_uuid(startPort.parent ()));
-
-		graph_vertex_indices_[vertex_count_]
-			  = vertex;
-    graph_vertex_[vertex.vertex_name_]
-			  = vertex_count_;
-    
-    // store the start port 
-    start_port_ = vertex_count_++;
-
     // now store the end port 
     Port end_port;
     try
@@ -217,7 +209,38 @@ namespace PICML
     {
       throw;
     }
+
+/// verify the port sequence with the user ...
+    // form the message here ,
+    std::string msg = "You have chosen startPort = ";
+    msg += startPort.name ();
+    msg += " and endPort = ";
+    msg += end_port.name ();
+    //msg += " Please confirm";
+
+    int result = //AfxMessageBox (msg.c_str (), MB_YESNO);
+      MessageBox (0, msg.c_str () , "Port Order" , MB_YESNO | MB_ICONQUESTION);
+
+    if (result == IDNO)
+    {
+      // the order is reversed , swap here
+      Port temp;
+      temp = startPort;
+      startPort = end_port;
+      end_port = temp;
+    }
+ 
+
+    Component_Port_Vertex vertex (startPort, this->extract_uuid(startPort.parent ()));
+
+		graph_vertex_indices_[vertex_count_]
+			  = vertex;
+    graph_vertex_[vertex.vertex_name_]
+			  = vertex_count_;
     
+    // store the start port 
+    start_port_ = vertex_count_++;
+
     Component_Port_Vertex end_vertex (end_port,this->extract_uuid (end_port.parent ()));
 
 		graph_vertex_indices_[vertex_count_]
