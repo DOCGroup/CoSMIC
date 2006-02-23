@@ -1,3 +1,25 @@
+Thu Feb 23 17:16:18 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        
+          Cosmetic changes.
+          
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/be_init.cpp:
+        
+          - Fixes to features added in
+          
+            Mon Feb  6 21:52:28 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+            as a result of testing with more examples.
+            
+          - Changed default path to mga.dtd from $GME_ROOT/bin to
+            $GME_ROOT, to correspond with the change in the
+            GME installation starting with version 5.9.21.
+
 Wed Feb 15 22:55:34 UTC 2006  Nilabja R  <nilabjar@invalid.domain>
 
         * PIM/PICML/interpreters/Path/PathVisitor.cpp:

@@ -175,15 +175,12 @@ private:
   
   ACE_TCHAR *timestamp (ACE_TCHAR date_and_time[], int length);
   unsigned long nmembers_gme (UTL_Scope *s, AST_Attribute *a = 0);
-  XMLCh *lookup_id (AST_Decl *d);
   XMLCh *lookup_constant_type (AST_Constant *c);
   ACE_CString print_scoped_name (UTL_IdList *sn);
   ACE_CString expr_val_to_string (AST_Expression::AST_ExprValue *ev);
   unsigned long user_includes (void);
   void set_n_basic_seqs (void);
   void set_one_basic_seq (const char *base_type);
-  void check_for_basic_seq (AST_Decl *d, ACE_CString &str);
-  void check_for_basic_type (AST_Decl *d, ACE_CString &str);
   bool can_skip_import (UTL_Scope *node, DOMElement *parent);
   
   void add_picml_boilerplate (void);

@@ -1144,7 +1144,7 @@ adding_visitor::visit_operation (AST_Operation *node)
           be_global->emit_diagnostic (return_type);
         }
 
-      XMLCh *gme_id  = this->lookup_id (rt);
+      XMLCh *gme_id  = be_global->lookup_id (rt);
       be_global->type_change_diagnostic (return_type, gme_id);
       return_type->setAttribute (X ("referred"), gme_id);
 
@@ -1254,7 +1254,7 @@ adding_visitor::visit_field (AST_Field *node)
 
   // These are outside the IF block to pick up possible changes
   // in the IDL.
-  XMLCh *gme_id = this->lookup_id (ft);
+  XMLCh *gme_id = be_global->lookup_id (ft);
   be_global->type_change_diagnostic (elem, gme_id);
   elem->setAttribute (X ("referred"), gme_id);
 
@@ -1317,7 +1317,7 @@ adding_visitor::visit_argument (AST_Argument *node)
   // Outside the IF block so change in the type of an argument can
   // be reflected in the PICML model.
   AST_Type *ft = node->field_type ();
-  XMLCh *gme_id = this->lookup_id (ft);
+  XMLCh *gme_id = be_global->lookup_id (ft);
   be_global->type_change_diagnostic (arg, gme_id);
   arg->setAttribute (X ("referred"), gme_id);
 
@@ -1408,7 +1408,7 @@ adding_visitor::visit_attribute (AST_Attribute *node)
   DOMNodeList *ref = elem->getElementsByTagName (X ("reference"));
   member = (DOMElement *) ref->item (0);
   AST_Type *ft = node->field_type ();
-  XMLCh *gme_id = this->lookup_id (ft);
+  XMLCh *gme_id = be_global->lookup_id (ft);
   be_global->type_change_diagnostic (member, gme_id);
   member->setAttribute (X ("referred"), gme_id);
 
@@ -1581,7 +1581,7 @@ adding_visitor::visit_union_branch (AST_UnionBranch *node)
    }
 
   // This will modify the attribute if the type has changed in IDL.
-  XMLCh *field_type_id = this->lookup_id (ft);
+  XMLCh *field_type_id = be_global->lookup_id (ft);
   be_global->type_change_diagnostic (elem, field_type_id);
   elem->setAttribute (X ("referred"), field_type_id);
 
@@ -1715,7 +1715,8 @@ adding_visitor::visit_enum_val (AST_EnumVal *node)
   DOMElement *elem =
     be_global->imported_dom_element (
         this->sub_tree_,
-        node->local_name ()->get_string ()
+        node->local_name ()->get_string (),
+        BE_GlobalData::ATOM
       );
 
   // Also see if it's been put in the decl table.
@@ -1862,7 +1863,7 @@ adding_visitor::visit_typedef (AST_Typedef *node)
 
   if (!node->imported ())
     {
-      XMLCh *new_id = this->lookup_id (bt);
+      XMLCh *new_id = be_global->lookup_id (bt);
       be_global->type_change_diagnostic (elem, new_id);
       elem->setAttribute (X ("referred"), new_id);
       this->add_replace_id_element (elem, node);
@@ -2051,7 +2052,7 @@ adding_visitor::visit_valuebox (AST_ValueBox *node)
 
   if (!node->imported ())
     {
-      XMLCh *new_id = this->lookup_id (bt);
+      XMLCh *new_id = be_global->lookup_id (bt);
       be_global->type_change_diagnostic (elem, new_id);
       elem->setAttribute (X ("referred"), new_id);
       this->add_replace_id_element (elem, node);
@@ -2649,7 +2650,7 @@ adding_visitor::add_include_elements (UTL_Scope *container, DOMElement *parent)
           this->add_regnodes (container, fileref, slot++);
 
           parent->appendChild (fileref);
-          be_global->emit_diagnostic (fileref);
+          be_global->included_file_diagnostic (fileref, parent, tmp);
         }
 
       // Add to list used in check for removed IDL decls.
@@ -2881,7 +2882,7 @@ adding_visitor::add_supported_elements (DOMElement *parent,
               X (be_global->hex_string (nparents + i + 1))
             );
           supported->setAttribute (X ("referred"),
-                                  this->lookup_id (supports[i]));
+                                  be_global->lookup_id (supports[i]));
 
           this->add_name_element (supported, "Supports");
           this->add_regnodes (node, supported, nparents + i + 1);
@@ -2912,7 +2913,7 @@ adding_visitor::add_exception_elements (DOMElement *parent,
        ei.next ())
     {
       AST_Exception *ex = ei.item ();
-      XMLCh *gme_id = this->lookup_id (ex);
+      XMLCh *gme_id = be_global->lookup_id (ex);
 
       // Since the members of an exception list must be unique, we
       // just check for a DOM element in this scope that refers to
@@ -2991,7 +2992,7 @@ adding_visitor::add_discriminator (DOMElement *parent, AST_Union *u)
       parent->appendChild (elem);
     }
 
-  const XMLCh *dtype = this->lookup_id (u->disc_type ());
+  const XMLCh *dtype = be_global->lookup_id (u->disc_type ());
   be_global->type_change_diagnostic (elem, dtype);
   elem->setAttribute (X ("referred"), dtype);
 
@@ -3376,7 +3377,7 @@ adding_visitor::add_ports (DOMElement *parent, AST_Component *node)
         }
 
       // These emit diagnostics if changed, idempotent otherwise.
-      const XMLCh *referred = this->lookup_id (pd->impl);
+      const XMLCh *referred = be_global->lookup_id (pd->impl);
       be_global->type_change_diagnostic (provides_port, referred);
       provides_port->setAttribute (X ("referred"), referred);
       this->add_replace_id_element (provides_port, 0);
@@ -3422,7 +3423,7 @@ adding_visitor::add_ports (DOMElement *parent, AST_Component *node)
         }
 
       // These emit diagnostics if changed, idempotent otherwise.
-      const XMLCh *referred = this->lookup_id (pd->impl);
+      const XMLCh *referred = be_global->lookup_id (pd->impl);
       be_global->type_change_diagnostic (uses_port, referred);
       uses_port->setAttribute (X ("referred"), referred);
       this->add_replace_id_element (uses_port, 0);
@@ -3471,7 +3472,7 @@ adding_visitor::add_ports (DOMElement *parent, AST_Component *node)
         }
 
       // These emit diagnostics if changed, idempotent otherwise.
-      const XMLCh *referred = this->lookup_id (pd->impl);
+      const XMLCh *referred = be_global->lookup_id (pd->impl);
       be_global->type_change_diagnostic (emits_port, referred);
       emits_port->setAttribute (X ("referred"), referred);
       this->add_replace_id_element (emits_port, 0);
@@ -3520,7 +3521,7 @@ adding_visitor::add_ports (DOMElement *parent, AST_Component *node)
         }
 
       // These emit diagnostics if changed, idempotent otherwise.
-      const XMLCh *referred = this->lookup_id (pd->impl);
+      const XMLCh *referred = be_global->lookup_id (pd->impl);
       be_global->type_change_diagnostic (publishes_port, referred);
       publishes_port->setAttribute (X ("referred"), referred);
       this->add_replace_id_element (publishes_port, 0);
@@ -3569,7 +3570,7 @@ adding_visitor::add_ports (DOMElement *parent, AST_Component *node)
         }
 
       // These emit diagnostics if changed, idempotent otherwise.
-      const XMLCh *referred = this->lookup_id (pd->impl);
+      const XMLCh *referred = be_global->lookup_id (pd->impl);
       be_global->type_change_diagnostic (consumes_port, referred);
       consumes_port->setAttribute (X ("referred"), referred);
       this->add_replace_id_element (consumes_port, 0);
@@ -3606,7 +3607,7 @@ adding_visitor::add_manages (AST_Home *node)
       const XMLCh *target = src->getAttribute (X ("target"));
 
       // A ComponentFactory has exactly one connection.
-      if (X (target) == this->lookup_id (node))
+      if (X (target) == be_global->lookup_id (node))
         {
           connection = holder;
           break;
@@ -3639,7 +3640,7 @@ adding_visitor::add_manages (AST_Home *node)
       connection->appendChild (conn_reg);
 
       AST_Component *c = node->managed_component ();
-      const XMLCh *comp_id = this->lookup_id (c);
+      const XMLCh *comp_id = be_global->lookup_id (c);
       bool same_scope = (c->defined_in () == s);
       ACE_CString comp_ref_id;
 
@@ -3678,7 +3679,7 @@ adding_visitor::add_manages (AST_Home *node)
       // Code above depends on this node being added last.
       DOMElement *src = this->doc_->createElement (X ("connpoint"));
       src->setAttribute (X ("role"), X ("src"));
-      src->setAttribute (X ("target"), this->lookup_id (node));
+      src->setAttribute (X ("target"), be_global->lookup_id (node));
       connection->appendChild (src);
 
       this->sub_tree_->appendChild (connection);
@@ -3747,7 +3748,7 @@ adding_visitor::add_lookup_key (DOMElement *parent, AST_Home *node)
     }
 
   // Just in case the primary key is now a different valuetype.
-  const XMLCh *pk_id = this->lookup_id (pk);
+  const XMLCh *pk_id = be_global->lookup_id (pk);
   be_global->type_change_diagnostic (lookup_key, pk_id);
   lookup_key->setAttribute (X ("referred"), pk_id);
 
@@ -4101,30 +4102,6 @@ adding_visitor::nmembers_gme (UTL_Scope *s, AST_Attribute *a)
 }
 
 XMLCh *
-adding_visitor::lookup_id (AST_Decl *d)
-{
-  ACE_CString ext_id = d->repoID ();
-
-  // One or the other of these, but not both, may replace ext_id.
-  this->check_for_basic_type (d, ext_id);
-  this->check_for_basic_seq (d, ext_id);
-
-  XMLCh *retval = 0;
-  int result = be_global->decl_id_table ().find (ext_id.c_str (), retval);
-
-  if (result != 0)
-    {
-      ACE_ERROR_RETURN ((LM_ERROR,
-                         "adding_visitor::lookup_id - "
-                         "lookup of id %s failed\n",
-                         ext_id.c_str ()),
-                        0);
-    }
-
-  return retval;
-}
-
-XMLCh *
 adding_visitor::lookup_constant_type (AST_Constant *c)
 {
   const char *ext_id = 0;
@@ -4399,107 +4376,6 @@ adding_visitor::set_one_basic_seq (const char *base_type)
     }
 }
 
-void
-adding_visitor::check_for_basic_seq (AST_Decl *d, ACE_CString &str)
-{
-  if (d->node_type () != AST_Decl::NT_typedef)
-    {
-      return;
-    }
-
-  AST_Decl *p = ScopeAsDecl (d->defined_in ());
-  if (ACE_OS::strcmp (p->local_name ()->get_string (), "CORBA") != 0)
-    {
-      return;
-    }
-
-  AST_Type *bt = AST_Typedef::narrow_from_decl (d)->base_type ();
-  if (bt->node_type () != AST_Decl::NT_sequence)
-    {
-      return;
-    }
-
-  bt = AST_Sequence::narrow_from_decl (bt)->base_type ();
-  AST_Decl::NodeType nt = bt->node_type ();
-  this->check_for_basic_type (bt, str);
-
-  // If the previous call modified the string, append the sequence suffix.
-  if (nt == AST_Decl::NT_string
-      || nt == AST_Decl::NT_wstring
-      || nt == AST_Decl::NT_pre_defined)
-    {
-      str += be_global->basic_seq_suffix ();
-    }
-}
-
-void
-adding_visitor::check_for_basic_type (AST_Decl *d, ACE_CString &str)
-{
-  const char **namelist = be_global->pdt_names ();
-  AST_Decl::NodeType nt = d->node_type ();
-
-  if (nt == AST_Decl::NT_string || nt == AST_Decl::NT_wstring)
-    {
-      str = namelist[2UL];
-    }
-  else if (d->node_type () == AST_Decl::NT_pre_defined)
-    {
-      AST_PredefinedType *pdt = AST_PredefinedType::narrow_from_decl (d);
-
-      switch (pdt->pt ())
-        {
-          case AST_PredefinedType::PT_long:
-          case AST_PredefinedType::PT_ulong:
-          case AST_PredefinedType::PT_longlong:
-          case AST_PredefinedType::PT_ulonglong:
-            str = namelist[6UL];
-            break;
-          case AST_PredefinedType::PT_short:
-          case AST_PredefinedType::PT_ushort:
-            str = namelist[4UL];
-            break;
-          case AST_PredefinedType::PT_float:
-          case AST_PredefinedType::PT_double:
-          case AST_PredefinedType::PT_longdouble:
-            str = namelist[5UL];
-            break;
-          case AST_PredefinedType::PT_char:
-          case AST_PredefinedType::PT_octet:
-          case AST_PredefinedType::PT_wchar:
-            str = namelist[10UL];
-            break;
-          case AST_PredefinedType::PT_boolean:
-            str = namelist[3UL];
-            break;
-          case AST_PredefinedType::PT_any:
-            str = namelist[8UL];
-            break;
-          case AST_PredefinedType::PT_object:
-            str = namelist[9UL];
-            break;
-          case AST_PredefinedType::PT_value:
-            str = namelist[7UL];
-            break;
-          case AST_PredefinedType::PT_pseudo:
-            {
-              const char *pseudo_name = d->local_name ()->get_string ();
-
-              if (0 == ACE_OS::strcmp (pseudo_name, "TypeCode"))
-                {
-                  str = namelist[1UL];
-                }
-              else if (0 == ACE_OS::strcmp (pseudo_name, "TCKind"))
-                {
-                  str = namelist[0UL];
-                }
-            }
-            break;
-          default:
-            break;
-        }
-    }
-}
-
 // If an IDL module contains only other modules and forward decls,
 // we can skip importing it, and at the same time avoid the
 // 'empty package' constraint violation.
@@ -4623,7 +4499,7 @@ adding_visitor::add_default_container (AST_Component *node)
   reference->setAttribute (X ("kind"), X ("ComponentRef"));
   reference->setAttribute (X ("role"), X ("ComponentRef"));
   reference->setAttribute (X ("relid"), X ("0x1"));
-  reference->setAttribute (X ("referred"), this->lookup_id (node));
+  reference->setAttribute (X ("referred"), be_global->lookup_id (node));
   ACE_CString refname (node->local_name ()->get_string ());
   refname += "Ref";
   this->add_name_element (reference, refname.c_str ());

@@ -24,8 +24,10 @@
 #include "be_global.h"
 #include "ast_generator.h"
 #include "ast_module.h"
+#include "ast_sequence.h"
 #include "utl_identifier.h"
 #include "global_extern.h"
+#include "nr_extern.h"
 #include "idl_defines.h"
 #include "ace/OS_NS_stdio.h"
 #include "ace/Env_Value_T.h"
@@ -77,10 +79,9 @@ BE_GlobalData::BE_GlobalData (void)
 
   if (path_str != 0)
     {
+      // GME versions from 5.9.21 no longer install mga.dtd
+      // in $GME_ROOT/bin, but in $GME_ROOT.
       this->schema_path_ = path_str;
-
-      // The GME installer sets GME_ROOT to end with a backslash.
-      this->schema_path_ += "bin/";
     }
 }
 
@@ -708,13 +709,6 @@ BE_GlobalData::xerces_init (void)
 void
 BE_GlobalData::cache_files (const char *files[], long nfiles)
 {
-  // Get root folder and interface definitions folder from the
-  // input and cache them.
-  if (0 != be_global->input_xme ())
-    {
-      this->set_working_folders ();
-    }
-
   for (long i = 0; i < nfiles; ++i)
     {
       // Cache the file names in be_global.
@@ -879,7 +873,9 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
 
   // At global scope, we may be visiting an included file, so we
   // may have to look in all File elements to find an XML import.
-  if (!in_file_iteration && idl_global->import ())
+  bool importing = idl_global->import ();
+  bool in_main = idl_global->in_main_file ();
+  if (!in_file_iteration && importing && !in_main)
     {
       if (X ("File") == sub_tree->getAttribute (X ("kind")))
         {
@@ -900,10 +896,10 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
               if (X ("model") == file->getTagName ())
                 {
                   retval = this->imported_dom_element (file,
-                                                      local_name,
-                                                      elem_kind,
-                                                      by_referred,
-                                                      true);
+                                                       local_name,
+                                                       elem_kind,
+                                                       by_referred,
+                                                       true);
 
                   if (retval != 0)
                     {
@@ -935,7 +931,7 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
         tag = "connection";
         break;
     }
-
+    
   for (XMLSize_t index = 0; index < children->getLength (); ++index)
     {
       DOMElement *child =
@@ -988,124 +984,23 @@ BE_GlobalData::imported_module_dom_elem (DOMElement *sub_tree,
     {
       return 0;
     }
-
-  DOMNodeList *children = sub_tree->getChildNodes ();
-  const char *local_name = node->local_name ()->get_string ();
-  AST_Decl *d = 0;
-
-  for (XMLSize_t i = 0; i < children->getLength (); ++i)
+      
+  DOMNodeList *models =
+    this->interface_definitions_folder_->getElementsByTagName (X ("model"));
+    
+  for (XMLSize_t i = 0; i < models->getLength (); ++i)
     {
-      DOMElement *child = (DOMElement *) children->item (i);
-
-      if (0 == child)
-        {
-          continue;
-        }
-
-      const XMLCh *tag = child->getTagName ();
-
-      if (X ("model") != X (tag))
-        {
-          continue;
-        }
-
-      const XMLCh *kind = child->getAttribute (X ("kind"));
-
+      DOMElement *model = (DOMElement *) models->item (i);  
+      const XMLCh *kind = model->getAttribute (X ("kind"));
+        
       if (X ("Package") != X (kind))
         {
           continue;
         }
-
-      // There should be only one "name" node.
-      DOMNode *name_elem = child->getFirstChild ();
-      DOMNode *name_node = name_elem->getFirstChild ();
-      DOMText *name_text = (DOMText *) name_node;
-      const XMLCh *name = name_text->getData ();
-
-      if (X (local_name) != X (name))
+        
+      if (this->match_module_opening (model, node))
         {
-          continue;
-        }
-
-      DOMNodeList *grandkids = child->getChildNodes ();
-
-      for (XMLSize_t j = 0; j < grandkids->getLength (); ++j)
-        {
-          DOMElement *kid = (DOMElement *) grandkids->item (j);
-
-          if (0 == kid)
-            {
-              continue;
-            }
-
-          tag = kid->getTagName ();
-
-          // We just need to find the first child that's either an
-          // XME reference (Alias) or an XME model.
-          if (X ("model") != X (tag) && X ("reference") != X (tag))
-            {
-              continue;
-            }
-
-          // There should be only one "name" node.
-          name_elem = kid->getFirstChild ();
-          name_node = name_elem->getFirstChild ();
-          name_text = (DOMText *) name_node;
-          name = name_text->getData ();
-          bool child_name_match = false;
-
-          // New decls in this IDL module may have been added at the
-          // top, but the name we're trying to match has to be in
-          // here somewhere.
-          for (UTL_ScopeActiveIterator iter (node, UTL_Scope::IK_decls);
-               !iter.is_done ();
-               iter.next ())
-            {
-              d = iter.item ();
-
-              const char *node_child_name =
-                d->local_name ()->get_string ();
-
-              if (X (node_child_name) == name)
-                {
-                  child_name_match = true;
-                  break;
-                }
-            }
-
-          if (!child_name_match)
-            {
-              break;
-            }
-
-          AST_Module *m = AST_Module::narrow_from_decl (d);
-          kind = kid->getAttribute (X ("kind"));
-
-          // If we've matched things that aren't nested modules,
-          // we're done. If they are, we recurse. If one is and
-          // one isn't, break and increment the outer loop.
-          if (0 == m && X ("Package") != X (kind))
-            {
-              return child;
-            }
-          else if (0 != m && X ("Package") == kind)
-            {
-              DOMElement *rec_val =
-                this->imported_module_dom_elem (child, m);
-
-              if (0 != rec_val)
-                {
-                  return child;
-                }
-              else
-                {
-                  break;
-                }
-            }
-          else
-            {
-              break;
-            }
+          return model;
         }
     }
 
@@ -1115,6 +1010,13 @@ BE_GlobalData::imported_module_dom_elem (DOMElement *sub_tree,
 void
 BE_GlobalData::set_working_folders (void)
 {
+  // Get root folder and interface definitions folder from the
+  // input and cache them.
+  if (0 == this->input_xme_)
+    {
+      return;
+    }
+
   DOMElement *root = doc_->getDocumentElement ();
 
   DOMNodeList *folders =
@@ -1351,6 +1253,131 @@ BE_GlobalData::get_name (DOMElement *node)
   return retval;
 }
 
+XMLCh *
+BE_GlobalData::lookup_id (AST_Decl *d)
+{
+  ACE_CString ext_id = d->repoID ();
+
+  // One or the other of these, but not both, may replace ext_id.
+  this->check_for_basic_type (d, ext_id);
+  this->check_for_basic_seq (d, ext_id);
+
+  XMLCh *retval = 0;
+  int result = this->decl_id_table_.find (ext_id.c_str (), retval);
+
+  if (result != 0)
+    {
+      ACE_ERROR_RETURN ((LM_ERROR,
+                         "be_global::lookup_id - "
+                         "lookup of id %s failed\n",
+                         ext_id.c_str ()),
+                        0);
+    }
+
+  return retval;
+}
+
+void
+BE_GlobalData::check_for_basic_seq (AST_Decl *d, ACE_CString &str)
+{
+  if (d->node_type () != AST_Decl::NT_typedef)
+    {
+      return;
+    }
+
+  AST_Decl *p = ScopeAsDecl (d->defined_in ());
+  if (ACE_OS::strcmp (p->local_name ()->get_string (), "CORBA") != 0)
+    {
+      return;
+    }
+
+  AST_Type *bt = AST_Typedef::narrow_from_decl (d)->base_type ();
+  if (bt->node_type () != AST_Decl::NT_sequence)
+    {
+      return;
+    }
+
+  bt = AST_Sequence::narrow_from_decl (bt)->base_type ();
+  AST_Decl::NodeType nt = bt->node_type ();
+  this->check_for_basic_type (bt, str);
+
+  // If the previous call modified the string, append the sequence suffix.
+  if (nt == AST_Decl::NT_string
+      || nt == AST_Decl::NT_wstring
+      || nt == AST_Decl::NT_pre_defined)
+    {
+      str += be_global->basic_seq_suffix ();
+    }
+}
+
+void
+BE_GlobalData::check_for_basic_type (AST_Decl *d, ACE_CString &str)
+{
+  const char **namelist = be_global->pdt_names ();
+  AST_Decl::NodeType nt = d->node_type ();
+
+  if (nt == AST_Decl::NT_string || nt == AST_Decl::NT_wstring)
+    {
+      str = namelist[2UL];
+    }
+  else if (d->node_type () == AST_Decl::NT_pre_defined)
+    {
+      AST_PredefinedType *pdt = AST_PredefinedType::narrow_from_decl (d);
+
+      switch (pdt->pt ())
+        {
+          case AST_PredefinedType::PT_long:
+          case AST_PredefinedType::PT_ulong:
+          case AST_PredefinedType::PT_longlong:
+          case AST_PredefinedType::PT_ulonglong:
+            str = namelist[6UL];
+            break;
+          case AST_PredefinedType::PT_short:
+          case AST_PredefinedType::PT_ushort:
+            str = namelist[4UL];
+            break;
+          case AST_PredefinedType::PT_float:
+          case AST_PredefinedType::PT_double:
+          case AST_PredefinedType::PT_longdouble:
+            str = namelist[5UL];
+            break;
+          case AST_PredefinedType::PT_char:
+          case AST_PredefinedType::PT_octet:
+          case AST_PredefinedType::PT_wchar:
+            str = namelist[10UL];
+            break;
+          case AST_PredefinedType::PT_boolean:
+            str = namelist[3UL];
+            break;
+          case AST_PredefinedType::PT_any:
+            str = namelist[8UL];
+            break;
+          case AST_PredefinedType::PT_object:
+            str = namelist[9UL];
+            break;
+          case AST_PredefinedType::PT_value:
+            str = namelist[7UL];
+            break;
+          case AST_PredefinedType::PT_pseudo:
+            {
+              const char *pseudo_name = d->local_name ()->get_string ();
+
+              if (0 == ACE_OS::strcmp (pseudo_name, "TypeCode"))
+                {
+                  str = namelist[1UL];
+                }
+              else if (0 == ACE_OS::strcmp (pseudo_name, "TCKind"))
+                {
+                  str = namelist[0UL];
+                }
+            }
+            break;
+          default:
+            break;
+        }
+    }
+}
+
 void
 BE_GlobalData::type_change_diagnostic (DOMElement *node,
                                        const XMLCh *new_ref)
@@ -1491,4 +1518,76 @@ BE_GlobalData::base_component_diagnostic (DOMElement *elem,
   XMLString::release (&base_parent_kind);
   XMLString::release (&base_parent_name);
   XMLString::release (&new_base_name);
+}
+
+void
+BE_GlobalData::included_file_diagnostic (DOMElement *fileref,
+                                         DOMElement *file,
+                                         const char *fileref_name)
+{
+  if (0 == this->input_xme_)
+    {
+      return;
+    }
+
+  char *file_name = this->get_name (file);
+  
+  cout << "Added FileRef " << fileref_name << " in File "
+       << file_name << endl;
+       
+  XMLString::release (&file_name);
+}
+
+DOMElement *
+BE_GlobalData::get_first_picml_element (DOMElement *scope)
+{
+  DOMNodeList *children = scope->getChildNodes ();
+  
+  for (XMLSize_t i = 0; i < children->getLength (); ++i)
+    {
+      DOMElement *child = (DOMElement *) children->item (i);
+      
+      if (0 == child)
+        {
+          continue;
+        }
+        
+      const XMLCh *tag = child->getTagName ();
+      
+      if (X ("model") == tag || X ("reference") == tag)
+        {
+          return child;
+        }
+    }
+    
+  return 0;
+}
+
+bool
+BE_GlobalData::match_module_opening (DOMElement *elem, AST_Decl *node)
+{
+  DOMElement *elem_child = this->get_first_picml_element (elem);
+  char *elem_child_name = this->get_name (elem_child);
+  UTL_ScopeActiveIterator iter (DeclAsScope (node), UTL_Scope::IK_decls);
+  AST_Decl *node_child = iter.item ();
+  char *node_child_name = node_child->local_name ()->get_string ();
+  int match = ACE_OS::strcmp (node_child_name, elem_child_name);
+  XMLString::release (&elem_child_name);
+  
+  if (0 != match)
+    {
+      return false;
+    }
+    
+  AST_Decl::NodeType nt = node_child->node_type ();
+  const XMLCh *kind = elem_child->getAttribute (X ("kind"));
+  
+  if (X ("Package") == kind && AST_Decl::NT_module == nt)
+    {
+      return this->match_module_opening (elem_child, node_child);
+    }
+  else
+    {
+      return true;
+    }
 }

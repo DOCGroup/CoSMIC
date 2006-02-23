@@ -295,6 +295,13 @@ public:
   void release_node (DOMElement *node);
   // Remove a subtree from the DOM tree and release its resources.
   
+  XMLCh *lookup_id (AST_Decl *d);
+  // From the decl id table.
+
+  void check_for_basic_seq (AST_Decl *d, ACE_CString &str);
+  void check_for_basic_type (AST_Decl *d, ACE_CString &str);
+  // Utility methods.
+
   void emit_diagnostic (DOMElement *node, diagnostic_type dt = ADDING);
   // Report each model element added or removed.
   
@@ -316,12 +323,23 @@ public:
                                   const XMLCh *base_id_from_idl = 0);
   // Specialized method for reporting additions, removals,
   // or changes to a component's parent.
+  
+  void included_file_diagnostic (DOMElement *fileref,
+                                 DOMElement *file,
+                                 const char *fileref_name);
+  // Specialized method for reporting added file includes.
 
 private:  
   char *get_name (DOMElement *node);
   // Utility function that gets the value of the child with
   // tag 'name'. Caller must release return value with
   // XMLString::release().
+  
+  DOMElement *get_first_picml_element (DOMElement *scope);
+  // Skip name, regnodes, GME attributes.
+  
+  bool match_module_opening (DOMElement *elem, AST_Decl *node);
+  // Checks local name of first member, recursively if necessary.
 
 private:
   char *filename_;

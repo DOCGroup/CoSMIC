@@ -23,7 +23,8 @@ IDL_TO_PICML_BE_Export void
 BE_post_init (const char *files[], long nfiles)
 {
   be_global->xerces_init ();
-  be_global->cache_files (files, nfiles);
+  be_global->set_working_folders ();
   be_global->init_ids (be_global->root_folder ());
+  be_global->cache_files (files, nfiles);
 }
 
