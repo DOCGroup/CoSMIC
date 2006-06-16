@@ -32,6 +32,7 @@ project : xerces {
   Define_Custom(Register) {
     automatic           = 0
     command             = regsvr32.exe
+    commandflags        = /s
     inputext            = .dll
     generic_outputext   = .trg
     postcommand         = echo regsvr32 exec. time <%gt%> <%output%>

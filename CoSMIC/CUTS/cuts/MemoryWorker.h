@@ -17,72 +17,89 @@
 
 #include "cuts/Worker.h"
 #include "cuts/Worker_T.h"
-#include <queue>
+#include "cuts/Action.h"
+#include "cuts/Action_T.h"
+#include "cuts/WML_Macros.h"
+#include "ace/Thread_Mutex.h"
+#include <list>
 
-class CUTS_Export CUTS_Memory_Worker
-  : public CUTS_Worker
+class CUTS_Export CUTS_Memory_Worker :
+  public CUTS_Worker_T <CUTS_Memory_Worker>,
+  public CUTS_Worker
 {
 public:
+  //@@CUTS::WML
   //===========================================================================
-  /**
-   * @struct Allocate_Memory
-   */
-  //===========================================================================
-
-  struct Allocate_Memory :
-    public CUTS_Action_T <CUTS_Memory_Worker>
+  CUTS_ACTION_DECLARE (CUTS_Memory_Worker, Allocate_Memory)
   {
-    /// Constructor.
-    Allocate_Memory (CUTS_Memory_Worker & worker, size_t kilobytes)
-      : worker_ (worker),
-        kilobytes_ (kilobytes)
+  public:
+    CUTS_ACTION_DEFAULT_CONSTRUCTOR (CUTS_Memory_Worker, Allocate_Memory)
+      CUTS_ACTION_PARAMETER_INIT (kilobytes_, 0)
     {
 
     }
 
-    /// Functor operator to perform allocation on target worker.
-    void operator () (void)
+    CUTS_ACTION_INIT_CONSTRUCTOR_BEGIN (CUTS_Memory_Worker, Allocate_Memory)
+      CUTS_ACTION_ARGUMENT (size_t, kilobytes)
+      CUTS_ACTION_INIT_CONSTRUCTOR_END (CUTS_Memory_Worker)
+      CUTS_ACTION_PARAMETER_INIT (kilobytes_, kilobytes)
     {
-      this->worker_.allocate (this->kilobytes_);
-    }
-  private:
-    /// Target worker.
-    CUTS_Memory_Worker & worker_;
 
-    /// Size of memory operation.
-    size_t kilobytes_;
+    }
+
+    CUTS_ACTION_DESTRUCTOR (Allocate_Memory)
+    {
+
+    }
+
+    CUTS_ACTION_EXECUTE (allocate,
+                         (this->kilobytes_));
+
+
+    CUTS_DECLARE_ACTION_FACTORY (CUTS_Memory_Worker, Allocate_Memory);
+
+    CUTS_ACTION_PARAMETER_LIST_BEGIN
+    CUTS_ACTION_PARAMETER_DECLARE (int, kilobytes_);
+    CUTS_ACTION_PARAMETER_LIST_END
   };
 
-  //===========================================================================
-  /**
-   *
-   */
-  //===========================================================================
-
-  struct Deallocate_Memory :
-    public CUTS_Action_T <CUTS_Memory_Worker>
+  CUTS_ACTION_DECLARE (CUTS_Memory_Worker, Deallocate_Memory)
   {
+  public:
     /// Constructor.
+    Deallocate_Memory (CUTS_Memory_Worker & worker)
+      : CUTS_Action_T <CUTS_Memory_Worker> (worker),
+        kilobytes_ (0)
+    {
+
+    }
+
     Deallocate_Memory (CUTS_Memory_Worker & worker, size_t kilobytes)
-      : worker_ (worker),
+      : CUTS_Action_T <CUTS_Memory_Worker> (worker),
         kilobytes_ (kilobytes)
+    {
+
+    }
+
+    virtual ~Deallocate_Memory (void)
     {
 
     }
 
     /// Functor operator to perform deallocation on target worker.
-    void operator () (void)
+    virtual void execute (void) const
     {
-      this->worker_.deallocate (this->kilobytes_);
+      this->parent_.deallocate (this->kilobytes_);
     }
 
-  private:
-    /// Target worker.
-    CUTS_Memory_Worker & worker_;
+    CUTS_DECLARE_ACTION_FACTORY (CUTS_Memory_Worker, Deallocate_Memory);
 
+  private:
     /// Size of memory operation.
     size_t kilobytes_;
   };
+  //===========================================================================
+  //@@CUTS::WML
 
   /// Constructor.
   CUTS_Memory_Worker (void);
@@ -96,9 +113,16 @@ public:
   /// Perform memory deallocation.
   virtual void deallocate (size_t kilobytes);
 
+  virtual long counter (void) const;
+
 private:
+  CUTS_ACTION_TABLE_DECLARE ();
+
   /// Type definition for the container of allocations.
-  typedef std::queue <char *> Memory_Allocations;
+  typedef std::list <char *> Memory_Allocations;
+
+  /// Locking mechanism for protecting <memory_>.
+  ACE_Thread_Mutex lock_;
 
   /// Collection of memory allocations.
   Memory_Allocations memory_;
@@ -136,5 +160,9 @@ class CUTS_Action_Traits <CUTS_Memory_Worker::Deallocate_Memory>
 public:
   static const long action_id_ = 2;
 };
+
+#if defined (__CUTS_INLINE__)
+#include "cuts/MemoryWorker.inl"
+#endif
 
 #endif  // !defined _CUTS_MEMORY_WORKER_H_

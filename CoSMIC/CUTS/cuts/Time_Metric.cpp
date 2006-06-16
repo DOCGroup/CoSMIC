@@ -6,6 +6,8 @@
 #include "cuts/Time_Metric.inl"
 #endif
 
+#include "cuts/System_Metrics_Visitor.h"
+
 //
 // CUTS_Time_Metric
 //
@@ -20,9 +22,9 @@ CUTS_Time_Metric::CUTS_Time_Metric (void)
 
 CUTS_Time_Metric::CUTS_Time_Metric (const CUTS_Time_Metric & tm)
 : count_ (tm.count_),
-  average_time_ (tm.average_time_),
   best_time_ (tm.best_time_),
-  worse_time_ (tm.worse_time_)
+  worse_time_ (tm.worse_time_),
+  average_time_ (tm.average_time_)
 {
 
 }
@@ -41,6 +43,8 @@ CUTS_Time_Metric::~CUTS_Time_Metric (void)
 const CUTS_Time_Metric &
 CUTS_Time_Metric::operator = (const CUTS_Time_Metric & tm)
 {
+  ACE_WRITE_GUARD_RETURN (ACE_RW_Thread_Mutex, guard, this->lock_, *this);
+
   this->count_ = tm.count_;
   this->average_time_ = tm.average_time_;
   this->best_time_ = tm.best_time_;
@@ -81,13 +85,12 @@ void CUTS_Time_Metric::reset (void)
 //
 // operator +
 //
-const CUTS_Time_Metric & operator + (CUTS_Time_Metric & lhs,
-                                     const CUTS_Time_Metric & rhs)
+const CUTS_Time_Metric operator + (const CUTS_Time_Metric & lhs,
+                                   const CUTS_Time_Metric & rhs)
 {
-  lhs.average_time_ += rhs.average_time_;
-  lhs.best_time_ += rhs.best_time_;
-  lhs.worse_time_ += rhs.worse_time_;
-  return lhs;
+  CUTS_Time_Metric time_metric (lhs);
+  time_metric += rhs;
+  return time_metric;
 }
 
 //
@@ -96,8 +99,18 @@ const CUTS_Time_Metric & operator + (CUTS_Time_Metric & lhs,
 const CUTS_Time_Metric &
 CUTS_Time_Metric::operator += (const CUTS_Time_Metric & rhs)
 {
+  ACE_WRITE_GUARD_RETURN (ACE_RW_Thread_Mutex, guard, this->lock_, *this);
+
   this->average_time_ += rhs.average_time_;
   this->best_time_ += rhs.best_time_;
   this->worse_time_ += rhs.worse_time_;
   return *this;
+}
+
+//
+// accept
+//
+void CUTS_Time_Metric::accept (CUTS_System_Metrics_Visitor & visitor)
+{
+  visitor.visit_time_metrics (*this);
 }

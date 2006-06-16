@@ -28,24 +28,24 @@ void XSLTransformer::executeTransform( )
 	XalanTransformer::initialize();
 	// Create a XalanTransformer.
 	XalanTransformer theXalanTransformer;
-  
-  
+
+
 	// The return form the transform method
 	int theResult = -1;
 	try
 	{
 		// Do the transform.
 		cout<<"return Code: "<<theResult<<endl;
-    
-		const char * p1 = inputFile.c_str();  
-		const char * p2 = xsltFile.c_str(); 
+
+		const char * p1 = inputFile.c_str();
+		const char * p2 = xsltFile.c_str();
 		const char * p3 = outputFile.c_str();
 		cout<<p1<<endl;
 
 		theResult = theXalanTransformer.transform( p1, p2, p3);
 		cout<<"return Code: "<<theResult<<endl;
 		if( theResult != 0 )
-			  cout<<"Error: " << theXalanTransformer.getLastError( ) << endl; 
+			  cout<<"Error: " << theXalanTransformer.getLastError( ) << endl;
 	}
 	catch(...)
 	{
@@ -56,4 +56,3 @@ void XSLTransformer::executeTransform( )
 	}
 
 }
-

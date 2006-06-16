@@ -3,9 +3,11 @@
 
 #include "cuts/config.h"
 #include "cuts/CUTS_exec_export.h"
-#include "cuts/CUTSC.h"
-#include "cuts/CCM_BenchmarkAgent.h"
+#include "cuts/Benchmark_Agent_i.h"
 #include "ComponentsC.h"
+#include "tao/RTCORBA/RTCORBA.h"
+#include "tao/RTPortableServer/RT_POA.h"
+
 #include <string>
 
 class CUTS_EXEC_Export CUTS_CCM_CoWorkEr
@@ -17,43 +19,26 @@ public:
   /// Destructor.
   virtual ~CUTS_CCM_CoWorkEr (void);
 
-  ::CUTS::CCM_Benchmark_Agent_ptr get_cuts_benchmark_agent (
-    ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
-    ACE_THROW_SPEC ((CORBA::SystemException));
-
-  /// Get the unique ID of the CoWorkEr.
-  char * cuts_coworker_id (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
-    ACE_THROW_SPEC ((CORBA::SystemException));
-
-  /// Set the unique ID of the CoWorkEr.
-  void cuts_coworker_id (
-    const char * coworker_id
-    ACE_ENV_ARG_DECL_WITH_DEFAULTS)
-    ACE_THROW_SPEC ((CORBA::SystemException));
-
-  /// Get the name of the server used by this CoWorkEr component.
-  char * cuts_coworker_database (
-    ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
-    ACE_THROW_SPEC ((CORBA::SystemException));
-
-  /// Change the name of the server used by this CoWorkEr component.
-  void cuts_coworker_database (
-    const char * name
-    ACE_ENV_ARG_DECL_WITH_DEFAULTS)
-    ACE_THROW_SPEC ((CORBA::SystemException));
-
 protected:
-  /// Generate random data for an event.
-  void generate_event_data (
-    ::CUTS::Data_Event * event, size_t lower, size_t upper);
+  void init (void);
 
-  /// The benchmark agent for the CoWorkEr.
-  ACE_Auto_Ptr <CUTS_CCM_Benchmark_Agent> benchmark_agent_;
+  void init_realtime (CORBA::ORB_ptr orb, PortableServer::POA_ptr poa);
 
-private:
-  /// Name of the server used by this CoWorkEr's database.
-  std::string server_name_;
+  static long register_i (::CUTS::Testing_Service_ptr ts,
+                          ::CUTS::Benchmark_Agent_ptr agent,
+                          const char * name);
 
+  /// Pointer to the <Benchmark_Agent_i> implementation;
+  Benchmark_Agent_i * benchmark_agent_;
+
+  /// Registration ID for the CoWorkEr.
+  long registration_id_;
+
+  RTCORBA::RTORB_var rt_orb_;
+
+  RTPortableServer::POA_var benchmark_poa_;
+
+  PortableServer::ServantBase_var servant_;
 };
 
 #if defined (__CUTS_INLINE__)

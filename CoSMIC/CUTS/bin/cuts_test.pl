@@ -1,28 +1,45 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 # $Id$
 # -*- perl -*-
+
 # import module and libraries
 use lib "$ENV{ACE_ROOT}/bin";
 use PerlACE::Run_Test;
-# parse the command line arguments
-while ($arg = shift) {
-  $arg eq "-d" and $plan = shift;
-  $arg eq "-t" and $test = shift;
-  $arg eq "--help" and print_help() and exit;
-}
-!defined($plan) and die "*** syntax error: you must specify a plan\n";
-!defined($test) and die "*** syntax error: you must specify a test\n";
-# run the executor.pl script located in $WLG_ROOT/ComponentWLG/bin
-use lib "$ENV{WLG_ROOT}/ComponentWLG/bin";
-require "wlg_executor.pl";
-sub print_help
+
+# get the CIAO_ROOT and WLG_ROOT
+$CIAO_ROOT = $ENV{'CIAO_ROOT'};
+
+$time = 60;
+
+while ($arg = shift)
 {
-  print "  SYNTAX: run_wlg_test -t <test> -d <deployment>\n\n";
-  print "  EXAMPLES:\n";
-  print "    run_wlg_test -t \"RT1A Model\" -d ThreeNodePlan\n";
-  print "    run_wlg_test -t \"RT1A Model\\example\" -d OneNodePlan\n";
-  1;
+  $arg eq "-p" and $plan = shift;
+  $arg eq "--time" and $time = shift;
+  $arg eq "--help" and print_help_2() and exit;
 }
+
+!defined($plan) and die "*** syntax error: you must specify a plan\n";
+
+# spawn the an instance of the executor
+$planner = "$CIAO_ROOT/DAnCE/Plan_Launcher/plan_launcher";
+$planner_args = "-p $plan -k file://EM.ior -o DAM.ior";
+$planner_start = new PerlACE::Process ($planner, $planner_args);
+$planner_start->SpawnWaitKill (5000);
+
+#time to run test
+sleep ($time);
+
+$planner_args = "-p $plan -k file://EM.ior -i file://DAM.ior";
+$planner_shutdown = new PerlACE::Process ($planner, $planner_args);
+$planner_shutdown->SpawnWaitKill (5000);
+
+#
+# print_help
+#
+sub print_help_2
+{
+  print "  SYNTAX: run_test.pl -p <deployment.cdp> --time <seconds>";
+  return 1;
+}
+
 1;
-
-

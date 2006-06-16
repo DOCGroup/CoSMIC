@@ -4,8 +4,15 @@
 #include "cuts/Time_Metric.h"
 #include "ace/RW_Thread_Mutex.h"
 #include "ace/Guard_T.h"
+
 #include <map>
 #include <string>
+#include <ostream>
+
+class CUTS_System_Metrics_Visitor;
+
+typedef std::map <
+  std::string, CUTS_Time_Metric *> CUTS_Endpoint_Metric_Map;
 
 //=============================================================================
 /**
@@ -37,17 +44,24 @@ public:
   /// Get the locking mechanism for external usage.
   ACE_RW_Thread_Mutex & lock (void);
 
-private:
-  typedef std::map <
-    std::string, CUTS_Time_Metric *> End_Point_Metrics;
+  const CUTS_Endpoint_Metric_Map & endpoints (void) const;
 
+  void accept (CUTS_System_Metrics_Visitor & visitor);
+
+  const ACE_Time_Value & timestamp (void) const;
+
+  void timestamp (const ACE_Time_Value & timestamp);
+
+private:
   /// Time metrics for the port.
-  End_Point_Metrics endpoints_;
+  CUTS_Endpoint_Metric_Map endpoints_;
 
   /// Locking mechanism for synchronizing thread access.
   ACE_RW_Thread_Mutex lock_;
 
   CUTS_Time_Metric transit_time_;
+
+  ACE_Time_Value timestamp_;
 };
 
 #if defined (__CUTS_INLINE__)

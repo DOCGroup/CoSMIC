@@ -1,48 +1,16 @@
 // $Id$
 
-//=============================================================================
-/*
- * CUTS_Trigger_T
- */
-//=============================================================================
-
 //
-// signal
+// probability
 //
 template <typename COMPONENT>
 CUTS_INLINE
-void CUTS_Trigger_T <COMPONENT>::signal (void) const
+void CUTS_Periodic_Trigger_T <COMPONENT>::init (Component_Type * component,
+                                                Method_Pointer method)
 {
-  this->reactor ()->notify (this, ACE_Event_Handler::TIMER_MASK);
+  this->component_ = component;
+  this->method_ = method;
 }
-
-//
-// handle_timeout
-//
-template <typename COMPONENT>
-CUTS_INLINE
-int CUTS_Trigger_T <COMPONENT>::handle_timeout (const ACE_Time_Value &current_time,
-                                                const void * act)
-{
-  (this->component_->*this->method_) ();
-  return 0;
-}
-
-//
-// is_active
-//
-template <typename COMPONENT>
-CUTS_INLINE
-bool CUTS_Trigger_T <COMPONENT>::is_active (void) const
-{
-  return this->active_;
-}
-
-//=============================================================================
-/*
- * CUTS_Periodic_Trigger_T
- */
-//=============================================================================
 
 //
 // probability
@@ -55,6 +23,16 @@ double CUTS_Periodic_Trigger_T <COMPONENT>::probability (void) const
 }
 
 //
+// probability
+//
+template <typename COMPONENT>
+CUTS_INLINE
+void CUTS_Periodic_Trigger_T <COMPONENT>::probability (double p)
+{
+  this->probability_ = p;
+}
+
+//
 // timeout
 //
 template <typename COMPONENT>
@@ -63,3 +41,32 @@ long CUTS_Periodic_Trigger_T <COMPONENT>::timeout (void) const
 {
   return this->timeout_;
 }
+
+//
+// cancel_timeout
+//
+template <typename COMPONENT>
+CUTS_INLINE
+void CUTS_Periodic_Trigger_T <COMPONENT>::cancel_timeout (void)
+{
+  if (this->timer_ != -1)
+  {
+    this->timer_queue_.cancel (this->timer_);
+    this->timer_ = -1;
+  }
+}
+
+//
+// reactivate
+//
+template <typename COMPONENT>
+CUTS_INLINE
+void CUTS_Periodic_Trigger_T <COMPONENT>::reactivate (long msec)
+{
+  ACE_Time_Value interval;
+  interval.msec (msec);
+
+  this->timer_queue_.timer_queue ()->reset_interval (this->timer_,
+                                                     interval);
+}
+

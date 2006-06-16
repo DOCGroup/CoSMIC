@@ -14,26 +14,26 @@
 
 using namespace ccm_assembly;
 
-void CComponent::InvokeEx(CBuilder &builder,CBuilderObject *focus, CBuilderObjectList &selected, long param) 
-{ 
+void CComponent::InvokeEx(CBuilder &builder,CBuilderObject *focus, CBuilderObjectList &selected, long param)
+{
   gen_file_path_ = "";
   try
   {
     // First get into the current interaction model.
-    
+
     CString kind_name = focus->GetKindName();
-    
+
     if( kind_name.Compare("Assembly_Descriptor") )
     {
       AfxMessageBox("You must start from an Assembly_Descriptor Model!", MB_OK | MB_ICONSTOP);
     }
-    
+
     else
     {
       {
         // Note: The Assembly_descriptor is only valid in the current scope.
         Assembly_Descriptor assembly_descriptor((CBuilderModel *)focus, *this);
-        
+
         // Now travers the interaction folder.
         assembly_descriptor.traverse();
       }
@@ -41,7 +41,7 @@ void CComponent::InvokeEx(CBuilder &builder,CBuilderObject *focus, CBuilderObjec
       // Here deals with the hack problem.
       if(!gen_file_path_.empty())
       {
-        XSLTransformer new_transformer( string(gen_file_path_ + ".tmp").c_str(),  
+        XSLTransformer new_transformer( string(gen_file_path_ + ".tmp").c_str(),
                                         string(xslt_path_ + "\\UDM_CAD_TO_CCM.xsl").c_str(),
                                         gen_file_path_.c_str());
         new_transformer.executeTransform( );
@@ -57,14 +57,14 @@ void CComponent::InvokeEx(CBuilder &builder,CBuilderObject *focus, CBuilderObjec
 
 
 
-/** 
+/**
   * Now starts to generate the assembly descriptor.
   *
   * @Note: Here we only have to look into the interaction folder in the model. Because the assembly
-  *        descriptior is almost only related to the interaction foler. I will have all model related 
+  *        descriptior is almost only related to the interaction foler. I will have all model related
   *        constraints(like a facet-receptacle connection implies the same underlying interface etc.)
-  *        enforced in GME constriant manager. Thus in the interpreter we only traverse the model and 
-  *        generate the desctiptor file. 
+  *        enforced in GME constriant manager. Thus in the interpreter we only traverse the model and
+  *        generate the desctiptor file.
   */
 
 // Destructor which is reponsible of close all the datanetworks.
@@ -83,7 +83,7 @@ void Assembly_Descriptor::traverse (void)
 {
   // First ask the user to input the dtd file
   // test for the file dialog
-  
+
   string dialog_description = "Please specify the path/name of the XSLT folder.";
   string xslt_path, file_path;
 
@@ -93,14 +93,14 @@ void Assembly_Descriptor::traverse (void)
 
   // store the path for later's hack method(xslt transform)
   component_.set_xslt_path(xslt_path);
-  
+
   // Val will be used to store temp CStrings.
   CString val;
 
   // Start a new datanetwork.
   UdmDom::DomDataNetwork * new_datanetwork = new UdmDom::DomDataNetwork(ccm_assembly::diagram);
 
-  // The default name of the generated XML descriptor file is same as the name of 
+  // The default name of the generated XML descriptor file is same as the name of
   //the model with an extension of "cad".
   string descriptor_name = string(assembly_model_->GetName());
 
@@ -108,7 +108,7 @@ void Assembly_Descriptor::traverse (void)
   dialog_description = "Please specify the path where the generated file should be.";
   if(!get_path(dialog_description, file_path))
     return;
-  
+
   // Create the new dataNetwork.
   string file_end = file_path + "\\" + descriptor_name + ".cad";
   string dtd_end = xslt_path + "\\ccm_assembly.dtd";
@@ -116,11 +116,11 @@ void Assembly_Descriptor::traverse (void)
   // store the path for later's hack method(xslt transform)
   component_.set_file_path(file_end);
 
-  new_datanetwork->CreateNew(file_end + ".tmp", 
-                             dtd_end, 
+  new_datanetwork->CreateNew(file_end + ".tmp",
+                             dtd_end,
                              ccm_assembly::componentassembly::meta,
                              Udm::CHANGES_PERSIST_ALWAYS);
-    
+
   // Insert the new datanetwork into the map
   data_network_map_.insert(DataNetwrok_Map::value_type(descriptor_name, new_datanetwork));
 
@@ -129,8 +129,8 @@ void Assembly_Descriptor::traverse (void)
   // Get the root object in the CCM dtd.
   componentassembly new_descriptor = componentassembly::Cast(new_datanetwork->GetRootObject());
   new_descriptor.id() = string(assembly_model_->GetName()).c_str();
-  
-  // 2. look at the description of the descriptor. 
+
+  // 2. look at the description of the descriptor.
   // If not NULL then insert it into the xml file
   assembly_model_->GetAttribute("Assembly_Description", val);
   if(! val.IsEmpty())
@@ -147,7 +147,7 @@ void Assembly_Descriptor::traverse (void)
 
   // Now pass the work to make_connections
   make_connections(assembly_model_, new_descriptor);
- 
+
 }
 
 
@@ -155,7 +155,7 @@ void Assembly_Descriptor::traverse (void)
 // Note: This method is for the "componentfile" part.
 // It also include the ID and description part of the compoentassembly.
 void Assembly_Descriptor::make_componentfiles(CBuilderModel * model, ccm_assembly::componentassembly& new_descriptor)
-{ 
+{
   CString val;
 
   /**
@@ -166,14 +166,14 @@ void Assembly_Descriptor::make_componentfiles(CBuilderModel * model, ccm_assembl
 
   const CBuilderModelList* component_model_list = model->GetModels("Component_Type");
   POSITION component_pos = component_model_list->GetHeadPosition();
-  
+
   // For every component create the compoentfile tag
   while(component_pos)
   {
     CBuilderModel * component_ptr = component_model_list->GetNext(component_pos);
-    
+
     componentfile new_componentfile = componentfile::Create(new_compoentfiles);
-    
+
     // The id of the compnent file is "com-" + the component name.
     new_componentfile.id() = (string("com-")+string(component_ptr->GetName())).c_str();
 
@@ -200,7 +200,7 @@ void Assembly_Descriptor::make_componentfiles(CBuilderModel * model, ccm_assembl
 void Assembly_Descriptor::make_partitioning(CBuilderModel * model, ccm_assembly::componentassembly& new_descriptor)
 {
   partitioning new_partitioning = partitioning::Create(new_descriptor);
- 
+
   // 1. find all host_location on the partitioning level
   const CBuilderModelList * hostcollocation_list = model->GetModels("Host_Location");
   POSITION hostcollocation_pos = hostcollocation_list->GetHeadPosition();
@@ -209,7 +209,7 @@ void Assembly_Descriptor::make_partitioning(CBuilderModel * model, ccm_assembly:
   {
     CBuilderModel * hostcollocation_ptr = hostcollocation_list->GetNext(hostcollocation_pos);
     hostcollocation new_hostcollocation = hostcollocation::Create(new_partitioning);
-    new_hostcollocation.id() = string(hostcollocation_ptr->GetName()).c_str();   
+    new_hostcollocation.id() = string(hostcollocation_ptr->GetName()).c_str();
     make_destination(hostcollocation_ptr, new_hostcollocation);
 
     //Now scan all possible process collocation insdie the current hostcollocation.
@@ -221,7 +221,7 @@ void Assembly_Descriptor::make_partitioning(CBuilderModel * model, ccm_assembly:
 
       make_processcollocation(processcollocation_ptr, new_hostcollocation);
     }
-    
+
     // Here should deal with the case when a component is associate with a host_location directly.
     CBuilderObjectList component_list_con;
     hostcollocation_ptr->GetOutConnectedObjects("Host_Location_Association", component_list_con);
@@ -247,12 +247,12 @@ void Assembly_Descriptor::make_partitioning(CBuilderModel * model, ccm_assembly:
     make_processcollocation(processcollocation_ptr_e, new_partitioning);
   }
 
-  // 3. find all homeplacement on the partitioning level(when a component is not associated 
+  // 3. find all homeplacement on the partitioning level(when a component is not associated
   // with any host_location or process_location).
   Component_Info_Map::const_iterator map_iter = component_info_map_.begin();
   while(map_iter != component_info_map_.end())
   {
-    if((*map_iter).second.placed_ == false) 
+    if((*map_iter).second.placed_ == false)
       make_homeplacement((*map_iter).second.component_, new_partitioning);
     map_iter++;
   }
@@ -292,7 +292,7 @@ void Assembly_Descriptor::make_homeplacement(CBuilderObject * curr_object, ccm_a
   //componentinstantiation
   componentinstantiation new_componentinstantiation = componentinstantiation::Create(new_homeplacement);
   new_componentinstantiation.id() = (string("a_") + string(curr_object->GetName())).c_str();
-  {	
+  {
 	//Now deal with registration issue.
 	registercompoent(curr_object, new_componentinstantiation);
   }
@@ -308,13 +308,13 @@ void Assembly_Descriptor::make_destination(CBuilderObject * curr_object, ccm_ass
   CString val;
   curr_object->GetAttribute("Destination",val);
   if(val.IsEmpty()) return;
-  
+
   destination new_destination= destination::Create(parent_obj);
   new_destination.content() = string(val).c_str();
 }
 
 //Method that deals with Componentregistration tags in the dtd.
-/** 
+/**
  *Here deal with register component
  *1. Detect if there are any register point in the model
  *2. for every point detect if the connection is the kind of writetoior
@@ -335,7 +335,7 @@ void Assembly_Descriptor::registercompoent(CBuilderObject * curr_object, ccm_ass
       //Now look at the connection to see if it's of type "writetoior".
       CString val;
       registration_con_ptr->GetAttribute("Registration_Method", val);
-      
+
       if(!val.Compare("writetoior"))
       {
         // This line should be outside of current scope. Its here for the reason that
@@ -348,7 +348,7 @@ void Assembly_Descriptor::registercompoent(CBuilderObject * curr_object, ccm_ass
         writeiortofile new_writeiortofile = writeiortofile::Create(new_registercomponent);
         new_writeiortofile.name() = string(val).c_str();
       }
-      
+
       else { /*Deals with naming/trading service */}
 
     }
@@ -375,12 +375,12 @@ void Assembly_Descriptor::make_connections(CBuilderModel * model,  ccm_assembly:
   {
     CBuilderConnection * event_con_ptr = event_con_list->GetNext(event_con_pos);
     connectevent new_connectevent = connectevent::Create(new_connections);
-    
+
     // Get the destination of the connection.
     {
       CBuilderObject * event_sink_ptr = event_con_ptr->GetDestination();
       consumesport new_consumesport = consumesport::Create(new_connectevent);
-      
+
       // Construct the consumesidentifier
       consumesidentifier new_consumesidentifier = consumesidentifier::Create(new_consumesport);
       ////new_consumesidentifier.content() = get_event_ref_name(event_sink_ptr).c_str();
@@ -393,19 +393,19 @@ void Assembly_Descriptor::make_connections(CBuilderModel * model,  ccm_assembly:
     // Get the source of the connection.
     {
       CBuilderObject * event_source_ptr = event_con_ptr->GetSource();
-      
+
       // For event source need to differenciate between publisher and emitter.
       CString val;
       event_source_ptr->GetAttribute("Event_Source_Type", val);
       if(!val.Compare("Publisher"))
       {
         publishesport new_publishesport = publishesport::Create(new_connectevent);
-        
+
         // Construct the publishesidentifier
         publishesidentifier new_publishesidentifier = publishesidentifier::Create(new_publishesport);
         ////new_publishesidentifier.content() = get_event_ref_name(event_source_ptr).c_str();
         new_publishesidentifier.content() = string(event_source_ptr->GetName());
-        
+
         // Construct the componentinstantiationref
         make_componentinstantiationref(event_source_ptr, new_publishesport);
       }
@@ -424,7 +424,7 @@ void Assembly_Descriptor::make_connections(CBuilderModel * model,  ccm_assembly:
       }
     }
   }
-  
+
 
   // 2. For all interface connections.
   const CBuilderConnectionList * interface_con_list = model->GetConnections("Facet_Receptacle_Connection");
@@ -433,12 +433,12 @@ void Assembly_Descriptor::make_connections(CBuilderModel * model,  ccm_assembly:
   {
     CBuilderConnection * interface_con_ptr = interface_con_list->GetNext(interface_con_pos);
     connectinterface new_connectinterface = connectinterface::Create(new_connections);
-    
+
     // Get the destination of the connection.
     {
       CBuilderObject * facet_ptr = interface_con_ptr->GetDestination();
       providesport new_providesport = providesport::Create(new_connectinterface);
-      
+
       // Construct the providesideidentifier
       providesidentifier new_providesidentifier = providesidentifier::Create(new_providesport);
       new_providesidentifier.content() = string(facet_ptr->GetName()).c_str();
@@ -451,7 +451,7 @@ void Assembly_Descriptor::make_connections(CBuilderModel * model,  ccm_assembly:
     {
       CBuilderObject * receptacle_ptr = interface_con_ptr->GetSource();
       usesport new_usesport = usesport::Create(new_connectinterface);
-      
+
       // Construct the usesidendifier
       usesidentifier new_usesidentifier = usesidentifier::Create(new_usesport);
       new_usesidentifier.content() = string(receptacle_ptr->GetName()).c_str();
@@ -472,11 +472,11 @@ void Assembly_Descriptor::make_componentinstantiationref(CBuilderObject * curr_o
 {
   componentinstantiationref new_componentinstantiationref = componentinstantiationref::Create(parent_obj);
   const CBuilderModel* component_ptr = curr_obj_ptr->GetParent();
-  new_componentinstantiationref.idref() = 
+  new_componentinstantiationref.idref() =
     (string("a_") + string(component_ptr->GetName())).c_str();
 }
 
-// @Method: for event port to find out the associated event type, get the 
+// @Method: for event port to find out the associated event type, get the
 // the name of the associated the refence of the event type(could be different from the name of the event type)
 string Assembly_Descriptor::get_event_ref_name(CBuilderObject * event_port)
 {
@@ -502,7 +502,7 @@ void convert_string(string& file_name)
   static const basic_string <char>::size_type npos = -1;
   size_t index = 0;
 
-  while(!done) 
+  while(!done)
   {
     index = file_name.find("\\", index);
     if(index == npos) done = true;
@@ -518,10 +518,10 @@ bool Assembly_Descriptor::get_path (const string& description, string& path)
 {
   // Initalize the com library
   WINOLEAPI com_lib_return = OleInitialize(NULL);
-  
+
 
   // Dialog instruction
-  char display_buffer[MAX_PATH]; 
+  char display_buffer[MAX_PATH];
   BROWSEINFO folder_browsinfo;
   memset ( &folder_browsinfo, 0, sizeof (folder_browsinfo));
 
@@ -541,24 +541,24 @@ bool Assembly_Descriptor::get_path (const string& description, string& path)
   folder_browsinfo.lpfn = NULL;
   // No parameter passing into the dialog
 	folder_browsinfo.lParam = 0;
-	   
+
 
   LPITEMIDLIST folder_pidl;
-  folder_pidl = SHBrowseForFolder(&folder_browsinfo); 
+  folder_pidl = SHBrowseForFolder(&folder_browsinfo);
 
   if(folder_pidl == NULL)
     return false;
   else
   {
 		  TCHAR FolderNameBuffer[MAX_PATH];
-		   
+
 		  // Convert the selection into a path
-		  if (SHGetPathFromIDList (folder_pidl, FolderNameBuffer)) 
+		  if (SHGetPathFromIDList (folder_pidl, FolderNameBuffer))
 		  {
 			  path = FolderNameBuffer;
         //AfxMessageBox(path.c_str());
 		  }
-		   
+
 		  // Free the ItemIDList object returned from the call to
 		  // SHBrowseForFolder using Gawp utility function
     IMalloc * imalloc = 0;

@@ -99,6 +99,7 @@ END
 // remains consistent on all systems.
 IDI_COMPICON            ICON    DISCARDABLE     "compicon.ico"
 
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table

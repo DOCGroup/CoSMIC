@@ -2,7 +2,7 @@
 // $Id$
 
 #include "Time.h"
-#include <ace/OS_NS_Time.h>
+#include <ace/OS_NS_time.h>
 
 //
 // CUTS_string_time

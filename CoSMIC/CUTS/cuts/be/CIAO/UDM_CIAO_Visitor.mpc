@@ -1,0 +1,36 @@
+// $Id: UDM_CIAO_Visitor.mpc,v 1.1.2.1.2.8 2006/06/08 04:10:04 kitty Exp $
+
+project (CUTS_UDM_CIAO) : cutslib, picml_udm {
+  sharedname    += CUTS_UDM_CIAO
+  dynamicflags  += CUTS_UDM_CIAO_BUILD_DLL
+
+  includes += $(CIAO_ROOT)/CCF $(ACE_ROOT)/contrib/utility
+  includes -= $(ACE_ROOT)
+
+  libpaths += $(CIAO_ROOT)/CCF/CCF
+  libpaths -= $(ACE_ROOT)/lib
+
+  after += CodeGenerationKit PICML
+  after -= CUTS ACE
+
+  libs += CodeGenerationKits
+  libs -= CUTS ACE
+
+  Header_Files {
+    File_Config.h
+    UDM_CIAO_Export.h
+  }
+
+  Source_Files {
+    CoWorkEr_Cache.cpp
+    Dependency_Generator.cpp
+    Dependency_Graph.cpp
+    Predefined_Type_Map.cpp
+    UDM_CIAO_Visitor.cpp
+    Workspace_Generator.cpp
+  }
+
+  Template_Files {
+    UDM_Utility_T.cpp
+  }
+}

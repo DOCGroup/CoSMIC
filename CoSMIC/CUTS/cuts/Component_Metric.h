@@ -4,12 +4,23 @@
 #define _CUTS_COMPONENT_METRIC_H_
 
 #include "cuts/config.h"
+#include "ace/Time_Value.h"
 #include "ace/RW_Thread_Mutex.h"
+
 #include <map>
 #include <string>
+#include <ostream>
 
 // forward declarations
 class CUTS_Port_Metric;
+class CUTS_System_Metrics_Visitor;
+
+typedef std::map <
+  long, CUTS_Port_Metric *> CUTS_Sender_Port_Map;
+
+typedef std::map <
+  std::string, CUTS_Sender_Port_Map> CUTS_Port_Metric_Map;
+
 
 //=============================================================================
 /**
@@ -27,26 +38,37 @@ public:
   ~CUTS_Component_Metric (void);
 
   /// Insert a new port into the component metrics.
-  CUTS_Port_Metric * insert_port (const char * port);
+  CUTS_Port_Metric * insert_port (const char * port, long sender = -1);
 
   /// Remove a new port into the component metrics.
-  void remove_port (const char * port);
+  void remove_port (const char * port, long sender = -1);
 
   /// Get the metrics of the specified port.
-  CUTS_Port_Metric * port_metrics (const char * port);
+  CUTS_Port_Metric * port_metrics (const char * port, long sender = -1);
+
+  void dump (std::ostream & out);
+
+  ACE_RW_Thread_Mutex & lock (void);
+
+  const CUTS_Port_Metric_Map & port_metrics (void) const;
+
+  void accept (CUTS_System_Metrics_Visitor & visitor);
+
+  const ACE_Time_Value & timestamp (void) const;
+
+  void timestamp (const ACE_Time_Value & timestamp);
 
 private:
-  /// Type definition for the mapping of names to ports.
-  typedef std::map <std::string, CUTS_Port_Metric *> Port_Metric_Map;
-
   /// Mapping of name to port metrics.
-  Port_Metric_Map port_metrics_;
+  CUTS_Port_Metric_Map port_metrics_;
 
   /// Locking mechanism for thread sychronization.
   ACE_RW_Thread_Mutex lock_;
+
+  ACE_Time_Value timestamp_;
 };
 
-#if defined (__CUTS_INLINE__)
+#if defined (__CUTS_INpLINE__)
 #include "cuts/Component_Metric.inl"
 #endif
 

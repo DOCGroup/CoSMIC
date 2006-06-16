@@ -1,0 +1,23 @@
+/* -*- IDL -*- */
+
+//=============================================================================
+/**
+ * @file    UUID.idl
+ *
+ * @author  James H. Hill
+ */
+//=============================================================================
+
+#ifndef _CUTS_UUID_IDL_
+#define _CUTS_UUID_IDL_
+
+module CUTS
+{
+  /// UUID in string format, e.g., XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+  typedef string <36> UUID_String;
+
+  /// UUID in binary (packed) format, e.g., 128-bit representation.
+  typedef octet UUID_Binary [16];
+};
+
+#endif  // !defined _CUTS_UUID_IDL_

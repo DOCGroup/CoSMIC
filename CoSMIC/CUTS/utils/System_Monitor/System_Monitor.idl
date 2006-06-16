@@ -1,0 +1,35 @@
+//=============================================================================
+/**
+ * @file    System_Monitor.idl
+ *
+ * $Id: System_Monitor.idl,v 1.1.4.1 2006/03/12 01:48:06 hillj Exp $
+ *
+ * @author  James H. Hill
+ */
+//=============================================================================
+
+#ifndef _SYSTEM_MONITOR_IDL_
+#define _SYSTEM_MONITOR_IDL_
+
+#include "cuts/CUTS.idl"
+#include <Components.idl>
+
+module CUTS
+{
+  component System_Monitor
+  {
+    uses Path_Measurement system_measurements;
+
+    uses BDC_Control_Handle control_handle;
+
+    attribute long timeout;
+  };
+
+  home System_Monitor_Home
+    manages System_Monitor
+  {
+
+  };
+};
+
+#endif  // !defined _SYSTEM_MONITOR_IDL_

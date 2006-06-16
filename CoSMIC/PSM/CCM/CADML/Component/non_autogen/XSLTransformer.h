@@ -18,13 +18,13 @@ class XSLTransformer
 public:
   XSLTransformer( const string& input,
                   const string& xslt,
-                  const string& output ) 
+                  const string& output )
       : inputFile(input),
         xsltFile(xslt),
         outputFile(output)   {	}
 
 	~XSLTransformer( );
-  
+
   void executeTransform( );
 private:
   string inputFile;

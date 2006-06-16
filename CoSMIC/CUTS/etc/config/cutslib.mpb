@@ -1,0 +1,10 @@
+// $Id: cutslib.mpb,v 1.1.4.2.2.1 2006/05/19 17:32:05 hillj Exp $
+
+project : acelib, cuts_base {
+  specific (vc6, vc7, vc71, vc8, nmake) {
+    dllout = $(COSMIC_ROOT)/bin
+    libout = $(COSMIC_ROOT)/lib
+  } else {
+    dllout = $(COSMIC_ROOT)/lib
+  }
+}

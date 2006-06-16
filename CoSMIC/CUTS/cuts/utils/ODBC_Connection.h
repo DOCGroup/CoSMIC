@@ -15,11 +15,10 @@
 #ifndef _ODBC_CONNECTION_H_
 #define _ODBC_CONNECTION_H_
 
-#include <cuts/utils/ODBC.h>
+#include "ODBC_Exception.h"
 
 // STL headers
 #include <string>
-using namespace std;
 
 // forward declarations
 class ODBC_Stmt;
@@ -37,80 +36,113 @@ class ODBC_Stmt;
  */
 //=============================================================================
 
-class CUTS_Export ODBC_Connection
-	:	public ODBC_Base
+class CUTS_Export ODBC_Connection :
+  public ODBC_Base
 {
-public: 
-	/// default constructor
-	ODBC_Connection (void);
+public:
+  /// Constructor
+  ODBC_Connection (void);
 
-	/// destructor
-	virtual ~ODBC_Connection (void);
+  /// Destructor
+  virtual ~ODBC_Connection (void);
 
-	ODBC_Stmt * create_statement (void) const;
+  /**
+   * Create an ODBC statement associated with this connection.
+   * The statement is valid as long as the connection is valid.
+   * Using a statement for an invalid connection can cause
+   * unpredictable side-effects.
+   *
+   * @return  Pointer to the ODBC statement.
+   *
+   * @todo
+   * Determine how to handle invalid using statements that have
+   * an invalid connection handle. This may result in the connection
+   * class tracking all statements created.
+   */
+  ODBC_Stmt * create_statement (void) const;
 
-	/**
-	 * Establish an new ODBC connection. The information for
-	 * the establishing the connection is specified in the 
-	 * parameter from the client.
-	 *
-	 * @param[in]			svSource			source connection string
-	 * @retval				true					successfully established connection
-	 * @retval				false					failed to establish a connection
-	 */
-	virtual bool connect (const char * username,
-	                      const char * password,
-												const char * host,
-												int port) = 0;
+  /**
+   * Establish an new ODBC connection. The information for
+   * the establishing the connection is specified in the
+   * parameter from the client.
+   *
+   * @param[in]     username      username for the connection
+   * @param[in]     password      password for the @a username
+   * @param[in]     host          location of the database
+   * @param[in]     port          port of connection
+   * @retval        true          successfully established connection
+   * @retval        false         failed to establish a connection
+   */
+  virtual void connect (const char * username,
+                        const char * password,
+                        const char * host,
+                        int port) = 0;
 
-	/// close the existing connection
-	void disconnect (void);
+  /// Close the existing connection
+  void disconnect (void);
 
-	/**
-	 * Determine if a connnection exist.
-	 *
-	 * @retval			true			there is a connection
-	 * @retval			false			there is not a connection
-	 */
-	bool is_connected (void) const;
-
-	/// get the last error message for the connection
-	const char * get_error_message (void) const;
+  /**
+   * Determine if a connnection exist.
+   *
+   * @retval      true      there is a connection
+   * @retval      false     there is not a connection
+   */
+  bool is_connected (void) const;
 
 protected:
-	/// helper method to establish a connection
-	bool connect (const string & connstr);
+  /// Helper method to establish a connection
+  bool connect (const std::string & connstr);
 
-private:
-	/// handle to the database connection
-	HDBC conn_;
+  /// Handle to the database connection
+  HDBC conn_;
 
-	/// handle to the environment
-	HENV env_;
+  /// Handle to the environment
+  HENV env_;
 
   /// Flag holding the connection state.
   bool connected_;
 };
 
 /**
+ * @brief MyOBDC connection object class.
  *
+ * This is a specialized version of the ODBC_Connection class
+ * from which it inherits. It provides the same functionality
+ * as the ODBC_Connection class, but if formats the connection
+ * string for use with MyODBC.
  */
-class CUTS_Export MyODBC_Connection 
-	: public ODBC_Connection
+class CUTS_Export MyODBC_Connection :
+  public ODBC_Connection
 {
 public:
-	MyODBC_Connection (void);
+  /// Constructor.
+  MyODBC_Connection (void);
 
-	virtual ~MyODBC_Connection (void);
+  /// Destructor.
+  virtual ~MyODBC_Connection (void);
 
-	bool connect (const char * username,
-		            const char * password,
-								const char * server,
-								int port);
+  /**
+   * Connect to the specified @a server using the specified
+   * @a username and @a password. This connect method is
+   * taylored for establishing MyODBC connections.
+   *
+   * @param[in]     username      username for the connection
+   * @param[in]     password      password for the @a username
+   * @param[in]     host          location of the database
+   * @param[in]     port          port of connection
+   *
+   * @exception     ODBC_Connection_Exception
+   * Failed to create the connection to the database.
+   */
+  virtual void connect (const char * username,
+                        const char * password,
+                        const char * server,
+                        int port)
+    throw (ODBC_Connection_Exception);
 };
 
-#if	defined (__CUTS_INLINE__)
-#include <cuts/utils/ODBC_Connection.inl>
-#endif	// defined __CUTS_INLINE__
+#if defined (__CUTS_INLINE__)
+#include "cuts/utils/ODBC_Connection.inl"
+#endif
 
-#endif	// !defined _ODBC_CONNECTION_H_
+#endif  // !defined _ODBC_CONNECTION_H_

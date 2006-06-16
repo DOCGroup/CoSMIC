@@ -13,10 +13,10 @@
 
 /*
  *  class OCML_Application
- *  
+ *
  *  Provides the methods which processes the model and produces output
  */
-class OCML_Application  
+class OCML_Application
 {
 public:
 	OCML_Application(BON::Folder& root);

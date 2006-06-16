@@ -1,0 +1,47 @@
+// $Id: CUTS_Worker.mpc,v 1.1.4.5.2.2 2006/06/02 05:13:45 hillj Exp $
+
+project (CUTS_Database_Worker) : cutslib, odbc {
+  sharedname += CUTS_Database_Worker
+
+  dynamicflags += CUTS_BUILD_DLL
+
+  libs += CUTS_Utils_DBase
+
+  after += CUTS_Utils_DBase
+
+  Source_Files {
+    DatabaseWorker.cpp
+  }
+
+  Template_Files {
+
+  }
+}
+
+project (CUTS_Memory_Worker) : cutslib {
+  sharedname += CUTS_Memory_Worker
+
+  dynamicflags += CUTS_BUILD_DLL
+
+  Source_Files {
+    MemoryWorker.cpp
+  }
+
+  Template_Files {
+
+  }
+}
+
+project (CUTS_CPU_Worker) : cutslib {
+  sharedname += CUTS_CPU_Worker
+
+  dynamicflags += CUTS_BUILD_DLL
+
+  Source_Files {
+    CPUWorker.cpp
+  }
+
+  Template_Files {
+
+  }
+}

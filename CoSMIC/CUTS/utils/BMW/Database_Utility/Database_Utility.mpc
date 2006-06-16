@@ -1,0 +1,30 @@
+// $Id: Database_Utility.mpc,v 1.1.2.1 2006/06/08 23:55:47 hillj Exp $
+
+project (CUTS_Database_Utility) {
+  sharedname = CUTS_Database_Utility
+
+  dllout     = ../bin
+
+  lit_libs   = System \
+               System.Data \
+               System.Xml \
+               MySql.Data
+
+  requires  += mysql
+
+  specific {
+    output_dir =
+  }
+
+  Source_Files {
+    Database_Utility.cs
+  }
+
+  ASPX_Files {
+
+  }
+
+  Config_Files {
+
+  }
+}

@@ -1136,6 +1136,10 @@ namespace IDML
     std::ofstream tmp (filename.c_str ());
     IDLStream dbg (tmp);
 #endif
+
+    typedef std::pair<Orderable, Orderable> SwappedPair;
+    typedef std::set<SwappedPair> SwappedSet;
+    SwappedSet swapped;
                                                 
     while (changed)
       {
@@ -1168,9 +1172,9 @@ namespace IDML
             for (std::set<Orderable>::iterator r = refs.begin ();
                  r != refs.end ();
                  r++)
-            {
-              dbg << (*r)->getName () << nl;
-            }
+              {
+                dbg << (*r)->getName () << nl;
+              }
 
             dbg << nl;
 #endif
@@ -1181,14 +1185,14 @@ namespace IDML
                  ri != refs.end ();
                  ri++)
               {
-                // and see if the item in depends_on_me is also
+               // and see if the item in depends_on_me is also
                 // in ordered_children. If no match is found,
                 // tmp will be ordered_children.end().
                 std::vector<Orderable>::iterator tmp =
                   std::find (object->ordered_children.begin (),
                              object->ordered_children.end (),
                              (*ri));
-                  
+                             
                 // If the expression is true, it means we have a
                 // match, and also that the depending element comes
                 // earlier in the list than its dependent, so we
@@ -1204,9 +1208,38 @@ namespace IDML
                         << " and " << (*i)->getName () << nl;
 #endif
  
-                    std::swap ((*tmp), (*i));
-                    changed = true;
-                    break;
+                    SwappedPair swap_pair ((*tmp), (*i));
+                    SwappedSet::iterator swap_tmp =
+                      std::find (swapped.begin (),
+                                 swapped.end (),
+                                 swap_pair);
+                        
+                    // If this pair hasn't already been swapped,
+                    // swap now. Otherwise, generate a forward
+                    // decl for the recursive struct or union,
+                    // and move on to the next member.             
+                    if (swap_tmp == swapped.end ())
+                      {
+                        std::swap ((*tmp), (*i));
+                        changed = true;
+                        swapped.insert (swap_pair);
+                        break;
+                      }
+                    else
+                      {
+                        // This handles the simple case of
+                        // A->seq<A> where A and seq<A> are
+                        // in the same scope. Other cases
+                        // not handled yet.
+                        if (Collection (*tmp))
+                          {
+                            this->emitFwdDeclNested (*i, 0);
+                          }
+                        else
+                          {
+                            this->emitFwdDeclNested (*tmp, 0);
+                          }
+                      }
                   }
               }
               
@@ -1369,12 +1402,19 @@ namespace IDML
   void IDLEmitVisitor::emitFwdDeclNested ( const Orderable& object,
                                            int level )
   {
+    // Forward decls for recursive structs and unions are generated
+    // a different way than for interface/valuetypes. This check
+    // keeps them from being generated more than once each.
+    if (object->fwd_declared_) return;
+    
     if (level == 0)
       {
         Object odf (object);
         Component cdf (object);
         ValueObject vdf (object);
         Event edf (object);
+        Aggregate adf (object);
+        SwitchedAggregate sdf (object);
         
         ofs << nl;
         
@@ -1395,12 +1435,23 @@ namespace IDML
           {
             ofs << (edf->isabstract () ? "abstract " : "") << "eventtype ";
           }
+        else if (adf)
+          {
+            ofs << "struct ";
+          }
+        else if (sdf)
+          {
+            ofs << "union ";
+          }
         else
           {
             ofs << "Error: Bad forward declare type\n";
           }
         
         ofs << object->getName () << ";";
+        
+        // Set the flag so this won't get generated again.
+        object->fwd_declared_ = true;
       }
     else
       {
@@ -1523,12 +1574,9 @@ namespace IDML
   {
     std::set<Discriminator> disc = s->getDiscriminator ();
     std::set<Discriminator>::iterator di = disc.begin ();
-    std::string label_prefix = this->label_scope_prefix (*di);
     Byte is_char_disc = (*di)->getReferred ();
           
     std::set<Member> members = s->getMember ();
-    BON::Model s_dad = s->getParentModel ();
-    BON::Model m_dad;
     MemberType mt;
 
     for (std::set<Member>::const_iterator i = members.begin ();
@@ -1546,8 +1594,7 @@ namespace IDML
                  
             if (tmp != "default")
               {
-                ofs << "case " << label_prefix
-                    << (label_prefix != "" ? "::" : "");
+                ofs << "case ::";
               }
             
             // If is_char_disc is true, label_prefix will be empty.
@@ -1559,15 +1606,8 @@ namespace IDML
           
         mt = (*i)->getMemberType ();
           
-        ofs << " ";
-        
-        if (!this->emitPredefinedSequence (mt))
-          {
-            m_dad = mt->getParentModel ();
-            ofs << (m_dad == s_dad ? mt->getName () : this->scoped_name (mt));
-          }
-          
-        ofs << " " << (*i)->getName () << ";";
+        ofs << " " << this->scoped_name (mt)
+            << " " << (*i)->getName () << ";";
       }
   }
   

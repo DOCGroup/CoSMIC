@@ -1,6 +1,6 @@
 #include "StdAfx.h"
 #include <string>
-#include <math.h> 
+#include <math.h>
 
 #ifndef SCHEMADEFINES__H__
 #define SCHEMADEFINES__H__

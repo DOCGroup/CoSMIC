@@ -91,20 +91,20 @@ public:
   virtual int visit_root (AST_Root *node);
   virtual int visit_native (AST_Native *node);
   virtual int visit_valuebox (AST_ValueBox *node);
-  
+
 private:
   typedef ACE_Unbounded_Queue_Iterator<AST_Component::port_description>
     PORT_ITER;
-    
+
   typedef void (BE_GlobalData::*folder_setter) (DOMElement *);
-  
+
 private:
   ACE_CString set_id_attr (DOMElement *elem, BE_GlobalData::kind_id kind);
   void set_relid_attr (DOMElement *elem);
   void set_childrelidcntr_attr (DOMElement *elem,
                                 UTL_Scope *s,
                                 AST_Attribute *a = 0);
-                                
+
   void add_name_element (DOMElement *elem, const char *name);
   void add_predefined_types (void);
   void add_predefined_sequences (DOMElement *parent, AST_Root *node);
@@ -172,20 +172,20 @@ private:
   void add_lookup_key (DOMElement *parent, AST_Home *node);
   void add_home_factories (DOMElement *parent, AST_Home *node);
   void add_finders (DOMElement *parent, AST_Home *node);
-  
+
   ACE_TCHAR *timestamp (ACE_TCHAR date_and_time[], int length);
   unsigned long nmembers_gme (UTL_Scope *s, AST_Attribute *a = 0);
-  XMLCh *lookup_constant_type (AST_Constant *c);
+  const XMLCh *lookup_constant_type (AST_Constant *c);
   ACE_CString print_scoped_name (UTL_IdList *sn);
   ACE_CString expr_val_to_string (AST_Expression::AST_ExprValue *ev);
   unsigned long user_includes (void);
   void set_n_basic_seqs (void);
   void set_one_basic_seq (const char *base_type);
   bool can_skip_import (UTL_Scope *node, DOMElement *parent);
-  
+
   void add_picml_boilerplate (void);
   void add_folder (const char *kind, folder_setter pmf = 0);
-  
+
   void add_default_container (AST_Component *node);
   DOMElement *add_implementation_artifacts (AST_Component *node);
   DOMElement *add_one_impl_artifact (DOMElement *container,
@@ -194,7 +194,7 @@ private:
   void add_entrypoint (DOMElement *container,
                        DOMElement *artifact,
                        AST_Component *node,
-                       unsigned long index);                      
+                       unsigned long index);
   void add_artifact_depends (DOMElement *container,
                              DOMElement *src,
                              DOMElement *dst,
@@ -226,7 +226,7 @@ private:
                            DOMElement *impl,
                            const char *gme_id,
                            AST_Component *node);
-                           
+
    void insert_element (DOMElement *elem);
 
 private:

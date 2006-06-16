@@ -94,6 +94,8 @@ public:
   std::set<Orderable> depends_on_me;
   std::set<std::pair<Orderable, int> > fwd_decl_children;
   std::vector<Orderable> ordered_children;
+  
+  bool fwd_declared_;
 };
 
 //*******************************************************************

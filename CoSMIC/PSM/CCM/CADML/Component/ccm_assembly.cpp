@@ -252,7 +252,7 @@ namespace ccm_assembly {
 		consumesidentifier::meta.isAbstract() = false;
 		usesport::meta.name() = "usesport";
 		usesport::meta.isAbstract() = false;
-		
+
 		destination::meta_content.name() = "content";
 		destination::meta_content.type() = "String";
 		destination::meta_content.min() = 1;
@@ -421,11 +421,11 @@ namespace ccm_assembly {
 		consumesidentifier::meta_content.ordered() = false;
 		consumesidentifier::meta_content.visibility() = "public";
 		consumesidentifier::meta_content.defvalue() = vector<string>();
-		
+
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			location::meta_hostcollocation_parent = Uml::CompositionParentRole::Create(comp);
 			location::meta_hostcollocation_parent.name() = "hostcollocation_parent";
 			location::meta_hostcollocation_parent.isNavigable() = true;
@@ -440,7 +440,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			destination::meta_hostcollocation_parent = Uml::CompositionParentRole::Create(comp);
 			destination::meta_hostcollocation_parent.name() = "hostcollocation_parent";
 			destination::meta_hostcollocation_parent.isNavigable() = true;
@@ -455,7 +455,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			homeplacement::meta_processcollocation_parent = Uml::CompositionParentRole::Create(comp);
 			homeplacement::meta_processcollocation_parent.name() = "processcollocation_parent";
 			homeplacement::meta_processcollocation_parent.isNavigable() = true;
@@ -470,7 +470,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			destination::meta_processcollocation_parent = Uml::CompositionParentRole::Create(comp);
 			destination::meta_processcollocation_parent.name() = "processcollocation_parent";
 			destination::meta_processcollocation_parent.isNavigable() = true;
@@ -485,7 +485,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			componentfileref::meta_homeplacement_parent = Uml::CompositionParentRole::Create(comp);
 			componentfileref::meta_homeplacement_parent.name() = "homeplacement_parent";
 			componentfileref::meta_homeplacement_parent.isNavigable() = true;
@@ -500,7 +500,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			destination::meta_homeplacement_parent = Uml::CompositionParentRole::Create(comp);
 			destination::meta_homeplacement_parent.name() = "homeplacement_parent";
 			destination::meta_homeplacement_parent.isNavigable() = true;
@@ -515,7 +515,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			componentinstantiation::meta_homeplacement_parent = Uml::CompositionParentRole::Create(comp);
 			componentinstantiation::meta_homeplacement_parent.name() = "homeplacement_parent";
 			componentinstantiation::meta_homeplacement_parent.isNavigable() = true;
@@ -530,7 +530,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			providesidentifier::meta_providesport_parent = Uml::CompositionParentRole::Create(comp);
 			providesidentifier::meta_providesport_parent.name() = "providesport_parent";
 			providesidentifier::meta_providesport_parent.isNavigable() = true;
@@ -545,7 +545,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			componentinstantiationref::meta_providesport_parent = Uml::CompositionParentRole::Create(comp);
 			componentinstantiationref::meta_providesport_parent.name() = "providesport_parent";
 			componentinstantiationref::meta_providesport_parent.isNavigable() = true;
@@ -560,7 +560,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			connectevent::meta_connections_parent = Uml::CompositionParentRole::Create(comp);
 			connectevent::meta_connections_parent.name() = "connections_parent";
 			connectevent::meta_connections_parent.isNavigable() = true;
@@ -575,7 +575,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			connectinterface::meta_connections_parent = Uml::CompositionParentRole::Create(comp);
 			connectinterface::meta_connections_parent.name() = "connections_parent";
 			connectinterface::meta_connections_parent.isNavigable() = true;
@@ -590,7 +590,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			eventoutputport::meta_connectevent_parent = Uml::CompositionParentRole::Create(comp);
 			eventoutputport::meta_connectevent_parent.name() = "connectevent_parent";
 			eventoutputport::meta_connectevent_parent.isNavigable() = true;
@@ -605,7 +605,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			consumesport::meta_connectevent_parent = Uml::CompositionParentRole::Create(comp);
 			consumesport::meta_connectevent_parent.name() = "connectevent_parent";
 			consumesport::meta_connectevent_parent.isNavigable() = true;
@@ -620,7 +620,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			componentfiles::meta_componentassembly_parent = Uml::CompositionParentRole::Create(comp);
 			componentfiles::meta_componentassembly_parent.name() = "componentassembly_parent";
 			componentfiles::meta_componentassembly_parent.isNavigable() = true;
@@ -635,7 +635,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			description::meta_componentassembly_parent = Uml::CompositionParentRole::Create(comp);
 			description::meta_componentassembly_parent.name() = "componentassembly_parent";
 			description::meta_componentassembly_parent.isNavigable() = true;
@@ -650,7 +650,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			partitioning::meta_componentassembly_parent = Uml::CompositionParentRole::Create(comp);
 			partitioning::meta_componentassembly_parent.name() = "componentassembly_parent";
 			partitioning::meta_componentassembly_parent.isNavigable() = true;
@@ -665,7 +665,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			connections::meta_componentassembly_parent = Uml::CompositionParentRole::Create(comp);
 			connections::meta_componentassembly_parent.name() = "componentassembly_parent";
 			connections::meta_componentassembly_parent.isNavigable() = true;
@@ -680,7 +680,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			componentinstantiationref::meta_consumesport_parent = Uml::CompositionParentRole::Create(comp);
 			componentinstantiationref::meta_consumesport_parent.name() = "consumesport_parent";
 			componentinstantiationref::meta_consumesport_parent.isNavigable() = true;
@@ -695,7 +695,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			consumesidentifier::meta_consumesport_parent = Uml::CompositionParentRole::Create(comp);
 			consumesidentifier::meta_consumesport_parent.name() = "consumesport_parent";
 			consumesidentifier::meta_consumesport_parent.isNavigable() = true;
@@ -710,7 +710,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			fileinarchive::meta_componentfile_parent = Uml::CompositionParentRole::Create(comp);
 			fileinarchive::meta_componentfile_parent.name() = "componentfile_parent";
 			fileinarchive::meta_componentfile_parent.isNavigable() = true;
@@ -725,7 +725,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			hostcollocation::meta_partitioning_parent = Uml::CompositionParentRole::Create(comp);
 			hostcollocation::meta_partitioning_parent.name() = "partitioning_parent";
 			hostcollocation::meta_partitioning_parent.isNavigable() = true;
@@ -740,7 +740,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			location::meta_partitioning_parent = Uml::CompositionParentRole::Create(comp);
 			location::meta_partitioning_parent.name() = "partitioning_parent";
 			location::meta_partitioning_parent.isNavigable() = true;
@@ -755,7 +755,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			registercomponent::meta_componentinstantiation_parent = Uml::CompositionParentRole::Create(comp);
 			registercomponent::meta_componentinstantiation_parent.name() = "componentinstantiation_parent";
 			registercomponent::meta_componentinstantiation_parent.isNavigable() = true;
@@ -770,7 +770,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			providesport::meta_connectinterface_parent = Uml::CompositionParentRole::Create(comp);
 			providesport::meta_connectinterface_parent.name() = "connectinterface_parent";
 			providesport::meta_connectinterface_parent.isNavigable() = true;
@@ -785,7 +785,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			usesport::meta_connectinterface_parent = Uml::CompositionParentRole::Create(comp);
 			usesport::meta_connectinterface_parent.name() = "connectinterface_parent";
 			usesport::meta_connectinterface_parent.isNavigable() = true;
@@ -800,7 +800,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			emitsidentifier::meta_emitsport_parent = Uml::CompositionParentRole::Create(comp);
 			emitsidentifier::meta_emitsport_parent.name() = "emitsport_parent";
 			emitsidentifier::meta_emitsport_parent.isNavigable() = true;
@@ -815,7 +815,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			componentinstantiationref::meta_emitsport_parent = Uml::CompositionParentRole::Create(comp);
 			componentinstantiationref::meta_emitsport_parent.name() = "emitsport_parent";
 			componentinstantiationref::meta_emitsport_parent.isNavigable() = true;
@@ -830,7 +830,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			writeiortofile::meta_registercomponent_parent = Uml::CompositionParentRole::Create(comp);
 			writeiortofile::meta_registercomponent_parent.name() = "registercomponent_parent";
 			writeiortofile::meta_registercomponent_parent.isNavigable() = true;
@@ -845,7 +845,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			componentinstantiationref::meta_publishesport_parent = Uml::CompositionParentRole::Create(comp);
 			componentinstantiationref::meta_publishesport_parent.name() = "publishesport_parent";
 			componentinstantiationref::meta_publishesport_parent.isNavigable() = true;
@@ -860,7 +860,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			publishesidentifier::meta_publishesport_parent = Uml::CompositionParentRole::Create(comp);
 			publishesidentifier::meta_publishesport_parent.name() = "publishesport_parent";
 			publishesidentifier::meta_publishesport_parent.isNavigable() = true;
@@ -875,7 +875,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			componentfile::meta_componentfiles_parent = Uml::CompositionParentRole::Create(comp);
 			componentfile::meta_componentfiles_parent.name() = "componentfiles_parent";
 			componentfile::meta_componentfiles_parent.isNavigable() = true;
@@ -890,7 +890,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			usesidentifier::meta_usesport_parent = Uml::CompositionParentRole::Create(comp);
 			usesidentifier::meta_usesport_parent.name() = "usesport_parent";
 			usesidentifier::meta_usesport_parent.isNavigable() = true;
@@ -905,7 +905,7 @@ namespace ccm_assembly {
 		{
 			Uml::Composition comp = Uml::Composition::Create(umldiagram);
 			comp.nonpersistent() =false;
-		
+
 			componentinstantiationref::meta_usesport_parent = Uml::CompositionParentRole::Create(comp);
 			componentinstantiationref::meta_usesport_parent.name() = "usesport_parent";
 			componentinstantiationref::meta_usesport_parent.isNavigable() = true;
@@ -921,7 +921,7 @@ namespace ccm_assembly {
 		location::meta.subTypes() +=  homeplacement::meta;
 		eventoutputport::meta.subTypes() +=  emitsport::meta;
 		eventoutputport::meta.subTypes() +=  publishesport::meta;
-		
+
 	}
 	Udm::UdmDiagram diagram = { &umldiagram, Initialize };
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- XSL Translator for converting UDM generated CAD file to confirm the 
+<!-- XSL Translator for converting UDM generated CAD file to confirm the
      CCM CAD DTD. This transformation is made to help to solve two problems
      brought in by using UDM.
      1. The fixed alphabical order among elements contained in any element.
@@ -13,7 +13,7 @@
 <xsl:stylesheet
      version="1.0"
      xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
- 
+
   <xsl:output
        method="xml"
        encoding="UTF-8"
@@ -27,8 +27,8 @@
   <xsl:template name="copier" match="@* | text()">
     <xsl:copy-of select="@*"/>
   </xsl:template>
-  
-  
+
+
   <!-- Here we specify the sorting rules to change the order of elements -->
 
   <xsl:template match="hostcollocation">
@@ -152,7 +152,7 @@
   </xsl:template>
 
 
-  
+
   <!--Here copy all the attributs back-->
   <xsl:template match="*|@* | text()">
     <xsl:copy>
@@ -172,5 +172,5 @@
 
 
 
-  
+
 </xsl:stylesheet>

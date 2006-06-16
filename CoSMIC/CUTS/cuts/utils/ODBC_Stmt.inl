@@ -1,33 +1,71 @@
 // $Id$
 
 //
-// query
-//
-CUTS_INLINE
-bool ODBC_Stmt::query (LPCSTR sqlstr)
-{
-	this->return_ = ::SQLExecDirect (this->stmt_, (SQLCHAR *)sqlstr, SQL_NTS);
-	return SQL_SUCCEED (this->return_);
-}
-
-//
-// fetch
-//
-CUTS_INLINE
-bool ODBC_Stmt::fetch (void)
-{
-	this->return_ = ::SQLFetch (this->stmt_);
-	return SQL_SUCCEED (this->return_);
-}
-
-//
 // get_data
-// 
+//
 CUTS_INLINE
-bool ODBC_Stmt::get_data (USHORT column, void * buffer, 									
-													ULONG bufsize, long * datalen,
-                          int type)
+void ODBC_Stmt::get_data (USHORT column, long & buffer)
+throw (ODBC_Stmt_Exception)
 {
-	this->return_ = SQLGetData (this->stmt_, column, type, buffer, bufsize, 0);
-	return SQL_SUCCEED (this->return_);
+  // Get the data at the current line in the cursor.
+  this->get_data (column,
+                  &buffer,
+                  sizeof (long),
+                  0,
+                  SQL_C_LONG);
+}
+
+CUTS_INLINE
+void ODBC_Stmt::get_data (USHORT column, short & buffer)
+throw (ODBC_Stmt_Exception)
+{
+  // Get the data at the current line in the cursor.
+  this->get_data (column,
+                  &buffer,
+                  sizeof (short),
+                  0,
+                  SQL_C_SHORT);
+}
+
+CUTS_INLINE
+void ODBC_Stmt::get_data (USHORT column, float & buffer)
+throw (ODBC_Stmt_Exception)
+{
+  // Get the data at the current line in the cursor.
+  this->get_data (column,
+                  &buffer,
+                  sizeof (float),
+                  0,
+                  SQL_C_FLOAT);
+}
+
+CUTS_INLINE
+void ODBC_Stmt::get_data (USHORT column, double & buffer)
+throw (ODBC_Stmt_Exception)
+{
+  // Get the data at the current line in the cursor.
+  this->get_data (column,
+                  &buffer,
+                  sizeof (double),
+                  0,
+                  SQL_C_DOUBLE);
+}
+
+CUTS_INLINE
+void ODBC_Stmt::get_data (USHORT column, int & buffer)
+throw (ODBC_Stmt_Exception)
+{
+#if (ACE_SIZEOF_INT == ACE_SIZEOF_LONG)
+  this->get_data (column,
+                  &buffer,
+                  sizeof (long),
+                  0,
+                  SQL_C_LONG);
+#else /* ACE_SIZEOF_INT == ACE_SIZEOF_SHORT */
+  this->get_data (column,
+                  &buffer,
+                  sizeof (short),
+                  0,
+                  SQL_C_SHORT);
+#endif
 }

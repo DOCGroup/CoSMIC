@@ -55,3 +55,21 @@ long CUTS_Time_Metric::count (void)
     this->count_);
   return this->count_;
 }
+
+//
+// timestamp
+//
+CUTS_INLINE
+const ACE_Time_Value & CUTS_Time_Metric::timestamp (void) const
+{
+  return this->timestamp_;
+}
+
+//
+// timestamp
+//
+CUTS_INLINE
+void CUTS_Time_Metric::timestamp (const ACE_Time_Value & timestamp)
+{
+  this->timestamp_ = timestamp;
+}

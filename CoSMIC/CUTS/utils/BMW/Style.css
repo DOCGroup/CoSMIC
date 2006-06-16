@@ -1,0 +1,25 @@
+*
+{
+  font-family: Verdana;
+  font-size: xx-small;
+}
+
+h1
+{
+  font-size:large;
+}
+
+h2
+{
+  font-size:medium;
+}
+
+.title
+{
+  font-weight:bold;
+}
+
+.menu_item 
+{
+  font-size: small;
+}

@@ -1,11 +1,16 @@
 // $Id$
 
-project (CUTS_Utils) : cuts_base {
+project (CUTS_Utils) : cutslib {
   sharedname = CUTS_Utils
 
   dynamicflags += CUTS_BUILD_DLL
 
+  // -- remove the unnecessary dependencies
+  after -= CUTS
+  libs  -= CUTS
+
   Source_Files {
+    UUID.cpp
     String.cpp
   }
 
@@ -14,26 +19,20 @@ project (CUTS_Utils) : cuts_base {
   }
 }
 
-project (CUTS_Utils_DBase) : cuts_base {
-  sharedname = CUTS_Utils_DBase
+project (CUTS_Utils_DBase) : odbc, cutslib {
+  sharedname += CUTS_Utils_DBase
 
   dynamicflags += CUTS_BUILD_DLL
-
-  specific (vc6, vc7, vc71, vc8, nmake) {
-    lit_libs += odbc32 odbcbcp odbcCP32
-  } else {
-    requires += unix_odbc
-
-    libpaths += $(UNIXODBC_ROOT)/lib
-    includes += $(UNIXODBC_ROOT)/include
-
-    libs += odbc odbcinst
-  }
 
   Source_Files {
     ODBC.cpp
     ODBC_Connection.cpp
+    ODBC_Exception.cpp
     ODBC_Stmt.cpp
     MyODBC_Connection.cpp
+  }
+
+  Template_Files {
+
   }
 }

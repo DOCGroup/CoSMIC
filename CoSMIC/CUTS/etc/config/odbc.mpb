@@ -1,12 +1,34 @@
+// $Id$
+
+//=============================================================================
+//
+// Base Project
+//
+//=============================================================================
+
 project {
-	specific (automake, bmake, borland, cbx, em3, ghs, gnuace, sle) {
-		libpaths += $(UNIXODBC_ROOT)/lib
-		includes += $(UNIXODBC_ROOT)/include
+  specific (vc6, vc7, vc71, vc8, nmake) {
+    lit_libs += odbc32 odbcbcp odbcCP32
 
-		libs += odbc odbcinst
-	}
+    dynamicflags  += CUTS_HAS_DATABASE
+    staticflags   += CUTS_HAS_DATABASE
+  } else {
+    requires += unixodbc
+  }
+}
 
-	specific (vc6, vc7, vc71, vc8, nmake) {
-		lit_libs += odbc32 odbcbcp odbcCP32
-	}
+//=============================================================================
+//
+// UnixODBC features
+//
+//=============================================================================
+
+feature (unixodbc) {
+  dynamicflags  += CUTS_HAS_DATABASE
+  staticflags   += CUTS_HAS_DATABASE
+
+  libpaths += $(UNIXODBC_ROOT)/lib
+  includes += $(UNIXODBC_ROOT)/include
+
+  lit_libs += odbc odbcinst
 }

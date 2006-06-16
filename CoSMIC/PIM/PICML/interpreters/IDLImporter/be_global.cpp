@@ -677,8 +677,7 @@ BE_GlobalData::xerces_init (void)
       XStr target_xstr (target_name.c_str ());
       const XMLCh * target_arg = target_xstr.begin ();
 
-      ACE_NEW (this->target_,
-               LocalFileFormatTarget (target_name.c_str ()));
+      this->target_ = new LocalFileFormatTarget (target_name.c_str ());
     }
   catch (const DOMException &e)
     {
@@ -931,7 +930,7 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
         tag = "connection";
         break;
     }
-    
+
   for (XMLSize_t index = 0; index < children->getLength (); ++index)
     {
       DOMElement *child =
@@ -984,20 +983,20 @@ BE_GlobalData::imported_module_dom_elem (DOMElement *sub_tree,
     {
       return 0;
     }
-      
+
   DOMNodeList *models =
     this->interface_definitions_folder_->getElementsByTagName (X ("model"));
-    
+
   for (XMLSize_t i = 0; i < models->getLength (); ++i)
     {
-      DOMElement *model = (DOMElement *) models->item (i);  
+      DOMElement *model = (DOMElement *) models->item (i);
       const XMLCh *kind = model->getAttribute (X ("kind"));
-        
+
       if (X ("Package") != X (kind))
         {
           continue;
         }
-        
+
       if (this->match_module_opening (model, node))
         {
           return model;
@@ -1253,7 +1252,7 @@ BE_GlobalData::get_name (DOMElement *node)
   return retval;
 }
 
-XMLCh *
+const XMLCh *
 BE_GlobalData::lookup_id (AST_Decl *d)
 {
   ACE_CString ext_id = d->repoID ();
@@ -1262,7 +1261,7 @@ BE_GlobalData::lookup_id (AST_Decl *d)
   this->check_for_basic_type (d, ext_id);
   this->check_for_basic_seq (d, ext_id);
 
-  XMLCh *retval = 0;
+  const XMLCh *retval = 0;
   int result = this->decl_id_table_.find (ext_id.c_str (), retval);
 
   if (result != 0)
@@ -1531,10 +1530,10 @@ BE_GlobalData::included_file_diagnostic (DOMElement *fileref,
     }
 
   char *file_name = this->get_name (file);
-  
+
   cout << "Added FileRef " << fileref_name << " in File "
        << file_name << endl;
-       
+
   XMLString::release (&file_name);
 }
 
@@ -1542,24 +1541,24 @@ DOMElement *
 BE_GlobalData::get_first_picml_element (DOMElement *scope)
 {
   DOMNodeList *children = scope->getChildNodes ();
-  
+
   for (XMLSize_t i = 0; i < children->getLength (); ++i)
     {
       DOMElement *child = (DOMElement *) children->item (i);
-      
+
       if (0 == child)
         {
           continue;
         }
-        
+
       const XMLCh *tag = child->getTagName ();
-      
+
       if (X ("model") == tag || X ("reference") == tag)
         {
           return child;
         }
     }
-    
+
   return 0;
 }
 
@@ -1573,15 +1572,15 @@ BE_GlobalData::match_module_opening (DOMElement *elem, AST_Decl *node)
   char *node_child_name = node_child->local_name ()->get_string ();
   int match = ACE_OS::strcmp (node_child_name, elem_child_name);
   XMLString::release (&elem_child_name);
-  
+
   if (0 != match)
     {
       return false;
     }
-    
+
   AST_Decl::NodeType nt = node_child->node_type ();
   const XMLCh *kind = elem_child->getAttribute (X ("kind"));
-  
+
   if (X ("Package") == kind && AST_Decl::NT_module == nt)
     {
       return this->match_module_opening (elem_child, node_child);

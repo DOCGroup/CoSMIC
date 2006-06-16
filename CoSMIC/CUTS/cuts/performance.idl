@@ -15,29 +15,10 @@
 #ifndef _CUTS_PERFORMANCE_IDL_
 #define _CUTS_PERFORMANCE_IDL_
 
+#include "cuts/UUID.idl"
+
 module CUTS
 {
-  enum Sample_Type
-  {
-    /// sample collected from transmitting an event
-    TRANSIT,
-
-    /// sample collected from processing an event
-    PROCESS,
-
-    /// sample collected by the CPU worker
-    CPU,
-
-    /// sample collected by the database worker
-    DATABASE,
-
-    /// sample collected by the memory worker
-    MEMORY,
-
-    /// sample collected by the event publisher
-    PUBLICATION
-  };
-
   /// type definition for the time
   typedef long Time_Stamp;
 
@@ -54,6 +35,15 @@ module CUTS
     Time_Stamp min;
   };
 
+  struct Event_Time_Info
+  {
+    Time_Info time;
+
+    long max_events;
+
+    long min_events;
+  };
+
   struct Time_Sample
   {
     /// Number of timing measurements taken.
@@ -67,12 +57,11 @@ module CUTS
   {
     long type;
 
-    long reps;
-
-    Time_Info time;
+    Time_Sample time;
   };
 
   typedef sequence <Action_Measurement> Action_Measurement_Seq;
+
   /**
    * Collection of information relating to a type of sample
    * taken during a port operation.
@@ -97,10 +86,9 @@ module CUTS
 
   typedef sequence <Exit_Point_Time> Exit_Point_Time_Seq;
 
-  struct Port_Measurement
+  struct Mapped_Port_Measurement
   {
-    /// event id associated with the data samples
-    string port;
+    long owner;
 
     /// Time taken to transmit an event.
     Time_Sample transit_time;
@@ -115,6 +103,16 @@ module CUTS
     Worker_Measurement_Seq workers;
   };
 
+  typedef sequence <Mapped_Port_Measurement> Mapped_Port_Measurement_Seq;
+
+  struct Port_Measurement
+  {
+    /// event id associated with the data samples
+    string port;
+
+    Mapped_Port_Measurement_Seq measurements;
+  };
+
   typedef sequence <Port_Measurement> Port_Measurement_Seq;
 
   /// The value of an invalid ID.
@@ -123,7 +121,7 @@ module CUTS
   struct Benchmark_Data
   {
     /// id of the CoWorkEr transmitting the data
-    string owner;
+    long owner;
 
     /// time at which the data was reported
     Time_Stamp timestamp;

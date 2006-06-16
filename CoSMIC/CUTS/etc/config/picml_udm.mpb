@@ -1,0 +1,16 @@
+// $Id: picml_udm.mpb,v 1.1.2.1.2.2 2006/06/11 18:59:25 hillj Exp $
+
+project {
+  requires += udm
+
+  includes  += $(COSMIC_ROOT)/PIM/PICML/interpreters \
+               $(UDM_PATH)/include
+
+  libpaths  += $(COSMIC_ROOT)/lib \
+               $(UDM_PATH)/lib
+
+  libs      += PICML UdmDll
+
+  dynamicflags += UDM_DYNAMIC_LINKING \
+                  PICML_HAS_DLL
+}

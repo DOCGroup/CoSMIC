@@ -1,0 +1,15 @@
+#ifndef SENDER_TWO_PORT_CIDL
+#define SENDER_TWO_PORT_CIDL
+
+#include "Sender_Two_Port.idl"
+
+composition session Sender_Two_Port_Impl
+{
+  home executor Sender_Two_PortHome_Exec
+  {
+    implements Sender_Two_Port_Factory;
+    manages Sender_Two_Port_Exec;
+  };
+};
+
+#endif // !defined SENDER_TWO_PORT_CIDL

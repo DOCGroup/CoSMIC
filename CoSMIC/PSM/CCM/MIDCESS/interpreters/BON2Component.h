@@ -33,7 +33,7 @@ namespace BON
 class DomainImpl;
 
 
-DECLARE_BONEXTENSION( Model, DomainImpl, Domain ); 
+DECLARE_BONEXTENSION( Model, DomainImpl, Domain );
 
 //###############################################################################################################################################
 //
@@ -79,7 +79,7 @@ class DomainImpl
 	: public ModelImpl
 {
 	private :
-		
+
 	public :
 		static FILE *fpt;
 };

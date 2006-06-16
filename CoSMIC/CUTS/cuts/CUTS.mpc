@@ -1,15 +1,25 @@
 // $Id$
 
-project(CUTS_stub): cuts_client_dnc {
+//=============================================================================
+// PROJECT : CUTS_stub
+//=============================================================================
 
-  sharedname = CUTS_stub
-  idlflags += -Wb,stub_export_macro=CUTS_STUB_Export -Wb,stub_export_include=CUTS_stub_export.h -Wb,skel_export_macro=CUTS_SVNT_Export -Wb,skel_export_include=CUTS_svnt_export.h
+project(CUTS_stub): rt_server, cuts_client_dnc {
+  sharedname     = CUTS_stub
+
+  idlflags      += -Wb,stub_export_macro=CUTS_STUB_Export \
+                   -Wb,stub_export_include=CUTS_stub_export.h \
+                   -Wb,skel_export_macro=CUTS_SVNT_Export \
+                   -Wb,skel_export_include=CUTS_svnt_export.h \
+                   -I $(CUTS_ROOT)
+
   dynamicflags   = CUTS_STUB_BUILD_DLL
 
   IDL_Files {
-    BenchmarkAgent.idl
     CUTS.idl
     performance.idl
+    UUID.idl
+    Events.idl
   }
 
   Header_Files {
@@ -17,138 +27,135 @@ project(CUTS_stub): cuts_client_dnc {
   }
 
   Source_Files {
-    BenchmarkAgentC.cpp
     CUTSC.cpp
     performanceC.cpp
+    UUIDC.cpp
+    EventsC.cpp
   }
 }
 
-project(CUTS_svnt) : cuts_servant_dnc {
-  after +=  CUTS_stub CUTS_BenchmarkAgent_svnt
-  sharedname  = CUTS_svnt
-  libs    += CUTS_stub CUTS_BenchmarkAgent_svnt
+//=============================================================================
+// PROJECT : CUTS_svnt
+//=============================================================================
 
-  idlflags  +=  -Wb,export_macro=CUTS_SVNT_Export -Wb,export_include=CUTS_svnt_export.h
-  dynamicflags = CUTS_SVNT_BUILD_DLL
+project(CUTS_svnt) : rt_server, cuts_servant_dnc {
+  after         += CUTS_stub CUTS
+
+  sharedname     = CUTS_svnt
+
+  libs          += CUTS_stub CUTS
+
+  idlflags      += -Wb,export_macro=CUTS_SVNT_Export \
+                   -Wb,export_include=CUTS_svnt_export.h
+
+  dynamicflags   = CUTS_SVNT_BUILD_DLL
 
   CIDL_Files {
-    CUTS.cidl
+
   }
 
   IDL_Files {
-    CUTSE.idl
+
   }
 
   Source_Files {
-    CUTSEC.cpp
+    Benchmark_Agent_i.cpp
+    IDL_Streams.cpp
     CUTSS.cpp
-    CUTS_svnt.cpp
   }
 }
 
-project(CUTS_BenchmarkAgent_svnt) : cuts_servant_dnc {
-  after +=  CUTS_stub
-  sharedname  = CUTS_BenchmarkAgent_svnt
-  libs    += CUTS_stub
+//=============================================================================
+// PROJECT : CUTS_exec
+//=============================================================================
 
-  idlflags  +=  -Wb,export_macro=CUTS_SVNT_Export -Wb,export_include=CUTS_svnt_export.h
-  dynamicflags = CUTS_SVNT_BUILD_DLL
-
-  cidlflags -= --
-  cidlflags += --lem-force-all
-  cidlflags += --
-
-  CIDL_Files {
-    BenchmarkAgent.idl
-  }
-
-  IDL_Files {
-    BenchmarkAgentE.idl
-  }
-
-  Source_Files {
-    BenchmarkAgentS.cpp
-    BenchmarkAgentEC.cpp
-    BenchmarkAgentES.cpp
-  }
-}
-
-project(CUTS_exec) : cuts_component_dnc {
-  after   += CUTS_svnt CUTS_BenchmarkAgent_svnt CUTS
+project (CUTS_exec) : rt_server, cuts_component_dnc {
+  after     += CUTS_svnt
   sharedname = CUTS_exec
-  libs      += CUTS_stub CUTS_svnt CUTS_BenchmarkAgent_svnt CUTS
+  libs      += CUTS_stub CUTS_svnt
 
-  idlflags  +=  -Wb,export_macro=CUTS_EXEC_Export -Wb,export_include=CUTS_exec_export.h
-  dynamicflags   = CUTS_EXEC_BUILD_DLL
+  idlflags  +=  -Wb,export_macro=CUTS_EXEC_Export \
+                -Wb,export_include=CUTS_exec_export.h
+
+  dynamicflags = CUTS_EXEC_BUILD_DLL
 
   IDL_Files {
 
   }
 
   Source_Files {
-    CUTS_exec.cpp
-    CCM_BenchmarkAgent.cpp
     CCM_CoWorkEr.cpp
   }
 
   Template_Files {
     CCM_CoWorkEr_T.cpp
-    CCM_BenchmarkAgent_T.cpp
-    CCM_Events_T.cpp
+    CCM_Event_Handler_T.cpp
     CCM_Event_Producer_T.cpp
+    CCM_Events_T.cpp
   }
 }
 
-project (CUTS) : ciao_component_dnc, cuts_base {
+//=============================================================================
+// PROJECT : CUTS
+//=============================================================================
+
+project (CUTS) : cutslib {
   sharedname = CUTS
 
   dynamicflags += CUTS_BUILD_DLL
 
   after += CUTS_Utils
+  after -= CUTS
 
-  specific (vc6, vc7, vc71, vc8, nmake) {
-    after += CUTS_Utils_DBase
-  }
-
-  libs += CUTS_stub CUTS_Utils
+  libs += CUTS_Utils
+  libs -= CUTS
 
   Header_Files {
     config.h
     CUTS_Export.h
-    Worker_T.h
+    WML_Macros.h
   }
 
   Source_Files {
+    Action.cpp
+    Action_Iterator.cpp
     ActivationRecord.cpp
-    BenchmarkAgent.cpp
+    Benchmark_Agent.cpp
     Component_Metric.cpp
     Counter.cpp
-    CPUWorker.cpp
-    DatabaseWorker.cpp
-    EventGuard.cpp
+    Event_Guard.cpp
     EventHandler.cpp
-    MemoryWorker.cpp
+    Event_Handler_Message.cpp
+    Host_Table.cpp
     Operation_Measurement.cpp
     PortAgent.cpp
     Port_Measurement.cpp
+    Port_Measurement_Pool.cpp
     Port_Metric.cpp
+    Component_Registry.cpp
+    Testing_Service.cpp
     Time.cpp
     Time_Metric.cpp
     Time_Measurement.cpp
     System_Metric.cpp
+    System_Metrics_Visitor.cpp
     Worker.cpp
+    Worker_Library.cpp
     Worker_Measurement.cpp
+    XML_System_Metrics_Visitor.cpp
   }
 
   Template_Files {
+    Action_T.cpp
+    Action_Iterator_T.cpp
+    Activation_Record_T.cpp
+    Async_Event_Handler_T.cpp
+    Auto_Release_Ptr.cpp
     Counter_T.cpp
-    EventGuard_T.cpp
+    Event_Guard_T.cpp
     EventHandler_T.cpp
     Trigger_T.cpp
-  }
-
-  IDL_Files {
-
+    Sync_Event_Handler_T.cpp
+    Worker_T.cpp
   }
 }
-

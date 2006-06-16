@@ -15,13 +15,13 @@
 #ifndef _CUTS_TIME_MEASUREMENT_H_
 #define _CUTS_TIME_MEASUREMENT_H_
 
-#include "cuts/config.h"
-#include "ace/Time_Value.h"
-#include "ace/OS_NS_sys_time.h"
-
 #if !defined (ACE_LACKS_PRAGMA_ONCE)
 #pragma once
 #endif  // ACE_LACKS_PRAGMA_ONCE
+
+#include "cuts/config.h"
+#include "ace/Time_Value.h"
+#include "ace/OS_NS_sys_time.h"
 
 //=============================================================================
 /**

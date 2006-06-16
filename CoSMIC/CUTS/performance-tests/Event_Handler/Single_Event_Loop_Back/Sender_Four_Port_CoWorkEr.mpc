@@ -1,0 +1,59 @@
+// This project file was generate by
+// $Id: Sender_Four_Port_CoWorkEr.mpc,v 1.1.2.2 2006/04/19 09:29:00 hillj Exp $
+
+project (Sender_Four_Port_CoWorkEr_stub) : cuts_coworker_stub {
+  sharedname = Sender_Four_Port_CoWorkEr_stub
+
+  after += \
+    Sender_CoWorkEr_stub
+
+  libs += \
+    Sender_CoWorkEr_stub
+
+  IDL_Files {
+    Sender_Four_Port.idl
+  }
+
+  Source_Files {
+    Sender_Four_PortC.cpp
+  }
+}
+
+project (Sender_Four_Port_CoWorkEr_svnt) : cuts_coworker_svnt {
+  sharedname = Sender_Four_Port_CoWorkEr_svnt
+
+  after += Sender_Four_Port_CoWorkEr_stub \
+    Sender_CoWorkEr_svnt
+
+  libs  += Sender_Four_Port_CoWorkEr_stub \
+    Sender_CoWorkEr_stub Sender_CoWorkEr_svnt
+
+  CIDL_Files {
+    Sender_Four_Port.cidl
+  }
+
+  IDL_Files {
+    Sender_Four_PortE.idl
+  }
+
+  Source_Files {
+    Sender_Four_PortS.cpp
+    Sender_Four_PortEC.cpp
+    Sender_Four_Port_svnt.cpp
+  }
+}
+
+project (Sender_Four_Port_CoWorkEr_exec) : cuts_coworker_exec {
+  sharedname = Sender_Four_Port_CoWorkEr_exec
+
+  after += Sender_Four_Port_CoWorkEr_svnt \
+    Sender_CoWorkEr_svnt
+
+  libs  += Sender_Four_Port_CoWorkEr_stub Sender_Four_Port_CoWorkEr_svnt \
+    Sender_CoWorkEr_stub Sender_CoWorkEr_svnt
+
+  Source_Files {
+    Sender_Four_Port_CoWorkEr.cpp
+  }
+}
+

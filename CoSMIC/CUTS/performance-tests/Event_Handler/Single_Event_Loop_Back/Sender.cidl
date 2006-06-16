@@ -1,0 +1,15 @@
+#ifndef SENDER_CIDL
+#define SENDER_CIDL
+
+#include "Sender.idl"
+
+composition session Sender_Impl
+{
+  home executor SenderHome_Exec
+  {
+    implements Sender_Factory;
+    manages Sender_Exec;
+  };
+};
+
+#endif // !defined SENDER_CIDL

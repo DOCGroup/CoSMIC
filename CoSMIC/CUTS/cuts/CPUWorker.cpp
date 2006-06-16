@@ -1,15 +1,25 @@
 // $Id$
 
 #include "cuts/CPUWorker.h"
-#include "ace/OS_NS_stdlib.h"
+#include "ace/ACE.h"
 
-#define CUTS_CPU_CYCLES 10000
+#if !defined (__CUTS_INLINE__)
+#include "cuts/CPUWorker.inl"
+#endif
+
+#define CUTS_CPU_CYCLES 25
+
+CUTS_ACTION_TABLE_BEGIN (CUTS_CPU_Worker, CUTS_Worker)
+  CUTS_ACTION_TABLE_ENTRY("Run_Processor", CUTS_CPU_Worker::Run_Processor);
+CUTS_ACTION_TABLE_END (CUTS_CPU_Worker)
 
 //
 // CUTS_CPU_Worker
 //
 CUTS_CPU_Worker::CUTS_CPU_Worker (void)
+: visits_ (0)
 {
+
 }
 
 //
@@ -25,8 +35,10 @@ CUTS_CPU_Worker::~CUTS_CPU_Worker (void)
 //
 void CUTS_CPU_Worker::process (void)
 {
+  ++ this->visits_;
+
   for (int cycle = 0; cycle < CUTS_CPU_CYCLES; cycle ++)
   {
-    ACE_OS::rand ();
+    ACE::is_prime (16127, 2, 16127 / 2);
   }
 }

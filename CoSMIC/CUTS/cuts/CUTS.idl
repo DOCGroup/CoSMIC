@@ -16,52 +16,19 @@
 #ifndef _CUTS_IDL_
 #define _CUTS_IDL_
 
-#include <Components.idl>
 #include "cuts/performance.idl"
-#include "cuts/BenchmarkAgent.idl"
+#include "cuts/UUID.idl"
 
 module CUTS
 {
-  exception Binding_Failed { };
-  exception ID_Not_Found { };
+  exception Binding_Failed        { };
+  exception ID_Not_Found          { };
+  exception Operation_Failed      { };
+  exception Registration_Failed   { };
+  exception Registration_Limit    { };
 
-  /**
-   * This is a generic exception raised when a operation fails for some
-   * unknown reason, and is not a system exception. Some reasons for
-   * raising this exception would be failing to get a lock or a NULL
-   * reference.
-   */
-  exception Operation_Failed { };
-
-  //===========================================================================
-  /**
-   * Base type for all events in CUTS. Each event must defined an <event_type>
-   * and a <dispatch_time>. The <dispatch_time> is when the event was sent
-   * across the wire. The <event_type> is determined at compile-time by
-   * parameterizing the Event_Traits template class.
-   *
-   * Ex: Event_Traits <Event_Class>::event_type_;
-   */
-  //===========================================================================
-
-  eventtype CUTS_Event
-  {
-    /// Dispatch time for the event
-    public long dispatch_time;
-  };
-
-  //===========================================================================
-  /**
-   * This is the base type for events that want associate a data payload
-   * with tranmitting an event. The system will generate a data payload
-   * for your event depending on your specifications in the modeling lanauge.
-   */
-  //===========================================================================
-  eventtype Data_Event : CUTS::CUTS_Event
-  {
-    /// Data payload associated with the event
-    public string data;
-  };
+  // Forward decl.
+  interface Benchmark_Agent;
 
   //===========================================================================
   /**
@@ -69,13 +36,19 @@ module CUTS
    */
   //===========================================================================
 
-  struct CoWorkEr_Info
+  struct Component_Registration
   {
-    /// UUID of the CoWorkEr.
-    string UUID;
-
     /// IP address of the CoWorkEr.
     long ipaddr;
+
+    /// Benchmark agent of the component.
+    Benchmark_Agent agent;
+
+    /// UUID of the CoWorkEr.
+    string name;
+
+    /// Name of the host with the CoWorkEr.
+    string hostname;
   };
 
   //===========================================================================
@@ -87,7 +60,7 @@ module CUTS
   struct Path_Element
   {
     /// UUID of the component.
-    string UUID;
+    string node;
 
     /// Name of the source port.
     string src;
@@ -99,16 +72,33 @@ module CUTS
   /// Type definition for a path sequence.
   typedef sequence <Path_Element> Path_Sequence;
 
-  interface Path_Measurment
+  //===========================================================================
+  /**
+   * @interface Path_Measurement
+   */
+  //===========================================================================
+
+  interface Path_Measurement
   {
-    long bind_to_path (in Path_Sequence path)
+    const unsigned short BPF_TRANSIT = 1;
+    const unsigned short BPF_PROCESS = 2;
+    const unsigned short BPF_BOTH    = 3;
+
+    long bind_to_path (in Path_Sequence path, in unsigned short flags)
       raises (Binding_Failed);
 
-    void unbind_to_path (in long path_id);
+    void unbind_to_path (in long path_id)
+      raises (ID_Not_Found);
 
-    Time_Info execution_time (in long path_id)
+    Event_Time_Info execution_time (in long path_id)
       raises (ID_Not_Found, Operation_Failed);
   };
+
+  //===========================================================================
+  /**
+   * @interface BDC_Control_Handle
+   */
+  //===========================================================================
 
   interface BDC_Control_Handle
   {
@@ -117,36 +107,30 @@ module CUTS
 
   //===========================================================================
   /**
-   *
+   * @interface Benchmark_Agent
    */
   //===========================================================================
 
-  component Benchmark_Data_Collector
+  interface Benchmark_Agent
   {
-    /// get the <Data_Collector> facet
-    uses multiple Benchmark_Agent benchmark_agents;
-
-    provides Path_Measurment online_measurements;
-
-    provides BDC_Control_Handle controls;
-
-    /// Name of the server hosting the database
-    attribute string server_name;
-
-    /// The timeout value for collecting performance metrics.
-    attribute long timeout;
+    /// Get the performance data from the agent.
+    Benchmark_Data collect_performance_data ();
   };
 
   //===========================================================================
   /**
-   *
+   * @interface Testing_Service
    */
   //===========================================================================
 
-  home Benchmark_Data_Collector_Home
-    manages Benchmark_Data_Collector
+  interface Testing_Service
   {
+    long register_component (in Component_Registration creg)
+      raises (Registration_Failed,
+              Registration_Limit);
 
+    void unregister_component (in Component_Registration creg)
+      raises (ID_Not_Found);
   };
 };
 

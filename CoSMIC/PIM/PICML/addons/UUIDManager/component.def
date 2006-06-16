@@ -1,6 +1,6 @@
 ; Interpreter.def : Declares the module parameters.
 
-LIBRARY      "Component.DLL"
+LIBRARY      "UUIDManager.DLL"
 
 EXPORTS
 	DllCanUnloadNow     PRIVATE

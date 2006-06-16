@@ -7,6 +7,8 @@
 #endif
 
 #include "cuts/Time_Metric.h"
+#include "cuts/System_Metrics_Visitor.h"
+#include "ace/Auto_Ptr.h"
 
 //
 // CUTS_Port_Metric
@@ -21,7 +23,9 @@ CUTS_Port_Metric::CUTS_Port_Metric (void)
 //
 CUTS_Port_Metric::~CUTS_Port_Metric (void)
 {
-  for (End_Point_Metrics::iterator iter = this->endpoints_.begin ();
+  CUTS_Endpoint_Metric_Map::iterator iter;
+
+  for (iter = this->endpoints_.begin ();
        iter != this->endpoints_.end ();
        iter ++)
   {
@@ -35,21 +39,26 @@ CUTS_Port_Metric::~CUTS_Port_Metric (void)
 CUTS_Time_Metric * CUTS_Port_Metric::insert_endpoint (const char * endpoint)
 {
   CUTS_Time_Metric * metric = 0;
-  ACE_NEW_RETURN (metric, CUTS_Time_Metric (), false);
+  ACE_NEW_RETURN (metric, CUTS_Time_Metric (), 0);
+  ACE_Auto_Ptr <CUTS_Time_Metric> auto_clean (metric);
 
-  std::pair <End_Point_Metrics::iterator, bool> result;
+  std::pair <CUTS_Endpoint_Metric_Map::iterator, bool> result;
 
-  do {
-    ACE_WRITE_GUARD_RETURN (ACE_RW_Thread_Mutex, guard, this->lock_, false);
-    result =
-      this->endpoints_.insert (
-      End_Point_Metrics::value_type (endpoint, metric));
-  } while (false);
+  ACE_WRITE_GUARD_RETURN (ACE_RW_Thread_Mutex,
+                          guard,
+                          this->lock_,
+                          0);
+
+  result = this->endpoints_.insert (
+    CUTS_Endpoint_Metric_Map::value_type (endpoint, metric));
 
   if (!result.second)
   {
-    delete metric;
     metric = result.first->second;
+  }
+  else
+  {
+    auto_clean.release ();
   }
 
   return metric;
@@ -70,11 +79,16 @@ void CUTS_Port_Metric::remove_endpoint (const char * endpoint)
 CUTS_Time_Metric * CUTS_Port_Metric::endpoint (const char * endpoint)
 {
   CUTS_Time_Metric * metric = 0;
-  End_Point_Metrics::iterator result;
+  CUTS_Endpoint_Metric_Map::iterator result;
 
   do {
+    ACE_READ_GUARD_RETURN (
+      ACE_RW_Thread_Mutex,
+      guard,
+      this->lock_,
+      0);
+
     // Locate the endpoint in the mapping.
-    ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex, guard, this->lock_, 0);
     result = this->endpoints_.find (endpoint);
   } while (false);
 
@@ -90,4 +104,12 @@ CUTS_Time_Metric * CUTS_Port_Metric::endpoint (const char * endpoint)
   }
 
   return metric;
+}
+
+//
+// accept
+//
+void CUTS_Port_Metric::accept (CUTS_System_Metrics_Visitor & visitor)
+{
+  visitor.visit_port_metrics (*this);
 }

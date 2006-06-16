@@ -61,6 +61,6 @@ Func_Body_Visitor::visit_box_items(bool value)
 	visit_box_item_ = value;
 }
 
-};  // namespace BON 
+};  // namespace BON
 
 #endif // _OCML_VISITOR_H_

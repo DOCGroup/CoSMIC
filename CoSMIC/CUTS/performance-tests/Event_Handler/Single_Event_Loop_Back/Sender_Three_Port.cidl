@@ -1,0 +1,15 @@
+#ifndef SENDER_THREE_PORT_CIDL
+#define SENDER_THREE_PORT_CIDL
+
+#include "Sender_Three_Port.idl"
+
+composition session Sender_Three_Port_Impl
+{
+  home executor Sender_Three_PortHome_Exec
+  {
+    implements Sender_Three_Port_Factory;
+    manages Sender_Three_Port_Exec;
+  };
+};
+
+#endif // !defined SENDER_THREE_PORT_CIDL

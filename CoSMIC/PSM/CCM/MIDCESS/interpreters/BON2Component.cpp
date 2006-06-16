@@ -136,7 +136,7 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
 				if ((*child_it)->getName() == "bridge")
 				{
 					BON::Attribute bridge_name = (*child_it)->getAttribute("BridgeName");
-		            
+
 					BON::Attribute bridge_label = (*child_it)->getAttribute("BridgeLabel");
 
 		            *glob_log << "<bridge xmi:id=\"" << bridge_label->getStringValue() << "\">" << "\n";
@@ -153,7 +153,7 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
 						if (br_ch_ref_name == "InterconnectReference")
 						{
 							BON::FCO br_ch_ic_referred = (*br_ch_ref)->getReferred();
-						
+
 							BON::Attribute br_ch_ic_referred_attr = (br_ch_ic_referred)->getAttribute("InterconnectLabel");
 							*glob_log << "        <connect xmi:idref=\"" << br_ch_ic_referred_attr->getStringValue() << "\" />" << "\n";
 						}
@@ -161,7 +161,7 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
 						if (br_ch_ref_name == "ResourceReference")
 						{
 							BON::FCO br_ch_re_referred = (*br_ch_ref)->getReferred();
-						
+
 							BON::Attribute br_ch_re_referred_name_attr = (br_ch_re_referred)->getAttribute("ResourceName");
 							BON::Attribute br_ch_re_referred_type_attr = (br_ch_re_referred)->getAttribute("resourceType");
 
@@ -195,7 +195,7 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
 						if (n_ch_ref_name == "InterconnectReference")
 						{
 							BON::FCO n_ch_ic_referred = (*n_ch_ref)->getReferred();
-						
+
 							BON::Attribute n_ch_ic_referred_attr = (n_ch_ic_referred)->getAttribute("InterconnectLabel");
 							*glob_log << "        <connection xmi:idref=\"" << n_ch_ic_referred_attr->getStringValue() << "\" />" << "\n";
 						}
@@ -203,7 +203,7 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
 						if (n_ch_ref_name == "ResourceReference")
 						{
 							BON::FCO n_ch_re_referred = (*n_ch_ref)->getReferred();
-						
+
 							BON::Attribute n_ch_re_referred_name_attr = (n_ch_re_referred)->getAttribute("ResourceName");
 							BON::Attribute n_ch_re_referred_type_attr = (n_ch_re_referred)->getAttribute("resourceType");
 
@@ -216,7 +216,7 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
 						if (n_ch_ref_name == "SharedResourceReference")
 						{
 							BON::FCO n_ch_sr_referred = (*n_ch_ref)->getReferred();
-						
+
 							BON::Attribute n_ch_sr_referred_attr = (n_ch_sr_referred)->getAttribute("SharedresourceName");
 							*glob_log << "        <sharedResource xmi:idref=\"" << n_ch_sr_referred_attr->getStringValue() << "\" />" << "\n";
 						}
@@ -244,7 +244,7 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
 						if (ic_ch_ref_name == "NodeReference")
 						{
 							BON::FCO ic_ch_n_referred = (*ic_ch_ref)->getReferred();
-						
+
 							BON::Attribute ic_ch_n_referred_attr = (ic_ch_n_referred)->getAttribute("NodeLabel");
 							*glob_log << "        <connect xmi:idref=\"" << ic_ch_n_referred_attr->getStringValue() << "\" />" << "\n";
 						}
@@ -252,7 +252,7 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
 						if (ic_ch_ref_name == "ResourceReference")
 						{
 							BON::FCO ic_ch_re_referred = (*ic_ch_ref)->getReferred();
-						
+
 							BON::Attribute ic_ch_re_referred_name_attr = (ic_ch_re_referred)->getAttribute("ResourceName");
 							BON::Attribute ic_ch_re_referred_type_attr = (ic_ch_re_referred)->getAttribute("resourceType");
 
@@ -265,7 +265,7 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
 						if (ic_ch_ref_name == "BridgeReference")
 						{
 							BON::FCO ic_ch_br_referred = (*ic_ch_ref)->getReferred();
-						
+
 							BON::Attribute ic_ch_br_referred_attr = (ic_ch_br_referred)->getAttribute("BridgeLabel");
 							*glob_log << "        <connection xmi:idref=\"" << ic_ch_br_referred_attr->getStringValue() << "\" />" << "\n";
 						}
@@ -294,7 +294,7 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
 						if (sr_ch_ref_name == "NodeReference")
 						{
 							BON::FCO sr_ch_n_referred = (*sr_ch_ref)->getReferred();
-						
+
 							BON::Attribute sr_ch_n_referred_attr = (sr_ch_n_referred)->getAttribute("NodeLabel");
 							*glob_log << "        <node xmi:idref=\"" << sr_ch_n_referred_attr->getStringValue() << "\" />" << "\n";
 						}
@@ -401,10 +401,9 @@ void Component::objectEventPerformed( Object& object, unsigned long event, VARIA
 
 #endif // GME_ADDON
 
-IMPLEMENT_BONEXTENSION( Domain, "Component" ); 
+IMPLEMENT_BONEXTENSION( Domain, "Component" );
 
 FILE *DomainImpl::fpt;
 
 
 }; // namespace BON
-

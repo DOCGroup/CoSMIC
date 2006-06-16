@@ -2,6 +2,7 @@
 #define MGA_COMMONERROR_H
 
 #include <exception>
+using std::exception;
 
 // --------------------------- ASSERT and VERIFY
 

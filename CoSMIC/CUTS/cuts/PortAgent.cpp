@@ -6,18 +6,11 @@
 #include "cuts/PortAgent.inl"
 #endif
 
+#include "cuts/ActivationRecord.h"
 #include "cuts/Port_Measurement.h"
 #include "cuts/Time.h"
-#include "ace/Reactor.h"
-#include "ace/TP_Reactor.h"
-#include "ace/Guard_T.h"
-#include <iostream>
-
-// We only use one thread of control for consolidating the
-// data in the activation records. If we introduce more threads
-// of control then we are going intefere with the QoS of the
-// experiment.
-static const int DEFAULT_THREAD_COUNT = 1;
+#include "ace/Thread_Manager.h"
+#include <algorithm>
 
 //=============================================================================
 /**
@@ -89,23 +82,12 @@ static const int DEFAULT_FREE_LIST_SIZE = 5;
 //
 CUTS_Port_Agent::CUTS_Port_Agent (void)
 : name_ ("unknown"),
-  uuid_ ("unknown"),
   active_ (false),
-  notify_strategy_ (0),
-  free_list_ (ACE_FREE_LIST_WITH_POOL, DEFAULT_FREE_LIST_SIZE),
-  port_measurement_ (new CUTS_Port_Measurement ())
+  free_list_ (ACE_FREE_LIST_WITH_POOL, CUTS_INIT_ACTIVATION_RECORD_COUNT),
+  measurement_pool_ (2),
+  grp_id_ (-1)
 {
-  initialize ();
-}
 
-CUTS_Port_Agent::CUTS_Port_Agent (const char * uuid, const char * name)
-: name_ (name),
-  uuid_ (uuid),
-  active_ (false),
-  notify_strategy_ (0),
-  port_measurement_ (new CUTS_Port_Measurement ())
-{
-  initialize ();
 }
 
 //
@@ -113,41 +95,26 @@ CUTS_Port_Agent::CUTS_Port_Agent (const char * uuid, const char * name)
 //
 CUTS_Port_Agent::~CUTS_Port_Agent (void)
 {
-  // Delete the <reactor_>.
-  delete this->reactor ();
-  this->reactor (0);
-}
 
-//
-// initialize
-//
-void CUTS_Port_Agent::initialize (void)
-{
-  // Create a new <ACE_Reactor> for the <ACE_Task_Base>.
-  ACE_Reactor * reactor = new ACE_Reactor ();
-  this->reactor (reactor);
-
-  // Create the notification strategy.
-  this->notify_strategy_.reset (
-    new ACE_Reactor_Notification_Strategy (
-    reactor, this, ACE_Event_Handler::READ_MASK));
-
-  // Attach the notification strategy to the <closed_list_>.
-  this->closed_list_.notification_strategy (this->notify_strategy_.get ());
 }
 
 //
 // svc
 //
-int CUTS_Port_Agent::svc (void)
+ACE_THR_FUNC_RETURN CUTS_Port_Agent::event_loop (void * param)
 {
-  // Set the owner of the reactor.
-  this->reactor ()->owner (ACE_OS::thr_self ());
+  CUTS_Port_Agent * agent = reinterpret_cast <CUTS_Port_Agent *> (param);
 
   // Process all the events.
-  while (this->active_)
+  while (agent->active_)
   {
-    this->reactor ()->handle_events ();
+    CUTS_Activation_Record * record = 0;
+    int retval = agent->closed_list_.dequeue_head (record);
+
+    if (retval != -1 && record != 0)
+    {
+      agent->record_metrics (record);
+    }
   }
 
   return 0;
@@ -156,41 +123,48 @@ int CUTS_Port_Agent::svc (void)
 //
 // handle_input
 //
-int CUTS_Port_Agent::handle_input (ACE_HANDLE fd)
+void CUTS_Port_Agent::record_metrics (CUTS_Activation_Record * record)
 {
-  // Get the next activation record from the <closed_list_>.
-  CUTS_Cached_Activation_Record * record = 0;
-  this->closed_list_.dequeue (record);
+  // Get the current collection point in the mapping.
+  CUTS_Port_Measurement_Map & pmmap = this->measurement_pool_.current ();
 
-  // Get the lock for the map.
-  do
+  // Locate the measurements for this owner. If we can not
+  // find the records then we need to create a new entry for it.
+  CUTS_Port_Measurement * measurement = 0;
+
+  if (pmmap.find (record->owner (), measurement) == -1)
   {
-    ACE_GUARD_RETURN (ACE_Thread_Mutex, guard, this->lock_, -1);
+    ACE_NEW (measurement, CUTS_Port_Measurement);
 
+    if (measurement != 0)
+    {
+      if (pmmap.bind (record->owner (), measurement) != 0)
+      {
+        delete measurement;
+        measurement = 0;
+      }
+    }
+  }
+
+  if (measurement != 0)
+  {
     // Record the processing time for the activation record.
-    this->port_measurement_->transit_time (record->transit_time ());
-    this->port_measurement_->process_time (
-      record->stop_time () - record->start_time ());
+    measurement->transit_time (record->transit_time ());
+    measurement->process_time (record->stop_time () - record->start_time ());
 
     // Record all the entries in the activation record.
-    std::for_each (
-      record->entries ().c.begin (),
-      record->entries ().c.end (),
-      Record_Record_Entry (this->port_measurement_.get ()));
+    std::for_each (record->entries ().begin (),
+                   record->entries ().end (),
+                   Record_Record_Entry (measurement));
 
     // Record all the exit points in the activation record.
-    std::for_each (
-      record->exit_points ().begin (),
-      record->exit_points ().end (),
-      Record_Exit_Point (this->port_measurement_.get (),
-                         record->start_time ()));
-  } while (0);
+    std::for_each (record->exit_points ().begin (),
+                   record->exit_points ().end (),
+                   Record_Exit_Point (measurement, record->start_time ()));
+  }
 
   // Insert the activation record into the <free_list_>.
-  record->reset ();
-  this->free_list_.add (record);
-
-  return 0;
+  this->add_to_free_list (record);
 }
 
 //
@@ -198,13 +172,45 @@ int CUTS_Port_Agent::handle_input (ACE_HANDLE fd)
 //
 void CUTS_Port_Agent::activate (void)
 {
-  if (!this->active_)
+  if (this->active_)
   {
-    this->active_ = true;
+    return;
+  }
 
-    // Activate the task with default number of threads.
-    ACE_Task_Base::activate (THR_NEW_LWP | THR_JOINABLE | THR_INHERIT_SCHED,
-                             DEFAULT_THREAD_COUNT);
+  this->active_ = true;
+  this->grp_id_ =
+    ACE_Thread_Manager::instance ()->spawn (&CUTS_Port_Agent::event_loop,
+                                            this);
+
+  if (this->grp_id_ == -1)
+  {
+    ACE_ERROR ((LM_ERROR,
+                "[%M] -%T - failed to activate port agent for %s\n",
+                this->name_.c_str ()));
+    this->active_ = false;
+  }
+  else
+  {
+    this->closed_list_.activate ();
+  }
+}
+
+//
+// add_to_free_list
+//
+void CUTS_Port_Agent::add_to_free_list (CUTS_Activation_Record * record)
+{
+  try
+  {
+    CUTS_Cached_Activation_Record * cached_record =
+      dynamic_cast <CUTS_Cached_Activation_Record *> (record);
+
+    cached_record->reset ();
+    this->free_list_.add (cached_record);
+  }
+  catch (...)
+  {
+    delete record;
   }
 }
 
@@ -213,75 +219,27 @@ void CUTS_Port_Agent::activate (void)
 //
 void CUTS_Port_Agent::deactivate (void)
 {
-  if (this->active_)
+  if (!this->active_)
   {
-    // Signal the reactor to task to stop.
-    this->active_ = false;
-    this->reactor ()->notify (this);
-
-    // Wait for all the threads to finish.
-    wait ();
+    return;
   }
-}
 
-//
-// close_activation_record
-//
-void CUTS_Port_Agent::close_activation_record (CUTS_Activation_Record * record)
-{
-  // Close the record.
-  record->close ();
+  this->active_ = false;
 
-  // Cast the activation record to its cached version.
-  CUTS_Cached_Activation_Record * car =
-    dynamic_cast <CUTS_Cached_Activation_Record *> (record);
-
-  if (this->active_)
+  // Gracefully clean the <closed_list_> and deactivate the
+  // <closed_list_> message queue.
+  if (!this->closed_list_.is_empty ())
   {
-    // Place the record on the <closed_list_>. This will give
-    // notify the sweeper thread to collect its data.
-    this->closed_list_.enqueue (car);
-  }
-  else
-  {
-    // Reset the record and place it on the <free_list_>.
-    record->reset ();
-    this->free_list_.add (car);
-  }
-}
-
-//
-// release_measurements
-//
-const CUTS_Port_Measurement * CUTS_Port_Agent::release_measurements (void)
-{
-  // Right now this is going to affect the performance of the experiment.
-  // Each time we are allocating a new <CUTS_Port_Measurement> and its
-  // being deallocated eventually. It would better to have two <CUTS_Port_Measurement>
-  // buffers that can be switched between when signaled.
-  CUTS_Port_Measurement * pm = 0;
-
-  try
-  {
-    ACE_NEW_RETURN (pm, CUTS_Port_Measurement, 0);
-    CUTS_Port_Measurement * old = 0;
-
-    // Get a lock to the measurements.
-    do
+    CUTS_Activation_Record * record = 0;
+    while (this->closed_list_.dequeue_head (record) > 0)
     {
-      ACE_GUARD_RETURN (ACE_Thread_Mutex, guard, this->lock_, 0);
-
-      // Get the old and save the new.
-      old = this->port_measurement_.release ();
-      this->port_measurement_.reset (pm);
-    } while (false);
-
-    // Return the old measurements.
-    pm = old;
+      this->add_to_free_list (record);
+    }
   }
-  catch (std::bad_alloc &)
-  {
 
-  }
-  return pm;
+  this->closed_list_.deactivate ();
+
+  // Wait to for the port agents thread to return.
+  ACE_Thread_Manager::instance ()->wait_grp (this->grp_id_);
+  this->grp_id_ = -1;
 }

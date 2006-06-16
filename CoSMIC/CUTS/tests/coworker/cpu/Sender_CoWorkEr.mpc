@@ -1,0 +1,47 @@
+// This project file was generate by
+// $Id: Sender_CoWorkEr.mpc,v 1.1.2.1 2006/03/19 00:28:24 hillj Exp $
+
+// $Id: Sender_CoWorkEr.mpc,v 1.1.2.1 2006/03/19 00:28:24 hillj Exp $
+project (Sender_CoWorkEr_stub) : cuts_coworker_stub {
+  sharedname = Sender_CoWorkEr_stub
+
+  IDL_Files {
+    Sender.idl
+  }
+
+  Source_Files {
+    SenderC.cpp
+  }
+}
+
+// $Id: Sender_CoWorkEr.mpc,v 1.1.2.1 2006/03/19 00:28:24 hillj Exp $
+project (Sender_CoWorkEr_svnt) : cuts_coworker_svnt {
+  sharedname = Sender_CoWorkEr_svnt
+
+  after += Sender_CoWorkEr_stub
+  libs += Sender_CoWorkEr_stub
+  CIDL_Files {
+    Sender.cidl
+  }
+
+  IDL_Files {
+    SenderE.idl
+  }
+
+  Source_Files {
+    SenderS.cpp
+    SenderEC.cpp
+    Sender_svnt.cpp
+  }
+}
+
+// $Id: Sender_CoWorkEr.mpc,v 1.1.2.1 2006/03/19 00:28:24 hillj Exp $
+project (Sender_CoWorkEr_exec) : cuts_coworker_exec {
+  sharedname = Sender_CoWorkEr_exec
+
+  after += Sender_CoWorkEr_svnt
+  libs += Sender_CoWorkEr_stub Sender_CoWorkEr_svnt
+  Source_Files {
+    Sender_CoWorkEr.cpp
+  }
+}

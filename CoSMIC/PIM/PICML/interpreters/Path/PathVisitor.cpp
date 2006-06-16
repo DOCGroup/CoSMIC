@@ -142,10 +142,26 @@ namespace PICML
       the_port_(a_port)
   {
     is_drawn = 0;
+    
+    this->vertex_name_ = the_component_.getPath (".", false, true, "name", true);
+    //this->vertex_name_ += 
+    //this->vertex_name_ = par_name;
 
-    this->vertex_name_ = par_name;
-    this->vertex_name_ += "_";
+    this->vertex_name_ += "/";
     this->vertex_name_ += the_port_.name ();
+
+    // here save the vertex name ...
+    this->display_label_ = this->vertex_name_;
+
+    // now add the port type to the vertex_name ...
+    if (Udm::IsDerivedFrom (a_port.type () , InEventPort::meta))
+      this->vertex_name_ += "InEventPort";
+    else if (Udm::IsDerivedFrom (a_port.type () , OutEventPort::meta))
+      this->vertex_name_ += "OutEventPort";
+    else if (Udm::IsDerivedFrom (a_port.type () , RequiredRequestPort::meta))
+      this->vertex_name_ += "RequiredRequestPort";
+    else if (Udm::IsDerivedFrom (a_port.type () , ProvidedRequestPort::meta))
+      this->vertex_name_ += "ProvidedRequestPort";
   }
 
 
@@ -231,7 +247,8 @@ namespace PICML
     }
  
 
-    Component_Port_Vertex vertex (startPort, this->extract_uuid(startPort.parent ()));
+    //Component_Port_Vertex vertex (startPort, this->extract_uuid(startPort.parent ()));
+    Component_Port_Vertex vertex (startPort, startPort.getPath (".", false, true, "name", true));
 
 		graph_vertex_indices_[vertex_count_]
 			  = vertex;
@@ -241,7 +258,8 @@ namespace PICML
     // store the start port 
     start_port_ = vertex_count_++;
 
-    Component_Port_Vertex end_vertex (end_port,this->extract_uuid (end_port.parent ()));
+    //Component_Port_Vertex end_vertex (end_port,this->extract_uuid (end_port.parent ()));
+    Component_Port_Vertex end_vertex (end_port, end_port.getPath (".", false, true, "name", true));
 
 		graph_vertex_indices_[vertex_count_]
 			  = end_vertex;
@@ -364,14 +382,14 @@ namespace PICML
       std::vector < size_type > discover_order(num_vertices (the_graph_));
       CalculatePath (discover_order);
 
-      PathDiagram a_path_diagram
-        = PathDiagram::Create (rf);
+      PathDiagrams a_path_diagram
+        = PathDiagrams::Create (rf);
 
       a_path_diagram.name () = "PathDiagram";
 
       // Create All_paths model here and place all the path
       // within this
-      All_Paths all_paths = All_Paths::Create (a_path_diagram);
+      Paths all_paths = Paths::Create (a_path_diagram);
 
       // Form the path name here it will be of
       // startport_endport
@@ -381,12 +399,18 @@ namespace PICML
       path_name += graph_vertex_indices_[this->end_port_].the_port_.name ();
       all_paths.name () = path_name;
 
+      int counter = 0;
       for (PathList::iterator iter = this->all_the_paths_.begin ();
            iter != this->all_the_paths_.end ();
-           iter++)
+           iter++, counter++)
       {
         the_current_path_flow_ = Path::Create (all_paths);
-        the_current_path_flow_.name () = "Path";
+
+        // form the path name
+        char path_name [100];
+        sprintf (path_name ,"%s%d", "Path_" , counter);
+
+        the_current_path_flow_.name () = path_name;
 
         A_Path a_path = *iter;
         draw_path (&a_path);
@@ -1394,9 +1418,12 @@ namespace PICML
 	          std::string connection
 		            = start_vertex + "-" + end_vertex;
 
-            Component_Port_Vertex start (*in_event_port_iter, extract_uuid (*iter));
+            //Component_Port_Vertex start (*in_event_port_iter, extract_uuid (*iter));
 
-            Component_Port_Vertex end (*out_event_port_iter, extract_uuid (*iter));
+            Component_Port_Vertex start (*in_event_port_iter,
+              in_event_port_iter->getPath (".", false, true, "name", true));
+            Component_Port_Vertex end (*out_event_port_iter, 
+              out_event_port_iter->getPath (".", false, true, "name", true));
 
             add_the_edges (start , end);
           }
@@ -1419,9 +1446,15 @@ namespace PICML
 	          std::string connection
 		            = start_vertex + "-" + end_vertex;
 
-            Component_Port_Vertex start (*in_event_port_iter,extract_uuid (*iter));
+            //Component_Port_Vertex start (*in_event_port_iter,extract_uuid (*iter));
 
-            Component_Port_Vertex end (*reqd_request_port_iter, extract_uuid (*iter));
+            //Component_Port_Vertex end (*reqd_request_port_iter, extract_uuid (*iter));
+            
+            Component_Port_Vertex start (*in_event_port_iter,
+              in_event_port_iter->getPath (".", false, true, "name", true));
+
+            Component_Port_Vertex end (*reqd_request_port_iter,
+              reqd_request_port_iter->getPath (".", false, true, "name", true));
 
             add_the_edges (start , end);
           }
@@ -1454,10 +1487,16 @@ namespace PICML
     	
 	          std::string connection
 		            = start_vertex + "-" + end_vertex;
-
+/*
             Component_Port_Vertex start (*prov_request_port_iter, extract_uuid (*iter));
 
             Component_Port_Vertex end (*out_event_port_iter, extract_uuid (*iter));
+*/
+            Component_Port_Vertex start (*prov_request_port_iter, 
+              prov_request_port_iter->getPath (".", false, true, "name", true));
+
+            Component_Port_Vertex end (*out_event_port_iter,
+              out_event_port_iter->getPath (".", false, true, "name", true));
 
             add_the_edges (start , end);
           }
@@ -1480,9 +1519,15 @@ namespace PICML
 	          std::string connection
 		            = start_vertex + "-" + end_vertex;
 
-            Component_Port_Vertex start (*prov_request_port_iter, extract_uuid (*iter));
+/*            Component_Port_Vertex start (*prov_request_port_iter, extract_uuid (*iter));
 
             Component_Port_Vertex end (*reqd_request_port_iter, extract_uuid (*iter));
+*/
+            Component_Port_Vertex start (*prov_request_port_iter, 
+              prov_request_port_iter->getPath (".", false, true, "name", true));
+
+            Component_Port_Vertex end (*reqd_request_port_iter,
+              reqd_request_port_iter->getPath (".", false, true, "name", true));
 
             add_the_edges (start , end);
           }
@@ -1800,13 +1845,8 @@ namespace PICML
 
 	  typedef std::vector< Vertex > container;
 	  container c;
-/*	 
-    boost::topological_sort(
-                            the_graph_, 
-                            std::back_inserter(sorted_vertices)
-                            );
-	*/
-	  outf.open ("topo.txt");
+
+    outf.open ("topo.txt");
 	  for ( container::reverse_iterator ii=sorted_vertices.rbegin();
           ii!=sorted_vertices.rend();
           ++ii)
@@ -1823,7 +1863,7 @@ namespace PICML
                                       DelRet (T::*dstDel) () const,
                                       DelEndRet (Del::*srcDelEnd)() const,
                                       DelEndRet (Del::*dstDelEnd)() const,
-                                      std::map<Component, std::string>& output,
+                                      Component_Port& output,
                                       std::set<T>& visited)
   {
     visited.insert (port);
@@ -1864,7 +1904,7 @@ namespace PICML
     else if (Udm::IsDerivedFrom (par.type(), Component::meta))
       {
         Component recep_comp = Component::Cast (par);
-        output.insert (make_pair (recep_comp, port.name()));
+        output.insert (make_pair (recep_comp, port));
       }
     visited.erase (port);
     return;
@@ -1873,7 +1913,7 @@ namespace PICML
 
 
   void PathVisitor::GetReceptacleComponents (const RequiredRequestPort& receptacle,
-                                                std::map<Component,std::string>& output)
+                                                Component_Port& output)
   {
     std::set<RequiredRequestPort> visited;
     this->GetComponents (receptacle,
@@ -1886,7 +1926,7 @@ namespace PICML
   }
 
   void PathVisitor::GetFacetComponents (const ProvidedRequestPort& facet,
-                                           std::map<Component,std::string>& output)
+                                           Component_Port& output)
   {
     std::set<ProvidedRequestPort> visited;
     this->GetComponents (facet,
@@ -1899,7 +1939,7 @@ namespace PICML
   }
 
   void PathVisitor::GetEventSinkComponents (const InEventPort& consumer,
-                                               std::map<Component,std::string>& output)
+                                               Component_Port& output)
   {
     std::set<InEventPort> visited;
     this->GetComponents (consumer,
@@ -1912,7 +1952,7 @@ namespace PICML
   }
 
     void PathVisitor::GetEventSourceComponents (const OutEventPort& publisher,
-                                                   std::map<Component,std::string>& output)
+                                                   Component_Port& output)
   {
     std::set<OutEventPort> visited;
     this->GetComponents (publisher,
@@ -1924,92 +1964,75 @@ namespace PICML
                          visited);
   }
 
-  void PathVisitor::CreateConnections (const std::map<Component, std::string>& src,
-                                          const std::map<Component, std::string>& dst)
+  void PathVisitor::CreateConnections (const Component_Port& src,
+                                          const Component_Port& dst)
   {
-    for (std::map<Component,std::string>::const_iterator iter = src.begin();
+    for (Component_Port::const_iterator iter = src.begin();
          iter != src.end();
          ++iter)
       {
         Component srcComp = iter->first;
-        std::string srcPortName = iter->second;
-        for (std::map<Component, std::string>::const_iterator iter = dst.begin();
+        Port srcPort = iter->second;
+        for (Component_Port::const_iterator iter = dst.begin();
              iter != dst.end();
              ++iter)
           {
             Component dstComp = iter->first;
-            std::string dstPortName = iter->second;
-            this->CreateConnection (srcComp, srcPortName, dstComp, dstPortName);
+            Port dstPort = iter->second;
+            this->CreateConnection (srcComp, srcPort, dstComp, dstPort);
           }
       }
   }
 
   void PathVisitor::CreateConnection (const Component& srcComp,
-                                         const std::string& srcPortName,
-                                         const Component& dstComp,
-                                         const std::string& dstPortName)
+                                      const Port& srcPort,
+                                      const Component& dstComp,
+                                      const Port& dstPort)
   {
-    // Create a connection
-    //DOMElement* ele = this->doc_->createElement (XStr ("connection"));
-    //this->curr_->appendChild (ele);
 
-    std::string start_vertex = srcComp.UUID ();
-	start_vertex += + "_";
-	start_vertex += srcPortName;
-	
-	std::string end_vertex;
-  end_vertex += dstComp.UUID ();
-	end_vertex += "_";
-	end_vertex += dstPortName;
-	
-	std::string connection
-		= start_vertex + "-" + end_vertex;
+    Component_Port_Vertex start (srcPort);
 
-//	outf << connection << std::endl;
-	int start_index;
-	std::map<std::string,int>::iterator iter
-		= graph_vertex_.find (start_vertex);
-	// get the start vertwx of the edge
-	if (iter == graph_vertex_.end ())
-	{
+	  int start_index;
+	  std::map<std::string,int>::iterator iter
+      = graph_vertex_.find (start.vertex_name_);
+	  // get the start vertwx of the edge
+	  if (iter == graph_vertex_.end ())
+	  {
+      start_index = vertex_count_;
+		  graph_vertex_indices_[vertex_count_]
+			  = start;
+		  graph_vertex_[start.vertex_name_]
+			  = vertex_count_;
+		  vertex_count_++;
+	  }
+	  else 
+	  {
+		  start_index = iter->second;
+	  }
 
-    Component_Port_Vertex start;
-    start.vertex_name_ = start_vertex;
-    start.the_component_ = srcComp;
-    start_index = vertex_count_;
-		graph_vertex_indices_[vertex_count_]
-			= start;
-		graph_vertex_[start_vertex]
-			= vertex_count_;
-		vertex_count_++;
-	}
-	else 
-	{
-		start_index = iter->second;
-	}
+    Component_Port_Vertex end (dstPort) ;
 
-	// get the end vertex of the edge
-	int end_index ;
-	iter = graph_vertex_.find (end_vertex);
-	if (iter == graph_vertex_.end ())
-	{
+	  // get the end vertex of the edge
+	  int end_index ;
+    iter = graph_vertex_.find (end.vertex_name_);
+	  if (iter == graph_vertex_.end ())
+	  {
+     
+      //end.vertex_name_ = end_vertex;
+      //end.the_component_ = dstComp;
 
-    Component_Port_Vertex end;
-    end.vertex_name_ = end_vertex;
-    end.the_component_ = dstComp;
-
-    end_index = vertex_count_;
-		graph_vertex_indices_[vertex_count_]
-			= end;
-		graph_vertex_[end_vertex]
-			= vertex_count_;
-		vertex_count_++;
-    
-	}
-	else 
-	{
-		end_index = iter->second;
-	}
+      end_index = vertex_count_;
+		  graph_vertex_indices_[vertex_count_]
+			  = end;
+      graph_vertex_[end.vertex_name_]
+			  = vertex_count_;
+		  vertex_count_++;
+      
+	  }
+	  else 
+	  {
+		  end_index = iter->second;
+	  }
 
     Edge_Numbers new_edge;
     new_edge.source_ = start_index;
@@ -2027,13 +2050,11 @@ namespace PICML
     // Get the facet end
     ProvidedRequestPort facet = iv.dstinvoke_end();
 
-    std::map<Component,std::string> receptacles;
-    std::map<Component,std::string> facets;
+    Component_Port receptacles;
+    Component_Port facets;
     this->GetReceptacleComponents (receptacle, receptacles);
     this->GetFacetComponents (facet, facets);
     this->CreateConnections (receptacles, facets);
-
-
   }
 
   //void PathVisitor::Visit_invoke(const invoke& iv)
@@ -2114,10 +2135,17 @@ namespace PICML
 	  std::string connection
 		    = start_vertex + "-" + end_vertex;
 
+    /*
     Component_Port_Vertex start (emitter , source_component.UUID ());
 
     Component_Port_Vertex end (consumer , target_component.UUID ());
+*/
+    Component_Port_Vertex start (emitter , 
+      emitter.getPath (".", false, true, "name", true));
 
+    Component_Port_Vertex end (consumer , 
+      consumer.getPath (".", false, true, "name", true));
+    
     add_the_edges (start , end);
   }
 
@@ -2151,16 +2179,16 @@ namespace PICML
 
     // Get Publisher
     OutEventPort publisher = this->publishers_[ctor];
-    std::map<Component,std::string> publishers;
+    Component_Port publishers;
     this->GetEventSourceComponents (publisher, publishers);
 
-    for (std::map<Component,std::string>::const_iterator
+    for (Component_Port::const_iterator
            iter = publishers.begin();
          iter != publishers.end();
          ++iter)
       {
         Component srcComp = iter->first;
-        std::string srcPortName = iter->second;
+        Port srcPort = iter->second;
 
         for (std::multimap<std::string, InEventPort>::const_iterator
                iter = this->consumers_.lower_bound (ctor);
@@ -2169,17 +2197,17 @@ namespace PICML
           {
             // Get Consumer
             InEventPort consumer = iter->second;
-            std::map<Component,std::string> consumers;
+            Component_Port consumers;
             this->GetEventSinkComponents (consumer, consumers);
-            for (std::map<Component,std::string>::const_iterator
+            for (Component_Port::const_iterator
                    iter = consumers.begin();
                  iter != consumers.end();
                  ++iter)
               {
                 Component dstComp = iter->first;
-                std::string dstPortName = iter->second;
-                this->CreateConnection (srcComp, srcPortName, dstComp,
-                                        dstPortName);
+                Port dstPort = iter->second;
+                this->CreateConnection (srcComp, srcPort, dstComp,
+                                        dstPort);
               }
           }
       }
@@ -2248,7 +2276,7 @@ namespace PICML
     return string("<no name specified>");
   }
 
-  void PathVisitor::Visit_PathDiagram(const PathDiagram& path)
+  void PathVisitor::Visit_PathDiagrams(const PathDiagrams& path)
   {
     std::vector < size_type > discover_order(num_vertices (the_graph_));
     CalculatePath (discover_order);
@@ -2427,7 +2455,8 @@ namespace PICML
           iter++,k++)
     {
       DisplayNode node = DisplayNode::Create (the_current_path_flow_);
-      node.name () = graph_vertex_indices_[*iter].vertex_name_;
+      std::string name = graph_vertex_indices_[*iter].vertex_name_;
+      node.name () = graph_vertex_indices_[*iter].display_label_;
 
       int x_co_ordinate = 300;
       int y_co_ordinate = (k + 1)*150;

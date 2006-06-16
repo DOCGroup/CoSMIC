@@ -1,6 +1,4 @@
-// Component configuration file automatically generated as ComponentConfig.h
-// by ConfigureComponent on Thu Dec 22 13:20:55 2005
-
+// $Id$
 
 #define RAWCOMPONENT
 
@@ -28,13 +26,9 @@
 #define PARADIGMS "PICML"
 
 // This is the location of the GME interfaces file (Mga.idl, Meta.idl, etc)
-#define GME_BASE C:/Program Files/GME
+#define GME_BASE .
 
 #define BON_ICON_SUPPORT
-
-// not defined: #define BON_CUSTOM_TRANSACTIONS
-
-#define REGISTER_SYSTEMWIDE
 
 // Just to please the whims of those Microsoft jerks:
 #define COCLASS_UUID_EXPLODED1 0xDD5752C3

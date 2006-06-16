@@ -3,24 +3,33 @@
 #define _CUTS_ACTIVATION_RECORD_H_
 
 #include "cuts/Time_Measurement.h"
-#include <queue>
+
+#include <list>
 #include <map>
 #include <string>
 
 //=============================================================================
 /**
  * @class CUTS_Activation_Record
+ *
+ * @brief Isolated in-memory storage for performance metrics.
+ *
+ * Activation records do not require any locking mechnisms when
+ * logging the performance because each event in the system is allocated
+ * is own record. This is possible since we are assuming the number of
+ * active events in determistics and of a small amount.
+ *
+ * Actication records work in conjection with worker actions. While
+ * a record is active/open, worker actions can be exectued in its context.
+ * Also, depending on the method of execution, the performance of the action
+ * is logged in a log format. This allows external clients to iterate over
+ * the log to see the performance of each individual action, if needed.
  */
 //=============================================================================
 
 class CUTS_Export CUTS_Activation_Record
 {
 public:
-  //===========================================================================
-  /**
-   * @struct Entry
-   */
-  //===========================================================================
   struct Entry
   {
     //
@@ -67,7 +76,7 @@ public:
   };
 
   /// Type definition for entries contained in the record.
-  typedef std::queue <Entry> Entries;
+  typedef std::list <Entry> Entries;
 
   /// Type definition for mapping exit points to time.
   typedef std::map <std::string, ACE_Time_Value> Exit_Points;
@@ -88,10 +97,10 @@ public:
   void reset (void);
 
   /// Activate the activation record.
-  void activate (void);
+  virtual void activate (long owner = -1);
 
   /// Close the activation record.
-  void close (void);
+  virtual void close (void);
 
   /// Determine if the record is active.
   bool is_active (void);
@@ -102,54 +111,35 @@ public:
   /// Get the exit points for the record.
   const Exit_Points & exit_points (void) const;
 
+  /// Get the owner of the record.
+  long owner (void) const;
+
   /// Perform the specified action without any logging.
   template <typename ACTION>
-  void perform_action_no_logging (size_t repetitions, ACTION & action)
-  {
-    for (size_t rep = 0; rep < repetitions; rep ++)
-    {
-      action ();
-    }
-  }
+  void perform_action_no_logging (const ACTION & action);
+
+  /// Perform the specified action without any logging.
+  template <typename ACTION>
+  void perform_action_no_logging (size_t repetitions, const ACTION & action);
 
   /// Perform the specified action and log its performance.
   template <typename ACTION>
-  void perform_action (size_t repetitions, ACTION & action)
-  {
-    // Save the start time of the action.
-    this->action_state_time_ = ACE_OS::gettimeofday ();
+  void perform_action (const ACTION & action);
 
-    for (size_t rep = 0; rep < repetitions; rep ++)
-    {
-      action ();
-    }
-
-    // Save the stop time of the action.
-    this->action_stop_time_ = ACE_OS::gettimeofday ();
-
-    // Save the timing information into the record.
-    log_time_measurement (
-      repetitions,
-      CUTS_Worker_Traits <ACTION::Worker_Type>::worker_id_,
-      CUTS_Action_Traits <ACTION>::action_id_);
-  }
-
-  //
-  // record_exit_point_time
-  //
+  /// Perform the specified action and log its performance.
   template <typename ACTION>
-  void record_exit_point (const std::string & uuid, ACTION & action)
-  {
-    // Save the current time as the exit point time.
-    this->exit_points_[uuid] = ACE_OS::gettimeofday ();
+  void perform_action (size_t repetitions, const ACTION & action);
 
-    // Perform the action.
-    action ();
-  }
+  template <typename ACTION>
+  void record_exit_point (const std::string & uuid, const ACTION & action);
 
   const ACE_Time_Value & transit_time (void) const;
 
   void transit_time (const ACE_Time_Value & transit_time);
+
+  void queue_time (const ACE_Time_Value & queue_time);
+
+  const ACE_Time_Value & queue_time (void) const;
 
 private:
   /// Log the timing measurement.
@@ -157,6 +147,9 @@ private:
 
   /// Active state of the record.
   bool active_;
+
+  /// Owner of the record.
+  long owner_;
 
   /// The start for the activation record.
   ACE_Time_Value start_time_;
@@ -173,6 +166,9 @@ private:
   /// Transit time for the event cause the record.
   ACE_Time_Value transit_time_;
 
+  /// Queuing time for the event relating to this record.
+  ACE_Time_Value queue_time_;
+
   /// Entries in the activation record.
   Entries entries_;
 
@@ -188,7 +184,7 @@ private:
 
 //=============================================================================
 /**
- * @class CUTS_Cached_Activation_Record
+ * @class CUTS_Cached_Activation_Record_T
  *
  * @brief Implementation of a CUTS_Activation_Record to be used with the
  * ACE_Free_List class.
@@ -224,8 +220,10 @@ private:
 };
 
 #if defined (__CUTS_INLINE__)
-#include "ace/OS_NS_sys_time.h"
 #include "cuts/ActivationRecord.inl"
+#include "cuts/Activation_Record_T.inl"
 #endif
+
+#include "cuts/Activation_Record_T.cpp"
 
 #endif  // !defined _CUTS_ACTIVATION_RECORD_H_

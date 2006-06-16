@@ -3,19 +3,18 @@
 #ifndef _CUTS_PORT_AGENT_H_
 #define _CUTS_PORT_AGENT_H_
 
-#include "cuts/ActivationRecord.h"
-#include "ace/Thread_Mutex.h"
-#include "ace/Task.h"
-#include "ace/Message_Queue_T.h"
-#include "ace/Auto_Ptr.h"
-#include "ace/Reactor_Notification_Strategy.h"
-#include "ace/Free_List.h"
-#include <string>
-#include <set>
-#include <stack>
+#if !defined (ACE_LACKS_PRAGMA_ONCE)
+# pragma once
+#endif /* ACE_LACKS_PRAGMA_ONCE */
 
-// forward declarations
-class CUTS_Port_Measurement;
+#include "cuts/ActivationRecord.h"
+#include "cuts/Port_Measurement_Pool.h"
+#include "ace/Condition_Thread_Mutex.h"
+#include "ace/Message_Queue_T.h"
+#include "ace/Free_List.h"
+
+#include <string>
+#include <map>
 
 //=============================================================================
 /**
@@ -23,79 +22,79 @@ class CUTS_Port_Measurement;
  */
 //=============================================================================
 
-class CUTS_Export CUTS_Port_Agent :
-  protected ACE_Task_Base
+class CUTS_Export CUTS_Port_Agent
 {
 public:
   /// Constructor.
   CUTS_Port_Agent (void);
 
-  /// Constructor.
-  CUTS_Port_Agent (const char * uuid, const char * name);
-
   /// Destructor.
   virtual ~CUTS_Port_Agent (void);
+
+  /// Set the name of the port agent.
+  void name (const char * name);
 
   /// Get the name of the port agent.
   const char * name (void) const;
 
-  /// Get the uuid of the port agent.
-  const char * uuid (void) const;
-
-  /// Create a new activation record from the port agent.
-  CUTS_Activation_Record * create_activation_record (void);
-
-  /// Close an activation record. This causes the benchmark agent
-  /// to consolidate the record contents into a single location.
-  void close_activation_record (CUTS_Activation_Record * record);
-
   /// Activate the port agent.
-  void activate (void);
+  virtual void activate (void);
 
   /// Deactivate the port agent.
-  void deactivate (void);
+  virtual void deactivate (void);
 
   /**
-   * Release the current port measurements. This will give control
-   * of the measurements to the client to do whatever it desires.
+   * Create a new activation record from the port agent. This is
+   * a factory method for all port agents.
+   *
+   * @return    Pointer to a clean activation record.
    */
-  const CUTS_Port_Measurement * release_measurements (void);
+  CUTS_Activation_Record * create_activation_record (void);
 
-private:
-  /// Initialized the port agent.
-  void initialize (void);
+  /**
+   * Close an activation record. This causes the benchmark agent
+   * to consolidate the record contents into a single location.
+   */
+  void destroy_activation_record (CUTS_Activation_Record * record);
 
+  /**
+   * Get the current port measurement map. This will call the
+   * port agent to switch to a new map for metrics collection.
+   *
+   * @return      Reference to the lastest port measurement map.
+   */
+  CUTS_Port_Measurement_Map & port_measurements (void);
+
+protected:
   /// Service handler for the port agent.
-  int svc (void);
-
-  /// Handle the input to the message queue.
-  int handle_input (ACE_HANDLE fd);
+  static ACE_THR_FUNC_RETURN event_loop (void * param);
 
   /// Name of the port.
   std::string name_;
 
-  /// UUID of the port.
-  std::string uuid_;
-
   /// The active state of the port agent.
   bool active_;
 
-  /// Notification strategy for the <closed_list_>.
-  ACE_Auto_Ptr <ACE_Reactor_Notification_Strategy> notify_strategy_;
-
   /// Collection of free activation records.
   ACE_Locked_Free_List <
-    CUTS_Cached_Activation_Record, ACE_Thread_Mutex> free_list_;
+    CUTS_Cached_Activation_Record,
+    ACE_SYNCH_RW_MUTEX> free_list_;
 
-  /// Collection of unprocessed closed activation records.
-  ACE_Message_Queue_Ex <
-    CUTS_Cached_Activation_Record, ACE_MT_SYNCH> closed_list_;
+  /// Collection of port measurements used by the port agent.
+  CUTS_Port_Measurement_Pool measurement_pool_;
 
-  /// Thread lock for synchronization.
-  ACE_Thread_Mutex lock_;
+private:
+  /// Helper method to recored the methics in a record.
+  void record_metrics (CUTS_Activation_Record * record);
 
-  /// The measurement information for this port.
-  ACE_Auto_Ptr <CUTS_Port_Measurement> port_measurement_;
+  /// Helper method to add an activation record to the free list.
+  void add_to_free_list (CUTS_Activation_Record * record);
+
+  ACE_Message_Queue_Ex <CUTS_Activation_Record,
+                        ACE_MT_SYNCH> closed_list_;
+
+  /// The group id for the port agent's threads.
+  long grp_id_;
 };
 
 #if defined (__CUTS_INLINE__)

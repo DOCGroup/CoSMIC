@@ -34,9 +34,9 @@
 #include "UdmApp.h"
 #include "UdmConfig.h"
 
-#include "../PICML/Utils.h"
-#include "PICML.h"
-#include "PathVisitor.h"
+#include "PICML/Utils.h"
+#include "PICML/PICML.h"
+#include "Path/PathVisitor.h"
 
 using xercesc::XMLPlatformUtils;
 using xercesc::XMLException;
@@ -93,7 +93,7 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
                       set<Udm::Object> selectedObjects,	// Selected objects
                       long param)			// Parameters
 {
-  
+
   try
   {
     try
@@ -112,7 +112,7 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
     }
     //PICML::PathVisitor visitor (*selectedObjects.begin ());
     PICML::PathVisitor visitor (selectedObjects);
-    PICML::RootFolder start 
+    PICML::RootFolder start
 		= PICML::RootFolder::Cast (p_backend->GetRootObject());
     start.Accept (visitor);
   }
@@ -123,7 +123,7 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
     return;
   }
 
-  AfxMessageBox ("Descriptor files were successfully generated!",
+  AfxMessageBox ("Path Diagrams were successfully generated!",
                  MB_OK| MB_ICONINFORMATION);
   return;
 }

@@ -1,3 +1,5 @@
+// $Id$
+
 project {
   Source_Files {
     
@@ -6,5 +8,9 @@ project {
   Header_Files {
     ComponentConfig.h
     Resource.h
+  }
+  
+  Resource_Files {
+    Component.rc
   }
 }

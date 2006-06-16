@@ -28,9 +28,14 @@ namespace PICML
   using xercesc::XMLFormatTarget;
   using xercesc::LocalFileFormatTarget;
 
+  using std::set;
+  using std::vector;
+  using std::string;
+  using std::map;
+
   class Package_Export PackageVisitor: public Visitor
   {
-  public:
+    public:
     PackageVisitor (const std::string& outputPath);
     ~PackageVisitor();
 
@@ -114,7 +119,6 @@ namespace PICML
     virtual void Visit_RequiredRequestPort(const RequiredRequestPort&);
     virtual void Visit_InEventPort(const InEventPort&);
     virtual void Visit_Supports(const Supports&);
-    virtual void Visit_Object(const Object&);
 
 
 
@@ -154,115 +158,45 @@ namespace PICML
     virtual void Visit_AttributeMappingValue(const AttributeMappingValue&);
     virtual void Visit_AttributeMappingDelegate(const AttributeMappingDelegate&);
 
+    // Critical Path related operations
 
+    virtual void Visit_PathReference(const PathReference&);
+    virtual void Visit_Path(const Path&);
+    virtual void Visit_CriticalPath(const CriticalPath&);
 
-    virtual void Visit_Resource(const Resource&){};
-    virtual void Visit_SharedResource(const SharedResource&){};
-    virtual void Visit_NodeReference(const NodeReference&){};
-    virtual void Visit_Bridge(const Bridge&){};
-    virtual void Visit_Node(const Node&){};
-    virtual void Visit_Interconnect(const Interconnect&){};
-    virtual void Visit_Domain(const Domain&){};
-    virtual void Visit_Targets(const Targets&){};
-    virtual void Visit_Node2Interconnect(const Node2Interconnect&){};
-    virtual void Visit_Bridge2Interconnect(const Bridge2Interconnect&){};
-    virtual void Visit_Shares(const Shares&){};
-    virtual void Visit_Interconnect2Node(const Interconnect2Node&){};
-    virtual void Visit_Interconnect2Bridge(const Interconnect2Bridge&){};
-    virtual void Visit_InstanceMapping(const InstanceMapping&){};
-    virtual void Visit_DeploymentPlan(const DeploymentPlan&){};
-    virtual void Visit_DeploymentPlans(const DeploymentPlans&){};
-    virtual void Visit_CollocationGroup(const CollocationGroup&){};
-    virtual void Visit_InParameter(const InParameter&){};
-    virtual void Visit_TwowayOperation(const TwowayOperation&){};
-    virtual void Visit_OnewayOperation(const OnewayOperation&){};
-    virtual void Visit_FactoryOperation(const FactoryOperation&){};
-    virtual void Visit_LookupOperation(const LookupOperation&){};
-    virtual void Visit_InoutParameter(const InoutParameter&){};
-    virtual void Visit_OutParameter(const OutParameter&){};
-    virtual void Visit_ReturnType(const ReturnType&){};
-    virtual void Visit_Exception(const Exception&){};
-    virtual void Visit_Package(const Package&){};
-    virtual void Visit_File(const File&){};
-    virtual void Visit_Constant(const Constant&){};
-    virtual void Visit_InterfaceDefinitions(const InterfaceDefinitions&){};
-    virtual void Visit_FileRef(const FileRef&){};
-    virtual void Visit_ExceptionRef(const ExceptionRef&){};
-    virtual void Visit_SwitchedAggregate(const SwitchedAggregate&){};
-    virtual void Visit_Member(const Member&){};
-    virtual void Visit_Boxed(const Boxed&){};
-    virtual void Visit_EnumValue(const EnumValue&){};
-    virtual void Visit_Label(const Label&){};
-    virtual void Visit_Aggregate(const Aggregate&){};
-    virtual void Visit_Alias(const Alias&){};
-    virtual void Visit_Collection(const Collection&){};
-    virtual void Visit_Discriminator(const Discriminator&){};
-    virtual void Visit_Enum(const Enum&){};
-    virtual void Visit_LabelConnection(const LabelConnection&){};
-    virtual void Visit_SetException(const SetException&){};
-    virtual void Visit_LookupKey(const LookupKey&){};
-    virtual void Visit_Attribute(const Attribute&){};
-    virtual void Visit_MakeMemberPrivate(const MakeMemberPrivate&){};
-    virtual void Visit_PrivateFlag(const PrivateFlag&){};
-    virtual void Visit_GetException(const GetException&){};
-    virtual void Visit_Inherits(const Inherits&){};
-    virtual void Visit_ValueObject(const ValueObject&){};
-    virtual void Visit_Event(const Event&){};
-    virtual void Visit_AttributeMember(const AttributeMember&){};
-    virtual void Visit_ManagesComponent(const ManagesComponent&){};
-    virtual void Visit_ComponentFactory(const ComponentFactory&){};
-    virtual void Visit_Object(const Udm::Object&){};
+    // Supported Types Specific operations
+    virtual void Visit_Object(const Object&);
+    virtual void Visit_Event(const Event&);
 
-  private:
+    private:
 
-    DOMImplementation*  impl_;
-    DOMDocument*        doc_;
-    DOMElement*         root_;
-    DOMElement*         curr_;
-    DOMWriter*          serializer_;
-    XMLFormatTarget*    target_;
-    std::string         outputPath_;
-    std::stack<DOMElement*> curr_stack_;
-
-    // Maintain associations between ComponentType and ComponentPackages
-    std::map<std::string, std::string> interfaces_;
-
-    // Maintain associations between PublishConnector and event publishers
-    std::map<std::string, OutEventPort> publishers_;
-
-    // Maintain associations between PublishConnector and event consumers
-    std::multimap<std::string, InEventPort> consumers_;
-
-    // Maintain association between pair<Component, Readonlyattribute> and
-    // Property
-    std::map<std::pair<std::string, std::string>, Property> attrValues_;
 
     void init();
-    void initTarget (const std::string& fileName);
-    void initDocument (const std::string& rootName);
+    void initTarget (const string& fileName);
+    void initDocument (const string& rootName);
     void initRootAttributes();
     void dumpDocument();
 
     void push();
     void pop();
-    std::string ExtractName (Udm::Object obj);
-    DOMElement* createSimpleContent (const std::string& name,
-                                     const std::string& value);
+    string ExtractName (Udm::Object obj);
+    DOMElement* createSimpleContent (const string& name,
+                                     const string& value);
 
     void GetReceptacleComponents (const RequiredRequestPort& receptacle,
-                                  std::map<Component,std::string>& output);
+                                  map<Component,string>& output);
 
     void GetFacetComponents (const ProvidedRequestPort& facet,
-                             std::map<Component,std::string>& output);
+                             map<Component,string>& output);
 
     void GetEventSinkComponents (const InEventPort& consumer,
-                                 std::map<Component,std::string>& output);
+                                 map<Component,string>& output);
 
     void GetEventSourceComponents (const OutEventPort& publisher,
-                                   std::map<Component,std::string>& output);
+                                   map<Component,string>& output);
 
     void GetAttributeComponents (const AttributeMapping& mapping,
-                                 std::set<std::pair<std::string, std::string> >& output);
+                                 set<pair<string, string> >& output);
 
     template <typename T, typename Del, typename DelRet, typename DelEndRet>
       void GetComponents (const T& port,
@@ -270,20 +204,58 @@ namespace PICML
                           DelRet (T::*dstDel) () const,
                           DelEndRet (Del::*srcDelEnd)() const,
                           DelEndRet (Del::*dstDelEnd)() const,
-                          std::map<Component, std::string>& output,
-                          std::set<T>& visited);
+                          map<Component, string>& output,
+                          set<T>& visited);
 
-    void CreateConnections (const std::map<Component, std::string>& src,
-                            const std::map<Component, std::string>& dst);
+    void CreateAssemblies (const ComponentAssembly& assembly);
+
+    void CreateConnections (const map<Component, string>& src,
+                            const map<Component, string>& dst);
 
     void CreateConnection (const Component& srcComp,
-                           const std::string& srcPortName,
+                           const string& srcPortName,
                            const Component& dstComp,
-                           const std::string& dstPortName);
-    void CreateAssemblyInstances (std::set<Component>& comps);
-    void CreateAssemblyConnections (std::vector<ComponentAssembly>& assemblies);
-    void CreateAttributeMappings (std::vector<ComponentAssembly>& assemblies);
-	void CreatePropertyElement (std::string name, const Property& property);
+                           const string& dstPortName);
+    void CreateAssemblyInstances (set<Component>& comps);
+    void CreateAssemblyConnections (vector<ComponentAssembly>& assemblies);
+    void CreateAttributeMappings (vector<ComponentAssembly>& assemblies);
+    void CreatePropertyElement (string name, const Property& property);
+    void DumpStringProperty (const string& name, const string& pvalue);
+
+    string CreatePath (const DisplayNode& node);
+    string CreateRepositoryId (const Udm::Object& comp);
+    void CreateComponentCanonicalIds();
+    void CreateObjectCanonicalIds();
+    void CreateEventCanonicalIds();
+    void CollectSupportedTypes(const Component& comp);
+    void CollectSupportedTypes (const Object& obj, set<string>& supportedTypes);
+    void CollectSupportedTypes (const Event& event,
+                                set<string>& supportedTypes);
+
+    private:
+
+    DOMImplementation*  impl_;
+    DOMDocument*        doc_;
+    DOMElement*         root_;
+    DOMElement*         curr_;
+    DOMWriter*          serializer_;
+    XMLFormatTarget*    target_;
+    string         outputPath_;
+    stack<DOMElement*> curr_stack_;
+
+    // Maintain associations between ComponentType and ComponentPackages
+    map<string, string> interfaces_;
+
+    // Maintain associations between PublishConnector and event publishers
+    map<string, OutEventPort> publishers_;
+
+    // Maintain associations between PublishConnector and event consumers
+    multimap<string, InEventPort> consumers_;
+
+    // Maintain association between pair<Component, Readonlyattribute> and
+    // Property
+    map<pair<string, string>, Property> attrValues_;
+
   };
 }
 

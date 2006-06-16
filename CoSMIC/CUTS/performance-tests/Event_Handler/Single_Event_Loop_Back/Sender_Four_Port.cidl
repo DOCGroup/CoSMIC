@@ -1,0 +1,15 @@
+#ifndef SENDER_FOUR_PORT_CIDL
+#define SENDER_FOUR_PORT_CIDL
+
+#include "Sender_Four_Port.idl"
+
+composition session Sender_Four_Port_Impl
+{
+  home executor Sender_Four_PortHome_Exec
+  {
+    implements Sender_Four_Port_Factory;
+    manages Sender_Four_Port_Exec;
+  };
+};
+
+#endif // !defined SENDER_FOUR_PORT_CIDL

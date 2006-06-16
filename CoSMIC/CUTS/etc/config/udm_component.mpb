@@ -1,0 +1,13 @@
+// $Id: udm_component.mpb,v 1.1.2.1.2.1 2006/05/02 23:33:58 hillj Exp $
+
+project : gme_raw, picml_udm, xerces {
+  requires += udm
+
+  Header_Files {
+    UdmConfig.h
+  }
+
+  Source_Files {
+    UdmApp.cpp
+  }
+}

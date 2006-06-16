@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<Deployment:deploymentPlan xmlns:Deployment="http://www.omg.org/Deployment" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.omg.org/Deployment Deployment.xsd">
+
+  <UUID>D364D5A9-0727-45D9-9729-ADDB331216D1</UUID>
+
+  <implementation id="_71D1E480-8500-4E1C-A3C2-9F09D4FABF7B">
+    <name>Single_Event_Loop_Back.ComponentImplementations.Sender_Impl.Sender</name>
+    <source/>
+    <artifact>_09229991-310D-42D2-A6DF-28326D61CBB6</artifact>
+    <artifact>_DBE54A5B-0F5B-4434-9363-7ED70CD781EC</artifact>
+    <artifact>_4A7DE7AC-CCFB-434A-991E-3CE815E06F90</artifact>
+  </implementation>
+
+  <implementation id="_0E4717CD-F86D-440B-84C9-44C8FEA0CA6A">
+    <name>Single_Event_Loop_Back.ComponentImplementations.Sender_Two_Port_Impl.Sender_Two_Port_Impl</name>
+    <source/>
+    <artifact>_E4C82C9A-129D-46C3-80BD-535FD8360A4B</artifact>
+    <artifact>_09AD67C7-685B-41B2-ACEC-9454B2692124</artifact>
+    <artifact>_6D03AAC3-45E3-450C-85C4-BAC434B73584</artifact>
+  </implementation>
+
+  <implementation id="_AF7E477B-B097-4D3A-9A20-DE806798D454">
+    <name>Single_Event_Loop_Back.ComponentImplementations.Sender_Three_Port_Impl.Sender_Three_Port_Impl</name>
+    <source/>
+    <artifact>_F9F2C16D-DFEA-4FCC-982B-B6EDDCD99F32</artifact>
+    <artifact>_BDC5A7CD-A1C1-4F52-B390-3ADD732FB5F5</artifact>
+    <artifact>_32010D58-266D-493C-B09C-7C41C155D087</artifact>
+  </implementation>
+
+  <implementation id="_27DE6BB2-96F6-4DEB-BD80-EA1EECE5F1E0">
+    <name>Single_Event_Loop_Back.ComponentImplementations.Sender_Four_Port_Impl.Sender_Four_Port_Impl</name>
+    <source/>
+    <artifact>_5AE6869A-E43A-4078-85DF-E0759E8AD3BF</artifact>
+    <artifact>_D9B02BE6-5A05-4030-B26E-1DE1164DE27F</artifact>
+    <artifact>_EA92D511-899F-4679-BFEB-21CCD9465A41</artifact>
+  </implementation>
+
+  <implementation id="_172630CC-7F67-403C-AE9D-9EFE244A3B21">
+    <name>Single_Event_Loop_Back.CUTS_ComponentImplementations.BDC_Implementation.BDC_Monolithic_Impl</name>
+    <source/>
+    <artifact>_6FE8CB36-A67C-40E5-B2F0-302C067089C9</artifact>
+    <artifact>_BCB228E6-B0A9-4C0B-8161-A1F9FE0F4BA8</artifact>
+    <artifact>_A94894AD-0181-45F9-8FCF-26E6922C1368</artifact>
+  </implementation>
+
+  <implementation id="_BA0C4535-191E-4BE0-9BF4-A054EB2C4139">
+    <name>Single_Event_Loop_Back.CUTS_ComponentImplementations.BDC_Ex_Implementation.BDC_Ex_Impl</name>
+    <source/>
+    <artifact>_2DBFA82B-1D1F-48C6-9BDC-014E789E6A77</artifact>
+    <artifact>_5CE1793F-38DD-427D-A21E-E6D870E769E4</artifact>
+    <artifact>_0B8A6C29-8962-4DA6-99F4-25FEECD77E97</artifact>
+  </implementation>
+
+  <instance id="_CC9E8224-20BE-4780-A37E-C4F3F1DCF62A">
+    <name>Single_Event_Loop_Back.ComponentImplementations.Sender_Assembly.Sender_Assembly.Benchmark_Data_Collector_Ex</name>
+    <node>Alpha</node>
+    <source/>
+    <implementation>_BA0C4535-191E-4BE0-9BF4-A054EB2C4139</implementation>
+    <configProperty>
+      <name>ComponentIOR</name>
+      <value>
+        <type>
+          <kind>tk_string</kind>
+        </type>
+        <value>
+          <string>BDC_Ex.ior</string>
+        </value>
+      </value>
+    </configProperty>
+    <configProperty>
+      <name>server_name</name>
+      <value>
+        <type>
+          <kind>tk_string</kind>
+        </type>
+        <value>
+          <string>localhost</string>
+        </value>
+      </value>
+    </configProperty>
+    <configProperty>
+      <name>timeout</name>
+      <value>
+        <type>
+          <kind>tk_long</kind>
+        </type>
+        <value>
+          <long>10</long>
+        </value>
+      </value>
+    </configProperty>
+  </instance>
+
+  <instance id="_D694C488-AD70-4DC2-B02F-BA06B36B76D2">
+    <name>Single_Event_Loop_Back.ComponentImplementations.Sender_Assembly.Sender_Assembly.Sender_Two_Port</name>
+    <node>Bravo</node>
+    <source/>
+    <implementation>_0E4717CD-F86D-440B-84C9-44C8FEA0CA6A</implementation>
+    <configProperty>
+      <name>ComponentIOR</name>
+      <value>
+        <type>
+          <kind>tk_string</kind>
+        </type>
+        <value>
+          <string>Sender_Two_Port.ior</string>
+        </value>
+      </value>
+    </configProperty>
+  </instance>
+
+  <connection>
+    <name>cuts_testing_service_testing_service</name>
+    <internalEndpoint>
+      <portName>cuts_testing_service</portName>
+      <kind>SimplexReceptacle</kind>
+      <instance>_D694C488-AD70-4DC2-B02F-BA06B36B76D2</instance>
+    </internalEndpoint>
+    <internalEndpoint>
+      <portName>testing_service</portName>
+      <kind>Facet</kind>
+      <instance>_CC9E8224-20BE-4780-A37E-C4F3F1DCF62A</instance>
+    </internalEndpoint>
+  </connection>
+
+  <connection>
+    <name>output_input</name>
+    <internalEndpoint>
+      <portName>output</portName>
+      <kind>EventEmitter</kind>
+      <instance>_D694C488-AD70-4DC2-B02F-BA06B36B76D2</instance>
+    </internalEndpoint>
+    <internalEndpoint>
+      <portName>input</portName>
+      <kind>EventConsumer</kind>
+      <instance>_D694C488-AD70-4DC2-B02F-BA06B36B76D2</instance>
+    </internalEndpoint>
+  </connection>
+
+  <connection>
+    <name>output_two_input_two</name>
+    <internalEndpoint>
+      <portName>output_two</portName>
+      <kind>EventEmitter</kind>
+      <instance>_D694C488-AD70-4DC2-B02F-BA06B36B76D2</instance>
+    </internalEndpoint>
+    <internalEndpoint>
+      <portName>input_two</portName>
+      <kind>EventConsumer</kind>
+      <instance>_D694C488-AD70-4DC2-B02F-BA06B36B76D2</instance>
+    </internalEndpoint>
+  </connection>
+
+  <artifact id="_DBE54A5B-0F5B-4434-9363-7ED70CD781EC">
+    <name>Single_Event_Loop_Back.ImplementationArtifacts.Sender_Artifacts.Sender_stub</name>
+    <source/>
+    <node/>
+    <location>Sender_CoWorkEr_stub</location>
+  </artifact>
+
+  <artifact id="_09229991-310D-42D2-A6DF-28326D61CBB6">
+    <name>Single_Event_Loop_Back.ImplementationArtifacts.Sender_Artifacts.Sender_svnt</name>
+    <source/>
+    <node/>
+    <location>Sender_CoWorkEr_svnt</location>
+    <execParameter>
+      <name>entryPoint</name>
+      <value>
+        <type>
+          <kind>tk_string</kind>
+        </type>
+        <value>
+          <string>create_Example_Sender_Factory_Servant</string>
+        </value>
+      </value>
+    </execParameter>
+  </artifact>
+
+  <artifact id="_4A7DE7AC-CCFB-434A-991E-3CE815E06F90">
+    <name>Single_Event_Loop_Back.ImplementationArtifacts.Sender_Artifacts.Sender_exec</name>
+    <source/>
+    <node/>
+    <location>Sender_CoWorkEr_exec</location>
+    <execParameter>
+      <name>entryPoint</name>
+      <value>
+        <type>
+          <kind>tk_string</kind>
+        </type>
+        <value>
+          <string>create_Example_Sender_Factory_CoWorkEr_Factory_Impl</string>
+        </value>
+      </value>
+    </execParameter>
+  </artifact>
+
+  <artifact id="_E4C82C9A-129D-46C3-80BD-535FD8360A4B">
+    <name>Single_Event_Loop_Back.ImplementationArtifacts.Sender_Two_Port_Artifacts.Sender_Two_Port_stub</name>
+    <source/>
+    <node/>
+    <location>Sender_Two_Port_CoWorkEr_stub</location>
+  </artifact>
+
+  <artifact id="_6D03AAC3-45E3-450C-85C4-BAC434B73584">
+    <name>Single_Event_Loop_Back.ImplementationArtifacts.Sender_Two_Port_Artifacts.Sender_Two_Port_exec</name>
+    <source/>
+    <node/>
+    <location>Sender_Two_Port_CoWorkEr_exec</location>
+    <execParameter>
+      <name>entryPoint</name>
+      <value>
+        <type>
+          <kind>tk_string</kind>
+        </type>
+        <value>
+          <string>create_Sender_Two_Port_Factory_CoWorkEr_Factory_Impl</string>
+        </value>
+      </value>
+    </execParameter>
+  </artifact>
+
+  <artifact id="_09AD67C7-685B-41B2-ACEC-9454B2692124">
+    <name>Single_Event_Loop_Back.ImplementationArtifacts.Sender_Two_Port_Artifacts.Sender_Two_Port_svnt</name>
+    <source/>
+    <node/>
+    <location>Sender_Two_Port_CoWorkEr_svnt</location>
+    <execParameter>
+      <name>entryPoint</name>
+      <value>
+        <type>
+          <kind>tk_string</kind>
+        </type>
+        <value>
+          <string>create_Sender_Two_Port_Factory_Servant</string>
+        </value>
+      </value>
+    </execParameter>
+  </artifact>
+
+  <artifact id="_32010D58-266D-493C-B09C-7C41C155D087">
+    <name>Single_Event_Loop_Back.ImplementationArtifacts.Sender_Three_Port_Artifacts.Sender_Three_Port_exec</name>
+    <source/>
+    <node/>
+    <location>Sender_Three_Port_CoWorkEr_exec</location>
+    <execParameter>
+      <name>entryPoint</name>
+      <value>
+        <type>
+          <kind>tk_string</kind>
+        </type>
+        <value>
+          <string>create_Sender_Three_Port_Factory_CoWorkEr_Factory_Impl</string>
+        </value>
+      </value>
+    </execParameter>
+  </artifact>
+
+  <artifact id="_F9F2C16D-DFEA-4FCC-982B-B6EDDCD99F32">
+    <name>Single_Event_Loop_Back.ImplementationArtifacts.Sender_Three_Port_Artifacts.Sender_Three_Port_svnt</name>
+    <source/>
+    <node/>
+    <location>Sender_Three_Port_CoWorkEr_svnt</location>
+    <execParameter>
+      <name>entryPoint</name>
+      <value>
+        <type>
+          <kind>tk_string</kind>
+        </type>
+        <value>
+          <string>create_Sender_Three_Port_Factory_Servant</string>
+        </value>
+      </value>
+    </execParameter>
+  </artifact>
+
+  <artifact id="_BDC5A7CD-A1C1-4F52-B390-3ADD732FB5F5">
+    <name>Single_Event_Loop_Back.ImplementationArtifacts.Sender_Three_Port_Artifacts.Sender_Three_Port_stub</name>
+    <source/>
+    <node/>
+    <location>Sender_Three_Port_CoWorkEr_stub</location>
+  </artifact>
+
+  <artifact id="_5AE6869A-E43A-4078-85DF-E0759E8AD3BF">
+    <name>Single_Event_Loop_Back.ImplementationArtifacts.Sender_Four_Port_Artifacts.Sender_Four_Port_stub</name>
+    <source/>
+    <node/>
+    <location>Sender_Four_Port_CoWorkEr_stub</location>
+  </artifact>
+
+  <artifact id="_D9B02BE6-5A05-4030-B26E-1DE1164DE27F">
+    <name>Single_Event_Loop_Back.ImplementationArtifacts.Sender_Four_Port_Artifacts.Sender_Four_Port_svnt</name>
+    <source/>
+    <node/>
+    <location>Sender_Four_Port_CoWorkEr_svnt</location>
+    <execParameter>
+      <name>entryPoint</name>
+      <value>
+        <type>
+          <kind>tk_string</kind>
+        </type>
+        <value>
+          <string>create_Sender_Four_Port_Factory_Servant</string>
+        </value>
+      </value>
+    </execParameter>
+  </artifact>
+
+  <artifact id="_EA92D511-899F-4679-BFEB-21CCD9465A41">
+    <name>Single_Event_Loop_Back.ImplementationArtifacts.Sender_Four_Port_Artifacts.Sender_Four_Port_exec</name>
+    <source/>
+    <node/>
+    <location>Sender_Four_Port_CoWorkEr_exec</location>
+    <execParameter>
+      <name>entryPoint</name>
+      <value>
+        <type>
+          <kind>tk_string</kind>
+        </type>
+        <value>
+          <string>create_Sender_Four_Port_Factory_CoWorkEr_Factory_Impl</string>
+        </value>
+      </value>
+    </execParameter>
+  </artifact>
+
+  <artifact id="_6FE8CB36-A67C-40E5-B2F0-302C067089C9">
+    <name>Single_Event_Loop_Back.CUTS_ImplementationArtifacts.BDC_Artifacts.BDC_stub</name>
+    <source/>
+    <node/>
+    <location>Benchmark_Data_Collector_stub</location>
+  </artifact>
+
+  <artifact id="_BCB228E6-B0A9-4C0B-8161-A1F9FE0F4BA8">
+    <name>Single_Event_Loop_Back.CUTS_ImplementationArtifacts.BDC_Artifacts.BDC_svnt</name>
+    <source/>
+    <node/>
+    <location>Benchmark_Data_Collector_svnt</location>
+    <execParameter>
+      <name>entryPoint</name>
+      <value>
+        <type>
+          <kind>tk_string</kind>
+        </type>
+        <value>
+          <string>create_CUTS_Benchmark_Data_Collector_Home_Servant</string>
+        </value>
+      </value>
+    </execParameter>
+  </artifact>
+
+  <artifact id="_A94894AD-0181-45F9-8FCF-26E6922C1368">
+    <name>Single_Event_Loop_Back.CUTS_ImplementationArtifacts.BDC_Artifacts.BDC_exec</name>
+    <source/>
+    <node/>
+    <location>Benchmark_Data_Collector_exec</location>
+    <execParameter>
+      <name>entryPoint</name>
+      <value>
+        <type>
+          <kind>tk_string</kind>
+        </type>
+        <value>
+          <string>create_CUTS_Benchmark_Data_Collector_Home_Impl</string>
+        </value>
+      </value>
+    </execParameter>
+  </artifact>
+
+  <artifact id="_0B8A6C29-8962-4DA6-99F4-25FEECD77E97">
+    <name>Single_Event_Loop_Back.CUTS_ImplementationArtifacts.BDC_Ex_Artifacts.BDC_Ex_exec</name>
+    <source/>
+    <node/>
+    <location>Benchmark_Data_Collector_Ex_exec</location>
+    <execParameter>
+      <name>entryPoint</name>
+      <value>
+        <type>
+          <kind>tk_string</kind>
+        </type>
+        <value>
+          <string>create_CUTS_Benchmark_Data_Collector_Ex_Home_Impl</string>
+        </value>
+      </value>
+    </execParameter>
+  </artifact>
+
+  <artifact id="_5CE1793F-38DD-427D-A21E-E6D870E769E4">
+    <name>Single_Event_Loop_Back.CUTS_ImplementationArtifacts.BDC_Ex_Artifacts.BDC_Ex_stub</name>
+    <source/>
+    <node/>
+    <location>Benchmark_Data_Collector_Ex_stub</location>
+  </artifact>
+
+  <artifact id="_2DBFA82B-1D1F-48C6-9BDC-014E789E6A77">
+    <name>Single_Event_Loop_Back.CUTS_ImplementationArtifacts.BDC_Ex_Artifacts.BDC_Ex_svnt</name>
+    <source/>
+    <node/>
+    <location>Benchmark_Data_Collector_Ex_svnt</location>
+    <execParameter>
+      <name>entryPoint</name>
+      <value>
+        <type>
+          <kind>tk_string</kind>
+        </type>
+        <value>
+          <string>create_CUTS_Benchmark_Data_Collector_Ex_Home_Servant</string>
+        </value>
+      </value>
+    </execParameter>
+  </artifact>
+
+</Deployment:deploymentPlan>

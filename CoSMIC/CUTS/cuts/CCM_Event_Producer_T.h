@@ -16,10 +16,6 @@
 #define _CUTS_CCM_EVENT_PRODUCER_T_H_
 
 #include "cuts/config.h"
-#include "ace/Task.h"
-#include "ace/Message_Queue_T.h"
-#include "ace/Auto_Ptr.h"
-#include "ace/Reactor_Notification_Strategy.h"
 
 //=============================================================================
 /**
@@ -33,6 +29,39 @@ class CUTS_CCM_Event_Producer_T
 public:
   /// The type definition for the context.
   typedef CONTEXT Context;
+
+  template <typename EVENTTYPE>
+  struct Push_Event_Ex
+  {
+    typedef void (CONTEXT::*Event_Method) (EVENTTYPE *);
+
+    Push_Event_Ex (CUTS_CCM_Event_Producer_T & producer,
+                   Event_Method event_method,
+                   EVENTTYPE * event)
+    : producer_ (producer),
+      event_method_ (event_method),
+      event_ (event)
+    {
+
+    }
+
+    void operator () (ACE_Time_Value & toc) const
+    {
+      this->producer_.push_event_ex (this->event_method_,
+                                     this->event_,
+                                     toc);
+    }
+
+  protected:
+    /// The producer responsible for pushing the event.
+    mutable CUTS_CCM_Event_Producer_T & producer_;
+
+    /// The method used to push the event.
+    Event_Method event_method_;
+
+    /// Pointer the the contained event.
+    EVENTTYPE * event_;
+ };
 
   //===========================================================================
   /**
@@ -67,15 +96,15 @@ public:
      * this functor calls the CUTS_CCM_Event_Producer_T::push_event
      * method.
      */
-    void operator () (void)
+    void operator () (ACE_Time_Value & toc) const
     {
       this->producer_.push_event <
-        OBV_EVENTTYPE, EVENTTYPE> (this->event_method_);
+        OBV_EVENTTYPE, EVENTTYPE> (this->event_method_, toc);
     }
 
   protected:
     /// The producer responsible for pushing the event.
-    CUTS_CCM_Event_Producer_T & producer_;
+    mutable CUTS_CCM_Event_Producer_T & producer_;
 
     /// The method used to push the event.
     Event_Method event_method_;
@@ -104,11 +133,11 @@ public:
     }
 
     /// Functor.
-    void operator () (void)
+    void operator () (ACE_Time_Value & toc) const
     {
       this->producer_.push_data_event <
         OBV_EVENTTYPE, EVENTTYPE>
-        (this->size_, this->event_method_);
+        (this->size_, this->event_method_, toc);
     }
 
   private:
@@ -127,16 +156,34 @@ public:
 
   /// Push an event using the stored context.
   template <typename OBV_EVENTTYPE, typename EVENTTYPE>
-  void push_event (void (CONTEXT::*event_type) (EVENTTYPE *));
+  void push_event (void (CONTEXT::*event_type) (EVENTTYPE *),
+                   ACE_Time_Value & toc);
+
+  /// Push an event using the stored context.
+  template <typename EVENTTYPE>
+  void push_event_ex (void (CONTEXT::*event_type) (EVENTTYPE *),
+                      EVENTTYPE * event,
+                      ACE_Time_Value & toc);
 
   /// Push a data event using the stored context.
   template <typename OBV_EVENTTYPE, typename EVENTTYPE>
   void push_data_event (size_t size,
-                        void (CONTEXT::*event_type) (EVENTTYPE *));
+                        void (CONTEXT::*event_type) (EVENTTYPE *),
+                        ACE_Time_Value & toc);
+
+  void activate (long owner);
+
+  void deactivate (void);
 
 private:
   /// The context used to produce the events.
   CONTEXT * context_;
+
+  /// Owner of the event producer.
+  long owner_;
+
+  /// Active state of the event producer.
+  bool active_;
 };
 
 #if defined (__CUTS_INLINE__)

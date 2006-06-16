@@ -1,0 +1,15 @@
+// $Id: BDC_Client.mpc,v 1.1.2.1.2.1 2006/05/19 17:32:05 hillj Exp $
+
+project (BDC_Client) : ciao_client_dnc, cutsexe {
+  exename = BDC_Client
+
+  install = $(CUTS_ROOT)/bin
+
+  libs += Benchmark_Data_Collector_stub CUTS_stub
+
+  after += Benchmark_Data_Collector_stub CUTS_stub
+
+  Source_Files {
+    BDC_Client.cpp
+  }
+}

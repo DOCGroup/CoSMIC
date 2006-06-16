@@ -14,22 +14,22 @@ using namespace std;
 //#define DEPRECATED_BON_INVOKE_IMPLEMENTED
 
 /**
- * @Class: CComponent 
- *  
+ * @Class: CComponent
+ *
  *          Bone related class
  */
 class CComponent {
 public:
-  CComponent() : focusfolder(NULL), interaction_(false) { } 
+  CComponent() : focusfolder(NULL), interaction_(false) { }
   CBuilderFolder *focusfolder;
   CBuilderFolderList selectedfolders;
-  
+
   void set_file_path(const string& filepath)
   { gen_file_path_ = filepath;}
-  
+
   void set_xslt_path(const string& xsltpath)
   { xslt_path_ = xsltpath;}
-   
+
   void InvokeEx(CBuilder &builder,CBuilderObject *focus, CBuilderObjectList &selected, long param);
 private:
   bool interaction_;
@@ -40,7 +40,7 @@ private:
 
 /**
  * @Class: Generate the assembly descriptor.
- * @Note:   it only look into the interaction_folder. 
+ * @Note:   it only look into the interaction_folder.
  *          This is the BON side program but it calls the UDM API
  *          Every interaction_folder in the GME project will have
  *          one and only one object of this class.
@@ -74,7 +74,7 @@ public:
 
   // Method that traverses the whole interaction folder.
   void traverse(void);
-  
+
   // Method that scan the assembly_descriptor model and generate the XML.
   // Note: This method is for the "componentfile" part.
   void make_componentfiles(CBuilderModel * model,  ccm_assembly::componentassembly& new_descriptor);
@@ -92,24 +92,24 @@ public:
 
   // @Method: register the compoent/event_source/interface with naming/tradingservice&WriteToIOR.
   void registercompoent(CBuilderObject * curr_object, ccm_assembly::Object& parent_obj);
-  
+
   // @Method: that scan the assembly_descriptor model and generate the XML.
   // Note: This method is for the "connections" part.
   void make_connections(CBuilderModel * model,  ccm_assembly::componentassembly& new_descriptor);
 
   // @Method: little help method in the connection part.Help to generate the componentinstantiationref.
   void make_componentinstantiationref(CBuilderObject * curr_obj_ptr, ccm_assembly::Object& parent_obj);
-  
+
   // @Method: write the destination for host/process/home when its specified.
   void make_destination(CBuilderObject * curr_object, ccm_assembly::Object& parent_obj);
 
-  // @Method: for event port to find out the associated event type, get the 
+  // @Method: for event port to find out the associated event type, get the
   //  the name of the associated the refence of the event type(could be different from the name of the event type)
   string get_event_ref_name(CBuilderObject * event_port);
 
 private:
-  
-  // The XML backend datanetwork. 
+
+  // The XML backend datanetwork.
   DataNetwrok_Map data_network_map_;
 
   // The pointer to the BON interaction_folder object in GME.

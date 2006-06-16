@@ -1,10 +1,13 @@
 // $Id$
 
-//=============================================================================
-/*
- * CUTS_Activation_Record
- */
-//=============================================================================
+//
+// owner
+//
+CUTS_INLINE
+long CUTS_Activation_Record::owner (void) const
+{
+  return this->owner_;
+}
 
 //
 // start_time
@@ -52,28 +55,9 @@ void CUTS_Activation_Record::log_time_measurement (size_t reps,
                                                    long worker_id,
                                                    long action_id)
 {
-  this->entries_.push (
+  this->entries_.push_back (
     Entry (reps, worker_id, action_id,
     this->action_state_time_, this->action_stop_time_));
-}
-
-//
-// activate
-//
-CUTS_INLINE
-void CUTS_Activation_Record::activate (void)
-{
-  this->active_ = true;
-  this->start_time_ = ACE_OS::gettimeofday ();
-}
-
-//
-// reset
-//
-CUTS_INLINE
-void CUTS_Activation_Record::reset (void)
-{
-  this->entries_.c.clear ();
 }
 
 //
@@ -100,6 +84,21 @@ CUTS_INLINE
 const ACE_Time_Value & CUTS_Activation_Record::transit_time (void) const
 {
   return this->transit_time_;
+}
+
+//
+// queue_time
+//
+CUTS_INLINE
+const ACE_Time_Value & CUTS_Activation_Record::queue_time (void) const
+{
+  return this->queue_time_;
+}
+
+CUTS_INLINE
+void CUTS_Activation_Record::queue_time (const ACE_Time_Value & queue_time)
+{
+  this->queue_time_ = queue_time;
 }
 
 //=============================================================================

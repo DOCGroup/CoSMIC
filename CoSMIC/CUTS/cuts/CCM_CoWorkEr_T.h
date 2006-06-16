@@ -16,7 +16,6 @@
 #define _CUTS_COWORKER_T_H_
 
 #include "cuts/CCM_CoWorkEr.h"
-#include <string>
 
 //=============================================================================
 /**
@@ -38,7 +37,7 @@
 template <typename COMPONENT, typename COMPONENT_CONTEXT>
 class CUTS_CCM_CoWorkEr_T :
   public virtual COMPONENT,
-  public virtual CUTS_CCM_CoWorkEr
+  public CUTS_CCM_CoWorkEr
 {
 public:
   /// Type of component wrapped by this class.
@@ -60,46 +59,19 @@ public:
     ACE_THROW_SPEC ((::CORBA::SystemException,
                      ::Components::CCMException));
 
-  /// Get the benchmark agent for the component.
-  ::CUTS::CCM_Benchmark_Agent_ptr get_cuts_benchmark_agent (
-    ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
-  {
-    return CUTS_CCM_CoWorkEr::get_cuts_benchmark_agent ();
-  }
+  /// Enter the preactivate state.
+  virtual void
+    ciao_preactivate (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+    ACE_THROW_SPEC ((::CORBA::SystemException, ::Components::CCMException));
 
-  /// Get the unique ID of the CoWorkEr.
-  char * cuts_coworker_id (
-    ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
-    ACE_THROW_SPEC ((CORBA::SystemException))
-  {
-    return CUTS_CCM_CoWorkEr::cuts_coworker_id ();
-  }
+  /// Enter the passivate state.
+  virtual void
+    ccm_passivate (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+    ACE_THROW_SPEC ((::CORBA::SystemException, ::Components::CCMException));
 
-  /// Set the unique ID of the CoWorkEr.
-  void cuts_coworker_id (
-    const char * coworker_id
-    ACE_ENV_ARG_DECL_WITH_DEFAULTS)
-    ACE_THROW_SPEC ((CORBA::SystemException))
-  {
-    CUTS_CCM_CoWorkEr::cuts_coworker_id (coworker_id);
-  }
-
-  /// Get the name of the server used by this CoWorkEr component.
-  char * cuts_coworker_database (
-    ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
-    ACE_THROW_SPEC ((CORBA::SystemException))
-  {
-    return CUTS_CCM_CoWorkEr::cuts_coworker_database ();
-  }
-
-  /// Change the name of the server used by this CoWorkEr component.
-  void cuts_coworker_database (
-    const char * database
-    ACE_ENV_ARG_DECL_WITH_DEFAULTS)
-    ACE_THROW_SPEC ((CORBA::SystemException))
-  {
-    CUTS_CCM_CoWorkEr::cuts_coworker_database (database);
-  }
+  virtual void
+    ccm_remove (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+    ACE_THROW_SPEC ((::CORBA::SystemException, ::Components::CCMException));
 
 protected:
   /// Context for the component.

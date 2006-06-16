@@ -35,8 +35,9 @@ namespace PICML
     Port  the_port_;
     bool is_drawn;
     DisplayNode node_;
+    std::string display_label_;
   
-    Component_Port_Vertex (Port a_port , string par_name);
+    Component_Port_Vertex (Port a_port , string par_name = "");
 
     Component_Port_Vertex () {};
 
@@ -237,7 +238,7 @@ namespace PICML
     virtual void Visit_ManagesComponent(const ManagesComponent&){};
     virtual void Visit_ComponentFactory(const ComponentFactory&){};
     virtual void Visit_Object(const Udm::Object&){};
-    virtual void Visit_PathDiagram(const PathDiagram&);
+    virtual void Visit_PathDiagrams(const PathDiagrams&);
 
     void add_tree_edge (int source , int target);
 
@@ -276,17 +277,22 @@ namespace PICML
     DOMElement* createSimpleContent (const std::string& name,
                                      const std::string& value);
 
+
+    /// Representing a Component Port tuple
+    typedef std::map<Component, Port> Component_Port;
+    
+    
     void GetReceptacleComponents (const RequiredRequestPort& receptacle,
-                                  std::map<Component,std::string>& output);
+                                  Component_Port& output);
 
     void GetFacetComponents (const ProvidedRequestPort& facet,
-                             std::map<Component,std::string>& output);
+                             Component_Port& output);
 
     void GetEventSinkComponents (const InEventPort& consumer,
-                                 std::map<Component,std::string>& output);
+                                 Component_Port& output);
 
     void GetEventSourceComponents (const OutEventPort& publisher,
-                                   std::map<Component,std::string>& output);
+                                   Component_Port& output);
 
     void GetAttributeComponents (const AttributeMapping& mapping,
                                  std::set<std::pair<std::string, std::string> >& output);
@@ -297,16 +303,16 @@ namespace PICML
                           DelRet (T::*dstDel) () const,
                           DelEndRet (Del::*srcDelEnd)() const,
                           DelEndRet (Del::*dstDelEnd)() const,
-                          std::map<Component, std::string>& output,
+                          Component_Port& output,
                           std::set<T>& visited);
 
-    void CreateConnections (const std::map<Component, std::string>& src,
-                            const std::map<Component, std::string>& dst);
+    void CreateConnections (const Component_Port& src,
+                            const Component_Port& dst);
 
     void CreateConnection (const Component& srcComp,
-                           const std::string& srcPortName,
+                           const Port& srcPort,
                            const Component& dstComp,
-                           const std::string& dstPortName);
+                           const Port& dstPort);
     void CreateAssemblyInstances (std::set<Component>& comps);
     void CreateAssemblyConnections (std::vector<ComponentAssembly>& assemblies);
     void CreateAttributeMappings (std::vector<ComponentAssembly>& assemblies);
@@ -400,7 +406,7 @@ namespace PICML
       /// current path diagram 
       Path the_current_path_flow_;
 
-  
+ 
   // The container which contains the sorted vertices
     typedef std::vector< Vertex > container;
 

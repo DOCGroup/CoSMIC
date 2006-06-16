@@ -43,7 +43,7 @@
 
 #include "PICML/Utils.h"
 #include "PICML/PICML.h"
-#include "DeploymentPlan/PlanVisitor.h"
+#include "DeploymentPlan/DeploymentPlanVisitor.h"
 
 using xercesc::XMLPlatformUtils;
 using xercesc::XMLException;
@@ -107,7 +107,7 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
           std::string message = "Please specify the Output Directory";
           if (!PICML::getPath (message, outputPath))
             return;
-          PICML::PlanVisitor visitor (outputPath);
+          PICML::DeploymentPlanVisitor visitor (outputPath);
           PICML::RootFolder
             start = PICML::RootFolder::Cast (p_backend->GetRootObject());
           start.Accept (visitor);

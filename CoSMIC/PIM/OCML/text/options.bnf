@@ -74,4 +74,3 @@ string_constant ::= quoted_string ;
 description ::= quoted_string ;
 
 numeric_constant ::= numeric_value ;
-

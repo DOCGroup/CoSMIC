@@ -329,4 +329,3 @@
 	real_archetype 	(true|false)	#IMPLIED
 	subtype 	(true|false)	#IMPLIED
 >
-

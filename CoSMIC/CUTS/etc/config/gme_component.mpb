@@ -1,14 +1,11 @@
 // $Id$
 
 project : gme_base {
-  after += GMEBON
-
-  libs += GMEBON
-
   includes += $(CUTS_ROOT)
 
   specific {
-    midl_includes += $(CUTS_ROOT)
+     midl_flags += /server none /client none
+     midl_includes += $(GME_ROOT) $(GME_ROOT)/Interfaces .
   }
 
   specific {
@@ -16,19 +13,18 @@ project : gme_base {
   }
 
   Source_Files {
-    ComponentLib.idl
+    $(GME_ROOT)/SDK/BON/ComponentLib.idl
     $(GME_ROOT)/SDK/BON/ComHelp.cpp
     $(GME_ROOT)/SDK/BON/ComponentDll.cpp
     $(GME_ROOT)/SDK/BON/ComponentObj.cpp
   }
 
   Header_Files {
+    ComponentLib.h
     $(GME_ROOT)/SDK/BON/GMECOM.h
-    ComponentConfig.h
-    Resource.h
   }
-
+  
   Resource_Files {
-    Component.rc
+  
   }
 }

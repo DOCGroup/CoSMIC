@@ -1472,9 +1472,9 @@ registerwithtrader</value>
 					<value></value>
 				</attribute>
 				<attribute kind="ConstraintEqn">
-					<value><![CDATA[self.connectionPoint("src").target().oclAsType(gme::Reference).refersTo().name() 
+					<value><![CDATA[self.connectionPoint("src").target().oclAsType(gme::Reference).refersTo().name()
 =
-self.connectionPoint("dst").target().oclAsType(gme::Reference).refersTo().name() 
+self.connectionPoint("dst").target().oclAsType(gme::Reference).refersTo().name()
 ]]></value>
 				</attribute>
 				<attribute kind="ConstraintPriority" status="meta">
@@ -4650,7 +4650,7 @@ Emitter</value>
 					<value></value>
 				</attribute>
 				<attribute kind="ConstraintEqn">
-					<value><![CDATA[true 
+					<value><![CDATA[true
 implies
 self.connectedFCOs("dst","Event_Typing")->size() = 1]]></value>
 				</attribute>

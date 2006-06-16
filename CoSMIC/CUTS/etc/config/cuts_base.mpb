@@ -1,20 +1,18 @@
 // $Id$
 
-project : acelib {
-  dynamicflags += CUTS_BUILD_DLL
+project {
+  libs  += CUTS
+
+  after += CUTS
 
   specific {
-    // By default we turn inlining on to get optimal code performance
     Release::dynamicflags += __CUTS_INLINE__
   }
 
   specific (vc6, vc7, vc71, vc8, nmake) {
-    compile_flags += /wd4290
+    compile_flags += /wd4290 /wd4251
   }
 
-  libout = $(COSMIC_ROOT)\lib
-  dllout = $(COSMIC_ROOT)\bin
-
   includes += $(CUTS_ROOT)
-  libpaths += $(COSMIC_ROOT)\lib
+  libpaths += $(COSMIC_ROOT)/lib
 }

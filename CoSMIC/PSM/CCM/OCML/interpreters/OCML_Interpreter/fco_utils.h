@@ -40,7 +40,7 @@ cpp_string(const std::string& str)
 	std::string result;
 	for (size_t i=0; i < str.size(); ++i) {
 		switch (str[i]) {
-		case '\n': 
+		case '\n':
 			result += std::string("\\n");
 			break;
 		case '"':

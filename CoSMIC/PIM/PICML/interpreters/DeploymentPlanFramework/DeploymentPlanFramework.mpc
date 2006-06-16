@@ -1,0 +1,16 @@
+project(DeploymentPlanFramework): picmllib {
+   after += PICML
+   sharedname = DeploymentPlanFramework
+   macros += DEPLOYMENTPLANFRAMEWORK_BUILD_DLL PICML_HAS_DLL
+   libs += PICML
+
+   Source_Files {
+     DeploymentPlanFrameworkVisitor.cpp
+   }
+
+   Header_Files {
+     DeploymentPlanFrameworkVisitor.h
+     DeploymentPlanFramework_Export.h
+     Injector.h
+   }
+}

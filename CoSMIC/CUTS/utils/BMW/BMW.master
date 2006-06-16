@@ -1,0 +1,44 @@
+<%@ master language="C#" codefile="BMW.master.cs" autoeventwireup="true" 
+           inherits="CUTS.BMW_Master"%>
+  
+<!-- $Id: BMW.master,v 1.1.2.2 2006/04/13 15:00:56 hillj Exp $ -->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>CUTS Benchmark Manager Web Utility</title>
+  <link rel="stylesheet" href="Style.css" type="text/css" />
+</head>
+<body>
+  <form runat="server" id="main_form_">
+  <h1>Component Workload Emulator Utilization Test Suite<br /> 
+      Benchmark Manager Web Utility
+  </h1>
+  <table border="0" width="100%">
+  <tr valign="top">
+    <td style="width:150px">
+      <div class="menu_item">
+        <asp:hyperlink runat="server" id="test_menu_item_"
+                       navigateurl="~/"
+                       text="Tests" />
+      </div>
+      <div class="menu_item">
+        <asp:hyperlink runat="server" id="ci_menu_item_"
+                       navigateurl="~/Component_Instances.aspx"
+                       text="Component Instances" />
+      </div>
+      <div class="menu_item">
+        <asp:hyperlink runat="server" id="cp_menu_item_"
+                       navigateurl="~/Critical_Path.aspx"
+                       text="Critical Paths" />
+      </div>      
+    </td>
+    <td>
+      <asp:contentplaceholder runat="server" id="MainContent" />
+    </td>
+  </tr>
+  </table>
+
+  <asp:label runat="server" id="status_" />
+  </form>
+</body>
+</html>

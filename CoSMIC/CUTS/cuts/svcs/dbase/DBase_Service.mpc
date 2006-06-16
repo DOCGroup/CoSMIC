@@ -1,0 +1,15 @@
+// $Id: DBase_Service.mpc,v 1.1.4.6 2006/03/27 21:26:13 hillj Exp $
+
+project (CUTS_Database_Service) : cutslib, cutsutils, odbc {
+  sharedname += CUTS_Database_Service
+
+  dynamicflags += CUTS_BUILD_DLL
+
+  libs += CUTS_Utils_DBase
+
+  after += CUTS_Utils_DBase
+
+  Source_Files {
+    DBase_Service.cpp
+  }
+}

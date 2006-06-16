@@ -1144,7 +1144,7 @@ adding_visitor::visit_operation (AST_Operation *node)
           be_global->emit_diagnostic (return_type);
         }
 
-      XMLCh *gme_id  = be_global->lookup_id (rt);
+      const XMLCh *gme_id  = be_global->lookup_id (rt);
       be_global->type_change_diagnostic (return_type, gme_id);
       return_type->setAttribute (X ("referred"), gme_id);
 
@@ -1254,7 +1254,7 @@ adding_visitor::visit_field (AST_Field *node)
 
   // These are outside the IF block to pick up possible changes
   // in the IDL.
-  XMLCh *gme_id = be_global->lookup_id (ft);
+  const XMLCh *gme_id = be_global->lookup_id (ft);
   be_global->type_change_diagnostic (elem, gme_id);
   elem->setAttribute (X ("referred"), gme_id);
 
@@ -1317,7 +1317,7 @@ adding_visitor::visit_argument (AST_Argument *node)
   // Outside the IF block so change in the type of an argument can
   // be reflected in the PICML model.
   AST_Type *ft = node->field_type ();
-  XMLCh *gme_id = be_global->lookup_id (ft);
+  const XMLCh *gme_id = be_global->lookup_id (ft);
   be_global->type_change_diagnostic (arg, gme_id);
   arg->setAttribute (X ("referred"), gme_id);
 
@@ -1408,7 +1408,7 @@ adding_visitor::visit_attribute (AST_Attribute *node)
   DOMNodeList *ref = elem->getElementsByTagName (X ("reference"));
   member = (DOMElement *) ref->item (0);
   AST_Type *ft = node->field_type ();
-  XMLCh *gme_id = be_global->lookup_id (ft);
+  const XMLCh *gme_id = be_global->lookup_id (ft);
   be_global->type_change_diagnostic (member, gme_id);
   member->setAttribute (X ("referred"), gme_id);
 
@@ -1581,7 +1581,7 @@ adding_visitor::visit_union_branch (AST_UnionBranch *node)
    }
 
   // This will modify the attribute if the type has changed in IDL.
-  XMLCh *field_type_id = be_global->lookup_id (ft);
+  const XMLCh *field_type_id = be_global->lookup_id (ft);
   be_global->type_change_diagnostic (elem, field_type_id);
   elem->setAttribute (X ("referred"), field_type_id);
 
@@ -1657,7 +1657,7 @@ adding_visitor::visit_constant (AST_Constant *node)
 
   if (!node->imported ())
     {
-      XMLCh *const_type_id = this->lookup_constant_type (node);
+      const XMLCh *const_type_id = this->lookup_constant_type (node);
 
       if (0 == const_type_id)
         {
@@ -1863,7 +1863,7 @@ adding_visitor::visit_typedef (AST_Typedef *node)
 
   if (!node->imported ())
     {
-      XMLCh *new_id = be_global->lookup_id (bt);
+      const XMLCh *new_id = be_global->lookup_id (bt);
       be_global->type_change_diagnostic (elem, new_id);
       elem->setAttribute (X ("referred"), new_id);
       this->add_replace_id_element (elem, node);
@@ -2052,7 +2052,7 @@ adding_visitor::visit_valuebox (AST_ValueBox *node)
 
   if (!node->imported ())
     {
-      XMLCh *new_id = be_global->lookup_id (bt);
+      const XMLCh *new_id = be_global->lookup_id (bt);
       be_global->type_change_diagnostic (elem, new_id);
       elem->setAttribute (X ("referred"), new_id);
       this->add_replace_id_element (elem, node);
@@ -2314,7 +2314,7 @@ adding_visitor::add_one_predefined_sequence (DOMElement *parent,
 {
   // Can't create a basic type sequence more than once in a project.
   // A processed basic type sequence is stored by its GME id.
-  XMLCh *gme_id = 0;
+  const XMLCh *gme_id = 0;
   ACE_CString name (type);
   name += be_global->basic_seq_suffix ();
   int result = be_global->decl_id_table ().find (name.c_str (), gme_id);
@@ -2326,6 +2326,7 @@ adding_visitor::add_one_predefined_sequence (DOMElement *parent,
 
   DOMElement *seq = 0;
   result = be_global->decl_elem_table ().find (name.c_str (), seq);
+
   if (result != 0)
     {
       ACE_ERROR ((LM_ERROR,
@@ -2341,7 +2342,7 @@ adding_visitor::add_one_predefined_sequence (DOMElement *parent,
   seq->setAttribute (X ("role"), X ("Collection"));
 
   const char **pdts = be_global->pdt_names ();
-  XMLCh *pdt_id = 0;
+  const XMLCh *pdt_id = 0;
   result = be_global->decl_id_table ().find (pdts[pdt_slot], pdt_id);
 
   if (result != 0)
@@ -2398,7 +2399,7 @@ adding_visitor::add_file_element (DOMElement *parent,
       file->setAttribute (X ("relid"), X (hex_relid));
       file->setAttribute (X ("kind"), X ("File"));
 
-      XMLCh *file_id = 0;
+      const XMLCh *file_id = 0;
       result = be_global->decl_id_table ().find (tmp_cstr, file_id);
 
       // All files should have been stored as part of BE_init(). If
@@ -2612,7 +2613,7 @@ adding_visitor::add_include_elements (UTL_Scope *container, DOMElement *parent)
 
       ACE_CString lname_noext = lname.substr (0, lname.rfind ('.'));
       const char *tmp = lname_noext.c_str ();
-      XMLCh *id = 0;
+      const XMLCh *id = 0;
 
       int result =
         be_global->decl_id_table ().find (tmp, id);
@@ -2799,7 +2800,7 @@ adding_visitor::add_one_inherited (DOMElement *parent,
       const char *hex_rel_id = be_global->hex_string (slot);
       elem->setAttribute (X ("relid"), X (hex_rel_id));
 
-      XMLCh *id = 0;
+      const XMLCh *id = 0;
       int result =
         be_global->decl_id_table ().find (base->repoID (), id);
 
@@ -2913,7 +2914,7 @@ adding_visitor::add_exception_elements (DOMElement *parent,
        ei.next ())
     {
       AST_Exception *ex = ei.item ();
-      XMLCh *gme_id = be_global->lookup_id (ex);
+      const XMLCh *gme_id = be_global->lookup_id (ex);
 
       // Since the members of an exception list must be unique, we
       // just check for a DOM element in this scope that refers to
@@ -3297,7 +3298,7 @@ adding_visitor::add_base_component (DOMElement *elem, AST_Component *node)
       return;
     }
 
-  XMLCh *base_id_from_idl = 0;
+  const XMLCh *base_id_from_idl = 0;
   int result =
     be_global->decl_id_table ().find (base->repoID (), base_id_from_idl);
 
@@ -4101,7 +4102,7 @@ adding_visitor::nmembers_gme (UTL_Scope *s, AST_Attribute *a)
   return retval;
 }
 
-XMLCh *
+const XMLCh *
 adding_visitor::lookup_constant_type (AST_Constant *c)
 {
   const char *ext_id = 0;
@@ -4146,7 +4147,7 @@ adding_visitor::lookup_constant_type (AST_Constant *c)
         break;
     }
 
-  XMLCh *retval = 0;
+  const XMLCh *retval = 0;
   int result = be_global->decl_id_table ().find (ext_id, retval);
 
   if (result != 0)
@@ -4737,7 +4738,7 @@ adding_visitor::add_property (const char *name,
   this->add_name_element (data_type, "String");
 
   const char **pdts = be_global->pdt_names ();
-  XMLCh *pdt_id = 0;
+  const XMLCh *pdt_id = 0;
 
   // The slot for the predefined type 'string' is 2.
   int result = be_global->decl_id_table ().find (pdts[2UL], pdt_id);

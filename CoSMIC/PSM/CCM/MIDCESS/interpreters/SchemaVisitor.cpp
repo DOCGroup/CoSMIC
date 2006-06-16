@@ -17,7 +17,7 @@ void SchemaVisitor::visitModelImpl( const BON::Model& model )
 		//BON::Attribute attr = model->getAttribute("UUID");
 		//*this <<" Domain UUID was : " << attr->getStringValue() << " \n";
 	}
-		
+
 
 }
 

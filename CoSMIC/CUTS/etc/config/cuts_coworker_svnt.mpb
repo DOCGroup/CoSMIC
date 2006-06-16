@@ -1,11 +1,11 @@
 // $Id$
 
 project : cuts_servant_dnc {
-  libs += CUTS_svnt CUTS_BenchmarkAgent_svnt
+  libs += CUTS_svnt
 
   // -- set the appropriate flags
-  idlflags += \
-    -Wb,export_macro=CUTS_SVNT_Export -Wb,export_include=cuts/CUTS_svnt_export.h
+  idlflags += -Wb,export_macro=CUTS_SVNT_Export \
+              -Wb,export_include=cuts/CUTS_svnt_export.h
 
   cidlflags -= --
   cidlflags += \
@@ -17,6 +17,15 @@ project : cuts_servant_dnc {
 
   // -- place all files in a common location
   libpaths += ./lib
-  libout    = ./lib
-  dllout    = ./bin
+
+  specific (vc6, vc7, vc71, vc8, nmake) {
+    defines += CUTS_HAS_DATABASE
+
+    // -- place all files in a common location
+    libout = ./lib
+    dllout = ./bin
+  } else {
+    // -- place all files in a common location
+    dllout = ./lib
+  }
 }

@@ -1,11 +1,8 @@
 // $Id$
 
-project : ciao_client_dnc, cuts_base {
-	idlflags += -I $(CUTS_ROOT)
+project : ciao_client_dnc, cutslib {
+  idlflags += -I $(CUTS_ROOT)
 
-	//-- project dependencies
-	after += CUTS_stub
-	
-	//-- additional libraries
-	//libs += CUTS_stub
+  //-- project dependencies
+  after += CUTS_stub
 }

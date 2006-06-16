@@ -1,13 +1,20 @@
 // $Id$
 
-project (PICML_CIAO_Impl) : gme_bon2, cuts_base {
+project (PICML_CIAO_Impl) : cutslib, udm_component, gme_interpreter {
   sharedname = CUTS_PICML_CIAO_Impl
 
-  libs += CUTS_FE_PICML CUTS_PIR CUTS_BE_CIAO PICML
+  // -- dependencies
+  after -= CUTS ACE
+  after += CUTS_UDM_CIAO
 
-  after += CUTS_FE_PICML CUTS_PIR CUTS_BE_CIAO
+  libs  -= CUTS ACE
+  libs  += CUTS_UDM_CIAO
 
-  includes += $(COSMIC_ROOT)/PIM/PICML/interpreters
+  libpaths -= $(ACE_ROOT)/lib
+  includes -= $(ACE_ROOT)
+
+  // -- required features
+  requires += boost
 
   Source_Files {
 
