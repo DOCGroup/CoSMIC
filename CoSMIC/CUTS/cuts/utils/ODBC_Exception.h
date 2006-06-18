@@ -38,7 +38,7 @@ public:
   /**
    * Initializing constructor.
    *
-   * @param[in]     message     Message to store in the exception.
+   * @param[in]     message     Set the error message.
    */
   ODBC_Exception (const char * message);
 
@@ -48,13 +48,43 @@ public:
   /**
    * Get the exception message.
    *
-   * @return      The exception message; NULL-terminated.
+   * @return    The exception message; NULL-terminated.
    */
-  const char * message (void) const;
+  const ACE_CString & message (void) const;
+
+  /**
+   * Get the state when the exception occured.
+   *
+   * @return    The state of the database/driver.
+   */
+  const ACE_CString & state (void) const;
+
+  /**
+   * Get the native error code.
+   *
+   * @return    The native error code.
+   */
+  long native (void) const;
 
 protected:
+  /**
+   * Helper method to get the error message from a handle
+   * type.
+   *
+   * @param[in]       handle      The source handle.
+   * @param[in]       type        The type of handle.
+   */
+  void get_message_i (SQLHANDLE handle, SQLSMALLINT type);
+
+private:
   /// The exception message.
   ACE_CString message_;
+
+  /// The five-character state code.
+  ACE_CString state_;
+
+  /// The native error number.
+  SQLINTEGER native_;
 };
 
 //=============================================================================

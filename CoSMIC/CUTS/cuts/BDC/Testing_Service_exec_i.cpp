@@ -2,6 +2,7 @@
 
 #include "Testing_Service_exec_i.h"
 #include "CCM_Component_Registry.h"
+#include "ace/INET_Addr.h"
 #include <typeinfo>
 
 namespace CUTS
@@ -47,13 +48,29 @@ namespace CUTS
                   creg.name.in ()));
     }
 
+    // Bind the IP-address to the hostname.
+    long result = this->host_table().bind(creg.ipaddr,
+                                          creg.hostname.in());
+
+    if (result == -1)
+    {
+      ACE_INET_Addr inet (static_cast <u_short> (0),
+                          static_cast <ACE_UINT32> (creg.ipaddr));
+
+      ACE_ERROR ((LM_WARNING,
+                  "[%M] -%T - failed to bind %s to %s\n",
+                  inet.get_host_addr (),
+                  creg.hostname.in ()));
+    }
+
     // Get the correct implementation of the <registry_>.
-    long result = 0;
     CCM_Component_Registry * registry = this->registry_i ();
 
     if (registry != 0)
     {
-      result = registry->register_component (creg.name.in (), creg.agent.in ());
+      result = registry->register_component (creg.name.in (),
+                                             creg.agent.in ());
+
     }
 
     // Check the <result> of the registration. If the result is zero,

@@ -34,6 +34,11 @@ namespace CUTS
                        ::CUTS::Registration_Failed,
                        ::CUTS::Registration_Limit))
   {
+    // Insert the IP-address -> hostname mapping into the database
+    // before continuing w/ the registration of the component.
+    this->database_service_.register_host (creg.ipaddr,
+                                           creg.hostname.in ());
+
     long regid = Testing_Service_exec_i::register_component (creg);
 
     if (regid != 0)

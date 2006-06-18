@@ -16,11 +16,11 @@
 #define _ODBC_CONNECTION_H_
 
 #include "ODBC_Exception.h"
+#include "ace/Hash_Map_Manager_T.h"
+#include "ace/Null_Mutex.h"
+#include "ace/SStringfwd.h"
 
-// STL headers
-#include <string>
-
-// forward declarations
+// Forward decl.
 class ODBC_Stmt;
 
 //=============================================================================
@@ -62,6 +62,14 @@ public:
   ODBC_Stmt * create_statement (void) const;
 
   /**
+   * Execute a cached statement.
+   *
+   * @param[in]     name      Name of the statement.
+   */
+  void execute_statement (const char * name)
+    throw (ODBC_Exception, ODBC_Stmt_Exception);
+
+  /**
    * Establish an new ODBC connection. The information for
    * the establishing the connection is specified in the
    * parameter from the client.
@@ -91,7 +99,7 @@ public:
 
 protected:
   /// Helper method to establish a connection
-  bool connect (const std::string & connstr);
+  void connect_i (const char * connstr);
 
   /// Handle to the database connection
   HDBC conn_;
@@ -101,6 +109,15 @@ protected:
 
   /// Flag holding the connection state.
   bool connected_;
+
+private:
+  /// Type definition for statement mappings.
+  typedef ACE_Hash_Map_Manager <ACE_CString,
+                                ODBC_Stmt *,
+                                ACE_Null_Mutex> Statement_Map;
+
+  /// Collection of statements mapped to names.
+  Statement_Map stmts_;
 };
 
 /**

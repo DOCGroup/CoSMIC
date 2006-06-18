@@ -1,3 +1,46 @@
+Sun Jun 18 13:03:31 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * SQL/CUTS-create.sql:
+
+          Updated the host_ipaddr_map table to include an IP version
+          boolean field, and the necessary constaints for data
+          integrety.
+
+        * cuts/BDC/Testing_Service_Ex_exec_i.cpp:
+        * cuts/BDC/Testing_Service_exec_i.cpp:
+
+          Updated the testing service to store host information
+          in an in-memory host table, and in the database for
+          persistance.
+
+        * cuts/CCM_CoWorkEr.cpp:
+        * cuts/Testing_Service.h:
+        * cuts/Testing_Service.inl:
+
+          Refactored the code and removed unncessary methods,
+          and exposed for accessor methods.
+
+        * cuts/svcs/dbase/DBase_Service.h:
+        * cuts/svcs/dbase/DBase_Service.cpp:
+
+          Add a new method to store host data in the database. However,
+          I need to still implement a method to verify there isn't a
+          duplicate ID in the database.
+
+        * cuts/utils/ODBC_Connection.h:
+        * cuts/utils/ODBC_Connection.cpp:
+        * cuts/utils/MyODBC_Connection.cpp:
+
+          The connect () method now passes a const char * to the
+          base connect_i () method, instead of a std::string.
+
+        * cuts/utils/ODBC_Exception.h:
+        * cuts/utils/ODBC_Exception.inl:
+        * cuts/utils/ODBC_Exception.cpp:
+
+          Refactored the exception classes and pushed much of the
+          implementation down into the generic ODBC exception class.
+
 Thu Jun 15 23:53:50 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CUTS.mpc:

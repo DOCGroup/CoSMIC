@@ -6,6 +6,8 @@
 #include "ODBC_Exception.inl"
 #endif
 
+#include "ODBC.h"
+
 //=============================================================================
 //
 // ODBC_Exception
@@ -38,6 +40,32 @@ ODBC_Exception::~ODBC_Exception (void)
 
 }
 
+//
+// get_message_i
+//
+void ODBC_Exception::get_message_i (SQLHANDLE handle, SQLSMALLINT type)
+{
+  static char message[256];
+  SQLSMALLINT actual;
+  char state[6];
+
+  ::SQLGetDiagRec (type,
+                   handle,
+                   1,
+                   (SQLCHAR *)state,
+                   &this->native_,
+                   (SQLCHAR *)message,
+                   sizeof (message),
+                   &actual);
+
+  // We need to make sure the code is NULL-terminated before
+  // continuing.
+  state[5] = 0;
+
+  this->message_.set (message, actual);
+  this->state_.set (state, sizeof (state) - 1);
+}
+
 //=============================================================================
 //
 // ODBC_Connection_Exception
@@ -49,21 +77,7 @@ ODBC_Exception::~ODBC_Exception (void)
 //
 ODBC_Connection_Exception::ODBC_Connection_Exception (HDBC handle)
 {
-  char message[256];
-  SQLCHAR sql_state[6];
-  SQLINTEGER native;
-  SQLSMALLINT actual;
-
-  ::SQLGetDiagRec (SQL_HANDLE_DBC,
-                   handle,
-                   1,
-                   sql_state,
-                   &native,
-                   (SQLCHAR *)message,
-                   sizeof (message),
-                   &actual);
-
-  this->message_.set (message, actual, 1);
+  this->get_message_i (handle, SQL_HANDLE_DBC);
 }
 
 //
@@ -85,21 +99,7 @@ ODBC_Connection_Exception::~ODBC_Connection_Exception (void)
 //
 ODBC_Stmt_Exception::ODBC_Stmt_Exception (HSTMT handle)
 {
-  char message[256];
-  SQLCHAR sql_state[6];
-  SQLINTEGER native;
-  SQLSMALLINT actual;
-
-  ::SQLGetDiagRec (SQL_HANDLE_STMT,
-                   handle,
-                   1,
-                   sql_state,
-                   &native,
-                   (SQLCHAR *)message,
-                   sizeof (message),
-                   &actual);
-
-  this->message_.set (message, actual, 1);
+  this->get_message_i (handle, SQL_HANDLE_STMT);
 }
 
 //

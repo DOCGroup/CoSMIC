@@ -38,13 +38,18 @@ public:
   virtual ~CUTS_Testing_Service (void);
 
   /**
-   * Get the host table for the testing service. We do not
-   * allow modification of the host table outside of this class.
-   * Only subclasses are allowed to modify the table.
+   * Get the host table for the testing service.
    *
    * @return Read-only reference to the host table.
    */
   const CUTS_Host_Table & host_table (void) const;
+
+  /**
+   * Get the host table for the testing service.
+   *
+   * @return Reference to the host table.
+   */
+  CUTS_Host_Table & host_table (void);
 
   /**
    * Set the implemenation of the component registry. The client

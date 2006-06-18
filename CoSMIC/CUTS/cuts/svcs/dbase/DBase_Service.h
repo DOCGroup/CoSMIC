@@ -1,5 +1,15 @@
 // -*- C++ -*-
 
+//=============================================================================
+/**
+ * @file      DBase_Service.h
+ *
+ * $Id$
+ *
+ * @author    James H. Hill
+ */
+//=============================================================================
+
 #ifndef _CUTS_DBASE_SERVICE_H_
 #define _CUTS_DBASE_SERVICE_H_
 
@@ -13,7 +23,7 @@
 
 #include <map>
 
-// forward declarations
+// Forward decl.
 class CUTS_System_Metric;
 
 //=============================================================================
@@ -84,8 +94,19 @@ public:
    * @retval         true       Successfully registered component.
    * @retval         false      Failed to register a component.
    */
-  bool register_component (long regid,
-                           const char * uuid);
+  bool register_component (long regid,  const char * uuid);
+
+  /**
+   * Register an IP-address and hostname w/ the database. If
+   * either the IP-address or hostname already exist, then
+   * nothing happens.
+   *
+   * @param[in]       ipaddr        IP-address
+   * @param[in]       hostname      Name of the host.
+   * @retval          true          Registration succeeded.
+   * @retval          false         Registration failed.
+   */
+  bool register_host (long ipaddr, const char * hostname);
 
   /**
    * Archive system metrics.

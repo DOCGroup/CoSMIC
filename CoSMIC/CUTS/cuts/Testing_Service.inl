@@ -10,6 +10,15 @@ const CUTS_Host_Table & CUTS_Testing_Service::host_table (void) const
 }
 
 //
+// host_table
+//
+CUTS_INLINE
+CUTS_Host_Table & CUTS_Testing_Service::host_table (void)
+{
+  return this->host_table_;
+}
+
+//
 // registry
 //
 CUTS_INLINE

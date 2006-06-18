@@ -39,25 +39,39 @@ ODBC_Connection::~ODBC_Connection (void)
 //
 // connect
 //
-bool ODBC_Connection::connect (const std::string & connstr)
+void ODBC_Connection::connect_i (const char * connstr)
 {
+  if (connstr == 0)
+  {
+    throw ODBC_Exception ("connection string is <NIL>");
+  }
+
   // allocate environment handle and register version
   if (this->env_ == SQL_NULL_HENV)
-    this->return_ = ::SQLAllocHandle (SQL_HANDLE_ENV, SQL_NULL_HANDLE, &this->env_);
+  {
+    this->return_ = ::SQLAllocHandle (SQL_HANDLE_ENV,
+                                      SQL_NULL_HANDLE,
+                                      &this->env_);
+    if (!SQL_SUCCEED (this->return_))
+      return;
+  }
 
+  this->return_ = ::SQLSetEnvAttr (this->env_,
+                                   SQL_ATTR_ODBC_VERSION,
+                                   (void *)SQL_OV_ODBC3,
+                                   0);
   if (!SQL_SUCCEED (this->return_))
-    return false;
-
-  this->return_ = ::SQLSetEnvAttr (this->env_, SQL_ATTR_ODBC_VERSION, (void *)SQL_OV_ODBC3, 0 );
-  if (!SQL_SUCCEED (this->return_))
-    return false;
+    return;
 
   // allocate connection handle and set timeout
   if (this->conn_ == SQL_NULL_HDBC)
-    this->return_ = ::SQLAllocHandle (SQL_HANDLE_DBC, this->env_, &this->conn_);
-
-  if (!SQL_SUCCEED (this->return_))
-    return false;
+  {
+    this->return_ = ::SQLAllocHandle (SQL_HANDLE_DBC,
+                                      this->env_,
+                                      &this->conn_);
+    if (!SQL_SUCCEED (this->return_))
+      return;
+  }
 
   ::SQLSetConnectOption (this->conn_, SQL_LOGIN_TIMEOUT, 30);
 
@@ -65,13 +79,21 @@ bool ODBC_Connection::connect (const std::string & connstr)
   short result = 0;
   SQLTCHAR tempstr[1024];
 
-  this->return_ = ::SQLDriverConnect (this->conn_, NULL, (SQLCHAR *)connstr.c_str (),
-    connstr.length (), tempstr, sizeof (tempstr),  &result, SQL_DRIVER_NOPROMPT);
+  this->return_ = ::SQLDriverConnect (this->conn_,
+                                      NULL,
+                                      (SQLCHAR *)connstr,
+                                      ACE_OS::strlen (connstr),
+                                      tempstr,
+                                      sizeof (tempstr),
+                                      &result,
+                                      SQL_DRIVER_NOPROMPT);
 
-  if (SQL_SUCCEED (this->return_))
-    this->connected_ = true;
+  if (!SQL_SUCCEED (this->return_))
+  {
+    throw ODBC_Connection_Exception (this->conn_);
+  }
 
-  return this->connected_;
+  this->connected_ = true;
 }
 
 //

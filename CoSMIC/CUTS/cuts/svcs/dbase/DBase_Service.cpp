@@ -363,8 +363,7 @@ bool CUTS_Database_Service::stop_current_test_i (void)
 //
 // archive_system_metrics
 //
-bool
-CUTS_Database_Service::archive_system_metrics (
+bool CUTS_Database_Service::archive_system_metrics (
   CUTS_System_Metric & metrics)
 {
   ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex,
@@ -621,4 +620,63 @@ long CUTS_Database_Service::path_id (const char * pathname)
   }
 
   return path_id;
+}
+
+//
+// register_host
+//
+bool CUTS_Database_Service::register_host (long ipaddr,
+                                           const char * hostname)
+{
+  ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex,
+                         guard,
+                         this->lock_,
+                         false);
+
+  if (this->conn_.is_connected ())
+  {
+    ACE_Auto_Ptr <ODBC_Stmt> stmt (this->conn_.create_statement ());
+    long component_id = 0;
+
+    try
+    {
+      SQLINTEGER _ipaddr = 0,
+                 _hostname = SQL_NTS;
+
+      stmt->bind_parameter (1, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_INTEGER,
+                            0, 0, &ipaddr, 0, &_ipaddr);
+      stmt->bind_parameter (2, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR,
+                            0, 0, (SQLCHAR *)hostname, 0, &_hostname);
+
+      // Prepare the statement to select the component_id of the component
+      // with the specified name.
+      const char * str_stmt =
+        "INSERT INTO ipaddr_host_map (ipaddr, hostname) VALUES (?, ?)";
+
+      stmt->prepare (str_stmt);
+      stmt->execute ();
+      return true;
+    }
+    catch (ODBC_Stmt_Exception & ex)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "[%M] -%T - (%s:%u) %s\n",
+                  ex.state ().c_str (),
+                  ex.native (),
+                  ex.message ().c_str ()));
+    }
+    catch (...)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "[%M] -%T - unknown exception in "
+                  "CUTS_Database_Service::register_host\n"));
+    }
+  }
+  else
+  {
+    ACE_ERROR ((LM_ERROR,
+                "[%M] -%T - no database connection exist\n"));
+  }
+
+  return false;
 }
