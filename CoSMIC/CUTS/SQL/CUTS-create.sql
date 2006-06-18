@@ -110,9 +110,9 @@ DROP TABLE IF EXISTS ipaddr_host_map;
 
 CREATE TABLE ipaddr_host_map
 (
-  hostid      INT       NOT NULL auto_increment,
-  ipaddr      INT       NOT NULL DEFAULT 0,
-  v4          BOOLEAN   NOT NULL DEFAULT true,
+  hostid      INT               NOT NULL auto_increment,
+  ipaddr      VARCHAR (40)      NOT NULL,
+  v4          BOOLEAN           NOT NULL DEFAULT true,
   hostname    VARCHAR (255),
 
   PRIMARY KEY (hostid),

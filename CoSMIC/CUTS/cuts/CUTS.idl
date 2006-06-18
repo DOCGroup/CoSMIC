@@ -38,14 +38,14 @@ module CUTS
 
   struct Component_Registration
   {
-    /// IP address of the CoWorkEr.
-    long ipaddr;
-
     /// Benchmark agent of the component.
     Benchmark_Agent agent;
 
     /// UUID of the CoWorkEr.
     string name;
+
+    /// IP address of the CoWorkEr.
+    string ipaddr;
 
     /// Name of the host with the CoWorkEr.
     string hostname;

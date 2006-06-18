@@ -119,8 +119,8 @@ long CUTS_CCM_CoWorkEr::register_i (::CUTS::Testing_Service_ptr ts,
       ACE_OS::hostname (hostname, sizeof (hostname));
       ACE_INET_Addr inet ((u_short)0, hostname, AF_ANY);
 
-      creg.ipaddr = inet.get_ip_address ();
-      creg.hostname = ::CORBA::string_dup (hostname);
+      creg.ipaddr = ::CORBA::string_dup (inet.get_host_addr ());
+      creg.hostname = ::CORBA::string_dup (inet.get_host_name ());
 
       // Register the component with the <Testing_Service>
       regid = ts->register_component (creg);

@@ -45,39 +45,42 @@ public:
    * @retval        >0                Succeeded
    * @retval        -1                Failed
    */
-  int bind (ACE_UINT32 ipaddr, const ACE_CString & hostname);
+  int bind (const ACE_CString & ipaddr,
+            const ACE_CString & hostname);
 
   /**
    * Remove an entry by using its hostname.
    *
    * @param[in]     hostname    Target hostname.
    */
-  void unbind (const ACE_CString & hostname);
+  void unbind_by_addr (const ACE_CString & hostname);
 
   /**
    * Remove an entry by using its IP-address.
    *
    * @param[in]     ipaddr      Target IP-address.
    */
-  void unbind (ACE_UINT32 ipaddr);
+  void unbind_by_name (const ACE_CString & ipaddr);
 
   /**
    * Find the hostname given an IP-address.
    *
    * @retval      -1      The hostname was not found.
    */
-  int find (ACE_UINT32 ipaddr, ACE_CString & hostname);
+  int find_by_addr (const ACE_CString & ipaddr,
+                    ACE_CString & hostname);
 
   /**
    * Find the IP-address given a hostname.
    *
    * @retval      -1      The hostname was not found.
    */
-  int find (const ACE_CString & hostname, ACE_UINT32 & ipaddr);
+  int find_by_name (const ACE_CString & hostname,
+                    ACE_CString & ipaddr);
 
 private:
   /// Type definition of an IP-address map.
-  typedef ACE_Hash_Map_Manager <ACE_UINT32,
+  typedef ACE_Hash_Map_Manager <ACE_CString,
                                 void *,
                                 ACE_RW_Thread_Mutex> IP_Address_Map;
 
@@ -94,8 +97,8 @@ private:
    * @return          0           Successfully found entry.
    * @return          -1          Failed to find entry.
    */
-  int find_i (ACE_UINT32 ipaddr,
-              Hostname_Map::ENTRY * & entry);
+  int find_by_addr_i (const ACE_CString & ipaddr,
+                      Hostname_Map::ENTRY * & entry);
 
   /**
    * Locates the entry for the hostname.
@@ -105,8 +108,8 @@ private:
    * @return          0           Successfully found entry.
    * @return          -1          Failed to find entry.
    */
-  int find_i (const ACE_CString & hostname,
-              IP_Address_Map::ENTRY * & entry);
+  int find_by_name_i (const ACE_CString & hostname,
+                      IP_Address_Map::ENTRY * & entry);
 
   /// Mapping of IP-address to hostname.
   IP_Address_Map ipaddr_map_;

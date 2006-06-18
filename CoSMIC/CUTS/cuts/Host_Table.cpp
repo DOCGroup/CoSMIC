@@ -22,7 +22,7 @@ CUTS_Host_Table::~CUTS_Host_Table (void)
 //
 // bind
 //
-int CUTS_Host_Table::bind (ACE_UINT32 ipaddr,
+int CUTS_Host_Table::bind (const ACE_CString & ipaddr,
                            const ACE_CString & hostname)
 {
   // Place the IP address on its map.
@@ -46,13 +46,13 @@ int CUTS_Host_Table::bind (ACE_UINT32 ipaddr,
 //
 // find
 //
-int CUTS_Host_Table::find (const ACE_CString & hostname,
-                           ACE_UINT32 & ipaddr)
+int CUTS_Host_Table::find_by_name (const ACE_CString & hostname,
+                                   ACE_CString & ipaddr)
 {
   // Locate the <entry> in the <host_map_>, whose <int_id_> is
   // of type <void *>.
   IP_Address_Map::ENTRY * entry = 0;
-  int result = this->find_i (hostname, entry);
+  int result = this->find_by_name_i (hostname, entry);
 
   if (result == 0 && entry != 0)
   {
@@ -65,13 +65,13 @@ int CUTS_Host_Table::find (const ACE_CString & hostname,
 //
 // find
 //
-int CUTS_Host_Table::find (ACE_UINT32 ipaddr,
-                           ACE_CString & hostname)
+int CUTS_Host_Table::find_by_addr (const ACE_CString & ipaddr,
+                                   ACE_CString & hostname)
 {
   // Locate the <entry> in the <host_map_>, whose <int_id_> is
   // of type <void *>.
   Hostname_Map::ENTRY * entry = 0;
-  int result = this->find_i (ipaddr, entry);
+  int result = this->find_by_addr_i (ipaddr, entry);
 
   if (result == 0 && entry != 0)
   {
@@ -84,11 +84,11 @@ int CUTS_Host_Table::find (ACE_UINT32 ipaddr,
 //
 // unbind
 //
-void CUTS_Host_Table::unbind (ACE_UINT32 ipaddr)
+void CUTS_Host_Table::unbind_by_addr (const ACE_CString & ipaddr)
 {
   // Locate the <ipaddr> in the map.
   Hostname_Map::ENTRY * entry = 0;
-  int result = this->find_i (ipaddr, entry);
+  int result = this->find_by_addr_i (ipaddr, entry);
 
   if (result == 0 && entry != 0)
   {
@@ -101,11 +101,11 @@ void CUTS_Host_Table::unbind (ACE_UINT32 ipaddr)
 //
 // unbind
 //
-void CUTS_Host_Table::unbind (const ACE_CString & hostname)
+void CUTS_Host_Table::unbind_by_name (const ACE_CString & hostname)
 {
   // Locate the IP-address entry.
   IP_Address_Map::ENTRY * entry = 0;
-  int result = this->find_i (hostname, entry);
+  int result = this->find_by_name_i (hostname, entry);
 
   if (result == 0 && entry != 0)
   {
@@ -116,10 +116,10 @@ void CUTS_Host_Table::unbind (const ACE_CString & hostname)
 }
 
 //
-// find_i
+// find_by_name_i
 //
-int CUTS_Host_Table::find_i (const ACE_CString & hostname,
-                             IP_Address_Map::ENTRY * & entry)
+int CUTS_Host_Table::find_by_name_i (const ACE_CString & hostname,
+                                     IP_Address_Map::ENTRY * & entry)
 {
   void * temp = 0;
   int result = this->host_map_.find (hostname, temp);
@@ -133,10 +133,10 @@ int CUTS_Host_Table::find_i (const ACE_CString & hostname,
 }
 
 //
-// find_i
+// find_by_addr_i
 //
-int CUTS_Host_Table::find_i (ACE_UINT32 ipaddr,
-                             Hostname_Map::ENTRY * & entry)
+int CUTS_Host_Table::find_by_addr_i (const ACE_CString & ipaddr,
+                                     Hostname_Map::ENTRY * & entry)
 {
   void * temp = 0;
   int result = this->ipaddr_map_.find (ipaddr, temp);

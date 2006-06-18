@@ -625,8 +625,136 @@ long CUTS_Database_Service::path_id (const char * pathname)
 //
 // register_host
 //
-bool CUTS_Database_Service::register_host (long ipaddr,
+bool CUTS_Database_Service::register_host (const char * ipaddr,
                                            const char * hostname)
+{
+  // Before we continue, we should check to see if the host has already
+  // been registered. This will prevent any exceptions from occuring
+  // because of duplicate data.
+  int hostid = 0;
+
+  if (this->get_host_id_by_addr (ipaddr, hostid))
+  {
+    return true;
+  }
+
+  ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex,
+                         guard,
+                         this->lock_,
+                         false);
+
+  if (this->conn_.is_connected ())
+  {
+    ACE_Auto_Ptr <ODBC_Stmt> stmt (this->conn_.create_statement ());
+    long component_id = 0;
+
+    try
+    {
+      SQLINTEGER _ipaddr = SQL_NTS,
+                 _hostname = SQL_NTS;
+
+      stmt->bind_parameter (1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR,
+                            0, 0, (SQLCHAR *)ipaddr, 0, &_ipaddr);
+      stmt->bind_parameter (2, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR,
+                            0, 0, (SQLCHAR *)hostname, 0, &_hostname);
+
+      // Prepare the statement to select the component_id of the component
+      // with the specified name.
+      const char * str_stmt =
+        "INSERT INTO ipaddr_host_map (ipaddr, hostname) VALUES (?, ?)";
+
+      stmt->prepare (str_stmt);
+      stmt->execute ();
+      return true;
+    }
+    catch (ODBC_Stmt_Exception & ex)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "[%M] -%T - (%s:%u) %s\n",
+                  ex.state ().c_str (),
+                  ex.native (),
+                  ex.message ().c_str ()));
+    }
+    catch (...)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "[%M] -%T - unknown exception in "
+                  "CUTS_Database_Service::register_host\n"));
+    }
+  }
+  else
+  {
+    ACE_ERROR ((LM_ERROR,
+                "[%M] -%T - no database connection exist\n"));
+  }
+
+  return false;
+}
+
+//
+// get_host_id
+//
+bool CUTS_Database_Service::get_host_id_by_addr (const char * ipaddr,
+                                                 int & hostid)
+{
+  ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex,
+                         guard,
+                         this->lock_,
+                         false);
+
+  if (this->conn_.is_connected ())
+  {
+    ACE_Auto_Ptr <ODBC_Stmt> stmt (this->conn_.create_statement ());
+
+    try
+    {
+      SQLINTEGER _ipaddr = SQL_NTS;
+
+      stmt->bind_parameter (1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR,
+                            0, 0, (SQLCHAR *)ipaddr, 0, &_ipaddr);
+
+      // Prepare the statement to select the component_id of the component
+      // with the specified name.
+      const char * str_stmt =
+        "SELECT hostid FROM ipaddr_host_map WHERE ipaddr = ?";
+      stmt->prepare (str_stmt);
+      stmt->execute ();
+
+      // Get the results from executing the query. If the query returns
+      // nothing then this will throw an exception.
+      stmt->fetch ();
+      stmt->get_data (1, hostid);
+      return true;
+    }
+    catch (ODBC_Stmt_Exception & ex)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "[%M] -%T - (%s:%u) %s\n",
+                  ex.state ().c_str (),
+                  ex.native (),
+                  ex.message ().c_str ()));
+    }
+    catch (...)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "[%M] -%T - unknown exception in "
+                  "CUTS_Database_Service::register_host\n"));
+    }
+  }
+  else
+  {
+    ACE_ERROR ((LM_ERROR,
+                "[%M] -%T - no database connection exist\n"));
+  }
+
+  return false;
+}
+
+//
+// get_host_id
+//
+bool CUTS_Database_Service::get_host_id_by_name (const char * hostname,
+                                                 int & hostid)
 {
   ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex,
                          guard,
@@ -640,21 +768,23 @@ bool CUTS_Database_Service::register_host (long ipaddr,
 
     try
     {
-      SQLINTEGER _ipaddr = 0,
-                 _hostname = SQL_NTS;
+      SQLINTEGER _hostname = SQL_NTS;
 
-      stmt->bind_parameter (1, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_INTEGER,
-                            0, 0, &ipaddr, 0, &_ipaddr);
-      stmt->bind_parameter (2, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR,
+      stmt->bind_parameter (1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR,
                             0, 0, (SQLCHAR *)hostname, 0, &_hostname);
 
       // Prepare the statement to select the component_id of the component
       // with the specified name.
       const char * str_stmt =
-        "INSERT INTO ipaddr_host_map (ipaddr, hostname) VALUES (?, ?)";
+        "SELECT hostid FROM ipaddr_host_map WHERE hostname = ?";
 
       stmt->prepare (str_stmt);
       stmt->execute ();
+
+      // Get the results from executing the query. If the query returns
+      // nothing then this will throw an exception.
+      stmt->fetch ();
+      stmt->get_data (1, hostid);
       return true;
     }
     catch (ODBC_Stmt_Exception & ex)

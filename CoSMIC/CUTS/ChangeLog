@@ -1,3 +1,20 @@
+Sun Jun 18 17:49:50 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * SQL/CUTS-create.sql:
+
+          Change the IP table from a INT to a VARCHAR to compensate
+          for IPv6 addresses.
+
+        * cuts/BDC/Testing_Service_exec_i.cpp:
+        * cuts/CCM_CoWorkEr.cpp:
+        * cuts/CUTS.idl:
+        * cuts/Host_Table.h:
+        * cuts/Host_Table.cpp:
+        * cuts/svcs/dbase/DBase_Service.h:
+        * cuts/svcs/dbase/DBase_Service.cpp:
+
+          Changed the IP-address types from ACE_UINT to ACE_CString.
+
 Sun Jun 18 13:03:31 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * SQL/CUTS-create.sql:

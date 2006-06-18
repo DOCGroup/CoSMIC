@@ -2,7 +2,6 @@
 
 #include "Testing_Service_exec_i.h"
 #include "CCM_Component_Registry.h"
-#include "ace/INET_Addr.h"
 #include <typeinfo>
 
 namespace CUTS
@@ -49,17 +48,14 @@ namespace CUTS
     }
 
     // Bind the IP-address to the hostname.
-    long result = this->host_table().bind(creg.ipaddr,
+    long result = this->host_table().bind(creg.ipaddr.in (),
                                           creg.hostname.in());
 
     if (result == -1)
     {
-      ACE_INET_Addr inet (static_cast <u_short> (0),
-                          static_cast <ACE_UINT32> (creg.ipaddr));
-
       ACE_ERROR ((LM_WARNING,
                   "[%M] -%T - failed to bind %s to %s\n",
-                  inet.get_host_addr (),
+                  creg.ipaddr.in (),
                   creg.hostname.in ()));
     }
 

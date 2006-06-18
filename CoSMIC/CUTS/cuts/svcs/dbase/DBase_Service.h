@@ -106,7 +106,30 @@ public:
    * @retval          true          Registration succeeded.
    * @retval          false         Registration failed.
    */
-  bool register_host (long ipaddr, const char * hostname);
+  bool register_host (const char * ipaddr, const char * hostname);
+
+  /**
+   * Get the unique id of a host given it's IP-address. The
+   * IP-address can be IPv4 or IPv6.
+   *
+   * @param[in]     ipaddr      IP-adddress
+   * @param[out]    hostid      ID of the host.
+   * @retval        true        The operation succeeded.
+   * @retval        false       The operation failed.
+   */
+  bool get_host_id_by_addr (const char * ipaddr,
+                            int &hostid);
+
+  /**
+   * Get the unique id of a host given it's name.
+   *
+   * @param[in]     hostname    Name of the host.
+   * @param[out]    hostid      ID of the host.
+   * @retval        true        The operation succeeded.
+   * @retval        false       The operation failed.
+   */
+  bool get_host_id_by_name (const char * hostname,
+                            int &hostid);
 
   /**
    * Archive system metrics.
