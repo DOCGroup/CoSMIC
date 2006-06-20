@@ -159,11 +159,6 @@ bool CUTS_Database_Service::register_component (long regid,
       this->component_mapping_.insert (
         CUTS_DBase_Svc_Component_Map::value_type (regid, component_id));
 
-      ACE_DEBUG ((LM_DEBUG,
-                  "%s has instance id of %u\n",
-                  uuid,
-                  component_id));
-
       return true;
     }
     catch (ODBC_Stmt_Exception & ex)
@@ -626,15 +621,20 @@ long CUTS_Database_Service::path_id (const char * pathname)
 // register_host
 //
 bool CUTS_Database_Service::register_host (const char * ipaddr,
-                                           const char * hostname)
+                                           const char * hostname,
+                                           int * hostid)
 {
   // Before we continue, we should check to see if the host has already
   // been registered. This will prevent any exceptions from occuring
   // because of duplicate data.
-  int hostid = 0;
+  int temp = 0;
 
-  if (this->get_host_id_by_addr (ipaddr, hostid))
+  if (this->get_host_id_by_addr (ipaddr, temp))
   {
+    if (hostid != 0)
+    {
+      *hostid = temp;
+    }
     return true;
   }
 
@@ -665,6 +665,12 @@ bool CUTS_Database_Service::register_host (const char * ipaddr,
 
       stmt->prepare (str_stmt);
       stmt->execute ();
+
+      if (hostid != 0)
+      {
+        *hostid = stmt->last_insert_id ();
+      }
+
       return true;
     }
     catch (ODBC_Stmt_Exception & ex)
@@ -800,6 +806,189 @@ bool CUTS_Database_Service::get_host_id_by_name (const char * hostname,
       ACE_ERROR ((LM_ERROR,
                   "[%M] -%T - unknown exception in "
                   "CUTS_Database_Service::register_host\n"));
+    }
+  }
+  else
+  {
+    ACE_ERROR ((LM_ERROR,
+                "[%M] -%T - no database connection exist\n"));
+  }
+
+  return false;
+}
+
+//
+// set_component_uptime
+//
+bool CUTS_Database_Service::set_component_uptime (long cid,
+                                                  long hostid)
+{
+  ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex,
+                         guard,
+                         this->lock_,
+                         false);
+
+  if (this->conn_.is_connected ())
+  {
+    ACE_Auto_Ptr <ODBC_Stmt> stmt (this->conn_.create_statement ());
+
+    try
+    {
+      SQLINTEGER _test_number = 0,
+                 _instance = 0,
+                 _hostid = SQL_NTS;
+
+      CUTS_DBase_Svc_Component_Map::const_iterator iter =
+        this->component_mapping_.find (cid);
+      cid = iter != this->component_mapping_.end () ? iter->second : 0;
+
+      stmt->bind_parameter (1, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_INTEGER,
+                            0, 0, &this->test_number_, 0, &_test_number);
+      stmt->bind_parameter (2, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_INTEGER,
+                            0, 0, &cid, 0, &_instance);
+      stmt->bind_parameter (3, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_INTEGER,
+                            0, 0, &hostid, 0, &_hostid);
+
+      // Prepare the statement to select the component_id of the component
+      // with the specified name.
+      const char * str_stmt =
+        "INSERT INTO deployment_table (test_number, instance, hostid, uptime) "
+        "VALUES (?, ?, ?, NOW())";
+
+      stmt->prepare (str_stmt);
+      stmt->execute ();
+      return true;
+    }
+    catch (ODBC_Stmt_Exception & ex)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "[%M] -%T - (%s:%u) %s\n",
+                  ex.state ().c_str (),
+                  ex.native (),
+                  ex.message ().c_str ()));
+    }
+    catch (...)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "[%M] -%T - unknown exception in "
+                  "CUTS_Database_Service::set_component_uptime\n"));
+    }
+  }
+  else
+  {
+    ACE_ERROR ((LM_ERROR,
+                "[%M] -%T - no database connection exist\n"));
+  }
+
+  return false;
+}
+
+//
+// set_component_downtime
+//
+bool CUTS_Database_Service::set_component_downtime (long cid)
+{
+  ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex,
+                         guard,
+                         this->lock_,
+                         false);
+
+  if (this->conn_.is_connected ())
+  {
+    ACE_Auto_Ptr <ODBC_Stmt> stmt (this->conn_.create_statement ());
+
+    try
+    {
+      SQLINTEGER _test_number = 0,
+                 _instance = 0;
+
+      stmt->bind_parameter (1, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_INTEGER,
+                            0, 0, &this->test_number_, 0, &_test_number);
+      stmt->bind_parameter (2, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_INTEGER,
+                            0, 0, &cid, 0, &_instance);
+
+      // Prepare the statement to select the component_id of the component
+      // with the specified name.
+      const char * str_stmt =
+        "UPDATE deployment_table SET downtime = NOW() "
+        "WHERE test_number = ? AND instance = ?";
+
+      stmt->prepare (str_stmt);
+      stmt->execute ();
+      return true;
+    }
+    catch (ODBC_Stmt_Exception & ex)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "[%M] -%T - (%s:%u) %s\n",
+                  ex.state ().c_str (),
+                  ex.native (),
+                  ex.message ().c_str ()));
+    }
+    catch (...)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "[%M] -%T - unknown exception in "
+                  "CUTS_Database_Service::set_component_downtime\n"));
+    }
+  }
+  else
+  {
+    ACE_ERROR ((LM_ERROR,
+                "[%M] -%T - no database connection exist\n"));
+  }
+
+  return false;
+}
+
+//
+// get_component_id
+//
+bool CUTS_Database_Service::get_instance_id (const char * instance,
+                                             long & id)
+{
+  ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex,
+                         guard,
+                         this->lock_,
+                         false);
+
+  if (this->conn_.is_connected ())
+  {
+    ACE_Auto_Ptr <ODBC_Stmt> stmt (this->conn_.create_statement ());
+
+    try
+    {
+      SQLINTEGER _instance = SQL_NTS;
+
+      stmt->bind_parameter (1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR,
+                            0, 0, (SQLCHAR *)instance, 0, &_instance);
+
+      // Prepare the statement to select the component_id of the component
+      // with the specified name.
+      const char * str_stmt =
+        "SELECT component_id FROM component_instances "
+        "WHERE component_name = ?";
+
+      stmt->prepare (str_stmt);
+      stmt->execute ();
+
+      stmt->fetch ();
+      stmt->get_data (1, id);
+      return true;
+    }
+    catch (ODBC_Stmt_Exception & ex)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "[%M] -%T - (%s:%u) %s\n",
+                  ex.state ().c_str (),
+                  ex.native (),
+                  ex.message ().c_str ()));
+    }
+    catch (...)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "[%M] -%T - unknown exception in "
+                  "CUTS_Database_Service::get_instance_id\n"));
     }
   }
   else

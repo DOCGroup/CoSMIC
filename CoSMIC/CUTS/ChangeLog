@@ -1,3 +1,29 @@
+Tue Jun 20 03:27:29 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * SQL/CUTS-create.sql:
+
+          Created a new table for storing deployment information. The
+          table contains the location, uptime and downtime for each
+          instance per test.
+
+        * cuts/BDC/Benchmark_Data_Collector_Ex_exec_i.cpp:
+
+          Moved the test creation code to the server_name () attribute
+          method. This will cause connecting to a new database to
+          automatically create a new test.
+
+        * cuts/svcs/dbase/DBase_Service.h:
+        * cuts/svcs/dbase/DBase_Service.cpp:
+
+          Added the methods set_component_uptime (), set_component_downtime ()
+          and get_component_id ().
+
+        * cuts/BDC/Testing_Service_Ex_exec_i.h:
+        * cuts/BDC/Testing_Service_Ex_exec_i.cpp:
+
+          Added support for setting component uptime and downtime when
+          a component is registered and unregistered, respectively.
+
 Sun Jun 18 17:49:50 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * SQL/CUTS-create.sql:

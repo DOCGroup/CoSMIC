@@ -178,6 +178,27 @@ CREATE TABLE execution_time
 );
 
 --
+-- Create the 'deployment_table'. This table contains the location
+-- uptime and downtime of a component instance per test.
+--
+
+DROP TABLE IF EXISTS deployment_table;
+
+CREATE TABLE deployment_table
+(
+  test_number       INT NOT NULL,
+  instance          INT NOT NULL,
+  hostid            INT NOT NULL,
+  uptime            DATETIME,
+  downtime          DATETIME,
+
+  FOREIGN KEY (test_number) REFERENCES tests (test_number)
+    ON DELETE CASCADE,
+  FOREIGN KEY (instance) REFERENCES component_instances (component_id)
+    ON DELETE RESTRICT
+);
+
+--
 -- create user 'cuts'
 --
 

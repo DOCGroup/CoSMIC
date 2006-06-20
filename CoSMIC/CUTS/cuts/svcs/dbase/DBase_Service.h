@@ -103,10 +103,13 @@ public:
    *
    * @param[in]       ipaddr        IP-address
    * @param[in]       hostname      Name of the host.
+   * @param[out]      hostid        Buffer to receive host id.
    * @retval          true          Registration succeeded.
    * @retval          false         Registration failed.
    */
-  bool register_host (const char * ipaddr, const char * hostname);
+  bool register_host (const char * ipaddr,
+                      const char * hostname,
+                      int * hostid = 0);
 
   /**
    * Get the unique id of a host given it's IP-address. The
@@ -155,6 +158,12 @@ public:
    * @retval        -1            Path was not found.
    */
   long path_id (const char * pathname);
+
+  bool set_component_uptime (long cid, long hostid);
+
+  bool set_component_downtime (long cid);
+
+  bool get_instance_id (const char * instance, long & id);
 
 private:
   /**

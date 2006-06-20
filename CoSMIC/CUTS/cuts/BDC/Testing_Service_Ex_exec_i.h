@@ -55,6 +55,22 @@ namespace CUTS
                        ::CUTS::Registration_Failed,
                        ::CUTS::Registration_Limit));
 
+     /**
+      * Unregister the component with the testing service. The
+      * regisration ID used in the method is the one returned to the
+      * component by register_component ().
+      *
+      * @param[in]      creg      Reference to a component registration.
+      *
+      * @exception      CUTS::ID_Not_Found
+      *    Specified registration ID was not found.
+      */
+    virtual void unregister_component (
+      const ::CUTS::Component_Registration & creg
+      ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+      ACE_THROW_SPEC ((::CORBA::SystemException,
+                       ::CUTS::ID_Not_Found));
+
   private:
     /// Reference to the database service.
     CUTS_Database_Service & database_service_;

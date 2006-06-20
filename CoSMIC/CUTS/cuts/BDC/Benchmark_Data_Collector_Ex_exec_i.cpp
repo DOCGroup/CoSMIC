@@ -105,22 +105,20 @@ namespace CUTS
                                            server_name,
                                            CUTS_DEFAULT_PORT))
       {
+        // Store the server name and create a new test in the
+        // database.
         this->server_name_ = server_name;
-
-        ACE_DEBUG ((LM_INFO,
-                    "[%M] -%T - successfully connected to database on %s\n",
-                    server_name));
+        this->database_service_.create_new_test ();
       }
       else
       {
-        ACE_ERROR ((
-          LM_ERROR,
-          "[%M] -%T - data collector failed to connect to database "
-          "on %s; [username = %s; password = %d; port = %u]\n",
-          this->server_name_.c_str (),
-          CUTS_USERNAME,
-          CUTS_PASSWORD,
-          CUTS_DEFAULT_PORT));
+        ACE_ERROR ((LM_ERROR,
+                    "[%M] -%T - failed to connect to database on %s; "
+                    "[username = %s; password = %d; port = %u]\n",
+                    this->server_name_.c_str (),
+                    CUTS_USERNAME,
+                    CUTS_PASSWORD,
+                    CUTS_DEFAULT_PORT));
       }
     }
 
@@ -153,11 +151,7 @@ namespace CUTS
       ACE_THROW_SPEC ((::CORBA::SystemException,
       ::Components::CCMException))
     {
-      ACE_DEBUG ((
-        LM_DEBUG,
-        "[%M] -%T - request the database service to create a new test\n"));
 
-      this->database_service_.create_new_test ();
     }
 
     //
@@ -213,9 +207,8 @@ namespace CUTS
       this->database_service_.stop_current_test ();
 
       // Disconnect from the database.
-      ACE_DEBUG ((
-        LM_DEBUG,
-        "[%M] -%T - disconnecting from database service\n"));
+      ACE_DEBUG ((LM_DEBUG,
+                  "[%M] -%T - disconnecting from database service\n"));
       this->database_service_.disconnect ();
     }
 
