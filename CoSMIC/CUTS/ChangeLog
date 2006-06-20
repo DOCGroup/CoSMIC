@@ -1,3 +1,10 @@
+Tue Jun 20 05:37:20 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/App_Code/BMW_Service.cs:
+        * utils/BMW/BMW.mwc:
+
+          Removed stale code and projects.
+
 Tue Jun 20 03:27:29 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * SQL/CUTS-create.sql:

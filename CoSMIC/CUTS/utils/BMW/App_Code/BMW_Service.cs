@@ -19,12 +19,6 @@ using System.Web.Services.Protocols;
 using System.Xml;
 using MySql.Data.MySqlClient;
 
-using System.Runtime.Remoting.Channels;
-using Ch.Elca.Iiop;
-using Ch.Elca.Iiop.Services;
-using omg.org.CosNaming;
-using CUTS;
-
 //=============================================================================
 /**
  * @class BMW_Web_Service
@@ -84,45 +78,6 @@ public class BMW_Web_Service : System.Web.Services.WebService
       throw new SoapException(
         ex.Message,
         new XmlQualifiedName("BMWeb.PathExecutionTime"));
-    }
-  }
-
-  [WebMethod (Description="Get the current test number of the Benchmark " +
-                          "Data Collector")]
-  public long CurrentTest()
-  {
-    try
-    {
-      const string host = "127.0.0.1";
-      const int port = 10000;
-
-      // Register the channel...
-      IiopClientChannel channel = new IiopClientChannel();
-      ChannelServices.RegisterChannel(channel, false);
-
-      // Access the COS naming service (NameService)...
-      CorbaInit init = CorbaInit.GetInit();
-      NamingContext nameService = init.GetNameService(host, port);
-
-      // Access the IDL-defined module
-      // (which maps to a .Net namespace)...
-      NameComponent[] moduleName = 
-        new NameComponent[] { new NameComponent("CUTS", "") };
-      NamingContext ns = (NamingContext)nameService.resolve(moduleName);
-
-      // Access the IDL-defined interface
-      // (which maps to a .NET interface class)
-      NameComponent[] interfaceName = 
-        new NameComponent[] { new NameComponent("Testing_Service", "") };
-      CUTS.Testing_Service servant =
-            (CUTS.Testing_Service)ns.resolve(interfaceName);
-
-      return 0;
-    }
-    catch (Exception ex)
-    {
-      throw new SoapException(ex.Message,
-                              new XmlQualifiedName("BMWeb.CurrentTest"));
     }
   }
 

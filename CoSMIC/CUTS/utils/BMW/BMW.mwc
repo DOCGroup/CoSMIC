@@ -6,7 +6,7 @@ workspace (BMW) {
     cmdline = -language cplusplus \
               -include $CUTS_ROOT/etc/config
 
-    CORBA_Utility
+    // CORBA_Utility
   }
 
   // C# projects
