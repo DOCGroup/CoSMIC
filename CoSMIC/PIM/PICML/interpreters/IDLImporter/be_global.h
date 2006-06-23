@@ -39,7 +39,9 @@
 
 using namespace xercesc;
 
-#define X(str) XStr (ACE_TEXT (str)) class AST_Generator;
+#define X(str) XStr (ACE_TEXT (str)) 
+
+class AST_Generator;
 class AST_Module;
 class AST_Component;
 
