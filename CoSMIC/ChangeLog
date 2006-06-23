@@ -1,3 +1,18 @@
+Fri Jun 23 19:43:48 UTC 2006  Jeff Parsons  <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        * PIM/PICML/interpreters/IDLImporter/be_extern.h:
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_init.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
+        
+          - idl_to_picml backend changes corresponding to recent
+            frontend changes to elminate memory leaks.
+            
+          - Change to MPC file to reflect recent changes to the
+            inclusion of TAO/Version.h.
+
 Fri Jun 23 01:54:18 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/Interpreters.mwc:
