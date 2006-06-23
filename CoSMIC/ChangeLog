@@ -1,3 +1,11 @@
+Fri Jun 23 01:54:18 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+          Removed some legacy interpreters.
+
+        * cosmic.mwc:
+          Removed some legacy projects.
+
 Fri Jun 16 22:10:48 UTC 2006  Krishnakumar B  <kitty@dre.vanderbilt.edu>
 
         * ChangeLog:  Integrated the version of CoSMIC from the ARMS

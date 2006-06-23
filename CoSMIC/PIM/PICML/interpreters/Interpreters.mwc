@@ -5,14 +5,10 @@ workspace {
   PICML
   Package
   PackageComponent
-  RTConfig
-  RTConfigComponent
   Target
   TargetComponent
   DeploymentPlan
   DeploymentPlanComponent
-  ConfigExport
-  Configurator
   IDLGenerator
   IDLImporter
   BGML
@@ -21,11 +17,6 @@ workspace {
   MPCComponent
   CIDL_Interpreter
   CIDLComponent
-  EQAL
-  //IOAutomata
-  //IOAutomataComponent
-  QoSMapping
-  QoSMappingComponent
   Path
   PathComponent
   FaultTolerance
