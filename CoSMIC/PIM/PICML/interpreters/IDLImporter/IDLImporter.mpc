@@ -25,7 +25,7 @@ project(IDL_TO_PICML_BE) : acedefaults, core, crosscompile, xerces {
   }
 
   Header_Files {
-    adding_visitsor.h
+    adding_visitor.h
     be_extern.h
     be_global.h
     EntityResolver.h
@@ -38,13 +38,14 @@ project(IDL_TO_PICML_BE) : acedefaults, core, crosscompile, xerces {
   }
 }
 
-
 project(IDL_TO_PICML_EXE) : aceexe, core, crosscompile, xerces {
   after          += IDL_TO_PICML_BE TAO_IDL_FE
   exename         = idl_to_picml
   libs           += IDL_TO_PICML_BE TAO_IDL_FE
-  includes       += . $(TAO_ROOT)/TAO_IDL/include $(TAO_ROOT)/TAO_IDL/fe
-  libpaths       += $(COSMIC_ROOT)/lib $(TAO_ROOT)/TAO_IDL
+  includes       += . $(TAO_ROOT)/TAO_IDL/include \
+                    $(TAO_ROOT)/TAO_IDL/fe \
+                    $(TAO_ROOT)
+  libpaths       += $(COSMIC_ROOT)/lib $(COSMIC_ROOT)/bin $(TAO_ROOT)/TAO_IDL
   install         = $(COSMIC_ROOT)/bin
 
   verbatim(gnuace, local) {

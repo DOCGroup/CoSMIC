@@ -77,9 +77,10 @@ trademarks or registered trademarks of Sun Microsystems, Inc.
 extern IDL_TO_PICML_BE_Export BE_GlobalData *be_global;
 
 extern IDL_TO_PICML_BE_Export int BE_init (int &, char*[]);
-extern IDL_TO_PICML_BE_Export void BE_post_init (const char *[], long);
+extern IDL_TO_PICML_BE_Export void BE_post_init (char *[], long);
 extern IDL_TO_PICML_BE_Export void BE_version (void);
 extern IDL_TO_PICML_BE_Export void BE_produce (void);
+extern IDL_TO_PICML_BE_Export void BE_cleanup (void);
 extern IDL_TO_PICML_BE_Export void BE_abort (void);
 
 #endif /* IDL_TO_PICML_BE_EXTERN_H */

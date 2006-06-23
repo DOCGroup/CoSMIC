@@ -17,15 +17,16 @@
 //
 // ============================================================================
 
-#include "adding_visitor.h"
 #include "XercesString.h"
 #include "XML_Error_Handler.h"
 #include "EntityResolver.h"
+#include "be_extern.h"
 #include "be_global.h"
 #include "ast_generator.h"
 #include "ast_module.h"
 #include "ast_sequence.h"
 #include "utl_identifier.h"
+#include "fe_extern.h"
 #include "global_extern.h"
 #include "nr_extern.h"
 #include "idl_defines.h"
@@ -568,7 +569,7 @@ BE_GlobalData::xerces_init (void)
         {
           ACE_ERROR ((LM_ERROR,
                       ACE_TEXT ("Null DOMImplementation returned\n")));
-          ACE_OS::exit (99);
+          BE_abort ();
         }
 
       this->writer_ =
@@ -653,7 +654,7 @@ BE_GlobalData::xerces_init (void)
           if (handler.getErrors ())
             {
               // The error handler will output a message.
-              exit (99);
+              BE_abort ();
             }
         }
 
@@ -685,7 +686,7 @@ BE_GlobalData::xerces_init (void)
                   ACE_TEXT ("xerces_init - ")
                   ACE_TEXT ("DOMException code is:  %d\n"),
                   e.code));
-      ACE_OS::exit (99);
+      BE_abort ();
     }
   catch (const XMLException &e)
     {
@@ -695,18 +696,18 @@ BE_GlobalData::xerces_init (void)
                   ACE_TEXT ("XMLException message is: %s\n"),
                   message));
       XMLString::release (&message);
-      ACE_OS::exit (99);
+      BE_abort ();
     }
   catch (...)
     {
       ACE_ERROR ((LM_ERROR,
                   ACE_TEXT ("Unknown exception in xerces_init\n")));
-      ACE_OS::exit (99);
+      BE_abort ();
     }
 }
 
 void
-BE_GlobalData::cache_files (const char *files[], long nfiles)
+BE_GlobalData::cache_files (char *files[], long nfiles)
 {
   for (long i = 0; i < nfiles; ++i)
     {
@@ -761,11 +762,21 @@ BE_GlobalData::cache_files (const char *files[], long nfiles)
 void
 BE_GlobalData::destroy (void)
 {
-  // Write out the file last, just before cleanup.
-  this->writer_->writeNode (this->target_, *this->doc_);
+  if (0 != this->writer_ && 0 != this->target_ && 0 != this->doc_)
+    {
+      // Write out the file last, just before cleanup.
+      this->writer_->writeNode (this->target_, *this->doc_);
+    }
 
-  this->writer_->release ();
-  this->doc_->release ();
+  if (0 != this->writer_)
+    {
+      this->writer_->release ();
+    }
+    
+  if (0 != this->doc_)
+    {  
+      this->doc_->release ();
+    }
 
   delete this->target_;
   this->target_ = 0;
@@ -930,7 +941,7 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
         tag = "connection";
         break;
     }
-
+    
   for (XMLSize_t index = 0; index < children->getLength (); ++index)
     {
       DOMElement *child =
@@ -983,20 +994,20 @@ BE_GlobalData::imported_module_dom_elem (DOMElement *sub_tree,
     {
       return 0;
     }
-
+      
   DOMNodeList *models =
     this->interface_definitions_folder_->getElementsByTagName (X ("model"));
-
+    
   for (XMLSize_t i = 0; i < models->getLength (); ++i)
     {
-      DOMElement *model = (DOMElement *) models->item (i);
+      DOMElement *model = (DOMElement *) models->item (i);  
       const XMLCh *kind = model->getAttribute (X ("kind"));
-
+        
       if (X ("Package") != X (kind))
         {
           continue;
         }
-
+        
       if (this->match_module_opening (model, node))
         {
           return model;
@@ -1252,7 +1263,7 @@ BE_GlobalData::get_name (DOMElement *node)
   return retval;
 }
 
-const XMLCh *
+XMLCh *
 BE_GlobalData::lookup_id (AST_Decl *d)
 {
   ACE_CString ext_id = d->repoID ();
@@ -1261,7 +1272,7 @@ BE_GlobalData::lookup_id (AST_Decl *d)
   this->check_for_basic_type (d, ext_id);
   this->check_for_basic_seq (d, ext_id);
 
-  const XMLCh *retval = 0;
+  XMLCh *retval = 0;
   int result = this->decl_id_table_.find (ext_id.c_str (), retval);
 
   if (result != 0)
@@ -1530,10 +1541,10 @@ BE_GlobalData::included_file_diagnostic (DOMElement *fileref,
     }
 
   char *file_name = this->get_name (file);
-
+  
   cout << "Added FileRef " << fileref_name << " in File "
        << file_name << endl;
-
+       
   XMLString::release (&file_name);
 }
 
@@ -1541,24 +1552,24 @@ DOMElement *
 BE_GlobalData::get_first_picml_element (DOMElement *scope)
 {
   DOMNodeList *children = scope->getChildNodes ();
-
+  
   for (XMLSize_t i = 0; i < children->getLength (); ++i)
     {
       DOMElement *child = (DOMElement *) children->item (i);
-
+      
       if (0 == child)
         {
           continue;
         }
-
+        
       const XMLCh *tag = child->getTagName ();
-
+      
       if (X ("model") == tag || X ("reference") == tag)
         {
           return child;
         }
     }
-
+    
   return 0;
 }
 
@@ -1572,15 +1583,15 @@ BE_GlobalData::match_module_opening (DOMElement *elem, AST_Decl *node)
   char *node_child_name = node_child->local_name ()->get_string ();
   int match = ACE_OS::strcmp (node_child_name, elem_child_name);
   XMLString::release (&elem_child_name);
-
+  
   if (0 != match)
     {
       return false;
     }
-
+    
   AST_Decl::NodeType nt = node_child->node_type ();
   const XMLCh *kind = elem_child->getAttribute (X ("kind"));
-
+  
   if (X ("Package") == kind && AST_Decl::NT_module == nt)
     {
       return this->match_module_opening (elem_child, node_child);

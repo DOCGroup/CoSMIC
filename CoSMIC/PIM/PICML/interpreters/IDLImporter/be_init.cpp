@@ -16,11 +16,16 @@ BE_version (void)
 IDL_TO_PICML_BE_Export int
 BE_init (int &, char *[])
 {
+  // Initialize BE global data object.
+  ACE_NEW_RETURN (be_global,
+                  BE_GlobalData,
+                  -1);
+
   return 0;
 }
 
 IDL_TO_PICML_BE_Export void
-BE_post_init (const char *files[], long nfiles)
+BE_post_init (char *files[], long nfiles)
 {
   be_global->xerces_init ();
   be_global->set_working_folders ();

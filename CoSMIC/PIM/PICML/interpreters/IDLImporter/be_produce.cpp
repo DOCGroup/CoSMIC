@@ -67,6 +67,7 @@ trademarks or registered trademarks of Sun Microsystems, Inc.
 #include "IDL_TO_PICML_BE_Export.h"
 #include "global_extern.h"
 #include "be_extern.h"
+#include "fe_extern.h"
 #include "ast_root.h"
 #include "utl_string.h"
 #include "adding_visitor.h"
@@ -80,8 +81,7 @@ trademarks or registered trademarks of Sun Microsystems, Inc.
 //#include "XML_Helper.h"
 
 // Clean up before exit, whether successful or not.
-// Need not be exported since it is called only from this file.
-void
+IDL_TO_PICML_BE_Export void
 BE_cleanup (void)
 {
   idl_global->destroy ();
@@ -94,9 +94,8 @@ BE_abort (void)
   ACE_ERROR ((LM_ERROR,
               ACE_TEXT ("Fatal Error - Aborting\n")));
 
-  BE_cleanup ();
-
-  ACE_OS::exit (1);
+  // BE_cleanup will be called after the exception is caught.
+  throw FE_Bailout ();
 }
 
 // Do the work of this BE. This is the starting point for code generation.
