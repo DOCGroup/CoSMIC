@@ -296,7 +296,7 @@ public:
   void release_node (DOMElement *node);
   // Remove a subtree from the DOM tree and release its resources.
   
-  XMLCh *lookup_id (AST_Decl *d);
+  const XMLCh *lookup_id (AST_Decl *d);
   // From the decl id table.
 
   void check_for_basic_seq (AST_Decl *d, ACE_CString &str);

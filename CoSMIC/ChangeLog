@@ -1,7 +1,13 @@
+Sat Jun 24 02:53:04 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:  Fixed a
+          compilation error with VC8.
+
 Fri Jun 23 23:14:42 UTC 2006  Jeff parsons  <j.parosns@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/be_global.h:
-        
+
           Fixed typo.
 
 Fri Jun 23 19:43:48 UTC 2006  Jeff Parsons  <j.parsons@vanderbilt.edu>

@@ -1263,7 +1263,7 @@ BE_GlobalData::get_name (DOMElement *node)
   return retval;
 }
 
-XMLCh *
+const XMLCh *
 BE_GlobalData::lookup_id (AST_Decl *d)
 {
   ACE_CString ext_id = d->repoID ();
@@ -1272,7 +1272,7 @@ BE_GlobalData::lookup_id (AST_Decl *d)
   this->check_for_basic_type (d, ext_id);
   this->check_for_basic_seq (d, ext_id);
 
-  XMLCh *retval = 0;
+  const XMLCh *retval = 0;
   int result = this->decl_id_table_.find (ext_id.c_str (), retval);
 
   if (result != 0)
