@@ -1,3 +1,14 @@
+Tue Jun 27 05:13:02 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/utils/DB_Types_Impl.h:
+        * cuts/utils/DB_Types_Impl.inl:
+
+          Implemented a copy constructor to stop gmake from complaining.
+
+        * cuts/utils/ODBC/ODBC_Types.inl (ODBC_Date_Time):
+
+          Explicitly called copy constructor of super class.
+
 Tue Jun 27 05:08:13 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/utils/ODBC/ODBC_Record.cpp (get_data_i):

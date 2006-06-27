@@ -5,6 +5,7 @@
 //
 CUTS_INLINE
 ODBC_Date_Time::ODBC_Date_Time (const ODBC_Date_Time & datetime)
+: CUTS_DB_Date_Time_Impl (datetime)
 {
   this->set (datetime);
 }

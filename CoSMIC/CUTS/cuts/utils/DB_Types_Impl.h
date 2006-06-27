@@ -30,6 +30,9 @@ public:
   /// Default constructor.
   CUTS_DB_Date_Time_Impl (void);
 
+  /// Copy constructor.
+  CUTS_DB_Date_Time_Impl (const CUTS_DB_Date_Time_Impl &);
+
   /// Destructor.
   virtual ~CUTS_DB_Date_Time_Impl (void) = 0;
 
