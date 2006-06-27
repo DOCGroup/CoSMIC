@@ -1,10 +1,10 @@
 // $Id$
 
-#include "ODBC.h"
+#include "ODBC_Base.h"
 
 #if !defined (__CUTS_INLINE__)
-#include "ODBC.inl"
-#endif	// !defined __CUTS_INLINE__
+#include "ODBC_Base.inl"
+#endif
 
 //
 // ODBC_Base

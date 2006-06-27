@@ -13,10 +13,9 @@
 #ifndef _CUTS_ODBC_QUERY_H_
 #define _CUTS_ODBC_QUERY_H_
 
+#include "ODBC_Base.h"
 #include "ODBC_Exception.h"
 #include "cuts/utils/DB_Query.h"
-#include "ace/Array_Base.h"
-#include "ace/Free_List.h"
 #include "ace/Auto_Ptr.h"
 
 // Forward decl.

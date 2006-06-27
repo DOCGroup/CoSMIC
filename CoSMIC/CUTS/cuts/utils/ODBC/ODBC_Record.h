@@ -13,6 +13,7 @@
 #ifndef _CUTS_ODBC_RECORD_H_
 #define _CUTS_ODBC_RECORD_H_
 
+#include "ODBC_Base.h"
 #include "ODBC_Exception.h"
 #include "cuts/utils/DB_Record.h"
 

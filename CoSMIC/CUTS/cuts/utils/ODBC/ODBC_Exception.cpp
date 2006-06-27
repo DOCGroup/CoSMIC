@@ -1,6 +1,7 @@
 // $Id$
 
 #include "ODBC_Exception.h"
+#include "ODBC_Base.h"
 #include "ace/Log_Msg.h"
 
 //

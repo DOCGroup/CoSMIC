@@ -3,8 +3,8 @@
 //
 // _return
 //
-CUTS_INLINE 
+CUTS_INLINE
 SQLRETURN ODBC_Base::_return (void) const
 {
-	return this->return_;
+  return this->return_;
 }

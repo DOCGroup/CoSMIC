@@ -10,7 +10,7 @@ project (CUTS_ODBC_DBase) : odbc, cutslib {
   after += CUTS_Utils_DBase
 
   Source_Files {
-    ODBC.cpp
+    ODBC_Base.cpp
     ODBC_Connection.cpp
     ODBC_Exception.cpp
     ODBC_Parameter.cpp
@@ -25,6 +25,7 @@ project (CUTS_ODBC_DBase) : odbc, cutslib {
   }
 
   Header_Files {
+    ODBC.h
     ODBC_DBase_Export.h
   }
 }

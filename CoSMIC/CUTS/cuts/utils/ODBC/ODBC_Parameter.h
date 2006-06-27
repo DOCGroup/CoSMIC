@@ -13,6 +13,7 @@
 #ifndef _ODBC_PARAMETER_H_
 #define _ODBC_PARAMETER_H_
 
+#include "ODBC_Base.h"
 #include "ODBC_Exception.h"
 #include "cuts/utils/DB_Parameter.h"
 

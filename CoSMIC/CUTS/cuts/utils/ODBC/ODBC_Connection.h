@@ -13,6 +13,7 @@
 #ifndef _ODBC_CONNECTION_H_
 #define _ODBC_CONNECTION_H_
 
+#include "ODBC_Base.h"
 #include "ODBC_Exception.h"
 #include "cuts/utils/DB_Connection.h"
 

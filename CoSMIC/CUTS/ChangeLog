@@ -1,3 +1,33 @@
+Tue Jun 27 06:04:02 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/utils/ODBC/ODBC.h:
+
+          - Includes the primary files for ODBC
+          - Implements macros to verify ODBC is supported.
+
+        * cuts/utils/ODBC/ODBC_Base.h:
+        * cuts/utils/ODBC/ODBC_Base.cpp:
+
+          Moved old contents of ODBC.h here
+
+        * cuts/utils/ODBC/CUTS_ODBC.mpc:
+        * cuts/utils/ODBC/ODBC_Connection.h:
+        * cuts/utils/ODBC/ODBC_Exception.cpp:
+        * cuts/utils/ODBC/ODBC_Parameter.h:
+        * cuts/utils/ODBC/ODBC_Query.h:
+        * cuts/utils/ODBC/ODBC_Record.h:
+
+          Changed ODBC.h to ODBC_Base.h
+
+        * etc/config/odbc.mpb:
+
+          Added defines += CUTS_HAS_ODBC to the projects.
+
+        * cuts/utils/ODBC/ODBC.inl:
+        * cuts/utils/ODBC/ODBC.cpp:
+
+          Removed these files.
+
 Tue Jun 27 05:29:40 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * CUTS_CoSMIC.mwc:
