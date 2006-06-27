@@ -1,11 +1,16 @@
 // $Id: DBase_Service.cpp,v 1.1.4.9.2.3 2006/06/11 18:59:25 hillj Exp $
 
 #include "DBase_Service.h"
-#include "cuts/utils/ODBC_Stmt.h"
 #include "cuts/System_Metric.h"
 #include "cuts/Component_Metric.h"
 #include "cuts/Port_Metric.h"
 #include "cuts/Time.h"
+
+#include "cuts/utils/ODBC/ODBC_Connection.h"
+#include "cuts/utils/ODBC/ODBC_Query.h"
+#include "cuts/utils/ODBC/ODBC_Record.h"
+#include "cuts/utils/ODBC/ODBC_Parameter.h"
+#include "cuts/utils/ODBC/ODBC_Types.h"
 
 #include "ace/Guard_T.h"
 #include "ace/Auto_Ptr.h"
@@ -63,7 +68,11 @@ static void operator << (SQL_TIMESTAMP_STRUCT & ts, const ACE_Time_Value & tv)
 CUTS_Database_Service::CUTS_Database_Service (void)
 : test_number_ (0)
 {
-
+  // Right now we are binding directly to ODBC. In the future we would
+  // like to ask the <CUTS_DB_Manager> for a connection object.
+  ODBC_Connection * conn = 0;
+  ACE_NEW (conn, ODBC_Connection ());
+  this->conn_.reset (conn);
 }
 
 //
@@ -88,12 +97,18 @@ bool CUTS_Database_Service::connect (const char * username,
   // we can connect to another one.
   this->disconnect_no_lock ();
 
-  ACE_DEBUG ((LM_INFO,
-              "[%M] -%T - connecting to the database on %s\n",
-              server));
+  try
+  {
+    this->conn_->connect (username, password, server, port);
+  }
+  catch (CUTS_DB_Exception & ex)
+  {
+    ex.print ();
+  }
 
-  this->conn_.connect (username, password, server, port);
-  return this->conn_.is_connected ();
+  bool retval = this->conn_->is_connected ();
+
+  return retval;
 }
 
 //
@@ -112,60 +127,58 @@ void CUTS_Database_Service::disconnect (void)
 bool CUTS_Database_Service::register_component (long regid,
                                                 const char * uuid)
 {
+  bool retval = false;
+
   ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex,
                          guard,
                          this->lock_,
-                         false);
+                         retval);
 
-  if (this->conn_.is_connected ())
+  if (this->conn_->is_connected ())
   {
-    ACE_Auto_Ptr <ODBC_Stmt> stmt (this->conn_.create_statement ());
+    ACE_Auto_Ptr <ODBC_Query> query (this->conn_->create_odbc_query ());
+
     long component_id = 0;
 
     try
     {
-      SQLINTEGER _uuid = SQL_NTS;
-      stmt->bind_parameter (1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR,
-                            0, 0, (SQLCHAR *)uuid, 0, &_uuid);
+      // Prepare the statement and bind all the parameters to their
+      // appropriate data buffers.
+      query->prepare ("SELECT component_id FROM component_instances "
+                      "WHERE component_name = ?");
 
-      // Prepare the statement to select the component_id of the component
-      // with the specified name.
-      stmt->prepare (
-      "SELECT component_id FROM component_instances WHERE component_name = ?");
-      stmt->execute ();
+      CUTS_DB_Parameter * param = query->parameter (0);
+      param->bind (const_cast <char *> (uuid), 0);
 
-      try
+      CUTS_DB_Record * record = query->execute ();
+
+      if (record->count () != 0)
       {
-        // Get the component id from the query statement.
-        stmt->fetch ();
-        stmt->get_data (1,
-                        &component_id,
-                        sizeof (component_id),
-                        0,
-                        SQL_C_LONG);
+        // Get the id of the component from the record.
+        record->fetch ();
+        record->get_data (1, component_id);
       }
-      catch (ODBC_Stmt_Exception &)
+      else
       {
-        // The component name does not exist. So we have to prepare
-        // the statement that will create a new id for the component.
-        stmt->prepare (
-          "INSERT INTO component_instances (component_name) VALUES (?)");
-        stmt->execute ();
+        // Create a new id since the component does not exist.
+        const char * stmt =
+          "INSERT INTO component_instances (component_name) VALUES (?)";
 
-        component_id = stmt->last_insert_id ();
+        query->prepare (stmt);
+        query->execute_no_record ();
+
+        component_id = query->last_insert_id ();
       }
 
       // Insert the {regid => component_id} into the <component_mapping_>.
       this->component_mapping_.insert (
         CUTS_DBase_Svc_Component_Map::value_type (regid, component_id));
 
-      return true;
+      retval = true;
     }
-    catch (ODBC_Stmt_Exception & ex)
+    catch (CUTS_DB_Exception & ex)
     {
-      ACE_ERROR ((LM_ERROR,
-                  "[%M] -%T - %s\n",
-                  ex.message ()));
+      ex.print ();
     }
     catch (...)
     {
@@ -180,7 +193,7 @@ bool CUTS_Database_Service::register_component (long regid,
                 "[%M] -%T - no database connection exist\n"));
   }
 
-  return false;
+  return retval;
 }
 
 //
@@ -197,10 +210,9 @@ bool CUTS_Database_Service::create_new_test (void)
                           this->lock_,
                           false);
 
-  if (this->conn_.is_connected ())
+  if (this->conn_->is_connected ())
   {
-    if (this->test_number_ != 0 &&
-        !this->stop_current_test_i ())
+    if (this->test_number_ != 0 && !this->stop_current_test_i ())
     {
       ACE_ERROR ((LM_NOTICE,
                   "[%M] -%T - cannot stop current test; "
@@ -208,43 +220,27 @@ bool CUTS_Database_Service::create_new_test (void)
     }
 
     // Create a new <ODBC_Stmt> using the existing connection.
-    ACE_Auto_Ptr <ODBC_Stmt> stmt (this->conn_.create_statement ());
-
-    // Convert the <tm> to a <SQL_TIMESTAMP_STRUCT> type.
-    SQL_TIMESTAMP_STRUCT test_time;
-    get_current_time (test_time);
-
-    SQLINTEGER _test_time = 0;
+    ACE_Auto_Ptr <ODBC_Query> query (this->conn_->create_odbc_query ());
 
     try
     {
-      // Create the binding for initializing a test.
-      stmt->bind_parameter (1, SQL_PARAM_INPUT, SQL_C_TYPE_TIMESTAMP,
-        SQL_TYPE_TIMESTAMP, 0, 0, &test_time, 0, &_test_time);
-
+      // Prepare the statement for exection.
       const char * str_stmt =
         "INSERT INTO tests (test_number, start_time, status) "
-        "VALUES (NULL, ?, 'active')";
+        "VALUES (NULL, NOW(), 'active')";
 
-      // Switch to the <cuts> directory.
-      stmt->exec_direct ("use cuts");
-
-      ACE_DEBUG ((LM_INFO,
-                  "[%M] -%T - creating a new test\n"));
-
-      // Prepare and execute the <str_stmt>.
-      stmt->prepare (str_stmt);
-      stmt->execute ();
-
-      this->test_number_ = stmt->last_insert_id ();
+      // Execute the statement and retrieve the test id, which is
+      // the <last_insert_id ()> for the query.
+      query->execute_no_record (str_stmt);
+      this->test_number_ = query->last_insert_id ();
       return true;
     }
-    catch (ODBC_Stmt_Exception & ex)
+    catch (CUTS_DB_Exception & ex)
     {
+      ex.print ();
+
       ACE_ERROR ((LM_ERROR,
-                  "[%M] -%T - %s\n"
-                  "[%M] -%T - failed to create new test id\n",
-                  ex.message ()));
+                  "[%M] -%T - failed to create new test\n"));
     }
     catch (...)
     {
@@ -267,9 +263,9 @@ bool CUTS_Database_Service::create_new_test (void)
 //
 void CUTS_Database_Service::disconnect_no_lock (void)
 {
-  if (this->conn_.is_connected ())
+  if (this->conn_->is_connected ())
   {
-    this->conn_.disconnect ();
+    this->conn_->disconnect ();
   }
 }
 
@@ -296,60 +292,44 @@ bool CUTS_Database_Service::stop_current_test (void)
 bool CUTS_Database_Service::stop_current_test_i (void)
 {
   if (this->test_number_ != 0 &&
-      this->conn_.is_connected ())
+      this->conn_->is_connected ())
   {
     // Create a new <ODBC_Stmt> using the existing connection.
-    ACE_Auto_Ptr <ODBC_Stmt> stmt (this->conn_.create_statement ());
-
-    // Get the <current_time> of the archiving.
-    SQL_TIMESTAMP_STRUCT test_time;
-    get_current_time (test_time);
-
-    SQLINTEGER _test_time = 0, _test_number = 0;
+    ACE_Auto_Ptr <ODBC_Query> query (this->conn_->create_odbc_query ());
 
     try
     {
       const char * str_stmt =
-        "UPDATE tests SET stop_time = ?, status = 'inactive' "
+        "UPDATE tests SET stop_time = NOW(), status = 'inactive' "
         "WHERE (test_number = ?)";
 
       // Create the binding for initializing a test.
-      stmt->bind_parameter (1, SQL_PARAM_INPUT, SQL_C_TYPE_TIMESTAMP,
-        SQL_TYPE_TIMESTAMP, 0, 0, &test_time, 0, &_test_time);
+      query->prepare (str_stmt);
+      query->parameter (0)->bind (&this->test_number_);
 
-      // Create the binding for initializing a test.
-      stmt->bind_parameter (2, SQL_PARAM_INPUT, SQL_C_LONG,
-        SQL_INTEGER, 0, 0, &this->test_number_, 0, &_test_number);
-
-      // Switch to the <cuts> directory.
-      stmt->exec_direct ("use cuts");
-      stmt->prepare (str_stmt);
-      stmt->execute ();
-
-      // Reset the <test_number_>.
+      // Execute the statement and reset the test number.
+      query->execute_no_record ();
       this->test_number_ = 0;
       return true;
     }
-    catch (ODBC_Stmt_Exception & ex)
+    catch (CUTS_DB_Exception & ex)
     {
-      ACE_ERROR ((
-        LM_ERROR,
-        ACE_TEXT ("[%M] -%T - %s\n")
-        ACE_TEXT ("[%M] -%T - failed to insert stop time for test %u\n"),
-        ex.message (),
-        this->test_number_));
+      ex.print ();
+      ACE_ERROR ((LM_ERROR,
+                  "[%M] -%T - failed to insert stop time for test %u\n",
+                  this->test_number_));
     }
     catch (...)
     {
       ACE_ERROR ((LM_ERROR,
-                  ACE_TEXT ("[%M] -%T - unknown exception in ")
-                  ACE_TEXT ("CUTS_Database_Service::stop_current_test_i\n")));
+                  "[%M] -%T - unknown exception in "
+                  "CUTS_Database_Service::stop_current_test_i\n"));
     }
   }
   else
   {
     ACE_ERROR ((LM_WARNING,
-                ACE_TEXT ("[%M] -%T - no database connection exist\n")));
+                "[%M] -%T - no database connection exist\n"));
   }
 
   return false;
@@ -366,86 +346,50 @@ bool CUTS_Database_Service::archive_system_metrics (
                          this->lock_,
                          false);
 
-  if (this->conn_.is_connected ())
+  if (this->conn_->is_connected ())
   {
-    // Convert the <timestamp> on the <metrics> to a <SQL_TIMESTAMP_STURCT>
-    // for logging of the system metrics.
-    SQL_TIMESTAMP_STRUCT collection_time;
-    collection_time << metrics.timestamp ();
+    long best_time,
+         worse_time,
+         average_time,
+         metric_count,
+         component,
+         sender;
 
-    SQLINTEGER best_time,
-               worse_time,
-               average_time,
-               metric_count,
-               component,
-               sender;
+    char src[MAX_VARCHAR_LENGTH],
+         dst[MAX_VARCHAR_LENGTH],
+         metric_type[MAX_VARCHAR_LENGTH];
 
-    SQLCHAR src[MAX_VARCHAR_LENGTH],
-            dst[MAX_VARCHAR_LENGTH],
-            metric_type[MAX_VARCHAR_LENGTH];
-
-    SQLINTEGER  _test_id = 0,
-                _best_time = 0,
-                _worse_time = 0,
-                _average_time = 0,
-                _metric_count = 0,
-                _src = SQL_NTS,
-                _dst = SQL_NTS,
-                _metric_type = SQL_NTS,
-                _component = SQL_NTS,
-                _sender = SQL_NTS,
-                _collection_time = 0;
-
-    // Create a new <stmt> for the data entry.
-    ACE_Auto_Ptr <ODBC_Stmt> stmt (this->conn_.create_statement ());
+    // Create a new <query> for the data entry.
+    ACE_Auto_Ptr <ODBC_Query> query (this->conn_->create_odbc_query ());
 
     try
     {
-      stmt->bind_parameter (1, SQL_PARAM_INPUT, SQL_C_LONG,
-        SQL_INTEGER, 0, 0, &this->test_number_, 0, &_test_id);
+      // Convert the <timestamp> to a known type.
+      ODBC_Date_Time collection_time (ACE_Date_Time (metrics.timestamp ()));
 
-      stmt->bind_parameter (2, SQL_PARAM_INPUT, SQL_C_TYPE_TIMESTAMP,
-        SQL_TYPE_TIMESTAMP, 0, 0, &collection_time, 0, &_collection_time);
-
-      stmt->bind_parameter (3, SQL_PARAM_INPUT, SQL_C_CHAR,
-        SQL_CHAR, 0, 0, &metric_type, 0, &_metric_type);
-
-      stmt->bind_parameter (4, SQL_PARAM_INPUT, SQL_C_LONG,
-        SQL_INTEGER, 0, 0, &metric_count, 0, &_metric_count);
-
-      stmt->bind_parameter (5, SQL_PARAM_INPUT, SQL_C_LONG,
-        SQL_INTEGER, 0, 0, &component, 0, &_component);
-
-      stmt->bind_parameter (6, SQL_PARAM_INPUT, SQL_C_LONG,
-        SQL_INTEGER, 0, 0, &sender, 0, &_sender);
-
-      stmt->bind_parameter (7, SQL_PARAM_INPUT, SQL_C_CHAR,
-        SQL_CHAR, 0, 0, &src, 0, &_src);
-
-      stmt->bind_parameter (8, SQL_PARAM_INPUT, SQL_C_CHAR,
-        SQL_CHAR, 0, 0, &dst, 0, &_dst);
-
-      stmt->bind_parameter (9, SQL_PARAM_INPUT, SQL_C_LONG,
-        SQL_INTEGER, 0, 0, &best_time, 0, &_best_time);
-
-      stmt->bind_parameter (10, SQL_PARAM_INPUT, SQL_C_LONG,
-        SQL_INTEGER, 0, 0, &average_time, 0, &_average_time);
-
-      stmt->bind_parameter (11, SQL_PARAM_INPUT, SQL_C_LONG,
-        SQL_INTEGER, 0, 0, &worse_time, 0, &_worse_time);
-
-      ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex,
-                            metric_lock,
-                            metrics.lock (),
-                            false);
-
-      const char * METRICS_INSERT_STMT =
+      // Prepare the statement and bind all the parameters.
+      const char * str_stmt =
         "INSERT INTO execution_time (test_number, collection_time, metric_type, "
         "metric_count, component, sender, src, dst, best_time, average_time, "
         "worse_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      query->prepare (str_stmt);
+      query->parameter (0)->bind (&this->test_number_);
+      query->parameter (1)->bind (&collection_time);
+      query->parameter (2)->bind (metric_type, 0);
+      query->parameter (3)->bind (&metric_count);
+      query->parameter (4)->bind (&component);
+      query->parameter (5)->bind (&sender);
+      query->parameter (6)->bind (src, 0);
+      query->parameter (7)->bind (dst, 0);
+      query->parameter (8)->bind (&best_time);
+      query->parameter (9)->bind (&average_time);
+      query->parameter (10)->bind (&worse_time);
 
-      stmt->exec_direct ("use cuts");
-      stmt->prepare (METRICS_INSERT_STMT);
+      ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex,
+                             metric_lock,
+                             metrics.lock (),
+                             false);
+
 
       CUTS_Component_Metric_Map::const_iterator cm_iter;
 
@@ -475,8 +419,7 @@ bool CUTS_Database_Service::archive_system_metrics (
              pm_iter != cm_iter->second->port_metrics ().end ();
              pm_iter ++)
         {
-          ACE_OS::strcpy (reinterpret_cast <char *> (src),
-                          pm_iter->first.c_str ());
+          ACE_OS::strcpy (src, pm_iter->first.c_str ());
 
           CUTS_Sender_Port_Map::const_iterator spm_iter;
 
@@ -496,11 +439,10 @@ bool CUTS_Database_Service::archive_system_metrics (
             // parameters before we execute the statement.
             sender = this->component_mapping_[spm_iter->first];
 
-            _dst = SQL_NULL_DATA;
+            query->parameter (7)->null ();
             metric_count = spm_iter->second->transit_time ().count ();
 
-            ACE_OS::strcpy (reinterpret_cast <char *> (metric_type),
-                            "transit");
+            ACE_OS::strcpy (metric_type, "transit");
 
             best_time = spm_iter->second->transit_time ().best_time ();
             worse_time = spm_iter->second->transit_time ().worse_time ();
@@ -508,10 +450,9 @@ bool CUTS_Database_Service::archive_system_metrics (
 
             // Execute the "prepared" statement using the parameters
             // we have stored.
-            stmt->execute ();
+            query->execute_no_record ();
 
-            ACE_OS::strcpy (reinterpret_cast <char *> (metric_type),
-                            "process");
+            ACE_OS::strcpy (metric_type, "process");
 
             CUTS_Endpoint_Metric_Map::const_iterator em_iter;
 
@@ -529,10 +470,9 @@ bool CUTS_Database_Service::archive_system_metrics (
 
               // Copy the metrics for the process data into the appropriate
               // parameters before we execute the statement.
-              _dst = SQL_NTS;
+              query->parameter (7)->bind (dst, 0);
 
-              ACE_OS::strcpy (reinterpret_cast <char *> (dst),
-                              em_iter->first.c_str ());
+              ACE_OS::strcpy (dst, em_iter->first.c_str ());
 
               // Store the metrics in their parameters.
               metric_count = em_iter->second->count ();
@@ -542,7 +482,7 @@ bool CUTS_Database_Service::archive_system_metrics (
 
               // Execute the "prepared" statement using the parameters
               // we have stored.
-              stmt->execute ();
+              query->execute_no_record ();
             }
           }
         }
@@ -550,25 +490,24 @@ bool CUTS_Database_Service::archive_system_metrics (
 
       return true;
     }
-    catch (ODBC_Stmt_Exception & ex)
+    catch (CUTS_DB_Exception & ex)
     {
+      ex.print ();
       ACE_ERROR ((LM_ERROR,
-                  ACE_TEXT ("[%M] -%T - %s\n")
-                  ACE_TEXT ("[%M] -%T - failed to archive metrics\n"),
-                  ex.message ()));
+                  "[%M] -%T - failed to archive metrics\n"));
     }
     catch (...)
     {
       ACE_ERROR ((LM_ERROR,
-                  ACE_TEXT ("[%M] -%T - unknown exception in ")
-                  ACE_TEXT ("CUTS_Database_Service::archive_system_metrics\n")));
+                  "[%M] -%T - unknown exception in "
+                  "CUTS_Database_Service::archive_system_metrics\n"));
     }
   }
   else
   {
     ACE_ERROR ((LM_WARNING,
-                ACE_TEXT ("[%M] -%T - no database connection exist; ")
-                ACE_TEXT ("failed to archive metrics\n")));
+                "[%M] -%T - no database connection exist; "
+                "failed to archive metrics\n"));
   }
 
   return false;
@@ -580,36 +519,35 @@ bool CUTS_Database_Service::archive_system_metrics (
 long CUTS_Database_Service::path_id (const char * pathname)
 {
   long path_id = -1;
+
   ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex,
                          guard,
                          this->lock_,
                          path_id);
 
-  if (this->conn_.is_connected ())
+  if (this->conn_->is_connected ())
   {
-    ACE_Auto_Ptr <ODBC_Stmt> stmt (this->conn_.create_statement ());
+    ACE_Auto_Ptr <ODBC_Query> query (this->conn_->create_odbc_query ());
 
     try
     {
-      SQLINTEGER _pathname = SQL_NTS;
-      stmt->bind_parameter (1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR,
-                            0, 0, (SQLCHAR *)pathname, 0, &_pathname);
-
       // Prepare the statement to select the component_id of the component
       // with the specified name.
-      stmt->prepare ("SELECT path_id FROM critical_path WHERE path_name = ?");
-      stmt->execute ();
+      query->prepare ("SELECT path_id FROM critical_path WHERE path_name = ?");
+      query->parameter (0)->bind (const_cast <char *> (pathname), 0);
 
-      // Get the <path_id> from the query.
-      stmt->fetch ();
-      stmt->get_data (1, path_id);
+      // Execute the query and get the <path_id> from the query.
+      CUTS_DB_Record * record = query->execute ();
+
+      record->fetch ();
+      record->get_data (1, path_id);
     }
-    catch (ODBC_Stmt_Exception & ex)
+    catch (CUTS_DB_Exception & ex)
     {
+      ex.print ();
+
       ACE_ERROR ((LM_ERROR,
-                  ACE_TEXT ("[%M] -%T - %s\n")
-                  ACE_TEXT ("[%M] -%T - failed to locate path id for '%s'\n"),
-                  ex.message (),
+                  "[%M] -%T - failed to locate path id for '%s'\n",
                   pathname));
     }
   }
@@ -627,14 +565,13 @@ bool CUTS_Database_Service::register_host (const char * ipaddr,
   // Before we continue, we should check to see if the host has already
   // been registered. This will prevent any exceptions from occuring
   // because of duplicate data.
-  int temp = 0;
+  long component_id = 0;
 
-  if (this->get_host_id_by_addr (ipaddr, temp))
+  if (this->get_host_id (ipaddr, hostname, component_id))
   {
     if (hostid != 0)
-    {
-      *hostid = temp;
-    }
+      *hostid = component_id;
+
     return true;
   }
 
@@ -643,43 +580,34 @@ bool CUTS_Database_Service::register_host (const char * ipaddr,
                          this->lock_,
                          false);
 
-  if (this->conn_.is_connected ())
+  if (this->conn_->is_connected ())
   {
-    ACE_Auto_Ptr <ODBC_Stmt> stmt (this->conn_.create_statement ());
-    long component_id = 0;
+    ACE_Auto_Ptr <ODBC_Query> query (this->conn_->create_odbc_query ());
 
     try
     {
-      SQLINTEGER _ipaddr = SQL_NTS,
-                 _hostname = SQL_NTS;
-
-      stmt->bind_parameter (1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR,
-                            0, 0, (SQLCHAR *)ipaddr, 0, &_ipaddr);
-      stmt->bind_parameter (2, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR,
-                            0, 0, (SQLCHAR *)hostname, 0, &_hostname);
-
       // Prepare the statement to select the component_id of the component
       // with the specified name.
       const char * str_stmt =
         "INSERT INTO ipaddr_host_map (ipaddr, hostname) VALUES (?, ?)";
+      query->prepare (str_stmt);
 
-      stmt->prepare (str_stmt);
-      stmt->execute ();
+      // Bind the parameters for the statement then execute the
+      // prepared statement.
+      query->parameter (0)->bind (const_cast <char *> (ipaddr), 0);
+      query->parameter (1)->bind (const_cast <char *> (hostname), 0);
+      query->execute ();
 
       if (hostid != 0)
       {
-        *hostid = stmt->last_insert_id ();
+        *hostid = query->last_insert_id ();
       }
 
       return true;
     }
-    catch (ODBC_Stmt_Exception & ex)
+    catch (CUTS_DB_Exception & ex)
     {
-      ACE_ERROR ((LM_ERROR,
-                  "[%M] -%T - (%s:%u) %s\n",
-                  ex.state ().c_str (),
-                  ex.native (),
-                  ex.message ().c_str ()));
+      ex.print ();
     }
     catch (...)
     {
@@ -700,106 +628,54 @@ bool CUTS_Database_Service::register_host (const char * ipaddr,
 //
 // get_host_id
 //
-bool CUTS_Database_Service::get_host_id_by_addr (const char * ipaddr,
-                                                 int & hostid)
+bool CUTS_Database_Service::get_host_id (const char * ipaddr,
+                                         const char * hostname,
+                                         long & hostid)
 {
   ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex,
                          guard,
                          this->lock_,
                          false);
 
-  if (this->conn_.is_connected ())
+  if (this->conn_->is_connected ())
   {
-    ACE_Auto_Ptr <ODBC_Stmt> stmt (this->conn_.create_statement ());
+    ACE_Auto_Ptr <ODBC_Query> query (this->conn_->create_odbc_query ());
 
     try
     {
-      SQLINTEGER _ipaddr = SQL_NTS;
-
-      stmt->bind_parameter (1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR,
-                            0, 0, (SQLCHAR *)ipaddr, 0, &_ipaddr);
-
       // Prepare the statement to select the component_id of the component
       // with the specified name.
       const char * str_stmt =
-        "SELECT hostid FROM ipaddr_host_map WHERE ipaddr = ?";
-      stmt->prepare (str_stmt);
-      stmt->execute ();
+        "SELECT hostid FROM ipaddr_host_map WHERE ipaddr = ? OR hostname = ?";
+
+      query->prepare (str_stmt);
+      CUTS_DB_Parameter * param = query->parameter (0);
+
+      if (ipaddr != 0)
+        param->bind (const_cast <char *> (ipaddr), 0);
+      else
+        param->null ();
+
+      param = query->parameter (1);
+      if (hostname != 0)
+        param->bind (const_cast <char *> (hostname), 0);
+      else
+        param->null ();
 
       // Get the results from executing the query. If the query returns
       // nothing then this will throw an exception.
-      stmt->fetch ();
-      stmt->get_data (1, hostid);
+      CUTS_DB_Record * record = query->execute ();
+
+      if (record->count () == 0)
+        return false;
+
+      record->fetch ();
+      record->get_data (1, hostid);
       return true;
     }
-    catch (ODBC_Stmt_Exception & ex)
+    catch (CUTS_DB_Exception & ex)
     {
-      ACE_ERROR ((LM_ERROR,
-                  "[%M] -%T - (%s:%u) %s\n",
-                  ex.state ().c_str (),
-                  ex.native (),
-                  ex.message ().c_str ()));
-    }
-    catch (...)
-    {
-      ACE_ERROR ((LM_ERROR,
-                  "[%M] -%T - unknown exception in "
-                  "CUTS_Database_Service::register_host\n"));
-    }
-  }
-  else
-  {
-    ACE_ERROR ((LM_ERROR,
-                "[%M] -%T - no database connection exist\n"));
-  }
-
-  return false;
-}
-
-//
-// get_host_id
-//
-bool CUTS_Database_Service::get_host_id_by_name (const char * hostname,
-                                                 int & hostid)
-{
-  ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex,
-                         guard,
-                         this->lock_,
-                         false);
-
-  if (this->conn_.is_connected ())
-  {
-    ACE_Auto_Ptr <ODBC_Stmt> stmt (this->conn_.create_statement ());
-    long component_id = 0;
-
-    try
-    {
-      SQLINTEGER _hostname = SQL_NTS;
-
-      stmt->bind_parameter (1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR,
-                            0, 0, (SQLCHAR *)hostname, 0, &_hostname);
-
-      // Prepare the statement to select the component_id of the component
-      // with the specified name.
-      const char * str_stmt =
-        "SELECT hostid FROM ipaddr_host_map WHERE hostname = ?";
-
-      stmt->prepare (str_stmt);
-      stmt->execute ();
-
-      // Get the results from executing the query. If the query returns
-      // nothing then this will throw an exception.
-      stmt->fetch ();
-      stmt->get_data (1, hostid);
-      return true;
-    }
-    catch (ODBC_Stmt_Exception & ex)
-    {
-      ACE_ERROR ((LM_ERROR,
-                  "[%M] -%T - (%s:%u) %s\n",
-                  ex.state ().c_str (),
-                  ex.native (),
-                  ex.message ().c_str ()));
+      ex.print ();
     }
     catch (...)
     {
@@ -828,9 +704,9 @@ bool CUTS_Database_Service::set_component_uptime (long cid,
                          this->lock_,
                          false);
 
-  if (this->conn_.is_connected ())
+  if (this->conn_->is_connected ())
   {
-    ACE_Auto_Ptr <ODBC_Stmt> stmt (this->conn_.create_statement ());
+    ACE_Auto_Ptr <ODBC_Query> query (this->conn_->create_odbc_query ());
 
     try
     {
@@ -842,11 +718,11 @@ bool CUTS_Database_Service::set_component_uptime (long cid,
         this->component_mapping_.find (cid);
       cid = iter != this->component_mapping_.end () ? iter->second : 0;
 
-      stmt->bind_parameter (1, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_INTEGER,
+      query->bind_parameter (1, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_INTEGER,
                             0, 0, &this->test_number_, 0, &_test_number);
-      stmt->bind_parameter (2, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_INTEGER,
+      query->bind_parameter (2, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_INTEGER,
                             0, 0, &cid, 0, &_instance);
-      stmt->bind_parameter (3, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_INTEGER,
+      query->bind_parameter (3, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_INTEGER,
                             0, 0, &hostid, 0, &_hostid);
 
       // Prepare the statement to select the component_id of the component
@@ -855,17 +731,13 @@ bool CUTS_Database_Service::set_component_uptime (long cid,
         "INSERT INTO deployment_table (test_number, instance, hostid, uptime) "
         "VALUES (?, ?, ?, NOW())";
 
-      stmt->prepare (str_stmt);
-      stmt->execute ();
+      query->prepare (str_stmt);
+      query->execute_no_record ();
       return true;
     }
-    catch (ODBC_Stmt_Exception & ex)
+    catch (CUTS_DB_Exception & ex)
     {
-      ACE_ERROR ((LM_ERROR,
-                  "[%M] -%T - (%s:%u) %s\n",
-                  ex.state ().c_str (),
-                  ex.native (),
-                  ex.message ().c_str ()));
+      ex.print ();
     }
     catch (...)
     {
@@ -893,18 +765,18 @@ bool CUTS_Database_Service::set_component_downtime (long cid)
                          this->lock_,
                          false);
 
-  if (this->conn_.is_connected ())
+  if (this->conn_->is_connected ())
   {
-    ACE_Auto_Ptr <ODBC_Stmt> stmt (this->conn_.create_statement ());
+    ACE_Auto_Ptr <ODBC_Query> query (this->conn_->create_odbc_query ());
 
     try
     {
       SQLINTEGER _test_number = 0,
                  _instance = 0;
 
-      stmt->bind_parameter (1, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_INTEGER,
+      query->bind_parameter (1, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_INTEGER,
                             0, 0, &this->test_number_, 0, &_test_number);
-      stmt->bind_parameter (2, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_INTEGER,
+      query->bind_parameter (2, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_INTEGER,
                             0, 0, &cid, 0, &_instance);
 
       // Prepare the statement to select the component_id of the component
@@ -913,17 +785,13 @@ bool CUTS_Database_Service::set_component_downtime (long cid)
         "UPDATE deployment_table SET downtime = NOW() "
         "WHERE test_number = ? AND instance = ?";
 
-      stmt->prepare (str_stmt);
-      stmt->execute ();
+      query->prepare (str_stmt);
+      query->execute_no_record ();
       return true;
     }
-    catch (ODBC_Stmt_Exception & ex)
+    catch (CUTS_DB_Exception & ex)
     {
-      ACE_ERROR ((LM_ERROR,
-                  "[%M] -%T - (%s:%u) %s\n",
-                  ex.state ().c_str (),
-                  ex.native (),
-                  ex.message ().c_str ()));
+      ex.print ();
     }
     catch (...)
     {
@@ -952,15 +820,15 @@ bool CUTS_Database_Service::get_instance_id (const char * instance,
                          this->lock_,
                          false);
 
-  if (this->conn_.is_connected ())
+  if (this->conn_->is_connected ())
   {
-    ACE_Auto_Ptr <ODBC_Stmt> stmt (this->conn_.create_statement ());
+    ACE_Auto_Ptr <ODBC_Query> query (this->conn_->create_odbc_query ());
 
     try
     {
       SQLINTEGER _instance = SQL_NTS;
 
-      stmt->bind_parameter (1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR,
+      query->bind_parameter (1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR,
                             0, 0, (SQLCHAR *)instance, 0, &_instance);
 
       // Prepare the statement to select the component_id of the component
@@ -969,20 +837,16 @@ bool CUTS_Database_Service::get_instance_id (const char * instance,
         "SELECT component_id FROM component_instances "
         "WHERE component_name = ?";
 
-      stmt->prepare (str_stmt);
-      stmt->execute ();
+      query->prepare (str_stmt);
+      CUTS_DB_Record * record = query->execute ();
 
-      stmt->fetch ();
-      stmt->get_data (1, id);
+      record->fetch ();
+      record->get_data (1, id);
       return true;
     }
-    catch (ODBC_Stmt_Exception & ex)
+    catch (CUTS_DB_Exception & ex)
     {
-      ACE_ERROR ((LM_ERROR,
-                  "[%M] -%T - (%s:%u) %s\n",
-                  ex.state ().c_str (),
-                  ex.native (),
-                  ex.message ().c_str ()));
+      ex.print ();
     }
     catch (...)
     {

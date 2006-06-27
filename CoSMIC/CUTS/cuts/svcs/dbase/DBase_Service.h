@@ -13,18 +13,17 @@
 #ifndef _CUTS_DBASE_SERVICE_H_
 #define _CUTS_DBASE_SERVICE_H_
 
-#if !defined (CUTS_HAS_DATABASE)
-#error You must enable database features to build database services
-#endif
-
 #include "cuts/config.h"
-#include "cuts/utils/ODBC_Connection.h"
 #include "ace/RW_Thread_Mutex.h"
+#include "ace/Auto_Ptr.h"
 
 #include <map>
 
 // Forward decl.
 class CUTS_System_Metric;
+
+// Forward decl.
+class ODBC_Connection;
 
 //=============================================================================
 /**
@@ -116,23 +115,14 @@ public:
    * IP-address can be IPv4 or IPv6.
    *
    * @param[in]     ipaddr      IP-adddress
-   * @param[out]    hostid      ID of the host.
-   * @retval        true        The operation succeeded.
-   * @retval        false       The operation failed.
-   */
-  bool get_host_id_by_addr (const char * ipaddr,
-                            int &hostid);
-
-  /**
-   * Get the unique id of a host given it's name.
-   *
    * @param[in]     hostname    Name of the host.
    * @param[out]    hostid      ID of the host.
    * @retval        true        The operation succeeded.
    * @retval        false       The operation failed.
    */
-  bool get_host_id_by_name (const char * hostname,
-                            int &hostid);
+  bool get_host_id (const char * ipaddr,
+                    const char * hostname,
+                    long &hostid);
 
   /**
    * Archive system metrics.
@@ -179,7 +169,7 @@ private:
   void disconnect_no_lock (void);
 
   /// Database connection.
-  MyODBC_Connection conn_;
+  ACE_Auto_Ptr <ODBC_Connection> conn_;
 
   /// Locking mechanism.
   ACE_RW_Thread_Mutex lock_;

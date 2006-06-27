@@ -5,9 +5,9 @@ project (CUTS_Database_Worker) : cutslib, odbc {
 
   dynamicflags += CUTS_BUILD_DLL
 
-  libs += CUTS_Utils_DBase
+  libs += CUTS_Utils_DBase CUTS_ODBC_DBase
 
-  after += CUTS_Utils_DBase
+  after += CUTS_Utils_DBase CUTS_ODBC_DBase
 
   Source_Files {
     DatabaseWorker.cpp

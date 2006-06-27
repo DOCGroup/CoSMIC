@@ -105,8 +105,7 @@ namespace CUTS
                                            server_name,
                                            CUTS_DEFAULT_PORT))
       {
-        // Store the server name and create a new test in the
-        // database.
+        // Store server name and create a new test.
         this->server_name_ = server_name;
         this->database_service_.create_new_test ();
       }
@@ -114,8 +113,8 @@ namespace CUTS
       {
         ACE_ERROR ((LM_ERROR,
                     "[%M] -%T - failed to connect to database on %s; "
-                    "[username = %s; password = %d; port = %u]\n",
-                    this->server_name_.c_str (),
+                    "[username = %s; password = %s; port = %u]\n",
+                    server_name,
                     CUTS_USERNAME,
                     CUTS_PASSWORD,
                     CUTS_DEFAULT_PORT));

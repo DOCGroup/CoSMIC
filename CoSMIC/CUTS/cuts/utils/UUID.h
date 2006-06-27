@@ -4,11 +4,12 @@
 #define _CUTS_UTILS_UUID_H_
 
 #include "cuts/config.h"
+#include "Utils_Export.h"
 #include "ace/Basic_Types.h"
 
 #pragma pack (push, 8)
 
-class CUTS_Export CUTS_UUID
+class CUTS_UTILS_Export CUTS_UUID
 {
 public:
   /// Constuctor.

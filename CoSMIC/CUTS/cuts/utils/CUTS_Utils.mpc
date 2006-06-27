@@ -1,9 +1,15 @@
 // $Id$
 
+//=============================================================================
+//
+// CUTS_Utils project
+//
+//=============================================================================
+
 project (CUTS_Utils) : cutslib {
   sharedname = CUTS_Utils
 
-  dynamicflags += CUTS_BUILD_DLL
+  dynamicflags += CUTS_UTILS_BUILD_DLL
 
   // -- remove the unnecessary dependencies
   after -= CUTS
@@ -16,23 +22,35 @@ project (CUTS_Utils) : cutslib {
 
   Header_Files {
     Functor_T.h
+    Utils_Export.h
   }
 }
 
-project (CUTS_Utils_DBase) : odbc, cutslib {
+//=============================================================================
+//
+// CUTS_Utils_DBase project
+//
+//=============================================================================
+
+project (CUTS_Utils_DBase) : cutslib {
   sharedname += CUTS_Utils_DBase
 
-  dynamicflags += CUTS_BUILD_DLL
+  dynamicflags += CUTS_DB_UTILS_BUILD_DLL
 
   Source_Files {
-    ODBC.cpp
-    ODBC_Connection.cpp
-    ODBC_Exception.cpp
-    ODBC_Stmt.cpp
-    MyODBC_Connection.cpp
+    DB_Connection.cpp
+    DB_Exception.cpp
+    DB_Parameter.cpp
+    DB_Query.cpp
+    DB_Record.cpp
+    DB_Types_Impl.cpp
   }
 
   Template_Files {
 
+  }
+
+  Header_Files {
+    DB_Utils_Export.h
   }
 }

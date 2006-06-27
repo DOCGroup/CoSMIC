@@ -15,7 +15,7 @@
 #ifndef _CUTS_STRING_H_
 #define _CUTS_STRING_H_
 
-#include <cuts/config.h>
+#include "Utils_Export.h"
 #include <string>
 
 //=============================================================================
@@ -24,7 +24,7 @@
  */
 //=============================================================================
 
-class CUTS_Export String
+class CUTS_UTILS_Export String
 {
 public:
   /**

@@ -20,10 +20,14 @@
 #include "cuts/Worker.h"
 #include "cuts/Worker_T.h"
 #include "cuts/WML_Macros.h"
-#include "cuts/utils/ODBC_Connection.h"
-#include "cuts/utils/ODBC_Stmt.h"
 #include "ace/Auto_Ptr.h"
 #include <string>
+
+// Forward decl.
+class CUTS_DB_Connection;
+
+// Forward decl.
+class CUTS_DB_Query;
 
 //=============================================================================
 /**
@@ -159,10 +163,10 @@ private:
   std::string hostname_;
 
   /// Pointer to the database connection.
-  ACE_Auto_Ptr <ODBC_Connection> conn_;
+  ACE_Auto_Ptr <CUTS_DB_Connection> conn_;
 
   /// Pointer to the statement for the connection.
-  ACE_Auto_Ptr <ODBC_Stmt> stmt_;
+  ACE_Auto_Ptr <CUTS_DB_Query> stmt_;
 };
 
 //=============================================================================

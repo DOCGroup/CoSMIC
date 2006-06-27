@@ -6,11 +6,12 @@
 #include "cuts/DatabaseWorker.inl"
 #endif
 
+#include "cuts/utils/ODBC/ODBC_Connection.h"
+#include "cuts/utils/DB_Query.h"
 #include "ace/OS_NS_stdlib.h"
 #include "ace/Basic_Types.h"
 #include "ace/Log_Msg.h"
 #include "ace/OS_Memory.h"
-
 #include <sstream>
 
 #define MAX_DATA_SIZE 255
@@ -34,7 +35,7 @@ CUTS_Database_Worker::CUTS_Database_Worker (void)
 {
   // Allocate a new <MyODBC_Connection> object.
   ODBC_Connection * conn = 0;
-  ACE_NEW (conn, MyODBC_Connection ());
+  ACE_NEW (conn, ODBC_Connection ());
 
   this->conn_.reset (conn);
 }
@@ -73,19 +74,7 @@ void CUTS_Database_Worker::process (size_t count)
 
     try
     {
-      this->stmt_->exec_direct ("USE cuts");
-
-      try
-      {
-        this->stmt_->exec_direct (sqlstr.str ().c_str ());
-      }
-      catch (ODBC_Stmt_Exception & ex)
-      {
-        ACE_ERROR ((LM_ERROR,
-                    "[%M] -%T - %s\n"
-                    "[%M] -%T - failed to insert worker data\n",
-                    ex.message ()));
-      }
+      this->stmt_->execute_no_record (sqlstr.str ().c_str ());
 
       sqlstr.seekp(0);
 
@@ -94,17 +83,11 @@ void CUTS_Database_Worker::process (size_t count)
         << "DELETE FROM scratchpad WHERE component_id = "
         << this->parent_ << " AND worktag = " << worktag << ";" << std::ends;
 
-      try
-      {
-        this->stmt_->exec_direct (sqlstr.str ().c_str ());
-      }
-      catch (ODBC_Stmt_Exception & ex)
-      {
-        ACE_ERROR ((LM_ERROR,
-                    "[%M] -%T - %s\n"
-                    "[%M] -%T - failed to remove worker data\n",
-                    ex.message ()));
-      }
+      this->stmt_->execute_no_record (sqlstr.str ().c_str ());
+    }
+    catch (CUTS_DB_Exception & ex)
+    {
+      ex.print ();
     }
     catch (...)
     {
@@ -143,16 +126,14 @@ bool CUTS_Database_Worker::create_connection (const std::string & hostname)
     // We need to allocate an <ODBC_Stmt> for the connection.
     // This will prevent us from having to allocate one each
     // time.
-    this->stmt_.reset (this->conn_->create_statement ());
+    this->stmt_.reset (this->conn_->create_query ());
     this->hostname_ = hostname;
 
     return true;
   }
-  catch (ODBC_Connection_Exception & ex)
+  catch (CUTS_DB_Exception & ex)
   {
-    ACE_ERROR ((LM_ERROR,
-                "[%M] -%T - %s\n",
-                ex.message ()));
+    ex.print ();
   }
   catch (...)
   {

@@ -1,3 +1,86 @@
+Tue Jun 27 04:42:11 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/Benchmark_Data_Collector_Ex_exec_i.cpp:
+        * cuts/CUTS_Worker.mpc:
+        * cuts/DatabaseWorker.h:
+        * cuts/DatabaseWorker.cpp:
+        * cuts/svcs/dbase/DBase_Service.h:
+        * cuts/svcs/dbase/DBase_Service.mpc:
+        * cuts/svcs/dbase/DBase_Service.cpp:
+
+          Reimplemented all database functionality using the new
+          ODBC database framework.
+
+        * cuts/utils/CUTS_Utils.mpc:
+        * cuts/utils/DB_Connection.h:
+        * cuts/utils/DB_Connection.inl:
+        * cuts/utils/DB_Connection.cpp:
+        * cuts/utils/DB_Exception.h:
+        * cuts/utils/DB_Exception.inl:
+        * cuts/utils/DB_Exception.cpp:
+        * cuts/utils/DB_Parameter.h:
+        * cuts/utils/DB_Parameter.inl:
+        * cuts/utils/DB_Parameter.cpp:
+        * cuts/utils/DB_Query.h:
+        * cuts/utils/DB_Query.inl:
+        * cuts/utils/DB_Query.cpp:
+        * cuts/utils/DB_Record.h:
+        * cuts/utils/DB_Record.inl:
+        * cuts/utils/DB_Record.cpp:
+        * cuts/utils/DB_Types_Impl.h:
+        * cuts/utils/DB_Types_Impl.inl:
+        * cuts/utils/DB_Types_Impl.cpp:
+        * cuts/utils/DB_Utils_Export.h:
+
+          Initial implemenation of a platform/database independent
+          framework for CUTS
+
+        * cuts/utils/ODBC/CUTS_ODBC.mpc:
+        * cuts/utils/ODBC/ODBC.h:
+        * cuts/utils/ODBC/ODBC.inl:
+        * cuts/utils/ODBC/ODBC.cpp:
+        * cuts/utils/ODBC/ODBC_Connection.h:
+        * cuts/utils/ODBC/ODBC_Connection.inl:
+        * cuts/utils/ODBC/ODBC_Connection.cpp:
+        * cuts/utils/ODBC/ODBC_DBase_Export.h:
+        * cuts/utils/ODBC/ODBC_Exception.h:
+        * cuts/utils/ODBC/ODBC_Exception.inl:
+        * cuts/utils/ODBC/ODBC_Exception.cpp:
+        * cuts/utils/ODBC/ODBC_Parameter.h:
+        * cuts/utils/ODBC/ODBC_Parameter.cpp:
+        * cuts/utils/ODBC/ODBC_Parameter_List.h:
+        * cuts/utils/ODBC/ODBC_Parameter_List.inl:
+        * cuts/utils/ODBC/ODBC_Parameter_List.cpp:
+        * cuts/utils/ODBC/ODBC_Query.h:
+        * cuts/utils/ODBC/ODBC_Query.inl:
+        * cuts/utils/ODBC/ODBC_Query.cpp:
+        * cuts/utils/ODBC/ODBC_Record.h:
+        * cuts/utils/ODBC/ODBC_Record.inl:
+        * cuts/utils/ODBC/ODBC_Record.cpp:
+        * cuts/utils/ODBC/ODBC_Types.h:
+        * cuts/utils/ODBC/ODBC_Types.inl:
+        * cuts/utils/ODBC/ODBC_Types.cpp:
+
+          Initial implementation of ODBC support using the CUTS
+          database framework.
+
+        * cuts/utils/String.h:
+        * cuts/utils/UUID.h:
+        * cuts/utils/Utils_Export.h:
+
+          Changed the export/import macro definition.
+
+        * etc/config/odbc.mpb:
+
+          Removed CUTS_HAS_ODBC dynamic/static flags.
+
+        * utils/BMW/BMW.master:
+        * utils/BMW/Execution_Times.aspx:
+        * utils/BMW/Style.css:
+        * utils/BMW/default.aspx:
+
+          Removed references to IIOP.Net
+
 Tue Jun 20 05:37:20 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/App_Code/BMW_Service.cs:

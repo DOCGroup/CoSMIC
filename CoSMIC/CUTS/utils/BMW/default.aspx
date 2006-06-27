@@ -2,7 +2,6 @@
          masterpagefile="~/BMW.master" %>
 
 <asp:content runat="server" id="content_" contentplaceholderid="MainContent">
-<h2>CUTS Tests</h2>
 <asp:datagrid 
   id="tests_" runat="server" autogeneratecolumns="false" cellpadding="2"
   cellspacing="0" datakeyfield="test_number" borderstyle="solid"
