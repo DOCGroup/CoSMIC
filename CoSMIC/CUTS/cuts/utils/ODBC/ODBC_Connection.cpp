@@ -96,6 +96,7 @@ void ODBC_Connection::connect (const char * username,
 // disconnect
 //
 void ODBC_Connection::disconnect (void)
+ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   if (this->conn_ != SQL_NULL_HDBC)
   {
