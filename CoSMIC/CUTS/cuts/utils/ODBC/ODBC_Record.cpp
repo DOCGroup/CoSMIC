@@ -81,6 +81,7 @@ void ODBC_Record::get_data_i (SQLUSMALLINT column,
                               SQLPOINTER target,
                               SQLINTEGER bufsize,
                               SQLINTEGER * result)
+                              ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   SQL_VERIFY (::SQLGetData (this->handle_,
                             column,
