@@ -4,7 +4,7 @@
 /**
  * @file        Workspace_Generator.h
  *
- * $Id: Workspace_Generator.h,v 1.1.2.2 2006/06/07 04:08:01 hillj Exp $
+ * $Id$
  *
  * @author      James H. Hill
  */

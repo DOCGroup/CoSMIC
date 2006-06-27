@@ -1,6 +1,6 @@
 
 // -*- C++ -*-
-// $Id: Benchmark_Data_Collector_exec_export.h,v 1.1.4.2 2006/03/12 01:48:06 hillj Exp $
+// $Id$
 // Definition for Win32 Export directives.
 // This file is generated automatically by generate_export_file.pl BENCHMARK_DATA_COLLECTOR_EXEC
 // ------------------------------

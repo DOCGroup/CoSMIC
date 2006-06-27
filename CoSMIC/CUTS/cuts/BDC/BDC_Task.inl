@@ -1,4 +1,4 @@
-// $Id: BDC_Task.inl,v 1.1.4.4 2006/04/04 17:49:43 hillj Exp $
+// $Id$
 
 namespace CUTS
 {

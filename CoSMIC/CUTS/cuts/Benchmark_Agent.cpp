@@ -1,4 +1,4 @@
-// $Id: Benchmark_Agent.cpp,v 1.1.4.2.2.2 2006/06/14 06:12:37 hillj Exp $
+// $Id$
 
 #include "cuts/Benchmark_Agent.h"
 

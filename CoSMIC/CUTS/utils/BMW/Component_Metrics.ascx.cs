@@ -1,4 +1,4 @@
-// $Id: Component_Metrics.ascx.cs,v 1.1.2.5 2006/04/07 00:34:19 hillj Exp $
+// $Id$
 
 using System;
 using System.Data;

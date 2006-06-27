@@ -1,4 +1,4 @@
-// $Id: cuts_test_base.mpb,v 1.1.2.2 2006/05/19 21:50:00 hillj Exp $
+// $Id$
 
 project {
   // -- change the output directory of the binaries

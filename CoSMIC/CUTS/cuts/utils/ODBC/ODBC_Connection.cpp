@@ -1,4 +1,4 @@
-// $Id: ODBC_Connection.cpp 638 2006-06-18 13:11:21Z hillj $
+// $Id$
 
 #include "ODBC_Connection.h"
 #include "ODBC_Query.h"

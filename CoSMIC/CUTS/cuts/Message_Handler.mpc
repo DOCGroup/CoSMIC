@@ -1,4 +1,4 @@
-// $Id: Message_Handler.mpc,v 1.1.4.3.2.1 2006/05/19 17:32:05 hillj Exp $
+// $Id$
 
 project (CUTS_Message_Handler) : cutslib {
   sharedname = CUTS_Message_Handler

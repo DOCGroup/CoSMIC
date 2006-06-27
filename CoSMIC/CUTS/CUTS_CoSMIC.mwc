@@ -1,4 +1,4 @@
-// $Id: CUTS_CoSMIC.mwc,v 1.1.2.2 2006/06/09 00:03:37 hillj Exp $
+// $Id$
 
 workspace (CUTS_CoSMIC) {
   cmdline += -include $CUTS_ROOT/etc/config \

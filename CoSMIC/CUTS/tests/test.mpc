@@ -1,4 +1,4 @@
-// $Id: test.mpc,v 1.1.2.2 2006/05/20 18:10:12 hillj Exp $
+// $Id$
 
 project (CUTS_Test) : cutslib, cuts_test_base {
   sharedname = CUTS_Test

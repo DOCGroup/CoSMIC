@@ -1,4 +1,4 @@
-// $Id: ODBC_Exception.cpp,v 1.1.2.1.2.1 2006/06/02 05:13:45 hillj Exp $
+// $Id$
 
 #include "ODBC_Exception.h"
 #include "ace/Log_Msg.h"

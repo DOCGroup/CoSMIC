@@ -1,6 +1,6 @@
 
 // -*- C++ -*-
-// $Id: DBase_Service_export.h,v 1.1.2.1 2006/03/26 02:34:31 hillj Exp $
+// $Id$
 // Definition for Win32 Export directives.
 // This file is generated automatically by generate_export_file.pl DBASE_SVC
 // ------------------------------

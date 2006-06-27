@@ -1,4 +1,4 @@
-// $Id: Event_Guard.cpp,v 1.1.2.2 2006/04/28 03:23:41 hillj Exp $
+// $Id$
 
 #include "cuts/Event_Guard.h"
 

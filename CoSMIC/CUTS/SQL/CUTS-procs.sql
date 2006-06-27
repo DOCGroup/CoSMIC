@@ -1,4 +1,4 @@
--- $Id: CUTS-procs.sql,v 1.1.2.2 2006/04/03 00:35:17 hillj Exp $ --
+-- $Id$ --
 
 DELIMITER //
 

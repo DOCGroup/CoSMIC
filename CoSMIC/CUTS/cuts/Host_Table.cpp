@@ -1,4 +1,4 @@
-// $Id: Host_Table.cpp,v 1.1.2.1 2006/06/16 00:38:44 hillj Exp $
+// $Id$
 
 #include "cuts/Host_Table.h"
 #include "ace/String_Base.h"

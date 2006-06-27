@@ -4,7 +4,7 @@
 /**
  * @file    Time_Metric_Test.h
  *
- * $Id: Time_Metric_Test.h,v 1.1.2.2 2006/05/20 18:10:12 hillj Exp $
+ * $Id$
  *
  * @author  James H. Hill
  */

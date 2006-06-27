@@ -1,4 +1,4 @@
-// $Id: Component_Registry.inl,v 1.1.4.1 2006/03/12 01:48:05 hillj Exp $
+// $Id$
 
 //
 // lock

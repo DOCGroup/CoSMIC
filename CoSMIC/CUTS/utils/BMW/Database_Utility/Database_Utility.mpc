@@ -1,4 +1,4 @@
-// $Id: Database_Utility.mpc,v 1.1.2.1 2006/06/08 23:55:47 hillj Exp $
+// $Id$
 
 project (CUTS_Database_Utility) {
   sharedname = CUTS_Database_Utility

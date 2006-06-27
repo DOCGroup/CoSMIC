@@ -1,4 +1,4 @@
-// $Id: Sync_Event_Handler_T.inl,v 1.1.2.1 2006/05/23 22:04:19 hillj Exp $
+// $Id$
 
 //
 // handle_event

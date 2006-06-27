@@ -1,7 +1,7 @@
 --
 -- @file        CUTS-create.sql
 --
--- $Id: CUTS-create.sql,v 1.1.4.9 2006/04/01 22:13:37 hillj Exp $
+-- $Id$
 --
 -- @author      James H. Hill
 --

@@ -4,7 +4,7 @@
 /**
  * @file      CUTS_Database_Utility
  *
- * $Id: Database_Utility.cs,v 1.1.2.5 2006/06/11 18:59:25 hillj Exp $
+ * $Id$
  *
  * @author    James H. Hill
  */

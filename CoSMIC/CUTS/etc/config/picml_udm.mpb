@@ -1,4 +1,4 @@
-// $Id: picml_udm.mpb,v 1.1.2.1.2.2 2006/06/11 18:59:25 hillj Exp $
+// $Id$
 
 project {
   requires += udm

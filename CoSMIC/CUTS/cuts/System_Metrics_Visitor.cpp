@@ -1,4 +1,4 @@
-// $Id: System_Metrics_Visitor.cpp,v 1.1.2.1 2006/03/26 02:34:31 hillj Exp $
+// $Id$
 
 #include "cuts/System_Metrics_Visitor.h"
 

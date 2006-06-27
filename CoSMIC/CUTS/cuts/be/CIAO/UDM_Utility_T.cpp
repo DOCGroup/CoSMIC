@@ -1,4 +1,4 @@
-// $Id: UDM_Utility_T.cpp,v 1.1.2.1 2006/06/07 03:41:20 hillj Exp $
+// $Id$
 
 //
 // UDM_Accept_Functor

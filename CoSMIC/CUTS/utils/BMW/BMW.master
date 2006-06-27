@@ -1,4 +1,4 @@
-<!-- $Id: BMW.master,v 1.1.2.2 2006/04/13 15:00:56 hillj Exp $ -->
+<!-- $Id$ -->
 <%@ master language="C#" codefile="BMW.master.cs" autoeventwireup="true" 
            inherits="CUTS.BMW_Master"%>
   

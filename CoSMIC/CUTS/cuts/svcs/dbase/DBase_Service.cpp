@@ -1,4 +1,4 @@
-// $Id: DBase_Service.cpp,v 1.1.4.9.2.3 2006/06/11 18:59:25 hillj Exp $
+// $Id$
 
 #include "DBase_Service.h"
 #include "cuts/System_Metric.h"

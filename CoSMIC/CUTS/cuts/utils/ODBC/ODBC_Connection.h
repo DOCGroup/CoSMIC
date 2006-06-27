@@ -4,7 +4,7 @@
 /**
  * @file    ODBC_Connection.h
  *
- * $Id: ODBC_Connection.h 638 2006-06-18 13:11:21Z hillj $
+ * $Id$
  *
  * @author James H. Hill <hillj@isis.vanderbilt.edu>
  */

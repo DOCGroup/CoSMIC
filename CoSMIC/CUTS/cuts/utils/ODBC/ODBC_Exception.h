@@ -4,7 +4,7 @@
 /**
  * @file      ODBC_Exception.h
  *
- * $Id: ODBC_Exception.h,v 1.1.2.1.2.1 2006/06/02 05:13:45 hillj Exp $
+ * $Id$
  *
  * @author    James H. Hill
  */

@@ -6,7 +6,7 @@
  *
  * @brief     Defines the XML format generator for system metrics.
  *
- * $Id: XML_System_Metrics_Visitor.h,v 1.1.2.2 2006/04/13 15:00:56 hillj Exp $
+ * $Id$
  *
  * @author    James H. Hill
  *

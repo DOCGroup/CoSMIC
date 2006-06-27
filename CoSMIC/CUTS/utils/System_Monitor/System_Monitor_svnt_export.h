@@ -1,6 +1,6 @@
 
 // -*- C++ -*-
-// $Id: System_Monitor_svnt_export.h,v 1.1.4.1 2006/03/12 01:48:06 hillj Exp $
+// $Id$
 // Definition for Win32 Export directives.
 // This file is generated automatically by generate_export_file.pl SYSTEM_MONITOR_SVNT
 // ------------------------------

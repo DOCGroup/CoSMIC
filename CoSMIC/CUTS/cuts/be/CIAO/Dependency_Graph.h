@@ -4,7 +4,7 @@
 /**
  * @class     Dependency_Graph.h
  *
- * $Id: Dependency_Graph.h,v 1.1.2.1 2006/06/07 03:41:20 hillj Exp $
+ * $Id$
  *
  * @author    James H. Hill
  */

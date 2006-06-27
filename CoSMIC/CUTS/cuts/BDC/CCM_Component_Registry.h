@@ -1,4 +1,4 @@
-// $Id: CCM_Component_Registry.h,v 1.1.4.6.2.1 2006/06/16 00:38:44 hillj Exp $
+// $Id$
 
 #ifndef _CUTS_CCM_COMPONENT_REGISTRY_H_
 #define _CUTS_CCM_COMPONENT_REGISTRY_H_

@@ -1,4 +1,4 @@
-// $Id: Event_Handler_Message.inl,v 1.1.2.1 2006/03/29 14:54:36 hillj Exp $
+// $Id$
 
 CUTS_INLINE
 long CUTS_Event_Handler_Message::sender (void) const

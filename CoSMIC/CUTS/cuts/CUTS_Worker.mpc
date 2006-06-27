@@ -1,4 +1,4 @@
-// $Id: CUTS_Worker.mpc,v 1.1.4.5.2.2 2006/06/02 05:13:45 hillj Exp $
+// $Id$
 
 project (CUTS_Database_Worker) : cutslib, odbc {
   sharedname += CUTS_Database_Worker

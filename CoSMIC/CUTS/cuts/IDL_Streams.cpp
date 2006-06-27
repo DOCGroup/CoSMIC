@@ -1,4 +1,4 @@
-// $Id: IDL_Streams.cpp,v 1.1.2.1.2.1 2006/05/18 15:17:12 hillj Exp $
+// $Id$
 
 #include "cuts/IDL_Streams.h"
 #include "cuts/Time_Metric.h"

@@ -1,4 +1,4 @@
-// $Id: Worker_Library.cpp,v 1.1.2.1 2006/06/02 05:13:45 hillj Exp $
+// $Id$
 
 #include "cuts/Worker_Library.h"
 

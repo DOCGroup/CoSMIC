@@ -1,4 +1,4 @@
-// $Id: Sender_Metrics.ascx.cs,v 1.1.2.3 2006/04/13 15:00:56 hillj Exp $
+// $Id$
 
 using System;
 using System.Data;

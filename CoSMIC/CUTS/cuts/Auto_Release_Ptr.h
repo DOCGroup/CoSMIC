@@ -4,7 +4,7 @@
 /**
  * @file      Auto_Release_Ptr.h
  *
- * $Id: Auto_Release_Ptr.h,v 1.1.2.1 2006/05/25 22:18:33 hillj Exp $
+ * $Id$
  *
  * @author    James H. Hill
  */

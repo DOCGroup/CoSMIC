@@ -1,4 +1,4 @@
-// $Id: cutsexe.mpb,v 1.1.2.1 2006/05/19 17:32:05 hillj Exp $
+// $Id$
 
 project : aceexe, cuts_base {
   install = $(CUTS_ROOT)/bin

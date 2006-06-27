@@ -1,4 +1,4 @@
-// $Id: Test_Client.cpp,v 1.1.2.2 2006/05/19 18:10:45 hillj Exp $
+// $Id$
 
 #include "ace/DLL.h"
 #include "ace/Log_Msg.h"

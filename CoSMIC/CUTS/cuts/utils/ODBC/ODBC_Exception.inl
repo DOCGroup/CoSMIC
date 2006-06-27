@@ -1,4 +1,4 @@
-// $Id: ODBC_Exception.inl,v 1.1.2.1 2006/03/27 01:03:06 hillj Exp $
+// $Id$
 
 //
 // message

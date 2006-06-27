@@ -1,4 +1,4 @@
-// $Id: DBase_Service.inl,v 1.1.2.1 2006/06/11 18:59:25 hillj Exp $
+// $Id$
 
 //
 // current_test

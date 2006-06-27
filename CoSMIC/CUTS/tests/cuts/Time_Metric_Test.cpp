@@ -1,4 +1,4 @@
-// $Id: Time_Metric_Test.cpp,v 1.1.2.3 2006/05/21 16:13:53 hillj Exp $
+// $Id$
 
 #include "Time_Metric_Test.h"
 #include "cuts/Time_Metric.h"

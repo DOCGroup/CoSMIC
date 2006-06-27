@@ -6,7 +6,7 @@
  *
  * @brief   Defines stream operators for CUTS.idl types
  *
- * $Id: IDL_Streams.h,v 1.1.2.1.2.1 2006/05/18 15:17:12 hillj Exp $
+ * $Id$
  *
  * @author  James H. Hill
  */

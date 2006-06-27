@@ -1,4 +1,4 @@
-// $Id: Testing_Service.cpp,v 1.1.2.1 2006/06/16 00:38:44 hillj Exp $
+// $Id$
 
 #include "cuts/Testing_Service.h"
 

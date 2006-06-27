@@ -6,7 +6,7 @@
  *
  * @brief   Defines the message object use by the event handler.
  *
- * $Id: Event_Handler_Message.h,v 1.1.2.1 2006/03/29 14:54:36 hillj Exp $
+ * $Id$
  *
  * @author  James H. Hill
  */

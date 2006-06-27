@@ -4,7 +4,7 @@
 /**
  * @file    BMW_Service.cs
  *
- * $Id: BMW_Service.cs,v 1.1.2.5 2006/06/14 04:23:46 hillj Exp $
+ * $Id$
  *
  * @author  James H. Hill
  */

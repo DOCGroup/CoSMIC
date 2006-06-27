@@ -4,7 +4,7 @@
 /**
  * @file      Predefined_Type_Map.h
  *
- * $Id: Predefined_Type_Map.h,v 1.1.2.1 2006/05/05 06:45:25 hillj Exp $
+ * $Id$
  *
  * @author    James H. Hill
  */

@@ -4,7 +4,7 @@
 /**
  * @file    ODBC.h
  *
- * $Id: ODBC.h 637 2006-06-16 22:48:59Z kitty $
+ * $Id$
  *
  * @author James H. Hill <hillj@isis.vanderbilt.edu>
  */

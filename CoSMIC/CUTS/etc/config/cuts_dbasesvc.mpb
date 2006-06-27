@@ -1,4 +1,4 @@
-// $Id: cuts_dbasesvc.mpb,v 1.1.4.4 2006/03/16 06:56:17 hillj Exp $
+// $Id$
 
 project : odbc {
   after += CUTS_Database_Service CUTS_Utils_DBase

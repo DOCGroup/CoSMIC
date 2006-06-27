@@ -1,4 +1,4 @@
-// $Id: Testing_Service.inl,v 1.1.2.1 2006/06/16 00:38:44 hillj Exp $
+// $Id$
 
 //
 // host_table

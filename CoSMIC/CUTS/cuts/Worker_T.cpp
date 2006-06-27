@@ -1,4 +1,4 @@
-// $Id: Worker_T.cpp,v 1.1.2.1 2006/05/25 22:18:33 hillj Exp $
+// $Id$
 
 #if !defined (__CUTS_INLINE__)
 #include "cuts/Worker_T.inl"

@@ -6,7 +6,7 @@
  *
  * @brief   Define various classes for specifying worker actions.
  *
- * $Id: Action_T.h,v 1.1.2.1.2.6 2006/06/02 05:13:45 hillj Exp $
+ * $Id$
  *
  * @author  James H. Hill
  */

@@ -1,4 +1,4 @@
-// $Id: Message_Handler.cpp,v 1.1.4.2 2006/03/12 01:48:05 hillj Exp $
+// $Id$
 
 #include "cuts/Message_Handler.h"
 

@@ -4,7 +4,7 @@
 /**
  * @file    WML_Macros.h
  *
- * $Id: WML_Macros.h,v 1.1.2.2 2006/06/02 05:13:45 hillj Exp $
+ * $Id$
  *
  * @author  James H. Hill
  */

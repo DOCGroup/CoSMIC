@@ -1,4 +1,4 @@
-// $Id: test.mpc,v 1.1.2.3 2006/05/25 22:18:33 hillj Exp $
+// $Id$
 
 project (Time_Metric_Test) : cuts_test {
   sharedname = Time_Metric_Test

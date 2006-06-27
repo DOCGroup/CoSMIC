@@ -1,4 +1,4 @@
-// $Id: regsvr32.mpb,v 1.1.2.1 2006/05/03 14:38:05 hillj Exp $
+// $Id$
 
 project {
   specific (vc6, vc7, vc71, vc8, nmake) {

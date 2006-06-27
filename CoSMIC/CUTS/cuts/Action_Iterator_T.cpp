@@ -1,4 +1,4 @@
-// $Id: Action_Iterator_T.cpp,v 1.1.2.1 2006/05/25 22:18:33 hillj Exp $
+// $Id$
 
 //
 // CUTS_Action_Iterator_T

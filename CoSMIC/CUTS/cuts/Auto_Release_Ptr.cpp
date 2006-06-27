@@ -1,4 +1,4 @@
-// $Id: Auto_Release_Ptr.cpp,v 1.1.2.1 2006/05/25 22:18:33 hillj Exp $
+// $Id$
 
 #if !defined (__CUTS_INLINE__)
 #include "cuts/Auto_Release_Ptr.inl"

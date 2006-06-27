@@ -1,4 +1,4 @@
-// $Id: XML_System_Metrics_Visitor.cpp,v 1.1.2.3 2006/04/13 15:00:56 hillj Exp $
+// $Id$
 
 #include "cuts/XML_System_Metrics_Visitor.h"
 

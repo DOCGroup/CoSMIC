@@ -1,4 +1,4 @@
-// $Id: Async_Event_Handler_T.cpp,v 1.1.2.1 2006/05/23 22:04:18 hillj Exp $
+// $Id$
 
 #include "ace/Thread_Manager.h"
 

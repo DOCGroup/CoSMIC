@@ -6,7 +6,7 @@
  *
  * @brief   Active object for the Benchmark_Data_Collector component.
  *
- * $Id: BDC_Task.h,v 1.1.4.10.2.1 2006/06/14 04:23:46 hillj Exp $
+ * $Id$
  *
  * @author  James H. Hill
  */

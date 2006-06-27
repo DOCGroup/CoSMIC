@@ -1,4 +1,4 @@
-// $Id: UUID.cpp,v 1.1.4.2.2.2 2006/05/10 02:05:24 hillj Exp $
+// $Id$
 
 #include "cuts/utils/UUID.h"
 

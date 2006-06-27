@@ -1,4 +1,4 @@
-// $Id: Activation_Record_T.cpp,v 1.1.2.2 2006/05/25 22:27:10 hillj Exp $
+// $Id$
 
 #ifndef _CUTS_ACTIVATION_RECORD_T_CPP_
 #define _CUTS_ACTIVATION_RECORD_T_CPP_

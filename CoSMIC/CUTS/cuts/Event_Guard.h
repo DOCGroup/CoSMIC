@@ -4,7 +4,7 @@
 /**
  * @file    EventGuard.h
  *
- * $Id: Event_Guard.h,v 1.1.2.2 2006/04/28 03:23:41 hillj Exp $
+ * $Id$
  *
  * @author James H. Hill <hillj@isis.vanderbilt.edu>
  */

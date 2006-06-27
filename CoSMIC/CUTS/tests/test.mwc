@@ -1,4 +1,4 @@
-// $Id: test.mwc,v 1.1.2.1 2006/05/19 17:32:05 hillj Exp $
+// $Id$
 
 workspace (CUTS_Test) {
   cmdline += -include $CUTS_ROOT/etc/config

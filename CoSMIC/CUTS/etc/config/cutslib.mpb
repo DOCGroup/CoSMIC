@@ -1,4 +1,4 @@
-// $Id: cutslib.mpb,v 1.1.4.2.2.1 2006/05/19 17:32:05 hillj Exp $
+// $Id$
 
 project : acelib, cuts_base {
   specific (vc6, vc7, vc71, vc8, nmake) {

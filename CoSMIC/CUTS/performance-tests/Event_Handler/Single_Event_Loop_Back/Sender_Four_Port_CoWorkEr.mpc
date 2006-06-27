@@ -1,5 +1,5 @@
 // This project file was generate by
-// $Id: Sender_Four_Port_CoWorkEr.mpc,v 1.1.2.2 2006/04/19 09:29:00 hillj Exp $
+// $Id$
 
 project (Sender_Four_Port_CoWorkEr_stub) : cuts_coworker_stub {
   sharedname = Sender_Four_Port_CoWorkEr_stub

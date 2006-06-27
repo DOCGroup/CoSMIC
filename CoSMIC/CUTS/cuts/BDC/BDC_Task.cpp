@@ -1,4 +1,4 @@
-// $Id: BDC_Task.cpp,v 1.1.4.23.2.5 2006/06/16 00:38:44 hillj Exp $
+// $Id$
 
 #include "BDC_Task.h"
 

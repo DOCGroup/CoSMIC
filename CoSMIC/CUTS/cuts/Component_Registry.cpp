@@ -1,4 +1,4 @@
-// $Id: Component_Registry.cpp,v 1.1.4.3 2006/03/27 19:19:53 wotte Exp $
+// $Id$
 
 #include "cuts/Component_Registry.h"
 

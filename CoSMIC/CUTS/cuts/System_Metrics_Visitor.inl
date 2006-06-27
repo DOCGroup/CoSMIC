@@ -1,4 +1,4 @@
-// $Id: System_Metrics_Visitor.inl,v 1.1.2.2 2006/03/27 19:19:53 wotte Exp $
+// $Id$
 
 //
 // visit_system_metrics

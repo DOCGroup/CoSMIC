@@ -1,4 +1,4 @@
-// $Id: BDC_Client.mpc,v 1.1.2.1.2.1 2006/05/19 17:32:05 hillj Exp $
+// $Id$
 
 project (BDC_Client) : ciao_client_dnc, cutsexe {
   exename = BDC_Client

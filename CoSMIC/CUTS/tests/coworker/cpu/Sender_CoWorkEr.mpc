@@ -1,7 +1,7 @@
 // This project file was generate by
-// $Id: Sender_CoWorkEr.mpc,v 1.1.2.1 2006/03/19 00:28:24 hillj Exp $
+// $Id$
 
-// $Id: Sender_CoWorkEr.mpc,v 1.1.2.1 2006/03/19 00:28:24 hillj Exp $
+// $Id$
 project (Sender_CoWorkEr_stub) : cuts_coworker_stub {
   sharedname = Sender_CoWorkEr_stub
 
@@ -14,7 +14,7 @@ project (Sender_CoWorkEr_stub) : cuts_coworker_stub {
   }
 }
 
-// $Id: Sender_CoWorkEr.mpc,v 1.1.2.1 2006/03/19 00:28:24 hillj Exp $
+// $Id$
 project (Sender_CoWorkEr_svnt) : cuts_coworker_svnt {
   sharedname = Sender_CoWorkEr_svnt
 
@@ -35,7 +35,7 @@ project (Sender_CoWorkEr_svnt) : cuts_coworker_svnt {
   }
 }
 
-// $Id: Sender_CoWorkEr.mpc,v 1.1.2.1 2006/03/19 00:28:24 hillj Exp $
+// $Id$
 project (Sender_CoWorkEr_exec) : cuts_coworker_exec {
   sharedname = Sender_CoWorkEr_exec
 

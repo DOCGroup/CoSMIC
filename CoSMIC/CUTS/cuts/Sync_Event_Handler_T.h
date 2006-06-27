@@ -4,7 +4,7 @@
 /**
  * @file        Sync_Event_Handler_T.h
  *
- * $Id: Sync_Event_Handler_T.h,v 1.1.2.1 2006/05/23 22:04:19 hillj Exp $
+ * $Id$
  *
  * @author      James H. Hill
  */

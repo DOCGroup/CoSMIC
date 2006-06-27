@@ -6,7 +6,7 @@
  *
  * @brief   Defines the UDM_CIAO_Visitor object
  *
- * $Id: UDM_CIAO_Visitor.h,v 1.1.2.3.2.5 2006/06/07 03:41:20 hillj Exp $
+ * $Id$
  *
  * @author  James H. Hill
  */

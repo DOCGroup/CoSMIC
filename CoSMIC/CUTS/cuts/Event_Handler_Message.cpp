@@ -1,4 +1,4 @@
-// $Id: Event_Handler_Message.cpp,v 1.1.2.2 2006/04/05 15:33:40 hillj Exp $
+// $Id$
 
 #include "cuts/Event_Handler_Message.h"
 

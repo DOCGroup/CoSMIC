@@ -1,6 +1,6 @@
 
 // -*- C++ -*-
-// $Id: CUTS_Test_export.h,v 1.1.2.1 2006/05/19 17:32:05 hillj Exp $
+// $Id$
 // Definition for Win32 Export directives.
 // This file is generated automatically by generate_export_file.pl CUTS_TEST
 // ------------------------------

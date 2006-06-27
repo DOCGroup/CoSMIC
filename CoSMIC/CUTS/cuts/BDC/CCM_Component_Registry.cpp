@@ -1,4 +1,4 @@
-// $Id: CCM_Component_Registry.cpp,v 1.1.4.7 2006/04/07 19:26:17 hillj Exp $
+// $Id$
 
 #include "CCM_Component_Registry.h"
 #include "ace/Guard_T.h"
