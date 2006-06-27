@@ -1,3 +1,21 @@
+Tue Jun 27 05:26:32 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/utils/MyODBC_Connection.cpp:
+        * cuts/utils/ODBC.h:
+        * cuts/utils/ODBC.inl:
+        * cuts/utils/ODBC.cpp:
+        * cuts/utils/ODBC_Connection.h:
+        * cuts/utils/ODBC_Connection.inl:
+        * cuts/utils/ODBC_Connection.cpp:
+        * cuts/utils/ODBC_Exception.h:
+        * cuts/utils/ODBC_Exception.inl:
+        * cuts/utils/ODBC_Exception.cpp:
+        * cuts/utils/ODBC_Stmt.h:
+        * cuts/utils/ODBC_Stmt.inl:
+        * cuts/utils/ODBC_Stmt.cpp:
+
+          Removed these files.
+
 Tue Jun 27 05:13:02 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/utils/DB_Types_Impl.h:
