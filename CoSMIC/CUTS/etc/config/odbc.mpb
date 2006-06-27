@@ -8,8 +8,11 @@
 
 project {
   specific (vc6, vc7, vc71, vc8, nmake) {
+    macros   += CUTS_HAS_ODBC
+
     lit_libs += odbc32 odbcbcp odbcCP32
-    defines += CUTS_HAS_ODBC
+  } else {
+    requires += unixodbc
   }
 }
 
@@ -23,9 +26,7 @@ feature (unixodbc) {
   libpaths += $(UNIXODBC_ROOT)/lib
   includes += $(UNIXODBC_ROOT)/include
 
-  lit_libs += odbc odbcinst
+  macros   += CUTS_HAS_ODBC
 
-  specific {
-    defines += CUTS_HAS_ODBC
-  }
+  lit_libs += odbc odbcinst
 }
