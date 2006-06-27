@@ -1,3 +1,10 @@
+Tue Jun 27 05:01:42 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/utils/DB_Parameter.inl:
+
+          - Removed unused parameters.
+          - Fixed exception list for null ()
+
 Tue Jun 27 04:42:11 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/Benchmark_Data_Collector_Ex_exec_i.cpp:

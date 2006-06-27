@@ -92,7 +92,7 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 // bind
 //
 CUTS_INLINE
-void CUTS_DB_Parameter::bind (CUTS_DB_Date_Time_Impl * datetime)
+void CUTS_DB_Parameter::bind (CUTS_DB_Date_Time_Impl *)
 ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->type_ = CUTS_DB_Parameter::PT_DATETIME;
@@ -112,6 +112,7 @@ int CUTS_DB_Parameter::is_null (void) const
 //
 CUTS_INLINE
 void CUTS_DB_Parameter::null (void)
+ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->null_ = 1;
 }
