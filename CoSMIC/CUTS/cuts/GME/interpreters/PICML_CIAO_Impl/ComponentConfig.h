@@ -5,18 +5,18 @@
 // COM UUID-s, names and progID
 
 #define TYPELIB_UUID "04DBB307-9F4F-42B6-90A9-D59D5743F80B"
-#define TYPELIB_NAME "CUTS Interpreter TypeLibrary (PICML Implementation)"
+#define TYPELIB_NAME "CUTS Interpreter TypeLibrary"
 #define COCLASS_UUID "DD5752C3-12EF-43D0-978C-F5C395D5BF13"
-#define COCLASS_NAME "CUTS Interpreter CoClass (PICML Implementation)"
+#define COCLASS_NAME "CUTS Interpreter CoClass"
 #define COCLASS_PROGID "CUTS.Interpreter.PICML.Impl"
 
 
 // This name will appear in the popup window for interpreter selection.
-#define COMPONENT_NAME "CUTS CoWorkEr Implementation (PICML)"
+#define COMPONENT_NAME "CUTS Interpreter"
 
 
 // This text will appear in the toolbar icon tooltip and in the menu.
-#define TOOLTIP_TEXT "Generate CoWorkEr implementation"
+#define TOOLTIP_TEXT "execute CUTS interpreter"
 
 
 // This #define determines the interpreter type:
