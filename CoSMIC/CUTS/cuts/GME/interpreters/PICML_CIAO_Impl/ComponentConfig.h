@@ -16,7 +16,7 @@
 
 
 // This text will appear in the toolbar icon tooltip and in the menu.
-#define TOOLTIP_TEXT "execute CUTS interpreter"
+#define TOOLTIP_TEXT "CUTS interpreter"
 
 
 // This #define determines the interpreter type:

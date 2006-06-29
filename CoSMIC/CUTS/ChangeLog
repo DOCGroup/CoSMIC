@@ -1,3 +1,9 @@
+Thu Jun 29 05:26:54 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/GME/interpreters/PICML_CIAO_Impl/ComponentConfig.h:
+
+          Changed the ToolTip for the interpreter.
+
 Thu Jun 29 04:41:17 UTC 2006  Krishnakumar B  <kitty@dre.vanderbilt.edu>
 
         * default.features (cidl): Reverted file checked-in by mistake.
