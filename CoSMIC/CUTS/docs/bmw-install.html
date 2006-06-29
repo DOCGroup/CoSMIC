@@ -1,0 +1,93 @@
+<html>
+<head>
+  <title>Installing the Benchmark Manager Web Utility</title>
+</head>
+<body>
+<h1>Installing the Benchmark Manager Web Utility</h1>
+
+<h2>System Requirements</h2>
+<p>The following are the miminal system requirements for building and installing the
+Benchmark Manager Web (BMW) Utility.
+
+<ul>
+  <li>Microsoft Visual Studio .NET 2005</li>
+  <li>Microsoft Internet Information Services (IIS)</li>
+  <li>Microsoft .NET Framework 2.0</li>
+  <li><a href="http://www.carlosag.net/Tools/WebChart/Default.aspx">WebCharts Control</a></li>
+  <li><a href="http://www.ociweb.com/products/mpc">The Makefile,
+    Workspace and Project Creator (MPC)</a></li>
+  <li><a href="http://dev.mysql.com/downloads/connector/net/1.0.html">MySQL Connector.NET 1.0</a></li>
+</ul>
+
+</p>
+<hr />
+<h2>Building the BMW.NET Components</h2>
+
+<h3>Prerequisites</h3>
+<p>The following are prerequires to building the BMW.NET components:</p>
+
+<ol>
+  <li>The <a href="http://cvs.doc.wustl.edu/anoncvs.html">CVS</a> version of
+    <a href="http://www.ociweb.com/products/mpc">ACE</a>. When you checkout
+    ACE from CVS (either using a CVS account or anonymous CVS), please check out
+    using the following commands:
+
+    <p>
+      <code>
+      %> cvs co ACE<br />
+      %> cvs co ACE_MPC
+      </code>
+    </p></li>
+
+  <li>Set the environment variable <code>%ACE_ROOT%</code> equal to the
+    location where you installed (downloaded) ACE.
+
+  <li>Download and install
+    <a href="http://dev.mysql.com/downloads/connector/net/1.0.html">MySQL
+    Connector.NET 1.0</a>.</li>
+
+  <li>Download and unzip
+    <a href="http://www.carlosag.net/Tools/WebChart/Default.aspx">WebCharts
+    Control</a> into <code>BMW/bin</code>. If the <code>bin</code> directory
+    does not exist, create one and place the <code>WebChart.dll</code>
+    file there.</li>
+</ol>
+
+<div><b>Note to End Users</b></div>
+<p>We are in the process of creating a pre-built version of the BMW for easy
+download and installation.</p>
+
+<h3>Building</h3>
+<p>The following commands should be executed from the root directory of the
+BMW to build the components:</p>
+
+<blockquote>
+<code>
+%> %ACE_ROOT%\bin\mwc.pl -type vc8web BMW.mwc<br />
+%> devenv /useenv BMW.sln</code>
+</code>
+</blockquote>
+
+<p>Once the solution is open build the <code><b>Mixed Platforms</b></code>
+configuration.</p>
+</ol>
+<hr />
+
+<h2>Installation</h2>
+The following are required steps to install the BMW:
+
+<ol>
+  <li>Install Microsoft Internet Information Services (IIS)</li>
+  <li>Execute the installer script located in the root directory of BMW
+    <p><code>%> installer.pl</code></p>
+    <p>For more information (options), type:</p>
+    <p><code>%> installer.pl --help</code></p>
+    </li>
+</ol>
+
+<p>The BMW can now be viewed on the host machine using to the following
+URL:</p>
+<blockquote><code>http://localhost/CUTS</code></blockquote>
+<hr />
+</body>
+</html>

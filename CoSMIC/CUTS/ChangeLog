@@ -1,3 +1,13 @@
+Thu Jun 29 02:10:28 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * docs/bmw-install.html:
+
+          Documentation for building/installing the BMW.
+
+        * utils/BMW/installer.pl:
+
+          The $arg variable was not declared correctly.
+
 Tue Jun 27 23:36:12 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/installer.pl:

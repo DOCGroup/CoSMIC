@@ -19,7 +19,7 @@ my ($install) = 1;
 my ($root) = 'C:/Inetpub';
 
 # Parse the command line arguments
-while ($arg = shift)
+while (my ($arg) = shift)
 {
   $arg eq '--install' and $install = 1;
   $arg eq '--uninstall' and $install = 0;
