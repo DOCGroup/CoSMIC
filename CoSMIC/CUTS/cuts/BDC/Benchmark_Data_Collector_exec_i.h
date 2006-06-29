@@ -10,6 +10,7 @@
 #endif /* ACE_LACKS_PRAGMA_ONCE */
 
 #include "Benchmark_Data_Collector_Impl.h"
+#include "Benchmark_Data_Collector_svnt.h"
 #include "tao/LocalObject.h"
 
 namespace CUTS

@@ -13,7 +13,7 @@
 #endif /* ACE_LACKS_PRAGMA_ONCE */
 
 #include "Benchmark_Data_Collector_Ex_exec_export.h"
-#include "Benchmark_Data_Collector_exec_i.h"
+#include "Benchmark_Data_Collector_Impl.h"
 #include "cuts/svcs/dbase/DBase_Service.h"
 
 namespace CUTS

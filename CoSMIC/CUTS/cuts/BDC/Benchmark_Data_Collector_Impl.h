@@ -9,7 +9,8 @@
 # pragma once
 #endif /* ACE_LACKS_PRAGMA_ONCE */
 
-#include "Benchmark_Data_Collector_svnt.h"
+#include "Benchmark_Data_CollectorEC.h"
+#include "tao/LocalObject.h"
 #include "Benchmark_Data_Collector_exec_export.h"
 #include "cuts/System_Metric.h"
 

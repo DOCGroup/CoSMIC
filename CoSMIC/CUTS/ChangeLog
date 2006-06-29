@@ -1,3 +1,15 @@
+Thu Jun 29 04:37:50 UTC 2006  Krishnkumar B  <kitty@nospam.invalid.domain>
+
+        * cuts/BDC/Benchmark_Data_Collector_Ex_exec_i.h:
+        * cuts/BDC/Benchmark_Data_Collector_Impl.h:
+        * cuts/BDC/Benchmark_Data_Collector_exec_i.h:
+
+          Fixed compilation errors when compiling
+          Benchmark_Data_Collector_Ex_exec_i.cpp.  The error was due to an
+          inadvertent inclusion of Benchmark_Data_Collector_svnt.h inside
+          Benchmark_Data_Collector_Ex_exec_i.cpp.   This resulted in
+          multiple definitions of the ports of the base component.
+
 Thu Jun 29 04:18:11 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/GME/interpreters/PICML_CIAO_Impl/CompIcon.ico:
