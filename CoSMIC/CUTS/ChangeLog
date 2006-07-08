@@ -1,3 +1,50 @@
+Sat Jul  8 01:26:09 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * bin/install.dat:
+
+          Installation data file for manual install of CUTS interpreter
+          using the CoSMIC install perl script.
+
+        * cuts/GME/interpreters/PICML_CIAO_Impl/Component.rc:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/Main_Dialog.h:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/Main_Dialog.cpp:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/PICML_CIAO_Impl.mpc:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/Resource.h:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/StdAfx.h:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/UdmApp.cpp:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/resource.h:
+
+          There is now a pre-dialog that allows users to select whether
+          to generate CoWorkEr models, or implementation.
+
+        * cuts/be/CIAO/CUTS_Project.h:
+        * cuts/be/CIAO/CUTS_Project.cpp:
+        * cuts/be/CIAO/CoWorkEr_Generator.h:
+        * cuts/be/CIAO/CoWorkEr_Generator.cpp:
+        * cuts/be/CIAO/Dependency_Generator.cpp:
+        * cuts/be/CIAO/UDM_CIAO_Visitor.cpp:
+        * cuts/be/CIAO/UDM_CIAO_Visitor.mpc:
+        * cuts/be/CIAO/UDM_Utility_T.h:
+        * cuts/be/CIAO/UDM_Utility_T.cpp:
+        * cuts/be/CIAO/Workspace_Generator.cpp:
+
+          The following enhancements were made to the interpreter:
+          - The interpreter now auto-generates the CoWorkEr models
+            components in a direcotry called "CoWorkEr_InterfaceDefinitions".
+          - The naming convention of the entry points is based solely
+            on the name of the CoWorkEr and it's home decorated with it
+            location from the contained file to the component.
+
+        * utils/BMW/Database_Utility/Database_Utility.cs:
+        * utils/BMW/Execution_Times.aspx.cs:
+
+          Moved the selection of the different collection times to
+          the database utility class.
+
+        * utils/BMW/installer.pl:
+
+          Installation script for the BMW.
+
 Thu Jun 29 05:26:54 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/GME/interpreters/PICML_CIAO_Impl/ComponentConfig.h:

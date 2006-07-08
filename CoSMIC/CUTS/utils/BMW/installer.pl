@@ -5,21 +5,26 @@ eval '(exit $?0)' && eval 'exec perl -S $0 ${1+"$@"}'
     & eval 'exec perl -S $0 $argv:q'
     if 0;
 
+# PERL settings
 use warnings;
 use strict;
 
-# import PerlACE modules/libraries
+# Import PerlACE modules/libraries
 use lib "$ENV{ACE_ROOT}/bin";
 use PerlACE::Run_Test;
 use Cwd;
+
+# Func. prototype
+sub show_help ();
 
 my ($server) = 'iis';
 my ($alias)  = 'CUTS';
 my ($install) = 1;
 my ($root) = 'C:/Inetpub';
+my ($arg);
 
 # Parse the command line arguments
-while (my ($arg) = shift)
+while ($arg = shift)
 {
   $arg eq '--install' and $install = 1;
   $arg eq '--uninstall' and $install = 0;

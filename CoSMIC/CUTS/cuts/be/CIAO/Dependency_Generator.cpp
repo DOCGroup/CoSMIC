@@ -87,27 +87,6 @@ void CUTS_Dependency_Generator::visit_file_and_package_contents (
                  UDM_Accept_Functor <CUTS_Dependency_Generator,
                                      Component_Set::value_type> (*this));
 
-  //// Visit all the named types at this level.
-  //typedef std::set <PICML::Event> Event_Set;
-  //Event_Set events =
-  //  Udm::ChildrenAttr <PICML::Event> (obj.__impl (), Udm::NULLCHILDROLE);
-
-  //std::for_each (events.begin (),
-  //               events.end (),
-  //               UDM_Accept_Functor <CUTS_Dependency_Generator,
-  //                                   Event_Set::value_type> (*this));
-
-  //// Visit all the named types at this level.
-  //typedef std::set <PICML::Object> Object_Set;
-  //Object_Set objects =
-  //  Udm::ChildrenAttr <PICML::Object> (obj.__impl (), Udm::NULLCHILDROLE);
-
-  //std::for_each (objects.begin (),
-  //               objects.end (),
-  //               UDM_Accept_Functor <CUTS_Dependency_Generator,
-  //                                   Object_Set::value_type> (*this));
-
-
   // Visit all the packages at this level.
   typedef std::set <PICML::Package> Package_Set;
   Package_Set packages =
@@ -145,6 +124,12 @@ void CUTS_Dependency_Generator::Visit_Component (
   this->current_node_->flags_ |= (CUTS_Dependency_Node::DNF_STUB |
                                   CUTS_Dependency_Node::DNF_SVNT |
                                   CUTS_Dependency_Node::DNF_EXEC);
+
+  if (component.isSubtype ())
+  {
+    PICML::NamedType subtype = PICML::NamedType::Cast (component).Archetype ();
+    this->Visit_NamedType (subtype);
+  }
 
   // Get and visit all the worker types in this component.
   typedef std::set <PICML::WorkerType> WorkerType_Set;
@@ -219,7 +204,7 @@ void CUTS_Dependency_Generator::Visit_OutEventPort (
 {
   PICML::Event event = port.ref ();
 
-  if (event != 0)
+  if (event != Udm::null)
   {
     event.Accept (*this);
   }
@@ -233,7 +218,7 @@ void CUTS_Dependency_Generator::Visit_InEventPort (
 {
   PICML::Event event = port.ref ();
 
-  if (event != 0)
+  if (event != Udm::null)
   {
     event.Accept (*this);
   }

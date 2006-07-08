@@ -17,10 +17,10 @@
 namespace CUTS
 {
   /// The suffix for the header files.
-  static const char * HEADER_SUFFIX = "_CoWorkEr.h";
+  static const char * HEADER_SUFFIX = ".h";
 
   /// The suffix for the source files.
-  static const char * SOURCE_SUFFIX = "_CoWorkEr.cpp";
+  static const char * SOURCE_SUFFIX = ".cpp";
 
   static const char * EVENT_SINK_PREFIX = "push_";
   static const char * EVENT_SINK_POSTFIX = "_event_handler";
@@ -167,14 +167,10 @@ namespace CUTS
 
     // Generate the header and source filename(s).
     std::ostringstream hfile;
-    hfile
-      << this->outdir_ << "/"
-      << file.name () << HEADER_SUFFIX << std::ends;
+    hfile << this->outdir_ << "/" << file.name () << ".h" << std::ends;
 
     std::ostringstream sfile;
-    sfile
-      << this->outdir_ << "/"
-      << file.name () << SOURCE_SUFFIX << std::ends;
+    sfile << this->outdir_ << "/" << file.name () << ".cpp" << std::ends;
 
     // Open the header and source file(s).
     this->hout_.open (hfile.str ().c_str ());
@@ -182,12 +178,6 @@ namespace CUTS
 
     if (this->hout_.is_open () && this->sout_.is_open ())
     {
-      // @note There is not need to store the name of the file. The
-      // <node_> contains the name of the file.
-
-      // Save the name of the file.
-      //this->current_file_ = file.name ();
-
       do
       {
         // Initialize the indentation implanters for the C++
@@ -448,8 +438,7 @@ namespace CUTS
     this->generate_ccm_remove (component);
 
     // Generate the private section of the class.
-    this->hout_
-      << "private:" << std::endl;
+    this->hout_ << "private:" << std::endl;
 
     typedef std::set <PICML::PeriodicAction> Periodic_Set;
     Periodic_Set periodic = component.PeriodicAction_kind_children ();
@@ -771,7 +760,7 @@ namespace CUTS
     // the function.
     PICML::Event event = port.ref ();
 
-    if (event != 0)
+    if (event != Udm::null)
     {
       event.Accept (*this);
     }
@@ -1060,20 +1049,22 @@ namespace CUTS
     // Get the action connected to the end of the transaction.
     PICML::ActionBase action =
       PICML::ActionBase::Cast (trans.dstInternalPrecondition_end ());
-    std::string type_name = action.type ().name ();
+    std::string _typename = action.type ().name ();
 
-    if (action.Repetitions () > 0)
+    // We only continue at this point if the action is an instance
+    // of a predefined action, or it has more than 1 repetition
+    // specified.
+    if (action.isInstance () && action.Repetitions () > 0)
     {
-      // Determine what type of action we are processing.
-      if (type_name == (std::string)PICML::Action::meta.name ())
+      if (_typename == (std::string)PICML::Action::meta.name ())
       {
         PICML::Action::Cast (action).Accept (*this);
       }
-      else if (type_name == (std::string) PICML::CompositeAction::meta.name ())
+      else if (_typename == (std::string) PICML::CompositeAction::meta.name ())
       {
         PICML::CompositeAction::Cast (action).Accept (*this);
       }
-      else if (type_name == (std::string) PICML::OutputAction::meta.name ())
+      else if (_typename == (std::string) PICML::OutputAction::meta.name ())
       {
         PICML::OutputAction::Cast (action).Accept (*this);
       }
@@ -1103,7 +1094,9 @@ namespace CUTS
 
     // Get action type and it's worker parent.
     PICML::Action action_type = action;
-    action_type = action_type.Archetype ();
+    while (PICML::Action (action_type.Archetype ()) != Udm::null)
+      action_type = action_type.Archetype ();
+
     PICML::Worker worker = action_type.Worker_parent ();
 
     // Generate the preamble for the worker action.
@@ -1188,7 +1181,7 @@ namespace CUTS
   {
     PICML::Event event = oep.ref ();
 
-    if (event != 0)
+    if (event != Udm::null)
     {
       event.Accept (*this);
       this->event_map_.insert (Event_Map::value_type (oep.name (),

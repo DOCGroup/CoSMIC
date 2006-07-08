@@ -8,7 +8,7 @@
 #include <algorithm>
 
 static const char * WORKSPACE_SUFFIX = "_CUTS.mwc";
-static const char * PROJECT_SUFFIX = "_CoWorkEr.mpc";
+static const char * PROJECT_SUFFIX = ".mpc";
 
 static const char * STUB_SUFFIX = "_stub";
 static const char * SVNT_SUFFIX = "_svnt";
@@ -18,7 +18,7 @@ static const char * EXEC_SUFFIX = "_exec";
   outfile << node->basename (); \
   if ((node->flags_ & CUTS_Dependency_Node::DNF_EXEC)) \
   { \
-    out << "_CoWorkEr"; \
+    /*out << "_CoWorkEr"; */\
   } \
   outfile << suffix
 
@@ -401,7 +401,7 @@ void CUTS_Workspace_Generator::generate_exec_project (
 
     // Generate the source files.
     << "  Source_Files {" << std::endl
-    << "    " << node->basename () << "_CoWorkEr.cpp" << std::endl
+    << "    " << node->basename () << ".cpp" << std::endl
     << "  }" << std::endl
     << std::endl
 

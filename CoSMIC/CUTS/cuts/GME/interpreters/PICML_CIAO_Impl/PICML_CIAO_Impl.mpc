@@ -17,6 +17,6 @@ project (PICML_CIAO_Impl) : cutslib, udm_component, gme_interpreter {
   requires += boost
 
   Source_Files {
-
+    Main_Dialog.cpp
   }
 }

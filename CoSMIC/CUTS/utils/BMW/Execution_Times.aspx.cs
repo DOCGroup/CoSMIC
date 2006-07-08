@@ -22,14 +22,17 @@ namespace CUTS
   {
     protected System.DateTime timestamp_;
 
-    protected long test_;
+    protected int test_;
 
     private OdbcConnection conn_  = new OdbcConnection(
         ConfigurationManager.AppSettings["ConnectionString"]);
 
+    private CUTS_Database_Utility cuts_database_ = 
+      new CUTS_Database_Utility(ConfigurationManager.AppSettings["MySQL"]);
+
     private void Page_Load(object sender, System.EventArgs e)
     {
-
+       
     }
 
     /// <summary>
@@ -48,11 +51,14 @@ namespace CUTS
           this.conn_.Open();
 
           // Get the critical paths.
-          this.critical_paths_.DataSource = get_critical_paths();
+          DataSet ds = new DataSet();
+          this.cuts_database_.get_critical_paths(ref ds);
+
+          this.critical_paths_.DataSource = ds.Tables["critical_paths"];
           this.critical_paths_.DataBind();
 
           DateTime max_time = new DateTime();
-          if (init_collection_time(ref max_time))
+          if (this.init_collection_time(ref max_time))
           {
             init_execution_times(max_time);
 
@@ -104,10 +110,9 @@ namespace CUTS
         try
         {
           this.conn_.Open();
-
           this.timestamp_ = DateTime.Parse(this.collection_times_.SelectedValue);
           this.placeholder_.Controls.Clear();
-          init_execution_times(this.timestamp_);
+          this.init_execution_times(this.timestamp_);
         }
         catch (OdbcException)
         {
@@ -248,42 +253,10 @@ namespace CUTS
       return command.ExecuteReader ();
     }
 
-    private DataTable get_critical_paths ()
-    {
-      // Create a new command.
-      OdbcCommand command = this.conn_.CreateCommand ();
-      command.CommandText =
-        "SELECT path_id, path_name FROM critical_path ORDER BY path_name";
-
-      // Create an adapter w/ the following select command.
-      OdbcDataAdapter adapter = new OdbcDataAdapter (command);
-
-      // Create a new dataset and fill it using the adapter.
-      DataSet ds = new DataSet ();
-      adapter.Fill (ds, "critical_path");
-
-      // Return the data table.
-      return ds.Tables["critical_path"];
-    }
-
     private bool init_collection_time (ref DateTime max_time)
     {
-      OdbcParameter p1 = new OdbcParameter ("@test_number", OdbcType.Int);
-      p1.Direction = ParameterDirection.Input;
-      p1.Value = this.test_;
-
-      System.Text.StringBuilder builder = new System.Text.StringBuilder ();
-      builder.Append ("SELECT DISTINCT collection_time FROM execution_time ");
-      builder.Append ("WHERE (test_number = ?)");
-
-      OdbcCommand command = this.conn_.CreateCommand();
-      command.CommandText = builder.ToString();
-      command.Parameters.Add (p1);
-
-      OdbcDataAdapter adapter = new OdbcDataAdapter(command);
       DataSet ds = new DataSet();
-
-      adapter.Fill(ds, "collection_time");
+      this.cuts_database_.get_collection_times(this.test_, ref ds);
 
       // Bind the dataset to the <collection_time_> control.
       this.collection_times_.DataSource = 

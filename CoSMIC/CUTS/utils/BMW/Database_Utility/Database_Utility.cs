@@ -17,6 +17,7 @@ using System.Data.Odbc;
 using System.Runtime.InteropServices;
 
 using MySql.Data.MySqlClient;
+using MySql.Data.Types;
 
 //=============================================================================
 /**
@@ -157,6 +158,50 @@ public class CUTS_Database_Utility
     }
 
     return (System.Int32)result;
+  }
+
+  /**
+   * Get the critical paths as a dataset. The dataset is returned
+   * in a table named 'critical_paths'.
+   * 
+   * @param[in]     dataset     Reference to target dataset.
+   */
+  public void get_critical_paths(ref DataSet dataset)
+  {
+    MySqlCommand command = this.conn_.CreateCommand();
+    command.CommandText = 
+      "SELECT path_id, path_name FROM critical_path ORDER BY path_name";
+
+    // Create an adapter w/ the following select command.
+    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+
+    // Create a new dataset and fill it using the adapter.
+    adapter.Fill(dataset, "critical_path");
+  }
+
+  /**
+   * Get the collection times for a specific test.
+   * 
+   * @param[in]       test        The id of the test.
+   * @param[out]      dataset     Reference to target dataset.
+   */
+  public void get_collection_times(Int32 test,
+                                   ref DataSet dataset)
+  {
+    MySqlParameter p1 = new MySqlParameter("?test", MySqlDbType.Int32);
+    p1.Direction = ParameterDirection.Input;
+    p1.Value = test;
+
+    System.Text.StringBuilder builder = new System.Text.StringBuilder();
+    builder.Append("SELECT DISTINCT collection_time FROM execution_time ");
+    builder.Append("WHERE (test_number = ?test)");
+
+    MySqlCommand command = this.conn_.CreateCommand();
+    command.CommandText = builder.ToString();
+    command.Parameters.Add(p1);
+
+    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+    adapter.Fill(dataset, "collection_time");
   }
 
   /**

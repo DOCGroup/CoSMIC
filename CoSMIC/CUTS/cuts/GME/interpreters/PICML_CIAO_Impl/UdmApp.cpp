@@ -1,57 +1,56 @@
-/*
-  Copyright (c) Vanderbilt University, 2000-2001
-  ALL RIGHTS RESERVED
-  Vanderbilt University disclaims all warranties with regard to this
-  software, including all implied warranties of merchantability
-  and fitness.  In no event shall Vanderbilt University be liable for
-  any special, indirect or consequential damages or any damages
-  whatsoever resulting from loss of use, data or profits, whether
-  in an action of contract, negligence or other tortious action,
-  arising out of or in connection with the use or performance of
-  this software.
-*/
+// $Id$
 
-
-// UdmApp.cpp: implementation of the CUdmApp class.
-// This file was automatically generated as UdmApp.cpp
-// by UDM Interpreter Wizard on Monday, May 13, 2002 13:45:42
-
-// Tihamér Levendovszky 05-13-02
-
-#include "stdafx.h"
-#pragma warning( disable : 4290 )
-#include <afxdlgs.h> // For CFileDialog
-#include "resource.h"
-#include <stdlib.h>
-#include <sstream>
-
-// Xerces includes
-#include <xercesc/util/PlatformUtils.hpp>
-#include <xercesc/util/XMLString.hpp>
-#include <xercesc/dom/DOM.hpp>
-#include <xercesc/framework/LocalFileFormatTarget.hpp>
+#include "StdAfx.h"
 
 // Utility includes
-#include "UdmStatic.h"
-#include "UmlExt.h"
-#include "UdmUtil.h"
+//#include "UdmStatic.h"
+//#include "UmlExt.h"
+//#include "UdmUtil.h"
 
 #include "UdmApp.h"
-#include "UdmConfig.h"
-
+//#include "UdmConfig.h"
+#include "Main_Dialog.h"
 #include "PICML/Utils.h"
+
+/* Backend specific headers */
 #include "cuts/be/CIAO/CoWorkEr_Cache.h"
 #include "cuts/be/CIAO/Dependency_Graph.h"
 #include "cuts/be/CIAO/Dependency_Generator.h"
 #include "cuts/be/CIAO/UDM_CIAO_Visitor.h"
 #include "cuts/be/CIAO/Workspace_Generator.h"
+#include "cuts/be/CIAO/CoWorkEr_Generator.h"
+#include "cuts/be/CIAO/CUTS_Project.h"
 
-using xercesc::XMLPlatformUtils;
-using xercesc::XMLException;
-using xercesc::DOMException;
-using xercesc::XMLString;
+class CFolderDialog : public CFileDialog
+{
+public:
+  CFolderDialog (void)
+    : CFileDialog (TRUE, 0, 0, OFN_EXPLORER | OFN_HIDEREADONLY, "*.")
+  {
 
-extern void dummy(void); // Dummy function for UDM meta initialization
+  }
+
+  virtual ~CFolderDialog (void) { }
+
+  virtual void OnFolderChange (void)
+  {
+    AfxMessageBox ("OnFolderChange");
+  }
+
+  virtual void OnFileNameChange (void)
+  {
+    AfxMessageBox ("OnFileNameChange");
+  }
+
+  virtual BOOL OnFileNameOK (void)
+  {
+    AfxMessageBox ("OnFileNameOK");
+    return 0;
+  }
+};
+
+/* Dummy function for UDM meta initialization */
+extern void dummy(void);
 
 // Initialization function. The framework calls it before preparing the
 // backend. Initialize here the settings in the config static object.
@@ -94,24 +93,55 @@ int CUdmApp::Initialize()
 
 void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,
                       Udm::Object focusObject,
-                      set<Udm::Object> selectedObjects,
+                      set <Udm::Object> selectedObjects,
                       long param)
 {
-  try
-  {
-    XMLPlatformUtils::Initialize();
+  //CFolderDialog folder;
+  //folder.DoModal ();
 
-    try
+  // Initialize the <CUTS_Project>. We need to make sure the project is
+  // valid before continuing. It just doesn't make any sense to continue
+  // to waste the end-user's time if the project is invalid. Eventually,
+  // we would like to be able to make invalid projects valid.
+  // Get the root folder for the project.
+  PICML::RootFolder root =
+    PICML::RootFolder::Cast (p_backend->GetRootObject());
+
+  root.Accept (*CUTS_Project::instance ());
+
+  if (!CUTS_Project::instance ()->is_valid ())
+  {
+    ::AfxMessageBox (CUTS_Project::instance ()->message ().c_str (),
+                     MB_OK | MB_ICONEXCLAMATION);
+    CUTS_Project::close ();
+    return;
+  }
+
+
+  // Show the main dialog and let the <end-user> select which
+  // <option> they want to execute. If the user selects to
+  // cancel the process then we just return.
+  Main_Dialog main_dialog (::AfxGetMainWnd ());
+
+  if (main_dialog.DoModal () == IDCANCEL)
+    return;
+
+  switch (main_dialog.option ())
+  {
+  case Main_Dialog::OPT_GENERATE_MODELS:
+    {
+      CUTS_UDM_CoWorkEr_Generator coworker_generator;
+      root.Accept (coworker_generator);
+    }
+    break;
+
+  case Main_Dialog::OPT_GENERATE_SOURCE:
     {
       std::string output_dir;
       std::string message ("Please specify the output directory");
 
       if (PICML::getPath (message, output_dir))
       {
-        // Get the root folder for the project.
-        PICML::RootFolder root =
-          PICML::RootFolder::Cast (p_backend->GetRootObject());
-
         // Generate the dependency graph for the model.
         CUTS_Dependency_Graph dependency_graph;
         CUTS_Dependency_Generator dependency_generator (dependency_graph);
@@ -127,37 +157,12 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,
                                                       dependency_graph);
         root.Accept (workspace_generator);
 
-        AfxMessageBox ("Successfully completed code generation",
-                       MB_OK | MB_ICONINFORMATION);
+        ::AfxMessageBox ("Successfully completed code generation",
+                         MB_OK | MB_ICONINFORMATION);
       }
     }
-    catch(udm_exception &e)
-    {
-      AfxMessageBox ("Caught UDM Exception: " + CString (e.what()),
-                     MB_ICONERROR | MB_OK);
-    }
-    catch (const DOMException& e)
-    {
-      const unsigned int maxChars = 2047;
-      XMLCh errText[maxChars + 1];
-
-      std::stringstream estream;
-      estream << "DOMException code: " << e.code << std::endl;
-
-      if (xercesc::DOMImplementation::loadDOMExceptionMsg(e.code, errText, maxChars))
-      {
-        std::string message (XMLString::transcode (errText));
-        estream << "Message is: " << message << std::endl;
-      }
-
-      AfxMessageBox (estream.str().c_str(), MB_ICONERROR | MB_OK);
-    }
-
-    XMLPlatformUtils::Terminate();
+    break;
   }
-  catch (const XMLException& e)
-  {
-    std::string message (XMLString::transcode (e.getMessage()));
-    AfxMessageBox (message.c_str(), MB_ICONERROR | MB_OK);
-  }
+
+  CUTS_Project::close ();
 }

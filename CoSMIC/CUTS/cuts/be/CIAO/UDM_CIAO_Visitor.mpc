@@ -22,7 +22,9 @@ project (CUTS_UDM_CIAO) : cutslib, picml_udm {
   }
 
   Source_Files {
+    CoWorkEr_Generator.cpp
     CoWorkEr_Cache.cpp
+    CUTS_Project.cpp
     Dependency_Generator.cpp
     Dependency_Graph.cpp
     Predefined_Type_Map.cpp
