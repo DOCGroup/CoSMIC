@@ -1,3 +1,13 @@
+Sat Jul  8 02:33:20 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CIAO/CUTS_Project.cpp:
+        * cuts/be/CIAO/UDM_CIAO_Visitor.cpp:
+
+          When auto-generating CoWorkEr models, the interpreter will
+          add the necessary CUTS elements if they are not found in the
+          current model. This allow users to start w/ a bare model
+          of a system then extend it for usage w/ CUTS.
+
 Sat Jul  8 01:26:09 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * bin/install.dat:

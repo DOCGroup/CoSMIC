@@ -194,7 +194,7 @@ namespace CUTS
                         toupper);
 
         std::ostringstream hash_def;
-        hash_def << "_" << upper_name << "_COWORKER_H_" << std::ends;
+        hash_def << "_" << upper_name << std::ends;
 
         // Generate the header file preamble.
         this->hout_
@@ -272,7 +272,7 @@ namespace CUTS
         this->hout_
           << "#include /**/ \"ace/post.h\"" << std::endl
           << std::endl
-          << "#endif  // !defined " << hash_def.str ();
+          << "#endif   /* !defined " << hash_def.str () << "*/";
       } while (0);
 
       // Insert a extra line at the end of the file.
