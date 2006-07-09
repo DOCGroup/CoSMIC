@@ -24,7 +24,6 @@ project (UUIDManager): mfc, picmllib {
     $(GME_ROOT)/SDK/BON/ComponentLib.idl
     $(GME_ROOT)/SDK/BON/ComponentDll.cpp
     $(GME_ROOT)/SDK/BON/ComponentObj.cpp
-    Component_Listener.cpp
   }
 
   Header_Files {

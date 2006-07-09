@@ -1,55 +1,90 @@
+/* -*- C++ -*- */
+
+//=============================================================================
+/**
+ * @file      RawComponent.h
+ *
+ * $Id$
+ *
+ * @author    James H. Hill
+ */
+//=============================================================================
+
 #ifndef RAWCOMPONENT_H
 #define RAWCOMPONENT_H
-
-
-// Declaration of the main RAW COM component interface class
-
 
 #ifdef BUILDER_OBJECT_NETWORK
 #error   This file should only be included in the RAW COM configurations
 #endif
 
-#include "Component_Listener.h"
+//=============================================================================
+/**
+ * @class RawComponent
+ */
+//=============================================================================
 
 class RawComponent
 {
 public:
+  /// Constructor.
   RawComponent (void);
 
+  /// Destructor.
   virtual ~RawComponent (void);
 
-  CComPtr <IMgaAddOn> addon;      // this is set before Initialize() is called
-
+  /* GME specific members */
+  CComPtr <IMgaAddOn> addon;
   bool interactive;
 
+  /* RawComponent specific methods */
   STDMETHODIMP Initialize (struct IMgaProject *);
-
-  STDMETHODIMP Invoke (IMgaProject* gme, IMgaFCOs *models, long param);
-
-  STDMETHODIMP InvokeEx (
-    IMgaProject *project,
-    IMgaFCO *currentobj,
-    IMgaFCOs *selectedobjs,
-    long param);
-
-  STDMETHODIMP ObjectsInvokeEx (
-    IMgaProject *project,
-    IMgaObject *currentobj,
-    IMgaObjects *selectedobjs,
-    long param);
-
-  STDMETHODIMP get_ComponentParameter (BSTR name, VARIANT *pVal);
-  STDMETHODIMP put_ComponentParameter (BSTR name, VARIANT newVal);
-
-  STDMETHODIMP GlobalEvent (globalevent_enum event);
-
-  STDMETHODIMP ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v);
+  STDMETHODIMP Invoke (IMgaProject*, IMgaFCOs *, long );
+  STDMETHODIMP InvokeEx (IMgaProject *, IMgaFCO *, IMgaFCOs *, long);
+  STDMETHODIMP ObjectsInvokeEx (IMgaProject *, IMgaObject *, IMgaObjects *, long);
+  STDMETHODIMP get_ComponentParameter (BSTR, VARIANT *);
+  STDMETHODIMP put_ComponentParameter (BSTR, VARIANT);
+  STDMETHODIMP GlobalEvent (globalevent_enum);
+  STDMETHODIMP ObjectEvent (IMgaObject *, unsigned long, VARIANT);
 
 private:
-  CComPtr <IMgaProject> project_;
+  /**
+   * Create a UUID for the FCO.
+   *
+   * @param[in]       fco         Target FCO.
+   */
+  void create_uuid (IMgaFCO * fco);
 
-  CComObjectNoLock <Component_Listener> component_listener_;
+  /**
+   * Verify the UUID of an FCO.
+   *
+   * @param[in]       fco         Target FCO.
+   */
+  void verify_uuid (IMgaFCO * fco);
+
+  /// This verifies all UUID's in the project.
+  void verify_all_uuids (void);
+
+  void handle_pending (void);
+
+  /**
+   * Get the UUID from a FCO object.
+   *
+   * @param[in]     fco       Source FCO
+   * @param[out]    attr      Pointer to the UUID attribute.
+   * @param[out]    status    The status of the attribute.
+   * @retval        true      The attribute was found.
+   * @retval        false     The attribute was not found.
+   */
+  bool get_uuid_i (IMgaFCO * fco, IMgaAttribute ** attr, long & status);
+
+  /// The project is in import mode.
+  int importing_;
+
+  /// Collection of pending FCO's to validate.
+  CInterfaceList <IMgaFCO> pending_;
+
+  CComPtr <IMgaProject> project_;
 };
 
 
-#endif //RAWCOMPONENT_H
+#endif /* RAWCOMPONENT_H */

@@ -1,3 +1,26 @@
+Sun Jul  9 20:05:02 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/UUIDManager/ComponentConfig.h:
+        * PIM/PICML/addons/UUIDManager/RawComponent.h:
+        * PIM/PICML/addons/UUIDManager/RawComponent.cpp:
+        * PIM/PICML/addons/UUIDManager/UUIDManager.mpc:
+
+          - Refactored the UUIDManager to get it ready for enhancements
+            of truely managing UUIDs of all elements w/ a UUID.
+          - The UUID manager no longer validates the UUIDs at load time
+            due to GME exceptions, which I haven't resolved at this
+            moment.
+
+        * PIM/PICML/interpreters/Path/PathVisitor.cpp:
+        * PIM/PICML/interpreters/QoSMapping/QoSMappingVisitor.cpp:
+
+          Fixed compiler warnings.
+
+        * PIM/PICML/addons/UUIDManager/Component_Listener.h:
+        * PIM/PICML/addons/UUIDManager/Component_Listener.cpp:
+
+          Removed these files.
+
 Fri Jul  7 21:40:21 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/WSML/paradigms/WSML.xme:  Updated to fix problems that were
