@@ -1,3 +1,11 @@
+Mon Jul 10 03:54:39 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CIAO/Dependency_Generator.cpp (Visit_Component):
+
+          Fixed bug in dependency generator where if a component was not
+          a CoWorkEr, it wouldn't generate the neccesary dependencies even
+          if other component had a dependency on it.
+
 Sat Jul  8 02:33:20 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CIAO/CUTS_Project.cpp:

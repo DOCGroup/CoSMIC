@@ -116,15 +116,19 @@ void CUTS_Dependency_Generator::Visit_Component (
   // Determine if the component is a CoWorkEr. If it is then we
   // need to build the executor project as well and check
   // for all dependencies.
-  if (!CUTS_CoWorkEr_Cache::instance ()->is_coworker (component))
+  long flags = CUTS_Dependency_Node::DNF_STUB |
+               CUTS_Dependency_Node::DNF_SVNT;
+
+  if (CUTS_CoWorkEr_Cache::instance ()->is_coworker (component))
   {
-    return;
+    flags |= CUTS_Dependency_Node::DNF_EXEC;
   }
 
-  this->current_node_->flags_ |= (CUTS_Dependency_Node::DNF_STUB |
-                                  CUTS_Dependency_Node::DNF_SVNT |
-                                  CUTS_Dependency_Node::DNF_EXEC);
+  this->current_node_->flags_ |= flags;
 
+  // If this component is a <subtype> of another component, there is a
+  // chance that it is located in another file. If this is the case
+  // then we have to update its references.
   if (component.isSubtype ())
   {
     PICML::NamedType subtype = PICML::NamedType::Cast (component).Archetype ();
