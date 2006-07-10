@@ -1,3 +1,9 @@
+Mon Jul 10 03:57:01 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/examples/SLICE/SLICE.xme:
+
+          Re-birth of the SLICE scenario without any behavior.
+
 Sun Jul  9 20:05:02 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/UUIDManager/ComponentConfig.h:
