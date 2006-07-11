@@ -1,3 +1,12 @@
+Tue Jul 11 05:47:57 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CIAO/UDM_CIAO_Visitor.cpp (Visit_File):
+
+          Fixed bug in code generator from output a ostringstream variable
+          into an output stream w/o calling the c_str () method on the
+          string retured by str (). This would cause the file to convert
+          to binary format b/c of invalid characters.
+
 Tue Jul 11 05:15:28 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CIAO/UDM_CIAO_Visitor.cpp (Visit_Transition):
