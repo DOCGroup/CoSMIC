@@ -1054,7 +1054,7 @@ namespace CUTS
     // We only continue at this point if the action is an instance
     // of a predefined action, or it has more than 1 repetition
     // specified.
-    if (action.isInstance () && action.Repetitions () > 0)
+    if (action.Repetitions () > 0)
     {
       if (_typename == (std::string)PICML::Action::meta.name ())
       {

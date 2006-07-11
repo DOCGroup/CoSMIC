@@ -1,3 +1,10 @@
+Tue Jul 11 05:15:28 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CIAO/UDM_CIAO_Visitor.cpp (Visit_Transition):
+
+          Fixed bug caused by only parsing instances of actions. This
+          resulted in OutputAction element being ignored.
+
 Tue Jul 11 04:32:34 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * docs/database.html:
