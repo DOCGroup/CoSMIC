@@ -1,3 +1,27 @@
+Thu Jul 13 15:01:54 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/WSML/interpreters/IDL_to_WSDL/be_extern.h:
+        * PIM/WSML/interpreters/IDL_to_WSDL/be_global.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/be_global.h:
+        * PIM/WSML/interpreters/IDL_to_WSDL/be_helper.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/be_helper.h:
+        * PIM/WSML/interpreters/IDL_to_WSDL/be_init.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/be_produce.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/be_sunsoft.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/be_sunsoft.h:
+        * PIM/WSML/interpreters/IDL_to_WSDL/EntityResolver.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/EntityResolver.h:
+        * PIM/WSML/interpreters/IDL_to_WSDL/IDL_to_WSDL.mpc:
+        * PIM/WSML/interpreters/IDL_to_WSDL/idl_to_wsdl_visitor.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/idl_to_wsdl_visitor.h:
+        * PIM/WSML/interpreters/IDL_to_WSDL/README:
+        * PIM/WSML/interpreters/IDL_to_WSDL/XercesString.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/XercesString.h:
+        * PIM/WSML/interpreters/IDL_to_WSDL/XML_Error_Handler.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/XML_Error_Handler.h:
+        
+          New files, backend and MPC file for an IDL to WSDL translator.
+
 Tue Jul 11 05:20:25 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/examples/SLICE/SLICE.xme:
