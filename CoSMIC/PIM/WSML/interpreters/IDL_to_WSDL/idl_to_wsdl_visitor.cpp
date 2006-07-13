@@ -144,9 +144,11 @@ idl_to_wsdl_visitor::visit_interface (AST_Interface *node)
       
       this->current_binding_ = this->doc_->createElement (X ("binding"));
       be_global->root_element ()->appendChild (this->current_binding_);
-      ACE_CString bname (node->full_name ());
+      ACE_CString bname (ScopeAsDecl (node->defined_in ())->full_name ());
       be_global->to_wsdl_name (bname);
-      bname = ACE_CString ("_SE_") + bname + ACE_CString ("Binding");
+      bname += "._SE_";
+      bname += node->local_name ()->get_string ();
+      bname += "Binding";
       this->current_binding_->setAttribute (X ("name"), X (bname.c_str ()));
       
       DOMElement *soap_binding =
