@@ -1,3 +1,18 @@
+Thu Jul 13 15:22:45 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/WSML/interpreters/IDL_to_WSDL/IDL_to_WSDL_BE_Export.h:
+        
+          New file, over looked in previous checkin.
+          
+        * PIM/WSML/interpreters/IDL_to_WSDL/README:
+        
+          Removed irrelevant item.
+          
+        * PIM/WSML/interpreters/IDL_to_WSDL/be_init.cpp (BE_post_init):
+        
+           Added call to frontend datastore class to set option to 
+           disable implied IDL generation from IDL3 constructs.         
+
 Thu Jul 13 15:01:54 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/WSML/interpreters/IDL_to_WSDL/be_extern.h:
