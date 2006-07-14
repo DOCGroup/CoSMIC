@@ -254,6 +254,8 @@ idl_to_wsdl_visitor::visit_valuetype (AST_ValueType *node)
                               "codegen for scope failed\n"),
                             -1);
         }
+        
+      this->gen_inherited_vt_members (node, scope_visitor);
     }
 
   return 0;
@@ -273,26 +275,15 @@ idl_to_wsdl_visitor::visit_valuetype_fwd (AST_ValueTypeFwd *node)
 int
 idl_to_wsdl_visitor::visit_component (AST_Component *node)
 {
-  if (node->imported ())
-    {
-      return 0;
-    }
-
-  AST_Component *base = node->base_component ();
-  long nsupports = node->n_supports ();
-
-  for (long i = 0; i < nsupports; ++i)
-    {
-    }
-
-  if (this->visit_scope (node) != 0)
+  if  (0 != this->visit_interface (node))
     {
       ACE_ERROR_RETURN ((LM_ERROR,
                           "idl_to_wsdl_visitor::visit_component - "
-                          "codegen for scope failed\n"),
+                          "codegen for visit_interface failed\n"),
                         -1);
     }
-
+    
+  this->gen_inherited_comp (node);
   return 0;
 }
 
@@ -487,6 +478,14 @@ idl_to_wsdl_visitor::visit_enum (AST_Enum *node)
 int
 idl_to_wsdl_visitor::visit_operation (AST_Operation *node)
 {
+  AST_Decl::NodeType nt = ScopeAsDecl (node->defined_in ())->node_type ();
+  
+  // We don't want to generate anything for valuetype operations.
+  if (AST_Decl::NT_eventtype == nt || AST_Decl::NT_valuetype == nt)
+    {
+      return 0;
+    }
+    
   DOMElement *sub_tree_holder = this->sub_tree_;
   this->sub_tree_ = this->current_port_type_;
 
@@ -537,36 +536,33 @@ idl_to_wsdl_visitor::visit_field (AST_Field *node)
       this->sub_tree_ = choice;
     }
   
-  // Fetch from DOM tree, from table, or create.
-  DOMElement *elem = this->process_node (node, "xsd:element");
+  DOMElement *elem = this->doc_->createElement (X ("xsd:element"));
+  this->sub_tree_->appendChild (elem);
   
-  if (NOT_SEEN == this->node_status_)
-    {
-      elem->setAttribute (X ("name"),
-                          X (node->local_name ()->get_string ()));
-      elem->setAttribute (X ("minOccurs"), X ("1"));
-      elem->setAttribute (X ("maxOccurs"), X ("1"));
+  elem->setAttribute (X ("name"),
+                      X (node->local_name ()->get_string ()));
+  elem->setAttribute (X ("minOccurs"), X ("1"));
+  elem->setAttribute (X ("maxOccurs"), X ("1"));
+  
+  ACE_CString ft_name;
+  this->type_name (ft_name, ft, true);
+  elem->setAttribute (X ("type"), X (ft_name.c_str ()));
       
-      ACE_CString ft_name;
-      this->type_name (ft_name, ft, true);
-      elem->setAttribute (X ("type"), X (ft_name.c_str ()));
-          
-      // Not sure if this is the only case where 'nillable' appears.          
-      if (AST_Decl::NT_string == nt)
-        {
-          elem->setAttribute (X ("nillable"), X ("true"));
-        }
-        
-      if (vt_member)
-        {
-          DOMElement *vt_ref =
-            this->doc_->createElement (X ("xsd:element"));
-          ACE_CString name ("_REF_");
-          name += node->local_name ()->get_string ();
-          vt_ref->setAttribute (X ("name"), X (name.c_str ()));
-          vt_ref->setAttribute (X ("type"), X ("corba:_VALUEREF"));
-          this->sub_tree_->appendChild (vt_ref);
-        }
+  // Not sure if this is the only case where 'nillable' appears.          
+  if (AST_Decl::NT_string == nt)
+    {
+      elem->setAttribute (X ("nillable"), X ("true"));
+    }
+    
+  if (vt_member)
+    {
+      DOMElement *vt_ref =
+        this->doc_->createElement (X ("xsd:element"));
+      ACE_CString name ("_REF_");
+      name += node->local_name ()->get_string ();
+      vt_ref->setAttribute (X ("name"), X (name.c_str ()));
+      vt_ref->setAttribute (X ("type"), X ("corba:_VALUEREF"));
+      this->sub_tree_->appendChild (vt_ref);
     }
   
   this->sub_tree_ = sub_tree_holder;
@@ -1736,44 +1732,7 @@ idl_to_wsdl_visitor::gen_inherited_operations (AST_Interface *node)
   // Not compatible with 'updating IDL' feature.
   for (long i = 0; i < node->n_inherits_flat (); ++i)
     {
-      AST_Interface *parent = node->inherits_flat ()[i];
-      
-      for (UTL_ScopeActiveIterator iter (parent, UTL_Scope::IK_decls);
-           !iter.is_done ();
-           iter.next ())
-        {
-          AST_Decl *d = iter.item ();
-          AST_Operation *op = AST_Operation::narrow_from_decl (d);
-          AST_Attribute *attr = AST_Attribute::narrow_from_decl (d);
-          
-          if (0 != op)
-            {
-              DOMElement *operation =
-                this->doc_->createElement (X ("operation"));
-              this->current_port_type_->appendChild (operation);
-              this->finish_operation (op, operation, 0);
-            }
-          else if (0 != attr)
-            {
-              DOMElement *get_operation =
-                this->doc_->createElement (X ("operation"));
-              this->current_port_type_->appendChild (get_operation);
-              this->finish_operation (attr, get_operation, "_get_");
-              this->current_port_type_->appendChild (get_operation);
-              
-              if (!attr->readonly ())
-                {
-                  DOMElement *set_operation =
-                    this->doc_->createElement (X ("operation"));
-                  this->finish_operation (attr, set_operation, "_set_");
-                  this->current_port_type_->appendChild (set_operation);
-                }
-            }
-          else
-            {
-              continue;
-            }
-        }
+      this->append_ops_and_attrs (node->inherits_flat ()[i]);
     }
 }
 
@@ -1798,5 +1757,73 @@ idl_to_wsdl_visitor::fill_binding_op (DOMElement *binding_op)
   DOMElement *soap_body_clone =
     dynamic_cast<DOMElement *> (soap_body->cloneNode (false));
   binding_output->appendChild (soap_body_clone);
+}
+
+void
+idl_to_wsdl_visitor::gen_inherited_vt_members (AST_ValueType *node,
+                                               idl_to_wsdl_visitor &visitor)
+{
+  AST_ValueType *parent = node->inherits_concrete ();
+  
+  if (0 != parent)
+    {
+      if (0 != visitor.visit_scope (parent))
+        {
+          ACE_ERROR ((LM_ERROR,
+                      "idl_to_wsdl_visitor::gen_inherited_vt_members - "
+                      "codegen for base valuetype failed\n"));
+        }
+        
+      this->gen_inherited_vt_members (parent, visitor);
+    }
+}
+
+void
+idl_to_wsdl_visitor::gen_inherited_comp (AST_Component *node)
+{
+  AST_Component *parent = node->base_component ();
+  
+  if (0 != parent)
+    {
+      this->gen_inherited_operations (parent);
+      this->append_ops_and_attrs (parent);
+      this->gen_inherited_comp (parent);
+    }
+}
+
+void
+idl_to_wsdl_visitor::append_ops_and_attrs (AST_Interface *ancestor)
+{
+  for (UTL_ScopeActiveIterator i (ancestor, UTL_Scope::IK_decls);
+       !i.is_done ();
+       i.next ())
+    {
+      AST_Decl *d = i.item ();
+      AST_Operation *op = AST_Operation::narrow_from_decl (d);
+      AST_Attribute *attr = AST_Attribute::narrow_from_decl (d);
+      
+      if (0 != op)
+        {
+          DOMElement *op_elem =
+            this->doc_->createElement (X ("operation"));
+          this->current_port_type_->appendChild (op_elem);
+          this->finish_operation (op, op_elem, 0);
+        }
+      else if (0 != attr)
+        {
+          DOMElement *attr_elem =
+            this->doc_->createElement (X ("operation"));
+          this->current_port_type_->appendChild (attr_elem);
+          this->finish_operation (attr, attr_elem, "_get_");
+          
+          if (!attr->readonly ())
+            {
+              DOMElement *attr_set_elem =
+                this->doc_->createElement (X ("operation"));
+              this->current_port_type_->appendChild (attr_set_elem);
+              this->finish_operation (attr, attr_set_elem, "_set_");
+            }
+        }
+    }
 }
 

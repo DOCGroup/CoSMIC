@@ -125,6 +125,10 @@ private:
                      const char *prefix);
   void gen_inherited_operations (AST_Interface *node);
   void fill_binding_op (DOMElement *binding_op);
+  void gen_inherited_vt_members (AST_ValueType *node,
+                                 idl_to_wsdl_visitor &visitor);
+  void gen_inherited_comp (AST_Component *node);
+  void append_ops_and_attrs (AST_Interface *ancestor);
 
 private:
   enum NodeStatus
