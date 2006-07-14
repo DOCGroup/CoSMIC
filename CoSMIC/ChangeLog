@@ -1,31 +1,62 @@
+Fri Jul 14 22:28:21 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/WSML/interpreters/WSDLImporter/build.xml:  Ant file for
+          building WSDLImporter.
+
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/dre/WSML/WSDLImporter/BindingImpl.java:
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/dre/WSML/WSDLImporter/Visitor.java:
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/dre/WSML/WSDLImporter/WSDLImporter.java:
+
+          WSDImporter java source files.
+
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/isis/gme/xme/Atom.java:
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/isis/gme/xme/Attribute.java:
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/isis/gme/xme/Author.java:
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/isis/gme/xme/Comment.java:
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/isis/gme/xme/Connection.java:
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/isis/gme/xme/Connpoint.java:
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/isis/gme/xme/Constraint.java:
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/isis/gme/xme/Folder.java:
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/isis/gme/xme/Model.java:
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/isis/gme/xme/Name.java:
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/isis/gme/xme/ObjectFactory.java:
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/isis/gme/xme/Project.java:
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/isis/gme/xme/Reference.java:
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/isis/gme/xme/Regnode.java:
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/isis/gme/xme/Set.java:
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/isis/gme/xme/Value.java:
+
+          XML Schema to Java compiler (xjc) generated java files
+          corresponding to the elements in mga.xsd.
+
 Fri Jul 14 03:36:45 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/WSML/interpreters/IDL_to_WSDL/idl_to_wsdl_visitor.cpp:
         * PIM/WSML/interpreters/IDL_to_WSDL/idl_to_wsdl_visitor.h:
-        
+
           Fixed generation for valuetype inheritance and component
           inheritance and interface support.
 
 Thu Jul 13 17:34:41 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/WSML/interpreters/IDL_to_WSDL/idl_to_wsdl_visitor.cpp:
-        
+
           Fixed bug in generation of binding name.
 
 Thu Jul 13 15:22:45 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/WSML/interpreters/IDL_to_WSDL/IDL_to_WSDL_BE_Export.h:
-        
+
           New file, over looked in previous checkin.
-          
+
         * PIM/WSML/interpreters/IDL_to_WSDL/README:
-        
+
           Removed irrelevant item.
-          
+
         * PIM/WSML/interpreters/IDL_to_WSDL/be_init.cpp (BE_post_init):
-        
-           Added call to frontend datastore class to set option to 
-           disable implied IDL generation from IDL3 constructs.         
+
+           Added call to frontend datastore class to set option to
+           disable implied IDL generation from IDL3 constructs.
 
 Thu Jul 13 15:01:54 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
@@ -48,7 +79,7 @@ Thu Jul 13 15:01:54 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/WSML/interpreters/IDL_to_WSDL/XercesString.h:
         * PIM/WSML/interpreters/IDL_to_WSDL/XML_Error_Handler.cpp:
         * PIM/WSML/interpreters/IDL_to_WSDL/XML_Error_Handler.h:
-        
+
           New files, backend and MPC file for an IDL to WSDL translator.
 
 Tue Jul 11 05:20:25 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>

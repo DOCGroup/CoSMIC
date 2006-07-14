@@ -1,0 +1,42 @@
+<?xml version="1.0" standalone="yes"?>
+<project basedir="." default="compile">
+  <description> My first ant task </description>
+  <property name="jwsdp.home" value="C:\tools\jwsdp-2.0" />
+  <property name="wsdl4j.home" value="C:\tools\wsdl4j-1_5_2" />
+  <path id="classpath">
+    <pathelement path="src" />
+<!--     <fileset dir="${jwsdp.home}" includes="jaxp/lib/*.jar" /> -->
+<!--     <fileset dir="${jwsdp.home}" includes="jaxp/lib/endorsed/*.jar" /> -->
+    <fileset dir="${jwsdp.home}" includes="jaxb/lib/*.jar" />
+    <fileset dir="${jwsdp.home}" includes="sjsxp/lib/*.jar" />
+    <fileset dir="${jwsdp.home}" includes="jwsdp-shared/lib/activation.jar" />
+    <fileset dir="${jwsdp.home}" includes="jwsdp-shared/lib/resolver.jar" />
+    <fileset dir="${wsdl4j.home}" includes="lib/*.jar" />
+  </path>
+  <taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+    <classpath refid="classpath" />
+  </taskdef>
+
+  <!--compile Java source files-->
+  <target name="compile" description="Compile all Java source files">
+    <echo message="Compiling the schema..." />
+    <xjc schema="mga.xsd" package="edu.vanderbilt.isis.gme.xme" destdir="src">
+      <produces dir="src/edu/vanderbilt/isis/gme/xme" includes="**/*.java" />
+    </xjc>
+    <echo message="Compiling the java source files..." />
+    <mkdir dir="lib" />
+    <javac destdir="lib" debug="on">
+      <src path="src" />
+      <classpath refid="classpath" />
+    </javac>
+  </target>
+
+  <target name="run" depends="compile" description="Run the WSDLImporter">
+    <echo message="Running the WSDLImporter..." />
+    <java classname="edu.vanderbilt.dre.WSML.WSDLImporter.WSDLImporter" fork="true">
+      <arg value="HelloWorldService.wsdl" />
+      <classpath refid="classpath" />
+    </java>
+  </target>
+
+</project>
