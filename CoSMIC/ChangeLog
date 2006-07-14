@@ -1,3 +1,11 @@
+Fri Jul 14 03:36:45 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/WSML/interpreters/IDL_to_WSDL/idl_to_wsdl_visitor.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/idl_to_wsdl_visitor.h:
+        
+          Fixed generation for valuetype inheritance and component
+          inheritance and interface support.
+
 Thu Jul 13 17:34:41 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/WSML/interpreters/IDL_to_WSDL/idl_to_wsdl_visitor.cpp:
