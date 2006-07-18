@@ -1,12 +1,11 @@
 <?xml version="1.0" standalone="yes"?>
 <project basedir="." default="compile">
-  <description> My first ant task </description>
-  <property name="jwsdp.home" value="C:\tools\jwsdp-2.0" />
-  <property name="wsdl4j.home" value="C:\tools\wsdl4j-1_5_2" />
+  <description>Ant task to compile WSDLImporter </description>
+  <property name="jwsdp.home" value="" />
+  <property name="wsdl4j.home" value="" />
   <path id="classpath">
     <pathelement path="src" />
-<!--     <fileset dir="${jwsdp.home}" includes="jaxp/lib/*.jar" /> -->
-<!--     <fileset dir="${jwsdp.home}" includes="jaxp/lib/endorsed/*.jar" /> -->
+    <pathelement path="lib" />
     <fileset dir="${jwsdp.home}" includes="jaxb/lib/*.jar" />
     <fileset dir="${jwsdp.home}" includes="sjsxp/lib/*.jar" />
     <fileset dir="${jwsdp.home}" includes="jwsdp-shared/lib/activation.jar" />
@@ -34,7 +33,7 @@
   <target name="run" depends="compile" description="Run the WSDLImporter">
     <echo message="Running the WSDLImporter..." />
     <java classname="edu.vanderbilt.dre.WSML.WSDLImporter.WSDLImporter" fork="true">
-      <arg value="HelloWorldService.wsdl" />
+      <arg file="GoogleSearch.wsdl" />
       <classpath refid="classpath" />
     </java>
   </target>

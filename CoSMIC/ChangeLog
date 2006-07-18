@@ -1,3 +1,27 @@
+Tue Jul 18 03:08:12 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/WSML/interpreters/WSDLImporter/build.xml: Updated the file
+          such that this file doesn't need to be modified locally.
+
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/dre/WSML/WSDLImporter/Visitor.java:
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/dre/WSML/WSDLImporter/WSDLImporter.java:
+
+          Updated to reflect the split of the visitor logic into a
+          separate class.
+
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/dre/WSML/WSDLImporter/XmlExportVisitor.java:
+
+          New file which implements the visitation logic.
+
+        * PIM/WSML/paradigms/WSML.xmp:  Added the paradigm file too to the
+          repository.
+        * PIM/WSML/paradigms/WSML.xme:  Updated paradigm to support
+          setting attributes on a Definitions element.
+
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/dre/WSML/WSDLImporter/BindingImpl.java:
+
+          Removed this file.
+
 Fri Jul 14 22:28:21 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/WSML/interpreters/WSDLImporter/build.xml:  Ant file for

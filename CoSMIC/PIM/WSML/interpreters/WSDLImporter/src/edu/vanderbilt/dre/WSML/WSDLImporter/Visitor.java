@@ -13,7 +13,7 @@ public interface Visitor
   public void visitBindingOutput (BindingOutput bindingOutput);
   public void visitDefinition (Definition definition);
   public void visitFault (Fault fault);
-  public void visitImport (Import import);
+  public void visitImport (Import imports);
   public void visitInput (Input input);
   public void visitMessage (Message message);
   public void visitOperation (Operation operation);
