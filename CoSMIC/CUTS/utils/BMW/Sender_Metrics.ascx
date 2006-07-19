@@ -6,10 +6,9 @@
   width="100%" borderstyle="none" borderwidth="1" bordercolor="darkgray"
   onpageindexchanged="handle_page_index_changed">
 
-  <headerstyle backcolor="darkblue" forecolor="white" horizontalalign="center"
-               font-bold="true" />
-  <footerstyle backcolor="darkgray" />
-  <alternatingitemstyle backcolor="#cccccc" />
+  <headerstyle cssclass="header" />
+  <footerstyle cssclass="footer" />
+  <alternatingitemstyle cssclass="alternate-row" />
   <pagerstyle mode="NumericPages" />
   <itemstyle horizontalalign="center" />
 

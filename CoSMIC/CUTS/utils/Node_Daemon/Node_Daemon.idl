@@ -1,0 +1,42 @@
+/* -*- IDL -*- */
+
+//=============================================================================
+/**
+ * @file      Node_Daemon.idl
+ *
+ * $Id$
+ *
+ * @author    James H. Hill
+ */
+//=============================================================================
+
+#ifndef _CUTS_NODE_DAEMON_IDL_
+#define _CUTS_NODE_DAEMON_IDL_
+
+module CUTS
+{
+  struct Node_Binding
+  {
+    boolean localhost;
+    unsigned short port;
+  };
+
+  typedef sequence <Node_Binding> Node_Bindings;
+
+  struct Node_Detail
+  {
+    Node_Binding binding;
+    string params;
+  };
+
+  typedef sequence <Node_Detail> Node_Details;
+
+  interface Node_Daemon
+  {
+    unsigned long spawn (in Node_Details nodes);
+
+    unsigned long kill (in Node_Bindings nodes);
+  };
+};
+
+#endif  /* !defined _CUTS_NODE_DAEMON_IDL_ */

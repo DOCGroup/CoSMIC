@@ -6,6 +6,7 @@ workspace (CUTS) {
 
   // -- The following projects/directories are shared builds.
   cuts
+  utils/Node_Daemon
 
   exclude (!vc6, !vc7, !vc71, !vc8) {
     cmdline += -include $COSMIC_ROOT

@@ -380,6 +380,35 @@ public class CUTS_Database_Utility
     return et;
   }
 
+  /**
+   * Delete a specific test from the database.
+   * 
+   * @param[in]   test      The id of the test.
+   */
+  public void delete_test(System.Int32 test)
+  {
+    MySqlCommand command = this.conn_.CreateCommand();
+    command.CommandText = "DELETE FROM tests WHERE test_number = ?test";
+    command.Parameters.Add("?test", test);
+    command.ExecuteNonQuery();
+  }
+
+  /**
+   * Get all the test from the database. This returns the test in
+   * the \a test table of the \ds argument.
+   * 
+   * @param[out]        ds      The target database.
+   */
+  public void get_all_test(ref DataSet ds)
+  {
+    // Create the command for the query.
+    MySqlCommand command = this.conn_.CreateCommand();
+    command.CommandText = "SELECT * FROM tests ORDER BY test_number";
+
+    // Create a new adapter to ease the creation of the dataset.
+    MySqlDataAdapter adapter = new MySqlDataAdapter (command);
+    adapter.Fill(ds, "tests");
+  }
   /// Connection object.
   private MySqlConnection conn_;
 }

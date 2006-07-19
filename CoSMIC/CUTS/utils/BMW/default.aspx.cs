@@ -1,9 +1,20 @@
+// -*- C# -*-
+
+//=============================================================================
+/**
+ * @file      default.aspx.cs
+ * 
+ * $Id$
+ * 
+ * @author    James H. Hill
+ */
+//=============================================================================
+
 using System;
 using System.Collections;
 using System.Configuration;
 using System.ComponentModel;
 using System.Data;
-using System.Data.Odbc;
 using System.Drawing;
 using System.Web;
 using System.Web.SessionState;
@@ -13,17 +24,25 @@ using System.Web.UI.HtmlControls;
 
 namespace CUTS
 {
-  /// <summary>
-  /// Summary description for _default.
-  /// </summary>
+  //===========================================================================
+  /**
+   * @class Test  
+   * 
+   * Backend source for the default.aspx web page.
+   */
+  //===========================================================================
+
   public partial class Test : System.Web.UI.Page
   {
+    private CUTS_Database_Utility cuts_database_ =
+      new CUTS_Database_Utility(ConfigurationManager.AppSettings["MySQL"]);
+
     //
     // Page_Load
     //
     private void Page_Load (object sender, System.EventArgs e)
     {
-      load_test_data ();
+      this.load_test_data();
     }
 
     //
@@ -33,28 +52,21 @@ namespace CUTS
     {
       if (e.CommandName == "delete")
       {
-        OdbcConnection conn = new OdbcConnection(
-          ConfigurationManager.AppSettings["ConnectionString"]);
-
-        int test_number = (int)this.tests_.DataKeys[e.Item.ItemIndex];
-
         try
         {
-          conn.Open();
+          // Get the test number from the selected index.
+          System.Int32 test_number = 
+            (System.Int32)this.tests_.DataKeys[e.Item.ItemIndex];
 
-          OdbcCommand command = conn.CreateCommand();
-          command.CommandText = "DELETE FROM tests WHERE test_number = ?";
-          OdbcParameter p1 = command.Parameters.Add("test_number", OdbcType.Int, 0);
-          p1.Value = test_number;
+          // Delete the test from the <cuts_database_> and reload it
+          // from the database. This is very inefficient and needs
+          // to be addressed. It would be better to "cache" the dataset
+          // and operate on it. Then provide a "commit" button which
+          // would all users to commit the changes to the database.
+          this.cuts_database_.delete_test(test_number);
+          this.load_test_data();
 
-          command.ExecuteNonQuery();
-          conn.Close();
-
-          load_test_data();
-        }
-        catch (OdbcException ex)
-        {
-          this.message_.Text = ex.Message;
+          this.cuts_database_.disconnect();
         }
         catch (Exception ex)
         {
@@ -72,7 +84,7 @@ namespace CUTS
       this.tests_.CurrentPageIndex = e.NewPageIndex;
 
       // Refresh the test data.
-      refresh_test_data ();
+      this.load_test_data ();
     }
 
     //
@@ -80,16 +92,15 @@ namespace CUTS
     //
     protected string status_image_filename (string status)
     {
-      if (status == "active")
+      switch (status)
       {
+      case "active":
         return "stoplight-green.gif";
-      }
-      else if (status == "inactive")
-      {
+
+      case "inactive":
         return "stoplight-green.gif";
-      }
-      else
-      {
+
+      default:
         return "stoplight-blank.gif";
       }
     }
@@ -107,10 +118,11 @@ namespace CUTS
       {
         TableCell pager = (TableCell)e.Item.Controls[0];
 
-        //if (pager.Controls.Count > 0)
-        //{
-        //  pager.Text = "Page: " + pager.Text;
-        //}
+        if (pager.Controls.Count > 0)
+        {
+          Label label = (Label)pager.Controls[0];
+          label.Text = "Page: " + label.Text;
+        }
       }
       else if (item_type == ListItemType.Footer)
       {
@@ -131,66 +143,21 @@ namespace CUTS
     //
     // load_test_data
     //
-    private bool load_test_data ()
+    private void load_test_data ()
     {
-      OdbcConnection conn = new OdbcConnection(
-        ConfigurationManager.AppSettings["ConnectionString"]);
-
       try
       {
-        // Open a connection to the database.
-        conn.Open ();
-
-        // Create a new <DataAdapter> to ease the creation of the dataset.
-        OdbcDataAdapter adapter = new OdbcDataAdapter ();
-        adapter.SelectCommand =
-          new OdbcCommand ("SELECT * FROM tests ORDER BY test_number", conn);
-
-        // Fill the <dataset> by executing the <SelectCommand> for the
-        // <adapater>.
-        DataSet ds = new DataSet ();
-        adapter.Fill (ds, "tests");
+        // Get all the test from the database.
+        DataSet ds = new DataSet();
+        this.cuts_database_.get_all_test(ref ds);
 
         // Expose the <DefaultView> of the result.
         this.tests_.DataSource = ds.Tables["tests"];
         this.tests_.DataBind ();
-
-        // Save the <DataSet> in the <Session> object.
-        Session["tests"] = ds;
-        return true;
       }
-      catch (Exception)
+      catch (Exception ex)
       {
-        return false;
-      }
-      finally
-      {
-        if (conn.State == ConnectionState.Open)
-        {
-          conn.Close ();
-        }
-      }
-    }
-
-    //
-    // refresh_test_data
-    //
-    private void refresh_test_data ()
-    {
-      try
-      {
-        // Get the <DataSet> from the <Session> object.
-        DataSet ds = (DataSet) Session["tests"];
-
-        // Rebind the data to the control.
-        this.tests_.DataSource = ds.Tables["tests"];
-        this.tests_.DataBind ();
-      }
-      catch (Exception)
-      {
-        // Making the assumption the data doesn't exists. We can
-        // therefore try and load a fresh set of data.
-        load_test_data ();
+        this.message_.Text = ex.Message;
       }
     }
 

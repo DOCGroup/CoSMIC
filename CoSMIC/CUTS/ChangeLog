@@ -1,3 +1,51 @@
+Wed Jul 19 03:16:03 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * CUTS.mwc:
+
+          Added the Node_Daemon to the workspace.
+
+        * utils/BMW/BMW.master:
+        * utils/BMW/images/logo.jpg:
+
+          Added the logo to the BMW.
+
+          Thanks John Slaby.
+
+        * utils/BMW/Database_Utility/Database_Utility.cs:
+
+          Added a method for getting all the test in the database.
+
+        * utils/BMW/Sender_Metrics.ascx:
+        * utils/BMW/Style.css:
+        * utils/BMW/default.aspx:
+        * utils/BMW/default.aspx.cs:
+
+          Moved the implementation for query the test to the database
+          utility assembly. See above.
+
+        * utils/Node_Daemon/Active_Process.h:
+        * utils/Node_Daemon/Active_Process.inl:
+        * utils/Node_Daemon/Active_Process.cpp:
+        * utils/Node_Daemon/Node_Daemon.idl:
+        * utils/Node_Daemon/Node_Daemon.mpc:
+        * utils/Node_Daemon/Node_Daemon_Client.cpp:
+        * utils/Node_Daemon/Node_Daemon_Event_Handler.h:
+        * utils/Node_Daemon/Node_Daemon_Event_Handler.cpp:
+        * utils/Node_Daemon/Node_Daemon_Server.cpp:
+        * utils/Node_Daemon/Node_Daemon_i.h:
+        * utils/Node_Daemon/Node_Daemon_i.inl:
+        * utils/Node_Daemon/Node_Daemon_i.cpp:
+        * utils/Node_Daemon/Process_Log.h:
+        * utils/Node_Daemon/Process_Log.inl:
+        * utils/Node_Daemon/Process_Log.cpp:
+        * utils/Node_Daemon/Server_Options.h:
+        * utils/Node_Daemon/Server_Options.cpp:
+
+          Initial implementation for a Node_Daemon utility for spawning
+          and killing node managers on the fly. This daemon is a more advance
+          version of the Benchmark Node Controller (BNC) developed by
+          Keith Muzzioli at Raytheon.
+
 Tue Jul 11 05:47:57 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CIAO/UDM_CIAO_Visitor.cpp (Visit_File):

@@ -22,10 +22,12 @@ function unhilite(obj)
 </head>
 <body style="border:0px;margin:0px">
   <form runat="server" id="main_form_">
-  <h1>Component Workload Emulator Utilization Test Suite<br /> 
-      Benchmark Manager Web Utility
-  </h1>
   <table border="0" width="100%">
+  <tr>
+    <td><img src="images/logo.jpg" alt="CUTS logo" /></td>
+    <td><h1>Component Workload Emulator Utilization Test Suite<br /> 
+        Benchmark Manager Web Utility</h1></td>
+  </tr>
   <tr valign="top">
     <td style="width:150px;">
       <p></p>     
