@@ -1,3 +1,9 @@
+Wed Jul 19 23:56:47 UTC 2006  Nishanth Shankaran  <nshankar@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp: Updated the
+          visitor such that config/info properties attached to a component
+          type are captured in the ccd file.
+
 Tue Jul 18 03:08:12 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/WSML/interpreters/WSDLImporter/build.xml: Updated the file
@@ -330,12 +336,6 @@ Fri May 26 20:01:26 UTC 2006  Nishanth Shankaran  <nshankar@dre.vanderbilt.edu>
         * PIM/PICML/examples/RT1H/RT1H_Combined.xme:
         * PIM/PICML/examples/RT1H/descriptors/RACE.cdp: Updated the model
           to include the importance bin packer.
-
-Fri May 26 20:00:44 UTC 2006  Nishanth Shankaran  <nshankar@dre.vanderbilt.edu>
-
-        * PIM/PICML/examples/RT1H/RT1H_Combined.xme:
-
-        * PIM/PICML/examples/SPACE/descriptors/NodeDetails.dat:
 
 Fri May 26 18:03:14 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 

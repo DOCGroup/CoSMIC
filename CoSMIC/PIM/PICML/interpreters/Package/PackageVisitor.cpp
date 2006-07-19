@@ -788,8 +788,38 @@ namespace PICML
 
   void PackageVisitor::Visit_ComponentRef(const ComponentRef& ct)
   {
-    Component comp = ct.ref();
-    comp.Accept (*this);
+	this->push();
+	Component comp = ct.ref();
+    string name = this->outputPath_ + "\\";
+    name += comp.name();
+    name += ".ccd";
+    this->initTarget (name);
+    this->initDocument ("Deployment:componentInterfaceDescription");
+    this->initRootAttributes();
+	comp.Accept (*this);
+   
+	const set<ComponentConfigProperty>
+      ccps = ct.dstComponentConfigProperty();
+    for (set<ComponentConfigProperty>::const_iterator it1 = ccps.begin();
+         it1 != ccps.end();
+         ++it1)
+      {
+        ComponentConfigProperty ccp = *it1;
+        ccp.Accept (*this);
+      }
+	const set<ComponentInfoProperty>
+      cips = ct.dstComponentInfoProperty();
+    for (set<ComponentInfoProperty>::const_iterator it2 = cips.begin();
+         it2 != cips.end();
+         ++it2)
+      {
+        ComponentInfoProperty cip = *it2;
+        cip.Accept (*this);
+      }
+	// Dump out an ComponentInterfaceDescription file
+    this->dumpDocument();
+    this->pop();
+    
   }
 
   void PackageVisitor::CreateComponentCanonicalIds()
@@ -1001,13 +1031,14 @@ namespace PICML
   void PackageVisitor::Visit_Component(const Component& comp)
   {
     this->push();
+	/*
     string name = this->outputPath_ + "\\";
     name += comp.name();
     name += ".ccd";
     this->initTarget (name);
     this->initDocument ("Deployment:componentInterfaceDescription");
     this->initRootAttributes();
-
+*/
     string label = comp.label();
     if (!label.empty())
       this->curr_->appendChild (this->createSimpleContent ("label",
@@ -1090,8 +1121,8 @@ namespace PICML
         recep.Accept (*this);
       }
 
-    // Dump out an ComponentInterfaceDescription file
-    this->dumpDocument();
+	// Dump out an ComponentInterfaceDescription file
+  //  this->dumpDocument();
     this->pop();
   }
 
@@ -1251,11 +1282,29 @@ namespace PICML
   void PackageVisitor::Visit_ComponentProperty(const ComponentProperty&)
   {}
 
-  void PackageVisitor::Visit_ComponentInfoProperty(const ComponentInfoProperty&)
-  {}
+  void PackageVisitor::Visit_ComponentInfoProperty(const ComponentInfoProperty& cip)
+  {
+	this->push();
+    DOMElement* ele = this->doc_->createElement (XStr ("infoProperty"));
+    this->curr_->appendChild (ele);
+    this->curr_ = ele;
+    Property ref = cip.dstComponentInfoProperty_end();
+    ref.Accept (*this);
+    this->pop();
+	
+  }
 
-  void PackageVisitor::Visit_ComponentConfigProperty(const ComponentConfigProperty&)
-  {}
+  void PackageVisitor::Visit_ComponentConfigProperty(const ComponentConfigProperty& ccp)
+  {
+	this->push();
+    DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
+    this->curr_->appendChild (ele);
+    this->curr_ = ele;
+    Property ref = ccp.dstComponentConfigProperty_end();
+    ref.Accept (*this);
+    this->pop();
+	
+  }
 
   void PackageVisitor::Visit_Supports(const Supports&)
   {}
