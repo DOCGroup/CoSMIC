@@ -4,7 +4,7 @@
 /**
  * @file        Node_Daemon_Server.cpp
  *
- * $Id*
+ * $Id$
  *
  * @author      James H. Hill
  */

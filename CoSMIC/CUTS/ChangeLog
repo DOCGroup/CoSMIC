@@ -1,3 +1,9 @@
+Wed Jul 19 03:30:56 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/Node_Daemon/Node_Daemon_Server.cpp:
+
+          Fixed file property.
+
 Wed Jul 19 03:16:03 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * CUTS.mwc:
