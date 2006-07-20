@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="WSML" guid="{84574A50-A97E-4B0F-BB7F-96812DEFC6F3}" cdate="Sun Jul 16 16:58:18 2006" mdate="Sun Jul 16 16:58:18 2006" >
+<paradigm name="WSML" guid="{C5D1D67C-B997-4497-9BAC-BC1817EE1CF7}" cdate="Sun Jul 16 16:58:18 2006" mdate="Sun Jul 16 16:58:18 2006" >
 
 	<comment>Web Services Modeling Language (WSML) is a domain-specific modeling language
   which allows definition of Web Services and interactions, and uses generative
@@ -371,7 +371,7 @@
 					<pointeritem desc = "Port"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
-					<pointeritem desc = "Binding"></pointeritem>
+					<pointeritem desc = "BindingRef"></pointeritem>
 				</pointerspec>
 			</connjoint>
 		</connection>
@@ -390,6 +390,12 @@
 				</pointerspec>
 			</connjoint>
 		</connection>
+		<reference name = "BindingRef" metaref = "1401">
+				<regnode name = "namePosition" value ="4"></regnode>
+			<pointerspec name = "ref">
+				<pointeritem desc = "Binding"></pointeritem>
+			</pointerspec>
+		</reference>
 		<reference name = "FaultRef" metaref = "1036">
 				<regnode name = "namePosition" value ="4"></regnode>
 			<pointerspec name = "ref">
@@ -560,12 +566,12 @@
 		<model name = "Definitions" metaref = "1090" attributes = "targetNamespace name" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="ValidDefinitionsPartCardinality26" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Types" ) -> size in
+				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Definitions, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidDefinitionsPartCardinality27" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
+				<![CDATA[let partCount = self.parts( "Types" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Definitions, has to match 0..1.</dispname>
 			</constraint>
@@ -577,8 +583,6 @@
 			<role name = "Documentation" metaref = "1094" kind = "Documentation"></role>
 			<role name = "Import" metaref = "1095" kind = "Import"></role>
 			<role name = "Message" metaref = "1096" kind = "Message"></role>
-			<role name = "Port" metaref = "1097" kind = "Port"></role>
-			<role name = "PortBinding" metaref = "1098" kind = "PortBinding"></role>
 			<role name = "PortType" metaref = "1099" kind = "PortType"></role>
 			<role name = "Service" metaref = "1100" kind = "Service"></role>
 			<role name = "Types" metaref = "1101" kind = "Types"></role>
@@ -589,8 +593,6 @@
 				<part metaref = "1105" role = "Documentation" primary = "yes" linked = "no"></part>
 				<part metaref = "1106" role = "Import" primary = "yes" linked = "no"></part>
 				<part metaref = "1107" role = "Message" primary = "yes" linked = "no"></part>
-				<part metaref = "1108" role = "Port" primary = "yes" linked = "no"></part>
-				<part metaref = "1109" role = "PortBinding" primary = "yes" linked = "no"></part>
 				<part metaref = "1110" role = "PortType" primary = "yes" linked = "no"></part>
 				<part metaref = "1111" role = "Service" primary = "yes" linked = "no"></part>
 				<part metaref = "1112" role = "Types" primary = "yes" linked = "no"></part>
@@ -947,8 +949,14 @@
 		</model>
 		<model name = "Service" metaref = "1230" >
 				<regnode name = "namePosition" value ="4"></regnode>
+			<role name = "BindingRef" metaref = "1404" kind = "BindingRef"></role>
+			<role name = "Port" metaref = "1402" kind = "Port"></role>
+			<role name = "PortBinding" metaref = "1406" kind = "PortBinding"></role>
 			<role name = "PortRef" metaref = "1231" kind = "PortRef"></role>
 			<aspect name = "ServiceDefinition" metaref = "1232" >
+				<part metaref = "1405" role = "BindingRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
+				<part metaref = "1403" role = "Port" primary = "yes" linked = "yes"></part>
+				<part metaref = "1407" role = "PortBinding" primary = "yes" linked = "no"></part>
 				<part metaref = "1233" role = "PortRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "yes"></part>
 			</aspect>
 		</model>

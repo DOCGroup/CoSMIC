@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{66525019-A4E6-48D8-AA83-4CF9DC11DD6D}" cdate="Sun Jul 16 16:58:18 2006" mdate="Sun Jul 16 16:58:18 2006" version="" metaguid="{B3568889-311A-4E5A-A3DD-A8AC2BD7DE71}" metaversion="" metaname="MetaGME">
+<project guid="{33AB41DA-134B-4D3A-89F2-8479FF69634D}" cdate="Sun Jul 16 16:58:18 2006" mdate="Sun Jul 16 16:58:18 2006" version="" metaguid="{B3568889-311A-4E5A-A3DD-A8AC2BD7DE71}" metaversion="" metaname="MetaGME">
 	<name>WSML</name>
 	<comment>Web Services Modeling Language (WSML) is a domain-specific modeling language
   which allows definition of Web Services and interactions, and uses generative
@@ -11531,6 +11531,39 @@
 					</regnode>
 				</regnode>
 			</regnode>
+			<regnode name="BindingRef-84-Reference" status="undefined">
+				<value></value>
+				<regnode name="KindAspects" status="undefined">
+					<value></value>
+					<regnode name="Service:BindingRef" status="undefined">
+						<value></value>
+						<regnode name="ServiceDefinition" isopaque="yes">
+							<value>ServiceDefinition</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1401</value>
+					<regnode name="Service" status="undefined">
+						<value></value>
+						<regnode name="BindingRef" isopaque="yes">
+							<value>1404</value>
+							<regnode name="ServiceDefinition" isopaque="yes">
+								<value>1405</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="Service:BindingRef" status="undefined">
+						<value></value>
+						<regnode name="ServiceDefinition" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
 			<regnode name="Definitions-1-Model" status="undefined">
 				<value></value>
 				<regnode name="KindAspects" status="undefined">
@@ -12051,6 +12084,12 @@
 							<value> </value>
 						</regnode>
 					</regnode>
+					<regnode name="Service:Port" status="undefined">
+						<value></value>
+						<regnode name="ServiceDefinition" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1171</value>
@@ -12063,10 +12102,25 @@
 							</regnode>
 						</regnode>
 					</regnode>
+					<regnode name="Service" status="undefined">
+						<value></value>
+						<regnode name="Port" isopaque="yes">
+							<value>1402</value>
+							<regnode name="ServiceDefinition" isopaque="yes">
+								<value>1403</value>
+							</regnode>
+						</regnode>
+					</regnode>
 				</regnode>
 				<regnode name="PrimaryAspects" status="undefined">
 					<value></value>
 					<regnode name="Definitions:Port" status="undefined">
+						<value></value>
+						<regnode name="ServiceDefinition" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Service:Port" status="undefined">
 						<value></value>
 						<regnode name="ServiceDefinition" isopaque="yes">
 							<value>yes</value>
@@ -12087,10 +12141,25 @@
 							</regnode>
 						</regnode>
 					</regnode>
+					<regnode name="Service" status="undefined">
+						<value></value>
+						<regnode name="PortBinding" isopaque="yes">
+							<value>1406</value>
+							<regnode name="ServiceDefinition" isopaque="yes">
+								<value>1407</value>
+							</regnode>
+						</regnode>
+					</regnode>
 				</regnode>
 				<regnode name="PrimaryAspects" status="undefined">
 					<value></value>
 					<regnode name="Definitions:PortBinding" status="undefined">
+						<value></value>
+						<regnode name="ServiceDefinition" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Service:PortBinding" status="undefined">
 						<value></value>
 						<regnode name="ServiceDefinition" isopaque="yes">
 							<value>yes</value>
@@ -27945,7 +28014,7 @@
 				</regnode>
 			</regnode>
 		</regnode>
-		<model id="id-0065-00000001" kind="ParadigmSheet" relid="0x9" childrelidcntr="0x81">
+		<model id="id-0065-00000001" kind="ParadigmSheet" relid="0x9" childrelidcntr="0x88">
 			<name>Definitions</name>
 			<regnode name="color" isopaque="yes">
 				<value>0x0000ff</value>
@@ -28590,7 +28659,7 @@
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>771,286</value>
+							<value>743,286</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" status="undefined">
@@ -28905,7 +28974,7 @@
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1149,258</value>
+							<value>1149,251</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" status="undefined">
@@ -29142,7 +29211,7 @@
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>897,461</value>
+							<value>820,440</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" status="undefined">
@@ -29214,7 +29283,7 @@
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>715,482</value>
+							<value>645,447</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" status="undefined">
@@ -29289,7 +29358,7 @@
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>939,559</value>
+							<value>869,522</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" status="undefined">
@@ -29433,7 +29502,7 @@
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1024,422</value>
+							<value>1009,419</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" status="undefined">
@@ -29577,7 +29646,7 @@
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>708,587</value>
+							<value>638,552</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" status="undefined">
@@ -29693,6 +29762,78 @@
 					<value>true</value>
 				</attribute>
 				<attribute kind="IsTypeInfoShown" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-000000a8" kind="Reference" role="Reference" relid="0x84">
+				<name>BindingRef</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>884,359</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>876,356</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>884,359</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>884,359</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
 					<value>true</value>
 				</attribute>
 				<attribute kind="IsTypeShown" status="meta">
@@ -29850,10 +29991,22 @@
 				<name>Attribute</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,83</value>
+						</regnode>
+					</regnode>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
 							<value>1037,55</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,13</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -30166,20 +30319,6 @@
 				<connpoint role="src" target="id-0066-00000010"/>
 				<connpoint role="dst" target="id-0066-00000013"/>
 			</connection>
-			<connection id="id-0068-00000014" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x47">
-				<name>ConnectorToDestination</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>We</value>
-				</regnode>
-				<attribute kind="Cardinality">
-					<value>1</value>
-				</attribute>
-				<attribute kind="dstRolename" status="meta">
-					<value>dst</value>
-				</attribute>
-				<connpoint role="dst" target="id-0066-0000000c"/>
-				<connpoint role="src" target="id-0066-00000013"/>
-			</connection>
 			<connection id="id-0068-00000015" kind="Containment" role="Containment" relid="0x4d">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
@@ -30313,23 +30452,6 @@
 				</attribute>
 				<connpoint role="dst" target="id-0066-00000001"/>
 				<connpoint role="src" target="id-0066-0000000f"/>
-			</connection>
-			<connection id="id-0068-0000001f" kind="Containment" role="Containment" relid="0x6a">
-				<name>Containment</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ns</value>
-				</regnode>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<attribute kind="IsPort" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="Rolename" status="meta">
-					<value></value>
-				</attribute>
-				<connpoint role="dst" target="id-0066-00000001"/>
-				<connpoint role="src" target="id-0066-00000014"/>
 			</connection>
 			<connection id="id-0068-00000020" kind="AssociationClass" role="AssociationClass" relid="0x6b">
 				<name>AssociationClass</name>
@@ -30486,7 +30608,80 @@
 				<connpoint role="dst" target="id-0066-00000001"/>
 				<connpoint role="src" target="id-0067-0000002c"/>
 			</connection>
-			<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0xf" members="id-0066-00000001 id-0066-00000005 id-0066-00000008 id-0066-00000009 id-0066-0000000a id-0066-0000000b id-0066-0000000c id-0066-0000000d id-0066-0000000f id-0066-00000010 id-0066-00000011 id-0066-00000012 id-0066-00000014 id-0066-00000015 id-0066-00000016 id-0066-00000017 id-0066-00000018 id-0066-00000019 id-0066-0000001a id-0066-0000001b id-0066-0000001c">
+			<connection id="id-0068-000000ff" kind="Containment" role="Containment" relid="0x83">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Nw</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="src" target="id-0066-00000010"/>
+				<connpoint role="dst" target="id-0066-00000011"/>
+			</connection>
+			<connection id="id-0068-00000100" kind="ReferTo" role="ReferTo" relid="0x85">
+				<name>ReferTo</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>We</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-0000000c"/>
+				<connpoint role="src" target="id-0066-000000a8"/>
+			</connection>
+			<connection id="id-0068-00000101" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x86">
+				<name>ConnectorToDestination</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>n</value>
+				</regnode>
+				<attribute kind="Cardinality">
+					<value>1</value>
+				</attribute>
+				<attribute kind="dstRolename" status="meta">
+					<value>dst</value>
+				</attribute>
+				<connpoint role="src" target="id-0066-00000013"/>
+				<connpoint role="dst" target="id-0066-000000a8"/>
+			</connection>
+			<connection id="id-0068-00000102" kind="Containment" role="Containment" relid="0x87">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Nw</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000011"/>
+				<connpoint role="src" target="id-0066-000000a8"/>
+			</connection>
+			<connection id="id-0068-00000103" kind="Containment" role="Containment" relid="0x88">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>w</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000011"/>
+				<connpoint role="src" target="id-0066-00000014"/>
+			</connection>
+			<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0xf" members="id-0066-00000001 id-0066-00000005 id-0066-00000008 id-0066-00000009 id-0066-0000000a id-0066-0000000b id-0066-0000000c id-0066-0000000d id-0066-0000000f id-0066-00000010 id-0066-00000011 id-0066-00000012 id-0066-00000014 id-0066-00000015 id-0066-00000016 id-0066-00000017 id-0066-00000018 id-0066-00000019 id-0066-0000001a id-0066-0000001b id-0066-0000001c id-0066-000000a8">
 				<name>ServiceDefinition</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>

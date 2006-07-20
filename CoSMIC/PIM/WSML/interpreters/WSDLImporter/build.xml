@@ -27,6 +27,7 @@
     <javac destdir="lib" debug="on">
       <src path="src" />
       <classpath refid="classpath" />
+      <compilerarg value="-Xlint:unchecked" />
     </javac>
   </target>
 
@@ -34,6 +35,7 @@
     <echo message="Running the WSDLImporter..." />
     <java classname="edu.vanderbilt.dre.WSML.WSDLImporter.WSDLImporter" fork="true">
       <arg file="GoogleSearch.wsdl" />
+      <arg file="GoogleSearch.xme" />
       <classpath refid="classpath" />
     </java>
   </target>
