@@ -56,7 +56,7 @@ namespace CUTS
                       "activating cleaning thread\n"));
     ACE_Time_Value interval (300);
     ACE_Time_Value abstime =
-      this->timer_queue_.timer_queue ()->gettimeofday () + interval;
+      this->timer_queue_.timer_queue ()->gettimeofday ();
 
     this->timer_ = this->timer_queue_.schedule (this, 0, abstime, interval);
 
@@ -103,12 +103,7 @@ namespace CUTS
     ACE_ENV_ARG_DECL_WITH_DEFAULTS)
     ACE_THROW_SPEC ((::CORBA::SystemException))
   {
-    // Spawn all the node managers specified in <nodes>. We are using
-    // a function-scoped locking mechanism to prevent multiple clients
-    // from trying to spawn nodes simultaneously.
-
-    static ACE_Thread_Mutex lock;
-    ACE_GUARD_RETURN (ACE_Thread_Mutex, guard, lock, 0);
+    ACE_WRITE_GUARD_RETURN (ACE_RW_Thread_Mutex, guard, this->lock_, 0);
 
     size_t count = 0;
     size_t max_nodes = nodes.length ();
@@ -117,58 +112,63 @@ namespace CUTS
     {
       const ::CUTS::Node_Detail & detail = nodes[i];
 
-      // Since the port is available, then we have permission to
-      // spawn a new process.
-      this->p_options_.command_line (
-        "%s -ORBEndpoint iiop://%s:%u %s",
-        this->node_manager_.c_str (),
-        detail.binding.localhost ? LOCALHOST : this->ip_addr_.c_str (),
-        detail.binding.port,
-        detail.params.in ());
-
-      pid_t pid = this->spawn_i (detail.binding.port,
-                                 detail.binding.localhost,
-                                 this->p_options_);
-
-      if (pid != ACE_INVALID_PID &&
-          pid != 0)
+      if (this->is_port_available (detail.binding.port,
+                                   detail.binding.localhost))
       {
-        VERBOSE_MESSAGE ((
-          LM_DEBUG,
-          "succesfully spawned process: [pid=%u;port=%u;local=%s]\n",
-          pid,
-          detail.binding.port,
-          detail.binding.localhost ? "yes" : "no"));
+        // Since the port is available, then we have permission to
+        // spawn a new process.
+        //this->p_options_.command_line (
+        //  "%s -ORBEndpoint iiop://%s:%u %s",
+        //  this->node_manager_.c_str (),
+        //  detail.binding.localhost ? LOCALHOST : this->ip_addr_.c_str (),
+        //  detail.binding.port,
+        //  detail.params.in ());
 
-        if (PROCESS_LOG ()->process_spawn (pid,
-                                           detail.binding.port,
-                                           detail.binding.localhost))
+        this->p_options_.command_line (
+          "%s %s",
+          this->node_manager_.c_str (),
+          //detail.binding.localhost ? LOCALHOST : this->ip_addr_.c_str (),
+          //detail.binding.port,
+          detail.params.in ());
+
+        pid_t pid = this->spawn_i (detail.binding.port,
+                                   detail.binding.localhost,
+                                   this->p_options_);
+
+        if (pid != ACE_INVALID_PID &&
+            pid != 0)
         {
           VERBOSE_MESSAGE ((
             LM_DEBUG,
-            "succesfully logged process: [pid=%u;port=%u;local=%s]\n",
-            pid,
-            detail.binding.port,
-            detail.binding.localhost ? "yes" : "no"));
+            "succesfully spawned node manager (%s:%u)\n",
+            detail.binding.localhost ? LOCALHOST : this->ip_addr_.c_str (),
+            detail.binding.port));
+
+          if (PROCESS_LOG ()->process_spawn (pid,
+                                             detail.binding.port,
+                                             detail.binding.localhost))
+          {
+            VERBOSE_MESSAGE ((LM_DEBUG, "succesfully logged process\n"));
+          }
+          else
+          {
+            ACE_ERROR ((LM_ERROR, "failed to log process\n"));
+          }
+
+          ++ count;
         }
         else
         {
-          ACE_ERROR ((LM_ERROR,
-                      "failed to log process: [pid=%u;port=%u;local=%s]\n",
-                      pid,
-                      detail.binding.port,
-                      detail.binding.localhost ? "yes" : "no"));
+          ACE_ERROR ((LM_ERROR, "failed to spawn node manager (%p)\n"));
         }
-
-        ++ count;
       }
       else
       {
-        ACE_ERROR ((
-          LM_ERROR,
-          "failed to spawn node manager with binding %s:%u\n",
-          detail.binding.localhost ? LOCALHOST :  this->ip_addr_.c_str (),
-          detail.binding.port));
+        ACE_ERROR ((LM_ERROR,
+                    "endpoint %s:%u is not available\n",
+                    detail.binding.localhost ?
+                    LOCALHOST : this->ip_addr_.c_str (),
+                    detail.binding.port));
       }
     }
 
@@ -183,6 +183,8 @@ namespace CUTS
     ACE_ENV_ARG_DECL_WITH_DEFAULTS)
     ACE_THROW_SPEC ((::CORBA::SystemException))
   {
+    ACE_WRITE_GUARD_RETURN (ACE_RW_Thread_Mutex, guard, this->lock_, 0);
+
     size_t count = 0;
     size_t max_nodes = nodes.length ();
 
@@ -277,19 +279,6 @@ namespace CUTS
                                 bool localhost,
                                 ACE_Process_Options & p_options)
   {
-    // Check the availability of the node binding before
-    // continuing w/ the spawnin
-    if (!this->is_port_available (port,
-                                  localhost))
-    {
-      ACE_ERROR_RETURN ((
-        LM_ERROR,
-        "endpoint %s:%u is not available\n",
-        localhost ? LOCALHOST : this->ip_addr_.c_str (),
-        port),
-        ACE_INVALID_PID);
-    }
-
     VERBOSE_MESSAGE ((LM_DEBUG,
                       "spawning node manager (command: %s)\n",
                       p_options.command_line_buf () ));
@@ -316,7 +305,8 @@ namespace CUTS
     this->p_options_.process_name (NODE_MANAGER);
     this->p_options_.avoid_zombies (0);
 #if defined (ACE_WIN32)
-    this->p_options_.creation_flags (CREATE_NEW_PROCESS_GROUP);
+    this->p_options_.creation_flags (CREATE_NEW_PROCESS_GROUP |
+                                     CREATE_DEFAULT_ERROR_MODE);
 #endif
 
     // We need to set the working directory for the process
@@ -482,5 +472,50 @@ namespace CUTS
     ACE_UNUSED_ARG (tv);
     ACE_UNUSED_ARG (act);
     return 0;
+  }
+
+  //
+  // details
+  //
+  ::CUTS::Node_Bindings * Node_Daemon_i::details (
+    ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+    ACE_THROW_SPEC ((::CORBA::SystemException))
+  {
+    ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex, guard, this->lock_, 0);
+
+    // Create a new <CUTS::Node_Bindings> structure and
+    // set the size of it to the number of processes managed
+    // at the time.
+    size_t managed = this->pm_.managed ();
+    ::CUTS::Node_Bindings * nodes = 0;
+
+    ACE_NEW_THROW_EX (nodes,
+                      ::CUTS::Node_Bindings (managed),
+                      ::CORBA::NO_MEMORY ());
+    nodes->length (managed);
+
+    size_t index = 0;
+
+    // Read all the local bindings that we are managing.
+    for (Node_Detail_Map::iterator local_iter (this->local_);
+         local_iter.done () != 1;
+         local_iter.advance (), index ++)
+    {
+      ::CUTS::Node_Binding & binding = (*nodes)[index];
+      binding.localhost = true;
+      binding.port = (*local_iter).ext_id_;
+    }
+
+    // Read all the global bindings that we are managing.
+    for (Node_Detail_Map::iterator global_iter (this->global_);
+         global_iter.done () != 1;
+         global_iter.advance (), index ++)
+    {
+      ::CUTS::Node_Binding & binding = (*nodes)[index];
+      binding.localhost = false;
+      binding.port = (*global_iter).ext_id_;
+    }
+
+    return nodes;
   }
 }

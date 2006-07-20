@@ -29,9 +29,9 @@ void Server_Options::node_manager_path (const char * path)
   char last_char = this->path_[length - 1];
 
 #if defined (ACE_WIN32)
-#define LAST_CHAR '/'
-#else
 #define LAST_CHAR '\\'
+#else
+#define LAST_CHAR '/'
 #endif
 
   if (last_char != LAST_CHAR)

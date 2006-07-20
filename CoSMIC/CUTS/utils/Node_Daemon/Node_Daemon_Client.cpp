@@ -4,15 +4,70 @@
 /**
  * @file        Node_Daemon_Client.cpp
  *
- * $Id*
+ * $Id$
  *
  * @author      James H. Hill
  */
 //=============================================================================
 
 #include "Node_DaemonC.h"
-#include "ace/streams.h"
+#include "Client_Options.h"
+#include "ace/Get_Opt.h"
+#include "ace/Log_Msg.h"
 #include "ace/OS_NS_unistd.h"
+
+//
+// parse_args
+//
+int parse_args (int argc, char * argv[])
+{
+  // Setup the <ACE_Get_Opt> variable.
+  const char * opts = "f:hln:p:v";
+  ACE_Get_Opt get_opt (argc, argv, opts);
+
+  // Setup the long options for the command-line
+  get_opt.long_option ("help", 'h', ACE_Get_Opt::NO_ARG);
+  get_opt.long_option ("localhost", 'l', ACE_Get_Opt::NO_ARG);
+  get_opt.long_option ("port", 'p', ACE_Get_Opt::ARG_REQUIRED);
+  get_opt.long_option ("spawn", 'n', ACE_Get_Opt::ARG_REQUIRED);
+  get_opt.long_option ("shutdown", ACE_Get_Opt::NO_ARG);
+  get_opt.long_option ("verbose", 'v', ACE_Get_Opt::NO_ARG);
+
+  int option;
+  while ((option = get_opt ()) != EOF)
+  {
+    switch (option)
+    {
+    case '0':
+      break;
+
+    case 'h':
+      // we need to display the help then exit
+      ACE_OS::exit (0);
+      break;
+
+    case 'v':
+      CLIENT_OPTIONS ()->verbose_ = true ;
+      break;
+
+    case '?':
+      // unknown option; do nothing
+      break;
+
+    case ':':
+      ACE_ERROR_RETURN ((LM_ERROR,
+                         "%c is missing an argument\n",
+                         get_opt.opt_opt ()),
+                         1);
+      break;
+
+    default:
+      /* do nothing */;
+    }
+  }
+
+  return 0;
+}
 
 //
 // main
@@ -22,64 +77,51 @@ int main (int argc, char * argv [])
   try
   {
     // initalize the ORB
-    cout << "initializing CORBA ORB..." << endl;
     CORBA::ORB_var orb = CORBA::ORB_init (argc, argv);
 
-    // read and destringify the Time_Date object's IOR
-    cout << "reading " << argv[1] << endl;
-    ::CORBA::Object_var obj = orb->string_to_object (argv[1]);
+    if (parse_args (argc, argv) != 0)
+      return 1;
+
+    // Resolve the initiale reference to the Node_Daemon
+    VERBOSE_MESSAGE ((LM_DEBUG,
+                      "resolving initial reference to Node_Daemon\n"));
+    ::CORBA::Object_var obj =
+      orb->resolve_initial_references ("Node_Daemon");
+
     if (::CORBA::is_nil (obj.in ()))
     {
-      cerr << "could not resolve node daemon IOR" << endl;
-      return 1;
+      ACE_ERROR_RETURN ((
+        LM_ERROR,
+        "failed to resolved initial reference to Node_Daemon\n"),
+        1);
     }
 
-    // narrow the IOR to a Game_Server object reference
-    cout << "creating node daemon object..." << endl;
-    ::CUTS::Node_Daemon_var daemon = ::CUTS::Node_Daemon::_narrow (obj.in ());
+    // Narrow the generic object to a CUTS/Node_Daemon object.
+    VERBOSE_MESSAGE ((LM_DEBUG,
+                      "extracting node daemon from object reference\n"));
+
+    ::CUTS::Node_Daemon_var daemon =
+      ::CUTS::Node_Daemon::_narrow (obj.in ());
 
     if (::CORBA::is_nil (daemon.in ()))
     {
-      cerr << "IOR was not a node daemon object reference" << endl;
-      return 1;
+      ACE_ERROR_RETURN ((LM_ERROR,
+                         "object was not a Node_Daemon\n"),
+                         1);
     }
 
-    ::CUTS::Node_Details nodes (2);
-    nodes.length (2);
-
-    nodes[0].params = ::CORBA::string_dup ("-s %CIAO_ROOT%/DAnCE/NodeApplication");
-    nodes[0].binding.localhost = true;
-    nodes[0].binding.port = 10000;
-
-    nodes[1].params = ::CORBA::string_dup ("-s %CIAO_ROOT%/DAnCE/NodeApplication");
-    nodes[1].binding.localhost = false;
-    nodes[1].binding.port = 20000;
-
-    long count = daemon->spawn (nodes);
-    ACE_DEBUG ((LM_ERROR,
-                "spawn %d node(s)\n",
-                count));
-
-    ACE_OS::sleep (5);
-
-    CUTS::Node_Bindings bindings (1);
-    bindings.length (1);
-    bindings[0] = nodes[1].binding;
-
-    count = daemon->kill (bindings);
-    ACE_DEBUG ((LM_ERROR,
-                "killed %d node(s)\n",
-                count));
-
     // Destroy the ORB.
-    cout << "destroying the ORB..." << endl;
+    VERBOSE_MESSAGE ((LM_DEBUG, "destroying the ORB\n"));
     orb->destroy ();
     return 0;
   }
   catch (::CORBA::Exception & ex)
   {
-    cerr << ex << std::endl;
-    ACE_UNUSED_ARG (ex);
+    ACE_PRINT_TAO_EXCEPTION (ex, "caught exception");
+  }
+  catch (...)
+  {
+    ACE_ERROR ((LM_ERROR, "caught unknown exception\n"));
   }
 
   return 1;

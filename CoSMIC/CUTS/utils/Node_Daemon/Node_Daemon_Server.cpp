@@ -12,6 +12,7 @@
 
 #include "Node_Daemon_i.h"
 #include "Server_Options.h"
+#include "tao/IORTable/IORTable.h"
 #include "ace/Get_Opt.h"
 #include "ace/streams.h"
 #include "ace/OS_NS_unistd.h"
@@ -74,17 +75,13 @@ int parse_args (int argc, char * argv [])
 //
 // write_ior_to_file
 //
-void write_ior_to_file (::CORBA::ORB_ptr orb,
-                        ::CUTS::Node_Daemon_ptr daemon)
+void write_ior_to_file (const char * ior)
 {
-  if (SERVER_OPTIONS ()->ior_file_.empty ())
+  if (SERVER_OPTIONS ()->ior_file_.empty () || ior == 0)
     return;
 
   try
   {
-    // Convert the object to its string format.
-    ::CORBA::String_var objstr = orb->object_to_string (daemon);
-
     // Open the IOR file for writing.
     ofstream iorfile;
     iorfile.open (SERVER_OPTIONS ()->ior_file_.c_str ());
@@ -99,7 +96,7 @@ void write_ior_to_file (::CORBA::ORB_ptr orb,
       }
 
       // Write the IOR to the file.
-      iorfile << objstr.in () << std::endl;
+      iorfile << ior << std::endl;
       iorfile.close ();
     }
     else
@@ -124,28 +121,43 @@ void write_ior_to_file (::CORBA::ORB_ptr orb,
 //
 int main (int argc, char * argv [])
 {
-  if (parse_args (argc, argv) < 0)
-    return 1;
-
   try
   {
     // Initalize the ORB
     CORBA::ORB_var orb = CORBA::ORB_init (argc, argv);
 
+    if (parse_args (argc, argv) < 0)
+      return 1;
+
+    // Get a reference to the <IORTable>.
+    VERBOSE_MESSAGE ((LM_DEBUG,
+                      "resolving initial reference to IOR table\n"));
+
+    ::CORBA::Object_var obj = orb->resolve_initial_references ("IORTable");
+    ::IORTable::Table_var ior_table = ::IORTable::Table::_narrow (obj.in ());
+
+    if (::CORBA::is_nil (ior_table.in ()))
+    {
+      ACE_ERROR_RETURN ((LM_ERROR,
+                         "(%N:%l) failed to resolve IOR table\n"),
+                         1);
+    }
+
     // Get a reference to the <RootPOA>
     VERBOSE_MESSAGE ((LM_DEBUG,
                       "resolving initial reference to RootPOA\n"));
-    CORBA::Object_var obj = orb->resolve_initial_references ("RootPOA");
+    obj = orb->resolve_initial_references ("RootPOA");
     PortableServer::POA_var poa = PortableServer::POA::_narrow (obj.in ());
 
     // Activate the POAManager
     VERBOSE_MESSAGE ((LM_DEBUG,
-                      "getting reference to POAManager and activating it\n"));
+                      "getting reference to POAManager\n"));
     PortableServer::POAManager_var mgr = poa->the_POAManager ();
     mgr->activate ();
 
     // Create a <CUTS::Node_Daemon>
-    VERBOSE_MESSAGE ((LM_DEBUG, "creating new instance of node daemon\n"));
+    VERBOSE_MESSAGE ((LM_DEBUG,
+                      "creating the node daemon server\n"));
     CUTS::Node_Daemon_i * daemon_i = 0;
     ACE_NEW_RETURN (daemon_i, CUTS::Node_Daemon_i (), 1);
 
@@ -158,30 +170,34 @@ int main (int argc, char * argv [])
 
     // Activate the <CUTS::Node_Daemon> and write it's IOR to file.
     CUTS::Node_Daemon_var daemon = daemon_i->_this ();
-    write_ior_to_file (orb.in (), daemon.in ());
 
-    PortableServer::ServantBase_var servant = daemon_i;
+    // Convert the object to its string format and write the
+    // IOR to file and to the IOR table.
+    ::CORBA::String_var objstr = orb->object_to_string (daemon);
+
+    write_ior_to_file (objstr.in ());
+    ior_table->bind ("CUTS/NodeDaemon", objstr.in ());
+
+    ::PortableServer::ServantBase_var servant = daemon_i;
 
     // Run the ORB...
     VERBOSE_MESSAGE ((LM_DEBUG,
-                      "activating node daemon ORB for client request\n"));
+                      "activating node daemon ORB\n"));
     orb->run ();
 
     // Destroy the RootPOA.
-    VERBOSE_MESSAGE ((LM_DEBUG, "destroying the RootPOA\n"));
+    VERBOSE_MESSAGE ((LM_DEBUG, "(%N:%l) destroying the RootPOA\n"));
     poa->destroy (1, 1);
 
     // Destroy the ORB.
-    VERBOSE_MESSAGE ((LM_DEBUG, "destroying the ORB\n"))
+    VERBOSE_MESSAGE ((LM_DEBUG, "(%N:%l) destroying the ORB\n"))
     orb->destroy ();
 
     return 0;
   }
-  catch (CORBA::Exception & ex)
+  catch (::CORBA::Exception & ex)
   {
-    ACE_ERROR ((LM_ERROR,
-                "caught CORBA exception\n"));
-    ACE_UNUSED_ARG (ex);
+    ACE_PRINT_TAO_EXCEPTION (ex, "caught CORBA exception");
   }
 
   return 1;

@@ -1,6 +1,6 @@
 // $Id$
 
-project (Node_Daemon_Server) : taoserver, cutsexe {
+project (Node_Daemon_Server) : taoserver, iortable, cutsexe {
   exename = cutsnode_d
 
   libs  -= CUTS
@@ -37,6 +37,7 @@ project (Node_Daemon_Client): taoclient, anytypecode, cutsexe {
   }
 
   Source_Files {
+    Client_Options.cpp
     Node_DaemonC.cpp
     Node_Daemon_Client.cpp
   }

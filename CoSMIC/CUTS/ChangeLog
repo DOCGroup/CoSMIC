@@ -1,3 +1,28 @@
+Thu Jul 20 06:14:13 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/Node_Daemon/Client_Options.h:
+        * utils/Node_Daemon/Client_Options.cpp:
+
+          Container of options for the client program.
+
+        * utils/Node_Daemon/Node_Daemon.idl:
+
+          Added a details () method to the Node_Daemon interface.
+
+        * utils/Node_Daemon/Node_Daemon_Server.cpp:
+        * utils/Node_Daemon/Node_Daemon.mpc:
+        * utils/Node_Daemon/Node_Daemon_i.h:
+        * utils/Node_Daemon/Node_Daemon_i.cpp:
+        * utils/Node_Daemon/Server_Options.cpp:
+
+          Finished first phase implementation of the node daemon. The
+          implemenation still needs to be tested in the non-Windows
+          environment.
+
+        * utils/Node_Daemon/Node_Daemon_Client.cpp:
+
+          Partially finished implemenation of the client.
+
 Wed Jul 19 03:30:56 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/Node_Daemon/Node_Daemon_Server.cpp:

@@ -69,6 +69,11 @@ namespace CUTS
       ACE_ENV_ARG_DECL_WITH_DEFAULTS)
       ACE_THROW_SPEC ((::CORBA::SystemException));
 
+    /// Get the details of the spawned node managers.
+    virtual ::CUTS::Node_Bindings * details (
+      ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+      ACE_THROW_SPEC ((::CORBA::SystemException));
+
     /**
      * Determine the availability of a specific binding.
      *
@@ -124,12 +129,12 @@ namespace CUTS
     /// Type definition of mapping ports to processes.
     typedef ACE_Hash_Map_Manager <u_short,
                                   pid_t,
-                                  ACE_RW_Thread_Mutex> Node_Detail_Map;
+                                  ACE_Null_Mutex> Node_Detail_Map;
 
     /// Type definition for indexing the pid to it's entry.
     typedef ACE_Hash_Map_Manager <pid_t,
                                   Node_Detail_Map::ENTRY *,
-                                  ACE_RW_Thread_Mutex> Process_Map;
+                                  ACE_Null_Mutex> Process_Map;
 
     /// Mapping of process-ids to their node detail entry.
     Process_Map proc_map_;
@@ -160,6 +165,9 @@ namespace CUTS
 
     /// Timeout value for the cleaning thread.
     long timer_;
+
+    /// Locking mechanism for the mappings.
+    ACE_RW_Thread_Mutex lock_;
   };
 }
 
