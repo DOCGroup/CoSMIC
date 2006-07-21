@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{33AB41DA-134B-4D3A-89F2-8479FF69634D}" cdate="Sun Jul 16 16:58:18 2006" mdate="Sun Jul 16 16:58:18 2006" version="" metaguid="{B3568889-311A-4E5A-A3DD-A8AC2BD7DE71}" metaversion="" metaname="MetaGME">
+<project guid="{4D6F58AB-2B89-427F-A8F5-2D34F633BD28}" cdate="Sun Jul 16 16:58:18 2006" mdate="Sun Jul 16 16:58:18 2006" version="" metaguid="{B3568889-311A-4E5A-A3DD-A8AC2BD7DE71}" metaversion="" metaname="MetaGME">
 	<name>WSML</name>
 	<comment>Web Services Modeling Language (WSML) is a domain-specific modeling language
   which allows definition of Web Services and interactions, and uses generative
@@ -28905,7 +28905,7 @@
 					<regnode name="Constraints" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1115,282</value>
+							<value>1121,272</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" status="undefined">
@@ -28974,13 +28974,13 @@
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1149,251</value>
+							<value>1121,251</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1171,268</value>
+							<value>1205,230</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" status="undefined">
@@ -29036,78 +29036,6 @@
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000012" kind="Reference" role="Reference" relid="0x41">
-				<name>PortRef</name>
-				<regnode name="PartRegs" status="undefined">
-					<value></value>
-					<regnode name="Attributes" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>1129,394</value>
-						</regnode>
-					</regnode>
-					<regnode name="ClassDiagram" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>1135,398</value>
-						</regnode>
-					</regnode>
-					<regnode name="Constraints" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>1129,394</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>1135,398</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="Decorator" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="Icon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="InRootFolder" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="InstanceIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="IsAbstract" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="IsHotspotEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsNameEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsTypeShown" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NamePosition" status="meta">
-					<value>4</value>
-				</attribute>
-				<attribute kind="NameWrapNum" status="meta">
-					<value>0</value>
-				</attribute>
-				<attribute kind="PortIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="SubTypeIcon" status="meta">
-					<value></value>
-				</attribute>
-			</atom>
 			<atom id="id-0066-00000013" kind="Connector" role="Connector" relid="0x45">
 				<name>Connector</name>
 				<regnode name="PartRegs" status="undefined">
@@ -29133,7 +29061,7 @@
 					<regnode name="Attributes" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>905,352</value>
+							<value>841,286</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" status="undefined">
@@ -29145,7 +29073,7 @@
 					<regnode name="Constraints" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>905,352</value>
+							<value>841,286</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" status="undefined">
@@ -29205,7 +29133,7 @@
 					<regnode name="Attributes" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>792,384</value>
+							<value>771,363</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" status="undefined">
@@ -29217,7 +29145,7 @@
 					<regnode name="Constraints" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>835,429</value>
+							<value>729,321</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" status="undefined">
@@ -29289,7 +29217,7 @@
 					<regnode name="Constraints" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>870,478</value>
+							<value>939,545</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" status="undefined">
@@ -29868,6 +29796,12 @@
 							<value>113,489</value>
 						</regnode>
 					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>106,13</value>
+						</regnode>
+					</regnode>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
@@ -29937,6 +29871,12 @@
 							<value>372,573</value>
 						</regnode>
 					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,13</value>
+						</regnode>
+					</regnode>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
@@ -30001,6 +29941,12 @@
 						<value></value>
 						<regnode name="Position" isopaque="yes">
 							<value>1037,55</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,83</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" status="undefined">
@@ -30246,23 +30192,6 @@
 				<connpoint role="dst" target="id-0066-00000009"/>
 				<connpoint role="src" target="id-0066-0000000e"/>
 			</connection>
-			<connection id="id-0068-0000000f" kind="Containment" role="Containment" relid="0x3d">
-				<name>Containment</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ns</value>
-				</regnode>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<attribute kind="IsPort" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="Rolename" status="meta">
-					<value></value>
-				</attribute>
-				<connpoint role="dst" target="id-0066-00000001"/>
-				<connpoint role="src" target="id-0066-00000010"/>
-			</connection>
 			<connection id="id-0068-00000010" kind="Containment" role="Containment" relid="0x3f">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
@@ -30279,31 +30208,6 @@
 				</attribute>
 				<connpoint role="dst" target="id-0066-00000001"/>
 				<connpoint role="src" target="id-0066-00000011"/>
-			</connection>
-			<connection id="id-0068-00000011" kind="ReferTo" role="ReferTo" relid="0x43">
-				<name>ReferTo</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>N</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-00000010"/>
-				<connpoint role="src" target="id-0066-00000012"/>
-			</connection>
-			<connection id="id-0068-00000012" kind="Containment" role="Containment" relid="0x44">
-				<name>Containment</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Es</value>
-				</regnode>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<attribute kind="IsPort">
-					<value>true</value>
-				</attribute>
-				<attribute kind="Rolename" status="meta">
-					<value></value>
-				</attribute>
-				<connpoint role="dst" target="id-0066-00000011"/>
-				<connpoint role="src" target="id-0066-00000012"/>
 			</connection>
 			<connection id="id-0068-00000013" kind="SourceToConnector" role="SourceToConnector" relid="0x46">
 				<name>SourceToConnector</name>
@@ -30681,7 +30585,7 @@
 				<connpoint role="dst" target="id-0066-00000011"/>
 				<connpoint role="src" target="id-0066-00000014"/>
 			</connection>
-			<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0xf" members="id-0066-00000001 id-0066-00000005 id-0066-00000008 id-0066-00000009 id-0066-0000000a id-0066-0000000b id-0066-0000000c id-0066-0000000d id-0066-0000000f id-0066-00000010 id-0066-00000011 id-0066-00000012 id-0066-00000014 id-0066-00000015 id-0066-00000016 id-0066-00000017 id-0066-00000018 id-0066-00000019 id-0066-0000001a id-0066-0000001b id-0066-0000001c id-0066-000000a8">
+			<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0xf" members="id-0066-00000001 id-0066-00000005 id-0066-00000008 id-0066-00000009 id-0066-0000000a id-0066-0000000b id-0066-0000000c id-0066-0000000d id-0066-0000000f id-0066-00000010 id-0066-00000011 id-0066-00000014 id-0066-00000015 id-0066-00000016 id-0066-00000017 id-0066-00000018 id-0066-00000019 id-0066-0000001a id-0066-0000001b id-0066-0000001c id-0066-000000a8">
 				<name>ServiceDefinition</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -31420,21 +31324,24 @@
 				</attribute>
 				<attribute kind="MenuItems">
 					<value>local
-          element
-          attribute
-          complexType
-          simpleType
-          any
-          anyAttribute
-          group
-          attributeGroup
-          key
-          keyref
-          unique
-          annotation
-          documentation
-          appinfo
-          notation</value>
+element
+attribute
+complexType
+simpleType
+include
+import
+redefine
+any
+anyAttribute
+group
+attributeGroup
+key
+keyref
+unique
+annotation
+documentation
+appinfo
+notation</value>
 				</attribute>
 				<attribute kind="Prompt" status="meta">
 					<value></value>
@@ -31456,6 +31363,12 @@
 				<name>PrimitiveTypes</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,13</value>
+						</regnode>
+					</regnode>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
@@ -36679,7 +36592,7 @@
 					<regnode name="Attributes" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>268,317</value>
+							<value>295,293</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" status="undefined">
@@ -36751,7 +36664,7 @@
 					<regnode name="Attributes" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>240,114</value>
+							<value>276,152</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" status="undefined">
@@ -36817,7 +36730,7 @@
 					<regnode name="Attributes" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>205,275</value>
+							<value>183,293</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" status="undefined">
@@ -37069,7 +36982,7 @@
 					<regnode name="Attributes" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>170,121</value>
+							<value>204,83</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" status="undefined">
@@ -37243,7 +37156,7 @@
 					<regnode name="Attributes" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>8,13</value>
+							<value>302,153</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" status="undefined">
@@ -37309,6 +37222,12 @@
 				<name>InputRef</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,293</value>
+						</regnode>
+					</regnode>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
@@ -37369,6 +37288,12 @@
 				<name>FaultRef</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>232,13</value>
+						</regnode>
+					</regnode>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
@@ -37429,6 +37354,12 @@
 				<name>OutputRef</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,223</value>
+						</regnode>
+					</regnode>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
@@ -37489,6 +37420,12 @@
 				<name>SOAPBody</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>134,13</value>
+						</regnode>
+					</regnode>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
@@ -37549,6 +37486,12 @@
 				<name>SOAPFault</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,153</value>
+						</regnode>
+					</regnode>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
@@ -37609,6 +37552,12 @@
 				<name>PartRef</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>148,153</value>
+						</regnode>
+					</regnode>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
@@ -37669,6 +37618,12 @@
 				<name>MessageRef</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>78,83</value>
+						</regnode>
+					</regnode>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
@@ -37729,6 +37684,12 @@
 				<name>OperationRef</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,13</value>
+						</regnode>
+					</regnode>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
@@ -37789,6 +37750,12 @@
 				<name>SOAPHeaders</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>218,223</value>
+						</regnode>
+					</regnode>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">

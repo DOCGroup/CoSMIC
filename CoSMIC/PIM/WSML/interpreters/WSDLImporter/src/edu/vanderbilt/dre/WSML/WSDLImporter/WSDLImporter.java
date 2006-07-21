@@ -1,9 +1,21 @@
 package edu.vanderbilt.dre.WSML.WSDLImporter;
 
+import java.io.*;
 import javax.wsdl.*;
 import javax.wsdl.factory.*;
 import javax.wsdl.xml.*;
-import java.io.*;
+import javax.wsdl.extensions.*;
+import javax.wsdl.extensions.soap.*;
+import javax.wsdl.extensions.schema.*;
+import javax.xml.*;
+import javax.xml.bind.*;
+import javax.xml.parsers.*;
+import javax.xml.namespace.*;
+import java.util.*;
+import edu.vanderbilt.isis.gme.xme.*;
+import org.w3c.dom.*;
+import org.w3c.dom.ls.*;
+import java.lang.*;
 
 public class WSDLImporter {
 
@@ -22,7 +34,9 @@ public class WSDLImporter {
             reader.setFeature("javax.wsdl.importDocuments", true);
 
             Definition def = reader.readWSDL(wsdlURI);
-            XmlExportVisitor visitor = new XmlExportVisitor(outputFileName);
+            XmlExportVisitor visitor
+                = new XmlExportVisitor(def.getQName().getLocalPart(),
+                                       outputFileName);
             visitor.visitDefinition(def);
             visitor.dump();
 
