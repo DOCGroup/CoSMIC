@@ -26,10 +26,14 @@ function unhilite(obj)
   <tr>
     <td><img src="images/logo.jpg" alt="CUTS logo" /></td>
     <td><h1>Component Workload Emulator Utilization Test Suite<br /> 
-        Benchmark Manager Web Utility</h1></td>
+          Benchmark Manager Web Utility</h1></td>
   </tr>
+  
+  <!-- divider row b/t header and content -->
+  <tr><td class="alternate-row" colspan="2">&nbsp;</td></tr>
+  
   <tr valign="top">
-    <td style="width:150px;">
+    <td style="width:150px">
       <p></p>     
       <b>Main Menu</b>
       <div class="menu_item"
@@ -49,7 +53,7 @@ function unhilite(obj)
            onmouseout="unhilite(this)">
         <asp:hyperlink runat="server" id="hosts_menu_item_"
                        navigateurl="~/Hosts.aspx"
-                       text="Hosts" /></div>
+                       text="Test Environment" /></div>
                        
       <div class="menu_item"
            onmouseover="hilite(this);"

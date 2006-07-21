@@ -177,6 +177,7 @@ bool Process_Log::process_exit (pid_t pid)
 
   Process_Log_Entry e_buffer [ENTRY_BUFFER_SIZE];
   size_t entry_count;
+  int index = 0;
 
   do
   {
@@ -194,27 +195,32 @@ bool Process_Log::process_exit (pid_t pid)
 
     if (entry != last_entry)
     {
-      // We have to reset the state if we have failed to get
-      // the real position.
-      if (logfile.fail ())
+      // Move the output pointer to the location of the entry. But
+      // first we have to clear any errors that may have occurred,
+      // e.g., failbit or eofbit
+      if (logfile.fail () || logfile.eof ())
         logfile.clear ();
 
-      // Move the output pointer to the location of the entry.
-      int offset = (int) logfile.tellg () - sizeof (Process_Log_Entry);
+      index += (entry - e_buffer);
+      int offset = index * sizeof (Process_Log_Entry);
       logfile.seekp (offset, std::ios_base::beg);
 
-      // Clear the active bit and write the entry back to
-      // file.
+      // Clear active bit and write entry back to file.
       ACE_CLR_BITS (entry->flags_, Process_Log_Entry::PLE_ACTIVE);
       logfile.write (reinterpret_cast <const char *> (entry),
-                      sizeof (Process_Log_Entry));
+                     sizeof (Process_Log_Entry));
+
       logfile.close ();
-      return true;
+      return logfile.good ();
+    }
+    else
+    {
+      index += entry_count;
     }
   } while (entry_count != 0);
 
-  ACE_ERROR ((LM_WARNING,
-              "process with id %u is not in process log\n",
+  ACE_ERROR ((LM_ERROR,
+              "(%N:%l) failed to locate process with id %u\n",
               pid));
 
   logfile.close ();
@@ -310,7 +316,7 @@ size_t Process_Log::batch_read (std::istream & infile,
 //
 // clean
 //
-bool Process_Log::clean (void)
+bool Process_Log::clean (size_t * active_count)
 {
   ACE_GUARD_RETURN (ACE_Thread_Mutex, guard, this->lock_, false);
 
@@ -345,6 +351,7 @@ bool Process_Log::clean (void)
   Process_Log_Entry e_buffer [ENTRY_BUFFER_SIZE];
   size_t entry_count;
   bool error = false;
+  size_t count = 0;
 
   do
   {
@@ -370,6 +377,8 @@ bool Process_Log::clean (void)
           error = true;
           break;
         }
+
+        ++ count;
       }
     }
   } while (entry_count != 0);
@@ -379,13 +388,14 @@ bool Process_Log::clean (void)
   logfile.close ();
   tmpfile.close ();
 
-  if (error == false)
-  {
-    ACE_OS::unlink (this->log_file_.c_str ());
+  if (!error)
     ACE_OS::rename (TEMP_FILENAME, this->log_file_.c_str ());
-  }
   else
     ACE_OS::unlink (TEMP_FILENAME);
+
+  // Save the count for the callee.
+  if (active_count != 0)
+    *active_count = count;
 
   return !error;
 }

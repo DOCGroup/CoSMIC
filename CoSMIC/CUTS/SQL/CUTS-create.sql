@@ -19,9 +19,7 @@ USE cuts;
 -- contained in the exeuction_time table correctly.
 --
 
-DROP TABLE IF EXISTS tests;
-
-CREATE TABLE tests
+CREATE TABLE IF NOT EXISTS tests
 (
   test_number   int             NOT NULL auto_increment,
   test_name     varchar (255),
@@ -47,9 +45,7 @@ CREATE TABLE tests
 -- or systems.
 --
 
-DROP TABLE IF EXISTS component_instances;
-
-CREATE TABLE component_instances
+CREATE TABLE IF NOT EXISTS component_instances
 (
   component_id    int             NOT NULL auto_increment,
   component_name  varchar (512)   default NULL,
@@ -63,9 +59,7 @@ CREATE TABLE component_instances
 -- user. The elements in path apprear in cuts.critical_path_elements table.
 --
 
-DROP TABLE IF EXISTS critical_path;
-
-CREATE TABLE critical_path
+CREATE TABLE IF NOT EXISTS critical_path
 (
   path_id       INT             NOT NULL auto_increment,
   path_name     VARCHAR (32),
@@ -83,9 +77,7 @@ CREATE TABLE critical_path
 -- deleted if their id appears in this column.
 --
 
-DROP TABLE IF EXISTS critical_path_elements;
-
-CREATE TABLE critical_path_elements
+CREATE TABLE IF NOT EXISTS critical_path_elements
 (
   path_id       INT             NOT NULL,
   path_order    INT             NOT NULL,
@@ -106,28 +98,26 @@ CREATE TABLE critical_path_elements
 -- Table structure for table wlgbenchmark.iphost
 --
 
-DROP TABLE IF EXISTS ipaddr_host_map;
-
-CREATE TABLE ipaddr_host_map
+CREATE TABLE IF NOT EXISTS ipaddr_host_map
 (
   hostid      INT               NOT NULL auto_increment,
   ipaddr      VARCHAR (40)      NOT NULL,
   v4          BOOLEAN           NOT NULL DEFAULT true,
   hostname    VARCHAR (255),
 
-  PRIMARY KEY (hostid),
-  UNIQUE (ipaddr),
-  UNIQUE (hostname)
+  PRIMARY KEY (hostid)
 );
 
+INSERT INTO ipaddr_host_map (ipaddr, v4, hostname)
+  VALUES ('127.0.0.1', 1, 'localhost');
+  
 --
 -- Create the scratchpad table. This is the table the
 -- database worker uses to perform its database
 -- operations for the given workload.
 --
-DROP TABLE IF EXISTS scratchpad;
 
-CREATE TABLE scratchpad
+CREATE TABLE IF NOT EXISTS scratchpad
 (
   component_id    int        NOT NULL,
   worktag         int        NOT NULL,
@@ -141,9 +131,8 @@ CREATE TABLE scratchpad
 -- determine the end-to-end execution time of a path in
 -- a system
 --
-DROP TABLE IF EXISTS execution_time;
 
-CREATE TABLE execution_time
+CREATE TABLE IF NOT EXISTS execution_time
 (
   test_number       int         NOT NULL,
   collection_time   datetime    NOT NULL,
@@ -182,9 +171,7 @@ CREATE TABLE execution_time
 -- uptime and downtime of a component instance per test.
 --
 
-DROP TABLE IF EXISTS deployment_table;
-
-CREATE TABLE deployment_table
+CREATE TABLE IF NOT EXISTS deployment_table
 (
   test_number       INT NOT NULL,
   instance          INT NOT NULL,
@@ -196,6 +183,24 @@ CREATE TABLE deployment_table
     ON DELETE CASCADE,
   FOREIGN KEY (instance) REFERENCES component_instances (component_id)
     ON DELETE RESTRICT
+);
+
+--
+-- Create the 'testenv' table. This table is for configuring the
+-- testing environment. It contains the corbaloc's for the cutsnode_d
+-- for communicating w/ each individual node.
+--
+
+CREATE TABLE IF NOT EXISTS testenv
+(
+  idtag         INT NOT NULL auto_increment,
+  hostid        INT,
+  portnum       INT(5),
+  
+  PRIMARY KEY (idtag), 
+  UNIQUE (hostid, portnum), 
+  FOREIGN KEY (hostid) REFERENCES ipaddr_host_map (hostid)
+    ON DELETE RESTRICT 
 );
 
 --

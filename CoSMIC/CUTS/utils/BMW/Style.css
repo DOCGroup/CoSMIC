@@ -1,7 +1,7 @@
 *
 {
-  font-family: Verdana;
-  font-size: xx-small;
+  font-family: Verdana, Helvetica, sans-serif;
+  font-size: 11px;
 }
 
 h1
@@ -57,4 +57,9 @@ a:hover
 {
   font-weight:bold;
   text-align:center;
+}
+
+.required 
+{
+  color:red;
 }

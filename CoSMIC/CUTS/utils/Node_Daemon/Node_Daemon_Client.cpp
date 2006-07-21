@@ -22,23 +22,76 @@
 int parse_args (int argc, char * argv[])
 {
   // Setup the <ACE_Get_Opt> variable.
-  const char * opts = "f:hln:p:v";
+  const char * opts = "a:f:hlp:v";
   ACE_Get_Opt get_opt (argc, argv, opts);
 
   // Setup the long options for the command-line
+  get_opt.long_option ("args", 'a', ACE_Get_Opt::ARG_REQUIRED);
   get_opt.long_option ("help", 'h', ACE_Get_Opt::NO_ARG);
   get_opt.long_option ("localhost", 'l', ACE_Get_Opt::NO_ARG);
   get_opt.long_option ("port", 'p', ACE_Get_Opt::ARG_REQUIRED);
-  get_opt.long_option ("spawn", 'n', ACE_Get_Opt::ARG_REQUIRED);
-  get_opt.long_option ("shutdown", ACE_Get_Opt::NO_ARG);
   get_opt.long_option ("verbose", 'v', ACE_Get_Opt::NO_ARG);
+
+  get_opt.long_option ("kill", ACE_Get_Opt::ARG_OPTIONAL);
+  get_opt.long_option ("spawn", ACE_Get_Opt::ARG_OPTIONAL);
+  get_opt.long_option ("shutdown", ACE_Get_Opt::NO_ARG);
+  get_opt.long_option ("details", ACE_Get_Opt::NO_ARG);
 
   int option;
   while ((option = get_opt ()) != EOF)
   {
     switch (option)
     {
-    case '0':
+    case 0:
+      if (ACE_OS::strcmp (get_opt.long_option (), "shutdown") == 0)
+      {
+        CLIENT_OPTIONS ()->shutdown_ = true;
+      }
+      else if (ACE_OS::strcmp (get_opt.long_option (), "kill") == 0)
+      {
+        CLIENT_OPTIONS ()->action_ = Client_Options::CA_KILL;
+
+        if (get_opt.opt_arg () != 0)
+        {
+          size_t n = ACE_OS::atoi (get_opt.opt_arg ());
+
+          if (n != 0)
+          {
+            CLIENT_OPTIONS ()->count_ = n;
+          }
+          else
+          {
+            ACE_ERROR ((LM_ERROR,
+                        "invalid argument for option -%c\n",
+                        get_opt.opt_arg ()));
+          }
+        }
+      }
+      else if (ACE_OS::strcmp (get_opt.long_option (), "spawn") == 0)
+      {
+        CLIENT_OPTIONS ()->action_ = Client_Options::CA_SPAWN;
+
+        do
+        {
+          size_t n = ACE_OS::atoi (get_opt.opt_arg ());
+
+          if (n != 0)
+          {
+            CLIENT_OPTIONS ()->count_ = n;
+          }
+          else
+          {
+            ACE_ERROR ((LM_ERROR,
+                        "invalid argument for option -%c\n",
+                        get_opt.opt_arg ()));
+          }
+        } while (0);
+      }
+      break;
+
+    case 'a':
+      // Get the arguments for the "spawn" operation.
+      CLIENT_OPTIONS ()->args_ = get_opt.opt_arg ();
       break;
 
     case 'h':
@@ -46,8 +99,25 @@ int parse_args (int argc, char * argv[])
       ACE_OS::exit (0);
       break;
 
+    case 'l':
+      CLIENT_OPTIONS ()->localhost_ = true;
+      break;
+
+    case 'p':
+      // The user has opted to use a different port number.
+      do
+      {
+        u_short port = ACE_OS::atoi (get_opt.opt_arg ());
+
+        if (port != 0)
+          CLIENT_OPTIONS ()->port_ = port;
+        else
+          ACE_ERROR ((LM_ERROR, "invalid port number\n"));
+      } while (0);
+      break;
+
     case 'v':
-      CLIENT_OPTIONS ()->verbose_ = true ;
+      CLIENT_OPTIONS ()->verbose_ = true;
       break;
 
     case '?':
@@ -70,6 +140,85 @@ int parse_args (int argc, char * argv[])
 }
 
 //
+// process_spawn_action
+//
+void process_spawn_action (::CUTS::Node_Daemon_ptr daemon)
+{
+  if (CLIENT_OPTIONS ()->count_ < 1)
+    return;
+
+  ::CUTS::Node_Details details (CLIENT_OPTIONS ()->count_);
+  details.length (CLIENT_OPTIONS ()->count_);
+  VERBOSE_MESSAGE ((LM_DEBUG,
+                    "scheduled to spawn %u node manager(s)\n",
+                    CLIENT_OPTIONS ()->count_));
+
+  u_short port = CLIENT_OPTIONS ()->port_;
+
+  for (size_t i = 0; i < CLIENT_OPTIONS ()->count_; i ++)
+  {
+    ::CUTS::Node_Detail & detail = details[i];
+
+    detail.params = ::CORBA::string_dup (CLIENT_OPTIONS ()->args_.c_str ());
+    detail.binding.localhost = CLIENT_OPTIONS ()->localhost_;
+    detail.binding.port = port ++;
+  }
+
+  size_t spawn_count = daemon->spawn (details);
+  VERBOSE_MESSAGE ((LM_DEBUG,
+                    "successfully spawned %u node manager(s)\n",
+                    spawn_count));
+}
+
+//
+// process_kill_action
+//
+void process_kill_action (::CUTS::Node_Daemon_ptr daemon)
+{
+  if (CLIENT_OPTIONS ()->count_ < 1)
+    return;
+
+  // Create a node bindings data type for killing.
+  ::CUTS::Node_Bindings bindings (CLIENT_OPTIONS ()->count_);
+  bindings.length (CLIENT_OPTIONS ()->count_);
+  u_short port = CLIENT_OPTIONS ()->port_;
+
+  // Initialize the node bindings.
+  for (size_t i = 0; i < CLIENT_OPTIONS ()->count_; i ++)
+  {
+    ::CUTS::Node_Binding & binding = bindings[i];
+
+    binding.localhost = CLIENT_OPTIONS ()->localhost_;
+    binding.port = port ++;
+  }
+
+  // Signal the daemon to kill.
+  daemon->kill (bindings);
+}
+
+//
+// process_client_options
+//
+void process_client_options (::CUTS::Node_Daemon_ptr daemon)
+{
+  VERBOSE_MESSAGE ((LM_DEBUG, "processing client options\n"));
+
+  switch (CLIENT_OPTIONS ()->action_)
+  {
+  case Client_Options::CA_SPAWN:
+    process_spawn_action (daemon);
+    break;
+
+  case Client_Options::CA_KILL:
+    process_kill_action (daemon);
+    break;
+
+  default:
+    VERBOSE_MESSAGE ((LM_DEBUG, "no client options to process\n"));
+  }
+}
+
+//
 // main
 //
 int main (int argc, char * argv [])
@@ -84,15 +233,14 @@ int main (int argc, char * argv [])
 
     // Resolve the initiale reference to the Node_Daemon
     VERBOSE_MESSAGE ((LM_DEBUG,
-                      "resolving initial reference to Node_Daemon\n"));
-    ::CORBA::Object_var obj =
-      orb->resolve_initial_references ("Node_Daemon");
+                      "resolving initial reference to NodeDaemon\n"));
+    ::CORBA::Object_var obj = orb->resolve_initial_references ("NodeDaemon");
 
     if (::CORBA::is_nil (obj.in ()))
     {
       ACE_ERROR_RETURN ((
         LM_ERROR,
-        "failed to resolved initial reference to Node_Daemon\n"),
+        "failed to resolved initial reference to NodeDaemon\n"),
         1);
     }
 
@@ -106,8 +254,19 @@ int main (int argc, char * argv [])
     if (::CORBA::is_nil (daemon.in ()))
     {
       ACE_ERROR_RETURN ((LM_ERROR,
-                         "object was not a Node_Daemon\n"),
+                         "object was not a %s\n",
+                         daemon->_interface_repository_id ()),
                          1);
+    }
+
+    process_client_options (daemon.in ());
+
+    // Shutdown the target node daemon, if necessary.
+    if (CLIENT_OPTIONS ()->shutdown_)
+    {
+      VERBOSE_MESSAGE ((LM_DEBUG,
+                        "shutting down target node daemon\n"));
+      daemon->shutdown ();
     }
 
     // Destroy the ORB.

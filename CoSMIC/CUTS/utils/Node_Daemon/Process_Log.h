@@ -124,7 +124,7 @@ public:
 
   bool get_active_processes (Process_List & list);
 
-  bool clean (void);
+  bool clean (size_t * active_count = 0);
 
 private:
   static size_t batch_read (std::istream & in,

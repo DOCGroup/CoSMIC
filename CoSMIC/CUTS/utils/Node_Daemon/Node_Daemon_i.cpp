@@ -32,9 +32,10 @@ namespace CUTS
   //
   // Node_Daemon_i
   //
-  Node_Daemon_i::Node_Daemon_i (void)
+  Node_Daemon_i::Node_Daemon_i (::CORBA::ORB_ptr orb)
     : event_handler_ (this),
-      timer_ (-1)
+      timer_ (-1),
+      orb_ (::CORBA::ORB::_duplicate (orb))
   {
     // Activate the <event_handler_>.
     bool retval = this->event_handler_.activate ();
@@ -52,11 +53,11 @@ namespace CUTS
     PROCESS_LOG ()->log_file ("cutsnode_d.dat");
 
     // Activate the cleaning thread.
-    VERBOSE_MESSAGE ((LM_DEBUG,
-                      "activating cleaning thread\n"));
+    VERBOSE_MESSAGE ((LM_DEBUG, "activating cleaning thread\n"));
+
     ACE_Time_Value interval (300);
     ACE_Time_Value abstime =
-      this->timer_queue_.timer_queue ()->gettimeofday ();
+      this->timer_queue_.timer_queue ()->gettimeofday () + interval;
 
     this->timer_ = this->timer_queue_.schedule (this, 0, abstime, interval);
 
@@ -76,6 +77,9 @@ namespace CUTS
   //
   Node_Daemon_i::~Node_Daemon_i (void)
   {
+    // @@ We should have a flag specifying how to shutdown,
+    // e.g., force|nowait|wait
+
     // Wait for the process manager thread to return and it's
     // event handler. This means waiting for all processes
     // created by this process manager to exit.
@@ -84,13 +88,10 @@ namespace CUTS
                       this->pm_.managed ()));
     this->pm_.wait ();
 
-    VERBOSE_MESSAGE ((LM_DEBUG,
-                      "deactivating the process listener\n"));
+    VERBOSE_MESSAGE ((LM_DEBUG, "deactivating the process listener\n"));
     this->event_handler_.deactivate ();
 
-    // Deactivate the <timer_queue_> and cancel the <timer_>.
-    VERBOSE_MESSAGE ((LM_DEBUG,
-                      "deactivating the timer queue\n"));
+    VERBOSE_MESSAGE ((LM_DEBUG, "deactivating the timer queue\n"));
     this->timer_queue_.deactivate ();
     this->timer_queue_.cancel (this->timer_);
   }
@@ -117,18 +118,11 @@ namespace CUTS
       {
         // Since the port is available, then we have permission to
         // spawn a new process.
-        //this->p_options_.command_line (
-        //  "%s -ORBEndpoint iiop://%s:%u %s",
-        //  this->node_manager_.c_str (),
-        //  detail.binding.localhost ? LOCALHOST : this->ip_addr_.c_str (),
-        //  detail.binding.port,
-        //  detail.params.in ());
-
         this->p_options_.command_line (
-          "%s %s",
+          "%s -ORBEndpoint iiop://%s:%u %s",
           this->node_manager_.c_str (),
-          //detail.binding.localhost ? LOCALHOST : this->ip_addr_.c_str (),
-          //detail.binding.port,
+          detail.binding.localhost ? LOCALHOST : this->ip_addr_.c_str (),
+          detail.binding.port,
           detail.params.in ());
 
         pid_t pid = this->spawn_i (detail.binding.port,
@@ -255,10 +249,6 @@ namespace CUTS
   //
   void Node_Daemon_i::process_exits (pid_t pid)
   {
-    VERBOSE_MESSAGE ((LM_DEBUG,
-                      "process with id %u has exited\n",
-                      pid));
-
     Process_Map::VALUE entry = 0;
 
     if (this->proc_map_.find (pid, entry) == 0)
@@ -268,7 +258,9 @@ namespace CUTS
     }
     else
     {
-      // we have to find the process id the long way...
+      ACE_ERROR ((LM_ERROR,
+                  "(%N:%l) process with id %u does not exist\n",
+                  pid));
     }
   }
 
@@ -413,20 +405,31 @@ namespace CUTS
       else
       {
         VERBOSE_MESSAGE ((LM_DEBUG,
-                          "process with id %u is not active; removing "
-                          "it from the log\n",
+                          "process with id %u is not active\n",
                           ple->pid ()));
 
-        // Apparent, this entry is not valid b/c the process is
-        // actually not running. Therefore, we have a stale entry in
-        // the log and need to remove it.
-        PROCESS_LOG ()->process_exit (ple->pid ());
+        // Remove the entry from the log and eelete its resources.
+        if (PROCESS_LOG ()->process_exit (ple->pid ()))
+        {
+          VERBOSE_MESSAGE ((
+            LM_DEBUG,
+            "removed process with id %u from log\n",
+            ple->pid ()));
+        }
+        else
+        {
+          ACE_ERROR ((LM_ERROR,
+                      "failed to remove process with id %u from log\n",
+                      ple->pid ()));
+        }
 
         delete a_process;
         a_process = 0;
       }
     }
 
+    // Perform a cleaning operation to remove all unncessary records.
+    this->clean ();
     return count;
   }
 
@@ -454,11 +457,13 @@ namespace CUTS
   //
   void Node_Daemon_i::clean (void)
   {
-    bool retval = PROCESS_LOG ()->clean ();
+    size_t active_count;
+    bool retval = PROCESS_LOG ()->clean (&active_count);
 
     VERBOSE_MESSAGE ((LM_DEBUG,
-                      "%s the log file\n",
-                      retval ? "successfully cleaned" : "failed to clean"));
+                      "%s the log file [active=%u]\n",
+                      retval ? "successfully cleaned" : "failed to clean",
+                      active_count));
   }
 
   //
@@ -517,5 +522,14 @@ namespace CUTS
     }
 
     return nodes;
+  }
+
+  //
+  // shutdown
+  //
+  void Node_Daemon_i::shutdown (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+    ACE_THROW_SPEC ((::CORBA::SystemException))
+  {
+    this->orb_->shutdown ();
   }
 }

@@ -1,3 +1,47 @@
+Fri Jul 21 00:21:47 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * SQL/CUTS-create.sql:
+
+          - Removed all statements that try to drop an existing
+            table.
+          - Statements only create tables if they do not exist.
+
+        * utils/BMW/BMW.master:
+
+          - Change the names of several menu options.
+          - Placed a color divider between the header and content.
+
+        * utils/BMW/Database_Utility/Database_Utility.cs:
+
+        * utils/BMW/Style.css:
+
+          Updated the datagrd styles.
+
+        * utils/BMW/bin/IIOPChannel.dll:
+
+          IIOP.NET assembly for allowing .NET assemblies to
+          communicate w/ CORBA components.
+
+        * utils/BMW/bin/Node_Daemon.NET.dll:
+
+          .NET version of the Node_Daemon interfaces. This
+          will allow the BMW to communicate w/ CORBA Node_Daemon
+          objects.
+
+        * utils/Node_Daemon/Client_Options.h:
+        * utils/Node_Daemon/Client_Options.cpp:
+        * utils/Node_Daemon/Node_Daemon.idl:
+        * utils/Node_Daemon/Node_Daemon_Client.cpp:
+        * utils/Node_Daemon/Node_Daemon_Server.cpp:
+        * utils/Node_Daemon/Node_Daemon_i.h:
+        * utils/Node_Daemon/Node_Daemon_i.cpp:
+        * utils/Node_Daemon/Process_Log.h:
+        * utils/Node_Daemon/Process_Log.cpp:
+
+          Finished second phase implementation that completes
+          the basic functionality need to have a node daemon
+          spawn node managers using a client application.
+
 Thu Jul 20 06:14:13 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/Node_Daemon/Client_Options.h:

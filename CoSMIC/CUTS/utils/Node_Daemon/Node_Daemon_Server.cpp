@@ -159,7 +159,7 @@ int main (int argc, char * argv [])
     VERBOSE_MESSAGE ((LM_DEBUG,
                       "creating the node daemon server\n"));
     CUTS::Node_Daemon_i * daemon_i = 0;
-    ACE_NEW_RETURN (daemon_i, CUTS::Node_Daemon_i (), 1);
+    ACE_NEW_RETURN (daemon_i, CUTS::Node_Daemon_i (orb.in ()), 1);
 
     // Attempt the recover any lost nodes.
     size_t count = daemon_i->recover ();
@@ -181,23 +181,26 @@ int main (int argc, char * argv [])
     ::PortableServer::ServantBase_var servant = daemon_i;
 
     // Run the ORB...
-    VERBOSE_MESSAGE ((LM_DEBUG,
-                      "activating node daemon ORB\n"));
+    VERBOSE_MESSAGE ((LM_DEBUG, "activating node daemon ORB\n"));
     orb->run ();
 
     // Destroy the RootPOA.
-    VERBOSE_MESSAGE ((LM_DEBUG, "(%N:%l) destroying the RootPOA\n"));
+    VERBOSE_MESSAGE ((LM_DEBUG, "destroying the RootPOA\n"));
     poa->destroy (1, 1);
 
     // Destroy the ORB.
-    VERBOSE_MESSAGE ((LM_DEBUG, "(%N:%l) destroying the ORB\n"))
+    VERBOSE_MESSAGE ((LM_DEBUG, "destroying the ORB\n"))
     orb->destroy ();
 
     return 0;
   }
   catch (::CORBA::Exception & ex)
   {
-    ACE_PRINT_TAO_EXCEPTION (ex, "caught CORBA exception");
+    ACE_PRINT_TAO_EXCEPTION (ex, "(%N:%l) caught CORBA exception");
+  }
+  catch (...)
+  {
+    ACE_ERROR ((LM_ERROR, "(%N:%l) caught unknown exception\n"));
   }
 
   return 1;

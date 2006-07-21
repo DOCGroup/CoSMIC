@@ -38,6 +38,8 @@ module CUTS
     unsigned long kill (in Node_Bindings nodes);
 
     Node_Bindings details ();
+
+    oneway void shutdown ();
   };
 };
 

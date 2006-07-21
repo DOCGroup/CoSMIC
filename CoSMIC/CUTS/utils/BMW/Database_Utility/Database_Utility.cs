@@ -14,7 +14,10 @@ using System;
 using System.Collections;
 using System.Data;
 using System.Data.Odbc;
+using System.Net;
+using System.Net.Sockets;
 using System.Runtime.InteropServices;
+using System.Text;
 
 using MySql.Data.MySqlClient;
 using MySql.Data.Types;
@@ -409,6 +412,73 @@ public class CUTS_Database_Utility
     MySqlDataAdapter adapter = new MySqlDataAdapter (command);
     adapter.Fill(ds, "tests");
   }
+
+  /**
+   * Get all the known hosts from the database. This returns the 
+   * records in the \hosts table.
+   * 
+   * @param[out]    ds        The target dataset.
+   */
+  public void get_all_hosts(ref DataSet ds)
+  {
+    MySqlCommand command = this.conn_.CreateCommand();
+    command.CommandText = "SELECT * FROM ipaddr_host_map";
+
+    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+    adapter.Fill(ds, "hosts");
+  }
+
+  /**
+   * Register the given host. The hostname can either be a human 
+   * readable name, or an IP address.
+   * 
+   * @param[in]       host        Target host to register.
+   */
+  public void register_host(String hostname)
+  {
+    IPAddress[] addrs = Dns.GetHostAddresses(hostname);
+
+    if (addrs.Length > 0)
+    {
+      // Build the command.
+      StringBuilder builder = new StringBuilder ();
+      builder.Append ("INSERT INTO ipaddr_host_map (ipaddr, v4, hostname) ");
+      builder.Append ("VALUES (?ipaddr, ?v4, ?hostname)");
+
+      // Create the command object.
+      MySqlCommand command = this.conn_.CreateCommand();
+      command.CommandText = builder.ToString();
+
+      // Create the parameters for the command.
+      MySqlParameter v4_param = 
+        new MySqlParameter ("?v4", MySqlDbType.Int16);
+      command.Parameters.Add(v4_param);
+
+      MySqlParameter ipaddr_param = 
+        new MySqlParameter ("?ipaddr", MySqlDbType.VarChar, 40);
+      command.Parameters.Add(ipaddr_param);
+      
+      MySqlParameter hostname_param 
+        = new MySqlParameter ("?hostname", hostname);
+      command.Parameters.Add(hostname_param);
+
+      // Iterate over all the addresses in <addrs> and insert
+      // them into the database.
+      foreach (IPAddress addr in addrs)
+      {
+        ipaddr_param.Value = addr.ToString();
+
+        if (addr.AddressFamily == AddressFamily.InterNetwork)
+          v4_param.Value = 1;
+        else if (addr.AddressFamily == AddressFamily.InterNetworkV6)
+          v4_param.Value = 0;
+
+        // Execute the command.
+        command.ExecuteNonQuery();
+      }
+    }
+  }
+
   /// Connection object.
   private MySqlConnection conn_;
 }

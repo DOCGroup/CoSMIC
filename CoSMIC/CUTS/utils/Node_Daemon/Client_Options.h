@@ -15,6 +15,7 @@
 
 #include "ace/Singleton.h"
 #include "ace/Null_Mutex.h"
+#include "ace/SString.h"
 
 //=============================================================================
 /**
@@ -32,6 +33,40 @@ public:
 
   /// Verbose setting for the client.
   bool verbose_;
+
+  /// Visibility of the node daemons processes.
+  bool localhost_;
+
+  /// Number of managers to processes.
+  size_t count_;
+
+  /// Type of actions the client can perform.
+  enum Client_Action
+  {
+    /// Perform no action.
+    CA_NONE   = 0,
+
+    /// Spawn node managers.
+    CA_SPAWN  = 1,
+
+    /// Kill node managers.
+    CA_KILL   = 2
+  };
+
+  /// Type of action to perform.
+  Client_Action action_;
+
+  /// Signal the node daemon to shutdown.
+  bool shutdown_;
+
+  /// Default port number.
+  u_short port_;
+
+  /// Arguments used for spawning.
+  ACE_CString args_;
+
+  /// Get details about the node.
+  bool details_;
 };
 
 /// Singleton for the client options.

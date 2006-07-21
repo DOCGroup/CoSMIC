@@ -42,7 +42,7 @@ namespace CUTS
 
   public:
     /// Default contructor.
-    Node_Daemon_i (void);
+    Node_Daemon_i (::CORBA::ORB_ptr orb);
 
     /// Destructor.
     virtual ~Node_Daemon_i (void);
@@ -72,6 +72,10 @@ namespace CUTS
     /// Get the details of the spawned node managers.
     virtual ::CUTS::Node_Bindings * details (
       ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+      ACE_THROW_SPEC ((::CORBA::SystemException));
+
+    /// Shutdown the node daemon server.
+    virtual void shutdown (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
       ACE_THROW_SPEC ((::CORBA::SystemException));
 
     /**
@@ -168,6 +172,9 @@ namespace CUTS
 
     /// Locking mechanism for the mappings.
     ACE_RW_Thread_Mutex lock_;
+
+    /// The ORB hosting the node daemon.
+    ::CORBA::ORB_var orb_;
   };
 }
 
