@@ -1,0 +1,16 @@
+// $Id: CUTS_CoSMIC.mwc 653 2006-06-27 05:34:07Z hillj $
+
+workspace (CUTS_CoSMIC) {
+  cmdline += -include $CUTS_ROOT/etc/config \
+             -feature_file default.features
+
+  // -- The following projects/directories are shared builds.
+  cuts/be
+  cuts/GME
+
+  // -- This project is necessary for the code generation projects.
+  exclude (!vc6, !vc7, !vc71, !vc8) {
+    cmdline += -static
+    $(CIAO_ROOT)/CCF/CCF/CodeGenerationKit
+  }
+}

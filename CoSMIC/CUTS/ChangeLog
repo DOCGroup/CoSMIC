@@ -1,3 +1,10 @@
+Sat Jul 22 07:31:54 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * CUTS_Release.mwc:  Added new file to allow building a solution
+          which removes PICML since it's already built using CoSMIC.mwc.
+          This is so that all projects that need to be released under
+          CoSMIC can be built using one solution.
+
 Fri Jul 21 00:21:47 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * SQL/CUTS-create.sql:

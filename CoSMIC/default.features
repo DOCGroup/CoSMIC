@@ -17,3 +17,4 @@ mfc           = 1
 rpc           = 0
 wxWindows     = 1
 boost         = 1
+cidl          = 1

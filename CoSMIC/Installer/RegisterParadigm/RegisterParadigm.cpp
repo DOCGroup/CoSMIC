@@ -172,19 +172,18 @@ UINT __stdcall RegisterParadigms(MSIHANDLE hInstall)
   InitProgressBar(hInstall, nParadigmNum, PARADIGMCOST,
                   "Paradigm Install",
                   "Registering Paradigms into GME.", "Registering [1]");
-  char* value = GetRegistryValue (HKEY_CURRENT_USER,
+  char* value = GetRegistryValue (HKEY_LOCAL_MACHINE,
                                   "SOFTWARE\\ISIS\\CoSMIC",
                                   "TargetDir");
   if (value == 0)
     {
       SendErrorMsg (hInstall, "Unable to access Registry Key "
-                    "HKEY_CURRENT_USER\\SOFTWARE\\ISIS\\CoSMIC\\TargetDir", 1);
+                    "HKEY_LOCAL_MACHINE\\SOFTWARE\\ISIS\\CoSMIC\\TargetDir", 1);
       return 0;
     }
 
   std::vector<std::string> paradigms;
   paradigms.push_back ("PICML.xmp");
-  paradigms.push_back ("OCML.xmp");
 
   for (std::vector<std::string>::const_iterator iter = paradigms.begin();
        iter != paradigms.end();
@@ -259,7 +258,6 @@ UINT __stdcall UnRegisterParadigms (MSIHANDLE hInstall)
 
   std::vector<std::string> paradigms;
   paradigms.push_back ("PICML");
-  paradigms.push_back ("OCML");
 
   for (std::vector<std::string>::const_iterator iter = paradigms.begin();
        iter != paradigms.end();
