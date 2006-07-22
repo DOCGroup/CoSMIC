@@ -32,13 +32,15 @@ public class XmlExportVisitor implements Visitor {
     private DocumentFragment docFragment;
     private Folder rootFolder;
 
-    private Model currModel = this.objFactory.createModel();
+    private Model currModel = null;
     private Stack<Model> modelStack = new Stack<Model>();
 
-    private String currNs = new String();
+    private String currNs = null;
     private Stack<String> nsStack = new Stack<String>();
 
     private Operation currOp = null;
+    private Reference currRef = null;
+    private Message currMessage = null;
 
     private int objCounter = 0;
 
@@ -165,12 +167,13 @@ public class XmlExportVisitor implements Visitor {
 
             edu.vanderbilt.isis.gme.xme.Comment
                 comment = this.objFactory.createComment();
-            comment.setContent ("First try at generating xme");
+            comment.setContent ("Imported from WSDL on "
+                                + new Date().toString());
             this.marshaller.marshal (comment, this.docFragment);
             this.docElement.appendChild (this.docFragment);
 
             Author author = this.objFactory.createAuthor();
-            author.setContent ("Lord of the Rings!");
+            author.setContent ("edu.vanderbilt.dre.WSML.WSDLImporter");
             this.marshaller.marshal (author, this.docFragment);
             this.docElement.appendChild (this.docFragment);
 
@@ -283,7 +286,8 @@ public class XmlExportVisitor implements Visitor {
                                          String value) {
         Attribute attr = this.objFactory.createAttribute();
         attr.setKind(kind);
-        attr.setStatus(status);
+        if (status != null)
+            attr.setStatus(status);
         Value val = this.objFactory.createValue();
         val.setContent (value);
         attr.setValue(val);
@@ -295,7 +299,8 @@ public class XmlExportVisitor implements Visitor {
                                      boolean isOpaque) {
         Regnode regNode = this.objFactory.createRegnode();
         regNode.setName (name);
-        regNode.setStatus(status);
+        if (status != null)
+            regNode.setStatus(status);
         if (isOpaque)
             regNode.setIsopaque ("yes");
         return regNode;
@@ -379,153 +384,23 @@ public class XmlExportVisitor implements Visitor {
         return model;
     }
 
-
-    public void visitBinding (Binding binding) {
-        String localName = binding.getQName().getLocalPart();
-        Model bindingModel = this.createGmeModel (localName, "Binding",
-                                                  "Binding");
-        Regnode partregs = this.createPartRegs (xPos, yPos);
-        this.currModel.getRegnodeOrConstraintOrAttribute().add(bindingModel);
-        PortType bindingPortType = binding.getPortType();
-        Model refPortType = this.portTypeMap.get(bindingPortType.getQName());
-        Connection portType = this.createGmeConnection ("BindingPortType",
-                                                        "BindingPortType",
-                                                        "BindingPortType");
-        Regnode autoRouter = this.createAutoRouterPref("We");
-        portType.getRegnodeOrConstraintOrConnpoint().add(autoRouter);
-
-        Connpoint src = this.createGmeConnpoint ("src");
-        src.setTarget(bindingModel);
-        portType.getRegnodeOrConstraintOrConnpoint().add(src);
-        Connpoint dst = this.createGmeConnpoint ("dst");
-        dst.setTarget(refPortType);
-        portType.getRegnodeOrConstraintOrConnpoint().add(dst);
-        this.currModel.getRegnodeOrConstraintOrAttribute().add(portType);
-
-        List extElements = binding.getExtensibilityElements();
-        Iterator iterator = extElements.iterator();
-        while (iterator.hasNext()) {
-            ExtensibilityElement elem = (ExtensibilityElement)iterator.next();
-            if (elem instanceof SOAPBinding) {
-                SOAPBinding soapBinding = (SOAPBinding)elem;
-                this.push (bindingModel);
-                xPos = yPos = 12;
-                this.visitSOAPBinding(soapBinding);
-                this.pop();
-            }
-        }
-
-        List bindingOperations = binding.getBindingOperations();
-        iterator = bindingOperations.iterator();
-        while (iterator.hasNext()) {
-            BindingOperation bindOp = (BindingOperation)iterator.next();
-            this.push(bindingModel);
-            this.visitBindingOperation(bindOp);
-            this.pop();
-        }
-    }
-
-    public void visitBindingFault (BindingFault bindingFault)
-    {}
-
-    public void visitBindingInput (BindingInput bindingInput) {
-
-
-    }
-
-    public void visitBindingOperation (BindingOperation bindingOperation) {
-        String localName = bindingOperation.getName();
-        Model bindOp = this.createGmeModel (localName, "BindingOperation",
-                                            "BindingOperation");
-        this.currModel.getRegnodeOrConstraintOrAttribute().add (bindOp);
-        Regnode partregs = this.createPartRegs (xPos, yPos);
-        this.currModel.getRegnodeOrConstraintOrAttribute().add(bindOp);
-
-        List extElements = bindingOperation.getExtensibilityElements();
-        Iterator iterator = extElements.iterator();
-        while (iterator.hasNext()) {
-            ExtensibilityElement elem = (ExtensibilityElement)iterator.next();
-            if (elem instanceof SOAPOperation) {
-                SOAPOperation soapOperation = (SOAPOperation)elem;
-                this.push (bindOp);
-                xPos = yPos = 12;
-                this.visitSOAPOperation(soapOperation);
-                this.pop();
-            }
-        }
-
-        Operation op = bindingOperation.getOperation();
-        // The current BindingOperation that is being visited.  Used by the
-        // Binding* functions to retrieve otherwise impossible to retrieve
-        // information.
-        this.currOp = op;
-        Model operationRefModel = this.operMap.get(op);
-
-        // Create the OperationRef
-        Reference operationRef
-            = this.createGmeReference (op.getName(),
-                                       "OperationRef", "OperationRef");
-        xPos += 168;
-        partregs = this.createPartRegs(xPos, yPos);
-        operationRef.getRegnodeOrConstraintOrAttribute().add(partregs);
-        operationRef.setReferred(operationRefModel);
-        this.currModel.getRegnodeOrConstraintOrAttribute().add(operationRef);
-
-        // Create the BindsOperation connection
-        Connection bindsOperation = this.createGmeConnection ("BindsOperation",
-                                                              "BindsOperation",
-                                                              "BindsOperation");
-        Regnode autoRouter = this.createAutoRouterPref ("Ew");
-        bindsOperation.getRegnodeOrConstraintOrConnpoint().add(autoRouter);
-
-        Connpoint src = this.createGmeConnpoint ("src");
-        src.setTarget(bindOp);
-        bindsOperation.getRegnodeOrConstraintOrConnpoint().add(src);
-        Connpoint dst = this.createGmeConnpoint ("dst");
-        dst.setTarget(operationRefModel);
-        bindsOperation.getRegnodeOrConstraintOrConnpoint().add(dst);
-        this.currModel.getRegnodeOrConstraintOrAttribute().add(bindsOperation);
-
-
-        BindingInput bindInput = bindingOperation.getBindingInput();
-        if (bindInput != null) {
-            this.push(bindOp);
-            this.visitBindingInput (bindInput);
-            this.pop();
-        }
-        BindingOutput bindOutput = bindingOperation.getBindingOutput();
-        if (bindOutput != null) {
-            this.push(bindOp);
-            this.visitBindingOutput (bindOutput);
-            this.pop();
-        }
-        Map bindingFaults = bindingOperation.getBindingFaults();
-        iterator = bindingFaults.values.iterator();
-        while (iterator.hasNext()) {
-            BindingFault bindFault = (BindingFault)iterator.next();
-            this.push(bindOp);
-            this.visitBindingFault(bindFault);
-            this.pop();
-        }
-    }
-
-    public void visitBindingOutput (BindingOutput bindingOutput)
-    {}
-
     public void visitDefinition (Definition definition) {
 
         // Create the Definitions model
         String defName = definition.getQName().getLocalPart();
-        this.pushNamespace(definition.getTargetNamespace());
         Model def = this.createGmeModel(defName, "Definitions", null);
+        String targetNamespace = definition.getTargetNamespace();
+        boolean popNamespace = false;
+        if (targetNamespace != null) {
+            this.pushNamespace(targetNamespace);
+            popNamespace = true;
+            Attribute attr = this.createGmeAttribute("targetNamespace",
+                                           null,
+                                           targetNamespace);
+            def.getRegnodeOrConstraintOrAttribute().add (attr);
+        }
         this.typeMap.put (definition.getQName(), def);
         this.push (def);
-        Attribute attr = this.createGmeAttribute("name", null, defName);
-        this.currModel.getRegnodeOrConstraintOrAttribute().add (attr);
-        attr = this.createGmeAttribute("targetNamespace",
-                                       null,
-                                       definition.getTargetNamespace());
-        this.currModel.getRegnodeOrConstraintOrAttribute().add (attr);
 
         // Create the different namespace attributes
         Map namespaces = definition.getNamespaces();
@@ -561,7 +436,8 @@ public class XmlExportVisitor implements Visitor {
         }
 
         Types types = definition.getTypes();
-        this.visitTypes (types);
+        if (types != null)
+            this.visitTypes (types);
 
         xPos += 84;
         // Wrap around to the next row (based on a screen of width
@@ -605,269 +481,48 @@ public class XmlExportVisitor implements Visitor {
             Service service = (Service)iter.next();
             this.visitService (service);
         }
-        this.rootFolder.getRegnodeOrConstraintOrFolder().add(this.currModel);
         this.pop();
-        this.popNamespace();
-    }
 
-    public void visitFault (Fault fault) {
-        String localName = fault.getName();
-        Model faultModel = this.createGmeModel (localName, "Fault", "Fault");
-        Regnode partregs = this.createPartRegs(xPos, yPos);
-        faultModel.getRegnodeOrConstraintOrAttribute().add(partregs);
-        this.currModel.getRegnodeOrConstraintOrAttribute().add(faultModel);
-        this.faultMap.put (fault, faultModel);
-        // Create the message reference
-        Message refMessage = fault.getMessage();
-        Model refMsgModel = this.messageMap.get (refMessage.getQName());
-        Reference faultMsgRef
-            = this.createGmeReference (refMessage.getQName().getLocalPart(),
-                                       "MessageRef", "MessageRef");
-        xPos += 168;
-        partregs = this.createPartRegs(xPos, yPos);
-        faultMsgRef.getRegnodeOrConstraintOrAttribute().add(partregs);
-        faultMsgRef.setReferred(refMsgModel);
-        this.currModel.getRegnodeOrConstraintOrAttribute().add(faultMsgRef);
+        if (popNamespace)
+            this.popNamespace();
 
-        Connection faultMsgConn = this.createGmeConnection ("FaultMessage",
-                                                             "FaultMessage",
-                                                             "FaultMessage");
-        Regnode autoRouter = this.createAutoRouterPref("Ew");
-        faultMsgConn.getRegnodeOrConstraintOrConnpoint().add(autoRouter);
-
-        Connpoint src = this.createGmeConnpoint ("src");
-        src.setTarget(faultModel);
-        faultMsgConn.getRegnodeOrConstraintOrConnpoint().add(src);
-        Connpoint dst = this.createGmeConnpoint ("dst");
-        dst.setTarget(faultMsgRef);
-        faultMsgConn.getRegnodeOrConstraintOrConnpoint().add(dst);
-
-        this.currModel.getRegnodeOrConstraintOrAttribute().add(faultMsgConn);
-
-    }
-
-    public void visitImport (Import imp)
-    {}
-
-    public void visitInput (Input input) {
-        String localName = input.getName();
-        Model inputModel = this.createGmeModel (localName, "Input", "Input");
-        Regnode partregs = this.createPartRegs(xPos, yPos);
-        inputModel.getRegnodeOrConstraintOrAttribute().add(partregs);
-        this.currModel.getRegnodeOrConstraintOrAttribute().add(inputModel);
-        this.inputMap(input, inputModel);
-        // Create the message reference
-        Message refMessage = input.getMessage();
-        Model refMsgModel = this.messageMap.get (refMessage.getQName());
-        Reference inputMsgRef
-            = this.createGmeReference (refMessage.getQName().getLocalPart(),
-                                       "MessageRef", "MessageRef");
-        xPos += 168;
-        partregs = this.createPartRegs(xPos, yPos);
-        inputMsgRef.getRegnodeOrConstraintOrAttribute().add(partregs);
-        inputMsgRef.setReferred(refMsgModel);
-        this.currModel.getRegnodeOrConstraintOrAttribute().add(inputMsgRef);
-
-        Connection inputMsgConn = this.createGmeConnection ("InputMessage",
-                                                            "InputMessage",
-                                                            "InputMessage");
-        Regnode autoRouter = this.createAutoRouterPref("Ew");
-        inputMsgConn.getRegnodeOrConstraintOrConnpoint().add(autoRouter);
-        Connpoint src = this.createGmeConnpoint ("src");
-        src.setTarget(inputModel);
-        inputMsgConn.getRegnodeOrConstraintOrConnpoint().add(src);
-        Connpoint dst = this.createGmeConnpoint ("dst");
-        dst.setTarget(inputMsgRef);
-        inputMsgConn.getRegnodeOrConstraintOrConnpoint().add(dst);
-
-        this.currModel.getRegnodeOrConstraintOrAttribute().add(inputMsgConn);
-
-    }
-
-    public void visitMessage (Message message) {
-        String localName = message.getQName().getLocalPart();
-        Model msgModel = this.createGmeModel(localName, "Message", "Message");
-        Regnode partregs = this.createPartRegs(xPos, yPos);
-        msgModel.getRegnodeOrConstraintOrAttribute().add(partregs);
-        this.currModel.getRegnodeOrConstraintOrAttribute().add(msgModel);
-        this.messageMap.put (message.getQName(), msgModel);
-        Map parts = message.getParts();
-        Iterator partIter = parts.values().iterator();
-        xPos = yPos = 12;
-        while (partIter.hasNext()) {
-            Part part = (Part)partIter.next();
-            this.push(msgModel);
-            this.visitPart (part);
-            this.pop();
+        if (this.currModel == null) {
+            this.rootFolder.getRegnodeOrConstraintOrFolder().add(def);
+        } else {
+            this.currModel.getRegnodeOrConstraintOrAttribute().add(def);
         }
     }
 
-    public void visitOperation (Operation oper) {
-        String localName = oper.getName();
-        OperationType style = oper.getStyle();
-        String kind = null;
-        String role = null;
-        if (style.equals (OperationType.ONE_WAY)) {
-            kind = role = "OneWayOperation";
-        } else if (style.equals(OperationType.REQUEST_RESPONSE)) {
-            kind = role = "RequestResponseOperation";
-        } else if (style.equals(OperationType.SOLICIT_RESPONSE)) {
-            kind = role = "SolicitResponseOperation";
-        } else if (style.equals(OperationType.NOTIFICATION)) {
-            kind = role = "NotificationOperation";
-        } else {
-            System.out.println ("Error: Unknown OperationStyle for operation"
-                                + localName);
+    public void visitImport (Import imp) {
+        Model importModel = this.createGmeModel ("import", "Import", "Import");
+        Regnode partregs = this.createPartRegs (xPos, yPos);
+        importModel.getRegnodeOrConstraintOrAttribute().add(partregs);
+        String namespaceName = imp.getNamespaceURI();
+        if (namespaceName == null) {
+            System.out.println ("Error: namespace attribute of <wsdl:import>"
+                                + "cannot be null!");
             System.exit(1);
         }
-        Model operModel = this.createGmeModel(localName, kind, role);
-        Regnode partregs = this.createPartRegs(xPos, yPos);
-        operModel.getRegnodeOrConstraintOrAttribute().add(partregs);
-        String params = "";
-        if (style.equals(OperationType.REQUEST_RESPONSE)
-            || style.equals(OperationType.SOLICIT_RESPONSE)) {
-            List parameterOrdering = oper.getParameterOrdering();
-            if (parameterOrdering != null) {
-                Iterator paramIter = parameterOrdering.iterator();
-                while (paramIter.hasNext()) {
-                    params = params + (String)paramIter.next() + " ";
-                }
-            }
-        }
-        Attribute parameterOrder = this.createGmeAttribute("parameterOrder",
-                                                           null,
-                                                           params);
-        operModel.getRegnodeOrConstraintOrAttribute().add(parameterOrder);
-        this.currModel.getRegnodeOrConstraintOrAttribute().add(operModel);
-        this.operMap.put(oper, operModel);
-        Input input = oper.getInput();
-        Output output = oper.getOutput();
-        Map faults = oper.getFaults();
-        if (style.equals (OperationType.ONE_WAY)) {
-            this.push(operModel);
-            if (input.getName() == null) {
-                input.setName (localName);
-            }
-            this.visitInput(input);
-            this.pop();
-        } else if (style.equals(OperationType.NOTIFICATION)) {
-            this.push(operModel);
-            if (output.getName() == null) {
-                output.setName (localName);
-            }
-            this.visitOutput(output);
-            this.pop();
-        } else {
-            this.push(operModel);
-            if (style.equals(OperationType.REQUEST_RESPONSE)) {
-                if (input.getName() == null)
-                    input.setName (localName+"Request");
-                if (output.getName() == null)
-                    output.setName (localName+"Response");
-            } else if (style.equals(OperationType.SOLICIT_RESPONSE)) {
-                if (output.getName() == null)
-                    output.setName (localName+"Solicit");
-                if (input.getName() == null)
-                    input.setName (localName+"Response");
-            }
-            this.visitInput(input);
-            this.visitOutput(output);
-            Iterator faultIter = faults.values().iterator();
-            while (faultIter.hasNext()) {
-                Fault fault = (Fault)faultIter.next();
-                this.visitFault (fault);
-            }
-            this.pop();
-        }
-    }
-
-    public void visitOutput (Output output) {
-        String localName = output.getName();
-        Model outputModel = this.createGmeModel (localName, "Output", "Output");
-        Regnode partregs = this.createPartRegs(xPos, yPos);
-        outputModel.getRegnodeOrConstraintOrAttribute().add(partregs);
-        this.currModel.getRegnodeOrConstraintOrAttribute().add(outputModel);
-        this.outputMap.put(output, outputModel);
-        // Create the message reference
-        Message refMessage = output.getMessage();
-        Model refMsgModel = this.messageMap.get (refMessage.getQName());
-        Reference outputMsgRef
-            = this.createGmeReference (refMessage.getQName().getLocalPart(),
-                                       "MessageRef", "MessageRef");
-        xPos += 168;
-        partregs = this.createPartRegs(xPos, yPos);
-        outputMsgRef.getRegnodeOrConstraintOrAttribute().add(partregs);
-        outputMsgRef.setReferred(refMsgModel);
-        this.currModel.getRegnodeOrConstraintOrAttribute().add(outputMsgRef);
-
-        Connection outputMsgConn = this.createGmeConnection ("OutputMessage",
-                                                            "OutputMessage",
-                                                            "OutputMessage");
-        Regnode autoRouter = this.createAutoRouterPref("Ew");
-        outputMsgConn.getRegnodeOrConstraintOrConnpoint().add(autoRouter);
-
-        Connpoint src = this.createGmeConnpoint ("src");
-        src.setTarget(outputModel);
-        outputMsgConn.getRegnodeOrConstraintOrConnpoint().add(src);
-        Connpoint dst = this.createGmeConnpoint ("dst");
-        dst.setTarget(outputMsgRef);
-        outputMsgConn.getRegnodeOrConstraintOrConnpoint().add(dst);
-
-        this.currModel.getRegnodeOrConstraintOrAttribute().add(outputMsgConn);
-
-    }
-
-    public void visitPart (Part part) {
-        String localName = part.getName();
-        Reference ref = this.createGmeReference (localName, "Part", "Part");
-        Regnode partregs = this.createPartRegs(xPos, yPos);
-        ref.getRegnodeOrConstraintOrAttribute().add(partregs);
-        QName referredName = part.getTypeName();
-        if (referredName == null) {
-            referredName = part.getElementName();
-            if (referredName == null) {
-                System.out.println ("Warning: part" + localName
-                                    + "is a null reference");
-            }
-        }
-        Object referred = this.typeMap.get(referredName);
-        if (referred == null) {
-            System.out.println ("Error: Unknown type referred by part"
-                                + localName);
+        Attribute namespace = this.createGmeAttribute ("namespace",
+                                                       null,
+                                                       namespaceName);
+        importModel.getRegnodeOrConstraintOrAttribute().add(namespace);
+        String locationName = imp.getLocationURI();
+        if (locationName == null) {
+            System.out.println ("Error: location attribute of <wsdl:import>"
+                                + "cannot be null!");
             System.exit(1);
         }
-        ref.setReferred(referred);
-        this.currModel.getRegnodeOrConstraintOrAttribute().add(ref);
-        String messageName = this.currModel.getName().getContent();
-        QName msgPartQName = new QName (this.currNs, messageName + localName);
-        this.partMap.put (msgPartQName, ref);
+        Attribute location = this.createGmeAttribute ("location",
+                                                       null,
+                                                       locationName);
+        importModel.getRegnodeOrConstraintOrAttribute().add(location);
+
+        Definition importedDef = imp.getDefinition();
+        this.push(importModel);
+        this.visitDefinition (importedDef);
+        this.pop();
     }
-
-    public void visitPort (Port port)
-    {}
-
-    public void visitPortType (PortType portType) {
-        String localName = portType.getQName().getLocalPart();
-        Model portTypeModel = this.createGmeModel (localName, "PortType",
-                                                   "PortType");
-        Regnode partregs = this.createPartRegs(xPos, yPos);
-        portTypeModel.getRegnodeOrConstraintOrAttribute().add(partregs);
-        this.currModel.getRegnodeOrConstraintOrAttribute().add(portTypeModel);
-        this.portTypeMap.put (portType.getQName(), portTypeModel);
-        List operations = portType.getOperations();
-        Iterator opIter = operations.iterator();
-        xPos = yPos = 12;
-        while (opIter.hasNext()) {
-            Operation op = (Operation)opIter.next();
-            this.push(portTypeModel);
-            this.visitOperation(op);
-            this.pop();
-        }
-    }
-
-
-    public void visitService (Service service)
-    {}
 
     public void visitTypes (Types types) {
         Model typeModel = this.createGmeModel ("Types", "Types", "Types");
@@ -887,65 +542,153 @@ public class XmlExportVisitor implements Visitor {
         }
     }
 
-    public void visitSOAPAddress (SOAPAddress soapAddress)
-    {}
-
-    public void visitSOAPBinding (SOAPBinding soapBinding) {
-        String name = soapBinding.getElementType().toString();
-        Atom binding = this.createGmeAtom (name, "SOAPBinding", "SOAPBinding");
-        this.currModel.getRegnodeOrConstraintOrAttribute().add(binding);
+    public void visitSchema (Schema schema) {
+        boolean popNamespace = false;
+        org.w3c.dom.Element schemaEle = schema.getElement();
+        String schemaName = schemaEle.getNodeName();
+        Model schemaModel = this.createGmeModel(schemaName, "Schema", "Schema");
+        this.currModel.getRegnodeOrConstraintOrAttribute().add (schemaModel);
+        xPos = yPos= 12;
         Regnode partregs = this.createPartRegs (xPos, yPos);
-        binding.getRegnodeOrConstraintOrAttribute().add(partregs);
+        schemaModel.getRegnodeOrConstraintOrAttribute().add(partregs);
+        NamedNodeMap attrs = schemaEle.getAttributes();
+        for (int i = 0; i < attrs.getLength(); ++i) {
+            Node attrNode = attrs.item (i);
+            String attrName = attrNode.getNodeName();
+            String attrValue = attrNode.getNodeValue();
+            if (attrNode.getLocalName().equals ("targetNamespace")) {
+                Attribute attr = this.createGmeAttribute (attrName,
+                                                          null,
+                                                          attrValue);
+                schemaModel.getRegnodeOrConstraintOrAttribute().add(attr);
+                this.pushNamespace(attrValue);
+                popNamespace = true;
+                continue;
+            }
+            Atom atom = this.createGmeAtom (attrName, "Attribute", "Attribute");
+            Attribute attrVal = this.createGmeAttribute ("Value", null,
+                                                         attrValue);
+            atom.getRegnodeOrConstraintOrAttribute().add(attrVal);
+            Regnode atomregs = this.createPartRegs (xPos, yPos);
+            xPos += 84;
+            // Wrap around to the next row (based on a screen of width
+            // 1600x1200 with GME maximized)
+            if (xPos > 1084) {
+                xPos = 12;
+                yPos += 84;
+            }
+            atom.getRegnodeOrConstraintOrAttribute().add(atomregs);
+            schemaModel.getRegnodeOrConstraintOrAttribute().add(atom);
+        }
 
-        Boolean req = soapBinding.getRequired();
-        Attribute required = this.createGmeAttribute("required",null,
-                                                     req.toString());
-        this.binding.getRegnodeOrConstraintOrAttribute().add(required);
+        xPos = yPos = 12;
 
-        Attribute style = this.createGmeAttribute("style", null,
-                                                  binding.getStyle());
-        this.binding.getRegnodeOrConstraintOrAttribute().add(style);
+        List includes = schema.getIncludes();
+        Iterator iter = includes.iterator();
+        while (iter.hasNext()) {
+            SchemaReference schemaRef = (SchemaReference)iter.next();
+            Model schemaRefModel = this.createGmeModel ("include",
+                                                        "SchemaReference",
+                                                        "SchemaReference");
+            schemaModel.getRegnodeOrConstraintOrAttribute().add(schemaRefModel);
+            this.push (schemaRefModel);
+            this.visitSchemaReference (schemaRef);
+            this.pop();
+        }
 
-        Attribute transport
-            = this.createGmeAttribute ("transport", null,
-                                       binding.getTransportURI());
-        this.binding.getRegnodeOrConstraintOrAttribute().add(transport);
+        Map imports = schema.getImports();
+        Iterator values = imports.values().iterator();
+        while (values.hasNext()) {
+            List importList = (List)values.next();
+            iter = importList.iterator();
+            while (iter.hasNext()) {
+                SchemaImport schemaImport = (SchemaImport)iter.next();
+                this.push (schemaModel);
+                this.visitSchemaImport(schemaImport);
+                this.pop();
+            }
+        }
+
+        List redefines = schema.getRedefines();
+        iter = redefines.iterator();
+        while (iter.hasNext()) {
+            SchemaReference schemaRef = (SchemaReference)iter.next();
+            Model schemaRefModel = this.createGmeModel ("redefine",
+                                                        "SchemaReference",
+                                                        "SchemaReference");
+            schemaModel.getRegnodeOrConstraintOrAttribute().add(schemaRefModel);
+            this.push (schemaRefModel);
+            this.visitSchemaReference (schemaRef);
+            this.pop();
+        }
+
+        NodeList children = schemaEle.getChildNodes();
+        for (int i = 0; i < children.getLength(); ++i) {
+            Node child = children.item(i);
+            if (child instanceof Element) {
+                org.w3c.dom.Element childEle = (org.w3c.dom.Element)child;
+                this.visitElement (childEle, schemaModel, 0);
+            }
+        }
+
+        if (popNamespace)
+            this.popNamespace();
     }
 
-    public void visitSOAPBody (SOAPBody soapBody)
-    {}
+    public void visitSchemaImport (SchemaImport schemaImport) {
+        Model schemaImpModel = this.createGmeModel ("import",
+                                                       "SchemaImport",
+                                                       "SchemaImport");
+        this.currModel.getRegnodeOrConstraintOrAttribute(). add(schemaImpModel);
+        String id = schemaImport.getId();
+        if (id != null) {
+            Attribute attr = this.createGmeAttribute ("id", null, id);
+            schemaImpModel.getRegnodeOrConstraintOrAttribute().add(attr);
+        }
+        String schemaLocation = schemaImport.getSchemaLocationURI();
+        if (schemaLocation == null) {
+            System.out.println ("Error: schemaLocation attribute of "
+                                + this.currModel.getName().getContent()
+                                + " is null!");
+            System.exit(1);
+        }
+        Attribute attr = this.createGmeAttribute ("schemaLocation", null,
+                                                  schemaLocation);
+        schemaImpModel.getRegnodeOrConstraintOrAttribute().add(schemaLocation);
 
-    public void visitSOAPFault (SOAPFault soapFault)
-    {}
+        String namespace = schemaImport.getNamespaceURI();
+        if (schemaLocation == null) {
+            System.out.println ("Error: schemaLocation attribute of "
+                                + this.currModel.getName().getContent()
+                                + " is null!");
+            System.exit(1);
+        }
+        attr = this.createGmeAttribute ("namespace", null, namespace);
+        schemaImpModel.getRegnodeOrConstraintOrAttribute().add(attr);
+        Schema schema = schemaImport.getReferencedSchema();
+        this.push(schemaImpModel);
+        this.visitSchema(schema);
+        this.pop();
+    }
 
-    public void visitSOAPHeader (SOAPHeader soapHeader)
-    {}
-
-    public void visitSOAPHeaderFault (SOAPHeaderFault soapHeaderFault)
-    {}
-
-    public void visitSOAPOperation (SOAPOperation soapOperation) {
-
-        String name = soapOperation.getElementType().toString();
-        Atom operation = this.createGmeAtom (name, "SOAPOperation",
-                                           "SOAPOperation");
-        this.currModel.getRegnodeOrConstraintOrAttribute().add(operation);
-        Regnode partregs = this.createPartRegs (xPos, yPos);
-        operation.getRegnodeOrConstraintOrAttribute().add(partregs);
-
-        Boolean req = soapOperation.getRequired();
-        Attribute required = this.createGmeAttribute("required", null,
-                                                     req.toString());
-        this.operation.getRegnodeOrConstraintOrAttribute().add(required);
-
-        Attribute style = this.createGmeAttribute("style", null,
-                                                  operation.getStyle());
-        this.operation.getRegnodeOrConstraintOrAttribute().add(style);
-
-        Attribute transport
-            = this.createGmeAttribute ("soapAction", null,
-                                       operation.getSoapActionURI());
-        this.operation.getRegnodeOrConstraintOrAttribute().add(transport);
+    public void visitSchemaReference (SchemaReference schemaReference) {
+        String id = schemaReference.getId();
+        if (id != null) {
+            Attribute attr = this.createGmeAttribute ("id", null, id);
+            this.currModel.getRegnodeOrConstraintOrAttribute().add(attr);
+        }
+        String schemaLocation = schemaReference.getSchemaLocationURI();
+        if (schemaLocation == null) {
+            System.out.println ("Error: schemaLocation attribute of "
+                                + this.currModel.getName().getContent()
+                                + " is null!");
+            System.exit(1);
+        }
+        Attribute attr = this.createGmeAttribute ("schemaLocation", null,
+                                                  schemaLocation);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(attr);
+        Schema schema = schemaReference.getReferencedSchema();
+        this.visitSchema(schema);
     }
 
     public void visitElement (org.w3c.dom.Element visitedEle, Model parent,
@@ -1030,95 +773,1074 @@ public class XmlExportVisitor implements Visitor {
         }
     }
 
-    public void visitSchema (Schema schema) {
-        boolean popNamespace = false;
-        org.w3c.dom.Element schemaEle = schema.getElement();
-        String schemaName = schemaEle.getNodeName();
-        Model schemaModel = this.createGmeModel(schemaName, "Schema", "Schema");
-        this.currModel.getRegnodeOrConstraintOrAttribute().add (schemaModel);
-        xPos = yPos= 12;
-        Regnode partregs = this.createPartRegs (xPos, yPos);
-        schemaModel.getRegnodeOrConstraintOrAttribute().add(partregs);
-        NamedNodeMap attrs = schemaEle.getAttributes();
-        for (int i = 0; i < attrs.getLength(); ++i) {
-            Node attrNode = attrs.item (i);
-            String attrName = attrNode.getNodeName();
-            String attrValue = attrNode.getNodeValue();
-            if (attrNode.getLocalName().equals ("targetNamespace")) {
-                Attribute attr = this.createGmeAttribute (attrName,
-                                                          null,
-                                                          attrValue);
-                schemaModel.getRegnodeOrConstraintOrAttribute().add(attr);
-                this.pushNamespace(attrValue);
-                popNamespace = true;
-                continue;
-            }
-            Atom atom = this.createGmeAtom (attrName, "Attribute", "Attribute");
-            Attribute attrVal = this.createGmeAttribute ("Value", null,
-                                                         attrValue);
-            atom.getRegnodeOrConstraintOrAttribute().add(attrVal);
-            Regnode atomregs = this.createPartRegs (xPos, yPos);
-            xPos += 84;
-            // Wrap around to the next row (based on a screen of width
-            // 1600x1200 with GME maximized)
-            if (xPos > 1084) {
-                xPos = 12;
-                yPos += 84;
-            }
-            atom.getRegnodeOrConstraintOrAttribute().add(atomregs);
-            schemaModel.getRegnodeOrConstraintOrAttribute().add(atom);
-        }
-
+    public void visitMessage (Message message) {
+        String localName = message.getQName().getLocalPart();
+        Model msgModel = this.createGmeModel(localName, "Message", "Message");
+        Regnode partregs = this.createPartRegs(xPos, yPos);
+        msgModel.getRegnodeOrConstraintOrAttribute().add(partregs);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(msgModel);
+        this.messageMap.put (message.getQName(), msgModel);
+        Map parts = message.getParts();
+        Iterator partIter = parts.values().iterator();
         xPos = yPos = 12;
-
-        List includes = schema.getIncludes();
-        Iterator iter = includes.iterator();
-        while (iter.hasNext()) {
-            SchemaReference schemaRef = (SchemaReference)iter.next();
-            this.push (schemaModel);
-            this.visitSchemaReference (schemaRef);
+        while (partIter.hasNext()) {
+            Part part = (Part)partIter.next();
+            this.push(msgModel);
+            this.visitPart (part);
             this.pop();
         }
+    }
 
-        Map imports = schema.getImports();
-        Iterator values = imports.values().iterator();
-        while (values.hasNext()) {
-            List importList = (List)values.next();
-            iter = importList.iterator();
-            while (iter.hasNext()) {
-                SchemaImport schemaImport = (SchemaImport)iter.next();
-                this.push (schemaModel);
-                this.visitSchemaImport(schemaImport);
+    public void visitPart (Part part) {
+        String localName = part.getName();
+        Reference ref = this.createGmeReference (localName, "Part", "Part");
+        Regnode partregs = this.createPartRegs(xPos, yPos);
+        ref.getRegnodeOrConstraintOrAttribute().add(partregs);
+        QName referredName = part.getTypeName();
+        if (referredName == null) {
+            referredName = part.getElementName();
+            if (referredName == null) {
+                System.out.println ("Warning: part" + localName
+                                    + "is a null reference");
+            }
+        }
+        Object referred = this.typeMap.get(referredName);
+        if (referred == null) {
+            System.out.println ("Error: Unknown type referred by part"
+                                + localName);
+            System.exit(1);
+        }
+        ref.setReferred(referred);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(ref);
+        String messageName = this.currModel.getName().getContent();
+        QName msgPartQName = new QName (this.currNs, messageName + localName);
+        this.partMap.put (msgPartQName, ref);
+    }
+
+    public void visitPortType (PortType portType) {
+        String localName = portType.getQName().getLocalPart();
+        Model portTypeModel = this.createGmeModel (localName, "PortType",
+                                                   "PortType");
+        Regnode partregs = this.createPartRegs(xPos, yPos);
+        portTypeModel.getRegnodeOrConstraintOrAttribute().add(partregs);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(portTypeModel);
+        this.portTypeMap.put (portType.getQName(), portTypeModel);
+        List operations = portType.getOperations();
+        Iterator opIter = operations.iterator();
+        xPos = yPos = 12;
+        while (opIter.hasNext()) {
+            Operation op = (Operation)opIter.next();
+            this.push(portTypeModel);
+            this.visitOperation(op);
+            this.pop();
+        }
+    }
+
+    public void visitOperation (Operation oper) {
+        String localName = oper.getName();
+        OperationType style = oper.getStyle();
+        String kind = null;
+        String role = null;
+        if (style.equals (OperationType.ONE_WAY)) {
+            kind = role = "OneWayOperation";
+        } else if (style.equals(OperationType.REQUEST_RESPONSE)) {
+            kind = role = "RequestResponseOperation";
+        } else if (style.equals(OperationType.SOLICIT_RESPONSE)) {
+            kind = role = "SolicitResponseOperation";
+        } else if (style.equals(OperationType.NOTIFICATION)) {
+            kind = role = "NotificationOperation";
+        } else {
+            System.out.println ("Error: Unknown OperationStyle for operation"
+                                + localName);
+            System.exit(1);
+        }
+        Model operModel = this.createGmeModel(localName, kind, role);
+        Regnode partregs = this.createPartRegs(xPos, yPos);
+        operModel.getRegnodeOrConstraintOrAttribute().add(partregs);
+        StringBuilder params = new StringBuilder();
+        if (style.equals(OperationType.REQUEST_RESPONSE)
+            || style.equals(OperationType.SOLICIT_RESPONSE)) {
+            List parameterOrdering = oper.getParameterOrdering();
+            if (parameterOrdering != null) {
+                Iterator paramIter = parameterOrdering.iterator();
+                while (paramIter.hasNext()) {
+                    params.append((String)paramIter.next());
+                    params.append(" ");
+                }
+            }
+        }
+        Attribute parameterOrder
+            = this.createGmeAttribute("parameterOrder", null,
+                                      params.toString().trim());
+        operModel.getRegnodeOrConstraintOrAttribute().add(parameterOrder);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(operModel);
+        this.operMap.put(oper, operModel);
+        Input input = oper.getInput();
+        Output output = oper.getOutput();
+        Map faults = oper.getFaults();
+        if (style.equals (OperationType.ONE_WAY)) {
+            this.push(operModel);
+            if (input.getName() == null) {
+                input.setName (localName);
+            }
+            this.visitInput(input);
+            this.pop();
+        } else if (style.equals(OperationType.NOTIFICATION)) {
+            this.push(operModel);
+            if (output.getName() == null) {
+                output.setName (localName);
+            }
+            this.visitOutput(output);
+            this.pop();
+        } else {
+            this.push(operModel);
+            if (style.equals(OperationType.REQUEST_RESPONSE)) {
+                if (input.getName() == null)
+                    input.setName (localName+"Request");
+                if (output.getName() == null)
+                    output.setName (localName+"Response");
+            } else if (style.equals(OperationType.SOLICIT_RESPONSE)) {
+                if (output.getName() == null)
+                    output.setName (localName+"Solicit");
+                if (input.getName() == null)
+                    input.setName (localName+"Response");
+            }
+            this.visitInput(input);
+            this.visitOutput(output);
+            Iterator faultIter = faults.values().iterator();
+            while (faultIter.hasNext()) {
+                Fault fault = (Fault)faultIter.next();
+                this.visitFault (fault);
+            }
+            this.pop();
+        }
+    }
+
+    public void visitInput (Input input) {
+        String localName = input.getName();
+        Model inputModel = this.createGmeModel (localName, "Input", "Input");
+        Regnode partregs = this.createPartRegs(xPos, yPos);
+        inputModel.getRegnodeOrConstraintOrAttribute().add(partregs);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(inputModel);
+        this.inputMap.put(input, inputModel);
+        // Create the message reference
+        Message refMessage = input.getMessage();
+        Model refMsgModel = this.messageMap.get (refMessage.getQName());
+        Reference inputMsgRef
+            = this.createGmeReference (refMessage.getQName().getLocalPart(),
+                                       "MessageRef", "MessageRef");
+        xPos += 168;
+        partregs = this.createPartRegs(xPos, yPos);
+        inputMsgRef.getRegnodeOrConstraintOrAttribute().add(partregs);
+        inputMsgRef.setReferred(refMsgModel);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(inputMsgRef);
+
+        Connection inputMsgConn = this.createGmeConnection ("InputMessage",
+                                                            "InputMessage",
+                                                            "InputMessage");
+        Regnode autoRouter = this.createAutoRouterPref("Ew");
+        inputMsgConn.getRegnodeOrConstraintOrConnpoint().add(autoRouter);
+        Connpoint src = this.createGmeConnpoint ("src");
+        src.setTarget(inputModel);
+        inputMsgConn.getRegnodeOrConstraintOrConnpoint().add(src);
+        Connpoint dst = this.createGmeConnpoint ("dst");
+        dst.setTarget(inputMsgRef);
+        inputMsgConn.getRegnodeOrConstraintOrConnpoint().add(dst);
+
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(inputMsgConn);
+
+    }
+
+
+
+    public void visitOutput (Output output) {
+        String localName = output.getName();
+        Model outputModel = this.createGmeModel (localName, "Output", "Output");
+        Regnode partregs = this.createPartRegs(xPos, yPos);
+        outputModel.getRegnodeOrConstraintOrAttribute().add(partregs);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(outputModel);
+        this.outputMap.put(output, outputModel);
+        // Create the message reference
+        Message refMessage = output.getMessage();
+        Model refMsgModel = this.messageMap.get (refMessage.getQName());
+        Reference outputMsgRef
+            = this.createGmeReference (refMessage.getQName().getLocalPart(),
+                                       "MessageRef", "MessageRef");
+        xPos += 168;
+        partregs = this.createPartRegs(xPos, yPos);
+        outputMsgRef.getRegnodeOrConstraintOrAttribute().add(partregs);
+        outputMsgRef.setReferred(refMsgModel);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(outputMsgRef);
+
+        Connection outputMsgConn = this.createGmeConnection ("OutputMessage",
+                                                             "OutputMessage",
+                                                             "OutputMessage");
+        Regnode autoRouter = this.createAutoRouterPref("Ew");
+        outputMsgConn.getRegnodeOrConstraintOrConnpoint().add(autoRouter);
+
+        Connpoint src = this.createGmeConnpoint ("src");
+        src.setTarget(outputModel);
+        outputMsgConn.getRegnodeOrConstraintOrConnpoint().add(src);
+        Connpoint dst = this.createGmeConnpoint ("dst");
+        dst.setTarget(outputMsgRef);
+        outputMsgConn.getRegnodeOrConstraintOrConnpoint().add(dst);
+
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(outputMsgConn);
+
+    }
+    public void visitFault (Fault fault) {
+        String localName = fault.getName();
+        Model faultModel = this.createGmeModel (localName, "Fault", "Fault");
+        Regnode partregs = this.createPartRegs(xPos, yPos);
+        faultModel.getRegnodeOrConstraintOrAttribute().add(partregs);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(faultModel);
+        this.faultMap.put (fault, faultModel);
+        // Create the message reference
+        Message refMessage = fault.getMessage();
+        Model refMsgModel = this.messageMap.get (refMessage.getQName());
+        Reference faultMsgRef
+            = this.createGmeReference (refMessage.getQName().getLocalPart(),
+                                       "MessageRef", "MessageRef");
+        xPos += 168;
+        partregs = this.createPartRegs(xPos, yPos);
+        faultMsgRef.getRegnodeOrConstraintOrAttribute().add(partregs);
+        faultMsgRef.setReferred(refMsgModel);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(faultMsgRef);
+
+        Connection faultMsgConn = this.createGmeConnection ("FaultMessage",
+                                                            "FaultMessage",
+                                                            "FaultMessage");
+        Regnode autoRouter = this.createAutoRouterPref("Ew");
+        faultMsgConn.getRegnodeOrConstraintOrConnpoint().add(autoRouter);
+
+        Connpoint src = this.createGmeConnpoint ("src");
+        src.setTarget(faultModel);
+        faultMsgConn.getRegnodeOrConstraintOrConnpoint().add(src);
+        Connpoint dst = this.createGmeConnpoint ("dst");
+        dst.setTarget(faultMsgRef);
+        faultMsgConn.getRegnodeOrConstraintOrConnpoint().add(dst);
+
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(faultMsgConn);
+
+    }
+
+    public void visitBinding (Binding binding) {
+        String localName = binding.getQName().getLocalPart();
+        Model bindingModel = this.createGmeModel (localName, "Binding",
+                                                  "Binding");
+        Regnode partregs = this.createPartRegs (xPos, yPos);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(bindingModel);
+        this.bindingMap.put(binding.getQName(), bindingModel);
+        PortType bindingPortType = binding.getPortType();
+        Model refPortType = this.portTypeMap.get(bindingPortType.getQName());
+        if (refPortType == null) {
+            System.out.println ("Error: No portType named" +
+                                bindingPortType.getQName() + "found.");
+            System.exit(1);
+        }
+
+        Connection portType = this.createGmeConnection ("BindingPortType",
+                                                        "BindingPortType",
+                                                        "BindingPortType");
+        Regnode autoRouter = this.createAutoRouterPref("We");
+        portType.getRegnodeOrConstraintOrConnpoint().add(autoRouter);
+
+        Connpoint src = this.createGmeConnpoint ("src");
+        src.setTarget(bindingModel);
+        portType.getRegnodeOrConstraintOrConnpoint().add(src);
+        Connpoint dst = this.createGmeConnpoint ("dst");
+        dst.setTarget(refPortType);
+        portType.getRegnodeOrConstraintOrConnpoint().add(dst);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(portType);
+
+        List extElements = binding.getExtensibilityElements();
+        Iterator iterator = extElements.iterator();
+        while (iterator.hasNext()) {
+            ExtensibilityElement elem = (ExtensibilityElement)iterator.next();
+            if (elem instanceof SOAPBinding) {
+                SOAPBinding soapBinding = (SOAPBinding)elem;
+                this.push (bindingModel);
+                xPos = yPos = 12;
+                this.visitSOAPBinding(soapBinding);
                 this.pop();
             }
         }
 
-        List redefines = schema.getRedefines();
-        iter = redefines.iterator();
-        while (iter.hasNext()) {
-            SchemaReference schemaRef = (SchemaReference)iter.next();
-            this.push (schemaModel);
-            this.visitSchemaReference (schemaRef);
+        List bindingOperations = binding.getBindingOperations();
+        iterator = bindingOperations.iterator();
+        while (iterator.hasNext()) {
+            BindingOperation bindOp = (BindingOperation)iterator.next();
+            this.push(bindingModel);
+            this.visitBindingOperation(bindOp);
             this.pop();
         }
+    }
 
-        NodeList children = schemaEle.getChildNodes();
-        for (int i = 0; i < children.getLength(); ++i) {
-            Node child = children.item(i);
-            if (child instanceof Element) {
-                org.w3c.dom.Element childEle = (org.w3c.dom.Element)child;
-                this.visitElement (childEle, schemaModel, 0);
+
+    public void visitSOAPBinding (SOAPBinding soapBinding) {
+        String name = soapBinding.getElementType().getLocalPart();
+        Atom binding = this.createGmeAtom (name, "SOAPBinding", "SOAPBinding");
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(binding);
+        Regnode partregs = this.createPartRegs (xPos, yPos);
+        binding.getRegnodeOrConstraintOrAttribute().add(partregs);
+
+        Boolean req = soapBinding.getRequired();
+        if (req != null) {
+            Attribute required
+                = this.createGmeAttribute("required", null,
+                                          req.toString());
+            binding.getRegnodeOrConstraintOrAttribute().add(required);
+        }
+
+        String attrVal = soapBinding.getStyle();
+        if (attrVal != null) {
+            Attribute style = this.createGmeAttribute("style", null, attrVal);
+            binding.getRegnodeOrConstraintOrAttribute().add(style);
+        }
+
+        attrVal = soapBinding.getTransportURI();
+        if (attrVal != null) {
+            Attribute transport = this.createGmeAttribute ("transport", null,
+                                                           attrVal);
+            binding.getRegnodeOrConstraintOrAttribute().add(transport);
+        }
+    }
+
+    public void visitBindingOperation (BindingOperation bindingOperation) {
+        String localName = bindingOperation.getName();
+        Model bindOp = this.createGmeModel (localName, "BindingOperation",
+                                            "BindingOperation");
+        this.currModel.getRegnodeOrConstraintOrAttribute().add (bindOp);
+        Regnode partregs = this.createPartRegs (xPos, yPos);
+        bindOp.getRegnodeOrConstraintOrAttribute().add(partregs);
+
+        List extElements = bindingOperation.getExtensibilityElements();
+        Iterator iterator = extElements.iterator();
+        while (iterator.hasNext()) {
+            ExtensibilityElement elem = (ExtensibilityElement)iterator.next();
+            if (elem instanceof SOAPOperation) {
+                SOAPOperation soapOperation = (SOAPOperation)elem;
+                xPos = yPos = 12;
+                this.push (bindOp);
+                this.visitSOAPOperation(soapOperation);
+                this.pop();
             }
         }
 
-        if (popNamespace)
-            this.popNamespace();
+        Operation op = bindingOperation.getOperation();
+        // The current BindingOperation that is being visited.  Used by the
+        // Binding* functions to retrieve otherwise impossible to retrieve
+        // information.
+        this.currOp = op;
+        Model operationRefModel = this.operMap.get(op);
+        if (operationRefModel == null) {
+            System.out.println ("Error: No operation model named" +
+                                op.getName() + "found.");
+            System.exit(1);
+        }
+
+        // Create the OperationRef
+        Reference operationRef
+            = this.createGmeReference (op.getName(),
+                                       "OperationRef", "OperationRef");
+        xPos += 168;
+        partregs = this.createPartRegs(xPos, yPos);
+        operationRef.getRegnodeOrConstraintOrAttribute().add(partregs);
+        operationRef.setReferred(operationRefModel);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(operationRef);
+
+        // Create the BindsOperation connection
+        Connection bindsOperation = this.createGmeConnection ("BindsOperation",
+                                                              "BindsOperation",
+                                                              "BindsOperation");
+        Regnode autoRouter = this.createAutoRouterPref ("Ew");
+        bindsOperation.getRegnodeOrConstraintOrConnpoint().add(autoRouter);
+
+        Connpoint src = this.createGmeConnpoint ("src");
+        src.setTarget(bindOp);
+        bindsOperation.getRegnodeOrConstraintOrConnpoint().add(src);
+        Connpoint dst = this.createGmeConnpoint ("dst");
+        dst.setTarget(operationRef);
+        bindsOperation.getRegnodeOrConstraintOrConnpoint().add(dst);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(bindsOperation);
+
+        BindingInput bindInput = bindingOperation.getBindingInput();
+        if (bindInput != null) {
+            this.push(bindOp);
+            this.visitBindingInput (bindInput);
+            this.pop();
+        }
+        BindingOutput bindOutput = bindingOperation.getBindingOutput();
+        if (bindOutput != null) {
+            this.push(bindOp);
+            this.visitBindingOutput (bindOutput);
+            this.pop();
+        }
+        Map bindingFaults = bindingOperation.getBindingFaults();
+        iterator = bindingFaults.values().iterator();
+        while (iterator.hasNext()) {
+            BindingFault bindFault = (BindingFault)iterator.next();
+            this.push(bindOp);
+            this.visitBindingFault(bindFault);
+            this.pop();
+        }
+
+        // currOp is not guaranteed to have valid values after this point.
+        // So make sure we crash if these fields are accesssed again.
+        this.currOp = null;
+
     }
 
-    public void visitSchemaImport (SchemaImport schemaImport)
-    {}
+    public void visitBindingInput (BindingInput bindingInput) {
+        String localName = bindingInput.getName();
+        Input input = this.currOp.getInput();
+        if (localName == null) {
+            localName = input.getName();
+        }
+        Model inputRefModel = this.inputMap.get(input);
+        if (inputRefModel == null) {
+            System.out.println ("Error: No input model named" +
+                                input.getName() + "found.");
+            System.exit(1);
+        }
 
-    public void visitSchemaReference (SchemaReference schemaReference)
-    {}
+        String refName = inputRefModel.getName().getContent();
+        // Create the inputRef
+        Reference inputRef
+            = this.createGmeReference (refName, "InputRef", "InputRef");
+        xPos += 168;
+        yPos += 84;
+        Regnode partregs = this.createPartRegs(xPos, yPos);
+        inputRef.getRegnodeOrConstraintOrAttribute().add(partregs);
+        inputRef.setReferred(inputRefModel);
+        this.currRef = inputRef;
+        this.currMessage = input.getMessage();
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(inputRef);
+        List extElements = bindingInput.getExtensibilityElements();
+        Iterator iterator = extElements.iterator();
+        while (iterator.hasNext()) {
+            ExtensibilityElement elem = (ExtensibilityElement)iterator.next();
+            if (elem instanceof SOAPBody) {
+                SOAPBody soapBody = (SOAPBody)elem;
+                this.visitSOAPBody(soapBody);
+            } else if (elem instanceof SOAPHeader) {
+                SOAPHeader soapHeader = (SOAPHeader)elem;
+                this.visitSOAPHeader(soapHeader);
+            }
+        }
+        this.currRef = null;
+        this.currMessage = null;
+    }
 
+
+    public void visitBindingOutput (BindingOutput bindingOutput) {
+        String localName = bindingOutput.getName();
+        Output output = this.currOp.getOutput();
+        if (localName == null) {
+            localName = output.getName();
+        }
+        Model outputRefModel = this.outputMap.get(output);
+        if (outputRefModel == null) {
+            System.out.println ("Error: No output model named " +
+                                output.getName() + " found.");
+            System.exit(1);
+        }
+
+        String refName = outputRefModel.getName().getContent();
+        // Create the outputRef
+        Reference outputRef
+            = this.createGmeReference (refName, "OutputRef", "OutputRef");
+        xPos += 168;
+        yPos += 84;
+        Regnode partregs = this.createPartRegs(xPos, yPos);
+        outputRef.getRegnodeOrConstraintOrAttribute().add(partregs);
+        outputRef.setReferred(outputRefModel);
+        this.currRef = outputRef;
+        this.currMessage = output.getMessage();
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(outputRef);
+        List extElements = bindingOutput.getExtensibilityElements();
+        Iterator iterator = extElements.iterator();
+        while (iterator.hasNext()) {
+            ExtensibilityElement elem = (ExtensibilityElement)iterator.next();
+            if (elem instanceof SOAPBody) {
+                SOAPBody soapBody = (SOAPBody)elem;
+                this.visitSOAPBody(soapBody);
+            } else if (elem instanceof SOAPHeader) {
+                SOAPHeader soapHeader = (SOAPHeader)elem;
+                this.visitSOAPHeader(soapHeader);
+            }
+        }
+        // currRef is no longer valid
+        this.currRef = null;
+        this.currMessage = null;
+    }
+
+    public void visitBindingFault (BindingFault bindingFault) {
+        String localName = bindingFault.getName();
+        List extElements = bindingFault.getExtensibilityElements();
+        Iterator iterator = extElements.iterator();
+        while (iterator.hasNext()) {
+            ExtensibilityElement elem = (ExtensibilityElement)iterator.next();
+            if (elem instanceof SOAPFault) {
+                SOAPFault soapFault = (SOAPFault)elem;
+                Fault fault = this.currOp.getFault(soapFault.getName());
+                if (localName == null) {
+                    localName = fault.getName();
+                }
+                Model faultRefModel = this.faultMap.get(fault);
+                if (faultRefModel == null) {
+                    System.out.println ("Error: No fault model named" +
+                                        fault.getName() + "found.");
+                    System.exit(1);
+                }
+                String refName = faultRefModel.getName().getContent();
+                // Create the faultRef
+                Reference faultRef
+                    = this.createGmeReference (refName,
+                                               "FaultRef",
+                                               "FaultRef");
+                xPos += 168;
+                yPos += 84;
+                Regnode partregs = this.createPartRegs(xPos, yPos);
+                faultRef.getRegnodeOrConstraintOrAttribute().add(partregs);
+                faultRef.setReferred(faultRefModel);
+                this.currRef = faultRef;
+                this.currMessage = fault.getMessage();
+                this.currModel.getRegnodeOrConstraintOrAttribute().add(faultRef);
+                this.visitSOAPFault(soapFault);
+            }
+        }
+        this.currRef = null;
+        this.currMessage = null;
+    }
+
+
+    public void visitSOAPBody (SOAPBody soapBody) {
+        String localName = soapBody.getElementType().getLocalPart();
+        Atom body = this.createGmeAtom (localName, "SOAPBody",
+                                        "SOAPBody");
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(body);
+        Regnode partregs = this.createPartRegs (xPos, yPos);
+        body.getRegnodeOrConstraintOrAttribute().add(partregs);
+
+        Boolean req = soapBody.getRequired();
+        if (req != null) {
+            Attribute required
+                = this.createGmeAttribute("required", null, req.toString());
+            body.getRegnodeOrConstraintOrAttribute().add(required);
+        }
+
+        String attrVal = soapBody.getUse();
+        if (attrVal != null) {
+            Attribute use = this.createGmeAttribute("use", null, attrVal);
+            body.getRegnodeOrConstraintOrAttribute().add(use);
+        }
+
+        attrVal = soapBody.getNamespaceURI();
+        if (attrVal != null) {
+            Attribute namespace = this.createGmeAttribute ("namespace",
+                                                           null, attrVal);
+            body.getRegnodeOrConstraintOrAttribute().add(namespace);
+        }
+
+        List encodingStyles = soapBody.getEncodingStyles();
+        if (encodingStyles != null) {
+            Iterator iter = encodingStyles.iterator();
+            StringBuilder sb = new StringBuilder();
+            while (iter.hasNext()) {
+                sb.append((String)iter.next());
+                sb.append(" ");
+            }
+            Attribute encodingStyle
+                = this.createGmeAttribute ("encodingStyle", null,
+                                           sb.toString().trim());
+            body.getRegnodeOrConstraintOrAttribute().add(encodingStyle);
+        }
+
+
+        QName refMsgName = this.currMessage.getQName();
+        // Create the PartRef reference
+        List parts = soapBody.getParts();
+        if (parts != null) {
+            Iterator iter = parts.iterator();
+            while (iter.hasNext()) {
+                String partName = refMsgName.getLocalPart()
+                    + (String)iter.next();
+                Reference part = this.partMap.get(partName);
+                if (part == null) {
+                    System.out.println ("Error: No part model named " +
+                                        partName + " found.");
+                    System.exit(1);
+                }
+                Reference partRef
+                    = this.createGmeReference (part.getName().getContent(),
+                                               "PartRef", "PartRef");
+                xPos += 168;
+                partregs = this.createPartRegs(xPos, yPos);
+                partRef.getRegnodeOrConstraintOrAttribute().add(partregs);
+                partRef.setReferred(part);
+                this.currModel.getRegnodeOrConstraintOrAttribute().add(partRef);
+
+                // Create the BodyParts connection
+                Connection bodyPartsConn
+                    = this.createGmeConnection ("BodyParts", "BodyParts",
+                                                "BodyParts");
+                Regnode autoRouter = this.createAutoRouterPref("Ew");
+                bodyPartsConn.getRegnodeOrConstraintOrConnpoint().add(autoRouter);
+
+                Connpoint src = this.createGmeConnpoint ("src");
+                src.setTarget(body);
+                bodyPartsConn.getRegnodeOrConstraintOrConnpoint().add(src);
+                Connpoint dst = this.createGmeConnpoint ("dst");
+                dst.setTarget(partRef);
+                bodyPartsConn.getRegnodeOrConstraintOrConnpoint().add(dst);
+                this.currModel.getRegnodeOrConstraintOrAttribute().add(bodyPartsConn);
+            }
+        }
+
+        // Create the BodyBinding connection
+        Connection bodyBinding = this.createGmeConnection ("BodyBinding",
+                                                           "BodyBinding",
+                                                           "BodyBinding");
+        Regnode autoRouter = this.createAutoRouterPref("Ew");
+        bodyBinding.getRegnodeOrConstraintOrConnpoint().add(autoRouter);
+
+        Connpoint src = this.createGmeConnpoint ("src");
+        src.setTarget(this.currRef);
+        bodyBinding.getRegnodeOrConstraintOrConnpoint().add(src);
+        Connpoint dst = this.createGmeConnpoint ("dst");
+        dst.setTarget(body);
+        bodyBinding.getRegnodeOrConstraintOrConnpoint().add(dst);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(bodyBinding);
+    }
+
+    public void visitSOAPHeader (SOAPHeader soapHeader) {
+        String localName = soapHeader.getElementType().getLocalPart();
+        Model header = this.createGmeModel (localName, "SOAPHeader",
+                                            "SOAPHeader");
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(header);
+        Regnode partregs = this.createPartRegs (xPos, yPos);
+        header.getRegnodeOrConstraintOrAttribute().add(partregs);
+
+        Boolean req = soapHeader.getRequired();
+        if (req != null) {
+            Attribute required
+                = this.createGmeAttribute("required", null, req.toString());
+            header.getRegnodeOrConstraintOrAttribute().add(required);
+        }
+
+        String attrVal = soapHeader.getUse();
+        if (attrVal != null) {
+            Attribute use = this.createGmeAttribute("use", null, attrVal);
+            header.getRegnodeOrConstraintOrAttribute().add(use);
+        }
+
+        attrVal = soapHeader.getNamespaceURI();
+        if (attrVal != null) {
+            Attribute namespace = this.createGmeAttribute ("namespace",
+                                                           null, attrVal);
+            header.getRegnodeOrConstraintOrAttribute().add(namespace);
+        }
+
+        List encodingStyles = soapHeader.getEncodingStyles();
+        if (encodingStyles != null) {
+            Iterator iter = encodingStyles.iterator();
+            StringBuilder sb = new StringBuilder();
+            while (iter.hasNext()) {
+                sb.append((String)iter.next());
+                sb.append(" ");
+            }
+            Attribute encodingStyle
+                = this.createGmeAttribute ("encodingStyle", null,
+                                           sb.toString().trim());
+            header.getRegnodeOrConstraintOrAttribute().add(encodingStyle);
+        }
+
+        // Create the message reference
+        QName refMessageName = soapHeader.getMessage();
+        Model refMsgModel = this.messageMap.get (refMessageName);
+        Reference messageRef
+            = this.createGmeReference (refMessageName.getLocalPart(),
+                                       "MessageRef", "MessageRef");
+        xPos += 168;
+        partregs = this.createPartRegs(xPos, yPos);
+        messageRef.getRegnodeOrConstraintOrAttribute().add(partregs);
+        messageRef.setReferred(refMsgModel);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(messageRef);
+
+        // Create the HeaderMessage connection
+        Connection headerMsgConn = this.createGmeConnection ("HeaderMessage",
+                                                             "HeaderMessage",
+                                                             "HeaderMessage");
+        Regnode autoRouter = this.createAutoRouterPref("Ew");
+        headerMsgConn.getRegnodeOrConstraintOrConnpoint().add(autoRouter);
+
+        Connpoint src = this.createGmeConnpoint ("src");
+        src.setTarget(header);
+        headerMsgConn.getRegnodeOrConstraintOrConnpoint().add(src);
+        Connpoint dst = this.createGmeConnpoint ("dst");
+        dst.setTarget(messageRef);
+        headerMsgConn.getRegnodeOrConstraintOrConnpoint().add(dst);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(headerMsgConn);
+
+        // Create the part reference
+        String partName = refMessageName.getLocalPart() + soapHeader.getPart();
+        Reference part = this.partMap.get(partName);
+        if (part == null) {
+            System.out.println ("Error: No part model named " +
+                                partName + " found.");
+            System.exit(1);
+        }
+
+        Reference partRef
+            = this.createGmeReference (part.getName().getContent(),
+                                       "PartRef", "PartRef");
+        xPos += 168;
+        partregs = this.createPartRegs(xPos, yPos);
+        partRef.getRegnodeOrConstraintOrAttribute().add(partregs);
+        partRef.setReferred(part);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(partRef);
+
+
+        // Create the HeaderPart connection
+        Connection headerPartConn = this.createGmeConnection ("HeaderPart",
+                                                              "HeaderPart",
+                                                              "HeaderPart");
+        autoRouter = this.createAutoRouterPref("Ew");
+        headerPartConn.getRegnodeOrConstraintOrConnpoint().add(autoRouter);
+
+        src = this.createGmeConnpoint ("src");
+        src.setTarget(header);
+        headerPartConn.getRegnodeOrConstraintOrConnpoint().add(src);
+        dst = this.createGmeConnpoint ("dst");
+        dst.setTarget(partRef);
+        headerPartConn.getRegnodeOrConstraintOrConnpoint().add(dst);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(headerPartConn);
+
+        // Create the HeaderBinding connection
+        Connection headerBinding = this.createGmeConnection ("HeaderBinding",
+                                                             "HeaderBinding",
+                                                             "HeaderBinding");
+        autoRouter = this.createAutoRouterPref("Ew");
+        headerBinding.getRegnodeOrConstraintOrConnpoint().add(autoRouter);
+
+        src = this.createGmeConnpoint ("src");
+        src.setTarget(this.currRef);
+        headerBinding.getRegnodeOrConstraintOrConnpoint().add(src);
+        dst = this.createGmeConnpoint ("dst");
+        dst.setTarget(header);
+        headerBinding.getRegnodeOrConstraintOrConnpoint().add(dst);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(headerBinding);
+
+        List headerFaults = soapHeader.getSOAPHeaderFaults();
+        Iterator iter = headerFaults.iterator();
+        while (iter.hasNext()) {
+            SOAPHeaderFault soapHeaderFault = (SOAPHeaderFault)iter.next();
+            this.visitSOAPHeaderFault(soapHeaderFault);
+        }
+    }
+
+    public void visitSOAPHeaderFault (SOAPHeaderFault soapHeaderFault) {
+        String localName = soapHeaderFault.getElementType().getLocalPart();
+        Atom headerFault = this.createGmeAtom (localName, "SOAPHeaderFault",
+                                               "SOAPHeaderFault");
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(headerFault);
+        Regnode partregs = this.createPartRegs (xPos, yPos);
+        headerFault.getRegnodeOrConstraintOrAttribute().add(partregs);
+
+        Boolean req = soapHeaderFault.getRequired();
+        if (req != null) {
+            Attribute required
+                = this.createGmeAttribute("required", null, req.toString());
+            headerFault.getRegnodeOrConstraintOrAttribute().add(required);
+        }
+
+        String attrVal = soapHeaderFault.getUse();
+        if (attrVal != null) {
+            Attribute use = this.createGmeAttribute("use", null, attrVal);
+            headerFault.getRegnodeOrConstraintOrAttribute().add(use);
+        }
+
+        attrVal = soapHeaderFault.getNamespaceURI();
+        if (attrVal != null) {
+            Attribute namespace
+                = this.createGmeAttribute ("namespace", null, attrVal);
+            headerFault.getRegnodeOrConstraintOrAttribute().add(namespace);
+        }
+
+        List encodingStyles = soapHeaderFault.getEncodingStyles();
+        if (encodingStyles != null) {
+
+            Iterator iter = encodingStyles.iterator();
+            StringBuilder sb = new StringBuilder();
+            while (iter.hasNext()) {
+                sb.append((String)iter.next());
+                sb.append(" ");
+            }
+            Attribute encodingStyle
+                = this.createGmeAttribute ("encodingStyle", null,
+                                           sb.toString().trim());
+            headerFault.getRegnodeOrConstraintOrAttribute().add(encodingStyle);
+        }
+
+        // Create the message reference
+        QName refMessageName = soapHeaderFault.getMessage();
+        Model refMsgModel = this.messageMap.get (refMessageName);
+        Reference messageRef
+            = this.createGmeReference (refMessageName.getLocalPart(),
+                                       "MessageRef", "MessageRef");
+        xPos += 168;
+        partregs = this.createPartRegs(xPos, yPos);
+        messageRef.getRegnodeOrConstraintOrAttribute().add(partregs);
+        messageRef.setReferred(refMsgModel);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(messageRef);
+
+        // Create the HeaderMessage connection
+        Connection headerMsgConn = this.createGmeConnection ("HeaderMessage",
+                                                             "HeaderMessage",
+                                                             "HeaderMessage");
+        Regnode autoRouter = this.createAutoRouterPref("Ew");
+        headerMsgConn.getRegnodeOrConstraintOrConnpoint().add(autoRouter);
+
+        Connpoint src = this.createGmeConnpoint ("src");
+        src.setTarget(headerFault);
+        headerMsgConn.getRegnodeOrConstraintOrConnpoint().add(src);
+        Connpoint dst = this.createGmeConnpoint ("dst");
+        dst.setTarget(messageRef);
+        headerMsgConn.getRegnodeOrConstraintOrConnpoint().add(dst);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(headerMsgConn);
+
+        // Create the part reference
+        String partName = refMessageName.getLocalPart() + soapHeaderFault.getPart();
+        Reference part = this.partMap.get(partName);
+        if (part == null) {
+            System.out.println ("Error: No part model named " +
+                                partName + " found.");
+            System.exit(1);
+        }
+
+        Reference partRef
+            = this.createGmeReference (part.getName().getContent(),
+                                       "PartRef", "PartRef");
+        xPos += 168;
+        partregs = this.createPartRegs(xPos, yPos);
+        partRef.getRegnodeOrConstraintOrAttribute().add(partregs);
+        partRef.setReferred(part);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(partRef);
+
+
+        // Create the HeaderPart connection
+        Connection headerPartConn = this.createGmeConnection ("HeaderPart",
+                                                              "HeaderPart",
+                                                              "HeaderPart");
+        autoRouter = this.createAutoRouterPref("Ew");
+        headerPartConn.getRegnodeOrConstraintOrConnpoint().add(autoRouter);
+
+        src = this.createGmeConnpoint ("src");
+        src.setTarget(headerFault);
+        headerPartConn.getRegnodeOrConstraintOrConnpoint().add(src);
+        dst = this.createGmeConnpoint ("dst");
+        dst.setTarget(partRef);
+        headerPartConn.getRegnodeOrConstraintOrConnpoint().add(dst);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(headerPartConn);
+
+        // Create the HeaderBinding connection
+        Connection headerBinding = this.createGmeConnection ("HeaderBinding",
+                                                             "HeaderBinding",
+                                                             "HeaderBinding");
+        autoRouter = this.createAutoRouterPref("Ew");
+        headerBinding.getRegnodeOrConstraintOrConnpoint().add(autoRouter);
+
+        src = this.createGmeConnpoint ("src");
+        src.setTarget(this.currRef);
+        headerBinding.getRegnodeOrConstraintOrConnpoint().add(src);
+        dst = this.createGmeConnpoint ("dst");
+        dst.setTarget(headerFault);
+        headerBinding.getRegnodeOrConstraintOrConnpoint().add(dst);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(headerBinding);
+    }
+
+    public void visitSOAPOperation (SOAPOperation soapOperation) {
+
+        String name = soapOperation.getElementType().getLocalPart();
+        Atom operation = this.createGmeAtom (name, "SOAPOperation",
+                                             "SOAPOperation");
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(operation);
+        Regnode partregs = this.createPartRegs (xPos, yPos);
+        operation.getRegnodeOrConstraintOrAttribute().add(partregs);
+
+        Boolean req = soapOperation.getRequired();
+        if (req != null) {
+            Attribute required = this.createGmeAttribute("required",
+                                                         null,
+                                                         req.toString());
+            operation.getRegnodeOrConstraintOrAttribute().add(required);
+        }
+
+        String attrVal = soapOperation.getStyle();
+        if (attrVal != null) {
+            Attribute style = this.createGmeAttribute("style", null, attrVal);
+            operation.getRegnodeOrConstraintOrAttribute().add(style);
+        }
+
+        attrVal = soapOperation.getSoapActionURI();
+        if (attrVal != null) {
+            Attribute soapAction = this.createGmeAttribute ("soapAction",
+                                                            null, attrVal);
+            operation.getRegnodeOrConstraintOrAttribute().add(soapAction);
+        }
+    }
+
+    public void visitSOAPFault (SOAPFault soapFault) {
+        String localName = soapFault.getName();
+        Atom fault = this.createGmeAtom (localName, "SOAPFault",
+                                         "SOAPFault");
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(fault);
+        Regnode partregs = this.createPartRegs (xPos, yPos);
+        fault.getRegnodeOrConstraintOrAttribute().add(partregs);
+
+        Boolean req = soapFault.getRequired();
+        if (req != null) {
+            Attribute required
+                = this.createGmeAttribute("required", null, req.toString());
+            fault.getRegnodeOrConstraintOrAttribute().add(required);
+        }
+
+        String attrVal = soapFault.getUse();
+        if (attrVal != null) {
+            Attribute use = this.createGmeAttribute("use", null, attrVal);
+            fault.getRegnodeOrConstraintOrAttribute().add(use);
+        }
+
+        attrVal = soapFault.getNamespaceURI();
+        if (attrVal != null) {
+            Attribute namespace
+                = this.createGmeAttribute ("namespace", null, attrVal);
+            fault.getRegnodeOrConstraintOrAttribute().add(namespace);
+        }
+
+        List encodingStyles = soapFault.getEncodingStyles();
+        if (encodingStyles != null) {
+            Iterator iter = encodingStyles.iterator();
+            StringBuilder sb = new StringBuilder();
+            while (iter.hasNext()) {
+                sb.append((String)iter.next());
+                sb.append(" ");
+            }
+            Attribute encodingStyle
+                = this.createGmeAttribute ("encodingStyle", null,
+                                           sb.toString().trim());
+            fault.getRegnodeOrConstraintOrAttribute().add(encodingStyle);
+        }
+
+        // Create the SOAPFaultExtension connection
+        Connection faultExtension
+            = this.createGmeConnection ("SOAPFaultExtension",
+                                        "SOAPFaultExtension",
+                                        "SOAPFaultExtension");
+        Regnode autoRouter = this.createAutoRouterPref("Ew");
+        faultExtension.getRegnodeOrConstraintOrConnpoint().add(autoRouter);
+
+        Connpoint src = this.createGmeConnpoint ("src");
+        src.setTarget(this.currRef);
+        faultExtension.getRegnodeOrConstraintOrConnpoint().add(src);
+        Connpoint dst = this.createGmeConnpoint ("dst");
+        dst.setTarget(fault);
+        faultExtension.getRegnodeOrConstraintOrConnpoint().add(dst);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(faultExtension);
+    }
+
+
+    public void visitService (Service service) {
+        String localName = service.getQName().getLocalPart();
+        Model serviceModel = this.createGmeModel(localName, "Service",
+                                                 "Service");
+        Regnode partregs = this.createPartRegs (xPos, yPos);
+        serviceModel.getRegnodeOrConstraintOrAttribute().add(partregs);
+        Map ports = service.getPorts();
+        Iterator iter = ports.values().iterator();
+        while (iter.hasNext()) {
+            Port port = (Port)iter.next();
+            this.push(serviceModel);
+            this.visitPort(port);
+            this.pop();
+        }
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(serviceModel);
+        this.serviceMap.put(service.getQName(), serviceModel);
+    }
+
+    public void visitPort (Port port) {
+        String localName = port.getName();
+        Model portModel = this.createGmeModel (localName, "Port", "Port");
+        Regnode partregs = this.createPartRegs(xPos, yPos);
+        portModel.getRegnodeOrConstraintOrAttribute().add(partregs);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(portModel);
+
+        QName bindingName = port.getBinding().getQName();
+        Model bindingModel = this.bindingMap.get(bindingName);
+        if (bindingModel == null) {
+            System.out.println ("Error: No binding model named " +
+                                bindingName + " found.");
+            System.exit(1);
+        }
+        Reference bindingRef
+            = this.createGmeReference (bindingName.getLocalPart(),
+                                       "BindingRef", "BindingRef");
+        xPos += 168;
+        partregs = this.createPartRegs(xPos, yPos);
+        bindingRef.getRegnodeOrConstraintOrAttribute().add(partregs);
+        bindingRef.setReferred(bindingModel);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(bindingRef);
+        // Create the PortBinding connection
+        Connection portBinding = this.createGmeConnection ("PortBinding",
+                                                           "PortBinding",
+                                                           "PortBinding");
+        Regnode autoRouter = this.createAutoRouterPref("Ew");
+        portBinding.getRegnodeOrConstraintOrConnpoint().add(autoRouter);
+
+        Connpoint src = this.createGmeConnpoint ("src");
+        src.setTarget(portModel);
+        portBinding.getRegnodeOrConstraintOrConnpoint().add(src);
+        Connpoint dst = this.createGmeConnpoint ("dst");
+        dst.setTarget(bindingRef);
+        portBinding.getRegnodeOrConstraintOrConnpoint().add(dst);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(portBinding);
+
+        List extElements = port.getExtensibilityElements();
+        Iterator iterator = extElements.iterator();
+        while (iterator.hasNext()) {
+            ExtensibilityElement elem = (ExtensibilityElement)iterator.next();
+            if (elem instanceof SOAPAddress) {
+                SOAPAddress address = (SOAPAddress)elem;
+                this.push (portModel);
+                this.visitSOAPAddress(address);
+                this.pop();
+            }
+        }
+    }
+
+
+    public void visitSOAPAddress (SOAPAddress soapAddress) {
+        String localName = soapAddress.getElementType().getLocalPart();
+        Atom address = this.createGmeAtom (localName, "SOAPAddress",
+                                           "SOAPAddress");
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(address);
+        xPos = yPos = 12;
+        Regnode partregs = this.createPartRegs (xPos, yPos);
+        address.getRegnodeOrConstraintOrAttribute().add(partregs);
+
+        Boolean req = soapAddress.getRequired();
+        if (req != null) {
+            Attribute required
+                = this.createGmeAttribute("required", null, req.toString());
+            address.getRegnodeOrConstraintOrAttribute().add(required);
+        }
+
+        String attrVal = soapAddress.getLocationURI();
+        if (attrVal != null) {
+            Attribute location = this.createGmeAttribute("location", null,
+                                                         attrVal);
+            address.getRegnodeOrConstraintOrAttribute().add(location);
+        }
+    }
 }

@@ -1,3 +1,16 @@
+Sat Jul 22 04:52:02 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/dre/WSML/WSDLImporter/XmlExportVisitor.java:
+
+          First complete version of the WSDLImporter.  Still needs work
+          with respect to placement of elements.
+
+        * PIM/WSML/paradigms/WSML.xme:
+        * PIM/WSML/paradigms/WSML.xmp:
+
+          Minor modifications including removal of name attribute from
+          Definitions.
+
 Fri Jul 21 08:22:32 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/WSML/interpreters/WSDLImporter/build.xml: Minor updates.

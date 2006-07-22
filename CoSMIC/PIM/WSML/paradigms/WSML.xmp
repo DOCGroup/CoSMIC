@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="WSML" guid="{B75842B6-D922-41C2-911E-052FA6D8CE44}" cdate="Sun Jul 16 16:58:18 2006" mdate="Sun Jul 16 16:58:18 2006" >
+<paradigm name="WSML" guid="{9CF4A63A-E5AE-4177-AAC3-E52FF6F89724}" cdate="Sun Jul 16 16:58:18 2006" mdate="Sun Jul 16 16:58:18 2006" >
 
 	<comment>Web Services Modeling Language (WSML) is a domain-specific modeling language
   which allows definition of Web Services and interactions, and uses generative
@@ -20,8 +20,6 @@
 		<attrdef name="encodingStyle" metaref = "1004" valuetype = "string" defvalue = "">
 		</attrdef>
 		<attrdef name="id" metaref = "1005" valuetype = "string" defvalue = "">
-		</attrdef>
-		<attrdef name="name" metaref = "1006" valuetype = "string" defvalue = "">
 		</attrdef>
 		<attrdef name="parameterOrder" metaref = "1007" valuetype = "string" defvalue = "">
 		</attrdef>
@@ -52,9 +50,9 @@
 		</attrdef>
 		<attrdef name="soapAction" metaref = "1010" valuetype = "string" defvalue = "">
 		</attrdef>
-		<attrdef name="style" metaref = "1011" valuetype = "enum" defvalue = "rpc">
-			<enumitem dispname = "rpc" value = "rpc"></enumitem>
+		<attrdef name="style" metaref = "1011" valuetype = "enum" defvalue = "document">
 			<enumitem dispname = "document" value = "document"></enumitem>
+			<enumitem dispname = "rpc" value = "rpc"></enumitem>
 		</attrdef>
 		<attrdef name="transport" metaref = "1012" valuetype = "string" defvalue = "">
 		</attrdef>
@@ -105,16 +103,41 @@
 		</atom>
 		<atom name = "SOAPBody" metaref = "1018"  attributes = "use required encodingStyle namespace">
 				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidBodyBindingsrcCardinality5" eventmask = "0x800" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", BodyBinding ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to SOAPBody as &quot;src&quot; over BodyBinding, has to match 0..1.</dispname>
+			</constraint>
 			<attrdef name="namespace" metaref = "1019" valuetype = "string" defvalue = "">
 			</attrdef>
 		</atom>
 		<atom name = "SOAPFault" metaref = "1020"  attributes = "use required encodingStyle namespace">
 				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidSOAPFaultExtensionsrcCardinality23" eventmask = "0x800" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", SOAPFaultExtension ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to SOAPFault as &quot;src&quot; over SOAPFaultExtension, has to match 0..1.</dispname>
+			</constraint>
 			<attrdef name="namespace" metaref = "1021" valuetype = "string" defvalue = "">
 			</attrdef>
 		</atom>
 		<atom name = "SOAPHeaderFault" metaref = "1022"  attributes = "use required encodingStyle namespace">
 				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidHeaderBindingsrcCardinality11" eventmask = "0x800" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", HeaderBinding ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to SOAPHeaders as &quot;src&quot; over HeaderBinding, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidHeaderMessagedstCardinality14" eventmask = "0x800" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", HeaderMessage ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to SOAPHeaders as &quot;dst&quot; over HeaderMessage, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidHeaderPartdstCardinality16" eventmask = "0x800" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", HeaderPart ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to SOAPHeaders as &quot;dst&quot; over HeaderPart, has to match 0..1.</dispname>
+			</constraint>
 			<attrdef name="namespace" metaref = "1023" valuetype = "string" defvalue = "">
 			</attrdef>
 		</atom>
@@ -241,7 +264,7 @@
 		<connection name = "BindsOperation" metaref = "1408" >
 				<regnode name = "labelFormatStr" value ="bindsOperation"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
-				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
 				<regnode name = "lineType" value ="solid"></regnode>
 			<connjoint>
@@ -535,6 +558,11 @@
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 0..1.</dispname>
 			</constraint>
+			<constraint name="ValidBindingOperationPartCardinality27" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "IORef" ) -> size + self.parts( "InputRef" ) -> size + self.parts( "OutputRef" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 0..1.</dispname>
+			</constraint>
 			<role name = "BodyBinding" metaref = "1053" kind = "BodyBinding"></role>
 			<role name = "BodyParts" metaref = "1054" kind = "BodyParts"></role>
 			<role name = "Documentation" metaref = "1055" kind = "Documentation"></role>
@@ -572,15 +600,15 @@
 				<part metaref = "1089" role = "SOAPOperation" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "Definitions" metaref = "1090" attributes = "targetNamespace name" >
+		<model name = "Definitions" metaref = "1090" attributes = "targetNamespace" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidDefinitionsPartCardinality27" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Types" ) -> size in
+			<constraint name="ValidDefinitionsPartCardinality28" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Definitions, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidDefinitionsPartCardinality28" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
+			<constraint name="ValidDefinitionsPartCardinality29" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Types" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Definitions, has to match 0..1.</dispname>
 			</constraint>
@@ -595,7 +623,7 @@
 			<role name = "PortType" metaref = "1099" kind = "PortType"></role>
 			<role name = "Service" metaref = "1100" kind = "Service"></role>
 			<role name = "Types" metaref = "1101" kind = "Types"></role>
-			<aspect name = "ServiceDefinition" metaref = "1102" attributes = "targetNamespace name" >
+			<aspect name = "ServiceDefinition" metaref = "1102" attributes = "targetNamespace" >
 				<part metaref = "1400" role = "Attribute" primary = "yes" linked = "no"></part>
 				<part metaref = "1103" role = "Binding" primary = "yes" linked = "no"></part>
 				<part metaref = "1104" role = "BindingPortType" primary = "yes" linked = "no"></part>
@@ -637,7 +665,7 @@
 		</model>
 		<model name = "Import" metaref = "1127" attributes = "namespace location" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidImportPartCardinality29" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidImportPartCardinality30" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Definitions" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Import, has to match 1.</dispname>
@@ -674,12 +702,12 @@
 		</model>
 		<model name = "NotificationOperation" metaref = "1143" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidNotificationOperationPartCardinality30" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidNotificationOperationPartCardinality31" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Output" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by NotificationOperation, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidOperationPartCardinality32" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidOperationPartCardinality33" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Operation, has to match 0..1.</dispname>
@@ -701,12 +729,12 @@
 		</model>
 		<model name = "OneWayOperation" metaref = "1155" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidOneWayOperationPartCardinality31" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidOneWayOperationPartCardinality32" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Input" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by OneWayOperation, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidOperationPartCardinality32" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidOperationPartCardinality33" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Operation, has to match 0..1.</dispname>
@@ -745,7 +773,7 @@
                      (dstCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to Port as &quot;dst&quot; over PortBinding, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidPortPartCardinality33" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPortPartCardinality34" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Port, has to match 0..1.</dispname>
@@ -759,7 +787,7 @@
 		</model>
 		<model name = "PortType" metaref = "1177" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidPortTypePartCardinality34" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPortTypePartCardinality35" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PortType, has to match 0..1.</dispname>
@@ -779,18 +807,18 @@
 		</model>
 		<model name = "RequestResponseOperation" metaref = "1189" attributes = "parameterOrder" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidOperationPartCardinality32" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidOperationPartCardinality33" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Operation, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidRequestResponseOperationPartCardinality35" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Output" ) -> size in
+			<constraint name="ValidRequestResponseOperationPartCardinality36" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Input" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RequestResponseOperation, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidRequestResponseOperationPartCardinality36" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Input" ) -> size in
+			<constraint name="ValidRequestResponseOperationPartCardinality37" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Output" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RequestResponseOperation, has to match 1.</dispname>
 			</constraint>
@@ -815,6 +843,21 @@
 		</model>
 		<model name = "SOAPHeader" metaref = "1205" attributes = "use required encodingStyle namespace" >
 				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidHeaderBindingsrcCardinality11" eventmask = "0x800" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", HeaderBinding ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to SOAPHeaders as &quot;src&quot; over HeaderBinding, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidHeaderMessagedstCardinality14" eventmask = "0x800" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", HeaderMessage ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to SOAPHeaders as &quot;dst&quot; over HeaderMessage, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidHeaderPartdstCardinality16" eventmask = "0x800" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", HeaderPart ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to SOAPHeaders as &quot;dst&quot; over HeaderPart, has to match 0..1.</dispname>
+			</constraint>
 			<attrdef name="namespace" metaref = "1206" valuetype = "string" defvalue = "">
 			</attrdef>
 			<role name = "SOAPHeaderFault" metaref = "1207" kind = "SOAPHeaderFault"></role>
@@ -932,7 +975,7 @@
 		</model>
 		<model name = "SchemaImport" metaref = "1221" attributes = "id namespace schemaLocation" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidSchemaReferencePartCardinality37" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSchemaReferencePartCardinality38" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Schema" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SchemaReference, has to match 1.</dispname>
@@ -946,7 +989,7 @@
 		</model>
 		<model name = "SchemaReference" metaref = "1226" attributes = "id schemaLocation" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidSchemaReferencePartCardinality37" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSchemaReferencePartCardinality38" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Schema" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SchemaReference, has to match 1.</dispname>
@@ -969,18 +1012,18 @@
 		</model>
 		<model name = "SolicitResponseOperation" metaref = "1234" attributes = "parameterOrder" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidOperationPartCardinality32" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidOperationPartCardinality33" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Operation, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidSolicitResponseOperationPartCardinality38" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Output" ) -> size in
+			<constraint name="ValidSolicitResponseOperationPartCardinality39" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Input" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SolicitResponseOperation, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidSolicitResponseOperationPartCardinality39" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Input" ) -> size in
+			<constraint name="ValidSolicitResponseOperationPartCardinality40" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Output" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SolicitResponseOperation, has to match 1.</dispname>
 			</constraint>
@@ -1005,7 +1048,7 @@
 		</model>
 		<model name = "Types" metaref = "1250" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidTypesPartCardinality40" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidTypesPartCardinality41" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Types, has to match 0..1.</dispname>
