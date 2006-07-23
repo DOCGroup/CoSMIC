@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="WSML" guid="{9CF4A63A-E5AE-4177-AAC3-E52FF6F89724}" cdate="Sun Jul 16 16:58:18 2006" mdate="Sun Jul 16 16:58:18 2006" >
+<paradigm name="WSML" guid="{2D83462B-5A3B-4C56-A3C4-4304C961EFE0}" cdate="Sat Jul 22 22:04:39 2006" mdate="Sat Jul 22 22:04:39 2006" >
 
 	<comment>Web Services Modeling Language (WSML) is a domain-specific modeling language
   which allows definition of Web Services and interactions, and uses generative
@@ -63,36 +63,6 @@
 		<atom name = "Attribute" metaref = "1014"  attributes = "Value">
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "ENTITIES" metaref = "1257" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "ENTITY" metaref = "1258" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "ID" metaref = "1259" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "IDREF" metaref = "1260" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "IDREFS" metaref = "1261" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "NCName" metaref = "1262" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "NMTOKEN" metaref = "1263" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "NMTOKENS" metaref = "1264" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "NOTATION" metaref = "1265" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "QName" metaref = "1266" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
 		<atom name = "SOAPAddress" metaref = "1015"  attributes = "required location">
 				<regnode name = "namePosition" value ="4"></regnode>
 			<attrdef name="location" metaref = "1016" valuetype = "string" defvalue = "">
@@ -144,106 +114,136 @@
 		<atom name = "SOAPOperation" metaref = "1024"  attributes = "required soapAction style">
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "anyURI" metaref = "1267" >
+		<atom name = "XsAnyUri" metaref = "1414" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "base64Binary" metaref = "1268" >
+		<atom name = "XsBase64Binary" metaref = "1415" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "boolean" metaref = "1269" >
+		<atom name = "XsBoolean" metaref = "1416" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "byte" metaref = "1270" >
+		<atom name = "XsByte" metaref = "1417" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "date" metaref = "1271" >
+		<atom name = "XsDate" metaref = "1418" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "dateTime" metaref = "1272" >
+		<atom name = "XsDateTime" metaref = "1419" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "decimal" metaref = "1273" >
+		<atom name = "XsDecimal" metaref = "1420" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "double" metaref = "1274" >
+		<atom name = "XsDouble" metaref = "1421" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "duration" metaref = "1275" >
+		<atom name = "XsDuration" metaref = "1422" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "float" metaref = "1276" >
+		<atom name = "XsEntities" metaref = "1423" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "gDay" metaref = "1277" >
+		<atom name = "XsEntity" metaref = "1424" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "gMonth" metaref = "1278" >
+		<atom name = "XsFloat" metaref = "1425" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "gMonthDay" metaref = "1279" >
+		<atom name = "XsGDay" metaref = "1426" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "gYear" metaref = "1280" >
+		<atom name = "XsGMonth" metaref = "1427" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "gYearMonth" metaref = "1281" >
+		<atom name = "XsGMonthDay" metaref = "1428" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "hexBinary" metaref = "1282" >
+		<atom name = "XsGYear" metaref = "1545" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "int" metaref = "1283" >
+		<atom name = "XsGYearMonth" metaref = "1429" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "integer" metaref = "1284" >
+		<atom name = "XsHexBinary" metaref = "1430" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "language" metaref = "1285" >
+		<atom name = "XsId" metaref = "1431" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "long" metaref = "1286" >
+		<atom name = "XsIdRef" metaref = "1432" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "name" metaref = "1287" >
+		<atom name = "XsIdRefs" metaref = "1433" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "negativeInteger" metaref = "1288" >
+		<atom name = "XsInt" metaref = "1434" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "nonNegativeInteger" metaref = "1289" >
+		<atom name = "XsInteger" metaref = "1435" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "nonPositiveInteger" metaref = "1290" >
+		<atom name = "XsLanguage" metaref = "1436" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "normalizedString" metaref = "1291" >
+		<atom name = "XsLong" metaref = "1437" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "positiveInteger" metaref = "1292" >
+		<atom name = "XsName" metaref = "1438" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "short" metaref = "1293" >
+		<atom name = "XsNcName" metaref = "1439" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "string" metaref = "1294" >
+		<atom name = "XsNegativeInteger" metaref = "1440" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "time" metaref = "1295" >
+		<atom name = "XsNmToken" metaref = "1441" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "token" metaref = "1296" >
+		<atom name = "XsNmTokens" metaref = "1442" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "unsignedByte" metaref = "1297" >
+		<atom name = "XsNonNegativeInteger" metaref = "1443" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "unsignedInt" metaref = "1298" >
+		<atom name = "XsNonPositiveInteger" metaref = "1444" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "unsignedLong" metaref = "1299" >
+		<atom name = "XsNormalizedString" metaref = "1445" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "unsignedShort" metaref = "1300" >
+		<atom name = "XsNotation" metaref = "1446" >
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "XsPositiveInteger" metaref = "1447" >
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "XsQName" metaref = "1448" >
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "XsShort" metaref = "1449" >
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "XsString" metaref = "1450" >
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "XsTime" metaref = "1451" >
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "XsToken" metaref = "1452" >
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "XsUnsignedByte" metaref = "1453" >
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "XsUnsignedInt" metaref = "1454" >
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "XsUnsignedLong" metaref = "1455" >
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "XsUnsignedShort" metaref = "1456" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
 		<connection name = "BindingPortType" metaref = "1025" >
@@ -473,51 +473,51 @@
 		<reference name = "Part" metaref = "1041">
 				<regnode name = "namePosition" value ="4"></regnode>
 			<pointerspec name = "ref">
-				<pointeritem desc = "ENTITIES"></pointeritem>
-				<pointeritem desc = "ENTITY"></pointeritem>
 				<pointeritem desc = "Element"></pointeritem>
-				<pointeritem desc = "ID"></pointeritem>
-				<pointeritem desc = "IDREF"></pointeritem>
-				<pointeritem desc = "IDREFS"></pointeritem>
-				<pointeritem desc = "NCName"></pointeritem>
-				<pointeritem desc = "NMTOKEN"></pointeritem>
-				<pointeritem desc = "NMTOKENS"></pointeritem>
-				<pointeritem desc = "NOTATION"></pointeritem>
-				<pointeritem desc = "QName"></pointeritem>
-				<pointeritem desc = "anyURI"></pointeritem>
-				<pointeritem desc = "base64Binary"></pointeritem>
-				<pointeritem desc = "boolean"></pointeritem>
-				<pointeritem desc = "byte"></pointeritem>
-				<pointeritem desc = "date"></pointeritem>
-				<pointeritem desc = "dateTime"></pointeritem>
-				<pointeritem desc = "decimal"></pointeritem>
-				<pointeritem desc = "double"></pointeritem>
-				<pointeritem desc = "duration"></pointeritem>
-				<pointeritem desc = "float"></pointeritem>
-				<pointeritem desc = "gDay"></pointeritem>
-				<pointeritem desc = "gMonth"></pointeritem>
-				<pointeritem desc = "gMonthDay"></pointeritem>
-				<pointeritem desc = "gYear"></pointeritem>
-				<pointeritem desc = "gYearMonth"></pointeritem>
-				<pointeritem desc = "hexBinary"></pointeritem>
-				<pointeritem desc = "int"></pointeritem>
-				<pointeritem desc = "integer"></pointeritem>
-				<pointeritem desc = "language"></pointeritem>
-				<pointeritem desc = "long"></pointeritem>
-				<pointeritem desc = "name"></pointeritem>
-				<pointeritem desc = "negativeInteger"></pointeritem>
-				<pointeritem desc = "nonNegativeInteger"></pointeritem>
-				<pointeritem desc = "nonPositiveInteger"></pointeritem>
-				<pointeritem desc = "normalizedString"></pointeritem>
-				<pointeritem desc = "positiveInteger"></pointeritem>
-				<pointeritem desc = "short"></pointeritem>
-				<pointeritem desc = "string"></pointeritem>
-				<pointeritem desc = "time"></pointeritem>
-				<pointeritem desc = "token"></pointeritem>
-				<pointeritem desc = "unsignedByte"></pointeritem>
-				<pointeritem desc = "unsignedInt"></pointeritem>
-				<pointeritem desc = "unsignedLong"></pointeritem>
-				<pointeritem desc = "unsignedShort"></pointeritem>
+				<pointeritem desc = "XsAnyUri"></pointeritem>
+				<pointeritem desc = "XsBase64Binary"></pointeritem>
+				<pointeritem desc = "XsBoolean"></pointeritem>
+				<pointeritem desc = "XsByte"></pointeritem>
+				<pointeritem desc = "XsDate"></pointeritem>
+				<pointeritem desc = "XsDateTime"></pointeritem>
+				<pointeritem desc = "XsDecimal"></pointeritem>
+				<pointeritem desc = "XsDouble"></pointeritem>
+				<pointeritem desc = "XsDuration"></pointeritem>
+				<pointeritem desc = "XsEntities"></pointeritem>
+				<pointeritem desc = "XsEntity"></pointeritem>
+				<pointeritem desc = "XsFloat"></pointeritem>
+				<pointeritem desc = "XsGDay"></pointeritem>
+				<pointeritem desc = "XsGMonth"></pointeritem>
+				<pointeritem desc = "XsGMonthDay"></pointeritem>
+				<pointeritem desc = "XsGYear"></pointeritem>
+				<pointeritem desc = "XsGYearMonth"></pointeritem>
+				<pointeritem desc = "XsHexBinary"></pointeritem>
+				<pointeritem desc = "XsId"></pointeritem>
+				<pointeritem desc = "XsIdRef"></pointeritem>
+				<pointeritem desc = "XsIdRefs"></pointeritem>
+				<pointeritem desc = "XsInt"></pointeritem>
+				<pointeritem desc = "XsInteger"></pointeritem>
+				<pointeritem desc = "XsLanguage"></pointeritem>
+				<pointeritem desc = "XsLong"></pointeritem>
+				<pointeritem desc = "XsName"></pointeritem>
+				<pointeritem desc = "XsNcName"></pointeritem>
+				<pointeritem desc = "XsNegativeInteger"></pointeritem>
+				<pointeritem desc = "XsNmToken"></pointeritem>
+				<pointeritem desc = "XsNmTokens"></pointeritem>
+				<pointeritem desc = "XsNonNegativeInteger"></pointeritem>
+				<pointeritem desc = "XsNonPositiveInteger"></pointeritem>
+				<pointeritem desc = "XsNormalizedString"></pointeritem>
+				<pointeritem desc = "XsNotation"></pointeritem>
+				<pointeritem desc = "XsPositiveInteger"></pointeritem>
+				<pointeritem desc = "XsQName"></pointeritem>
+				<pointeritem desc = "XsShort"></pointeritem>
+				<pointeritem desc = "XsString"></pointeritem>
+				<pointeritem desc = "XsTime"></pointeritem>
+				<pointeritem desc = "XsToken"></pointeritem>
+				<pointeritem desc = "XsUnsignedByte"></pointeritem>
+				<pointeritem desc = "XsUnsignedInt"></pointeritem>
+				<pointeritem desc = "XsUnsignedLong"></pointeritem>
+				<pointeritem desc = "XsUnsignedShort"></pointeritem>
 			</pointerspec>
 		</reference>
 		<reference name = "PartRef" metaref = "1042">
@@ -603,12 +603,12 @@
 		<model name = "Definitions" metaref = "1090" attributes = "targetNamespace" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="ValidDefinitionsPartCardinality28" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
+				<![CDATA[let partCount = self.parts( "Types" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Definitions, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidDefinitionsPartCardinality29" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Types" ) -> size in
+				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Definitions, has to match 0..1.</dispname>
 			</constraint>
@@ -813,12 +813,12 @@
 				<dispname>Multiplicity of parts, which are contained by Operation, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidRequestResponseOperationPartCardinality36" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Input" ) -> size in
+				<![CDATA[let partCount = self.parts( "Output" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RequestResponseOperation, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidRequestResponseOperationPartCardinality37" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Output" ) -> size in
+				<![CDATA[let partCount = self.parts( "Input" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RequestResponseOperation, has to match 1.</dispname>
 			</constraint>
@@ -882,95 +882,95 @@
 		</model>
 		<model name = "SchemaBuiltins" metaref = "1301" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<role name = "ENTITIES" metaref = "1302" kind = "ENTITIES"></role>
-			<role name = "ENTITY" metaref = "1303" kind = "ENTITY"></role>
-			<role name = "ID" metaref = "1304" kind = "ID"></role>
-			<role name = "IDREF" metaref = "1305" kind = "IDREF"></role>
-			<role name = "IDREFS" metaref = "1306" kind = "IDREFS"></role>
-			<role name = "NCName" metaref = "1307" kind = "NCName"></role>
-			<role name = "NMTOKEN" metaref = "1308" kind = "NMTOKEN"></role>
-			<role name = "NMTOKENS" metaref = "1309" kind = "NMTOKENS"></role>
-			<role name = "NOTATION" metaref = "1310" kind = "NOTATION"></role>
-			<role name = "QName" metaref = "1311" kind = "QName"></role>
-			<role name = "anyURI" metaref = "1312" kind = "anyURI"></role>
-			<role name = "base64Binary" metaref = "1313" kind = "base64Binary"></role>
-			<role name = "boolean" metaref = "1314" kind = "boolean"></role>
-			<role name = "byte" metaref = "1315" kind = "byte"></role>
-			<role name = "date" metaref = "1316" kind = "date"></role>
-			<role name = "dateTime" metaref = "1317" kind = "dateTime"></role>
-			<role name = "decimal" metaref = "1318" kind = "decimal"></role>
-			<role name = "double" metaref = "1319" kind = "double"></role>
-			<role name = "duration" metaref = "1320" kind = "duration"></role>
-			<role name = "float" metaref = "1321" kind = "float"></role>
-			<role name = "gDay" metaref = "1322" kind = "gDay"></role>
-			<role name = "gMonth" metaref = "1323" kind = "gMonth"></role>
-			<role name = "gMonthDay" metaref = "1324" kind = "gMonthDay"></role>
-			<role name = "gYear" metaref = "1325" kind = "gYear"></role>
-			<role name = "gYearMonth" metaref = "1326" kind = "gYearMonth"></role>
-			<role name = "hexBinary" metaref = "1327" kind = "hexBinary"></role>
-			<role name = "int" metaref = "1328" kind = "int"></role>
-			<role name = "integer" metaref = "1329" kind = "integer"></role>
-			<role name = "language" metaref = "1330" kind = "language"></role>
-			<role name = "long" metaref = "1331" kind = "long"></role>
-			<role name = "name" metaref = "1332" kind = "name"></role>
-			<role name = "negativeInteger" metaref = "1333" kind = "negativeInteger"></role>
-			<role name = "nonNegativeInteger" metaref = "1334" kind = "nonNegativeInteger"></role>
-			<role name = "nonPositiveInteger" metaref = "1335" kind = "nonPositiveInteger"></role>
-			<role name = "normalizedString" metaref = "1336" kind = "normalizedString"></role>
-			<role name = "positiveInteger" metaref = "1337" kind = "positiveInteger"></role>
-			<role name = "short" metaref = "1338" kind = "short"></role>
-			<role name = "string" metaref = "1339" kind = "string"></role>
-			<role name = "time" metaref = "1340" kind = "time"></role>
-			<role name = "token" metaref = "1341" kind = "token"></role>
-			<role name = "unsignedByte" metaref = "1342" kind = "unsignedByte"></role>
-			<role name = "unsignedInt" metaref = "1343" kind = "unsignedInt"></role>
-			<role name = "unsignedLong" metaref = "1344" kind = "unsignedLong"></role>
-			<role name = "unsignedShort" metaref = "1345" kind = "unsignedShort"></role>
+			<role name = "XsAnyUri" metaref = "1458" kind = "XsAnyUri"></role>
+			<role name = "XsBase64Binary" metaref = "1459" kind = "XsBase64Binary"></role>
+			<role name = "XsBoolean" metaref = "1460" kind = "XsBoolean"></role>
+			<role name = "XsByte" metaref = "1461" kind = "XsByte"></role>
+			<role name = "XsDate" metaref = "1462" kind = "XsDate"></role>
+			<role name = "XsDateTime" metaref = "1463" kind = "XsDateTime"></role>
+			<role name = "XsDecimal" metaref = "1464" kind = "XsDecimal"></role>
+			<role name = "XsDouble" metaref = "1465" kind = "XsDouble"></role>
+			<role name = "XsDuration" metaref = "1466" kind = "XsDuration"></role>
+			<role name = "XsEntities" metaref = "1467" kind = "XsEntities"></role>
+			<role name = "XsEntity" metaref = "1468" kind = "XsEntity"></role>
+			<role name = "XsFloat" metaref = "1469" kind = "XsFloat"></role>
+			<role name = "XsGDay" metaref = "1470" kind = "XsGDay"></role>
+			<role name = "XsGMonth" metaref = "1471" kind = "XsGMonth"></role>
+			<role name = "XsGMonthDay" metaref = "1472" kind = "XsGMonthDay"></role>
+			<role name = "XsGYear" metaref = "1546" kind = "XsGYear"></role>
+			<role name = "XsGYearMonth" metaref = "1473" kind = "XsGYearMonth"></role>
+			<role name = "XsHexBinary" metaref = "1474" kind = "XsHexBinary"></role>
+			<role name = "XsId" metaref = "1475" kind = "XsId"></role>
+			<role name = "XsIdRef" metaref = "1476" kind = "XsIdRef"></role>
+			<role name = "XsIdRefs" metaref = "1477" kind = "XsIdRefs"></role>
+			<role name = "XsInt" metaref = "1478" kind = "XsInt"></role>
+			<role name = "XsInteger" metaref = "1479" kind = "XsInteger"></role>
+			<role name = "XsLanguage" metaref = "1480" kind = "XsLanguage"></role>
+			<role name = "XsLong" metaref = "1481" kind = "XsLong"></role>
+			<role name = "XsName" metaref = "1482" kind = "XsName"></role>
+			<role name = "XsNcName" metaref = "1483" kind = "XsNcName"></role>
+			<role name = "XsNegativeInteger" metaref = "1484" kind = "XsNegativeInteger"></role>
+			<role name = "XsNmToken" metaref = "1485" kind = "XsNmToken"></role>
+			<role name = "XsNmTokens" metaref = "1486" kind = "XsNmTokens"></role>
+			<role name = "XsNonNegativeInteger" metaref = "1487" kind = "XsNonNegativeInteger"></role>
+			<role name = "XsNonPositiveInteger" metaref = "1488" kind = "XsNonPositiveInteger"></role>
+			<role name = "XsNormalizedString" metaref = "1489" kind = "XsNormalizedString"></role>
+			<role name = "XsNotation" metaref = "1490" kind = "XsNotation"></role>
+			<role name = "XsPositiveInteger" metaref = "1491" kind = "XsPositiveInteger"></role>
+			<role name = "XsQName" metaref = "1492" kind = "XsQName"></role>
+			<role name = "XsShort" metaref = "1493" kind = "XsShort"></role>
+			<role name = "XsString" metaref = "1494" kind = "XsString"></role>
+			<role name = "XsTime" metaref = "1495" kind = "XsTime"></role>
+			<role name = "XsToken" metaref = "1496" kind = "XsToken"></role>
+			<role name = "XsUnsignedByte" metaref = "1497" kind = "XsUnsignedByte"></role>
+			<role name = "XsUnsignedInt" metaref = "1498" kind = "XsUnsignedInt"></role>
+			<role name = "XsUnsignedLong" metaref = "1499" kind = "XsUnsignedLong"></role>
+			<role name = "XsUnsignedShort" metaref = "1500" kind = "XsUnsignedShort"></role>
 			<aspect name = "ServiceDefinition" metaref = "1346" >
-				<part metaref = "1347" role = "ENTITIES" primary = "yes" linked = "no"></part>
-				<part metaref = "1348" role = "ENTITY" primary = "yes" linked = "no"></part>
-				<part metaref = "1349" role = "ID" primary = "yes" linked = "no"></part>
-				<part metaref = "1350" role = "IDREF" primary = "yes" linked = "no"></part>
-				<part metaref = "1351" role = "IDREFS" primary = "yes" linked = "no"></part>
-				<part metaref = "1352" role = "NCName" primary = "yes" linked = "no"></part>
-				<part metaref = "1353" role = "NMTOKEN" primary = "yes" linked = "no"></part>
-				<part metaref = "1354" role = "NMTOKENS" primary = "yes" linked = "no"></part>
-				<part metaref = "1355" role = "NOTATION" primary = "yes" linked = "no"></part>
-				<part metaref = "1356" role = "QName" primary = "yes" linked = "no"></part>
-				<part metaref = "1357" role = "anyURI" primary = "yes" linked = "no"></part>
-				<part metaref = "1358" role = "base64Binary" primary = "yes" linked = "no"></part>
-				<part metaref = "1359" role = "boolean" primary = "yes" linked = "no"></part>
-				<part metaref = "1360" role = "byte" primary = "yes" linked = "no"></part>
-				<part metaref = "1361" role = "date" primary = "yes" linked = "no"></part>
-				<part metaref = "1362" role = "dateTime" primary = "yes" linked = "no"></part>
-				<part metaref = "1363" role = "decimal" primary = "yes" linked = "no"></part>
-				<part metaref = "1364" role = "double" primary = "yes" linked = "no"></part>
-				<part metaref = "1365" role = "duration" primary = "yes" linked = "no"></part>
-				<part metaref = "1366" role = "float" primary = "yes" linked = "no"></part>
-				<part metaref = "1367" role = "gDay" primary = "yes" linked = "no"></part>
-				<part metaref = "1368" role = "gMonth" primary = "yes" linked = "no"></part>
-				<part metaref = "1369" role = "gMonthDay" primary = "yes" linked = "no"></part>
-				<part metaref = "1370" role = "gYear" primary = "yes" linked = "no"></part>
-				<part metaref = "1371" role = "gYearMonth" primary = "yes" linked = "no"></part>
-				<part metaref = "1372" role = "hexBinary" primary = "yes" linked = "no"></part>
-				<part metaref = "1373" role = "int" primary = "yes" linked = "no"></part>
-				<part metaref = "1374" role = "integer" primary = "yes" linked = "no"></part>
-				<part metaref = "1375" role = "language" primary = "yes" linked = "no"></part>
-				<part metaref = "1376" role = "long" primary = "yes" linked = "no"></part>
-				<part metaref = "1377" role = "name" primary = "yes" linked = "no"></part>
-				<part metaref = "1378" role = "negativeInteger" primary = "yes" linked = "no"></part>
-				<part metaref = "1379" role = "nonNegativeInteger" primary = "yes" linked = "no"></part>
-				<part metaref = "1380" role = "nonPositiveInteger" primary = "yes" linked = "no"></part>
-				<part metaref = "1381" role = "normalizedString" primary = "yes" linked = "no"></part>
-				<part metaref = "1382" role = "positiveInteger" primary = "yes" linked = "no"></part>
-				<part metaref = "1383" role = "short" primary = "yes" linked = "no"></part>
-				<part metaref = "1384" role = "string" primary = "yes" linked = "no"></part>
-				<part metaref = "1385" role = "time" primary = "yes" linked = "no"></part>
-				<part metaref = "1386" role = "token" primary = "yes" linked = "no"></part>
-				<part metaref = "1387" role = "unsignedByte" primary = "yes" linked = "no"></part>
-				<part metaref = "1388" role = "unsignedInt" primary = "yes" linked = "no"></part>
-				<part metaref = "1389" role = "unsignedLong" primary = "yes" linked = "no"></part>
-				<part metaref = "1390" role = "unsignedShort" primary = "yes" linked = "no"></part>
+				<part metaref = "1502" role = "XsAnyUri" primary = "yes" linked = "no"></part>
+				<part metaref = "1503" role = "XsBase64Binary" primary = "yes" linked = "no"></part>
+				<part metaref = "1504" role = "XsBoolean" primary = "yes" linked = "no"></part>
+				<part metaref = "1505" role = "XsByte" primary = "yes" linked = "no"></part>
+				<part metaref = "1506" role = "XsDate" primary = "yes" linked = "no"></part>
+				<part metaref = "1507" role = "XsDateTime" primary = "yes" linked = "no"></part>
+				<part metaref = "1508" role = "XsDecimal" primary = "yes" linked = "no"></part>
+				<part metaref = "1509" role = "XsDouble" primary = "yes" linked = "no"></part>
+				<part metaref = "1510" role = "XsDuration" primary = "yes" linked = "no"></part>
+				<part metaref = "1511" role = "XsEntities" primary = "yes" linked = "no"></part>
+				<part metaref = "1512" role = "XsEntity" primary = "yes" linked = "no"></part>
+				<part metaref = "1513" role = "XsFloat" primary = "yes" linked = "no"></part>
+				<part metaref = "1514" role = "XsGDay" primary = "yes" linked = "no"></part>
+				<part metaref = "1515" role = "XsGMonth" primary = "yes" linked = "no"></part>
+				<part metaref = "1516" role = "XsGMonthDay" primary = "yes" linked = "no"></part>
+				<part metaref = "1547" role = "XsGYear" primary = "yes" linked = "no"></part>
+				<part metaref = "1517" role = "XsGYearMonth" primary = "yes" linked = "no"></part>
+				<part metaref = "1518" role = "XsHexBinary" primary = "yes" linked = "no"></part>
+				<part metaref = "1519" role = "XsId" primary = "yes" linked = "no"></part>
+				<part metaref = "1520" role = "XsIdRef" primary = "yes" linked = "no"></part>
+				<part metaref = "1521" role = "XsIdRefs" primary = "yes" linked = "no"></part>
+				<part metaref = "1522" role = "XsInt" primary = "yes" linked = "no"></part>
+				<part metaref = "1523" role = "XsInteger" primary = "yes" linked = "no"></part>
+				<part metaref = "1524" role = "XsLanguage" primary = "yes" linked = "no"></part>
+				<part metaref = "1525" role = "XsLong" primary = "yes" linked = "no"></part>
+				<part metaref = "1526" role = "XsName" primary = "yes" linked = "no"></part>
+				<part metaref = "1527" role = "XsNcName" primary = "yes" linked = "no"></part>
+				<part metaref = "1528" role = "XsNegativeInteger" primary = "yes" linked = "no"></part>
+				<part metaref = "1529" role = "XsNmToken" primary = "yes" linked = "no"></part>
+				<part metaref = "1530" role = "XsNmTokens" primary = "yes" linked = "no"></part>
+				<part metaref = "1531" role = "XsNonNegativeInteger" primary = "yes" linked = "no"></part>
+				<part metaref = "1532" role = "XsNonPositiveInteger" primary = "yes" linked = "no"></part>
+				<part metaref = "1533" role = "XsNormalizedString" primary = "yes" linked = "no"></part>
+				<part metaref = "1534" role = "XsNotation" primary = "yes" linked = "no"></part>
+				<part metaref = "1535" role = "XsPositiveInteger" primary = "yes" linked = "no"></part>
+				<part metaref = "1536" role = "XsQName" primary = "yes" linked = "no"></part>
+				<part metaref = "1537" role = "XsShort" primary = "yes" linked = "no"></part>
+				<part metaref = "1538" role = "XsString" primary = "yes" linked = "no"></part>
+				<part metaref = "1539" role = "XsTime" primary = "yes" linked = "no"></part>
+				<part metaref = "1540" role = "XsToken" primary = "yes" linked = "no"></part>
+				<part metaref = "1541" role = "XsUnsignedByte" primary = "yes" linked = "no"></part>
+				<part metaref = "1542" role = "XsUnsignedInt" primary = "yes" linked = "no"></part>
+				<part metaref = "1543" role = "XsUnsignedLong" primary = "yes" linked = "no"></part>
+				<part metaref = "1544" role = "XsUnsignedShort" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "SchemaImport" metaref = "1221" attributes = "id namespace schemaLocation" >
@@ -1018,12 +1018,12 @@
 				<dispname>Multiplicity of parts, which are contained by Operation, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidSolicitResponseOperationPartCardinality39" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Input" ) -> size in
+				<![CDATA[let partCount = self.parts( "Output" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SolicitResponseOperation, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidSolicitResponseOperationPartCardinality40" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Output" ) -> size in
+				<![CDATA[let partCount = self.parts( "Input" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SolicitResponseOperation, has to match 1.</dispname>
 			</constraint>

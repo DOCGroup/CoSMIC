@@ -349,25 +349,60 @@ public class XmlExportVisitor implements Visitor {
     }
 
     public Model createSchemaBuiltins() {
-        String [] builtinTypes = { "string", "base64Binary", "boolean",
-                                   "hexBinary", "duration", "float",
-                                   "dateTime", "decimal", "time", "double",
-                                   "date", "anyURI", "gYearMonth", "QName",
-                                   "gYear", "NOTATION", "gMonthDay", "gDay",
-                                   "gMonth", "normalizedString", "token",
-                                   "language", "name", "NMTOKEN", "NMTOKENS",
-                                   "NCName", "ID", "IDREF", "IDREFS", "ENTITY",
-                                   "ENTITIES", "integer", "nonPositiveInteger",
-                                   "negativeInteger", "long", "int", "short",
-                                   "byte", "nonNegativeInteger",
-                                   "unsignedLong", "unsignedInt",
-                                   "unsignedShort", "unsignedByte",
-                                   "positiveInteger" };
+        String [][] builtinTypes = {
+            {"XsString", "string"},
+            {"XsBoolean", "boolean"},
+            {"XsFloat", "float"},
+            {"XsDouble","double"},
+            {"XsDecimal", "decimal"},
+            {"XsDuration", "duration"},
+            {"XsDateTime", "dateTime"},
+            {"XsTime", "time"},
+            {"XsDate", "date"},
+            {"XsGYearMonth", "gYearMonth"},
+            {"XsGYear", "gYear"},
+            {"XsGMonthDay", "gMonthDay"},
+            {"XsGDay", "gDay"},
+            {"XsGMonth", "gMonth"},
+            {"XsHexBinary", "hexBinary"},
+            {"XsBase64Binary", "base64Binary"},
+            {"XsAnyUri", "anyURI"},
+            {"XsQName", "QName"},
+            {"XsNotation", "NOTATION"},
+            {"XsNormalizedString", "normalizedString"},
+            {"XsToken", "token"},
+            {"XsLanguage", "language"},
+            {"XsIdRefs","IDREFS"},
+            {"XsEntities","ENTITIES"},
+            {"XsNmToken", "NMTOKEN"},
+            {"XsNmTokens","NMTOKENS"},
+            {"XsName", "name"},
+            {"XsNcName","NCName"},
+            {"XsId","ID"},
+            {"XsIdRef","IDREF"},
+            {"XsEntity","ENTITY"},
+            {"XsInteger","integer"},
+            {"XsNonPositiveInteger","nonPositiveInteger"},
+            {"XsNegativeInteger","negativeInteger"},
+            {"XsLong","long"},
+            {"XsInt","int"},
+            {"XsShort","short"},
+            {"XsByte","byte"},
+            {"XsNonNegativeInteger","nonNegativeInteger"},
+            {"XsUnsignedLong","unsignedLong"},
+            {"XsUnsignedInt","unsignedInt"},
+            {"XsUnsignedShort","unsignedShort"},
+            {"XsUnsignedByte","unsignedByte"},
+            {"XsPositiveInteger", "positiveInteger"},
+        };
         Model model = this.createGmeModel ("SchemaBuiltins", "SchemaBuiltins",
                                            null);
-        for (String name : builtinTypes) {
-            Atom atom = this.createGmeAtom (name, name, name);
-            QName qname = new QName (XMLConstants.W3C_XML_SCHEMA_NS_URI, name);
+        for (int i = 0; i < builtinTypes.length; ++i) {
+            Atom atom = this.createGmeAtom (builtinTypes[i][0],
+                                            builtinTypes[i][0],
+                                            builtinTypes[i][0]);
+            QName qname = new QName (XMLConstants.W3C_XML_SCHEMA_NS_URI,
+                                     builtinTypes[i][1]);
             this.typeMap.put (qname, atom);
             Regnode partRegs = this.createPartRegs(xPos, yPos);
             atom.getRegnodeOrConstraintOrAttribute().add(partRegs);
