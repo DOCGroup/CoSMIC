@@ -36,9 +36,7 @@ execution.
 None of the other backend options display have been implemented or
 tested yet.
 
-Processing of multiple IDL files has not been tested.s
-
-IDL CONSTRUCTS NOT SUPPORTED:
+IDL CONSTRUCTS NOT YET SUPPORTED:
 
 - typedefs of constructed types (structs, unions, exceptions),
   interfaces, and valuetypes
@@ -46,3 +44,13 @@ IDL CONSTRUCTS NOT SUPPORTED:
 - arrays
 
 - sequence and array operation parameters and return types
+
+- forward declarations
+
+- component ports other than facets
+
+
+
+-- Jeff Parsons
+
+   July 22, 2006

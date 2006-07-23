@@ -10,7 +10,7 @@
 //    idl_to_wsdl_visitor.h
 //
 // = DESCRIPTION
-//    The WSDL translator visitor class.
+//    The WSDL translator visitor base class.
 //
 // = AUTHOR
 //    Jeff Parsons <j.parsons@vanderbilt.edu>
@@ -21,20 +21,16 @@
 #define IDL_TO_WSDL_VISITOR_H
 
 #include "ast_visitor.h"
-#include "ast_decl.h"
-#include "ast_expression.h"
-#include "utl_scoped_name.h"
 
 #if !defined (ACE_LACKS_PRAGMA_ONCE)
 # pragma once
 #endif /* ACE_LACKS_PRAGMA_ONCE */
 
+#include "ace/SString.h"
+
 #include <xercesc/dom/DOM.hpp>
 
 using namespace xercesc;
-
-class TAO_OutStream;
-class UTL_ExceptList;
 
 class idl_to_wsdl_visitor : public ast_visitor
 {
@@ -43,7 +39,7 @@ class idl_to_wsdl_visitor : public ast_visitor
   //    idl_to_wsdl_visitor.
   //
   // = DESCRIPTION
-  //    IDL to WSDL conversion visitor.
+  //    IDL to WSDL conversion visitor base class.
   //
 public:
   idl_to_wsdl_visitor (DOMElement *sub_tree);
@@ -87,50 +83,11 @@ public:
   virtual int visit_root (AST_Root *node);
   virtual int visit_native (AST_Native *node);
 
-private:
-  void check_prefix (AST_Decl *d);
-  void check_id_and_version (AST_Decl *d);
+protected:
   void type_name (ACE_CString &name, AST_Decl *d, bool as_ref = true);
-  void gen_anonymous_array (AST_Type *array, AST_Decl *wrapper);
-  void gen_label_value (AST_UnionLabel *node);
-  void gen_provides (AST_Component *node);
-  void gen_uses (AST_Component *node);
-  void gen_publishes (AST_Component *node);
-  void gen_emits (AST_Component *node);
-  void gen_consumes (AST_Component *node);
-  void gen_factories (AST_Home *node, AST_Interface &xplicit);
-  void gen_finders (AST_Home *node, AST_Interface &xplicit);
-  void gen_params (UTL_Scope *s, int arg_count);
-  void gen_exception_list (UTL_ExceptList *exceptions,
-                           const char *prefix = "",
-                           bool closed = true);
-  void gen_seq_array_common (DOMElement *elem,
-                             AST_Type *base_type,
-                             AST_Expression *size,
-                             bool is_array,
-                             const char *insert);
   DOMElement *process_node (AST_Decl *node, const char *tag_name);
-  ACE_CString print_scoped_name (UTL_IdList *sn);
-  ACE_CString expr_val_to_string (AST_Expression::AST_ExprValue *ev);
-  void tranfer_scope_elements (AST_Home *src, AST_Interface &dst);
-  UTL_ScopedName *create_scoped_name (const char *prefix,
-                                      const char *local_name,
-                                      const char *suffix,
-                                      AST_Decl *parent);
-  void finish_operation (AST_Decl *node,
-                         DOMElement *elem,
-                         const char *prefix);
-  void gen_messages (AST_Decl *node,
-                     DOMElement *&message,
-                     const char *prefix);
-  void gen_inherited_operations (AST_Interface *node);
-  void fill_binding_op (DOMElement *binding_op);
-  void gen_inherited_vt_members (AST_ValueType *node,
-                                 idl_to_wsdl_visitor &visitor);
-  void gen_inherited_comp (AST_Component *node);
-  void append_ops_and_attrs (AST_Interface *ancestor);
 
-private:
+protected:
   enum NodeStatus
   {
     NOT_SEEN,
@@ -142,12 +99,6 @@ private:
   NodeStatus node_status_;
   DOMElement *sub_tree_;
   DOMDocument *doc_;
-  ACE_CString label_list_;
-  AST_Union *current_union_;
-  AST_Typedef *alias_;
-  DOMElement *current_port_type_;
-  DOMElement *current_binding_;
-  DOMElement *response_op_;
 };
 
 #endif /* IDL_TO_WSDL_VISITOR_H */

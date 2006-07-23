@@ -13,9 +13,13 @@ project(IDL_TO_WSDL_BE) : acelib, core, crosscompile, xerces {
     be_helper.cpp
     be_init.cpp
     be_produce.cpp
-    be_sunsoft.cpp
+    binding_visitor.cpp
     EntityResolver.cpp
     idl_to_wsdl_visitor.cpp
+    message_visitor.cpp
+    port_type_visitor.cpp
+    service_visitor.cpp
+    type_visitor.cpp
     XercesString.cpp
     XML_Error_Handler.cpp
   }
@@ -24,10 +28,14 @@ project(IDL_TO_WSDL_BE) : acelib, core, crosscompile, xerces {
     be_extern.h
     be_global.h
     be_helper.h
-    be_sunsoft.h
+    binding_visitor.h
     EntityResolver.h
     idl_to_wsdl_visitor.h
     IDL_TO_WSDL_BE_Export.h
+    message_visitor.h
+    port_type_visitor.h
+    service_visitor.h
+    type_visitor.h
     XercesString.h
     XML_Error_Handler.h
   }

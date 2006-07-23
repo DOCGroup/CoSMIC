@@ -129,6 +129,18 @@ public:
   void types_schema (DOMElement *elem);
   // Accessors for the member.
 
+  DOMElement *msg_insert_point (void) const;
+  void msg_insert_point (DOMElement *elem);
+  // Accessors for the member.
+
+  DOMElement *port_type_insert_point (void) const;
+  void port_type_insert_point (DOMElement *elem);
+  // Accessors for the member.
+
+  DOMElement *binding_insert_point (void) const;
+  void binding_insert_point (DOMElement *elem);
+  // Accessors for the member.
+
   DECL_ELEM_TABLE &decl_elem_table (void);
   // Accessor for the member.
   
@@ -240,10 +252,10 @@ private:
   void create_target (void);
   // Create the output XML file.
   
-  void set_root_ns_attrs (void);
+  void set_root_attrs (void);
   // Set the namespace attributes of the root element.
   
-  void set_common_ns_attrs (DOMElement *elem);
+  void set_common_attrs (DOMElement *elem);
   // Sets namespace attributes common to 'definitions' and
   // 'schema'.
   
@@ -288,6 +300,9 @@ private:
   XMLFormatTarget *target_;
   DOMElement *root_element_;
   DOMElement *types_schema_;
+  DOMElement *msg_insert_point_;
+  DOMElement *port_type_insert_point_;
+  DOMElement *binding_insert_point_;
   // DOM items we need to cache.
   
   DECL_ELEM_TABLE decl_elem_table_;

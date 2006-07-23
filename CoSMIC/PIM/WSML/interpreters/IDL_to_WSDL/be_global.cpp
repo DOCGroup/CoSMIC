@@ -52,7 +52,6 @@ namespace
   const char *IMPORT_NS = SOAP_ENC;
   const char *SCHEMA_NS = "http://www.w3.org/2001/XMLSchema";
   const char *CORBA_NS = "http://www.omg.org/IDL-WSDL/1.0/";
-  const char *tns = "http://www.omg.org/IDL-Mapped/";
 }
 
 IDL_TO_WSDL_BE_Export BE_GlobalData *be_global = 0;
@@ -71,6 +70,9 @@ BE_GlobalData::BE_GlobalData (void)
     target_ (0),
     root_element_ (0),
     types_schema_ (0),
+    msg_insert_point_ (0),
+    port_type_insert_point_ (0),
+    binding_insert_point_ (0),
     basic_seq_suffix_ ("Seq_from_IDL_include")
 {
 }
@@ -218,6 +220,42 @@ void
 BE_GlobalData::types_schema (DOMElement *elem)
 {
   this->types_schema_ = elem;
+}
+
+DOMElement *
+BE_GlobalData::msg_insert_point (void) const
+{
+  return this->msg_insert_point_;
+}
+
+void
+BE_GlobalData::msg_insert_point (DOMElement *elem)
+{
+  this->msg_insert_point_ = elem;
+}
+
+DOMElement *
+BE_GlobalData::port_type_insert_point (void) const
+{
+  return this->port_type_insert_point_;
+}
+
+void
+BE_GlobalData::port_type_insert_point (DOMElement *elem)
+{
+  this->port_type_insert_point_ = elem;
+}
+
+DOMElement *
+BE_GlobalData::binding_insert_point (void) const
+{
+  return this->binding_insert_point_;
+}
+
+void
+BE_GlobalData::binding_insert_point (DOMElement *elem)
+{
+  this->binding_insert_point_ = elem;
 }
 
 BE_GlobalData::DECL_ELEM_TABLE &
@@ -413,7 +451,13 @@ BE_GlobalData::xerces_init (void)
       this->create_target ();
       
       this->root_element_ = this->doc_->getDocumentElement ();
-      this->set_root_ns_attrs ();
+      this->set_root_attrs ();
+      
+      DOMElement *import_elem = this->doc_->createElement (X ("import"));
+      import_elem->setAttribute (X ("namespace"), X (CORBA_NS));
+      import_elem->setAttribute (X ("location"), X ("CORBA.wsdl"));
+      this->root_element_->appendChild (import_elem);
+
       this->create_types_schema ();
     }
   catch (const DOMException &e)
@@ -449,11 +493,6 @@ BE_GlobalData::cache_files (char *files[], long nfiles)
     {
       // Cache the file names in be_global.
       this->allfiles_[i] = files[i];
-
-      // May want to do something similar to what's in IDL_to_PICML,
-      // but I don't know what it is yet.
-//      this->decl_elem_table_.bind (ACE::strnew (lname_cstr),
-//                                   file);
    }
 
   this->nfiles_ = nfiles;
@@ -1135,43 +1174,53 @@ BE_GlobalData::create_target (void)
 }
 
 void
-BE_GlobalData::set_root_ns_attrs (void)
+BE_GlobalData::set_root_attrs (void)
 {
   DOMElement *r = this->root_element_; 
-  this->set_common_ns_attrs (r);
+  this->set_common_attrs (r);
   
   // Specific to the 'definitions' element.
-  r->setAttributeNS (X (XMLNS), X ("xmlns:SOAP"), X (SOAP));
-  r->setAttributeNS (X (XMLNS), X ("xmlns:MIME"), X (MIME));
-  r->setAttributeNS (X (XMLNS), X ("xmlns:DIME"), X (DIME));
-  r->setAttributeNS (X (XMLNS), X ("xmlns:WSDL"), X (WSDL));
-  r->setAttributeNS (X (XMLNS), X ("xmlns:CORBA"), X (CORBA_NS));
-  r->setAttributeNS (X (XMLNS), X ("xmlns:tns"), X (tns));
+  r->setAttributeNS (X (XMLNS), X ("xmlns:soap"), X (SOAP));
+  r->setAttributeNS (X (XMLNS), X ("xmlns:mime"), X (MIME));
+  r->setAttributeNS (X (XMLNS), X ("xmlns:dime"), X (DIME));
+  r->setAttributeNS (X (XMLNS), X ("xmlns:wsdl"), X (WSDL));
+  r->setAttributeNS (X (XMLNS), X ("xmlns:corba"), X (CORBA_NS));
+  
+  ACE_CString target_name_space ("urn:");
+  target_name_space += this->output_file_;
+  
+  r->setAttribute (X ("targetNamespace"),
+                   X (target_name_space.c_str ()));
+  r->setAttribute (X ("name"), X (this->output_file_.c_str ()));
+  r->setAttributeNS (X (XMLNS),
+                     X ("xmlns:tns"),
+                     X (target_name_space.c_str ()));
 }
 
 void
-BE_GlobalData::set_common_ns_attrs (DOMElement *elem)
+BE_GlobalData::set_common_attrs (DOMElement *elem)
 {
-  elem->setAttributeNS (X (XMLNS), X ("xmlns:SOAP-ENV"), X (SOAP_ENV));
-  elem->setAttributeNS (X (XMLNS), X ("xmlns:SOAP-ENC"), X (SOAP_ENC));
-  elem->setAttributeNS (X (XMLNS), X ("xmlns:xsi"), X (xsi));
+  elem->setAttributeNS (X (XMLNS), X ("xmlns:soap-env"), X (SOAP_ENV));
+  elem->setAttributeNS (X (XMLNS), X ("xmlns:soap-enc"), X (SOAP_ENC));
   elem->setAttributeNS (X (XMLNS), X ("xmlns:xsd"), X (xsd));
 }
 
 void
 BE_GlobalData::create_types_schema (void)
 {
-  DOMElement *types = this->doc_->createElement (X ("types"));
+  DOMElement *types = this->doc_->createElement (X ("xsd:types"));
   this->root_element_->appendChild (types);
-  this->types_schema_ = this->doc_->createElement (X ("schema"));
+  this->types_schema_ = this->doc_->createElement (X ("xsd:schema"));
   types->appendChild (this->types_schema_);
   
-  this->set_common_ns_attrs (this->types_schema_);
+  this->set_common_attrs (this->types_schema_);
+  
+  ACE_CString target_name_space ("urn:");
+  target_name_space += this->output_file_;
+  
+  this->types_schema_->setAttribute (X ("targetNamespace"),
+                                     X (target_name_space.c_str ()));
   this->types_schema_->setAttribute (X ("xmlns"), X (SCHEMA_NS));
-  this->types_schema_->setAttribute (X ("elementFormDefault"),
-                                     X ("qualified"));
-  this->types_schema_->setAttribute (X ("attributeFormDefault"),
-                                     X ("qualified"));
   
   DOMElement *import = this->doc_->createElement (X ("import"));
   import->setAttribute (X ("namespace"), X (IMPORT_NS));

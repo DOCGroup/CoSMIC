@@ -69,7 +69,11 @@ trademarks or registered trademarks of Sun Microsystems, Inc.
 #include "be_extern.h"
 #include "fe_extern.h"
 #include "ast_root.h"
-#include "idl_to_wsdl_visitor.h"
+#include "type_visitor.h"
+#include "message_visitor.h"
+#include "port_type_visitor.h"
+#include "binding_visitor.h"
+#include "service_visitor.h"
 
 #include "xercesc/util/XMLUniDefs.hpp"
 #include "xercesc/framework/LocalFileFormatTarget.hpp"
@@ -106,21 +110,67 @@ BE_produce (void)
   if (ast_root == 0)
     {
       ACE_ERROR ((LM_ERROR,
-                  ACE_TEXT ("(%N:%l) BE_produce - ")
+                  ACE_TEXT ("BE_produce - ")
                   ACE_TEXT ("No Root\n")));
       BE_abort ();
     }
     
-  idl_to_wsdl_visitor visitor (be_global->types_schema ());
-
   try
     {
-      if (visitor.visit_root (ast_root) == -1)
-        {
-          ACE_ERROR ((LM_ERROR,
-                      ACE_TEXT ("(%N:%l) BE_produce -")
-                      ACE_TEXT (" failed to accept visitor\n")));
-        }
+      {
+        type_visitor t_visitor (be_global->types_schema ());
+
+        if (t_visitor.visit_root (ast_root) == -1)
+          {
+            ACE_ERROR ((LM_ERROR,
+                        ACE_TEXT ("(%N:%l) BE_produce -")
+                        ACE_TEXT (" failed to accept type visitor\n")));
+          }
+      }
+
+      {
+        message_visitor m_visitor (be_global->root_element ());
+
+        if (m_visitor.visit_root (ast_root) == -1)
+          {
+            ACE_ERROR ((LM_ERROR,
+                        ACE_TEXT ("(%N:%l) BE_produce -")
+                        ACE_TEXT (" failed to accept message visitor\n")));
+          }
+      }
+
+      {
+        port_type_visitor p_visitor (be_global->root_element ());
+
+        if (p_visitor.visit_root (ast_root) == -1)
+          {
+            ACE_ERROR ((LM_ERROR,
+                        ACE_TEXT ("(%N:%l) BE_produce -")
+                        ACE_TEXT (" failed to accept port type visitor\n")));
+          }
+      }
+
+      {
+        binding_visitor b_visitor (be_global->root_element ());
+
+        if (b_visitor.visit_root (ast_root) == -1)
+          {
+            ACE_ERROR ((LM_ERROR,
+                        ACE_TEXT ("(%N:%l) BE_produce -")
+                        ACE_TEXT (" failed to accept binding visitor\n")));
+          }
+      }
+
+      {
+        service_visitor s_visitor (be_global->root_element ());
+
+        if (s_visitor.visit_root (ast_root) == -1)
+          {
+            ACE_ERROR ((LM_ERROR,
+                        ACE_TEXT ("(%N:%l) BE_produce -")
+                        ACE_TEXT (" failed to accept service visitor\n")));
+          }
+      }
     }
   catch (const DOMException &e)
     {

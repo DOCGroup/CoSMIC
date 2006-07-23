@@ -1,3 +1,35 @@
+Sun Jul 23 03:10:54 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/WSML/interpreters/IDL_to_WSDL/binding_visitor.h:
+        * PIM/WSML/interpreters/IDL_to_WSDL/binding_visitor.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/type_visitor.h:
+        * PIM/WSML/interpreters/IDL_to_WSDL/type_visitor.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/message_visitor.h:
+        * PIM/WSML/interpreters/IDL_to_WSDL/message_visitor.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/port_type_visitor.h:
+        * PIM/WSML/interpreters/IDL_to_WSDL/port_type_visitor.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/service_visitor.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/service_visitor.h:
+        
+          New visitors, specialized to add types, messages, port 
+          types, bindings and services to the generated WSDL document.
+
+        * PIM/WSML/interpreters/IDL_to_WSDL/IDL_to_WSDL.mpc:
+        * PIM/WSML/interpreters/IDL_to_WSDL/be_produce.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/be_global.h:
+        * PIM/WSML/interpreters/IDL_to_WSDL/be_global.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/idl_to_wsdl_visitor.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/idl_to_wsdl_visitor.h:
+        * PIM/WSML/interpreters/IDL_to_WSDL/README:
+        
+          Modified files. The idl_to_wsdl_visitor class is now a base
+          class for the new visitors described above.
+
+        * PIM/WSML/interpreters/IDL_to_WSDL/be_sunsoft.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/be_sunsoft.h:
+        
+          Removed files, stream output is not used by this backend.
+
 Sat Jul 22 08:20:28 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * Installer/CoSMIC.ise: Updated installer to reflect new release
