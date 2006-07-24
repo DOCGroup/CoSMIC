@@ -1,3 +1,47 @@
+Mon Jul 24 23:27:37 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * SQL/CUTS-create.sql:
+
+          Combined the ipaddr_host_map and testenv tables.
+
+        * utils/BMW/BMW.master:
+
+          Cosmetic changes.
+
+        * utils/BMW/Database_Utility/Database_Utility.cs:
+
+          - Removed all traces interop services.
+          - Added a destructor which closes the existing connection
+            to the database if present.
+
+        * utils/BMW/Hosts.aspx:
+        * utils/BMW/Hosts.aspx.cs:
+        * utils/BMW/Node_Details.ascx:
+        * utils/BMW/Node_Details.ascx.cs:
+        * utils/BMW/bin/IIOPChannel.dll:
+        * utils/BMW/bin/Node_Daemon.NET.dll:
+        * utils/BMW/images/cancel.gif:
+        * utils/BMW/images/minus.gif:
+        * utils/BMW/images/ok.gif:
+        * utils/BMW/images/plus.gif:
+
+          Implemenation of a control/page that use IIOP.NET to communicate
+          with the CUTS/Node_Daemon to control it from the BMW.
+
+        * utils/BMW/Sender_Metrics.ascx:
+
+          Cosmetic changes.
+
+        * utils/Node_Daemon/Node_Daemon.idl:
+        * utils/Node_Daemon/Node_Daemon_Client.cpp:
+        * utils/Node_Daemon/Node_Daemon_Server.cpp:
+        * utils/Node_Daemon/Node_Daemon_i.h:
+        * utils/Node_Daemon/Node_Daemon_i.cpp:
+
+          The spawn method now uses collection of nodes bindings with
+          the same arguments instead of a collection of arguments
+          and node binding.
+
 Sat Jul 22 07:31:54 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * CUTS_Release.mwc:  Added new file to allow building a solution

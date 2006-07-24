@@ -147,8 +147,11 @@ void process_spawn_action (::CUTS::Node_Daemon_ptr daemon)
   if (CLIENT_OPTIONS ()->count_ < 1)
     return;
 
-  ::CUTS::Node_Details details (CLIENT_OPTIONS ()->count_);
-  details.length (CLIENT_OPTIONS ()->count_);
+  // We only permit one spawn type at a time from the client.
+  ::CUTS::Spawn_Detail detail;
+  detail.bindings.length (CLIENT_OPTIONS ()->count_);
+  detail.params = ::CORBA::string_dup (CLIENT_OPTIONS ()->args_.c_str ());
+
   VERBOSE_MESSAGE ((LM_DEBUG,
                     "scheduled to spawn %u node manager(s)\n",
                     CLIENT_OPTIONS ()->count_));
@@ -157,14 +160,14 @@ void process_spawn_action (::CUTS::Node_Daemon_ptr daemon)
 
   for (size_t i = 0; i < CLIENT_OPTIONS ()->count_; i ++)
   {
-    ::CUTS::Node_Detail & detail = details[i];
+    ::CUTS::Node_Binding & binding = detail.bindings[i];
 
-    detail.params = ::CORBA::string_dup (CLIENT_OPTIONS ()->args_.c_str ());
-    detail.binding.localhost = CLIENT_OPTIONS ()->localhost_;
-    detail.binding.port = port ++;
+    binding.localhost = CLIENT_OPTIONS ()->localhost_;
+    binding.port = port ++;
   }
 
-  size_t spawn_count = daemon->spawn (details);
+  // Signal the server to spawn the nodes.
+  size_t spawn_count = daemon->spawn (detail);
   VERBOSE_MESSAGE ((LM_DEBUG,
                     "successfully spawned %u node manager(s)\n",
                     spawn_count));
@@ -235,6 +238,11 @@ int main (int argc, char * argv [])
     VERBOSE_MESSAGE ((LM_DEBUG,
                       "resolving initial reference to NodeDaemon\n"));
     ::CORBA::Object_var obj = orb->resolve_initial_references ("NodeDaemon");
+    ::CORBA::String_var strobj = orb->object_to_string (obj.in ());
+
+    VERBOSE_MESSAGE ((LM_DEBUG,
+                      "NodeDaemon %s\n",
+                      strobj.in ()));
 
     if (::CORBA::is_nil (obj.in ()))
     {

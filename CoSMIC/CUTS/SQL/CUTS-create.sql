@@ -102,14 +102,15 @@ CREATE TABLE IF NOT EXISTS ipaddr_host_map
 (
   hostid      INT               NOT NULL auto_increment,
   ipaddr      VARCHAR (40)      NOT NULL,
-  v4          BOOLEAN           NOT NULL DEFAULT true,
   hostname    VARCHAR (255),
-
-  PRIMARY KEY (hostid)
+  portnum     INT(5)            DEFAULT NULL,
+  
+  PRIMARY KEY (hostid),
+  UNIQUE (hostname)
 );
 
-INSERT INTO ipaddr_host_map (ipaddr, v4, hostname)
-  VALUES ('127.0.0.1', 1, 'localhost');
+INSERT INTO ipaddr_host_map (ipaddr, hostname)
+  VALUES ('127.0.0.1', 'localhost');
   
 --
 -- Create the scratchpad table. This is the table the
@@ -183,24 +184,6 @@ CREATE TABLE IF NOT EXISTS deployment_table
     ON DELETE CASCADE,
   FOREIGN KEY (instance) REFERENCES component_instances (component_id)
     ON DELETE RESTRICT
-);
-
---
--- Create the 'testenv' table. This table is for configuring the
--- testing environment. It contains the corbaloc's for the cutsnode_d
--- for communicating w/ each individual node.
---
-
-CREATE TABLE IF NOT EXISTS testenv
-(
-  idtag         INT NOT NULL auto_increment,
-  hostid        INT,
-  portnum       INT(5),
-  
-  PRIMARY KEY (idtag), 
-  UNIQUE (hostid, portnum), 
-  FOREIGN KEY (hostid) REFERENCES ipaddr_host_map (hostid)
-    ON DELETE RESTRICT 
 );
 
 --

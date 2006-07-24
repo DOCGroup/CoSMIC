@@ -14,8 +14,9 @@
 #include "Server_Options.h"
 #include "tao/IORTable/IORTable.h"
 #include "ace/Get_Opt.h"
-#include "ace/streams.h"
 #include "ace/OS_NS_unistd.h"
+#include "ace/Process_Mutex.h"
+#include "ace/streams.h"
 
 //
 // parse_args
@@ -108,11 +109,11 @@ void write_ior_to_file (const char * ior)
   }
   catch (::CORBA::Exception & ex)
   {
-    ACE_ERROR ((LM_ERROR,
-                "failed to write IOR to file %s\n",
-                SERVER_OPTIONS ()->ior_file_.c_str ()));
-
-    ACE_UNUSED_ARG (ex);
+    ACE_PRINT_TAO_EXCEPTION (ex, "(%N:%l) caught CORBA exception");
+  }
+  catch (...)
+  {
+    ACE_ERROR ((LM_ERROR, "(%N:%l) caught unknown exception\n"));
   }
 }
 
@@ -121,6 +122,19 @@ void write_ior_to_file (const char * ior)
 //
 int main (int argc, char * argv [])
 {
+  // We only allow one instance of the daemon to run at a
+  // time. This way we don't have any confusion as to which
+  // one we are talking to.
+  ACE_Process_Mutex process_lock ("cutsnode_d");
+  ACE_Guard <ACE_Process_Mutex> guard (process_lock, 0);
+
+  if (guard.locked () == 0)
+  {
+    ACE_ERROR_RETURN ((LM_ERROR,
+                       "cutsnode_d is already active\n"),
+                       1);
+  }
+
   try
   {
     // Initalize the ORB
@@ -174,6 +188,7 @@ int main (int argc, char * argv [])
     // Convert the object to its string format and write the
     // IOR to file and to the IOR table.
     ::CORBA::String_var objstr = orb->object_to_string (daemon);
+    VERBOSE_MESSAGE ((LM_DEBUG, "NodeDaemon %s\n", objstr.in ()));
 
     write_ior_to_file (objstr.in ());
     ior_table->bind ("CUTS/NodeDaemon", objstr.in ());

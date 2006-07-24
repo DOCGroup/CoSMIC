@@ -3,7 +3,7 @@
 <br style="clear:both" />
 <div><b>Sender:</b> <%= this.instance_name_ %></div>
 <asp:datagrid runat="server" id="metrics_" autogeneratecolumns="false"
-  width="100%" borderstyle="none" borderwidth="1" bordercolor="darkgray"
+  width="100%" borderstyle="none" borderwidth="1"
   onpageindexchanged="handle_page_index_changed">
 
   <headerstyle cssclass="header" />

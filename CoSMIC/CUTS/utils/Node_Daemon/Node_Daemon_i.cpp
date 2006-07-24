@@ -100,34 +100,35 @@ namespace CUTS
   // spawn
   //
   ::CORBA::ULong Node_Daemon_i::spawn (
-    const ::CUTS::Node_Details & nodes
+    const ::CUTS::Spawn_Detail & detail
     ACE_ENV_ARG_DECL_WITH_DEFAULTS)
     ACE_THROW_SPEC ((::CORBA::SystemException))
   {
     ACE_WRITE_GUARD_RETURN (ACE_RW_Thread_Mutex, guard, this->lock_, 0);
 
     size_t count = 0;
-    size_t max_nodes = nodes.length ();
+    size_t bindings = detail.bindings.length ();
 
-    for (size_t i = 0; i < max_nodes; i ++)
+    for (size_t i = 0; i < bindings; i ++)
     {
-      const ::CUTS::Node_Detail & detail = nodes[i];
+      // Get all the binding information for this spawn detail.
+      const ::CUTS::Node_Binding & binding = detail.bindings[i];
 
-      if (this->is_port_available (detail.binding.port,
-                                   detail.binding.localhost))
+      if (this->is_port_available (binding.port,
+                                   binding.localhost))
       {
         // Since the port is available, then we have permission to
         // spawn a new process.
         this->p_options_.command_line (
           "%s -ORBEndpoint iiop://%s:%u %s",
           this->node_manager_.c_str (),
-          detail.binding.localhost ? LOCALHOST : this->ip_addr_.c_str (),
-          detail.binding.port,
+          binding.localhost ? LOCALHOST : this->ip_addr_.c_str (),
+          binding.port,
           detail.params.in ());
 
-        pid_t pid = this->spawn_i (detail.binding.port,
-                                   detail.binding.localhost,
-                                   this->p_options_);
+        pid_t pid = this->spawn_i (binding.port,
+                                    binding.localhost,
+                                    this->p_options_);
 
         if (pid != ACE_INVALID_PID &&
             pid != 0)
@@ -135,12 +136,12 @@ namespace CUTS
           VERBOSE_MESSAGE ((
             LM_DEBUG,
             "succesfully spawned node manager (%s:%u)\n",
-            detail.binding.localhost ? LOCALHOST : this->ip_addr_.c_str (),
-            detail.binding.port));
+            binding.localhost ? LOCALHOST : this->ip_addr_.c_str (),
+            binding.port));
 
           if (PROCESS_LOG ()->process_spawn (pid,
-                                             detail.binding.port,
-                                             detail.binding.localhost))
+                                              binding.port,
+                                              binding.localhost))
           {
             VERBOSE_MESSAGE ((LM_DEBUG, "succesfully logged process\n"));
           }
@@ -160,9 +161,9 @@ namespace CUTS
       {
         ACE_ERROR ((LM_ERROR,
                     "endpoint %s:%u is not available\n",
-                    detail.binding.localhost ?
+                    binding.localhost ?
                     LOCALHOST : this->ip_addr_.c_str (),
-                    detail.binding.port));
+                    binding.port));
       }
     }
 
@@ -530,6 +531,9 @@ namespace CUTS
   void Node_Daemon_i::shutdown (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
     ACE_THROW_SPEC ((::CORBA::SystemException))
   {
+    VERBOSE_MESSAGE ((LM_DEBUG,
+                      "receieved request to shutdown\n"));
+
     this->orb_->shutdown ();
   }
 }

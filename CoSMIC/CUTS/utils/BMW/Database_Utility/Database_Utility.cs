@@ -16,7 +16,6 @@ using System.Data;
 using System.Data.Odbc;
 using System.Net;
 using System.Net.Sockets;
-using System.Runtime.InteropServices;
 using System.Text;
 
 using MySql.Data.MySqlClient;
@@ -91,14 +90,6 @@ public class CUTS_Database_Utility
     this.conn_ = new MySqlConnection();
   }
 
-#if _DEBUG
-  [DllImport("CUTS_CORBA_Utilityd")]
-#else
-  [DllImport("CUTS_CORBA_Utility")]
-#endif
-  public static extern bool print_message(string filename,
-                                          string message);
-
   /**
    * Initializing constructor. This constructor will open a
    * database connection using the specified connection string.
@@ -110,6 +101,15 @@ public class CUTS_Database_Utility
     this.conn_ = new MySqlConnection();
     this.conn_.ConnectionString = connstr;
     this.conn_.Open();
+  }
+
+  /**
+   * Destructor.
+   */
+  ~CUTS_Database_Utility()
+  {
+    if (this.conn_.State == ConnectionState.Open)
+      this.conn_.Close();
   }
 
   /**
@@ -422,10 +422,44 @@ public class CUTS_Database_Utility
   public void get_all_hosts(ref DataSet ds)
   {
     MySqlCommand command = this.conn_.CreateCommand();
-    command.CommandText = "SELECT * FROM ipaddr_host_map";
+    command.CommandText = "SELECT * FROM ipaddr_host_map ORDER BY hostname";
 
     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
     adapter.Fill(ds, "hosts");
+  }
+
+  /**
+   * Get information about the testing environment from the 
+   * database. This returns the information in the table 
+   * \a testenv.
+   */
+  public void get_testenv (ref DataSet ds)
+  {
+    StringBuilder builder = new StringBuilder();
+    builder.Append ("SELECT * FROM ipaddr_host_map ORDER BY hostname");
+
+    MySqlCommand command = this.conn_.CreateCommand();
+    command.CommandText = builder.ToString();
+
+    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+    adapter.Fill(ds, "testenv");
+  }
+
+  /**
+   * 
+   */
+  public void update_testenv(System.Int32 hostid, System.Int32 portnum)
+  {
+    StringBuilder builder = new StringBuilder();
+    builder.Append("UPDATE ipaddr_host_map SET portnum = ?portnum ");
+    builder.Append("WHERE hostid = ?hostid");
+
+    MySqlCommand command = this.conn_.CreateCommand();
+    command.CommandText = builder.ToString();
+
+    command.Parameters.Add("?portnum", portnum);
+    command.Parameters.Add("?hostid", hostid);
+    command.ExecuteNonQuery();
   }
 
   /**
@@ -442,17 +476,12 @@ public class CUTS_Database_Utility
     {
       // Build the command.
       StringBuilder builder = new StringBuilder ();
-      builder.Append ("INSERT INTO ipaddr_host_map (ipaddr, v4, hostname) ");
-      builder.Append ("VALUES (?ipaddr, ?v4, ?hostname)");
+      builder.Append ("INSERT INTO ipaddr_host_map (ipaddr, hostname) ");
+      builder.Append ("VALUES (?ipaddr, ?hostname)");
 
       // Create the command object.
       MySqlCommand command = this.conn_.CreateCommand();
       command.CommandText = builder.ToString();
-
-      // Create the parameters for the command.
-      MySqlParameter v4_param = 
-        new MySqlParameter ("?v4", MySqlDbType.Int16);
-      command.Parameters.Add(v4_param);
 
       MySqlParameter ipaddr_param = 
         new MySqlParameter ("?ipaddr", MySqlDbType.VarChar, 40);
@@ -467,13 +496,6 @@ public class CUTS_Database_Utility
       foreach (IPAddress addr in addrs)
       {
         ipaddr_param.Value = addr.ToString();
-
-        if (addr.AddressFamily == AddressFamily.InterNetwork)
-          v4_param.Value = 1;
-        else if (addr.AddressFamily == AddressFamily.InterNetworkV6)
-          v4_param.Value = 0;
-
-        // Execute the command.
         command.ExecuteNonQuery();
       }
     }

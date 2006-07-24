@@ -54,7 +54,7 @@ namespace CUTS
      * @return        Number of nodes successfully spawned.
      */
     virtual ::CORBA::ULong spawn (
-      const ::CUTS::Node_Details & nodes
+      const ::CUTS::Spawn_Detail & detail
       ACE_ENV_ARG_DECL_WITH_DEFAULTS)
       ACE_THROW_SPEC ((::CORBA::SystemException));
 
