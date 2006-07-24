@@ -48,7 +48,7 @@ project(IDL_TO_WSDL_EXE) : aceexe, core, crosscompile, xerces {
   libs           += IDL_TO_WSDL_BE TAO_IDL_FE
   includes       += . $(TAO_ROOT)/TAO_IDL/include $(TAO_ROOT)/TAO_IDL/fe $(TAO_ROOT)
   libpaths       += $(TAO_ROOT)/TAO_IDL
-  install         = $(ACE_ROOT)/bin
+  install         = $(COSMIC_ROOT)/bin
 
   verbatim(gnuace, local) {
     ifeq ($(TAO_IDL_PREPROCESSOR),)

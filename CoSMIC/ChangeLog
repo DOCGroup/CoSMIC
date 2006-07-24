@@ -1,3 +1,9 @@
+Mon Jul 24 19:56:25 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/WSML/interpreters/IDL_to_WSDL/IDL_to_WSDL.mpc:
+        
+          Changed installation of executable to $COSMIC_ROOT/bin.
+
 Sun Jul 23 04:36:42 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/WSML/paradigms/WSML.xme:
