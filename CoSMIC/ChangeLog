@@ -1,3 +1,13 @@
+Tue Jul 25 19:10:41 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/WSML/interpreters/IDL_to_WSDL/type_visitor.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/message_visitor.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/idl_to_wsdl_visitor.cpp:
+        
+          Fixed bug in message part generation when the type is array
+          or sequence, and factored out some common type name
+          generating code.
+
 Tue Jul 25 17:00:29 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLGenerator/DependencyVisitor.cpp:

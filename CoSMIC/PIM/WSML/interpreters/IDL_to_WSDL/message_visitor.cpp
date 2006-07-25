@@ -173,23 +173,20 @@ message_visitor::gen_messages (AST_Decl *node,
   AST_Attribute *attr = AST_Attribute::narrow_from_decl (node);
   ACE_CString prefix_str (prefix);
   ACE_CString part_name;
-  
+  AST_Type *rt = (0 != op ? op->return_type () : attr->field_type ());
+  this->type_name (part_name, rt);
+ 
   if (0 != op && !op->void_return_type () || prefix_str == "_get_")
     {
-      AST_Type *rt = (0 != op ? op->return_type () : attr->field_type ());
-      this->type_name (part_name, rt);
-      
       DOMElement *return_elem = this->doc_->createElement (X ("part"));
       return_elem->setAttribute (X ("name"), X ("_return"));
-      return_elem->setAttribute (X ("type"), X (part_name.c_str ()));
-      
+      return_elem->setAttribute (X ("type"), X (part_name.c_str ()));     
       this->current_response_msg_->appendChild (return_elem);
     }
   else if (prefix_str == "_set_")
     {
       DOMElement *arg_elem = this->doc_->createElement (X ("part"));
       arg_elem->setAttribute (X ("name"), X ("value"));
-      this->type_name (part_name, attr->field_type ());
       arg_elem->setAttribute (X ("type"), X (part_name.c_str ()));
       this->current_msg_->appendChild (arg_elem);
     }

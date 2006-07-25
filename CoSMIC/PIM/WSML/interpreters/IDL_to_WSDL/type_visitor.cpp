@@ -510,18 +510,9 @@ type_visitor::gen_seq_array_common (DOMElement *elem,
                                            bool is_array,
                                            const char *insert)
 {
-  ACE_CString scope_name;
-  AST_Decl *p = ScopeAsDecl (this->alias_->defined_in ());
-  
-  if (AST_Decl::NT_root != p->node_type ())
-    {
-      this->type_name (scope_name, p, false);
-      scope_name += ".";
-    }
-    
-  scope_name += "_SE_";
-  scope_name += this->alias_->local_name ()->get_string ();
-  elem->setAttribute (X ("name"), X (scope_name.c_str ()));
+  ACE_CString name (this->alias_->full_name ());
+  this->type_name (name, this->alias_, false);
+  elem->setAttribute (X ("name"), X (name.c_str ()));
   
   DOMElement *content =
     this->doc_->createElement (X ("complexContent"));

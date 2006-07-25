@@ -168,6 +168,34 @@ idl_to_wsdl_visitor::type_name (ACE_CString &name,
           }
           
         break;
+      case AST_Decl::NT_typedef:
+        {
+          AST_Typedef *td = AST_Typedef::narrow_from_decl (d);
+          AST_Decl::NodeType nt = td->base_type ()->node_type ();
+          
+          // If we are not a typedef of an array or a sequence, just
+          // fall through to the default case.
+          if (AST_Decl::NT_array == nt || AST_Decl::NT_sequence == nt)
+            {
+              AST_Decl *scope = ScopeAsDecl (d->defined_in ());
+              
+              if (AST_Decl::NT_root != scope->node_type ())
+                {
+                  name += scope->full_name ();
+                  be_global->to_wsdl_name (name);
+                  name += ".";
+                }
+             
+              if (as_ref)
+                {
+                  name = ACE_CString ("tns:") + name;
+                }
+                
+              name += "_SE_";
+              name += d->local_name ()->get_string ();
+              break;
+           }
+        }
       default:
         name += d->full_name ();
         be_global->to_wsdl_name (name);
