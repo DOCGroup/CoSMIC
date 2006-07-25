@@ -1,12 +1,24 @@
+Tue Jul 25 12:50:15 UTC 2006  James Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/Node_Daemon/Node_Daemon_Event_Handler.cpp (handle_exit):
+        
+        Added an error message if process == 0.
+        
+        * utils/Node_Daemon/Node_Daemon_i.cpp:
+
+        Fixed a bug that prevented processes that exited gracefully to
+        be removed from the process log. Now, process_exits () signals
+        the log to remove a process.
+        
 Tue Jul 25 06:42:44 UTC 2006  James Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/Node_Daemon/Node_Daemon_i.cpp (init_p_options):
 
         Set the group id for the process to 0 in p_options_
-        to force the creation of a new group on systems that 
+        to force the creation of a new group on systems that
         support setpgid (). This allows the daemon to fail
         without failing any of the spawned child processes.
-        
+
 Tue Jul 25 06:27:07 UTC 2006  James Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/Node_Daemon/Node_Daemon_i.cpp (init_p_options):

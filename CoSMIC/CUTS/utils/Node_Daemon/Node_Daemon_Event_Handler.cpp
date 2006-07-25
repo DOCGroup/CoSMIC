@@ -27,8 +27,12 @@ Node_Daemon_Event_Handler::~Node_Daemon_Event_Handler (void)
 //
 int Node_Daemon_Event_Handler::handle_exit (ACE_Process * process)
 {
+  ACE_DEBUG ((LM_DEBUG, "handle_exit\n"));
+
   if (process != 0)
     this->daemon_->process_exits (process->getpid ());
+  else
+    ACE_ERROR ((LM_WARNING, "unknown process has exited\n"));
 
   return 0;
 }

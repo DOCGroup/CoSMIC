@@ -212,21 +212,6 @@ namespace CUTS
                       "failed to terminate process with id %u\n",
                       pid));
         }
-
-        // Remove the process from the log as well.
-        if (PROCESS_LOG ()->process_exit (pid))
-        {
-          VERBOSE_MESSAGE ((
-            LM_DEBUG,
-            "successfully removed process with id %u from log\n",
-            pid));
-        }
-        else
-        {
-          ACE_ERROR ((LM_DEBUG,
-                      "failed to remove process with id %u from log\n",
-                      pid));
-        }
       }
     }
 
@@ -246,7 +231,7 @@ namespace CUTS
   }
 
   //
-  // process_exit
+  // process_exits
   //
   void Node_Daemon_i::process_exits (pid_t pid)
   {
@@ -263,6 +248,20 @@ namespace CUTS
                   "(%N:%l) process with id %u does not exist\n",
                   pid));
     }
+
+    // Remove the process from the log as well.
+    if (PROCESS_LOG ()->process_exit (pid))
+      {
+        VERBOSE_MESSAGE ((LM_DEBUG,
+                          "successfully removed process with id %u from log\n",
+                          pid));
+      }
+    else
+      {
+        ACE_ERROR ((LM_DEBUG,
+                    "failed to remove process with id %u from log\n",
+                    pid));
+      }
   }
 
   //
@@ -401,6 +400,12 @@ namespace CUTS
                           ple->port (),
                           ple->is_localhost ());
         }
+        else
+          {
+            ACE_ERROR ((LM_ERROR, 
+                        "failed to recover process with id %u\n",
+                        ple->pid ()));
+          }
 
         // Increment the number of process recovered.
         ++ count;
@@ -452,7 +457,15 @@ namespace CUTS
     // This helps decrease the complexity of remove the entry from
     // the <local_> or <global_> mapping when <pid> exits.
     if (entry != 0)
-      this->proc_map_.bind (pid, entry);
+      {
+        this->proc_map_.bind (pid, entry);
+      }
+    else
+      {
+        ACE_ERROR ((LM_ERROR, 
+                    "failed to bind process with id %u\n",
+                    pid));
+      }
   }
 
   //
