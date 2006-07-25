@@ -1,3 +1,12 @@
+Tue Jul 25 22:43:33 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CIAO/Dependency_Generator.cpp:
+        * cuts/be/CIAO/Dependency_Graph.h:
+        * cuts/be/CIAO/Dependency_Graph.cpp:
+        * cuts/be/CIAO/UDM_CIAO_Visitor.cpp:
+
+          Fixed build error on vc8.
+
 Tue Jul 25 22:35:08 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * SQL/CUTS-create.sql:

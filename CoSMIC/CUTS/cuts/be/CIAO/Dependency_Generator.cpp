@@ -308,8 +308,7 @@ void CUTS_Dependency_Generator::Visit_NamedType (const PICML::NamedType & type)
     {
       // Locate the node that contains this <PICML::NamedType>
       // element since it's not located in this file.
-      CUTS_Dependency_Node * node = 0;
-      this->graph_.find_node (parent.name (), node, true);
+      CUTS_Dependency_Node * node = this->graph_.create_node (parent.name ());
 
       // Add the <NamedType> elements node to the <current_node_>'s
       // <reference_> set. We also need to set the <STUB> and <SVNT>

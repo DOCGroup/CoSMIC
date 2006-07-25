@@ -152,11 +152,14 @@ namespace CUTS
   void UDM_CIAO_Visitor::Visit_File (const PICML::File & file)
   {
     // Locate the <CUTS_Dependency_Node> for the <file>.
+    CUTS_Dependency_Node * node = 0;
     if (!this->dependency_graph_.find_node (file.name (),
-                                            this->node_))
+                                            node))
     {
       return;
     }
+
+    this->node_ = node;
 
     // We only need to continue if we have at least one <CoWorkEr>
     // in the file.

@@ -129,7 +129,11 @@ public:
   ~CUTS_Dependency_Graph (void);
 
   /**
-   * Create a new node in the dependency graph.
+   * Create a new node in the dependency graph. If the node already
+   * exists then it returns a pointer to the existing node.
+   *
+   * @param[in]       name        Name of the node.
+   * @return          Pointer to the node.
    */
   CUTS_Dependency_Node * create_node (const std::string & name);
 
@@ -143,21 +147,8 @@ public:
    * @retval        false         The node was not found.
    */
   bool find_node (const std::string & name,
-                  CUTS_Dependency_Node * &node,
-                  bool auto_create);
-
-  /**
-   * Find a node in the graph.
-   *
-   * @param[in]     name          Name of the node to find.
-   * @param[out]    node          Pointer to the node if found.
-   * @param[in]     auto_create   Create the node if not found.
-   * @retval        true          The node was found/created.
-   * @retval        false         The node was not found.
-   */
-  bool find_node (const std::string & name,
-                  const CUTS_Dependency_Node * &node) const;
-
+                  CUTS_Dependency_Node * &node) const;
+      
   /**
    * Remove a node from the graph.
    *
