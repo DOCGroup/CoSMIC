@@ -295,7 +295,7 @@ namespace CUTS
   void Node_Daemon_i::init_p_options (void)
   {
     // Initialize the default <p_options_>.
-    this->p_options_.process_name (NODE_MANAGER);
+    //this->p_options_.process_name (NODE_MANAGER);
     this->p_options_.avoid_zombies (0);
 #if defined (ACE_WIN32)
     this->p_options_.creation_flags (CREATE_NEW_PROCESS_GROUP |

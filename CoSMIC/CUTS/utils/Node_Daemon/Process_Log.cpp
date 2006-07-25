@@ -188,7 +188,7 @@ bool Process_Log::process_exit (pid_t pid)
     // Try and find the entry inside the collection of
     // records read in from the file.
     Process_Log_Entry * last_entry =
-      e_buffer + min (entry_count, ENTRY_BUFFER_SIZE);
+      e_buffer + std::min (entry_count, ENTRY_BUFFER_SIZE);
 
     Process_Log_Entry * entry =
       std::find_if (e_buffer, last_entry, Find_By_PID (pid));

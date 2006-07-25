@@ -1,3 +1,13 @@
+Tue Jul 25 06:27:07 UTC 2006  James Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/Node_Daemon/Node_Daemon_i.cpp (init_p_options):
+        
+        Removed the process name from p_options_.
+        
+        * utils/Node_Daemon/Process_Log.cpp (process_exit):
+        
+        Switched to using std::min from <algorithm>.
+        
 Mon Jul 24 23:27:37 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * SQL/CUTS-create.sql:
