@@ -90,7 +90,11 @@ IDLStream::nl (void)
 void
 IDLStream::gen_ifdef_macro (const std::string &name)
 {
-  this->gen_ifdef_macro (name.c_str ());
+  // All generated IDL files will be in the same directory,
+  // so get rid of any path elements in #ifdef guards.
+  std::string::size_type pos = name.rfind ('/');
+  this->gen_ifdef_macro (
+    name.substr (std::string::npos == pos ? 0 : pos + 1).c_str ());
 }
 
 void

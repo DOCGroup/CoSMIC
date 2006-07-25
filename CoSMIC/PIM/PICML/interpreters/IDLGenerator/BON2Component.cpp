@@ -180,10 +180,17 @@ void Component::invokeEx( Project& project,
       root_visitor.visitOrderableImpl (root);
         
       // A strstream may also be passed to the visitor here, to
-      // redirect the output.  
-      std::string root_filename = 
-        outputPath + "\\" + root->getName () + ".idl";
-      std::ofstream strm (root_filename.c_str ());
+      // redirect the output.
+      std::string raw_filename = root->getName ();
+      std::string::size_type pos = raw_filename.rfind ('/');
+      
+      std::string filename = 
+        outputPath
+        + "\\"
+        + raw_filename.substr (std::string::npos == pos ? 0 : pos + 1)
+        + ".idl";
+        
+      std::ofstream strm (filename.c_str ());
       
       IDLEmitVisitor emit_visitor (strm);
       emit_visitor.visitOrderableImpl (root);

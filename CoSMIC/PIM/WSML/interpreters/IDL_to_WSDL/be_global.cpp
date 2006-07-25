@@ -1208,7 +1208,7 @@ BE_GlobalData::set_common_attrs (DOMElement *elem)
 void
 BE_GlobalData::create_types_schema (void)
 {
-  DOMElement *types = this->doc_->createElement (X ("xsd:types"));
+  DOMElement *types = this->doc_->createElement (X ("types"));
   this->root_element_->appendChild (types);
   this->types_schema_ = this->doc_->createElement (X ("xsd:schema"));
   types->appendChild (this->types_schema_);

@@ -529,7 +529,7 @@ type_visitor::gen_seq_array_common (DOMElement *elem,
   
   DOMElement *restriction =
     this->doc_->createElement (X ("xsd:restriction"));
-  restriction->setAttribute (X ("base"), X ("SOAP-ENC:Array"));
+  restriction->setAttribute (X ("base"), X ("soap-enc:Array"));
   content->appendChild (restriction);
   
   DOMElement *seq = this->doc_->createElement (X ("xsd:sequence"));
@@ -555,7 +555,7 @@ type_visitor::gen_seq_array_common (DOMElement *elem,
   seq->appendChild (item);
   
   DOMElement *attr = this->doc_->createElement (X ("xsd:attribute"));
-  attr->setAttribute (X ("ref"), X ("SOAP-ENC:arrayType"));
+  attr->setAttribute (X ("ref"), X ("soap-enc:arrayType"));
   tname += "[]";
   attr->setAttribute (X ("wsdl:arrayType"), X (tname.c_str ()));
   

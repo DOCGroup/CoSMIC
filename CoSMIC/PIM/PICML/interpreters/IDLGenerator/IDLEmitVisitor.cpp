@@ -2,7 +2,7 @@
 #include "IDLEmitVisitor.h"
 #include <algorithm>
 
-#define EMITS_DEBUG 0
+#define EMITS_DEBUG 1
 
 #if (EMITS_DEBUG == 1)
 #include <fstream>
@@ -1131,15 +1131,24 @@ namespace IDML
     bool changed = true;
 
 #if (EMITS_DEBUG == 1)
-    std::string filename (object->getName ());
+    BON::Model scope (object->getParentModel ());
+    std::string filename;
+    if (scope)
+      {
+        filename = scope->getName ();
+        std::string::size_type pos = filename.rfind ('/');
+        if (std::string::npos != pos) filename = filename.substr (pos + 1);
+        filename += "_";
+      }
+    filename += object->getName ();
     filename += "_Log";
     std::ofstream tmp (filename.c_str ());
     IDLStream dbg (tmp);
 #endif
 
-    typedef std::pair<Orderable, Orderable> SwappedPair;
-    typedef std::set<SwappedPair> SwappedSet;
-    SwappedSet swapped;
+//    typedef std::pair<Orderable, Orderable> SwappedPair;
+//    typedef std::set<SwappedPair> SwappedSet;
+//    SwappedSet swapped;
                                                 
     while (changed)
       {
@@ -1201,45 +1210,39 @@ namespace IDML
                 // when the whole nested loop executes with no
                 // changes. Inefficient, but safe.            
                 if (tmp - i < 0 )
-                  {
-                  
+                  {                  
+                    Collection ctmp (*tmp);
+                    Collection ci (*i);
+                    
+                    // The two IF blocks below catch simple recursive types,
+                    // bypassing swapping, which would regress infinitely.
+                    // They also catch non-recursive case, but the resulting
+                    // forward declaration will do no harm and subsitute for a
+                    // swap.
+                    if (ctmp)
+                      {
+                        if (ctmp->getMemberType ()->getName () == (*i)->getName ())
+                          {
+                            this->emitFwdDeclNested (*i, 0);
+                            continue;
+                          }
+                      }
+                      
+                    if (ci)
+                      {
+                        if (ci->getMemberType ()->getName () == (*tmp)->getName ())
+                          {
+                            this->emitFwdDeclNested (*tmp, 0);
+                            continue;
+                          }
+                      }
 #if (EMITS_DEBUG == 1)
                     dbg << "swapping " << (*tmp)->getName () 
                         << " and " << (*i)->getName () << nl;
 #endif
- 
-                    SwappedPair swap_pair ((*tmp), (*i));
-                    SwappedSet::iterator swap_tmp =
-                      std::find (swapped.begin (),
-                                 swapped.end (),
-                                 swap_pair);
-                        
-                    // If this pair hasn't already been swapped,
-                    // swap now. Otherwise, generate a forward
-                    // decl for the recursive struct or union,
-                    // and move on to the next member.             
-                    if (swap_tmp == swapped.end ())
-                      {
-                        std::swap ((*tmp), (*i));
-                        changed = true;
-                        swapped.insert (swap_pair);
-                        break;
-                      }
-                    else
-                      {
-                        // This handles the simple case of
-                        // A->seq<A> where A and seq<A> are
-                        // in the same scope. Other cases
-                        // not handled yet.
-                        if (Collection (*tmp))
-                          {
-                            this->emitFwdDeclNested (*i, 0);
-                          }
-                        else
-                          {
-                            this->emitFwdDeclNested (*tmp, 0);
-                          }
-                      }
+                    std::swap ((*tmp), (*i));
+                    changed = true;
+                    break;
                   }
               }
               
@@ -1356,7 +1359,13 @@ namespace IDML
                            fi);
         if (found != f->discovered_includes_.end ()) continue;
         
-        ofs << "#include \"" << fi->getName () << ".idl\"" << nl;
+        // All generated IDL files will be in the same directory,
+        // so get rid of any path elements in includes.
+        std::string name (fi->getName ());
+        std::string::size_type pos = name.rfind ('/');
+        if (std::string::npos != pos) name = name.substr (pos + 1);
+        
+        ofs << "#include \"" << name << ".idl\"" << nl;
             
         first = false;
       }
@@ -1368,7 +1377,13 @@ namespace IDML
       {
         if (first) ofs << nl;
         
-        ofs << "#include \"" << (*i)->getName () << ".idl\"" << nl;
+        // All generated IDL files will be in the same directory,
+        // so get rid of any path elements in includes.
+        std::string name ((*i)->getName ());
+        std::string::size_type pos = name.rfind ('/');
+        if (std::string::npos != pos) name = name.substr (pos + 1);
+        
+        ofs << "#include \"" << name << ".idl\"" << nl;
         
         first = false;
       }

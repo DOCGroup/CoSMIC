@@ -1,3 +1,21 @@
+Tue Jul 25 17:00:29 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/DependencyVisitor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLStream.cpp:
+        
+          - Added logic to discover and generate an IDL #include
+            for a base component, if it is in a different File
+            model than its child.
+            
+          - Changed generation of filenames for output to always use
+            the stripped name of the File model, removing any forward
+            slashes that may have been added for other reasons.
+            
+          - Fixed a bug in the logic of ordering model elements in a
+            given scope for IDL generation.
+
 Mon Jul 24 19:56:25 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/WSML/interpreters/IDL_to_WSDL/IDL_to_WSDL.mpc:

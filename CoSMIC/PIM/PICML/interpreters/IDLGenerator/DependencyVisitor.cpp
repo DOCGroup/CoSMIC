@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "DependencyVisitor.h"
 
-#define DEPENDS_DEBUG 0
+#define DEPENDS_DEBUG 1
 
 #if (DEPENDS_DEBUG == 1)
 #include "IDLStream.h"
@@ -35,7 +35,7 @@ namespace IDML
       {
         Orderable child (*it);
         if (!child) continue;
-            object->ordered_children.push_back (child);
+        object->ordered_children.push_back (child);
 		    this->visitOrderableImpl (child);
 		  }
 		  
@@ -87,10 +87,24 @@ namespace IDML
         std::multiset<Manageable> manages = cf->getManagesComponentDsts ();
         std::multiset<Manageable>::iterator i = manages.begin ();
         Component comp (*i);
-        if (comp) comp->depends_on_me.insert (object);
-        else refs.insert (ComponentRef (*i));
+        
+        if (comp)
+          {
+            comp->depends_on_me.insert (object);
+            Orderable base = comp->base_component ();
+            
+            if (base)
+              {
+                // Maybe the base component is in another File.
+                this->discover_include (comp, base);
+              }
+          }
+        else
+          {
+            refs.insert (ComponentRef (*i));
+          }
       }
-
+      
 #if (DEPENDS_DEBUG == 1)
     std::string filename (object->getName ());
     filename += "_Log_Pre";
