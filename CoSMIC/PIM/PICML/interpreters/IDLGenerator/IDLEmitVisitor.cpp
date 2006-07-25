@@ -2,7 +2,7 @@
 #include "IDLEmitVisitor.h"
 #include <algorithm>
 
-#define EMITS_DEBUG 1
+#define EMITS_DEBUG 0
 
 #if (EMITS_DEBUG == 1)
 #include <fstream>
