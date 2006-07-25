@@ -1,3 +1,11 @@
+Tue Jul 25 23:24:53 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * POIM/WSML/interpreters/IDL_to_WSDL/type_visitor.cpp:
+        * POIM/WSML/interpreters/IDL_to_WSDL/be_global.cpp:
+        
+          Fixed bug in 'import' attribute generation, and in 'name'
+          attribute generation for ComplexType (IDL sequence).
+
 Tue Jul 25 19:10:41 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/WSML/interpreters/IDL_to_WSDL/type_visitor.cpp:

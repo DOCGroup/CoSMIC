@@ -510,7 +510,7 @@ type_visitor::gen_seq_array_common (DOMElement *elem,
                                            bool is_array,
                                            const char *insert)
 {
-  ACE_CString name (this->alias_->full_name ());
+  ACE_CString name;
   this->type_name (name, this->alias_, false);
   elem->setAttribute (X ("name"), X (name.c_str ()));
   

@@ -1223,7 +1223,7 @@ BE_GlobalData::create_types_schema (void)
   this->types_schema_->setAttribute (X ("xmlns"), X (SCHEMA_NS));
   
   DOMElement *import = this->doc_->createElement (X ("import"));
-  import->setAttribute (X ("namespace"), X (IMPORT_NS));
+  import->setAttribute (X ("namespace"), X (SOAP_ENC));
   
   this->types_schema_->appendChild (import);
 }
