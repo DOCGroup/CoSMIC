@@ -15,6 +15,14 @@ Tue Jul 25 17:00:29 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
             
           - Fixed a bug in the logic of ordering model elements in a
             given scope for IDL generation.
+            
+        * PIM/WSML/interpreters/IDL_to_WSDL/be_global.cpp:
+        
+          Removed generation of 'xsd' qualifier before 'types' element.
+          
+        * PIM/WSML/interpreters/IDL_to_WSDL/type_visitor.cpp:
+        
+          Changed to lower case some overlooked occurrences of 'SOAP-ENC'.
 
 Mon Jul 24 19:56:25 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
