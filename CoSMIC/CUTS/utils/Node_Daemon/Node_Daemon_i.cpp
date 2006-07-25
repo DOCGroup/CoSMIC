@@ -297,6 +297,8 @@ namespace CUTS
     // Initialize the default <p_options_>.
     //this->p_options_.process_name (NODE_MANAGER);
     this->p_options_.avoid_zombies (0);
+    this->p_options_.setgroup (0);
+
 #if defined (ACE_WIN32)
     this->p_options_.creation_flags (CREATE_NEW_PROCESS_GROUP |
                                      CREATE_DEFAULT_ERROR_MODE);
