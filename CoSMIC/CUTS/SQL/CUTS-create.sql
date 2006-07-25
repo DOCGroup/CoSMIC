@@ -21,13 +21,13 @@ USE cuts;
 
 CREATE TABLE IF NOT EXISTS tests
 (
-  test_number   int             NOT NULL auto_increment,
-  test_name     varchar (255),
+  test_number   INT             NOT NULL auto_increment,
+  test_name     VARCHAR(255),
 
-  start_time    datetime,
-  stop_time     datetime,
+  start_time    DATETIME,
+  stop_time     DATETIME,
 
-  status        enum ('inactive',
+  status        ENUM ('inactive',
                       'active',
                       'complete'),
 
@@ -36,7 +36,22 @@ CREATE TABLE IF NOT EXISTS tests
 );
 
 --
--- Table structure for table cuts.component
+-- Create the table that contains all the component types.
+-- We also initialize the table after we have created it.
+--
+
+CREATE TABLE IF NOT EXISTS component_types
+(
+  typeid          INT            NOT NULL auto_increment,
+  typename        VARCHAR(256)   NOT NULL,
+
+  PRIMARY KEY (typeid),
+  UNIQUE (typename)
+);
+
+INSERT INTO component_types (typeid, typename)
+  VALUES (0, 'Unknown');
+
 --
 -- This table contains the mapping of UUIDs their appropriate
 -- component name. The UUID is the primary key for the table
@@ -47,11 +62,16 @@ CREATE TABLE IF NOT EXISTS tests
 
 CREATE TABLE IF NOT EXISTS component_instances
 (
-  component_id    int             NOT NULL auto_increment,
-  component_name  varchar (512)   default NULL,
+  component_id    INT             NOT NULL auto_increment,
+  typeid          INT             NOT NULL DEFAULT 0,
+  component_name  VARCHAR (512)   default NULL,
 
   PRIMARY KEY (component_id),
-  UNIQUE      (component_name)
+  UNIQUE      (component_name),
+
+  FOREIGN KEY (typeid) REFERENCES component_types (typeid)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE
 );
 
 --
@@ -95,7 +115,10 @@ CREATE TABLE IF NOT EXISTS critical_path_elements
 );
 
 --
--- Table structure for table wlgbenchmark.iphost
+-- Table the contains the mapping of a IP-address to a
+-- readable hostname. The port number contains the port
+-- the node daemon is listening. We also initialize the
+-- table with some values after we have created it.
 --
 
 CREATE TABLE IF NOT EXISTS ipaddr_host_map
@@ -104,14 +127,14 @@ CREATE TABLE IF NOT EXISTS ipaddr_host_map
   ipaddr      VARCHAR (40)      NOT NULL,
   hostname    VARCHAR (255),
   portnum     INT(5)            DEFAULT NULL,
-  
+
   PRIMARY KEY (hostid),
   UNIQUE (hostname)
 );
 
-INSERT INTO ipaddr_host_map (ipaddr, hostname)
-  VALUES ('127.0.0.1', 'localhost');
-  
+INSERT INTO ipaddr_host_map (hostid, ipaddr, hostname)
+  VALUES (0, '127.0.0.1', 'localhost');
+
 --
 -- Create the scratchpad table. This is the table the
 -- database worker uses to perform its database
@@ -184,6 +207,23 @@ CREATE TABLE IF NOT EXISTS deployment_table
     ON DELETE CASCADE,
   FOREIGN KEY (instance) REFERENCES component_instances (component_id)
     ON DELETE RESTRICT
+);
+
+--
+-- Create the 'users' table. This table contains login information
+-- for users who are allows to view the database.
+--
+
+CREATE TABLE IF NOT EXISTS users
+(
+  userid          INT             NOT NULL auto_increment,
+  username        VARCHAR(50)     NOT NULL,
+  password        TINYTEXT        NOT NULL,
+  email           VARCHAR(50)     NOT NULL,
+  admin           TINYINT(1)      NOT NULL DEFAULT 0,
+
+  PRIMARY KEY (userid),
+  UNIQUE (username)
 );
 
 --

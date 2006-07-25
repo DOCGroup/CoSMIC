@@ -381,34 +381,31 @@ namespace CUTS
       if (a_process == 0)
       {
         ACE_ERROR ((LM_ERROR,
-                    "(%N:%l) failed to attach to process %u\n",
+                    "failed to attach to process with id %u\n",
                     ple->pid ()));
-        continue;
       }
-
-      if (a_process->running ())
+      else if (a_process->running ())
       {
         pid_t pid = this->pm_.spawn (a_process,
                                      this->p_options_,
                                      &this->event_handler_);
 
-        // Remove the port from the correct mapping. This is done
-        // by mapping the port number to the <pid>.
         if (pid != ACE_INVALID_PID && pid != 0)
         {
+          // Remove the port from the correct mapping. This is done
+          // by mapping the port number to the <pid>.
           this->bind_pid (ple->pid (),
                           ple->port (),
                           ple->is_localhost ());
+
+          ++ count;
         }
         else
-          {
-            ACE_ERROR ((LM_ERROR, 
-                        "failed to recover process with id %u\n",
-                        ple->pid ()));
-          }
-
-        // Increment the number of process recovered.
-        ++ count;
+        {
+          ACE_ERROR ((LM_ERROR,
+                      "failed to recover process with id %u\n",
+                      ple->pid ()));
+        }
       }
       else
       {
@@ -419,10 +416,9 @@ namespace CUTS
         // Remove the entry from the log and eelete its resources.
         if (PROCESS_LOG ()->process_exit (ple->pid ()))
         {
-          VERBOSE_MESSAGE ((
-            LM_DEBUG,
-            "removed process with id %u from log\n",
-            ple->pid ()));
+          VERBOSE_MESSAGE ((LM_DEBUG,
+                            "removed process with id %u from log\n",
+                            ple->pid ()));
         }
         else
         {
@@ -436,8 +432,9 @@ namespace CUTS
       }
     }
 
-    // Perform a cleaning operation to remove all unncessary records.
+    // Remove all unnecessary entries from the log.
     this->clean ();
+
     return count;
   }
 
@@ -462,7 +459,7 @@ namespace CUTS
       }
     else
       {
-        ACE_ERROR ((LM_ERROR, 
+        ACE_ERROR ((LM_ERROR,
                     "failed to bind process with id %u\n",
                     pid));
       }

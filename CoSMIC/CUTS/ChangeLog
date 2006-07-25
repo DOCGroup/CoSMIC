@@ -1,15 +1,52 @@
+Tue Jul 25 22:35:08 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * SQL/CUTS-create.sql:
+
+          - Added a users table for authentication.
+          - Added a component_types table for associating component
+            instances with a type.
+          - Added initial values to the ipaddr_host_map and component_types
+            table.
+
+        * utils/BMW/BMW.master:
+
+          Changed the name of the component instances menu item.
+
+        * utils/BMW/Component_Instances.aspx:
+        * utils/BMW/Component_Instances.aspx.cs:
+        * utils/BMW/Critical_Path.aspx:
+        * utils/BMW/Critical_Path.aspx.cs:
+        * utils/BMW/Execution_Times.aspx:
+
+          Fixed the style so that its consistent with the rest
+          of the website.
+
+        * utils/BMW/Database_Utility/Database_Utility.cs:
+
+          Pushed getting the critical paths and component instances
+          down to the database utility.
+
+        * utils/Node_Daemon/Node_Daemon_i.cpp (recover):
+
+          Refactored code.
+
+        * utils/Node_Daemon/Process_Log.cpp:
+
+          Fixed bug with "min" that prevented compilation on windows
+          systems.
+
 Tue Jul 25 12:50:15 UTC 2006  James Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/Node_Daemon/Node_Daemon_Event_Handler.cpp (handle_exit):
-        
+
         Added an error message if process == 0.
-        
+
         * utils/Node_Daemon/Node_Daemon_i.cpp:
 
         Fixed a bug that prevented processes that exited gracefully to
         be removed from the process log. Now, process_exits () signals
         the log to remove a process.
-        
+
 Tue Jul 25 06:42:44 UTC 2006  James Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/Node_Daemon/Node_Daemon_i.cpp (init_p_options):

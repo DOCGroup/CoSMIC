@@ -6,6 +6,11 @@
 #include "Process_Log.inl"
 #endif
 
+// windows hack
+#ifdef min
+#undef min
+#endif
+
 #include "ace/Guard_T.h"
 #include "ace/Log_Msg.h"
 #include "ace/OS_NS_stdio.h"
@@ -17,20 +22,41 @@ static const size_t ENTRY_BUFFER_SIZE = 10;
 
 static const char * TEMP_FILENAME = "cutsnode_d.tmp";
 
+//=============================================================================
+/**
+ * @struct Find_By_PID
+ *
+ * Functor for locating a Process_Log_Entry by its pid_t.
+ */
+//=============================================================================
+
 struct Find_By_PID
 {
-  Find_By_PID (pid_t pid)
+  /**
+   * Constructor
+   *
+   * @param[in]       pid           Id of the process
+   */
+  inline Find_By_PID (pid_t pid)
     : pid_ (pid)
   {
 
   }
 
-  bool operator () (const Process_Log_Entry & ple)
+  /**
+   * Functor operator.
+   *
+   * @param[in]     ple       Current element from a collection.
+   * @retval        true      The pid of the \ple is a match.
+   * @retval        false     The pid of the \ple is not a match.
+   */
+  inline bool operator () (const Process_Log_Entry & ple)
   {
     return this->pid_ == ple.pid ();
   }
 
 private:
+  /// Process id in question.
   pid_t pid_;
 };
 
@@ -372,7 +398,7 @@ bool Process_Log::clean (size_t * active_count)
         if (tmpfile.bad ())
         {
           ACE_ERROR ((LM_ERROR,
-                      "(%N:%l) error occured while clean file; "
+                      "error occured while clean file; "
                       "aborting...\n"));
           error = true;
           break;

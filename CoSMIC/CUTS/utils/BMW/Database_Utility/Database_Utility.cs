@@ -501,6 +501,22 @@ public class CUTS_Database_Utility
     }
   }
 
+  /**
+   * Get all the component instances from the database. It stores
+   * the data in the table 'instances'.
+   * 
+   * @param[out]        ds        Target dataset for query.
+   */
+  public void get_component_instances(ref DataSet ds)
+  {
+    MySqlCommand command = this.conn_.CreateCommand();
+    command.CommandText =
+      "SELECT * FROM component_instances ORDER BY component_id";
+
+    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+    adapter.Fill(ds, "instances");
+  }
+
   /// Connection object.
   private MySqlConnection conn_;
 }

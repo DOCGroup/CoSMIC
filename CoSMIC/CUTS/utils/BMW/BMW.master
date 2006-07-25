@@ -60,7 +60,7 @@ function unhilite(obj)
          onmouseout="unhilite(this);">
       <asp:hyperlink runat="server" id="ci_menu_item_"
                      navigateurl="~/Component_Instances.aspx"
-                     text="Component Instances" /></div>
+                     text="Registered Components" /></div>
                      
     <div class="menu_item"
          onmouseover="hilite(this);"

@@ -146,7 +146,7 @@ namespace CUTS
       }
     }
 
-    protected void button_update_path (Object sender, EventArgs e)
+    protected void save_paths_onclick (Object sender, EventArgs e)
     {
       // Open a new connection.
       MySqlConnection conn = new MySqlConnection (
