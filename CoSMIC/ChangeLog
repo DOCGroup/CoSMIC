@@ -1,3 +1,10 @@
+Wed Jul 26 22:21:27 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/WSML/interpreters/IDL_to_WSDL/idl_to_wsdl_visitor.cpp::
+        
+          Added support for interfaces as members and operation
+          parameters.
+
 Wed Jul 26 20:46:00 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/WSML/interpreters/IDL_to_WSDL/be_global.cpp:
