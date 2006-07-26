@@ -1,3 +1,18 @@
+Wed Jul 26 20:46:00 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/WSML/interpreters/IDL_to_WSDL/be_global.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/service_visitor.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/binding_visitor.cpp:
+        
+          - Added 'schemaLocation' attribute to 'schema' element under
+            'types'.
+            
+          - Added 'name' attribute to 'fault' element under 'binding'.
+          
+          - Removed all occurrences of 'Service', 'Binding', and 'Port'
+            suffixes from generated code - they are not required by
+            the mapping.
+
 Wed Jul 26 04:00:55 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:

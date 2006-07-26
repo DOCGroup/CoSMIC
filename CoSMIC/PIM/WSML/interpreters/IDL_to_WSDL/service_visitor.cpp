@@ -32,7 +32,7 @@ service_visitor::visit_component (AST_Component *node)
     
   ACE_CString name (node->full_name ());
   be_global->to_wsdl_name (name);
-  name += "Service";
+  
   this->service_elem_->setAttribute (X ("name"), X (name.c_str ()));
   
   this->gen_port (node, 0);
@@ -54,8 +54,6 @@ service_visitor::gen_port (AST_Component *node, const char *comp_port_name)
       name += comp_port_name;
     }
     
-  name += "Port";
-  
   port->setAttribute (X ("name"), X (name.c_str ()));
   this->service_elem_->appendChild (port);
   
@@ -84,8 +82,6 @@ service_visitor::gen_port (AST_Component *node, const char *comp_port_name)
       binding_val += "._SE_";
       binding_val += comp_port_name;
     }
-  
-  binding_val += "Binding";
   
   port->setAttribute (X ("binding"), X (binding_val.c_str ()));
   

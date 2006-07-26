@@ -87,12 +87,15 @@ binding_visitor::fill_binding_op (DOMElement *binding_op,
   
   while (X ("fault") == tag)
     {
+      const XMLCh *fault_name = op_fault->getAttribute (X ("name"));
+      
       DOMElement *binding_op_fault = 
         this->doc_->createElement (X ("fault"));
+      binding_op_fault->setAttribute (X ("name"), fault_name);
+      
       DOMElement *soap_fault =
         this->doc_->createElement (X ("soap:fault"));
-      soap_fault->setAttribute (X ("name"),
-                                op_fault->getAttribute (X ("name")));
+      soap_fault->setAttribute (X ("name"), fault_name);
       soap_fault->setAttribute (X ("use"), X ("encoded"));
       binding_op_fault->appendChild (soap_fault);
       
@@ -149,7 +152,6 @@ binding_visitor::gen_binding (DOMElement *port_type,
     
   scope_name += "_SE_";
   scope_name += lname;
-  scope_name += "Binding";
   
   binding->setAttribute (X ("name"), X (scope_name.c_str ()));
   ACE_CString tname;

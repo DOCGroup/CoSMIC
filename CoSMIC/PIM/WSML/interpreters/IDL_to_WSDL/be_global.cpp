@@ -1224,6 +1224,7 @@ BE_GlobalData::create_types_schema (void)
   
   DOMElement *import = this->doc_->createElement (X ("import"));
   import->setAttribute (X ("namespace"), X (SOAP_ENC));
+  import->setAttribute (X ("schemaLocation"), X (SOAP_ENC));
   
   this->types_schema_->appendChild (import);
 }
