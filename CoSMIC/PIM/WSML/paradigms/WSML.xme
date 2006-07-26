@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{D5A791C7-A7FE-456E-89CD-CAE600D57617}" cdate="Sat Jul 22 22:04:39 2006" mdate="Sat Jul 22 22:04:39 2006" version="" metaguid="{B3568889-311A-4E5A-A3DD-A8AC2BD7DE71}" metaversion="" metaname="MetaGME">
+<project guid="{5F9F6F4D-CF50-48CD-A824-EC7B2AC5F3DF}" cdate="Sun Jul 23 23:01:29 2006" mdate="Sun Jul 23 23:01:29 2006" version="" metaguid="{B3568889-311A-4E5A-A3DD-A8AC2BD7DE71}" metaversion="" metaname="MetaGME">
 	<name>WSML</name>
 	<comment>Web Services Modeling Language (WSML) is a domain-specific modeling language
   which allows definition of Web Services and interactions, and uses generative
@@ -1345,6 +1345,9 @@
 						</regnode>
 						<regnode name="Message" isopaque="yes">
 							<value>1141</value>
+						</regnode>
+						<regnode name="Messages" isopaque="yes">
+							<value>1552</value>
 						</regnode>
 						<regnode name="NotificationOperation" isopaque="yes">
 							<value>1149</value>
@@ -13776,6 +13779,12 @@
 							<value> </value>
 						</regnode>
 					</regnode>
+					<regnode name="Messages:Message" status="undefined">
+						<value></value>
+						<regnode name="ServiceDefinition" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
 				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1139</value>
@@ -13788,10 +13797,58 @@
 							</regnode>
 						</regnode>
 					</regnode>
+					<regnode name="Messages" status="undefined">
+						<value></value>
+						<regnode name="Message" isopaque="yes">
+							<value>1551</value>
+							<regnode name="ServiceDefinition" isopaque="yes">
+								<value>1553</value>
+							</regnode>
+						</regnode>
+					</regnode>
 				</regnode>
 				<regnode name="PrimaryAspects" status="undefined">
 					<value></value>
 					<regnode name="Definitions:Message" status="undefined">
+						<value></value>
+						<regnode name="ServiceDefinition" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="Messages:Message" status="undefined">
+						<value></value>
+						<regnode name="ServiceDefinition" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+			<regnode name="Messages-91-Model" status="undefined">
+				<value></value>
+				<regnode name="KindAspects" status="undefined">
+					<value></value>
+					<regnode name="Definitions:Messages" status="undefined">
+						<value></value>
+						<regnode name="ServiceDefinition" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1550</value>
+					<regnode name="Definitions" status="undefined">
+						<value></value>
+						<regnode name="Messages" isopaque="yes">
+							<value>1548</value>
+							<regnode name="ServiceDefinition" isopaque="yes">
+								<value>1549</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="Definitions:Messages" status="undefined">
 						<value></value>
 						<regnode name="ServiceDefinition" isopaque="yes">
 							<value>yes</value>
@@ -30939,7 +30996,7 @@
 				</regnode>
 			</regnode>
 		</regnode>
-		<model id="id-0065-00000001" kind="ParadigmSheet" relid="0x9" childrelidcntr="0x90">
+		<model id="id-0065-00000001" kind="ParadigmSheet" relid="0x9" childrelidcntr="0x94">
 			<name>Definitions</name>
 			<regnode name="color" isopaque="yes">
 				<value>0x0000ff</value>
@@ -31423,8 +31480,10 @@
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
+				<attribute kind="GeneralPreferences">
+					<value>
+rName = ref
+rrName = referedbyPart</value>
 				</attribute>
 				<attribute kind="Icon" status="meta">
 					<value></value>
@@ -31757,7 +31816,9 @@
 					<value></value>
 				</attribute>
 				<attribute kind="GeneralPreferences">
-					<value>labelFormatStr=boundPortType</value>
+					<value>labelFormatStr=boundPortType
+sName = srcBindingPortType
+dName = dstBindingPortType</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -31997,7 +32058,9 @@
 					<value></value>
 				</attribute>
 				<attribute kind="GeneralPreferences">
-					<value>labelFormatStr=boundPort</value>
+					<value>labelFormatStr=boundPort
+sName = srcPortBinding
+dName = dstPortBinding</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -32269,8 +32332,10 @@
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
+				<attribute kind="GeneralPreferences">
+					<value>
+rName = ref
+rrName = referedbyOperationRef</value>
 				</attribute>
 				<attribute kind="Icon" status="meta">
 					<value></value>
@@ -32413,8 +32478,10 @@
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
+				<attribute kind="GeneralPreferences">
+					<value>
+rName = ref
+rrName = referedbyPartRef</value>
 				</attribute>
 				<attribute kind="Icon" status="meta">
 					<value></value>
@@ -32632,8 +32699,10 @@
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
+				<attribute kind="GeneralPreferences">
+					<value>
+rName = ref
+rrName = referedbyBindingRef</value>
 				</attribute>
 				<attribute kind="Icon" status="meta">
 					<value></value>
@@ -32723,7 +32792,9 @@
 					<value></value>
 				</attribute>
 				<attribute kind="GeneralPreferences">
-					<value>labelFormatStr=bindsOperation</value>
+					<value>labelFormatStr=bindsOperation
+sName = srcBindsOperation
+dName = dstBindsOperation</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -32758,6 +32829,81 @@
 						</regnode>
 					</regnode>
 				</regnode>
+			</atom>
+			<atom id="id-0066-000000a9" kind="Model" role="Model" relid="0x91">
+				<name>Messages</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>359,247</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>359,247</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>359,247</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>359,247</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeInfoShown" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
 			</atom>
 			<reference id="id-0067-00000025" kind="ModelProxy" role="ModelProxy" relid="0x17" referred="id-0066-0000001e">
 				<name>Schema</name>
@@ -33024,23 +33170,6 @@
 				</regnode>
 				<connpoint role="dst" target="id-0066-00000001"/>
 				<connpoint role="src" target="id-0066-00000006"/>
-			</connection>
-			<connection id="id-0068-00000005" kind="Containment" role="Containment" relid="0x1e">
-				<name>Containment</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ns</value>
-				</regnode>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<attribute kind="IsPort" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="Rolename" status="meta">
-					<value></value>
-				</attribute>
-				<connpoint role="dst" target="id-0066-00000001"/>
-				<connpoint role="src" target="id-0066-00000007"/>
 			</connection>
 			<connection id="id-0068-00000006" kind="Containment" role="Containment" relid="0x26">
 				<name>Containment</name>
@@ -33626,7 +33755,49 @@
 				<connpoint role="dst" target="id-0066-0000000b"/>
 				<connpoint role="src" target="id-0066-0000001c"/>
 			</connection>
-			<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0xf" members="id-0066-00000001 id-0066-00000005 id-0066-00000007 id-0066-00000008 id-0066-00000009 id-0066-0000000a id-0066-0000000b id-0066-0000000c id-0066-0000000e id-0066-0000000f id-0066-00000010 id-0066-00000012 id-0066-00000013 id-0066-00000014 id-0066-00000015 id-0066-00000016 id-0066-00000017 id-0066-00000018 id-0066-00000019 id-0066-0000001a id-0066-0000001b id-0066-0000001c">
+			<connection id="id-0068-00000101" kind="Containment" role="Containment" relid="0x92">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000001"/>
+				<connpoint role="src" target="id-0066-000000a9"/>
+			</connection>
+			<connection id="id-0068-00000102" kind="Containment" role="Containment" relid="0x93">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>s</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="src" target="id-0066-00000007"/>
+				<connpoint role="dst" target="id-0066-000000a9"/>
+			</connection>
+			<connection id="id-0068-00000103" kind="HasAspect" role="HasAspect" relid="0x94">
+				<name>HasAspect</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>e</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-000000a9"/>
+				<connpoint role="src" target="id-0069-00000001"/>
+			</connection>
+			<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0xf" members="id-0066-00000001 id-0066-00000005 id-0066-00000007 id-0066-00000008 id-0066-00000009 id-0066-0000000a id-0066-0000000b id-0066-0000000c id-0066-0000000e id-0066-0000000f id-0066-00000010 id-0066-00000012 id-0066-00000013 id-0066-00000014 id-0066-00000015 id-0066-00000016 id-0066-00000017 id-0066-00000018 id-0066-00000019 id-0066-0000001a id-0066-0000001b id-0066-0000001c id-0066-000000a9">
 				<name>ServiceDefinition</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -34561,8 +34732,8 @@ notation</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="src" target="id-0066-0000001f"/>
 				<connpoint role="dst" target="id-0066-0000001f"/>
+				<connpoint role="src" target="id-0066-0000001f"/>
 			</connection>
 			<connection id="id-0068-0000003e" kind="Containment" role="Containment" relid="0x3e">
 				<name>Containment</name>
@@ -36150,8 +36321,10 @@ notation</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
+				<attribute kind="GeneralPreferences">
+					<value>
+rName = ref
+rrName = referedbyMessageRef</value>
 				</attribute>
 				<attribute kind="Icon" status="meta">
 					<value></value>
@@ -36466,7 +36639,9 @@ notation</value>
 					<value></value>
 				</attribute>
 				<attribute kind="GeneralPreferences">
-					<value>labelFormatStr=inputMessageType</value>
+					<value>labelFormatStr=inputMessageType
+sName = srcInputMessage
+dName = dstInputMessage</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -36574,7 +36749,9 @@ notation</value>
 					<value></value>
 				</attribute>
 				<attribute kind="GeneralPreferences">
-					<value>labelFormatStr=outputMessageType</value>
+					<value>labelFormatStr=outputMessageType
+sName = srcOutputMessage
+dName = dstOutputMessage</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -36664,7 +36841,9 @@ notation</value>
 					<value></value>
 				</attribute>
 				<attribute kind="GeneralPreferences">
-					<value>labelFormatStr=faultMessageType</value>
+					<value>labelFormatStr=faultMessageType
+sName = srcFaultMessage
+dName = dstFaultMessage</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -36717,8 +36896,10 @@ notation</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
+				<attribute kind="GeneralPreferences">
+					<value>
+rName = ref
+rrName = referedbyInputRef</value>
 				</attribute>
 				<attribute kind="Icon" status="meta">
 					<value></value>
@@ -36789,8 +36970,10 @@ notation</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
+				<attribute kind="GeneralPreferences">
+					<value>
+rName = ref
+rrName = referedbyOutputRef</value>
 				</attribute>
 				<attribute kind="Icon" status="meta">
 					<value></value>
@@ -36861,8 +37044,10 @@ notation</value>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
+				<attribute kind="GeneralPreferences">
+					<value>
+rName = ref
+rrName = referedbyFaultRef</value>
 				</attribute>
 				<attribute kind="Icon" status="meta">
 					<value></value>
@@ -39614,7 +39799,9 @@ rpc</value>
 					<value></value>
 				</attribute>
 				<attribute kind="GeneralPreferences">
-					<value>labelFormatStr=soapFault</value>
+					<value>labelFormatStr=soapFault
+sName = srcSOAPFaultExtension
+dName = dstSOAPFaultExtension</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -39824,7 +40011,9 @@ rpc</value>
 					<value></value>
 				</attribute>
 				<attribute kind="GeneralPreferences">
-					<value>labelFormatStr=headerBinding</value>
+					<value>labelFormatStr=headerBinding
+sName = srcHeaderBinding
+dName = dstHeaderBinding</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -39896,7 +40085,9 @@ rpc</value>
 					<value></value>
 				</attribute>
 				<attribute kind="GeneralPreferences">
-					<value>labelFormatStr=bodyBinding</value>
+					<value>labelFormatStr=bodyBinding
+sName = srcBodyBinding
+dName = dstBodyBinding</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -39986,7 +40177,9 @@ rpc</value>
 					<value></value>
 				</attribute>
 				<attribute kind="GeneralPreferences">
-					<value>labelFormatStr=bodyParts</value>
+					<value>labelFormatStr=bodyParts
+sName = srcBodyParts
+dName = dstBodyParts</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -40076,7 +40269,9 @@ rpc</value>
 					<value></value>
 				</attribute>
 				<attribute kind="GeneralPreferences">
-					<value>labelFormatStr=headerMessage</value>
+					<value>labelFormatStr=headerMessage
+sName = srcHeaderMessage
+dName = dstHeaderMessage</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -40166,7 +40361,9 @@ rpc</value>
 					<value></value>
 				</attribute>
 				<attribute kind="GeneralPreferences">
-					<value>labelFormatStr=headerPart</value>
+					<value>labelFormatStr=headerPart
+sName = srcHeaderPart
+dName = dstHeaderPart</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>

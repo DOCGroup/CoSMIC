@@ -177,6 +177,7 @@ type_visitor::visit_exception (AST_Exception *node)
   return 0;
 }
 
+int
 type_visitor::visit_enum (AST_Enum *node)
 {
   // Fetch from DOM tree, from table, or create.

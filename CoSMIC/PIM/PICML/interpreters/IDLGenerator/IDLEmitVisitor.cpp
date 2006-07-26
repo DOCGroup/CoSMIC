@@ -149,14 +149,14 @@ namespace IDML
   bool IDLEmitVisitor::visitAggregate( const Aggregate& object )
   {
     if (!object) return false;
-  
+
     ofs << nl
         << "struct " << object->getName () << nl
         << "{" << idt;
-        
+
     this->emitPreprocDirectives (object);
     this->emitStructMembers (object);
-      
+
     ofs << uidt_nl
         << "};";
 
@@ -167,16 +167,16 @@ namespace IDML
   bool IDLEmitVisitor::visitAttribute( const Attribute& object )
   {
     if (!object) return false;
-    
-    ofs << nl 
+
+    ofs << nl
         << "attribute ";
-        
+
     this->emitAttributeMember (object);
-    this->emitGetExceptions (object, false);    
-    this->emitSetExceptions (object);    
-    ofs << ";";     
+    this->emitGetExceptions (object, false);
+    this->emitSetExceptions (object);
+    ofs << ";";
     this->emitPreprocDirectives (object);
-        
+
     return true;
   }
 
@@ -184,30 +184,30 @@ namespace IDML
   bool IDLEmitVisitor::visitComponent( const Component& object )
   {
     if (!object) return false;
-    
+
     ofs << nl
         << "component " << object->getName ();
-        
+
     this->emitComponentInherits (object);
     this->emitSupports (object);
-        
+
     ofs << nl
         << "{" << idt;
 
     this->emitPreprocDirectives (object);
     this->emitPorts (object);
-    
+
     // Just attributes, no need to order them first.
     this->visitChildren (object);
-      
+
     ofs << uidt_nl
         << "};";
-     
+
     // If this component does not have a home declared (not used
     // in EJB for example), we generate a ault declaration in IDL,
     // since it is required.
     this->emitDefaultHome (object);
-    
+
     return true;
   }
 
@@ -217,21 +217,21 @@ namespace IDML
     )
   {
     if (!object) return false;
-    
+
     ofs << nl
         << "home " << object->getName ();
-        
+
     this->emitInherits (object);
     this->emitSupports (object);
     this->emitManages (object);
     this->emitLookupKey (object);
-      
+
     ofs << nl
         << "{" << idt;
-        
-    this->emitPreprocDirectives (object);    
+
+    this->emitPreprocDirectives (object);
     this->visitChildren (object);
-    
+
     ofs << uidt_nl
         << "};";
 
@@ -242,18 +242,18 @@ namespace IDML
   bool IDLEmitVisitor::visitEnum( const Enum& object )
   {
     if (!object) return false;
-    
+
     ofs << nl
         << "enum " << object->getName () << nl
         << "{" << idt;
-        
+
     this->emitEnumValues (object);
-        
+
     ofs << uidt_nl
         << "};";
 
     this->emitPreprocDirectives (object);
-        
+
     return true;
   }
 
@@ -261,7 +261,7 @@ namespace IDML
   bool IDLEmitVisitor::visitEvent( const Event& object )
   {
     if (!object) return false;
-    
+
     // Constraints ensure that 'abstract' and 'custom' are not both set.
     ofs << nl
         << (object->isabstract () ? "abstract " : "") << "eventtype "
@@ -274,14 +274,14 @@ namespace IDML
   bool IDLEmitVisitor::visitException( const Exception& object )
   {
     if (!object) return false;
-    
-    ofs << nl 
+
+    ofs << nl
         << "exception " << object->getName () << nl
         << "{" << idt;
-        
+
     this->emitPreprocDirectives (object);
     this->emitStructMembers (object);
-      
+
     ofs << uidt_nl
         << "};";
 
@@ -294,10 +294,10 @@ namespace IDML
     )
   {
     if (!object) return false;
-    
+
     ofs << nl
         << "factory ";
-        
+
     return this->visitHasExceptions (object);
   }
 
@@ -307,14 +307,14 @@ namespace IDML
     if (!object) return false;
 
     ofs.gen_ifdef_macro (object->getName ());
-    
+
     this->emitIncludedFiles (object);
     this->emitPrefix (object);
     this->emitFwdDecls (object);
     this->visitChildren (object);
-      
+
     ofs.gen_endif (object->getName ());
-    
+
     return true;
   }
 
@@ -354,10 +354,10 @@ namespace IDML
     )
   {
     if (!object) return false;
-    
+
     ofs << nl
         << "finder ";
-        
+
     return this->visitHasExceptions (object);
   }
 
@@ -365,21 +365,21 @@ namespace IDML
   bool IDLEmitVisitor::visitObject( const Object& object )
   {
     if (!object) return false;
-    
+
     // Cannot be both abstract and local, just minimizing IFs.
     ofs << nl
         << (object->isabstract () ? "abstract " : "")
         << (object->islocal () ? "local " : "")
         << "interface " << object->getName ();
-        
+
     this->emitInherits (object);
-        
+
     ofs << nl
         << "{" << idt;
 
-    this->emitPreprocDirectives (object);       
+    this->emitPreprocDirectives (object);
     this->visitChildren (object);
-    
+
     ofs << uidt_nl
         << "};";
 
@@ -390,20 +390,20 @@ namespace IDML
   bool IDLEmitVisitor::visitObjectByValue( const ObjectByValue& object )
   {
     // Common to ValueObject and Event.
-  
+
     this->emitInherits (object);
     this->emitSupports (object);
-        
+
     ofs << nl
         << "{" << idt;
 
     this->emitPreprocDirectives (object);
-    
+
     // Generate the declarations before the members, in case a member
     // references a declaration.
     this->visitChildren (object);
     this->emitOBVMembers (object);
-    
+
     ofs << uidt_nl
         << "};";
 
@@ -416,14 +416,14 @@ namespace IDML
     )
   {
     if (!object) return false;
-    
+
     ofs << nl
         << "oneway void " << object->getName ();
-        
+
     this->emitInParameters (object);
-    
+
     ofs << ";";
-    
+
     this->emitPreprocDirectives (object);
 
     return true;
@@ -442,15 +442,15 @@ namespace IDML
   bool IDLEmitVisitor::visitPackage( const Package& object )
   {
     if (!object) return false;
-    
-    ofs << nl 
+
+    ofs << nl
         << "module " << object->getName () << nl
         << "{" << idt;
-        
-    this->emitPreprocDirectives (object);       
+
+    this->emitPreprocDirectives (object);
     this->emitFwdDecls (object);
     this->visitChildren (object);
-    
+
     ofs << uidt_nl
         << "};";
 
@@ -472,18 +472,18 @@ namespace IDML
     )
   {
     if (!object) return false;
-    
+
     Attribute narrowed (object);
     if (narrowed) return this->visitAttribute (narrowed);
-    
-    ofs << nl 
+
+    ofs << nl
         << "readonly attribute ";
-        
+
     this->emitAttributeMember (object);
-    this->emitGetExceptions (object, true);    
-    ofs << ";";     
+    this->emitGetExceptions (object, true);
+    ofs << ";";
     this->emitPreprocDirectives (object);
-        
+
     return true;
   }
 
@@ -507,15 +507,15 @@ namespace IDML
 
     ofs << nl
         << "union " << object->getName () << " switch (";
-        
+
     this->emitDiscriminator (object);
-        
+
     ofs << ")" << nl
         << "{" << idt;
-        
+
     this->emitPreprocDirectives (object);
     this->emitUnionMembers (object);
-      
+
     ofs << uidt_nl
         << "};";
 
@@ -528,7 +528,7 @@ namespace IDML
     )
   {
     if (!object) return false;
-    
+
     ofs << nl;
     this->emitReturnType (object);
     return this->visitHasExceptions (object);
@@ -538,7 +538,7 @@ namespace IDML
   bool IDLEmitVisitor::visitValueObject( const ValueObject& object )
   {
     if (!object) return false;
-    
+
     // Constraints ensure that 'abstract' and 'custom' are not both set.
     ofs << nl
         << (object->isabstract () ? "abstract " : "") << "valuetype "
@@ -584,16 +584,16 @@ namespace IDML
   bool IDLEmitVisitor::visitAlias( const Alias& object )
   {
     if (!object) return false;
-    
-    ofs << nl 
+
+    ofs << nl
         << "typedef ";
-        
+
     this->emitAliasMemberType (object);
-    
+
     ofs << " " << object->getName () << ";";
-    
+
     this->emitPreprocDirectives (object);
-        
+
     return true;
   }
 
@@ -612,16 +612,16 @@ namespace IDML
   bool IDLEmitVisitor::visitBoxed( const Boxed& object )
   {
     if (!object) return false;
-    
-    ofs << nl 
+
+    ofs << nl
         << "valuetype " << object->getName () << " ";
-         
+
     this->emitMemberType (object);
-    
-    ofs << ";"; 
-    
+
+    ofs << ";";
+
     this->emitPreprocDirectives (object);
-        
+
     return true;
   }
 
@@ -629,19 +629,19 @@ namespace IDML
   bool IDLEmitVisitor::visitCollection( const Collection& object )
   {
     if (!object) return false;
-    
+
     // This will generate the proper #include if true.
     if (this->is_included_predefined_sequence (object)) return true;
-    
-    ofs << nl 
+
+    ofs << nl
         << "typedef sequence<";
-         
+
     this->emitMemberType (object);
-    
-    ofs << "> " << object->getName () << ";"; 
-    
+
+    ofs << "> " << object->getName () << ";";
+
     this->emitPreprocDirectives (object);
-        
+
     return true;
   }
 
@@ -658,13 +658,13 @@ namespace IDML
   bool IDLEmitVisitor::visitConstant( const Constant& object )
   {
     if (!object) return false;
-    
+
     ofs << nl
         << "const ";
-    
+
     this->emitConstantType (object);
-      
-    ofs << " " << object->getName () << " = " 
+
+    ofs << " " << object->getName () << " = "
         << object->getvalue () << ";";
 
     return true;
@@ -710,17 +710,17 @@ namespace IDML
   bool IDLEmitVisitor::visitInEventPort( const InEventPort& object )
   {
     if (!object) return false;
-    
+
     ofs << "consumes ";
-    
+
     BON::Model gparent = object->getParentModel ()->getParentModel ();
     Event e = object->getEvent ();
     BON::Model e_parent = e->getParentModel ();
-    
+
     // Can we use the local name?
     if (e_parent == gparent) ofs << e->getName ();
     else ofs << this->scoped_name (e);
-    
+
     ofs << " " << object->getName () << ";";
 
     return true;
@@ -730,9 +730,9 @@ namespace IDML
   bool IDLEmitVisitor::visitInParameter( const InParameter& object )
   {
     if (!object) return false;
-    
+
     ofs << "in ";
-        
+
     return true;
   }
 
@@ -749,9 +749,9 @@ namespace IDML
   bool IDLEmitVisitor::visitInoutParameter( const InoutParameter& object )
   {
     if (!object) return false;
-    
+
     ofs << "inout ";
-        
+
     return true;
   }
 
@@ -777,17 +777,17 @@ namespace IDML
   bool IDLEmitVisitor::visitOutEventPort( const OutEventPort& object )
   {
     if (!object) return false;
-    
+
     ofs << (object->issingle_destination () ? "emits " : "publishes ");
-    
+
     BON::Model gparent = object->getParentModel ()->getParentModel ();
     Event e = object->getEvent ();
     BON::Model e_parent = e->getParentModel ();
-    
+
     // Can we use the local name?
     if (e_parent == gparent) ofs << e->getName ();
     else ofs << this->scoped_name (e);
-    
+
     ofs << " " << object->getName () << ";";
 
     return true;
@@ -797,9 +797,9 @@ namespace IDML
   bool IDLEmitVisitor::visitOutParameter( const OutParameter& object )
   {
     if (!object) return false;
-    
+
     ofs << "out ";
-        
+
     return true;
   }
 
@@ -809,14 +809,14 @@ namespace IDML
     )
   {
     if (!object) return false;
-    
+
     Provideable p = object->getProvideable ();
     GenericObject go (p);
     BON::Model gparent = object->getParentModel ()->getParentModel ();
     BON::Model p_parent = p->getParentModel ();
-    ofs << "provides " 
-        << (go ? "Object" 
-               : (gparent == p_parent ? p->getName () 
+    ofs << "provides "
+        << (go ? "Object"
+               : (gparent == p_parent ? p->getName ()
                                       : this->scoped_name (p)))
         << " " << object->getName () << ";";
 
@@ -829,15 +829,15 @@ namespace IDML
     )
   {
     if (!object) return false;
-    
+
     Provideable p = object->getProvideable ();
     GenericObject go (p);
     BON::Model gparent = object->getParentModel ()->getParentModel ();
     BON::Model p_parent = p->getParentModel ();
-    ofs << "uses " 
+    ofs << "uses "
         << (object->ismultiple_connections () ? "multiple " : "")
-        << (go ? "Object" 
-               : (gparent == p_parent ? p->getName () 
+        << (go ? "Object"
+               : (gparent == p_parent ? p->getName ()
                                       : this->scoped_name (p)))
         << " " << object->getName () << ";";
 
@@ -1090,7 +1090,7 @@ namespace IDML
       // visiting other Folder
     }
   }
-  
+
   void IDLEmitVisitor::visitOrderableImpl( const Orderable& object )
   {
     if ( !visitAggregate( object))
@@ -1125,7 +1125,7 @@ namespace IDML
       // visiting other Model
     }
   }
-  
+
   void IDLEmitVisitor::order_children( const Orderable& object )
   {
     bool changed = true;
@@ -1149,7 +1149,7 @@ namespace IDML
 //    typedef std::pair<Orderable, Orderable> SwappedPair;
 //    typedef std::set<SwappedPair> SwappedSet;
 //    SwappedSet swapped;
-                                                
+
     while (changed)
       {
         // If none of the stuff below changes this, we are done.
@@ -1157,7 +1157,7 @@ namespace IDML
 
 #if (EMITS_DEBUG == 1)
         dbg << nl;
-        
+
         for (std::vector<Orderable>::iterator i =
                object->ordered_children.begin ();
              i != object->ordered_children.end ();
@@ -1175,7 +1175,7 @@ namespace IDML
              i++)
           {
             std::set<Orderable>& refs = (*i)->depends_on_me;
-          
+
 #if (EMITS_DEBUG == 1)
             dbg << (*i)->getName () << ": depends on me" << nl;
             for (std::set<Orderable>::iterator r = refs.begin ();
@@ -1201,19 +1201,19 @@ namespace IDML
                   std::find (object->ordered_children.begin (),
                              object->ordered_children.end (),
                              (*ri));
-                             
+
                 // If the expression is true, it means we have a
                 // match, and also that the depending element comes
                 // earlier in the list than its dependent, so we
-                // swap them. This swap will probably mess up the 
+                // swap them. This swap will probably mess up the
                 // iterators, so we must start over. We are done
                 // when the whole nested loop executes with no
-                // changes. Inefficient, but safe.            
+                // changes. Inefficient, but safe.
                 if (tmp - i < 0 )
-                  {                  
+                  {
                     Collection ctmp (*tmp);
                     Collection ci (*i);
-                    
+
                     // The two IF blocks below catch simple recursive types,
                     // bypassing swapping, which would regress infinitely.
                     // They also catch non-recursive case, but the resulting
@@ -1227,7 +1227,7 @@ namespace IDML
                             continue;
                           }
                       }
-                      
+
                     if (ci)
                       {
                         if (ci->getMemberType ()->getName () == (*tmp)->getName ())
@@ -1237,7 +1237,7 @@ namespace IDML
                           }
                       }
 #if (EMITS_DEBUG == 1)
-                    dbg << "swapping " << (*tmp)->getName () 
+                    dbg << "swapping " << (*tmp)->getName ()
                         << " and " << (*i)->getName () << nl;
 #endif
                     std::swap ((*tmp), (*i));
@@ -1245,8 +1245,8 @@ namespace IDML
                     break;
                   }
               }
-              
-            // We must break out of both loops. 
+
+            // We must break out of both loops.
             if (changed) break;
           }
       }
@@ -1256,23 +1256,23 @@ namespace IDML
   {
     PredefinedType pdt (object);
     if (pdt) return this->basic_name (pdt);
-    
+
     BON::Model parent (object->getParentModel ());
-    
+
     // If we are a file, return an empty string.
     if (!parent) return "";
-    
+
     std::string local_name (object->getName ());
-    
+
     // If our parent is a file, don't tack on its name.
     if (!File (parent))
       {
         return this->scoped_name (parent) + "::" + local_name;
       }
-      
+
     return local_name;
   }
-  
+
   std::string IDLEmitVisitor::basic_name( const PredefinedType& pdt )
   {
     if (String (pdt))             return "string";
@@ -1295,18 +1295,18 @@ namespace IDML
     if (!e) return "";
     return this->scoped_name (e->getParentModel ());
   }
-  
+
   bool IDLEmitVisitor::is_included_predefined_sequence( const Collection& c )
   {
     if (!c) return false;
     std::string name (c->getName ());
     long pos = name.length () - IDL_INCLUDE_SUFFIX_LEN;
-    if (pos <= 0) return false;      
+    if (pos <= 0) return false;
     if (name.substr ((size_t) pos) != IDL_INCLUDE_SUFFIX) return false;
-    
-    
+
+
     ofs << nl << "#include \"tao/";
-  
+
     MemberType mt = c->getMemberType ();
     if (String (mt))              ofs << "String";
     else if (LongInteger (mt))    ofs << "Long";
@@ -1316,79 +1316,74 @@ namespace IDML
     else if (Byte (mt))           ofs << "Octet";
     else if (GenericValue (mt))   ofs << "AnyTypeCode/Any";
     else return false;
-    
+
     ofs << "Seq.pidl\"";
-      
+
     return true;
   }
 
   void IDLEmitVisitor::emitIncludedFiles( const File& f )
   {
     bool first = true;
-    
+
     if (f->include_components_idl ())
       {
         ofs << nl
             << "#include <Components.idl>" << nl;
-            
+
         first = false;
       }
     else if (f->include_orb_idl ())
       {
         ofs << nl
             << "#include <orb.idl>" << nl;
-            
+
         first = false;
       }
-      
+
     File fi;
     std::set<File>::iterator found;
-    
+
     // If a file in this list is also in the list below, skip it.
-    std::set<FileRef> file_includes = f->getFileRef ();    
-    for (std::set<FileRef>::const_iterator it = file_includes.begin (); 
+    std::set<FileRef> file_includes = f->getFileRef ();
+    for (std::set<FileRef>::const_iterator it = file_includes.begin ();
          it != file_includes.end ();
          it++)
       {
         if (first) ofs << nl;
-        
+
         fi = (*it)->getFile ();
         if (!fi) continue;
         found = std::find (f->discovered_includes_.begin (),
                            f->discovered_includes_.end (),
                            fi);
         if (found != f->discovered_includes_.end ()) continue;
-        
+
         // All generated IDL files will be in the same directory,
         // so get rid of any path elements in includes.
         std::string name (fi->getName ());
-        std::string::size_type pos = name.rfind ('/');
-        if (std::string::npos != pos) name = name.substr (pos + 1);
-        
+
         ofs << "#include \"" << name << ".idl\"" << nl;
-            
+
         first = false;
       }
-      
+
     // Now emit the discovered includes.
     for (std::set<File>::const_iterator i = f->discovered_includes_.begin ();
          i != f->discovered_includes_.end ();
          ++i)
       {
         if (first) ofs << nl;
-        
+
         // All generated IDL files will be in the same directory,
         // so get rid of any path elements in includes.
         std::string name ((*i)->getName ());
-        std::string::size_type pos = name.rfind ('/');
-        if (std::string::npos != pos) name = name.substr (pos + 1);
-        
         ofs << "#include \"" << name << ".idl\"" << nl;
-        
+
         first = false;
       }
   }
-  
+
   void IDLEmitVisitor::emitPrefix( const File& f )
   {
     std::string global_prefix = f->getPrefixTag ();
@@ -1403,8 +1398,8 @@ namespace IDML
   {
     std::set<std::pair<Orderable, int> > fwd_decls = object->fwd_decl_children;
     if (fwd_decls.size () == 0) return;
- 
-    for (std::set<std::pair<Orderable, int> >::iterator i = 
+
+    for (std::set<std::pair<Orderable, int> >::iterator i =
            fwd_decls.begin ();
          i != fwd_decls.end ();
          i++)
@@ -1413,7 +1408,7 @@ namespace IDML
         ofs << nl;
       }
   }
-  
+
   void IDLEmitVisitor::emitFwdDeclNested ( const Orderable& object,
                                            int level )
   {
@@ -1421,7 +1416,7 @@ namespace IDML
     // a different way than for interface/valuetypes. This check
     // keeps them from being generated more than once each.
     if (object->fwd_declared_) return;
-    
+
     if (level == 0)
       {
         Object odf (object);
@@ -1430,9 +1425,9 @@ namespace IDML
         Event edf (object);
         Aggregate adf (object);
         SwitchedAggregate sdf (object);
-        
+
         ofs << nl;
-        
+
         if (odf)
           {
             ofs << (odf->isabstract () ? "abstract " : "")
@@ -1441,7 +1436,7 @@ namespace IDML
         else if (cdf)
           {
             ofs << "component ";
-          }        
+          }
         else if (vdf)
           {
             ofs << (vdf->isabstract () ? "abstract " : "") << "valuetype ";
@@ -1462,9 +1457,9 @@ namespace IDML
           {
             ofs << "Error: Bad forward declare type\n";
           }
-        
+
         ofs << object->getName () << ";";
-        
+
         // Set the flag so this won't get generated again.
         object->fwd_declared_ = true;
       }
@@ -1475,28 +1470,28 @@ namespace IDML
           {
             container = Orderable (container->getParentModel ());
           }
-          
+
         ofs << nl
             << "module " << container->getName () << nl
             << "{" << idt;
-            
+
         this->emitFwdDeclNested (object, level - 1);
-        
+
         ofs << uidt_nl
             << "};";
       }
   }
-  
+
   void
   IDLEmitVisitor::visitChildren (const Orderable& object)
   {
     this->order_children (object);
     Component comp (object);
     bool not_first = false;
-    
+
     for (std::vector<Orderable>::iterator it =
            object->ordered_children.begin ();
-         it != object->ordered_children.end (); 
+         it != object->ordered_children.end ();
          it++)
       {
         // Relative IDs of derived GME children have one of the
@@ -1505,33 +1500,33 @@ namespace IDML
         long rel_id;
         (*it)->getFCOI ()->get_RelID (&rel_id);
         if (rel_id & 0x18000000) continue;
-        
+
         if (not_first) ofs << nl;
         if ((*it)->getParent () != object) continue;
         this->visitOrderableImpl (*it);
         not_first = true;
       }
   }
-  
+
   void IDLEmitVisitor::emitPreprocDirectives( const Taggable& t )
   {
     if (!t) return;
     std::string holder = t->getSpecifyIdTag ();
     bool hit = false;
-    
+
     if (holder != "")
       {
         ofs << nl
-            << "typeid " << t->getName () 
+            << "typeid " << t->getName ()
             << " \"" << holder << "\";" << nl;
         return;
       }
-      
+
     Prefixable p (t);
     if (p)
       {
         holder = p->getPrefixTag ();
-        
+
         if (holder != "")
           {
             ofs << nl
@@ -1540,57 +1535,57 @@ namespace IDML
             hit = true;
           }
       }
-      
+
     holder = t->getVersionTag ();
     if (holder != "")
       {
         ofs << nl
-            << "#pragma version " << t->getName () 
+            << "#pragma version " << t->getName ()
             << " " << holder;
         hit = true;
       }
-      
+
     if (hit) ofs << nl;
   }
-  
+
   void
   IDLEmitVisitor::emitStructMembers (const Orderable& object)
   {
     std::set<Member> members;
     Exception excep (object);
     Aggregate aggr (object);
-    
+
     if (excep) members = excep->getMember ();
     else members = aggr->getMember ();
-    
+
     MemberType mt;
     BON::Model o_ma = object->getParentModel ();
     BON::Model m_ma;
-    
+
     for (std::set<Member>::const_iterator i = members.begin ();
          i != members.end ();
          i++)
       {
         mt = (*i)->getMemberType ();
-        
+
         ofs << nl;
-        
+
         if (!this->emitPredefinedSequence (mt))
           {
             m_ma = mt->getParentModel ();
             ofs << (m_ma == o_ma ? mt->getName () : this->scoped_name (mt));
           }
-          
+
         ofs << " " << (*i)->getName () << ";";
       }
   }
-  
+
   void IDLEmitVisitor::emitUnionMembers (const SwitchedAggregate& s)
   {
     std::set<Discriminator> disc = s->getDiscriminator ();
     std::set<Discriminator>::iterator di = disc.begin ();
     Byte is_char_disc = (*di)->getReferred ();
-          
+
     std::set<Member> members = s->getMember ();
     MemberType mt;
 
@@ -1599,40 +1594,40 @@ namespace IDML
          i++)
       {
         std::multiset<Label> labels = (*i)->getLabelConnectionDsts ();
-        
+
         for (std::multiset<Label>::const_iterator li = labels.begin ();
              li != labels.end ();
              ++li)
           {
             ofs << nl;
             std::string tmp = (*li)->getName ();
-                 
+
             if (tmp != "default")
               {
                 ofs << "case ::";
               }
-            
+
             // If is_char_disc is true, label_prefix will be empty.
             ofs << (is_char_disc ? "'" : "")
-                << tmp 
+                << tmp
                 << (is_char_disc ? "'" : "")
                 << ":";
           }
-          
+
         mt = (*i)->getMemberType ();
-          
+
         ofs << " " << this->scoped_name (mt)
             << " " << (*i)->getName () << ";";
       }
   }
-  
+
   void IDLEmitVisitor::emitAttributeMember( const ReadonlyAttribute& ra )
   {
     std::set<AttributeMember> member = ra->getAttributeMember ();
     std::set<AttributeMember>::const_iterator i = member.begin ();
     MemberType mt ((*i)->getMemberType ());
     if (this->emitPredefinedSequence (mt)) return;
-    
+
     // Can we use the local name? The attribute type could be
     // defined in the same home or interface or just outside it.
     BON::Model r_parent = ra->getParentModel ();
@@ -1640,10 +1635,10 @@ namespace IDML
     BON::Model m_parent = mt->getParentModel ();
     if (m_parent == r_parent || m_parent == r_gparent) ofs << mt->getName ();
     else ofs << this->scoped_name (mt);
-    
-    ofs << " " << ra->getName (); 
+
+    ofs << " " << ra->getName ();
   }
-  
+
   void IDLEmitVisitor::emitMemberType( const NamedType& nt )
   {
     Boxed b (nt);
@@ -1657,7 +1652,7 @@ namespace IDML
     if (m_parent == n_parent) ofs << mt->getName ();
     else ofs << this->scoped_name (mt);
   }
-  
+
   void IDLEmitVisitor::emitAliasMemberType( const NamedType& nt )
   {
     Alias a (nt);
@@ -1668,7 +1663,7 @@ namespace IDML
     if (m_parent == n_parent) ofs << mt->getName ();
     else ofs << this->scoped_name (mt);
   }
-  
+
   void IDLEmitVisitor::emitConstantType( const Constant& c )
   {
     ConstantType ct = c->getConstantType ();
@@ -1677,18 +1672,18 @@ namespace IDML
     if (c_parent == ct_parent) ofs << ct->getName ();
     else ofs << this->scoped_name (ct);
   }
-  
+
   void IDLEmitVisitor::emitInherits( const Inheritable& object )
   {
     std::set<Inherits> parents = object->getInherits ();
     if (parents.size () == 0) return;
-    
+
     ofs << nl
         << "  : ";
-        
-    bool obv_inherits_concrete = false;    
+
+    bool obv_inherits_concrete = false;
     ObjectByValue obv (object);
-    
+
     // If a concrete valuetype of eventtype has a concrete
     // parent and one or more abstract ones, the concrete
     // parent must appear first in the inheritance list. The GME
@@ -1698,11 +1693,11 @@ namespace IDML
       {
         obv_inherits_concrete = this->emitOBVInheritsConcrete (parents);
       }
-      
+
     Inheritable inh;
     BON::Model i_ma;
     BON::Model o_ma = object->getParentModel ();
-       
+
     for (std::set<Inherits>::iterator i = parents.begin ();
          i != parents.end ();
          i++)
@@ -1714,21 +1709,21 @@ namespace IDML
         else ofs << this->scoped_name (inh);
       }
   }
-  
+
   void IDLEmitVisitor::emitComponentInherits (const Component &comp)
   {
     Orderable base = comp->base_component ();
     if (!base) return;
-    
+
     ofs << nl
         << "  : ";
-        
+
     BON::Model i_ma = comp->getParentModel ();
     BON::Model o_ma = base->getParentModel ();
     if (i_ma == o_ma) ofs << base->getName ();
     else ofs << this->scoped_name (base);
   }
-  
+
   bool IDLEmitVisitor::emitOBVInheritsConcrete (
       std::set<Inherits>& parents
     )
@@ -1738,8 +1733,8 @@ namespace IDML
          i++)
       {
         // Inside this function, we know this will work.
-        ObjectByValue obv ((*i)->getInheritable ()); 
-      
+        ObjectByValue obv ((*i)->getInheritable ());
+
         if (!obv->isabstract ())
           {
             // Generate it and remove it from the list.
@@ -1748,10 +1743,10 @@ namespace IDML
             return true;
           }
       }
-      
+
     return false;
   }
-  
+
   void IDLEmitVisitor::emitReturnType( const TwowayOperation& op )
   {
     std::set<ReturnType> rettype = op->getReturnType ();
@@ -1760,7 +1755,7 @@ namespace IDML
         ofs << "void ";
         return;
       }
-      
+
     std::set<ReturnType>::const_iterator i = rettype.begin ();
     ofs << this->scoped_name ((*i)->getReferred ()) << " ";
   }
@@ -1768,13 +1763,13 @@ namespace IDML
   void IDLEmitVisitor::emitParameters( const HasExceptions& he )
   {
     ofs << " (";
-    
+
     std::set<BON::Reference> refs = he->getChildReferences ();
     std::set<ExceptionRef> exceps = he->getExceptionRef ();
     unsigned long rt_factor = 0;
     TwowayOperation op (he);
     if (op) rt_factor = op->getReturnType ().size ();
-    
+
     if (refs.size () == exceps.size () + rt_factor)
       {
         ofs << ")";
@@ -1784,12 +1779,12 @@ namespace IDML
       {
         ofs << idt << idt_nl;
       }
-      
+
     bool first = true;
     BON::FCO holder;
-    BON::Model op_parent = he->getParentModel (); 
+    BON::Model op_parent = he->getParentModel ();
     BON::Model arg_parent;
-    
+
     for (std::set<BON::Reference>::const_iterator i = refs.begin ();
          i != refs.end ();
          i++)
@@ -1799,20 +1794,20 @@ namespace IDML
         if (!first) ofs << "," << nl;
         this->visitReferenceImpl (*i);
         holder = (*i)->getReferred ();
-        
+
         // Can we use the local type name?
         arg_parent = holder->getParentModel ();
         if (op_parent == arg_parent) ofs << holder->getName ();
         else ofs << this->scoped_name (holder);
-                  
-        ofs << " " << (*i)->getName ();  
+
+        ofs << " " << (*i)->getName ();
         first = false;
       }
-      
+
     ofs << uidt_nl
         << ")" << uidt;
   }
-  
+
   void IDLEmitVisitor::emitInParameters( const OperationBase& op )
   {
     ofs << " (";
@@ -1820,85 +1815,85 @@ namespace IDML
     HasExceptions he (op);
     if (he) exceps = he->getExceptionRef ();
     std::set<BON::Reference> refs = op->getChildReferences ();
-    
+
     if (refs.size () == exceps.size ())
       {
         ofs << ")";
         return;
       }
-      
+
     ofs << idt << idt_nl;
-    
+
     BON::FCO holder;
-    BON::Model op_parent = op->getParentModel (); 
+    BON::Model op_parent = op->getParentModel ();
     BON::Model arg_parent;
     bool first = true;
-    
+
     for (std::set<BON::Reference>::const_iterator i = refs.begin ();
          i != refs.end ();
          ++i)
       {
         if (ExceptionRef (*i)) continue;
         if (!first) ofs << "," << nl;
-        ofs << "in ";      
+        ofs << "in ";
         holder = (*i)->getReferred ();
-        
+
         // Can we use the local type name?
         arg_parent = holder->getParentModel ();
         if (op_parent == arg_parent) ofs << holder->getName ();
         else ofs << this->scoped_name (holder);
-                  
-        ofs << " " << (*i)->getName ();  
+
+        ofs << " " << (*i)->getName ();
         first = false;
       }
-      
+
     ofs << uidt_nl
         << ")" << uidt;
   }
-  
+
   void IDLEmitVisitor::emitExceptions( const HasExceptions& he )
   {
-    std::set<ExceptionRef> exceptions = he->getExceptionRef (); 
+    std::set<ExceptionRef> exceptions = he->getExceptionRef ();
     if (exceptions.size () == 0) return;
 
     ofs << idt_nl
         << "raises (";
-        
+
     Exception ex;
     BON::Model ex_ma;
     BON::Model op_ma = he->getParentModel ();
     BON::Model op_gma = op_ma->getParentModel ();
-        
+
     for (std::set<ExceptionRef>::iterator i = exceptions.begin ();
          i != exceptions.end ();
          i++)
       {
         if (i != exceptions.begin ()) ofs << ", ";
-        
+
         // Can we use the local name?
         ex = (*i)->getException ();
         ex_ma = ex->getParentModel ();
         if (ex_ma == op_ma || ex_ma == op_gma) ofs << ex->getName ();
         else ofs << this->scoped_name (ex);
       }
-      
+
     ofs << ")" << uidt;
   }
-   
+
   void IDLEmitVisitor::emitGetExceptions( const ReadonlyAttribute& r,
                                           bool readonly )
   {
-    std::set<GetException> get_exceptions = r->getGetException (); 
+    std::set<GetException> get_exceptions = r->getGetException ();
     if (get_exceptions.size () == 0) return;
 
     ofs << idt_nl
         << (!readonly ? "get" : "" ) << "raises (";
-        
+
     Exception e;
     BON::Model r_ma = r->getParentModel ();
     BON::Model r_gma = r_ma->getParentModel ();
     BON::Model e_ma;
-        
+
     for (std::set<GetException>::iterator i = get_exceptions.begin ();
          i != get_exceptions.end ();
          i++)
@@ -1909,23 +1904,23 @@ namespace IDML
         if (e_ma == r_ma || e_ma == r_gma) ofs << e->getName ();
         else ofs << this->scoped_name (e);
       }
-      
+
     ofs << ")" << uidt;
   }
-  
+
   void IDLEmitVisitor::emitSetExceptions( const Attribute& a )
   {
-    std::set<SetException> set_exceptions = a->getSetException (); 
+    std::set<SetException> set_exceptions = a->getSetException ();
     if (set_exceptions.size () == 0) return;
 
     ofs << idt_nl
         << "setraises (";
-        
+
     Exception e;
     BON::Model a_ma = a->getParentModel ();
     BON::Model a_gma = a_ma->getParentModel ();
     BON::Model e_ma;
-        
+
     for (std::set<SetException>::iterator i = set_exceptions.begin ();
          i != set_exceptions.end ();
          i++)
@@ -1936,10 +1931,10 @@ namespace IDML
         if (e_ma == a_ma || e_ma == a_gma) ofs << e->getName ();
         else ofs << this->scoped_name (e);
       }
-      
+
     ofs << ")" << uidt;
   }
-  
+
   void IDLEmitVisitor::emitSupports( const SupportsInterfaces& s )
   {
     std::set<Supports> supported = s->getSupports ();
@@ -1947,11 +1942,11 @@ namespace IDML
 
     ofs << nl
         << "  supports ";
-        
+
    BON::Model s_parent = s->getParentModel ();
    BON::Model i_parent;
    Object holder;
-        
+
    for (std::set<Supports>::iterator i = supported.begin ();
          i != supported.end ();
          i++)
@@ -1959,18 +1954,18 @@ namespace IDML
         if (i != supported.begin ()) ofs << ", ";
         holder = (*i)->getObject ();
         i_parent = holder->getParentModel ();
-        
+
         // Can we use the local name?
         if (s_parent == i_parent) ofs << holder->getName ();
         else ofs << this->scoped_name (holder);
       }
   }
-  
+
   void IDLEmitVisitor::emitPorts( const Component& c )
   {
     std::set<Port> ports = c->getPort ();
     bool not_first = false;
-    
+
     for (std::set<Port>::const_iterator i = ports.begin ();
          i != ports.end ();
          i++)
@@ -1981,15 +1976,15 @@ namespace IDML
         long rel_id;
         (*i)->getFCOI ()->get_RelID (&rel_id);
         if (rel_id & 0x18000000) continue;
-        
+
         if (not_first) ofs << nl;
-        
+
         ofs << nl;
         this->visitReferenceImpl (*i);
         this->emitPreprocDirectives (*i);
         not_first = true;
       }
-     
+
     // Leave a space between the ports and the attributes, if there
     // are any that are not inherited.
     if (not_first)
@@ -2017,29 +2012,29 @@ namespace IDML
 
     ofs << nl << nl
         << "home " << c->getName () << "PICMLDefaultHome";
-        
+
     // Local name for default home is ok - the managed component
-    // is being declared just above it.  
+    // is being declared just above it.
     ofs << nl
         << "  manages " << c->getName () << nl
         << "{" << nl
         << "};";
   }
-   
+
   void IDLEmitVisitor::emitManages( const ComponentFactory& cf )
   {
-    // Metamodel constraint forces the size to be exactly 1.    
+    // Metamodel constraint forces the size to be exactly 1.
     std::multiset<Manageable> manages = cf->getManagesComponentDsts ();
     std::multiset<Manageable>::iterator i = manages.begin ();
     ofs << nl
         << "  manages ";
-      
-    // Local name is ok unless we are connected to a component reference.    
+
+    // Local name is ok unless we are connected to a component reference.
     Component comp (*i);
     if (comp) ofs << (*i)->getName ();
     else ofs << this->scoped_name (ComponentRef (*i)->getReferred ());
   }
-  
+
   void IDLEmitVisitor::emitLookupKey( const ComponentFactory& cf )
   {
     std::set<LookupKey> key = cf->getLookupKey ();
@@ -2049,10 +2044,10 @@ namespace IDML
     BON::Model k_parent = vd->getParentModel ();
     BON::Model cf_parent = cf->getParentModel ();
     ofs << nl
-        << "  primarykey " 
+        << "  primarykey "
         << (k_parent == cf_parent ? vd->getName () : this->scoped_name (vd));
   }
-  
+
   void IDLEmitVisitor::emitOBVMembers( const ObjectByValue& obv )
   {
     std::set<Member> members = obv->getMember ();
@@ -2068,12 +2063,12 @@ namespace IDML
             << " " << (*i)->getName () << ";";
       }
   }
-  
+
   void IDLEmitVisitor::emitEnumValues( const Enum& e )
   {
     std::set<EnumValue> values = e->getEnumValue ();
-    for (std::set<EnumValue>::const_iterator it = values.begin (); 
-         it != values.end (); 
+    for (std::set<EnumValue>::const_iterator it = values.begin ();
+         it != values.end ();
          it++)
       {
         if (it != values.begin ()) ofs << ",";
@@ -2081,13 +2076,13 @@ namespace IDML
             << (*it)->getName ();
       }
   }
-  
+
   void IDLEmitVisitor::emitDiscriminator( const SwitchedAggregate& sa)
   {
     std::set<Discriminator> disc = sa->getDiscriminator ();
     std::set<Discriminator>::iterator i = disc.begin ();
     Byte bt = (*i)->getReferred ();
-    
+
     // The default output name for a Byte is "octet" which is an
     // illegal discriminator type in IDL.
     if (bt)
@@ -2102,13 +2097,13 @@ namespace IDML
         ofs << (sa_parent == d_parent ? ct->getName () : this->scoped_name (ct));
       }
   }
-  
+
   bool IDLEmitVisitor::emitPredefinedSequence( const MemberType& m )
   {
     Collection c (m);
     if (!c) return false;
     MemberType mt = c->getMemberType ();
-    
+
     if (String (mt))            ofs << "CORBA::StringSeq";
     else if (LongInteger (mt))  ofs << "CORBA::LongSeq";
     else if (RealNumber (mt))   ofs << "CORBA::DoubleSeq";
@@ -2117,9 +2112,8 @@ namespace IDML
     else if (Byte (mt))         ofs << "CORBA::OctetSeq";
     else if (GenericValue (mt)) ofs << "CORBA::AnySeq";
     else return false;
-    
+
     return true;
   }
-  
-} // namespace BON
 
+} // namespace BON

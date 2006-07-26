@@ -1,8 +1,178 @@
+Wed Jul 26 04:00:55 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
+
+          Reverted the change that removed slashes in File element names
+          so that CUTS generated files still compile.  Jeff is working on
+          the right fix.
+
+        * PIM/WSML/interpreters/IDL_to_WSDL/type_visitor.cpp:  Added an
+          int return type to the member function to make it compile using
+          VC8.
+
+        * PIM/WSML/interpreters/WSDLExporter/build.xml:  New ant build file for
+          building WSDLExporter tool.
+
+        * PIM/WSML/interpreters/WSDLExporter/src/WSML.xsd:
+
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/dre/WSML/WSDLExporter/Visitor.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/dre/WSML/WSDLExporter/WSDLExportVisitor.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/dre/WSML/WSDLExporter/WSDLExporter.java:
+
+          Files for the WSDLExporter tool.
+
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/meta/WSML_udm_xml.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/meta/WSML_udm_xml_0.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/meta/WSML_xsd.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/meta/WSML_xsd_0.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/meta/WSML_xsd_1.java:
+
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Attribute.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Binding.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/BindingOperation.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/BindingPortType.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/BindingRef.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/BindsOperation.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/BodyBinding.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/BodyParts.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Definitions.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Documentation.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Element.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/ExtensibilityElement.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/ExtensibleBinding.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/ExtensibleMessage.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/ExtensibleOperation.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/ExtensiblePort.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/FactoryRepository.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Fault.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/FaultMessage.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/FaultRef.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/HeaderBinding.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/HeaderMessage.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/HeaderPart.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/IORef.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Import.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Input.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/InputMessage.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/InputRef.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Message.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/MessageRef.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Messages.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/MgaObject.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/NotificationOperation.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/OneWayOperation.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Operation.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/OperationRef.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Output.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/OutputMessage.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/OutputRef.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Part.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/PartRef.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Port.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/PortBinding.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/PortType.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/PrimitiveTypes.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Referrable.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/RequestResponseOperation.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/RootFolder.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/RootFolderFileFactory.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/RootFolderStringFactory.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPAddress.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPBinding.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPBody.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPFault.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPFaultExtension.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPHeader.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPHeaderFault.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPHeaders.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPOperation.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Schema.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SchemaBuiltins.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SchemaImport.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SchemaReference.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Service.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SolicitResponseOperation.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Types.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Utils.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsAnyUri.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsBase64Binary.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsBoolean.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsByte.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsDate.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsDateTime.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsDecimal.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsDouble.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsDuration.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsEntities.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsEntity.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsFloat.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsGDay.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsGMonth.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsGMonthDay.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsGYear.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsGYearMonth.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsHexBinary.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsId.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsIdRef.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsIdRefs.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsInt.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsInteger.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsLanguage.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsLong.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsName.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsNcName.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsNegativeInteger.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsNmToken.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsNmTokens.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsNonNegativeInteger.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsNonPositiveInteger.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsNormalizedString.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsNotation.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsPositiveInteger.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsQName.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsShort.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsString.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsTime.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsToken.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsUnsignedByte.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsUnsignedInt.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsUnsignedLong.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/XsUnsignedShort.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/package.html:
+
+        * PIM/WSML/interpreters/WSDLExporter/src/test/TestExample.java:
+
+          Udm generated API for WSML metamodel.
+
+        * PIM/WSML/interpreters/WSDLImporter/build.xml:  Updated ant
+          buildfile to build using environment variables.
+
+        * PIM/WSML/paradigms/WSML-uml.xme:
+        * PIM/WSML/paradigms/WSML.xml:
+
+          New files required to use WSML with Udm.
+
+        * PIM/WSML/paradigms/WSML.xme:
+        * PIM/WSML/paradigms/WSML.xmp:
+
+          Updated paradigm to put all the Message elements in a Definition
+          underneath a Messages element, as they were polluting the
+          top-level of a Definition.
+
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/dre/WSML/WSDLImporter/WSDLImporter.java:
+        * PIM/WSML/interpreters/WSDLImporter/src/edu/vanderbilt/dre/WSML/WSDLImporter/XmlExportVisitor.java:
+
+          Updated WSDLImporter to reflect changes in the paradigm.  The
+          WSDLImporter also does validation of the input WSDL file against
+          the WSDL schema.  So, the WSDLImporter only accepts valid WSDL
+          files.
+
 Tue Jul 25 23:24:53 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * POIM/WSML/interpreters/IDL_to_WSDL/type_visitor.cpp:
         * POIM/WSML/interpreters/IDL_to_WSDL/be_global.cpp:
-        
+
           Fixed bug in 'import' attribute generation, and in 'name'
           attribute generation for ComplexType (IDL sequence).
 
@@ -11,7 +181,7 @@ Tue Jul 25 19:10:41 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/WSML/interpreters/IDL_to_WSDL/type_visitor.cpp:
         * PIM/WSML/interpreters/IDL_to_WSDL/message_visitor.cpp:
         * PIM/WSML/interpreters/IDL_to_WSDL/idl_to_wsdl_visitor.cpp:
-        
+
           Fixed bug in message part generation when the type is array
           or sequence, and factored out some common type name
           generating code.
@@ -22,30 +192,30 @@ Tue Jul 25 17:00:29 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
         * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
         * PIM/PICML/interpreters/IDLGenerator/IDLStream.cpp:
-        
+
           - Added logic to discover and generate an IDL #include
             for a base component, if it is in a different File
             model than its child.
-            
+
           - Changed generation of filenames for output to always use
             the stripped name of the File model, removing any forward
             slashes that may have been added for other reasons.
-            
+
           - Fixed a bug in the logic of ordering model elements in a
             given scope for IDL generation.
-            
+
         * PIM/WSML/interpreters/IDL_to_WSDL/be_global.cpp:
-        
+
           Removed generation of 'xsd' qualifier before 'types' element.
-          
+
         * PIM/WSML/interpreters/IDL_to_WSDL/type_visitor.cpp:
-        
+
           Changed to lower case some overlooked occurrences of 'SOAP-ENC'.
 
 Mon Jul 24 19:56:25 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/WSML/interpreters/IDL_to_WSDL/IDL_to_WSDL.mpc:
-        
+
           Changed installation of executable to $COSMIC_ROOT/bin.
 
 Sun Jul 23 04:36:42 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>

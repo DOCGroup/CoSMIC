@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="WSML" guid="{2D83462B-5A3B-4C56-A3C4-4304C961EFE0}" cdate="Sat Jul 22 22:04:39 2006" mdate="Sat Jul 22 22:04:39 2006" >
+<paradigm name="WSML" guid="{C0ECCB55-E797-442E-A0FA-D11047923D5B}" cdate="Sun Jul 23 23:01:29 2006" mdate="Sun Jul 23 23:01:29 2006" >
 
 	<comment>Web Services Modeling Language (WSML) is a domain-specific modeling language
   which allows definition of Web Services and interactions, and uses generative
@@ -248,6 +248,8 @@
 		</atom>
 		<connection name = "BindingPortType" metaref = "1025" >
 				<regnode name = "labelFormatStr" value ="boundPortType"></regnode>
+				<regnode name = "sName" value ="srcBindingPortType"></regnode>
+				<regnode name = "dName" value ="dstBindingPortType"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="arrow"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -263,6 +265,8 @@
 		</connection>
 		<connection name = "BindsOperation" metaref = "1408" >
 				<regnode name = "labelFormatStr" value ="bindsOperation"></regnode>
+				<regnode name = "sName" value ="srcBindsOperation"></regnode>
+				<regnode name = "dName" value ="dstBindsOperation"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="arrow"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -278,6 +282,8 @@
 		</connection>
 		<connection name = "BodyBinding" metaref = "1026" >
 				<regnode name = "labelFormatStr" value ="bodyBinding"></regnode>
+				<regnode name = "sName" value ="srcBodyBinding"></regnode>
+				<regnode name = "dName" value ="dstBodyBinding"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="diamond"></regnode>
@@ -294,6 +300,8 @@
 		</connection>
 		<connection name = "BodyParts" metaref = "1027" >
 				<regnode name = "labelFormatStr" value ="bodyParts"></regnode>
+				<regnode name = "sName" value ="srcBodyParts"></regnode>
+				<regnode name = "dName" value ="dstBodyParts"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="diamond"></regnode>
@@ -309,6 +317,8 @@
 		</connection>
 		<connection name = "FaultMessage" metaref = "1028" >
 				<regnode name = "labelFormatStr" value ="faultMessageType"></regnode>
+				<regnode name = "sName" value ="srcFaultMessage"></regnode>
+				<regnode name = "dName" value ="dstFaultMessage"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="arrow"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -324,6 +334,8 @@
 		</connection>
 		<connection name = "HeaderBinding" metaref = "1029" >
 				<regnode name = "labelFormatStr" value ="headerBinding"></regnode>
+				<regnode name = "sName" value ="srcHeaderBinding"></regnode>
+				<regnode name = "dName" value ="dstHeaderBinding"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="diamond"></regnode>
@@ -341,6 +353,8 @@
 		</connection>
 		<connection name = "HeaderMessage" metaref = "1030" >
 				<regnode name = "labelFormatStr" value ="headerMessage"></regnode>
+				<regnode name = "sName" value ="srcHeaderMessage"></regnode>
+				<regnode name = "dName" value ="dstHeaderMessage"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="diamond"></regnode>
@@ -357,6 +371,8 @@
 		</connection>
 		<connection name = "HeaderPart" metaref = "1031" >
 				<regnode name = "labelFormatStr" value ="headerPart"></regnode>
+				<regnode name = "sName" value ="srcHeaderPart"></regnode>
+				<regnode name = "dName" value ="dstHeaderPart"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="diamond"></regnode>
@@ -373,6 +389,8 @@
 		</connection>
 		<connection name = "InputMessage" metaref = "1032" >
 				<regnode name = "labelFormatStr" value ="inputMessageType"></regnode>
+				<regnode name = "sName" value ="srcInputMessage"></regnode>
+				<regnode name = "dName" value ="dstInputMessage"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="arrow"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -388,6 +406,8 @@
 		</connection>
 		<connection name = "OutputMessage" metaref = "1033" >
 				<regnode name = "labelFormatStr" value ="outputMessageType"></regnode>
+				<regnode name = "sName" value ="srcOutputMessage"></regnode>
+				<regnode name = "dName" value ="dstOutputMessage"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="arrow"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -403,6 +423,8 @@
 		</connection>
 		<connection name = "PortBinding" metaref = "1034" >
 				<regnode name = "labelFormatStr" value ="boundPort"></regnode>
+				<regnode name = "sName" value ="srcPortBinding"></regnode>
+				<regnode name = "dName" value ="dstPortBinding"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="arrow"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -418,6 +440,8 @@
 		</connection>
 		<connection name = "SOAPFaultExtension" metaref = "1035" >
 				<regnode name = "labelFormatStr" value ="soapFault"></regnode>
+				<regnode name = "sName" value ="srcSOAPFaultExtension"></regnode>
+				<regnode name = "dName" value ="dstSOAPFaultExtension"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
 				<regnode name = "srcStyle" value ="diamond"></regnode>
@@ -433,30 +457,40 @@
 		</connection>
 		<reference name = "BindingRef" metaref = "1401">
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbyBindingRef"></regnode>
 			<pointerspec name = "ref">
 				<pointeritem desc = "Binding"></pointeritem>
 			</pointerspec>
 		</reference>
 		<reference name = "FaultRef" metaref = "1036">
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbyFaultRef"></regnode>
 			<pointerspec name = "ref">
 				<pointeritem desc = "Fault"></pointeritem>
 			</pointerspec>
 		</reference>
 		<reference name = "InputRef" metaref = "1037">
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbyInputRef"></regnode>
 			<pointerspec name = "ref">
 				<pointeritem desc = "Input"></pointeritem>
 			</pointerspec>
 		</reference>
 		<reference name = "MessageRef" metaref = "1038">
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbyMessageRef"></regnode>
 			<pointerspec name = "ref">
 				<pointeritem desc = "Message"></pointeritem>
 			</pointerspec>
 		</reference>
 		<reference name = "OperationRef" metaref = "1039">
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbyOperationRef"></regnode>
 			<pointerspec name = "ref">
 				<pointeritem desc = "NotificationOperation"></pointeritem>
 				<pointeritem desc = "OneWayOperation"></pointeritem>
@@ -466,12 +500,16 @@
 		</reference>
 		<reference name = "OutputRef" metaref = "1040">
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbyOutputRef"></regnode>
 			<pointerspec name = "ref">
 				<pointeritem desc = "Output"></pointeritem>
 			</pointerspec>
 		</reference>
 		<reference name = "Part" metaref = "1041">
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbyPart"></regnode>
 			<pointerspec name = "ref">
 				<pointeritem desc = "Element"></pointeritem>
 				<pointeritem desc = "XsAnyUri"></pointeritem>
@@ -522,6 +560,8 @@
 		</reference>
 		<reference name = "PartRef" metaref = "1042">
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbyPartRef"></regnode>
 			<pointerspec name = "ref">
 				<pointeritem desc = "Part"></pointeritem>
 			</pointerspec>
@@ -554,12 +594,12 @@
 		<model name = "BindingOperation" metaref = "1052" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="ValidBindingOperationPartCardinality26" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
+				<![CDATA[let partCount = self.parts( "IORef" ) -> size + self.parts( "InputRef" ) -> size + self.parts( "OutputRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidBindingOperationPartCardinality27" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "IORef" ) -> size + self.parts( "InputRef" ) -> size + self.parts( "OutputRef" ) -> size in
+				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 0..1.</dispname>
 			</constraint>
@@ -619,7 +659,7 @@
 			<role name = "BindingPortType" metaref = "1093" kind = "BindingPortType"></role>
 			<role name = "Documentation" metaref = "1094" kind = "Documentation"></role>
 			<role name = "Import" metaref = "1095" kind = "Import"></role>
-			<role name = "Message" metaref = "1096" kind = "Message"></role>
+			<role name = "Messages" metaref = "1548" kind = "Messages"></role>
 			<role name = "PortType" metaref = "1099" kind = "PortType"></role>
 			<role name = "Service" metaref = "1100" kind = "Service"></role>
 			<role name = "Types" metaref = "1101" kind = "Types"></role>
@@ -629,7 +669,7 @@
 				<part metaref = "1104" role = "BindingPortType" primary = "yes" linked = "no"></part>
 				<part metaref = "1105" role = "Documentation" primary = "yes" linked = "no"></part>
 				<part metaref = "1106" role = "Import" primary = "yes" linked = "no"></part>
-				<part metaref = "1107" role = "Message" primary = "yes" linked = "no"></part>
+				<part metaref = "1549" role = "Messages" primary = "yes" linked = "no"></part>
 				<part metaref = "1110" role = "PortType" primary = "yes" linked = "no"></part>
 				<part metaref = "1111" role = "Service" primary = "yes" linked = "no"></part>
 				<part metaref = "1112" role = "Types" primary = "yes" linked = "no"></part>
@@ -698,6 +738,13 @@
 			<role name = "Part" metaref = "1140" kind = "Part"></role>
 			<aspect name = "ServiceDefinition" metaref = "1141" >
 				<part metaref = "1142" role = "Part" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "Messages" metaref = "1550" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<role name = "Message" metaref = "1551" kind = "Message"></role>
+			<aspect name = "ServiceDefinition" metaref = "1552" >
+				<part metaref = "1553" role = "Message" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "NotificationOperation" metaref = "1143" >
@@ -813,12 +860,12 @@
 				<dispname>Multiplicity of parts, which are contained by Operation, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidRequestResponseOperationPartCardinality36" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Output" ) -> size in
+				<![CDATA[let partCount = self.parts( "Input" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RequestResponseOperation, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidRequestResponseOperationPartCardinality37" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Input" ) -> size in
+				<![CDATA[let partCount = self.parts( "Output" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RequestResponseOperation, has to match 1.</dispname>
 			</constraint>
@@ -1018,12 +1065,12 @@
 				<dispname>Multiplicity of parts, which are contained by Operation, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidSolicitResponseOperationPartCardinality39" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Output" ) -> size in
+				<![CDATA[let partCount = self.parts( "Input" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SolicitResponseOperation, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidSolicitResponseOperationPartCardinality40" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Input" ) -> size in
+				<![CDATA[let partCount = self.parts( "Output" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SolicitResponseOperation, has to match 1.</dispname>
 			</constraint>

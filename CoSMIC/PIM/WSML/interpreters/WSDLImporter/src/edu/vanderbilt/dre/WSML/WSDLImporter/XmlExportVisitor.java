@@ -407,12 +407,12 @@ public class XmlExportVisitor implements Visitor {
             Regnode partRegs = this.createPartRegs(xPos, yPos);
             atom.getRegnodeOrConstraintOrAttribute().add(partRegs);
             model.getRegnodeOrConstraintOrAttribute().add(atom);
-            xPos += 84;
+            xPos += 115;
             // Wrap around to the next row
             // (based on a screen of width 1600x1200 with GME maximized)
             if (xPos > 1084) {
                 xPos = 12;
-                yPos += 84;
+                yPos += 115;
             }
         }
         xPos = yPos = 12;  // Reset values to the global default
@@ -430,8 +430,8 @@ public class XmlExportVisitor implements Visitor {
             this.pushNamespace(targetNamespace);
             popNamespace = true;
             Attribute attr = this.createGmeAttribute("targetNamespace",
-                                           null,
-                                           targetNamespace);
+                                                     null,
+                                                     targetNamespace);
             def.getRegnodeOrConstraintOrAttribute().add (attr);
         }
         this.typeMap.put (definition.getQName(), def);
@@ -449,12 +449,12 @@ public class XmlExportVisitor implements Visitor {
                                     "Attribute", "Attribute");
             Regnode partregs = this.createPartRegs (xPos, yPos);
             ns.getRegnodeOrConstraintOrAttribute().add(partregs);
-            xPos += 84;
+            xPos += 115;
             // Wrap around to the next row (based on a screen of width
             // 1600x1200 with GME maximized)
             if (xPos > 1084) {
                 xPos = 12;
-                yPos += 84;
+                yPos += 115;
             }
             Attribute value = this.createGmeAttribute ("Value",
                                                        null,
@@ -466,33 +466,50 @@ public class XmlExportVisitor implements Visitor {
         Map imports = definition.getImports();
         Iterator iter = imports.values().iterator();
         while (iter.hasNext()) {
-            Import imp = (Import)iter.next();
-            this.visitImport (imp);
+            List importList = (List)iter.next();
+            Iterator listIter = importList.iterator();
+            while (listIter.hasNext()) {
+                Import imp = (Import)listIter.next();
+                this.visitImport (imp);
+            }
         }
 
         Types types = definition.getTypes();
-        if (types != null)
+        if (types != null) {
             this.visitTypes (types);
+        } else {
+            System.out.println ("Encountered null type definition in " +
+                                definition.getQName());
+        }
 
-        xPos += 84;
+        xPos += 115;
         // Wrap around to the next row (based on a screen of width
         // 1600x1200 with GME maximized)
         if (xPos > 1084) {
             xPos = 12;
-            yPos += 84;
+            yPos += 115;
         }
 
         Map messages = definition.getMessages();
-        iter = messages.values().iterator();
-        while (iter.hasNext()) {
-            Message msg = (Message)iter.next();
-            this.visitMessage (msg);
-            xPos += 84;
-            // Wrap around to the next row (based on a screen of width
-            // 1600x1200 with GME maximized)
-            if (xPos > 1084) {
-                xPos = 12;
-                yPos += 84;
+        if (!messages.isEmpty()) {
+            Model messagesModel = this.createGmeModel ("Messages", "Messages",
+                                                  "Messages");
+            Regnode partregs = this.createPartRegs (xPos, yPos);
+            messagesModel.getRegnodeOrConstraintOrAttribute().add(partregs);
+            def.getRegnodeOrConstraintOrAttribute().add(messagesModel);
+            iter = messages.values().iterator();
+            while (iter.hasNext()) {
+                Message msg = (Message)iter.next();
+                this.push(messagesModel);
+                this.visitMessage (msg);
+                this.pop();
+                xPos += 115;
+                // Wrap around to the next row (based on a screen of width
+                // 1600x1200 with GME maximized)
+                if (xPos > 1084) {
+                    xPos = 12;
+                    yPos += 115;
+                }
             }
         }
 
@@ -532,6 +549,7 @@ public class XmlExportVisitor implements Visitor {
         Model importModel = this.createGmeModel ("import", "Import", "Import");
         Regnode partregs = this.createPartRegs (xPos, yPos);
         importModel.getRegnodeOrConstraintOrAttribute().add(partregs);
+        this.currModel.getRegnodeOrConstraintOrAttribute().add(importModel);
         String namespaceName = imp.getNamespaceURI();
         if (namespaceName == null) {
             System.out.println ("Error: namespace attribute of <wsdl:import>"
@@ -549,8 +567,8 @@ public class XmlExportVisitor implements Visitor {
             System.exit(1);
         }
         Attribute location = this.createGmeAttribute ("location",
-                                                       null,
-                                                       locationName);
+                                                      null,
+                                                      locationName);
         importModel.getRegnodeOrConstraintOrAttribute().add(location);
 
         Definition importedDef = imp.getDefinition();
@@ -605,12 +623,12 @@ public class XmlExportVisitor implements Visitor {
                                                          attrValue);
             atom.getRegnodeOrConstraintOrAttribute().add(attrVal);
             Regnode atomregs = this.createPartRegs (xPos, yPos);
-            xPos += 84;
+            xPos += 115;
             // Wrap around to the next row (based on a screen of width
             // 1600x1200 with GME maximized)
             if (xPos > 1084) {
                 xPos = 12;
-                yPos += 84;
+                yPos += 115;
             }
             atom.getRegnodeOrConstraintOrAttribute().add(atomregs);
             schemaModel.getRegnodeOrConstraintOrAttribute().add(atom);
@@ -672,8 +690,8 @@ public class XmlExportVisitor implements Visitor {
 
     public void visitSchemaImport (SchemaImport schemaImport) {
         Model schemaImpModel = this.createGmeModel ("import",
-                                                       "SchemaImport",
-                                                       "SchemaImport");
+                                                    "SchemaImport",
+                                                    "SchemaImport");
         this.currModel.getRegnodeOrConstraintOrAttribute(). add(schemaImpModel);
         String id = schemaImport.getId();
         if (id != null) {
@@ -744,12 +762,12 @@ public class XmlExportVisitor implements Visitor {
                                                          attrValue);
             atom.getRegnodeOrConstraintOrAttribute().add(attrVal);
             Regnode atomregs = this.createPartRegs (xPos, yPos);
-            xPos += 84;
+            xPos += 115;
             // Wrap around to the next row (based on a screen of width
             // 1600x1200 with GME maximized)
             if (xPos > 1084) {
                 xPos = 12;
-                yPos += 84;
+                yPos += 115;
             }
             atom.getRegnodeOrConstraintOrAttribute().add(atomregs);
             model.getRegnodeOrConstraintOrAttribute().add(atom);
@@ -775,9 +793,12 @@ public class XmlExportVisitor implements Visitor {
                 String name = visitedEle.getAttribute ("name");
                 model.setName(this.setElementName(name));
                 // Add top-level elements of schema to the list of types that
-                // can be reference d
+                // can be referenced
                 if (level == 0) {
                     QName eleQName = new QName (this.currNs, name);
+                    System.out.println ("Adding " + eleQName
+                                        + " to the typeMap");
+
                     this.typeMap.put (eleQName, model);
                 }
             }
@@ -841,8 +862,8 @@ public class XmlExportVisitor implements Visitor {
         }
         Object referred = this.typeMap.get(referredName);
         if (referred == null) {
-            System.out.println ("Error: Unknown type referred by part"
-                                + localName);
+            System.out.println ("Error: Unknown type referred by part "
+                                + referredName);
             System.exit(1);
         }
         ref.setReferred(referred);
@@ -1244,7 +1265,7 @@ public class XmlExportVisitor implements Visitor {
         Reference inputRef
             = this.createGmeReference (refName, "InputRef", "InputRef");
         xPos += 168;
-        yPos += 84;
+        yPos += 115;
         Regnode partregs = this.createPartRegs(xPos, yPos);
         inputRef.getRegnodeOrConstraintOrAttribute().add(partregs);
         inputRef.setReferred(inputRefModel);
@@ -1286,7 +1307,7 @@ public class XmlExportVisitor implements Visitor {
         Reference outputRef
             = this.createGmeReference (refName, "OutputRef", "OutputRef");
         xPos += 168;
-        yPos += 84;
+        yPos += 115;
         Regnode partregs = this.createPartRegs(xPos, yPos);
         outputRef.getRegnodeOrConstraintOrAttribute().add(partregs);
         outputRef.setReferred(outputRefModel);
@@ -1335,7 +1356,7 @@ public class XmlExportVisitor implements Visitor {
                                                "FaultRef",
                                                "FaultRef");
                 xPos += 168;
-                yPos += 84;
+                yPos += 115;
                 Regnode partregs = this.createPartRegs(xPos, yPos);
                 faultRef.getRegnodeOrConstraintOrAttribute().add(partregs);
                 faultRef.setReferred(faultRefModel);

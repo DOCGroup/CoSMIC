@@ -145,27 +145,27 @@ void Component::invoke( Project& project, const std::set<FCO>& setModels, long l
 // This is the main component method for Interpereters and Plugins.
 // May also be used in case of invokeable Add-Ons
 
-void Component::invokeEx( Project& project, 
+void Component::invokeEx( Project& project,
                           FCO& currentFCO,
                           const std::set<FCO>& setSelectedFCOs,
                           long lParam )
 {
   std::string outputPath;
   std::string message = "Please specify the Output Directory";
-  
+
   if (!getPath (message, outputPath))
     {
       return;
     }
-  
+
   std::set<Object> selected = project->findByKind ("File");
-  
+
   for (std::set<Object>::const_iterator it = selected.begin ();
        it != selected.end ();
        ++it)
     {
       File root (*it);
-      
+
       if (!root)
         {
           AfxMessageBox ("Interpretation must start from a File model!");
@@ -178,20 +178,14 @@ void Component::invokeEx( Project& project,
 
       DependencyVisitor root_visitor;
       root_visitor.visitOrderableImpl (root);
-        
+
       // A strstream may also be passed to the visitor here, to
       // redirect the output.
       std::string raw_filename = root->getName ();
-      std::string::size_type pos = raw_filename.rfind ('/');
-      
-      std::string filename = 
-        outputPath
-        + "\\"
-        + raw_filename.substr (std::string::npos == pos ? 0 : pos + 1)
-        + ".idl";
-        
+      std::string filename = outputPath + "\\" + raw_filename + ".idl";
+
       std::ofstream strm (filename.c_str ());
-      
+
       IDLEmitVisitor emit_visitor (strm);
       emit_visitor.visitOrderableImpl (root);
     }
@@ -250,4 +244,3 @@ void Component::objectEventPerformed( Object& object, unsigned long event, VARIA
 #endif // GME_ADDON
 
 }; // namespace BON
-

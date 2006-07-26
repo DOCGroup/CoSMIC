@@ -1,8 +1,9 @@
 <?xml version="1.0" standalone="yes"?>
 <project basedir="." default="compile">
   <description>Ant task to compile WSDLImporter </description>
-  <property name="jwsdp.home" value="" />
-  <property name="wsdl4j.home" value="" />
+  <property environment="env" />
+  <property name="jwsdp.home" value="${env.JWSDP_HOME}" />
+  <property name="wsdl4j.home" value="${env.WSDL4J_HOME}" />
   <path id="classpath">
     <pathelement path="src" />
     <pathelement path="lib" />
@@ -36,6 +37,15 @@
     <java classname="edu.vanderbilt.dre.WSML.WSDLImporter.WSDLImporter" fork="true">
       <arg file="GoogleSearch.wsdl" />
       <arg file="GoogleSearch.xme" />
+      <classpath refid="classpath" />
+    </java>
+  </target>
+
+  <target name="test" depends="compile" description="Run the WSDLImporter">
+    <echo message="Running the WSDLImporter..." />
+    <java classname="edu.vanderbilt.dre.WSML.WSDLImporter.WSDLImporter" fork="true">
+      <arg file="SLICE.wsdl" />
+      <arg file="SLICE.xme" />
       <classpath refid="classpath" />
     </java>
   </target>
