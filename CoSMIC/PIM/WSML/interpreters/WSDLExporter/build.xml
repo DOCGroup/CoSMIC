@@ -6,7 +6,6 @@
   <property name="wsdl4j.home" location="${env.WSDL4J_HOME}" />
   <property name="udm.path" location="${env.UDM_PATH}" />
   <path id="classpath">
-    <pathelement path="src" />
     <pathelement path="lib" />
     <fileset dir="${wsdl4j.home}" includes="lib/*.jar" />
     <fileset dir="${udm.path}" includes="bin/judm.jar" />
@@ -26,8 +25,8 @@
   <target name="run" depends="compile" description="Run the WSDLImporter">
     <echo message="Running the WSDLImporter..." />
     <java classname="edu.vanderbilt.dre.WSML.WSDLExporter.WSDLExporter" fork="true">
-      <arg file="SLICE.xml" />
-      <arg file="SLICE.wsdl" />
+      <arg file="GoogleSearch.xml" />
+      <arg file="GoogleSearch.wsdl" />
       <classpath refid="classpath" />
     </java>
   </target>

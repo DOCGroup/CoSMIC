@@ -8,6 +8,7 @@ import javax.wsdl.xml.*;
 import javax.wsdl.extensions.*;
 import javax.wsdl.extensions.soap.*;
 import javax.wsdl.extensions.schema.*;
+import javax.xml.namespace.*;
 import java.io.*;
 
 public class WSDLExportVisitor implements Visitor {
@@ -42,6 +43,18 @@ public class WSDLExportVisitor implements Visitor {
     }
 
     public void visitRootFolder (RootFolder folder) {
+    	try {
+    		for (Definitions wsmlDef : folder.getDefinitionsChildren()){
+    			String localName = wsmlDef.getname();
+    			String targetNamespace = wsmlDef.gettargetNamespace();
+    			QName defQName = new QName (targetNamespace, localName);
+    			Definition def = this.factory.newDefinition();
+    			def.setTargetNamespace(targetNamespace);
+    			def.setQName(defQName);
+    		}
+    	} catch (UdmException e) {
+    		e.printStackTrace();
+    	}
     }
 
 }
