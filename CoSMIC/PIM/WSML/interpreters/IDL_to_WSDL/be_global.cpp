@@ -1226,7 +1226,7 @@ BE_GlobalData::create_types_schema (void)
   
   DOMElement *import2 = this->doc_->createElement (X ("import"));
   import2->setAttribute (X ("namespace"), X (CORBA_NS));
-  import2->setAttribute (X ("schemaLocation"), X ("CORBA:xsd"));
+  import2->setAttribute (X ("schemaLocation"), X ("CORBA.xsd"));
   this->types_schema_->appendChild (import2);
 }
 

@@ -1,3 +1,10 @@
+Thu Jul 27 19:09:15 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/WSML/interpreters/IDL_to_WSDL/be_global.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/idl_to_wsdl_visitor.cpp:
+        
+          Fixed typos in code generation.
+
 Thu Jul 27 15:01:56 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/WSML/interpreters/IDL_to_WSDL/port_type_visitor.cpp:
