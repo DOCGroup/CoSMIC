@@ -1,3 +1,12 @@
+Thu Jul 27 15:01:56 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/WSML/interpreters/IDL_to_WSDL/port_type_visitor.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/be_global.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/idl_to_wsdl_visitor.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/binding_visitor.cpp:
+        
+          Fixed several minor problems.
+
 Thu Jul 27 04:00:09 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/WSML/interpreters/WSDLExporter/build.xml:  Updated to use

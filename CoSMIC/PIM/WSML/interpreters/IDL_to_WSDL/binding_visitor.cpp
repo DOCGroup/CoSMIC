@@ -20,6 +20,9 @@
 
 #include <xercesc/dom/DOM.hpp>
 
+extern const char *SOAP_ENC;
+extern const char *CORBA_NS;
+
 binding_visitor::binding_visitor (DOMElement *sub_tree)
   : idl_to_wsdl_visitor (sub_tree),
     current_binding_ (0)
@@ -97,6 +100,8 @@ binding_visitor::fill_binding_op (DOMElement *binding_op,
         this->doc_->createElement (X ("soap:fault"));
       soap_fault->setAttribute (X ("name"), fault_name);
       soap_fault->setAttribute (X ("use"), X ("encoded"));
+      soap_fault->setAttribute (X ("encodingStyle"), X (SOAP_ENC));
+      soap_fault->setAttribute (X ("namespace"), X (CORBA_NS));
       binding_op_fault->appendChild (soap_fault);
       
       // Preserves the order of fault elements from portType to
@@ -154,8 +159,11 @@ binding_visitor::gen_binding (DOMElement *port_type,
   scope_name += lname;
   
   binding->setAttribute (X ("name"), X (scope_name.c_str ()));
-  ACE_CString tname;
-  this->type_name (tname, (0 == port_impl ? node : port_impl));
+  ACE_CString tname (0 == port_impl
+                       ? node->full_name ()
+                       : port_impl->full_name ());
+  be_global->to_wsdl_name (tname);
+  tname = ACE_CString ("tns:") + tname;
   binding->setAttribute (X ("type"), X (tname.c_str ()));
   
   DOMElement *soap_binding =

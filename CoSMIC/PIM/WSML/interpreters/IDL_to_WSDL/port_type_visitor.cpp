@@ -179,8 +179,8 @@ port_type_visitor::finish_operation (AST_Decl *node,
           ACE_CString fname (i.item ()->full_name ());
           be_global->to_wsdl_name (fname);
           except_msg->setAttribute (X ("name"), X (fname.c_str ()));
-          except_msg->setAttribute (X ("message"), X (fname.c_str ()));
           fname = ACE_CString ("tns:_exception.") + fname;
+          except_msg->setAttribute (X ("message"), X (fname.c_str ()));
           elem->appendChild (except_msg);
         }
     }

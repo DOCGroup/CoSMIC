@@ -34,25 +34,22 @@
 #include "ace/Env_Value_T.h"
 #include "ace/streams.h"
 
-namespace
-{
-  // Some magic strings.
-  const char *VERSION = "1.0";
-  const char *ENCODING = "UTF-8";
-  const char *FILE_EXT = ".wsdl";
-  const char *XMLNS = "http://www.w3.org/2000/xmlns/";
-  const char *SOAP_ENV = "http://schemas.xmlsoap.org/soap/envelope/";
-  const char *SOAP_ENC = "http://schemas.xmlsoap.org/soap/encoding/";
-  const char *xsi = "http://www.w3.org/2001/XMLSchema-instance";
-  const char *xsd = "http://www.w3.org/2001/XMLSchema";
-  const char *SOAP = "http://schemas.xmlsoap.org/wsdl/soap/";
-  const char *MIME = "http://schemas.xmlsoap.org/wsdl/mime/";
-  const char *DIME = "http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/";
-  const char *WSDL = "http://schemas.xmlsoap.org/wsdl/";
-  const char *IMPORT_NS = SOAP_ENC;
-  const char *SCHEMA_NS = "http://www.w3.org/2001/XMLSchema";
-  const char *CORBA_NS = "http://www.omg.org/IDL-WSDL/1.0/";
-}
+// Some magic strings.
+const char *VERSION = "1.0";
+const char *ENCODING = "UTF-8";
+const char *FILE_EXT = ".wsdl";
+const char *XMLNS = "http://www.w3.org/2000/xmlns/";
+const char *SOAP_ENV = "http://schemas.xmlsoap.org/soap/envelope/";
+const char *SOAP_ENC = "http://schemas.xmlsoap.org/soap/encoding/";
+const char *xsi = "http://www.w3.org/2001/XMLSchema-instance";
+const char *xsd = "http://www.w3.org/2001/XMLSchema";
+const char *SOAP = "http://schemas.xmlsoap.org/wsdl/soap/";
+const char *MIME = "http://schemas.xmlsoap.org/wsdl/mime/";
+const char *DIME = "http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/";
+const char *WSDL = "http://schemas.xmlsoap.org/wsdl/";
+const char *IMPORT_NS = SOAP_ENC;
+const char *SCHEMA_NS = "http://www.w3.org/2001/XMLSchema";
+const char *CORBA_NS = "http://www.omg.org/IDL-WSDL/1.0/";
 
 IDL_TO_WSDL_BE_Export BE_GlobalData *be_global = 0;
 
@@ -1222,11 +1219,15 @@ BE_GlobalData::create_types_schema (void)
                                      X (target_name_space.c_str ()));
   this->types_schema_->setAttribute (X ("xmlns"), X (SCHEMA_NS));
   
-  DOMElement *import = this->doc_->createElement (X ("import"));
-  import->setAttribute (X ("namespace"), X (SOAP_ENC));
-  import->setAttribute (X ("schemaLocation"), X (SOAP_ENC));
+  DOMElement *import1 = this->doc_->createElement (X ("import"));
+  import1->setAttribute (X ("namespace"), X (SOAP_ENC));
+  import1->setAttribute (X ("schemaLocation"), X (SOAP_ENC));
+  this->types_schema_->appendChild (import1);
   
-  this->types_schema_->appendChild (import);
+  DOMElement *import2 = this->doc_->createElement (X ("import"));
+  import2->setAttribute (X ("namespace"), X (CORBA_NS));
+  import2->setAttribute (X ("schemaLocation"), X ("CORBA:xsd"));
+  this->types_schema_->appendChild (import2);
 }
 
 void

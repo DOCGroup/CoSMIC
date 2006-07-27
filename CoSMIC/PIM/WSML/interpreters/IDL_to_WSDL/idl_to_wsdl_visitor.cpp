@@ -103,7 +103,7 @@ idl_to_wsdl_visitor::type_name (ACE_CString &name,
   switch (d->node_type ())
     {
       case AST_Decl::NT_interface:
-        name = "CORBA.ObjectReference";
+        name = "corba.ObjectReference";
         break;
       case AST_Decl::NT_wstring:
       case AST_Decl::NT_string:
