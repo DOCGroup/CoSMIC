@@ -5,16 +5,10 @@ import javax.wsdl.*;
 import javax.wsdl.factory.*;
 import javax.wsdl.xml.*;
 import javax.xml.*;
-import javax.xml.bind.*;
 import javax.xml.parsers.*;
-import javax.xml.namespace.*;
 import javax.xml.validation.*;
-import java.util.*;
-import edu.vanderbilt.isis.gme.xme.*;
 import org.w3c.dom.*;
-import org.w3c.dom.ls.*;
 import org.xml.sax.*;
-import java.lang.*;
 import java.net.*;
 
 public class WSDLImporter {

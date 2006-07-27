@@ -14,7 +14,6 @@ import edu.vanderbilt.isis.gme.xme.*;
 import org.w3c.dom.*;
 import org.w3c.dom.Element;
 import org.w3c.dom.ls.*;
-import java.lang.*;
 
 public class XmlExportVisitor implements Visitor {
     private ObjectFactory objFactory = new ObjectFactory();
@@ -46,6 +45,8 @@ public class XmlExportVisitor implements Visitor {
 
     private Map<QName, Object> typeMap = new HashMap<QName, Object>();
 
+    private Map<QName, Object> elementMap = new HashMap<QName, Object>();
+
     private Map<QName, Model> messageMap = new HashMap<QName, Model>();
 
     private Map<QName, Model> portTypeMap = new HashMap<QName, Model>();
@@ -53,8 +54,6 @@ public class XmlExportVisitor implements Visitor {
     private Map<QName, Model> bindingMap = new HashMap<QName, Model>();
 
     private Map<QName, Model> serviceMap = new HashMap<QName, Model>();
-
-    private Map<QName, Model> importMap = new HashMap<QName, Model>();
 
     private Map<Operation, Model> operMap = new HashMap<Operation, Model>();
 
@@ -68,8 +67,6 @@ public class XmlExportVisitor implements Visitor {
 
     private int xPos = 12;
     private int yPos = 12;
-
-    private static final String EMPTYSTRING = new String();
 
     // QNames for top-level Schema elements
     private static final QName SCHEMA
@@ -113,10 +110,10 @@ public class XmlExportVisitor implements Visitor {
 
     private enum GmeKind {
         Model (0x65),
-            Atom(0x66),
-            Reference(0x67),
-            Connection(0x68),
-            Folder(0x6a);
+        Atom(0x66),
+        Reference(0x67),
+        Connection(0x68),
+        Folder(0x6a);
 
         private int value;
 
@@ -140,18 +137,18 @@ public class XmlExportVisitor implements Visitor {
             this.db = dbf.newDocumentBuilder();
             this.dbimpl = db.getDOMImplementation();
             this.dbimplLS =
-                (DOMImplementationLS)dbimpl.getFeature ("LS", "3.0");
+                (DOMImplementationLS)this.dbimpl.getFeature ("LS", "3.0");
 
-            this.docType = dbimpl.createDocumentType("project",
+            this.docType = this.dbimpl.createDocumentType("project",
                                                      null,
                                                      "mga.dtd");
-            this.doc = dbimpl.createDocument (null, "project", docType);
+            this.doc = this.dbimpl.createDocument (null, "project", docType);
             this.jc = JAXBContext.newInstance("edu.vanderbilt.isis.gme.xme");
-            this.marshaller = jc.createMarshaller();
+            this.marshaller = this.jc.createMarshaller();
 
             FileOutputStream outFile = new FileOutputStream (outputFileName);
-            this.writer = dbimplLS.createLSSerializer();
-            this.output = dbimplLS.createLSOutput();
+            this.writer = this.dbimplLS.createLSSerializer();
+            this.output = this.dbimplLS.createLSOutput();
             this.output.setEncoding ("UTF-8");
             this.output.setByteStream (outFile);
 
@@ -707,7 +704,7 @@ public class XmlExportVisitor implements Visitor {
         }
         Attribute attr = this.createGmeAttribute ("schemaLocation", null,
                                                   schemaLocation);
-        schemaImpModel.getRegnodeOrConstraintOrAttribute().add(schemaLocation);
+        schemaImpModel.getRegnodeOrConstraintOrAttribute().add(attr);
 
         String namespace = schemaImport.getNamespaceURI();
         if (schemaLocation == null) {
@@ -778,28 +775,27 @@ public class XmlExportVisitor implements Visitor {
         QName qname = new QName (namespaceURI, localName);
         if (qname.equals (COMPLEXTYPE)
             || qname.equals (SIMPLETYPE)
-            || qname.equals (ELEMENT)
-            || qname.equals (ATTRIBUTE)
-            || qname.equals (GROUP)
-            || qname.equals (ATTRIBUTEGROUP)
-            || qname.equals (KEY)
-            || qname.equals (KEYREF)
-            || qname.equals (UNIQUE)
-            || qname.equals (NOTATION)) {
+            || qname.equals (ELEMENT)) {
             Attribute attr = this.createGmeAttribute ("schemaType",
                                                       null, localName);
             model.getRegnodeOrConstraintOrAttribute().add(attr);
             if (visitedEle.getAttributeNode("name") != null) {
                 String name = visitedEle.getAttribute ("name");
                 model.setName(this.setElementName(name));
-                // Add top-level elements of schema to the list of types that
+                // Add top-level elements of schema to the list of elements that
                 // can be referenced
                 if (level == 0) {
                     QName eleQName = new QName (this.currNs, name);
-                    System.out.println ("Adding " + eleQName
-                                        + " to the typeMap");
+                    if (qname.equals (ELEMENT)) {
+                        System.out.println ("Adding " + eleQName
+                                            + " to the elementMap");
+                        this.elementMap.put (eleQName, model);
+                    } else {
+                        System.out.println ("Adding " + eleQName
+                                            + " to the typeMap");
+                        this.typeMap.put (eleQName, model);
 
-                    this.typeMap.put (eleQName, model);
+                    }
                 }
             }
         } else if (qname.equals (ANY) || qname.equals (ANYATTRIBUTE)
@@ -808,6 +804,13 @@ public class XmlExportVisitor implements Visitor {
                    || qname.equals (APPINFO)
                    || qname.equals (INCLUDE)
                    || qname.equals (IMPORT)
+                   || qname.equals (ATTRIBUTE)
+                   || qname.equals (GROUP)
+                   || qname.equals (ATTRIBUTEGROUP)
+                   || qname.equals (KEY)
+                   || qname.equals (KEYREF)
+                   || qname.equals (UNIQUE)
+                   || qname.equals (NOTATION)
                    || qname.equals (REDEFINE)) {
             Attribute attr = this.createGmeAttribute ("schemaType",
                                                       null, localName);
@@ -852,15 +855,14 @@ public class XmlExportVisitor implements Visitor {
         Reference ref = this.createGmeReference (localName, "Part", "Part");
         Regnode partregs = this.createPartRegs(xPos, yPos);
         ref.getRegnodeOrConstraintOrAttribute().add(partregs);
+        Object referred = null;
         QName referredName = part.getTypeName();
-        if (referredName == null) {
+        if (referredName != null) {
+            referred = this.typeMap.get(referredName);
+        } else {
             referredName = part.getElementName();
-            if (referredName == null) {
-                System.out.println ("Warning: part" + localName
-                                    + "is a null reference");
-            }
+            referred = this.elementMap.get(referredName);
         }
-        Object referred = this.typeMap.get(referredName);
         if (referred == null) {
             System.out.println ("Error: Unknown type referred by part "
                                 + referredName);
@@ -875,6 +877,7 @@ public class XmlExportVisitor implements Visitor {
 
     public void visitPortType (PortType portType) {
         String localName = portType.getQName().getLocalPart();
+        System.out.println ("Adding OperationType " + portType.getQName());
         Model portTypeModel = this.createGmeModel (localName, "PortType",
                                                    "PortType");
         Regnode partregs = this.createPartRegs(xPos, yPos);
@@ -894,9 +897,15 @@ public class XmlExportVisitor implements Visitor {
 
     public void visitOperation (Operation oper) {
         String localName = oper.getName();
+        System.out.println ("Adding Operation " + localName);
         OperationType style = oper.getStyle();
         String kind = null;
         String role = null;
+        if (style == null) {
+            System.out.println ("Error: Unknown OperationStyle for operation"
+                                + localName);
+            System.exit(1);
+        }
         if (style.equals (OperationType.ONE_WAY)) {
             kind = role = "OneWayOperation";
         } else if (style.equals(OperationType.REQUEST_RESPONSE)) {
@@ -1085,6 +1094,7 @@ public class XmlExportVisitor implements Visitor {
         Model bindingModel = this.createGmeModel (localName, "Binding",
                                                   "Binding");
         Regnode partregs = this.createPartRegs (xPos, yPos);
+        bindingModel.getRegnodeOrConstraintOrAttribute().add(partregs);
         this.currModel.getRegnodeOrConstraintOrAttribute().add(bindingModel);
         this.bindingMap.put(binding.getQName(), bindingModel);
         PortType bindingPortType = binding.getPortType();
