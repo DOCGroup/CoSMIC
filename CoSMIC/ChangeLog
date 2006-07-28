@@ -1,8 +1,25 @@
+Fri Jul 28 02:51:27 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/CIDLComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/CIDLComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/CIDL_Interpreter/CIDL_Interpreter.mpc:
+        * PIM/PICML/interpreters/CIDL_Interpreter/Cidlc_Visitor.h:
+        * PIM/PICML/interpreters/CIDL_Interpreter/Cidlc_Visitor.cpp:
+
+          Changed the entry point for the intepreter. Instead of creating
+          CIDL files based on the interface definitions, we now genereate
+          CIDL files based on the component implemenations.
+
+        * PIM/PICML/interpreters/CIDL_Interpreter/IDLStream.h:
+        * PIM/PICML/interpreters/CIDL_Interpreter/IDLStream.cpp:
+
+          Removed these files.
+
 Thu Jul 27 19:09:15 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/WSML/interpreters/IDL_to_WSDL/be_global.cpp:
         * PIM/WSML/interpreters/IDL_to_WSDL/idl_to_wsdl_visitor.cpp:
-        
+
           Fixed typos in code generation.
 
 Thu Jul 27 15:01:56 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
@@ -11,7 +28,7 @@ Thu Jul 27 15:01:56 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/WSML/interpreters/IDL_to_WSDL/be_global.cpp:
         * PIM/WSML/interpreters/IDL_to_WSDL/idl_to_wsdl_visitor.cpp:
         * PIM/WSML/interpreters/IDL_to_WSDL/binding_visitor.cpp:
-        
+
           Fixed several minor problems.
 
 Thu Jul 27 04:00:09 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>

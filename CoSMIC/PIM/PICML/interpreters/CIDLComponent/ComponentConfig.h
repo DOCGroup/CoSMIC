@@ -14,11 +14,11 @@
 
 
 // This name will appear in the popup window for interpreter selection.
-#define COMPONENT_NAME "CIDL"
+#define COMPONENT_NAME "CIDL File Generator"
 
 
 // This text will appear in the toolbar icon tooltip and in the menu.
-#define TOOLTIP_TEXT "CIDL Interpreter"
+#define TOOLTIP_TEXT "CIDL File Generator"
 
 
 // This #define determines the interpreter type:

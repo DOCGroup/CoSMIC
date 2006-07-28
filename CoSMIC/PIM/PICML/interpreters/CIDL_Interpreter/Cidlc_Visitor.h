@@ -1,55 +1,106 @@
-// $Id$
-#include <iterator>
+// -*- C++ -*-
+
+//=============================================================================
+/**
+ * @file      Cidlc_Visitor.h
+ *
+ * $Id$
+ *
+ * @author    Arvind Krishna
+ */
+//=============================================================================
+
+#ifndef _CIDLC_VISITOR_H_
+#define _CIDLC_VISITOR_H_
 
 #include "PICML/PICML.h"
-
-#include "UdmBase.h"
-#include "Uml.h"
-#include "UmlExt.h"
-#include "IDLStream.h"
-
-#include <fstream>
-#include <queue>
-#include <stack>
+#include "CIDL_Export.h"
 
 namespace PICML
-
-#include "CIDL_Interpreter/CIDL_Export.h"
 {
-  class Cidlc_Visitor: public Visitor
+  //===========================================================================
+  /**
+   * @class Cidlc_Visitor
+   *
+   * Backend generator of CIDL files from PICML models.
+   */
+  //===========================================================================
+
+  class CIDL_Export Cidlc_Visitor: public Visitor
   {
-    /// Type definition for the set of ComponentFactory objects.
-    typedef std::set <PICML::ComponentFactory> ComponentFactory_Set;
-
   public:
-    CIDL_Export Cidlc_Visitor (const std::string& outputPath);
-    CIDL_Export ~Cidlc_Visitor();
-    // Visit File
+    /**
+     * Constructor
+     *
+     * @param[in]     output        Ouput path for the CIDL files.
+     */
+    Cidlc_Visitor (const std::string & output);
 
-    CIDL_Export void Visit_File(const File&);
-    CIDL_Export void Visit_ComponentFactory (const ComponentFactory &factory);
-    CIDL_Export void Visit_ComponentRef (const ComponentRef&);
-    CIDL_Export void Visit_Component (const Component&);
-    CIDL_Export void Visit_Package (const Package &);
-    CIDL_Export void process_Factory_decl (ComponentFactory_Set &factory);
+    /// Destructor.
+    virtual ~Cidlc_Visitor (void);
+
+  protected:
+    /// Visit a RootFolder element.
+    virtual void Visit_RootFolder (const PICML::RootFolder &);
+
+    /// Visit a ComponentImplemenations element.
+    virtual void Visit_ComponentImplementations (
+      const PICML::ComponentImplementations &);
+
+    /// Visit a ComponentImplemenationContainer element.
+    virtual void Visit_ComponentImplementationContainer (
+      const PICML::ComponentImplementationContainer &);
+
+    /// Visit a MonolithicImplementation element.
+    virtual void Visit_MonolithicImplementation (
+      const PICML::MonolithicImplementation &);
+
+    /// Visit a Component element.
+    virtual void Visit_Component (const Component&);
+
+    /// Visit a ComponentFactory element.
+    virtual void Visit_ComponentFactory (const PICML::ComponentFactory &);
+
+    virtual void Visit_ManagesComponent (const PICML::ManagesComponent &);
+
+    virtual void Visit_ComponentRef (const PICML::ComponentRef &);
 
   private:
-    /// Output directory for the cidl files.
-    std::string outputPath_;
-    
-    /// Names of the packages that do not contain factories.
-    std::queue <std::string> package_names_;
-    
-    /// Name of the object managed by the factory.
-    std::string managed_name_;
-    
-    /// Output stream for the cidl file.
-    std::ofstream cidl_file_;
+    /// Generate the scope of a named type.
+    void generate_scope (const PICML::NamedType &);
 
-    /// IDL stream writer for the cidl file.
-    IDLStream cidl_writer_;
-    
-    /// Flag to help with formatting.
-    bool last_package_;
+    /// Generate the CIDL file based on the collected information.
+    void generate_cidl_file (void);
+
+    /// Output directory for the cidl files.
+    std::string output_;
+
+    /// Collection of information needed to generate the
+    /// composition of a monolithic implemenation.
+    struct cidl_t
+    {
+      /// Name of the CIDL file.
+      std::string cidlfile_;
+
+      /// IDL file containing the home.
+      std::string idlfile_;
+
+      /// Name of the monolithic implemenation.
+      std::string monolithic_;
+
+      /// Name of the component type.
+      std::string component_;
+
+      /// Name of the home managing the component.
+      std::string home_;
+
+      /// Scope of the home.
+      std::string scope_;
+
+      /// Flag contained the validity of the information.
+      bool valid_;
+    } cidl_;
   };
 }
+
+#endif  // !define _CIDLC_VISITOR_H_

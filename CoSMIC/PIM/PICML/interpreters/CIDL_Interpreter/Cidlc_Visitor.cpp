@@ -1,17 +1,18 @@
 // $Id$
 
 #include "Cidlc_Visitor.h"
-#include <strstream>
+#include "Uml.h"
+#include <algorithm>
+#include <fstream>
+#include <sstream>
 
 namespace PICML
 {
   //
   // Cidlc_Visitor
   //
-  Cidlc_Visitor::Cidlc_Visitor (const std::string& outputPath)
-  : outputPath_ (outputPath),
-    cidl_writer_ (cidl_file_),
-    last_package_ (false)
+  Cidlc_Visitor::Cidlc_Visitor (const std::string & output)
+  : output_ (output)
   {
 
   }
@@ -25,210 +26,277 @@ namespace PICML
   }
 
   //
-  // process_Factory_decl
+  // Visit_RootFolder
   //
-  void Cidlc_Visitor::process_Factory_decl (ComponentFactory_Set & factory)
+  void Cidlc_Visitor::Visit_RootFolder (const PICML::RootFolder & root)
   {
-    if (factory.size () == 0)
-      return;
+    typedef std::vector <PICML::ComponentImplementations> Folder_Set;
+    Folder_Set folders = root.ComponentImplementations_children ();
 
-    // Visit all the <ComponentFactory> objects.
-    int remaining = factory.size ();
+    for (Folder_Set::iterator iter = folders.begin ();
+         iter != folders.end ();
+         iter ++)
+    {
+      iter->Accept (*this);
+    }
+  }
 
-		for ( ComponentFactory_Set::iterator iter = factory.begin ();
-          iter != factory.end (); 
+  //
+  // Visit_ComponentImplemenations
+  //
+  void Cidlc_Visitor::Visit_ComponentImplementations (
+    const PICML::ComponentImplementations & impls)
+  {
+    typedef std::vector <ComponentImplementationContainer> Container_Set;
+    Container_Set container = impls.ComponentImplementationContainer_children ();
+
+    for (Container_Set::iterator iter = container.begin ();
+         iter != container.end ();
+         iter ++)
+    {
+      iter->Accept (*this);
+    }
+  }
+
+  //
+  // Visit_ComponentImplementationContainer
+  //
+  void Cidlc_Visitor::Visit_ComponentImplementationContainer (
+    const PICML::ComponentImplementationContainer & container)
+  {
+    // Initialize the <cidl_> structure for a new container.
+    this->cidl_.valid_ = false;
+    this->cidl_.cidlfile_ = container.name ();
+
+    // Now we can visit all the monolithic implemenations contained
+    // in this container.
+    typedef std::vector <MonolithicImplementation> Monolithic_Set;
+    Monolithic_Set monolithics =
+      container.MonolithicImplementation_kind_children ();
+
+    for (Monolithic_Set::iterator iter = monolithics.begin ();
+          iter != monolithics.end ();
           iter ++)
     {
-      (*iter).Accept (*this);
-
-      // We need to print a <newline> if there any more <ComponentFactory>
-      // element remaining in the set.
-      if (remaining -- > 1)
-      {
-        this->cidl_writer_.nl ();
-        this->cidl_writer_.nl ();
-      }
+      iter->Accept(*this);
     }
+
+    // Generate the CIDL file if we have a valid entry.
+    if (this->cidl_.valid_)
+      this->generate_cidl_file ();
   }
 
   //
-  // Visit_File
+  // Visit_MonolithicImplementation
   //
-  void Cidlc_Visitor::Visit_File (const File &file)
+  void Cidlc_Visitor::Visit_MonolithicImplementation (
+    const PICML::MonolithicImplementation & mono)
   {
-	  // Simple Algorithm to write out the cidl file
-	  // Step 1: Read the contents of the interface file.
-    // Step 2: When we locate the first factory, create the cidl file
-    //         for the idl file.
-    // Step 3: As we locate a factory, write its associated entry
-    //         to the current file.
-	  // Step 4: Close the cidl file if its open.
+    // We need to determine the type of component we are implementing
+    // before we do any code generation. If we do not know this then
+    // we just bailout.
+    this->cidl_.monolithic_ = mono.name ();
 
-    std::string filename = file.name ();
-    // The target file is : <dir> + "\" + fileName + ".cidl"
-    std::ostrstream fullpath;
-    fullpath  << this->outputPath_ << "\\" 
-              << filename  << ".cidl" << std::ends;
+    PICML::Implements implements = mono.dstImplements ();
 
-    this->cidl_file_.open (fullpath.str ());
-    if (this->cidl_file_.is_open ())
-    {
- 	    // Write the header information onto this file
-	    this->cidl_writer_.gen_ifdef_macro (filename);
-
-	    // Write out the Dependent IDL files
-	    this->cidl_writer_.gen_cidlc_include (filename);
-      this->cidl_writer_.nl ();
-
-	    // Check if there are any componentFactory definitions present.
-	    ComponentFactory_Set factories = file.ComponentFactory_kind_children ();
-
-	    // For each Component Factory Definitions visit the Factory.
-	    this->process_Factory_decl (factories);
-
-	    // Visit all the first level <Package> objects in this file.
-	    std::set <PICML::Package> packages = file.Package_kind_children ();
-      
-      int count = packages.size ();
-      this->last_package_ = false;
-
-	    for ( std::set <PICML::Package>::iterator iter = packages.begin ();
-	          iter != packages.end ();
-		        iter ++)
-		  {
-        if (-- count == 0)
-          this->last_package_ = true;
-
-        (*iter).Accept (*this);
-		  }
-
-      // If the <cidl_file_> is open then we have written one or more
-      // factories to the <cidl_file_>. We have to therefore write the 
-      // #endif macro.
-      this->cidl_writer_ << "\n\n";
-		  this->cidl_writer_.gen_endif (filename);
-      this->cidl_file_.close ();
-    }
-  }
-
-  //
-  // Visit_ComponentFactory
-  //
-  void Cidlc_Visitor::Visit_ComponentFactory (const ComponentFactory &factory)
-  {
-	  // Get the Corresponding name of the Component associated with the
-	  // factory
-	  const PICML::ManagesComponent conn = factory.dstManagesComponent();
-	  PICML::Manageable managable = conn.dstManagesComponent_end();
-
-    // Visit the managed object.
-    std::string type = managable.type ().name ();
-
-    if (type == "Component")
-    {
-      Component::Cast (managable).Accept (*this);
-    }
-    else if (type == "ComponentRef")
-    {
-      ComponentRef::Cast (managable).Accept (*this);
-    }
-    else
-    {
+    if (implements == Udm::null)
       return;
-    }
 
-    // Begin the <composition> declaration.
-    this->cidl_writer_ 
-      << "composition session " << this->managed_name_ << "_Impl{"
-      << "home executor " <<  this->managed_name_ << "Home_Exec{"
-      // Write the name of the factory/home being implemented.
-      << "implements " << factory.name () << ";\n"
-      // Write the name of the component it manages.
-      << "manages " <<  this->managed_name_ << "_Exec;"
-      << "};};";
-  }
+    PICML::ComponentRef component = implements.dstImplements_end ();
+    PICML::Component type = component.ref ();
 
-  //
-  // Visit_ComponentRef
-  //
-  void Cidlc_Visitor::Visit_ComponentRef (const ComponentRef& reference)
-  {
-	  reference.GetStrValue ("name", this->managed_name_);
+    if (type == Udm::null)
+      return;
+
+    // Visit the component defined in the interface definitions.
+    type.Accept (*this);
   }
 
   //
   // Visit_Component
   //
-  void Cidlc_Visitor::Visit_Component (const Component& component)
+  void Cidlc_Visitor::Visit_Component (const PICML::Component & component)
   {
-	  component.GetStrValue ("name", this->managed_name_);
+    this->cidl_.component_ = component.name ();
+
+    // Get the <ComponentFactory> for the <component> if there
+    // is one present.
+    typedef std::set <PICML::ManagesComponent> Manages_Set;
+    Manages_Set manages = component.srcManagesComponent ();
+
+    if (manages.size () > 0)
+    {
+      (*manages.begin ()).Accept (*this);
+    }
+    else
+    {
+      // Check to see if the home is located in another file. This is
+      // realized by having a <ComponentRef> connected to a
+      // <ComponentFactory>.
+      typedef std::set <PICML::ComponentRef> ComponentRef_Set;
+      ComponentRef_Set refs = component.referedbyComponentRef ();
+
+      for (ComponentRef_Set::iterator iter = refs.begin ();
+           iter != refs.end ();
+           iter ++)
+      {
+        // Make sure the reference is part of the interface definitions
+        // aspect in PICML.
+        PICML::MgaObject parent = iter->parent ();
+        std::string type = parent.type ().name ();
+
+        if ((type == (std::string)PICML::Package::meta.name ()) ||
+            (type == (std::string)PICML::File::meta.name ()))
+        {
+          iter->Accept (*this);
+        }
+
+        // We can exit the for loop since we have found a
+        // valid home.
+        if (this->cidl_.valid_)
+          break;
+      }
+    }
+
+    if (!this->cidl_.valid_)
+    {
+      // Ok, so we aren't valid at this point in time either. I guess
+      // We have to create a "default" home for this component.
+      this->cidl_.home_ = component.name ();
+      this->cidl_.home_.append ("PICMLDefaultHome");
+
+      this->generate_scope (component);
+      this->cidl_.valid_ = true;
+    }
   }
 
   //
-  // Visit_Package
+  // Visit_ComponentRef
   //
-  void Cidlc_Visitor::Visit_Package (const Package & package)
+  void Cidlc_Visitor::Visit_ComponentRef (const PICML::ComponentRef & ref)
   {
-    bool last_package = this->last_package_;
+    // Get the <ComponentFactory> for the <component> if there
+    // is one present.
+    typedef std::set <PICML::ManagesComponent> Manages_Set;
+    Manages_Set manages = ref.srcManagesComponent ();
 
-    // Locate all the <ComponentFactory> objects.
-	  ComponentFactory_Set factories = package.ComponentFactory_kind_children ();
-
-    if (!factories.empty ())
+    if (manages.size () > 0)
     {
-      while (!this->package_names_.empty ())
-      {
-        this->cidl_writer_ 
-          << "module " << this->package_names_.front () 
-          << "{";
-        this->package_names_.pop ();
-      }
-
-      // Write the name of the <package> as a module
-      this->cidl_writer_ << "module " << package.name () << "{";
-
-      // Process all the factories.
-      process_Factory_decl (factories);
+      (*manages.begin ()).Accept (*this);
     }
-    else
+  }
+
+  //
+  // Visit_ManagesComponent
+  //
+  void Cidlc_Visitor::Visit_ManagesComponent (
+    const PICML::ManagesComponent & manages)
+  {
+    PICML::ComponentFactory factory = manages.srcManagesComponent_end ();
+    factory.Accept (*this);
+  }
+
+  //
+  // Visit_ComponentFactory
+  //
+  void Cidlc_Visitor::Visit_ComponentFactory (
+    const PICML::ComponentFactory &factory)
+  {
+    // Save the name of the factory.
+    this->cidl_.home_ = factory.name ();
+    this->generate_scope (factory);
+
+    // We now have enough information to generate the
+    // composition for the implemenation.
+    this->cidl_.valid_ = true;
+  }
+
+  //
+  // Visit_NamedType
+  //
+  void Cidlc_Visitor::generate_scope (const PICML::NamedType & type)
+  {
+    this->cidl_.scope_.clear ();
+    PICML::MgaObject parent = type.parent ();
+
+    // Generate the code of the named type. This means backtracing
+    // its hierarchy all the way to a <PICML::File>.
+    if ((std::string)parent.type ().name () ==
+        (std::string)PICML::Package::meta.name ())
     {
-      this->package_names_.push (package.name ());
+      this->cidl_.scope_.insert (0, "::");
+      this->cidl_.scope_.insert (0, parent.name ());
+
+      parent = PICML::MgaObject::Cast (parent.parent ());
     }
 
-
-	  // Get all the <Package> objects defined in this <package>.
-    typedef std::set <PICML::Package> Package_Set;
-	  Package_Set packages = package.Package_kind_children ();
-
-    int count = packages.size ();
-    this->last_package_ = false;
-
-    if (!(factories.empty () || packages.empty ()))
+    // We now have the IDL file of the named type.
+    if ((std::string)parent.type ().name () ==
+        (std::string)PICML::File::meta.name ())
     {
-      this->cidl_writer_ << "\n\n";
+      this->cidl_.idlfile_ = parent.name ();
     }
+  }
 
-    // Visit all the <package> objects.
-		for ( Package_Set::const_iterator iter = packages.begin ();
-		      iter != packages.end ();
-			    iter ++)
-		{
-      if (-- count == 0)
-        this->last_package_ = true;
+  //
+  // generate_cidl_file
+  //
+  void Cidlc_Visitor::generate_cidl_file (void)
+  {
+    std::ostringstream filename;
+    filename
+      << this->output_ << "\\"
+      << this->cidl_.cidlfile_ << ".cidl" << std::ends;
 
-      Visit_Package (*iter);
-		}
+    ofstream outfile;
+    outfile.open (filename.str ().c_str ());
 
-    if (this->package_names_.empty ())
+    if (outfile.is_open ())
     {
-      this->cidl_writer_ << "};";
+      // Create the #ifdef macro for the CIDL file.
+      std::string hashdef = this->cidl_.cidlfile_;
 
-      if (!last_package)
-        this->cidl_writer_ << "\n\n";
-    }
-    else
-    {
-      this->package_names_.pop ();
+      std::transform (hashdef.begin (),
+                      hashdef.end (),
+                      hashdef.begin (),
+                      toupper);
+
+      hashdef.insert (0, '_');
+      hashdef.append ("_CIDL_");
+
+      // Generate the preamble.
+      outfile
+        << "// -*- CIDL -*-" << std::endl
+        << std::endl
+        << "// This file was generated by" << std::endl
+        << "// $Id$" << std::endl
+        << std::endl
+
+        // Generate the opening hashdef.
+        << "#ifndef " << hashdef << std::endl
+        << "#define " << hashdef << std::endl
+        << std::endl;
+
+      // Generate the IDL include file.
+      outfile
+        << "#include \"" << this->cidl_.idlfile_ << ".idl\"" << std::endl
+        << std::endl
+
+        // Generate the composition.
+        << "composition session " << this->cidl_.monolithic_ << std::endl
+        << "{" << std::endl
+        << "  home executor " << this->cidl_.home_ << "_Exec" << std::endl
+        << "  {" << std::endl
+        << "    implements " << this->cidl_.scope_
+        << this->cidl_.home_ << ";" << std::endl
+        << "    manages " << this->cidl_.component_ << "_Exec;" << std::endl
+        << "  };" << std::endl
+        << "};" << std::endl
+
+        // Generate the closing hashdef
+        << std::endl
+        << "#endif  // !defined " << hashdef << std::endl;
+      outfile.close ();
     }
   }
 }

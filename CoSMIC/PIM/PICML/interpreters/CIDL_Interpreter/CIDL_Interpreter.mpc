@@ -1,3 +1,5 @@
+// $Id$
+
 project(CIDL): picmllib {
    after += PICML
    sharedname = CIDL
@@ -6,12 +8,9 @@ project(CIDL): picmllib {
 
    Source_Files {
      Cidlc_Visitor.cpp
-     IDLStream.cpp
    }
 
    Header_Files {
-     Cidlc_Visitor.h
-     IDLStream.h
      CIDL_Export.h
    }
 }
