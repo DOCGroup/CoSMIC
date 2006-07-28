@@ -20,6 +20,10 @@
 //=============================================================================
 /**
  * @class CUTS_CCM_Event_Producer_T
+ *
+ * Generic implementation of an event producer for CCM components. This
+ * object is parameterized with the context of the CCM component. Doing
+ * so allows the component to send events using the components context.
  */
 //=============================================================================
 
@@ -30,11 +34,29 @@ public:
   /// The type definition for the context.
   typedef CONTEXT Context;
 
+  //===========================================================================
+  /**
+   * @class Push_Event_Ex
+   *
+   * Functor for pushing an event over a context.
+   */
+  //===========================================================================
+
   template <typename EVENTTYPE>
-  struct Push_Event_Ex
+  class Push_Event_Ex
   {
+  public:
+    /// Type definition of the event method.
     typedef void (CONTEXT::*Event_Method) (EVENTTYPE *);
 
+    /**
+     * Constructor.
+     *
+     * @param[in]     producer        Reference to an event producer.
+     * @param[in]     event_method    Target method for the event.
+     * @param[in]     event           Event to send via \a event_method.
+     */
+    inline
     Push_Event_Ex (CUTS_CCM_Event_Producer_T & producer,
                    Event_Method event_method,
                    EVENTTYPE * event)
@@ -45,6 +67,12 @@ public:
 
     }
 
+    /**
+     * Functor.
+     *
+     * @param[out]      toc     Time of completion.
+     */
+    inline
     void operator () (ACE_Time_Value & toc) const
     {
       this->producer_.push_event_ex (this->event_method_,
@@ -65,21 +93,26 @@ public:
 
   //===========================================================================
   /**
-   * @struct Push_Event
+   * @class Push_Event
+   *
+   * Functor for pushing an event over a context.
    */
   //===========================================================================
 
   template <typename OBV_EVENTTYPE, typename EVENTTYPE>
-  struct Push_Event
+  class Push_Event
   {
+  public:
+    /// Type definition for a pointer to a method.
     typedef void (CONTEXT::*Event_Method) (EVENTTYPE *);
 
     /**
-     * @brief   Constructor.
+     * Constructor.
      *
      * @param[in]   producer      Reference to the event producer.
      * @param[in]   push_method   Target method in the producer's context.
      */
+    inline
     Push_Event (CUTS_CCM_Event_Producer_T & producer,
                 Event_Method event_method)
     : producer_ (producer),
@@ -96,6 +129,7 @@ public:
      * this functor calls the CUTS_CCM_Event_Producer_T::push_event
      * method.
      */
+    inline
     void operator () (ACE_Time_Value & toc) const
     {
       this->producer_.push_event <
@@ -112,17 +146,28 @@ public:
 
   //===========================================================================
   /**
-   * @struct Push_Data_Event
+   * @class Push_Data_Event
+   *
+   * Functor for pushing a data event over the context.
    */
   //===========================================================================
 
   template <typename OBV_EVENTTYPE, typename EVENTTYPE>
-  struct Push_Data_Event :
+  class Push_Data_Event :
     public Push_Event <OBV_EVENTTYPE, EVENTTYPE>
   {
+  public:
+    /// Type definition for a pointer to a context method.
     typedef void (CONTEXT::*Event_Method) (EVENTTYPE *);
 
-    /// Constructor.
+    /**
+     * Constructor.
+     *
+     * @param[in]     producer        Reference to the event producer.
+     * @param[in]     size            Size of the data event.
+     * @param[in]     event_method    Method to send data event.
+     */
+    inline
     Push_Data_Event (CUTS_CCM_Event_Producer_T & producer,
                      size_t size,
                      Event_Method event_method)
@@ -132,7 +177,12 @@ public:
 
     }
 
-    /// Functor.
+    /**
+     * Functor.
+     *
+     * @param[in]       toc     Time of completion.
+     */
+    inline
     void operator () (ACE_Time_Value & toc) const
     {
       this->producer_.push_data_event <
@@ -151,7 +201,11 @@ public:
   /// Destructor.
   ~CUTS_CCM_Event_Producer_T (void);
 
-  /// Set the contecxt for the producer.
+  /**
+   * Set the contecxt for the producer.
+   *
+   * @param[in]       context     Pointer to the context.
+   */
   void context (CONTEXT * context);
 
   /// Push an event using the stored context.
@@ -171,8 +225,14 @@ public:
                         void (CONTEXT::*event_type) (EVENTTYPE *),
                         ACE_Time_Value & toc);
 
+  /**
+   * Activate the event producer.
+   *
+   * @param[in]     owner       Owner of the event producer.
+   */
   void activate (long owner);
 
+  /// Deactivate the event producer.
   void deactivate (void);
 
 private:

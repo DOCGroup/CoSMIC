@@ -2,9 +2,11 @@
 
 //=============================================================================
 /**
- * @file    EventHandler.h
+ * @file        EventHandler.h
  *
  * $Id$
+ *
+ * @author      James H. Hill
  */
 //=============================================================================
 
@@ -12,31 +14,35 @@
 #define _CUTS_EVENT_HANDLER_H_
 
 #include "cuts/config.h"
+#include "ace/SStringfwd.h"
 
 //=============================================================================
 /**
- * @class CUTS_Single_Event_Handler
+ * @class CUTS_Event_Handler
+ *
+ * Base implementation for all event handlers.
  */
 //=============================================================================
 
-class CUTS_Export CUTS_Single_Event_Handler
+class CUTS_Export CUTS_Event_Handler
 {
 public:
-  /// Constructor.
-  CUTS_Single_Event_Handler (void);
+  /// Event handling mode.
+  enum Event_Mode
+  {
+    /// Undefined mode.
+    UNDEFINED     = 0,
 
-  /// Destructor.
-  ~CUTS_Single_Event_Handler (void);
+    /// Synchronous mode.
+    SYNCHRONOUS   = 1,
 
-  /// Handle the event.
-  void handle_event (void);
-
-private:
-
+    /// Asynchronous mode.
+    ASYNCHRONOUS  = 2
+  };
 };
 
 #if defined (__CUTS_INLINE__)
-# include "cuts/EventHandler.inl"
+#include "cuts/EventHandler.inl"
 #endif
 
 #endif  // !defined _CUTS_EVENT_HANDLER_H_

@@ -11,30 +11,15 @@
 #ifndef _CUTS_EVENT_HANDLER_T_H_
 #define _CUTS_EVENT_HANDLER_T_H_
 
-#include "cuts/config.h"
+#include "cuts/EventHandler.h"
 #include "cuts/PortAgent.h"
 #include "ace/Auto_Ptr.h"
 
-// forward declarations
+// Forward decl.
 class CUTS_Activation_Record;
+
+// Forward decl.
 class CUTS_Port_Agent;
-
-//=============================================================================
-/**
- * @class CUTS_Event_Handler
- */
-//=============================================================================
-
-class CUTS_Event_Handler
-{
-public:
-  enum Event_Mode
-  {
-    UNDEFINED     = 0,
-    SYNCHRONOUS   = 1,
-    ASYNCHRONOUS  = 2
-  };
-};
 
 //=============================================================================
 /**

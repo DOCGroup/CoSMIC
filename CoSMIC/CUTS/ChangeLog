@@ -1,3 +1,27 @@
+Fri Jul 28 16:15:54 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CCM_CoWorkEr.h:
+        * cuts/CCM_CoWorkEr.cpp:
+        * cuts/CCM_CoWorkEr_T.h:
+        * cuts/CCM_Event_Producer_T.h:
+        * cuts/EventHandler.cpp:
+        * cuts/EventHandler_T.h:
+
+          Updated the documentation.
+
+        * cuts/EventHandler.h:
+
+          Moved CUTS_Event_Handler to this file.
+
+        * cuts/performance.idl:
+
+          UUID.idl was removed from the project build, but not from
+          the this idl file.
+
+        * cuts/UUID.idl:
+
+          Removed this file.
+
 Fri Jul 28 04:47:13 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CCM_CoWorkEr.h:

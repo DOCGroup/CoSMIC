@@ -15,8 +15,6 @@
 #ifndef _CUTS_PERFORMANCE_IDL_
 #define _CUTS_PERFORMANCE_IDL_
 
-#include "cuts/UUID.idl"
-
 module CUTS
 {
   /// type definition for the time

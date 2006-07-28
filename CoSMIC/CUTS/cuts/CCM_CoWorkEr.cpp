@@ -36,12 +36,16 @@ CUTS_CCM_CoWorkEr::CUTS_CCM_CoWorkEr (void)
 //
 CUTS_CCM_CoWorkEr::~CUTS_CCM_CoWorkEr (void)
 {
-  //this->benchmark_poa_->destroy (0, 0);
+  if (!::CORBA::is_nil (this->benchmark_poa_.in ()))
+    this->benchmark_poa_->destroy (0, 0);
 }
 
+//
+// init
+//
 void CUTS_CCM_CoWorkEr::init (void)
 {
-  CUTS::Benchmark_Agent_var agent (this->benchmark_agent_->_this ());
+  CUTS::Benchmark_Agent_var agent = this->benchmark_agent_->_this ();
   this->servant_ = this->benchmark_agent_;
 }
 

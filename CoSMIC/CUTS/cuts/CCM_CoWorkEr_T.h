@@ -16,6 +16,8 @@
 #define _CUTS_COWORKER_T_H_
 
 #include "cuts/CCM_CoWorkEr.h"
+#include "cuts/CCM_Event_Producer_T.h"
+#include "ace/Unbounded_Set.h"
 
 //=============================================================================
 /**
@@ -45,6 +47,9 @@ public:
 
   /// Type definition for component type.
   typedef COMPONENT_CONTEXT Component_Context;
+
+  /// Type definition for the event producer.
+  typedef CUTS_CCM_Event_Producer_T <COMPONENT_CONTEXT> Event_Producer;
 
   /// Constructor.
   CUTS_CCM_CoWorkEr_T (void);
