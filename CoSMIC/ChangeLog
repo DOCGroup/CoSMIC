@@ -1,3 +1,20 @@
+Fri Jul 28 19:32:51 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/WSML/interpreters/IDL_to_WSDL/binding_visitor.h:
+        * PIM/WSML/interpreters/IDL_to_WSDL/port_type_visitor.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/port_type_visitor.h:
+        * PIM/WSML/interpreters/IDL_to_WSDL/binding_visitor.cpp:
+        
+          Rewrote class binding_visitor to traverse the AST for
+          all its actions, instead of traversing the DOM tree for
+          some of them, and generating based on the contents of
+          the corresponding port_type elements. This latter approach
+          made the correctness of the generated XML dependent on
+          the order of processing IDL files on the command line.
+          Also refactored generation of 'fault' elements in class
+          port_type_visitor to be similar to that conceived for
+          class binding_visitor.
+
 Fri Jul 28 17:11:49 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/UUIDManager/RawComponent.cpp (verify_uuid):

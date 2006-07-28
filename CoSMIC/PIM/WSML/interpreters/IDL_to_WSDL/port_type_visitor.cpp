@@ -43,9 +43,6 @@ port_type_visitor::visit_interface (AST_Interface *node)
     elem,
     be_global->port_type_insert_point ());
   
-  be_global->decl_elem_table ().bind (ACE::strnew (node->repoID ()),
-                                      elem); 
-  
   if (0 == be_global->msg_insert_point ())
     {
       be_global->msg_insert_point (elem);
@@ -158,6 +155,7 @@ port_type_visitor::finish_operation (AST_Decl *node,
   elem->appendChild (input_msg);
   
   AST_Operation *op = AST_Operation::narrow_from_decl (node);
+  AST_Attribute *attr = AST_Attribute::narrow_from_decl (node);
   
   if (0 == op || AST_Operation::OP_oneway != op->flags ())
     {
@@ -167,29 +165,29 @@ port_type_visitor::finish_operation (AST_Decl *node,
       elem->appendChild (output_msg);
     }
     
-  // TODO - attribute exceptions.  
-  if (0 != op)
+  UTL_ExceptList *exceptions = 0;
+  
+  if (0 == prefix)
     {
-      for (UTL_ExceptlistActiveIterator i (op->exceptions ());
-           !i.is_done ();
-           i.next ())
-        {
-          DOMElement *except_msg =
-            this->doc_->createElement (X ("fault"));
-          ACE_CString fname (i.item ()->full_name ());
-          be_global->to_wsdl_name (fname);
-          except_msg->setAttribute (X ("name"), X (fname.c_str ()));
-          fname = ACE_CString ("tns:_exception.") + fname;
-          except_msg->setAttribute (X ("message"), X (fname.c_str ()));
-          elem->appendChild (except_msg);
-        }
+      exceptions = op->exceptions ();
+    }
+  else if (0 == ACE_OS::strcmp (prefix, "_get_"))
+    {
+      exceptions = attr->get_get_exceptions ();
+    }
+  else
+    {
+      exceptions = attr->get_set_exceptions ();
+    }
+    
+  for (UTL_ExceptlistActiveIterator i (exceptions);
+        !i.is_done ();
+        i.next ())
+    {
+      this->gen_fault (elem, i.item ());
     }
 
-  DOMElement *sys_except_msg = this->doc_->createElement (X ("fault"));
-  sys_except_msg->setAttribute (X ("name"), X ("CORBA.SystemException"));
-  sys_except_msg->setAttribute (X ("message"),
-                                X ("corba:CORBA.SystemExceptionMessage"));
-  elem->appendChild (sys_except_msg);
+  this->gen_fault (elem, 0);
 }
 
 void
@@ -251,3 +249,28 @@ port_type_visitor::append_ops_and_attrs (AST_Interface *ancestor)
     }
 }
 
+void
+port_type_visitor::gen_fault (DOMElement *port_op,
+                              AST_Decl *user_exception)
+{
+  ACE_CString fname, mname;
+  
+  DOMElement *except_msg =
+    this->doc_->createElement (X ("fault"));
+  
+  if (0 == user_exception)
+    {
+      fname = "CORBA.SystemException";
+      mname = "corba:CORBA.SystemExceptionMessage";
+    }
+  else
+    {
+      fname = user_exception->full_name ();
+      be_global->to_wsdl_name (fname);
+      mname = ACE_CString ("tns:_exception.") + fname;
+    }
+    
+  except_msg->setAttribute (X ("name"), X (fname.c_str ()));
+  except_msg->setAttribute (X ("message"), X (mname.c_str ()));
+  port_op->appendChild (except_msg);
+}

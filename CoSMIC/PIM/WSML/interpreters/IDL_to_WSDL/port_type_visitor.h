@@ -51,6 +51,7 @@ private:
   void gen_inherited_operations (AST_Interface *node);
   void gen_inherited_comp (AST_Component *node);
   void append_ops_and_attrs (AST_Interface *ancestor);
+  void gen_fault (DOMElement *port_op, AST_Decl *user_exception);
 
 private:
   DOMElement *current_port_type_;
