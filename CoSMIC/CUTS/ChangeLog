@@ -1,3 +1,13 @@
+Fri Jul 28 04:47:13 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CCM_CoWorkEr.h:
+        * cuts/be/CIAO/UDM_CIAO_Visitor.cpp:
+
+          The CUTS_CCM_CoWorkEr is now derived from a
+          TAO_Local_RefCounted_Object, which means the code generator
+          does not have to generate the code to derive the executor
+          for the local ref counted object.
+
 Fri Jul 28 04:34:41 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CIAO/UDM_CIAO_Visitor.cpp:

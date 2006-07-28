@@ -5,12 +5,14 @@
 #include "cuts/CUTS_exec_export.h"
 #include "cuts/Benchmark_Agent_i.h"
 #include "ComponentsC.h"
+#include "tao/LocalObject.h"
 #include "tao/RTCORBA/RTCORBA.h"
 #include "tao/RTPortableServer/RT_POA.h"
 
 #include <string>
 
-class CUTS_EXEC_Export CUTS_CCM_CoWorkEr
+class CUTS_EXEC_Export CUTS_CCM_CoWorkEr :
+  public TAO_Local_RefCounted_Object
 {
 public:
   /// Constructor.
