@@ -129,6 +129,11 @@ void CUTS_Workspace_Generator::Visit_RootFolder (
           this->generate_stub_project (node);
           this->project_.close ();
         }
+
+        // We need to clear the project flags just in case it went
+        // bad somewhere along the way.
+        if (!this->project_.good ())
+          this->project_.clear ();
       }
     }
 
@@ -197,6 +202,11 @@ void CUTS_Workspace_Generator::Visit_ComponentImplementationContainer (
 
     this->project_.close ();
   }
+
+  // We need to reset the project just in case it went bad
+  // along the way.
+  if (!this->project_.good ())
+    this->project_.clear ();
 }
 
 //
@@ -523,6 +533,10 @@ void CUTS_Workspace_Generator::generate_exec_project (void)
 
     // Generate the header files.
     << "  Header_Files {" << std::endl
+    << std::endl
+    << "  }" << std::endl
+    << std::endl
+    << "  Inline_Files {" << std::endl
     << std::endl
     << "  }" << std::endl
     << std::endl

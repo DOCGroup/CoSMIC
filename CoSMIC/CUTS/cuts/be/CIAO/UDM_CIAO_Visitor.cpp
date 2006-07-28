@@ -205,15 +205,6 @@ namespace CUTS
       return;
     }
 
-    // We need to get the dependency information for this
-    // component type.
-    CUTS_Dependency_Node * node = 0;
-    if (!this->dependency_graph_.find_node (this->component_,
-                                            this->node_))
-    {
-      return;
-    }
-
     // Generate the header and source filename(s).
     std::ostringstream hfile;
     hfile
@@ -273,46 +264,78 @@ namespace CUTS
           << "#pragma once" << std::endl
           << "#endif /* ACE_LACKS_PRAGMA_ONCE */" << std::endl
           << std::endl
-          << "#include \"tao/LocalObject.h\"" << std::endl
           << "#include \"cuts/config.h\"" << std::endl
           << "#include \"cuts/CCM_CoWorkEr_T.h\"" << std::endl
           << "#include \"cuts/CCM_Factory_T.h\"" << std::endl;
 
-        // Check if the current file contains InEvent and OutEvent ports,
-        // and periodic actions.
-        if ((this->node_->flags_ & CUTS_Dependency_Node::DNF_INEVENTS))
+        typedef std::vector <PICML::InEventPort> InEventPort_Set;
+        InEventPort_Set inevents = component.InEventPort_kind_children ();
+
+        if (!inevents.empty ())
         {
           this->hout_
             << "#include \"cuts/EventHandler_T.h\"" << std::endl;
         }
 
-        if ((this->node_->flags_ & CUTS_Dependency_Node::DNF_OUTEVENTS))
+        typedef std::vector <PICML::OutEventPort> OutEventPort_Set;
+        OutEventPort_Set outevents = component.OutEventPort_kind_children ();
+
+        if (!outevents.empty ())
         {
           this->hout_
             << "#include \"cuts/CCM_Event_Producer_T.h\"" << std::endl;
         }
 
-        if ((this->node_->flags_ & CUTS_Dependency_Node::DNF_PERIODIC))
+        typedef std::vector <PICML::PeriodicAction> PeriodicAction_Set;
+        PeriodicAction_Set periodics = component.PeriodicAction_kind_children ();
+
+        if (!periodics.empty ())
         {
           this->hout_
             << "#include \"cuts/Trigger_T.h\"" << std::endl;
         }
 
-        // Generate the remaining header files needed for this file to
-        // compile successfully.
-        if (!this->node_->includes_.empty ())
-        {
-          String_Set::const_iterator iter;
+        // We need to include all the necessary worker files for
+        // this particular component implemenation.
+        typedef std::vector <PICML::WorkerType> WorkerType_Set;
+        WorkerType_Set workers = component.WorkerType_children ();
 
-          for (iter = this->node_->includes_.begin ();
-               iter != this->node_->includes_.end ();
-               iter ++)
+        for (WorkerType_Set::iterator iter = workers.begin ();
+             iter != workers.end ();
+             iter ++)
+        {
+          PICML::Worker worker = PICML::Worker::Cast (iter->ref ());
+
+          if (worker == Udm::null)
+            continue;
+
+          PICML::MgaObject parent = worker.parent ();
+
+          while ((std::string)parent.type ().name () !=
+                 (std::string)PICML::WorkerFile::meta.name ())
           {
-            this->hout_ << "#include \"" << *iter << ".h\"" << std::endl;
+            parent = PICML::MgaObject::Cast (parent.parent ());
           }
 
-          this->hout_ << std::endl;
+          this->hout_
+            << "#include \"" << parent.name () << ".h\"" << std::endl;
         }
+
+        //// Generate the remaining header files needed for this file to
+        //// compile successfully.
+        //if (!this->node_->includes_.empty ())
+        //{
+        //  String_Set::const_iterator iter;
+
+        //  for (iter = this->node_->includes_.begin ();
+        //       iter != this->node_->includes_.end ();
+        //       iter ++)
+        //  {
+        //    this->hout_ << "#include \"" << *iter << ".h\"" << std::endl;
+        //  }
+
+        //  this->hout_ << std::endl;
+        //}
 
         // Generate the source file preamble.
         this->sout_
@@ -329,8 +352,10 @@ namespace CUTS
         std::string component_context = this->component_ + "_Context";
 
         this->hout_
+          << std::endl
           << "namespace CIDL_" << this->monolithic_ << "{";
         this->sout_
+          << std::endl
           << "namespace CIDL_" << this->monolithic_ << "{";
 
         // Generate the component header information.
@@ -355,9 +380,8 @@ namespace CUTS
         this->generate_destructor ();
 
         // Visit the event sources for the component.
-        typedef std::set <PICML::OutEventPort> OutEventPort_Set;
-
         OutEventPort_Set event_sources = component.OutEventPort_kind_children ();
+
         if (!event_sources.empty ())
         {
           this->has_out_events_ = true;
@@ -369,7 +393,6 @@ namespace CUTS
         }
 
         // Visit the event sinks for the component.
-        typedef std::set <PICML::InEventPort> InEventPort_Set;
         InEventPort_Set event_sinks = component.InEventPort_kind_children ();
 
         std::for_each (event_sinks.begin (),
@@ -474,9 +497,15 @@ namespace CUTS
 
     if (this->hout_.is_open ())
       this->hout_.close ();
+
+    if (!this->hout_.good ())
+      this->hout_.clear ();
+
     if (this->sout_.is_open ())
       this->sout_.close ();
 
+    if (!this->sout_.good ())
+      this->sout_.clear ();
   }
 
   //

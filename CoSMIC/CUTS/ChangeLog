@@ -1,3 +1,17 @@
+Fri Jul 28 04:34:41 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CIAO/UDM_CIAO_Visitor.cpp:
+
+          Fixed bug that was preventing the generation of executor
+          source files when a dependency node was not found. Now the
+          executor project doesn't bother to look up dependencny
+          nodes since it's ot necessary.
+
+        * cuts/be/CIAO/Workspace_Generator.cpp:
+
+          Fixed a bug that prevented the generation of subsequent
+          MPC files after failing to generate one MPC file.
+
 Fri Jul 28 02:43:06 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Benchmark_Agent_i.h:
