@@ -1,6 +1,6 @@
 // $Id$
 
-project : cuts_client_dnc, ciao_events_base_dnc {
+project : cuts_client_dnc {
   specific (vc6, vc7, vc71, vc8, nmake) {
     defines += CUTS_HAS_DATABASE
 

@@ -2,7 +2,7 @@
 
 project : ciao_servant_dnc, cutslib {
   //-- additional dependencies
-  after += CUTS_svnt
+  after += CUTS_stub
 
   //-- required libraries
   libs  += CUTS_stub

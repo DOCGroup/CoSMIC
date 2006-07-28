@@ -6,12 +6,10 @@ project (Benchmark_Data_Collector_Ex_stub): cuts_client_dnc {
 
   sharedname = Benchmark_Data_Collector_Ex_stub
 
-  idlflags  += -Wb,stub_export_macro=BENCHMARK_DATA_COLLECTOR_EX_STUB_Export \
-               -Wb,stub_export_include=Benchmark_Data_Collector_Ex_stub_export.h \
-               -Wb,skel_export_macro=BENCHMARK_DATA_COLLECTOR_EX_SVNT_Export \
-               -Wb,skel_export_include=Benchmark_Data_Collector_Ex_svnt_export.h
-
-  dynamicflags = BENCHMARK_DATA_COLLECTOR_EX_STUB_BUILD_DLL CIAO_NDEBUG
+  idlflags  += -Wb,export_macro=BENCHMARK_DATA_COLLECTOR_EX_STUB_Export \
+               -Wb,export_include=Benchmark_Data_Collector_Ex_stub_export.h
+               
+  dynamicflags = BENCHMARK_DATA_COLLECTOR_EX_STUB_BUILD_DLL
 
   IDL_Files {
     Benchmark_Data_Collector_Ex.idl
@@ -19,22 +17,22 @@ project (Benchmark_Data_Collector_Ex_stub): cuts_client_dnc {
 
   Source_Files {
     Benchmark_Data_Collector_ExC.cpp
+    Benchmark_Data_Collector_ExS.cpp
   }
 }
 
 project (Benchmark_Data_Collector_Ex_svnt) : cuts_servant_dnc {
-  after += Benchmark_Data_Collector_svnt Benchmark_Data_Collector_Ex_stub
-
   sharedname  = Benchmark_Data_Collector_Ex_svnt
 
+  after      += Benchmark_Data_Collector_Ex_stub
+
   libs       += Benchmark_Data_Collector_Ex_stub \
-                Benchmark_Data_Collector_stub \
-                Benchmark_Data_Collector_svnt
+                Benchmark_Data_Collector_stub
 
-  idlflags    += -Wb,export_macro=BENCHMARK_DATA_COLLECTOR_EX_SVNT_Export \
-                 -Wb,export_include=Benchmark_Data_Collector_Ex_svnt_export.h
+  idlflags   += -Wb,export_macro=BENCHMARK_DATA_COLLECTOR_EX_SVNT_Export \
+                -Wb,export_include=Benchmark_Data_Collector_Ex_svnt_export.h
 
-  dynamicflags = BENCHMARK_DATA_COLLECTOR_EX_SVNT_BUILD_DLL CIAO_NDEBUG
+  dynamicflags = BENCHMARK_DATA_COLLECTOR_EX_SVNT_BUILD_DLL
 
   CIDL_Files {
     Benchmark_Data_Collector_Ex.cidl
@@ -46,7 +44,6 @@ project (Benchmark_Data_Collector_Ex_svnt) : cuts_servant_dnc {
 
   Source_Files {
     Benchmark_Data_Collector_ExEC.cpp
-    Benchmark_Data_Collector_ExS.cpp
     Benchmark_Data_Collector_Ex_svnt.cpp
   }
 }
@@ -59,13 +56,8 @@ project (Benchmark_Data_Collector_Ex_exec) : cuts_component_dnc, cuts_dbasesvc {
 
   libs      += Benchmark_Data_Collector_Ex_stub \
                Benchmark_Data_Collector_Ex_svnt \
-               Benchmark_Data_Collector_stub \
-               Benchmark_Data_Collector_svnt \
                Benchmark_Data_Collector_exec
-
-  idlflags  +=  -Wb,export_macro=BENCHMARK_DATA_COLLECTOR_EX_EXEC_Export \
-                -Wb,export_include=Benchmark_Data_Collector_Ex_exec_export.h
-
+               
   dynamicflags += BENCHMARK_DATA_COLLECTOR_EX_EXEC_BUILD_DLL CIAO_NDEBUG
 
   IDL_Files {

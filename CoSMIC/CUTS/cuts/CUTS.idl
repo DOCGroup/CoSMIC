@@ -17,7 +17,6 @@
 #define _CUTS_IDL_
 
 #include "cuts/performance.idl"
-#include "cuts/UUID.idl"
 
 module CUTS
 {

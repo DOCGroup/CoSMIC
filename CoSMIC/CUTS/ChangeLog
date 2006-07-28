@@ -1,3 +1,23 @@
+Fri Jul 28 18:21:00 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/Benchmark_Data_Collector.mpc:
+        * cuts/BDC/Benchmark_Data_Collector_Ex.mpc:
+
+          Refactored build to be consist with the method implored
+          for building stub/svnt/exec projects in CUTS.
+
+        * cuts/CUTS.idl:
+
+          UUID.idl was removed from the project build, but not from
+          the this idl file.
+
+        * etc/config/cuts_client_dnc.mpb:
+        * etc/config/cuts_component_dnc.mpb:
+        * etc/config/cuts_coworker_stub.mpb:
+        * etc/config/cuts_servant_dnc.mpb:
+
+          - Removed all references to CUTS_svnt.
+
 Fri Jul 28 16:15:54 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CCM_CoWorkEr.h:
