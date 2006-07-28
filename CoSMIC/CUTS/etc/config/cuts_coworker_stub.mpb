@@ -1,15 +1,6 @@
 // $Id$
 
-project : cuts_client_dnc {
-  // -- set the appropriate flags
-  idlflags += \
-    -Wb,stub_export_macro=CUTS_STUB_Export \
-    -Wb,stub_export_include=cuts/CUTS_stub_export.h \
-    -Wb,skel_export_macro=CUTS_SVNT_Export \
-    -Wb,skel_export_include=cuts/CUTS_svnt_export.h
-
-  dynamicflags += CUTS_STUB_BUILD_DLL
-
+project : cuts_client_dnc, ciao_events_base_dnc {
   specific (vc6, vc7, vc71, vc8, nmake) {
     defines += CUTS_HAS_DATABASE
 

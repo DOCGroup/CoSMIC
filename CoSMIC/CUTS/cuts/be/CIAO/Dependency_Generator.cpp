@@ -315,8 +315,8 @@ void CUTS_Dependency_Generator::Visit_NamedType (const PICML::NamedType & type)
       // flags since both projects are going to be need for the
       // the <current_node_> to build successfully.
       node->flags_ |= (CUTS_Dependency_Node::DNF_STUB |
-                       CUTS_Dependency_Node::DNF_SVNT |
-                       CUTS_Dependency_Node::DNF_COWORKER);
+                       CUTS_Dependency_Node::DNF_SVNT /* |
+                       CUTS_Dependency_Node::DNF_COWORKER*/);
 
       this->current_node_->references_.insert (node);
     }

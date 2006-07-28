@@ -1,11 +1,6 @@
 // $Id$
 
 project : cuts_component_dnc, rt_server {
-  // -- set the appropriate flags
-  idlflags      += -Wb,export_macro=CUTS_EXEC_Export \
-                   -Wb,export_include=cuts/CUTS_exec_export.h
-  dynamicflags  += CUTS_EXEC_BUILD_DLL
-
   // -- include the required libraries
   libs += CUTS CUTS_Utils CUTS_exec
 

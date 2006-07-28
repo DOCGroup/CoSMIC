@@ -27,6 +27,7 @@ project (CUTS_UDM_CIAO) : cutslib, picml_udm {
     CUTS_Project.cpp
     Dependency_Generator.cpp
     Dependency_Graph.cpp
+    Export_File_Generator.cpp
     Predefined_Type_Map.cpp
     UDM_CIAO_Visitor.cpp
     Workspace_Generator.cpp

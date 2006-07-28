@@ -14,7 +14,7 @@
 #define _CUTS_BENCHMARK_AGENT_T_H_
 
 #include "cuts/config.h"
-#include "cuts/CUTS_svnt_export.h"
+#include "cuts/CUTS_stub_export.h"
 #include "cuts/Benchmark_Agent.h"
 #include "cuts/CUTSS.h"
 
@@ -24,7 +24,7 @@
  */
 //=============================================================================
 
-class CUTS_SVNT_Export Benchmark_Agent_i :
+class CUTS_STUB_Export Benchmark_Agent_i :
   virtual public ::POA_CUTS::Benchmark_Agent,
   public CUTS_Benchmark_Agent
 {

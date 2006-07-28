@@ -1,6 +1,7 @@
 // $Id$
 
 #include "UDM_CIAO_Visitor.h"
+#include "Export_File_Generator.h"
 #include "UmlExt.h"
 #include "Predefined_Type_Map.h"
 #include "CoWorkEr_Cache.h"
@@ -17,10 +18,10 @@
 namespace CUTS
 {
   /// The suffix for the header files.
-  static const char * HEADER_SUFFIX = ".h";
+  static const char * HEADER_SUFFIX = "_exec_i.h";
 
   /// The suffix for the source files.
-  static const char * SOURCE_SUFFIX = ".cpp";
+  static const char * SOURCE_SUFFIX = "_exec_i.cpp";
 
   static const char * EVENT_SINK_PREFIX = "push_";
   static const char * EVENT_SINK_POSTFIX = "_event_handler";
@@ -119,61 +120,110 @@ namespace CUTS
   //
   void UDM_CIAO_Visitor::Visit_RootFolder (const PICML::RootFolder & root)
   {
-    typedef std::set <PICML::InterfaceDefinitions> I_Defs_Sets;
-    I_Defs_Sets idefs = root.InterfaceDefinitions_children ();
+    typedef std::vector <PICML::ComponentImplementations> FolderSet_Set;
+    FolderSet_Set folders = root.ComponentImplementations_children ();
 
-    std::for_each (idefs.begin (),
-                   idefs.end (),
+    std::for_each (folders.begin (),
+                   folders.end (),
                    UDM_Accept_Functor <UDM_CIAO_Visitor,
-                                       I_Defs_Sets::value_type> (*this));
+                                       FolderSet_Set::value_type> (*this));
   }
 
   //
-  // Visit_InterfaceDefinitions
+  // Visit_ComponentImplementations
   //
-  void UDM_CIAO_Visitor::Visit_InterfaceDefinitions (
-    const PICML::InterfaceDefinitions & defs)
+  void UDM_CIAO_Visitor::Visit_ComponentImplementations (
+    const PICML::ComponentImplementations & impls)
   {
-    // Get all the files in this interface definitions folder.
-    typedef std::set <PICML::File> File_Set;
-    File_Set files = defs.File_kind_children ();
+    typedef std::vector <PICML::ComponentImplementationContainer> Container_Set;
+    Container_Set containers = impls.ComponentImplementationContainer_children ();
 
-    for (File_Set::iterator iter = files.begin ();
-         iter != files.end ();
-         iter ++)
-    {
-      iter->Accept (*this);
-    }
+    std::for_each (containers.begin (),
+                   containers.end (),
+                   UDM_Accept_Functor <UDM_CIAO_Visitor,
+                                       Container_Set::value_type> (*this));
   }
 
   //
-  // Visit_File
+  // Visit_ComponentImplementationContainer
   //
-  void UDM_CIAO_Visitor::Visit_File (const PICML::File & file)
+  void UDM_CIAO_Visitor::Visit_ComponentImplementationContainer (
+    const PICML::ComponentImplementationContainer & container)
   {
-    // Locate the <CUTS_Dependency_Node> for the <file>.
-    CUTS_Dependency_Node * node = 0;
-    if (!this->dependency_graph_.find_node (file.name (),
-                                            node))
+    // Save the name of the container.
+    this->container_ = container.name ();
+
+    // Visit all the monolithic implemenations in the container.
+    typedef std::vector <PICML::MonolithicImplementation> Monolithic_Set;
+    Monolithic_Set monolithics = container.MonolithicImplementation_kind_children ();
+
+    std::for_each (monolithics.begin (),
+                   monolithics.end (),
+                   UDM_Accept_Functor <UDM_CIAO_Visitor,
+                                       Monolithic_Set::value_type> (*this));
+  }
+
+  //
+  // Visit_MonolithicImplementation
+  //
+  void UDM_CIAO_Visitor::Visit_MonolithicImplementation (
+    const PICML::MonolithicImplementation & monolithic)
+  {
+    this->monolithic_ = monolithic.name ();
+    PICML::Implements implements = monolithic.dstImplements ();
+
+    if (implements != Udm::null)
+      implements.Accept (*this);
+  }
+
+  //
+  // Visit_Implements
+  //
+  void UDM_CIAO_Visitor::Visit_Implements (
+    const PICML::Implements & implements)
+  {
+    PICML::ComponentRef ref = implements.dstImplements_end ();
+    PICML::Component component = ref.ref ();
+
+    if (component != Udm::null)
+      component.Accept (*this);
+  }
+
+  //
+  // Visit_Component
+  //
+  void UDM_CIAO_Visitor::Visit_Component (const PICML::Component & component)
+  {
+    // Create the names of the component.
+    this->component_ = component.name ();
+
+    // Verify the component is indeed a CoWorkEr. If it is not then
+    // there is no need of continuing w/ the code generation. We
+    // can just skip to the next component.
+    if (!CUTS_CoWorkEr_Cache::instance ()->is_coworker (component))
     {
       return;
     }
 
-    this->node_ = node;
-
-    // We only need to continue if we have at least one <CoWorkEr>
-    // in the file.
-    if ((this->node_->flags_ & CUTS_Dependency_Node::DNF_EXEC) == 0)
+    // We need to get the dependency information for this
+    // component type.
+    CUTS_Dependency_Node * node = 0;
+    if (!this->dependency_graph_.find_node (this->component_,
+                                            this->node_))
     {
       return;
     }
 
     // Generate the header and source filename(s).
     std::ostringstream hfile;
-    hfile << this->outdir_ << "/" << file.name () << ".h" << std::ends;
+    hfile
+      << this->outdir_ << "/"
+      << this->container_ << HEADER_SUFFIX << std::ends;
 
     std::ostringstream sfile;
-    sfile << this->outdir_ << "/" << file.name () << ".cpp" << std::ends;
+    sfile
+      << this->outdir_ << "/"
+      << this->container_ << SOURCE_SUFFIX << std::ends;
 
     // Open the header and source file(s).
     this->hout_.open (hfile.str ().c_str ());
@@ -183,13 +233,17 @@ namespace CUTS
     {
       do
       {
+        std::string export = this->container_;
+        export.append ("_exec");
+        CUTS_Export_File_Generator efg (export);
+
         // Initialize the indentation implanters for the C++
         // specific files
         Indentation::Implanter <Indentation::Cxx> h_guard (this->hout_);
         Indentation::Implanter <Indentation::Cxx> s_guard (this->sout_);
 
         // Convert the filename to its uppercase equivalent.
-        std::string upper_name = file.name ();
+        std::string upper_name = this->container_;
 
         std::transform (upper_name.begin (),
                         upper_name.end (),
@@ -211,8 +265,8 @@ namespace CUTS
           << std::endl
           << "#include /**/ \"ace/pre.h\"" << std::endl
           << std::endl
-          << "#include \"cuts/CUTS_exec_export.h\"" << std::endl
-          << "#include \"" << file.name () << "_svnt.h\""
+          << "#include \"" << efg.export_file () << "\"" << std::endl
+          << "#include \"" << this->container_ << "_svnt.h\""
           << std::endl
           << std::endl
           << "#if !defined (ACE_LACKS_PRAGMA_ONCE)" << std::endl
@@ -221,7 +275,8 @@ namespace CUTS
           << std::endl
           << "#include \"tao/LocalObject.h\"" << std::endl
           << "#include \"cuts/config.h\"" << std::endl
-          << "#include \"cuts/CCM_CoWorkEr_T.h\"" << std::endl;
+          << "#include \"cuts/CCM_CoWorkEr_T.h\"" << std::endl
+          << "#include \"cuts/CCM_Factory_T.h\"" << std::endl;
 
         // Check if the current file contains InEvent and OutEvent ports,
         // and periodic actions.
@@ -265,215 +320,188 @@ namespace CUTS
           << "// $Id$"
           << std::endl
           << std::endl
-          << "#include \"" << file.name () << HEADER_SUFFIX << "\"" << std::endl
+          << "#include \"" << this->container_ << HEADER_SUFFIX << "\"" << std::endl
           << "#include \"cuts/ActivationRecord.h\"" << std::endl
           << std::endl;
 
-        // Visit the contents of the file.
-        this->visit_file_package_contents (file);
+        // Construct some predefined strings for the component.
+        std::string ccm_component = this->component_ + "_Exec";
+        std::string component_context = this->component_ + "_Context";
 
-        // Generate the header file postamble.
         this->hout_
-          << "#include /**/ \"ace/post.h\"" << std::endl
-          << std::endl
-          << "#endif   /* !defined " << hash_def.str ().c_str () << " */";
+          << "namespace CIDL_" << this->monolithic_ << "{";
+        this->sout_
+          << "namespace CIDL_" << this->monolithic_ << "{";
+
+        // Generate the component header information.
+        this->hout_
+          // Define the component.
+          << "class " << efg.export_macro () << " "
+          << this->component_ << " :" << std::endl
+          << "  public CUTS_CCM_CoWorkEr_T <" << ccm_component
+          << ", " << component_context << ">," << std::endl
+          << "  public virtual TAO_Local_RefCounted_Object {"
+
+          // Generate the typedefs for the component.
+          << "public:" << std::endl
+          << "/// Type definition for this CoWorkEr." << std::endl
+          << "typedef CUTS_CCM_CoWorkEr_T <" << std::endl
+          << "  " << ccm_component << ", "
+          << component_context << "> CoWorkEr_Type;"
+          << std::endl;
+
+        // Generate the constructor and destructor for the component.
+        this->generate_constructor ();
+        this->generate_destructor ();
+
+        // Visit the event sources for the component.
+        typedef std::set <PICML::OutEventPort> OutEventPort_Set;
+
+        OutEventPort_Set event_sources = component.OutEventPort_kind_children ();
+        if (!event_sources.empty ())
+        {
+          this->has_out_events_ = true;
+
+          std::for_each (event_sources.begin (),
+                         event_sources.end (),
+                         UDM_Accept_Functor <UDM_CIAO_Visitor,
+                                             OutEventPort_Set::value_type> (*this));
+        }
+
+        // Visit the event sinks for the component.
+        typedef std::set <PICML::InEventPort> InEventPort_Set;
+        InEventPort_Set event_sinks = component.InEventPort_kind_children ();
+
+        std::for_each (event_sinks.begin (),
+                       event_sinks.end (),
+                       UDM_Accept_Functor <
+                          UDM_CIAO_Visitor,
+                          InEventPort_Set::value_type> (*this));
+
+        // Visit the facets for the components.
+        typedef std::set <PICML::ProvidedRequestPort> ProvidedRequestPort_Set;
+        ProvidedRequestPort_Set facets =
+          component.ProvidedRequestPort_kind_children ();
+
+        std::for_each (facets.begin (),
+                       facets.end (),
+                       UDM_Accept_Functor <
+                          UDM_CIAO_Visitor,
+                          ProvidedRequestPort_Set::value_type> (*this));
+
+        // Visit the environment for the component.
+        PICML::Environment env = component.Environment_child ();
+
+        if (env != Udm::null)
+          env.Accept (*this);
+
+        // Generate the SessionComponent methods.
+        this->generate_set_session_context (component);
+        this->generate_ciao_preactivate (component);
+        this->generate_ccm_activate (component);
+        this->generate_ciao_postactivate (component);
+        this->generate_ccm_passivate (component);
+        this->generate_ccm_remove (component);
+
+        // Generate the private section of the class.
+        this->hout_ << "private:" << std::endl;
+
+        typedef std::set <PICML::PeriodicAction> Periodic_Set;
+        Periodic_Set periodic = component.PeriodicAction_kind_children ();
+
+        std::for_each (periodic.begin (),
+                       periodic.end (),
+                       UDM_Accept_Functor <UDM_CIAO_Visitor,
+                                           Periodic_Set::value_type> (*this));
+
+        this->generate_init (component);
+        this->generate_fini (component);
+        this->generate_member_variables (component);
+
+        // Close off the class definition.
+        this->hout_ << "};";
+
+        // Reset the factory generation flag.
+        this->generated_factory_ = false;
+
+        // Visit the home for this component.
+        typedef std::set <PICML::ManagesComponent> Manages_Set;
+        Manages_Set manages = component.srcManagesComponent ();
+
+        if (manages.size () > 0)
+        {
+          manages.begin ()->Accept (*this);
+        }
+        else
+        {
+          // Maybe the factory is located in another location.
+          typedef std::set <PICML::ComponentRef> ComponentRef_Set;
+          ComponentRef_Set refs = component.referedbyComponentRef ();
+
+          std::for_each (refs.begin (),
+                         refs.end (),
+                         UDM_Accept_Functor <
+                            UDM_CIAO_Visitor,
+                            ComponentRef_Set::value_type> (*this));
+
+          if (!this->generated_factory_)
+          {
+            // We need to generate a default factory for the component.
+            std::string factory = this->component_;
+            factory.append ("PICMLDefaultHome");
+
+            this->generate_factory (factory);
+          }
+        }
+
+        // Close off the namespace definition.
+        this->hout_ << "}";
+        this->sout_ << "}";
+
+        // Generate the closing hash def for the file.
+        this->hout_
+          << "#endif  /* !defined " << hash_def.str ().c_str ()
+          << "*/" << std::endl;
       } while (0);
 
       // Insert a extra line at the end of the file.
       this->hout_ << std::endl;
       this->sout_ << std::endl;
 
-      // Close the source and header files.
+      // Reset all the data for this component.
+      this->reset_component_info ();
+    }
+
+    if (this->hout_.is_open ())
       this->hout_.close ();
+    if (this->sout_.is_open ())
       this->sout_.close ();
 
-      // Generate the project for this file.
-      this->reset_file_info ();
-    }
   }
 
   //
-  // Visit_Package
+  // Visit_ComponentRef
   //
-  void UDM_CIAO_Visitor::Visit_Package (const PICML::Package & package)
+  void UDM_CIAO_Visitor::Visit_ComponentRef (const PICML::ComponentRef & ref)
   {
-    // Begin a new namespace.
-    this->hout_
-      << "namespace " << package.name ()
-      << "{";
-    this->sout_
-      << "namespace " << package.name ()
-      << "{";
+    PICML::MgaObject parent = ref.parent ();
+    std::string type = parent.type ().name ();
 
-    this->scope_.push_back (package.name ());
-    this->visit_file_package_contents (package);
-    this->scope_.pop_back ();
-
-    // End the current namespace.
-    this->hout_
-      << "}";
-    this->sout_
-      << "}";
-  }
-
-  //
-  // visit_file_package_contents
-  //
-  void UDM_CIAO_Visitor::visit_file_package_contents (const Udm::Object & obj)
-  {
-    // Visit all the components at this level.
-    std::set <PICML::Component> components =
-      Udm::ChildrenAttr <PICML::Component> (obj.__impl (), Udm::NULLCHILDROLE);
-
-    for (std::set <PICML::Component>::iterator iter = components.begin ();
-         iter != components.end ();
-         iter ++)
-    {
-      iter->Accept (*this);
-    }
-
-    // Visit all the packages at this level.
-    std::set <PICML::Package> packages =
-      Udm::ChildrenAttr <PICML::Package> (obj.__impl (), Udm::NULLCHILDROLE);
-
-    for (std::set <PICML::Package>::iterator iter = packages.begin ();
-         iter != packages.end ();
-         iter ++)
-    {
-      iter->Accept (*this);
-    }
-  }
-
-  //
-  // Visit_Component
-  //
-  void UDM_CIAO_Visitor::Visit_Component (const PICML::Component & component)
-  {
-    // Verify the component is indeed a CoWorkEr. If it is not then
-    // there is no need of continuing w/ the code generation. We
-    // can just skip to the next component.
-    if (!CUTS_CoWorkEr_Cache::instance ()->is_coworker (component))
+    if (type != (std::string)PICML::Package::meta.name () &&
+        type != (std::string)PICML::File::meta.name ())
     {
       return;
     }
 
-    // Create the names of the component.
-    this->component_ = component.name ();
+    // Since this is a reference located in the interface definitions
+    // we should try and see if there is a home.
+    PICML::Component component = ref.ref ();
 
-    // Construct some predefined strings for the component.
-    std::string ccm_component = this->component_ + "_Exec";
-    std::string component_context = this->component_ + "_Context";
-
-    this->hout_
-      << "namespace CIDL_" << this->component_ << "_Impl {";
-    this->sout_
-      << "namespace CIDL_" << this->component_ << "_Impl {";
-
-    // Generate the component header information.
-    this->hout_
-      // Define the component.
-      << "class CUTS_EXEC_Export " << this->component_ << " :"
-      << std::endl
-      << "\tpublic CUTS_CCM_CoWorkEr_T <" << ccm_component
-      << ", " << component_context << ">," << std::endl
-      << "\tpublic virtual TAO_Local_RefCounted_Object {"
-
-      // Generate the typedefs for the component.
-      << "public:" << std::endl
-      << "/// Type definition for this CoWorkEr." << std::endl
-      << "typedef CUTS_CCM_CoWorkEr_T <" << std::endl
-      << "\t" << ccm_component << ", "
-      << component_context << "> CoWorkEr_Type;"
-      << std::endl;
-
-    // Generate the constructor and destructor for the component.
-    this->generate_constructor ();
-    this->generate_destructor ();
-
-    // Visit the event sources for the component.
-    typedef std::set <PICML::OutEventPort> OutEventPort_Set;
-
-    OutEventPort_Set event_sources = component.OutEventPort_kind_children ();
-    if (!event_sources.empty ())
-    {
-      this->has_out_events_ = true;
-
-      std::for_each (event_sources.begin (),
-                     event_sources.end (),
-                     UDM_Accept_Functor <UDM_CIAO_Visitor,
-                                         OutEventPort_Set::value_type> (*this));
-    }
-
-    // Visit the event sinks for the component.
-    typedef std::set <PICML::InEventPort> InEventPort_Set;
-    InEventPort_Set event_sinks = component.InEventPort_kind_children ();
-
-    std::for_each (
-      event_sinks.begin (),
-      event_sinks.end (),
-      UDM_Accept_Functor <UDM_CIAO_Visitor,
-                          InEventPort_Set::value_type> (*this));
-
-    // Visit the facets for the components.
-    typedef std::set <PICML::ProvidedRequestPort> ProvidedRequestPort_Set;
-    ProvidedRequestPort_Set facets =
-      component.ProvidedRequestPort_kind_children ();
-
-    std::for_each (
-      facets.begin (),
-      facets.end (),
-      UDM_Accept_Functor <UDM_CIAO_Visitor,
-                          ProvidedRequestPort_Set::value_type> (*this));
-
-    // Visit the environment for the component.
-    PICML::Environment env = component.Environment_child ();
-
-    if (env)
-    {
-      env.Accept (*this);
-    }
-
-    // Generate the SessionComponent methods.
-    this->generate_set_session_context (component);
-    this->generate_ciao_preactivate (component);
-    this->generate_ccm_activate (component);
-    this->generate_ciao_postactivate (component);
-    this->generate_ccm_passivate (component);
-    this->generate_ccm_remove (component);
-
-    // Generate the private section of the class.
-    this->hout_ << "private:" << std::endl;
-
-    typedef std::set <PICML::PeriodicAction> Periodic_Set;
-    Periodic_Set periodic = component.PeriodicAction_kind_children ();
-
-    std::for_each (periodic.begin (),
-                   periodic.end (),
-                   UDM_Accept_Functor <UDM_CIAO_Visitor,
-                                       Periodic_Set::value_type> (*this));
-
-    this->generate_init (component);
-    this->generate_fini (component);
-    this->generate_member_variables (component);
-
-    // Close off the class definition.
-    this->hout_ << "};";
-
-    // Visit the home for this component.
     typedef std::set <PICML::ManagesComponent> Manages_Set;
     Manages_Set manages = component.srcManagesComponent ();
 
-    std::for_each (manages.begin (),
-                   manages.end (),
-                   UDM_Accept_Functor <UDM_CIAO_Visitor,
-                                       Manages_Set::value_type> (*this));
-
-    // Close off the namespace definition.
-    this->hout_ << "}";
-    this->sout_ << "}";
-
-    // Reset all the data for this component.
-    this->reset_component_info ();
+    if (manages.size () > 0)
+      manages.begin ()->Accept (*this);
   }
 
   //
@@ -492,66 +520,70 @@ namespace CUTS
   void UDM_CIAO_Visitor::Visit_ComponentFactory (
     const PICML::ComponentFactory & factory)
   {
-    std::string factory_name = factory.name ();
+    this->generate_factory (factory.name ());
+  }
+
+  //
+  // generate_factory
+  //
+  void UDM_CIAO_Visitor::generate_factory (const std::string & factory)
+  {
+    // This method should only be visited once per component. Therefore
+    // we have a flag that will prevent this from happening.
+    if (this->generated_factory_)
+      return;
+
+    this->generated_factory_ = true;
+
+    // Construct the factory implemenation name.
+    std::string factory_i = factory;
+    factory_i.append ("_i");
+
+    std::string export = this->container_;
+    export.append ("_exec");
+    CUTS_Export_File_Generator efg (export);
+
+    std::string create_method ("create_");
+    create_method.append (factory);
+    create_method.append ("_Impl");
 
     this->hout_
       // Define the component home.
-      << "class CUTS_EXEC_Export " << factory_name << " :" << std::endl
-      << "  virtual public " << this->component_
-      << "Home_Exec," << std::endl
-      << "\tvirtual public TAO_Local_RefCounted_Object {"
+      << "class " << efg.export_macro () << " "
+      << factory_i << " :" << std::endl
+      << "  virtual public CUTS_CCM_Factory_T <" << factory << "_Exec, "
+      << this->component_ << "> {"
       << "public:" << std::endl
+
       // Generate the constructor and destructor.
-      << factory_name << " (void);"
-      << "virtual ~" << factory_name << " (void);"
+      << "// Default constructor." << std::endl
+      << factory_i << " (void);"
       << std::endl
-      // Generate the creation method.
-      << "virtual ::Components::EnterpriseComponent_ptr create ("
-      << "ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)" << std::endl
-      << "ACE_THROW_SPEC ((::CORBA::SystemException, ::Components::CCMException));"
-      // Finish the class declaration.
-      << "};";
+      << "// Destructor." << std::endl
+      << "virtual ~" << factory_i << " (void);"
+      << "};"
 
-    // Generate the scope for the component factory.
-    this->generate_scope ("_");
-
-    this->hout_
-      << "extern \"C\" CUTS_EXEC_Export "
-      << "::Components::HomeExecutorBase_ptr" << std::endl
-      << "create_" << this->temp_str_ << factory_name << "_Impl (void);";
+      // Generate the export method for the factory.
+      << "CUTS_FACTORY_EXPORT_DECLARE (" << efg.export_macro ()
+      << "," << std::endl
+      << create_method << ");";
 
     this->sout_
       // Generate the constructor/destructor.
-      << factory_name << "::" << factory_name << " (void) { }"
-      << factory_name << "::~" << factory_name << " (void) { }"
+      << "//" << std::endl
+      << "// " << factory_i << std::endl
+      << "//" << std::endl
+      << factory_i << "::" << factory_i << " (void) { }"
 
-      // Generate the creation method for the component.
-      << "::Components::EnterpriseComponent_ptr" << std::endl
-      << factory_name << "::create (ACE_ENV_SINGLE_ARG_DECL)" << std::endl
-      << "ACE_THROW_SPEC ((::CORBA::SystemException, ::Components::CCMException)) {"
-      << "::Components::EnterpriseComponent_ptr retval =" << std::endl
-      << "\t::Components::EnterpriseComponent::_nil ();" << std::endl
-      << "ACE_NEW_THROW_EX (retval, " << std::endl
-      << this->component_ << "," << std::endl << "CORBA::NO_MEMORY ());"
-      << std::endl
-      << "ACE_CHECK_RETURN (::Components::EnterpriseComponent::_nil ());"
-      << std::endl
-      << "return retval;"
-      << "}";
+      << "//" << std::endl
+      << "// ~" << factory_i << std::endl
+      << "//" << std::endl
+      << factory_i << "::~" << factory_i << " (void) { }"
 
-    this->sout_
-      << "extern \"C\" CUTS_EXEC_Export "
-      << "::Components::HomeExecutorBase_ptr" << std::endl
-      << "create_" << this->temp_str_ << factory_name << "_Impl"
-      << " (void) {"
-      << "::Components::HomeExecutorBase_ptr retval =" << std::endl
-      << "\t::Components::HomeExecutorBase::_nil ();" << std::endl
-      << "ACE_NEW_RETURN (" << "retval, " << std::endl
-      << factory_name << "," << std::endl
-      << "::Components::HomeExecutorBase::_nil ());"
-      << std::endl
-      << "return retval;"
-      << "}";
+      // Generate the export method implementation for the factory.
+      << "CUTS_FACTORY_EXPORT_IMPLEMENT ("
+      << factory_i << "," << std::endl
+      << create_method << ");";
   }
 
   //

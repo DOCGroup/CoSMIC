@@ -25,6 +25,8 @@
 
 // Forward decl.
 class CUTS_Dependency_Graph;
+
+// Forward decl.
 class CUTS_Dependency_Node;
 
 namespace CUTS
@@ -56,17 +58,11 @@ namespace CUTS
     /// Visit the RootFolder of a PICML model.
     void Visit_RootFolder (const PICML::RootFolder &);
 
-    /// Visit the InterfaceDefinitions folder in a PICML model.
-    void Visit_InterfaceDefinitions (const PICML::InterfaceDefinitions & );
-
-    /// Visit a File in a PICML model.
-    void Visit_File (const PICML::File &);
-
-    /// Visit a Package in the PICML model.
-    void Visit_Package (const PICML::Package &);
-
     /// Visit a Component in the PICML model.
     void Visit_Component (const PICML::Component &);
+
+    /// Visit a Component in the PICML model.
+    void Visit_ComponentRef (const PICML::ComponentRef &);
 
     void Visit_WorkerType (const PICML::WorkerType &);
 
@@ -114,9 +110,18 @@ namespace CUTS
 
     void Visit_Object (const PICML::Object &);
 
-  private:
-    void visit_file_package_contents (const Udm::Object &);
+    void Visit_ComponentImplementations (
+      const PICML::ComponentImplementations &);
 
+    void Visit_ComponentImplementationContainer (
+      const PICML::ComponentImplementationContainer &);
+
+    void Visit_MonolithicImplementation (
+      const PICML::MonolithicImplementation &);
+
+    void Visit_Implements (const PICML::Implements &);
+
+  private:
     void generate_constructor (void);
 
     void generate_destructor (void);
@@ -143,6 +148,8 @@ namespace CUTS
 
     void generate_scope (const PICML::MgaObject &);
 
+    void generate_factory (const std::string & factory);
+
     void reset_component_info (void);
 
     void reset_file_info (void);
@@ -154,7 +161,7 @@ namespace CUTS
     const CUTS_Dependency_Graph & dependency_graph_;
 
     /// The current node in the graph.
-    const CUTS_Dependency_Node * node_;
+    CUTS_Dependency_Node * node_;
 
     /// Output stream for the header file.
     std::ofstream hout_;
@@ -168,6 +175,9 @@ namespace CUTS
     /// Name of the current component.
     std::string component_;
 
+    std::string container_;
+
+    std::string monolithic_;
 
     typedef std::set <std::string> String_Set;
 
@@ -206,6 +216,8 @@ namespace CUTS
     bool ignore_effects_;
 
     size_t depth_;
+
+    bool generated_factory_;
   };
 }
 

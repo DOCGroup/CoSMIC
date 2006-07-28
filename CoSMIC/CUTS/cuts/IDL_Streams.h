@@ -21,7 +21,7 @@
 #pragma once
 #endif
 
-#include "cuts/CUTS_svnt_export.h"
+#include "cuts/CUTS_stub_export.h"
 #include "cuts/CUTSC.h"
 #include "cuts/Benchmark_Agent.h"
 #include "cuts/Port_Measurement.h"
@@ -38,31 +38,31 @@ namespace CUTS
   //===========================================================================
   // extraction operations
 
-  void CUTS_SVNT_Export operator >> (const Time_Sample &,
+  void CUTS_STUB_Export operator >> (const Time_Sample &,
                                      CUTS_Time_Metric &);
 
-  void CUTS_SVNT_Export operator >> (const Mapped_Port_Measurement &,
+  void CUTS_STUB_Export operator >> (const Mapped_Port_Measurement &,
                                      CUTS_Port_Metric &);
 
-  void CUTS_SVNT_Export operator >> (const Benchmark_Data_var &,
+  void CUTS_STUB_Export operator >> (const Benchmark_Data_var &,
                                      CUTS_System_Metric &);
 
   //===========================================================================
   // insertion operations
 
-  void CUTS_SVNT_Export operator << (Port_Measurement_Seq & pms,
+  void CUTS_STUB_Export operator << (Port_Measurement_Seq & pms,
                                      const CUTS_Port_Agent_Set &);
 
-  void CUTS_SVNT_Export operator << (Mapped_Port_Measurement_Seq &,
+  void CUTS_STUB_Export operator << (Mapped_Port_Measurement_Seq &,
                                      CUTS_Port_Measurement_Map &);
 
-  void CUTS_SVNT_Export operator << (Mapped_Port_Measurement &,
+  void CUTS_STUB_Export operator << (Mapped_Port_Measurement &,
                                      const CUTS_Port_Measurement &);
 
-  void CUTS_SVNT_Export operator << (Exit_Point_Time_Seq &,
+  void CUTS_STUB_Export operator << (Exit_Point_Time_Seq &,
                                      const CUTS_Port_Measurement::Exit_Points &);
 
-  void CUTS_SVNT_Export operator << (Time_Sample &,
+  void CUTS_STUB_Export operator << (Time_Sample &,
                                      const CUTS_Time_Measurement &);
 }
 

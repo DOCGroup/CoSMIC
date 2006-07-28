@@ -1,3 +1,43 @@
+Fri Jul 28 02:43:06 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Benchmark_Agent_i.h:
+        * cuts/IDL_Streams.h:
+
+          - Changed the export macro name.
+          - Moved sources files to a CUTS_stub project.
+
+        * cuts/CCM_Factory_T.h:
+        * cuts/CCM_Factory_T.cpp:
+
+          Template class that can be parameterized by the home executor
+          and component executor types to simplify code generation and
+          guarantee commonality between all factories.
+
+        * cuts/CUTS.mpc:
+
+          Removed the CUTS_svnt project and placed all files client/server
+          files in CUTS_stub project to be consistent with what the
+          workspace generator expects.
+
+        * cuts/be/CIAO/Dependency_Generator.cpp:
+        * cuts/be/CIAO/Export_File_Generator.h:
+        * cuts/be/CIAO/Export_File_Generator.cpp:
+        * cuts/be/CIAO/UDM_CIAO_Visitor.h:
+        * cuts/be/CIAO/UDM_CIAO_Visitor.cpp:
+        * cuts/be/CIAO/UDM_CIAO_Visitor.mpc:
+        * cuts/be/CIAO/Workspace_Generator.h:
+        * cuts/be/CIAO/Workspace_Generator.cpp:
+
+          Updated the intepreter to be compliant with the new CIDL
+          interpreter, e.g., enters from the ComponentImplemenations.
+
+        * etc/config/cuts_coworker_exec.mpb:
+        * etc/config/cuts_coworker_stub.mpb:
+        * etc/config/cuts_coworker_svnt.mpb:
+
+          - Added new base projects.
+          - Removed idlflags and cildflag definitions.
+
 Tue Jul 25 22:43:33 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CIAO/Dependency_Generator.cpp:
