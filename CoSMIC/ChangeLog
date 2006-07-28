@@ -1,3 +1,10 @@
+Fri Jul 28 16:38:19 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/CIDL_Interpreter/Cidlc_Visitor.cpp:
+
+          Fixed build error on vc8 resulting from insert () operation
+          when constructing the hashdef for the CIDL file.
+          
 Fri Jul 28 04:37:56 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/examples/SLICE/SLICE.xme:

@@ -261,7 +261,7 @@ namespace PICML
                       hashdef.begin (),
                       toupper);
 
-      hashdef.insert (0, '_');
+      hashdef.insert (0, 1, '_');
       hashdef.append ("_CIDL_");
 
       // Generate the preamble.
