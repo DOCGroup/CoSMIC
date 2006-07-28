@@ -262,7 +262,8 @@ void RawComponent::verify_uuid (IMgaFCO * _fco)
   CComBSTR uuid_bstr;
   VERIFY_RESULT (uuid_attr->get_StringValue (&uuid_bstr));
 
-  if (PICML::ValidUuid (std::string (CW2A (uuid_bstr).m_szBuffer)))
+  CW2A uuid_str (uuid_bstr);
+  if (PICML::ValidUuid (std::string (uuid_str)))
     return;
 
   try

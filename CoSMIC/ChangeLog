@@ -1,10 +1,20 @@
+Fri Jul 28 17:11:49 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/UUIDManager/RawComponent.cpp (verify_uuid):
+        
+          Fixed bug in UUID manager that was causing an infinite loop
+          when a component was added to the model. It was a result
+          of using CW2A () incorrectly.
+          
+          Currently, this bug was only present in the vc8 version.
+
 Fri Jul 28 16:38:19 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/CIDL_Interpreter/Cidlc_Visitor.cpp:
 
           Fixed build error on vc8 resulting from insert () operation
           when constructing the hashdef for the CIDL file.
-          
+
 Fri Jul 28 04:37:56 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/examples/SLICE/SLICE.xme:
