@@ -1,4 +1,4 @@
-/* Generated on Tue Jul 25 22:52:12 2006 */
+/* Generated on Sat Jul 29 22:41:36 2006 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -55,6 +55,110 @@ public class Documentation extends MgaObject
 	 * @return  An instance of the class <code>Documentation</code>
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
+	public static Documentation create(Operation parent) 
+		throws UdmException 
+	{
+		Diagram metaDiagram = parent.getDiagram();
+		return new Documentation(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
+	}
+
+	/**
+	 * Creates an instance of the class in the container specified by the parameter. 
+	 * @param  parent The parent container
+	 * @return  An instance of the class <code>Documentation</code>
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public static Documentation create(Binding parent) 
+		throws UdmException 
+	{
+		Diagram metaDiagram = parent.getDiagram();
+		return new Documentation(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
+	}
+
+	/**
+	 * Creates an instance of the class in the container specified by the parameter. 
+	 * @param  parent The parent container
+	 * @return  An instance of the class <code>Documentation</code>
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public static Documentation create(BindingOperation parent) 
+		throws UdmException 
+	{
+		Diagram metaDiagram = parent.getDiagram();
+		return new Documentation(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
+	}
+
+	/**
+	 * Creates an instance of the class in the container specified by the parameter. 
+	 * @param  parent The parent container
+	 * @return  An instance of the class <code>Documentation</code>
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public static Documentation create(Port parent) 
+		throws UdmException 
+	{
+		Diagram metaDiagram = parent.getDiagram();
+		return new Documentation(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
+	}
+
+	/**
+	 * Creates an instance of the class in the container specified by the parameter. 
+	 * @param  parent The parent container
+	 * @return  An instance of the class <code>Documentation</code>
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public static Documentation create(Types parent) 
+		throws UdmException 
+	{
+		Diagram metaDiagram = parent.getDiagram();
+		return new Documentation(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
+	}
+
+	/**
+	 * Creates an instance of the class in the container specified by the parameter. 
+	 * @param  parent The parent container
+	 * @return  An instance of the class <code>Documentation</code>
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public static Documentation create(Definitions parent) 
+		throws UdmException 
+	{
+		Diagram metaDiagram = parent.getDiagram();
+		return new Documentation(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
+	}
+
+	/**
+	 * Creates an instance of the class in the container specified by the parameter. 
+	 * @param  parent The parent container
+	 * @return  An instance of the class <code>Documentation</code>
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public static Documentation create(PortType parent) 
+		throws UdmException 
+	{
+		Diagram metaDiagram = parent.getDiagram();
+		return new Documentation(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
+	}
+
+	/**
+	 * Creates an instance of the class in the container specified by the parameter. 
+	 * @param  parent The parent container
+	 * @return  An instance of the class <code>Documentation</code>
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public static Documentation create(Import parent) 
+		throws UdmException 
+	{
+		Diagram metaDiagram = parent.getDiagram();
+		return new Documentation(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
+	}
+
+	/**
+	 * Creates an instance of the class in the container specified by the parameter. 
+	 * @param  parent The parent container
+	 * @return  An instance of the class <code>Documentation</code>
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
 	public static Documentation create(Fault parent) 
 		throws UdmException 
 	{
@@ -82,110 +186,6 @@ public class Documentation extends MgaObject
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
 	public static Documentation create(Input parent) 
-		throws UdmException 
-	{
-		Diagram metaDiagram = parent.getDiagram();
-		return new Documentation(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
-	}
-
-	/**
-	 * Creates an instance of the class in the container specified by the parameter. 
-	 * @param  parent The parent container
-	 * @return  An instance of the class <code>Documentation</code>
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public static Documentation create(Definitions parent) 
-		throws UdmException 
-	{
-		Diagram metaDiagram = parent.getDiagram();
-		return new Documentation(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
-	}
-
-	/**
-	 * Creates an instance of the class in the container specified by the parameter. 
-	 * @param  parent The parent container
-	 * @return  An instance of the class <code>Documentation</code>
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public static Documentation create(Types parent) 
-		throws UdmException 
-	{
-		Diagram metaDiagram = parent.getDiagram();
-		return new Documentation(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
-	}
-
-	/**
-	 * Creates an instance of the class in the container specified by the parameter. 
-	 * @param  parent The parent container
-	 * @return  An instance of the class <code>Documentation</code>
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public static Documentation create(PortType parent) 
-		throws UdmException 
-	{
-		Diagram metaDiagram = parent.getDiagram();
-		return new Documentation(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
-	}
-
-	/**
-	 * Creates an instance of the class in the container specified by the parameter. 
-	 * @param  parent The parent container
-	 * @return  An instance of the class <code>Documentation</code>
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public static Documentation create(Operation parent) 
-		throws UdmException 
-	{
-		Diagram metaDiagram = parent.getDiagram();
-		return new Documentation(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
-	}
-
-	/**
-	 * Creates an instance of the class in the container specified by the parameter. 
-	 * @param  parent The parent container
-	 * @return  An instance of the class <code>Documentation</code>
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public static Documentation create(Binding parent) 
-		throws UdmException 
-	{
-		Diagram metaDiagram = parent.getDiagram();
-		return new Documentation(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
-	}
-
-	/**
-	 * Creates an instance of the class in the container specified by the parameter. 
-	 * @param  parent The parent container
-	 * @return  An instance of the class <code>Documentation</code>
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public static Documentation create(Port parent) 
-		throws UdmException 
-	{
-		Diagram metaDiagram = parent.getDiagram();
-		return new Documentation(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
-	}
-
-	/**
-	 * Creates an instance of the class in the container specified by the parameter. 
-	 * @param  parent The parent container
-	 * @return  An instance of the class <code>Documentation</code>
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public static Documentation create(BindingOperation parent) 
-		throws UdmException 
-	{
-		Diagram metaDiagram = parent.getDiagram();
-		return new Documentation(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
-	}
-
-	/**
-	 * Creates an instance of the class in the container specified by the parameter. 
-	 * @param  parent The parent container
-	 * @return  An instance of the class <code>Documentation</code>
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public static Documentation create(Import parent) 
 		throws UdmException 
 	{
 		Diagram metaDiagram = parent.getDiagram();

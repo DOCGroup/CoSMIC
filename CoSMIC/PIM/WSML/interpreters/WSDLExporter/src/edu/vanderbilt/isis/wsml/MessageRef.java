@@ -1,4 +1,4 @@
-/* Generated on Tue Jul 25 22:52:12 2006 */
+/* Generated on Sat Jul 29 22:41:36 2006 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -82,30 +82,30 @@ public class MessageRef extends MgaObject
 	/* Associations */
 
 	/*
-	 * Asoociation with role name <code>srcHeaderMessage</code>.
+	 * Asoociation with role name <code>ref</code>.
 	 */
 
 	/**
-	 * Sets the other end of the association with role name <code>srcHeaderMessage</code>.
-	 * @param a The other end of the association
+	 * Sets the other ends of the association with role name <code>ref</code>.
+	 * @param a The other ends of the association
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public void setsrcHeaderMessage(HeaderMessage a)
+	public void setref(Message[] a)
 		throws UdmException
 	{
-		setAssociation("srcHeaderMessage", a, UdmHelper.CLASS_FROM_TARGET);
+		setAssociation("ref", new UdmPseudoObjectContainer(a), UdmHelper.TARGET_FROM_PEER);
 	}
 
 	/**
-	 * Returns the other end of the association with role name <code>srcHeaderMessage</code>.
-	 * @return The other end of the association
+	 * Returns the other ends of the association with role name <code>ref</code>.
+	 * @return The other ends of the association
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public HeaderMessage getsrcHeaderMessage()
+	public Message[] getref()
 		throws UdmException
 	{
-		UdmPseudoObject result = getSingleAssociatedObject("srcHeaderMessage", UdmHelper.CLASS_FROM_TARGET);
-		return (result == null) ? null : new HeaderMessage(result, getDiagram());
+		UdmPseudoObjectContainer objs = getAssociation("ref", UdmHelper.TARGET_FROM_PEER);
+		return (Message[]) Utils.wrapWithSubclass(objs, Message.class, getDiagram());
 	}
 
 	/*
@@ -133,33 +133,6 @@ public class MessageRef extends MgaObject
 	{
 		UdmPseudoObject result = getSingleAssociatedObject("srcFaultMessage", UdmHelper.CLASS_FROM_TARGET);
 		return (result == null) ? null : new FaultMessage(result, getDiagram());
-	}
-
-	/*
-	 * Asoociation with role name <code>ref</code>.
-	 */
-
-	/**
-	 * Sets the other ends of the association with role name <code>ref</code>.
-	 * @param a The other ends of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public void setref(Message[] a)
-		throws UdmException
-	{
-		setAssociation("ref", new UdmPseudoObjectContainer(a), UdmHelper.TARGET_FROM_PEER);
-	}
-
-	/**
-	 * Returns the other ends of the association with role name <code>ref</code>.
-	 * @return The other ends of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public Message[] getref()
-		throws UdmException
-	{
-		UdmPseudoObjectContainer objs = getAssociation("ref", UdmHelper.TARGET_FROM_PEER);
-		return (Message[]) Utils.wrapWithSubclass(objs, Message.class, getDiagram());
 	}
 
 	/*
@@ -214,6 +187,33 @@ public class MessageRef extends MgaObject
 	{
 		UdmPseudoObject result = getSingleAssociatedObject("srcInputMessage", UdmHelper.CLASS_FROM_TARGET);
 		return (result == null) ? null : new InputMessage(result, getDiagram());
+	}
+
+	/*
+	 * Asoociation with role name <code>srcHeaderMessage</code>.
+	 */
+
+	/**
+	 * Sets the other end of the association with role name <code>srcHeaderMessage</code>.
+	 * @param a The other end of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public void setsrcHeaderMessage(HeaderMessage a)
+		throws UdmException
+	{
+		setAssociation("srcHeaderMessage", a, UdmHelper.CLASS_FROM_TARGET);
+	}
+
+	/**
+	 * Returns the other end of the association with role name <code>srcHeaderMessage</code>.
+	 * @return The other end of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public HeaderMessage getsrcHeaderMessage()
+		throws UdmException
+	{
+		UdmPseudoObject result = getSingleAssociatedObject("srcHeaderMessage", UdmHelper.CLASS_FROM_TARGET);
+		return (result == null) ? null : new HeaderMessage(result, getDiagram());
 	}
 
 }

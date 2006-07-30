@@ -1,4 +1,4 @@
-/* Generated on Tue Jul 25 22:52:12 2006 */
+/* Generated on Sat Jul 29 22:41:36 2006 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -73,26 +73,26 @@ public class SOAPFault extends ExtensibleMessage
 	 */
 
 	/**
-	 * Sets the other ends of the association with role name <code>srcSOAPFaultExtension</code>.
-	 * @param a The other ends of the association
+	 * Sets the other end of the association with role name <code>srcSOAPFaultExtension</code>.
+	 * @param a The other end of the association
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public void setsrcSOAPFaultExtension(SOAPFaultExtension[] a)
+	public void setsrcSOAPFaultExtension(SOAPFaultExtension a)
 		throws UdmException
 	{
-		setAssociation("srcSOAPFaultExtension", new UdmPseudoObjectContainer(a), UdmHelper.CLASS_FROM_TARGET);
+		setAssociation("srcSOAPFaultExtension", a, UdmHelper.CLASS_FROM_TARGET);
 	}
 
 	/**
-	 * Returns the other ends of the association with role name <code>srcSOAPFaultExtension</code>.
-	 * @return The other ends of the association
+	 * Returns the other end of the association with role name <code>srcSOAPFaultExtension</code>.
+	 * @return The other end of the association
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public SOAPFaultExtension[] getsrcSOAPFaultExtension()
+	public SOAPFaultExtension getsrcSOAPFaultExtension()
 		throws UdmException
 	{
-		UdmPseudoObjectContainer objs = getAssociation("srcSOAPFaultExtension", UdmHelper.CLASS_FROM_TARGET);
-		return (SOAPFaultExtension[]) Utils.wrapWithSubclass(objs, SOAPFaultExtension.class, getDiagram());
+		UdmPseudoObject result = getSingleAssociatedObject("srcSOAPFaultExtension", UdmHelper.CLASS_FROM_TARGET);
+		return (result == null) ? null : new SOAPFaultExtension(result, getDiagram());
 	}
 
 }

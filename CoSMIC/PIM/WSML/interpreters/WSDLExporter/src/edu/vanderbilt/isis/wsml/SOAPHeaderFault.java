@@ -1,4 +1,4 @@
-/* Generated on Tue Jul 25 22:52:12 2006 */
+/* Generated on Sat Jul 29 22:41:36 2006 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -55,7 +55,7 @@ public class SOAPHeaderFault extends SOAPHeaders
 	 * @return  An instance of the class <code>SOAPHeaderFault</code>
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public static SOAPHeaderFault create(SOAPHeader parent) 
+	public static SOAPHeaderFault create(BindingOperation parent) 
 		throws UdmException 
 	{
 		Diagram metaDiagram = parent.getDiagram();
@@ -68,7 +68,7 @@ public class SOAPHeaderFault extends SOAPHeaders
 	 * @return  An instance of the class <code>SOAPHeaderFault</code>
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public static SOAPHeaderFault create(BindingOperation parent) 
+	public static SOAPHeaderFault create(SOAPHeader parent) 
 		throws UdmException 
 	{
 		Diagram metaDiagram = parent.getDiagram();

@@ -1,4 +1,4 @@
-/* Generated on Tue Jul 25 22:52:12 2006 */
+/* Generated on Sat Jul 29 22:41:36 2006 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -55,7 +55,7 @@ public class Schema extends MgaObject
 	 * @return  An instance of the class <code>Schema</code>
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public static Schema create(SchemaReference parent) 
+	public static Schema create(Types parent) 
 		throws UdmException 
 	{
 		Diagram metaDiagram = parent.getDiagram();
@@ -68,7 +68,7 @@ public class Schema extends MgaObject
 	 * @return  An instance of the class <code>Schema</code>
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public static Schema create(Types parent) 
+	public static Schema create(SchemaReference parent) 
 		throws UdmException 
 	{
 		Diagram metaDiagram = parent.getDiagram();
@@ -89,23 +89,6 @@ public class Schema extends MgaObject
 	}
 
 	/* Accessing children */
-
-	/**
-	 * Returns all the children of type <code>Element<code> of this container. 
-	 * @return  The children in an array
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public Element[] getElementChildren()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, Element.META_TYPE, Element.META_TYPE_NS);
-		Element[] res = new Element[container.getLength()];
-		for (int i=0; i < container.getLength(); i++) 
-		{
-			res[i] = (Element)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
-		}
-		return res;
-	}
 
 	/**
 	 * Returns all the children of type <code>SchemaReference<code> of this container. 
@@ -154,6 +137,23 @@ public class Schema extends MgaObject
 		for (int i=0; i < container.getLength(); i++) 
 		{
 			res[i] = (Attribute)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+		}
+		return res;
+	}
+
+	/**
+	 * Returns all the children of type <code>Element<code> of this container. 
+	 * @return  The children in an array
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public Element[] getElementChildren()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, Element.META_TYPE, Element.META_TYPE_NS);
+		Element[] res = new Element[container.getLength()];
+		for (int i=0; i < container.getLength(); i++) 
+		{
+			res[i] = (Element)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
 		}
 		return res;
 	}

@@ -1,4 +1,4 @@
-/* Generated on Tue Jul 25 22:52:12 2006 */
+/* Generated on Sat Jul 29 22:41:36 2006 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -69,33 +69,6 @@ public class Part extends MgaObject
 	/* Associations */
 
 	/*
-	 * Asoociation with role name <code>ref</code>.
-	 */
-
-	/**
-	 * Sets the other ends of the association with role name <code>ref</code>.
-	 * @param a The other ends of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public void setref(Referrable[] a)
-		throws UdmException
-	{
-		setAssociation("ref", new UdmPseudoObjectContainer(a), UdmHelper.TARGET_FROM_PEER);
-	}
-
-	/**
-	 * Returns the other ends of the association with role name <code>ref</code>.
-	 * @return The other ends of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public Referrable[] getref()
-		throws UdmException
-	{
-		UdmPseudoObjectContainer objs = getAssociation("ref", UdmHelper.TARGET_FROM_PEER);
-		return (Referrable[]) Utils.wrapWithSubclass(objs, Referrable.class, getDiagram());
-	}
-
-	/*
 	 * Asoociation with role name <code>referedbyPartRef</code>.
 	 */
 
@@ -120,6 +93,33 @@ public class Part extends MgaObject
 	{
 		UdmPseudoObject result = getSingleAssociatedObject("referedbyPartRef", UdmHelper.TARGET_FROM_PEER);
 		return (result == null) ? null : new PartRef(result, getDiagram());
+	}
+
+	/*
+	 * Asoociation with role name <code>ref</code>.
+	 */
+
+	/**
+	 * Sets the other ends of the association with role name <code>ref</code>.
+	 * @param a The other ends of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public void setref(Referrable[] a)
+		throws UdmException
+	{
+		setAssociation("ref", new UdmPseudoObjectContainer(a), UdmHelper.TARGET_FROM_PEER);
+	}
+
+	/**
+	 * Returns the other ends of the association with role name <code>ref</code>.
+	 * @return The other ends of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public Referrable[] getref()
+		throws UdmException
+	{
+		UdmPseudoObjectContainer objs = getAssociation("ref", UdmHelper.TARGET_FROM_PEER);
+		return (Referrable[]) Utils.wrapWithSubclass(objs, Referrable.class, getDiagram());
 	}
 
 }

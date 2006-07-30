@@ -23,10 +23,21 @@
   </target>
 
   <target name="run" depends="compile" description="Run the WSDLImporter">
-    <echo message="Running the WSDLImporter..." />
-    <java classname="edu.vanderbilt.dre.WSML.WSDLExporter.WSDLExporter" fork="true">
+    <echo message="Running the WSDLExporter..." />
+    <java classname="edu.vanderbilt.dre.WSML.WSDLExporter.WSDLExporter" 
+    	fork="true">
       <arg file="GoogleSearch.xml" />
       <arg file="GoogleSearch.wsdl" />
+      <classpath refid="classpath" />
+    </java>
+  </target>
+
+  <target name="test" depends="compile" description="Run the WSDLImporter">
+    <echo message="Running the WSDLExporter..." />
+    <java classname="edu.vanderbilt.dre.WSML.WSDLExporter.WSDLExporter" 
+    	fork="true">
+      <arg file="SLICE.xml" />
+      <arg file="SLICE.wsdl" />
       <classpath refid="classpath" />
     </java>
   </target>

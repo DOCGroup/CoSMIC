@@ -1,4 +1,4 @@
-/* Generated on Tue Jul 25 22:52:12 2006 */
+/* Generated on Sat Jul 29 22:41:36 2006 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -69,38 +69,6 @@ public class BodyParts extends MgaObject
 	/* Associations */
 
 	/*
-	 * Asoociation with role name <code>srcBodyParts</code>.
-	 */
-	/**
-	 * Sets the end of the association with role name <code>srcBodyParts</code>.
-	 * @param a The end of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public void setsrcBodyParts(SOAPBody a)
-		throws UdmException
-	{
-		UdmPseudoObjectContainer container = new UdmPseudoObjectContainer(1);
-		container.setAt(0, a);
-		setAssociation("srcBodyParts", container, UdmHelper.TARGET_FROM_CLASS);
-	}
-
-	/**
-	 * Returns the end of the association with role name <code>srcBodyParts</code>.
-	 * @return The end of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public SOAPBody getsrcBodyParts()
-		throws UdmException
-	{
-		UdmPseudoObjectContainer container = getAssociation("srcBodyParts", UdmHelper.TARGET_FROM_CLASS);
-		if (container.getLength() > 0)
-
-			return (SOAPBody) Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
-		return null;
-
-	}
-
-	/*
 	 * Asoociation with role name <code>dstBodyParts</code>.
 	 */
 	/**
@@ -128,6 +96,38 @@ public class BodyParts extends MgaObject
 		if (container.getLength() > 0)
 
 			return (PartRef) Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
+		return null;
+
+	}
+
+	/*
+	 * Asoociation with role name <code>srcBodyParts</code>.
+	 */
+	/**
+	 * Sets the end of the association with role name <code>srcBodyParts</code>.
+	 * @param a The end of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public void setsrcBodyParts(SOAPBody a)
+		throws UdmException
+	{
+		UdmPseudoObjectContainer container = new UdmPseudoObjectContainer(1);
+		container.setAt(0, a);
+		setAssociation("srcBodyParts", container, UdmHelper.TARGET_FROM_CLASS);
+	}
+
+	/**
+	 * Returns the end of the association with role name <code>srcBodyParts</code>.
+	 * @return The end of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public SOAPBody getsrcBodyParts()
+		throws UdmException
+	{
+		UdmPseudoObjectContainer container = getAssociation("srcBodyParts", UdmHelper.TARGET_FROM_CLASS);
+		if (container.getLength() > 0)
+
+			return (SOAPBody) Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
 		return null;
 
 	}

@@ -1,4 +1,4 @@
-/* Generated on Tue Jul 25 22:52:12 2006 */
+/* Generated on Sat Jul 29 22:41:36 2006 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -112,33 +112,6 @@ public class Output extends MgaObject
 	/* Associations */
 
 	/*
-	 * Asoociation with role name <code>referedbyOutputRef</code>.
-	 */
-
-	/**
-	 * Sets the other end of the association with role name <code>referedbyOutputRef</code>.
-	 * @param a The other end of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public void setreferedbyOutputRef(OutputRef a)
-		throws UdmException
-	{
-		setAssociation("referedbyOutputRef", a, UdmHelper.TARGET_FROM_PEER);
-	}
-
-	/**
-	 * Returns the other end of the association with role name <code>referedbyOutputRef</code>.
-	 * @return The other end of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public OutputRef getreferedbyOutputRef()
-		throws UdmException
-	{
-		UdmPseudoObject result = getSingleAssociatedObject("referedbyOutputRef", UdmHelper.TARGET_FROM_PEER);
-		return (result == null) ? null : new OutputRef(result, getDiagram());
-	}
-
-	/*
 	 * Asoociation with role name <code>dstOutputMessage</code>.
 	 */
 
@@ -163,6 +136,33 @@ public class Output extends MgaObject
 	{
 		UdmPseudoObjectContainer objs = getAssociation("dstOutputMessage", UdmHelper.CLASS_FROM_TARGET);
 		return (OutputMessage[]) Utils.wrapWithSubclass(objs, OutputMessage.class, getDiagram());
+	}
+
+	/*
+	 * Asoociation with role name <code>referedbyOutputRef</code>.
+	 */
+
+	/**
+	 * Sets the other end of the association with role name <code>referedbyOutputRef</code>.
+	 * @param a The other end of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public void setreferedbyOutputRef(OutputRef a)
+		throws UdmException
+	{
+		setAssociation("referedbyOutputRef", a, UdmHelper.TARGET_FROM_PEER);
+	}
+
+	/**
+	 * Returns the other end of the association with role name <code>referedbyOutputRef</code>.
+	 * @return The other end of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public OutputRef getreferedbyOutputRef()
+		throws UdmException
+	{
+		UdmPseudoObject result = getSingleAssociatedObject("referedbyOutputRef", UdmHelper.TARGET_FROM_PEER);
+		return (result == null) ? null : new OutputRef(result, getDiagram());
 	}
 
 }

@@ -1,4 +1,4 @@
-/* Generated on Tue Jul 25 22:52:12 2006 */
+/* Generated on Sat Jul 29 22:41:36 2006 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -65,6 +65,22 @@ public class Port extends MgaObject
 	/* Accessing children */
 
 	/**
+	 * Return the child of type <code>SOAPAddress<code> of this container. 
+	 * @return  The child
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public SOAPAddress getSOAPAddressChild()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, SOAPAddress.META_TYPE, SOAPAddress.META_TYPE_NS); 
+		if (container.getLength() > 0)
+
+			return (SOAPAddress)Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
+		return null;
+
+	}
+
+	/**
 	 * Return the child of type <code>Documentation<code> of this container. 
 	 * @return  The child
 	 * @throws  UdmException If any Udm related exception occured
@@ -78,23 +94,6 @@ public class Port extends MgaObject
 			return (Documentation)Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
 		return null;
 
-	}
-
-	/**
-	 * Returns all the children of type <code>SOAPAddress<code> of this container. 
-	 * @return  The children in an array
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public SOAPAddress[] getSOAPAddressChildren()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, SOAPAddress.META_TYPE, SOAPAddress.META_TYPE_NS);
-		SOAPAddress[] res = new SOAPAddress[container.getLength()];
-		for (int i=0; i < container.getLength(); i++) 
-		{
-			res[i] = (SOAPAddress)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
-		}
-		return res;
 	}
 
 	/* Attribute setters, getters */

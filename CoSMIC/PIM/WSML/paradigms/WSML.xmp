@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="WSML" guid="{C0ECCB55-E797-442E-A0FA-D11047923D5B}" cdate="Sun Jul 23 23:01:29 2006" mdate="Sun Jul 23 23:01:29 2006" >
+<paradigm name="WSML" guid="{36CC9AFA-86FE-4569-A43C-A7902347ABE3}" cdate="Sat Jul 29 22:11:16 2006" mdate="Sat Jul 29 22:11:16 2006" >
 
 	<comment>Web Services Modeling Language (WSML) is a domain-specific modeling language
   which allows definition of Web Services and interactions, and uses generative
@@ -14,6 +14,9 @@
 			<regnode name="multiLine" value = "10"></regnode>
 		</attrdef>
 		<attrdef name="Mixed" metaref = "1002" valuetype = "boolean" defvalue = "false">
+		</attrdef>
+		<attrdef name="Order" metaref = "1583" valuetype = "integer" defvalue = "0">
+			<regnode name="help" value = "Determines the processing order of child Elements of an Element"></regnode>
 		</attrdef>
 		<attrdef name="Value" metaref = "1003" valuetype = "string" defvalue = "">
 		</attrdef>
@@ -56,10 +59,59 @@
 		</attrdef>
 		<attrdef name="transport" metaref = "1012" valuetype = "string" defvalue = "">
 		</attrdef>
+		<attrdef name="typeCode" metaref = "1554" valuetype = "enum" defvalue = "string">
+			<enumitem dispname = "string" value = "string"></enumitem>
+			<enumitem dispname = "boolean" value = "boolean"></enumitem>
+			<enumitem dispname = "float" value = "float"></enumitem>
+			<enumitem dispname = "double" value = "double"></enumitem>
+			<enumitem dispname = "decimal" value = "decimal"></enumitem>
+			<enumitem dispname = "duration" value = "duration"></enumitem>
+			<enumitem dispname = "dateTime" value = "dateTime"></enumitem>
+			<enumitem dispname = "time" value = "time"></enumitem>
+			<enumitem dispname = "date" value = "date"></enumitem>
+			<enumitem dispname = "gYearMonth" value = "gYearMonth"></enumitem>
+			<enumitem dispname = "gYear" value = "gYear"></enumitem>
+			<enumitem dispname = "gMonthDay" value = "gMonthDay"></enumitem>
+			<enumitem dispname = "gDay" value = "gDay"></enumitem>
+			<enumitem dispname = "gMonth" value = "gMonth"></enumitem>
+			<enumitem dispname = "hexBinary" value = "hexBinary"></enumitem>
+			<enumitem dispname = "base64Binary" value = "base64Binary"></enumitem>
+			<enumitem dispname = "anyURI" value = "anyURI"></enumitem>
+			<enumitem dispname = "QName" value = "QName"></enumitem>
+			<enumitem dispname = "NOTATION" value = "NOTATION"></enumitem>
+			<enumitem dispname = "normalizedString" value = "normalizedString"></enumitem>
+			<enumitem dispname = "token" value = "token"></enumitem>
+			<enumitem dispname = "language" value = "language"></enumitem>
+			<enumitem dispname = "IDREFS" value = "IDREFS"></enumitem>
+			<enumitem dispname = "ENTITIES" value = "ENTITIES"></enumitem>
+			<enumitem dispname = "NMTOKEN" value = "NMTOKEN"></enumitem>
+			<enumitem dispname = "NMTOKENS" value = "NMTOKENS"></enumitem>
+			<enumitem dispname = "name" value = "name"></enumitem>
+			<enumitem dispname = "NCName" value = "NCName"></enumitem>
+			<enumitem dispname = "ID" value = "ID"></enumitem>
+			<enumitem dispname = "IDREF" value = "IDREF"></enumitem>
+			<enumitem dispname = "ENTITY" value = "ENTITY"></enumitem>
+			<enumitem dispname = "integer" value = "integer"></enumitem>
+			<enumitem dispname = "nonPositiveInteger" value = "nonPositiveInteger"></enumitem>
+			<enumitem dispname = "negativeInteger" value = "negativeInteger"></enumitem>
+			<enumitem dispname = "long" value = "long"></enumitem>
+			<enumitem dispname = "int" value = "int"></enumitem>
+			<enumitem dispname = "short" value = "short"></enumitem>
+			<enumitem dispname = "byte" value = "byte"></enumitem>
+			<enumitem dispname = "nonNegativeInteger" value = "nonNegativeInteger"></enumitem>
+			<enumitem dispname = "unsignedLong" value = "unsignedLong"></enumitem>
+			<enumitem dispname = "unsignedInt" value = "unsignedInt"></enumitem>
+			<enumitem dispname = "unsignedShort" value = "unsignedShort"></enumitem>
+			<enumitem dispname = "unsignedByte" value = "unsignedByte"></enumitem>
+			<enumitem dispname = "positiveInteger" value = "positiveInteger"></enumitem>
+		</attrdef>
 		<attrdef name="use" metaref = "1013" valuetype = "enum" defvalue = "literal">
 			<enumitem dispname = "literal" value = "literal"></enumitem>
 			<enumitem dispname = "encoded" value = "encoded"></enumitem>
 		</attrdef>
+		<atom name = "AtomicType" metaref = "1555"  attributes = "typeCode">
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
 		<atom name = "Attribute" metaref = "1014"  attributes = "Value">
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
@@ -73,31 +125,16 @@
 		</atom>
 		<atom name = "SOAPBody" metaref = "1018"  attributes = "use required encodingStyle namespace">
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidBodyBindingsrcCardinality5" eventmask = "0x800" depth = "1" priority = "1">
-				<![CDATA[let srcCount = self.attachingConnections( "dst", BodyBinding ) -> size in
-                     (srcCount <= 1)]]>
-				<dispname>Multiplicity of objects, which are associated to SOAPBody as &quot;src&quot; over BodyBinding, has to match 0..1.</dispname>
-			</constraint>
 			<attrdef name="namespace" metaref = "1019" valuetype = "string" defvalue = "">
 			</attrdef>
 		</atom>
 		<atom name = "SOAPFault" metaref = "1020"  attributes = "use required encodingStyle namespace">
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidSOAPFaultExtensionsrcCardinality23" eventmask = "0x800" depth = "1" priority = "1">
-				<![CDATA[let srcCount = self.attachingConnections( "dst", SOAPFaultExtension ) -> size in
-                     (srcCount <= 1)]]>
-				<dispname>Multiplicity of objects, which are associated to SOAPFault as &quot;src&quot; over SOAPFaultExtension, has to match 0..1.</dispname>
-			</constraint>
 			<attrdef name="namespace" metaref = "1021" valuetype = "string" defvalue = "">
 			</attrdef>
 		</atom>
 		<atom name = "SOAPHeaderFault" metaref = "1022"  attributes = "use required encodingStyle namespace">
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidHeaderBindingsrcCardinality11" eventmask = "0x800" depth = "1" priority = "1">
-				<![CDATA[let srcCount = self.attachingConnections( "dst", HeaderBinding ) -> size in
-                     (srcCount <= 1)]]>
-				<dispname>Multiplicity of objects, which are associated to SOAPHeaders as &quot;src&quot; over HeaderBinding, has to match 0..1.</dispname>
-			</constraint>
 			<constraint name="ValidHeaderMessagedstCardinality14" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", HeaderMessage ) -> size in
                      (dstCount <= 1)]]>
@@ -105,145 +142,13 @@
 			</constraint>
 			<constraint name="ValidHeaderPartdstCardinality16" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", HeaderPart ) -> size in
-                     (dstCount <= 1)]]>
-				<dispname>Multiplicity of objects, which are associated to SOAPHeaders as &quot;dst&quot; over HeaderPart, has to match 0..1.</dispname>
+                     (dstCount = 1)]]>
+				<dispname>Multiplicity of objects, which are associated to SOAPHeaders as &quot;dst&quot; over HeaderPart, has to match 1.</dispname>
 			</constraint>
 			<attrdef name="namespace" metaref = "1023" valuetype = "string" defvalue = "">
 			</attrdef>
 		</atom>
 		<atom name = "SOAPOperation" metaref = "1024"  attributes = "required soapAction style">
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsAnyUri" metaref = "1414" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsBase64Binary" metaref = "1415" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsBoolean" metaref = "1416" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsByte" metaref = "1417" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsDate" metaref = "1418" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsDateTime" metaref = "1419" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsDecimal" metaref = "1420" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsDouble" metaref = "1421" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsDuration" metaref = "1422" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsEntities" metaref = "1423" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsEntity" metaref = "1424" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsFloat" metaref = "1425" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsGDay" metaref = "1426" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsGMonth" metaref = "1427" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsGMonthDay" metaref = "1428" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsGYear" metaref = "1545" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsGYearMonth" metaref = "1429" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsHexBinary" metaref = "1430" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsId" metaref = "1431" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsIdRef" metaref = "1432" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsIdRefs" metaref = "1433" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsInt" metaref = "1434" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsInteger" metaref = "1435" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsLanguage" metaref = "1436" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsLong" metaref = "1437" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsName" metaref = "1438" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsNcName" metaref = "1439" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsNegativeInteger" metaref = "1440" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsNmToken" metaref = "1441" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsNmTokens" metaref = "1442" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsNonNegativeInteger" metaref = "1443" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsNonPositiveInteger" metaref = "1444" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsNormalizedString" metaref = "1445" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsNotation" metaref = "1446" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsPositiveInteger" metaref = "1447" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsQName" metaref = "1448" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsShort" metaref = "1449" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsString" metaref = "1450" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsTime" metaref = "1451" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsToken" metaref = "1452" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsUnsignedByte" metaref = "1453" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsUnsignedInt" metaref = "1454" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsUnsignedLong" metaref = "1455" >
-				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "XsUnsignedShort" metaref = "1456" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
 		<connection name = "BindingPortType" metaref = "1025" >
@@ -467,6 +372,11 @@
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyFaultRef"></regnode>
+			<constraint name="ValidSOAPFaultExtensiondstCardinality24" eventmask = "0x800" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", SOAPFaultExtension ) -> size in
+                     (dstCount = 1)]]>
+				<dispname>Multiplicity of objects, which are associated to FaultRef as &quot;dst&quot; over SOAPFaultExtension, has to match 1.</dispname>
+			</constraint>
 			<pointerspec name = "ref">
 				<pointeritem desc = "Fault"></pointeritem>
 			</pointerspec>
@@ -475,6 +385,11 @@
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyInputRef"></regnode>
+			<constraint name="ValidBodyBindingdstCardinality6" eventmask = "0x800" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", BodyBinding ) -> size in
+                     (dstCount = 1)]]>
+				<dispname>Multiplicity of objects, which are associated to IORef as &quot;dst&quot; over BodyBinding, has to match 1.</dispname>
+			</constraint>
 			<pointerspec name = "ref">
 				<pointeritem desc = "Input"></pointeritem>
 			</pointerspec>
@@ -502,6 +417,11 @@
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyOutputRef"></regnode>
+			<constraint name="ValidBodyBindingdstCardinality6" eventmask = "0x800" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", BodyBinding ) -> size in
+                     (dstCount = 1)]]>
+				<dispname>Multiplicity of objects, which are associated to IORef as &quot;dst&quot; over BodyBinding, has to match 1.</dispname>
+			</constraint>
 			<pointerspec name = "ref">
 				<pointeritem desc = "Output"></pointeritem>
 			</pointerspec>
@@ -511,51 +431,8 @@
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyPart"></regnode>
 			<pointerspec name = "ref">
+				<pointeritem desc = "AtomicType"></pointeritem>
 				<pointeritem desc = "Element"></pointeritem>
-				<pointeritem desc = "XsAnyUri"></pointeritem>
-				<pointeritem desc = "XsBase64Binary"></pointeritem>
-				<pointeritem desc = "XsBoolean"></pointeritem>
-				<pointeritem desc = "XsByte"></pointeritem>
-				<pointeritem desc = "XsDate"></pointeritem>
-				<pointeritem desc = "XsDateTime"></pointeritem>
-				<pointeritem desc = "XsDecimal"></pointeritem>
-				<pointeritem desc = "XsDouble"></pointeritem>
-				<pointeritem desc = "XsDuration"></pointeritem>
-				<pointeritem desc = "XsEntities"></pointeritem>
-				<pointeritem desc = "XsEntity"></pointeritem>
-				<pointeritem desc = "XsFloat"></pointeritem>
-				<pointeritem desc = "XsGDay"></pointeritem>
-				<pointeritem desc = "XsGMonth"></pointeritem>
-				<pointeritem desc = "XsGMonthDay"></pointeritem>
-				<pointeritem desc = "XsGYear"></pointeritem>
-				<pointeritem desc = "XsGYearMonth"></pointeritem>
-				<pointeritem desc = "XsHexBinary"></pointeritem>
-				<pointeritem desc = "XsId"></pointeritem>
-				<pointeritem desc = "XsIdRef"></pointeritem>
-				<pointeritem desc = "XsIdRefs"></pointeritem>
-				<pointeritem desc = "XsInt"></pointeritem>
-				<pointeritem desc = "XsInteger"></pointeritem>
-				<pointeritem desc = "XsLanguage"></pointeritem>
-				<pointeritem desc = "XsLong"></pointeritem>
-				<pointeritem desc = "XsName"></pointeritem>
-				<pointeritem desc = "XsNcName"></pointeritem>
-				<pointeritem desc = "XsNegativeInteger"></pointeritem>
-				<pointeritem desc = "XsNmToken"></pointeritem>
-				<pointeritem desc = "XsNmTokens"></pointeritem>
-				<pointeritem desc = "XsNonNegativeInteger"></pointeritem>
-				<pointeritem desc = "XsNonPositiveInteger"></pointeritem>
-				<pointeritem desc = "XsNormalizedString"></pointeritem>
-				<pointeritem desc = "XsNotation"></pointeritem>
-				<pointeritem desc = "XsPositiveInteger"></pointeritem>
-				<pointeritem desc = "XsQName"></pointeritem>
-				<pointeritem desc = "XsShort"></pointeritem>
-				<pointeritem desc = "XsString"></pointeritem>
-				<pointeritem desc = "XsTime"></pointeritem>
-				<pointeritem desc = "XsToken"></pointeritem>
-				<pointeritem desc = "XsUnsignedByte"></pointeritem>
-				<pointeritem desc = "XsUnsignedInt"></pointeritem>
-				<pointeritem desc = "XsUnsignedLong"></pointeritem>
-				<pointeritem desc = "XsUnsignedShort"></pointeritem>
 			</pointerspec>
 		</reference>
 		<reference name = "PartRef" metaref = "1042">
@@ -569,6 +446,11 @@
 		<model name = "Binding" metaref = "1044" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="ValidBindingPartCardinality25" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ExtensibleBinding" ) -> size + self.parts( "SOAPBinding" ) -> size in
+                     (partCount = 1)]]>
+				<dispname>Multiplicity of parts, which are contained by Binding, has to match 1.</dispname>
+			</constraint>
+			<constraint name="ValidBindingPartCardinality26" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Binding, has to match 0..1.</dispname>
@@ -583,7 +465,7 @@
 			<role name = "Documentation" metaref = "1046" kind = "Documentation"></role>
 			<role name = "OperationRef" metaref = "1410" kind = "OperationRef"></role>
 			<role name = "SOAPBinding" metaref = "1047" kind = "SOAPBinding"></role>
-			<aspect name = "ServiceDefinition" metaref = "1048" >
+			<aspect name = "ServiceDefinition" metaref = "1559" >
 				<part metaref = "1049" role = "BindingOperation" primary = "yes" linked = "no"></part>
 				<part metaref = "1411" role = "BindsOperation" primary = "yes" linked = "no"></part>
 				<part metaref = "1050" role = "Documentation" primary = "yes" linked = "no"></part>
@@ -593,15 +475,25 @@
 		</model>
 		<model name = "BindingOperation" metaref = "1052" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidBindingOperationPartCardinality26" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "IORef" ) -> size + self.parts( "InputRef" ) -> size + self.parts( "OutputRef" ) -> size in
+			<constraint name="ValidBindingOperationPartCardinality27" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ExtensibleMessage" ) -> size + self.parts( "SOAPBody" ) -> size + self.parts( "SOAPFault" ) -> size + self.parts( "SOAPHeaderFault" ) -> size + self.parts( "SOAPHeader" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 1..*.</dispname>
+			</constraint>
+			<constraint name="ValidBindingOperationPartCardinality28" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ExtensibleOperation" ) -> size + self.parts( "SOAPOperation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidBindingOperationPartCardinality27" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidBindingOperationPartCardinality29" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidBindsOperationdstCardinality4" eventmask = "0x800" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", BindsOperation ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to BindingOperation as &quot;dst&quot; over BindsOperation, has to match 0..1.</dispname>
 			</constraint>
 			<role name = "BodyBinding" metaref = "1053" kind = "BodyBinding"></role>
 			<role name = "BodyParts" metaref = "1054" kind = "BodyParts"></role>
@@ -620,7 +512,7 @@
 			<role name = "SOAPHeader" metaref = "1068" kind = "SOAPHeader"></role>
 			<role name = "SOAPHeaderFault" metaref = "1069" kind = "SOAPHeaderFault"></role>
 			<role name = "SOAPOperation" metaref = "1070" kind = "SOAPOperation"></role>
-			<aspect name = "ServiceDefinition" metaref = "1071" >
+			<aspect name = "ServiceDefinition" metaref = "1560" >
 				<part metaref = "1072" role = "BodyBinding" primary = "yes" linked = "no"></part>
 				<part metaref = "1073" role = "BodyParts" primary = "yes" linked = "no"></part>
 				<part metaref = "1074" role = "Documentation" primary = "yes" linked = "no"></part>
@@ -642,13 +534,18 @@
 		</model>
 		<model name = "Definitions" metaref = "1090" attributes = "targetNamespace" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidDefinitionsPartCardinality28" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Types" ) -> size in
+			<constraint name="ValidDefinitionsPartCardinality30" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Definitions, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidDefinitionsPartCardinality29" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
+			<constraint name="ValidDefinitionsPartCardinality31" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Messages" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by Definitions, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDefinitionsPartCardinality32" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Types" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Definitions, has to match 0..1.</dispname>
 			</constraint>
@@ -663,7 +560,7 @@
 			<role name = "PortType" metaref = "1099" kind = "PortType"></role>
 			<role name = "Service" metaref = "1100" kind = "Service"></role>
 			<role name = "Types" metaref = "1101" kind = "Types"></role>
-			<aspect name = "ServiceDefinition" metaref = "1102" attributes = "targetNamespace" >
+			<aspect name = "ServiceDefinition" metaref = "1561" attributes = "targetNamespace" >
 				<part metaref = "1400" role = "Attribute" primary = "yes" linked = "no"></part>
 				<part metaref = "1103" role = "Binding" primary = "yes" linked = "no"></part>
 				<part metaref = "1104" role = "BindingPortType" primary = "yes" linked = "no"></part>
@@ -678,15 +575,15 @@
 		<model name = "Documentation" metaref = "1113" attributes = "DocText Mixed" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<role name = "Element" metaref = "1114" kind = "Element"></role>
-			<aspect name = "ServiceDefinition" metaref = "1115" attributes = "DocText Mixed" >
+			<aspect name = "ServiceDefinition" metaref = "1562" attributes = "DocText Mixed" >
 				<part metaref = "1116" role = "Element" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "Element" metaref = "1117" attributes = "schemaType" >
+		<model name = "Element" metaref = "1117" attributes = "schemaType Order" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<role name = "Attribute" metaref = "1118" kind = "Attribute"></role>
 			<role name = "Element" metaref = "1119" kind = "Element"></role>
-			<aspect name = "ServiceDefinition" metaref = "1120" attributes = "schemaType" >
+			<aspect name = "ServiceDefinition" metaref = "1563" attributes = "schemaType Order" >
 				<part metaref = "1121" role = "Attribute" primary = "yes" linked = "no"></part>
 				<part metaref = "1122" role = "Element" primary = "yes" linked = "no"></part>
 			</aspect>
@@ -699,13 +596,13 @@
 				<dispname>Multiplicity of objects, which are associated to Fault as &quot;dst&quot; over FaultMessage, has to match 1.</dispname>
 			</constraint>
 			<role name = "Documentation" metaref = "1124" kind = "Documentation"></role>
-			<aspect name = "ServiceDefinition" metaref = "1125" >
+			<aspect name = "ServiceDefinition" metaref = "1564" >
 				<part metaref = "1126" role = "Documentation" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Import" metaref = "1127" attributes = "namespace location" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidImportPartCardinality30" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidImportPartCardinality33" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Definitions" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Import, has to match 1.</dispname>
@@ -716,7 +613,7 @@
 			</attrdef>
 			<role name = "Definitions" metaref = "1130" kind = "Definitions"></role>
 			<role name = "Documentation" metaref = "1131" kind = "Documentation"></role>
-			<aspect name = "ServiceDefinition" metaref = "1132" attributes = "namespace location" >
+			<aspect name = "ServiceDefinition" metaref = "1565" attributes = "namespace location" >
 				<part metaref = "1133" role = "Definitions" primary = "yes" linked = "no"></part>
 				<part metaref = "1134" role = "Documentation" primary = "yes" linked = "no"></part>
 			</aspect>
@@ -729,32 +626,32 @@
 				<dispname>Multiplicity of objects, which are associated to Input as &quot;dst&quot; over InputMessage, has to match 1.</dispname>
 			</constraint>
 			<role name = "Documentation" metaref = "1136" kind = "Documentation"></role>
-			<aspect name = "ServiceDefinition" metaref = "1137" >
+			<aspect name = "ServiceDefinition" metaref = "1566" >
 				<part metaref = "1138" role = "Documentation" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Message" metaref = "1139" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<role name = "Part" metaref = "1140" kind = "Part"></role>
-			<aspect name = "ServiceDefinition" metaref = "1141" >
+			<aspect name = "ServiceDefinition" metaref = "1567" >
 				<part metaref = "1142" role = "Part" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Messages" metaref = "1550" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<role name = "Message" metaref = "1551" kind = "Message"></role>
-			<aspect name = "ServiceDefinition" metaref = "1552" >
+			<aspect name = "ServiceDefinition" metaref = "1568" >
 				<part metaref = "1553" role = "Message" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "NotificationOperation" metaref = "1143" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidNotificationOperationPartCardinality31" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidNotificationOperationPartCardinality34" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Output" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by NotificationOperation, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidOperationPartCardinality33" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidOperationPartCardinality36" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Operation, has to match 0..1.</dispname>
@@ -765,7 +662,7 @@
 			<role name = "MessageRef" metaref = "1391" kind = "MessageRef"></role>
 			<role name = "Output" metaref = "1147" kind = "Output"></role>
 			<role name = "OutputMessage" metaref = "1148" kind = "OutputMessage"></role>
-			<aspect name = "ServiceDefinition" metaref = "1149" >
+			<aspect name = "ServiceDefinition" metaref = "1569" >
 				<part metaref = "1150" role = "Documentation" primary = "yes" linked = "no"></part>
 				<part metaref = "1151" role = "FaultMessage" primary = "yes" linked = "no"></part>
 				<part metaref = "1152" role = "InputMessage" primary = "yes" linked = "no"></part>
@@ -776,12 +673,12 @@
 		</model>
 		<model name = "OneWayOperation" metaref = "1155" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidOneWayOperationPartCardinality32" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidOneWayOperationPartCardinality35" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Input" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by OneWayOperation, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidOperationPartCardinality33" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidOperationPartCardinality36" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Operation, has to match 0..1.</dispname>
@@ -792,7 +689,7 @@
 			<role name = "InputMessage" metaref = "1159" kind = "InputMessage"></role>
 			<role name = "MessageRef" metaref = "1393" kind = "MessageRef"></role>
 			<role name = "OutputMessage" metaref = "1160" kind = "OutputMessage"></role>
-			<aspect name = "ServiceDefinition" metaref = "1161" >
+			<aspect name = "ServiceDefinition" metaref = "1570" >
 				<part metaref = "1162" role = "Documentation" primary = "yes" linked = "no"></part>
 				<part metaref = "1163" role = "FaultMessage" primary = "yes" linked = "no"></part>
 				<part metaref = "1164" role = "Input" primary = "yes" linked = "no"></part>
@@ -809,7 +706,7 @@
 				<dispname>Multiplicity of objects, which are associated to Output as &quot;dst&quot; over OutputMessage, has to match 1.</dispname>
 			</constraint>
 			<role name = "Documentation" metaref = "1168" kind = "Documentation"></role>
-			<aspect name = "ServiceDefinition" metaref = "1169" >
+			<aspect name = "ServiceDefinition" metaref = "1571" >
 				<part metaref = "1170" role = "Documentation" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
@@ -820,21 +717,26 @@
                      (dstCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to Port as &quot;dst&quot; over PortBinding, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidPortPartCardinality34" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPortPartCardinality37" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ExtensiblePort" ) -> size + self.parts( "SOAPAddress" ) -> size in
+                     (partCount = 1)]]>
+				<dispname>Multiplicity of parts, which are contained by Port, has to match 1.</dispname>
+			</constraint>
+			<constraint name="ValidPortPartCardinality38" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Port, has to match 0..1.</dispname>
 			</constraint>
 			<role name = "Documentation" metaref = "1172" kind = "Documentation"></role>
 			<role name = "SOAPAddress" metaref = "1173" kind = "SOAPAddress"></role>
-			<aspect name = "ServiceDefinition" metaref = "1174" >
+			<aspect name = "ServiceDefinition" metaref = "1572" >
 				<part metaref = "1175" role = "Documentation" primary = "yes" linked = "no"></part>
 				<part metaref = "1176" role = "SOAPAddress" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PortType" metaref = "1177" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidPortTypePartCardinality35" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPortTypePartCardinality39" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PortType, has to match 0..1.</dispname>
@@ -844,7 +746,7 @@
 			<role name = "OneWayOperation" metaref = "1180" kind = "OneWayOperation"></role>
 			<role name = "RequestResponseOperation" metaref = "1181" kind = "RequestResponseOperation"></role>
 			<role name = "SolicitResponseOperation" metaref = "1182" kind = "SolicitResponseOperation"></role>
-			<aspect name = "ServiceDefinition" metaref = "1183" >
+			<aspect name = "ServiceDefinition" metaref = "1573" >
 				<part metaref = "1184" role = "Documentation" primary = "yes" linked = "no"></part>
 				<part metaref = "1185" role = "NotificationOperation" primary = "yes" linked = "yes"></part>
 				<part metaref = "1186" role = "OneWayOperation" primary = "yes" linked = "yes"></part>
@@ -854,18 +756,18 @@
 		</model>
 		<model name = "RequestResponseOperation" metaref = "1189" attributes = "parameterOrder" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidOperationPartCardinality33" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidOperationPartCardinality36" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Operation, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidRequestResponseOperationPartCardinality36" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Input" ) -> size in
+			<constraint name="ValidRequestResponseOperationPartCardinality40" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Output" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RequestResponseOperation, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidRequestResponseOperationPartCardinality37" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Output" ) -> size in
+			<constraint name="ValidRequestResponseOperationPartCardinality41" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Input" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RequestResponseOperation, has to match 1.</dispname>
 			</constraint>
@@ -877,7 +779,7 @@
 			<role name = "MessageRef" metaref = "1395" kind = "MessageRef"></role>
 			<role name = "Output" metaref = "1195" kind = "Output"></role>
 			<role name = "OutputMessage" metaref = "1196" kind = "OutputMessage"></role>
-			<aspect name = "ServiceDefinition" metaref = "1197" attributes = "parameterOrder" >
+			<aspect name = "ServiceDefinition" metaref = "1574" attributes = "parameterOrder" >
 				<part metaref = "1198" role = "Documentation" primary = "yes" linked = "no"></part>
 				<part metaref = "1199" role = "Fault" primary = "yes" linked = "no"></part>
 				<part metaref = "1200" role = "FaultMessage" primary = "yes" linked = "no"></part>
@@ -890,11 +792,6 @@
 		</model>
 		<model name = "SOAPHeader" metaref = "1205" attributes = "use required encodingStyle namespace" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidHeaderBindingsrcCardinality11" eventmask = "0x800" depth = "1" priority = "1">
-				<![CDATA[let srcCount = self.attachingConnections( "dst", HeaderBinding ) -> size in
-                     (srcCount <= 1)]]>
-				<dispname>Multiplicity of objects, which are associated to SOAPHeaders as &quot;src&quot; over HeaderBinding, has to match 0..1.</dispname>
-			</constraint>
 			<constraint name="ValidHeaderMessagedstCardinality14" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", HeaderMessage ) -> size in
                      (dstCount <= 1)]]>
@@ -902,13 +799,13 @@
 			</constraint>
 			<constraint name="ValidHeaderPartdstCardinality16" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", HeaderPart ) -> size in
-                     (dstCount <= 1)]]>
-				<dispname>Multiplicity of objects, which are associated to SOAPHeaders as &quot;dst&quot; over HeaderPart, has to match 0..1.</dispname>
+                     (dstCount = 1)]]>
+				<dispname>Multiplicity of objects, which are associated to SOAPHeaders as &quot;dst&quot; over HeaderPart, has to match 1.</dispname>
 			</constraint>
 			<attrdef name="namespace" metaref = "1206" valuetype = "string" defvalue = "">
 			</attrdef>
 			<role name = "SOAPHeaderFault" metaref = "1207" kind = "SOAPHeaderFault"></role>
-			<aspect name = "ServiceDefinition" metaref = "1208" attributes = "use required encodingStyle namespace" >
+			<aspect name = "ServiceDefinition" metaref = "1575" attributes = "use required encodingStyle namespace" >
 				<part metaref = "1209" role = "SOAPHeaderFault" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
@@ -920,109 +817,23 @@
 			<role name = "Element" metaref = "1213" kind = "Element"></role>
 			<role name = "SchemaImport" metaref = "1214" kind = "SchemaImport"></role>
 			<role name = "SchemaReference" metaref = "1215" kind = "SchemaReference"></role>
-			<aspect name = "ServiceDefinition" metaref = "1216" attributes = "targetNamespace" >
+			<aspect name = "ServiceDefinition" metaref = "1576" attributes = "targetNamespace" >
 				<part metaref = "1217" role = "Attribute" primary = "yes" linked = "no"></part>
 				<part metaref = "1218" role = "Element" primary = "yes" linked = "no"></part>
 				<part metaref = "1219" role = "SchemaImport" primary = "yes" linked = "no"></part>
 				<part metaref = "1220" role = "SchemaReference" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "SchemaBuiltins" metaref = "1301" >
+		<model name = "SchemaBuiltins" metaref = "1556" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<role name = "XsAnyUri" metaref = "1458" kind = "XsAnyUri"></role>
-			<role name = "XsBase64Binary" metaref = "1459" kind = "XsBase64Binary"></role>
-			<role name = "XsBoolean" metaref = "1460" kind = "XsBoolean"></role>
-			<role name = "XsByte" metaref = "1461" kind = "XsByte"></role>
-			<role name = "XsDate" metaref = "1462" kind = "XsDate"></role>
-			<role name = "XsDateTime" metaref = "1463" kind = "XsDateTime"></role>
-			<role name = "XsDecimal" metaref = "1464" kind = "XsDecimal"></role>
-			<role name = "XsDouble" metaref = "1465" kind = "XsDouble"></role>
-			<role name = "XsDuration" metaref = "1466" kind = "XsDuration"></role>
-			<role name = "XsEntities" metaref = "1467" kind = "XsEntities"></role>
-			<role name = "XsEntity" metaref = "1468" kind = "XsEntity"></role>
-			<role name = "XsFloat" metaref = "1469" kind = "XsFloat"></role>
-			<role name = "XsGDay" metaref = "1470" kind = "XsGDay"></role>
-			<role name = "XsGMonth" metaref = "1471" kind = "XsGMonth"></role>
-			<role name = "XsGMonthDay" metaref = "1472" kind = "XsGMonthDay"></role>
-			<role name = "XsGYear" metaref = "1546" kind = "XsGYear"></role>
-			<role name = "XsGYearMonth" metaref = "1473" kind = "XsGYearMonth"></role>
-			<role name = "XsHexBinary" metaref = "1474" kind = "XsHexBinary"></role>
-			<role name = "XsId" metaref = "1475" kind = "XsId"></role>
-			<role name = "XsIdRef" metaref = "1476" kind = "XsIdRef"></role>
-			<role name = "XsIdRefs" metaref = "1477" kind = "XsIdRefs"></role>
-			<role name = "XsInt" metaref = "1478" kind = "XsInt"></role>
-			<role name = "XsInteger" metaref = "1479" kind = "XsInteger"></role>
-			<role name = "XsLanguage" metaref = "1480" kind = "XsLanguage"></role>
-			<role name = "XsLong" metaref = "1481" kind = "XsLong"></role>
-			<role name = "XsName" metaref = "1482" kind = "XsName"></role>
-			<role name = "XsNcName" metaref = "1483" kind = "XsNcName"></role>
-			<role name = "XsNegativeInteger" metaref = "1484" kind = "XsNegativeInteger"></role>
-			<role name = "XsNmToken" metaref = "1485" kind = "XsNmToken"></role>
-			<role name = "XsNmTokens" metaref = "1486" kind = "XsNmTokens"></role>
-			<role name = "XsNonNegativeInteger" metaref = "1487" kind = "XsNonNegativeInteger"></role>
-			<role name = "XsNonPositiveInteger" metaref = "1488" kind = "XsNonPositiveInteger"></role>
-			<role name = "XsNormalizedString" metaref = "1489" kind = "XsNormalizedString"></role>
-			<role name = "XsNotation" metaref = "1490" kind = "XsNotation"></role>
-			<role name = "XsPositiveInteger" metaref = "1491" kind = "XsPositiveInteger"></role>
-			<role name = "XsQName" metaref = "1492" kind = "XsQName"></role>
-			<role name = "XsShort" metaref = "1493" kind = "XsShort"></role>
-			<role name = "XsString" metaref = "1494" kind = "XsString"></role>
-			<role name = "XsTime" metaref = "1495" kind = "XsTime"></role>
-			<role name = "XsToken" metaref = "1496" kind = "XsToken"></role>
-			<role name = "XsUnsignedByte" metaref = "1497" kind = "XsUnsignedByte"></role>
-			<role name = "XsUnsignedInt" metaref = "1498" kind = "XsUnsignedInt"></role>
-			<role name = "XsUnsignedLong" metaref = "1499" kind = "XsUnsignedLong"></role>
-			<role name = "XsUnsignedShort" metaref = "1500" kind = "XsUnsignedShort"></role>
-			<aspect name = "ServiceDefinition" metaref = "1346" >
-				<part metaref = "1502" role = "XsAnyUri" primary = "yes" linked = "no"></part>
-				<part metaref = "1503" role = "XsBase64Binary" primary = "yes" linked = "no"></part>
-				<part metaref = "1504" role = "XsBoolean" primary = "yes" linked = "no"></part>
-				<part metaref = "1505" role = "XsByte" primary = "yes" linked = "no"></part>
-				<part metaref = "1506" role = "XsDate" primary = "yes" linked = "no"></part>
-				<part metaref = "1507" role = "XsDateTime" primary = "yes" linked = "no"></part>
-				<part metaref = "1508" role = "XsDecimal" primary = "yes" linked = "no"></part>
-				<part metaref = "1509" role = "XsDouble" primary = "yes" linked = "no"></part>
-				<part metaref = "1510" role = "XsDuration" primary = "yes" linked = "no"></part>
-				<part metaref = "1511" role = "XsEntities" primary = "yes" linked = "no"></part>
-				<part metaref = "1512" role = "XsEntity" primary = "yes" linked = "no"></part>
-				<part metaref = "1513" role = "XsFloat" primary = "yes" linked = "no"></part>
-				<part metaref = "1514" role = "XsGDay" primary = "yes" linked = "no"></part>
-				<part metaref = "1515" role = "XsGMonth" primary = "yes" linked = "no"></part>
-				<part metaref = "1516" role = "XsGMonthDay" primary = "yes" linked = "no"></part>
-				<part metaref = "1547" role = "XsGYear" primary = "yes" linked = "no"></part>
-				<part metaref = "1517" role = "XsGYearMonth" primary = "yes" linked = "no"></part>
-				<part metaref = "1518" role = "XsHexBinary" primary = "yes" linked = "no"></part>
-				<part metaref = "1519" role = "XsId" primary = "yes" linked = "no"></part>
-				<part metaref = "1520" role = "XsIdRef" primary = "yes" linked = "no"></part>
-				<part metaref = "1521" role = "XsIdRefs" primary = "yes" linked = "no"></part>
-				<part metaref = "1522" role = "XsInt" primary = "yes" linked = "no"></part>
-				<part metaref = "1523" role = "XsInteger" primary = "yes" linked = "no"></part>
-				<part metaref = "1524" role = "XsLanguage" primary = "yes" linked = "no"></part>
-				<part metaref = "1525" role = "XsLong" primary = "yes" linked = "no"></part>
-				<part metaref = "1526" role = "XsName" primary = "yes" linked = "no"></part>
-				<part metaref = "1527" role = "XsNcName" primary = "yes" linked = "no"></part>
-				<part metaref = "1528" role = "XsNegativeInteger" primary = "yes" linked = "no"></part>
-				<part metaref = "1529" role = "XsNmToken" primary = "yes" linked = "no"></part>
-				<part metaref = "1530" role = "XsNmTokens" primary = "yes" linked = "no"></part>
-				<part metaref = "1531" role = "XsNonNegativeInteger" primary = "yes" linked = "no"></part>
-				<part metaref = "1532" role = "XsNonPositiveInteger" primary = "yes" linked = "no"></part>
-				<part metaref = "1533" role = "XsNormalizedString" primary = "yes" linked = "no"></part>
-				<part metaref = "1534" role = "XsNotation" primary = "yes" linked = "no"></part>
-				<part metaref = "1535" role = "XsPositiveInteger" primary = "yes" linked = "no"></part>
-				<part metaref = "1536" role = "XsQName" primary = "yes" linked = "no"></part>
-				<part metaref = "1537" role = "XsShort" primary = "yes" linked = "no"></part>
-				<part metaref = "1538" role = "XsString" primary = "yes" linked = "no"></part>
-				<part metaref = "1539" role = "XsTime" primary = "yes" linked = "no"></part>
-				<part metaref = "1540" role = "XsToken" primary = "yes" linked = "no"></part>
-				<part metaref = "1541" role = "XsUnsignedByte" primary = "yes" linked = "no"></part>
-				<part metaref = "1542" role = "XsUnsignedInt" primary = "yes" linked = "no"></part>
-				<part metaref = "1543" role = "XsUnsignedLong" primary = "yes" linked = "no"></part>
-				<part metaref = "1544" role = "XsUnsignedShort" primary = "yes" linked = "no"></part>
+			<role name = "AtomicType" metaref = "1557" kind = "AtomicType"></role>
+			<aspect name = "ServiceDefinition" metaref = "1577" >
+				<part metaref = "1558" role = "AtomicType" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "SchemaImport" metaref = "1221" attributes = "id namespace schemaLocation" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidSchemaReferencePartCardinality38" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSchemaReferencePartCardinality42" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Schema" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SchemaReference, has to match 1.</dispname>
@@ -1030,19 +841,19 @@
 			<attrdef name="namespace" metaref = "1222" valuetype = "string" defvalue = "">
 			</attrdef>
 			<role name = "Schema" metaref = "1223" kind = "Schema"></role>
-			<aspect name = "ServiceDefinition" metaref = "1224" attributes = "id namespace schemaLocation" >
+			<aspect name = "ServiceDefinition" metaref = "1578" attributes = "id namespace schemaLocation" >
 				<part metaref = "1225" role = "Schema" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "SchemaReference" metaref = "1226" attributes = "id schemaLocation" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidSchemaReferencePartCardinality38" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSchemaReferencePartCardinality42" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Schema" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SchemaReference, has to match 1.</dispname>
 			</constraint>
 			<role name = "Schema" metaref = "1227" kind = "Schema"></role>
-			<aspect name = "ServiceDefinition" metaref = "1228" attributes = "id schemaLocation" >
+			<aspect name = "ServiceDefinition" metaref = "1579" attributes = "id schemaLocation" >
 				<part metaref = "1229" role = "Schema" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
@@ -1051,7 +862,7 @@
 			<role name = "BindingRef" metaref = "1404" kind = "BindingRef"></role>
 			<role name = "Port" metaref = "1402" kind = "Port"></role>
 			<role name = "PortBinding" metaref = "1406" kind = "PortBinding"></role>
-			<aspect name = "ServiceDefinition" metaref = "1232" >
+			<aspect name = "ServiceDefinition" metaref = "1580" >
 				<part metaref = "1405" role = "BindingRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
 				<part metaref = "1403" role = "Port" primary = "yes" linked = "yes"></part>
 				<part metaref = "1407" role = "PortBinding" primary = "yes" linked = "no"></part>
@@ -1059,18 +870,18 @@
 		</model>
 		<model name = "SolicitResponseOperation" metaref = "1234" attributes = "parameterOrder" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidOperationPartCardinality33" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidOperationPartCardinality36" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Operation, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidSolicitResponseOperationPartCardinality39" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Input" ) -> size in
+			<constraint name="ValidSolicitResponseOperationPartCardinality43" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Output" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SolicitResponseOperation, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidSolicitResponseOperationPartCardinality40" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Output" ) -> size in
+			<constraint name="ValidSolicitResponseOperationPartCardinality44" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Input" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SolicitResponseOperation, has to match 1.</dispname>
 			</constraint>
@@ -1082,7 +893,7 @@
 			<role name = "MessageRef" metaref = "1397" kind = "MessageRef"></role>
 			<role name = "Output" metaref = "1240" kind = "Output"></role>
 			<role name = "OutputMessage" metaref = "1241" kind = "OutputMessage"></role>
-			<aspect name = "ServiceDefinition" metaref = "1242" attributes = "parameterOrder" >
+			<aspect name = "ServiceDefinition" metaref = "1581" attributes = "parameterOrder" >
 				<part metaref = "1243" role = "Documentation" primary = "yes" linked = "no"></part>
 				<part metaref = "1244" role = "Fault" primary = "yes" linked = "no"></part>
 				<part metaref = "1245" role = "FaultMessage" primary = "yes" linked = "no"></part>
@@ -1095,14 +906,14 @@
 		</model>
 		<model name = "Types" metaref = "1250" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidTypesPartCardinality41" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidTypesPartCardinality45" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Types, has to match 0..1.</dispname>
 			</constraint>
 			<role name = "Documentation" metaref = "1251" kind = "Documentation"></role>
 			<role name = "Schema" metaref = "1252" kind = "Schema"></role>
-			<aspect name = "ServiceDefinition" metaref = "1253" >
+			<aspect name = "ServiceDefinition" metaref = "1582" >
 				<part metaref = "1254" role = "Documentation" primary = "yes" linked = "no"></part>
 				<part metaref = "1255" role = "Schema" primary = "yes" linked = "no"></part>
 			</aspect>

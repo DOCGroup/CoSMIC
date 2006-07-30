@@ -1,4 +1,4 @@
-/* Generated on Tue Jul 25 22:52:12 2006 */
+/* Generated on Sat Jul 29 22:41:36 2006 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -55,6 +55,19 @@ public class Input extends MgaObject
 	 * @return  An instance of the class <code>Input</code>
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
+	public static Input create(OneWayOperation parent) 
+		throws UdmException 
+	{
+		Diagram metaDiagram = parent.getDiagram();
+		return new Input(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
+	}
+
+	/**
+	 * Creates an instance of the class in the container specified by the parameter. 
+	 * @param  parent The parent container
+	 * @return  An instance of the class <code>Input</code>
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
 	public static Input create(RequestResponseOperation parent) 
 		throws UdmException 
 	{
@@ -69,19 +82,6 @@ public class Input extends MgaObject
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
 	public static Input create(SolicitResponseOperation parent) 
-		throws UdmException 
-	{
-		Diagram metaDiagram = parent.getDiagram();
-		return new Input(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
-	}
-
-	/**
-	 * Creates an instance of the class in the container specified by the parameter. 
-	 * @param  parent The parent container
-	 * @return  An instance of the class <code>Input</code>
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public static Input create(OneWayOperation parent) 
 		throws UdmException 
 	{
 		Diagram metaDiagram = parent.getDiagram();

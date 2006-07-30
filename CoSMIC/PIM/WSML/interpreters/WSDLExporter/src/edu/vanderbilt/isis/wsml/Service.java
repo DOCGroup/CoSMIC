@@ -1,4 +1,4 @@
-/* Generated on Tue Jul 25 22:52:12 2006 */
+/* Generated on Sat Jul 29 22:41:36 2006 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -65,18 +65,18 @@ public class Service extends MgaObject
 	/* Accessing children */
 
 	/**
-	 * Returns all the children of type <code>Port<code> of this container. 
+	 * Returns all the children of type <code>BindingRef<code> of this container. 
 	 * @return  The children in an array
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public Port[] getPortChildren()
+	public BindingRef[] getBindingRefChildren()
 		throws UdmException 
 	{
-		UdmPseudoObjectContainer container = getChildren(null, Port.META_TYPE, Port.META_TYPE_NS);
-		Port[] res = new Port[container.getLength()];
+		UdmPseudoObjectContainer container = getChildren(null, BindingRef.META_TYPE, BindingRef.META_TYPE_NS);
+		BindingRef[] res = new BindingRef[container.getLength()];
 		for (int i=0; i < container.getLength(); i++) 
 		{
-			res[i] = (Port)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+			res[i] = (BindingRef)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
 		}
 		return res;
 	}
@@ -99,18 +99,18 @@ public class Service extends MgaObject
 	}
 
 	/**
-	 * Returns all the children of type <code>BindingRef<code> of this container. 
+	 * Returns all the children of type <code>Port<code> of this container. 
 	 * @return  The children in an array
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public BindingRef[] getBindingRefChildren()
+	public Port[] getPortChildren()
 		throws UdmException 
 	{
-		UdmPseudoObjectContainer container = getChildren(null, BindingRef.META_TYPE, BindingRef.META_TYPE_NS);
-		BindingRef[] res = new BindingRef[container.getLength()];
+		UdmPseudoObjectContainer container = getChildren(null, Port.META_TYPE, Port.META_TYPE_NS);
+		Port[] res = new Port[container.getLength()];
 		for (int i=0; i < container.getLength(); i++) 
 		{
-			res[i] = (BindingRef)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+			res[i] = (Port)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
 		}
 		return res;
 	}

@@ -1,4 +1,4 @@
-/* Generated on Tue Jul 25 22:52:12 2006 */
+/* Generated on Sat Jul 29 22:41:36 2006 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -55,6 +55,19 @@ public class Element extends Referrable
 	 * @return  An instance of the class <code>Element</code>
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
+	public static Element create(Documentation parent) 
+		throws UdmException 
+	{
+		Diagram metaDiagram = parent.getDiagram();
+		return new Element(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
+	}
+
+	/**
+	 * Creates an instance of the class in the container specified by the parameter. 
+	 * @param  parent The parent container
+	 * @return  An instance of the class <code>Element</code>
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
 	public static Element create(Element parent) 
 		throws UdmException 
 	{
@@ -75,37 +88,7 @@ public class Element extends Referrable
 		return new Element(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
 	}
 
-	/**
-	 * Creates an instance of the class in the container specified by the parameter. 
-	 * @param  parent The parent container
-	 * @return  An instance of the class <code>Element</code>
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public static Element create(Documentation parent) 
-		throws UdmException 
-	{
-		Diagram metaDiagram = parent.getDiagram();
-		return new Element(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
-	}
-
 	/* Accessing children */
-
-	/**
-	 * Returns all the children of type <code>Element<code> of this container. 
-	 * @return  The children in an array
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public Element[] getElementChildren()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, Element.META_TYPE, Element.META_TYPE_NS);
-		Element[] res = new Element[container.getLength()];
-		for (int i=0; i < container.getLength(); i++) 
-		{
-			res[i] = (Element)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
-		}
-		return res;
-	}
 
 	/**
 	 * Returns all the children of type <code>Attribute<code> of this container. 
@@ -124,7 +107,51 @@ public class Element extends Referrable
 		return res;
 	}
 
+	/**
+	 * Returns all the children of type <code>Element<code> of this container. 
+	 * @return  The children in an array
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public Element[] getElementChildren()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, Element.META_TYPE, Element.META_TYPE_NS);
+		Element[] res = new Element[container.getLength()];
+		for (int i=0; i < container.getLength(); i++) 
+		{
+			res[i] = (Element)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+		}
+		return res;
+	}
+
 	/* Attribute setters, getters */
+
+	/**
+	 * Attribute for <code>Order</code>.
+	 */
+	public static final String Order = "Order";
+
+	/**
+	 * Sets the value of the attribute <code>Order</code> to a value specified by the parameter.
+	 * @param _v The new value of the attribute
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public void setOrder(long _v)
+		throws UdmException 
+	{
+		setIntVal(Order, _v);
+	}
+
+	/**
+	 * Returns the value of the attribute <code>Order</code>.
+	 * @return  The value
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public long getOrder()
+		throws UdmException 
+	{
+		return getIntVal(Order);
+	}
 
 	/**
 	 * Attribute for <code>schemaType</code>.

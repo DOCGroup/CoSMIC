@@ -1,4 +1,4 @@
-/* Generated on Tue Jul 25 22:52:12 2006 */
+/* Generated on Sat Jul 29 22:41:36 2006 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -78,35 +78,18 @@ public class Definitions extends MgaObject
 	/* Accessing children */
 
 	/**
-	 * Returns all the children of type <code>Attribute<code> of this container. 
+	 * Returns all the children of type <code>Binding<code> of this container. 
 	 * @return  The children in an array
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public Attribute[] getAttributeChildren()
+	public Binding[] getBindingChildren()
 		throws UdmException 
 	{
-		UdmPseudoObjectContainer container = getChildren(null, Attribute.META_TYPE, Attribute.META_TYPE_NS);
-		Attribute[] res = new Attribute[container.getLength()];
+		UdmPseudoObjectContainer container = getChildren(null, Binding.META_TYPE, Binding.META_TYPE_NS);
+		Binding[] res = new Binding[container.getLength()];
 		for (int i=0; i < container.getLength(); i++) 
 		{
-			res[i] = (Attribute)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
-		}
-		return res;
-	}
-
-	/**
-	 * Returns all the children of type <code>Messages<code> of this container. 
-	 * @return  The children in an array
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public Messages[] getMessagesChildren()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, Messages.META_TYPE, Messages.META_TYPE_NS);
-		Messages[] res = new Messages[container.getLength()];
-		for (int i=0; i < container.getLength(); i++) 
-		{
-			res[i] = (Messages)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+			res[i] = (Binding)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
 		}
 		return res;
 	}
@@ -123,6 +106,39 @@ public class Definitions extends MgaObject
 		if (container.getLength() > 0)
 
 			return (Types)Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
+		return null;
+
+	}
+
+	/**
+	 * Returns all the children of type <code>Service<code> of this container. 
+	 * @return  The children in an array
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public Service[] getServiceChildren()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, Service.META_TYPE, Service.META_TYPE_NS);
+		Service[] res = new Service[container.getLength()];
+		for (int i=0; i < container.getLength(); i++) 
+		{
+			res[i] = (Service)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+		}
+		return res;
+	}
+
+	/**
+	 * Return the child of type <code>Messages<code> of this container. 
+	 * @return  The child
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public Messages getMessagesChild()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, Messages.META_TYPE, Messages.META_TYPE_NS); 
+		if (container.getLength() > 0)
+
+			return (Messages)Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
 		return null;
 
 	}
@@ -145,18 +161,35 @@ public class Definitions extends MgaObject
 	}
 
 	/**
-	 * Returns all the children of type <code>Binding<code> of this container. 
+	 * Returns all the children of type <code>Import<code> of this container. 
 	 * @return  The children in an array
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public Binding[] getBindingChildren()
+	public Import[] getImportChildren()
 		throws UdmException 
 	{
-		UdmPseudoObjectContainer container = getChildren(null, Binding.META_TYPE, Binding.META_TYPE_NS);
-		Binding[] res = new Binding[container.getLength()];
+		UdmPseudoObjectContainer container = getChildren(null, Import.META_TYPE, Import.META_TYPE_NS);
+		Import[] res = new Import[container.getLength()];
 		for (int i=0; i < container.getLength(); i++) 
 		{
-			res[i] = (Binding)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+			res[i] = (Import)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+		}
+		return res;
+	}
+
+	/**
+	 * Returns all the children of type <code>BindingPortType<code> of this container. 
+	 * @return  The children in an array
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public BindingPortType[] getBindingPortTypeChildren()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, BindingPortType.META_TYPE, BindingPortType.META_TYPE_NS);
+		BindingPortType[] res = new BindingPortType[container.getLength()];
+		for (int i=0; i < container.getLength(); i++) 
+		{
+			res[i] = (BindingPortType)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
 		}
 		return res;
 	}
@@ -178,52 +211,18 @@ public class Definitions extends MgaObject
 	}
 
 	/**
-	 * Returns all the children of type <code>BindingPortType<code> of this container. 
+	 * Returns all the children of type <code>Attribute<code> of this container. 
 	 * @return  The children in an array
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public BindingPortType[] getBindingPortTypeChildren()
+	public Attribute[] getAttributeChildren()
 		throws UdmException 
 	{
-		UdmPseudoObjectContainer container = getChildren(null, BindingPortType.META_TYPE, BindingPortType.META_TYPE_NS);
-		BindingPortType[] res = new BindingPortType[container.getLength()];
+		UdmPseudoObjectContainer container = getChildren(null, Attribute.META_TYPE, Attribute.META_TYPE_NS);
+		Attribute[] res = new Attribute[container.getLength()];
 		for (int i=0; i < container.getLength(); i++) 
 		{
-			res[i] = (BindingPortType)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
-		}
-		return res;
-	}
-
-	/**
-	 * Returns all the children of type <code>Service<code> of this container. 
-	 * @return  The children in an array
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public Service[] getServiceChildren()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, Service.META_TYPE, Service.META_TYPE_NS);
-		Service[] res = new Service[container.getLength()];
-		for (int i=0; i < container.getLength(); i++) 
-		{
-			res[i] = (Service)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
-		}
-		return res;
-	}
-
-	/**
-	 * Returns all the children of type <code>Import<code> of this container. 
-	 * @return  The children in an array
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public Import[] getImportChildren()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, Import.META_TYPE, Import.META_TYPE_NS);
-		Import[] res = new Import[container.getLength()];
-		for (int i=0; i < container.getLength(); i++) 
-		{
-			res[i] = (Import)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+			res[i] = (Attribute)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
 		}
 		return res;
 	}

@@ -1,4 +1,4 @@
-/* Generated on Tue Jul 25 22:52:12 2006 */
+/* Generated on Sat Jul 29 22:41:36 2006 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -99,33 +99,6 @@ public class Fault extends MgaObject
 	/* Associations */
 
 	/*
-	 * Asoociation with role name <code>referedbyFaultRef</code>.
-	 */
-
-	/**
-	 * Sets the other end of the association with role name <code>referedbyFaultRef</code>.
-	 * @param a The other end of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public void setreferedbyFaultRef(FaultRef a)
-		throws UdmException
-	{
-		setAssociation("referedbyFaultRef", a, UdmHelper.TARGET_FROM_PEER);
-	}
-
-	/**
-	 * Returns the other end of the association with role name <code>referedbyFaultRef</code>.
-	 * @return The other end of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public FaultRef getreferedbyFaultRef()
-		throws UdmException
-	{
-		UdmPseudoObject result = getSingleAssociatedObject("referedbyFaultRef", UdmHelper.TARGET_FROM_PEER);
-		return (result == null) ? null : new FaultRef(result, getDiagram());
-	}
-
-	/*
 	 * Asoociation with role name <code>dstFaultMessage</code>.
 	 */
 
@@ -150,6 +123,33 @@ public class Fault extends MgaObject
 	{
 		UdmPseudoObjectContainer objs = getAssociation("dstFaultMessage", UdmHelper.CLASS_FROM_TARGET);
 		return (FaultMessage[]) Utils.wrapWithSubclass(objs, FaultMessage.class, getDiagram());
+	}
+
+	/*
+	 * Asoociation with role name <code>referedbyFaultRef</code>.
+	 */
+
+	/**
+	 * Sets the other end of the association with role name <code>referedbyFaultRef</code>.
+	 * @param a The other end of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public void setreferedbyFaultRef(FaultRef a)
+		throws UdmException
+	{
+		setAssociation("referedbyFaultRef", a, UdmHelper.TARGET_FROM_PEER);
+	}
+
+	/**
+	 * Returns the other end of the association with role name <code>referedbyFaultRef</code>.
+	 * @return The other end of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public FaultRef getreferedbyFaultRef()
+		throws UdmException
+	{
+		UdmPseudoObject result = getSingleAssociatedObject("referedbyFaultRef", UdmHelper.TARGET_FROM_PEER);
+		return (result == null) ? null : new FaultRef(result, getDiagram());
 	}
 
 }

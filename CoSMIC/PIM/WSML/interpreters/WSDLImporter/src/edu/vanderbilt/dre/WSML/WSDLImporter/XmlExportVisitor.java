@@ -395,9 +395,13 @@ public class XmlExportVisitor implements Visitor {
         Model model = this.createGmeModel ("SchemaBuiltins", "SchemaBuiltins",
                                            null);
         for (int i = 0; i < builtinTypes.length; ++i) {
-            Atom atom = this.createGmeAtom (builtinTypes[i][0],
-                                            builtinTypes[i][0],
-                                            builtinTypes[i][0]);
+            Atom atom = this.createGmeAtom (builtinTypes[i][1],
+                                            "AtomicType",
+                                            "AtomicType");
+            Attribute attr = this.createGmeAttribute("typeCode", 
+                                                     null, 
+                                                     builtinTypes[i][1]);
+            atom.getRegnodeOrConstraintOrAttribute().add(attr);
             QName qname = new QName (XMLConstants.W3C_XML_SCHEMA_NS_URI,
                                      builtinTypes[i][1]);
             this.typeMap.put (qname, atom);
@@ -673,11 +677,12 @@ public class XmlExportVisitor implements Visitor {
         }
 
         NodeList children = schemaEle.getChildNodes();
+        int orderCount = 0;
         for (int i = 0; i < children.getLength(); ++i) {
             Node child = children.item(i);
             if (child instanceof Element) {
                 org.w3c.dom.Element childEle = (org.w3c.dom.Element)child;
-                this.visitElement (childEle, schemaModel, 0);
+                this.visitElement (childEle, schemaModel, 0, orderCount++);
             }
         }
 
@@ -742,13 +747,16 @@ public class XmlExportVisitor implements Visitor {
     }
 
     public void visitElement (org.w3c.dom.Element visitedEle, Model parent,
-                              int level) {
+                              int level, int order) {
         String eleName = visitedEle.getNodeName();
         Model model = this.createGmeModel (eleName, "Element", "Element");
         parent.getRegnodeOrConstraintOrAttribute().add (model);
         xPos = yPos = 12;
         Regnode partregs = this.createPartRegs (xPos, yPos);
         model.getRegnodeOrConstraintOrAttribute().add(partregs);
+        Attribute orderAttr = this.createGmeAttribute("Order", null, 
+                                                      Integer.toString(order));
+        model.getRegnodeOrConstraintOrAttribute().add(orderAttr);
         NamedNodeMap attrs = visitedEle.getAttributes();
         for (int i = 0; i < attrs.getLength(); ++i) {
             Node attrNode = attrs.item (i);
@@ -823,11 +831,12 @@ public class XmlExportVisitor implements Visitor {
 
         int newLevel = level + 1;
         NodeList children = visitedEle.getChildNodes();
+        int orderCount = 0;
         for (int i = 0; i < children.getLength(); ++i) {
             Node child = children.item (i);
             if (child instanceof Element) {
                 org.w3c.dom.Element childEle = (org.w3c.dom.Element)child;
-                this.visitElement (childEle, model, newLevel);
+                this.visitElement (childEle, model, newLevel, orderCount++);
             }
         }
     }
@@ -902,7 +911,7 @@ public class XmlExportVisitor implements Visitor {
         String kind = null;
         String role = null;
         if (style == null) {
-            System.out.println ("Error: Unknown OperationStyle for operation"
+            System.out.println ("Error: Unknown OperationStyle for operation "
                                 + localName);
             System.exit(1);
         }

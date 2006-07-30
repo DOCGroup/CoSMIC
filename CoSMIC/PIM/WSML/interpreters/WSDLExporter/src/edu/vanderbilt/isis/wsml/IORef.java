@@ -1,4 +1,4 @@
-/* Generated on Tue Jul 25 22:52:12 2006 */
+/* Generated on Sat Jul 29 22:41:36 2006 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -45,26 +45,26 @@ public abstract class IORef extends MgaObject
 	 */
 
 	/**
-	 * Sets the other end of the association with role name <code>dstBodyBinding</code>.
-	 * @param a The other end of the association
+	 * Sets the other ends of the association with role name <code>dstBodyBinding</code>.
+	 * @param a The other ends of the association
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public void setdstBodyBinding(BodyBinding a)
+	public void setdstBodyBinding(BodyBinding[] a)
 		throws UdmException
 	{
-		setAssociation("dstBodyBinding", a, UdmHelper.CLASS_FROM_TARGET);
+		setAssociation("dstBodyBinding", new UdmPseudoObjectContainer(a), UdmHelper.CLASS_FROM_TARGET);
 	}
 
 	/**
-	 * Returns the other end of the association with role name <code>dstBodyBinding</code>.
-	 * @return The other end of the association
+	 * Returns the other ends of the association with role name <code>dstBodyBinding</code>.
+	 * @return The other ends of the association
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public BodyBinding getdstBodyBinding()
+	public BodyBinding[] getdstBodyBinding()
 		throws UdmException
 	{
-		UdmPseudoObject result = getSingleAssociatedObject("dstBodyBinding", UdmHelper.CLASS_FROM_TARGET);
-		return (result == null) ? null : new BodyBinding(result, getDiagram());
+		UdmPseudoObjectContainer objs = getAssociation("dstBodyBinding", UdmHelper.CLASS_FROM_TARGET);
+		return (BodyBinding[]) Utils.wrapWithSubclass(objs, BodyBinding.class, getDiagram());
 	}
 
 	/*
@@ -72,26 +72,26 @@ public abstract class IORef extends MgaObject
 	 */
 
 	/**
-	 * Sets the other end of the association with role name <code>dstHeaderBinding</code>.
-	 * @param a The other end of the association
+	 * Sets the other ends of the association with role name <code>dstHeaderBinding</code>.
+	 * @param a The other ends of the association
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public void setdstHeaderBinding(HeaderBinding a)
+	public void setdstHeaderBinding(HeaderBinding[] a)
 		throws UdmException
 	{
-		setAssociation("dstHeaderBinding", a, UdmHelper.CLASS_FROM_TARGET);
+		setAssociation("dstHeaderBinding", new UdmPseudoObjectContainer(a), UdmHelper.CLASS_FROM_TARGET);
 	}
 
 	/**
-	 * Returns the other end of the association with role name <code>dstHeaderBinding</code>.
-	 * @return The other end of the association
+	 * Returns the other ends of the association with role name <code>dstHeaderBinding</code>.
+	 * @return The other ends of the association
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public HeaderBinding getdstHeaderBinding()
+	public HeaderBinding[] getdstHeaderBinding()
 		throws UdmException
 	{
-		UdmPseudoObject result = getSingleAssociatedObject("dstHeaderBinding", UdmHelper.CLASS_FROM_TARGET);
-		return (result == null) ? null : new HeaderBinding(result, getDiagram());
+		UdmPseudoObjectContainer objs = getAssociation("dstHeaderBinding", UdmHelper.CLASS_FROM_TARGET);
+		return (HeaderBinding[]) Utils.wrapWithSubclass(objs, HeaderBinding.class, getDiagram());
 	}
 
 }

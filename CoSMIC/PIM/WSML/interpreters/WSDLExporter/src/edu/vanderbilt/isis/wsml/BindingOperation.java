@@ -1,4 +1,4 @@
-/* Generated on Tue Jul 25 22:52:12 2006 */
+/* Generated on Sat Jul 29 22:41:36 2006 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -65,6 +65,74 @@ public class BindingOperation extends MgaObject
 	/* Accessing children */
 
 	/**
+	 * Returns all the children of type <code>HeaderMessage<code> of this container. 
+	 * @return  The children in an array
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public HeaderMessage[] getHeaderMessageChildren()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, HeaderMessage.META_TYPE, HeaderMessage.META_TYPE_NS);
+		HeaderMessage[] res = new HeaderMessage[container.getLength()];
+		for (int i=0; i < container.getLength(); i++) 
+		{
+			res[i] = (HeaderMessage)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+		}
+		return res;
+	}
+
+	/**
+	 * Returns all the children of type <code>HeaderPart<code> of this container. 
+	 * @return  The children in an array
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public HeaderPart[] getHeaderPartChildren()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, HeaderPart.META_TYPE, HeaderPart.META_TYPE_NS);
+		HeaderPart[] res = new HeaderPart[container.getLength()];
+		for (int i=0; i < container.getLength(); i++) 
+		{
+			res[i] = (HeaderPart)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+		}
+		return res;
+	}
+
+	/**
+	 * Returns all the children of type <code>InputRef<code> of this container. 
+	 * @return  The children in an array
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public InputRef[] getInputRefChildren()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, InputRef.META_TYPE, InputRef.META_TYPE_NS);
+		InputRef[] res = new InputRef[container.getLength()];
+		for (int i=0; i < container.getLength(); i++) 
+		{
+			res[i] = (InputRef)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+		}
+		return res;
+	}
+
+	/**
+	 * Returns all the children of type <code>OutputRef<code> of this container. 
+	 * @return  The children in an array
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public OutputRef[] getOutputRefChildren()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, OutputRef.META_TYPE, OutputRef.META_TYPE_NS);
+		OutputRef[] res = new OutputRef[container.getLength()];
+		for (int i=0; i < container.getLength(); i++) 
+		{
+			res[i] = (OutputRef)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+		}
+		return res;
+	}
+
+	/**
 	 * Returns all the children of type <code>BodyParts<code> of this container. 
 	 * @return  The children in an array
 	 * @throws  UdmException If any Udm related exception occured
@@ -79,38 +147,6 @@ public class BindingOperation extends MgaObject
 			res[i] = (BodyParts)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
 		}
 		return res;
-	}
-
-	/**
-	 * Return the child of type <code>InputRef<code> of this container. 
-	 * @return  The child
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public InputRef getInputRefChild()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, InputRef.META_TYPE, InputRef.META_TYPE_NS); 
-		if (container.getLength() > 0)
-
-			return (InputRef)Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
-		return null;
-
-	}
-
-	/**
-	 * Return the child of type <code>OutputRef<code> of this container. 
-	 * @return  The child
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public OutputRef getOutputRefChild()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, OutputRef.META_TYPE, OutputRef.META_TYPE_NS); 
-		if (container.getLength() > 0)
-
-			return (OutputRef)Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
-		return null;
-
 	}
 
 	/**
@@ -148,23 +184,6 @@ public class BindingOperation extends MgaObject
 	}
 
 	/**
-	 * Returns all the children of type <code>HeaderPart<code> of this container. 
-	 * @return  The children in an array
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public HeaderPart[] getHeaderPartChildren()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, HeaderPart.META_TYPE, HeaderPart.META_TYPE_NS);
-		HeaderPart[] res = new HeaderPart[container.getLength()];
-		for (int i=0; i < container.getLength(); i++) 
-		{
-			res[i] = (HeaderPart)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
-		}
-		return res;
-	}
-
-	/**
 	 * Returns all the children of type <code>BodyBinding<code> of this container. 
 	 * @return  The children in an array
 	 * @throws  UdmException If any Udm related exception occured
@@ -177,90 +196,6 @@ public class BindingOperation extends MgaObject
 		for (int i=0; i < container.getLength(); i++) 
 		{
 			res[i] = (BodyBinding)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
-		}
-		return res;
-	}
-
-	/**
-	 * Returns all the children of type <code>HeaderMessage<code> of this container. 
-	 * @return  The children in an array
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public HeaderMessage[] getHeaderMessageChildren()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, HeaderMessage.META_TYPE, HeaderMessage.META_TYPE_NS);
-		HeaderMessage[] res = new HeaderMessage[container.getLength()];
-		for (int i=0; i < container.getLength(); i++) 
-		{
-			res[i] = (HeaderMessage)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
-		}
-		return res;
-	}
-
-	/**
-	 * Returns all the children of type <code>FaultRef<code> of this container. 
-	 * @return  The children in an array
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public FaultRef[] getFaultRefChildren()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, FaultRef.META_TYPE, FaultRef.META_TYPE_NS);
-		FaultRef[] res = new FaultRef[container.getLength()];
-		for (int i=0; i < container.getLength(); i++) 
-		{
-			res[i] = (FaultRef)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
-		}
-		return res;
-	}
-
-	/**
-	 * Returns all the children of type <code>MessageRef<code> of this container. 
-	 * @return  The children in an array
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public MessageRef[] getMessageRefChildren()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, MessageRef.META_TYPE, MessageRef.META_TYPE_NS);
-		MessageRef[] res = new MessageRef[container.getLength()];
-		for (int i=0; i < container.getLength(); i++) 
-		{
-			res[i] = (MessageRef)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
-		}
-		return res;
-	}
-
-	/**
-	 * Return the child of type <code>Documentation<code> of this container. 
-	 * @return  The child
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public Documentation getDocumentationChild()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, Documentation.META_TYPE, Documentation.META_TYPE_NS); 
-		if (container.getLength() > 0)
-
-			return (Documentation)Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
-		return null;
-
-	}
-
-	/**
-	 * Returns all the children of type <code>SOAPFault<code> of this container. 
-	 * @return  The children in an array
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public SOAPFault[] getSOAPFaultChildren()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, SOAPFault.META_TYPE, SOAPFault.META_TYPE_NS);
-		SOAPFault[] res = new SOAPFault[container.getLength()];
-		for (int i=0; i < container.getLength(); i++) 
-		{
-			res[i] = (SOAPFault)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
 		}
 		return res;
 	}
@@ -300,6 +235,23 @@ public class BindingOperation extends MgaObject
 	}
 
 	/**
+	 * Returns all the children of type <code>SOAPFault<code> of this container. 
+	 * @return  The children in an array
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public SOAPFault[] getSOAPFaultChildren()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, SOAPFault.META_TYPE, SOAPFault.META_TYPE_NS);
+		SOAPFault[] res = new SOAPFault[container.getLength()];
+		for (int i=0; i < container.getLength(); i++) 
+		{
+			res[i] = (SOAPFault)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+		}
+		return res;
+	}
+
+	/**
 	 * Returns all the children of type <code>SOAPBody<code> of this container. 
 	 * @return  The children in an array
 	 * @throws  UdmException If any Udm related exception occured
@@ -334,18 +286,67 @@ public class BindingOperation extends MgaObject
 	}
 
 	/**
-	 * Returns all the children of type <code>SOAPOperation<code> of this container. 
+	 * Return the child of type <code>SOAPOperation<code> of this container. 
+	 * @return  The child
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public SOAPOperation getSOAPOperationChild()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, SOAPOperation.META_TYPE, SOAPOperation.META_TYPE_NS); 
+		if (container.getLength() > 0)
+
+			return (SOAPOperation)Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
+		return null;
+
+	}
+
+	/**
+	 * Return the child of type <code>Documentation<code> of this container. 
+	 * @return  The child
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public Documentation getDocumentationChild()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, Documentation.META_TYPE, Documentation.META_TYPE_NS); 
+		if (container.getLength() > 0)
+
+			return (Documentation)Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
+		return null;
+
+	}
+
+	/**
+	 * Returns all the children of type <code>MessageRef<code> of this container. 
 	 * @return  The children in an array
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public SOAPOperation[] getSOAPOperationChildren()
+	public MessageRef[] getMessageRefChildren()
 		throws UdmException 
 	{
-		UdmPseudoObjectContainer container = getChildren(null, SOAPOperation.META_TYPE, SOAPOperation.META_TYPE_NS);
-		SOAPOperation[] res = new SOAPOperation[container.getLength()];
+		UdmPseudoObjectContainer container = getChildren(null, MessageRef.META_TYPE, MessageRef.META_TYPE_NS);
+		MessageRef[] res = new MessageRef[container.getLength()];
 		for (int i=0; i < container.getLength(); i++) 
 		{
-			res[i] = (SOAPOperation)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+			res[i] = (MessageRef)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+		}
+		return res;
+	}
+
+	/**
+	 * Returns all the children of type <code>FaultRef<code> of this container. 
+	 * @return  The children in an array
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public FaultRef[] getFaultRefChildren()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, FaultRef.META_TYPE, FaultRef.META_TYPE_NS);
+		FaultRef[] res = new FaultRef[container.getLength()];
+		for (int i=0; i < container.getLength(); i++) 
+		{
+			res[i] = (FaultRef)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
 		}
 		return res;
 	}

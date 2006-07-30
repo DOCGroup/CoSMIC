@@ -50,4 +50,13 @@
     </java>
   </target>
 
+  <target name="amazon" depends="compile" description="Run the WSDLImporter">
+    <echo message="Running the WSDLImporter..." />
+    <java classname="edu.vanderbilt.dre.WSML.WSDLImporter.WSDLImporter" fork="true">
+      <arg file="AmazonWebServices.wsdl" />
+      <arg file="AmazonWebServices.xme" />
+      <classpath refid="classpath" />
+    </java>
+  </target>
+
 </project>

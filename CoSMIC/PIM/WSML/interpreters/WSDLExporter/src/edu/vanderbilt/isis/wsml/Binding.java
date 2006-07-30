@@ -1,4 +1,4 @@
-/* Generated on Tue Jul 25 22:52:12 2006 */
+/* Generated on Sat Jul 29 22:41:36 2006 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -65,19 +65,36 @@ public class Binding extends MgaObject
 	/* Accessing children */
 
 	/**
-	 * Return the child of type <code>Documentation<code> of this container. 
+	 * Return the child of type <code>SOAPBinding<code> of this container. 
 	 * @return  The child
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public Documentation getDocumentationChild()
+	public SOAPBinding getSOAPBindingChild()
 		throws UdmException 
 	{
-		UdmPseudoObjectContainer container = getChildren(null, Documentation.META_TYPE, Documentation.META_TYPE_NS); 
+		UdmPseudoObjectContainer container = getChildren(null, SOAPBinding.META_TYPE, SOAPBinding.META_TYPE_NS); 
 		if (container.getLength() > 0)
 
-			return (Documentation)Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
+			return (SOAPBinding)Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
 		return null;
 
+	}
+
+	/**
+	 * Returns all the children of type <code>BindsOperation<code> of this container. 
+	 * @return  The children in an array
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public BindsOperation[] getBindsOperationChildren()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, BindsOperation.META_TYPE, BindsOperation.META_TYPE_NS);
+		BindsOperation[] res = new BindsOperation[container.getLength()];
+		for (int i=0; i < container.getLength(); i++) 
+		{
+			res[i] = (BindsOperation)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+		}
+		return res;
 	}
 
 	/**
@@ -115,69 +132,24 @@ public class Binding extends MgaObject
 	}
 
 	/**
-	 * Returns all the children of type <code>SOAPBinding<code> of this container. 
-	 * @return  The children in an array
+	 * Return the child of type <code>Documentation<code> of this container. 
+	 * @return  The child
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public SOAPBinding[] getSOAPBindingChildren()
+	public Documentation getDocumentationChild()
 		throws UdmException 
 	{
-		UdmPseudoObjectContainer container = getChildren(null, SOAPBinding.META_TYPE, SOAPBinding.META_TYPE_NS);
-		SOAPBinding[] res = new SOAPBinding[container.getLength()];
-		for (int i=0; i < container.getLength(); i++) 
-		{
-			res[i] = (SOAPBinding)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
-		}
-		return res;
-	}
+		UdmPseudoObjectContainer container = getChildren(null, Documentation.META_TYPE, Documentation.META_TYPE_NS); 
+		if (container.getLength() > 0)
 
-	/**
-	 * Returns all the children of type <code>BindsOperation<code> of this container. 
-	 * @return  The children in an array
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public BindsOperation[] getBindsOperationChildren()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, BindsOperation.META_TYPE, BindsOperation.META_TYPE_NS);
-		BindsOperation[] res = new BindsOperation[container.getLength()];
-		for (int i=0; i < container.getLength(); i++) 
-		{
-			res[i] = (BindsOperation)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
-		}
-		return res;
+			return (Documentation)Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
+		return null;
+
 	}
 
 	/* Attribute setters, getters */
 
 	/* Associations */
-
-	/*
-	 * Asoociation with role name <code>dstBindingPortType</code>.
-	 */
-
-	/**
-	 * Sets the other ends of the association with role name <code>dstBindingPortType</code>.
-	 * @param a The other ends of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public void setdstBindingPortType(BindingPortType[] a)
-		throws UdmException
-	{
-		setAssociation("dstBindingPortType", new UdmPseudoObjectContainer(a), UdmHelper.CLASS_FROM_TARGET);
-	}
-
-	/**
-	 * Returns the other ends of the association with role name <code>dstBindingPortType</code>.
-	 * @return The other ends of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public BindingPortType[] getdstBindingPortType()
-		throws UdmException
-	{
-		UdmPseudoObjectContainer objs = getAssociation("dstBindingPortType", UdmHelper.CLASS_FROM_TARGET);
-		return (BindingPortType[]) Utils.wrapWithSubclass(objs, BindingPortType.class, getDiagram());
-	}
 
 	/*
 	 * Asoociation with role name <code>referedbyBindingRef</code>.
@@ -204,6 +176,33 @@ public class Binding extends MgaObject
 	{
 		UdmPseudoObject result = getSingleAssociatedObject("referedbyBindingRef", UdmHelper.TARGET_FROM_PEER);
 		return (result == null) ? null : new BindingRef(result, getDiagram());
+	}
+
+	/*
+	 * Asoociation with role name <code>dstBindingPortType</code>.
+	 */
+
+	/**
+	 * Sets the other ends of the association with role name <code>dstBindingPortType</code>.
+	 * @param a The other ends of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public void setdstBindingPortType(BindingPortType[] a)
+		throws UdmException
+	{
+		setAssociation("dstBindingPortType", new UdmPseudoObjectContainer(a), UdmHelper.CLASS_FROM_TARGET);
+	}
+
+	/**
+	 * Returns the other ends of the association with role name <code>dstBindingPortType</code>.
+	 * @return The other ends of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public BindingPortType[] getdstBindingPortType()
+		throws UdmException
+	{
+		UdmPseudoObjectContainer objs = getAssociation("dstBindingPortType", UdmHelper.CLASS_FROM_TARGET);
+		return (BindingPortType[]) Utils.wrapWithSubclass(objs, BindingPortType.class, getDiagram());
 	}
 
 }

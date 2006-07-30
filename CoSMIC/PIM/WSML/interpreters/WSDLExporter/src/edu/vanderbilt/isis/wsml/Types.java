@@ -1,4 +1,4 @@
-/* Generated on Tue Jul 25 22:52:12 2006 */
+/* Generated on Sat Jul 29 22:41:36 2006 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -65,6 +65,22 @@ public class Types extends MgaObject
 	/* Accessing children */
 
 	/**
+	 * Return the child of type <code>Documentation<code> of this container. 
+	 * @return  The child
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public Documentation getDocumentationChild()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, Documentation.META_TYPE, Documentation.META_TYPE_NS); 
+		if (container.getLength() > 0)
+
+			return (Documentation)Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
+		return null;
+
+	}
+
+	/**
 	 * Returns all the children of type <code>Schema<code> of this container. 
 	 * @return  The children in an array
 	 * @throws  UdmException If any Udm related exception occured
@@ -79,22 +95,6 @@ public class Types extends MgaObject
 			res[i] = (Schema)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
 		}
 		return res;
-	}
-
-	/**
-	 * Return the child of type <code>Documentation<code> of this container. 
-	 * @return  The child
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public Documentation getDocumentationChild()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, Documentation.META_TYPE, Documentation.META_TYPE_NS); 
-		if (container.getLength() > 0)
-
-			return (Documentation)Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
-		return null;
-
 	}
 
 	/* Attribute setters, getters */
