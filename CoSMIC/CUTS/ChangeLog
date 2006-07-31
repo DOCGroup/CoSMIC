@@ -1,3 +1,17 @@
+Mon Jul 31 16:05:29 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CUTS.idl:
+
+          Missing #include <Components.idl> declaration.
+          
+        * cuts/be/CIAO/Export_File_Generator.h:
+        * cuts/be/CIAO/Export_File_Generator.cpp:
+        * cuts/be/CIAO/UDM_CIAO_Visitor.cpp:
+        * cuts/be/CIAO/Workspace_Generator.cpp:
+        
+          Apparently, "exports" is a future reserved word on vc8. So,
+          all occurrences of "export" as a variable were changed.
+
 Fri Jul 28 18:21:00 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/Benchmark_Data_Collector.mpc:

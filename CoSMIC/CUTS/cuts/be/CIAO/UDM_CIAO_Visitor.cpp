@@ -224,9 +224,9 @@ namespace CUTS
     {
       do
       {
-        std::string export = this->container_;
-        export.append ("_exec");
-        CUTS_Export_File_Generator efg (export);
+        std::string name = this->container_;
+        name.append ("_exec");
+        CUTS_Export_File_Generator efg (name);
 
         // Initialize the indentation implanters for the C++
         // specific files
@@ -551,9 +551,9 @@ namespace CUTS
     std::string factory_i = factory;
     factory_i.append ("_i");
 
-    std::string export = this->container_;
-    export.append ("_exec");
-    CUTS_Export_File_Generator efg (export);
+    std::string name = this->container_;
+    name.append ("_exec");
+    CUTS_Export_File_Generator efg (name);
 
     std::string create_method ("create_");
     create_method.append (factory);

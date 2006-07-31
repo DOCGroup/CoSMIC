@@ -286,10 +286,10 @@ void CUTS_Workspace_Generator::generate_stub_project (
   const CUTS_Dependency_Node * node)
 {
   // Generate the export file for the project.
-  std::string export = node->basename ();
-  export.append ("_stub");
+  std::string name = node->basename ();
+  name.append ("_stub");
 
-  CUTS_Export_File_Generator efg (export);
+  CUTS_Export_File_Generator efg (name);
   efg.generate (this->outdir_);
 
   // Generate the project.
@@ -375,10 +375,10 @@ void CUTS_Workspace_Generator::generate_stub_project (
 void CUTS_Workspace_Generator::generate_svnt_project (void)
 {
   // Generate the export file for the project.
-  std::string export = this->project_name_;
-  export.append ("_svnt");
+  std::string name = this->project_name_;
+  name.append ("_svnt");
 
-  CUTS_Export_File_Generator efg (export);
+  CUTS_Export_File_Generator efg (name);
   efg.generate (this->outdir_);
 
   // Generate the project, keeping in mind the export file.
@@ -459,10 +459,10 @@ void CUTS_Workspace_Generator::generate_svnt_project (void)
 void CUTS_Workspace_Generator::generate_exec_project (void)
 {
   // Generate the export file for the project.
-  std::string export = this->project_name_;
-  export.append ("_exec");
+  std::string name = this->project_name_;
+  name.append ("_exec");
 
-  CUTS_Export_File_Generator efg (export);
+  CUTS_Export_File_Generator efg (name);
   efg.generate (this->outdir_);
 
   // Generate the executor project.

@@ -34,7 +34,7 @@ public:
    *
    * @param[in]      export     Name of the export
    */
-  CUTS_Export_File_Generator (const std::string & export);
+  CUTS_Export_File_Generator (const std::string & name);
 
   /// Destructor.
   ~CUTS_Export_File_Generator (void);
@@ -59,21 +59,21 @@ public:
    *
    * @return      Name of the export.
    */
-  const std::string & export (void) const;
+  const std::string & name (void) const;
 
   const std::string & build_flag (void) const;
 
   bool generate (const std::string & outdir);
 
-  static std::string export_macro (const std::string & export);
+  static std::string export_macro (const std::string & name);
 
-  static std::string export_file (const std::string & export);
+  static std::string export_file (const std::string & name);
 
-  static std::string build_flag (const std::string & export);
+  static std::string build_flag (const std::string & name);
 
 private:
   /// Name used to construct export data.
-  std::string export_;
+  std::string name_;
 
   /// Name of the export file.
   std::string export_file_;

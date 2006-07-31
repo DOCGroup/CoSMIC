@@ -9,12 +9,12 @@
 // CUTS_Export_File_Generator
 //
 CUTS_Export_File_Generator::
-CUTS_Export_File_Generator (const std::string & export)
-: export_ (export)
+CUTS_Export_File_Generator (const std::string & name)
+: name_ (name)
 {
-  this->export_macro_ = this->export_macro (this->export_);
-  this->export_file_ = this->export_file (this->export_);
-  this->build_flag_ = this->build_flag (this->export_);
+  this->export_macro_ = this->export_macro (this->name_);
+  this->export_file_ = this->export_file (this->name_);
+  this->build_flag_ = this->build_flag (this->name_);
 }
 
 //
@@ -29,9 +29,9 @@ CUTS_Export_File_Generator::~CUTS_Export_File_Generator (void)
 // export_macro
 //
 std::string
-CUTS_Export_File_Generator::export_macro (const std::string & export)
+CUTS_Export_File_Generator::export_macro (const std::string & name)
 {
-  std::string macro = export;
+  std::string macro = name;
   std::transform (macro.begin (),
                   macro.end (),
                   macro.begin (),
@@ -45,21 +45,21 @@ CUTS_Export_File_Generator::export_macro (const std::string & export)
 // export_file
 //
 std::string
-CUTS_Export_File_Generator::export_file (const std::string & export)
+CUTS_Export_File_Generator::export_file (const std::string & name)
 {
-  std::string filename = export;
+  std::string filename = name;
   filename.append ("_export.h");
 
   return filename;
 }
 
 //
-// export
+// name
 //
 const std::string &
-CUTS_Export_File_Generator::export (void) const
+CUTS_Export_File_Generator::name (void) const
 {
-  return this->export_;
+  return this->name_;
 }
 
 //
@@ -85,19 +85,19 @@ CUTS_Export_File_Generator::export_file (void) const
 //
 bool CUTS_Export_File_Generator::generate (const std::string & outdir)
 {
-  std::string export = this->export_;
-  std::transform (export.begin (),
-                  export.end (),
-                  export.begin (),
+  std::string name = this->name_;
+  std::transform (name.begin (),
+                  name.end (),
+                  name.begin (),
                   toupper);
 
-  std::string hasdll = export;
+  std::string hasdll = name;
   hasdll.append ("_HAS_DLL");
 
-  std::string ntrace = export;
+  std::string ntrace = name;
   ntrace.append ("_NTRACE");
 
-  // Construct the full path of the export file.
+  // Construct the full path of the name file.
   std::ostringstream pathname;
   pathname << outdir << "\\" << this->export_file_ << std::ends;
 
@@ -108,7 +108,7 @@ bool CUTS_Export_File_Generator::generate (const std::string & outdir)
   if (!exportfile.is_open ())
     return false;
 
-  // Generate the export file.
+  // Generate the name file.
   exportfile
     << "// -*- C++ -*-" << std::endl
     << "// $Id$" << std::endl
@@ -116,8 +116,8 @@ bool CUTS_Export_File_Generator::generate (const std::string & outdir)
     << "// Definition for Win32 Export directives" << std::endl
     << "// ---------------------------------------------" << std::endl
     << std::endl
-    << "#ifndef _" << export << "_EXPORT_H_" << std::endl
-    << "#define _" << export << "_EXPORT_H_" << std::endl
+    << "#ifndef _" << name << "_EXPORT_H_" << std::endl
+    << "#define _" << name << "_EXPORT_H_" << std::endl
     << std::endl
     << "#include \"ace/config-all.h\"" << std::endl
     << std::endl
@@ -125,20 +125,20 @@ bool CUTS_Export_File_Generator::generate (const std::string & outdir)
     << "#  define " << hasdll << " 1" << std::endl
     << "#endif /* !"<< hasdll << " */" << std::endl
     << std::endl
-    << "#if defined ("<< hasdll << ") && (" << export << "_HAS_DLL == 1)" << std::endl
+    << "#if defined ("<< hasdll << ") && (" << name << "_HAS_DLL == 1)" << std::endl
     << "#  if defined (" << this->build_flag_ << ")" << std::endl
     << "#    define " << this->export_macro_ << " ACE_Proper_Export_Flag" << std::endl
-    << "#    define " << export << "_SINGLETON_DECLARATION(T) ACE_EXPORT_SINGLETON_DECLARATION (T)" << std::endl
-    << "#    define " << export << "_SINGLETON_DECLARE(SINGLETON_TYPE, CLASS, LOCK) ACE_EXPORT_SINGLETON_DECLARE(SINGLETON_TYPE, CLASS, LOCK)" << std::endl
+    << "#    define " << name << "_SINGLETON_DECLARATION(T) ACE_EXPORT_SINGLETON_DECLARATION (T)" << std::endl
+    << "#    define " << name << "_SINGLETON_DECLARE(SINGLETON_TYPE, CLASS, LOCK) ACE_EXPORT_SINGLETON_DECLARE(SINGLETON_TYPE, CLASS, LOCK)" << std::endl
     << "#  else  /* " << this->build_flag_ << " */" << std::endl
     << "#    define " << this->export_macro_ << " ACE_Proper_Import_Flag" << std::endl
-    << "#    define " << export << "_SINGLETON_DECLARATION(T) ACE_IMPORT_SINGLETON_DECLARATION (T)" << std::endl
-    << "#    define " << export << "_SINGLETON_DECLARE(SINGLETON_TYPE, CLASS, LOCK) ACE_IMPORT_SINGLETON_DECLARE(SINGLETON_TYPE, CLASS, LOCK)" << std::endl
+    << "#    define " << name << "_SINGLETON_DECLARATION(T) ACE_IMPORT_SINGLETON_DECLARATION (T)" << std::endl
+    << "#    define " << name << "_SINGLETON_DECLARE(SINGLETON_TYPE, CLASS, LOCK) ACE_IMPORT_SINGLETON_DECLARE(SINGLETON_TYPE, CLASS, LOCK)" << std::endl
     << "#  endif /* " << this->build_flag_ << " */" << std::endl
     << "#else  /* " << hasdll << " == 1 */" << std::endl
     << "#  define " << this->export_macro_ << std::endl
-    << "#  define " << export << "_SINGLETON_DECLARATION(T)" << std::endl
-    << "#  define " << export << "_SINGLETON_DECLARE(SINGLETON_TYPE, CLASS, LOCK)" << std::endl
+    << "#  define " << name << "_SINGLETON_DECLARATION(T)" << std::endl
+    << "#  define " << name << "_SINGLETON_DECLARE(SINGLETON_TYPE, CLASS, LOCK)" << std::endl
     << "#endif /* " << hasdll << " == 1 */" << std::endl
     << std::endl
     << "// Set " << ntrace << " = 0 to turn on library specific " << std::endl
@@ -153,16 +153,16 @@ bool CUTS_Export_File_Generator::generate (const std::string & outdir)
     << "#endif /* !" << ntrace << " */" << std::endl
     << std::endl
     << "#if (" << ntrace << " == 1)" << std::endl
-    << "#  define " << export << "_TRACE(X)" << std::endl
+    << "#  define " << name << "_TRACE(X)" << std::endl
     << "#else /* (" << ntrace << " == 1) */" << std::endl
     << "#  if !defined (ACE_HAS_TRACE)" << std::endl
     << "#    define ACE_HAS_TRACE" << std::endl
     << "#  endif /* ACE_HAS_TRACE */" << std::endl
-    << "#  define " << export << "_TRACE(X) ACE_TRACE_IMPL(X)" << std::endl
+    << "#  define " << name << "_TRACE(X) ACE_TRACE_IMPL(X)" << std::endl
     << "#  include \"ace/Trace.h\"" << std::endl
     << "#endif /* (" << ntrace << " == 1) */" << std::endl
     << std::endl
-    << "#endif /* " << export << "_EXPORT_H_ */" << std::endl;
+    << "#endif /* " << name << "_EXPORT_H_ */" << std::endl;
 
   exportfile.close ();
   return true;
@@ -172,9 +172,9 @@ bool CUTS_Export_File_Generator::generate (const std::string & outdir)
 // build_flag
 //
 std::string
-CUTS_Export_File_Generator::build_flag (const std::string & export)
+CUTS_Export_File_Generator::build_flag (const std::string & name)
 {
-  std::string buildflag = export;
+  std::string buildflag = name;
   std::transform (buildflag.begin (),
                   buildflag.end (),
                   buildflag.begin (),
