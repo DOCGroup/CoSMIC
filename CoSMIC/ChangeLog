@@ -1,3 +1,11 @@
+Tue Aug  1 15:14:12 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/examples/SLICE/SLICE.xme:
+
+          Added an activate environment input action to all components
+          with a database worker so that a database connection could
+          be established at component activation time.
+
 Sun Jul 30 05:38:29 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/WSML/paradigms/WSML-uml.xme:
