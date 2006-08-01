@@ -1,3 +1,22 @@
+Tue Aug  1 17:04:15 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/UUIDManager/RawComponent.h:
+        * PIM/PICML/addons/UUIDManager/RawComponent.cpp:
+
+          The UUID manager now manages (creates/valdates) the UUIDs of
+          the following PICML elements:
+
+            - Component
+            - ComponentAssembly
+            - ComponentPackage
+            - ComponentImplementation
+            - DeploymentPlan
+            - Domain
+            - ImplementationArtifact
+            - MonolithicImplementation
+
+  RawComponent::picml_types_.insert (L"PackageConfiguration");
+
 Tue Aug  1 15:14:12 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/examples/SLICE/SLICE.xme:

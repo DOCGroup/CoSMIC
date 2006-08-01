@@ -7,32 +7,47 @@
 #include "ComponentConfig.h"
 #include "RawComponent.h"
 #include "PICML/Utils.h"
-#include <string>
+
+//=============================================================================
+/**
+ * @class COM_Exception
+ *
+ * COM exception helper class.
+ */
+//=============================================================================
 
 class COM_Exception
 {
 public:
-  COM_Exception (HRESULT hr)
-    : hr_ (hr)
-  {
+  /**
+   * Constructor.
+   *
+   * @param[in]     hr        COM result.
+   */
+  inline COM_Exception (HRESULT hr)
+    : hr_ (hr) { }
 
-  }
-
-  ~COM_Exception (void)
-  {
-
-  }
+  /// Destructor.
+  inline ~COM_Exception (void) { }
 
 private:
+  /// The COM result.
   HRESULT hr_;
 };
 
+/// Macro that verify the success of a COM operation. If
+/// the operation does not succeed it throws an exception.
 #define VERIFY_RESULT(x) \
   do { \
     HRESULT hr = x; \
     if (FAILED (hr)) \
       throw COM_Exception (hr); \
   } while (0)
+
+//
+// picml_types_
+//
+std::set <std::wstring> RawComponent::picml_types_;
 
 //
 // RawComponent
@@ -43,6 +58,9 @@ RawComponent::RawComponent (void)
 
 }
 
+//
+// ~RawComponent
+//
 RawComponent::~RawComponent (void)
 {
 
@@ -54,6 +72,18 @@ RawComponent::~RawComponent (void)
 STDMETHODIMP RawComponent::Initialize (struct IMgaProject * project)
 {
   this->project_ = project;
+
+  /// Create a collection of PICML types that contain a UUID
+  /// attribute. This will allow the addon to manage it's UUID.
+  RawComponent::picml_types_.insert (L"Component");
+  RawComponent::picml_types_.insert (L"ComponentAssembly");
+  RawComponent::picml_types_.insert (L"ComponentPackage");
+  RawComponent::picml_types_.insert (L"ComponentImplementation");
+  RawComponent::picml_types_.insert (L"DeploymentPlan");
+  RawComponent::picml_types_.insert (L"Domain");
+  RawComponent::picml_types_.insert (L"ImplementationArtifact");
+  RawComponent::picml_types_.insert (L"MonolithicImplementation");
+  RawComponent::picml_types_.insert (L"PackageConfiguration");
   return S_OK;
 }
 
@@ -161,11 +191,11 @@ STDMETHODIMP RawComponent::ObjectEvent (IMgaObject * obj,
                                         unsigned long eventmask,
                                         VARIANT v)
 {
-  if (this->pending_.GetCount ())
-    this->handle_pending ();
+  //if (this->pending_.GetCount ())
+  //  this->handle_pending ();
 
-  if (this->importing_)
-    return S_OK;
+  //if (this->importing_)
+  //  return S_OK;
 
   CComPtr <IMgaObject> object (obj);
 
@@ -189,16 +219,13 @@ STDMETHODIMP RawComponent::ObjectEvent (IMgaObject * obj,
       CComBSTR bstr;
       VERIFY_RESULT (fco_meta->get_Name (&bstr));
 
-      if (bstr == L"Component" || bstr == L"ComponentAssembly")
+      if (RawComponent::picml_types_.find (bstr.m_str) !=
+          RawComponent::picml_types_ .end ())
       {
         if ((eventmask & OBJEVENT_CREATED) != 0)
-        {
           this->create_uuid (fco);
-        }
         else if ((eventmask & OBJEVENT_ATTR) != 0)
-        {
           this->verify_uuid (fco);
-        }
       }
     }
   }

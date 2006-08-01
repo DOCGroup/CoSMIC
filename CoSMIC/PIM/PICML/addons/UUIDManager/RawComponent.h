@@ -17,6 +17,9 @@
 #error   This file should only be included in the RAW COM configurations
 #endif
 
+#include <string>
+#include <set>
+
 //=============================================================================
 /**
  * @class RawComponent
@@ -83,7 +86,11 @@ private:
   /// Collection of pending FCO's to validate.
   CInterfaceList <IMgaFCO> pending_;
 
+  /// Interface pointer to the hosting project.
   CComPtr <IMgaProject> project_;
+
+  /// PICML types with a UUID attribute.
+  static std::set <std::wstring> picml_types_;
 };
 
 
