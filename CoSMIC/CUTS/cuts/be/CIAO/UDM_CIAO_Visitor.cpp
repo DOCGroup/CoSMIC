@@ -781,12 +781,12 @@ void CUTS_UDM_CIAO_Visitor::generate_fini (const PICML::Component & component)
     << "void " << this->component_ << "::fini (void) {";
 
   for (CUTS_String_Set::iterator iter = this->event_sinks_.begin ();
-        iter != this->event_sinks_.end ();
-        iter ++)
+       iter != this->event_sinks_.end ();
+       iter ++)
   {
     this->sout_
-      << "this->benchmark_agent_->unregister_port_agent (&this->"
-      << EVENT_SINK_PREFIX << *iter << EVENT_SINK_POSTFIX
+      << "this->benchmark_agent_->unregister_port_agent (" << std::endl
+      << "&this->" << EVENT_SINK_PREFIX << *iter << EVENT_SINK_POSTFIX
       << "_.port_agent ());";
   }
 
@@ -806,10 +806,8 @@ void CUTS_UDM_CIAO_Visitor::Visit_InEventPort (const PICML::InEventPort & port)
 
   // We only need to add this port to the event sinks if there is
   // an <PICML::Input> associated with the port.
-  if (input)
-  {
+  if (input != Udm::null)
     this->event_sinks_.insert (port.name ());
-  }
 
   // Generate the function declaration for this event sink. This
   // is the standard CCM method thats exposed to the outside
@@ -831,9 +829,7 @@ void CUTS_UDM_CIAO_Visitor::Visit_InEventPort (const PICML::InEventPort & port)
   PICML::Event event = port.ref ();
 
   if (event != Udm::null)
-  {
     event.Accept (*this);
-  }
 
   // Insert the event name into the <event_types_> since we will
   // have to register its factory later.
@@ -914,22 +910,86 @@ void CUTS_UDM_CIAO_Visitor::generate_init (const PICML::Component & component)
     << "//\n// init\n//" << std::endl
     << "void " << this->component_ << "::" << "init (void) {";
 
-  for (CUTS_String_Set::iterator iter = this->event_sinks_.begin ();
-        iter != this->event_sinks_.end ();
-        iter ++)
+  typedef std::vector <PICML::InEventPort> InEventPort_Set;
+  InEventPort_Set inevents = component.InEventPort_kind_children ();
+
+  for (InEventPort_Set::iterator iter = inevents.begin ();
+       iter != inevents.end ();
+       iter ++)
   {
+    // Verify that this InEventPort has some behavior attached
+    // to it, else there is no need to generate 'init' code for it.
+    PICML::Input input = iter->dstInput ();
+
+    if (input == Udm::null)
+      continue;
+
+    // Construct the decorated name for the event handler.
+    std::string inevent_name = iter->name ();
+
+    std::ostringstream handler;
+    handler
+      << EVENT_SINK_PREFIX
+      << inevent_name
+      << EVENT_SINK_POSTFIX
+      << std::ends;
+
+    // Configure the binding of the event handler to the event
+    // sink method.
     this->sout_
-      << "// Configuring <" << *iter << "> event port" << std::endl
+      << "// Configuring <" << inevent_name << "> event port" << std::endl
       << "this->"
-      << EVENT_SINK_PREFIX << *iter << EVENT_SINK_POSTFIX
-      << "_.bind (" << std::endl
-      << "\"" << *iter << "\", this," << std::endl
-      << "&" << this->component_ << "::"
-      << EVENT_SINK_PREFIX << *iter << EVENT_SINK_POSTFIX << ");"
+      << handler.str ().c_str () << "_.bind (" << std::endl
+      << "\"" << inevent_name << "\", this, " << "&" << this->component_
+      << "::" << handler.str ().c_str () << ");"
       << "this->benchmark_agent_->register_port_agent (" << std::endl
-      << "&this->" << EVENT_SINK_PREFIX << *iter << EVENT_SINK_POSTFIX
-      << "_.port_agent ());"
+      << "&this->" << handler.str ().c_str () << "_.port_agent ());"
       << std::endl;
+
+    // Set any additional properties for the event handler.
+    PICML::InputAction ia = PICML::InputAction::Cast (input.dstInput_end ());
+
+    typedef std::set <PICML::Property> Property_Set;
+    Property_Set properties = ia.Property_children ();
+
+    for (Property_Set::const_iterator iter = properties.begin ();
+         iter != properties.end ();
+         iter ++)
+    {
+      std::string p_name = iter->name ();
+      std::string p_value = iter->DataValue ();
+
+      if (p_value.empty ())
+      {
+        this->sout_
+          << "// property <" << p_name << "> has no value" <<std::endl;
+      }
+      else if (p_name == "mode")
+      {
+        // Set the mode of the event handler.
+        this->sout_
+          << "this->" << handler.str ().c_str () << "_."
+          << p_name << " (CUTS_Event_Handler::";
+
+        if (p_value == "async")
+          this->sout_ << "ASYNCHRONOUS";
+        else if (p_value == "sync")
+          this->sout_ << "SYNCHRONOUS";
+        else
+          this->sout_ << "UNDEFINED";
+
+        this->sout_ << ");";
+      }
+      else if (p_name == "thread_count" ||
+               p_name == "priority")
+      {
+        // Print out a direct mapping of the <p_name> and
+        // it <p_value>.
+        this->sout_
+          << "this->" << handler.str ().c_str () << "_."
+          << p_name << " (" << p_value << ");";
+      }
+    }
   }
 
   // Initialize the periodic events.
