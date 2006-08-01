@@ -22,8 +22,8 @@ static const char * HEADER_SUFFIX = "_exec_i.h";
 static const char * SOURCE_SUFFIX = "_exec_i.cpp";
 
 static const char * EVENT_SINK_PREFIX = "push_";
-static const char * EVENT_SINK_POSTFIX = "_event_handler";
-static const char * PORT_AGENT_POSTFIX = "_port_agent";
+static const char * EVENT_SINK_POSTFIX = "_handler";
+static const char * PORT_AGENT_POSTFIX = "_agent";
 
 //===========================================================================
 /**

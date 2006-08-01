@@ -1,8 +1,15 @@
+Tue Aug  1 16:39:01 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CIAO/UDM_CIAO_Visitor.cpp:
+
+          Shortened the decorated names for event handlers and port
+          agents.
+
 Tue Aug  1 16:32:32 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CIAO/UDM_CIAO_Visitor.cpp:
-        
-          I thought I had removed all occurrences of 'export' as a 
+
+          I thought I had removed all occurrences of 'export' as a
           variable, but somehow it creeped back into the code and was
           causing compile warnings on vc8.
 
