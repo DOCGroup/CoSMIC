@@ -2,6 +2,7 @@
 #define _CUTS_COMPONENT_REGISTRY_H_
 
 #include "cuts/config.h"
+#include "cuts/CUTS_export.h"
 #include "ace/RW_Thread_Mutex.h"
 
 #include <map>

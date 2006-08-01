@@ -17,7 +17,7 @@
 
 #include "PICML/PICML.h"
 #include "UDM_CIAO_Export.h"
-
+#include "String_Set.h"
 #include <fstream>
 #include <list>
 #include <map>
@@ -29,196 +29,193 @@ class CUTS_Dependency_Graph;
 // Forward decl.
 class CUTS_Dependency_Node;
 
-namespace CUTS
+//===========================================================================
+/**
+  * @class UDM_CIAO_Visitor
+  *
+  * @brief Code generator for the CIAO backend from UDM models.
+  */
+//===========================================================================
+
+class CUTS_UDM_CIAO_Export CUTS_UDM_CIAO_Visitor : public PICML::Visitor
 {
-  //===========================================================================
+public:
   /**
-   * @class UDM_CIAO_Visitor
-   *
-   * @brief Code generator for the CIAO backend from UDM models.
-   */
-  //===========================================================================
+    * Intializing constructor.
+    *
+    * @param[in]        outdir      Output directory for the source code.
+    * @param[out]       impls       Collection of generated implemenations.
+    * @param[inout]     graph       Dependency graph for the model.
+    */
+  CUTS_UDM_CIAO_Visitor (const std::string & outdir,
+                         CUTS_Dependency_Graph & impls,
+                         const CUTS_Dependency_Graph & graph);
 
-  class CUTS_UDM_CIAO_Export UDM_CIAO_Visitor : public PICML::Visitor
-  {
-  public:
-    /**
-     * Intializing constructor.
-     *
-     * @param[in]     outdir      Output directory for the source code.
-     * @param[in]     graph       Dependency graph for the model.
-     */
-    UDM_CIAO_Visitor (const std::string & outdir,
-                      const CUTS_Dependency_Graph & graph);
+  /// Destructor.
+  virtual ~CUTS_UDM_CIAO_Visitor (void);
 
-    /// Destructor.
-    virtual ~UDM_CIAO_Visitor (void);
+protected:
+  /// Visit the RootFolder of a PICML model.
+  void Visit_RootFolder (const PICML::RootFolder &);
 
-  protected:
-    /// Visit the RootFolder of a PICML model.
-    void Visit_RootFolder (const PICML::RootFolder &);
+  /// Visit a Component in the PICML model.
+  void Visit_Component (const PICML::Component &);
 
-    /// Visit a Component in the PICML model.
-    void Visit_Component (const PICML::Component &);
+  /// Visit a Component in the PICML model.
+  void Visit_ComponentRef (const PICML::ComponentRef &);
 
-    /// Visit a Component in the PICML model.
-    void Visit_ComponentRef (const PICML::ComponentRef &);
+  void Visit_WorkerType (const PICML::WorkerType &);
 
-    void Visit_WorkerType (const PICML::WorkerType &);
+  void Visit_Worker (const PICML::Worker &);
 
-    void Visit_Worker (const PICML::Worker &);
+  void Visit_InEventPort (const PICML::InEventPort &);
 
-    void Visit_InEventPort (const PICML::InEventPort &);
+  void Visit_Event (const PICML::Event &);
 
-    void Visit_Event (const PICML::Event &);
+  void Visit_Input (const PICML::Input &);
 
-    void Visit_Input (const PICML::Input &);
+  void Visit_InputAction (const PICML::InputAction &);
 
-    void Visit_InputAction (const PICML::InputAction &);
+  void Visit_State (const PICML::State &);
 
-    void Visit_State (const PICML::State &);
+  void Visit_Effect (const PICML::Effect &);
 
-    void Visit_Effect (const PICML::Effect &);
+  void Visit_Transition (const PICML::Transition &);
 
-    void Visit_Transition (const PICML::Transition &);
+  void Visit_Action (const PICML::Action &);
 
-    void Visit_Action (const PICML::Action &);
+  void Visit_Property (const PICML::Property &);
 
-    void Visit_Property (const PICML::Property &);
+  void Visit_String (const PICML::String &);
 
-    void Visit_String (const PICML::String &);
+  void Visit_LongInteger (const PICML::LongInteger &);
 
-    void Visit_LongInteger (const PICML::LongInteger &);
+  void Visit_ManagesComponent (const PICML::ManagesComponent &);
 
-    void Visit_ManagesComponent (const PICML::ManagesComponent &);
+  void Visit_ComponentFactory (const PICML::ComponentFactory &);
 
-    void Visit_ComponentFactory (const PICML::ComponentFactory &);
+  void Visit_OutEventPort (const PICML::OutEventPort &);
 
-    void Visit_OutEventPort (const PICML::OutEventPort &);
+  void Visit_PeriodicAction (const PICML::PeriodicAction &);
 
-    void Visit_PeriodicAction (const PICML::PeriodicAction &);
+  void Visit_OutputAction (const PICML::OutputAction &);
 
-    void Visit_OutputAction (const PICML::OutputAction &);
+  void Visit_Environment (const PICML::Environment &);
 
-    void Visit_Environment (const PICML::Environment &);
+  void Visit_CompositeAction (const PICML::CompositeAction &);
 
-    void Visit_CompositeAction (const PICML::CompositeAction &);
+  void Visit_Variable (const PICML::Variable &);
 
-    void Visit_Variable (const PICML::Variable &);
+  void Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort &);
 
-    void Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort &);
+  void Visit_Object (const PICML::Object &);
 
-    void Visit_Object (const PICML::Object &);
+  void Visit_ComponentImplementations (
+    const PICML::ComponentImplementations &);
 
-    void Visit_ComponentImplementations (
-      const PICML::ComponentImplementations &);
+  void Visit_ComponentImplementationContainer (
+    const PICML::ComponentImplementationContainer &);
 
-    void Visit_ComponentImplementationContainer (
-      const PICML::ComponentImplementationContainer &);
+  void Visit_MonolithicImplementation (
+    const PICML::MonolithicImplementation &);
 
-    void Visit_MonolithicImplementation (
-      const PICML::MonolithicImplementation &);
+  void Visit_Implements (const PICML::Implements &);
 
-    void Visit_Implements (const PICML::Implements &);
+private:
+  void generate_constructor (void);
 
-  private:
-    void generate_constructor (void);
+  void generate_destructor (void);
 
-    void generate_destructor (void);
+  void generate_member_variables (const PICML::Component &);
 
-    void generate_member_variables (const PICML::Component &);
+  void generate_init (const PICML::Component & component);
 
-    void generate_init (const PICML::Component & component);
+  void generate_fini (const PICML::Component & component);
 
-    void generate_fini (const PICML::Component & component);
+  void generate_set_session_context (const PICML::Component &);
 
-    void generate_set_session_context (const PICML::Component &);
+  void generate_ciao_preactivate (const PICML::Component &);
 
-    void generate_ciao_preactivate (const PICML::Component &);
+  void generate_ccm_activate (const PICML::Component &);
 
-    void generate_ccm_activate (const PICML::Component &);
+  void generate_ciao_postactivate (const PICML::Component &);
 
-    void generate_ciao_postactivate (const PICML::Component &);
+  void generate_ccm_passivate (const PICML::Component &);
 
-    void generate_ccm_passivate (const PICML::Component &);
+  void generate_ccm_remove (const PICML::Component &);
 
-    void generate_ccm_remove (const PICML::Component &);
+  void generate_scope (const std::string & seperator);
 
-    void generate_scope (const std::string & seperator);
+  void generate_scope (const PICML::MgaObject &);
 
-    void generate_scope (const PICML::MgaObject &);
+  void generate_factory (const std::string & factory);
 
-    void generate_factory (const std::string & factory);
+  void reset_component_info (void);
 
-    void reset_component_info (void);
+  void reset_file_info (void);
 
-    void reset_file_info (void);
+  /// Get the dependency node of a component.
+  CUTS_Dependency_Node * get_dependency_node (const PICML::Component &);
 
-    /// Output directory for the source files.
-    std::string outdir_;
+  /// Output directory for the source files.
+  std::string outdir_;
 
-    /// The constructed dependency graph for the model.
-    const CUTS_Dependency_Graph & dependency_graph_;
+  /// The constructed implementation graph for the model.
+  CUTS_Dependency_Graph & impls_;
 
-    /// The current node in the graph.
-    CUTS_Dependency_Node * node_;
+  /// The current implementation node.
+  CUTS_Dependency_Node * impl_node_;
 
-    /// Output stream for the header file.
-    std::ofstream hout_;
+  /// The constructed dependency graph for the model.
+  const CUTS_Dependency_Graph & dependency_graph_;
 
-    /// Output stream for the source file.
-    std::ofstream sout_;
+  /// Output stream for the header file.
+  std::ofstream hout_;
 
-    /// Output stream for the workspace file.
-    std::ofstream wout_;
+  /// Output stream for the source file.
+  std::ofstream sout_;
 
-    /// Name of the current component.
-    std::string component_;
+  /// Output stream for the workspace file.
+  std::ofstream wout_;
 
-    std::string container_;
+  /// Name of the current component.
+  std::string component_;
 
-    std::string monolithic_;
+  std::string container_;
 
-    typedef std::set <std::string> String_Set;
+  std::string monolithic_;
 
-    String_Set event_sinks_;
+  typedef std::set <std::string> CUTS_String_Set;
 
-    String_Set event_types_;
+  CUTS_String_Set event_sinks_;
 
-    String_Set file_depends_;
+  CUTS_String_Set event_types_;
 
-    bool has_out_events_;
+  CUTS_String_Set file_depends_;
 
-    std::string temp_str_;
+  bool has_out_events_;
 
-    std::string function_;
+  std::string temp_str_;
 
-    std::string current_file_;
+  typedef std::list <std::string> Scope_List;
 
-    typedef std::list <std::string> Scope_List;
+  typedef std::map <std::string, std::string> Event_Map;
 
-    typedef std::map <std::string, std::string> Event_Map;
+  Event_Map event_map_;
 
-    //const File_Configuration_Map::const_iterator file_config_;
+  Scope_List scope_;
 
-    Event_Map event_map_;
+  bool has_activate_;
 
-    Scope_List scope_;
+  std::stack <PICML::InputActionBase> call_stack_;
 
-    bool has_activate_;
+  std::stack <PICML::State> holding_state_;
 
-    bool exclude_executor_;
+  bool ignore_effects_;
 
-    std::stack <PICML::InputActionBase> call_stack_;
+  size_t depth_;
 
-    std::stack <PICML::State> holding_state_;
-
-    bool ignore_effects_;
-
-    size_t depth_;
-
-    bool generated_factory_;
-  };
-}
+  bool generated_factory_;
+};
 
 #endif  // !defined _CUTS_UDM_CIAO_VISITOR_H_

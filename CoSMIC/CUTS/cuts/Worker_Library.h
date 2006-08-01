@@ -14,6 +14,7 @@
 #define _CUTS_WORKER_LIBRARY_H_
 
 #include "cuts/config.h"
+#include "cuts/CUTS_export.h"
 #include "ace/Hash_Map_Manager_T.h"
 #include "ace/Null_Mutex.h"
 #include "ace/SStringfwd.h"

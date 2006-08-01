@@ -20,6 +20,7 @@
 #endif  // ACE_LACKS_PRAGMA_ONCE
 
 #include "cuts/config.h"
+#include "cuts/CUTS_export.h"
 #include "ace/Time_Value.h"
 #include "ace/OS_NS_sys_time.h"
 

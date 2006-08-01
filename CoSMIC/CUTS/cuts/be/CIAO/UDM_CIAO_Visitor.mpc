@@ -19,6 +19,7 @@ project (CUTS_UDM_CIAO) : cutslib, picml_udm {
   Header_Files {
     File_Config.h
     UDM_CIAO_Export.h
+    String_Set.h
   }
 
   Source_Files {

@@ -75,23 +75,17 @@ protected:
   /// Visit a NameType element in a PICML model.
   void Visit_NamedType (const PICML::NamedType &);
 
-  /// Visit a WorkerType in a PICML model.
-  void Visit_WorkerType (const PICML::WorkerType &);
-
-  /// Visit a Worker in a PICML model.
-  void Visit_Worker (const PICML::Worker &);
-
-  /// Visit a WorkerFile in a PICML model.
-  void Visit_WorkerFile (const PICML::WorkerFile &);
-
-  /// Visit a WorkerLibrary in a PICML model.
-  void Visit_WorkerLibrary (const PICML::WorkerLibrary &);
-
   /// Visit an Event in a PICML model.
   void Visit_Event (const PICML::Event &);
 
   /// Visit a Providable element in a PICML model.
   void Visit_Providable (const PICML::Provideable &);
+
+  /// Visit a Supports element in a PICML model.
+  void Visit_Supports (const PICML::Supports &);
+
+  /// Visit a ReadonlyAttribute in a PICML model.
+  void Visit_ReadonlyAttribute (const PICML::ReadonlyAttribute &);
 
 private:
   /**

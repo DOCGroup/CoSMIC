@@ -14,6 +14,7 @@
 #define _CUTS_ODBC_H_
 
 #include "cuts/config.h"
+#include "ace/config.h"
 
 #if defined (CUTS_HAS_ODBC)
 

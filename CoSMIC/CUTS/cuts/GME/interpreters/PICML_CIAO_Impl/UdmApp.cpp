@@ -96,9 +96,6 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,
                       set <Udm::Object> selectedObjects,
                       long param)
 {
-  //CFolderDialog folder;
-  //folder.DoModal ();
-
   // Initialize the <CUTS_Project>. We need to make sure the project is
   // valid before continuing. It just doesn't make any sense to continue
   // to waste the end-user's time if the project is invalid. Eventually,
@@ -148,12 +145,15 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,
         root.Accept (dependency_generator);
 
         // Generate the source code for the PICML model.
-        CUTS::UDM_CIAO_Visitor ciao_generator (output_dir,
-                                               dependency_graph);
+        CUTS_Dependency_Graph impls;
+        CUTS_UDM_CIAO_Visitor ciao_generator (output_dir,
+                                              impls,
+                                              dependency_graph);
         root.Accept (ciao_generator);
 
         // Generate the workspace for the project.
         CUTS_Workspace_Generator workspace_generator (output_dir,
+                                                      impls,
                                                       dependency_graph);
         root.Accept (workspace_generator);
 

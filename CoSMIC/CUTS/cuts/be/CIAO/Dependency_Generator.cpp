@@ -113,19 +113,6 @@ void CUTS_Dependency_Generator::Visit_Package (
 void CUTS_Dependency_Generator::Visit_Component (
   const PICML::Component & component)
 {
-  // Determine if the component is a CoWorkEr. If it is then we
-  // need to build the executor project as well and check
-  // for all dependencies.
-  long flags = CUTS_Dependency_Node::DNF_STUB |
-               CUTS_Dependency_Node::DNF_SVNT;
-
-  if (CUTS_CoWorkEr_Cache::instance ()->is_coworker (component))
-  {
-    flags |= CUTS_Dependency_Node::DNF_EXEC;
-  }
-
-  this->current_node_->flags_ |= flags;
-
   // If this component is a <subtype> of another component, there is a
   // chance that it is located in another file. If this is the case
   // then we have to update its references.
@@ -135,45 +122,26 @@ void CUTS_Dependency_Generator::Visit_Component (
     this->Visit_NamedType (subtype);
   }
 
-  // Get and visit all the worker types in this component.
-  typedef std::set <PICML::WorkerType> WorkerType_Set;
-  WorkerType_Set worker_types = component.WorkerType_kind_children ();
-
-  std::for_each (worker_types.begin (),
-                 worker_types.end (),
-                 UDM_Accept_Functor <CUTS_Dependency_Generator,
-                                     WorkerType_Set::value_type> (*this));
-
   // Determine if the component has output events.
-  typedef std::set <PICML::OutEventPort> OutEventPort_Set;
+  typedef std::vector <PICML::OutEventPort> OutEventPort_Set;
   OutEventPort_Set oep_set = component.OutEventPort_kind_children ();
 
-  if (!oep_set.empty ())
-  {
-    this->current_node_->flags_ |= CUTS_Dependency_Node::DNF_OUTEVENTS;
-
-    std::for_each (oep_set.begin (),
-                   oep_set.end (),
-                   UDM_Accept_Functor <CUTS_Dependency_Generator,
-                                       OutEventPort_Set::value_type> (*this));
-  }
+  std::for_each (oep_set.begin (),
+                 oep_set.end (),
+                 UDM_Accept_Functor <CUTS_Dependency_Generator,
+                                     OutEventPort_Set::value_type> (*this));
 
   // Determine if the component has input events.
-  typedef std::set <PICML::InEventPort> InEventPort_Set;
+  typedef std::vector <PICML::InEventPort> InEventPort_Set;
   InEventPort_Set iep_set = component.InEventPort_kind_children ();
 
-  if (!iep_set.empty ())
-  {
-    this->current_node_->flags_ |= CUTS_Dependency_Node::DNF_INEVENTS;
-
-    std::for_each (iep_set.begin (),
-                   iep_set.end (),
-                   UDM_Accept_Functor <CUTS_Dependency_Generator,
-                                       InEventPort_Set::value_type> (*this));
-  }
+  std::for_each (iep_set.begin (),
+                 iep_set.end (),
+                 UDM_Accept_Functor <CUTS_Dependency_Generator,
+                                     InEventPort_Set::value_type> (*this));
 
   // Determine if the component has any receptacles.
-  typedef std::set <PICML::RequiredRequestPort> Receptacle_Set;
+  typedef std::vector <PICML::RequiredRequestPort> Receptacle_Set;
   Receptacle_Set receptacles = component.RequiredRequestPort_kind_children ();
 
   std::for_each (receptacles.begin (),
@@ -182,7 +150,7 @@ void CUTS_Dependency_Generator::Visit_Component (
                                      Receptacle_Set::value_type> (*this));
 
   // Determine if the component has any facets.
-  typedef std::set <PICML::ProvidedRequestPort> Facet_Set;
+  typedef std::vector <PICML::ProvidedRequestPort> Facet_Set;
   Facet_Set facets = component.ProvidedRequestPort_kind_children ();
 
   std::for_each (facets.begin (),
@@ -190,14 +158,25 @@ void CUTS_Dependency_Generator::Visit_Component (
                  UDM_Accept_Functor <CUTS_Dependency_Generator,
                                      Facet_Set::value_type> (*this));
 
-  // Determine if the component has any periodic actions.
-  typedef std::set <PICML::PeriodicAction> Periodic_Set;
-  Periodic_Set pset = component.PeriodicAction_kind_children ();
+  // Determine the dependency for supported interfaces.
+  typedef std::vector <PICML::Supports> Supports_Set;
+  Supports_Set supports = component.Supports_children ();
 
-  if (!pset.empty ())
-  {
-    this->current_node_->flags_ |= CUTS_Dependency_Node::DNF_PERIODIC;
-  }
+  std::for_each (supports.begin (),
+                 supports.end (),
+                 UDM_Accept_Functor <CUTS_Dependency_Generator,
+                                     Supports_Set::value_type> (*this));
+
+  // Determine the dependency for attributes. We get the read-only
+  // kind since it will return both read-only and read-write
+  // attributes.
+  typedef std::vector <PICML::ReadonlyAttribute> Readonly_Set;
+  Readonly_Set attrs = component.ReadonlyAttribute_kind_children ();
+
+  std::for_each (attrs.begin (),
+                 attrs.end (),
+                 UDM_Accept_Functor <CUTS_Dependency_Generator,
+                                     Readonly_Set::value_type> (*this));
 }
 
 //
@@ -209,9 +188,7 @@ void CUTS_Dependency_Generator::Visit_OutEventPort (
   PICML::Event event = port.ref ();
 
   if (event != Udm::null)
-  {
     event.Accept (*this);
-  }
 }
 
 //
@@ -223,9 +200,7 @@ void CUTS_Dependency_Generator::Visit_InEventPort (
   PICML::Event event = port.ref ();
 
   if (event != Udm::null)
-  {
     event.Accept (*this);
-  }
 }
 
 //
@@ -236,10 +211,8 @@ void CUTS_Dependency_Generator::Visit_RequiredRequestPort (
 {
   PICML::Provideable provides = port.ref ();
 
-  if (provides)
-  {
+  if (provides != Udm::null)
     this->Visit_Providable (provides);
-  }
 }
 
 //
@@ -250,10 +223,8 @@ void CUTS_Dependency_Generator::Visit_ProvidedRequestPort (
 {
   PICML::Provideable provides = port.ref ();
 
-  if (provides)
-  {
+  if (provides != Udm::null)
     this->Visit_Providable (provides);
-  }
 }
 
 //
@@ -284,7 +255,8 @@ void CUTS_Dependency_Generator::Visit_Event (const PICML::Event & event)
 //
 // Visit_NamedType
 //
-void CUTS_Dependency_Generator::Visit_NamedType (const PICML::NamedType & type)
+void
+CUTS_Dependency_Generator::Visit_NamedType (const PICML::NamedType & type)
 {
   PICML::Package package;
   PICML::MgaObject parent = type.parent ();
@@ -309,82 +281,46 @@ void CUTS_Dependency_Generator::Visit_NamedType (const PICML::NamedType & type)
       // Locate the node that contains this <PICML::NamedType>
       // element since it's not located in this file.
       CUTS_Dependency_Node * node = this->graph_.create_node (parent.name ());
-
-      // Add the <NamedType> elements node to the <current_node_>'s
-      // <reference_> set. We also need to set the <STUB> and <SVNT>
-      // flags since both projects are going to be need for the
-      // the <current_node_> to build successfully.
-      node->flags_ |= (CUTS_Dependency_Node::DNF_STUB |
-                       CUTS_Dependency_Node::DNF_SVNT /* |
-                       CUTS_Dependency_Node::DNF_COWORKER*/);
-
       this->current_node_->references_.insert (node);
     }
   }
 }
 
 //
-// Visit_WorkerType
+// Visit_Supports
 //
-void CUTS_Dependency_Generator::Visit_WorkerType (
-  const PICML::WorkerType & worker_type)
+void CUTS_Dependency_Generator::Visit_Supports (
+  const PICML::Supports & supports)
 {
-  PICML::Worker worker = worker_type.ref ();
+  PICML::Object object = supports.ref ();
 
-  if (worker)
-  {
-    worker.Accept (*this);
-  }
+  if (object != Udm::null)
+    this->Visit_NamedType (object);
 }
 
 //
-// Visit_Worker
+// Visit_ReadonlyAttribute
 //
-void CUTS_Dependency_Generator::Visit_Worker (const PICML::Worker & worker)
+void CUTS_Dependency_Generator::Visit_ReadonlyAttribute (
+  const PICML::ReadonlyAttribute & readonly)
 {
-  // Visit the file that contains this worker.
-  PICML::WorkerPackageImplementationBase package_impl;
-  package_impl = worker.WorkerPackageImplementationBase_parent ();
+  PICML::AttributeMember member = readonly.AttributeMember_child ();
 
-  // Trace the worker to it's parent file.
-  while ((std::string) package_impl.type ().name () ==
-         (std::string) PICML::WorkerPackage::meta.name ())
+  if (member != Udm::null)
   {
-    PICML::WorkerPackage package = PICML::WorkerPackage::Cast (package_impl);
-    package_impl = package.WorkerPackageImplementationBase_parent ();
-  }
+    // The model is valid since we have a child!!!!
+    PICML::MemberType type = member.ref ();
 
-  // Visit the parent file of the worker.
-  PICML::WorkerFile::Cast (package_impl).Accept (*this);
-}
-
-//
-// Visit_WorkerFile
-//
-void CUTS_Dependency_Generator::Visit_WorkerFile (
-  const PICML::WorkerFile & worker_file)
-{
-  // Insert the name of this worker file into the current configuration.
-  this->current_node_->includes_.insert (worker_file.name ());
-
-  PICML::WorkerLibrary library = worker_file.WorkerLibrary_parent ();
-  library.Accept (*this);
-}
-
-//
-// Visit_WorkerLibrary
-//
-void CUTS_Dependency_Generator::Visit_WorkerLibrary (
-  const PICML::WorkerLibrary & library)
-{
-  // Insert the name of the library into the libs for this
-  // current file configuration.
-  this->current_node_->libs_.insert (library.name ());
-
-  std::string location = library.Location ();
-
-  if (!location.empty ())
-  {
-    this->current_node_->libpaths_.insert (location);
+    try
+    {
+      // Try and extact the named type so we can update our
+      // dependencies.
+      PICML::NamedType named_type = PICML::NamedType::Cast (type);
+      this->Visit_NamedType (named_type);
+    }
+    catch (udm_exception)
+    {
+      /* bad cast: not a NamedType */
+    }
   }
 }

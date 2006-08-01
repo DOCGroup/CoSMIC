@@ -16,19 +16,21 @@
 #define _CUTS_SYSTEM_METRIC_H_
 
 #include "cuts/config.h"
+#include "cuts/CUTS_export.h"
 #include "ace/Time_Value.h"
 #include "ace/RW_Thread_Mutex.h"
 
 #include <map>
 #include <string>
-#include <ostream>
 
+// Forward decl.
 class CUTS_Component_Metric;
+
+// Forward decl.
 class CUTS_System_Metrics_Visitor;
 
-typedef std::map <
-  long, CUTS_Component_Metric *>
-  CUTS_Component_Metric_Map;
+// Typedef.
+typedef std::map <long, CUTS_Component_Metric *> CUTS_Component_Metric_Map;
 
 //=============================================================================
 /**

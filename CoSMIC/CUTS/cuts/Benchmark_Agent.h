@@ -16,7 +16,7 @@
 #define _CUTS_BENCHMARK_AGENT_H_
 
 #include "cuts/config.h"
-
+#include "cuts/CUTS_export.h"
 #include <map>
 #include <set>
 #include <string>

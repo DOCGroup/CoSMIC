@@ -14,10 +14,12 @@
 #define _CUTS_ACTION_ITERATOR_H_
 
 #include "cuts/config.h"
+#include "cuts/CUTS_export.h"
+
 #include "ace/SStringfwd.h"
 #include "ace/String_Base.h"
 
-// forward declarations
+// Forward decl.
 class CUTS_Action;
 
 //=============================================================================

@@ -14,9 +14,9 @@
 #define _CUTS_DBASE_SERVICE_H_
 
 #include "cuts/config.h"
+#include "cuts/CUTS_export.h"
 #include "ace/RW_Thread_Mutex.h"
 #include "ace/Auto_Ptr.h"
-
 #include <map>
 
 // Forward decl.

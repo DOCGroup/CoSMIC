@@ -1,18 +1,30 @@
 // -*- C++ -*-
 
+//=============================================================================
+/**
+ * @file      Component_Metric.h
+ *
+ * $Id$
+ *
+ * @author    James H. Hill
+ */
+//=============================================================================
+
 #ifndef _CUTS_COMPONENT_METRIC_H_
 #define _CUTS_COMPONENT_METRIC_H_
 
 #include "cuts/config.h"
+#include "cuts/CUTS_export.h"
 #include "ace/Time_Value.h"
 #include "ace/RW_Thread_Mutex.h"
-
 #include <map>
 #include <string>
 #include <ostream>
 
-// forward declarations
+// Forward decl.
 class CUTS_Port_Metric;
+
+// Forward decl.
 class CUTS_System_Metrics_Visitor;
 
 typedef std::map <

@@ -122,3 +122,16 @@ CUTS_Dependency_Graph::graph (void) const
 {
   return this->graph_;
 }
+
+//
+// reset_visit_flag
+//
+void CUTS_Dependency_Graph::reset_visit_flag (void)
+{
+  for (Dependency_Graph::iterator iter = this->graph_.begin ();
+       iter != this->graph_.end ();
+       iter ++)
+  {
+    iter->second->flags_ &= ~CUTS_Dependency_Node::DNF_VISITED;
+  }
+}

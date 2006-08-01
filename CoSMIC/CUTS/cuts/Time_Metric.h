@@ -4,12 +4,13 @@
 #define _CUTS_TIME_METRIC_H_
 
 #include "cuts/config.h"
+#include "cuts/CUTS_export.h"
+
 #include "ace/Time_Value.h"
 #include "ace/RW_Thread_Mutex.h"
 #include "ace/Guard_T.h"
 
-#include <ostream>
-
+// Forward decl.
 class CUTS_System_Metrics_Visitor;
 
 //=============================================================================

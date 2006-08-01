@@ -14,6 +14,7 @@
 #define _CUTS_EVENT_HANDLER_H_
 
 #include "cuts/config.h"
+#include "cuts/CUTS_export.h"
 #include "ace/SStringfwd.h"
 
 //=============================================================================

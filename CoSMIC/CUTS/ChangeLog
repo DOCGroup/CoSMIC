@@ -1,14 +1,69 @@
+Mon Jul 31 23:47:12 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/config.h:
+
+          Removed cuts/CUTS_export.h declaration.
+
+        * cuts/Action.h:
+        * cuts/Action_Iterator.h:
+        * cuts/Benchmark_Agent.h:
+        * cuts/Component_Metric.h:
+        * cuts/Component_Registry.h:
+        * cuts/EventHandler.h:
+        * cuts/Event_Guard.h:
+        * cuts/Host_Table.h:
+        * cuts/Message_Handler.h:
+        * cuts/System_Metric.h:
+        * cuts/Time.h:
+        * cuts/Time_Measurement.h:
+        * cuts/Time_Metric.h:
+        * cuts/Worker_Library.h:
+        * cuts/svcs/dbase/DBase_Service.h:
+
+          Added cuts/CUTS_export.h declaration (related to change above).
+
+        * cuts/utils/ODBC/ODBC.h:
+
+          Added ace/config.h declaration since cuts/config.h doesn't include
+          ace/config.h anymore.
+
+        * CUTS_CIAO.mwc:
+
+          Added String_Set.h header file.
+
+        * cuts/GME/interpreters/PICML_CIAO_Impl/UdmApp.cpp:
+
+        * cuts/be/CIAO/String_Set.h:
+
+          Type definition of string set.
+
+        * cuts/be/CIAO/Dependency_Generator.h:
+        * cuts/be/CIAO/Dependency_Generator.cpp:
+        * cuts/be/CIAO/Dependency_Graph.h:
+        * cuts/be/CIAO/Dependency_Graph.cpp:
+        * cuts/be/CIAO/UDM_CIAO_Visitor.h:
+        * cuts/be/CIAO/UDM_CIAO_Visitor.cpp:
+        * cuts/be/CIAO/UDM_CIAO_Visitor.mpc:
+        * cuts/be/CIAO/Workspace_Generator.h:
+        * cuts/be/CIAO/Workspace_Generator.cpp:
+
+          - Refactored dependency graph generator.
+          - Component implemenations generate a dependency graph and
+            references nodes in the stub dependency graph.
+          - Workspaces are now generated based on the implemenation
+            and stub dependency graph.
+
 Mon Jul 31 16:05:29 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CUTS.idl:
 
           Missing #include <Components.idl> declaration.
-          
+
         * cuts/be/CIAO/Export_File_Generator.h:
         * cuts/be/CIAO/Export_File_Generator.cpp:
         * cuts/be/CIAO/UDM_CIAO_Visitor.cpp:
         * cuts/be/CIAO/Workspace_Generator.cpp:
-        
+
           Apparently, "exports" is a future reserved word on vc8. So,
           all occurrences of "export" as a variable were changed.
 

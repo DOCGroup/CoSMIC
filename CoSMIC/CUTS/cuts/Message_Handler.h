@@ -1,13 +1,27 @@
 // -*- C++ -*-
 
+//=============================================================================
+/**
+ * @file      Message_Handler.h
+ *
+ * $Id$
+ *
+ * @author    James H. Hill
+ */
+//=============================================================================
+
 #ifndef _CUTS_MESSAGE_HANDLER_H_
 #define _CUTS_MESSAGE_HANDLER_H_
 
 #include "cuts/config.h"
+#include "cuts/CUTS_export.h"
 
 //=============================================================================
 /**
+ * @class CUTS_Message_Handler
  *
+ * Interface for message handlers used in modeling environment
+ * backends.
  */
 //=============================================================================
 
