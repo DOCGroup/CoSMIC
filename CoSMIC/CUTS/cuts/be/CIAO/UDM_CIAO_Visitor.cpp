@@ -231,9 +231,9 @@ CUTS_UDM_CIAO_Visitor::Visit_Component (const PICML::Component & component)
   {
     do
     {
-      std::string export = this->container_;
-      export.append ("_exec");
-      CUTS_Export_File_Generator efg (export);
+      std::string export_name = this->container_;
+      export_name.append ("_exec");
+      CUTS_Export_File_Generator efg (export_name);
 
       // Initialize the indentation implanters for the C++
       // specific files
@@ -573,9 +573,9 @@ void CUTS_UDM_CIAO_Visitor::generate_factory (const std::string & factory)
   std::string factory_i = factory;
   factory_i.append ("_i");
 
-  std::string export = this->container_;
-  export.append ("_exec");
-  CUTS_Export_File_Generator efg (export);
+  std::string export_name = this->container_;
+  export_name.append ("_exec");
+  CUTS_Export_File_Generator efg (export_name);
 
   std::string create_method ("create_");
   create_method.append (factory);

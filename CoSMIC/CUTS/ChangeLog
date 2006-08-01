@@ -1,3 +1,11 @@
+Tue Aug  1 16:32:32 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CIAO/UDM_CIAO_Visitor.cpp:
+        
+          I thought I had removed all occurrences of 'export' as a 
+          variable, but somehow it creeped back into the code and was
+          causing compile warnings on vc8.
+
 Tue Aug  1 15:08:55 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Async_Event_Handler_T.h:
