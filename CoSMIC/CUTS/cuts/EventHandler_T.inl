@@ -11,10 +11,10 @@
 //
 template <typename COMPONENT, typename EVENTTYPE>
 CUTS_INLINE
-void CUTS_Event_Handler_Base_T <COMPONENT, EVENTTYPE>::bind (
-  const char * name,
-  Component_Type * component,
-  Event_Method method)
+void CUTS_Event_Handler_Base_T <COMPONENT, EVENTTYPE>::
+bind (const char * name,
+      Component_Type * component,
+      Event_Method method)
 {
   this->port_agent_.name (name);
   this->component_ = component;
@@ -154,4 +154,44 @@ CUTS_Event_Handler::Event_Mode
 CUTS_Event_Handler_T <COMPONENT, EVENTTYPE>::mode (void) const
 {
   return this->mode_;
+}
+
+//
+// priority
+//
+template <typename COMPONENT, typename EVENTTYPE>
+CUTS_INLINE
+int CUTS_Event_Handler_T <COMPONENT, EVENTTYPE>::priority (void) const
+{
+  return this->impl_->priority ();
+}
+
+//
+// priority
+//
+template <typename COMPONENT, typename EVENTTYPE>
+CUTS_INLINE
+void CUTS_Event_Handler_T <COMPONENT, EVENTTYPE>::priority (int prio)
+{
+  this->impl_->priority (prio);
+}
+
+//
+// thread_count
+//
+template <typename COMPONENT, typename EVENTTYPE>
+CUTS_INLINE size_t
+CUTS_Event_Handler_T <COMPONENT, EVENTTYPE>::thread_count (void) const
+{
+  return this->impl_->thread_count ();
+}
+
+//
+// thread_count
+//
+template <typename COMPONENT, typename EVENTTYPE>
+CUTS_INLINE void
+CUTS_Event_Handler_T <COMPONENT, EVENTTYPE>::thread_count (size_t count)
+{
+  this->impl_->thread_count (count);
 }

@@ -40,10 +40,40 @@ public:
     /// Asynchronous mode.
     ASYNCHRONOUS  = 2
   };
+
+  /// Activate the event handler.
+  virtual void activate (void) = 0;
+
+  /// Deactivate the event handler.
+  virtual void deactivate (void) = 0;
+
+  /// Set the priority.
+  virtual void priority (int prio) = 0;
+
+  /// Get the priority.
+  virtual int priority (void) const = 0;
+
+  /// Set the number of threads.
+  virtual void thread_count (size_t n) = 0;
+
+  /// Get the number of threads.
+  virtual size_t thread_count (void) const = 0;
+
+protected:
+  /// Default constructor.
+  CUTS_Event_Handler (void);
+
+  /// Destructor.
+  virtual ~CUTS_Event_Handler (void);
+
+private:
+  // prevent the following operations
+  CUTS_Event_Handler (const CUTS_Event_Handler &);
+  const CUTS_Event_Handler & operator = (const CUTS_Event_Handler &);
 };
 
 #if defined (__CUTS_INLINE__)
-#include "cuts/EventHandler.inl"
+#include "cuts/Event_Handler.inl"
 #endif
 
 #endif  // !defined _CUTS_EVENT_HANDLER_H_

@@ -39,11 +39,44 @@ public:
   /// Default destructor.
   virtual ~CUTS_Sync_Event_Handler_T (void);
 
-  /// Handle the event. This will invoke the callback method.
+  /**
+   * Handle the event. This will invoke the callback method.
+   *
+   * @param[in]     ev        Source event.
+   */
   void handle_event (EVENTTYPE * ev);
 
+  /**
+   * Set the priority.
+   *
+   * @param[in]     prio      The new priority.
+   */
+  virtual void priority (int prio);
+
+  /**
+   * Get the priority.
+   *
+   * @return        The current priority.
+   */
+  virtual int priority (void) const;
+
+  /**
+   * Set the number of threads.
+   *
+   * @param[in]     n     Number of threads.
+   */
+  virtual void thread_count (size_t n);
+
+  /**
+   * Get the number of threads.
+   *
+   * @return        The number of threads.
+   */
+  virtual size_t thread_count (void) const;
+
 private:
-  typedef CUTS_Async_Event_Handler_T <COMPONENT, EVENTTYPE> THIS;
+  /// The priority of the event handler.
+  int priority_;
 };
 
 #if defined (__CUTS_INLINE__)

@@ -1,3 +1,29 @@
+Tue Aug  1 15:08:55 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Async_Event_Handler_T.h:
+        * cuts/Async_Event_Handler_T.inl:
+        * cuts/Async_Event_Handler_T.cpp:
+        * cuts/CUTS.mpc:
+        * cuts/EventHandler_T.h:
+        * cuts/EventHandler_T.inl:
+        * cuts/Event_Handler.h:
+        * cuts/Event_Handler.cpp:
+        * cuts/Sync_Event_Handler_T.h:
+        * cuts/Sync_Event_Handler_T.inl:
+
+          - Finalized the programmatic framework setting the number of
+            application level threads in an event handler. (alpha)
+          - Finalized the programmatic framework setting the priority
+            of application level threads in an event handler. (alpha)
+          - Changes above are only applicable to the asynchronous event
+            handler.
+
+        * cuts/EventHandler.h:
+        * cuts/EventHandler.inl:
+        * cuts/EventHandler.cpp:
+
+          Removed these files.
+
 Mon Jul 31 23:47:12 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/config.h:

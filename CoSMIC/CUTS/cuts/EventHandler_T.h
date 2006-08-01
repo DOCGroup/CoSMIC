@@ -2,16 +2,18 @@
 
 //=============================================================================
 /**
- * @file    EventHandler_T.h
+ * @file      EventHandler_T.h
  *
  * $Id$
+ *
+ * @author    James H. Hill
  */
 //=============================================================================
 
 #ifndef _CUTS_EVENT_HANDLER_T_H_
 #define _CUTS_EVENT_HANDLER_T_H_
 
-#include "cuts/EventHandler.h"
+#include "cuts/Event_Handler.h"
 #include "cuts/PortAgent.h"
 #include "ace/Auto_Ptr.h"
 
@@ -24,6 +26,10 @@ class CUTS_Port_Agent;
 //=============================================================================
 /**
  * @class CUTS_Event_Handler_Strategy_T
+ *
+ * Event handler type for components. This class it parameterized by
+ * the component and the event type it receieves. This allows the event
+ * handler to be used in any component and send any type of valid event.
  */
 //=============================================================================
 
@@ -40,12 +46,6 @@ public:
   /// Type definition for the callback method.
   typedef void (COMPONENT::*Event_Method) (EVENTTYPE *,
                                            CUTS_Activation_Record *);
-
-  /// Activate the event handler.
-  virtual void activate (void) = 0;
-
-  /// Deactivate the event handler.
-  virtual void deactivate (void) = 0;
 
   /**
    * Handle an event.
@@ -230,6 +230,34 @@ public:
    * @return    The mode of the event handler, e.g, sync or async.
    */
   CUTS_Event_Handler::Event_Mode mode (void) const;
+
+  /**
+   * Set the priority.
+   *
+   * @param[in]     prio      The new priority.
+   */
+  virtual void priority (int prio);
+
+  /**
+   * Get the priority.
+   *
+   * @return        The current priority.
+   */
+  virtual int priority (void) const;
+
+  /**
+   * Set the number of threads.
+   *
+   * @param[in]     n     Number of threads.
+   */
+  virtual void thread_count (size_t n);
+
+  /**
+   * Get the number of threads.
+   *
+   * @return        The number of threads.
+   */
+  virtual size_t thread_count (void) const;
 
 private:
   /// Type definition for the implementation type.

@@ -84,7 +84,7 @@ project (CUTS) : cutslib {
 
   Header_Files {
     config.h
-    CUTS_Export.h
+    CUTS_export.h
     WML_Macros.h
   }
 
@@ -96,7 +96,7 @@ project (CUTS) : cutslib {
     Component_Metric.cpp
     Counter.cpp
     Event_Guard.cpp
-    EventHandler.cpp
+    Event_Handler.cpp
     Event_Handler_Message.cpp
     Host_Table.cpp
     Operation_Measurement.cpp
