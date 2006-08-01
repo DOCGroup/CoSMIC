@@ -20,10 +20,11 @@
 //
 template <typename COMPONENT, typename EVENTTYPE>
 CUTS_Event_Handler_Base_T <COMPONENT, EVENTTYPE>::
-CUTS_Event_Handler_Base_T (void)
+CUTS_Event_Handler_Base_T (CUTS_Port_Agent & agent)
 : component_ (0),
   method_ (0),
-  active_ (false)
+  active_ (false),
+  port_agent_ (agent)
 {
 
 }
@@ -97,37 +98,43 @@ CUTS_INLINE
 void CUTS_Event_Handler_T <COMPONENT, EVENTTYPE>::mode (
   CUTS_Event_Handler::Event_Mode mode)
 {
-  if (this->mode_ != mode)
+  if (this->mode_ == mode || mode == CUTS_Event_Handler::UNDEFINED)
+    return;
+
+  CUTS_Event_Handler_Base_T <COMPONENT, EVENTTYPE> * impl = 0;
+
+  switch (mode)
   {
-    CUTS_Event_Handler_Base_T <COMPONENT, EVENTTYPE> * impl = 0;
+  case CUTS_Event_Handler::SYNCHRONOUS:
+    // Set the implemenation to synchronous mode.
+    typedef CUTS_Sync_Event_Handler_T <
+      COMPONENT, EVENTTYPE> CUTS_Sync_Event_Handler;
 
-    if (mode == CUTS_Event_Handler::SYNCHRONOUS)
+    ACE_NEW (impl, CUTS_Sync_Event_Handler (this->port_agent_));
+    break;
+
+  case CUTS_Event_Handler::ASYNCHRONOUS:
+    // Set the implemenation to asynchronous mode.
+    typedef CUTS_Async_Event_Handler_T <
+      COMPONENT, EVENTTYPE> CUTS_Async_Event_Handler;
+
+    ACE_NEW (impl, CUTS_Async_Event_Handler (this->port_agent_));
+    break;
+  }
+
+  if (impl != 0)
+  {
+    // Copy over the information from the old event handler
+    // to the new event handler.
+    if (this->impl_.get () != 0)
     {
-      // Set the implemenation to synchronous mode.
-      typedef CUTS_Sync_Event_Handler_T <
-        COMPONENT, EVENTTYPE> CUTS_Sync_Event_Handler;
-
-      ACE_NEW (impl, CUTS_Sync_Event_Handler);
-
-      if (impl != 0)
-      {
-        this->impl_.reset (impl);
-        this->mode_ = mode;
-      }
+      impl->bind (this->impl_->name (),
+                  this->impl_->owner (),
+                  this->impl_->method ());
     }
-    else if (mode == CUTS_Event_Handler::ASYNCHRONOUS)
-    {
-      // Set the implemenation to asynchronous mode.
-      typedef CUTS_Async_Event_Handler_T <
-        COMPONENT, EVENTTYPE> CUTS_Async_Event_Handler;
 
-      ACE_NEW (impl, CUTS_Async_Event_Handler);
-
-      if (impl != 0)
-      {
-        this->impl_.reset (impl);
-        this->mode_ = mode;
-      }
-    }
+    // Save the new event handler as the <impl_>.
+    this->impl_.reset (impl);
+    this->mode_ = mode;
   }
 }

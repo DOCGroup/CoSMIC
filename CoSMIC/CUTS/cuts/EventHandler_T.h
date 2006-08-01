@@ -76,6 +76,8 @@ public:
 //=============================================================================
 /**
  * @class CUTS_Event_Handler_Base_T
+ *
+ * Base implemetatation for all event handlers.
  */
 //=============================================================================
 
@@ -138,9 +140,34 @@ public:
    */
   bool is_active (void) const;
 
+  /**
+   * Get the name of the event handler.
+   *
+   * @return      NULL-terminated string.
+   */
+  const char * name (void) const;
+
+  /**
+   * Get the owner of this event handler.
+   *
+   * @return      Pointer to the owner.
+   */
+  Component_Type * owner (void) const;
+
+  /**
+   * Get the method assigned to the event handler.
+   *
+   * @return      Pointer to the method.
+   */
+  Event_Method method (void) const;
+
 protected:
-  /// Default constructor.
-  CUTS_Event_Handler_Base_T (void);
+  /**
+   * Constructor.
+   *
+   * @param[in]     agent       Port agent for the event handler.
+   */
+  CUTS_Event_Handler_Base_T (CUTS_Port_Agent & agent);
 
   /**
    * Shared implementation for handing an event. This method performs
@@ -158,10 +185,10 @@ protected:
   /// Method invoked when an event is received.
   Event_Method method_;
 
-  /// Port agent attached to this event handler.
-  CUTS_Port_Agent port_agent_;
-
 private:
+  /// Reference to a port agent.
+  CUTS_Port_Agent & port_agent_;
+
   /// Active state of the event handler.
   bool active_;
 };
@@ -169,6 +196,9 @@ private:
 //=============================================================================
 /**
  * @class CUTS_Event_Handler_T
+ *
+ * Container class for managing event handler implemenatations. The
+ * type of event handler can be altered by setting the mode.
  */
 //=============================================================================
 
@@ -268,6 +298,9 @@ private:
 
   /// The current mode of the event handler.
   CUTS_Event_Handler::Event_Mode mode_;
+
+  /// Port agent for the event handler.
+  CUTS_Port_Agent port_agent_;
 };
 
 #if defined (__CUTS_INLINE__)

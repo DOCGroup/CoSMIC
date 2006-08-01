@@ -15,6 +15,19 @@
 
 #include "cuts/EventHandler_T.h"
 
+//=============================================================================
+/**
+ * @class CUTS_Sync_Event_Handler_T
+ *
+ * Implementation of a synchronous event handler. Unlike the
+ * CUTS_Async_Event_Handler_T, this event handler uses the ORB thread
+ * that invoked is event handling method. It does not return control to
+ * the invoking component until it has finished processing it's event.
+ * This can also be dependent on whether or not this event is sending
+ * sending out any events, and the of it's target event handlers.
+ */
+//=============================================================================
+
 template <typename COMPONENT, typename EVENTTYPE>
 class CUTS_Sync_Event_Handler_T :
   public CUTS_Event_Handler_Base_T <COMPONENT, EVENTTYPE>
@@ -33,8 +46,12 @@ public:
   /// Type definition for the callback method.
   typedef typename Event_Handler_Base::Event_Method Event_Method;
 
-  /// Constructor.
-  CUTS_Sync_Event_Handler_T (void);
+  /**
+   * Constructor
+   *
+   * @param[in]       agent     Port agent for the event handler.
+   */
+  CUTS_Sync_Event_Handler_T (CUTS_Port_Agent & agent);
 
   /// Default destructor.
   virtual ~CUTS_Sync_Event_Handler_T (void);

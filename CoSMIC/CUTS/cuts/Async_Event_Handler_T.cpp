@@ -16,8 +16,9 @@
 //
 template <typename COMPONENT, typename EVENTTYPE>
 CUTS_Async_Event_Handler_T <COMPONENT, EVENTTYPE>::
-CUTS_Async_Event_Handler_T (void)
-: priority_ (ACE_DEFAULT_THREAD_PRIORITY)
+CUTS_Async_Event_Handler_T (CUTS_Port_Agent & agent)
+: Event_Handler_Base (agent),
+  priority_ (ACE_DEFAULT_THREAD_PRIORITY)
 {
 
 }

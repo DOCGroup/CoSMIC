@@ -76,6 +76,39 @@ bool CUTS_Event_Handler_Base_T <COMPONENT, EVENTTYPE>::is_active (void) const
   return this->active_;
 }
 
+//
+// name
+//
+template <typename COMPONENT, typename EVENTTYPE>
+CUTS_INLINE
+const char *
+CUTS_Event_Handler_Base_T <COMPONENT, EVENTTYPE>::name (void) const
+{
+  return this->port_agent_.name ();
+}
+
+//
+// owner
+//
+template <typename COMPONENT, typename EVENTTYPE>
+CUTS_INLINE
+typename CUTS_Event_Handler_Base_T <COMPONENT, EVENTTYPE>::Component_Type *
+CUTS_Event_Handler_Base_T <COMPONENT, EVENTTYPE>::owner (void) const
+{
+  return this->component_;
+}
+
+//
+// method
+//
+template <typename COMPONENT, typename EVENTTYPE>
+CUTS_INLINE
+typename CUTS_Event_Handler_Base_T <COMPONENT, EVENTTYPE>::Event_Method
+CUTS_Event_Handler_Base_T <COMPONENT, EVENTTYPE>::method (void) const
+{
+  return this->method_;
+}
+
 //=============================================================================
 /*
  * CUTS_Event_Handler_T
@@ -119,7 +152,7 @@ template <typename COMPONENT, typename EVENTTYPE>
 CUTS_INLINE
 CUTS_Port_Agent & CUTS_Event_Handler_T <COMPONENT, EVENTTYPE>::port_agent (void)
 {
-  return this->impl_->port_agent ();
+  return this->port_agent_;
 }
 
 //
@@ -132,6 +165,8 @@ void CUTS_Event_Handler_T <COMPONENT, EVENTTYPE>::bind (
   Component_Type * component,
   Event_Method method)
 {
+  this->port_agent_.name (name);
+
   this->impl_->bind (name, component, method);
 }
 

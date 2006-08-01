@@ -52,8 +52,12 @@ public:
   /// Type definition for the callback method.
   typedef typename Event_Handler_Base::Event_Method Event_Method;
 
-  /// Constructor.
-  CUTS_Async_Event_Handler_T (void);
+  /**
+   * Constructor.
+   *
+   * @param[in]     agent       Port agent for the event handler.
+   */
+  CUTS_Async_Event_Handler_T (CUTS_Port_Agent & agent);
 
   /// Destructor.
   virtual ~CUTS_Async_Event_Handler_T (void);
