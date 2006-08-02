@@ -40,8 +40,11 @@ class CUTS_Async_Event_Handler_T :
 {
 public:
   /// Type definition for the super class.
-  typedef CUTS_Event_Handler_Base_T <
-    COMPONENT, EVENTTYPE> Event_Handler_Base;
+  typedef CUTS_Event_Handler_Base_T <COMPONENT,
+                                     EVENTTYPE> Event_Handler_Base;
+
+  /// Type definition of the event handler configuration.
+  typedef typename Event_Handler_Base::Config_Type Config_Type;
 
   /// Type definition for the component owning the event handler.
   typedef typename Event_Handler_Base::Component_Type Component_Type;
@@ -55,9 +58,9 @@ public:
   /**
    * Constructor.
    *
-   * @param[in]     agent       Port agent for the event handler.
+   * @param[in]     config       Shared configuration for the handler.
    */
-  CUTS_Async_Event_Handler_T (CUTS_Port_Agent & agent);
+  CUTS_Async_Event_Handler_T (Config_Type & config);
 
   /// Destructor.
   virtual ~CUTS_Async_Event_Handler_T (void);

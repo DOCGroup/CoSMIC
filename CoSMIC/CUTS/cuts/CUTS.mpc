@@ -125,7 +125,8 @@ project (CUTS) : cutslib {
     Auto_Release_Ptr.cpp
     Counter_T.cpp
     Event_Guard_T.cpp
-    EventHandler_T.cpp
+    Event_Handler_T.cpp
+    Event_Handler_Manager_T.cpp
     Trigger_T.cpp
     Sync_Event_Handler_T.cpp
     Worker_T.cpp

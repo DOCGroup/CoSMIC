@@ -1,3 +1,31 @@
+Wed Aug  2 06:18:33 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Async_Event_Handler_T.h:
+        * cuts/Async_Event_Handler_T.cpp:
+        * cuts/CUTS.mpc:
+        * cuts/Event_Handler.h:
+        * cuts/Event_Handler_T.h:
+        * cuts/Event_Handler_T.inl:
+        * cuts/Event_Handler_T.cpp:
+        * cuts/Sync_Event_Handler_T.h:
+        * cuts/Sync_Event_Handler_T.cpp:
+
+          Refactored the code in the event handler framework so that
+          the event handler manager contains a configuration file that
+          is shared between all event handler types. This removes the
+          need to copy data with implementations (modes) change.
+
+        * cuts/be/CIAO/UDM_CIAO_Visitor.cpp (generate_init):
+
+          Updated code generator to be consist with the new implemenation
+          for the event handler framework.
+
+        * cuts/EventHandler_T.inl:
+        * cuts/EventHandler_T.h:
+        * cuts/EventHandler_T.cpp:
+
+          Removed this file.
+
 Wed Aug  2 01:46:36 UTC 2006  James Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Async_Event_Handler_T.cpp:
@@ -7,7 +35,7 @@ Wed Aug  2 01:46:36 UTC 2006  James Hill  <hillj@isis.vanderbilt.edu>
         * cuts/Testing_Service.cpp:
 
           Fixed warning errors on for linux builds.
-        
+
 Tue Aug  1 20:51:49 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * examples/PICML/Event_Handler.xme:

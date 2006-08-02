@@ -281,7 +281,7 @@ CUTS_UDM_CIAO_Visitor::Visit_Component (const PICML::Component & component)
       if (!inevents.empty ())
       {
         this->hout_
-          << "#include \"cuts/EventHandler_T.h\"" << std::endl;
+          << "#include \"cuts/Event_Handler_Manager_T.h\"" << std::endl;
       }
 
       typedef std::vector <PICML::OutEventPort> OutEventPort_Set;
@@ -726,7 +726,7 @@ void CUTS_UDM_CIAO_Visitor::generate_member_variables (
         << " (" << std::endl
         << this->temp_str_ << " * ev, CUTS_Activation_Record * record);"
         << std::endl
-        << "CUTS_Event_Handler_T <" << std::endl
+        << "CUTS_Event_Handler_Manager_T <" << std::endl
         << "  " << this->component_ << "," << std::endl
         << "  " << this->temp_str_ << "> "
         << EVENT_SINK_PREFIX << iter->name () << EVENT_SINK_POSTFIX << "_;"
@@ -938,13 +938,11 @@ void CUTS_UDM_CIAO_Visitor::generate_init (const PICML::Component & component)
     // sink method.
     this->sout_
       << "// Configuring <" << inevent_name << "> event port" << std::endl
-      << "this->"
-      << handler.str ().c_str () << "_.bind (" << std::endl
-      << "\"" << inevent_name << "\", this, " << "&" << this->component_
-      << "::" << handler.str ().c_str () << ");"
-      << "this->benchmark_agent_->register_port_agent (" << std::endl
-      << "&this->" << handler.str ().c_str () << "_.port_agent ());"
-      << std::endl;
+      << "this->" << handler.str ().c_str () << "_.name ("
+      << "\"" << inevent_name << "\");"
+      << "this->" << handler.str ().c_str () << "_.bind ("
+      << "this, " << "&" << this->component_
+      << "::" << handler.str ().c_str () << ");";
 
     // Set any additional properties for the event handler.
     PICML::InputAction ia = PICML::InputAction::Cast (input.dstInput_end ());
@@ -990,6 +988,12 @@ void CUTS_UDM_CIAO_Visitor::generate_init (const PICML::Component & component)
           << p_name << " (" << p_value << ");";
       }
     }
+
+    // Register the port agent with the benchmark agent.
+    this->sout_
+      << "this->benchmark_agent_->register_port_agent ("
+      << "&this->" << handler.str ().c_str () << "_.port_agent ());";
+    this->sout_ << std::endl;
   }
 
   // Initialize the periodic events.

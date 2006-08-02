@@ -13,7 +13,7 @@
 #ifndef _CUTS_SYNC_EVENT_HANDLER_T_H_
 #define _CUTS_SYNC_EVENT_HANDLER_T_H_
 
-#include "cuts/EventHandler_T.h"
+#include "cuts/Event_Handler_T.h"
 
 //=============================================================================
 /**
@@ -34,8 +34,11 @@ class CUTS_Sync_Event_Handler_T :
 {
 public:
   /// Type definition for the super class.
-  typedef CUTS_Event_Handler_Base_T <
-    COMPONENT, EVENTTYPE> Event_Handler_Base;
+  typedef CUTS_Event_Handler_Base_T <COMPONENT,
+                                     EVENTTYPE> Event_Handler_Base;
+
+  /// Type definition of the event handler configuration.
+  typedef typename Event_Handler_Base::Config_Type Config_Type;
 
   /// Type definition for the component owning the event handler.
   typedef typename Event_Handler_Base::Component_Type Component_Type;
@@ -49,11 +52,11 @@ public:
   /**
    * Constructor
    *
-   * @param[in]       agent     Port agent for the event handler.
+   * @param[in]       config      Shared configuration for the handler.
    */
-  CUTS_Sync_Event_Handler_T (CUTS_Port_Agent & agent);
+  CUTS_Sync_Event_Handler_T (Config_Type & config);
 
-  /// Default destructor.
+  /// Destructor.
   virtual ~CUTS_Sync_Event_Handler_T (void);
 
   /**

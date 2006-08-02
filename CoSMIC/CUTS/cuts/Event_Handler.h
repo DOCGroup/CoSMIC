@@ -21,7 +21,9 @@
 /**
  * @class CUTS_Event_Handler
  *
- * Base implementation for all event handlers.
+ * Abstract interface for event handler types. This interface is
+ * mainly used to provide consistency between event handler
+ * implementations and managers of event handlers.
  */
 //=============================================================================
 
@@ -58,6 +60,12 @@ public:
 
   /// Get the number of threads.
   virtual size_t thread_count (void) const = 0;
+
+  /// Get the name of the event handler.
+  virtual const char * name (void) const = 0;
+
+  /// Set the name of the event handler.
+  virtual void name (const char * name) = 0;
 
 protected:
   /// Default constructor.
