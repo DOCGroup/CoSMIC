@@ -169,11 +169,11 @@ thread_count (size_t count)
   else if (thr_count > count)
   {
     size_t kill_count = thr_count - count;
-    Thread_Map::iterator iter (this->thread_map_);
-    Thread_Map::ENTRY * entry = 0;
+    typename Thread_Map::iterator iter (this->thread_map_);
+    typename Thread_Map::ENTRY * entry = 0;
 
     // Set the <grp_id_> of <kill_count> threads to <GRP_KILL>.
-    for (iter; iter.done () != 1; iter ++)
+    while (iter.done () != 1)
     {
       iter.next (entry);
 
@@ -184,6 +184,8 @@ thread_count (size_t count)
 
       if (-- kill_count == 0)
         break;
+
+      iter.advance ();
     }
 
     // Let's wait until we know that all threads in <GRP_KILL>
@@ -202,17 +204,19 @@ priority (int prio)
 {
   if (this->priority_ != prio)
   {
-    Thread_Map::iterator iter (this->thread_map_);
-    Thread_Map::ENTRY * entry = 0;
+    typename Thread_Map::iterator iter (this->thread_map_);
+    typename Thread_Map::ENTRY * entry = 0;
 
     // Set the priority of every thread owned by the event
     // handler to <prio>.
-    for (iter; iter.done () != 1; iter ++)
+    while (iter.done () != 1)
     {
       iter.next (entry);
 
       if (entry != 0)
         ACE_Thread::setprio (entry->int_id_.handle_, prio);
+
+      iter.advance ();
     }
 
     this->priority_ = prio;

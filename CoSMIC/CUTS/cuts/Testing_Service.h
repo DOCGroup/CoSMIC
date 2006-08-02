@@ -13,12 +13,9 @@
 #ifndef _CUTS_TESTING_SERVICE_H_
 #define _CUTS_TESTING_SERVICE_H_
 
-#include "cuts/config.h"
 #include "cuts/Host_Table.h"
+#include "cuts/Component_Registry.h"
 #include "ace/Auto_Ptr.h"
-
-// Forward decl.
-class CUTS_Component_Registry;
 
 //=============================================================================
 /**

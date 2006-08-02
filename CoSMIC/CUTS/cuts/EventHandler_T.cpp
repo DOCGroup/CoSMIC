@@ -23,8 +23,8 @@ CUTS_Event_Handler_Base_T <COMPONENT, EVENTTYPE>::
 CUTS_Event_Handler_Base_T (CUTS_Port_Agent & agent)
 : component_ (0),
   method_ (0),
-  active_ (false),
-  port_agent_ (agent)
+  port_agent_ (agent),
+  active_ (false)
 {
 
 }
@@ -98,7 +98,7 @@ CUTS_INLINE
 void CUTS_Event_Handler_T <COMPONENT, EVENTTYPE>::mode (
   CUTS_Event_Handler::Event_Mode mode)
 {
-  if (this->mode_ == mode || mode == CUTS_Event_Handler::UNDEFINED)
+  if (this->mode_ == mode)
     return;
 
   CUTS_Event_Handler_Base_T <COMPONENT, EVENTTYPE> * impl = 0;
@@ -120,6 +120,10 @@ void CUTS_Event_Handler_T <COMPONENT, EVENTTYPE>::mode (
 
     ACE_NEW (impl, CUTS_Async_Event_Handler (this->port_agent_));
     break;
+
+  case CUTS_Event_Handler::UNDEFINED:
+    /* do nothing */
+    break;
   }
 
   if (impl != 0)
@@ -132,9 +136,9 @@ void CUTS_Event_Handler_T <COMPONENT, EVENTTYPE>::mode (
                   this->impl_->owner (),
                   this->impl_->method ());
     }
-
-    // Save the new event handler as the <impl_>.
-    this->impl_.reset (impl);
-    this->mode_ = mode;
   }
+   
+  // Save the new event handler as the <impl_>.
+  this->impl_.reset (impl);
+  this->mode_ = mode;
 }

@@ -1,3 +1,13 @@
+Wed Aug  2 01:46:36 UTC 2006  James Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Async_Event_Handler_T.cpp:
+        * cuts/EventHandler_T.h:
+        * cuts/EventHandler_T.cpp:
+        * cuts/Testing_Service.h:
+        * cuts/Testing_Service.cpp:
+
+          Fixed warning errors on for linux builds.
+        
 Tue Aug  1 20:51:49 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * examples/PICML/Event_Handler.xme:

@@ -20,9 +20,6 @@
 // Forward decl.
 class CUTS_Activation_Record;
 
-// Forward decl.
-class CUTS_Port_Agent;
-
 //=============================================================================
 /**
  * @class CUTS_Event_Handler_Strategy_T
