@@ -43,12 +43,6 @@ public:
     ASYNCHRONOUS  = 2
   };
 
-  /// Activate the event handler.
-  virtual void activate (void) = 0;
-
-  /// Deactivate the event handler.
-  virtual void deactivate (void) = 0;
-
   /// Set the priority.
   virtual void priority (int prio) = 0;
 
@@ -63,9 +57,6 @@ public:
 
   /// Get the name of the event handler.
   virtual const char * name (void) const = 0;
-
-  /// Set the name of the event handler.
-  virtual void name (const char * name) = 0;
 
 protected:
   /// Default constructor.

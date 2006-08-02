@@ -1,3 +1,17 @@
+Wed Aug  2 06:37:25 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Async_Event_Handler_T.h:
+
+          Missing an include file since its name was changed.
+
+        * cuts/Event_Handler.h:
+        * cuts/Event_Handler_T.h:
+        * cuts/Event_Handler_T.inl:
+
+          - Remove activate () and deactivate () methods from the
+            CUTS_Event_Handler class.
+          - Remove name () setter method from CUTS_Event_Handler class.
+
 Wed Aug  2 06:18:33 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Async_Event_Handler_T.h:

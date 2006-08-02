@@ -18,7 +18,7 @@
 #endif
 
 #include "cuts/config.h"
-#include "cuts/EventHandler_T.h"
+#include "cuts/Event_Handler_T.h"
 #include "ace/Atomic_Op.h"
 #include "ace/Condition_Thread_Mutex.h"
 #include "ace/Hash_Map_Manager_T.h"

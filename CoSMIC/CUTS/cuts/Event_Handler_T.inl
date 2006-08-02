@@ -71,15 +71,3 @@ CUTS_Event_Handler_Base_T <COMPONENT, EVENTTYPE>::name (void) const
 {
   return this->config_.port_agent_.name ();
 }
-
-//
-// name
-//
-template <typename COMPONENT, typename EVENTTYPE>
-CUTS_INLINE
-void
-CUTS_Event_Handler_Base_T <COMPONENT, EVENTTYPE>::
-name (const char * name)
-{
-  this->config_.port_agent_.name (name);
-}

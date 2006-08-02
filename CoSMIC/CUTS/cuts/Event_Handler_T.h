@@ -20,7 +20,7 @@
 
 //=============================================================================
 /**
- * @class CUTS_Event_Handler_Config
+ * @class CUTS_Event_Handler_Config_T
  *
  * Shared configuration object for event handlers. This allows the
  * CUTS_Event_Handler_Manager_T object to communicate with different
@@ -66,7 +66,7 @@ public:
 
 //=============================================================================
 /**
- * @class CUTS_Event_Handler_Strategy_T
+ * @class CUTS_Event_Handler_T
  *
  * Event handler type for components. This class it parameterized by
  * the component and the event type it receieves. This allows the event
@@ -94,6 +94,12 @@ public:
    * @param[in]       ev      Pointer to the event.
    */
   virtual void handle_event (EVENTTYPE * ev) = 0;
+
+  /// Activate the event handler.
+  virtual void activate (void) = 0;
+
+  /// Deactivate the event handler.
+  virtual void deactivate (void) = 0;
 
   /// Destructor.
   virtual ~CUTS_Event_Handler_T (void);
@@ -195,13 +201,6 @@ protected:
    * @return      Name of the event handler.
    */
   const char * name (void) const;
-
-  /**
-   * Set the name of the event handler.
-   *
-   * @param[in]     name      Name of the event handler.
-   */
-  void name (const char * name);
 
 private:
   /// Active state of the event handler.
