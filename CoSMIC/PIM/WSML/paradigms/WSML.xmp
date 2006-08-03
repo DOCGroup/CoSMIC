@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="WSML" guid="{36CC9AFA-86FE-4569-A43C-A7902347ABE3}" cdate="Sat Jul 29 22:11:16 2006" mdate="Sat Jul 29 22:11:16 2006" >
+<paradigm name="WSML" guid="{6A50E633-72A1-4BC7-B4A3-29A599854C07}" cdate="Sat Jul 29 22:11:16 2006" mdate="Sat Jul 29 22:11:16 2006" >
 
 	<comment>Web Services Modeling Language (WSML) is a domain-specific modeling language
   which allows definition of Web Services and interactions, and uses generative
@@ -446,14 +446,14 @@
 		<model name = "Binding" metaref = "1044" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="ValidBindingPartCardinality25" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ExtensibleBinding" ) -> size + self.parts( "SOAPBinding" ) -> size in
-                     (partCount = 1)]]>
-				<dispname>Multiplicity of parts, which are contained by Binding, has to match 1.</dispname>
-			</constraint>
-			<constraint name="ValidBindingPartCardinality26" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Binding, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidBindingPartCardinality26" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ExtensibleBinding" ) -> size + self.parts( "SOAPBinding" ) -> size in
+                     (partCount = 1)]]>
+				<dispname>Multiplicity of parts, which are contained by Binding, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidBindingPortTypedstCardinality2" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", BindingPortType ) -> size in
@@ -476,14 +476,14 @@
 		<model name = "BindingOperation" metaref = "1052" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="ValidBindingOperationPartCardinality27" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ExtensibleMessage" ) -> size + self.parts( "SOAPBody" ) -> size + self.parts( "SOAPFault" ) -> size + self.parts( "SOAPHeaderFault" ) -> size + self.parts( "SOAPHeader" ) -> size in
-                     (partCount >= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 1..*.</dispname>
-			</constraint>
-			<constraint name="ValidBindingOperationPartCardinality28" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ExtensibleOperation" ) -> size + self.parts( "SOAPOperation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidBindingOperationPartCardinality28" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ExtensibleMessage" ) -> size + self.parts( "SOAPBody" ) -> size + self.parts( "SOAPFault" ) -> size + self.parts( "SOAPHeaderFault" ) -> size + self.parts( "SOAPHeader" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 1..*.</dispname>
 			</constraint>
 			<constraint name="ValidBindingOperationPartCardinality29" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
@@ -535,17 +535,17 @@
 		<model name = "Definitions" metaref = "1090" attributes = "targetNamespace" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="ValidDefinitionsPartCardinality30" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by Definitions, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidDefinitionsPartCardinality31" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Messages" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Definitions, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidDefinitionsPartCardinality32" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidDefinitionsPartCardinality31" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Types" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by Definitions, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDefinitionsPartCardinality32" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Definitions, has to match 0..1.</dispname>
 			</constraint>
@@ -718,14 +718,14 @@
 				<dispname>Multiplicity of objects, which are associated to Port as &quot;dst&quot; over PortBinding, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidPortPartCardinality37" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ExtensiblePort" ) -> size + self.parts( "SOAPAddress" ) -> size in
-                     (partCount = 1)]]>
-				<dispname>Multiplicity of parts, which are contained by Port, has to match 1.</dispname>
-			</constraint>
-			<constraint name="ValidPortPartCardinality38" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Port, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPortPartCardinality38" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ExtensiblePort" ) -> size + self.parts( "SOAPAddress" ) -> size in
+                     (partCount = 1)]]>
+				<dispname>Multiplicity of parts, which are contained by Port, has to match 1.</dispname>
 			</constraint>
 			<role name = "Documentation" metaref = "1172" kind = "Documentation"></role>
 			<role name = "SOAPAddress" metaref = "1173" kind = "SOAPAddress"></role>

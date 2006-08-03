@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{B62E923C-0CDF-47C7-AB40-6B14EFB165FD}" cdate="Sat Jul 29 22:11:16 2006" mdate="Sat Jul 29 22:11:16 2006" version="" metaguid="{B3568889-311A-4E5A-A3DD-A8AC2BD7DE71}" metaversion="" metaname="MetaGME">
+<project guid="{F475F756-1C02-4E21-97D2-3BBD543C1B7C}" cdate="Sat Jul 29 22:11:16 2006" mdate="Sat Jul 29 22:11:16 2006" version="" metaguid="{B3568889-311A-4E5A-A3DD-A8AC2BD7DE71}" metaversion="" metaname="MetaGME">
 	<name>WSML</name>
 	<comment>Web Services Modeling Language (WSML) is a domain-specific modeling language
   which allows definition of Web Services and interactions, and uses generative
@@ -6451,8 +6451,8 @@ notation</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000020"/>
 				<connpoint role="src" target="id-0066-00000020"/>
+				<connpoint role="dst" target="id-0066-00000020"/>
 			</connection>
 			<connection id="id-0068-00000040" kind="Containment" role="Containment" relid="0x3e">
 				<name>Containment</name>

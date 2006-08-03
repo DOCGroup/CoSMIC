@@ -446,7 +446,7 @@ public class WSDLExportVisitor implements Visitor {
         for (InputMessage inputMessage : input.getdstInputMessage()) {
             for (Message message : inputMessage.getdstInputMessage().getref()) {
                 javax.wsdl.Input wsdlInput = this.def.createInput();
-                wsdlInput.setName(message.getname());
+                wsdlInput.setName(input.getname());
                 wsdlInput.setMessage(this.messageMap.get(message));
                 wsdlOperation.setInput(wsdlInput);
             }
@@ -455,7 +455,7 @@ public class WSDLExportVisitor implements Visitor {
         for (OutputMessage outputMessage : output.getdstOutputMessage()) {
             for (Message message : outputMessage.getdstOutputMessage().getref()) {
                 javax.wsdl.Output wsdlOutput = this.def.createOutput();
-                wsdlOutput.setName(message.getname());
+                wsdlOutput.setName(output.getname());
                 wsdlOutput.setMessage(this.messageMap.get(message));
                 wsdlOperation.setOutput(wsdlOutput);
             }
@@ -464,7 +464,7 @@ public class WSDLExportVisitor implements Visitor {
             for (FaultMessage faultMessage : fault.getdstFaultMessage()) {
                 for (Message message : faultMessage.getdstFaultMessage().getref()) {
                     javax.wsdl.Fault wsdlFault = this.def.createFault();
-                    wsdlFault.setName(message.getname());
+                    wsdlFault.setName(fault.getname());
                     wsdlFault.setMessage(this.messageMap.get(message));
                     wsdlOperation.addFault(wsdlFault);
                 }
@@ -485,7 +485,7 @@ public class WSDLExportVisitor implements Visitor {
         for (OutputMessage outputMessage : output.getdstOutputMessage()) {
             for (Message message : outputMessage.getdstOutputMessage().getref()) {
                 javax.wsdl.Output wsdlOutput = this.def.createOutput();
-                wsdlOutput.setName(message.getname());
+                wsdlOutput.setName(output.getname());
                 wsdlOutput.setMessage(this.messageMap.get(message));
                 wsdlOperation.setOutput(wsdlOutput);
             }
@@ -505,7 +505,7 @@ public class WSDLExportVisitor implements Visitor {
         for (InputMessage inputMessage : input.getdstInputMessage()) {
             for (Message message : inputMessage.getdstInputMessage().getref()) {
                 javax.wsdl.Input wsdlInput = this.def.createInput();
-                wsdlInput.setName(message.getname());
+                wsdlInput.setName(input.getname());
                 wsdlInput.setMessage(this.messageMap.get(message));
                 wsdlOperation.setInput(wsdlInput);
             }
@@ -525,7 +525,7 @@ public class WSDLExportVisitor implements Visitor {
         for (InputMessage inputMessage : input.getdstInputMessage()) {
             for (Message message : inputMessage.getdstInputMessage().getref()) {
                 javax.wsdl.Input wsdlInput = this.def.createInput();
-                wsdlInput.setName(message.getname());
+                wsdlInput.setName(input.getname());
                 wsdlInput.setMessage(this.messageMap.get(message));
                 wsdlOperation.setInput(wsdlInput);
             }
@@ -534,7 +534,7 @@ public class WSDLExportVisitor implements Visitor {
         for (OutputMessage outputMessage : output.getdstOutputMessage()) {
             for (Message message : outputMessage.getdstOutputMessage().getref()) {
                 javax.wsdl.Output wsdlOutput = this.def.createOutput();
-                wsdlOutput.setName(message.getname());
+                wsdlOutput.setName(output.getname());
                 wsdlOutput.setMessage(this.messageMap.get(message));
                 wsdlOperation.setOutput(wsdlOutput);
             }
@@ -543,7 +543,7 @@ public class WSDLExportVisitor implements Visitor {
             for (FaultMessage faultMessage : fault.getdstFaultMessage()) {
                 for (Message message : faultMessage.getdstFaultMessage().getref()) {
                     javax.wsdl.Fault wsdlFault = this.def.createFault();
-                    wsdlFault.setName(message.getname());
+                    wsdlFault.setName(fault.getname());
                     wsdlFault.setMessage(this.messageMap.get(message));
                     wsdlOperation.addFault(wsdlFault);
                 }

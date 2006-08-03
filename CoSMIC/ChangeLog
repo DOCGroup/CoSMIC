@@ -1,3 +1,28 @@
+Thu Aug  3 04:38:25 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/WSML/examples/AmazonWebServices.wsdl:
+        * PIM/WSML/examples/AmazonWebServices.xme:
+        * PIM/WSML/examples/CORBA.wsdl:
+        * PIM/WSML/examples/CORBA.xsd:
+        * PIM/WSML/examples/GoogleSearch.wsdl:
+        * PIM/WSML/examples/GoogleSearch.xme:
+        * PIM/WSML/examples/SLICE.wsdl:
+        * PIM/WSML/examples/SLICE.xme:
+
+          New directory with some example models and WSDL files.
+
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/dre/WSML/WSDLExporter/WSDLExportVisitor.java:
+
+          Fixed a bug where we generated mis-matched names of messages
+          between portType and binding.
+
+        * PIM/WSML/paradigms/WSML-uml.xme:
+        * PIM/WSML/paradigms/WSML.xme:
+        * PIM/WSML/paradigms/WSML.xml:
+        * PIM/WSML/paradigms/WSML.xmp:
+
+          Updated to reflect the latest round of changes.
+
 Tue Aug  1 17:04:15 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/UUIDManager/RawComponent.h:
@@ -14,8 +39,6 @@ Tue Aug  1 17:04:15 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
             - Domain
             - ImplementationArtifact
             - MonolithicImplementation
-
-  RawComponent::picml_types_.insert (L"PackageConfiguration");
 
 Tue Aug  1 15:14:12 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
