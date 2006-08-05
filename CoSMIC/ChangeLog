@@ -1,3 +1,33 @@
+Sat Aug  5 20:55:32 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * demos/STI/BDCWebService/BDC.mpc:
+        * demos/STI/BDCWebService/BDCWebService.cpp:
+        * demos/STI/BDCWebService/CORBA.nsmap:
+        * demos/STI/BDCWebService/CORBA.wsdl:
+        * demos/STI/BDCWebService/CORBA_.nsmap:
+        * demos/STI/BDCWebService/CUTS_x002eBenchmark_USCOREData_USCORECollector_x002e_USCORESE_USCOREcontrols.nsmap:
+        * demos/STI/BDCWebService/SLICE.h:
+        * demos/STI/BDCWebService/SLICE.wsdl:
+        * demos/STI/BDCWebService/SLICEC.cpp:
+        * demos/STI/BDCWebService/SLICECUTS_x002eBenchmark_USCOREData_USCORECollector_x002e_USCORESE_USCOREcontrolsService.h:
+        * demos/STI/BDCWebService/SLICECUTS_x002eBenchmark_USCOREData_USCORECollector_x002e_USCORESE_USCOREcontrolsService.cpp:
+        * demos/STI/BDCWebService/SLICEH.h:
+        * demos/STI/BDCWebService/SLICEStub.h:
+        * demos/STI/BDCWebService/typemap.dat:
+
+          Handwritten implementation of the CUTS Benchmark_Data_Collector
+          exposed as a web service.
+
+        * demos/STI/BDCClient/BDCClient.csproj:
+        * demos/STI/BDCClient/BDCClient.sln:
+        * demos/STI/BDCClient/BDC_Client.cs:
+        * demos/STI/BDCClient/CUTSBenchmark_Data_Collector.cs:
+        * demos/STI/BDCClient/Properties/AssemblyInfo.cs:
+
+          A web service client written in C# which queries the information
+          from the BDC web service.
+
+
 Sat Aug  5 07:05:06 UTC 2006  Sumant Tambe  <sutambe@nospam>
 
         Fixed some minor inconsistencies.

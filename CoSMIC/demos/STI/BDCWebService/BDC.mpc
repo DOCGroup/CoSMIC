@@ -1,0 +1,24 @@
+project (BDCWebService) : ciao_events_dnc, valuetype {
+   exename = BDCWebService
+   includes += $(CUTS_ROOT) $(GSOAP_ROOT)
+   libpaths += $(COSMIC_ROOT)/lib
+   libs += BenchMark_Data_Collector_stub cuts_stub
+   IDL_Files {
+   }
+   Source_Files {
+     $(GSOAP_ROOT)/stdsoap2.cpp
+     SLICEC.cpp
+     SLICECUTS_x002eBenchmark_USCOREData_USCORECollector_x002e_USCORESE_USCOREcontrolsService.cpp
+     BDCWebService.cpp
+   }
+   Header_Files {
+     CORBA.nsmap
+     CORBA_.nsmap
+     CUTS_x002eBenchmark_USCOREData_USCORECollector_x002e_USCORESE_USCOREcontrols.nsmap
+     SLICECUTS_x002eBenchmark_USCOREData_USCORECollector_x002e_USCORESE_USCOREcontrolsService.h
+     SLICEStub.h
+     SLICEH.h
+     $(GSOAP_ROOT)/stdsoap2.h
+   }
+
+}
