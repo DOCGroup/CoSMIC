@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{D5C41C51-ACE1-4565-9F20-9A13F04C6D81}" cdate="Wed Apr 13 16:43:31 2005" mdate="Wed Apr 13 16:43:31 2005" version="" metaguid="{02F92DA4-8C61-4C4D-9618-FD600EE5CACF}" metaversion="" metaname="CQML">
+<project guid="{442FA377-A9AC-4FDC-8F95-500FF112DDEE}" cdate="Sat Aug 05 01:32:50 2006" mdate="Sat Aug 05 01:32:50 2006" version="" metaguid="{1E9159C2-ABCD-477F-83E6-D769C60CE3B7}" metaversion="" metaname="CQML">
 	<name>BasicSP</name>
 	<comment></comment>
 	<author></author>
@@ -2490,7 +2490,7 @@
 			</model>
 			<model id="id-0065-00000035" kind="ComponentImplementationContainer" relid="0x5" childrelidcntr="0x1">
 				<name>BasicSP</name>
-				<model id="id-0065-00000036" kind="ComponentAssembly" role="ComponentAssembly" relid="0x1" childrelidcntr="0x12">
+				<model id="id-0065-00000036" kind="ComponentAssembly" role="ComponentAssembly" relid="0x1" childrelidcntr="0x25">
 					<name>BasicSP</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2517,12 +2517,18 @@
 									<value>510,88</value>
 								</regnode>
 							</regnode>
+							<regnode name="QoS" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>510,88</value>
+								</regnode>
+							</regnode>
 						</regnode>
 						<attribute kind="SpecifyIdTag" status="meta">
 							<value></value>
 						</attribute>
-						<attribute kind="UUID" status="meta">
-							<value></value>
+						<attribute kind="UUID">
+							<value>E085DD16-395E-4351-8CA1-3B66D7E6CA3F</value>
 						</attribute>
 						<attribute kind="VersionTag" status="meta">
 							<value></value>
@@ -2548,28 +2554,7 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-0000003d" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-00000003" isinstance="yes" isprimary="no" referred="id-0065-00000003" isbound="yes">
-							<name>datain</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="multiple_connections" status="inherited">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-0000003e" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000004" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+						<reference id="id-0067-0000003d" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000004" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 							<name>out_avail</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -2593,7 +2578,7 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-0000003f" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-00000005" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+						<reference id="id-0067-0000003e" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-00000005" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 							<name>in_avail</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -2611,6 +2596,27 @@
 								<value>false</value>
 							</attribute>
 						</reference>
+						<reference id="id-0067-0000003f" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-00000003" isinstance="yes" isprimary="no" referred="id-0065-00000003" isbound="yes">
+							<name>datain</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="multiple_connections" status="inherited">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</reference>
 					</model>
 					<model id="id-0065-00000038" kind="Component" role="Component" derivedfrom="id-0065-0000000d" isinstance="yes" isprimary="yes" relid="0x2" childrelidcntr="0x0">
 						<name>BMDevice</name>
@@ -2622,12 +2628,18 @@
 									<value>258,88</value>
 								</regnode>
 							</regnode>
+							<regnode name="QoS" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>258,88</value>
+								</regnode>
+							</regnode>
 						</regnode>
 						<attribute kind="SpecifyIdTag" status="meta">
 							<value></value>
 						</attribute>
-						<attribute kind="UUID" status="meta">
-							<value></value>
+						<attribute kind="UUID">
+							<value>E3F0AAE7-DF69-4B8C-95E4-46DCCE707B75</value>
 						</attribute>
 						<attribute kind="VersionTag" status="meta">
 							<value></value>
@@ -2653,25 +2665,7 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000041" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-00000009" isinstance="yes" isprimary="no" referred="id-0065-00000005" isbound="yes">
-							<name>timeout</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000042" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000008" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+						<reference id="id-0067-00000041" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000008" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 							<name>data_available</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -2695,6 +2689,24 @@
 								<value>false</value>
 							</attribute>
 						</reference>
+						<reference id="id-0067-00000042" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-00000009" isinstance="yes" isprimary="no" referred="id-0065-00000005" isbound="yes">
+							<name>timeout</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</reference>
 					</model>
 					<model id="id-0065-00000039" kind="Component" role="Component" derivedfrom="id-0065-00000011" isinstance="yes" isprimary="yes" relid="0x3" childrelidcntr="0x0">
 						<name>BMDisplay</name>
@@ -2706,12 +2718,18 @@
 									<value>482,284</value>
 								</regnode>
 							</regnode>
+							<regnode name="QoS" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>482,284</value>
+								</regnode>
+							</regnode>
 						</regnode>
 						<attribute kind="SpecifyIdTag" status="meta">
 							<value></value>
 						</attribute>
-						<attribute kind="UUID" status="meta">
-							<value></value>
+						<attribute kind="UUID">
+							<value>BCDA76F0-7BA8-4081-8FF6-C88750E6B1BC</value>
 						</attribute>
 						<attribute kind="VersionTag" status="meta">
 							<value></value>
@@ -2769,12 +2787,18 @@
 									<value>13,88</value>
 								</regnode>
 							</regnode>
+							<regnode name="QoS" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>13,88</value>
+								</regnode>
+							</regnode>
 						</regnode>
 						<attribute kind="SpecifyIdTag" status="meta">
 							<value></value>
 						</attribute>
-						<attribute kind="UUID" status="meta">
-							<value></value>
+						<attribute kind="UUID">
+							<value>0AA31CE6-12A8-4632-A4B8-369065242C71</value>
 						</attribute>
 						<attribute kind="VersionTag" status="meta">
 							<value></value>
@@ -2790,14 +2814,11 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-00000046" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-0000000e" isinstance="yes" isprimary="no" referred="id-0066-00000007" isbound="yes">
+							<reference id="id-0067-00000047" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-0000000e" isinstance="yes" isprimary="no" referred="id-0066-00000007" isbound="yes">
 								<name>AttributeMember</name>
 							</reference>
 						</model>
-						<reference id="id-0067-00000045" kind="Supports" role="Supports" derivedfrom="id-0067-0000000f" isinstance="yes" isprimary="no" referred="id-0065-00000015" isbound="yes">
-							<name>Supports</name>
-						</reference>
-						<reference id="id-0067-00000047" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000010" isinstance="yes" isprimary="no" referred="id-0065-00000005" isbound="yes">
+						<reference id="id-0067-00000045" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000010" isinstance="yes" isprimary="no" referred="id-0065-00000005" isbound="yes">
 							<name>timeout</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -2820,6 +2841,9 @@
 							<attribute kind="single_destination" status="inherited">
 								<value>false</value>
 							</attribute>
+						</reference>
+						<reference id="id-0067-00000046" kind="Supports" role="Supports" derivedfrom="id-0067-0000000f" isinstance="yes" isprimary="no" referred="id-0065-00000015" isbound="yes">
+							<name>Supports</name>
 						</reference>
 					</model>
 					<atom id="id-0066-0000001e" kind="PublishConnector" role="PublishConnector" relid="0x7">
@@ -2858,38 +2882,152 @@
 							</regnode>
 						</regnode>
 					</atom>
+					<atom id="id-0066-0000002a" kind="QoSConnector" role="QoSConnector" relid="0x13">
+						<name>QoSConnector</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="QoS" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>198,114</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</atom>
+					<atom id="id-0066-0000002b" kind="NetQoS" role="NetQoS" relid="0x14">
+						<name>NetQoS</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="QoS" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>191,30</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="admissionPriority" status="meta">
+							<value>NORMAL</value>
+						</attribute>
+						<attribute kind="custom" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="fwdBW">
+							<value>1000</value>
+						</attribute>
+						<attribute kind="quality" status="meta">
+							<value>BEST_EFFORT</value>
+						</attribute>
+						<attribute kind="revBW">
+							<value>500</value>
+						</attribute>
+					</atom>
+					<atom id="id-0066-0000002c" kind="QoSConnector" role="QoSConnector" relid="0x18">
+						<name>QoSConnector</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="QoS" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>441,105</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</atom>
+					<atom id="id-0066-0000002d" kind="QoSConnector" role="QoSConnector" relid="0x1d">
+						<name>QoSConnector</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="QoS" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>681,226</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</atom>
+					<atom id="id-0066-0000002e" kind="NetQoS" role="NetQoS" relid="0x1e">
+						<name>NetQoS</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="QoS" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>489,216</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="admissionPriority">
+							<value>HIGH</value>
+						</attribute>
+						<attribute kind="custom" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="fwdBW">
+							<value>10</value>
+						</attribute>
+						<attribute kind="quality">
+							<value>HIGH_PRIORITY</value>
+						</attribute>
+						<attribute kind="revBW">
+							<value>5</value>
+						</attribute>
+					</atom>
+					<atom id="id-0066-0000002f" kind="QoSConnector" role="QoSConnector" relid="0x22">
+						<name>QoSConnector</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="QoS" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>450,135</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</atom>
+					<reference id="id-0067-00000079" kind="QoSCharRef" role="QoSCharRef" relid="0x1b" referred="id-0066-0000002b">
+						<name>QoSCharRef</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="QoS" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>438,11</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</reference>
 					<connection id="id-0068-00000033" kind="publish" role="publish" relid="0x8">
 						<name>publish</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>w</value>
 						</regnode>
 						<connpoint role="dst" target="id-0066-0000001e"/>
-						<connpoint role="src" target="id-0067-00000047"/>
+						<connpoint role="src" target="id-0067-00000045"/>
 					</connection>
 					<connection id="id-0068-00000034" kind="deliverTo" role="deliverTo" relid="0x9">
 						<name>deliverTo</name>
 						<connpoint role="src" target="id-0066-0000001e"/>
-						<connpoint role="dst" target="id-0067-00000041"/>
+						<connpoint role="dst" target="id-0067-00000042"/>
 					</connection>
 					<connection id="id-0068-00000035" kind="publish" role="publish" relid="0xb">
 						<name>publish</name>
 						<connpoint role="dst" target="id-0066-0000001f"/>
-						<connpoint role="src" target="id-0067-00000042"/>
+						<connpoint role="src" target="id-0067-00000041"/>
 					</connection>
 					<connection id="id-0068-00000036" kind="deliverTo" role="deliverTo" relid="0xc">
 						<name>deliverTo</name>
 						<connpoint role="src" target="id-0066-0000001f"/>
-						<connpoint role="dst" target="id-0067-0000003f"/>
+						<connpoint role="dst" target="id-0067-0000003e"/>
 					</connection>
 					<connection id="id-0068-00000037" kind="invoke" role="invoke" relid="0xd">
 						<name>invoke</name>
-						<connpoint role="src" target="id-0067-0000003d"/>
+						<connpoint role="src" target="id-0067-0000003f"/>
 						<connpoint role="dst" target="id-0067-00000040"/>
 					</connection>
 					<connection id="id-0068-00000038" kind="publish" role="publish" relid="0xf">
 						<name>publish</name>
 						<connpoint role="dst" target="id-0066-00000020"/>
-						<connpoint role="src" target="id-0067-0000003e"/>
+						<connpoint role="src" target="id-0067-0000003d"/>
 					</connection>
 					<connection id="id-0068-00000039" kind="deliverTo" role="deliverTo" relid="0x10">
 						<name>deliverTo</name>
@@ -2900,6 +3038,66 @@
 						<name>invoke</name>
 						<connpoint role="dst" target="id-0067-0000003c"/>
 						<connpoint role="src" target="id-0067-00000044"/>
+					</connection>
+					<connection id="id-0068-0000004a" kind="EventSourcePublish" role="EventSourcePublish" relid="0x15">
+						<name>EventSourcePublish</name>
+						<connpoint role="dst" target="id-0066-0000002a"/>
+						<connpoint role="src" target="id-0067-00000045"/>
+					</connection>
+					<connection id="id-0068-0000004b" kind="EventSinkPublish" role="EventSinkPublish" relid="0x16">
+						<name>EventSinkPublish</name>
+						<connpoint role="src" target="id-0066-0000002a"/>
+						<connpoint role="dst" target="id-0067-00000042"/>
+					</connection>
+					<connection id="id-0068-0000004c" kind="QoSReq" role="QoSReq" relid="0x17">
+						<name>QoSReq</name>
+						<connpoint role="src" target="id-0066-0000002a"/>
+						<connpoint role="dst" target="id-0066-0000002b"/>
+					</connection>
+					<connection id="id-0068-0000004e" kind="EventSourcePublish" role="EventSourcePublish" relid="0x19">
+						<name>EventSourcePublish</name>
+						<connpoint role="dst" target="id-0066-0000002c"/>
+						<connpoint role="src" target="id-0067-00000041"/>
+					</connection>
+					<connection id="id-0068-0000004f" kind="EventSinkPublish" role="EventSinkPublish" relid="0x1a">
+						<name>EventSinkPublish</name>
+						<connpoint role="src" target="id-0066-0000002c"/>
+						<connpoint role="dst" target="id-0067-0000003e"/>
+					</connection>
+					<connection id="id-0068-00000050" kind="QoSReq" role="QoSReq" relid="0x1c">
+						<name>QoSReq</name>
+						<connpoint role="src" target="id-0066-0000002c"/>
+						<connpoint role="dst" target="id-0067-00000079"/>
+					</connection>
+					<connection id="id-0068-00000051" kind="RecepInvoke" role="RecepInvoke" relid="0x1f">
+						<name>RecepInvoke</name>
+						<connpoint role="dst" target="id-0066-0000002d"/>
+						<connpoint role="src" target="id-0067-00000044"/>
+					</connection>
+					<connection id="id-0068-00000052" kind="FacetInvoke" role="FacetInvoke" relid="0x20">
+						<name>FacetInvoke</name>
+						<connpoint role="src" target="id-0066-0000002d"/>
+						<connpoint role="dst" target="id-0067-0000003c"/>
+					</connection>
+					<connection id="id-0068-00000053" kind="QoSReq" role="QoSReq" relid="0x21">
+						<name>QoSReq</name>
+						<connpoint role="src" target="id-0066-0000002d"/>
+						<connpoint role="dst" target="id-0066-0000002e"/>
+					</connection>
+					<connection id="id-0068-00000054" kind="RecepInvoke" role="RecepInvoke" relid="0x23">
+						<name>RecepInvoke</name>
+						<connpoint role="dst" target="id-0066-0000002f"/>
+						<connpoint role="src" target="id-0067-0000003f"/>
+					</connection>
+					<connection id="id-0068-00000055" kind="FacetInvoke" role="FacetInvoke" relid="0x24">
+						<name>FacetInvoke</name>
+						<connpoint role="src" target="id-0066-0000002f"/>
+						<connpoint role="dst" target="id-0067-00000040"/>
+					</connection>
+					<connection id="id-0068-00000056" kind="PortQoS" role="PortQoS" relid="0x25">
+						<name>PortQoS</name>
+						<connpoint role="dst" target="id-0066-0000002e"/>
+						<connpoint role="src" target="id-0067-0000003f"/>
 					</connection>
 				</model>
 			</model>
@@ -3317,6 +3515,9 @@
 			<name>DeploymentPlan</name>
 			<model id="id-0065-00000046" kind="DeploymentPlan" relid="0x1" childrelidcntr="0x11">
 				<name>Plan</name>
+				<attribute kind="UUID" status="meta">
+					<value></value>
+				</attribute>
 				<attribute kind="label" status="meta">
 					<value></value>
 				</attribute>
@@ -3402,7 +3603,7 @@
 					<connpoint role="dst" target="id-0067-00000058"/>
 					<connpoint role="src" target="id-0069-00000002"/>
 				</connection>
-				<set id="id-0069-00000001" kind="CollocationGroup" role="CollocationGroup" relid="0x1" members="id-0067-00000055 id-0067-00000053 id-0067-00000054">
+				<set id="id-0069-00000001" kind="CollocationGroup" role="CollocationGroup" relid="0x1" members="id-0067-00000053 id-0067-00000054 id-0067-00000055">
 					<name>CollocationGroup</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4156,7 +4357,7 @@
 					<connpoint role="dst" target="id-0065-0000005c"/>
 					<connpoint role="src" target="id-0067-00000070"/>
 				</connection>
-				<set id="id-0069-00000003" kind="TaskSet" role="TaskSet" relid="0x4" members="id-0066-00000029 id-0066-00000028">
+				<set id="id-0069-00000003" kind="TaskSet" role="TaskSet" relid="0x4" members="id-0066-00000028 id-0066-00000029">
 					<name>TaskSet</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>

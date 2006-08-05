@@ -1,12 +1,30 @@
+Sat Aug  5 07:05:06 UTC 2006  Sumant Tambe  <sutambe@nospam>
+
+        Fixed some minor inconsistencies.
+
+        * PIM/PICML/examples/RobotAssembly.xme:
+
+        * PIM/PICML/paradigms/PICML-monolith.xmp:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+        * PSM/CQML/examples/BasicSP.xme:
+
+        * PSM/CQML/interpreters/NetQoSComponent/UdmApp.cpp:
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
 Sat Aug  5 05:40:45 UTC 2006  Sumant Tambe  <sutambe@nospam>
 
         QoS characteristics such as RT, FT and Event-channel configuration
         has been removed out of PICML and are moved to new PSM level language
         called CQML. The old version of PICML can be found in PICML-monolith.xme.
 
-        The new PSM level language, CQML, has been added to COSMIC_ROOT/PSM/. 
-        FT interpreter has been moved to be a CQML interpreter rather than 
-        PICML interpreter. NetQoS interpreter has been added for CQML. The 
+        The new PSM level language, CQML, has been added to COSMIC_ROOT/PSM/.
+        FT interpreter has been moved to be a CQML interpreter rather than
+        PICML interpreter. NetQoS interpreter has been added for CQML. The
         DeploymentPlanFramework has also been moved to CQML.
 
         * PIM/PICML/interpreters/Interpreters.mwc:

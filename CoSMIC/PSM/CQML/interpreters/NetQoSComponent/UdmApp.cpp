@@ -101,8 +101,8 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
         {
           std::string outputPath;
           std::string message = "Please specify the Output Directory";
-          //if (! ::PICML::getPath (message, outputPath))       return;
-	        outputPath = "C:\\Documents and Settings\\sumant\\Desktop\\Demo";
+          if (! ::PICML::getPath (message, outputPath))       return;
+	        //outputPath = "C:\\Documents and Settings\\sumant\\Desktop\\Demo";
           CQML::NetQoSVisitor visitor (outputPath);
           CQML::RootFolder
             start = CQML::RootFolder::Cast (p_backend->GetRootObject());
