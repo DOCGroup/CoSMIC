@@ -1,0 +1,23 @@
+project (CQML): cqmllib {
+
+   UDM_Files {
+      gendir = .
+      $(COSMIC_ROOT)/PSM/CQML/paradigms/CQML.xml
+   }
+
+   after += PICML
+   sharedname = CQML
+   macros += CQML_HAS_DLL CQML_EXPORT
+   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML/
+
+   lit_libs += rpcrt4
+
+   Source_Files {
+     CQML.cpp
+   }
+
+   Header_Files {
+     CQML.h
+     CQML_Export.h
+   }
+}

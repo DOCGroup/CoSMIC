@@ -1,3 +1,330 @@
+Sat Aug  5 05:40:45 UTC 2006  Sumant Tambe  <sutambe@nospam>
+
+        QoS characteristics such as RT, FT and Event-channel configuration
+        has been removed out of PICML and are moved to new PSM level language
+        called CQML. The old version of PICML can be found in PICML-monolith.xme.
+
+        The new PSM level language, CQML, has been added to COSMIC_ROOT/PSM/. 
+        FT interpreter has been moved to be a CQML interpreter rather than 
+        PICML interpreter. NetQoS interpreter has been added for CQML. The 
+        DeploymentPlanFramework has also been moved to CQML.
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+
+        * PIM/PICML/paradigms/PICML-monolith.xme:
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+        * PSM/CQML:
+
+        * PSM/CQML/examples:
+
+        * PSM/CQML/examples/BasicSP.xme:
+
+        * PSM/CQML/interpreters:
+
+        * PSM/CQML/interpreters/CQML:
+
+        * PSM/CQML/interpreters/CQML/CQML.mpc:
+
+        * PSM/CQML/interpreters/DeploymentPlanFramework:
+
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFramework.mpc:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFramework_Export.h:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/Injector.h:
+
+        * PSM/CQML/interpreters/FaultTolerance:
+
+        * PSM/CQML/interpreters/FaultTolerance/FTAdders.h:
+        * PSM/CQML/interpreters/FaultTolerance/FTAdders.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FTInjector.h:
+        * PSM/CQML/interpreters/FaultTolerance/FTInjector.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.h:
+        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FaultTolerance.mpc:
+        * PSM/CQML/interpreters/FaultTolerance/FaultToleranceVisitor.h:
+        * PSM/CQML/interpreters/FaultTolerance/FaultToleranceVisitor.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FaultTolerance_Export.h:
+        * PSM/CQML/interpreters/FaultTolerance/common.h:
+
+        * PSM/CQML/interpreters/FaultToleranceComponent:
+
+        * PSM/CQML/interpreters/FaultToleranceComponent/CompIcon.ico:
+        * PSM/CQML/interpreters/FaultToleranceComponent/Component.def:
+        * PSM/CQML/interpreters/FaultToleranceComponent/Component.rc:
+        * PSM/CQML/interpreters/FaultToleranceComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/FaultToleranceComponent/FaultToleranceComponent.mpc:
+        * PSM/CQML/interpreters/FaultToleranceComponent/RawComponent.h:
+        * PSM/CQML/interpreters/FaultToleranceComponent/RawComponent.cpp:
+        * PSM/CQML/interpreters/FaultToleranceComponent/StdAfx.h:
+        * PSM/CQML/interpreters/FaultToleranceComponent/StdAfx.cpp:
+        * PSM/CQML/interpreters/FaultToleranceComponent/UdmApp.h:
+        * PSM/CQML/interpreters/FaultToleranceComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/FaultToleranceComponent/UdmConfig.h:
+        * PSM/CQML/interpreters/FaultToleranceComponent/resource.h:
+
+        * PSM/CQML/interpreters/Interpreters.mwc:
+        * PSM/CQML/interpreters/NetQoS:
+
+        * PSM/CQML/interpreters/NetQoS/NetQoS.mpc:
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h:
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp:
+        * PSM/CQML/interpreters/NetQoS/NetQoS_Export.h:
+
+        * PSM/CQML/interpreters/NetQoSComponent:
+
+        * PSM/CQML/interpreters/NetQoSComponent/Component.def:
+        * PSM/CQML/interpreters/NetQoSComponent/Component.rc:
+        * PSM/CQML/interpreters/NetQoSComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/NetQoSComponent/NetQoSComponent.mpc:
+        * PSM/CQML/interpreters/NetQoSComponent/RawComponent.h:
+        * PSM/CQML/interpreters/NetQoSComponent/RawComponent.cpp:
+        * PSM/CQML/interpreters/NetQoSComponent/StdAfx.h:
+        * PSM/CQML/interpreters/NetQoSComponent/StdAfx.cpp:
+        * PSM/CQML/interpreters/NetQoSComponent/UdmApp.h:
+        * PSM/CQML/interpreters/NetQoSComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/NetQoSComponent/UdmConfig.h:
+        * PSM/CQML/interpreters/NetQoSComponent/compicon.ico:
+        * PSM/CQML/interpreters/NetQoSComponent/resource.h:
+
+        * PSM/CQML/paradigms:
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+        * PSM/CQML/paradigms/icons:
+
+        * PSM/CQML/paradigms/icons/Any.bmp:
+        * PSM/CQML/paradigms/icons/Assembly.bmp:
+        * PSM/CQML/paradigms/icons/AttributeMapping.bmp:
+        * PSM/CQML/paradigms/icons/Average.bmp:
+        * PSM/CQML/paradigms/icons/BandedConnection.bmp:
+        * PSM/CQML/paradigms/icons/BandedConnectionRef.bmp:
+        * PSM/CQML/paradigms/icons/Bridge.bmp:
+        * PSM/CQML/paradigms/icons/Capability.bmp:
+        * PSM/CQML/paradigms/icons/ComponentPackage.bmp:
+        * PSM/CQML/paradigms/icons/ComponentProperty.bmp:
+        * PSM/CQML/paradigms/icons/ComponentSet.bmp:
+        * PSM/CQML/paradigms/icons/ConnectionBand.bmp:
+        * PSM/CQML/paradigms/icons/Connector.bmp:
+        * PSM/CQML/paradigms/icons/DataType.bmp:
+        * PSM/CQML/paradigms/icons/Discrete-Benchmark.bmp:
+        * PSM/CQML/paradigms/icons/Domain.bmp:
+        * PSM/CQML/paradigms/icons/EnvironmentConf.bmp:
+        * PSM/CQML/paradigms/icons/ExternalReferenceEndPoint.bmp:
+        * PSM/CQML/paradigms/icons/FOU.bmp:
+        * PSM/CQML/paradigms/icons/ImplementationArtifact.bmp:
+        * PSM/CQML/paradigms/icons/ImplementationArtifactReference.bmp:
+        * PSM/CQML/paradigms/icons/ImplementationDependency.bmp:
+        * PSM/CQML/paradigms/icons/ImplementationReference.bmp:
+        * PSM/CQML/paradigms/icons/ImplementationRequirement.bmp:
+        * PSM/CQML/paradigms/icons/InputAction.bmp:
+        * PSM/CQML/paradigms/icons/Interconnect.bmp:
+        * PSM/CQML/paradigms/icons/Jitter.bmp:
+        * PSM/CQML/paradigms/icons/Latency.bmp:
+        * PSM/CQML/paradigms/icons/Max.bmp:
+        * PSM/CQML/paradigms/icons/Min.bmp:
+        * PSM/CQML/paradigms/icons/MonolithicImplementation.bmp:
+        * PSM/CQML/paradigms/icons/Node.bmp:
+        * PSM/CQML/paradigms/icons/NodeGroup.bmp:
+        * PSM/CQML/paradigms/icons/OutputAction.bmp:
+        * PSM/CQML/paradigms/icons/PackageConfiguration.bmp:
+        * PSM/CQML/paradigms/icons/PackageConfigurationReference.bmp:
+        * PSM/CQML/paradigms/icons/PackageReference.bmp:
+        * PSM/CQML/paradigms/icons/Periodic-Bench.bmp:
+        * PSM/CQML/paradigms/icons/PolicySet.bmp:
+        * PSM/CQML/paradigms/icons/PolicySetRef.bmp:
+        * PSM/CQML/paradigms/icons/PriorityModelPolicy.bmp:
+        * PSM/CQML/paradigms/icons/Property.bmp:
+        * PSM/CQML/paradigms/icons/RPG.bmp:
+        * PSM/CQML/paradigms/icons/RTModel.bmp:
+        * PSM/CQML/paradigms/icons/Requirement.bmp:
+        * PSM/CQML/paradigms/icons/Resource.bmp:
+        * PSM/CQML/paradigms/icons/ResourceContainer.bmp:
+        * PSM/CQML/paradigms/icons/SatisfierProperty.bmp:
+        * PSM/CQML/paradigms/icons/SharedResource.bmp:
+        * PSM/CQML/paradigms/icons/SharedRiskGroup.bmp:
+        * PSM/CQML/paradigms/icons/SimpleThreadPool.bmp:
+        * PSM/CQML/paradigms/icons/StartState.bmp:
+        * PSM/CQML/paradigms/icons/State.bmp:
+        * PSM/CQML/paradigms/icons/ThreadPoolLane.bmp:
+        * PSM/CQML/paradigms/icons/ThreadPoolRef.bmp:
+        * PSM/CQML/paradigms/icons/ThreadPoolWithLanes.bmp:
+        * PSM/CQML/paradigms/icons/Throughput.bmp:
+        * PSM/CQML/paradigms/icons/TimerState.bmp:
+        * PSM/CQML/paradigms/icons/TopLevelPackage.bmp:
+        * PSM/CQML/paradigms/icons/Trigger-Bench.bmp:
+        * PSM/CQML/paradigms/icons/action.bmp:
+        * PSM/CQML/paradigms/icons/aggregate.bmp:
+        * PSM/CQML/paradigms/icons/aggregateref.bmp:
+        * PSM/CQML/paradigms/icons/alias.bmp:
+        * PSM/CQML/paradigms/icons/aliasref.bmp:
+        * PSM/CQML/paradigms/icons/attribute.bmp:
+        * PSM/CQML/paradigms/icons/boolean.bmp:
+        * PSM/CQML/paradigms/icons/boxed.bmp:
+        * PSM/CQML/paradigms/icons/boxedref.bmp:
+        * PSM/CQML/paradigms/icons/byte.bmp:
+        * PSM/CQML/paradigms/icons/comp-proj.bmp:
+        * PSM/CQML/paradigms/icons/component.bmp:
+        * PSM/CQML/paradigms/icons/componentfactory.bmp:
+        * PSM/CQML/paradigms/icons/componentfactoryref.bmp:
+        * PSM/CQML/paradigms/icons/componentref.bmp:
+        * PSM/CQML/paradigms/icons/composite.bmp:
+        * PSM/CQML/paradigms/icons/conjunction_group.bmp:
+        * PSM/CQML/paradigms/icons/const.bmp:
+        * PSM/CQML/paradigms/icons/discriminator.bmp:
+        * PSM/CQML/paradigms/icons/disjunction_group.bmp:
+        * PSM/CQML/paradigms/icons/ec_consumer.bmp:
+        * PSM/CQML/paradigms/icons/ec_dependency.bmp:
+        * PSM/CQML/paradigms/icons/ec_event.bmp:
+        * PSM/CQML/paradigms/icons/ec_option.bmp:
+        * PSM/CQML/paradigms/icons/ec_proxy.bmp:
+        * PSM/CQML/paradigms/icons/ec_proxy_consumer.bmp:
+        * PSM/CQML/paradigms/icons/ec_proxy_supplier.bmp:
+        * PSM/CQML/paradigms/icons/ec_resource_factory.bmp:
+        * PSM/CQML/paradigms/icons/ec_supplier.bmp:
+        * PSM/CQML/paradigms/icons/ec_supplier_id.bmp:
+        * PSM/CQML/paradigms/icons/enum.bmp:
+        * PSM/CQML/paradigms/icons/enumref.bmp:
+        * PSM/CQML/paradigms/icons/enumvalue.bmp:
+        * PSM/CQML/paradigms/icons/event.bmp:
+        * PSM/CQML/paradigms/icons/event_sink.bmp:
+        * PSM/CQML/paradigms/icons/event_source.bmp:
+        * PSM/CQML/paradigms/icons/eventref.bmp:
+        * PSM/CQML/paradigms/icons/eventtype-port.bmp:
+        * PSM/CQML/paradigms/icons/eventtype.bmp:
+        * PSM/CQML/paradigms/icons/exception.bmp:
+        * PSM/CQML/paradigms/icons/exceptionref.bmp:
+        * PSM/CQML/paradigms/icons/factory.bmp:
+        * PSM/CQML/paradigms/icons/file.bmp:
+        * PSM/CQML/paradigms/icons/fileref.bmp:
+        * PSM/CQML/paradigms/icons/genericobject.bmp:
+        * PSM/CQML/paradigms/icons/genericvalue.bmp:
+        * PSM/CQML/paradigms/icons/genericvalueobject.bmp:
+        * PSM/CQML/paradigms/icons/getexception.bmp:
+        * PSM/CQML/paradigms/icons/in.bmp:
+        * PSM/CQML/paradigms/icons/inevent_lf.bmp:
+        * PSM/CQML/paradigms/icons/inevent_rt.bmp:
+        * PSM/CQML/paradigms/icons/ineventport.bmp:
+        * PSM/CQML/paradigms/icons/inherits.bmp:
+        * PSM/CQML/paradigms/icons/inout.bmp:
+        * PSM/CQML/paradigms/icons/label.bmp:
+        * PSM/CQML/paradigms/icons/logical_and_group.bmp:
+        * PSM/CQML/paradigms/icons/long.bmp:
+        * PSM/CQML/paradigms/icons/lookup.bmp:
+        * PSM/CQML/paradigms/icons/lookupkey.bmp:
+        * PSM/CQML/paradigms/icons/member.bmp:
+        * PSM/CQML/paradigms/icons/ns_admin.bmp:
+        * PSM/CQML/paradigms/icons/ns_config.bmp:
+        * PSM/CQML/paradigms/icons/ns_constraint.bmp:
+        * PSM/CQML/paradigms/icons/ns_consumer.bmp:
+        * PSM/CQML/paradigms/icons/ns_event.bmp:
+        * PSM/CQML/paradigms/icons/ns_filter-port.bmp:
+        * PSM/CQML/paradigms/icons/ns_filter.bmp:
+        * PSM/CQML/paradigms/icons/ns_option.bmp:
+        * PSM/CQML/paradigms/icons/ns_proxy.bmp:
+        * PSM/CQML/paradigms/icons/ns_proxy_consumer.bmp:
+        * PSM/CQML/paradigms/icons/ns_proxy_supplier.bmp:
+        * PSM/CQML/paradigms/icons/ns_qos-port.bmp:
+        * PSM/CQML/paradigms/icons/ns_qos.bmp:
+        * PSM/CQML/paradigms/icons/ns_resource_factory-port.bmp:
+        * PSM/CQML/paradigms/icons/ns_resource_factory.bmp:
+        * PSM/CQML/paradigms/icons/ns_supplier.bmp:
+        * PSM/CQML/paradigms/icons/object.bmp:
+        * PSM/CQML/paradigms/icons/objectref.bmp:
+        * PSM/CQML/paradigms/icons/oneway.bmp:
+        * PSM/CQML/paradigms/icons/operationref.bmp:
+        * PSM/CQML/paradigms/icons/out.bmp:
+        * PSM/CQML/paradigms/icons/outevent_lf.bmp:
+        * PSM/CQML/paradigms/icons/outevent_rt.bmp:
+        * PSM/CQML/paradigms/icons/outeventport.bmp:
+        * PSM/CQML/paradigms/icons/package.bmp:
+        * PSM/CQML/paradigms/icons/private.bmp:
+        * PSM/CQML/paradigms/icons/project.bmp:
+        * PSM/CQML/paradigms/icons/providedrequestport.bmp:
+        * PSM/CQML/paradigms/icons/readonlyattribute.bmp:
+        * PSM/CQML/paradigms/icons/realnumber.bmp:
+        * PSM/CQML/paradigms/icons/receptacle_lf.bmp:
+        * PSM/CQML/paradigms/icons/receptacle_rt.bmp:
+        * PSM/CQML/paradigms/icons/requiredrequestport.bmp:
+        * PSM/CQML/paradigms/icons/return.bmp:
+        * PSM/CQML/paradigms/icons/rt_info-port.bmp:
+        * PSM/CQML/paradigms/icons/rt_info.bmp:
+        * PSM/CQML/paradigms/icons/rtec_proxy_consumer.bmp:
+        * PSM/CQML/paradigms/icons/rtec_proxy_supplier.bmp:
+        * PSM/CQML/paradigms/icons/rtec_resource_factory-port.bmp:
+        * PSM/CQML/paradigms/icons/rtec_resource_factory.bmp:
+        * PSM/CQML/paradigms/icons/setexception.bmp:
+        * PSM/CQML/paradigms/icons/setexceptionref.bmp:
+        * PSM/CQML/paradigms/icons/short.bmp:
+        * PSM/CQML/paradigms/icons/string.bmp:
+        * PSM/CQML/paradigms/icons/supports.bmp:
+        * PSM/CQML/paradigms/icons/switchedaggregate.bmp:
+        * PSM/CQML/paradigms/icons/switchedaggregateref.bmp:
+        * PSM/CQML/paradigms/icons/task.bmp:
+        * PSM/CQML/paradigms/icons/taskset.bmp:
+        * PSM/CQML/paradigms/icons/timer.bmp:
+        * PSM/CQML/paradigms/icons/twoway.bmp:
+        * PSM/CQML/paradigms/icons/typeencoding.bmp:
+        * PSM/CQML/paradigms/icons/typekind.bmp:
+        * PSM/CQML/paradigms/icons/value.bmp:
+        * PSM/CQML/paradigms/icons/valueref.bmp:
+        * PSM/CQML/paradigms/icons/variablecollection.bmp:
+        * PSM/CQML/paradigms/icons/variablecollectionref.bmp:
+        * PSM/CQML/paradigms/icons/vertex.bmp:
+        * PSM/CQML/paradigms/icons/worker.gif:
+        * PSM/CQML/paradigms/icons/workerref.gif:
+        * PSM/CQML/paradigms/icons/workspace.bmp:
+
+        * cosmic.mwc:
+        * cqmllib.mpb:
+
+          Moved following these files to COSMIC_ROOT/PSM/CQML/interpreters
+
+        * PIM/PICML/interpreters/DeploymentPlanFramework:
+
+        * PIM/PICML/interpreters/DeploymentPlanFramework/DeploymentPlanFramework.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanFramework/DeploymentPlanFramework_Export.h:
+        * PIM/PICML/interpreters/DeploymentPlanFramework/Injector.h:
+
+        * PIM/PICML/interpreters/FaultTolerance:
+
+        * PIM/PICML/interpreters/FaultTolerance/FTAdders.h:
+        * PIM/PICML/interpreters/FaultTolerance/FTAdders.cpp:
+        * PIM/PICML/interpreters/FaultTolerance/FTInjector.h:
+        * PIM/PICML/interpreters/FaultTolerance/FTInjector.cpp:
+        * PIM/PICML/interpreters/FaultTolerance/FTVisitors.h:
+        * PIM/PICML/interpreters/FaultTolerance/FTVisitors.cpp:
+        * PIM/PICML/interpreters/FaultTolerance/FaultTolerance.mpc:
+        * PIM/PICML/interpreters/FaultTolerance/FaultToleranceVisitor.h:
+        * PIM/PICML/interpreters/FaultTolerance/FaultToleranceVisitor.cpp:
+        * PIM/PICML/interpreters/FaultTolerance/FaultTolerance_Export.h:
+        * PIM/PICML/interpreters/FaultTolerance/common.h:
+
+        * PIM/PICML/interpreters/FaultToleranceComponent:
+
+        * PIM/PICML/interpreters/FaultToleranceComponent/CompIcon.ico:
+        * PIM/PICML/interpreters/FaultToleranceComponent/Component.aps:
+        * PIM/PICML/interpreters/FaultToleranceComponent/Component.def:
+        * PIM/PICML/interpreters/FaultToleranceComponent/Component.rc:
+        * PIM/PICML/interpreters/FaultToleranceComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/FaultToleranceComponent/FaultToleranceComponent.mpc:
+        * PIM/PICML/interpreters/FaultToleranceComponent/RawComponent.h:
+        * PIM/PICML/interpreters/FaultToleranceComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/FaultToleranceComponent/StdAfx.h:
+        * PIM/PICML/interpreters/FaultToleranceComponent/StdAfx.cpp:
+        * PIM/PICML/interpreters/FaultToleranceComponent/UdmApp.h:
+        * PIM/PICML/interpreters/FaultToleranceComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/FaultToleranceComponent/UdmConfig.h:
+        * PIM/PICML/interpreters/FaultToleranceComponent/resource.h:
+
 Sat Aug  5 03:04:39 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/SIML/examples/SLICE.xme: Example model of SLICE scenario in

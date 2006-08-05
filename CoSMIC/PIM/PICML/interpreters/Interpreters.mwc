@@ -19,7 +19,4 @@ workspace {
   CIDLComponent
   Path
   PathComponent
-  FaultTolerance
-  FaultToleranceComponent
-  DeploymentPlanFramework
 }
