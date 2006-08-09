@@ -1,3 +1,11 @@
+Wed Aug  9 17:11:42 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Event_Handler_Manager_T.h:
+        * cuts/Event_Handler_Manager_T.inl:
+        * cuts/Event_Handler_Manager_T.cpp:
+
+          Forgot to checkin the following files.
+
 Wed Aug  2 06:37:25 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Async_Event_Handler_T.h:
