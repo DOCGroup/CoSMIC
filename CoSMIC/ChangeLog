@@ -1,3 +1,12 @@
+Wed Aug  9 18:42:34 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Fixed inconsistency in metamodel and XML backend.
+
 Wed Aug  9 02:38:01 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * demos/STI/BDCWebService/BDC.mpc:
