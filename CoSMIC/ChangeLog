@@ -1,3 +1,20 @@
+Wed Aug  9 02:38:01 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * demos/STI/BDCWebService/BDC.mpc:
+
+          Updated to reflect the new names for the generated code.
+
+        * demos/STI/BDCWebService/CUTS_x002eBenchmark_USCOREData_USCORECollector.h:
+        * demos/STI/BDCWebService/CUTS_x002eBenchmark_USCOREData_USCORECollector.cpp:
+        * demos/STI/BDCWebService/CUTS_x002eBenchmark_USCOREData_USCORECollector.nsmap:
+        * demos/STI/BDCWebService/CUTS_x002eBenchmark_USCOREData_USCORECollectorService.cpp:
+
+          Added a version of the generated code as a backup.
+
+        * demos/STI/BDCWebService/BDCWebService.cpp:
+
+          Removed this file.
+
 Wed Aug  9 02:07:49 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/examples/SLICE-Path.xme:  Added a new example which
