@@ -29,39 +29,31 @@
 #include "DBase_Service.inl"
 #endif
 
+////
+//// operator << (SQL_TIMESTAMP_STRUCT &, ACE_Time_Value &)
+////
+//static void operator << (SQL_TIMESTAMP_STRUCT & ts, const ACE_Time_Value & tv)
+//{
+//  ACE_Date_Time date_time (tv);
 //
-// get_current_time
+//  ts.month    = ACE_static_cast (SQLUSMALLINT, date_time.month ());
+//  ts.day      = ACE_static_cast (SQLUSMALLINT, date_time.day ());
+//  ts.year     = ACE_static_cast (SQLSMALLINT,  date_time.year ());
+//  ts.hour     = ACE_static_cast (SQLUSMALLINT, date_time.hour ());
+//  ts.minute   = ACE_static_cast (SQLUSMALLINT, date_time.minute ());
+//  ts.second   = ACE_static_cast (SQLUSMALLINT, date_time.second ());
+//  ts.fraction = ACE_static_cast (SQLUINTEGER, date_time.microsec ());
+//}
 //
-static void get_current_time (SQL_TIMESTAMP_STRUCT & timestamp)
-{
-  // Get the current date/time and store it in the <timestamp>
-  ACE_Date_Time date_time;
-
-  timestamp.month   = static_cast <SQLUSMALLINT> (date_time.month ());
-  timestamp.day     = static_cast <SQLUSMALLINT> (date_time.day ());
-  timestamp.year    = static_cast <SQLSMALLINT>  (date_time.year ());
-  timestamp.hour    = static_cast <SQLUSMALLINT> (date_time.hour ());
-  timestamp.minute  = static_cast <SQLUSMALLINT> (date_time.minute ());
-  timestamp.second  = static_cast <SQLUSMALLINT> (date_time.second ());
-}
-
+////
+//// get_current_time
+////
+//inline
+//static void get_current_time (SQL_TIMESTAMP_STRUCT & ts)
+//{
+//  ts << ACE_OS::gettimeofday ();
+//}
 //
-// operator << (SQL_TIMESTAMP_STRUCT &, ACE_Time_Value &)
-//
-static void operator << (SQL_TIMESTAMP_STRUCT & ts, const ACE_Time_Value & tv)
-{
-  // Create a <ACE_Date_Time> object to simplify the conversion
-  // process between the two types.
-  ACE_Date_Time date_time (tv);
-
-  ts.month   = static_cast <SQLUSMALLINT> (date_time.month ());
-  ts.day     = static_cast <SQLUSMALLINT> (date_time.day ());
-  ts.year    = static_cast <SQLSMALLINT>  (date_time.year ());
-  ts.hour    = static_cast <SQLUSMALLINT> (date_time.hour ());
-  ts.minute  = static_cast <SQLUSMALLINT> (date_time.minute ());
-  ts.second  = static_cast <SQLUSMALLINT> (date_time.second ());
-}
-
 //
 // CUTS_Database_Service
 //
@@ -72,6 +64,7 @@ CUTS_Database_Service::CUTS_Database_Service (void)
   // like to ask the <CUTS_DB_Manager> for a connection object.
   ODBC_Connection * conn = 0;
   ACE_NEW (conn, ODBC_Connection ());
+
   this->conn_.reset (conn);
 }
 

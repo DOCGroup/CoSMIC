@@ -26,14 +26,14 @@ h2
 
 a 
 {
-  color:black;
-  text-decoration:none;
+  color:blue;
+  text-decoration:underline;
 }
 
 a:hover
 {
   color:red;
-  text-decoration:none;
+  text-decoration:underline;
 }
 
 /** 
@@ -55,8 +55,9 @@ a:hover
 
 .header
 {
-  font-weight:bold;
-  text-align:center;
+  font-weight: bold;
+  text-align: center;
+  line-height: 12px;
 }
 
 .required 

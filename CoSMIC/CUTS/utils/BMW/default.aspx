@@ -1,14 +1,18 @@
 <%@ Page language="c#" codefile="default.aspx.cs" inherits="CUTS.Test" 
          masterpagefile="~/BMW.master" %>
 
-<asp:content runat="server" id="content_" contentplaceholderid="MainContent">
+<asp:content 
+  runat="server" id="content_"
+  contentplaceholderid="MainContent">
 <asp:datagrid 
-  id="tests_" runat="server" autogeneratecolumns="false" datakeyfield="test_number" 
-  borderstyle="solid" cellpadding="4" cellspacing="0"
-  allowpaging="true" pagesize="25" width="100%" showheader="true"
-  showfooter="false" onpageindexchanged="handle_page_index_changed"
-  onitemcreated="handle_on_item_created"
-  onitemcommand="handle_on_item_command">
+  id="tests_" runat="server" autogeneratecolumns="false" 
+  datakeyfield="test_number" 
+  borderstyle="solid" cellpadding="2" cellspacing="0"
+  allowpaging="true" pagesize="25" width="100%" 
+  showheader="true" showfooter="false" 
+  enableviewstate="true"
+  onpageindexchanged="handle_onpageindexchanged"
+  onitemcreated="handle_onitemcreated">
 
   <headerstyle cssclass="header" />
   <footerstyle cssclass="footer" />
@@ -38,12 +42,27 @@
       datanavigateurlformatstring="Execution_Times.aspx?test={0}"
       text='<img src="images/table.gif" border="0" />' />
 
-    <asp:buttoncolumn
-      headertext="Delete"
-      text='<img src="images/delete.gif" border="0" />'
-      commandname="delete" />
-      
+    <asp:templatecolumn>
+      <headertemplate>
+        <asp:checkbox runat="server" id="action_" 
+                      oncheckedchanged="handle_toggle_action" 
+                      causesvalidation="false"
+                      autopostback="true" />
+      </headertemplate>
+      <itemtemplate>
+        <asp:checkbox runat="server" id="action_" />
+      </itemtemplate>
+    </asp:templatecolumn>
   </columns>
 </asp:datagrid>
+
+<p>
+  <!-- controls at the bottom of page used for batch processing -->
+  <asp:linkbutton runat="server" id="delete_all_"
+                  onclick="handle_delete_all"
+                  text="Delete Selected"
+                  causesvalidation="false" />
+</p>
+                
 <asp:label runat="server" id="message_" />
 </asp:content>

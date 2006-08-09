@@ -43,7 +43,7 @@ void ODBC_Date_Time::set (const ACE_Date_Time & datetime)
   this->year (datetime.year ());
   this->hour (datetime.hour ());
   this->minute (datetime.minute ());
-  this->year (datetime.year ());
+  this->second (datetime.second ());
   this->fraction (datetime.microsec ());
 }
 

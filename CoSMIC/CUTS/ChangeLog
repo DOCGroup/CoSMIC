@@ -1,3 +1,34 @@
+Wed Aug  9 17:14:25 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/svcs/dbase/DBase_Service.cpp:
+
+          Removed ACE_Date_Time to ODBC_Date_Time conversion functions.
+
+        * cuts/utils/ODBC/ODBC_Types.cpp:
+
+          Convertion of a ACE_Date_Time to a ODBC_Data_Time did not
+          set the seconds field.
+
+        * utils/BMW/BMW.master:
+
+          Changed the margin/border settings on the master page.
+
+        * utils/BMW/Hosts.aspx.cs:
+        * utils/BMW/Node_Details.ascx.cs:
+
+          Host specific error messages are now displayed in its
+          section.
+
+        * utils/BMW/Style.css:
+
+          Changed the style of the hyperlinks.
+
+        * utils/BMW/default.aspx:
+        * utils/BMW/default.aspx.cs:
+
+          - Reduced the cellpadding for the datagrid
+          - Added the capability of deleting collection of tests.
+
 Wed Aug  9 17:11:42 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Event_Handler_Manager_T.h:

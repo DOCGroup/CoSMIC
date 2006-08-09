@@ -47,13 +47,8 @@ namespace CUTS
      */
     private void Page_Load(object sender, System.EventArgs e)
     {
-      // erase any message that may be there.
-      this.register_message_.Text = "";
-
       if (!this.IsPostBack)
-      {
         this.load_hosts_from_database();
-      }
     }
 
     /**
@@ -158,10 +153,7 @@ namespace CUTS
         }
       }
       else
-      {
-        this.register_message_.ForeColor = Color.Red;
-        this.register_message_.Text = "error: cannot register host while in edit mode";
-      }
+        this.error_message("cannot register host while in edit mode");
     }
 
     /**
@@ -188,10 +180,7 @@ namespace CUTS
           this.toggle_details(table.Rows[index - 1], table.Rows[index]);
         }
         else
-        {
-          this.register_message_.ForeColor = Color.Red;
-          this.register_message_.Text = "error: cannot view details while in edit mode";
-        }        
+          this.error_message("cannot view details while in edit mode");
       }
     }
 
@@ -256,7 +245,8 @@ namespace CUTS
      * @param[in]         sender          Sender of the command.
      * @param[in]         e               Command arguments.
      */
-    protected void show_all(Object sender, CommandEventArgs e)
+    protected void show_all(object sender, 
+                            CommandEventArgs e)
     {
       Table table = (Table)this.hosts_.Controls[0];
 
@@ -270,7 +260,8 @@ namespace CUTS
      * @param[in]       sender        Sender of the command.
      * @param[in]       e             Command arguments.
      */
-    protected void collapse_all(Object sender, CommandEventArgs e)
+    protected void collapse_all(object sender, 
+                                CommandEventArgs e)
     {
       Table table = (Table)this.hosts_.Controls[0];
 
@@ -332,15 +323,7 @@ namespace CUTS
 
           }
 
-          try
-          {
-            details.show_details (ipaddr, port);
-          }
-          catch (Exception ex)
-          {
-            this.register_message_.ForeColor = Color.Red;
-            this.register_message_.Text = ex.Message;
-          }
+          details.show_details (ipaddr, port);
         }
 
         linkbtn.Text = "<img src=\"images/minus.gif\" alt=\"hide\" border=\"0\" />";
@@ -351,6 +334,17 @@ namespace CUTS
       }
 
       row.Visible = show;
+    }
+
+    /**
+     * Helper method for displaying an error message.
+     * 
+     * @param[in]       message       Error message.
+     */
+    private void error_message(string message)
+    {
+      this.register_message_.Text = message;
+      this.register_message_.ForeColor = Color.Red;
     }
 
     #region Web Form Designer generated code

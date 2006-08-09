@@ -37,53 +37,29 @@ namespace CUTS
     private CUTS_Database_Utility cuts_database_ =
       new CUTS_Database_Utility(ConfigurationManager.AppSettings["MySQL"]);
 
-    //
-    // Page_Load
-    //
-    private void Page_Load (object sender, System.EventArgs e)
+    /**
+     * Callback method for loading a page.
+     * 
+     * @param[in]     sender        Sender of the event.
+     * @param[in]     e             Arguments for the event.
+     */
+    private void Page_Load (object sender, 
+                            System.EventArgs e)
     {
-      this.load_test_data();
+      if (!this.IsPostBack)
+        this.load_test_data();
     }
 
-    //
-    // handle_on_item_command
-    //
-    protected void handle_on_item_command (Object sender, DataGridCommandEventArgs e)
+    /**
+     * Callback method for changing the index of a page.
+     * 
+     * @param[in]       sender        Sender of the event.
+     * @param[in]       e             Arguments for the event.
+     */
+    protected void handle_onpageindexchanged(object sender, 
+                                             DataGridPageChangedEventArgs e)
     {
-      if (e.CommandName == "delete")
-      {
-        try
-        {
-          // Get the test number from the selected index.
-          System.Int32 test_number = 
-            (System.Int32)this.tests_.DataKeys[e.Item.ItemIndex];
-
-          // Delete the test from the <cuts_database_> and reload it
-          // from the database. This is very inefficient and needs
-          // to be addressed. It would be better to "cache" the dataset
-          // and operate on it. Then provide a "commit" button which
-          // would all users to commit the changes to the database.
-          this.cuts_database_.delete_test(test_number);
-          this.load_test_data();
-
-          this.cuts_database_.disconnect();
-        }
-        catch (Exception ex)
-        {
-          this.message_.Text = ex.Message;
-        }
-      }
-    }
-
-    //
-    // handle_page_index_changed
-    //
-    protected void handle_page_index_changed (Object sender, DataGridPageChangedEventArgs e)
-    {
-      // Set the new index of the page.
       this.tests_.CurrentPageIndex = e.NewPageIndex;
-
-      // Refresh the test data.
       this.load_test_data ();
     }
 
@@ -105,38 +81,50 @@ namespace CUTS
       }
     }
 
-    /// <summary>
-    /// handle_on_item_created
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected void handle_on_item_created (Object sender, DataGridItemEventArgs e)
+    /**
+     * Callback method for creating items in a datagrid.
+     * 
+     * @param[in]     sender        Sender of the event.
+     * @param[in]     e             Arguments for the event.
+     */
+    protected void handle_onitemcreated(object sender, 
+                                        DataGridItemEventArgs e)
     {
       ListItemType item_type = e.Item.ItemType;
 
-      if (item_type == ListItemType.Pager)
+      switch (item_type)
       {
-        TableCell pager = (TableCell)e.Item.Controls[0];
+        case ListItemType.Pager:
+          TableCell pager = (TableCell)e.Item.Controls[0];
+          int count = pager.Controls.Count;
 
-        if (pager.Controls.Count > 0)
-        {
-          Label label = (Label)pager.Controls[0];
-          label.Text = "Page: " + label.Text;
-        }
-      }
-      else if (item_type == ListItemType.Footer)
-      {
-        // Get the number of cells in the footer.
-        TableCellCollection tcc = e.Item.Cells;
-        int cell_count = tcc.Count;
+          for (int i = 0; i < count; i += 2)
+          {
+            Object obj = pager.Controls[i];
 
-        for (int i = 1; i < cell_count; i ++)
-        {
-          e.Item.Cells.RemoveAt (1);
-        }
+            if (obj is LinkButton)
+            {
+              LinkButton link = (LinkButton)obj;
+              link.Font.Underline = true;
+              link.ForeColor = Color.Blue;
+            }
+            else
+            {
+              Label label = (Label) obj;
+              label.Text = "[ " + label.Text + " ]";
+            }
+          }
 
-        TableCell tc = e.Item.Cells[0];
-        tc.ColumnSpan = cell_count;
+          pager.Controls.AddAt(0, new LiteralControl("Page(s): "));
+
+          break;
+
+        case ListItemType.Header:
+          break;
+
+        default:
+          /* do nothing */
+          break;
       }
     }
 
@@ -161,6 +149,100 @@ namespace CUTS
       }
     }
 
+    /**
+     * Callback method for selecting all the test on the 
+     * current page.
+     * 
+     * @param[in]       e       Arguments for the event.
+     */
+    protected void handle_toggle_action (object sender, 
+                                         System.EventArgs e)
+    {
+      // The sender of this event is a <CheckBox>
+      CheckBox check = (CheckBox)sender;
+
+      if (check != null)
+        this.toggle_action_i(check.Checked);
+    }
+
+    /**
+     * Callback method for clicking the "Select All" link button.
+     * 
+     * @param[in]       sender          Sender of the event.
+     * @param[in]       e               Arguments for the event.
+     */
+    protected void handle_select_all(object sender, EventArgs e)
+    {
+      this.toggle_action_i(true);
+    }
+
+    /**
+     * Callback method for clicking the "Unselect All" link.
+     * 
+     * @param[in]       sender        Sender of the event.
+     * @param[in]       e             Arguments for the event.
+     */
+    protected void handle_unselect_all(object sender,
+                                       System.EventArgs e)
+    {
+      this.toggle_action_i(false);
+    }
+
+    /**
+     * Helper method for toggling all the "action_" checkboxes
+     * on the current page.
+     * 
+     * @param[in]     state         Enable state for the item.
+     */
+    private void toggle_action_i (bool state)
+    {
+      foreach (DataGridItem item in this.tests_.Items)
+      {
+        CheckBox action = (CheckBox)item.FindControl("action_");
+
+        if (action != null)
+          action.Checked = state;
+      }
+    }
+
+    /**
+     * Callback method for clicking the "Delete All" link.
+     * 
+     * @param[in]       sender        Sender of the event.
+     */
+    protected void handle_delete_all(object sender, 
+                                     System.EventArgs e)
+    {
+      // Create a list for holding the selected numbers.
+      ArrayList list = new ArrayList();
+
+      foreach (DataGridItem item in this.tests_.Items)
+      {
+        // Locate the <action_> control since it's the checkbox
+        // that determines the action of the current test.
+        CheckBox action = (CheckBox) item.FindControl("action_");
+
+        if (action != null && action.Checked)
+        {
+          // Add the test number to the list if we are checked.
+          System.Int32 testnum = 
+            (System.Int32)this.tests_.DataKeys[item.ItemIndex];
+
+          list.Add(testnum);
+        }
+      }
+
+      if (list.Count > 0)
+      {
+        // Let's convert the array to an <System.Int32> array
+        // and pass control to the database utility.
+        System.Int32 [] testlist = 
+          (System.Int32 [])list.ToArray(typeof(System.Int32));
+
+        this.cuts_database_.delete_tests(testlist);
+        this.load_test_data();
+      }
+    }
     ///
     #region Web Form Designer generated code
     override protected void OnInit(EventArgs e)

@@ -37,25 +37,32 @@ namespace CUTS
   public partial class Node_Details_Control : System.Web.UI.UserControl
   {
     /**
+     * Event handler for loading the page.
      * 
+     * @param[in]       sender      Sender of the event.
+     * @param[in]       e           Arguments for the event.
      */
     private void Page_Load(object sender, System.EventArgs e)
     {
-      this.message_.Text = "";
-
-      try
+      if (!this.IsPostBack)
       {
-        IiopChannel channel = new IiopChannel();
-        ChannelServices.RegisterChannel(channel, false);
-      }
-      catch (RemotingException)
-      {
+        try
+        {
+          IiopChannel channel = new IiopChannel();
+          ChannelServices.RegisterChannel(channel, false);
+        }
+        catch (RemotingException)
+        {
 
+        }
       }
     }
 
     /**
+     * Show the details of the node.
      * 
+     * @param[in]     ipaddr      IP-address of the port.
+     * @param[in]     port        Port number.
      */
     public void show_details (String ipaddr, int port)
     {
@@ -73,7 +80,9 @@ namespace CUTS
     private void show_details_i ()
     {
       CUTS.Node_Daemon daemon = this.get_daemon();
-      this.show_details_i(daemon);
+
+      if (daemon != null)
+        this.show_details_i(daemon);
     }
 
     /**
@@ -88,16 +97,35 @@ namespace CUTS
       if (this.nonlocal_.Items.Count > 0)
         this.nonlocal_.Items.Clear();
 
-      CUTS.Node_Binding[] bindings = daemon.details();
-
-      foreach (CUTS.Node_Binding binding in bindings)
+      try
       {
-        ListItem item = new ListItem(binding.port.ToString(),
-                                     binding.port.ToString());
-        if (binding.localhost)
-          this.local_.Items.Add(item);
-        else
-          this.nonlocal_.Items.Add(item);
+        CUTS.Node_Binding[] bindings = daemon.details();
+
+        foreach (CUTS.Node_Binding binding in bindings)
+        {
+          ListItem item = new ListItem(binding.port.ToString(),
+                                       binding.port.ToString());
+          if (binding.localhost)
+            this.local_.Items.Add(item);
+          else
+            this.nonlocal_.Items.Add(item);
+        }
+      }
+      catch (omg.org.CORBA.COMM_FAILURE)
+      {
+        this.error_message(
+          String.Format("there is no daemon active on {0}",
+                        this.daemon_.Value));
+      }
+      catch (omg.org.CORBA.TRANSIENT)
+      {
+        this.error_message(
+          String.Format("failed to communicate with daemon on {0}",
+                        this.daemon_.Value));
+      }
+      catch (Exception ex)
+      {
+        this.error_message(ex.Message);
       }
     }
 
@@ -157,20 +185,22 @@ namespace CUTS
           }
         }
 
-
-        // Connect to the <CUTS/Node_Daemon> and kill the selected nodes. We do 
-        // this last because we do not want to hold a reference to the daemon 
-        // and it's unexpectedly go away, e.g., fail for unknown reasons. This
-        // way we are decreasing the window period for failure.
         CUTS.Node_Daemon daemon = this.get_daemon();
-        int count = daemon.kill(bindings);
 
-        this.message_.ForeColor = Color.Black;
-        this.message_.Text =
-          String.Format("successfully killed {0} node manager(s)",
-                        count);
+        try
+        {
+          // Connect to the <CUTS.Node_Daemon> and kill the selected nodes.
+          int count = daemon.kill(bindings);
 
-        // Now we need to update the view on last time.
+          // Show a message to the user.
+          this.message(String.Format("successfully killed {0} node manager(s)",
+                                     count));
+        }
+        catch (Exception ex)
+        {
+          this.error_message(ex.Message);
+        }
+
         this.show_details_i(daemon);
       }
     }
@@ -195,28 +225,34 @@ namespace CUTS
      */
     private CUTS.Node_Daemon get_daemon(String addr)
     {
+      CUTS.Node_Daemon daemon = null;
       String url = String.Format("corbaloc:iiop:{0}/CUTS/NodeDaemon",
                                  addr);
 
       try
       {
-        CUTS.Node_Daemon daemon =
+        daemon =
           (CUTS.Node_Daemon)RemotingServices.Connect(typeof(CUTS.Node_Daemon),
                                                      url);
-        return daemon;
       }
       catch (omg.org.CORBA.COMM_FAILURE)
       {
-        String ex =
-          String.Format("warning: there is no daemon active on {0}", addr);
-        throw new Exception(ex);
+        this.error_message(
+          String.Format("there is no daemon active on {0}",
+                        addr));
       }
       catch (omg.org.CORBA.TRANSIENT)
       {
-        String ex =
-          String.Format("error: failed to communicate with daemon on {0}", addr);
-        throw new Exception(ex);
+        this.error_message(
+          String.Format("failed to communicate with daemon on {0}",
+                        addr));
       }
+      catch (Exception ex)
+      {
+        this.error_message(ex.Message);
+      }
+
+      return daemon;
     }
 
     /**
@@ -268,30 +304,27 @@ namespace CUTS
         detail.bindings[i].localhost = this.localhost_.Checked;
       }
 
-      // Get the <daemon> and spawn the nodes. Then we need to 
-      // update the view with the new nodes.
       try
       {
+        // Get the <daemon> and spawn the nodes. Then we need to 
+        // update the view with the new nodes.
         CUTS.Node_Daemon daemon = this.get_daemon();
 
         count = daemon.spawn(detail);
-        this.message_.ForeColor = Color.Black;
-        this.message_.Text = String.Format("Successfully spawned {0} node manager(s)",
-                                           count);
+        this.message(String.Format("Successfully spawned {0} node manager(s)",
+                                   count));
 
+        // Update the details for this node.
         this.show_details_i(daemon);
       }
       catch (omg.org.CORBA.COMM_FAILURE)
       {
-        this.message_.ForeColor = Color.Red;
-        this.message_.Text =
-          String.Format("warning: there is no daemon running on {0}",
-                        this.daemon_.Value);              
+        this.error_message (String.Format("there is no daemon running on {0}",
+                                          this.daemon_.Value));
       }
       catch (Exception ex)
       {
-        this.message_.ForeColor = Color.Red;
-        this.message_.Text = ex.Message;
+        this.error_message(ex.Message);
       }
     }
 
@@ -321,6 +354,28 @@ namespace CUTS
         item.Selected = false;
       foreach (ListItem item in this.nonlocal_.Items)
         item.Selected = false;
+    }
+
+    /**
+     * Helper method for displaying an error message in the
+     * correct format.
+     * 
+     * @param[in]     message       Error message.
+     */
+    private void error_message(string message)
+    {
+      this.message_.Text = message;
+      this.message_.ForeColor = Color.Red;
+    }
+
+    /**
+     * Helper method for displaying a regular message in the
+     * correct format.
+     */
+    private void message(string message)
+    {
+      this.message_.Text = message;
+      this.message_.ForeColor = Color.Black;
     }
 
     #region Web Form Designer generated code

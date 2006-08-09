@@ -384,19 +384,6 @@ public class CUTS_Database_Utility
   }
 
   /**
-   * Delete a specific test from the database.
-   * 
-   * @param[in]   test      The id of the test.
-   */
-  public void delete_test(System.Int32 test)
-  {
-    MySqlCommand command = this.conn_.CreateCommand();
-    command.CommandText = "DELETE FROM tests WHERE test_number = ?test";
-    command.Parameters.Add("?test", test);
-    command.ExecuteNonQuery();
-  }
-
-  /**
    * Get all the test from the database. This returns the test in
    * the \a test table of the \ds argument.
    * 
@@ -515,6 +502,38 @@ public class CUTS_Database_Utility
 
     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
     adapter.Fill(ds, "instances");
+  }
+
+  /**
+   * Delete test from the database.
+   * 
+   * @param[in]     tests      Collection of test numbers.
+   */ 
+  public void delete_tests (System.Int32 [] tests)
+  {
+    // Verify that we have at least one test.
+    if (tests.Length == 0)
+      return;
+
+    // Build the comma seperated list of test.
+    StringBuilder builder = new StringBuilder (tests[0].ToString());
+
+    for (int i = 1; i < tests.Length; i++)
+    {
+      builder.Append(", ");
+      builder.Append(tests[i].ToString());
+    }
+
+    // Create the command that will delete all the tests.
+    String cmdstr = 
+      String.Format ("DELETE FROM tests WHERE test_number IN ({0})",
+                     builder.ToString ());
+
+    MySqlCommand command = this.conn_.CreateCommand();
+    command.CommandText = cmdstr;
+    
+    // Execute the command.
+    command.ExecuteNonQuery();
   }
 
   /// Connection object.
