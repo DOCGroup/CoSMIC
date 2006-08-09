@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{36A28AA2-4A2B-4836-B7BF-2F7E268D766B}" cdate="Tue Aug 08 13:49:16 2006" mdate="Tue Aug 08 13:49:16 2006" version="" metaguid="{B155EEE7-1CDC-4E1F-B6C2-A7B680779457}" metaversion="" metaname="MetaGME">
+<project guid="{163044E2-9C00-4A1D-B51D-940632E5D43A}" cdate="Tue Aug 08 13:49:16 2006" mdate="Tue Aug 08 13:49:16 2006" version="" metaguid="{B155EEE7-1CDC-4E1F-B6C2-A7B680779457}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment>This tool supports $CIAO_ROOT/docs/schema/CIAOServerResources.xsd version 1.7. 
 Please check the cvs repository if this is the most recent version of this file.</comment>
@@ -619,7 +619,7 @@ Please check the cvs repository if this is the most recent version of this file.
 					</regnode>
 				</regnode>
 			</regnode>
-			<model id="id-0065-00000001" kind="ParadigmSheet" relid="0x1" childrelidcntr="0x5d">
+			<model id="id-0065-00000001" kind="ParadigmSheet" relid="0x1" childrelidcntr="0x62">
 				<name>WML</name>
 				<atom id="id-0066-00000001" kind="Folder" role="Folder" relid="0x1">
 					<name>WorkerLibraries</name>
@@ -640,7 +640,7 @@ Please check the cvs repository if this is the most recent version of this file.
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>57,335</value>
+								<value>50,111</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -676,7 +676,7 @@ Please check the cvs repository if this is the most recent version of this file.
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>22,159</value>
+								<value>92,180</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -751,7 +751,7 @@ Please check the cvs repository if this is the most recent version of this file.
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>323,89</value>
+								<value>379,159</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -826,7 +826,7 @@ Please check the cvs repository if this is the most recent version of this file.
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>419,244</value>
+								<value>405,377</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -901,7 +901,7 @@ Please check the cvs repository if this is the most recent version of this file.
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>573,412</value>
+								<value>559,391</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -977,7 +977,7 @@ Please check the cvs repository if this is the most recent version of this file.
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>55,237</value>
+								<value>125,272</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -1010,84 +1010,6 @@ Please check the cvs repository if this is the most recent version of this file.
 						<value></value>
 					</attribute>
 					<attribute kind="ConstraintPriority" status="meta">
-						<value>2</value>
-					</attribute>
-					<attribute kind="CreateEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="DeleteEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="Depth" status="meta">
-						<value>1</value>
-					</attribute>
-					<attribute kind="DeriveEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="DisconnectEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="LostChildEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="MoveEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="NewChildEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="ReferenceEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="RemoveSetEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="UnReferenceEvent" status="meta">
-						<value>false</value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-00000008" kind="Constraint" role="Constraint" relid="0x24">
-					<name>DuplicateAction</name>
-					<regnode name="PartRegs" status="undefined">
-						<value></value>
-						<regnode name="Constraints" status="undefined">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>468,104</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="AddSetEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="ChangeAttributeEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="ChangePropertyEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="ChangeRelationEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="CloseEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="ConnectEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="ConstraintDescription">
-						<value>Worker contains duplicate actions</value>
-					</attribute>
-					<attribute kind="ConstraintEqn">
-						<value>let actions = self.parts (Action) in
-
-actions-&gt;isUnique (iter : Action | iter-&gt;name ())
-</value>
-					</attribute>
-					<attribute kind="ConstraintParam" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="ConstraintPriority">
 						<value>2</value>
 					</attribute>
 					<attribute kind="CreateEvent" status="meta">
@@ -1176,7 +1098,7 @@ actions-&gt;isUnique (iter : Action | iter-&gt;name ())
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>190,285</value>
+								<value>225,285</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -1251,7 +1173,7 @@ actions-&gt;isUnique (iter : Action | iter-&gt;name ())
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>183,160</value>
+								<value>218,160</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -1326,7 +1248,7 @@ actions-&gt;isUnique (iter : Action | iter-&gt;name ())
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>533,230</value>
+								<value>372,286</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -1400,7 +1322,7 @@ rrName = referedbyWorkerType</value>
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>227,243</value>
+								<value>262,243</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -1438,6 +1360,88 @@ rrName = referedbyWorkerType</value>
 						<value>Abstract:</value>
 					</attribute>
 				</atom>
+				<atom id="id-0066-0000022d" kind="Constraint" role="Constraint" relid="0x5f">
+					<name>DanglingAction</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Constraints" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>559,69</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="AddSetEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="ChangeAttributeEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="ChangePropertyEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="ChangeRelationEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="CloseEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="ConnectEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="ConstraintDescription">
+						<value>The name of action instances must match the name of a worker.</value>
+					</attribute>
+					<attribute kind="ConstraintEqn">
+						<value>if self.kindName () = &quot;Action&quot; and self.isInstance () then
+  let parent : Component = self.parent () in
+  let workers = parent.parts (WorkerType) in
+
+  workers.exists (iter : WorkerType | iter-&gt;name () = self.name ())
+else
+  true
+endif</value>
+					</attribute>
+					<attribute kind="ConstraintParam" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="ConstraintPriority" status="meta">
+						<value>2</value>
+					</attribute>
+					<attribute kind="CreateEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="DeleteEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="Depth" status="meta">
+						<value>1</value>
+					</attribute>
+					<attribute kind="DeriveEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="DisconnectEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="LostChildEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="MoveEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="NewChildEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="ReferenceEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="RemoveSetEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="UnReferenceEvent" status="meta">
+						<value>false</value>
+					</attribute>
+				</atom>
 				<reference id="id-0067-00000064" kind="ModelProxy" role="ModelProxy" relid="0x6" referred="id-0066-0000002c">
 					<name>Action</name>
 					<regnode name="PartRegs" status="undefined">
@@ -1457,7 +1461,7 @@ rrName = referedbyWorkerType</value>
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>519,20</value>
+								<value>519,160</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -1532,7 +1536,7 @@ rrName = referedbyWorkerType</value>
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>533,299</value>
+								<value>519,264</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -1735,14 +1739,6 @@ rrName = referedbyWorkerType</value>
 					<connpoint role="src" target="id-0066-0000000c"/>
 					<connpoint role="dst" target="id-0067-00000065"/>
 				</connection>
-				<connection id="id-0068-0000000d" kind="HasConstraint" role="HasConstraint" relid="0x41">
-					<name>HasConstraint</name>
-					<regnode name="autorouterPref" isopaque="yes">
-						<value>w</value>
-					</regnode>
-					<connpoint role="src" target="id-0066-00000005"/>
-					<connpoint role="dst" target="id-0066-0000000c"/>
-				</connection>
 				<connection id="id-0068-0000000e" kind="HasAspect" role="HasAspect" relid="0x42">
 					<name>HasAspect</name>
 					<regnode name="autorouterPref" isopaque="yes">
@@ -1816,13 +1812,21 @@ rrName = referedbyWorkerType</value>
 					<connpoint role="dst" target="id-0066-00000003"/>
 					<connpoint role="src" target="id-0067-00000064"/>
 				</connection>
-				<connection id="id-0068-00000016" kind="HasConstraint" role="HasConstraint" relid="0x5d">
+				<connection id="id-0068-000003a8" kind="HasConstraint" role="HasConstraint" relid="0x61">
 					<name>HasConstraint</name>
 					<regnode name="autorouterPref" isopaque="yes">
-						<value>We</value>
+						<value>Sn</value>
 					</regnode>
-					<connpoint role="dst" target="id-0066-00000003"/>
-					<connpoint role="src" target="id-0066-00000008"/>
+					<connpoint role="src" target="id-0066-0000022d"/>
+					<connpoint role="dst" target="id-0067-00000064"/>
+				</connection>
+				<connection id="id-0068-000003a9" kind="HasConstraint" role="HasConstraint" relid="0x62">
+					<name>HasConstraint</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>Ns</value>
+					</regnode>
+					<connpoint role="src" target="id-0066-00000005"/>
+					<connpoint role="dst" target="id-0066-0000000c"/>
 				</connection>
 				<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0x12" members="id-0066-00000002 id-0066-00000003 id-0066-0000000a id-0066-0000000b id-0066-0000000c">
 					<name>WorkerBehavior</name>
@@ -2797,7 +2801,7 @@ rrName = referedbyWorkerType</value>
 					</regnode>
 				</regnode>
 			</regnode>
-			<model id="id-0065-00000002" kind="ParadigmSheet" relid="0x1" childrelidcntr="0x2b6">
+			<model id="id-0065-00000002" kind="ParadigmSheet" relid="0x1" childrelidcntr="0x2b7">
 				<name>IOAutomata</name>
 				<atom id="id-0066-0000000f" kind="Connection" role="Connection" relid="0x147">
 					<name>Input</name>
@@ -3324,87 +3328,6 @@ dName = dstFinish</value>
 					</attribute>
 					<attribute kind="Prompt">
 						<value>Precondition:</value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-00000019" kind="Constraint" role="Constraint" relid="0x210">
-					<name>UnknownOutput</name>
-					<regnode name="PartRegs" status="undefined">
-						<value></value>
-						<regnode name="Constraints" status="undefined">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>881,174</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="AddSetEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="ChangeAttributeEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="ChangePropertyEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="ChangeRelationEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="CloseEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="ConnectEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="ConstraintDescription">
-						<value>The component contains a known output action. Please verify the names of output actions match the name of a output port.</value>
-					</attribute>
-					<attribute kind="ConstraintEqn">
-						<value>let actions = self.parts (OutputAction) in
-let outports = self.parts (OutEventPort) in
-
-actions.forAll (
-    action : OutputAction |
-    outports.exists (
-        outport : OutEventPort | outport-&gt;name () = action-&gt;name ()))</value>
-					</attribute>
-					<attribute kind="ConstraintParam" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="ConstraintPriority" status="meta">
-						<value>2</value>
-					</attribute>
-					<attribute kind="CreateEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="DeleteEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="Depth" status="meta">
-						<value>1</value>
-					</attribute>
-					<attribute kind="DeriveEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="DisconnectEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="LostChildEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="MoveEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="NewChildEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="ReferenceEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="RemoveSetEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="UnReferenceEvent" status="meta">
-						<value>false</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-0000001a" kind="Inheritance" role="Inheritance" relid="0x286">
@@ -4338,7 +4261,7 @@ conns-&gt;size &gt; 1 implies
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>575,138</value>
+								<value>540,103</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -4635,14 +4558,6 @@ conns-&gt;size &gt; 1 implies
 						<value></value>
 					</attribute>
 					<connpoint role="src" target="id-0066-00000017"/>
-					<connpoint role="dst" target="id-0067-00000068"/>
-				</connection>
-				<connection id="id-0068-00000020" kind="HasConstraint" role="HasConstraint" relid="0x211">
-					<name>HasConstraint</name>
-					<regnode name="autorouterPref" isopaque="yes">
-						<value>Ns</value>
-					</regnode>
-					<connpoint role="src" target="id-0066-00000019"/>
 					<connpoint role="dst" target="id-0067-00000068"/>
 				</connection>
 				<connection id="id-0068-00000021" kind="Containment" role="Containment" relid="0x21b">
@@ -5048,8 +4963,87 @@ conns-&gt;size &gt; 1 implies
 					</attribute>
 				</set>
 			</model>
-			<model id="id-0065-00000003" kind="ParadigmSheet" relid="0x2" childrelidcntr="0x45">
+			<model id="id-0065-00000003" kind="ParadigmSheet" relid="0x2" childrelidcntr="0x47">
 				<name>ActionTypes</name>
+				<atom id="id-0066-00000019" kind="Constraint" role="Constraint" relid="0x46">
+					<name>UnknownOutput</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Constraints" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>573,328</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="AddSetEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="ChangeAttributeEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="ChangePropertyEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="ChangeRelationEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="CloseEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="ConnectEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="ConstraintDescription">
+						<value>The name of the output action must match the name of an OutEventPort</value>
+					</attribute>
+					<attribute kind="ConstraintEqn">
+						<value>let parent : Component = self.parent () in
+let ports = parent.parts (OutEventPort) in
+
+ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
+</value>
+					</attribute>
+					<attribute kind="ConstraintParam" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="ConstraintPriority" status="meta">
+						<value>2</value>
+					</attribute>
+					<attribute kind="CreateEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="DeleteEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="Depth" status="meta">
+						<value>1</value>
+					</attribute>
+					<attribute kind="DeriveEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="DisconnectEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="LostChildEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="MoveEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="NewChildEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="ReferenceEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="RemoveSetEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="UnReferenceEvent" status="meta">
+						<value>false</value>
+					</attribute>
+				</atom>
 				<atom id="id-0066-00000023" kind="BooleanAttribute" role="BooleanAttribute" relid="0x1d">
 					<name>LogAction</name>
 					<regnode name="PartRegs" status="undefined">
@@ -5849,10 +5843,22 @@ conns-&gt;size &gt; 1 implies
 					<name>Property</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
+						<regnode name="Attributes" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>8,13</value>
+							</regnode>
+						</regnode>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>22,181</value>
+							</regnode>
+						</regnode>
+						<regnode name="Constraints" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>8,13</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -6088,6 +6094,14 @@ conns-&gt;size &gt; 1 implies
 					</attribute>
 					<connpoint role="dst" target="id-0066-00000030"/>
 					<connpoint role="src" target="id-0067-00000070"/>
+				</connection>
+				<connection id="id-0068-000003a6" kind="HasConstraint" role="HasConstraint" relid="0x47">
+					<name>HasConstraint</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>We</value>
+					</regnode>
+					<connpoint role="src" target="id-0066-00000019"/>
+					<connpoint role="dst" target="id-0066-0000002d"/>
 				</connection>
 				<set id="id-0069-00000002" kind="Aspect" role="Aspect" relid="0x3f">
 					<name>Behavior</name>
