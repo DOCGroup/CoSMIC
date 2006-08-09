@@ -1,42 +1,5 @@
 // MPC file to generate base library
-project : xerces {
-   libs += UdmDll zlib
-   libout = $(COSMIC_ROOT)/lib
-   dllout = $(COSMIC_ROOT)/bin
+project : udm,register {
    includes += $(COSMIC_ROOT)/PIM/PICML/interpreters \
-               $(COSMIC_ROOT)/PSM/CQML/interpreters \
-               $(GME_ROOT)/SDK/BON $(UDM_PATH)/include .
-   macros += UDM_DYNAMIC_LINKING
-   libpaths += $(COSMIC_ROOT)/lib $(UDM_PATH)/lib \
-               $(UDM_PATH)/3rdParty/zlib \
-
-  specific {
-     midl_flags += /server none /client none
-     midl_includes += $(GME_ROOT) $(GME_ROOT)/Interfaces .
-   }
-
-  specific(nmake, vc71, vc8) {
-    compile_flags += /wd4251
-  }
-
-  Define_Custom(UDM) {
-      automatic         = 0
-      dependent         = $(UDM_PATH)/bin/Udm
-      command           = <%quote%>$(UDM_PATH)<%quote%>/bin/Udm
-      commandflags      = -l CQML_Export -v
-      inputext          = .xml
-      header_outputext  = .h
-      source_outputext  = .cpp
-      generic_outputext = .xsd
-   }
-
-  Define_Custom(Register) {
-    automatic           = 0
-    command             = regsvr32.exe
-    commandflags        = /s
-    inputext            = .dll
-    generic_outputext   = .trg
-    postcommand         = echo regsvr32 exec. time <%gt%> <%output%>
-  }
-
+               $(COSMIC_ROOT)/PSM/CQML/interpreters 
 }

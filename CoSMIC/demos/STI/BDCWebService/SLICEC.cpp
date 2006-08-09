@@ -7,7 +7,7 @@
 
 #include "SLICEH.h"
 
-SOAP_SOURCE_STAMP("@(#) SLICEC.cpp ver 2.7.8c 2006-08-01 05:30:22 GMT")
+SOAP_SOURCE_STAMP("@(#) SLICEC.cpp ver 2.7.8c 2006-08-07 03:37:37 GMT")
 
 
 #ifndef WITH_NOGLOBAL

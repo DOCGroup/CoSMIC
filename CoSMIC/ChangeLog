@@ -1,3 +1,69 @@
+Wed Aug  9 00:45:48 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/SIML/examples/SLICE.xme:  Updated example to reflect the
+          integration of CCM and Web Services.
+
+        * PIM/SIML/interpreters/GatewayGenerator/BON2Component.h:
+        * PIM/SIML/interpreters/GatewayGenerator/BON2Component.cpp:
+        * PIM/SIML/interpreters/GatewayGenerator/CompIcon.ico:
+        * PIM/SIML/interpreters/GatewayGenerator/Component.rc:
+        * PIM/SIML/interpreters/GatewayGenerator/ComponentConfig.h:
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGeneratorVisitor.h:
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGeneratorVisitor.cpp:
+        * PIM/SIML/interpreters/GatewayGenerator/PICMLBonX.h:
+        * PIM/SIML/interpreters/GatewayGenerator/PICMLBonX.cpp:
+        * PIM/SIML/interpreters/GatewayGenerator/PICMLBonX1.h:
+        * PIM/SIML/interpreters/GatewayGenerator/PICMLBonX1.cpp:
+        * PIM/SIML/interpreters/GatewayGenerator/PICMLBonX2.h:
+        * PIM/SIML/interpreters/GatewayGenerator/PICMLBonX2.cpp:
+        * PIM/SIML/interpreters/GatewayGenerator/PICMLBonX3.h:
+        * PIM/SIML/interpreters/GatewayGenerator/PICMLBonX3.cpp:
+        * PIM/SIML/interpreters/GatewayGenerator/PICMLBonX4.h:
+        * PIM/SIML/interpreters/GatewayGenerator/PICMLBonX4.cpp:
+        * PIM/SIML/interpreters/GatewayGenerator/SIMLBonX.h:
+        * PIM/SIML/interpreters/GatewayGenerator/SIMLBonX.cpp:
+        * PIM/SIML/interpreters/GatewayGenerator/StdAfx.h:
+        * PIM/SIML/interpreters/GatewayGenerator/StdAfx.cpp:
+        * PIM/SIML/interpreters/GatewayGenerator/WSMLBonX.h:
+        * PIM/SIML/interpreters/GatewayGenerator/WSMLBonX.cpp:
+        * PIM/SIML/interpreters/GatewayGenerator/component.def:
+
+          New interpreter which generates the integration glue code
+          automatically from the model.
+
+        * PIM/SIML/paradigms/SIML.xme:
+        * PIM/SIML/paradigms/SIML.xmp:
+
+          Updated paradigm to reflect changes that were necessitated by
+          the interpreter.
+
+        * bon.mpb:
+        * register.mpb:
+        * udm.mpb:
+
+          New base projects to reflect their true purpose.
+
+        * demos/STI/BDCWebService/BDCWebService.cpp:
+        * demos/STI/BDCWebService/CUTS_Benchmark_Data_Collector.nsmap:
+        * demos/STI/BDCWebService/SLICE.h:
+        * demos/STI/BDCWebService/SLICEC.cpp:
+
+          Minor modifications to reflect change in the name of the
+          WebService.
+
+        * picmllib.mpb:
+        * cqmllib.mpb:
+
+          Refactored the files to use the newly created base projects.
+
+        * PIM/SIML/interpreters/GatewayGenerator/SIMLVisitor.h:
+        * PIM/SIML/interpreters/GatewayGenerator/SIMLVisitor.cpp:
+        * demos/STI/BDCWebService/CUTS_x002eBenchmark_USCOREData_USCORECollector_x002e_USCORESE_USCOREcontrols.nsmap:
+        * demos/STI/BDCWebService/SLICECUTS_x002eBenchmark_USCOREData_USCORECollector_x002e_USCORESE_USCOREcontrolsService.h:
+        * demos/STI/BDCWebService/SLICECUTS_x002eBenchmark_USCOREData_USCORECollector_x002e_USCORESE_USCOREcontrolsService.cpp:
+
+          Removed these files.
+
 Sat Aug  5 20:55:32 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * demos/STI/BDCWebService/BDC.mpc:

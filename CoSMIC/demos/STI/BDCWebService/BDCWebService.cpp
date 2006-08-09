@@ -1,9 +1,7 @@
 #include "ace/Get_Opt.h"
-#include "ace/streams.h"
 #include "cuts/BDC/Benchmark_Data_CollectorC.h"
 #include "cuts/CUTSC.h"
 #include "SLICECUTS_x002eBenchmark_USCOREData_USCORECollector_x002e_USCORESE_USCOREcontrolsService.h"
-#include "CUTS_x002eBenchmark_USCOREData_USCORECollector_x002e_USCORESE_USCOREcontrols.nsmap"
 
 const char *bdc_ior = "file://BDC.ior";
 int port = 8080;
