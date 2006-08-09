@@ -1,3 +1,11 @@
+Wed Aug  9 02:07:49 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/examples/SLICE-Path.xme:  Added a new example which
+          doesn't depend on database, and has critical path defined.
+
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGenerator.mpc:
+          New file to build the GatewayGenerator interpreter.
+
 Wed Aug  9 00:45:48 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/SIML/examples/SLICE.xme:  Updated example to reflect the
