@@ -1,8 +1,6 @@
-project (IDLGenerator): mfc,picmllib {
-   macros += BUILDER_OBJECT_NETWORK_V2
+project (IDLGenerator): bon {
    sharedname = IDLGenerator
-   includes += . $(GME_ROOT)/SDK/BON \
-               $(COSMIC_ROOT)/PIM/PICML/interpreters/IDLGenerator
+   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/IDLGenerator
 
    specific {
      use_lib_modifier =
@@ -63,7 +61,7 @@ project (IDLGenerator): mfc,picmllib {
    }
 }
 
-project (RegisterIDLGenerator) : picmllib {
+project (RegisterIDLGenerator) : register {
   after += IDLGenerator
   custom_only = 1
 

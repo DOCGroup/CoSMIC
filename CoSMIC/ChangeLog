@@ -1,3 +1,20 @@
+Sun Aug 13 23:04:21 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * bon.mpb:  Added mfc as a base project, since BON requires mfc in
+          almost all cases.
+
+        * PIM/PICML/decorators/PICMLDecorator.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGenerator.mpc:
+          Updated the files to reflect the refactoring of base projects.
+
+        * PIM/PICML/interpreters/IDLGenerator/ComponentConfig.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDMLBonExtension.cpp:
+
+          Updated to add support for SIML.  I haven't checked in all of
+          the files yet, since doing so will require latest alpha version
+          of GME.
+
 Sun Aug 13 21:48:29 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/examples/SLICE-Path.xme:

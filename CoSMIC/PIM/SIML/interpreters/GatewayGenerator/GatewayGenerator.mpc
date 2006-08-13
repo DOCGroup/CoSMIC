@@ -1,4 +1,4 @@
-project (GatewayGenerator): mfc,bon {
+project (GatewayGenerator): bon {
 
    sharedname = GatewayGenerator
    includes += $(COSMIC_ROOT)/PIM/SIML/interpreters

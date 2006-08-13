@@ -1,9 +1,14 @@
 #include "stdafx.h"
 #include "IDMLBonExtension.h"
 #include <algorithm>
+#include <string>
+
+using std::string;
+
 
 namespace BON
 {
+string strNamespacePref ("PICML");
 IMPLEMENT_ABSTRACT_BONEXTENSION( IDML::Orderable );
 IMPLEMENT_BONEXTENSION( IDML::InterfaceDefinitions, "InterfaceDefinitions" );
 IMPLEMENT_BONEXTENSION( IDML::PredefinedTypes, "PredefinedTypes" );
@@ -87,7 +92,7 @@ IMPLEMENT_BONEXTENSION( IDML::Supports, "Supports" );
 namespace IDML
 {
 //*******************************************************************
-// 
+//
 //*******************************************************************
 void OrderableImpl::initialize ()
 {
@@ -329,7 +334,7 @@ std::set<TypeKind> PredefinedTypesImpl::getTypeKind()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 std::string PrefixableImpl::getPrefixTag()
 {
@@ -338,7 +343,7 @@ std::string PrefixableImpl::getPrefixTag()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 std::set<ManagesComponent> ManageableImpl::getInManagesComponentLinks()
 {
@@ -375,7 +380,7 @@ std::multiset<ComponentFactory> ManageableImpl::getManagesComponentSrcs()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 std::string TaggableImpl::getSpecifyIdTag()
 {
@@ -384,7 +389,7 @@ std::string TaggableImpl::getSpecifyIdTag()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 std::string TaggableImpl::getVersionTag()
 {
@@ -410,7 +415,7 @@ std::set<Member> ExceptionImpl::getMember()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 bool FileImpl::include_components_idl () const
 {
@@ -418,7 +423,7 @@ bool FileImpl::include_components_idl () const
 }
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 void FileImpl::include_components_idl (bool val)
 {
@@ -426,7 +431,7 @@ void FileImpl::include_components_idl (bool val)
 }
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 bool FileImpl::include_orb_idl () const
 {
@@ -434,7 +439,7 @@ bool FileImpl::include_orb_idl () const
 }
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 void FileImpl::include_orb_idl (bool val)
 {
@@ -442,7 +447,7 @@ void FileImpl::include_orb_idl (bool val)
 }
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 void FileImpl::initialize ()
 {
@@ -1124,7 +1129,7 @@ std::set<GetException> ReadonlyAttributeImpl::getGetException()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 Component ComponentRefImpl::getComponent()
 {
@@ -1134,7 +1139,7 @@ Component ComponentRefImpl::getComponent()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 std::string ConstantImpl::getvalue()
 {
@@ -1143,7 +1148,7 @@ std::string ConstantImpl::getvalue()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 ConstantType ConstantImpl::getConstantType()
 {
@@ -1259,7 +1264,7 @@ std::set<ReadonlyAttribute> InheritableImpl::getReadonlyAttribute(int dummy)
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 MemberType BoxedImpl::getMemberType()
 {
@@ -1269,7 +1274,7 @@ MemberType BoxedImpl::getMemberType()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 Event InEventPortImpl::getEvent()
 {
@@ -1279,7 +1284,7 @@ Event InEventPortImpl::getEvent()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 bool OutEventPortImpl::issingle_destination()
 {
@@ -1288,7 +1293,7 @@ bool OutEventPortImpl::issingle_destination()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 Event OutEventPortImpl::getEvent()
 {
@@ -1298,7 +1303,7 @@ Event OutEventPortImpl::getEvent()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 Provideable ProvidedRequestPortImpl::getProvideable()
 {
@@ -1308,7 +1313,7 @@ Provideable ProvidedRequestPortImpl::getProvideable()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 bool RequiredRequestPortImpl::ismultiple_connections()
 {
@@ -1317,7 +1322,7 @@ bool RequiredRequestPortImpl::ismultiple_connections()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 Provideable RequiredRequestPortImpl::getProvideable()
 {
@@ -1674,7 +1679,7 @@ std::set<ReturnType> TwowayOperationImpl::getReturnType()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 MemberType AliasImpl::getMemberType()
 {
@@ -1684,7 +1689,7 @@ MemberType AliasImpl::getMemberType()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 MemberType CollectionImpl::getMemberType()
 {
@@ -1784,7 +1789,7 @@ std::set<RequiredRequestPort> ComponentImpl::getRequiredRequestPort()
 }
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 bool ComponentImpl::ref_managed () const
 {
@@ -1792,7 +1797,7 @@ bool ComponentImpl::ref_managed () const
 }
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 void ComponentImpl::ref_managed (bool val)
 {
@@ -1800,7 +1805,7 @@ void ComponentImpl::ref_managed (bool val)
 }
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 Orderable ComponentImpl::base_component () const
 {
@@ -1808,7 +1813,7 @@ Orderable ComponentImpl::base_component () const
 }
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 void ComponentImpl::base_component (const Orderable &base)
 {
@@ -1816,7 +1821,7 @@ void ComponentImpl::base_component (const Orderable &base)
 }
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 void ComponentImpl::initialize ()
 {
@@ -1844,7 +1849,7 @@ std::multiset<Manageable> ComponentFactoryImpl::getManagesComponentDsts()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 std::set<ManagesComponent> ComponentFactoryImpl::getOutManagesComponentLinks()
 {
@@ -1913,7 +1918,7 @@ std::set<LookupOperation> ComponentFactoryImpl::getLookupOperation()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 bool ObjectImpl::isabstract()
 {
@@ -1922,7 +1927,7 @@ bool ObjectImpl::isabstract()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 bool ObjectImpl::islocal()
 {
@@ -1931,7 +1936,7 @@ bool ObjectImpl::islocal()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 bool ObjectByValueImpl::isabstract()
 {
@@ -2008,7 +2013,7 @@ std::set<PrivateFlag> ObjectByValueImpl::getPrivateFlag()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 std::set<LabelConnection> LabelImpl::getInLabelConnectionLinks()
 {
@@ -2045,7 +2050,7 @@ std::multiset<Member> LabelImpl::getLabelConnectionSrcs()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 std::set<MakeMemberPrivate> PrivateFlagImpl::getInMakeMemberPrivateLinks()
 {
@@ -2172,7 +2177,7 @@ ComponentFactory ManagesComponentImpl::getSrc()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 MemberType AttributeMemberImpl::getMemberType()
 {
@@ -2182,7 +2187,7 @@ MemberType AttributeMemberImpl::getMemberType()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 ConstantType DiscriminatorImpl::getConstantType()
 {
@@ -2192,7 +2197,7 @@ ConstantType DiscriminatorImpl::getConstantType()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 Exception ExceptionRefImpl::getException()
 {
@@ -2202,7 +2207,7 @@ Exception ExceptionRefImpl::getException()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 File FileRefImpl::getFile()
 {
@@ -2212,7 +2217,7 @@ File FileRefImpl::getFile()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 Exception GetExceptionImpl::getException()
 {
@@ -2222,7 +2227,7 @@ Exception GetExceptionImpl::getException()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 MemberType InParameterImpl::getMemberType()
 {
@@ -2232,7 +2237,7 @@ MemberType InParameterImpl::getMemberType()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 Inheritable InheritsImpl::getInheritable()
 {
@@ -2242,7 +2247,7 @@ Inheritable InheritsImpl::getInheritable()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 MemberType InoutParameterImpl::getMemberType()
 {
@@ -2252,7 +2257,7 @@ MemberType InoutParameterImpl::getMemberType()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 ValueObject LookupKeyImpl::getValueObject()
 {
@@ -2300,7 +2305,7 @@ std::multiset<PrivateFlag> MemberImpl::getMakeMemberPrivateDsts()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 std::set<LabelConnection> MemberImpl::getOutLabelConnectionLinks()
 {
@@ -2318,7 +2323,7 @@ std::set<LabelConnection> MemberImpl::getOutLabelConnectionLinks()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 std::set<MakeMemberPrivate> MemberImpl::getOutMakeMemberPrivateLinks()
 {
@@ -2336,7 +2341,7 @@ std::set<MakeMemberPrivate> MemberImpl::getOutMakeMemberPrivateLinks()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 MemberType MemberImpl::getMemberType()
 {
@@ -2346,7 +2351,7 @@ MemberType MemberImpl::getMemberType()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 MemberType OutParameterImpl::getMemberType()
 {
@@ -2356,7 +2361,7 @@ MemberType OutParameterImpl::getMemberType()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 MemberType ReturnTypeImpl::getMemberType()
 {
@@ -2366,7 +2371,7 @@ MemberType ReturnTypeImpl::getMemberType()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 Exception SetExceptionImpl::getException()
 {
@@ -2376,7 +2381,7 @@ Exception SetExceptionImpl::getException()
 
 
 //*******************************************************************
-// 
+//
 //*******************************************************************
 Object SupportsImpl::getObject()
 {
@@ -2387,4 +2392,3 @@ Object SupportsImpl::getObject()
 
 
 }; // namespace IDML
-
