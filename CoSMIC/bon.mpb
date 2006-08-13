@@ -1,5 +1,5 @@
 // MPC file to generate base library
-project : xerces {
+project {
   libout = $(COSMIC_ROOT)/lib
   dllout = $(COSMIC_ROOT)/bin
   includes += $(GME_ROOT)/SDK/BON .

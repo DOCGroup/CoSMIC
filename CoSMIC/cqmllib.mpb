@@ -1,5 +1,5 @@
 // MPC file to generate base library
-project : udm,register {
+project : udm, xerces, register {
    includes += $(COSMIC_ROOT)/PIM/PICML/interpreters \
-               $(COSMIC_ROOT)/PSM/CQML/interpreters 
+               $(COSMIC_ROOT)/PSM/CQML/interpreters
 }

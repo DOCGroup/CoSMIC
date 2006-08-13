@@ -57,12 +57,16 @@ namespace CUTS
                         time.max,
                         eventInfo.min_events,
                         eventInfo.max_events);
-                    Thread.Sleep(20000);
+                    Thread.Sleep(10000);
                 }
             }
             catch (System.Web.Services.Protocols.SoapException ex)
             {
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine(ex.Message);
+            }
+            catch (System.Net.WebException ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
     }

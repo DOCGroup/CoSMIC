@@ -1,4 +1,4 @@
 // MPC file to generate base library
-project : udm,register {
-   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters 
+project : udm, xerces, register {
+   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters
 }

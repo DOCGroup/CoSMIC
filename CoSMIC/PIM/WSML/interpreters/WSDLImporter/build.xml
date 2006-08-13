@@ -41,7 +41,7 @@
     </java>
   </target>
 
-  <target name="test" depends="compile" description="Run the WSDLImporter">
+  <target name="slice" depends="compile" description="Run the WSDLImporter">
     <echo message="Running the WSDLImporter..." />
     <java classname="edu.vanderbilt.dre.WSML.WSDLImporter.WSDLImporter" fork="true">
       <arg file="SLICE.wsdl" />

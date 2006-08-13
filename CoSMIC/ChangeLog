@@ -1,3 +1,23 @@
+Sun Aug 13 21:48:29 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/examples/SLICE-Path.xme:
+        * PIM/WSML/interpreters/WSDLExporter/build.xml:
+        * PIM/WSML/interpreters/WSDLImporter/build.xml:
+
+        * bon.mpb:  Don't depend on xerces.  There are interpreters which
+          don't need xerces.
+
+        * cqmllib.mpb:
+        * picmllib.mpb:  Add xerces explicitly to the list of base
+          projects.
+
+        * udm.mpb:  Use UDM_3RDPARTY_PATH to find zlib.
+
+        * demos/STI/BDCClient/BDC_Client.cs:  Reduced the time interval
+          for polling the BDC from 20s to 10s.  Catch
+          System.Net.WebException to make sure that we don't crash if
+          there is any problem with the network.
+
 Wed Aug  9 20:08:32 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML.xmp:
