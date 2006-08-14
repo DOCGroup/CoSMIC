@@ -97,9 +97,6 @@
           <File Id="IIOPChannel.dll" Name="IIOP.DLL" LongName="IIOPChannel.dll"
                 Source="$(var.BMW_ROOT)\bin\IIOPChannel.dll" DiskId="1" />
 
-          <File Id="MySql.Data.dll" Name="MYSQL.DLL" LongName="MySql.Data.dll"
-                Source="$(var.BMW_ROOT)\bin\MySql.Data.dll" DiskId="1" />
-
           <File Id="Node_Daemon.NET.dll" Name="CUTSNODE.DLL" LongName="Node_Daemon.NET.dll"
                 Source="$(var.BMW_ROOT)\bin\Node_Daemon.NET.dll" DiskId="1" />
 
