@@ -16,9 +16,14 @@
     <Property Id="IIS_ROOT">
       <DirectorySearch Id="IISDirSearch" Depth ="1" Path ="C:\Inetpub\wwwroot" />      
     </Property>
+    <Property Id="MYSQL_CONNECTOR_VERSION">
+      <RegistrySearch Id="MySQLConnectorVersion" Root="HKLM" Type="raw"
+                      Key="SOFTWARE\MySQL AB\MySQL Connector/Net 1.0.7" Name="Version" />
+    </Property>
 
     <!-- install conditions -->
     <Condition Message='The Benchmark Manager Web Utility requires IIS to be installed'>IIS_ROOT</Condition>
+    <Condition Message='The Benchmark Manager Web Utility requires MySQL.NET Connector 1.0.7'>MYSQL_CONNECTOR_VERSION</Condition>
 
     <Media Id="1" Cabinet="BMW.cab" EmbedCab="yes" />
 
@@ -148,7 +153,8 @@
     </WebSite>
 
     <!-- product features -->
-    <Feature Id="MainBMW" Title="Benchmark Manager Web Utility" Display="hidden" Description="Installs the BMW web application" Level="1">
+    <Feature Id="MainBMW" Title="Benchmark Manager Web Utility" Display="hidden" 
+             Description="Installs the BMW web application" Level="1">
       <ComponentRef Id="BMWWebSite" />
       <ComponentRef Id="BMWServerFiles" />
       <ComponentRef Id="BMWBinFiles" />
