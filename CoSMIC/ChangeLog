@@ -1,3 +1,8 @@
+Mon Aug 14 02:41:35 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * picml.mwc:  Added new workspace to build just the PICML
+          interpreters, decorators and add-ons.
+
 Sun Aug 13 23:04:21 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * bon.mpb:  Added mfc as a base project, since BON requires mfc in
