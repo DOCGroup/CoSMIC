@@ -1,4 +1,7 @@
 project (PICMLDecorator): bon {
+   // DON'T REMOVE THE FOLLOWING MACROS.  THE DECORATOR WILL CRASH IF YOU
+   // DO SO.
+   MACROS +=  _WINDLL _USRDLL _ATL_DLL
    sharedname = PICMLDecorator
    includes += $(COSMIC_ROOT)/PIM/PICML/decorators/PICMLDecorator
 

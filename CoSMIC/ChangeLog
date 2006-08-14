@@ -1,3 +1,28 @@
+Mon Aug 14 23:13:29 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/decorators/PICMLDecorator.mpc:  Added _WINDLL _USRDLL
+          and _ATL_DLL back to the list of macros.  GME crashes without
+          these macros.
+
+        * PIM/PICML/examples/SLICE-Path.xme:  Updated to add a timeout
+          value of 7 seconds.  This is so that multiple clients can fetch
+          the value of the execution time from the BDC.
+
+        * demos/STI/BDC_CCMClient/BDC_CCMClient.cpp:
+        * demos/STI/BDC_CCMClient/BDC_CCMClient.mpc:  New CCM client which
+          does the same job as the Web Service client.
+
+        * demos/STI/BDC_WSClient/BDC_Client.cs:  Updated WS client to
+          print 0 if the Web Service is not yet up.
+
+        * demos/STI/BDCClient/BDCClient.csproj:
+        * demos/STI/BDCClient/BDCClient.sln:
+        * demos/STI/BDCClient/BDC_Client.cs:
+        * demos/STI/BDCClient/CUTSBenchmark_Data_Collector.cs:
+        * demos/STI/BDCClient/Properties/AssemblyInfo.cs:
+
+          Removed these files.
+
 Mon Aug 14 02:41:35 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * picml.mwc:  Added new workspace to build just the PICML
