@@ -6,12 +6,21 @@
     UpgradeCode="823EE6B0-1BE2-4706-B5F6-58962744BDD3" Language="1033" Codepage="1252" Version="0.2"
     Manufacturer="DOC Group, ISIS, Vanderbilt University">
 
-    <Package Id="504DB389-68E1-4d29-B519-9B4499CAF048" Keywords="Installer" Description="CUTS Benchmark Manager Web Utility Installer"
-      Manufacturer="DOC Group, ISIS, Vanderbilt University" InstallerVersion='100' Languages='1033'
-      Compressed='yes' SummaryCodepage='1252' />
+    <Package Id='504DB389-68E1-4d29-B519-9B4499CAF048' Keywords='Installer'
+             Description='CUTS Benchmark Manager Web Utility Installer'
+             Manufacturer='DOC Group, ISIS, Vanderbilt University' InstallerVersion='100' 
+             Languages='1033' Compressed='yes' SummaryCodepage='1252' />
+
+    <!-- properties -->
+    <Property Id="WIXUI_INSTALLDIR" Value="C:\Inetpub\wwwroot\CUTS" />
+    <Property Id="IIS_ROOT">
+      <DirectorySearch Id="IISDirSearch" Depth ="1" Path ="C:\Inetpub\wwwroot" />      
+    </Property>
+
+    <!-- install conditions -->
+    <Condition Message='The Benchmark Manager Web Utility requires IIS to be installed'>IIS_ROOT</Condition>
 
     <Media Id="1" Cabinet="BMW.cab" EmbedCab="yes" />
-    <Property Id="WIXUI_INSTALLDIR" Value="C:\Inetpub\wwwroot\CUTS" />
 
     <Directory Id='WIXUI_INSTALLDIR' Name='SourceDir'>
       <!-- IIS configuration -->
