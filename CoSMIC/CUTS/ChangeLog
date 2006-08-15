@@ -1,3 +1,162 @@
+Tue Aug 15 23:53:38 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CCM_CoWorkEr_T.h:
+
+          Explicitly added the periodic event trigger to the include
+          file. This will be removed once it becomes a worker.
+
+        * cuts/GME/interpreters/PICML_CIAO_Impl/PICML_CIAO_Impl.mpc:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/UdmApp.cpp:
+        * cuts/be/BE.mpc:
+        * cuts/be/BE_File_Generator.h:
+        * cuts/be/BE_File_Generator.inl:
+        * cuts/be/BE_File_Generator.cpp:
+        * cuts/be/BE_File_Generator_Manager.h:
+        * cuts/be/BE_File_Generator_Manager.inl:
+        * cuts/be/BE_File_Generator_Manager.cpp:
+        * cuts/be/BE_Workspace_Generator.h:
+        * cuts/be/BE_Workspace_Generator.cpp:
+        * cuts/be/BE_export.h:
+        * cuts/be/CIAO/CIAO_Project_Generator.h:
+        * cuts/be/CIAO/CIAO_Project_Generator.cpp:
+        * cuts/be/CIAO/File_Generator_Base.h:
+        * cuts/be/CIAO/File_Generator_Base.cpp:
+        * cuts/be/CIAO/Header_File_Generator.h:
+        * cuts/be/CIAO/Header_File_Generator.inl:
+        * cuts/be/CIAO/Header_File_Generator.cpp:
+        * cuts/be/CIAO/Source_File_Generator.h:
+        * cuts/be/CIAO/Source_File_Generator.inl:
+        * cuts/be/CIAO/Source_File_Generator.cpp:
+        * cuts/be/CIAO/UDM_CIAO_Visitor.mpc:
+        * cuts/be/CUTS_Project.h:
+        * cuts/be/CUTS_Project.cpp:
+        * cuts/be/CoWorkEr_Cache.h:
+        * cuts/be/CoWorkEr_Cache.cpp:
+        * cuts/be/CoWorkEr_Generator.h:
+        * cuts/be/CoWorkEr_Generator.cpp:
+        * cuts/be/Dependency_Generator.h:
+        * cuts/be/Dependency_Generator.cpp:
+        * cuts/be/Dependency_Graph.h:
+        * cuts/be/Dependency_Graph.cpp:
+        * cuts/be/Null_File_Generator.h:
+        * cuts/be/Null_File_Generator.inl:
+        * cuts/be/Null_File_Generator.cpp:
+        * cuts/be/Preprocess_Data.h:
+        * cuts/be/Preprocess_Data.inl:
+        * cuts/be/Preprocess_Data.cpp:
+        * cuts/be/Project_Generator.h:
+        * cuts/be/Project_Generator.inl:
+        * cuts/be/Project_Generator.cpp:
+        * cuts/be/String_Set.h:
+        * cuts/be/UDM_Utility_T.h:
+        * cuts/be/UDM_Utility_T.cpp:
+
+          There is too much change to list. But in overall, I refactored
+          the entire backend for the CUTS intepreter. A lot of the code
+          was pushed down into a common backend for parsing the models.
+          The parse then makes upcalls the file generators that are
+          backend specific. This is going to make is somewhat easier
+          to define backends (e.g., .NET and Java) with out having to
+          worry about parsing the models, per se.
+
+        * cuts/be/CIAO/CUTS_Project.h:
+        * cuts/be/CIAO/CUTS_Project.cpp:
+        * cuts/be/CIAO/CoWorkEr_Cache.h:
+        * cuts/be/CIAO/CoWorkEr_Cache.cpp:
+        * cuts/be/CIAO/CoWorkEr_Generator.h:
+        * cuts/be/CIAO/CoWorkEr_Generator.cpp:
+        * cuts/be/CIAO/Dependency_Generator.h:
+        * cuts/be/CIAO/Dependency_Generator.cpp:
+        * cuts/be/CIAO/Dependency_Graph.h:
+        * cuts/be/CIAO/Dependency_Graph.cpp:
+        * cuts/be/CIAO/String_Set.h:
+        * cuts/be/CIAO/UDM_CIAO_Visitor.h:
+        * cuts/be/CIAO/UDM_CIAO_Visitor.cpp:
+        * cuts/be/CIAO/UDM_Utility_T.h:
+        * cuts/be/CIAO/UDM_Utility_T.cpp:
+        * cuts/be/CIAO/Workspace_Generator.h:
+        * cuts/be/CIAO/Workspace_Generator.cpp:
+
+          Removed these files.
+
+Mon Aug 14 22:11:19 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * install/BMW.wxs:
+
+          Removed the MySQL.NET binary from the installation file since
+          we require used to download and install the utility manually.
+
+Mon Aug 14 22:05:20 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * install/BMW.wxs:
+
+          Added a condition to check for MySQL.NET Connector 1.0.7
+
+Mon Aug 14 21:35:22 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * install/BMW.wxs:
+
+          Added a condition to check for IIS before installing.
+
+Mon Aug 14 21:05:17 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/Menu.aspx:
+        * utils/BMW/Menu.aspx.cs:
+        * utils/BMW/Menu.aspx.resx:
+        * utils/BMW/images/stoplight-red.gif:
+
+          Removed these files.
+
+Mon Aug 14 21:03:44 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * install:
+
+          Directory that will contain installation scripts/files.
+
+        * install/BMW.wxs:
+
+          Wix project file for the BMW.
+
+        * install/CUTS_CoSMIC.wxs:
+
+          Empty Wix project file for the CUTS interpreters.
+
+Sun Aug 13 23:21:18 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * performance-tests:
+        * performance-tests/Event_Handler:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/Sender.cidl:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/Sender.idl:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/Sender_CoWorkEr.h:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/Sender_CoWorkEr.cpp:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/Sender_CoWorkEr.mpc:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/Sender_Four_Port.cidl:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/Sender_Four_Port.idl:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/Sender_Four_Port_CoWorkEr.h:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/Sender_Four_Port_CoWorkEr.cpp:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/Sender_Four_Port_CoWorkEr.mpc:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/Sender_Three_Port.cidl:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/Sender_Three_Port.idl:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/Sender_Three_Port_CoWorkEr.h:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/Sender_Three_Port_CoWorkEr.cpp:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/Sender_Three_Port_CoWorkEr.mpc:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/Sender_Two_Port.cidl:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/Sender_Two_Port.idl:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/Sender_Two_Port_CoWorkEr.h:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/Sender_Two_Port_CoWorkEr.cpp:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/Sender_Two_Port_CoWorkEr.mpc:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/Single_Event_Loop_Back.xme:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/Single_Event_Loop_Back_CUTS.mwc:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/descriptors:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/descriptors/Four_Port_Test.cdp:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/descriptors/Single_Event_Loop_Back.cdp:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/descriptors/Three_Port_Test.cdp:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/descriptors/Two_Port_Test.cdp:
+        * performance-tests/Event_Handler/Single_Event_Loop_Back/descriptors/node_map.dat:
+
+          Removed these files because they are really out of date.
+
 Wed Aug  9 17:14:25 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/svcs/dbase/DBase_Service.cpp:

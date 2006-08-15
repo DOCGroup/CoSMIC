@@ -1,6 +1,6 @@
 // $Id$
 
-project (CUTS_UDM_CIAO) : cutslib, picml_udm {
+project (CUTS_UDM_CIAO) : cutslib, boost_base, picml_udm {
   sharedname    += CUTS_UDM_CIAO
   dynamicflags  += CUTS_UDM_CIAO_BUILD_DLL
 
@@ -16,25 +16,12 @@ project (CUTS_UDM_CIAO) : cutslib, picml_udm {
   libs += CodeGenerationKits
   libs -= CUTS ACE
 
-  Header_Files {
-    File_Config.h
-    UDM_CIAO_Export.h
-    String_Set.h
-  }
-
   Source_Files {
-    CoWorkEr_Generator.cpp
-    CoWorkEr_Cache.cpp
-    CUTS_Project.cpp
-    Dependency_Generator.cpp
-    Dependency_Graph.cpp
+    CIAO_Project_Generator.cpp
     Export_File_Generator.cpp
+    File_Generator_Base.cpp
+    Header_File_Generator.cpp
     Predefined_Type_Map.cpp
-    UDM_CIAO_Visitor.cpp
-    Workspace_Generator.cpp
-  }
-
-  Template_Files {
-    UDM_Utility_T.cpp
+    Source_File_Generator.cpp
   }
 }

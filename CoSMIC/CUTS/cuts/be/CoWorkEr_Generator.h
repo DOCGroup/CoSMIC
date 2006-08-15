@@ -1,8 +1,8 @@
 #ifndef _UDM_COWORKER_GENERATOR_H_
 #define _UDM_COWORKER_GENERATOR_H_
 
+#include "BE_export.h"
 #include "PICML/PICML.h"
-#include "UDM_CIAO_Export.h"
 
 //=============================================================================
 /**
@@ -10,7 +10,7 @@
  */
 //=============================================================================
 
-class CUTS_UDM_CIAO_Export CUTS_UDM_CoWorkEr_Generator :
+class CUTS_BE_Export CUTS_UDM_CoWorkEr_Generator :
   public PICML::Visitor
 {
 public:

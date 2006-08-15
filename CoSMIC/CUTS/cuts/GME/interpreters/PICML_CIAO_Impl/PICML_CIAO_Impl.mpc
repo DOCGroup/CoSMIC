@@ -1,14 +1,14 @@
 // $Id$
 
-project (PICML_CIAO_Impl) : cutslib, udm_component, gme_interpreter {
+project (PICML_CIAO_Impl) : cutslib, boost_base, udm_component, gme_interpreter {
   sharedname = CUTS_PICML_CIAO_Impl
 
   // -- dependencies
   after -= CUTS ACE
-  after += CUTS_UDM_CIAO
+  after += CUTS_UDM_CIAO CUTS_BE
 
   libs  -= CUTS ACE
-  libs  += CUTS_UDM_CIAO
+  libs  += CUTS_UDM_CIAO CUTS_BE
 
   libpaths -= $(ACE_ROOT)/lib
   includes -= $(ACE_ROOT)

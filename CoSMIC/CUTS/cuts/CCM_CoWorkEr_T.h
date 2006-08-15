@@ -17,6 +17,8 @@
 
 #include "cuts/CCM_CoWorkEr.h"
 #include "cuts/CCM_Event_Producer_T.h"
+#include "cuts/Event_Handler_Manager_T.h"
+#include "cuts/Trigger_T.h"
 #include "ace/Unbounded_Set.h"
 
 //=============================================================================
@@ -79,6 +81,10 @@ public:
     ACE_THROW_SPEC ((::CORBA::SystemException, ::Components::CCMException));
 
 protected:
+  // @@ This needs to be turned into a worker.
+  /// Type definition for the periodic trigger.
+  typedef CUTS_Periodic_Trigger_T <COMPONENT> Periodic_Event;
+
   /// Context for the component.
   COMPONENT_CONTEXT * context_;
 };

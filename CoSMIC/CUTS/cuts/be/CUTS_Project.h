@@ -3,10 +3,10 @@
 #ifndef _CUTS_PROJECT_H_
 #define _CUTS_PROJECT_H_
 
-#include "UDM_CIAO_Export.h"
+#include "BE_export.h"
 #include "PICML/PICML.h"
 
-class CUTS_UDM_CIAO_Export CUTS_Project :
+class CUTS_BE_Export CUTS_Project :
   public PICML::Visitor
 {
 public:

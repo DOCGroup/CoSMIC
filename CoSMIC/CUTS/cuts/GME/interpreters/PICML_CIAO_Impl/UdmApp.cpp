@@ -1,53 +1,19 @@
 // $Id$
 
 #include "StdAfx.h"
-
-// Utility includes
-//#include "UdmStatic.h"
-//#include "UmlExt.h"
-//#include "UdmUtil.h"
-
 #include "UdmApp.h"
-//#include "UdmConfig.h"
 #include "Main_Dialog.h"
 #include "PICML/Utils.h"
 
-/* Backend specific headers */
-#include "cuts/be/CIAO/CoWorkEr_Cache.h"
-#include "cuts/be/CIAO/Dependency_Graph.h"
-#include "cuts/be/CIAO/Dependency_Generator.h"
-#include "cuts/be/CIAO/UDM_CIAO_Visitor.h"
-#include "cuts/be/CIAO/Workspace_Generator.h"
-#include "cuts/be/CIAO/CoWorkEr_Generator.h"
-#include "cuts/be/CIAO/CUTS_Project.h"
+#include "cuts/be/CoWorkEr_Cache.h"
+#include "cuts/be/CoWorkEr_Generator.h"
+#include "cuts/be/Dependency_Graph.h"
+#include "cuts/be/Dependency_Generator.h"
+#include "cuts/be/CUTS_Project.h"
 
-class CFolderDialog : public CFileDialog
-{
-public:
-  CFolderDialog (void)
-    : CFileDialog (TRUE, 0, 0, OFN_EXPLORER | OFN_HIDEREADONLY, "*.")
-  {
-
-  }
-
-  virtual ~CFolderDialog (void) { }
-
-  virtual void OnFolderChange (void)
-  {
-    AfxMessageBox ("OnFolderChange");
-  }
-
-  virtual void OnFileNameChange (void)
-  {
-    AfxMessageBox ("OnFileNameChange");
-  }
-
-  virtual BOOL OnFileNameOK (void)
-  {
-    AfxMessageBox ("OnFileNameOK");
-    return 0;
-  }
-};
+#include "cuts/be/BE_Workspace_Generator.h"
+#include "cuts/be/BE_File_Generator_Manager.h"
+#include "cuts/be/CIAO/CIAO_Project_Generator.h"
 
 /* Dummy function for UDM meta initialization */
 extern void dummy(void);
@@ -96,11 +62,6 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,
                       set <Udm::Object> selectedObjects,
                       long param)
 {
-  // Initialize the <CUTS_Project>. We need to make sure the project is
-  // valid before continuing. It just doesn't make any sense to continue
-  // to waste the end-user's time if the project is invalid. Eventually,
-  // we would like to be able to make invalid projects valid.
-  // Get the root folder for the project.
   PICML::RootFolder root =
     PICML::RootFolder::Cast (p_backend->GetRootObject());
 
@@ -139,23 +100,9 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,
 
       if (PICML::getPath (message, output_dir))
       {
-        // Generate the dependency graph for the model.
-        CUTS_Dependency_Graph dependency_graph;
-        CUTS_Dependency_Generator dependency_generator (dependency_graph);
-        root.Accept (dependency_generator);
-
-        // Generate the source code for the PICML model.
-        CUTS_Dependency_Graph impls;
-        CUTS_UDM_CIAO_Visitor ciao_generator (output_dir,
-                                              impls,
-                                              dependency_graph);
-        root.Accept (ciao_generator);
-
-        // Generate the workspace for the project.
-        CUTS_Workspace_Generator workspace_generator (output_dir,
-                                                      impls,
-                                                      dependency_graph);
-        root.Accept (workspace_generator);
+        CUTS_BE_Project_Generator * proj = new CUTS_CIAO_Project_Generator ();
+        CUTS_BE_Workspace_Generator generator (output_dir, proj);
+        root.Accept (generator);
 
         ::AfxMessageBox ("Successfully completed code generation",
                          MB_OK | MB_ICONINFORMATION);
