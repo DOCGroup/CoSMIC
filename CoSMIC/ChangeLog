@@ -1,3 +1,8 @@
+Tue Aug 15 22:09:34 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/SIML/interpreters/GatewayGenerator/Resource.h: Added file
+          necessary to ensure compilation.
+
 Mon Aug 14 23:13:29 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/decorators/PICMLDecorator.mpc:  Added _WINDLL _USRDLL
