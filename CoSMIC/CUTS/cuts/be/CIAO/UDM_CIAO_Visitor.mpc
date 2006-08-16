@@ -10,10 +10,10 @@ project (CUTS_UDM_CIAO) : cutslib, boost_base, picml_udm {
   libpaths += $(CIAO_ROOT)/CCF/CCF
   libpaths -= $(ACE_ROOT)/lib
 
-  after += CodeGenerationKit PICML
+  after += CodeGenerationKit PICML CUTS_BE
   after -= CUTS ACE
 
-  libs += CodeGenerationKits
+  libs += CodeGenerationKits CUTS_BE
   libs -= CUTS ACE
 
   Source_Files {
