@@ -1,3 +1,15 @@
+Thu Aug 17 04:29:20 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/Database_Utility/Database_Utility.cs:
+
+          Pushed the get_sender () method down into to this assembly from
+          Execution_Times.aspx.cs.
+
+        * utils/BMW/Execution_Times.aspx.cs:
+
+          Fixed bug that was preventing the critical paths from showing
+          up in the drop-down listing.
+
 Wed Aug 16 00:11:48 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CIAO/UDM_CIAO_Visitor.mpc:

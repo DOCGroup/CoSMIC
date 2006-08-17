@@ -536,6 +536,39 @@ public class CUTS_Database_Utility
     command.ExecuteNonQuery();
   }
 
+  /**
+   * Get the senders for a component.
+   * 
+   * @param[in]       component       Id of component
+   * @param[in]       test            Test id for the component
+   * @param[in]       time            Timestamp of interest
+   */
+  public IDataReader get_senders(System.Int32 component, 
+                                 System.Int32 test, 
+                                 DateTime time)
+  {
+    // Create the query to select the senders.
+    System.Text.StringBuilder builder = new System.Text.StringBuilder();
+    builder.Append("SELECT DISTINCT sender, component_name FROM execution_time ");
+    builder.Append("LEFT JOIN component_instances ON (sender = component_id) ");
+    builder.Append("WHERE (test_number = ?test_number AND component = ?component ");
+    builder.Append("AND collection_time = ?collection_time)");
+
+    // Create and initialize the parameters.
+    MySqlParameter p1 = new MySqlParameter("?test_number", test);
+    MySqlParameter p2 = new MySqlParameter("?component", component);
+    MySqlParameter p3 = new MySqlParameter("?collection_time", time);
+
+    // Insert the parameters into the command.
+    MySqlCommand command = new MySqlCommand (builder.ToString(), this.conn_);
+    command.Parameters.Add(p1);
+    command.Parameters.Add(p2);
+    command.Parameters.Add(p3);
+
+    // Execute the command and return the reader.
+    return command.ExecuteReader();
+  }
+
   /// Connection object.
   private MySqlConnection conn_;
 }

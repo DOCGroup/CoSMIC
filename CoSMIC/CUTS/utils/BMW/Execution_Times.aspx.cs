@@ -32,7 +32,7 @@ namespace CUTS
 
     private void Page_Load(object sender, System.EventArgs e)
     {
-       
+
     }
 
     /// <summary>
@@ -54,13 +54,13 @@ namespace CUTS
           DataSet ds = new DataSet();
           this.cuts_database_.get_critical_paths(ref ds);
 
-          this.critical_paths_.DataSource = ds.Tables["critical_paths"];
+          this.critical_paths_.DataSource = ds.Tables["critical_path"];
           this.critical_paths_.DataBind();
 
           DateTime max_time = new DateTime();
           if (this.init_collection_time(ref max_time))
           {
-            init_execution_times(max_time);
+            this.init_execution_times(max_time);
 
             this.timestamp_ = max_time;
             this.collection_times_.SelectedValue = max_time.ToString();
@@ -180,7 +180,8 @@ namespace CUTS
         }
 
         // Get all the components that send to this component.
-        OdbcDataReader s_reader = this.get_senders(component_id, time);
+        IDataReader s_reader = 
+          this.cuts_database_.get_senders((System.Int32)component_id, this.test_, time);
 
         while (s_reader.Read())
         {
@@ -221,38 +222,6 @@ namespace CUTS
       c_reader.Close();
     }
 
-    private OdbcDataReader get_senders (long component, DateTime time)
-    {
-      // Create the query to select the senders.
-      System.Text.StringBuilder builder = new System.Text.StringBuilder ();
-      builder.Append ("SELECT DISTINCT sender, component_name FROM execution_time ");
-      builder.Append ("LEFT JOIN component_instances ON (sender = component_id) ");
-      builder.Append ("WHERE (test_number = ? AND component = ? ");
-      builder.Append ("AND collection_time = ?)");
-
-      // Create and initialize the parameters.
-      OdbcParameter p1 = new OdbcParameter ("test_number", OdbcType.Int);
-      p1.Direction = ParameterDirection.Input;
-      p1.Value = this.test_;
-
-      OdbcParameter p2 = new OdbcParameter ("component", OdbcType.Int);
-      p2.Direction = ParameterDirection.Input;
-      p2.Value = component;
-
-      OdbcParameter p3 = new OdbcParameter("collection_time", OdbcType.DateTime);
-      p3.Direction = ParameterDirection.Input;
-      p3.Value = time;
-
-      // Insert the parameters into the command.
-      OdbcCommand command = new OdbcCommand (builder.ToString (), this.conn_);
-      command.Parameters.Add (p1);
-      command.Parameters.Add (p2);
-      command.Parameters.Add(p3);
-
-      // Execute the command and return the reader.
-      return command.ExecuteReader ();
-    }
-
     private bool init_collection_time (ref DateTime max_time)
     {
       DataSet ds = new DataSet();
@@ -281,9 +250,7 @@ namespace CUTS
     override protected void OnInit(EventArgs e)
     {
       InitializeComponent();
-
-      this.init ();
-
+      this.init();
       base.OnInit(e);
     }
 
