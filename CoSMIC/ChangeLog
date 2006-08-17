@@ -1,3 +1,88 @@
+Thu Aug 17 02:36:11 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/paradigms/icons/component.bmp:  Updated icon to a
+          better looking icon :-)
+
+        * PIM/SIML/examples/SLICE.xme:  Updated example so that the layout
+          of the items that we want to show are not convoluted.
+
+        * PIM/SIML/paradigms/SIML.xme:
+        * PIM/SIML/paradigms/SIML.xmp:  Updated paradigm to reflect the
+          changes in the WSML paradigm.
+
+        * PIM/SIML/paradigms/icons/address.bmp:
+        * PIM/SIML/paradigms/icons/binding.bmp:
+        * PIM/SIML/paradigms/icons/binding.gif:
+        * PIM/SIML/paradigms/icons/bindingoperation.gif:
+        * PIM/SIML/paradigms/icons/definitions.gif:
+        * PIM/SIML/paradigms/icons/documentation.bmp:
+        * PIM/SIML/paradigms/icons/element.bmp:
+        * PIM/SIML/paradigms/icons/fault.bmp:
+        * PIM/SIML/paradigms/icons/import.bmp:
+        * PIM/SIML/paradigms/icons/input.bmp:
+        * PIM/SIML/paradigms/icons/message.bmp:
+        * PIM/SIML/paradigms/icons/messages.bmp:
+        * PIM/SIML/paradigms/icons/notification.bmp:
+        * PIM/SIML/paradigms/icons/oneway.gif:
+        * PIM/SIML/paradigms/icons/operation.gif:
+        * PIM/SIML/paradigms/icons/operationport.gif:
+        * PIM/SIML/paradigms/icons/output.bmp:
+        * PIM/SIML/paradigms/icons/part.bmp:
+        * PIM/SIML/paradigms/icons/port.gif:
+        * PIM/SIML/paradigms/icons/porttype.bmp:
+        * PIM/SIML/paradigms/icons/requestresponse.bmp:
+        * PIM/SIML/paradigms/icons/schema.bmp:
+        * PIM/SIML/paradigms/icons/schemaimport.gif:
+        * PIM/SIML/paradigms/icons/schemareference.gif:
+        * PIM/SIML/paradigms/icons/service.bmp:
+        * PIM/SIML/paradigms/icons/soapbinding.gif:
+        * PIM/SIML/paradigms/icons/solicitresponse.bmp:
+        * PIM/SIML/paradigms/icons/types.bmp:
+        * PIM/SIML/paradigms/icons/wsdlport.bmp:
+
+          Icons for the WSML paradigm.
+
+        * PIM/WSML/examples/SLICE.xme:  Updated example so that the layout
+          of the items that we want to show are not convoluted.
+
+        * PIM/WSML/paradigms/WSML.xme:
+        * PIM/WSML/paradigms/WSML.xmp:
+
+          Updated paradigm to add icons.
+
+        * PIM/WSML/paradigms/icons/address.bmp:
+        * PIM/WSML/paradigms/icons/attribute.bmp:
+        * PIM/WSML/paradigms/icons/binding.bmp:
+        * PIM/WSML/paradigms/icons/binding.gif:
+        * PIM/WSML/paradigms/icons/bindingoperation.gif:
+        * PIM/WSML/paradigms/icons/definitions.gif:
+        * PIM/WSML/paradigms/icons/documentation.bmp:
+        * PIM/WSML/paradigms/icons/element.bmp:
+        * PIM/WSML/paradigms/icons/fault.bmp:
+        * PIM/WSML/paradigms/icons/import.bmp:
+        * PIM/WSML/paradigms/icons/input.bmp:
+        * PIM/WSML/paradigms/icons/message.bmp:
+        * PIM/WSML/paradigms/icons/messages.bmp:
+        * PIM/WSML/paradigms/icons/notification.bmp:
+        * PIM/WSML/paradigms/icons/oneway.gif:
+        * PIM/WSML/paradigms/icons/operation.gif:
+        * PIM/WSML/paradigms/icons/operationport.gif:
+        * PIM/WSML/paradigms/icons/output.bmp:
+        * PIM/WSML/paradigms/icons/part.bmp:
+        * PIM/WSML/paradigms/icons/port.gif:
+        * PIM/WSML/paradigms/icons/porttype.bmp:
+        * PIM/WSML/paradigms/icons/requestresponse.bmp:
+        * PIM/WSML/paradigms/icons/schema.bmp:
+        * PIM/WSML/paradigms/icons/schemaimport.gif:
+        * PIM/WSML/paradigms/icons/schemareference.gif:
+        * PIM/WSML/paradigms/icons/service.bmp:
+        * PIM/WSML/paradigms/icons/soapbinding.gif:
+        * PIM/WSML/paradigms/icons/solicitresponse.bmp:
+        * PIM/WSML/paradigms/icons/types.bmp:
+        * PIM/WSML/paradigms/icons/wsdlport.bmp:
+
+          Icons for the WSML paradigm.
+
 Tue Aug 15 22:09:34 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/SIML/interpreters/GatewayGenerator/Resource.h: Added file

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="SIML" guid="{3D160430-7A45-42F7-ABB8-45382C6447F1}" cdate="Sat Aug 05 16:12:25 2006" mdate="Sat Aug 05 16:12:25 2006" >
+<paradigm name="SIML" guid="{0B603D1E-7747-4997-A4F5-8A368BCFE954}" cdate="Wed Aug 16 21:18:41 2006" mdate="Wed Aug 16 21:18:41 2006" >
 
 	<comment>System Integration Modeling Language (SIML) is a domain-specific modeling 
 language that allows integration of systems using different middleware 
@@ -119,7 +119,7 @@ endif]]>
 		<attrdef name="DataValue" metaref = "1001" valuetype = "string" defvalue = "">
 			<dispname>value</dispname>
 		</attrdef>
-		<attrdef name="DocText" metaref = "3448" valuetype = "string" defvalue = "">
+		<attrdef name="DocText" metaref = "7229" valuetype = "string" defvalue = "">
 			<regnode name="multiLine" value = "10"></regnode>
 		</attrdef>
 		<attrdef name="Location" metaref = "6413" valuetype = "string" defvalue = "">
@@ -130,11 +130,11 @@ endif]]>
 			<dispname>Enable Logging:</dispname>
 			<regnode name="help" value = "This determines whether or not to log an action. The semantics of logging is dependent on the interpreter."></regnode>
 		</attrdef>
-		<attrdef name="Mixed" metaref = "3451" valuetype = "boolean" defvalue = "false">
+		<attrdef name="Mixed" metaref = "1002" valuetype = "boolean" defvalue = "false">
 		</attrdef>
 		<attrdef name="ORBServices" metaref = "1022" valuetype = "string" defvalue = "">
 		</attrdef>
-		<attrdef name="Order" metaref = "3452" valuetype = "integer" defvalue = "0">
+		<attrdef name="Order" metaref = "7230" valuetype = "integer" defvalue = "0">
 			<regnode name="help" value = "Determines the processing order of child Elements of an Element"></regnode>
 		</attrdef>
 		<attrdef name="Period" metaref = "6415" valuetype = "integer" defvalue = "1000">
@@ -180,7 +180,7 @@ endif]]>
 		</attrdef>
 		<attrdef name="UUID" metaref = "1027" valuetype = "string" defvalue = "">
 		</attrdef>
-		<attrdef name="Value" metaref = "3458" valuetype = "string" defvalue = "">
+		<attrdef name="Value" metaref = "1003" valuetype = "string" defvalue = "">
 		</attrdef>
 		<attrdef name="VersionTag" metaref = "1028" valuetype = "string" defvalue = "">
 		</attrdef>
@@ -194,7 +194,7 @@ endif]]>
 		</attrdef>
 		<attrdef name="dynamic" metaref = "3175" valuetype = "boolean" defvalue = "false">
 		</attrdef>
-		<attrdef name="encodingStyle" metaref = "3459" valuetype = "string" defvalue = "">
+		<attrdef name="encodingStyle" metaref = "1004" valuetype = "string" defvalue = "">
 		</attrdef>
 		<attrdef name="exclusiveProvider" metaref = "1036" valuetype = "boolean" defvalue = "false">
 		</attrdef>
@@ -202,7 +202,7 @@ endif]]>
 		</attrdef>
 		<attrdef name="fileName" metaref = "1038" valuetype = "string" defvalue = "">
 		</attrdef>
-		<attrdef name="id" metaref = "3460" valuetype = "string" defvalue = "">
+		<attrdef name="id" metaref = "1005" valuetype = "string" defvalue = "">
 		</attrdef>
 		<attrdef name="iterations" metaref = "1041" valuetype = "integer" defvalue = "">
 		</attrdef>
@@ -223,13 +223,13 @@ endif]]>
 			<enumitem dispname = "DirectConnect" value = "DirectConnect"></enumitem>
 			<enumitem dispname = "RTEventChannel" value = "RTEventChannel"></enumitem>
 		</attrdef>
-		<attrdef name="parameterOrder" metaref = "3462" valuetype = "string" defvalue = "">
+		<attrdef name="parameterOrder" metaref = "1007" valuetype = "string" defvalue = "">
 		</attrdef>
 		<attrdef name="priority" metaref = "1048" valuetype = "integer" defvalue = "-1">
 		</attrdef>
 		<attrdef name="rate" metaref = "1050" valuetype = "integer" defvalue = "-1">
 		</attrdef>
-		<attrdef name="required" metaref = "3463" valuetype = "boolean" defvalue = "false">
+		<attrdef name="required" metaref = "1008" valuetype = "boolean" defvalue = "false">
 		</attrdef>
 		<attrdef name="requiredName" metaref = "1051" valuetype = "string" defvalue = "">
 		</attrdef>
@@ -246,9 +246,9 @@ endif]]>
 		</attrdef>
 		<attrdef name="resourceType" metaref = "1056" valuetype = "string" defvalue = "">
 		</attrdef>
-		<attrdef name="schemaLocation" metaref = "3464" valuetype = "string" defvalue = "">
+		<attrdef name="schemaLocation" metaref = "1009" valuetype = "string" defvalue = "">
 		</attrdef>
-		<attrdef name="schemaType" metaref = "3465" valuetype = "enum" defvalue = "local">
+		<attrdef name="schemaType" metaref = "7231" valuetype = "enum" defvalue = "local">
 			<enumitem dispname = "local" value = "local"></enumitem>
 			<enumitem dispname = "element" value = "element"></enumitem>
 			<enumitem dispname = "attribute" value = "attribute"></enumitem>
@@ -271,17 +271,17 @@ endif]]>
 		</attrdef>
 		<attrdef name="sharedname" metaref = "1057" valuetype = "string" defvalue = "">
 		</attrdef>
-		<attrdef name="soapAction" metaref = "3466" valuetype = "string" defvalue = "">
+		<attrdef name="soapAction" metaref = "1010" valuetype = "string" defvalue = "">
 		</attrdef>
 		<attrdef name="srcPortName" metaref = "7228" valuetype = "string" defvalue = "">
 		</attrdef>
-		<attrdef name="style" metaref = "3467" valuetype = "enum" defvalue = "document">
+		<attrdef name="style" metaref = "1011" valuetype = "enum" defvalue = "document">
 			<enumitem dispname = "document" value = "document"></enumitem>
 			<enumitem dispname = "rpc" value = "rpc"></enumitem>
 		</attrdef>
 		<attrdef name="timeperiod" metaref = "1059" valuetype = "integer" defvalue = "">
 		</attrdef>
-		<attrdef name="transport" metaref = "3468" valuetype = "string" defvalue = "">
+		<attrdef name="transport" metaref = "1012" valuetype = "string" defvalue = "">
 		</attrdef>
 		<attrdef name="typeCode" metaref = "1554" valuetype = "enum" defvalue = "string">
 			<enumitem dispname = "string" value = "string"></enumitem>
@@ -329,7 +329,7 @@ endif]]>
 			<enumitem dispname = "unsignedByte" value = "unsignedByte"></enumitem>
 			<enumitem dispname = "positiveInteger" value = "positiveInteger"></enumitem>
 		</attrdef>
-		<attrdef name="use" metaref = "3469" valuetype = "enum" defvalue = "literal">
+		<attrdef name="use" metaref = "1013" valuetype = "enum" defvalue = "literal">
 			<enumitem dispname = "literal" value = "literal"></enumitem>
 			<enumitem dispname = "encoded" value = "encoded"></enumitem>
 		</attrdef>
@@ -742,31 +742,34 @@ conns->size > 1 implies
 		<atom name = "SIML::Module" metaref = "6405" >
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "WSML::AtomicType" metaref = "3470"  attributes = "typeCode">
+		<atom name = "WSML::AtomicType" metaref = "7232"  attributes = "typeCode">
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "WSML::Attribute" metaref = "3471"  attributes = "Value">
+		<atom name = "WSML::Attribute" metaref = "1014"  attributes = "Value">
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="attribute.bmp"></regnode>
 		</atom>
-		<atom name = "WSML::SOAPAddress" metaref = "3476"  attributes = "required location">
+		<atom name = "WSML::SOAPAddress" metaref = "1015"  attributes = "required location">
 				<regnode name = "namePosition" value ="4"></regnode>
-			<attrdef name="location" metaref = "4700" valuetype = "string" defvalue = "">
+			<attrdef name="location" metaref = "7233" valuetype = "string" defvalue = "">
+			</attrdef>
+				<regnode name = "icon" value ="address.bmp"></regnode>
+		</atom>
+		<atom name = "WSML::SOAPBinding" metaref = "1017"  attributes = "required transport style">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="soapbinding.gif"></regnode>
+		</atom>
+		<atom name = "WSML::SOAPBody" metaref = "1018"  attributes = "use required encodingStyle namespace">
+				<regnode name = "namePosition" value ="4"></regnode>
+			<attrdef name="namespace" metaref = "7234" valuetype = "string" defvalue = "">
 			</attrdef>
 		</atom>
-		<atom name = "WSML::SOAPBinding" metaref = "3478"  attributes = "required transport style">
+		<atom name = "WSML::SOAPFault" metaref = "1020"  attributes = "use required encodingStyle namespace">
 				<regnode name = "namePosition" value ="4"></regnode>
-		</atom>
-		<atom name = "WSML::SOAPBody" metaref = "3479"  attributes = "use required encodingStyle namespace">
-				<regnode name = "namePosition" value ="4"></regnode>
-			<attrdef name="namespace" metaref = "4701" valuetype = "string" defvalue = "">
+			<attrdef name="namespace" metaref = "7235" valuetype = "string" defvalue = "">
 			</attrdef>
 		</atom>
-		<atom name = "WSML::SOAPFault" metaref = "3481"  attributes = "use required encodingStyle namespace">
-				<regnode name = "namePosition" value ="4"></regnode>
-			<attrdef name="namespace" metaref = "4702" valuetype = "string" defvalue = "">
-			</attrdef>
-		</atom>
-		<atom name = "WSML::SOAPHeaderFault" metaref = "3483"  attributes = "use required encodingStyle namespace">
+		<atom name = "WSML::SOAPHeaderFault" metaref = "7236"  attributes = "use required encodingStyle namespace">
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="ValidWSML::HeaderMessagedstCardinality166" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", WSML::HeaderMessage ) -> size in
@@ -778,11 +781,12 @@ conns->size > 1 implies
                      (dstCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to WSML::SOAPHeaders as &quot;dst&quot; over WSML::HeaderPart, has to match 1.</dispname>
 			</constraint>
-			<attrdef name="namespace" metaref = "4703" valuetype = "string" defvalue = "">
+			<attrdef name="namespace" metaref = "7237" valuetype = "string" defvalue = "">
 			</attrdef>
 		</atom>
-		<atom name = "WSML::SOAPOperation" metaref = "3485"  attributes = "required soapAction style">
+		<atom name = "WSML::SOAPOperation" metaref = "7238"  attributes = "required soapAction style">
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="operation.gif"></regnode>
 		</atom>
 		<set name = "PICML::CollocationGroup" metaref = "1100" >
 				<regnode name = "namePosition" value ="4"></regnode>
@@ -2234,7 +2238,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "WSML::BindingPortType" metaref = "3486" >
+		<connection name = "WSML::BindingPortType" metaref = "7239" >
 				<regnode name = "labelFormatStr" value ="boundPortType"></regnode>
 				<regnode name = "sName" value ="srcBindingPortType"></regnode>
 				<regnode name = "dName" value ="dstBindingPortType"></regnode>
@@ -2251,7 +2255,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "WSML::BindsOperation" metaref = "3487" >
+		<connection name = "WSML::BindsOperation" metaref = "7240" >
 				<regnode name = "labelFormatStr" value ="bindsOperation"></regnode>
 				<regnode name = "sName" value ="srcBindsOperation"></regnode>
 				<regnode name = "dName" value ="dstBindsOperation"></regnode>
@@ -2268,7 +2272,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "WSML::BodyBinding" metaref = "3488" >
+		<connection name = "WSML::BodyBinding" metaref = "7241" >
 				<regnode name = "labelFormatStr" value ="bodyBinding"></regnode>
 				<regnode name = "sName" value ="srcBodyBinding"></regnode>
 				<regnode name = "dName" value ="dstBodyBinding"></regnode>
@@ -2286,7 +2290,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "WSML::BodyParts" metaref = "3489" >
+		<connection name = "WSML::BodyParts" metaref = "7242" >
 				<regnode name = "labelFormatStr" value ="bodyParts"></regnode>
 				<regnode name = "sName" value ="srcBodyParts"></regnode>
 				<regnode name = "dName" value ="dstBodyParts"></regnode>
@@ -2303,7 +2307,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "WSML::FaultMessage" metaref = "3491" >
+		<connection name = "WSML::FaultMessage" metaref = "7243" >
 				<regnode name = "labelFormatStr" value ="faultMessageType"></regnode>
 				<regnode name = "sName" value ="srcFaultMessage"></regnode>
 				<regnode name = "dName" value ="dstFaultMessage"></regnode>
@@ -2320,7 +2324,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "WSML::HeaderBinding" metaref = "3492" >
+		<connection name = "WSML::HeaderBinding" metaref = "7244" >
 				<regnode name = "labelFormatStr" value ="headerBinding"></regnode>
 				<regnode name = "sName" value ="srcHeaderBinding"></regnode>
 				<regnode name = "dName" value ="dstHeaderBinding"></regnode>
@@ -2339,7 +2343,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "WSML::HeaderMessage" metaref = "3493" >
+		<connection name = "WSML::HeaderMessage" metaref = "1030" >
 				<regnode name = "labelFormatStr" value ="headerMessage"></regnode>
 				<regnode name = "sName" value ="srcHeaderMessage"></regnode>
 				<regnode name = "dName" value ="dstHeaderMessage"></regnode>
@@ -2357,7 +2361,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "WSML::HeaderPart" metaref = "3494" >
+		<connection name = "WSML::HeaderPart" metaref = "7245" >
 				<regnode name = "labelFormatStr" value ="headerPart"></regnode>
 				<regnode name = "sName" value ="srcHeaderPart"></regnode>
 				<regnode name = "dName" value ="dstHeaderPart"></regnode>
@@ -2375,7 +2379,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "WSML::InputMessage" metaref = "3495" >
+		<connection name = "WSML::InputMessage" metaref = "7246" >
 				<regnode name = "labelFormatStr" value ="inputMessageType"></regnode>
 				<regnode name = "sName" value ="srcInputMessage"></regnode>
 				<regnode name = "dName" value ="dstInputMessage"></regnode>
@@ -2392,7 +2396,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "WSML::OutputMessage" metaref = "3496" >
+		<connection name = "WSML::OutputMessage" metaref = "1033" >
 				<regnode name = "labelFormatStr" value ="outputMessageType"></regnode>
 				<regnode name = "sName" value ="srcOutputMessage"></regnode>
 				<regnode name = "dName" value ="dstOutputMessage"></regnode>
@@ -2409,7 +2413,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "WSML::PortBinding" metaref = "3502" >
+		<connection name = "WSML::PortBinding" metaref = "1034" >
 				<regnode name = "labelFormatStr" value ="boundPort"></regnode>
 				<regnode name = "sName" value ="srcPortBinding"></regnode>
 				<regnode name = "dName" value ="dstPortBinding"></regnode>
@@ -2426,7 +2430,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "WSML::SOAPFaultExtension" metaref = "3503" >
+		<connection name = "WSML::SOAPFaultExtension" metaref = "1035" >
 				<regnode name = "labelFormatStr" value ="soapFault"></regnode>
 				<regnode name = "sName" value ="srcSOAPFaultExtension"></regnode>
 				<regnode name = "dName" value ="dstSOAPFaultExtension"></regnode>
@@ -3565,7 +3569,7 @@ endif
 				<pointeritem desc = "PICML::Worker"></pointeritem>
 			</pointerspec>
 		</reference>
-		<reference name = "WSML::BindingRef" metaref = "3504">
+		<reference name = "WSML::BindingRef" metaref = "7247">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyBindingRef"></regnode>
@@ -3573,7 +3577,7 @@ endif
 				<pointeritem desc = "WSML::Binding"></pointeritem>
 			</pointerspec>
 		</reference>
-		<reference name = "WSML::FaultRef" metaref = "3505">
+		<reference name = "WSML::FaultRef" metaref = "7248">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyFaultRef"></regnode>
@@ -3586,7 +3590,7 @@ endif
 				<pointeritem desc = "WSML::Fault"></pointeritem>
 			</pointerspec>
 		</reference>
-		<reference name = "WSML::InputRef" metaref = "3506">
+		<reference name = "WSML::InputRef" metaref = "7249">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyInputRef"></regnode>
@@ -3599,7 +3603,7 @@ endif
 				<pointeritem desc = "WSML::Input"></pointeritem>
 			</pointerspec>
 		</reference>
-		<reference name = "WSML::MessageRef" metaref = "3507">
+		<reference name = "WSML::MessageRef" metaref = "7250">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyMessageRef"></regnode>
@@ -3607,7 +3611,7 @@ endif
 				<pointeritem desc = "WSML::Message"></pointeritem>
 			</pointerspec>
 		</reference>
-		<reference name = "WSML::OperationRef" metaref = "3508">
+		<reference name = "WSML::OperationRef" metaref = "1039">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyOperationRef"></regnode>
@@ -3618,7 +3622,7 @@ endif
 				<pointeritem desc = "WSML::SolicitResponseOperation"></pointeritem>
 			</pointerspec>
 		</reference>
-		<reference name = "WSML::OutputRef" metaref = "3509">
+		<reference name = "WSML::OutputRef" metaref = "1040">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyOutputRef"></regnode>
@@ -3631,16 +3635,17 @@ endif
 				<pointeritem desc = "WSML::Output"></pointeritem>
 			</pointerspec>
 		</reference>
-		<reference name = "WSML::Part" metaref = "3515">
+		<reference name = "WSML::Part" metaref = "7251">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyPart"></regnode>
+			<regnode name = "icon" value ="part.bmp"></regnode>
 			<pointerspec name = "ref">
 				<pointeritem desc = "WSML::AtomicType"></pointeritem>
 				<pointeritem desc = "WSML::Element"></pointeritem>
 			</pointerspec>
 		</reference>
-		<reference name = "WSML::PartRef" metaref = "3516">
+		<reference name = "WSML::PartRef" metaref = "7252">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyPartRef"></regnode>
@@ -4321,7 +4326,7 @@ instances->forAll (x : Component |
 				<dispname>Primary Artifacts of a MonolithicImplementation should have unique names</dispname>
 			</constraint>
 			<constraint name="ValidPICML::ComponentImplementationContainerPartCardinality181" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::Implements" ) -> size in
+				<![CDATA[let partCount = self.parts( "PICML::PathReference" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -4331,7 +4336,7 @@ instances->forAll (x : Component |
 				<dispname>Multiplicity of parts, which are contained by PICML::ComponentImplementationContainer, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidPICML::ComponentImplementationContainerPartCardinality183" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::PathReference" ) -> size in
+				<![CDATA[let partCount = self.parts( "PICML::Implements" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -4400,12 +4405,12 @@ instances->forAll (x : Component |
 				<regnode name = "icon" value ="composite.bmp"></regnode>
 				<regnode name = "isTypeShown" value ="true"></regnode>
 			<constraint name="ValidPICML::CompositeActionPartCardinality186" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::InputAction" ) -> size in
+				<![CDATA[let partCount = self.parts( "PICML::Finish" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::CompositeAction, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidPICML::CompositeActionPartCardinality187" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::Finish" ) -> size in
+				<![CDATA[let partCount = self.parts( "PICML::InputAction" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::CompositeAction, has to match 1.</dispname>
 			</constraint>
@@ -5023,14 +5028,14 @@ instances->forAll (x : Component |
 				<dispname>A PackageConfiguration can either specialize another PackageConfiguration, or contain a ComponentPackage, or contain a reference to a ComponentPackage</dispname>
 			</constraint>
 			<constraint name="ValidPICML::PackageConfigurationContainerPartCardinality190" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::ComponentPackageReference" ) -> size in
+				<![CDATA[let partCount = self.parts( "PICML::ComponentPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPICML::PackageConfigurationContainerPartCardinality191" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::PackageConfiguration" ) -> size in
-                     (partCount >= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 1..*.</dispname>
+				<![CDATA[let partCount = self.parts( "PICML::PackageConfSpecializedConfig" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPICML::PackageConfigurationContainerPartCardinality192" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PICML::PackageConfBasePackage" ) -> size in
@@ -5043,12 +5048,12 @@ instances->forAll (x : Component |
 				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPICML::PackageConfigurationContainerPartCardinality194" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::ComponentPackage" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 0..1.</dispname>
+				<![CDATA[let partCount = self.parts( "PICML::PackageConfiguration" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 1..*.</dispname>
 			</constraint>
 			<constraint name="ValidPICML::PackageConfigurationContainerPartCardinality195" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::PackageConfSpecializedConfig" ) -> size in
+				<![CDATA[let partCount = self.parts( "PICML::ComponentPackageReference" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -5089,17 +5094,17 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 				<dispname>Monolithic implementation in a ComponentPackage should all implement the same component interface</dispname>
 			</constraint>
 			<constraint name="ValidPICML::PackageContainerPartCardinality196" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::PackageInterface" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PICML::PackageContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPICML::PackageContainerPartCardinality197" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PICML::ComponentPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::PackageContainer, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidPICML::PackageContainerPartCardinality198" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPICML::PackageContainerPartCardinality197" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PICML::ComponentRef" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PICML::PackageContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPICML::PackageContainerPartCardinality198" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PICML::PackageInterface" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::PackageContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -5319,14 +5324,14 @@ let props = self.connectedFCOs(AttributeValue) in
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="project.bmp"></regnode>
 			<constraint name="ValidPICML::ServantProjectPartCardinality202" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::FileRef" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PICML::ServantProject, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPICML::ServantProjectPartCardinality203" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PICML::ImplementationArtifactReference" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::ServantProject, has to match 1.</dispname>
+			</constraint>
+			<constraint name="ValidPICML::ServantProjectPartCardinality203" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PICML::FileRef" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PICML::ServantProject, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="servantOneInstance" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[self.instances ()->size <= 1]]>
@@ -5360,12 +5365,12 @@ let props = self.connectedFCOs(AttributeValue) in
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="project.bmp"></regnode>
 			<constraint name="ValidPICML::StubProjectPartCardinality204" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::FileRef" ) -> size in
+				<![CDATA[let partCount = self.parts( "PICML::ImplementationArtifactReference" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::StubProject, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidPICML::StubProjectPartCardinality205" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::ImplementationArtifactReference" ) -> size in
+				<![CDATA[let partCount = self.parts( "PICML::FileRef" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::StubProject, has to match 1.</dispname>
 			</constraint>
@@ -5413,7 +5418,7 @@ let props = self.connectedFCOs(AttributeValue) in
 				<dispname>Not a valid identifier</dispname>
 			</constraint>
 			<constraint name="ValidPICML::SwitchedAggregatePartCardinality206" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::Label" ) -> size in
+				<![CDATA[let partCount = self.parts( "PICML::LabelConnection" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
@@ -5423,7 +5428,7 @@ let props = self.connectedFCOs(AttributeValue) in
 				<dispname>Multiplicity of parts, which are contained by PICML::SwitchedAggregate, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidPICML::SwitchedAggregatePartCardinality208" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::LabelConnection" ) -> size in
+				<![CDATA[let partCount = self.parts( "PICML::Label" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
@@ -5475,17 +5480,17 @@ let props = self.connectedFCOs(AttributeValue) in
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="TopLevelPackageConfiguration.bmp"></regnode>
 			<constraint name="ValidPICML::TopLevelPackageContainerPartCardinality209" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::TopLevelPackage" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PICML::TopLevelPackageContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPICML::TopLevelPackageContainerPartCardinality210" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PICML::PackageConfigurationReference" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::TopLevelPackageContainer, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidPICML::TopLevelPackageContainerPartCardinality211" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPICML::TopLevelPackageContainerPartCardinality210" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PICML::package" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PICML::TopLevelPackageContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPICML::TopLevelPackageContainerPartCardinality211" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PICML::TopLevelPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -5682,8 +5687,9 @@ actions->isUnique (iter : Action | iter->name ())
 				<part metaref = "6410" role = "SIML::PortProxy" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "WSML::Binding" metaref = "3517" >
+		<model name = "WSML::Binding" metaref = "7253" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="binding.gif"></regnode>
 			<constraint name="ValidWSML::BindingPartCardinality213" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "WSML::ExtensibleBinding" ) -> size + self.parts( "WSML::SOAPBinding" ) -> size in
                      (partCount = 1)]]>
@@ -5699,82 +5705,84 @@ actions->isUnique (iter : Action | iter->name ())
                      (dstCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to WSML::Binding as &quot;dst&quot; over WSML::BindingPortType, has to match 1.</dispname>
 			</constraint>
-			<role name = "WSML::BindingOperation" metaref = "4807" kind = "WSML::BindingOperation"></role>
-			<role name = "WSML::BindsOperation" metaref = "4808" kind = "WSML::BindsOperation"></role>
-			<role name = "WSML::Documentation" metaref = "4809" kind = "WSML::Documentation"></role>
-			<role name = "WSML::OperationRef" metaref = "4810" kind = "WSML::OperationRef"></role>
-			<role name = "WSML::SOAPBinding" metaref = "4811" kind = "WSML::SOAPBinding"></role>
+			<role name = "WSML::BindingOperation" metaref = "7254" kind = "WSML::BindingOperation"></role>
+			<role name = "WSML::BindsOperation" metaref = "7255" kind = "WSML::BindsOperation"></role>
+			<role name = "WSML::Documentation" metaref = "7256" kind = "WSML::Documentation"></role>
+			<role name = "WSML::OperationRef" metaref = "7257" kind = "WSML::OperationRef"></role>
+			<role name = "WSML::SOAPBinding" metaref = "7258" kind = "WSML::SOAPBinding"></role>
 			<aspect name = "ServiceDefinition" metaref = "4812" >
-				<part metaref = "4813" role = "WSML::BindingOperation" primary = "yes" linked = "no"></part>
-				<part metaref = "4814" role = "WSML::BindsOperation" primary = "yes" linked = "no"></part>
-				<part metaref = "4815" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
-				<part metaref = "4816" role = "WSML::OperationRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
-				<part metaref = "4817" role = "WSML::SOAPBinding" primary = "yes" linked = "no"></part>
+				<part metaref = "7259" role = "WSML::BindingOperation" primary = "yes" linked = "no"></part>
+				<part metaref = "7260" role = "WSML::BindsOperation" primary = "yes" linked = "no"></part>
+				<part metaref = "7261" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
+				<part metaref = "7262" role = "WSML::OperationRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
+				<part metaref = "7263" role = "WSML::SOAPBinding" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "WSML::BindingOperation" metaref = "3529" >
+		<model name = "WSML::BindingOperation" metaref = "7264" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="bindingoperation.gif"></regnode>
 			<constraint name="ValidWSML::BindingOperationPartCardinality215" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "WSML::Documentation" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by WSML::BindingOperation, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidWSML::BindingOperationPartCardinality216" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "WSML::ExtensibleOperation" ) -> size + self.parts( "WSML::SOAPOperation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by WSML::BindingOperation, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidWSML::BindingOperationPartCardinality217" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidWSML::BindingOperationPartCardinality216" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "WSML::ExtensibleMessage" ) -> size + self.parts( "WSML::SOAPBody" ) -> size + self.parts( "WSML::SOAPFault" ) -> size + self.parts( "WSML::SOAPHeaderFault" ) -> size + self.parts( "WSML::SOAPHeader" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by WSML::BindingOperation, has to match 1..*.</dispname>
+			</constraint>
+			<constraint name="ValidWSML::BindingOperationPartCardinality217" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "WSML::Documentation" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by WSML::BindingOperation, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidWSML::BindsOperationdstCardinality156" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", WSML::BindsOperation ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to WSML::BindingOperation as &quot;dst&quot; over WSML::BindsOperation, has to match 0..1.</dispname>
 			</constraint>
-			<role name = "WSML::BodyBinding" metaref = "4818" kind = "WSML::BodyBinding"></role>
-			<role name = "WSML::BodyParts" metaref = "4819" kind = "WSML::BodyParts"></role>
-			<role name = "WSML::Documentation" metaref = "4820" kind = "WSML::Documentation"></role>
-			<role name = "WSML::FaultRef" metaref = "4821" kind = "WSML::FaultRef"></role>
-			<role name = "WSML::HeaderBinding" metaref = "4822" kind = "WSML::HeaderBinding"></role>
-			<role name = "WSML::HeaderMessage" metaref = "4823" kind = "WSML::HeaderMessage"></role>
-			<role name = "WSML::HeaderPart" metaref = "4824" kind = "WSML::HeaderPart"></role>
-			<role name = "WSML::InputRef" metaref = "4825" kind = "WSML::InputRef"></role>
-			<role name = "WSML::MessageRef" metaref = "4826" kind = "WSML::MessageRef"></role>
-			<role name = "WSML::OutputRef" metaref = "4827" kind = "WSML::OutputRef"></role>
-			<role name = "WSML::PartRef" metaref = "4828" kind = "WSML::PartRef"></role>
-			<role name = "WSML::SOAPBody" metaref = "4829" kind = "WSML::SOAPBody"></role>
-			<role name = "WSML::SOAPFault" metaref = "4830" kind = "WSML::SOAPFault"></role>
-			<role name = "WSML::SOAPFaultExtension" metaref = "4831" kind = "WSML::SOAPFaultExtension"></role>
-			<role name = "WSML::SOAPHeader" metaref = "4832" kind = "WSML::SOAPHeader"></role>
-			<role name = "WSML::SOAPHeaderFault" metaref = "4833" kind = "WSML::SOAPHeaderFault"></role>
-			<role name = "WSML::SOAPOperation" metaref = "4834" kind = "WSML::SOAPOperation"></role>
+			<role name = "WSML::BodyBinding" metaref = "7265" kind = "WSML::BodyBinding"></role>
+			<role name = "WSML::BodyParts" metaref = "7266" kind = "WSML::BodyParts"></role>
+			<role name = "WSML::Documentation" metaref = "7267" kind = "WSML::Documentation"></role>
+			<role name = "WSML::FaultRef" metaref = "7268" kind = "WSML::FaultRef"></role>
+			<role name = "WSML::HeaderBinding" metaref = "7269" kind = "WSML::HeaderBinding"></role>
+			<role name = "WSML::HeaderMessage" metaref = "7270" kind = "WSML::HeaderMessage"></role>
+			<role name = "WSML::HeaderPart" metaref = "7271" kind = "WSML::HeaderPart"></role>
+			<role name = "WSML::InputRef" metaref = "7272" kind = "WSML::InputRef"></role>
+			<role name = "WSML::MessageRef" metaref = "7273" kind = "WSML::MessageRef"></role>
+			<role name = "WSML::OutputRef" metaref = "7274" kind = "WSML::OutputRef"></role>
+			<role name = "WSML::PartRef" metaref = "7275" kind = "WSML::PartRef"></role>
+			<role name = "WSML::SOAPBody" metaref = "7276" kind = "WSML::SOAPBody"></role>
+			<role name = "WSML::SOAPFault" metaref = "7277" kind = "WSML::SOAPFault"></role>
+			<role name = "WSML::SOAPFaultExtension" metaref = "7278" kind = "WSML::SOAPFaultExtension"></role>
+			<role name = "WSML::SOAPHeader" metaref = "7279" kind = "WSML::SOAPHeader"></role>
+			<role name = "WSML::SOAPHeaderFault" metaref = "7280" kind = "WSML::SOAPHeaderFault"></role>
+			<role name = "WSML::SOAPOperation" metaref = "7281" kind = "WSML::SOAPOperation"></role>
 			<aspect name = "ServiceDefinition" metaref = "4835" >
-				<part metaref = "4836" role = "WSML::BodyBinding" primary = "yes" linked = "no"></part>
-				<part metaref = "4837" role = "WSML::BodyParts" primary = "yes" linked = "no"></part>
-				<part metaref = "4838" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
-				<part metaref = "4839" role = "WSML::FaultRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
-				<part metaref = "4840" role = "WSML::HeaderBinding" primary = "yes" linked = "no"></part>
-				<part metaref = "4841" role = "WSML::HeaderMessage" primary = "yes" linked = "no"></part>
-				<part metaref = "4842" role = "WSML::HeaderPart" primary = "yes" linked = "no"></part>
-				<part metaref = "4843" role = "WSML::InputRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
-				<part metaref = "4844" role = "WSML::MessageRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
-				<part metaref = "4845" role = "WSML::OutputRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
-				<part metaref = "4846" role = "WSML::PartRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
-				<part metaref = "4847" role = "WSML::SOAPBody" primary = "yes" linked = "no"></part>
-				<part metaref = "4848" role = "WSML::SOAPFault" primary = "yes" linked = "no"></part>
-				<part metaref = "4849" role = "WSML::SOAPFaultExtension" primary = "yes" linked = "no"></part>
-				<part metaref = "4850" role = "WSML::SOAPHeader" primary = "yes" linked = "no"></part>
-				<part metaref = "4851" role = "WSML::SOAPHeaderFault" primary = "yes" linked = "no"></part>
-				<part metaref = "4852" role = "WSML::SOAPOperation" primary = "yes" linked = "no"></part>
+				<part metaref = "7282" role = "WSML::BodyBinding" primary = "yes" linked = "no"></part>
+				<part metaref = "7283" role = "WSML::BodyParts" primary = "yes" linked = "no"></part>
+				<part metaref = "7284" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
+				<part metaref = "7285" role = "WSML::FaultRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
+				<part metaref = "7286" role = "WSML::HeaderBinding" primary = "yes" linked = "no"></part>
+				<part metaref = "7287" role = "WSML::HeaderMessage" primary = "yes" linked = "no"></part>
+				<part metaref = "7288" role = "WSML::HeaderPart" primary = "yes" linked = "no"></part>
+				<part metaref = "7289" role = "WSML::InputRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
+				<part metaref = "7290" role = "WSML::MessageRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
+				<part metaref = "7291" role = "WSML::OutputRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
+				<part metaref = "7292" role = "WSML::PartRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
+				<part metaref = "7293" role = "WSML::SOAPBody" primary = "yes" linked = "no"></part>
+				<part metaref = "7294" role = "WSML::SOAPFault" primary = "yes" linked = "no"></part>
+				<part metaref = "7295" role = "WSML::SOAPFaultExtension" primary = "yes" linked = "no"></part>
+				<part metaref = "7296" role = "WSML::SOAPHeader" primary = "yes" linked = "no"></part>
+				<part metaref = "7297" role = "WSML::SOAPHeaderFault" primary = "yes" linked = "no"></part>
+				<part metaref = "7298" role = "WSML::SOAPOperation" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "WSML::Definitions" metaref = "3632" attributes = "targetNamespace" >
+		<model name = "WSML::Definitions" metaref = "1090" attributes = "targetNamespace" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="definitions.gif"></regnode>
 			<constraint name="ValidWSML::DefinitionsPartCardinality218" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "WSML::Documentation" ) -> size in
+				<![CDATA[let partCount = self.parts( "WSML::Types" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by WSML::Definitions, has to match 0..1.</dispname>
 			</constraint>
@@ -5784,107 +5792,116 @@ actions->isUnique (iter : Action | iter->name ())
 				<dispname>Multiplicity of parts, which are contained by WSML::Definitions, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidWSML::DefinitionsPartCardinality220" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "WSML::Types" ) -> size in
+				<![CDATA[let partCount = self.parts( "WSML::Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by WSML::Definitions, has to match 0..1.</dispname>
 			</constraint>
-			<attrdef name="targetNamespace" metaref = "4853" valuetype = "string" defvalue = "">
+			<attrdef name="targetNamespace" metaref = "7299" valuetype = "string" defvalue = "">
 			</attrdef>
-			<role name = "WSML::Attribute" metaref = "4855" kind = "WSML::Attribute"></role>
-			<role name = "WSML::Binding" metaref = "4856" kind = "WSML::Binding"></role>
-			<role name = "WSML::BindingPortType" metaref = "4857" kind = "WSML::BindingPortType"></role>
-			<role name = "WSML::Documentation" metaref = "4858" kind = "WSML::Documentation"></role>
-			<role name = "WSML::Import" metaref = "4859" kind = "WSML::Import"></role>
-			<role name = "WSML::Messages" metaref = "4860" kind = "WSML::Messages"></role>
-			<role name = "WSML::PortType" metaref = "4861" kind = "WSML::PortType"></role>
-			<role name = "WSML::Service" metaref = "6393" kind = "WSML::Service"></role>
-			<role name = "WSML::Types" metaref = "4862" kind = "WSML::Types"></role>
+			<role name = "WSML::Attribute" metaref = "7300" kind = "WSML::Attribute"></role>
+			<role name = "WSML::Binding" metaref = "7301" kind = "WSML::Binding"></role>
+			<role name = "WSML::BindingPortType" metaref = "7302" kind = "WSML::BindingPortType"></role>
+			<role name = "WSML::Documentation" metaref = "7303" kind = "WSML::Documentation"></role>
+			<role name = "WSML::Import" metaref = "7304" kind = "WSML::Import"></role>
+			<role name = "WSML::Messages" metaref = "7305" kind = "WSML::Messages"></role>
+			<role name = "WSML::PortType" metaref = "7306" kind = "WSML::PortType"></role>
+			<role name = "WSML::Service" metaref = "7307" kind = "WSML::Service"></role>
+			<role name = "WSML::Types" metaref = "7308" kind = "WSML::Types"></role>
 			<aspect name = "ServiceDefinition" metaref = "4863" attributes = "targetNamespace" >
-				<part metaref = "4865" role = "WSML::Attribute" primary = "yes" linked = "no"></part>
-				<part metaref = "4866" role = "WSML::Binding" primary = "yes" linked = "no"></part>
-				<part metaref = "4867" role = "WSML::BindingPortType" primary = "yes" linked = "no"></part>
-				<part metaref = "4868" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
-				<part metaref = "4869" role = "WSML::Import" primary = "yes" linked = "no"></part>
-				<part metaref = "4870" role = "WSML::Messages" primary = "yes" linked = "no"></part>
-				<part metaref = "4871" role = "WSML::PortType" primary = "yes" linked = "no"></part>
-				<part metaref = "6394" role = "WSML::Service" primary = "yes" linked = "no"></part>
-				<part metaref = "4872" role = "WSML::Types" primary = "yes" linked = "no"></part>
+				<part metaref = "7309" role = "WSML::Attribute" primary = "yes" linked = "no"></part>
+				<part metaref = "7310" role = "WSML::Binding" primary = "yes" linked = "no"></part>
+				<part metaref = "7311" role = "WSML::BindingPortType" primary = "yes" linked = "no"></part>
+				<part metaref = "7312" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
+				<part metaref = "7313" role = "WSML::Import" primary = "yes" linked = "no"></part>
+				<part metaref = "7314" role = "WSML::Messages" primary = "yes" linked = "no"></part>
+				<part metaref = "7315" role = "WSML::PortType" primary = "yes" linked = "no"></part>
+				<part metaref = "7316" role = "WSML::Service" primary = "yes" linked = "no"></part>
+				<part metaref = "7317" role = "WSML::Types" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "WSML::Documentation" metaref = "1113" attributes = "DocText Mixed" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<role name = "WSML::Element" metaref = "4873" kind = "WSML::Element"></role>
+				<regnode name = "icon" value ="documentation.bmp"></regnode>
+			<role name = "WSML::Element" metaref = "7318" kind = "WSML::Element"></role>
 			<aspect name = "ServiceDefinition" metaref = "4874" attributes = "DocText Mixed" >
-				<part metaref = "4875" role = "WSML::Element" primary = "yes" linked = "no"></part>
+				<part metaref = "7319" role = "WSML::Element" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "WSML::Element" metaref = "3651" attributes = "schemaType Order" >
+		<model name = "WSML::Element" metaref = "7320" attributes = "schemaType Order" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<role name = "WSML::Attribute" metaref = "4876" kind = "WSML::Attribute"></role>
-			<role name = "WSML::Element" metaref = "4877" kind = "WSML::Element"></role>
+				<regnode name = "icon" value ="element.bmp"></regnode>
+			<role name = "WSML::Attribute" metaref = "7321" kind = "WSML::Attribute"></role>
+			<role name = "WSML::Element" metaref = "7322" kind = "WSML::Element"></role>
 			<aspect name = "ServiceDefinition" metaref = "4878" attributes = "schemaType Order" >
-				<part metaref = "4879" role = "WSML::Attribute" primary = "yes" linked = "no"></part>
-				<part metaref = "4880" role = "WSML::Element" primary = "yes" linked = "no"></part>
+				<part metaref = "7323" role = "WSML::Attribute" primary = "yes" linked = "no"></part>
+				<part metaref = "7324" role = "WSML::Element" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "WSML::Fault" metaref = "1123" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="fault.bmp"></regnode>
 			<constraint name="ValidWSML::FaultMessagedstCardinality162" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", WSML::FaultMessage ) -> size in
                      (dstCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to WSML::Fault as &quot;dst&quot; over WSML::FaultMessage, has to match 1.</dispname>
 			</constraint>
-			<role name = "WSML::Documentation" metaref = "4881" kind = "WSML::Documentation"></role>
+			<role name = "WSML::Documentation" metaref = "7325" kind = "WSML::Documentation"></role>
 			<aspect name = "ServiceDefinition" metaref = "4882" >
-				<part metaref = "4883" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
+				<part metaref = "7326" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "WSML::Import" metaref = "3658" attributes = "namespace location" >
+		<model name = "WSML::Import" metaref = "7327" attributes = "namespace location" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="import.bmp"></regnode>
 			<constraint name="ValidWSML::ImportPartCardinality221" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "WSML::Definitions" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by WSML::Import, has to match 1.</dispname>
 			</constraint>
-			<attrdef name="location" metaref = "4884" valuetype = "string" defvalue = "">
+			<attrdef name="location" metaref = "7328" valuetype = "string" defvalue = "">
 			</attrdef>
-			<attrdef name="namespace" metaref = "4885" valuetype = "string" defvalue = "">
+			<attrdef name="namespace" metaref = "7329" valuetype = "string" defvalue = "">
 			</attrdef>
-			<role name = "WSML::Definitions" metaref = "4886" kind = "WSML::Definitions"></role>
-			<role name = "WSML::Documentation" metaref = "4887" kind = "WSML::Documentation"></role>
+			<role name = "WSML::Definitions" metaref = "7330" kind = "WSML::Definitions"></role>
+			<role name = "WSML::Documentation" metaref = "7331" kind = "WSML::Documentation"></role>
 			<aspect name = "ServiceDefinition" metaref = "4888" attributes = "namespace location" >
-				<part metaref = "4889" role = "WSML::Definitions" primary = "yes" linked = "no"></part>
-				<part metaref = "4890" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
+				<part metaref = "7332" role = "WSML::Definitions" primary = "yes" linked = "no"></part>
+				<part metaref = "7333" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "WSML::Input" metaref = "3666" >
+		<model name = "WSML::Input" metaref = "7334" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="input.bmp"></regnode>
 			<constraint name="ValidWSML::InputMessagedstCardinality170" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", WSML::InputMessage ) -> size in
                      (dstCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to WSML::Input as &quot;dst&quot; over WSML::InputMessage, has to match 1.</dispname>
 			</constraint>
-			<role name = "WSML::Documentation" metaref = "4891" kind = "WSML::Documentation"></role>
+			<role name = "WSML::Documentation" metaref = "7335" kind = "WSML::Documentation"></role>
 			<aspect name = "ServiceDefinition" metaref = "4892" >
-				<part metaref = "4893" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
+				<part metaref = "7336" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "WSML::Message" metaref = "3670" >
+		<model name = "WSML::Message" metaref = "7337" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<role name = "WSML::Part" metaref = "4894" kind = "WSML::Part"></role>
+				<regnode name = "icon" value ="message.bmp"></regnode>
+			<role name = "WSML::Part" metaref = "7338" kind = "WSML::Part"></role>
 			<aspect name = "ServiceDefinition" metaref = "4895" >
-				<part metaref = "4896" role = "WSML::Part" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
+				<part metaref = "7339" role = "WSML::Part" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "WSML::Messages" metaref = "3674" >
+		<model name = "WSML::Messages" metaref = "1550" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<role name = "WSML::Message" metaref = "4897" kind = "WSML::Message"></role>
+				<regnode name = "icon" value ="messages.bmp"></regnode>
+			<role name = "WSML::Message" metaref = "7340" kind = "WSML::Message"></role>
 			<aspect name = "ServiceDefinition" metaref = "4898" >
-				<part metaref = "4899" role = "WSML::Message" primary = "yes" linked = "no"></part>
+				<part metaref = "7341" role = "WSML::Message" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "WSML::NotificationOperation" metaref = "3678" >
+		<model name = "WSML::NotificationOperation" metaref = "7342" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="notification.bmp"></regnode>
+				<regnode name = "porticon" value ="operationport.gif"></regnode>
 			<constraint name="ValidWSML::NotificationOperationPartCardinality222" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "WSML::Output" ) -> size in
                      (partCount = 1)]]>
@@ -5895,23 +5912,25 @@ actions->isUnique (iter : Action | iter->name ())
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by WSML::Operation, has to match 0..1.</dispname>
 			</constraint>
-			<role name = "WSML::Documentation" metaref = "4900" kind = "WSML::Documentation"></role>
-			<role name = "WSML::FaultMessage" metaref = "4901" kind = "WSML::FaultMessage"></role>
-			<role name = "WSML::InputMessage" metaref = "4902" kind = "WSML::InputMessage"></role>
-			<role name = "WSML::MessageRef" metaref = "4903" kind = "WSML::MessageRef"></role>
-			<role name = "WSML::Output" metaref = "4904" kind = "WSML::Output"></role>
-			<role name = "WSML::OutputMessage" metaref = "4905" kind = "WSML::OutputMessage"></role>
+			<role name = "WSML::Documentation" metaref = "7343" kind = "WSML::Documentation"></role>
+			<role name = "WSML::FaultMessage" metaref = "7344" kind = "WSML::FaultMessage"></role>
+			<role name = "WSML::InputMessage" metaref = "7345" kind = "WSML::InputMessage"></role>
+			<role name = "WSML::MessageRef" metaref = "7346" kind = "WSML::MessageRef"></role>
+			<role name = "WSML::Output" metaref = "7347" kind = "WSML::Output"></role>
+			<role name = "WSML::OutputMessage" metaref = "7348" kind = "WSML::OutputMessage"></role>
 			<aspect name = "ServiceDefinition" metaref = "4906" >
-				<part metaref = "4907" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
-				<part metaref = "4908" role = "WSML::FaultMessage" primary = "yes" linked = "no"></part>
-				<part metaref = "4909" role = "WSML::InputMessage" primary = "yes" linked = "no"></part>
-				<part metaref = "4910" role = "WSML::MessageRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
-				<part metaref = "4911" role = "WSML::Output" primary = "yes" linked = "no"></part>
-				<part metaref = "4912" role = "WSML::OutputMessage" primary = "yes" linked = "no"></part>
+				<part metaref = "7349" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
+				<part metaref = "7350" role = "WSML::FaultMessage" primary = "yes" linked = "no"></part>
+				<part metaref = "7351" role = "WSML::InputMessage" primary = "yes" linked = "no"></part>
+				<part metaref = "7352" role = "WSML::MessageRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
+				<part metaref = "7353" role = "WSML::Output" primary = "yes" linked = "no"></part>
+				<part metaref = "7354" role = "WSML::OutputMessage" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "WSML::OneWayOperation" metaref = "3691" >
+		<model name = "WSML::OneWayOperation" metaref = "7355" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="oneway.gif"></regnode>
+				<regnode name = "porticon" value ="operationport.gif"></regnode>
 			<constraint name="ValidWSML::OneWayOperationPartCardinality223" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "WSML::Input" ) -> size in
                      (partCount = 1)]]>
@@ -5922,79 +5941,85 @@ actions->isUnique (iter : Action | iter->name ())
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by WSML::Operation, has to match 0..1.</dispname>
 			</constraint>
-			<role name = "WSML::Documentation" metaref = "4913" kind = "WSML::Documentation"></role>
-			<role name = "WSML::FaultMessage" metaref = "4914" kind = "WSML::FaultMessage"></role>
-			<role name = "WSML::Input" metaref = "4915" kind = "WSML::Input"></role>
-			<role name = "WSML::InputMessage" metaref = "4916" kind = "WSML::InputMessage"></role>
-			<role name = "WSML::MessageRef" metaref = "4917" kind = "WSML::MessageRef"></role>
-			<role name = "WSML::OutputMessage" metaref = "4918" kind = "WSML::OutputMessage"></role>
+			<role name = "WSML::Documentation" metaref = "7356" kind = "WSML::Documentation"></role>
+			<role name = "WSML::FaultMessage" metaref = "7357" kind = "WSML::FaultMessage"></role>
+			<role name = "WSML::Input" metaref = "7358" kind = "WSML::Input"></role>
+			<role name = "WSML::InputMessage" metaref = "7359" kind = "WSML::InputMessage"></role>
+			<role name = "WSML::MessageRef" metaref = "7360" kind = "WSML::MessageRef"></role>
+			<role name = "WSML::OutputMessage" metaref = "7361" kind = "WSML::OutputMessage"></role>
 			<aspect name = "ServiceDefinition" metaref = "4919" >
-				<part metaref = "4920" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
-				<part metaref = "4921" role = "WSML::FaultMessage" primary = "yes" linked = "no"></part>
-				<part metaref = "4922" role = "WSML::Input" primary = "yes" linked = "no"></part>
-				<part metaref = "4923" role = "WSML::InputMessage" primary = "yes" linked = "no"></part>
-				<part metaref = "4924" role = "WSML::MessageRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
-				<part metaref = "4925" role = "WSML::OutputMessage" primary = "yes" linked = "no"></part>
+				<part metaref = "7362" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
+				<part metaref = "7363" role = "WSML::FaultMessage" primary = "yes" linked = "no"></part>
+				<part metaref = "7364" role = "WSML::Input" primary = "yes" linked = "no"></part>
+				<part metaref = "7365" role = "WSML::InputMessage" primary = "yes" linked = "no"></part>
+				<part metaref = "7366" role = "WSML::MessageRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
+				<part metaref = "7367" role = "WSML::OutputMessage" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "WSML::Output" metaref = "3701" >
+		<model name = "WSML::Output" metaref = "7368" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="output.bmp"></regnode>
 			<constraint name="ValidWSML::OutputMessagedstCardinality172" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", WSML::OutputMessage ) -> size in
                      (dstCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to WSML::Output as &quot;dst&quot; over WSML::OutputMessage, has to match 1.</dispname>
 			</constraint>
-			<role name = "WSML::Documentation" metaref = "4926" kind = "WSML::Documentation"></role>
+			<role name = "WSML::Documentation" metaref = "7369" kind = "WSML::Documentation"></role>
 			<aspect name = "ServiceDefinition" metaref = "4927" >
-				<part metaref = "4928" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
+				<part metaref = "7370" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "WSML::Port" metaref = "4597" >
+		<model name = "WSML::Port" metaref = "7371" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="wsdlport.bmp"></regnode>
+				<regnode name = "porticon" value ="port.gif"></regnode>
 			<constraint name="ValidWSML::PortBindingdstCardinality174" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", WSML::PortBinding ) -> size in
                      (dstCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to WSML::Port as &quot;dst&quot; over WSML::PortBinding, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidWSML::PortPartCardinality225" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "WSML::Documentation" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by WSML::Port, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidWSML::PortPartCardinality226" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "WSML::ExtensiblePort" ) -> size + self.parts( "WSML::SOAPAddress" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by WSML::Port, has to match 1.</dispname>
 			</constraint>
-			<role name = "WSML::Documentation" metaref = "6306" kind = "WSML::Documentation"></role>
-			<role name = "WSML::SOAPAddress" metaref = "6307" kind = "WSML::SOAPAddress"></role>
+			<constraint name="ValidWSML::PortPartCardinality226" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "WSML::Documentation" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by WSML::Port, has to match 0..1.</dispname>
+			</constraint>
+			<role name = "WSML::Documentation" metaref = "7372" kind = "WSML::Documentation"></role>
+			<role name = "WSML::SOAPAddress" metaref = "7373" kind = "WSML::SOAPAddress"></role>
 			<aspect name = "ServiceDefinition" metaref = "6308" >
-				<part metaref = "6309" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
-				<part metaref = "6310" role = "WSML::SOAPAddress" primary = "yes" linked = "no"></part>
+				<part metaref = "7374" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
+				<part metaref = "7375" role = "WSML::SOAPAddress" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "WSML::PortType" metaref = "4603" >
+		<model name = "WSML::PortType" metaref = "7376" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="porttype.bmp"></regnode>
 			<constraint name="ValidWSML::PortTypePartCardinality227" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "WSML::Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by WSML::PortType, has to match 0..1.</dispname>
 			</constraint>
-			<role name = "WSML::Documentation" metaref = "4929" kind = "WSML::Documentation"></role>
-			<role name = "WSML::NotificationOperation" metaref = "4930" kind = "WSML::NotificationOperation"></role>
-			<role name = "WSML::OneWayOperation" metaref = "4931" kind = "WSML::OneWayOperation"></role>
-			<role name = "WSML::RequestResponseOperation" metaref = "4932" kind = "WSML::RequestResponseOperation"></role>
-			<role name = "WSML::SolicitResponseOperation" metaref = "4933" kind = "WSML::SolicitResponseOperation"></role>
+			<role name = "WSML::Documentation" metaref = "7377" kind = "WSML::Documentation"></role>
+			<role name = "WSML::NotificationOperation" metaref = "7378" kind = "WSML::NotificationOperation"></role>
+			<role name = "WSML::OneWayOperation" metaref = "7379" kind = "WSML::OneWayOperation"></role>
+			<role name = "WSML::RequestResponseOperation" metaref = "7380" kind = "WSML::RequestResponseOperation"></role>
+			<role name = "WSML::SolicitResponseOperation" metaref = "7381" kind = "WSML::SolicitResponseOperation"></role>
 			<aspect name = "ServiceDefinition" metaref = "4934" >
-				<part metaref = "4935" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
-				<part metaref = "4936" role = "WSML::NotificationOperation" primary = "yes" linked = "yes"></part>
-				<part metaref = "4937" role = "WSML::OneWayOperation" primary = "yes" linked = "yes"></part>
-				<part metaref = "4938" role = "WSML::RequestResponseOperation" primary = "yes" linked = "yes"></part>
-				<part metaref = "4939" role = "WSML::SolicitResponseOperation" primary = "yes" linked = "yes"></part>
+				<part metaref = "7382" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
+				<part metaref = "7383" role = "WSML::NotificationOperation" primary = "yes" linked = "yes"></part>
+				<part metaref = "7384" role = "WSML::OneWayOperation" primary = "yes" linked = "yes"></part>
+				<part metaref = "7385" role = "WSML::RequestResponseOperation" primary = "yes" linked = "yes"></part>
+				<part metaref = "7386" role = "WSML::SolicitResponseOperation" primary = "yes" linked = "yes"></part>
 			</aspect>
 		</model>
-		<model name = "WSML::RequestResponseOperation" metaref = "4615" attributes = "parameterOrder" >
+		<model name = "WSML::RequestResponseOperation" metaref = "7387" attributes = "parameterOrder" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="requestresponse.bmp"></regnode>
+				<regnode name = "porticon" value ="operationport.gif"></regnode>
 			<constraint name="ValidWSML::OperationPartCardinality224" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "WSML::Documentation" ) -> size in
                      (partCount <= 1)]]>
@@ -6010,26 +6035,26 @@ actions->isUnique (iter : Action | iter->name ())
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by WSML::RequestResponseOperation, has to match 1.</dispname>
 			</constraint>
-			<role name = "WSML::Documentation" metaref = "4940" kind = "WSML::Documentation"></role>
-			<role name = "WSML::Fault" metaref = "4941" kind = "WSML::Fault"></role>
-			<role name = "WSML::FaultMessage" metaref = "4942" kind = "WSML::FaultMessage"></role>
-			<role name = "WSML::Input" metaref = "4943" kind = "WSML::Input"></role>
-			<role name = "WSML::InputMessage" metaref = "4944" kind = "WSML::InputMessage"></role>
-			<role name = "WSML::MessageRef" metaref = "4945" kind = "WSML::MessageRef"></role>
-			<role name = "WSML::Output" metaref = "4946" kind = "WSML::Output"></role>
-			<role name = "WSML::OutputMessage" metaref = "4947" kind = "WSML::OutputMessage"></role>
+			<role name = "WSML::Documentation" metaref = "7388" kind = "WSML::Documentation"></role>
+			<role name = "WSML::Fault" metaref = "7389" kind = "WSML::Fault"></role>
+			<role name = "WSML::FaultMessage" metaref = "7390" kind = "WSML::FaultMessage"></role>
+			<role name = "WSML::Input" metaref = "7391" kind = "WSML::Input"></role>
+			<role name = "WSML::InputMessage" metaref = "7392" kind = "WSML::InputMessage"></role>
+			<role name = "WSML::MessageRef" metaref = "7393" kind = "WSML::MessageRef"></role>
+			<role name = "WSML::Output" metaref = "7394" kind = "WSML::Output"></role>
+			<role name = "WSML::OutputMessage" metaref = "7395" kind = "WSML::OutputMessage"></role>
 			<aspect name = "ServiceDefinition" metaref = "4948" attributes = "parameterOrder" >
-				<part metaref = "4949" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
-				<part metaref = "4950" role = "WSML::Fault" primary = "yes" linked = "no"></part>
-				<part metaref = "4951" role = "WSML::FaultMessage" primary = "yes" linked = "no"></part>
-				<part metaref = "4952" role = "WSML::Input" primary = "yes" linked = "no"></part>
-				<part metaref = "4953" role = "WSML::InputMessage" primary = "yes" linked = "no"></part>
-				<part metaref = "4954" role = "WSML::MessageRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
-				<part metaref = "4955" role = "WSML::Output" primary = "yes" linked = "no"></part>
-				<part metaref = "4956" role = "WSML::OutputMessage" primary = "yes" linked = "no"></part>
+				<part metaref = "7396" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
+				<part metaref = "7397" role = "WSML::Fault" primary = "yes" linked = "no"></part>
+				<part metaref = "7398" role = "WSML::FaultMessage" primary = "yes" linked = "no"></part>
+				<part metaref = "7399" role = "WSML::Input" primary = "yes" linked = "no"></part>
+				<part metaref = "7400" role = "WSML::InputMessage" primary = "yes" linked = "no"></part>
+				<part metaref = "7401" role = "WSML::MessageRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
+				<part metaref = "7402" role = "WSML::Output" primary = "yes" linked = "no"></part>
+				<part metaref = "7403" role = "WSML::OutputMessage" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "WSML::SOAPHeader" metaref = "4633" attributes = "use required encodingStyle namespace" >
+		<model name = "WSML::SOAPHeader" metaref = "7404" attributes = "use required encodingStyle namespace" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="ValidWSML::HeaderMessagedstCardinality166" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", WSML::HeaderMessage ) -> size in
@@ -6041,74 +6066,81 @@ actions->isUnique (iter : Action | iter->name ())
                      (dstCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to WSML::SOAPHeaders as &quot;dst&quot; over WSML::HeaderPart, has to match 1.</dispname>
 			</constraint>
-			<attrdef name="namespace" metaref = "4957" valuetype = "string" defvalue = "">
+			<attrdef name="namespace" metaref = "7405" valuetype = "string" defvalue = "">
 			</attrdef>
-			<role name = "WSML::SOAPHeaderFault" metaref = "4958" kind = "WSML::SOAPHeaderFault"></role>
+			<role name = "WSML::SOAPHeaderFault" metaref = "7406" kind = "WSML::SOAPHeaderFault"></role>
 			<aspect name = "ServiceDefinition" metaref = "4959" attributes = "use required encodingStyle namespace" >
-				<part metaref = "4960" role = "WSML::SOAPHeaderFault" primary = "yes" linked = "no"></part>
+				<part metaref = "7407" role = "WSML::SOAPHeaderFault" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "WSML::Schema" metaref = "4638" attributes = "targetNamespace" >
+		<model name = "WSML::Schema" metaref = "7408" attributes = "targetNamespace" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<attrdef name="targetNamespace" metaref = "4961" valuetype = "string" defvalue = "">
+				<regnode name = "icon" value ="schema.bmp"></regnode>
+			<attrdef name="targetNamespace" metaref = "7409" valuetype = "string" defvalue = "">
 			</attrdef>
-			<role name = "WSML::Attribute" metaref = "4962" kind = "WSML::Attribute"></role>
-			<role name = "WSML::Element" metaref = "4963" kind = "WSML::Element"></role>
-			<role name = "WSML::SchemaImport" metaref = "4964" kind = "WSML::SchemaImport"></role>
-			<role name = "WSML::SchemaReference" metaref = "4965" kind = "WSML::SchemaReference"></role>
+			<role name = "WSML::Attribute" metaref = "7410" kind = "WSML::Attribute"></role>
+			<role name = "WSML::Element" metaref = "7411" kind = "WSML::Element"></role>
+			<role name = "WSML::SchemaImport" metaref = "7412" kind = "WSML::SchemaImport"></role>
+			<role name = "WSML::SchemaReference" metaref = "7413" kind = "WSML::SchemaReference"></role>
 			<aspect name = "ServiceDefinition" metaref = "4966" attributes = "targetNamespace" >
-				<part metaref = "4967" role = "WSML::Attribute" primary = "yes" linked = "no"></part>
-				<part metaref = "4968" role = "WSML::Element" primary = "yes" linked = "no"></part>
-				<part metaref = "4969" role = "WSML::SchemaImport" primary = "yes" linked = "no"></part>
-				<part metaref = "4970" role = "WSML::SchemaReference" primary = "yes" linked = "no"></part>
+				<part metaref = "7414" role = "WSML::Attribute" primary = "yes" linked = "no"></part>
+				<part metaref = "7415" role = "WSML::Element" primary = "yes" linked = "no"></part>
+				<part metaref = "7416" role = "WSML::SchemaImport" primary = "yes" linked = "no"></part>
+				<part metaref = "7417" role = "WSML::SchemaReference" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "WSML::SchemaBuiltins" metaref = "4648" >
+		<model name = "WSML::SchemaBuiltins" metaref = "7418" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<role name = "WSML::AtomicType" metaref = "4971" kind = "WSML::AtomicType"></role>
+			<role name = "WSML::AtomicType" metaref = "7419" kind = "WSML::AtomicType"></role>
 			<aspect name = "ServiceDefinition" metaref = "4972" >
-				<part metaref = "4973" role = "WSML::AtomicType" primary = "yes" linked = "no"></part>
+				<part metaref = "7420" role = "WSML::AtomicType" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "WSML::SchemaImport" metaref = "4651" attributes = "id namespace schemaLocation" >
+		<model name = "WSML::SchemaImport" metaref = "7421" attributes = "id namespace schemaLocation" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="schemareference.gif"></regnode>
+				<regnode name = "icon" value ="schemaimport.gif"></regnode>
 			<constraint name="ValidWSML::SchemaReferencePartCardinality230" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "WSML::Schema" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by WSML::SchemaReference, has to match 1.</dispname>
 			</constraint>
-			<attrdef name="namespace" metaref = "4974" valuetype = "string" defvalue = "">
+			<attrdef name="namespace" metaref = "7422" valuetype = "string" defvalue = "">
 			</attrdef>
-			<role name = "WSML::Schema" metaref = "4975" kind = "WSML::Schema"></role>
+			<role name = "WSML::Schema" metaref = "7423" kind = "WSML::Schema"></role>
 			<aspect name = "ServiceDefinition" metaref = "4976" attributes = "id namespace schemaLocation" >
-				<part metaref = "4977" role = "WSML::Schema" primary = "yes" linked = "no"></part>
+				<part metaref = "7424" role = "WSML::Schema" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "WSML::SchemaReference" metaref = "4656" attributes = "id schemaLocation" >
+		<model name = "WSML::SchemaReference" metaref = "7425" attributes = "id schemaLocation" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="schemareference.gif"></regnode>
 			<constraint name="ValidWSML::SchemaReferencePartCardinality230" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "WSML::Schema" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by WSML::SchemaReference, has to match 1.</dispname>
 			</constraint>
-			<role name = "WSML::Schema" metaref = "4978" kind = "WSML::Schema"></role>
+			<role name = "WSML::Schema" metaref = "7426" kind = "WSML::Schema"></role>
 			<aspect name = "ServiceDefinition" metaref = "4979" attributes = "id schemaLocation" >
-				<part metaref = "4980" role = "WSML::Schema" primary = "yes" linked = "no"></part>
+				<part metaref = "7427" role = "WSML::Schema" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "WSML::Service" metaref = "4660" >
+		<model name = "WSML::Service" metaref = "7428" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<role name = "WSML::BindingRef" metaref = "6395" kind = "WSML::BindingRef"></role>
-			<role name = "WSML::Port" metaref = "6396" kind = "WSML::Port"></role>
-			<role name = "WSML::PortBinding" metaref = "6397" kind = "WSML::PortBinding"></role>
+				<regnode name = "icon" value ="service.bmp"></regnode>
+			<role name = "WSML::BindingRef" metaref = "7429" kind = "WSML::BindingRef"></role>
+			<role name = "WSML::Port" metaref = "7430" kind = "WSML::Port"></role>
+			<role name = "WSML::PortBinding" metaref = "7431" kind = "WSML::PortBinding"></role>
 			<aspect name = "ServiceDefinition" metaref = "6398" >
-				<part metaref = "6399" role = "WSML::BindingRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
-				<part metaref = "6400" role = "WSML::Port" primary = "yes" linked = "yes"></part>
-				<part metaref = "6401" role = "WSML::PortBinding" primary = "yes" linked = "no"></part>
+				<part metaref = "7432" role = "WSML::BindingRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
+				<part metaref = "7433" role = "WSML::Port" primary = "yes" linked = "yes"></part>
+				<part metaref = "7434" role = "WSML::PortBinding" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "WSML::SolicitResponseOperation" metaref = "1234" attributes = "parameterOrder" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="solicitresponse.bmp"></regnode>
+				<regnode name = "porticon" value ="operationport.gif"></regnode>
 			<constraint name="ValidWSML::OperationPartCardinality224" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "WSML::Documentation" ) -> size in
                      (partCount <= 1)]]>
@@ -6124,37 +6156,38 @@ actions->isUnique (iter : Action | iter->name ())
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by WSML::SolicitResponseOperation, has to match 1.</dispname>
 			</constraint>
-			<role name = "WSML::Documentation" metaref = "4981" kind = "WSML::Documentation"></role>
-			<role name = "WSML::Fault" metaref = "4982" kind = "WSML::Fault"></role>
-			<role name = "WSML::FaultMessage" metaref = "4983" kind = "WSML::FaultMessage"></role>
-			<role name = "WSML::Input" metaref = "4984" kind = "WSML::Input"></role>
-			<role name = "WSML::InputMessage" metaref = "4985" kind = "WSML::InputMessage"></role>
-			<role name = "WSML::MessageRef" metaref = "4986" kind = "WSML::MessageRef"></role>
-			<role name = "WSML::Output" metaref = "4987" kind = "WSML::Output"></role>
-			<role name = "WSML::OutputMessage" metaref = "4988" kind = "WSML::OutputMessage"></role>
+			<role name = "WSML::Documentation" metaref = "7435" kind = "WSML::Documentation"></role>
+			<role name = "WSML::Fault" metaref = "7436" kind = "WSML::Fault"></role>
+			<role name = "WSML::FaultMessage" metaref = "7437" kind = "WSML::FaultMessage"></role>
+			<role name = "WSML::Input" metaref = "7438" kind = "WSML::Input"></role>
+			<role name = "WSML::InputMessage" metaref = "7439" kind = "WSML::InputMessage"></role>
+			<role name = "WSML::MessageRef" metaref = "7440" kind = "WSML::MessageRef"></role>
+			<role name = "WSML::Output" metaref = "7441" kind = "WSML::Output"></role>
+			<role name = "WSML::OutputMessage" metaref = "7442" kind = "WSML::OutputMessage"></role>
 			<aspect name = "ServiceDefinition" metaref = "4989" attributes = "parameterOrder" >
-				<part metaref = "4990" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
-				<part metaref = "4991" role = "WSML::Fault" primary = "yes" linked = "no"></part>
-				<part metaref = "4992" role = "WSML::FaultMessage" primary = "yes" linked = "no"></part>
-				<part metaref = "4993" role = "WSML::Input" primary = "yes" linked = "no"></part>
-				<part metaref = "4994" role = "WSML::InputMessage" primary = "yes" linked = "no"></part>
-				<part metaref = "4995" role = "WSML::MessageRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
-				<part metaref = "4996" role = "WSML::Output" primary = "yes" linked = "no"></part>
-				<part metaref = "4997" role = "WSML::OutputMessage" primary = "yes" linked = "no"></part>
+				<part metaref = "7443" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
+				<part metaref = "7444" role = "WSML::Fault" primary = "yes" linked = "no"></part>
+				<part metaref = "7445" role = "WSML::FaultMessage" primary = "yes" linked = "no"></part>
+				<part metaref = "7446" role = "WSML::Input" primary = "yes" linked = "no"></part>
+				<part metaref = "7447" role = "WSML::InputMessage" primary = "yes" linked = "no"></part>
+				<part metaref = "7448" role = "WSML::MessageRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
+				<part metaref = "7449" role = "WSML::Output" primary = "yes" linked = "no"></part>
+				<part metaref = "7450" role = "WSML::OutputMessage" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "WSML::Types" metaref = "4693" >
+		<model name = "WSML::Types" metaref = "7451" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="types.bmp"></regnode>
 			<constraint name="ValidWSML::TypesPartCardinality233" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "WSML::Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by WSML::Types, has to match 0..1.</dispname>
 			</constraint>
-			<role name = "WSML::Documentation" metaref = "4998" kind = "WSML::Documentation"></role>
-			<role name = "WSML::Schema" metaref = "4999" kind = "WSML::Schema"></role>
+			<role name = "WSML::Documentation" metaref = "7452" kind = "WSML::Documentation"></role>
+			<role name = "WSML::Schema" metaref = "7453" kind = "WSML::Schema"></role>
 			<aspect name = "ServiceDefinition" metaref = "5000" >
-				<part metaref = "5001" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
-				<part metaref = "5002" role = "WSML::Schema" primary = "yes" linked = "no"></part>
+				<part metaref = "7454" role = "WSML::Documentation" primary = "yes" linked = "no"></part>
+				<part metaref = "7455" role = "WSML::Schema" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<folder name = "PICML::ComponentAnalyses" metaref = "1896"  rootobjects = "PICML::BenchmarkAnalysis" >

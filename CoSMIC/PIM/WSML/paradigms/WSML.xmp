@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="WSML" guid="{6A50E633-72A1-4BC7-B4A3-29A599854C07}" cdate="Sat Jul 29 22:11:16 2006" mdate="Sat Jul 29 22:11:16 2006" >
+<paradigm name="WSML" guid="{982D5475-7DFB-447F-8141-3FF57DF820BD}" cdate="Wed Aug 16 14:32:53 2006" mdate="Wed Aug 16 14:32:53 2006" >
 
 	<comment>Web Services Modeling Language (WSML) is a domain-specific modeling language
   which allows definition of Web Services and interactions, and uses generative
@@ -114,14 +114,17 @@
 		</atom>
 		<atom name = "Attribute" metaref = "1014"  attributes = "Value">
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="attribute.bmp"></regnode>
 		</atom>
 		<atom name = "SOAPAddress" metaref = "1015"  attributes = "required location">
 				<regnode name = "namePosition" value ="4"></regnode>
 			<attrdef name="location" metaref = "1016" valuetype = "string" defvalue = "">
 			</attrdef>
+				<regnode name = "icon" value ="address.bmp"></regnode>
 		</atom>
 		<atom name = "SOAPBinding" metaref = "1017"  attributes = "required transport style">
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="soapbinding.gif"></regnode>
 		</atom>
 		<atom name = "SOAPBody" metaref = "1018"  attributes = "use required encodingStyle namespace">
 				<regnode name = "namePosition" value ="4"></regnode>
@@ -150,6 +153,7 @@
 		</atom>
 		<atom name = "SOAPOperation" metaref = "1024"  attributes = "required soapAction style">
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="operation.gif"></regnode>
 		</atom>
 		<connection name = "BindingPortType" metaref = "1025" >
 				<regnode name = "labelFormatStr" value ="boundPortType"></regnode>
@@ -430,6 +434,7 @@
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyPart"></regnode>
+			<regnode name = "icon" value ="part.bmp"></regnode>
 			<pointerspec name = "ref">
 				<pointeritem desc = "AtomicType"></pointeritem>
 				<pointeritem desc = "Element"></pointeritem>
@@ -445,6 +450,7 @@
 		</reference>
 		<model name = "Binding" metaref = "1044" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="binding.gif"></regnode>
 			<constraint name="ValidBindingPartCardinality25" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
@@ -475,8 +481,9 @@
 		</model>
 		<model name = "BindingOperation" metaref = "1052" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="bindingoperation.gif"></regnode>
 			<constraint name="ValidBindingOperationPartCardinality27" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ExtensibleOperation" ) -> size + self.parts( "SOAPOperation" ) -> size in
+				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 0..1.</dispname>
 			</constraint>
@@ -486,7 +493,7 @@
 				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 1..*.</dispname>
 			</constraint>
 			<constraint name="ValidBindingOperationPartCardinality29" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
+				<![CDATA[let partCount = self.parts( "ExtensibleOperation" ) -> size + self.parts( "SOAPOperation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 0..1.</dispname>
 			</constraint>
@@ -534,13 +541,14 @@
 		</model>
 		<model name = "Definitions" metaref = "1090" attributes = "targetNamespace" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="definitions.gif"></regnode>
 			<constraint name="ValidDefinitionsPartCardinality30" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Messages" ) -> size in
+				<![CDATA[let partCount = self.parts( "Types" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Definitions, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidDefinitionsPartCardinality31" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Types" ) -> size in
+				<![CDATA[let partCount = self.parts( "Messages" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Definitions, has to match 0..1.</dispname>
 			</constraint>
@@ -574,6 +582,7 @@
 		</model>
 		<model name = "Documentation" metaref = "1113" attributes = "DocText Mixed" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="documentation.bmp"></regnode>
 			<role name = "Element" metaref = "1114" kind = "Element"></role>
 			<aspect name = "ServiceDefinition" metaref = "1562" attributes = "DocText Mixed" >
 				<part metaref = "1116" role = "Element" primary = "yes" linked = "no"></part>
@@ -581,6 +590,7 @@
 		</model>
 		<model name = "Element" metaref = "1117" attributes = "schemaType Order" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="element.bmp"></regnode>
 			<role name = "Attribute" metaref = "1118" kind = "Attribute"></role>
 			<role name = "Element" metaref = "1119" kind = "Element"></role>
 			<aspect name = "ServiceDefinition" metaref = "1563" attributes = "schemaType Order" >
@@ -590,6 +600,7 @@
 		</model>
 		<model name = "Fault" metaref = "1123" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="fault.bmp"></regnode>
 			<constraint name="ValidFaultMessagedstCardinality10" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", FaultMessage ) -> size in
                      (dstCount = 1)]]>
@@ -602,6 +613,7 @@
 		</model>
 		<model name = "Import" metaref = "1127" attributes = "namespace location" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="import.bmp"></regnode>
 			<constraint name="ValidImportPartCardinality33" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Definitions" ) -> size in
                      (partCount = 1)]]>
@@ -620,6 +632,7 @@
 		</model>
 		<model name = "Input" metaref = "1135" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="input.bmp"></regnode>
 			<constraint name="ValidInputMessagedstCardinality18" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", InputMessage ) -> size in
                      (dstCount = 1)]]>
@@ -632,6 +645,7 @@
 		</model>
 		<model name = "Message" metaref = "1139" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="message.bmp"></regnode>
 			<role name = "Part" metaref = "1140" kind = "Part"></role>
 			<aspect name = "ServiceDefinition" metaref = "1567" >
 				<part metaref = "1142" role = "Part" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
@@ -639,6 +653,7 @@
 		</model>
 		<model name = "Messages" metaref = "1550" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="messages.bmp"></regnode>
 			<role name = "Message" metaref = "1551" kind = "Message"></role>
 			<aspect name = "ServiceDefinition" metaref = "1568" >
 				<part metaref = "1553" role = "Message" primary = "yes" linked = "no"></part>
@@ -646,6 +661,8 @@
 		</model>
 		<model name = "NotificationOperation" metaref = "1143" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="notification.bmp"></regnode>
+				<regnode name = "porticon" value ="operationport.gif"></regnode>
 			<constraint name="ValidNotificationOperationPartCardinality34" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Output" ) -> size in
                      (partCount = 1)]]>
@@ -673,6 +690,8 @@
 		</model>
 		<model name = "OneWayOperation" metaref = "1155" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="oneway.gif"></regnode>
+				<regnode name = "porticon" value ="operationport.gif"></regnode>
 			<constraint name="ValidOneWayOperationPartCardinality35" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Input" ) -> size in
                      (partCount = 1)]]>
@@ -700,6 +719,7 @@
 		</model>
 		<model name = "Output" metaref = "1167" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="output.bmp"></regnode>
 			<constraint name="ValidOutputMessagedstCardinality20" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", OutputMessage ) -> size in
                      (dstCount = 1)]]>
@@ -712,6 +732,8 @@
 		</model>
 		<model name = "Port" metaref = "1171" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="wsdlport.bmp"></regnode>
+				<regnode name = "porticon" value ="port.gif"></regnode>
 			<constraint name="ValidPortBindingdstCardinality22" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", PortBinding ) -> size in
                      (dstCount = 1)]]>
@@ -736,6 +758,7 @@
 		</model>
 		<model name = "PortType" metaref = "1177" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="porttype.bmp"></regnode>
 			<constraint name="ValidPortTypePartCardinality39" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
@@ -756,6 +779,8 @@
 		</model>
 		<model name = "RequestResponseOperation" metaref = "1189" attributes = "parameterOrder" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="requestresponse.bmp"></regnode>
+				<regnode name = "porticon" value ="operationport.gif"></regnode>
 			<constraint name="ValidOperationPartCardinality36" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
@@ -811,6 +836,7 @@
 		</model>
 		<model name = "Schema" metaref = "1210" attributes = "targetNamespace" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="schema.bmp"></regnode>
 			<attrdef name="targetNamespace" metaref = "1211" valuetype = "string" defvalue = "">
 			</attrdef>
 			<role name = "Attribute" metaref = "1212" kind = "Attribute"></role>
@@ -833,6 +859,8 @@
 		</model>
 		<model name = "SchemaImport" metaref = "1221" attributes = "id namespace schemaLocation" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="schemareference.gif"></regnode>
+				<regnode name = "icon" value ="schemaimport.gif"></regnode>
 			<constraint name="ValidSchemaReferencePartCardinality42" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Schema" ) -> size in
                      (partCount = 1)]]>
@@ -847,6 +875,7 @@
 		</model>
 		<model name = "SchemaReference" metaref = "1226" attributes = "id schemaLocation" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="schemareference.gif"></regnode>
 			<constraint name="ValidSchemaReferencePartCardinality42" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Schema" ) -> size in
                      (partCount = 1)]]>
@@ -859,6 +888,7 @@
 		</model>
 		<model name = "Service" metaref = "1230" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="service.bmp"></regnode>
 			<role name = "BindingRef" metaref = "1404" kind = "BindingRef"></role>
 			<role name = "Port" metaref = "1402" kind = "Port"></role>
 			<role name = "PortBinding" metaref = "1406" kind = "PortBinding"></role>
@@ -870,6 +900,8 @@
 		</model>
 		<model name = "SolicitResponseOperation" metaref = "1234" attributes = "parameterOrder" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="solicitresponse.bmp"></regnode>
+				<regnode name = "porticon" value ="operationport.gif"></regnode>
 			<constraint name="ValidOperationPartCardinality36" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
@@ -906,6 +938,7 @@
 		</model>
 		<model name = "Types" metaref = "1250" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="types.bmp"></regnode>
 			<constraint name="ValidTypesPartCardinality45" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
