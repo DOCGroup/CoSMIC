@@ -622,7 +622,7 @@ GatewayGeneratorVisitor::generate_source()
                 << "{\"xsi\", \"http://www.w3.org/2001/XMLSchema-instance\", \"http://www.w3.org/*/XMLSchema-instance\", NULL},"
                 << "{\"xsd\", \"http://www.w3.org/2001/XMLSchema\", \"http://www.w3.org/*/XMLSchema\", NULL},"
                 << "{\"CORBA\", \"http://www.omg.org/IDL-WSDL/1.0/\", NULL, NULL},"
-                << "{\"" << this->defName_ << "\"" << "\"" << this->targetNamespace_ << "\", NULL, NULL},"
+                << "{\"" << this->defName_ << "\"" << "," <<  "\"" << this->targetNamespace_ << "\", NULL, NULL},"
                 << "{NULL, NULL, NULL, NULL}"
                 << "};"
                 << "soap_init2(this, imode, omode);"

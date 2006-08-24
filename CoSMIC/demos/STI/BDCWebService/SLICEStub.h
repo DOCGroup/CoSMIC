@@ -17,7 +17,7 @@
 
 
 #ifndef SOAP_TYPE_CORBA__CORBA_x002ecompletion_USCOREstatus
-#define SOAP_TYPE_CORBA__CORBA_x002ecompletion_USCOREstatus (49)
+#define SOAP_TYPE_CORBA__CORBA_x002ecompletion_USCOREstatus (52)
 /* CORBA:CORBA.completion_status */
 enum CORBA__CORBA_x002ecompletion_USCOREstatus {CORBA__CORBA_x002ecompletion_USCOREstatus__COMPLETED_USCOREYES = 0, CORBA__CORBA_x002ecompletion_USCOREstatus__COMPLETED_USCORENO = 1, CORBA__CORBA_x002ecompletion_USCOREstatus__COMPLETED_USCOREMAYBE = 2};
 #endif
@@ -52,15 +52,35 @@ public:
 };
 #endif
 
+#ifndef SOAP_TYPE_xsd__ID_
+#define SOAP_TYPE_xsd__ID_ (10)
+/* Primitive xsd:ID schema type: */
+class SOAP_CMAC xsd__ID_ : public xsd__anyType
+{
+public:
+	char *__item;
+public:
+	virtual int soap_type() const { return 10; } /* = unique id SOAP_TYPE_xsd__ID_ */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         xsd__ID_() : __item(NULL) { }
+	virtual ~xsd__ID_() { }
+};
+#endif
+
 #ifndef SOAP_TYPE_xsd__anyURI_
-#define SOAP_TYPE_xsd__anyURI_ (10)
+#define SOAP_TYPE_xsd__anyURI_ (12)
 /* Primitive xsd:anyURI schema type: */
 class SOAP_CMAC xsd__anyURI_ : public xsd__anyType
 {
 public:
 	char *__item;
 public:
-	virtual int soap_type() const { return 10; } /* = unique id SOAP_TYPE_xsd__anyURI_ */
+	virtual int soap_type() const { return 12; } /* = unique id SOAP_TYPE_xsd__anyURI_ */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -73,14 +93,14 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_xsd__int
-#define SOAP_TYPE_xsd__int (11)
+#define SOAP_TYPE_xsd__int (13)
 /* Primitive xsd:int schema type: */
 class SOAP_CMAC xsd__int : public xsd__anyType
 {
 public:
 	int __item;
 public:
-	virtual int soap_type() const { return 11; } /* = unique id SOAP_TYPE_xsd__int */
+	virtual int soap_type() const { return 13; } /* = unique id SOAP_TYPE_xsd__int */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -93,14 +113,14 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_xsd__string
-#define SOAP_TYPE_xsd__string (12)
+#define SOAP_TYPE_xsd__string (14)
 /* Primitive xsd:string schema type: */
 class SOAP_CMAC xsd__string : public xsd__anyType
 {
 public:
 	char *__item;
 public:
-	virtual int soap_type() const { return 12; } /* = unique id SOAP_TYPE_xsd__string */
+	virtual int soap_type() const { return 14; } /* = unique id SOAP_TYPE_xsd__string */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -113,14 +133,14 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_xsd__unsignedInt
-#define SOAP_TYPE_xsd__unsignedInt (13)
+#define SOAP_TYPE_xsd__unsignedInt (15)
 /* Primitive xsd:unsignedInt schema type: */
 class SOAP_CMAC xsd__unsignedInt : public xsd__anyType
 {
 public:
 	unsigned int __item;
 public:
-	virtual int soap_type() const { return 13; } /* = unique id SOAP_TYPE_xsd__unsignedInt */
+	virtual int soap_type() const { return 15; } /* = unique id SOAP_TYPE_xsd__unsignedInt */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -133,14 +153,14 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_xsd__unsignedShort
-#define SOAP_TYPE_xsd__unsignedShort (15)
+#define SOAP_TYPE_xsd__unsignedShort (17)
 /* Primitive xsd:unsignedShort schema type: */
 class SOAP_CMAC xsd__unsignedShort : public xsd__anyType
 {
 public:
 	unsigned short __item;
 public:
-	virtual int soap_type() const { return 15; } /* = unique id SOAP_TYPE_xsd__unsignedShort */
+	virtual int soap_type() const { return 17; } /* = unique id SOAP_TYPE_xsd__unsignedShort */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -153,14 +173,14 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eTime_USCOREStamp__
-#define SOAP_TYPE_SLICE__CUTS_x002eTime_USCOREStamp__ (48)
+#define SOAP_TYPE_SLICE__CUTS_x002eTime_USCOREStamp__ (51)
 /* Primitive SLICE:CUTS.Time_Stamp schema type: */
 class SOAP_CMAC SLICE__CUTS_x002eTime_USCOREStamp__ : public xsd__anyType
 {
 public:
 	int __item;
 public:
-	virtual int soap_type() const { return 48; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eTime_USCOREStamp__ */
+	virtual int soap_type() const { return 51; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eTime_USCOREStamp__ */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -173,14 +193,14 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_CORBA__CORBA_x002ecompletion_USCOREstatus_
-#define SOAP_TYPE_CORBA__CORBA_x002ecompletion_USCOREstatus_ (50)
+#define SOAP_TYPE_CORBA__CORBA_x002ecompletion_USCOREstatus_ (53)
 /* Primitive CORBA:CORBA.completion_status schema type: */
 class SOAP_CMAC CORBA__CORBA_x002ecompletion_USCOREstatus_ : public xsd__anyType
 {
 public:
 	enum CORBA__CORBA_x002ecompletion_USCOREstatus __item;
 public:
-	virtual int soap_type() const { return 50; } /* = unique id SOAP_TYPE_CORBA__CORBA_x002ecompletion_USCOREstatus_ */
+	virtual int soap_type() const { return 53; } /* = unique id SOAP_TYPE_CORBA__CORBA_x002ecompletion_USCOREstatus_ */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -193,12 +213,12 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eBinding_USCOREFailed
-#define SOAP_TYPE_SLICE__CUTS_x002eBinding_USCOREFailed (19)
+#define SOAP_TYPE_SLICE__CUTS_x002eBinding_USCOREFailed (21)
 /* Primitive SLICE:CUTS.Binding_Failed schema type: */
 class SOAP_CMAC SLICE__CUTS_x002eBinding_USCOREFailed : public xsd__anyType
 {
 public:
-	virtual int soap_type() const { return 19; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eBinding_USCOREFailed */
+	virtual int soap_type() const { return 21; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eBinding_USCOREFailed */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -211,12 +231,12 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eID_USCORENot_USCOREFound
-#define SOAP_TYPE_SLICE__CUTS_x002eID_USCORENot_USCOREFound (20)
+#define SOAP_TYPE_SLICE__CUTS_x002eID_USCORENot_USCOREFound (22)
 /* Primitive SLICE:CUTS.ID_Not_Found schema type: */
 class SOAP_CMAC SLICE__CUTS_x002eID_USCORENot_USCOREFound : public xsd__anyType
 {
 public:
-	virtual int soap_type() const { return 20; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eID_USCORENot_USCOREFound */
+	virtual int soap_type() const { return 22; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eID_USCORENot_USCOREFound */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -229,12 +249,12 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eOperation_USCOREFailed
-#define SOAP_TYPE_SLICE__CUTS_x002eOperation_USCOREFailed (21)
+#define SOAP_TYPE_SLICE__CUTS_x002eOperation_USCOREFailed (23)
 /* Primitive SLICE:CUTS.Operation_Failed schema type: */
 class SOAP_CMAC SLICE__CUTS_x002eOperation_USCOREFailed : public xsd__anyType
 {
 public:
-	virtual int soap_type() const { return 21; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eOperation_USCOREFailed */
+	virtual int soap_type() const { return 23; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eOperation_USCOREFailed */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -247,12 +267,12 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eRegistration_USCOREFailed
-#define SOAP_TYPE_SLICE__CUTS_x002eRegistration_USCOREFailed (22)
+#define SOAP_TYPE_SLICE__CUTS_x002eRegistration_USCOREFailed (24)
 /* Primitive SLICE:CUTS.Registration_Failed schema type: */
 class SOAP_CMAC SLICE__CUTS_x002eRegistration_USCOREFailed : public xsd__anyType
 {
 public:
-	virtual int soap_type() const { return 22; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eRegistration_USCOREFailed */
+	virtual int soap_type() const { return 24; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eRegistration_USCOREFailed */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -265,12 +285,12 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eRegistration_USCORELimit
-#define SOAP_TYPE_SLICE__CUTS_x002eRegistration_USCORELimit (23)
+#define SOAP_TYPE_SLICE__CUTS_x002eRegistration_USCORELimit (25)
 /* Primitive SLICE:CUTS.Registration_Limit schema type: */
 class SOAP_CMAC SLICE__CUTS_x002eRegistration_USCORELimit : public xsd__anyType
 {
 public:
-	virtual int soap_type() const { return 23; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eRegistration_USCORELimit */
+	virtual int soap_type() const { return 25; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eRegistration_USCORELimit */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -283,7 +303,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eComponent_USCORERegistration
-#define SOAP_TYPE_SLICE__CUTS_x002eComponent_USCORERegistration (24)
+#define SOAP_TYPE_SLICE__CUTS_x002eComponent_USCORERegistration (26)
 /* SLICE:CUTS.Component_Registration */
 class SOAP_CMAC SLICE__CUTS_x002eComponent_USCORERegistration : public xsd__anyType
 {
@@ -293,7 +313,7 @@ public:
 	char *ipaddr;	/* required element of type xsd:string */
 	char *hostname;	/* required element of type xsd:string */
 public:
-	virtual int soap_type() const { return 24; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eComponent_USCORERegistration */
+	virtual int soap_type() const { return 26; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eComponent_USCORERegistration */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -306,7 +326,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002ePath_USCOREElement
-#define SOAP_TYPE_SLICE__CUTS_x002ePath_USCOREElement (25)
+#define SOAP_TYPE_SLICE__CUTS_x002ePath_USCOREElement (27)
 /* SLICE:CUTS.Path_Element */
 class SOAP_CMAC SLICE__CUTS_x002ePath_USCOREElement : public xsd__anyType
 {
@@ -315,7 +335,7 @@ public:
 	char *src;	/* required element of type xsd:string */
 	char *dst;	/* required element of type xsd:string */
 public:
-	virtual int soap_type() const { return 25; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002ePath_USCOREElement */
+	virtual int soap_type() const { return 27; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002ePath_USCOREElement */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -328,7 +348,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eTime_USCOREInfo
-#define SOAP_TYPE_SLICE__CUTS_x002eTime_USCOREInfo (27)
+#define SOAP_TYPE_SLICE__CUTS_x002eTime_USCOREInfo (29)
 /* SLICE:CUTS.Time_Info */
 class SOAP_CMAC SLICE__CUTS_x002eTime_USCOREInfo : public xsd__anyType
 {
@@ -337,7 +357,7 @@ public:
 	int max_;	/* required element of type SLICE:CUTS.Time_Stamp */
 	int min_;	/* required element of type SLICE:CUTS.Time_Stamp */
 public:
-	virtual int soap_type() const { return 27; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eTime_USCOREInfo */
+	virtual int soap_type() const { return 29; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eTime_USCOREInfo */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -350,7 +370,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo
-#define SOAP_TYPE_SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo (28)
+#define SOAP_TYPE_SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo (30)
 /* SLICE:CUTS.Event_Time_Info */
 class SOAP_CMAC SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo : public xsd__anyType
 {
@@ -359,7 +379,7 @@ public:
 	int max_USCOREevents;	/* required element of type xsd:int */
 	int min_USCOREevents;	/* required element of type xsd:int */
 public:
-	virtual int soap_type() const { return 28; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo */
+	virtual int soap_type() const { return 30; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -372,7 +392,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eTime_USCORESample
-#define SOAP_TYPE_SLICE__CUTS_x002eTime_USCORESample (29)
+#define SOAP_TYPE_SLICE__CUTS_x002eTime_USCORESample (31)
 /* SLICE:CUTS.Time_Sample */
 class SOAP_CMAC SLICE__CUTS_x002eTime_USCORESample : public xsd__anyType
 {
@@ -380,7 +400,7 @@ public:
 	int count;	/* required element of type xsd:int */
 	SLICE__CUTS_x002eTime_USCOREInfo *time;	/* required element of type SLICE:CUTS.Time_Info */
 public:
-	virtual int soap_type() const { return 29; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eTime_USCORESample */
+	virtual int soap_type() const { return 31; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eTime_USCORESample */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -393,7 +413,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eAction_USCOREMeasurement
-#define SOAP_TYPE_SLICE__CUTS_x002eAction_USCOREMeasurement (30)
+#define SOAP_TYPE_SLICE__CUTS_x002eAction_USCOREMeasurement (32)
 /* SLICE:CUTS.Action_Measurement */
 class SOAP_CMAC SLICE__CUTS_x002eAction_USCOREMeasurement : public xsd__anyType
 {
@@ -401,7 +421,7 @@ public:
 	int type;	/* required element of type xsd:int */
 	SLICE__CUTS_x002eTime_USCORESample *time;	/* required element of type SLICE:CUTS.Time_Sample */
 public:
-	virtual int soap_type() const { return 30; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eAction_USCOREMeasurement */
+	virtual int soap_type() const { return 32; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eAction_USCOREMeasurement */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -414,7 +434,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eWorker_USCOREMeasurement
-#define SOAP_TYPE_SLICE__CUTS_x002eWorker_USCOREMeasurement (32)
+#define SOAP_TYPE_SLICE__CUTS_x002eWorker_USCOREMeasurement (34)
 /* SLICE:CUTS.Worker_Measurement */
 class SOAP_CMAC SLICE__CUTS_x002eWorker_USCOREMeasurement : public xsd__anyType
 {
@@ -422,7 +442,7 @@ public:
 	int type;	/* required element of type xsd:int */
 	class CUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq *actions;	/* required element of type ArrayOfCUTS.Action-Measurement */
 public:
-	virtual int soap_type() const { return 32; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eWorker_USCOREMeasurement */
+	virtual int soap_type() const { return 34; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eWorker_USCOREMeasurement */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -435,7 +455,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eExit_USCOREPoint_USCORETime
-#define SOAP_TYPE_SLICE__CUTS_x002eExit_USCOREPoint_USCORETime (34)
+#define SOAP_TYPE_SLICE__CUTS_x002eExit_USCOREPoint_USCORETime (36)
 /* SLICE:CUTS.Exit_Point_Time */
 class SOAP_CMAC SLICE__CUTS_x002eExit_USCOREPoint_USCORETime : public xsd__anyType
 {
@@ -443,7 +463,7 @@ public:
 	char *exit_USCOREpoint_USCORE;	/* required element of type xsd:string */
 	SLICE__CUTS_x002eTime_USCORESample *time_USCOREsample_USCORE;	/* required element of type SLICE:CUTS.Time_Sample */
 public:
-	virtual int soap_type() const { return 34; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eExit_USCOREPoint_USCORETime */
+	virtual int soap_type() const { return 36; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eExit_USCOREPoint_USCORETime */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -456,7 +476,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement
-#define SOAP_TYPE_SLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement (36)
+#define SOAP_TYPE_SLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement (38)
 /* SLICE:CUTS.Mapped_Port_Measurement */
 class SOAP_CMAC SLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement : public xsd__anyType
 {
@@ -467,7 +487,7 @@ public:
 	class CUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq *exit_USCOREtimes;	/* required element of type ArrayOfCUTS.Exit-Point-Time */
 	class CUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq *workers;	/* required element of type ArrayOfCUTS.Worker-Measurement */
 public:
-	virtual int soap_type() const { return 36; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement */
+	virtual int soap_type() const { return 38; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -480,7 +500,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002ePort_USCOREMeasurement
-#define SOAP_TYPE_SLICE__CUTS_x002ePort_USCOREMeasurement (38)
+#define SOAP_TYPE_SLICE__CUTS_x002ePort_USCOREMeasurement (40)
 /* SLICE:CUTS.Port_Measurement */
 class SOAP_CMAC SLICE__CUTS_x002ePort_USCOREMeasurement : public xsd__anyType
 {
@@ -488,7 +508,7 @@ public:
 	char *port;	/* required element of type xsd:string */
 	class CUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq *measurements;	/* required element of type ArrayOfCUTS.Mapped-Port-Measurement */
 public:
-	virtual int soap_type() const { return 38; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002ePort_USCOREMeasurement */
+	virtual int soap_type() const { return 40; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002ePort_USCOREMeasurement */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -501,7 +521,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eBenchmark_USCOREData
-#define SOAP_TYPE_SLICE__CUTS_x002eBenchmark_USCOREData (40)
+#define SOAP_TYPE_SLICE__CUTS_x002eBenchmark_USCOREData (42)
 /* SLICE:CUTS.Benchmark_Data */
 class SOAP_CMAC SLICE__CUTS_x002eBenchmark_USCOREData : public xsd__anyType
 {
@@ -510,7 +530,7 @@ public:
 	int timestamp;	/* required element of type SLICE:CUTS.Time_Stamp */
 	class CUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq *ports;	/* required element of type ArrayOfCUTS.Port-Measurement */
 public:
-	virtual int soap_type() const { return 40; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eBenchmark_USCOREData */
+	virtual int soap_type() const { return 42; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eBenchmark_USCOREData */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -522,8 +542,31 @@ public:
 };
 #endif
 
+#ifndef SOAP_TYPE_SLICE__CUTS_x002eCollection_USCOREStatistics
+#define SOAP_TYPE_SLICE__CUTS_x002eCollection_USCOREStatistics (43)
+/* SLICE:CUTS.Collection_Statistics */
+class SOAP_CMAC SLICE__CUTS_x002eCollection_USCOREStatistics : public xsd__anyType
+{
+public:
+	int start_USCOREtime;	/* required element of type xsd:int */
+	int finish_USCOREtime;	/* required element of type xsd:int */
+	unsigned int component_USCOREcount;	/* required element of type xsd:unsignedInt */
+	char *id;	/* optional attribute */
+public:
+	virtual int soap_type() const { return 43; } /* = unique id SOAP_TYPE_SLICE__CUTS_x002eCollection_USCOREStatistics */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         SLICE__CUTS_x002eCollection_USCOREStatistics() : id(NULL) { }
+	virtual ~SLICE__CUTS_x002eCollection_USCOREStatistics() { }
+};
+#endif
+
 #ifndef SOAP_TYPE_CORBA__ObjectReference
-#define SOAP_TYPE_CORBA__ObjectReference (41)
+#define SOAP_TYPE_CORBA__ObjectReference (44)
 /* CORBA:ObjectReference */
 class SOAP_CMAC CORBA__ObjectReference : public xsd__anyType
 {
@@ -531,7 +574,7 @@ public:
 	int __sizeurl;	/* sequence of elements <url> */
 	char **url;	/* required element of type xsd:anyURI */
 public:
-	virtual int soap_type() const { return 41; } /* = unique id SOAP_TYPE_CORBA__ObjectReference */
+	virtual int soap_type() const { return 44; } /* = unique id SOAP_TYPE_CORBA__ObjectReference */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -544,7 +587,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_CORBA__CORBA_x002eTypeCode
-#define SOAP_TYPE_CORBA__CORBA_x002eTypeCode (42)
+#define SOAP_TYPE_CORBA__CORBA_x002eTypeCode (45)
 /* CORBA:CORBA.TypeCode */
 class SOAP_CMAC CORBA__CORBA_x002eTypeCode : public xsd__anyType
 {
@@ -552,7 +595,7 @@ public:
 	char *definition;	/* required element of type xsd:anyURI */
 	char *typename_;	/* required element of type xsd:string */
 public:
-	virtual int soap_type() const { return 42; } /* = unique id SOAP_TYPE_CORBA__CORBA_x002eTypeCode */
+	virtual int soap_type() const { return 45; } /* = unique id SOAP_TYPE_CORBA__CORBA_x002eTypeCode */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -565,7 +608,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_CORBA__CORBA_x002eAny
-#define SOAP_TYPE_CORBA__CORBA_x002eAny (43)
+#define SOAP_TYPE_CORBA__CORBA_x002eAny (46)
 /* CORBA:CORBA.Any */
 class SOAP_CMAC CORBA__CORBA_x002eAny : public xsd__anyType
 {
@@ -573,7 +616,7 @@ public:
 	CORBA__CORBA_x002eTypeCode *type;	/* required element of type CORBA:CORBA.TypeCode */
 	xsd__anyType *value;	/* required element of type xsd:anyType */
 public:
-	virtual int soap_type() const { return 43; } /* = unique id SOAP_TYPE_CORBA__CORBA_x002eAny */
+	virtual int soap_type() const { return 46; } /* = unique id SOAP_TYPE_CORBA__CORBA_x002eAny */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -586,7 +629,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_CORBA__CORBA_x002eSystemException
-#define SOAP_TYPE_CORBA__CORBA_x002eSystemException (44)
+#define SOAP_TYPE_CORBA__CORBA_x002eSystemException (47)
 /* CORBA:CORBA.SystemException */
 class SOAP_CMAC CORBA__CORBA_x002eSystemException : public xsd__anyType
 {
@@ -594,7 +637,7 @@ public:
 	unsigned int minor;	/* required element of type xsd:unsignedInt */
 	enum CORBA__CORBA_x002ecompletion_USCOREstatus completion_USCOREstatus;	/* required element of type CORBA:CORBA.completion_status */
 public:
-	virtual int soap_type() const { return 44; } /* = unique id SOAP_TYPE_CORBA__CORBA_x002eSystemException */
+	virtual int soap_type() const { return 47; } /* = unique id SOAP_TYPE_CORBA__CORBA_x002eSystemException */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -607,7 +650,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE__CORBA__SourceIDL
-#define SOAP_TYPE__CORBA__SourceIDL (45)
+#define SOAP_TYPE__CORBA__SourceIDL (48)
 /* CORBA:SourceIDL */
 class SOAP_CMAC _CORBA__SourceIDL
 {
@@ -616,7 +659,7 @@ public:
 	char *version;	/* required element of type xsd:string */
 	struct soap *soap;	/* transient */
 public:
-	virtual int soap_type() const { return 45; } /* = unique id SOAP_TYPE__CORBA__SourceIDL */
+	virtual int soap_type() const { return 48; } /* = unique id SOAP_TYPE__CORBA__SourceIDL */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -629,7 +672,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE__CORBA__SourceRepositoryID
-#define SOAP_TYPE__CORBA__SourceRepositoryID (46)
+#define SOAP_TYPE__CORBA__SourceRepositoryID (49)
 /* CORBA:SourceRepositoryID */
 class SOAP_CMAC _CORBA__SourceRepositoryID
 {
@@ -638,7 +681,7 @@ public:
 	char *version;	/* required element of type xsd:string */
 	struct soap *soap;	/* transient */
 public:
-	virtual int soap_type() const { return 46; } /* = unique id SOAP_TYPE__CORBA__SourceRepositoryID */
+	virtual int soap_type() const { return 49; } /* = unique id SOAP_TYPE__CORBA__SourceRepositoryID */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -651,7 +694,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_CUTS_x002e_USCORESE_USCOREPath_USCORESequence
-#define SOAP_TYPE_CUTS_x002e_USCORESE_USCOREPath_USCORESequence (26)
+#define SOAP_TYPE_CUTS_x002e_USCORESE_USCOREPath_USCORESequence (28)
 /* SOAP encoded array of SLICE:CUTS.Path_Element schema type: */
 class SOAP_CMAC CUTS_x002e_USCORESE_USCOREPath_USCORESequence : public xsd__anyType
 {
@@ -659,7 +702,7 @@ public:
 	SLICE__CUTS_x002ePath_USCOREElement **__ptritem;
 	int __size;
 public:
-	virtual int soap_type() const { return 26; } /* = unique id SOAP_TYPE_CUTS_x002e_USCORESE_USCOREPath_USCORESequence */
+	virtual int soap_type() const { return 28; } /* = unique id SOAP_TYPE_CUTS_x002e_USCORESE_USCOREPath_USCORESequence */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -672,7 +715,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_CUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq
-#define SOAP_TYPE_CUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq (31)
+#define SOAP_TYPE_CUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq (33)
 /* SOAP encoded array of SLICE:CUTS.Action_Measurement schema type: */
 class SOAP_CMAC CUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq : public xsd__anyType
 {
@@ -680,7 +723,7 @@ public:
 	SLICE__CUTS_x002eAction_USCOREMeasurement **__ptritem;
 	int __size;
 public:
-	virtual int soap_type() const { return 31; } /* = unique id SOAP_TYPE_CUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq */
+	virtual int soap_type() const { return 33; } /* = unique id SOAP_TYPE_CUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -693,7 +736,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_CUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq
-#define SOAP_TYPE_CUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq (33)
+#define SOAP_TYPE_CUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq (35)
 /* SOAP encoded array of SLICE:CUTS.Worker_Measurement schema type: */
 class SOAP_CMAC CUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq : public xsd__anyType
 {
@@ -701,7 +744,7 @@ public:
 	SLICE__CUTS_x002eWorker_USCOREMeasurement **__ptritem;
 	int __size;
 public:
-	virtual int soap_type() const { return 33; } /* = unique id SOAP_TYPE_CUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq */
+	virtual int soap_type() const { return 35; } /* = unique id SOAP_TYPE_CUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -714,7 +757,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_CUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq
-#define SOAP_TYPE_CUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq (35)
+#define SOAP_TYPE_CUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq (37)
 /* SOAP encoded array of SLICE:CUTS.Exit_Point_Time schema type: */
 class SOAP_CMAC CUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq : public xsd__anyType
 {
@@ -722,7 +765,7 @@ public:
 	SLICE__CUTS_x002eExit_USCOREPoint_USCORETime **__ptritem;
 	int __size;
 public:
-	virtual int soap_type() const { return 35; } /* = unique id SOAP_TYPE_CUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq */
+	virtual int soap_type() const { return 37; } /* = unique id SOAP_TYPE_CUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -735,7 +778,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_CUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq
-#define SOAP_TYPE_CUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq (37)
+#define SOAP_TYPE_CUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq (39)
 /* SOAP encoded array of SLICE:CUTS.Mapped_Port_Measurement schema type: */
 class SOAP_CMAC CUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq : public xsd__anyType
 {
@@ -743,7 +786,7 @@ public:
 	SLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement **__ptritem;
 	int __size;
 public:
-	virtual int soap_type() const { return 37; } /* = unique id SOAP_TYPE_CUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq */
+	virtual int soap_type() const { return 39; } /* = unique id SOAP_TYPE_CUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -756,7 +799,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_CUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq
-#define SOAP_TYPE_CUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq (39)
+#define SOAP_TYPE_CUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq (41)
 /* SOAP encoded array of SLICE:CUTS.Port_Measurement schema type: */
 class SOAP_CMAC CUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq : public xsd__anyType
 {
@@ -764,7 +807,7 @@ public:
 	SLICE__CUTS_x002ePort_USCOREMeasurement **__ptritem;
 	int __size;
 public:
-	virtual int soap_type() const { return 39; } /* = unique id SOAP_TYPE_CUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq */
+	virtual int soap_type() const { return 41; } /* = unique id SOAP_TYPE_CUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -777,7 +820,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE__CORBA__CORBA_x002eSystemExceptionMessage
-#define SOAP_TYPE__CORBA__CORBA_x002eSystemExceptionMessage (74)
+#define SOAP_TYPE__CORBA__CORBA_x002eSystemExceptionMessage (77)
 /* CORBA:CORBA.SystemExceptionMessage */
 class SOAP_CMAC _CORBA__CORBA_x002eSystemExceptionMessage
 {
@@ -785,7 +828,7 @@ public:
 	CORBA__CORBA_x002eSystemException *_USCOREreturn;	/* optional element of type CORBA:CORBA.SystemException */
 	struct soap *soap;	/* transient */
 public:
-	virtual int soap_type() const { return 74; } /* = unique id SOAP_TYPE__CORBA__CORBA_x002eSystemExceptionMessage */
+	virtual int soap_type() const { return 77; } /* = unique id SOAP_TYPE__CORBA__CORBA_x002eSystemExceptionMessage */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -798,7 +841,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eBinding_USCOREFailed
-#define SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eBinding_USCOREFailed (76)
+#define SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eBinding_USCOREFailed (79)
 /* CORBA:_exception.CUTS.Binding_Failed */
 class SOAP_CMAC _CORBA___USCOREexception_x002eCUTS_x002eBinding_USCOREFailed
 {
@@ -806,7 +849,7 @@ public:
 	SLICE__CUTS_x002eBinding_USCOREFailed *exception;	/* optional element of type SLICE:CUTS.Binding_Failed */
 	struct soap *soap;	/* transient */
 public:
-	virtual int soap_type() const { return 76; } /* = unique id SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eBinding_USCOREFailed */
+	virtual int soap_type() const { return 79; } /* = unique id SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eBinding_USCOREFailed */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -819,7 +862,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eID_USCORENot_USCOREFound
-#define SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eID_USCORENot_USCOREFound (78)
+#define SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eID_USCORENot_USCOREFound (81)
 /* CORBA:_exception.CUTS.ID_Not_Found */
 class SOAP_CMAC _CORBA___USCOREexception_x002eCUTS_x002eID_USCORENot_USCOREFound
 {
@@ -827,7 +870,7 @@ public:
 	SLICE__CUTS_x002eID_USCORENot_USCOREFound *exception;	/* optional element of type SLICE:CUTS.ID_Not_Found */
 	struct soap *soap;	/* transient */
 public:
-	virtual int soap_type() const { return 78; } /* = unique id SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eID_USCORENot_USCOREFound */
+	virtual int soap_type() const { return 81; } /* = unique id SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eID_USCORENot_USCOREFound */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -840,7 +883,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed
-#define SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed (80)
+#define SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed (83)
 /* CORBA:_exception.CUTS.Operation_Failed */
 class SOAP_CMAC _CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed
 {
@@ -848,7 +891,7 @@ public:
 	SLICE__CUTS_x002eOperation_USCOREFailed *exception;	/* optional element of type SLICE:CUTS.Operation_Failed */
 	struct soap *soap;	/* transient */
 public:
-	virtual int soap_type() const { return 80; } /* = unique id SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed */
+	virtual int soap_type() const { return 83; } /* = unique id SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -861,7 +904,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdataResponse
-#define SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdataResponse (82)
+#define SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdataResponse (85)
 /* SLICE:collect_performance_dataResponse */
 struct SLICE__collect_USCOREperformance_USCOREdataResponse
 {
@@ -869,7 +912,7 @@ struct SLICE__collect_USCOREperformance_USCOREdataResponse
 #endif
 
 #ifndef SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdata
-#define SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdata (85)
+#define SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdata (88)
 /* SLICE:collect_performance_data */
 struct SLICE__collect_USCOREperformance_USCOREdata
 {
@@ -877,7 +920,7 @@ struct SLICE__collect_USCOREperformance_USCOREdata
 #endif
 
 #ifndef SOAP_TYPE_SLICE__execution_USCOREtimeResponse
-#define SOAP_TYPE_SLICE__execution_USCOREtimeResponse (86)
+#define SOAP_TYPE_SLICE__execution_USCOREtimeResponse (89)
 /* SLICE:execution_timeResponse */
 struct SLICE__execution_USCOREtimeResponse
 {
@@ -887,7 +930,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__execution_USCOREtime
-#define SOAP_TYPE_SLICE__execution_USCOREtime (90)
+#define SOAP_TYPE_SLICE__execution_USCOREtime (93)
 /* SLICE:execution_time */
 struct SLICE__execution_USCOREtime
 {
@@ -897,7 +940,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__unbind_USCOREto_USCOREpathResponse
-#define SOAP_TYPE_SLICE__unbind_USCOREto_USCOREpathResponse (91)
+#define SOAP_TYPE_SLICE__unbind_USCOREto_USCOREpathResponse (94)
 /* SLICE:unbind_to_pathResponse */
 struct SLICE__unbind_USCOREto_USCOREpathResponse
 {
@@ -905,7 +948,7 @@ struct SLICE__unbind_USCOREto_USCOREpathResponse
 #endif
 
 #ifndef SOAP_TYPE_SLICE__unbind_USCOREto_USCOREpath
-#define SOAP_TYPE_SLICE__unbind_USCOREto_USCOREpath (94)
+#define SOAP_TYPE_SLICE__unbind_USCOREto_USCOREpath (97)
 /* SLICE:unbind_to_path */
 struct SLICE__unbind_USCOREto_USCOREpath
 {
@@ -915,7 +958,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__bind_USCOREto_USCOREpathResponse
-#define SOAP_TYPE_SLICE__bind_USCOREto_USCOREpathResponse (98)
+#define SOAP_TYPE_SLICE__bind_USCOREto_USCOREpathResponse (101)
 /* SLICE:bind_to_pathResponse */
 struct SLICE__bind_USCOREto_USCOREpathResponse
 {
@@ -925,7 +968,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__bind_USCOREto_USCOREpath
-#define SOAP_TYPE_SLICE__bind_USCOREto_USCOREpath (99)
+#define SOAP_TYPE_SLICE__bind_USCOREto_USCOREpath (102)
 /* SLICE:bind_to_path */
 struct SLICE__bind_USCOREto_USCOREpath
 {
@@ -936,7 +979,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Header
-#define SOAP_TYPE_SOAP_ENV__Header (102)
+#define SOAP_TYPE_SOAP_ENV__Header (105)
 /* SOAP Header: */
 struct SOAP_ENV__Header
 {
@@ -946,7 +989,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Code
-#define SOAP_TYPE_SOAP_ENV__Code (103)
+#define SOAP_TYPE_SOAP_ENV__Code (106)
 /* SOAP Fault Code: */
 struct SOAP_ENV__Code
 {
@@ -957,7 +1000,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Detail
-#define SOAP_TYPE_SOAP_ENV__Detail (105)
+#define SOAP_TYPE_SOAP_ENV__Detail (108)
 /* SOAP-ENV:Detail */
 struct SOAP_ENV__Detail
 {
@@ -969,7 +1012,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Reason
-#define SOAP_TYPE_SOAP_ENV__Reason (106)
+#define SOAP_TYPE_SOAP_ENV__Reason (109)
 /* SOAP-ENV:Reason */
 struct SOAP_ENV__Reason
 {
@@ -979,7 +1022,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Fault
-#define SOAP_TYPE_SOAP_ENV__Fault (107)
+#define SOAP_TYPE_SOAP_ENV__Fault (110)
 /* SOAP Fault: */
 struct SOAP_ENV__Fault
 {
@@ -1019,18 +1062,23 @@ typedef char *_XML;
 typedef char *_QName;
 #endif
 
+#ifndef SOAP_TYPE_xsd__ID
+#define SOAP_TYPE_xsd__ID (9)
+typedef char *xsd__ID;
+#endif
+
 #ifndef SOAP_TYPE_xsd__anyURI
-#define SOAP_TYPE_xsd__anyURI (9)
+#define SOAP_TYPE_xsd__anyURI (11)
 typedef char *xsd__anyURI;
 #endif
 
 #ifndef SOAP_TYPE__SOAP_ENC__arrayType
-#define SOAP_TYPE__SOAP_ENC__arrayType (18)
+#define SOAP_TYPE__SOAP_ENC__arrayType (20)
 typedef char *_SOAP_ENC__arrayType;
 #endif
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eTime_USCOREStamp
-#define SOAP_TYPE_SLICE__CUTS_x002eTime_USCOREStamp (47)
+#define SOAP_TYPE_SLICE__CUTS_x002eTime_USCOREStamp (50)
 typedef int SLICE__CUTS_x002eTime_USCOREStamp;
 #endif
 

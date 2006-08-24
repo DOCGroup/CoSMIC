@@ -31,7 +31,7 @@ SOAP_FMAC3 char * SOAP_FMAC4 soap_get_byte(struct soap*, char *, const char*, co
 SOAP_FMAC3 char * SOAP_FMAC4 soap_in_byte(struct soap*, const char*, char *, const char*);
 
 #ifndef SOAP_TYPE_short
-#define SOAP_TYPE_short (16)
+#define SOAP_TYPE_short (18)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_short(struct soap*, short *);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_short(struct soap*, const short *, const char*, const char*);
@@ -40,7 +40,7 @@ SOAP_FMAC3 short * SOAP_FMAC4 soap_get_short(struct soap*, short *, const char*,
 SOAP_FMAC3 short * SOAP_FMAC4 soap_in_short(struct soap*, const char*, short *, const char*);
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eTime_USCOREStamp
-#define SOAP_TYPE_SLICE__CUTS_x002eTime_USCOREStamp (47)
+#define SOAP_TYPE_SLICE__CUTS_x002eTime_USCOREStamp (50)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__CUTS_x002eTime_USCOREStamp(struct soap*, int *);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE__CUTS_x002eTime_USCOREStamp(struct soap*, const int *, const char*, const char*);
@@ -58,7 +58,7 @@ SOAP_FMAC3 int * SOAP_FMAC4 soap_get_int(struct soap*, int *, const char*, const
 SOAP_FMAC3 int * SOAP_FMAC4 soap_in_int(struct soap*, const char*, int *, const char*);
 
 #ifndef SOAP_TYPE_unsignedShort
-#define SOAP_TYPE_unsignedShort (17)
+#define SOAP_TYPE_unsignedShort (19)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_unsignedShort(struct soap*, unsigned short *);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_unsignedShort(struct soap*, const unsigned short *, const char*, const char*);
@@ -67,7 +67,7 @@ SOAP_FMAC3 unsigned short * SOAP_FMAC4 soap_get_unsignedShort(struct soap*, unsi
 SOAP_FMAC3 unsigned short * SOAP_FMAC4 soap_in_unsignedShort(struct soap*, const char*, unsigned short *, const char*);
 
 #ifndef SOAP_TYPE_unsignedInt
-#define SOAP_TYPE_unsignedInt (14)
+#define SOAP_TYPE_unsignedInt (16)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_unsignedInt(struct soap*, unsigned int *);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_unsignedInt(struct soap*, const unsigned int *, const char*, const char*);
@@ -76,7 +76,7 @@ SOAP_FMAC3 unsigned int * SOAP_FMAC4 soap_get_unsignedInt(struct soap*, unsigned
 SOAP_FMAC3 unsigned int * SOAP_FMAC4 soap_in_unsignedInt(struct soap*, const char*, unsigned int *, const char*);
 
 #ifndef SOAP_TYPE_CORBA__CORBA_x002ecompletion_USCOREstatus
-#define SOAP_TYPE_CORBA__CORBA_x002ecompletion_USCOREstatus (49)
+#define SOAP_TYPE_CORBA__CORBA_x002ecompletion_USCOREstatus (52)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_CORBA__CORBA_x002ecompletion_USCOREstatus(struct soap*, enum CORBA__CORBA_x002ecompletion_USCOREstatus *);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_CORBA__CORBA_x002ecompletion_USCOREstatus(struct soap*, const enum CORBA__CORBA_x002ecompletion_USCOREstatus *, const char*, const char*);
@@ -89,7 +89,7 @@ SOAP_FMAC3 enum CORBA__CORBA_x002ecompletion_USCOREstatus * SOAP_FMAC4 soap_in_C
 SOAP_FMAC3S int SOAP_FMAC4S soap_s2CORBA__CORBA_x002ecompletion_USCOREstatus(struct soap*, const char*, enum CORBA__CORBA_x002ecompletion_USCOREstatus *);
 
 #ifndef SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed
-#define SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed (80)
+#define SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed (83)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out__CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed(struct soap*, const char*, int, const _CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed *, const char*);
@@ -101,7 +101,7 @@ SOAP_FMAC3 _CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed * SOAP
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy__CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eID_USCORENot_USCOREFound
-#define SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eID_USCORENot_USCOREFound (78)
+#define SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eID_USCORENot_USCOREFound (81)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out__CORBA___USCOREexception_x002eCUTS_x002eID_USCORENot_USCOREFound(struct soap*, const char*, int, const _CORBA___USCOREexception_x002eCUTS_x002eID_USCORENot_USCOREFound *, const char*);
@@ -113,7 +113,7 @@ SOAP_FMAC3 _CORBA___USCOREexception_x002eCUTS_x002eID_USCORENot_USCOREFound * SO
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy__CORBA___USCOREexception_x002eCUTS_x002eID_USCORENot_USCOREFound(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eBinding_USCOREFailed
-#define SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eBinding_USCOREFailed (76)
+#define SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eBinding_USCOREFailed (79)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out__CORBA___USCOREexception_x002eCUTS_x002eBinding_USCOREFailed(struct soap*, const char*, int, const _CORBA___USCOREexception_x002eCUTS_x002eBinding_USCOREFailed *, const char*);
@@ -125,7 +125,7 @@ SOAP_FMAC3 _CORBA___USCOREexception_x002eCUTS_x002eBinding_USCOREFailed * SOAP_F
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy__CORBA___USCOREexception_x002eCUTS_x002eBinding_USCOREFailed(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE__CORBA__CORBA_x002eSystemExceptionMessage
-#define SOAP_TYPE__CORBA__CORBA_x002eSystemExceptionMessage (74)
+#define SOAP_TYPE__CORBA__CORBA_x002eSystemExceptionMessage (77)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out__CORBA__CORBA_x002eSystemExceptionMessage(struct soap*, const char*, int, const _CORBA__CORBA_x002eSystemExceptionMessage *, const char*);
@@ -137,7 +137,7 @@ SOAP_FMAC3 _CORBA__CORBA_x002eSystemExceptionMessage * SOAP_FMAC4 soap_instantia
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy__CORBA__CORBA_x002eSystemExceptionMessage(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_CORBA__CORBA_x002ecompletion_USCOREstatus_
-#define SOAP_TYPE_CORBA__CORBA_x002ecompletion_USCOREstatus_ (50)
+#define SOAP_TYPE_CORBA__CORBA_x002ecompletion_USCOREstatus_ (53)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_CORBA__CORBA_x002ecompletion_USCOREstatus_(struct soap*, const char*, int, const CORBA__CORBA_x002ecompletion_USCOREstatus_ *, const char*);
@@ -149,7 +149,7 @@ SOAP_FMAC3 CORBA__CORBA_x002ecompletion_USCOREstatus_ * SOAP_FMAC4 soap_instanti
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_CORBA__CORBA_x002ecompletion_USCOREstatus_(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eTime_USCOREStamp__
-#define SOAP_TYPE_SLICE__CUTS_x002eTime_USCOREStamp__ (48)
+#define SOAP_TYPE_SLICE__CUTS_x002eTime_USCOREStamp__ (51)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__CUTS_x002eTime_USCOREStamp__(struct soap*, const char*, int, const SLICE__CUTS_x002eTime_USCOREStamp__ *, const char*);
@@ -161,7 +161,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eTime_USCOREStamp__ * SOAP_FMAC4 soap_instantiate_SLI
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__CUTS_x002eTime_USCOREStamp__(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE__CORBA__SourceRepositoryID
-#define SOAP_TYPE__CORBA__SourceRepositoryID (46)
+#define SOAP_TYPE__CORBA__SourceRepositoryID (49)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out__CORBA__SourceRepositoryID(struct soap*, const char*, int, const _CORBA__SourceRepositoryID *, const char*);
@@ -173,7 +173,7 @@ SOAP_FMAC3 _CORBA__SourceRepositoryID * SOAP_FMAC4 soap_instantiate__CORBA__Sour
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy__CORBA__SourceRepositoryID(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE__CORBA__SourceIDL
-#define SOAP_TYPE__CORBA__SourceIDL (45)
+#define SOAP_TYPE__CORBA__SourceIDL (48)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out__CORBA__SourceIDL(struct soap*, const char*, int, const _CORBA__SourceIDL *, const char*);
@@ -185,7 +185,7 @@ SOAP_FMAC3 _CORBA__SourceIDL * SOAP_FMAC4 soap_instantiate__CORBA__SourceIDL(str
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy__CORBA__SourceIDL(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_CORBA__CORBA_x002eSystemException
-#define SOAP_TYPE_CORBA__CORBA_x002eSystemException (44)
+#define SOAP_TYPE_CORBA__CORBA_x002eSystemException (47)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_CORBA__CORBA_x002eSystemException(struct soap*, const char*, int, const CORBA__CORBA_x002eSystemException *, const char*);
@@ -197,7 +197,7 @@ SOAP_FMAC3 CORBA__CORBA_x002eSystemException * SOAP_FMAC4 soap_instantiate_CORBA
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_CORBA__CORBA_x002eSystemException(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_CORBA__CORBA_x002eAny
-#define SOAP_TYPE_CORBA__CORBA_x002eAny (43)
+#define SOAP_TYPE_CORBA__CORBA_x002eAny (46)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_CORBA__CORBA_x002eAny(struct soap*, const char*, int, const CORBA__CORBA_x002eAny *, const char*);
@@ -209,7 +209,7 @@ SOAP_FMAC3 CORBA__CORBA_x002eAny * SOAP_FMAC4 soap_instantiate_CORBA__CORBA_x002
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_CORBA__CORBA_x002eAny(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_CORBA__CORBA_x002eTypeCode
-#define SOAP_TYPE_CORBA__CORBA_x002eTypeCode (42)
+#define SOAP_TYPE_CORBA__CORBA_x002eTypeCode (45)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_CORBA__CORBA_x002eTypeCode(struct soap*, const char*, int, const CORBA__CORBA_x002eTypeCode *, const char*);
@@ -221,7 +221,7 @@ SOAP_FMAC3 CORBA__CORBA_x002eTypeCode * SOAP_FMAC4 soap_instantiate_CORBA__CORBA
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_CORBA__CORBA_x002eTypeCode(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_CORBA__ObjectReference
-#define SOAP_TYPE_CORBA__ObjectReference (41)
+#define SOAP_TYPE_CORBA__ObjectReference (44)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_CORBA__ObjectReference(struct soap*, const char*, int, const CORBA__ObjectReference *, const char*);
@@ -232,8 +232,20 @@ SOAP_FMAC5 void SOAP_FMAC6 soap_delete_CORBA__ObjectReference(struct soap*, CORB
 SOAP_FMAC3 CORBA__ObjectReference * SOAP_FMAC4 soap_instantiate_CORBA__ObjectReference(struct soap*, int, const char*, const char*, size_t*);
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_CORBA__ObjectReference(struct soap*, int, int, void*, size_t, const void*, size_t);
 
+#ifndef SOAP_TYPE_SLICE__CUTS_x002eCollection_USCOREStatistics
+#define SOAP_TYPE_SLICE__CUTS_x002eCollection_USCOREStatistics (43)
+#endif
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__CUTS_x002eCollection_USCOREStatistics(struct soap*, const char*, int, const SLICE__CUTS_x002eCollection_USCOREStatistics *, const char*);
+SOAP_FMAC3 SLICE__CUTS_x002eCollection_USCOREStatistics * SOAP_FMAC4 soap_get_SLICE__CUTS_x002eCollection_USCOREStatistics(struct soap*, SLICE__CUTS_x002eCollection_USCOREStatistics *, const char*, const char*);
+SOAP_FMAC3 SLICE__CUTS_x002eCollection_USCOREStatistics * SOAP_FMAC4 soap_in_SLICE__CUTS_x002eCollection_USCOREStatistics(struct soap*, const char*, SLICE__CUTS_x002eCollection_USCOREStatistics *, const char*);
+SOAP_FMAC5 SLICE__CUTS_x002eCollection_USCOREStatistics * SOAP_FMAC6 soap_new_SLICE__CUTS_x002eCollection_USCOREStatistics(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE__CUTS_x002eCollection_USCOREStatistics(struct soap*, SLICE__CUTS_x002eCollection_USCOREStatistics*);
+SOAP_FMAC3 SLICE__CUTS_x002eCollection_USCOREStatistics * SOAP_FMAC4 soap_instantiate_SLICE__CUTS_x002eCollection_USCOREStatistics(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__CUTS_x002eCollection_USCOREStatistics(struct soap*, int, int, void*, size_t, const void*, size_t);
+
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eBenchmark_USCOREData
-#define SOAP_TYPE_SLICE__CUTS_x002eBenchmark_USCOREData (40)
+#define SOAP_TYPE_SLICE__CUTS_x002eBenchmark_USCOREData (42)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__CUTS_x002eBenchmark_USCOREData(struct soap*, const char*, int, const SLICE__CUTS_x002eBenchmark_USCOREData *, const char*);
@@ -245,7 +257,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eBenchmark_USCOREData * SOAP_FMAC4 soap_instantiate_S
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__CUTS_x002eBenchmark_USCOREData(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_CUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq
-#define SOAP_TYPE_CUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq (39)
+#define SOAP_TYPE_CUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq (41)
 #endif
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_CUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq(struct soap*, const char*, int, const CUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq *, const char*);
 SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq * SOAP_FMAC4 soap_get_CUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq(struct soap*, CUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq *, const char*, const char*);
@@ -256,7 +268,7 @@ SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq * SOAP_FMA
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_CUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002ePort_USCOREMeasurement
-#define SOAP_TYPE_SLICE__CUTS_x002ePort_USCOREMeasurement (38)
+#define SOAP_TYPE_SLICE__CUTS_x002ePort_USCOREMeasurement (40)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__CUTS_x002ePort_USCOREMeasurement(struct soap*, const char*, int, const SLICE__CUTS_x002ePort_USCOREMeasurement *, const char*);
@@ -268,7 +280,7 @@ SOAP_FMAC3 SLICE__CUTS_x002ePort_USCOREMeasurement * SOAP_FMAC4 soap_instantiate
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__CUTS_x002ePort_USCOREMeasurement(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_CUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq
-#define SOAP_TYPE_CUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq (37)
+#define SOAP_TYPE_CUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq (39)
 #endif
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_CUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq(struct soap*, const char*, int, const CUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq *, const char*);
 SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq * SOAP_FMAC4 soap_get_CUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq(struct soap*, CUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq *, const char*, const char*);
@@ -279,7 +291,7 @@ SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORES
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_CUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement
-#define SOAP_TYPE_SLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement (36)
+#define SOAP_TYPE_SLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement (38)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement(struct soap*, const char*, int, const SLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement *, const char*);
@@ -291,7 +303,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement * SOAP_FMAC4 soa
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_CUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq
-#define SOAP_TYPE_CUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq (35)
+#define SOAP_TYPE_CUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq (37)
 #endif
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_CUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq(struct soap*, const char*, int, const CUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq *, const char*);
 SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq * SOAP_FMAC4 soap_get_CUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq(struct soap*, CUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq *, const char*, const char*);
@@ -302,7 +314,7 @@ SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq * SOA
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_CUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eExit_USCOREPoint_USCORETime
-#define SOAP_TYPE_SLICE__CUTS_x002eExit_USCOREPoint_USCORETime (34)
+#define SOAP_TYPE_SLICE__CUTS_x002eExit_USCOREPoint_USCORETime (36)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__CUTS_x002eExit_USCOREPoint_USCORETime(struct soap*, const char*, int, const SLICE__CUTS_x002eExit_USCOREPoint_USCORETime *, const char*);
@@ -314,7 +326,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eExit_USCOREPoint_USCORETime * SOAP_FMAC4 soap_instan
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__CUTS_x002eExit_USCOREPoint_USCORETime(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_CUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq
-#define SOAP_TYPE_CUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq (33)
+#define SOAP_TYPE_CUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq (35)
 #endif
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_CUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq(struct soap*, const char*, int, const CUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq *, const char*);
 SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq * SOAP_FMAC4 soap_get_CUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq(struct soap*, CUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq *, const char*, const char*);
@@ -325,7 +337,7 @@ SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq * SOAP_F
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_CUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eWorker_USCOREMeasurement
-#define SOAP_TYPE_SLICE__CUTS_x002eWorker_USCOREMeasurement (32)
+#define SOAP_TYPE_SLICE__CUTS_x002eWorker_USCOREMeasurement (34)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__CUTS_x002eWorker_USCOREMeasurement(struct soap*, const char*, int, const SLICE__CUTS_x002eWorker_USCOREMeasurement *, const char*);
@@ -337,7 +349,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eWorker_USCOREMeasurement * SOAP_FMAC4 soap_instantia
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__CUTS_x002eWorker_USCOREMeasurement(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_CUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq
-#define SOAP_TYPE_CUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq (31)
+#define SOAP_TYPE_CUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq (33)
 #endif
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_CUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq(struct soap*, const char*, int, const CUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq *, const char*);
 SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq * SOAP_FMAC4 soap_get_CUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq(struct soap*, CUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq *, const char*, const char*);
@@ -348,7 +360,7 @@ SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq * SOAP_F
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_CUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eAction_USCOREMeasurement
-#define SOAP_TYPE_SLICE__CUTS_x002eAction_USCOREMeasurement (30)
+#define SOAP_TYPE_SLICE__CUTS_x002eAction_USCOREMeasurement (32)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__CUTS_x002eAction_USCOREMeasurement(struct soap*, const char*, int, const SLICE__CUTS_x002eAction_USCOREMeasurement *, const char*);
@@ -360,7 +372,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eAction_USCOREMeasurement * SOAP_FMAC4 soap_instantia
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__CUTS_x002eAction_USCOREMeasurement(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eTime_USCORESample
-#define SOAP_TYPE_SLICE__CUTS_x002eTime_USCORESample (29)
+#define SOAP_TYPE_SLICE__CUTS_x002eTime_USCORESample (31)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__CUTS_x002eTime_USCORESample(struct soap*, const char*, int, const SLICE__CUTS_x002eTime_USCORESample *, const char*);
@@ -372,7 +384,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eTime_USCORESample * SOAP_FMAC4 soap_instantiate_SLIC
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__CUTS_x002eTime_USCORESample(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo
-#define SOAP_TYPE_SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo (28)
+#define SOAP_TYPE_SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo (30)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo(struct soap*, const char*, int, const SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo *, const char*);
@@ -384,7 +396,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo * SOAP_FMAC4 soap_instan
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eTime_USCOREInfo
-#define SOAP_TYPE_SLICE__CUTS_x002eTime_USCOREInfo (27)
+#define SOAP_TYPE_SLICE__CUTS_x002eTime_USCOREInfo (29)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__CUTS_x002eTime_USCOREInfo(struct soap*, const char*, int, const SLICE__CUTS_x002eTime_USCOREInfo *, const char*);
@@ -396,7 +408,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eTime_USCOREInfo * SOAP_FMAC4 soap_instantiate_SLICE_
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__CUTS_x002eTime_USCOREInfo(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_CUTS_x002e_USCORESE_USCOREPath_USCORESequence
-#define SOAP_TYPE_CUTS_x002e_USCORESE_USCOREPath_USCORESequence (26)
+#define SOAP_TYPE_CUTS_x002e_USCORESE_USCOREPath_USCORESequence (28)
 #endif
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_CUTS_x002e_USCORESE_USCOREPath_USCORESequence(struct soap*, const char*, int, const CUTS_x002e_USCORESE_USCOREPath_USCORESequence *, const char*);
 SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREPath_USCORESequence * SOAP_FMAC4 soap_get_CUTS_x002e_USCORESE_USCOREPath_USCORESequence(struct soap*, CUTS_x002e_USCORESE_USCOREPath_USCORESequence *, const char*, const char*);
@@ -407,7 +419,7 @@ SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREPath_USCORESequence * SOAP_FMAC4 soap_insta
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_CUTS_x002e_USCORESE_USCOREPath_USCORESequence(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002ePath_USCOREElement
-#define SOAP_TYPE_SLICE__CUTS_x002ePath_USCOREElement (25)
+#define SOAP_TYPE_SLICE__CUTS_x002ePath_USCOREElement (27)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__CUTS_x002ePath_USCOREElement(struct soap*, const char*, int, const SLICE__CUTS_x002ePath_USCOREElement *, const char*);
@@ -419,7 +431,7 @@ SOAP_FMAC3 SLICE__CUTS_x002ePath_USCOREElement * SOAP_FMAC4 soap_instantiate_SLI
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__CUTS_x002ePath_USCOREElement(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eComponent_USCORERegistration
-#define SOAP_TYPE_SLICE__CUTS_x002eComponent_USCORERegistration (24)
+#define SOAP_TYPE_SLICE__CUTS_x002eComponent_USCORERegistration (26)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__CUTS_x002eComponent_USCORERegistration(struct soap*, const char*, int, const SLICE__CUTS_x002eComponent_USCORERegistration *, const char*);
@@ -431,7 +443,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eComponent_USCORERegistration * SOAP_FMAC4 soap_insta
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__CUTS_x002eComponent_USCORERegistration(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eRegistration_USCORELimit
-#define SOAP_TYPE_SLICE__CUTS_x002eRegistration_USCORELimit (23)
+#define SOAP_TYPE_SLICE__CUTS_x002eRegistration_USCORELimit (25)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__CUTS_x002eRegistration_USCORELimit(struct soap*, const char*, int, const SLICE__CUTS_x002eRegistration_USCORELimit *, const char*);
@@ -443,7 +455,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eRegistration_USCORELimit * SOAP_FMAC4 soap_instantia
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__CUTS_x002eRegistration_USCORELimit(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eRegistration_USCOREFailed
-#define SOAP_TYPE_SLICE__CUTS_x002eRegistration_USCOREFailed (22)
+#define SOAP_TYPE_SLICE__CUTS_x002eRegistration_USCOREFailed (24)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__CUTS_x002eRegistration_USCOREFailed(struct soap*, const char*, int, const SLICE__CUTS_x002eRegistration_USCOREFailed *, const char*);
@@ -455,7 +467,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eRegistration_USCOREFailed * SOAP_FMAC4 soap_instanti
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__CUTS_x002eRegistration_USCOREFailed(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eOperation_USCOREFailed
-#define SOAP_TYPE_SLICE__CUTS_x002eOperation_USCOREFailed (21)
+#define SOAP_TYPE_SLICE__CUTS_x002eOperation_USCOREFailed (23)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__CUTS_x002eOperation_USCOREFailed(struct soap*, const char*, int, const SLICE__CUTS_x002eOperation_USCOREFailed *, const char*);
@@ -467,7 +479,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eOperation_USCOREFailed * SOAP_FMAC4 soap_instantiate
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__CUTS_x002eOperation_USCOREFailed(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eID_USCORENot_USCOREFound
-#define SOAP_TYPE_SLICE__CUTS_x002eID_USCORENot_USCOREFound (20)
+#define SOAP_TYPE_SLICE__CUTS_x002eID_USCORENot_USCOREFound (22)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__CUTS_x002eID_USCORENot_USCOREFound(struct soap*, const char*, int, const SLICE__CUTS_x002eID_USCORENot_USCOREFound *, const char*);
@@ -479,7 +491,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eID_USCORENot_USCOREFound * SOAP_FMAC4 soap_instantia
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__CUTS_x002eID_USCORENot_USCOREFound(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__CUTS_x002eBinding_USCOREFailed
-#define SOAP_TYPE_SLICE__CUTS_x002eBinding_USCOREFailed (19)
+#define SOAP_TYPE_SLICE__CUTS_x002eBinding_USCOREFailed (21)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__CUTS_x002eBinding_USCOREFailed(struct soap*, const char*, int, const SLICE__CUTS_x002eBinding_USCOREFailed *, const char*);
@@ -491,7 +503,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eBinding_USCOREFailed * SOAP_FMAC4 soap_instantiate_S
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__CUTS_x002eBinding_USCOREFailed(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_xsd__unsignedShort
-#define SOAP_TYPE_xsd__unsignedShort (15)
+#define SOAP_TYPE_xsd__unsignedShort (17)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_xsd__unsignedShort(struct soap*, const char*, int, const xsd__unsignedShort *, const char*);
@@ -503,7 +515,7 @@ SOAP_FMAC3 xsd__unsignedShort * SOAP_FMAC4 soap_instantiate_xsd__unsignedShort(s
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_xsd__unsignedShort(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_xsd__unsignedInt
-#define SOAP_TYPE_xsd__unsignedInt (13)
+#define SOAP_TYPE_xsd__unsignedInt (15)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_xsd__unsignedInt(struct soap*, const char*, int, const xsd__unsignedInt *, const char*);
@@ -515,7 +527,7 @@ SOAP_FMAC3 xsd__unsignedInt * SOAP_FMAC4 soap_instantiate_xsd__unsignedInt(struc
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_xsd__unsignedInt(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_xsd__string
-#define SOAP_TYPE_xsd__string (12)
+#define SOAP_TYPE_xsd__string (14)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_xsd__string(struct soap*, const char*, int, const xsd__string *, const char*);
@@ -527,7 +539,7 @@ SOAP_FMAC3 xsd__string * SOAP_FMAC4 soap_instantiate_xsd__string(struct soap*, i
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_xsd__string(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_xsd__int
-#define SOAP_TYPE_xsd__int (11)
+#define SOAP_TYPE_xsd__int (13)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_xsd__int(struct soap*, const char*, int, const xsd__int *, const char*);
@@ -539,7 +551,7 @@ SOAP_FMAC3 xsd__int * SOAP_FMAC4 soap_instantiate_xsd__int(struct soap*, int, co
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_xsd__int(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_xsd__anyURI_
-#define SOAP_TYPE_xsd__anyURI_ (10)
+#define SOAP_TYPE_xsd__anyURI_ (12)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_xsd__anyURI_(struct soap*, const char*, int, const xsd__anyURI_ *, const char*);
@@ -549,6 +561,18 @@ SOAP_FMAC5 xsd__anyURI_ * SOAP_FMAC6 soap_new_xsd__anyURI_(struct soap*, int);
 SOAP_FMAC5 void SOAP_FMAC6 soap_delete_xsd__anyURI_(struct soap*, xsd__anyURI_*);
 SOAP_FMAC3 xsd__anyURI_ * SOAP_FMAC4 soap_instantiate_xsd__anyURI_(struct soap*, int, const char*, const char*, size_t*);
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_xsd__anyURI_(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_xsd__ID_
+#define SOAP_TYPE_xsd__ID_ (10)
+#endif
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_xsd__ID_(struct soap*, const char*, int, const xsd__ID_ *, const char*);
+SOAP_FMAC3 xsd__ID_ * SOAP_FMAC4 soap_get_xsd__ID_(struct soap*, xsd__ID_ *, const char*, const char*);
+SOAP_FMAC3 xsd__ID_ * SOAP_FMAC4 soap_in_xsd__ID_(struct soap*, const char*, xsd__ID_ *, const char*);
+SOAP_FMAC5 xsd__ID_ * SOAP_FMAC6 soap_new_xsd__ID_(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_xsd__ID_(struct soap*, xsd__ID_*);
+SOAP_FMAC3 xsd__ID_ * SOAP_FMAC4 soap_instantiate_xsd__ID_(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_xsd__ID_(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_xsd__anyType
 #define SOAP_TYPE_xsd__anyType (6)
@@ -565,7 +589,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_xsd__anyType(struct soap*, int, int, void*,
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Fault
-#define SOAP_TYPE_SOAP_ENV__Fault (107)
+#define SOAP_TYPE_SOAP_ENV__Fault (110)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Fault(struct soap*, const struct SOAP_ENV__Fault *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Fault(struct soap*, struct SOAP_ENV__Fault *);
@@ -583,7 +607,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SOAP_ENV__Fault(struct soap*, int, int, voi
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Reason
-#define SOAP_TYPE_SOAP_ENV__Reason (106)
+#define SOAP_TYPE_SOAP_ENV__Reason (109)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Reason(struct soap*, const struct SOAP_ENV__Reason *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Reason(struct soap*, struct SOAP_ENV__Reason *);
@@ -601,7 +625,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SOAP_ENV__Reason(struct soap*, int, int, vo
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Detail
-#define SOAP_TYPE_SOAP_ENV__Detail (105)
+#define SOAP_TYPE_SOAP_ENV__Detail (108)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Detail(struct soap*, const struct SOAP_ENV__Detail *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Detail(struct soap*, struct SOAP_ENV__Detail *);
@@ -619,7 +643,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SOAP_ENV__Detail(struct soap*, int, int, vo
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Code
-#define SOAP_TYPE_SOAP_ENV__Code (103)
+#define SOAP_TYPE_SOAP_ENV__Code (106)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Code(struct soap*, const struct SOAP_ENV__Code *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Code(struct soap*, struct SOAP_ENV__Code *);
@@ -637,7 +661,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SOAP_ENV__Code(struct soap*, int, int, void
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Header
-#define SOAP_TYPE_SOAP_ENV__Header (102)
+#define SOAP_TYPE_SOAP_ENV__Header (105)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Header(struct soap*, const struct SOAP_ENV__Header *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Header(struct soap*, struct SOAP_ENV__Header *);
@@ -653,7 +677,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SOAP_ENV__Header(struct soap*, int, int, vo
 #endif
 
 #ifndef SOAP_TYPE_SLICE__bind_USCOREto_USCOREpath
-#define SOAP_TYPE_SLICE__bind_USCOREto_USCOREpath (99)
+#define SOAP_TYPE_SLICE__bind_USCOREto_USCOREpath (102)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__bind_USCOREto_USCOREpath(struct soap*, const struct SLICE__bind_USCOREto_USCOREpath *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__bind_USCOREto_USCOREpath(struct soap*, struct SLICE__bind_USCOREto_USCOREpath *);
@@ -667,7 +691,7 @@ SOAP_FMAC3 struct SLICE__bind_USCOREto_USCOREpath * SOAP_FMAC4 soap_instantiate_
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__bind_USCOREto_USCOREpath(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__bind_USCOREto_USCOREpathResponse
-#define SOAP_TYPE_SLICE__bind_USCOREto_USCOREpathResponse (98)
+#define SOAP_TYPE_SLICE__bind_USCOREto_USCOREpathResponse (101)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__bind_USCOREto_USCOREpathResponse(struct soap*, const struct SLICE__bind_USCOREto_USCOREpathResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__bind_USCOREto_USCOREpathResponse(struct soap*, struct SLICE__bind_USCOREto_USCOREpathResponse *);
@@ -681,7 +705,7 @@ SOAP_FMAC3 struct SLICE__bind_USCOREto_USCOREpathResponse * SOAP_FMAC4 soap_inst
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__bind_USCOREto_USCOREpathResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__unbind_USCOREto_USCOREpath
-#define SOAP_TYPE_SLICE__unbind_USCOREto_USCOREpath (94)
+#define SOAP_TYPE_SLICE__unbind_USCOREto_USCOREpath (97)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__unbind_USCOREto_USCOREpath(struct soap*, const struct SLICE__unbind_USCOREto_USCOREpath *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__unbind_USCOREto_USCOREpath(struct soap*, struct SLICE__unbind_USCOREto_USCOREpath *);
@@ -695,7 +719,7 @@ SOAP_FMAC3 struct SLICE__unbind_USCOREto_USCOREpath * SOAP_FMAC4 soap_instantiat
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__unbind_USCOREto_USCOREpath(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__unbind_USCOREto_USCOREpathResponse
-#define SOAP_TYPE_SLICE__unbind_USCOREto_USCOREpathResponse (91)
+#define SOAP_TYPE_SLICE__unbind_USCOREto_USCOREpathResponse (94)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__unbind_USCOREto_USCOREpathResponse(struct soap*, const struct SLICE__unbind_USCOREto_USCOREpathResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__unbind_USCOREto_USCOREpathResponse(struct soap*, struct SLICE__unbind_USCOREto_USCOREpathResponse *);
@@ -709,7 +733,7 @@ SOAP_FMAC3 struct SLICE__unbind_USCOREto_USCOREpathResponse * SOAP_FMAC4 soap_in
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__unbind_USCOREto_USCOREpathResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__execution_USCOREtime
-#define SOAP_TYPE_SLICE__execution_USCOREtime (90)
+#define SOAP_TYPE_SLICE__execution_USCOREtime (93)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__execution_USCOREtime(struct soap*, const struct SLICE__execution_USCOREtime *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__execution_USCOREtime(struct soap*, struct SLICE__execution_USCOREtime *);
@@ -723,7 +747,7 @@ SOAP_FMAC3 struct SLICE__execution_USCOREtime * SOAP_FMAC4 soap_instantiate_SLIC
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__execution_USCOREtime(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__execution_USCOREtimeResponse
-#define SOAP_TYPE_SLICE__execution_USCOREtimeResponse (86)
+#define SOAP_TYPE_SLICE__execution_USCOREtimeResponse (89)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__execution_USCOREtimeResponse(struct soap*, const struct SLICE__execution_USCOREtimeResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__execution_USCOREtimeResponse(struct soap*, struct SLICE__execution_USCOREtimeResponse *);
@@ -737,7 +761,7 @@ SOAP_FMAC3 struct SLICE__execution_USCOREtimeResponse * SOAP_FMAC4 soap_instanti
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__execution_USCOREtimeResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdata
-#define SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdata (85)
+#define SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdata (88)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__collect_USCOREperformance_USCOREdata(struct soap*, const struct SLICE__collect_USCOREperformance_USCOREdata *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__collect_USCOREperformance_USCOREdata(struct soap*, struct SLICE__collect_USCOREperformance_USCOREdata *);
@@ -751,7 +775,7 @@ SOAP_FMAC3 struct SLICE__collect_USCOREperformance_USCOREdata * SOAP_FMAC4 soap_
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__collect_USCOREperformance_USCOREdata(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdataResponse
-#define SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdataResponse (82)
+#define SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdataResponse (85)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__collect_USCOREperformance_USCOREdataResponse(struct soap*, const struct SLICE__collect_USCOREperformance_USCOREdataResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__collect_USCOREperformance_USCOREdataResponse(struct soap*, struct SLICE__collect_USCOREperformance_USCOREdataResponse *);
@@ -767,7 +791,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__collect_USCOREperformance_USCOREdata
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_PointerToSOAP_ENV__Reason
-#define SOAP_TYPE_PointerToSOAP_ENV__Reason (109)
+#define SOAP_TYPE_PointerToSOAP_ENV__Reason (112)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSOAP_ENV__Reason(struct soap*, struct SOAP_ENV__Reason *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSOAP_ENV__Reason(struct soap*, struct SOAP_ENV__Reason *const*, const char*, const char*);
@@ -780,7 +804,7 @@ SOAP_FMAC3 struct SOAP_ENV__Reason ** SOAP_FMAC4 soap_in_PointerToSOAP_ENV__Reas
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_PointerToSOAP_ENV__Detail
-#define SOAP_TYPE_PointerToSOAP_ENV__Detail (108)
+#define SOAP_TYPE_PointerToSOAP_ENV__Detail (111)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSOAP_ENV__Detail(struct soap*, struct SOAP_ENV__Detail *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSOAP_ENV__Detail(struct soap*, struct SOAP_ENV__Detail *const*, const char*, const char*);
@@ -793,7 +817,7 @@ SOAP_FMAC3 struct SOAP_ENV__Detail ** SOAP_FMAC4 soap_in_PointerToSOAP_ENV__Deta
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_PointerToSOAP_ENV__Code
-#define SOAP_TYPE_PointerToSOAP_ENV__Code (104)
+#define SOAP_TYPE_PointerToSOAP_ENV__Code (107)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSOAP_ENV__Code(struct soap*, struct SOAP_ENV__Code *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSOAP_ENV__Code(struct soap*, struct SOAP_ENV__Code *const*, const char*, const char*);
@@ -804,7 +828,7 @@ SOAP_FMAC3 struct SOAP_ENV__Code ** SOAP_FMAC4 soap_in_PointerToSOAP_ENV__Code(s
 #endif
 
 #ifndef SOAP_TYPE_PointerToCUTS_x002e_USCORESE_USCOREPath_USCORESequence
-#define SOAP_TYPE_PointerToCUTS_x002e_USCORESE_USCOREPath_USCORESequence (95)
+#define SOAP_TYPE_PointerToCUTS_x002e_USCORESE_USCOREPath_USCORESequence (98)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToCUTS_x002e_USCORESE_USCOREPath_USCORESequence(struct soap*, CUTS_x002e_USCORESE_USCOREPath_USCORESequence *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToCUTS_x002e_USCORESE_USCOREPath_USCORESequence(struct soap*, CUTS_x002e_USCORESE_USCOREPath_USCORESequence *const*, const char*, const char*);
@@ -813,7 +837,7 @@ SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREPath_USCORESequence ** SOAP_FMAC4 soap_get_
 SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREPath_USCORESequence ** SOAP_FMAC4 soap_in_PointerToCUTS_x002e_USCORESE_USCOREPath_USCORESequence(struct soap*, const char*, CUTS_x002e_USCORESE_USCOREPath_USCORESequence **, const char*);
 
 #ifndef SOAP_TYPE_PointerToSLICE__CUTS_x002eEvent_USCORETime_USCOREInfo
-#define SOAP_TYPE_PointerToSLICE__CUTS_x002eEvent_USCORETime_USCOREInfo (87)
+#define SOAP_TYPE_PointerToSLICE__CUTS_x002eEvent_USCORETime_USCOREInfo (90)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSLICE__CUTS_x002eEvent_USCORETime_USCOREInfo(struct soap*, SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSLICE__CUTS_x002eEvent_USCORETime_USCOREInfo(struct soap*, SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo *const*, const char*, const char*);
@@ -822,7 +846,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo ** SOAP_FMAC4 soap_get_P
 SOAP_FMAC3 SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo ** SOAP_FMAC4 soap_in_PointerToSLICE__CUTS_x002eEvent_USCORETime_USCOREInfo(struct soap*, const char*, SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo **, const char*);
 
 #ifndef SOAP_TYPE_PointerToSLICE__CUTS_x002eOperation_USCOREFailed
-#define SOAP_TYPE_PointerToSLICE__CUTS_x002eOperation_USCOREFailed (81)
+#define SOAP_TYPE_PointerToSLICE__CUTS_x002eOperation_USCOREFailed (84)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSLICE__CUTS_x002eOperation_USCOREFailed(struct soap*, SLICE__CUTS_x002eOperation_USCOREFailed *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSLICE__CUTS_x002eOperation_USCOREFailed(struct soap*, SLICE__CUTS_x002eOperation_USCOREFailed *const*, const char*, const char*);
@@ -831,7 +855,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eOperation_USCOREFailed ** SOAP_FMAC4 soap_get_Pointe
 SOAP_FMAC3 SLICE__CUTS_x002eOperation_USCOREFailed ** SOAP_FMAC4 soap_in_PointerToSLICE__CUTS_x002eOperation_USCOREFailed(struct soap*, const char*, SLICE__CUTS_x002eOperation_USCOREFailed **, const char*);
 
 #ifndef SOAP_TYPE_PointerToSLICE__CUTS_x002eID_USCORENot_USCOREFound
-#define SOAP_TYPE_PointerToSLICE__CUTS_x002eID_USCORENot_USCOREFound (79)
+#define SOAP_TYPE_PointerToSLICE__CUTS_x002eID_USCORENot_USCOREFound (82)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSLICE__CUTS_x002eID_USCORENot_USCOREFound(struct soap*, SLICE__CUTS_x002eID_USCORENot_USCOREFound *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSLICE__CUTS_x002eID_USCORENot_USCOREFound(struct soap*, SLICE__CUTS_x002eID_USCORENot_USCOREFound *const*, const char*, const char*);
@@ -840,7 +864,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eID_USCORENot_USCOREFound ** SOAP_FMAC4 soap_get_Poin
 SOAP_FMAC3 SLICE__CUTS_x002eID_USCORENot_USCOREFound ** SOAP_FMAC4 soap_in_PointerToSLICE__CUTS_x002eID_USCORENot_USCOREFound(struct soap*, const char*, SLICE__CUTS_x002eID_USCORENot_USCOREFound **, const char*);
 
 #ifndef SOAP_TYPE_PointerToSLICE__CUTS_x002eBinding_USCOREFailed
-#define SOAP_TYPE_PointerToSLICE__CUTS_x002eBinding_USCOREFailed (77)
+#define SOAP_TYPE_PointerToSLICE__CUTS_x002eBinding_USCOREFailed (80)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSLICE__CUTS_x002eBinding_USCOREFailed(struct soap*, SLICE__CUTS_x002eBinding_USCOREFailed *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSLICE__CUTS_x002eBinding_USCOREFailed(struct soap*, SLICE__CUTS_x002eBinding_USCOREFailed *const*, const char*, const char*);
@@ -849,7 +873,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eBinding_USCOREFailed ** SOAP_FMAC4 soap_get_PointerT
 SOAP_FMAC3 SLICE__CUTS_x002eBinding_USCOREFailed ** SOAP_FMAC4 soap_in_PointerToSLICE__CUTS_x002eBinding_USCOREFailed(struct soap*, const char*, SLICE__CUTS_x002eBinding_USCOREFailed **, const char*);
 
 #ifndef SOAP_TYPE_PointerToCORBA__CORBA_x002eSystemException
-#define SOAP_TYPE_PointerToCORBA__CORBA_x002eSystemException (75)
+#define SOAP_TYPE_PointerToCORBA__CORBA_x002eSystemException (78)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToCORBA__CORBA_x002eSystemException(struct soap*, CORBA__CORBA_x002eSystemException *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToCORBA__CORBA_x002eSystemException(struct soap*, CORBA__CORBA_x002eSystemException *const*, const char*, const char*);
@@ -858,7 +882,7 @@ SOAP_FMAC3 CORBA__CORBA_x002eSystemException ** SOAP_FMAC4 soap_get_PointerToCOR
 SOAP_FMAC3 CORBA__CORBA_x002eSystemException ** SOAP_FMAC4 soap_in_PointerToCORBA__CORBA_x002eSystemException(struct soap*, const char*, CORBA__CORBA_x002eSystemException **, const char*);
 
 #ifndef SOAP_TYPE_PointerToPointerToSLICE__CUTS_x002ePort_USCOREMeasurement
-#define SOAP_TYPE_PointerToPointerToSLICE__CUTS_x002ePort_USCOREMeasurement (73)
+#define SOAP_TYPE_PointerToPointerToSLICE__CUTS_x002ePort_USCOREMeasurement (76)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToPointerToSLICE__CUTS_x002ePort_USCOREMeasurement(struct soap*, SLICE__CUTS_x002ePort_USCOREMeasurement **const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToPointerToSLICE__CUTS_x002ePort_USCOREMeasurement(struct soap*, SLICE__CUTS_x002ePort_USCOREMeasurement **const*, const char*, const char*);
@@ -867,7 +891,7 @@ SOAP_FMAC3 SLICE__CUTS_x002ePort_USCOREMeasurement *** SOAP_FMAC4 soap_get_Point
 SOAP_FMAC3 SLICE__CUTS_x002ePort_USCOREMeasurement *** SOAP_FMAC4 soap_in_PointerToPointerToSLICE__CUTS_x002ePort_USCOREMeasurement(struct soap*, const char*, SLICE__CUTS_x002ePort_USCOREMeasurement ***, const char*);
 
 #ifndef SOAP_TYPE_PointerToSLICE__CUTS_x002ePort_USCOREMeasurement
-#define SOAP_TYPE_PointerToSLICE__CUTS_x002ePort_USCOREMeasurement (72)
+#define SOAP_TYPE_PointerToSLICE__CUTS_x002ePort_USCOREMeasurement (75)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSLICE__CUTS_x002ePort_USCOREMeasurement(struct soap*, SLICE__CUTS_x002ePort_USCOREMeasurement *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSLICE__CUTS_x002ePort_USCOREMeasurement(struct soap*, SLICE__CUTS_x002ePort_USCOREMeasurement *const*, const char*, const char*);
@@ -876,7 +900,7 @@ SOAP_FMAC3 SLICE__CUTS_x002ePort_USCOREMeasurement ** SOAP_FMAC4 soap_get_Pointe
 SOAP_FMAC3 SLICE__CUTS_x002ePort_USCOREMeasurement ** SOAP_FMAC4 soap_in_PointerToSLICE__CUTS_x002ePort_USCOREMeasurement(struct soap*, const char*, SLICE__CUTS_x002ePort_USCOREMeasurement **, const char*);
 
 #ifndef SOAP_TYPE_PointerToPointerToSLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement
-#define SOAP_TYPE_PointerToPointerToSLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement (71)
+#define SOAP_TYPE_PointerToPointerToSLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement (74)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToPointerToSLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement(struct soap*, SLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement **const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToPointerToSLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement(struct soap*, SLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement **const*, const char*, const char*);
@@ -885,7 +909,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement *** SOAP_FMAC4 s
 SOAP_FMAC3 SLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement *** SOAP_FMAC4 soap_in_PointerToPointerToSLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement(struct soap*, const char*, SLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement ***, const char*);
 
 #ifndef SOAP_TYPE_PointerToSLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement
-#define SOAP_TYPE_PointerToSLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement (70)
+#define SOAP_TYPE_PointerToSLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement (73)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement(struct soap*, SLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement(struct soap*, SLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement *const*, const char*, const char*);
@@ -894,7 +918,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement ** SOAP_FMAC4 so
 SOAP_FMAC3 SLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement ** SOAP_FMAC4 soap_in_PointerToSLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement(struct soap*, const char*, SLICE__CUTS_x002eMapped_USCOREPort_USCOREMeasurement **, const char*);
 
 #ifndef SOAP_TYPE_PointerToPointerToSLICE__CUTS_x002eExit_USCOREPoint_USCORETime
-#define SOAP_TYPE_PointerToPointerToSLICE__CUTS_x002eExit_USCOREPoint_USCORETime (69)
+#define SOAP_TYPE_PointerToPointerToSLICE__CUTS_x002eExit_USCOREPoint_USCORETime (72)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToPointerToSLICE__CUTS_x002eExit_USCOREPoint_USCORETime(struct soap*, SLICE__CUTS_x002eExit_USCOREPoint_USCORETime **const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToPointerToSLICE__CUTS_x002eExit_USCOREPoint_USCORETime(struct soap*, SLICE__CUTS_x002eExit_USCOREPoint_USCORETime **const*, const char*, const char*);
@@ -903,7 +927,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eExit_USCOREPoint_USCORETime *** SOAP_FMAC4 soap_get_
 SOAP_FMAC3 SLICE__CUTS_x002eExit_USCOREPoint_USCORETime *** SOAP_FMAC4 soap_in_PointerToPointerToSLICE__CUTS_x002eExit_USCOREPoint_USCORETime(struct soap*, const char*, SLICE__CUTS_x002eExit_USCOREPoint_USCORETime ***, const char*);
 
 #ifndef SOAP_TYPE_PointerToSLICE__CUTS_x002eExit_USCOREPoint_USCORETime
-#define SOAP_TYPE_PointerToSLICE__CUTS_x002eExit_USCOREPoint_USCORETime (68)
+#define SOAP_TYPE_PointerToSLICE__CUTS_x002eExit_USCOREPoint_USCORETime (71)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSLICE__CUTS_x002eExit_USCOREPoint_USCORETime(struct soap*, SLICE__CUTS_x002eExit_USCOREPoint_USCORETime *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSLICE__CUTS_x002eExit_USCOREPoint_USCORETime(struct soap*, SLICE__CUTS_x002eExit_USCOREPoint_USCORETime *const*, const char*, const char*);
@@ -912,7 +936,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eExit_USCOREPoint_USCORETime ** SOAP_FMAC4 soap_get_P
 SOAP_FMAC3 SLICE__CUTS_x002eExit_USCOREPoint_USCORETime ** SOAP_FMAC4 soap_in_PointerToSLICE__CUTS_x002eExit_USCOREPoint_USCORETime(struct soap*, const char*, SLICE__CUTS_x002eExit_USCOREPoint_USCORETime **, const char*);
 
 #ifndef SOAP_TYPE_PointerToPointerToSLICE__CUTS_x002eWorker_USCOREMeasurement
-#define SOAP_TYPE_PointerToPointerToSLICE__CUTS_x002eWorker_USCOREMeasurement (67)
+#define SOAP_TYPE_PointerToPointerToSLICE__CUTS_x002eWorker_USCOREMeasurement (70)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToPointerToSLICE__CUTS_x002eWorker_USCOREMeasurement(struct soap*, SLICE__CUTS_x002eWorker_USCOREMeasurement **const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToPointerToSLICE__CUTS_x002eWorker_USCOREMeasurement(struct soap*, SLICE__CUTS_x002eWorker_USCOREMeasurement **const*, const char*, const char*);
@@ -921,7 +945,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eWorker_USCOREMeasurement *** SOAP_FMAC4 soap_get_Poi
 SOAP_FMAC3 SLICE__CUTS_x002eWorker_USCOREMeasurement *** SOAP_FMAC4 soap_in_PointerToPointerToSLICE__CUTS_x002eWorker_USCOREMeasurement(struct soap*, const char*, SLICE__CUTS_x002eWorker_USCOREMeasurement ***, const char*);
 
 #ifndef SOAP_TYPE_PointerToSLICE__CUTS_x002eWorker_USCOREMeasurement
-#define SOAP_TYPE_PointerToSLICE__CUTS_x002eWorker_USCOREMeasurement (66)
+#define SOAP_TYPE_PointerToSLICE__CUTS_x002eWorker_USCOREMeasurement (69)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSLICE__CUTS_x002eWorker_USCOREMeasurement(struct soap*, SLICE__CUTS_x002eWorker_USCOREMeasurement *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSLICE__CUTS_x002eWorker_USCOREMeasurement(struct soap*, SLICE__CUTS_x002eWorker_USCOREMeasurement *const*, const char*, const char*);
@@ -930,7 +954,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eWorker_USCOREMeasurement ** SOAP_FMAC4 soap_get_Poin
 SOAP_FMAC3 SLICE__CUTS_x002eWorker_USCOREMeasurement ** SOAP_FMAC4 soap_in_PointerToSLICE__CUTS_x002eWorker_USCOREMeasurement(struct soap*, const char*, SLICE__CUTS_x002eWorker_USCOREMeasurement **, const char*);
 
 #ifndef SOAP_TYPE_PointerToPointerToSLICE__CUTS_x002eAction_USCOREMeasurement
-#define SOAP_TYPE_PointerToPointerToSLICE__CUTS_x002eAction_USCOREMeasurement (65)
+#define SOAP_TYPE_PointerToPointerToSLICE__CUTS_x002eAction_USCOREMeasurement (68)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToPointerToSLICE__CUTS_x002eAction_USCOREMeasurement(struct soap*, SLICE__CUTS_x002eAction_USCOREMeasurement **const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToPointerToSLICE__CUTS_x002eAction_USCOREMeasurement(struct soap*, SLICE__CUTS_x002eAction_USCOREMeasurement **const*, const char*, const char*);
@@ -939,7 +963,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eAction_USCOREMeasurement *** SOAP_FMAC4 soap_get_Poi
 SOAP_FMAC3 SLICE__CUTS_x002eAction_USCOREMeasurement *** SOAP_FMAC4 soap_in_PointerToPointerToSLICE__CUTS_x002eAction_USCOREMeasurement(struct soap*, const char*, SLICE__CUTS_x002eAction_USCOREMeasurement ***, const char*);
 
 #ifndef SOAP_TYPE_PointerToSLICE__CUTS_x002eAction_USCOREMeasurement
-#define SOAP_TYPE_PointerToSLICE__CUTS_x002eAction_USCOREMeasurement (64)
+#define SOAP_TYPE_PointerToSLICE__CUTS_x002eAction_USCOREMeasurement (67)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSLICE__CUTS_x002eAction_USCOREMeasurement(struct soap*, SLICE__CUTS_x002eAction_USCOREMeasurement *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSLICE__CUTS_x002eAction_USCOREMeasurement(struct soap*, SLICE__CUTS_x002eAction_USCOREMeasurement *const*, const char*, const char*);
@@ -948,7 +972,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eAction_USCOREMeasurement ** SOAP_FMAC4 soap_get_Poin
 SOAP_FMAC3 SLICE__CUTS_x002eAction_USCOREMeasurement ** SOAP_FMAC4 soap_in_PointerToSLICE__CUTS_x002eAction_USCOREMeasurement(struct soap*, const char*, SLICE__CUTS_x002eAction_USCOREMeasurement **, const char*);
 
 #ifndef SOAP_TYPE_PointerToPointerToSLICE__CUTS_x002ePath_USCOREElement
-#define SOAP_TYPE_PointerToPointerToSLICE__CUTS_x002ePath_USCOREElement (63)
+#define SOAP_TYPE_PointerToPointerToSLICE__CUTS_x002ePath_USCOREElement (66)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToPointerToSLICE__CUTS_x002ePath_USCOREElement(struct soap*, SLICE__CUTS_x002ePath_USCOREElement **const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToPointerToSLICE__CUTS_x002ePath_USCOREElement(struct soap*, SLICE__CUTS_x002ePath_USCOREElement **const*, const char*, const char*);
@@ -957,7 +981,7 @@ SOAP_FMAC3 SLICE__CUTS_x002ePath_USCOREElement *** SOAP_FMAC4 soap_get_PointerTo
 SOAP_FMAC3 SLICE__CUTS_x002ePath_USCOREElement *** SOAP_FMAC4 soap_in_PointerToPointerToSLICE__CUTS_x002ePath_USCOREElement(struct soap*, const char*, SLICE__CUTS_x002ePath_USCOREElement ***, const char*);
 
 #ifndef SOAP_TYPE_PointerToSLICE__CUTS_x002ePath_USCOREElement
-#define SOAP_TYPE_PointerToSLICE__CUTS_x002ePath_USCOREElement (62)
+#define SOAP_TYPE_PointerToSLICE__CUTS_x002ePath_USCOREElement (65)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSLICE__CUTS_x002ePath_USCOREElement(struct soap*, SLICE__CUTS_x002ePath_USCOREElement *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSLICE__CUTS_x002ePath_USCOREElement(struct soap*, SLICE__CUTS_x002ePath_USCOREElement *const*, const char*, const char*);
@@ -966,7 +990,7 @@ SOAP_FMAC3 SLICE__CUTS_x002ePath_USCOREElement ** SOAP_FMAC4 soap_get_PointerToS
 SOAP_FMAC3 SLICE__CUTS_x002ePath_USCOREElement ** SOAP_FMAC4 soap_in_PointerToSLICE__CUTS_x002ePath_USCOREElement(struct soap*, const char*, SLICE__CUTS_x002ePath_USCOREElement **, const char*);
 
 #ifndef SOAP_TYPE_PointerToxsd__anyType
-#define SOAP_TYPE_PointerToxsd__anyType (61)
+#define SOAP_TYPE_PointerToxsd__anyType (64)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToxsd__anyType(struct soap*, xsd__anyType *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToxsd__anyType(struct soap*, xsd__anyType *const*, const char*, const char*);
@@ -975,7 +999,7 @@ SOAP_FMAC3 xsd__anyType ** SOAP_FMAC4 soap_get_PointerToxsd__anyType(struct soap
 SOAP_FMAC3 xsd__anyType ** SOAP_FMAC4 soap_in_PointerToxsd__anyType(struct soap*, const char*, xsd__anyType **, const char*);
 
 #ifndef SOAP_TYPE_PointerToCORBA__CORBA_x002eTypeCode
-#define SOAP_TYPE_PointerToCORBA__CORBA_x002eTypeCode (60)
+#define SOAP_TYPE_PointerToCORBA__CORBA_x002eTypeCode (63)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToCORBA__CORBA_x002eTypeCode(struct soap*, CORBA__CORBA_x002eTypeCode *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToCORBA__CORBA_x002eTypeCode(struct soap*, CORBA__CORBA_x002eTypeCode *const*, const char*, const char*);
@@ -984,7 +1008,7 @@ SOAP_FMAC3 CORBA__CORBA_x002eTypeCode ** SOAP_FMAC4 soap_get_PointerToCORBA__COR
 SOAP_FMAC3 CORBA__CORBA_x002eTypeCode ** SOAP_FMAC4 soap_in_PointerToCORBA__CORBA_x002eTypeCode(struct soap*, const char*, CORBA__CORBA_x002eTypeCode **, const char*);
 
 #ifndef SOAP_TYPE_PointerToxsd__anyURI
-#define SOAP_TYPE_PointerToxsd__anyURI (59)
+#define SOAP_TYPE_PointerToxsd__anyURI (62)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToxsd__anyURI(struct soap*, char **const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToxsd__anyURI(struct soap*, char **const*, const char*, const char*);
@@ -993,7 +1017,7 @@ SOAP_FMAC3 char *** SOAP_FMAC4 soap_get_PointerToxsd__anyURI(struct soap*, char 
 SOAP_FMAC3 char *** SOAP_FMAC4 soap_in_PointerToxsd__anyURI(struct soap*, const char*, char ***, const char*);
 
 #ifndef SOAP_TYPE_PointerToCUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq
-#define SOAP_TYPE_PointerToCUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq (58)
+#define SOAP_TYPE_PointerToCUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq (61)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToCUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq(struct soap*, CUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToCUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq(struct soap*, CUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq *const*, const char*, const char*);
@@ -1002,7 +1026,7 @@ SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq ** SOAP_FM
 SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq ** SOAP_FMAC4 soap_in_PointerToCUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq(struct soap*, const char*, CUTS_x002e_USCORESE_USCOREPort_USCOREMeasurement_USCORESeq **, const char*);
 
 #ifndef SOAP_TYPE_PointerToCUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq
-#define SOAP_TYPE_PointerToCUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq (57)
+#define SOAP_TYPE_PointerToCUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq (60)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToCUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq(struct soap*, CUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToCUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq(struct soap*, CUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq *const*, const char*, const char*);
@@ -1011,7 +1035,7 @@ SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORES
 SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq ** SOAP_FMAC4 soap_in_PointerToCUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq(struct soap*, const char*, CUTS_x002e_USCORESE_USCOREMapped_USCOREPort_USCOREMeasurement_USCORESeq **, const char*);
 
 #ifndef SOAP_TYPE_PointerToCUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq
-#define SOAP_TYPE_PointerToCUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq (56)
+#define SOAP_TYPE_PointerToCUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq (59)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToCUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq(struct soap*, CUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToCUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq(struct soap*, CUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq *const*, const char*, const char*);
@@ -1020,7 +1044,7 @@ SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq ** SOAP_
 SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq ** SOAP_FMAC4 soap_in_PointerToCUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq(struct soap*, const char*, CUTS_x002e_USCORESE_USCOREWorker_USCOREMeasurement_USCORESeq **, const char*);
 
 #ifndef SOAP_TYPE_PointerToCUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq
-#define SOAP_TYPE_PointerToCUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq (55)
+#define SOAP_TYPE_PointerToCUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq (58)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToCUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq(struct soap*, CUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToCUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq(struct soap*, CUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq *const*, const char*, const char*);
@@ -1029,7 +1053,7 @@ SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq ** SO
 SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq ** SOAP_FMAC4 soap_in_PointerToCUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq(struct soap*, const char*, CUTS_x002e_USCORESE_USCOREExit_USCOREPoint_USCORETime_USCORESeq **, const char*);
 
 #ifndef SOAP_TYPE_PointerToCUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq
-#define SOAP_TYPE_PointerToCUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq (54)
+#define SOAP_TYPE_PointerToCUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq (57)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToCUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq(struct soap*, CUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToCUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq(struct soap*, CUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq *const*, const char*, const char*);
@@ -1038,7 +1062,7 @@ SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq ** SOAP_
 SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq ** SOAP_FMAC4 soap_in_PointerToCUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq(struct soap*, const char*, CUTS_x002e_USCORESE_USCOREAction_USCOREMeasurement_USCORESeq **, const char*);
 
 #ifndef SOAP_TYPE_PointerToSLICE__CUTS_x002eTime_USCORESample
-#define SOAP_TYPE_PointerToSLICE__CUTS_x002eTime_USCORESample (53)
+#define SOAP_TYPE_PointerToSLICE__CUTS_x002eTime_USCORESample (56)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSLICE__CUTS_x002eTime_USCORESample(struct soap*, SLICE__CUTS_x002eTime_USCORESample *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSLICE__CUTS_x002eTime_USCORESample(struct soap*, SLICE__CUTS_x002eTime_USCORESample *const*, const char*, const char*);
@@ -1047,7 +1071,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eTime_USCORESample ** SOAP_FMAC4 soap_get_PointerToSL
 SOAP_FMAC3 SLICE__CUTS_x002eTime_USCORESample ** SOAP_FMAC4 soap_in_PointerToSLICE__CUTS_x002eTime_USCORESample(struct soap*, const char*, SLICE__CUTS_x002eTime_USCORESample **, const char*);
 
 #ifndef SOAP_TYPE_PointerToSLICE__CUTS_x002eTime_USCOREInfo
-#define SOAP_TYPE_PointerToSLICE__CUTS_x002eTime_USCOREInfo (52)
+#define SOAP_TYPE_PointerToSLICE__CUTS_x002eTime_USCOREInfo (55)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSLICE__CUTS_x002eTime_USCOREInfo(struct soap*, SLICE__CUTS_x002eTime_USCOREInfo *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSLICE__CUTS_x002eTime_USCOREInfo(struct soap*, SLICE__CUTS_x002eTime_USCOREInfo *const*, const char*, const char*);
@@ -1056,7 +1080,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eTime_USCOREInfo ** SOAP_FMAC4 soap_get_PointerToSLIC
 SOAP_FMAC3 SLICE__CUTS_x002eTime_USCOREInfo ** SOAP_FMAC4 soap_in_PointerToSLICE__CUTS_x002eTime_USCOREInfo(struct soap*, const char*, SLICE__CUTS_x002eTime_USCOREInfo **, const char*);
 
 #ifndef SOAP_TYPE_PointerToCORBA__ObjectReference
-#define SOAP_TYPE_PointerToCORBA__ObjectReference (51)
+#define SOAP_TYPE_PointerToCORBA__ObjectReference (54)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToCORBA__ObjectReference(struct soap*, CORBA__ObjectReference *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToCORBA__ObjectReference(struct soap*, CORBA__ObjectReference *const*, const char*, const char*);
@@ -1065,7 +1089,7 @@ SOAP_FMAC3 CORBA__ObjectReference ** SOAP_FMAC4 soap_get_PointerToCORBA__ObjectR
 SOAP_FMAC3 CORBA__ObjectReference ** SOAP_FMAC4 soap_in_PointerToCORBA__ObjectReference(struct soap*, const char*, CORBA__ObjectReference **, const char*);
 
 #ifndef SOAP_TYPE__SOAP_ENC__arrayType
-#define SOAP_TYPE__SOAP_ENC__arrayType (18)
+#define SOAP_TYPE__SOAP_ENC__arrayType (20)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default__SOAP_ENC__arrayType(struct soap*, char **);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize__SOAP_ENC__arrayType(struct soap*, char *const*);
@@ -1075,7 +1099,7 @@ SOAP_FMAC3 char ** SOAP_FMAC4 soap_get__SOAP_ENC__arrayType(struct soap*, char *
 SOAP_FMAC3 char * * SOAP_FMAC4 soap_in__SOAP_ENC__arrayType(struct soap*, const char*, char **, const char*);
 
 #ifndef SOAP_TYPE_xsd__anyURI
-#define SOAP_TYPE_xsd__anyURI (9)
+#define SOAP_TYPE_xsd__anyURI (11)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_xsd__anyURI(struct soap*, char **);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_xsd__anyURI(struct soap*, char *const*);
@@ -1083,6 +1107,16 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_xsd__anyURI(struct soap*, char *const*, const
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_xsd__anyURI(struct soap*, const char*, int, char*const*, const char*);
 SOAP_FMAC3 char ** SOAP_FMAC4 soap_get_xsd__anyURI(struct soap*, char **, const char*, const char*);
 SOAP_FMAC3 char * * SOAP_FMAC4 soap_in_xsd__anyURI(struct soap*, const char*, char **, const char*);
+
+#ifndef SOAP_TYPE_xsd__ID
+#define SOAP_TYPE_xsd__ID (9)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_xsd__ID(struct soap*, char **);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_xsd__ID(struct soap*, char *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_xsd__ID(struct soap*, char *const*, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_xsd__ID(struct soap*, const char*, int, char*const*, const char*);
+SOAP_FMAC3 char ** SOAP_FMAC4 soap_get_xsd__ID(struct soap*, char **, const char*, const char*);
+SOAP_FMAC3 char * * SOAP_FMAC4 soap_in_xsd__ID(struct soap*, const char*, char **, const char*);
 
 #ifndef SOAP_TYPE__QName
 #define SOAP_TYPE__QName (5)

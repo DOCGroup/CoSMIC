@@ -795,12 +795,12 @@ public class XmlExportVisitor implements Visitor {
                 if (level == 0) {
                     QName eleQName = new QName (this.currNs, name);
                     if (qname.equals (ELEMENT)) {
-                        System.out.println ("Adding " + eleQName
-                                            + " to the elementMap");
+//                        System.out.println ("Adding " + eleQName
+//                                            + " to the elementMap");
                         this.elementMap.put (eleQName, model);
                     } else {
-                        System.out.println ("Adding " + eleQName
-                                            + " to the typeMap");
+//                        System.out.println ("Adding " + eleQName
+//                                            + " to the typeMap");
                         this.typeMap.put (eleQName, model);
 
                     }
@@ -886,7 +886,7 @@ public class XmlExportVisitor implements Visitor {
 
     public void visitPortType (PortType portType) {
         String localName = portType.getQName().getLocalPart();
-        System.out.println ("Adding OperationType " + portType.getQName());
+//        System.out.println ("Adding OperationType " + portType.getQName());
         Model portTypeModel = this.createGmeModel (localName, "PortType",
                                                    "PortType");
         Regnode partregs = this.createPartRegs(xPos, yPos);
@@ -906,7 +906,7 @@ public class XmlExportVisitor implements Visitor {
 
     public void visitOperation (Operation oper) {
         String localName = oper.getName();
-        System.out.println ("Adding Operation " + localName);
+//        System.out.println ("Adding Operation " + localName);
         OperationType style = oper.getStyle();
         String kind = null;
         String role = null;

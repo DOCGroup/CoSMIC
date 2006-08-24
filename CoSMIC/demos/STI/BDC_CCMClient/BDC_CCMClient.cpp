@@ -8,6 +8,7 @@
 #include <string>
 
 using std::cout;
+using std::cerr;
 using std::endl;
 using std::string;
 
@@ -59,12 +60,12 @@ static CUTS::Path_Sequence createPathSeq (const char* path)
       path_seq [len] = path_element;
     }
 
-  for (CORBA::ULong i = 0; i < path_seq.length(); ++i)
+  /*for (CORBA::ULong i = 0; i < path_seq.length(); ++i)
     {
       cout << "Node: " << path_seq[i].node << endl
            << "Source Port: " << path_seq[i].src << endl
            << "Destination Port: " << path_seq[i].dst << endl;
-    }
+    }*/
   return path_seq;
 }
 
@@ -114,7 +115,7 @@ main (int argc, char *argv[])
         }
 
       string pathId ("SLICE.CoWorkEr_ComponentImplementations.SLICE.SLICE.PlannerOne,CommandEvent,CommandEvent;SLICE.CoWorkEr_ComponentImplementations.SLICE.SLICE.SensorMain,CommandEvent,TrackEvent;SLICE.CoWorkEr_ComponentImplementations.SLICE.SLICE.PlannerOne,TrackEvent,SituationEvent;SLICE.CoWorkEr_ComponentImplementations.SLICE.SLICE.PlannerTwo,SituationEvent,AssessmentEvent;SLICE.CoWorkEr_ComponentImplementations.SLICE.SLICE.ConfigOp,AssessmentEvent,CommandEvent;SLICE.CoWorkEr_ComponentImplementations.SLICE.SLICE.EffectorMain,CommandEvent,CommandEvent");
-      cout << "Displaying statistics for path: " << pathId << endl;
+      /*cerr << "Displaying statistics for path: " << pathId << endl;*/
 
       CUTS::Path_Sequence pathSeq = createPathSeq (pathId.c_str());
 
@@ -122,7 +123,7 @@ main (int argc, char *argv[])
         pathCookie = online_measurements->bind_to_path (pathSeq,
                                                         CUTS::Path_Measurement::BPF_BOTH);
 
-      ACE_Time_Value timeout (10);
+      ACE_Time_Value timeout (5);
 
       while (1)
         {
@@ -131,14 +132,13 @@ main (int argc, char *argv[])
           CUTS::Event_Time_Info event_info
             = online_measurements->execution_time (pathCookie);
           CUTS::Time_Info time = event_info.time;
-          ACE_DEBUG ((LM_DEBUG, "ID %d: exec time (min/avg/max):"
+          ACE_DEBUG ((LM_DEBUG, "ID %d: Execution time (min/avg/max): "
                       "(%d ms/%d ms/%d ms)\t"
-                      "number of events (min/max): (%d/%d)\n",
+                      "No. of Events sampled: (%d)\n",
                       pathCookie,
                       time.min,
                       time.total,
                       time.max,
-                      event_info.min_events,
                       event_info.max_events));
           ACE_OS::sleep (timeout);
         }

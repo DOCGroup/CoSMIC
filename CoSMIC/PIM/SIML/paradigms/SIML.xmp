@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="SIML" guid="{0B603D1E-7747-4997-A4F5-8A368BCFE954}" cdate="Wed Aug 16 21:18:41 2006" mdate="Wed Aug 16 21:18:41 2006" >
+<paradigm name="SIML" guid="{84BE62A4-EC0C-4FAF-9BE2-F3D0C4327213}" cdate="Thu Aug 17 19:52:17 2006" mdate="Thu Aug 17 19:52:17 2006" >
 
 	<comment>System Integration Modeling Language (SIML) is a domain-specific modeling 
 language that allows integration of systems using different middleware 
@@ -741,6 +741,7 @@ conns->size > 1 implies
 		</atom>
 		<atom name = "SIML::Module" metaref = "6405" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="module.gif"></regnode>
 		</atom>
 		<atom name = "WSML::AtomicType" metaref = "7232"  attributes = "typeCode">
 				<regnode name = "namePosition" value ="4"></regnode>
@@ -4326,14 +4327,14 @@ instances->forAll (x : Component |
 				<dispname>Primary Artifacts of a MonolithicImplementation should have unique names</dispname>
 			</constraint>
 			<constraint name="ValidPICML::ComponentImplementationContainerPartCardinality181" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::PathReference" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PICML::ComponentImplementationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPICML::ComponentImplementationContainerPartCardinality182" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PICML::ComponentImplementation" ) -> size + self.parts( "PICML::MonolithicImplementation" ) -> size + self.parts( "PICML::ComponentAssembly" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::ComponentImplementationContainer, has to match 1.</dispname>
+			</constraint>
+			<constraint name="ValidPICML::ComponentImplementationContainerPartCardinality182" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PICML::ComponentRef" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PICML::ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPICML::ComponentImplementationContainerPartCardinality183" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PICML::Implements" ) -> size in
@@ -4341,7 +4342,7 @@ instances->forAll (x : Component |
 				<dispname>Multiplicity of parts, which are contained by PICML::ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPICML::ComponentImplementationContainerPartCardinality184" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::ComponentRef" ) -> size in
+				<![CDATA[let partCount = self.parts( "PICML::PathReference" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -5033,27 +5034,27 @@ instances->forAll (x : Component |
 				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPICML::PackageConfigurationContainerPartCardinality191" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::PackageConfSpecializedConfig" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPICML::PackageConfigurationContainerPartCardinality192" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::PackageConfBasePackage" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPICML::PackageConfigurationContainerPartCardinality193" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::PackageConfReference" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPICML::PackageConfigurationContainerPartCardinality194" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PICML::PackageConfiguration" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 1..*.</dispname>
 			</constraint>
-			<constraint name="ValidPICML::PackageConfigurationContainerPartCardinality195" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPICML::PackageConfigurationContainerPartCardinality192" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PICML::ComponentPackageReference" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPICML::PackageConfigurationContainerPartCardinality193" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PICML::PackageConfBasePackage" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPICML::PackageConfigurationContainerPartCardinality194" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PICML::PackageConfReference" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPICML::PackageConfigurationContainerPartCardinality195" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PICML::PackageConfSpecializedConfig" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -5324,14 +5325,14 @@ let props = self.connectedFCOs(AttributeValue) in
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="project.bmp"></regnode>
 			<constraint name="ValidPICML::ServantProjectPartCardinality202" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::ImplementationArtifactReference" ) -> size in
-                     (partCount = 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PICML::ServantProject, has to match 1.</dispname>
-			</constraint>
-			<constraint name="ValidPICML::ServantProjectPartCardinality203" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PICML::FileRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::ServantProject, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPICML::ServantProjectPartCardinality203" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PICML::ImplementationArtifactReference" ) -> size in
+                     (partCount = 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PICML::ServantProject, has to match 1.</dispname>
 			</constraint>
 			<constraint name="servantOneInstance" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[self.instances ()->size <= 1]]>
@@ -5365,12 +5366,12 @@ let props = self.connectedFCOs(AttributeValue) in
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="project.bmp"></regnode>
 			<constraint name="ValidPICML::StubProjectPartCardinality204" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::ImplementationArtifactReference" ) -> size in
+				<![CDATA[let partCount = self.parts( "PICML::FileRef" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::StubProject, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidPICML::StubProjectPartCardinality205" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::FileRef" ) -> size in
+				<![CDATA[let partCount = self.parts( "PICML::ImplementationArtifactReference" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::StubProject, has to match 1.</dispname>
 			</constraint>
@@ -5418,7 +5419,7 @@ let props = self.connectedFCOs(AttributeValue) in
 				<dispname>Not a valid identifier</dispname>
 			</constraint>
 			<constraint name="ValidPICML::SwitchedAggregatePartCardinality206" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::LabelConnection" ) -> size in
+				<![CDATA[let partCount = self.parts( "PICML::Label" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
@@ -5428,7 +5429,7 @@ let props = self.connectedFCOs(AttributeValue) in
 				<dispname>Multiplicity of parts, which are contained by PICML::SwitchedAggregate, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidPICML::SwitchedAggregatePartCardinality208" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::Label" ) -> size in
+				<![CDATA[let partCount = self.parts( "PICML::LabelConnection" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
@@ -5480,17 +5481,17 @@ let props = self.connectedFCOs(AttributeValue) in
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="TopLevelPackageConfiguration.bmp"></regnode>
 			<constraint name="ValidPICML::TopLevelPackageContainerPartCardinality209" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PICML::TopLevelPackage" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PICML::TopLevelPackageContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPICML::TopLevelPackageContainerPartCardinality210" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PICML::PackageConfigurationReference" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::TopLevelPackageContainer, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidPICML::TopLevelPackageContainerPartCardinality210" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::package" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PICML::TopLevelPackageContainer, has to match 0..1.</dispname>
-			</constraint>
 			<constraint name="ValidPICML::TopLevelPackageContainerPartCardinality211" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::TopLevelPackage" ) -> size in
+				<![CDATA[let partCount = self.parts( "PICML::package" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -5722,14 +5723,14 @@ actions->isUnique (iter : Action | iter->name ())
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="bindingoperation.gif"></regnode>
 			<constraint name="ValidWSML::BindingOperationPartCardinality215" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "WSML::ExtensibleOperation" ) -> size + self.parts( "WSML::SOAPOperation" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by WSML::BindingOperation, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidWSML::BindingOperationPartCardinality216" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "WSML::ExtensibleMessage" ) -> size + self.parts( "WSML::SOAPBody" ) -> size + self.parts( "WSML::SOAPFault" ) -> size + self.parts( "WSML::SOAPHeaderFault" ) -> size + self.parts( "WSML::SOAPHeader" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by WSML::BindingOperation, has to match 1..*.</dispname>
+			</constraint>
+			<constraint name="ValidWSML::BindingOperationPartCardinality216" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "WSML::ExtensibleOperation" ) -> size + self.parts( "WSML::SOAPOperation" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by WSML::BindingOperation, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidWSML::BindingOperationPartCardinality217" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "WSML::Documentation" ) -> size in
@@ -5782,7 +5783,7 @@ actions->isUnique (iter : Action | iter->name ())
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="definitions.gif"></regnode>
 			<constraint name="ValidWSML::DefinitionsPartCardinality218" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "WSML::Types" ) -> size in
+				<![CDATA[let partCount = self.parts( "WSML::Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by WSML::Definitions, has to match 0..1.</dispname>
 			</constraint>
@@ -5792,7 +5793,7 @@ actions->isUnique (iter : Action | iter->name ())
 				<dispname>Multiplicity of parts, which are contained by WSML::Definitions, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidWSML::DefinitionsPartCardinality220" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "WSML::Documentation" ) -> size in
+				<![CDATA[let partCount = self.parts( "WSML::Types" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by WSML::Definitions, has to match 0..1.</dispname>
 			</constraint>
@@ -6026,12 +6027,12 @@ actions->isUnique (iter : Action | iter->name ())
 				<dispname>Multiplicity of parts, which are contained by WSML::Operation, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidWSML::RequestResponseOperationPartCardinality228" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "WSML::Output" ) -> size in
+				<![CDATA[let partCount = self.parts( "WSML::Input" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by WSML::RequestResponseOperation, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidWSML::RequestResponseOperationPartCardinality229" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "WSML::Input" ) -> size in
+				<![CDATA[let partCount = self.parts( "WSML::Output" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by WSML::RequestResponseOperation, has to match 1.</dispname>
 			</constraint>
@@ -6147,12 +6148,12 @@ actions->isUnique (iter : Action | iter->name ())
 				<dispname>Multiplicity of parts, which are contained by WSML::Operation, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidWSML::SolicitResponseOperationPartCardinality231" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "WSML::Output" ) -> size in
+				<![CDATA[let partCount = self.parts( "WSML::Input" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by WSML::SolicitResponseOperation, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidWSML::SolicitResponseOperationPartCardinality232" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "WSML::Input" ) -> size in
+				<![CDATA[let partCount = self.parts( "WSML::Output" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by WSML::SolicitResponseOperation, has to match 1.</dispname>
 			</constraint>

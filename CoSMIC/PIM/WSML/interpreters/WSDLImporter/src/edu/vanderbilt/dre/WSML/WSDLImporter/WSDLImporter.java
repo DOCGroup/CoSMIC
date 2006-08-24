@@ -22,33 +22,37 @@ public class WSDLImporter {
         String wsdlURI = new String (args[0]);
         String outputFileName = new String (args[1]);
         try {
-            SchemaFactory sf
-                = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            URL schemaURL
-                = new URL ("http://schemas.xmlsoap.org/wsdl/2003-02-11.xsd");
-            Schema wsdl = sf.newSchema (schemaURL);
+        	System.out.print ("Processing input WSDL file  " + wsdlURI + "...");
+//            SchemaFactory sf
+//                = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+//            URL schemaURL
+//                = new URL ("file://./2003-02-11.xsd");
+//            Schema wsdl = sf.newSchema (schemaURL);
             DocumentBuilderFactory
                 dbf = DocumentBuilderFactory.newInstance();
             dbf.setIgnoringComments (true);
             dbf.setNamespaceAware (true);
             dbf.setValidating (false);
-            dbf.setSchema (wsdl);
+            // dbf.setSchema (wsdl);
 
             DocumentBuilder db = dbf.newDocumentBuilder();
             Document wsdlDoc = db.parse (wsdlURI);
 
             WSDLFactory factory = WSDLFactory.newInstance();
             WSDLReader reader = factory.newWSDLReader();
-            reader.setFeature("javax.wsdl.verbose", true);
+            reader.setFeature("javax.wsdl.verbose", false);
             reader.setFeature("javax.wsdl.importDocuments", true);
 
             Definition def = reader.readWSDL(wsdlDoc.getDocumentURI(),
                                              wsdlDoc);
+            System.out.println ("done!");
+            System.out.print ("Generating WSML model " + outputFileName + "...");
             XmlExportVisitor visitor
                 = new XmlExportVisitor(def.getQName().getLocalPart(),
                                        outputFileName);
             visitor.visitDefinition(def);
             visitor.dump();
+            System.out.println ("done!");
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         } catch (SAXException e) {

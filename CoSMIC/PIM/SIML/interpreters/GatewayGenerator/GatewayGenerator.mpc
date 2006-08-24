@@ -2,6 +2,7 @@ project (GatewayGenerator): bon {
 
    sharedname = GatewayGenerator
    includes += $(COSMIC_ROOT)/PIM/SIML/interpreters
+   includes += $(COSMIC_ROOT)/PIM/SIML/interpreters/GatewayGenerator
    includes += $(CIAO_ROOT)/CCF $(ACE_ROOT)/contrib/utility
 
    specific {
