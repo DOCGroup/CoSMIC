@@ -273,6 +273,7 @@ namespace PICML
 	DeploymentPlan_Export virtual void generate_instance_deployment_descriptions (void);
 	DeploymentPlan_Export virtual void generate_assembly_instance_deployment_descriptions (void);
 	DeploymentPlan_Export virtual void generate_artifact_descriptions (void);
+  DeploymentPlan_Export virtual void generate_infoproperties (const DeploymentPlan &);
 	DeploymentPlan_Export virtual void generate_implementation_descriptions (void);
 	DeploymentPlan_Export virtual void generate_child_connections (void);
 	DeploymentPlan_Export virtual void generate_parent_connections (void);

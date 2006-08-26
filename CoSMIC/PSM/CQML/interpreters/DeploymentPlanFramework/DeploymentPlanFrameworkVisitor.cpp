@@ -237,6 +237,24 @@ namespace CQML
       }
   }
 
+  void DeploymentPlanFrameworkVisitor::generate_infoproperties (const DeploymentPlan &plan)
+    {
+      DOMElement* ele = this->doc_->createElement (XStr ("infoProperty"));
+      this->curr_->appendChild (ele);
+      this->push();
+      this->curr_ = ele;
+
+      std::set <Property> info_properties = plan.Property_kind_children ();
+      for (std::set <Property>::const_iterator iter = info_properties.begin ();
+           iter != info_properties.end ();
+           ++iter)
+        {
+          Property property = *iter;
+          property.Accept (*this);
+        }
+      this->pop ();
+    }
+
   void DeploymentPlanFrameworkVisitor::Visit_ImplementationArtifact (
                    const ImplementationArtifact& ia)
   {
@@ -1024,7 +1042,7 @@ namespace CQML
         std::string plan_name = plan.name ();
 		    plan.Accept (*this);
 
-		    Injector* ft_injector;
+		    Injector* injector;
 		    std::map<std::string, CQML::Component> monolith_instances;
         std::map<std::string, CQML::Component> assembly_instances;
         std::map<std::string, std::string> node_mappings;
@@ -1039,15 +1057,15 @@ namespace CQML
     		
 		    if (this->injectors_.find (plan_name) != this->injectors_.end ())
 		      {
-		        ft_injector = this->injectors_[plan_name];
+		        injector = this->injectors_[plan_name];
 
-	          monolith_instances = ft_injector->add_monolith_instances ();
+	          monolith_instances = injector->add_monolith_instances (plan_name);
             this->instance_monolith_components_.insert 
               (monolith_instances.begin (), monolith_instances.end ());
-            assembly_instances = ft_injector->add_assembly_instances ();
+            assembly_instances = injector->add_assembly_instances (plan_name);
             this->instance_assembly_components_.insert 
                (assembly_instances.begin (), assembly_instances.end ());
-            node_mappings = ft_injector->assign_node_mappings (deployed_instances);
+            node_mappings = injector->assign_node_mappings (plan_name, deployed_instances);
             for (std::map<std::string, std::string>::const_iterator node_mapping_iter =
                  node_mappings.begin (); node_mapping_iter != node_mappings.end ();
                  ++node_mapping_iter)
@@ -1067,8 +1085,8 @@ namespace CQML
 
         if (this->injectors_.find (plan_name) != this->injectors_.end ())
           {
-            ft_injector = this->injectors_[plan_name];
-            replica_connections = ft_injector->add_connections (this->connections_, plan_name);
+            injector = this->injectors_[plan_name];
+            replica_connections = injector->add_connections (plan_name, this->connections_);
           }
 
         for (Injector::ConnectionMap::const_iterator itr = replica_connections.begin ();
@@ -1114,6 +1132,7 @@ namespace CQML
           }
 
 		    this->generate_artifact_descriptions ();
+        this->generate_infoproperties(plan);
 		    this->finalize_deployment_plan_descriptor ();
 
         this->clear_private_variables ();

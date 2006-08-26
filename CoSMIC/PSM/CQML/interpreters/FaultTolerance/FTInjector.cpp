@@ -41,22 +41,22 @@ namespace CQML
       return this->node_assgn_.get();
     }
 
-  std::map<std::string, CQML::Component> FTInjector::add_monolith_instances ()
+  std::map<std::string, CQML::Component> FTInjector::add_monolith_instances (const std::string& plan_name)
     {
       return this->comp_addr_->get_all_monolith_components ();
     }
 
-  std::map<std::string, CQML::Component> FTInjector::add_assembly_instances ()
+  std::map<std::string, CQML::Component> FTInjector::add_assembly_instances (const std::string& plan_name)
     {
       return this->comp_addr_->get_all_assembly_components ();
     }
 
-  Injector::ConnectionMap FTInjector::add_connections (const Injector::ConnectionMap &conn_map, std::string& plan_name)
+  Injector::ConnectionMap FTInjector::add_connections (const std::string& plan_name, const Injector::ConnectionMap &conn_map)
     {
-      return this->conn_addr_->get_new_connections (conn_map, plan_name);
+      return this->conn_addr_->get_new_connections (plan_name, conn_map);
     }
 
-  std::map <std::string, std::string> FTInjector::assign_node_mappings (const std::map <std::string, std::string> &known_mapping)
+  std::map <std::string, std::string> FTInjector::assign_node_mappings (const std::string& plan_name, const std::map <std::string, std::string> &known_mapping)
     {
       this->node_assgn_->compute_assignment (known_mapping);
       const std::map <std::string, Node> compname_node_map = 

@@ -18,10 +18,10 @@ namespace CQML
         public:
           FTInjector (ComponentAdder *, ConnectionAdder *, NodeAssigner *, FTRequirementsVisitor *);
           virtual ~FTInjector();
-		      virtual std::map<std::string, CQML::Component> add_monolith_instances ();
-          virtual std::map<std::string, CQML::Component> add_assembly_instances ();
-          virtual Injector::ConnectionMap add_connections (const Injector::ConnectionMap &, std::string &);
-          virtual std::map <std::string, std::string> assign_node_mappings (const std::map <std::string, std::string> &);
+		      virtual std::map<std::string, CQML::Component> add_monolith_instances (const std::string& plan_name);
+          virtual std::map<std::string, CQML::Component> add_assembly_instances (const std::string& plan_name);
+          virtual Injector::ConnectionMap add_connections (const std::string& plan_name, const Injector::ConnectionMap &);
+          virtual std::map <std::string, std::string> assign_node_mappings (const std::string& plan_name, const std::map <std::string, std::string> &);
 
           const ComponentAdder * get_component_adder(void) const;
           const ConnectionAdder * get_connection_adder (void) const;

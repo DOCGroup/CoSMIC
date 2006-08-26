@@ -38,6 +38,9 @@ namespace CQML
     virtual void Visit_ComponentImplementations(const ComponentImplementations&);
     virtual void Visit_ComponentImplementationContainer(const ComponentImplementationContainer&);
     virtual void Visit_ComponentAssembly(const ComponentAssembly &);
+    virtual void Visit_DeploymentPlans(const DeploymentPlans&);
+    virtual void Visit_DeploymentPlan(const DeploymentPlan&);
+    virtual void Visit_Property(const Property&);
     virtual void Visit_NetQoS (const NetQoS &);
     virtual void Visit_QoSConnector (const QoSConnector &);
     virtual void Visit_QoSCharRef(const QoSCharRef &);
@@ -80,6 +83,8 @@ namespace CQML
   private:
       NetQoS current_netqos_;
       std::multimap <NetQoS, std::string> qos_conn_mmap_;
+      std::map <std::string, std::string> plan_nqfile_map_;
+      std::set <std::string> filenames_;
 
 
   private:
@@ -226,8 +231,6 @@ namespace CQML
     virtual void Visit_Interconnect2Node(const Interconnect2Node&){};
     virtual void Visit_Interconnect2Bridge(const Interconnect2Bridge&){};
     virtual void Visit_InstanceMapping(const InstanceMapping&){};
-    virtual void Visit_DeploymentPlan(const DeploymentPlan&){};
-    virtual void Visit_DeploymentPlans(const DeploymentPlans&){};
     virtual void Visit_CollocationGroup(const CollocationGroup&){};
     virtual void Visit_InParameter(const InParameter&){};
     virtual void Visit_TwowayOperation(const TwowayOperation&){};
@@ -272,7 +275,6 @@ namespace CQML
     virtual void Visit_Component(const Component&) {} ;
     virtual void Visit_InEventPort(const InEventPort &) {} ;
     virtual void Visit_InputAction(const InputAction&) {} ;
-    virtual void Visit_Property(const Property&) {} ;
     virtual void Visit_PeriodicAction (const PeriodicAction &) {} ;
     virtual void Visit_Environment (const Environment &) {} ;
     virtual void Visit_Input(const Input&) {}

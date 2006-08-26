@@ -18,8 +18,8 @@ using PICML::CreateUuid;
 namespace CQML
 {
   NetQoSVisitor::NetQoSVisitor (const std::string& outputPath)
-    : impl_ (0), doc_ (0), root_ (0), curr_ (0), serializer_ (0), target_ (0),
-      outputPath_ (outputPath)
+    : impl_ (0), doc_ (0), root_ (0), curr_ (0), serializer_ (0), 
+      target_ (0), outputPath_ (outputPath)
   {
     this->init();
   }
@@ -107,6 +107,15 @@ namespace CQML
 
   void NetQoSVisitor::Visit_RootFolder(const RootFolder& rf)
   {
+    std::set <DeploymentPlans> dep_plan_folders = rf.DeploymentPlans_kind_children ();
+    for (std::set <DeploymentPlans>::const_iterator iter = dep_plan_folders.begin ();
+         iter != dep_plan_folders.end ();
+         ++iter)
+      {
+        DeploymentPlans plans_folder = *iter;
+        plans_folder.Accept (*this);
+      }
+
     std::set<ComponentImplementations>
       comp_impls = rf.ComponentImplementations_kind_children();
     for (std::set<ComponentImplementations>::iterator iter = comp_impls.begin();
@@ -117,6 +126,35 @@ namespace CQML
         comp_impl.Accept (*this);
       }
   }
+
+  void NetQoSVisitor::Visit_DeploymentPlans(const DeploymentPlans& plans_folder)
+    {
+      std::set <DeploymentPlan> dep_plans = plans_folder.DeploymentPlan_kind_children ();
+      for (std::set <DeploymentPlan>::const_iterator iter = dep_plans.begin ();
+          iter != dep_plans.end ();
+          ++iter)
+        {
+          DeploymentPlan plan = *iter;
+          plan.Accept (*this);
+        }
+    }
+  
+  void NetQoSVisitor::Visit_DeploymentPlan(const DeploymentPlan& dep_plan)
+    {
+      std::set <Property> properties = dep_plan.Property_kind_children ();
+      for (std::set <Property>::const_iterator iter = properties.begin ();
+          iter != properties.end ();
+          ++iter)
+        {
+          Property prop = *iter;
+          prop.Accept (*this);
+        }
+    }
+
+  void NetQoSVisitor::Visit_Property(const Property &property) 
+    {
+      this->filenames_.insert (property.DataValue ());
+    }
 
   void NetQoSVisitor::Visit_ComponentImplementations(const ComponentImplementations &comp_impl)
   {
@@ -133,6 +171,9 @@ namespace CQML
 
   void NetQoSVisitor::Visit_ComponentImplementationContainer(const ComponentImplementationContainer &comp_impl_cont)
   {
+    this->initDocument ("NetQoS:Characteristics");
+    this->initRootAttributes(); // this->curr_ is ROOT now.
+
     std::set<ComponentAssembly>
       comp_assemblies = comp_impl_cont.ComponentAssembly_kind_children();
     for (std::set<ComponentAssembly>::iterator iter = comp_assemblies.begin();
@@ -142,17 +183,19 @@ namespace CQML
         ComponentAssembly comp_assembly = *iter;
         comp_assembly.Accept (*this);
       }
+
+    for (std::set <std::string>::const_iterator iter = this->filenames_.begin();
+         iter != this->filenames_.end ();
+         ++iter)
+      {
+        std::string name = this->outputPath_ + "\\" + *iter;
+        this->initTarget (name);
+        this->dumpDocument ();
+      }
   }
 
   void NetQoSVisitor::Visit_ComponentAssembly(const ComponentAssembly &comp_assembly)
     {
-      std::string name = this->outputPath_ + "\\";
-      name += comp_assembly.name();
-      name += ".xml";
-      this->initTarget (name);
-      this->initDocument ("NetQoS:Characteristics");
-      this->initRootAttributes(); // this->curr_ is ROOT now.
-
       std::set<QoSCharRef> qos_char_refs = comp_assembly.QoSCharRef_kind_children();
       for (std::set<QoSCharRef>::iterator iter = qos_char_refs.begin();
            iter != qos_char_refs.end();
@@ -170,8 +213,6 @@ namespace CQML
           NetQoS nq = *iter;
           nq.Accept (*this);
         }
-
-      this->dumpDocument ();
     }
 
   void NetQoSVisitor::Visit_QoSCharRef(const QoSCharRef &qc_ref)

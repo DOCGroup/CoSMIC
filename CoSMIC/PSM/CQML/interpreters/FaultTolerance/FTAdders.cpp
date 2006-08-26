@@ -110,7 +110,7 @@ namespace CQML
   ConnectionAdder::~ConnectionAdder ()
     {}
 
-  Injector::ConnectionMap ConnectionAdder::get_new_connections (const Injector::ConnectionMap &conn_map, std::string& plan_name)
+  Injector::ConnectionMap ConnectionAdder::get_new_connections (const std::string& plan_name, const Injector::ConnectionMap &conn_map)
     {
       Injector::ConnectionMap  new_map;
       for (Injector::ConnectionMap::const_iterator input_map_itr = conn_map.begin ();

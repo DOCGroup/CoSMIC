@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{163044E2-9C00-4A1D-B51D-940632E5D43A}" cdate="Tue Aug 08 13:49:16 2006" mdate="Tue Aug 08 13:49:16 2006" version="" metaguid="{B155EEE7-1CDC-4E1F-B6C2-A7B680779457}" metaversion="" metaname="MetaGME">
+<project guid="{B7B348CE-5A2D-41A2-9E86-1B1329CE24FC}" cdate="Tue Aug 22 18:39:01 2006" mdate="Tue Aug 22 18:39:01 2006" version="" metaguid="{B155EEE7-1CDC-4E1F-B6C2-A7B680779457}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment>This tool supports $CIAO_ROOT/docs/schema/CIAOServerResources.xsd version 1.7. 
 Please check the cvs repository if this is the most recent version of this file.</comment>
@@ -1046,7 +1046,7 @@ Please check the cvs repository if this is the most recent version of this file.
 						<value>false</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000009" kind="FieldAttribute" role="FieldAttribute" relid="0x2a">
+				<atom id="id-0066-00000008" kind="FieldAttribute" role="FieldAttribute" relid="0x2a">
 					<name>Location</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -1079,7 +1079,7 @@ Please check the cvs repository if this is the most recent version of this file.
 						<value>Location</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000000a" kind="Model" role="Model" relid="0x2d">
+				<atom id="id-0066-00000009" kind="Model" role="Model" relid="0x2d">
 					<name>WorkerFile</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -1154,7 +1154,7 @@ Please check the cvs repository if this is the most recent version of this file.
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000000b" kind="Model" role="Model" relid="0x2f">
+				<atom id="id-0066-0000000a" kind="Model" role="Model" relid="0x2f">
 					<name>WorkerPackage</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -1229,7 +1229,7 @@ Please check the cvs repository if this is the most recent version of this file.
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000000c" kind="Reference" role="Reference" relid="0x3e">
+				<atom id="id-0066-0000000b" kind="Reference" role="Reference" relid="0x3e">
 					<name>WorkerType</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -1303,7 +1303,7 @@ rrName = referedbyWorkerType</value>
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000000d" kind="ImplementationInheritance" role="ImplementationInheritance" relid="0x56">
+				<atom id="id-0066-0000000c" kind="ImplementationInheritance" role="ImplementationInheritance" relid="0x56">
 					<name>ImplementationInheritance</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -1333,7 +1333,7 @@ rrName = referedbyWorkerType</value>
 						</regnode>
 					</regnode>
 				</atom>
-				<atom id="id-0066-0000000e" kind="BooleanAttribute" role="BooleanAttribute" relid="0x59">
+				<atom id="id-0066-0000000d" kind="BooleanAttribute" role="BooleanAttribute" relid="0x59">
 					<name>Abstract</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -1360,7 +1360,7 @@ rrName = referedbyWorkerType</value>
 						<value>Abstract:</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000022d" kind="Constraint" role="Constraint" relid="0x5f">
+				<atom id="id-0066-0000000e" kind="Constraint" role="Constraint" relid="0x5f">
 					<name>DanglingAction</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -1646,7 +1646,7 @@ endif</value>
 						<value></value>
 					</attribute>
 					<connpoint role="src" target="id-0066-00000003"/>
-					<connpoint role="dst" target="id-0066-0000000b"/>
+					<connpoint role="dst" target="id-0066-0000000a"/>
 				</connection>
 				<connection id="id-0068-00000005" kind="Containment" role="Containment" relid="0x35">
 					<name>Containment</name>
@@ -1662,8 +1662,8 @@ endif</value>
 					<attribute kind="Rolename" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="src" target="id-0066-0000000b"/>
-					<connpoint role="dst" target="id-0066-0000000b"/>
+					<connpoint role="dst" target="id-0066-0000000a"/>
+					<connpoint role="src" target="id-0066-0000000a"/>
 				</connection>
 				<connection id="id-0068-00000006" kind="Containment" role="Containment" relid="0x36">
 					<name>Containment</name>
@@ -1680,7 +1680,7 @@ endif</value>
 						<value></value>
 					</attribute>
 					<connpoint role="dst" target="id-0066-00000002"/>
-					<connpoint role="src" target="id-0066-0000000a"/>
+					<connpoint role="src" target="id-0066-00000009"/>
 				</connection>
 				<connection id="id-0068-00000007" kind="HasAspect" role="HasAspect" relid="0x3a">
 					<name>HasAspect</name>
@@ -1704,15 +1704,15 @@ endif</value>
 						<value>Sn</value>
 					</regnode>
 					<connpoint role="dst" target="id-0066-00000002"/>
-					<connpoint role="src" target="id-0066-00000009"/>
+					<connpoint role="src" target="id-0066-00000008"/>
 				</connection>
 				<connection id="id-0068-0000000a" kind="HasAttribute" role="HasAttribute" relid="0x3d">
 					<name>HasAttribute</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-00000009"/>
-					<connpoint role="dst" target="id-0066-0000000a"/>
+					<connpoint role="src" target="id-0066-00000008"/>
+					<connpoint role="dst" target="id-0066-00000009"/>
 				</connection>
 				<connection id="id-0068-0000000b" kind="ReferTo" role="ReferTo" relid="0x3f">
 					<name>ReferTo</name>
@@ -1720,7 +1720,7 @@ endif</value>
 						<value>Ns</value>
 					</regnode>
 					<connpoint role="dst" target="id-0066-00000003"/>
-					<connpoint role="src" target="id-0066-0000000c"/>
+					<connpoint role="src" target="id-0066-0000000b"/>
 				</connection>
 				<connection id="id-0068-0000000c" kind="Containment" role="Containment" relid="0x40">
 					<name>Containment</name>
@@ -1736,26 +1736,26 @@ endif</value>
 					<attribute kind="Rolename" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="src" target="id-0066-0000000c"/>
+					<connpoint role="src" target="id-0066-0000000b"/>
 					<connpoint role="dst" target="id-0067-00000065"/>
 				</connection>
-				<connection id="id-0068-0000000e" kind="HasAspect" role="HasAspect" relid="0x42">
+				<connection id="id-0068-0000000d" kind="HasAspect" role="HasAspect" relid="0x42">
 					<name>HasAspect</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sw</value>
 					</regnode>
-					<connpoint role="dst" target="id-0066-0000000b"/>
+					<connpoint role="dst" target="id-0066-0000000a"/>
 					<connpoint role="src" target="id-0069-00000001"/>
 				</connection>
-				<connection id="id-0068-0000000f" kind="HasAspect" role="HasAspect" relid="0x53">
+				<connection id="id-0068-0000000e" kind="HasAspect" role="HasAspect" relid="0x53">
 					<name>HasAspect</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ss</value>
 					</regnode>
-					<connpoint role="dst" target="id-0066-0000000a"/>
+					<connpoint role="dst" target="id-0066-00000009"/>
 					<connpoint role="src" target="id-0069-00000001"/>
 				</connection>
-				<connection id="id-0068-00000010" kind="SameAspectRight" role="SameAspectRight" relid="0x54">
+				<connection id="id-0068-0000000f" kind="SameAspectRight" role="SameAspectRight" relid="0x54">
 					<name>SameAspectRight</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -1763,7 +1763,7 @@ endif</value>
 					<connpoint role="dst" target="id-0066-00000004"/>
 					<connpoint role="src" target="id-0069-00000001"/>
 				</connection>
-				<connection id="id-0068-00000011" kind="SameAspectLeft" role="SameAspectLeft" relid="0x55">
+				<connection id="id-0068-00000010" kind="SameAspectLeft" role="SameAspectLeft" relid="0x55">
 					<name>SameAspectLeft</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -1771,31 +1771,31 @@ endif</value>
 					<connpoint role="src" target="id-0066-00000004"/>
 					<connpoint role="dst" target="id-0067-000000af"/>
 				</connection>
-				<connection id="id-0068-00000012" kind="BaseImpInheritance" role="BaseImpInheritance" relid="0x57">
+				<connection id="id-0068-00000011" kind="BaseImpInheritance" role="BaseImpInheritance" relid="0x57">
 					<name>BaseImpInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-0000000b"/>
-					<connpoint role="dst" target="id-0066-0000000d"/>
+					<connpoint role="src" target="id-0066-0000000a"/>
+					<connpoint role="dst" target="id-0066-0000000c"/>
 				</connection>
-				<connection id="id-0068-00000013" kind="DerivedImpInheritance" role="DerivedImpInheritance" relid="0x58">
+				<connection id="id-0068-00000012" kind="DerivedImpInheritance" role="DerivedImpInheritance" relid="0x58">
 					<name>DerivedImpInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
 					</regnode>
-					<connpoint role="dst" target="id-0066-0000000a"/>
-					<connpoint role="src" target="id-0066-0000000d"/>
+					<connpoint role="dst" target="id-0066-00000009"/>
+					<connpoint role="src" target="id-0066-0000000c"/>
 				</connection>
-				<connection id="id-0068-00000014" kind="HasAttribute" role="HasAttribute" relid="0x5a">
+				<connection id="id-0068-00000013" kind="HasAttribute" role="HasAttribute" relid="0x5a">
 					<name>HasAttribute</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
 					</regnode>
 					<connpoint role="dst" target="id-0066-00000003"/>
-					<connpoint role="src" target="id-0066-0000000e"/>
+					<connpoint role="src" target="id-0066-0000000d"/>
 				</connection>
-				<connection id="id-0068-00000015" kind="Containment" role="Containment" relid="0x5c">
+				<connection id="id-0068-00000014" kind="Containment" role="Containment" relid="0x5c">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -1812,23 +1812,23 @@ endif</value>
 					<connpoint role="dst" target="id-0066-00000003"/>
 					<connpoint role="src" target="id-0067-00000064"/>
 				</connection>
-				<connection id="id-0068-000003a8" kind="HasConstraint" role="HasConstraint" relid="0x61">
+				<connection id="id-0068-00000015" kind="HasConstraint" role="HasConstraint" relid="0x61">
 					<name>HasConstraint</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-0000022d"/>
+					<connpoint role="src" target="id-0066-0000000e"/>
 					<connpoint role="dst" target="id-0067-00000064"/>
 				</connection>
-				<connection id="id-0068-000003a9" kind="HasConstraint" role="HasConstraint" relid="0x62">
+				<connection id="id-0068-00000016" kind="HasConstraint" role="HasConstraint" relid="0x62">
 					<name>HasConstraint</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ns</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-00000005"/>
-					<connpoint role="dst" target="id-0066-0000000c"/>
+					<connpoint role="dst" target="id-0066-0000000b"/>
 				</connection>
-				<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0x12" members="id-0066-00000002 id-0066-00000003 id-0066-0000000a id-0066-0000000b id-0066-0000000c">
+				<set id="id-0069-00000001" kind="Aspect" role="Aspect" relid="0x12" members="id-0066-00000002 id-0066-00000003 id-0066-00000009 id-0066-0000000a id-0066-0000000b">
 					<name>WorkerBehavior</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -3330,7 +3330,7 @@ dName = dstFinish</value>
 						<value>Precondition:</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000001a" kind="Inheritance" role="Inheritance" relid="0x286">
+				<atom id="id-0066-00000019" kind="Inheritance" role="Inheritance" relid="0x286">
 					<name>Inheritance</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -3360,7 +3360,7 @@ dName = dstFinish</value>
 						</regnode>
 					</regnode>
 				</atom>
-				<atom id="id-0066-0000001b" kind="FCO" role="FCO" relid="0x289">
+				<atom id="id-0066-0000001a" kind="FCO" role="FCO" relid="0x289">
 					<name>MultiInputBase</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -3432,7 +3432,7 @@ dName = dstFinish</value>
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000001c" kind="Connector" role="Connector" relid="0x28b">
+				<atom id="id-0066-0000001b" kind="Connector" role="Connector" relid="0x28b">
 					<name>Connector</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -3450,7 +3450,7 @@ dName = dstFinish</value>
 						</regnode>
 					</regnode>
 				</atom>
-				<atom id="id-0066-0000001d" kind="Connector" role="Connector" relid="0x28c">
+				<atom id="id-0066-0000001c" kind="Connector" role="Connector" relid="0x28c">
 					<name>Connector</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -3468,7 +3468,7 @@ dName = dstFinish</value>
 						</regnode>
 					</regnode>
 				</atom>
-				<atom id="id-0066-0000001e" kind="Connection" role="Connection" relid="0x294">
+				<atom id="id-0066-0000001d" kind="Connection" role="Connection" relid="0x294">
 					<name>MultiInput</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -3539,7 +3539,7 @@ dName = dstMultiInput</value>
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000001f" kind="FieldAttribute" role="FieldAttribute" relid="0x2a0">
+				<atom id="id-0066-0000001e" kind="FieldAttribute" role="FieldAttribute" relid="0x2a0">
 					<name>Postcondition</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -3572,7 +3572,7 @@ dName = dstMultiInput</value>
 						<value>Postcondition:</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000020" kind="Reference" role="Reference" relid="0x2ae">
+				<atom id="id-0066-0000001f" kind="Reference" role="Reference" relid="0x2ae">
 					<name>Variable</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -3646,7 +3646,7 @@ rrName = referedbyVariable</value>
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000021" kind="Constraint" role="Constraint" relid="0x2b2">
+				<atom id="id-0066-00000020" kind="Constraint" role="Constraint" relid="0x2b2">
 					<name>NotNull</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -3721,7 +3721,7 @@ rrName = referedbyVariable</value>
 						<value>false</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000022" kind="Constraint" role="Constraint" relid="0x2b5">
+				<atom id="id-0066-00000021" kind="Constraint" role="Constraint" relid="0x2b5">
 					<name>HasPrecondition</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -4560,7 +4560,7 @@ conns-&gt;size &gt; 1 implies
 					<connpoint role="src" target="id-0066-00000017"/>
 					<connpoint role="dst" target="id-0067-00000068"/>
 				</connection>
-				<connection id="id-0068-00000021" kind="Containment" role="Containment" relid="0x21b">
+				<connection id="id-0068-00000020" kind="Containment" role="Containment" relid="0x21b">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Nw</value>
@@ -4577,7 +4577,7 @@ conns-&gt;size &gt; 1 implies
 					<connpoint role="src" target="id-0066-00000012"/>
 					<connpoint role="dst" target="id-0067-00000068"/>
 				</connection>
-				<connection id="id-0068-00000022" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x22d">
+				<connection id="id-0068-00000021" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x22d">
 					<name>ConnectorToDestination</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -4591,7 +4591,7 @@ conns-&gt;size &gt; 1 implies
 					<connpoint role="src" target="id-0066-00000011"/>
 					<connpoint role="dst" target="id-0066-00000012"/>
 				</connection>
-				<connection id="id-0068-00000023" kind="Containment" role="Containment" relid="0x230">
+				<connection id="id-0068-00000022" kind="Containment" role="Containment" relid="0x230">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Nw</value>
@@ -4608,7 +4608,7 @@ conns-&gt;size &gt; 1 implies
 					<connpoint role="src" target="id-0066-00000015"/>
 					<connpoint role="dst" target="id-0067-00000068"/>
 				</connection>
-				<connection id="id-0068-00000024" kind="SourceToConnector" role="SourceToConnector" relid="0x26c">
+				<connection id="id-0068-00000023" kind="SourceToConnector" role="SourceToConnector" relid="0x26c">
 					<name>SourceToConnector</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -4622,7 +4622,7 @@ conns-&gt;size &gt; 1 implies
 					<connpoint role="dst" target="id-0066-00000011"/>
 					<connpoint role="src" target="id-0067-0000006c"/>
 				</connection>
-				<connection id="id-0068-00000025" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x26f">
+				<connection id="id-0068-00000024" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x26f">
 					<name>ConnectorToDestination</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -4636,7 +4636,7 @@ conns-&gt;size &gt; 1 implies
 					<connpoint role="src" target="id-0066-00000016"/>
 					<connpoint role="dst" target="id-0067-0000006b"/>
 				</connection>
-				<connection id="id-0068-00000026" kind="Containment" role="Containment" relid="0x271">
+				<connection id="id-0068-00000025" kind="Containment" role="Containment" relid="0x271">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Es</value>
@@ -4653,7 +4653,7 @@ conns-&gt;size &gt; 1 implies
 					<connpoint role="src" target="id-0066-0000000f"/>
 					<connpoint role="dst" target="id-0067-00000068"/>
 				</connection>
-				<connection id="id-0068-00000027" kind="Containment" role="Containment" relid="0x273">
+				<connection id="id-0068-00000026" kind="Containment" role="Containment" relid="0x273">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ns</value>
@@ -4670,7 +4670,7 @@ conns-&gt;size &gt; 1 implies
 					<connpoint role="src" target="id-0067-00000069"/>
 					<connpoint role="dst" target="id-0067-0000006c"/>
 				</connection>
-				<connection id="id-0068-00000028" kind="HasAspect" role="HasAspect" relid="0x274">
+				<connection id="id-0068-00000027" kind="HasAspect" role="HasAspect" relid="0x274">
 					<name>HasAspect</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -4678,7 +4678,7 @@ conns-&gt;size &gt; 1 implies
 					<connpoint role="dst" target="id-0067-0000006c"/>
 					<connpoint role="src" target="id-0069-00000014"/>
 				</connection>
-				<connection id="id-0068-00000029" kind="Containment" role="Containment" relid="0x275">
+				<connection id="id-0068-00000028" kind="Containment" role="Containment" relid="0x275">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Es</value>
@@ -4695,7 +4695,7 @@ conns-&gt;size &gt; 1 implies
 					<connpoint role="dst" target="id-0067-00000068"/>
 					<connpoint role="src" target="id-0067-0000006c"/>
 				</connection>
-				<connection id="id-0068-0000002a" kind="Containment" role="Containment" relid="0x278">
+				<connection id="id-0068-00000029" kind="Containment" role="Containment" relid="0x278">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sw</value>
@@ -4712,7 +4712,7 @@ conns-&gt;size &gt; 1 implies
 					<connpoint role="src" target="id-0066-00000012"/>
 					<connpoint role="dst" target="id-0067-0000006d"/>
 				</connection>
-				<connection id="id-0068-0000002b" kind="Containment" role="Containment" relid="0x279">
+				<connection id="id-0068-0000002a" kind="Containment" role="Containment" relid="0x279">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Nw</value>
@@ -4729,7 +4729,7 @@ conns-&gt;size &gt; 1 implies
 					<connpoint role="src" target="id-0066-00000015"/>
 					<connpoint role="dst" target="id-0067-0000006d"/>
 				</connection>
-				<connection id="id-0068-0000002c" kind="Containment" role="Containment" relid="0x27a">
+				<connection id="id-0068-0000002b" kind="Containment" role="Containment" relid="0x27a">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sw</value>
@@ -4746,7 +4746,7 @@ conns-&gt;size &gt; 1 implies
 					<connpoint role="src" target="id-0066-00000010"/>
 					<connpoint role="dst" target="id-0067-0000006d"/>
 				</connection>
-				<connection id="id-0068-0000002d" kind="Containment" role="Containment" relid="0x27b">
+				<connection id="id-0068-0000002c" kind="Containment" role="Containment" relid="0x27b">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sw</value>
@@ -4763,31 +4763,31 @@ conns-&gt;size &gt; 1 implies
 					<connpoint role="src" target="id-0066-00000013"/>
 					<connpoint role="dst" target="id-0067-0000006d"/>
 				</connection>
-				<connection id="id-0068-0000002e" kind="DerivedInheritance" role="DerivedInheritance" relid="0x287">
+				<connection id="id-0068-0000002d" kind="DerivedInheritance" role="DerivedInheritance" relid="0x287">
 					<name>DerivedInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-0000001a"/>
+					<connpoint role="src" target="id-0066-00000019"/>
 					<connpoint role="dst" target="id-0067-00000067"/>
 				</connection>
-				<connection id="id-0068-0000002f" kind="DerivedInheritance" role="DerivedInheritance" relid="0x288">
+				<connection id="id-0068-0000002e" kind="DerivedInheritance" role="DerivedInheritance" relid="0x288">
 					<name>DerivedInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
 					</regnode>
 					<connpoint role="dst" target="id-0066-00000017"/>
-					<connpoint role="src" target="id-0066-0000001a"/>
+					<connpoint role="src" target="id-0066-00000019"/>
 				</connection>
-				<connection id="id-0068-00000030" kind="BaseInheritance" role="BaseInheritance" relid="0x28a">
+				<connection id="id-0068-0000002f" kind="BaseInheritance" role="BaseInheritance" relid="0x28a">
 					<name>BaseInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
 					</regnode>
-					<connpoint role="dst" target="id-0066-0000001a"/>
-					<connpoint role="src" target="id-0066-0000001b"/>
+					<connpoint role="dst" target="id-0066-00000019"/>
+					<connpoint role="src" target="id-0066-0000001a"/>
 				</connection>
-				<connection id="id-0068-00000031" kind="SourceToConnector" role="SourceToConnector" relid="0x28d">
+				<connection id="id-0068-00000030" kind="SourceToConnector" role="SourceToConnector" relid="0x28d">
 					<name>SourceToConnector</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ns</value>
@@ -4798,10 +4798,10 @@ conns-&gt;size &gt; 1 implies
 					<attribute kind="srcRolename" status="meta">
 						<value>src</value>
 					</attribute>
-					<connpoint role="dst" target="id-0066-0000001c"/>
+					<connpoint role="dst" target="id-0066-0000001b"/>
 					<connpoint role="src" target="id-0067-00000066"/>
 				</connection>
-				<connection id="id-0068-00000032" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x28e">
+				<connection id="id-0068-00000031" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x28e">
 					<name>ConnectorToDestination</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ne</value>
@@ -4812,10 +4812,10 @@ conns-&gt;size &gt; 1 implies
 					<attribute kind="dstRolename" status="meta">
 						<value>dst</value>
 					</attribute>
-					<connpoint role="src" target="id-0066-0000001c"/>
+					<connpoint role="src" target="id-0066-0000001b"/>
 					<connpoint role="dst" target="id-0067-0000006b"/>
 				</connection>
-				<connection id="id-0068-00000033" kind="SourceToConnector" role="SourceToConnector" relid="0x28f">
+				<connection id="id-0068-00000032" kind="SourceToConnector" role="SourceToConnector" relid="0x28f">
 					<name>SourceToConnector</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ne</value>
@@ -4826,10 +4826,10 @@ conns-&gt;size &gt; 1 implies
 					<attribute kind="srcRolename" status="meta">
 						<value>src</value>
 					</attribute>
-					<connpoint role="src" target="id-0066-0000001b"/>
-					<connpoint role="dst" target="id-0066-0000001d"/>
+					<connpoint role="src" target="id-0066-0000001a"/>
+					<connpoint role="dst" target="id-0066-0000001c"/>
 				</connection>
-				<connection id="id-0068-00000034" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x290">
+				<connection id="id-0068-00000033" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x290">
 					<name>ConnectorToDestination</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -4840,18 +4840,18 @@ conns-&gt;size &gt; 1 implies
 					<attribute kind="dstRolename" status="meta">
 						<value>dst</value>
 					</attribute>
-					<connpoint role="src" target="id-0066-0000001d"/>
+					<connpoint role="src" target="id-0066-0000001c"/>
 					<connpoint role="dst" target="id-0067-0000006b"/>
 				</connection>
-				<connection id="id-0068-00000035" kind="AssociationClass" role="AssociationClass" relid="0x293">
+				<connection id="id-0068-00000034" kind="AssociationClass" role="AssociationClass" relid="0x293">
 					<name>AssociationClass</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-0000000f"/>
-					<connpoint role="dst" target="id-0066-0000001c"/>
+					<connpoint role="dst" target="id-0066-0000001b"/>
 				</connection>
-				<connection id="id-0068-00000036" kind="Containment" role="Containment" relid="0x296">
+				<connection id="id-0068-00000035" kind="Containment" role="Containment" relid="0x296">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Es</value>
@@ -4865,26 +4865,26 @@ conns-&gt;size &gt; 1 implies
 					<attribute kind="Rolename" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="src" target="id-0066-0000001e"/>
+					<connpoint role="src" target="id-0066-0000001d"/>
 					<connpoint role="dst" target="id-0067-00000068"/>
 				</connection>
-				<connection id="id-0068-00000037" kind="HasAttribute" role="HasAttribute" relid="0x2a1">
+				<connection id="id-0068-00000036" kind="HasAttribute" role="HasAttribute" relid="0x2a1">
 					<name>HasAttribute</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
 					</regnode>
 					<connpoint role="dst" target="id-0066-00000010"/>
-					<connpoint role="src" target="id-0066-0000001f"/>
+					<connpoint role="src" target="id-0066-0000001e"/>
 				</connection>
-				<connection id="id-0068-00000038" kind="AssociationClass" role="AssociationClass" relid="0x2a2">
+				<connection id="id-0068-00000037" kind="AssociationClass" role="AssociationClass" relid="0x2a2">
 					<name>AssociationClass</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
 					</regnode>
-					<connpoint role="dst" target="id-0066-0000001d"/>
-					<connpoint role="src" target="id-0066-0000001e"/>
+					<connpoint role="dst" target="id-0066-0000001c"/>
+					<connpoint role="src" target="id-0066-0000001d"/>
 				</connection>
-				<connection id="id-0068-00000039" kind="HasAspect" role="HasAspect" relid="0x2a7">
+				<connection id="id-0068-00000038" kind="HasAspect" role="HasAspect" relid="0x2a7">
 					<name>HasAspect</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ne</value>
@@ -4892,7 +4892,7 @@ conns-&gt;size &gt; 1 implies
 					<connpoint role="dst" target="id-0067-00000068"/>
 					<connpoint role="src" target="id-0069-00000014"/>
 				</connection>
-				<connection id="id-0068-0000003a" kind="Containment" role="Containment" relid="0x2af">
+				<connection id="id-0068-00000039" kind="Containment" role="Containment" relid="0x2af">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -4906,26 +4906,26 @@ conns-&gt;size &gt; 1 implies
 					<attribute kind="Rolename" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="src" target="id-0066-00000020"/>
+					<connpoint role="src" target="id-0066-0000001f"/>
 					<connpoint role="dst" target="id-0067-00000068"/>
 				</connection>
-				<connection id="id-0068-0000003b" kind="ReferTo" role="ReferTo" relid="0x2b1">
+				<connection id="id-0068-0000003a" kind="ReferTo" role="ReferTo" relid="0x2b1">
 					<name>ReferTo</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-00000020"/>
+					<connpoint role="src" target="id-0066-0000001f"/>
 					<connpoint role="dst" target="id-0067-0000006e"/>
 				</connection>
-				<connection id="id-0068-0000003c" kind="HasConstraint" role="HasConstraint" relid="0x2b3">
+				<connection id="id-0068-0000003b" kind="HasConstraint" role="HasConstraint" relid="0x2b3">
 					<name>HasConstraint</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ns</value>
 					</regnode>
-					<connpoint role="dst" target="id-0066-00000020"/>
-					<connpoint role="src" target="id-0066-00000021"/>
+					<connpoint role="dst" target="id-0066-0000001f"/>
+					<connpoint role="src" target="id-0066-00000020"/>
 				</connection>
-				<connection id="id-0068-0000003d" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x2b4">
+				<connection id="id-0068-0000003c" kind="ConnectorToDestination" role="ConnectorToDestination" relid="0x2b4">
 					<name>ConnectorToDestination</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -4939,15 +4939,15 @@ conns-&gt;size &gt; 1 implies
 					<connpoint role="src" target="id-0066-00000014"/>
 					<connpoint role="dst" target="id-0067-0000006c"/>
 				</connection>
-				<connection id="id-0068-0000003e" kind="HasConstraint" role="HasConstraint" relid="0x2b6">
+				<connection id="id-0068-0000003d" kind="HasConstraint" role="HasConstraint" relid="0x2b6">
 					<name>HasConstraint</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
 					</regnode>
 					<connpoint role="dst" target="id-0066-00000012"/>
-					<connpoint role="src" target="id-0066-00000022"/>
+					<connpoint role="src" target="id-0066-00000021"/>
 				</connection>
-				<set id="id-0069-00000014" kind="Aspect" role="Aspect" relid="0x1ba" members="id-0066-0000000f id-0066-00000010 id-0066-00000012 id-0066-00000013 id-0066-00000015 id-0066-0000001b id-0066-0000001e id-0066-00000020 id-0067-00000066 id-0067-00000069 id-0067-0000006a id-0067-0000006b id-0067-0000006c">
+				<set id="id-0069-00000014" kind="Aspect" role="Aspect" relid="0x1ba" members="id-0066-0000000f id-0066-00000010 id-0066-00000012 id-0066-00000013 id-0066-00000015 id-0066-0000001a id-0066-0000001d id-0066-0000001f id-0067-00000066 id-0067-00000069 id-0067-0000006a id-0067-0000006b id-0067-0000006c">
 					<name>Behavior</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4965,7 +4965,7 @@ conns-&gt;size &gt; 1 implies
 			</model>
 			<model id="id-0065-00000003" kind="ParadigmSheet" relid="0x2" childrelidcntr="0x47">
 				<name>ActionTypes</name>
-				<atom id="id-0066-00000019" kind="Constraint" role="Constraint" relid="0x46">
+				<atom id="id-0066-00000022" kind="Constraint" role="Constraint" relid="0x46">
 					<name>UnknownOutput</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -5908,7 +5908,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
 						<value></value>
 					</attribute>
 				</reference>
-				<connection id="id-0068-0000003f" kind="DerivedInheritance" role="DerivedInheritance" relid="0x10">
+				<connection id="id-0068-0000003e" kind="DerivedInheritance" role="DerivedInheritance" relid="0x10">
 					<name>DerivedInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -5916,7 +5916,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
 					<connpoint role="dst" target="id-0066-00000028"/>
 					<connpoint role="src" target="id-0066-00000029"/>
 				</connection>
-				<connection id="id-0068-00000040" kind="BaseInheritance" role="BaseInheritance" relid="0x14">
+				<connection id="id-0068-0000003f" kind="BaseInheritance" role="BaseInheritance" relid="0x14">
 					<name>BaseInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -5924,7 +5924,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
 					<connpoint role="dst" target="id-0066-00000029"/>
 					<connpoint role="src" target="id-0066-0000002c"/>
 				</connection>
-				<connection id="id-0068-00000041" kind="DerivedInheritance" role="DerivedInheritance" relid="0x15">
+				<connection id="id-0068-00000040" kind="DerivedInheritance" role="DerivedInheritance" relid="0x15">
 					<name>DerivedInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -5932,7 +5932,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
 					<connpoint role="src" target="id-0066-00000029"/>
 					<connpoint role="dst" target="id-0066-0000002d"/>
 				</connection>
-				<connection id="id-0068-00000042" kind="HasAttribute" role="HasAttribute" relid="0x1e">
+				<connection id="id-0068-00000041" kind="HasAttribute" role="HasAttribute" relid="0x1e">
 					<name>HasAttribute</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -5940,7 +5940,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
 					<connpoint role="src" target="id-0066-00000023"/>
 					<connpoint role="dst" target="id-0066-00000027"/>
 				</connection>
-				<connection id="id-0068-00000043" kind="HasAttribute" role="HasAttribute" relid="0x24">
+				<connection id="id-0068-00000042" kind="HasAttribute" role="HasAttribute" relid="0x24">
 					<name>HasAttribute</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -5948,7 +5948,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
 					<connpoint role="src" target="id-0066-00000024"/>
 					<connpoint role="dst" target="id-0066-00000027"/>
 				</connection>
-				<connection id="id-0068-00000044" kind="HasAttribute" role="HasAttribute" relid="0x27">
+				<connection id="id-0068-00000043" kind="HasAttribute" role="HasAttribute" relid="0x27">
 					<name>HasAttribute</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -5956,7 +5956,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
 					<connpoint role="src" target="id-0066-00000025"/>
 					<connpoint role="dst" target="id-0066-0000002a"/>
 				</connection>
-				<connection id="id-0068-00000045" kind="HasAttribute" role="HasAttribute" relid="0x28">
+				<connection id="id-0068-00000044" kind="HasAttribute" role="HasAttribute" relid="0x28">
 					<name>HasAttribute</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -5964,7 +5964,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
 					<connpoint role="src" target="id-0066-00000026"/>
 					<connpoint role="dst" target="id-0066-0000002a"/>
 				</connection>
-				<connection id="id-0068-00000046" kind="BaseIntInheritance" role="BaseIntInheritance" relid="0x2c">
+				<connection id="id-0068-00000045" kind="BaseIntInheritance" role="BaseIntInheritance" relid="0x2c">
 					<name>BaseIntInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -5972,7 +5972,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
 					<connpoint role="src" target="id-0066-00000027"/>
 					<connpoint role="dst" target="id-0066-0000002e"/>
 				</connection>
-				<connection id="id-0068-00000047" kind="BaseInheritance" role="BaseInheritance" relid="0x30">
+				<connection id="id-0068-00000046" kind="BaseInheritance" role="BaseInheritance" relid="0x30">
 					<name>BaseInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -5980,7 +5980,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
 					<connpoint role="src" target="id-0066-00000027"/>
 					<connpoint role="dst" target="id-0066-0000002f"/>
 				</connection>
-				<connection id="id-0068-00000048" kind="DerivedInheritance" role="DerivedInheritance" relid="0x31">
+				<connection id="id-0068-00000047" kind="DerivedInheritance" role="DerivedInheritance" relid="0x31">
 					<name>DerivedInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -5988,7 +5988,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
 					<connpoint role="dst" target="id-0066-0000002c"/>
 					<connpoint role="src" target="id-0066-0000002f"/>
 				</connection>
-				<connection id="id-0068-00000049" kind="DerivedIntInheritance" role="DerivedIntInheritance" relid="0x36">
+				<connection id="id-0068-00000048" kind="DerivedIntInheritance" role="DerivedIntInheritance" relid="0x36">
 					<name>DerivedIntInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -5996,7 +5996,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
 					<connpoint role="src" target="id-0066-0000002e"/>
 					<connpoint role="dst" target="id-0066-00000030"/>
 				</connection>
-				<connection id="id-0068-0000004a" kind="BaseInheritance" role="BaseInheritance" relid="0x38">
+				<connection id="id-0068-00000049" kind="BaseInheritance" role="BaseInheritance" relid="0x38">
 					<name>BaseInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -6004,7 +6004,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
 					<connpoint role="src" target="id-0066-00000030"/>
 					<connpoint role="dst" target="id-0066-00000031"/>
 				</connection>
-				<connection id="id-0068-0000004b" kind="DerivedInheritance" role="DerivedInheritance" relid="0x39">
+				<connection id="id-0068-0000004a" kind="DerivedInheritance" role="DerivedInheritance" relid="0x39">
 					<name>DerivedInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -6012,7 +6012,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
 					<connpoint role="dst" target="id-0066-0000002b"/>
 					<connpoint role="src" target="id-0066-00000031"/>
 				</connection>
-				<connection id="id-0068-0000004c" kind="DerivedInheritance" role="DerivedInheritance" relid="0x3a">
+				<connection id="id-0068-0000004b" kind="DerivedInheritance" role="DerivedInheritance" relid="0x3a">
 					<name>DerivedInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -6020,7 +6020,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
 					<connpoint role="dst" target="id-0066-0000002a"/>
 					<connpoint role="src" target="id-0066-00000031"/>
 				</connection>
-				<connection id="id-0068-0000004d" kind="Containment" role="Containment" relid="0x3c">
+				<connection id="id-0068-0000004c" kind="Containment" role="Containment" relid="0x3c">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ss</value>
@@ -6037,7 +6037,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
 					<connpoint role="dst" target="id-0066-00000028"/>
 					<connpoint role="src" target="id-0066-0000002b"/>
 				</connection>
-				<connection id="id-0068-0000004e" kind="Containment" role="Containment" relid="0x3d">
+				<connection id="id-0068-0000004d" kind="Containment" role="Containment" relid="0x3d">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Wn</value>
@@ -6054,7 +6054,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
 					<connpoint role="dst" target="id-0066-00000028"/>
 					<connpoint role="src" target="id-0066-0000002c"/>
 				</connection>
-				<connection id="id-0068-0000004f" kind="SameAspectRight" role="SameAspectRight" relid="0x41">
+				<connection id="id-0068-0000004e" kind="SameAspectRight" role="SameAspectRight" relid="0x41">
 					<name>SameAspectRight</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -6062,7 +6062,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
 					<connpoint role="dst" target="id-0066-00000032"/>
 					<connpoint role="src" target="id-0067-0000006f"/>
 				</connection>
-				<connection id="id-0068-00000050" kind="SameAspectLeft" role="SameAspectLeft" relid="0x42">
+				<connection id="id-0068-0000004f" kind="SameAspectLeft" role="SameAspectLeft" relid="0x42">
 					<name>SameAspectLeft</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -6070,7 +6070,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
 					<connpoint role="src" target="id-0066-00000032"/>
 					<connpoint role="dst" target="id-0069-00000002"/>
 				</connection>
-				<connection id="id-0068-00000051" kind="HasAspect" role="HasAspect" relid="0x43">
+				<connection id="id-0068-00000050" kind="HasAspect" role="HasAspect" relid="0x43">
 					<name>HasAspect</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -6078,7 +6078,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
 					<connpoint role="dst" target="id-0066-00000030"/>
 					<connpoint role="src" target="id-0069-00000002"/>
 				</connection>
-				<connection id="id-0068-00000052" kind="Containment" role="Containment" relid="0x45">
+				<connection id="id-0068-00000051" kind="Containment" role="Containment" relid="0x45">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -6095,12 +6095,12 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
 					<connpoint role="dst" target="id-0066-00000030"/>
 					<connpoint role="src" target="id-0067-00000070"/>
 				</connection>
-				<connection id="id-0068-000003a6" kind="HasConstraint" role="HasConstraint" relid="0x47">
+				<connection id="id-0068-00000052" kind="HasConstraint" role="HasConstraint" relid="0x47">
 					<name>HasConstraint</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-00000019"/>
+					<connpoint role="src" target="id-0066-00000022"/>
 					<connpoint role="dst" target="id-0066-0000002d"/>
 				</connection>
 				<set id="id-0069-00000002" kind="Aspect" role="Aspect" relid="0x3f">
@@ -11913,6 +11913,12 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
 							<value> </value>
 						</regnode>
 					</regnode>
+					<regnode name="DeploymentPlan:Property" status="undefined">
+						<value></value>
+						<regnode name="NodeMapping" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
 					<regnode name="Domain:Property" isopaque="yes">
 						<value></value>
 						<regnode name="ElementsTarget" isopaque="yes">
@@ -12156,6 +12162,15 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
 							</regnode>
 							<regnode name="WorkerBehavior" isopaque="yes">
 								<value>3617</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="DeploymentPlan" status="undefined">
+						<value></value>
+						<regnode name="Property" isopaque="yes">
+							<value>3626</value>
+							<regnode name="NodeMapping" isopaque="yes">
+								<value>3627</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -12426,6 +12441,12 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())
 							<value>yes</value>
 						</regnode>
 						<regnode name="WorkerBehavior" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="DeploymentPlan:Property" status="undefined">
+						<value></value>
+						<regnode name="NodeMapping" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -37708,8 +37729,8 @@ ResourceUsesPort</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000055"/>
 				<connpoint role="src" target="id-0066-00000055"/>
+				<connpoint role="dst" target="id-0066-00000055"/>
 			</connection>
 			<connection id="id-0068-00000097" kind="HasAspect" role="HasAspect" relid="0x54">
 				<name>HasAspect</name>
@@ -70797,7 +70818,7 @@ endif
 				<connpoint role="dst" target="id-0067-00000034"/>
 			</connection>
 		</model>
-		<model id="id-0065-00000016" kind="ParadigmSheet" relid="0x25" childrelidcntr="0x36">
+		<model id="id-0065-00000016" kind="ParadigmSheet" relid="0x25" childrelidcntr="0x3b">
 			<name>DeploymentPlan</name>
 			<atom id="id-0066-000001bd" kind="Model" role="Model" relid="0x1">
 				<name>DeploymentPlan</name>
@@ -70824,7 +70845,7 @@ endif
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>267,83</value>
+							<value>260,68</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -70893,13 +70914,13 @@ endif
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>36,482</value>
+							<value>99,545</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>393,412</value>
+							<value>484,41</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -70958,7 +70979,7 @@ endif
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>473,263</value>
+							<value>669,319</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -70991,7 +71012,7 @@ endif
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>162,167</value>
+							<value>36,13</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -71021,13 +71042,13 @@ endif
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>198,457</value>
+							<value>225,426</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>225,426</value>
+							<value>610,174</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -71181,7 +71202,7 @@ endif
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>44,478</value>
+							<value>43,475</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -71230,6 +71251,82 @@ rrName = referedbySharedComponentReference</value>
 					<value></value>
 				</attribute>
 			</atom>
+			<atom id="id-0066-0000022d" kind="Constraint" role="Constraint" relid="0x39">
+				<name>UniquePropertyNames</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>835,114</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>Names of the properties in a deployment plan should be unique</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value>let properties = self.modelParts(Property) in
+          properties-&gt;isUnique (i : Property | i.name.trim())</value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority" status="meta">
+					<value>2</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
 			<reference id="id-0067-00000036" kind="ReferenceProxy" role="ReferenceProxy" relid="0x29" referred="id-0066-000000dc">
 				<name>ComponentRef</name>
 				<regnode name="PartRegs" isopaque="yes">
@@ -71255,7 +71352,7 @@ rrName = referedbySharedComponentReference</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>78,83</value>
+							<value>43,202</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -71327,7 +71424,7 @@ rrName = referedbySharedComponentReference</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>8,13</value>
+							<value>225,321</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -71399,7 +71496,7 @@ rrName = referedbySharedComponentReference</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>624,237</value>
+							<value>568,398</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -71428,6 +71525,81 @@ rrName = referedbySharedComponentReference</value>
 					<value>true</value>
 				</attribute>
 				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</reference>
+			<reference id="id-0067-000000b4" kind="ModelProxy" role="ModelProxy" relid="0x37" referred="id-0066-00000100">
+				<name>Property</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>646,37</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>646,37</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>646,37</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>645,34</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeInfoShown" status="meta">
 					<value>true</value>
 				</attribute>
 				<attribute kind="IsTypeShown" status="meta">
@@ -71618,7 +71790,32 @@ rrName = referedbySharedComponentReference</value>
 				<connpoint role="dst" target="id-0066-000001c1"/>
 				<connpoint role="src" target="id-0066-000001c3"/>
 			</connection>
-			<set id="id-0069-0000001d" kind="Aspect" role="Aspect" relid="0x1b" members="id-0066-000001bd id-0066-000001be id-0066-000001c1 id-0066-000001c3 id-0067-00000036 id-0067-000000ab id-0067-000000ac">
+			<connection id="id-0068-000003a6" kind="Containment" role="Containment" relid="0x38">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Se</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-000001bd"/>
+				<connpoint role="src" target="id-0067-000000b4"/>
+			</connection>
+			<connection id="id-0068-000003a8" kind="HasConstraint" role="HasConstraint" relid="0x3b">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>We</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-000001bd"/>
+				<connpoint role="src" target="id-0066-0000022d"/>
+			</connection>
+			<set id="id-0069-0000001d" kind="Aspect" role="Aspect" relid="0x1b" members="id-0066-000001bd id-0066-000001be id-0066-000001c1 id-0066-000001c3 id-0067-00000036 id-0067-000000ab id-0067-000000ac id-0067-000000b4">
 				<name>NodeMapping</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
@@ -80224,8 +80421,8 @@ instances-&gt;forAll (x : Component |
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-0000020d"/>
 				<connpoint role="src" target="id-0066-0000020d"/>
+				<connpoint role="dst" target="id-0066-0000020d"/>
 			</connection>
 			<connection id="id-0068-0000035e" kind="Containment" role="Containment" relid="0x9d">
 				<name>Containment</name>

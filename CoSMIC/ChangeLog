@@ -1,3 +1,30 @@
+Sat Aug 26 03:24:09 UTC 2006  Sumant Tambe  <sutambe@nospam>
+
+	Added infoProperty support in PICML and CQML DeploymentPlan sheet.
+        Improved DeploymentPlanFramework Injector interface.
+
+	* PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp
+	* PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h
+	* PIM/PICML/paradigms/PICML-uml.xme
+	* PIM/PICML/paradigms/PICML.xme
+	* PIM/PICML/paradigms/PICML.xml
+	* PIM/PICML/paradigms/PICML.xmp
+	* PSM/CQML/examples/BasicSP.xme
+	* PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFramework.mpc
+	* PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp
+	* PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h
+	* PSM/CQML/interpreters/DeploymentPlanFramework/Injector.h
+	* PSM/CQML/interpreters/FaultTolerance/FTAdders.cpp
+	* PSM/CQML/interpreters/FaultTolerance/FTAdders.h
+	* PSM/CQML/interpreters/FaultTolerance/FTInjector.cpp
+	* PSM/CQML/interpreters/FaultTolerance/FTInjector.h
+	* PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp
+	* PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h
+	* PSM/CQML/paradigms/CQML-uml.xme
+	* PSM/CQML/paradigms/CQML.xme
+	* PSM/CQML/paradigms/CQML.xml
+	* PSM/CQML/paradigms/CQML.xmp
+
 Thu Aug 24 02:59:56 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/examples/SLICE-Path.xme:

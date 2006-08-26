@@ -18,7 +18,7 @@
 #include "PICML/XercesString.h"
 #include "PICML/Utils.h"
 #include "DeploymentPlanFramework/DeploymentPlanFramework_Export.h"
-#include "Injector.h"
+#include "DeploymentPlanFramework/Injector.h"
 
 namespace CQML
 {
@@ -274,6 +274,7 @@ namespace CQML
 	DeploymentPlanFramework_Export virtual void generate_instance_deployment_descriptions (void);
 	DeploymentPlanFramework_Export virtual void generate_assembly_instance_deployment_descriptions (void);
 	DeploymentPlanFramework_Export virtual void generate_artifact_descriptions (void);
+  DeploymentPlanFramework_Export virtual void generate_infoproperties (const DeploymentPlan &);
 	DeploymentPlanFramework_Export virtual void generate_implementation_descriptions (void);
 	DeploymentPlanFramework_Export virtual void generate_child_connections (void);
 	DeploymentPlanFramework_Export virtual void generate_parent_connections (void);

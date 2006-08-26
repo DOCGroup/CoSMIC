@@ -4,10 +4,12 @@ project(DeploymentPlanFramework): cqmllib {
    macros += DEPLOYMENTPLANFRAMEWORK_BUILD_DLL PICML_HAS_DLL CQML_HAS_DLL
    libs += PICML CQML
    includes += $(COSMIC_ROOT)/PIM/PICML/interpreters \
-               $(COSMIC_ROOT)/PSM/CQML/interpreters
+               $(COSMIC_ROOT)/PSM/CQML/interpreters \
+
 
    Source_Files {
      DeploymentPlanFrameworkVisitor.cpp
+     Injector.cpp
    }
 
    Header_Files {

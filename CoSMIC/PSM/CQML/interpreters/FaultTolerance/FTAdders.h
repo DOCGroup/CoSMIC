@@ -38,7 +38,7 @@ namespace CQML
         public:
           ConnectionAdder (const ComponentAdder *);
           virtual ~ConnectionAdder ();
-          virtual Injector::ConnectionMap get_new_connections (const Injector::ConnectionMap &, std::string&);
+          virtual Injector::ConnectionMap get_new_connections (const std::string &, const Injector::ConnectionMap &);
         private:
           const ComponentAdder *comp_addr_;
       };

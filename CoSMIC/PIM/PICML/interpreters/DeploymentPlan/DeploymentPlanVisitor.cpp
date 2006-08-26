@@ -225,6 +225,27 @@ namespace PICML
       }
   }
 
+  void DeploymentPlanVisitor::generate_infoproperties (const DeploymentPlan &plan)
+    {
+      std::set <Property> info_properties = plan.Property_kind_children ();
+      if (!info_properties.empty ())
+        {
+          DOMElement* ele = this->doc_->createElement (XStr ("infoProperty"));
+          this->curr_->appendChild (ele);
+          this->push();
+          this->curr_ = ele;
+
+          for (std::set <Property>::const_iterator iter = info_properties.begin ();
+              iter != info_properties.end ();
+              ++iter)
+            {
+              Property property = *iter;
+              property.Accept (*this);
+            }
+          this->pop ();
+        }
+    }
+
   void DeploymentPlanVisitor::Visit_ImplementationArtifact (
                    const ImplementationArtifact& ia)
   {
@@ -1152,27 +1173,28 @@ namespace PICML
          ++iter)
       {
         DeploymentPlan plan = *iter;
-		plan.Accept (*this);
+		    plan.Accept (*this);
 
-		this->instantiate_deployment_plan_descriptor (plan);
-		this->create_label_and_uuid (plan);
-		this->generate_implementation_descriptions ();
-		this->generate_instance_deployment_descriptions ();
-		this->generate_assembly_instance_deployment_descriptions ();
-		this->generate_parent_connections ();
-		this->generate_child_connections ();
-		this->generate_artifact_descriptions ();
-		this->finalize_deployment_plan_descriptor ();
+		    this->instantiate_deployment_plan_descriptor (plan);
+		    this->create_label_and_uuid (plan);
+		    this->generate_implementation_descriptions ();
+		    this->generate_instance_deployment_descriptions ();
+		    this->generate_assembly_instance_deployment_descriptions ();
+		    this->generate_parent_connections ();
+		    this->generate_child_connections ();
+		    this->generate_artifact_descriptions ();
+        this->generate_infoproperties(plan);
+		    this->finalize_deployment_plan_descriptor ();
 
         this->selected_instances_.clear ();
-		this->path_parents_.clear ();
-		this->containing_assemblies_.clear ();
-		this->assembly_components_.clear ();
+		    this->path_parents_.clear ();
+		    this->containing_assemblies_.clear ();
+		    this->assembly_components_.clear ();
         this->monoimpls_.clear ();
-		this->deployed_instances_.clear ();
-		this->selected_impls_.clear ();
-		this->monolith_components_.clear ();
-		this->final_assembly_components_.clear ();
+		    this->deployed_instances_.clear ();
+		    this->selected_impls_.clear ();
+		    this->monolith_components_.clear ();
+		    this->final_assembly_components_.clear ();
       }
   }
 
