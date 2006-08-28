@@ -1455,7 +1455,7 @@ namespace IDML
           }
         else
           {
-            ofs << "Error: Bad forward declare type\n";
+            AfxMessageBox ("Error: Bad forward declare type\n");
           }
 
         ofs << object->getName () << ";";

@@ -772,9 +772,9 @@ BE_GlobalData::destroy (void)
     {
       this->writer_->release ();
     }
-    
+
   if (0 != this->doc_)
-    {  
+    {
       this->doc_->release ();
     }
 
@@ -941,7 +941,7 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
         tag = "connection";
         break;
     }
-    
+
   for (XMLSize_t index = 0; index < children->getLength (); ++index)
     {
       DOMElement *child =
@@ -994,20 +994,20 @@ BE_GlobalData::imported_module_dom_elem (DOMElement *sub_tree,
     {
       return 0;
     }
-      
+
   DOMNodeList *models =
     this->interface_definitions_folder_->getElementsByTagName (X ("model"));
-    
+
   for (XMLSize_t i = 0; i < models->getLength (); ++i)
     {
-      DOMElement *model = (DOMElement *) models->item (i);  
+      DOMElement *model = (DOMElement *) models->item (i);
       const XMLCh *kind = model->getAttribute (X ("kind"));
-        
+
       if (X ("Package") != X (kind))
         {
           continue;
         }
-        
+
       if (this->match_module_opening (model, node))
         {
           return model;
@@ -1541,10 +1541,10 @@ BE_GlobalData::included_file_diagnostic (DOMElement *fileref,
     }
 
   char *file_name = this->get_name (file);
-  
+
   cout << "Added FileRef " << fileref_name << " in File "
        << file_name << endl;
-       
+
   XMLString::release (&file_name);
 }
 
@@ -1552,24 +1552,24 @@ DOMElement *
 BE_GlobalData::get_first_picml_element (DOMElement *scope)
 {
   DOMNodeList *children = scope->getChildNodes ();
-  
+
   for (XMLSize_t i = 0; i < children->getLength (); ++i)
     {
       DOMElement *child = (DOMElement *) children->item (i);
-      
+
       if (0 == child)
         {
           continue;
         }
-        
+
       const XMLCh *tag = child->getTagName ();
-      
+
       if (X ("model") == tag || X ("reference") == tag)
         {
           return child;
         }
     }
-    
+
   return 0;
 }
 
@@ -1577,21 +1577,29 @@ bool
 BE_GlobalData::match_module_opening (DOMElement *elem, AST_Decl *node)
 {
   DOMElement *elem_child = this->get_first_picml_element (elem);
+
+  if (0 == elem_child)
+    {
+      // We're in a module that was just added, so we can't match
+      // the node anyway.
+      return false;
+    }
+
   char *elem_child_name = this->get_name (elem_child);
   UTL_ScopeActiveIterator iter (DeclAsScope (node), UTL_Scope::IK_decls);
   AST_Decl *node_child = iter.item ();
   char *node_child_name = node_child->local_name ()->get_string ();
   int match = ACE_OS::strcmp (node_child_name, elem_child_name);
   XMLString::release (&elem_child_name);
-  
+
   if (0 != match)
     {
       return false;
     }
-    
+
   AST_Decl::NodeType nt = node_child->node_type ();
   const XMLCh *kind = elem_child->getAttribute (X ("kind"));
-  
+
   if (X ("Package") == kind && AST_Decl::NT_module == nt)
     {
       return this->match_module_opening (elem_child, node_child);

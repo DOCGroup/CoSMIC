@@ -1128,6 +1128,8 @@ adding_visitor::visit_operation (AST_Operation *node)
             }
         }
 
+      const XMLCh *gme_id  = be_global->lookup_id (rt);
+
       if (0 == return_type)
         {
           return_type = this->doc_->createElement (X ("reference"));
@@ -1141,12 +1143,17 @@ adding_visitor::visit_operation (AST_Operation *node)
 
           // This should be the first element in the operation's scope.
           elem->appendChild (return_type);
+
+          // Must set this before calling emit_diagnostic(), since the
+          // attribute may be looked up in the call body.
+          return_type->setAttribute (X ("referred"), gme_id);
           be_global->emit_diagnostic (return_type);
         }
-
-      const XMLCh *gme_id  = be_global->lookup_id (rt);
-      be_global->type_change_diagnostic (return_type, gme_id);
-      return_type->setAttribute (X ("referred"), gme_id);
+      else
+        {
+          be_global->type_change_diagnostic (return_type, gme_id);
+          return_type->setAttribute (X ("referred"), gme_id);
+        }
 
       // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)

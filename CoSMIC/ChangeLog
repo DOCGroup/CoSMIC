@@ -1,8 +1,25 @@
+Mon Aug 28 19:38:17 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+
+          Added code to make sure that the 'referred' attribute
+          of a ReturnType is set before emitting a diagnostic
+          that is has been added to the model from imported IDL,
+          since this attribute may be looked up as part of
+          emitting the diagnostic.
+
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+
+          Added a check that prevents a bailout when checking for
+          a match between multiple openings of a module, as part
+          of the process of determining whether one of the module
+          openings has been imported from XME or not.
+
 Mon Aug 28 19:16:34 UTC 2006  Sumant Tambe <sutambe@nospam>
 
-	Added some missing files.
+  Added some missing files.
 
-	* PSM/CQML/interpreters/DeploymentPlanFramework/Injector.cpp
+  * PSM/CQML/interpreters/DeploymentPlanFramework/Injector.cpp
 
 Mon Aug 28 16:18:52 UTC 2006  Krishnakumar B  <kitty@dre.vanderbilt.edu>
 
@@ -13,102 +30,102 @@ Mon Aug 28 16:18:52 UTC 2006  Krishnakumar B  <kitty@dre.vanderbilt.edu>
 
 Mon Aug 28 07:35:09 UTC 2006  Sumant Tambe  <sutambe@nospam>
 
-	Changed the NetQoS interpreter to generate deployment plans
+  Changed the NetQoS interpreter to generate deployment plans
         using the Deployment Plan Framework.
 
-	* PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp
-	* PSM/CQML/interpreters/NetQoS/NetQoS.mpc
-	* PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp
-	* PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h
+  * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp
+  * PSM/CQML/interpreters/NetQoS/NetQoS.mpc
+  * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp
+  * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h
 
 Mon Aug 28 07:15:09 UTC 2006  Sumant Tambe  <sutambe@nospam>
 
-	Fixed these files to compile as per the new refactored
-	CoSMIC code.
+  Fixed these files to compile as per the new refactored
+  CoSMIC code.
 
-	* PIM/PICML/interpreters/BGMLComponent/UdmApp.cpp
-	* PIM/PICML/interpreters/CIDLComponent/UdmApp.cpp
-	* PIM/PICML/interpreters/MPCComponent/UdmApp.cpp
-	* PIM/PICML/interpreters/Path/PathVisitor.cpp
-	* PIM/PICML/interpreters/Path/PathVisitor.h
-	* PIM/PICML/interpreters/PathComponent/UdmApp.cpp
-	* PIM/PICML/interpreters/Target/DomainVisitor.cpp
-	* PIM/PICML/interpreters/Target/DomainVisitor.h
-	* PIM/PICML/interpreters/TargetComponent/UdmApp.cpp
-	* PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp
-	* PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h
+  * PIM/PICML/interpreters/BGMLComponent/UdmApp.cpp
+  * PIM/PICML/interpreters/CIDLComponent/UdmApp.cpp
+  * PIM/PICML/interpreters/MPCComponent/UdmApp.cpp
+  * PIM/PICML/interpreters/Path/PathVisitor.cpp
+  * PIM/PICML/interpreters/Path/PathVisitor.h
+  * PIM/PICML/interpreters/PathComponent/UdmApp.cpp
+  * PIM/PICML/interpreters/Target/DomainVisitor.cpp
+  * PIM/PICML/interpreters/Target/DomainVisitor.h
+  * PIM/PICML/interpreters/TargetComponent/UdmApp.cpp
+  * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp
+  * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h
 
 Mon Aug 28 01:15:09 UTC 2006  Sumant Tambe  <sutambe@nospam>
 
         Refactored some CoSMIC code into Utils directory in COSMIC_ROOT.
         Most probably it will break some builds. It is being worked upon.
 
-	* cosmic.mwc
-	* cosmic_common.mpb
-	* cqmllib.mpb
-	* picmllib.mpb
-	* PIM/PICML/addons/UUIDManager/RawComponent.cpp
-	* PIM/PICML/addons/UUIDManager/UUIDManager.mpc
-	* PIM/PICML/interpreters/DeploymentPlan/DeploymentPlan.mpc
-	* PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp
-	* PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h
-	* PIM/PICML/interpreters/DeploymentPlanComponent/ComponentConfig.h
-	* PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp
-	* PIM/PICML/interpreters/Package/PackageVisitor.cpp
-	* PIM/PICML/interpreters/Package/PackageVisitor.h
-	* PIM/PICML/interpreters/PackageComponent/UdmApp.cpp
-	* PIM/PICML/interpreters/PICML/PICML.mpc
-	* PIM/PICML/interpreters/PICML/Utils.cpp
-	* PIM/PICML/paradigms/PICML.xmp
-	* PSM/CQML/interpreters/CQML/CQML.mpc
-	* PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFramework.mpc
-	* PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp
-	* PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h
-	* PSM/CQML/interpreters/FaultTolerance/FaultTolerance.mpc
-	* PSM/CQML/interpreters/FaultToleranceComponent/FaultToleranceComponent.mpc
-	* PSM/CQML/interpreters/FaultToleranceComponent/UdmApp.cpp
-	* PSM/CQML/interpreters/Interpreters.mwc
-	* PSM/CQML/interpreters/NetQoS/NetQoS.mpc
-	* PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp
-	* PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h
-	* PSM/CQML/interpreters/NetQoSComponent/NetQoSComponent.mpc
-	* PSM/CQML/interpreters/NetQoSComponent/UdmApp.cpp
-	* udm.mpb
-	* Utils
-	* utils.mpb
-	* Utils/Utils.cpp
-	* Utils/Utils.h
-	* Utils/Utils.mpc
-	* Utils/Utils_export.h
-	* Utils/XercesString.cpp
-	* Utils/XercesString.h
+  * cosmic.mwc
+  * cosmic_common.mpb
+  * cqmllib.mpb
+  * picmllib.mpb
+  * PIM/PICML/addons/UUIDManager/RawComponent.cpp
+  * PIM/PICML/addons/UUIDManager/UUIDManager.mpc
+  * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlan.mpc
+  * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp
+  * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h
+  * PIM/PICML/interpreters/DeploymentPlanComponent/ComponentConfig.h
+  * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp
+  * PIM/PICML/interpreters/Package/PackageVisitor.cpp
+  * PIM/PICML/interpreters/Package/PackageVisitor.h
+  * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp
+  * PIM/PICML/interpreters/PICML/PICML.mpc
+  * PIM/PICML/interpreters/PICML/Utils.cpp
+  * PIM/PICML/paradigms/PICML.xmp
+  * PSM/CQML/interpreters/CQML/CQML.mpc
+  * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFramework.mpc
+  * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp
+  * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h
+  * PSM/CQML/interpreters/FaultTolerance/FaultTolerance.mpc
+  * PSM/CQML/interpreters/FaultToleranceComponent/FaultToleranceComponent.mpc
+  * PSM/CQML/interpreters/FaultToleranceComponent/UdmApp.cpp
+  * PSM/CQML/interpreters/Interpreters.mwc
+  * PSM/CQML/interpreters/NetQoS/NetQoS.mpc
+  * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp
+  * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h
+  * PSM/CQML/interpreters/NetQoSComponent/NetQoSComponent.mpc
+  * PSM/CQML/interpreters/NetQoSComponent/UdmApp.cpp
+  * udm.mpb
+  * Utils
+  * utils.mpb
+  * Utils/Utils.cpp
+  * Utils/Utils.h
+  * Utils/Utils.mpc
+  * Utils/Utils_export.h
+  * Utils/XercesString.cpp
+  * Utils/XercesString.h
 
 Sat Aug 26 03:24:09 UTC 2006  Sumant Tambe  <sutambe@nospam>
 
-	Added infoProperty support in PICML and CQML DeploymentPlan sheet.
+  Added infoProperty support in PICML and CQML DeploymentPlan sheet.
         Improved DeploymentPlanFramework Injector interface.
 
-	* PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp
-	* PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h
-	* PIM/PICML/paradigms/PICML-uml.xme
-	* PIM/PICML/paradigms/PICML.xme
-	* PIM/PICML/paradigms/PICML.xml
-	* PIM/PICML/paradigms/PICML.xmp
-	* PSM/CQML/examples/BasicSP.xme
-	* PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFramework.mpc
-	* PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp
-	* PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h
-	* PSM/CQML/interpreters/DeploymentPlanFramework/Injector.h
-	* PSM/CQML/interpreters/FaultTolerance/FTAdders.cpp
-	* PSM/CQML/interpreters/FaultTolerance/FTAdders.h
-	* PSM/CQML/interpreters/FaultTolerance/FTInjector.cpp
-	* PSM/CQML/interpreters/FaultTolerance/FTInjector.h
-	* PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp
-	* PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h
-	* PSM/CQML/paradigms/CQML-uml.xme
-	* PSM/CQML/paradigms/CQML.xme
-	* PSM/CQML/paradigms/CQML.xml
-	* PSM/CQML/paradigms/CQML.xmp
+  * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp
+  * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h
+  * PIM/PICML/paradigms/PICML-uml.xme
+  * PIM/PICML/paradigms/PICML.xme
+  * PIM/PICML/paradigms/PICML.xml
+  * PIM/PICML/paradigms/PICML.xmp
+  * PSM/CQML/examples/BasicSP.xme
+  * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFramework.mpc
+  * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp
+  * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h
+  * PSM/CQML/interpreters/DeploymentPlanFramework/Injector.h
+  * PSM/CQML/interpreters/FaultTolerance/FTAdders.cpp
+  * PSM/CQML/interpreters/FaultTolerance/FTAdders.h
+  * PSM/CQML/interpreters/FaultTolerance/FTInjector.cpp
+  * PSM/CQML/interpreters/FaultTolerance/FTInjector.h
+  * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp
+  * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h
+  * PSM/CQML/paradigms/CQML-uml.xme
+  * PSM/CQML/paradigms/CQML.xme
+  * PSM/CQML/paradigms/CQML.xml
+  * PSM/CQML/paradigms/CQML.xmp
 
 Thu Aug 24 02:59:56 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
