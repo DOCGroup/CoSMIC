@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='windows-1252' ?>
-<?define BMW_ROOT = $(env.CUTS_ROOT)\bin\BMW ?>
 
 <Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'>
+  <?define BMW_ROOT = $(env.CUTS_ROOT)\bin\BMW ?>
   <Product Name="CUTS Benchmark Manager Web Utility" Id="1D209D0C-13C5-4DEC-A2C1-08A4A22FDC5D"
     UpgradeCode="823EE6B0-1BE2-4706-B5F6-58962744BDD3" Language="1033" Codepage="1252" Version="0.2"
     Manufacturer="DOC Group, ISIS, Vanderbilt University">
@@ -13,17 +13,26 @@
 
     <!-- properties -->
     <Property Id="WIXUI_INSTALLDIR" Value="C:\Inetpub\wwwroot\CUTS" />
-    <Property Id="IIS_ROOT">
-      <DirectorySearch Id="IISDirSearch" Depth ="1" Path ="C:\Inetpub\wwwroot" />      
+    
+    <Property Id="IIS_INSTALLED">
+      <RegistrySearch Id="IISRegSearch" Root="HKLM" Type="raw"
+                      Key="SYSTEM\CurrentControlSet\Services\W3SVC" Name="ImagePath" />
     </Property>
-    <Property Id="MYSQL_CONNECTOR_VERSION">
+    
+    <Property Id="MYSQL_CONNECTOR_INSTALLED">
       <RegistrySearch Id="MySQLConnectorVersion" Root="HKLM" Type="raw"
                       Key="SOFTWARE\MySQL AB\MySQL Connector/Net 1.0.7" Name="Version" />
     </Property>
 
+    <Property Id="DOTNET_2_0_INSTALLED">
+      <RegistrySearch Id="DotNet_v20" Root="HKLM" Type="raw"
+                      Key="SOFTWARE\Microsoft\NET Framework Setup\NDP\v2.0.50727" Name="Install" />
+    </Property>
+
     <!-- install conditions -->
-    <Condition Message='The Benchmark Manager Web Utility requires IIS to be installed'>IIS_ROOT</Condition>
-    <Condition Message='The Benchmark Manager Web Utility requires MySQL.NET Connector 1.0.7'>MYSQL_CONNECTOR_VERSION</Condition>
+    <Condition Message='The Benchmark Manager Web Utility requires Microsoft.NET Framework 2.0'>DOTNET_2_0_INSTALLED</Condition>
+    <Condition Message='The Benchmark Manager Web Utility requires Microsoft Internet Information Services (IIS)'>IIS_INSTALLED</Condition>
+    <Condition Message='The Benchmark Manager Web Utility requires MySQL.NET Connector 1.0.7'>MYSQL_CONNECTOR_INSTALLED</Condition>
 
     <Media Id="1" Cabinet="BMW.cab" EmbedCab="yes" />
 
@@ -85,11 +94,11 @@
           <File Id="App_Code.dll" Name="APPCODE.DLL" LongName="App_Code.dll"
                 Source="$(var.BMW_ROOT)\bin\App_Code.dll" DiskId="1" />
 
-          <File Id="App_Web_1uxtpalu.dll" Name="APPWEB1.DLL" LongName="App_Web_1uxtpalu.dll"
-                Source="$(var.BMW_ROOT)\bin\App_Web_1uxtpalu.dll" DiskId="1" />
+          <File Id="App_Web_1uxtpalu.dll" Name="APPWEB1.DLL" LongName="App_Web_0bvqtlao.dll"
+                Source="$(var.BMW_ROOT)\bin\App_Web_0bvqtlao.dll" DiskId="1" />
 
-          <File Id="App_Web_65jeibsk.dll" Name="APPWEB2.DLL" LongName="App_Web_65jeibsk.dll"
-                Source="$(var.BMW_ROOT)\bin\App_Web_65jeibsk.dll" DiskId="1" />
+          <File Id="App_Web_65jeibsk.dll" Name="APPWEB2.DLL" LongName="App_Web_vhavf_5n.dll"
+                Source="$(var.BMW_ROOT)\bin\App_Web_vhavf_5n.dll" DiskId="1" />
 
           <File Id="CUTS_Database_Utility.dll" Name="CUTSUTIL.DLL" LongName="CUTS_Database_Utility.dll"
                 Source="$(var.BMW_ROOT)\bin\CUTS_Database_Utility.dll" DiskId="1" />

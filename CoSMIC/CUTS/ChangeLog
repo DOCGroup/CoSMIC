@@ -1,3 +1,9 @@
+Mon Aug 28 20:49:24 UTC 2006  James H. Hill <hillj@isis.vanderbilt.edu>
+
+        * install/BMW.wxs:
+
+          Added preqequisites checks for Microsoft .NET 2.0 and IIS
+
 Thu Aug 17 04:29:20 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/Database_Utility/Database_Utility.cs:
