@@ -1,4 +1,10 @@
-Mon Aug 28 20:49:24 UTC 2006  James H. Hill <hillj@isis.vanderbilt.edu>
+Mon Aug 28 21:19:20 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/Execution_Times.aspx:
+
+          Fixed broken references.
+
+Mon Aug 28 20:49:24 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * install/BMW.wxs:
 

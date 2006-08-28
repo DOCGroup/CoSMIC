@@ -1,4 +1,5 @@
 <%@ Reference control="Component_Metrics.ascx" %>
+<%@ Reference control="Sender_Metrics.ascx" %>
 <%@ Page language="c#" codefile="Execution_Times.aspx.cs" autoeventwireup="true" 
          inherits="CUTS.Execution_Times" masterpagefile="~/BMW.master" %>
 
