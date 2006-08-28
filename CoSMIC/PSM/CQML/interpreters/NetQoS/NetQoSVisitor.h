@@ -15,7 +15,7 @@
 #include <xercesc/framework/LocalFileFormatTarget.hpp>
 
 // Utility includes
-#include "PICML/XercesString.h"
+#include "Utils/XercesString.h"
 #include "NetQoS/NetQoS_Export.h"
 
 namespace CQML

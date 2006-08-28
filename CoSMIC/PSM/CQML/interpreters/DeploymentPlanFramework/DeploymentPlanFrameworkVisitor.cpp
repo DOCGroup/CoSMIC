@@ -13,8 +13,9 @@ using xercesc::XMLUni;
 using xercesc::XMLException;
 using xercesc::DOMText;
 
-using PICML::XStr;
-using PICML::CreateUuid;
+#include "Utils/Utils.h"
+using Utils::XStr;
+using Utils::CreateUuid;
 
 namespace CQML
 {
@@ -265,7 +266,7 @@ namespace CQML
     std::string uniqueName = ia.UUID();
     if (uniqueName.empty())
       {
-        ia.UUID() = uniqueName = ::PICML::CreateUuid();
+        ia.UUID() = uniqueName = ::Utils::CreateUuid();
       }
     uniqueName = std::string ("_") + uniqueName;
 
@@ -492,7 +493,7 @@ namespace CQML
     std::string uniqueName = mimpl.UUID();
     if (uniqueName.empty())
       {
-        mimpl.UUID() = uniqueName = ::PICML::CreateUuid();
+        mimpl.UUID() = uniqueName = ::Utils::CreateUuid();
       }
     uniqueName = std::string ("_") + uniqueName;
 
@@ -570,7 +571,7 @@ namespace CQML
     std::string uniqueName = ref.UUID();
     if (uniqueName.empty())
       {
-        ref.UUID() = uniqueName = ::PICML::CreateUuid();
+        ref.UUID() = uniqueName = ::Utils::CreateUuid();
       }
     uniqueName = std::string ("_") + uniqueName;
 
@@ -752,7 +753,7 @@ namespace CQML
 
     if (source_comp_instance.empty())
       {
-        srcComp.UUID() = source_comp_instance = ::PICML::CreateUuid();
+        srcComp.UUID() = source_comp_instance = ::Utils::CreateUuid();
       }
     source_comp_instance = std::string ("_") + source_comp_instance;
 
@@ -762,7 +763,7 @@ namespace CQML
 
     if (dest_comp_instance.empty())
       {
-        dstComp.UUID() = dest_comp_instance = ::PICML::CreateUuid();
+        dstComp.UUID() = dest_comp_instance = ::Utils::CreateUuid();
       }
     dest_comp_instance = std::string ("_") + dest_comp_instance;
 
@@ -790,7 +791,7 @@ namespace CQML
 		    
             // std::string source_comp_instance = 
             //     srcComp.getPath ("_",false,true,"name",true);
-            std::string source_instance_id = std::string ("_") + source_comp_instance_path;
+            std::string source_instance_id = source_comp_instance_path;
             endPoint->appendChild (this->createSimpleContent ("instance", 
                                    source_instance_id));
             ele->appendChild (endPoint);
@@ -808,7 +809,7 @@ namespace CQML
 		    
             // std::string dest_comp_instance = 
             //      dstComp.getPath ("_",false,true,"name",true);
-            std::string dest_instance_id = std::string ("_") + dest_comp_instance_path;
+            std::string dest_instance_id = dest_comp_instance_path;
             endPoint->appendChild (this->createSimpleContent ("instance", 
                                    dest_instance_id));
             ele->appendChild (endPoint);
@@ -1274,7 +1275,7 @@ namespace CQML
     std::string uuid = dp.UUID();
     if (uuid.empty())
       {
-        dp.UUID() = uuid = ::PICML::CreateUuid();
+        dp.UUID() = uuid = ::Utils::CreateUuid();
       }
     else
       {
@@ -1287,7 +1288,7 @@ namespace CQML
             std::string parentUuid (typeParent.UUID());
             if (uuid == parentUuid)
               {
-                new_dp.UUID() = uuid = ::PICML::CreateUuid();
+                new_dp.UUID() = uuid = ::Utils::CreateUuid();
               }
           }
       }
@@ -1474,7 +1475,7 @@ namespace CQML
     std::string uniqueName = comp.UUID();
     if (uniqueName.empty())
       {
-        comp.UUID() = uniqueName = ::PICML::CreateUuid();
+        comp.UUID() = uniqueName = ::Utils::CreateUuid();
       }
 	  uniqueName = std::string ("_") + uniqueName;
 
@@ -1571,7 +1572,7 @@ namespace CQML
 	  std::string uniqueName = comp.UUID();
     if (uniqueName.empty())
       {
-        comp.UUID() = uniqueName = ::PICML::CreateUuid();
+        comp.UUID() = uniqueName = ::Utils::CreateUuid();
       }
 	  uniqueName = std::string ("_") + uniqueName;*/
 
@@ -1600,7 +1601,7 @@ namespace CQML
 	  std::string mimpl_name = this->mimpl_.UUID();
     if (mimpl_name.empty())
       {
-        this->mimpl_.UUID() = mimpl_name = ::PICML::CreateUuid();
+        this->mimpl_.UUID() = mimpl_name = ::Utils::CreateUuid();
       }
 	  mimpl_name = std::string ("_") + mimpl_name;
     this->curr_->appendChild
@@ -2023,7 +2024,7 @@ namespace CQML
 	          std::string compName = parent.UUID();
             if (compName.empty())
               {
-                parent.UUID() = compName = ::PICML::CreateUuid();
+                parent.UUID() = compName = ::Utils::CreateUuid();
               }
 	          compName = std::string ("_") + compName;
             output.insert (make_pair (compName, attr.name()));
@@ -2047,7 +2048,7 @@ namespace CQML
 	      std::string uniqueName = comp.UUID();
         if (uniqueName.empty())
           {
-            comp.UUID() = uniqueName = ::PICML::CreateUuid();
+            comp.UUID() = uniqueName = ::Utils::CreateUuid();
           }
 	      uniqueName = std::string ("_") + uniqueName;
 

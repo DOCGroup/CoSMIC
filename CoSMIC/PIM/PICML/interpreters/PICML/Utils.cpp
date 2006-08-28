@@ -1,13 +1,13 @@
 // $Id$
 
-#include "PICML/Utils.h"
+#include "Utils/Utils.h"
 #include <atlcomcli.h>
 
-namespace PICML
+namespace Utils
 {
 
   // This method prompts a dialog to allow the user to specify a folder
-  PICML_Export bool getPath (const std::string& description, std::string& path)
+  Utils_Export bool getPath (const std::string& description, std::string& path)
   {
     // Initalize the com library
     HRESULT hr = ::CoInitialize (NULL);
@@ -91,4 +91,4 @@ namespace PICML
 
     return result == RPC_S_OK;
   }
-} // namespace PICML
+} // namespace Utils

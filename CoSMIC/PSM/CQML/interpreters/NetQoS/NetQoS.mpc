@@ -1,10 +1,8 @@
 project(NetQoS): cqmllib {
-   after += CQML
+
    sharedname = NetQoS
-   macros += NETQOS_BUILD_DLL CQML_HAS_DLL
-   includes += $(COSMIC_ROOT)/PSM/CQML/interpreters \
-               $(COSMIC_ROOT)/PIM/PICML/interpreters
-   libs += CQML PICML
+   macros += NETQOS_BUILD_DLL
+
 
    Source_Files {
      NetQoSVisitor.cpp

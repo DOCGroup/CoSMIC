@@ -1,12 +1,10 @@
 project (NetQoSComponent): mfc, cqmllib {
-  after += CQML NetQoS
 
-
-  macros += CQML_HAS_DLL _USRDLL _WINDLL
+  after += NetQoS
+  macros += _USRDLL _WINDLL
   sharedname = NetQoSComponent
-  includes += $(COSMIC_ROOT)/PSM/CQML/interpreters \
-              $(COSMIC_ROOT)/PIM/PICML/interpreters
-  libs += CQML NetQoS PICML
+  libs += NetQoS
+
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
 

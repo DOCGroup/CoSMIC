@@ -34,7 +34,7 @@
 #include "UdmApp.h"
 #include "UdmConfig.h"
 
-#include "PICML/Utils.h"
+#include "Utils/Utils.h"
 #include "CQML/CQML.h"
 #include "NetQoS/NetQoSVisitor.h"
 
@@ -42,10 +42,10 @@ using xercesc::XMLPlatformUtils;
 using xercesc::XMLException;
 using xercesc::DOMException;
 using xercesc::XMLString;
-using namespace PICML;
+using namespace Utils;
 
 
-extern PICML_Export bool PICML::getPath (const std::string& description,
+extern CQML_Export bool Utils::getPath (const std::string& description,
                                          std::string& path);
 
 extern void dummy(void); // Dummy function for UDM meta initialization
@@ -101,7 +101,7 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
         {
           std::string outputPath;
           std::string message = "Please specify the Output Directory";
-          if (! ::PICML::getPath (message, outputPath))       return;
+          if (! ::Utils::getPath (message, outputPath))       return;
 	        //outputPath = "C:\\Documents and Settings\\sumant\\Desktop\\Demo";
           CQML::NetQoSVisitor visitor (outputPath);
           CQML::RootFolder

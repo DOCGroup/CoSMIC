@@ -1,4 +1,5 @@
 project(DeploymentPlan): picmllib {
+
    after += PICML
    sharedname = DeploymentPlan
    macros += DEPLOYMENTPLAN_BUILD_DLL PICML_HAS_DLL

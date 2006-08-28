@@ -3,7 +3,7 @@
 #include <sstream>
 #include "NetQoS/NetQoSVisitor.h"
 #include "UmlExt.h"
-#include "PICML/Utils.h"
+#include "Utils/Utils.h"
 
 using xercesc::LocalFileFormatTarget;
 using xercesc::DOMImplementationRegistry;
@@ -12,8 +12,9 @@ using xercesc::DOMException;
 using xercesc::XMLUni;
 using xercesc::XMLException;
 using xercesc::DOMText;
-using PICML::XStr;
-using PICML::CreateUuid;
+
+using Utils::XStr;
+using Utils::CreateUuid;
 
 namespace CQML
 {
@@ -508,7 +509,7 @@ namespace CQML
              srcComp.getPath (".",false,true,"name",true);
     std::string source_comp_instance = srcComp.UUID();
     if (source_comp_instance.empty())
-      srcComp.UUID() = source_comp_instance = ::PICML::CreateUuid();
+      srcComp.UUID() = source_comp_instance = ::Utils::CreateUuid();
     
     source_comp_instance = std::string ("_") + source_comp_instance;
 
@@ -516,7 +517,7 @@ namespace CQML
          dstComp.getPath (".",false,true,"name",true);
     std::string dest_comp_instance = dstComp.UUID();
     if (dest_comp_instance.empty())
-      dstComp.UUID() = dest_comp_instance = ::PICML::CreateUuid();
+      dstComp.UUID() = dest_comp_instance = ::Utils::CreateUuid();
     
     dest_comp_instance = std::string ("_") + dest_comp_instance;
 

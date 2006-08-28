@@ -1,10 +1,7 @@
 project(DeploymentPlanFramework): cqmllib {
-   after += PICML CQML
+
    sharedname = DeploymentPlanFramework
-   macros += DEPLOYMENTPLANFRAMEWORK_BUILD_DLL PICML_HAS_DLL CQML_HAS_DLL
-   libs += PICML CQML
-   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters \
-               $(COSMIC_ROOT)/PSM/CQML/interpreters \
+   macros += DEPLOYMENTPLANFRAMEWORK_BUILD_DLL
 
 
    Source_Files {

@@ -32,7 +32,7 @@
 #include <xercesc/framework/LocalFileFormatTarget.hpp>
 
 // Utility includes
-#include "PICML/XercesString.h"
+#include "Utils/XercesString.h"
 
 #include "UdmStatic.h"
 #include "UmlExt.h"
@@ -41,7 +41,7 @@
 #include "UdmApp.h"
 #include "UdmConfig.h"
 
-#include "PICML/Utils.h"
+#include "Utils/Utils.h"
 #include "PICML/PICML.h"
 #include "DeploymentPlan/DeploymentPlanVisitor.h"
 
@@ -49,7 +49,8 @@ using xercesc::XMLPlatformUtils;
 using xercesc::XMLException;
 using xercesc::DOMException;
 using xercesc::XMLString;
-using PICML::XStr;
+using Utils::XStr;
+using Utils::getPath;
 
 extern void dummy(void); // Dummy function for UDM meta initialization
 
@@ -105,7 +106,7 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
         {
           std::string outputPath;
           std::string message = "Please specify the Output Directory";
-          if (!PICML::getPath (message, outputPath))
+          if (!getPath (message, outputPath))
             return;
           PICML::DeploymentPlanVisitor visitor (outputPath);
           PICML::RootFolder

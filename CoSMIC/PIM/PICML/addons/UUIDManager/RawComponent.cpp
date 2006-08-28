@@ -6,7 +6,7 @@
 #include "GMECOM.h"
 #include "ComponentConfig.h"
 #include "RawComponent.h"
-#include "PICML/Utils.h"
+#include "Utils/Utils.h"
 
 //=============================================================================
 /**
@@ -262,7 +262,7 @@ void RawComponent::create_uuid (IMgaFCO * _fco)
       try
       {
         VERIFY_RESULT (uuid_attr->put_StringValue (
-                       CComBSTR (PICML::CreateUuid ().c_str ())));
+                       CComBSTR (Utils::CreateUuid ().c_str ())));
       }
       catch (...)
       {
@@ -290,13 +290,13 @@ void RawComponent::verify_uuid (IMgaFCO * _fco)
   VERIFY_RESULT (uuid_attr->get_StringValue (&uuid_bstr));
 
   CW2A uuid_str (uuid_bstr);
-  if (PICML::ValidUuid (std::string (uuid_str)))
+  if (Utils::ValidUuid (std::string (uuid_str)))
     return;
 
   try
   {
     VERIFY_RESULT (uuid_attr->put_StringValue (
-                   CComBSTR (PICML::CreateUuid ().c_str ())));
+                   CComBSTR (Utils::CreateUuid ().c_str ())));
   }
   catch (COM_Exception & ex)
   {

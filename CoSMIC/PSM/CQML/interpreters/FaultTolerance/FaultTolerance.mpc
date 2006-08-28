@@ -1,10 +1,9 @@
 project(FaultTolerance): cqmllib {
-   after += CQML PICML DeploymentPlanFramework
+
+   after += DeploymentPlanFramework
    sharedname = FaultTolerance
-   macros += FAULTTOLERANCE_BUILD_DLL DeploymentPlanFramework_HAS_DLL CQML_HAS_DLL PICML_HAS_DLL
-   libs += PICML CQML DeploymentPlanFramework
-   includes += $(COSMIC_ROOT)/PSM/CQML/interpreters \
-               $(COSMIC_ROOT)/PIM/PICML/interpreters \
+   macros += FAULTTOLERANCE_BUILD_DLL DeploymentPlanFramework_HAS_DLL
+   libs += DeploymentPlanFramework
 
    Source_Files {
      FaultToleranceVisitor.cpp

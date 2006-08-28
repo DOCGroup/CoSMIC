@@ -8,18 +8,12 @@ project (PICML): picmllib {
    sharedname = PICML
    macros += PICML_HAS_DLL PICML_EXPORT
 
-   lit_libs += rpcrt4
-
    Source_Files {
      PICML.cpp
-     XercesString.cpp
-     Utils.cpp
    }
 
    Header_Files {
      PICML.h
-     Utils.h
      PICML_Export.h
-     XercesString.h
    }
 }

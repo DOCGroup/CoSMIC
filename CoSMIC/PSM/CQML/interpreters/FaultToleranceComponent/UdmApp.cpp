@@ -34,18 +34,18 @@
 #include "UdmApp.h"
 #include "UdmConfig.h"
 
-#include "PICML/Utils.h"
-#include "PICML/PICML.h"
+#include "Utils/Utils.h"
+#include "CQML/CQML.h"
 #include "FaultTolerance/FaultToleranceVisitor.h"
 
 using xercesc::XMLPlatformUtils;
 using xercesc::XMLException;
 using xercesc::DOMException;
 using xercesc::XMLString;
-using PICML::XStr;
+using Utils::XStr;
 
 
-extern PICML_Export bool PICML::getPath (const std::string& description,
+extern Utils_Export bool Utils::getPath (const std::string& description,
                                          std::string& path);
 
 extern void dummy(void); // Dummy function for UDM meta initialization
@@ -99,7 +99,7 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
         {
           std::string outputPath;
           std::string message = "Please specify the Output Directory";
-          if (! ::PICML::getPath (message, outputPath))       return;
+          if (! ::Utils::getPath (message, outputPath))       return;
 	  //outputPath = "C:\\Documents and Settings\\sumant\\Desktop\\DOC Files\\backup";
           CQML::FaultToleranceVisitor visitor (outputPath);
           CQML::RootFolder

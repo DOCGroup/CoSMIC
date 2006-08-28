@@ -1,6 +1,7 @@
 workspace {
   cmdline += -feature_file default.features
 
+  Utils/Utils.mpc
   PIM/PICML/interpreters/Interpreters.mwc
   PSM/CQML/interpreters/Interpreters.mwc
   PIM/PICML/addons

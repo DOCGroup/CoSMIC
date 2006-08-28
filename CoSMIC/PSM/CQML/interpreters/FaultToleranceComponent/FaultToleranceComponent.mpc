@@ -1,11 +1,10 @@
 project (FaultToleranceComponent): mfc, cqmllib {
-  after += PICML CQML FaultTolerance
 
-  macros += CQML_HAS_DLL PICML_HAS_DLL _USRDLL _WINDLL
+  after += FaultTolerance
+  macros += _USRDLL _WINDLL
   sharedname = FaultToleranceComponent
-  libs += PICML CQML FaultTolerance
-  includes += $(COSMIC_ROOT)/PIM/PICML/interpreters \
-              $(COSMIC_ROOT)/PSM/CQML/interpreters
+  libs += FaultTolerance
+
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
 

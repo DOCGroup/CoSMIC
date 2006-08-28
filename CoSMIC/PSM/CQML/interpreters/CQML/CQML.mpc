@@ -1,16 +1,13 @@
-project (CQML): cqmllib {
+project (CQML) : cosmic_common, udm, xerces, register, utils {
 
-   UDM_Files {
+  UDM_Files {
       gendir = .
       $(COSMIC_ROOT)/PSM/CQML/paradigms/CQML.xml
+      commandflags      = -l CQML_Export -v
    }
 
-   after += PICML
    sharedname = CQML
    macros += CQML_HAS_DLL CQML_EXPORT
-   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML/
-
-   lit_libs += rpcrt4
 
    Source_Files {
      CQML.cpp

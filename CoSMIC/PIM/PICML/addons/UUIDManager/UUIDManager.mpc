@@ -1,16 +1,18 @@
-project (UUIDManager): mfc, picmllib {
+project (UUIDManager): mfc, utils {
   sharedname = UUIDManager
 
-  includes +=  . $(GME_ROOT)/SDK/BON
-
-  libs += PICML
-
-  after += PICML
+  includes +=  $(COSMIC_ROOT)/PIM/PICML/addons/UUIDManager \
+	       $(GME_ROOT)/SDK/BON
 
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
 
   specific {
+     midl_flags += /server none /client none
+     midl_includes += $(GME_ROOT) $(GME_ROOT)/Interfaces .
+   }
+  
+specific {
     use_lib_modifier =
   }
 
@@ -27,6 +29,7 @@ project (UUIDManager): mfc, picmllib {
   }
 
   Header_Files {
+    RawComponent.h
     Resource.h
     ComponentLib.h
     ComponentConfig.h
@@ -40,7 +43,7 @@ project (UUIDManager): mfc, picmllib {
   }
 }
 
-project (RegisterUUIDManager) : picmllib {
+project (RegisterUUIDManager) : register {
   after += UUIDManager
   custom_only = 1
 

@@ -1,5 +1,8 @@
 // MPC file to generate base library
-project : udm, xerces, register {
-   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters \
-               $(COSMIC_ROOT)/PSM/CQML/interpreters
+project : cosmic_common, udm, xerces, register, utils {
+
+   after += CQML
+   includes += $(COSMIC_ROOT)/PSM/CQML/interpreters
+   macros += CQML_HAS_DLL
+   libs += CQML
 }

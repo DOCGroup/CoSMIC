@@ -11,6 +11,10 @@ using xercesc::XMLUni;
 using xercesc::XMLException;
 using xercesc::DOMText;
 
+#include "Utils/Utils.h"
+using Utils::XStr;
+using Utils::CreateUuid;
+
 namespace PICML
 {
   DeploymentPlanVisitor::DeploymentPlanVisitor (const std::string& outputPath)
@@ -255,7 +259,7 @@ namespace PICML
     std::string artifactName = ia.getPath (".",false,true,"name",true);
     std::string uniqueName = ia.UUID();
     if (uniqueName.empty())
-      ia.UUID() = uniqueName = ::PICML::CreateUuid();
+      ia.UUID() = uniqueName = CreateUuid();
     uniqueName = std::string ("_") + uniqueName;
 
     ele->setAttribute (XStr ("id"), XStr (uniqueName));
@@ -488,7 +492,7 @@ namespace PICML
     std::string implName = mimpl.getPath (".",false,true,"name",true);
     std::string uniqueName = mimpl.UUID();
     if (uniqueName.empty())
-      mimpl.UUID() = uniqueName = ::PICML::CreateUuid();
+      mimpl.UUID() = uniqueName = CreateUuid();
     uniqueName = std::string ("_") + uniqueName;
 
     ele->setAttribute (XStr ("id"), XStr (uniqueName));
@@ -566,7 +570,7 @@ namespace PICML
     // std::string uniqueName = ref.getPath ("_",false,true,"name",true);
     std::string uniqueName = ref.UUID();
     if (uniqueName.empty())
-      ref.UUID() = uniqueName = ::PICML::CreateUuid();
+      ref.UUID() = uniqueName = CreateUuid();
     uniqueName = std::string ("_") + uniqueName;
 
     this->curr_->appendChild 
@@ -743,14 +747,14 @@ namespace PICML
              srcComp.getPath (".",false,true,"name",true);
     std::string source_comp_instance = srcComp.UUID();
     if (source_comp_instance.empty())
-      srcComp.UUID() = source_comp_instance = ::PICML::CreateUuid();
+      srcComp.UUID() = source_comp_instance = CreateUuid();
     source_comp_instance = std::string ("_") + source_comp_instance;
 
     std::string dest_comp_instance_path = 
          dstComp.getPath (".",false,true,"name",true);
     std::string dest_comp_instance = dstComp.UUID();
     if (dest_comp_instance.empty())
-      dstComp.UUID() = dest_comp_instance = ::PICML::CreateUuid();
+      dstComp.UUID() = dest_comp_instance = CreateUuid();
     dest_comp_instance = std::string ("_") + dest_comp_instance;
 
     if (this->selected_instances_.find (source_comp_instance)
@@ -778,7 +782,7 @@ namespace PICML
             // std::string source_comp_instance = 
             //     srcComp.getPath ("_",false,true,"name",true);
             endPoint->appendChild (this->createSimpleContent ("instance", 
-                                   source_comp_instance));
+                                   source_comp_instance_path));
             ele->appendChild (endPoint);
 
             // Destination endPoint
@@ -791,7 +795,7 @@ namespace PICML
             // std::string dest_comp_instance = 
             //      dstComp.getPath ("_",false,true,"name",true);
             endPoint->appendChild (this->createSimpleContent ("instance", 
-                                   dest_comp_instance));
+                                   dest_comp_instance_path));
             ele->appendChild (endPoint);
           }
       }
@@ -1303,7 +1307,7 @@ namespace PICML
     std::string uuid = dp.UUID();
     if (uuid.empty())
       {
-        dp.UUID() = uuid = ::PICML::CreateUuid();
+        dp.UUID() = uuid = CreateUuid();
       }
     else
       {
@@ -1316,7 +1320,7 @@ namespace PICML
             std::string parentUuid (typeParent.UUID());
             if (uuid == parentUuid)
               {
-                new_dp.UUID() = uuid = ::PICML::CreateUuid();
+                new_dp.UUID() = uuid = CreateUuid();
               }
           }
       }
@@ -1504,7 +1508,7 @@ namespace PICML
     std::string uniqueName = comp.UUID();
     if (uniqueName.empty())
       {
-        comp.UUID() = uniqueName = ::PICML::CreateUuid();
+        comp.UUID() = uniqueName = CreateUuid();
       }
 	uniqueName = std::string ("_") + uniqueName;
 
@@ -1598,7 +1602,7 @@ namespace PICML
 	std::string uniqueName = comp.UUID();
     if (uniqueName.empty())
       {
-        comp.UUID() = uniqueName = ::PICML::CreateUuid();
+        comp.UUID() = uniqueName = CreateUuid();
       }
 	uniqueName = std::string ("_") + uniqueName;
 	// instanceName = instanceName + uniqueName;
@@ -1622,7 +1626,7 @@ namespace PICML
 	std::string mimpl_name = this->mimpl_.UUID();
     if (mimpl_name.empty())
       {
-        this->mimpl_.UUID() = mimpl_name = ::PICML::CreateUuid();
+        this->mimpl_.UUID() = mimpl_name = CreateUuid();
       }
 	mimpl_name = std::string ("_") + mimpl_name;
 
@@ -2048,7 +2052,7 @@ namespace PICML
             //      parent.getPath ("_", false, true,"name",true);
 	    std::string compName = parent.UUID();
             if (compName.empty())
-              parent.UUID() = compName = ::PICML::CreateUuid();
+              parent.UUID() = compName = CreateUuid();
 	    compName = std::string ("_") + compName;
 
             output.insert (make_pair (compName, attr.name()));
@@ -2071,7 +2075,7 @@ namespace PICML
         // std::string uniqueName = comp.getPath ("_",false,true,"name",true);
 	    std::string uniqueName = comp.UUID();
         if (uniqueName.empty())
-          comp.UUID() = uniqueName = ::PICML::CreateUuid();
+          comp.UUID() = uniqueName = CreateUuid();
 	    uniqueName = std::string ("_") + uniqueName;
 
         instance->setAttribute (XStr ("xmi:id"), XStr (uniqueName));

@@ -18,7 +18,7 @@
 
 // This #define determines the interpreter type:
 #define GME_INTERPRETER
-#define PARADIGMS "PICML"
+#define PARADIGMS "PICML,CQML"
 
 // This is the location of the GME2000 interfaces file (Mga.idl, Meta.idl, etc)
 #define GME_INTERFACES_BASE Interfaces

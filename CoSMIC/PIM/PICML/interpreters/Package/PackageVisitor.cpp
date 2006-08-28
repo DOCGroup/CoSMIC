@@ -3,6 +3,8 @@
 #include "Package/PackageVisitor.h"
 #include "UmlExt.h"
 
+using Utils::XStr;
+using Utils::CreateUuid;
 
 namespace PICML
 {
@@ -231,7 +233,7 @@ namespace PICML
                                                            label));
     string uuid (ia.UUID());
     if (uuid.empty())
-      ia.UUID() = uuid = ::PICML::CreateUuid();
+      ia.UUID() = uuid = ::Utils::CreateUuid();
     this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
 
     string location = ia.location();
@@ -590,7 +592,7 @@ namespace PICML
 
     string uuid (pc.UUID());
     if (uuid.empty())
-      pc.UUID() = uuid = ::PICML::CreateUuid();
+      pc.UUID() = uuid = ::Utils::CreateUuid();
     this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
 
     PackageConfBasePackage bp = pc.dstPackageConfBasePackage();
@@ -694,7 +696,7 @@ namespace PICML
                                                            label));
     string uuid (cp.UUID());
     if (uuid.empty())
-      cp.UUID() = uuid = ::PICML::CreateUuid();
+      cp.UUID() = uuid = ::Utils::CreateUuid();
     this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
 
     PackageInterface pi = cp.dstPackageInterface();
@@ -1045,7 +1047,7 @@ namespace PICML
                                                            label));
     string uuid (comp.UUID());
     if (uuid.empty())
-      comp.UUID() = uuid = ::PICML::CreateUuid();
+      comp.UUID() = uuid = ::Utils::CreateUuid();
     this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
 
     // If the user specifies a SpecifyIdTag, we should honor it.
@@ -1361,7 +1363,7 @@ namespace PICML
                                                            label));
     string uuid = mimpl.UUID();
     if (uuid.empty())
-      mimpl.UUID() = uuid = ::PICML::CreateUuid();
+      mimpl.UUID() = uuid = ::Utils::CreateUuid();
     this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
 
     Implements iface = mimpl.dstImplements();
@@ -1469,7 +1471,7 @@ namespace PICML
 
     string uuid = assembly.UUID();
     if (uuid.empty())
-      assembly.UUID() = uuid = ::PICML::CreateUuid();
+      assembly.UUID() = uuid = ::Utils::CreateUuid();
     // Make a copy as opposed to casting away constness
     ComponentAssembly casm = assembly;
     // Make sure that every instance has a UUID
@@ -1478,7 +1480,7 @@ namespace PICML
         ComponentAssembly typeParent = casm.Archetype();
         string parentUuid (typeParent.UUID());
         if (uuid == parentUuid)
-          casm.UUID() = uuid = ::PICML::CreateUuid();
+          casm.UUID() = uuid = ::Utils::CreateUuid();
       }
     this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
 
@@ -1930,14 +1932,14 @@ namespace PICML
         string uniqueName = comp.UUID();
         // If the component's UUID is empty, then simply assign one.
         if (uniqueName.empty())
-          comp.UUID() = uniqueName =  ::PICML::CreateUuid();
+          comp.UUID() = uniqueName =  ::Utils::CreateUuid();
         // Make sure that every instance has a uniue UUID.
         if (comp.isInstance())
           {
             typeParent = comp.Archetype();
             string parentName (typeParent.UUID());
             if (uniqueName == parentName)
-              comp.UUID() = uniqueName = ::PICML::CreateUuid();
+              comp.UUID() = uniqueName = ::Utils::CreateUuid();
           }
         uniqueName = string ("_") + uniqueName;
         instance->setAttribute (XStr ("id"), XStr (uniqueName));
