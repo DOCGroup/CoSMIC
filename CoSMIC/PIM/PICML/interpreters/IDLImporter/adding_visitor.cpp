@@ -4460,9 +4460,17 @@ adding_visitor::add_picml_boilerplate (void)
 void
 adding_visitor::add_folder (const char *kind, folder_setter pmf)
 {
-  DOMElement *new_folder = 0;
+  // Just try to look it up first. If we are importing XME,
+  // chances are this will succeed. However, the modeler may
+  // have removed the folder from the model before exporting
+  // to XME, so if the lookup fails for any reason, we create
+  // the folder below.
+  DOMElement *new_folder =
+    be_global->lookup_by_tag_and_kind (be_global->root_folder (),
+                                       "folder",
+                                       kind);
 
-  if (0 == be_global->input_xme ())
+  if (0 == new_folder)
     {
       new_folder = doc_->createElement (X ("folder"));
       this->set_id_attr (new_folder, BE_GlobalData::FOLDER);
@@ -4472,14 +4480,8 @@ adding_visitor::add_folder (const char *kind, folder_setter pmf)
       this->add_name_element (new_folder, kind);
       be_global->root_folder ()->appendChild (new_folder);
     }
-  else
-    {
-      new_folder =
-        be_global->lookup_by_tag_and_kind (be_global->root_folder (),
-                                           "folder",
-                                           kind);
-    }
 
+  // This may already be properly set, but calling the setter is idempotent.
   if (0 != pmf)
     {
       (be_global->*pmf) (new_folder);
