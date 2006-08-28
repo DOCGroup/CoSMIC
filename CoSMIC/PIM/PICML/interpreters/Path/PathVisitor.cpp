@@ -20,6 +20,7 @@ using xercesc::DOMText;
 #include <boost/pending/indirect_cmp.hpp>
 
 std::ofstream outf;
+using Utils::XStr;
 
 namespace PICML
 {

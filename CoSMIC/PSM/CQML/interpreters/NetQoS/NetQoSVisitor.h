@@ -81,11 +81,17 @@ namespace CQML
     void reqqos_base_visit (const ReqQoSBase & reqqos_base);
 
   private:
+      struct ConnectionInfo
+        {
+          std::string connection_name;
+          std::string client, client_port_name;
+          std::string server, server_port_name;
+        };
+
       NetQoS current_netqos_;
-      std::multimap <NetQoS, std::string> qos_conn_mmap_;
+      std::multimap <NetQoS, ConnectionInfo> qos_conn_mmap_;
       std::map <std::string, std::string> plan_nqfile_map_;
       std::set <std::string> filenames_;
-
 
   private:
 

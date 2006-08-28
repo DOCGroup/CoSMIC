@@ -30,7 +30,7 @@
 #include <xercesc/framework/LocalFileFormatTarget.hpp>
 
 // Utility includes
-#include "PICML/XercesString.h"
+#include "Utils/XercesString.h"
 
 #include "UdmStatic.h"
 #include "UmlExt.h"
@@ -39,7 +39,7 @@
 #include "UdmApp.h"
 #include "UdmConfig.h"
 
-#include "PICML/Utils.h"
+#include "Utils/Utils.h"
 #include "PICML/PICML.h"
 #include "Target/DomainVisitor.h"
 
@@ -47,7 +47,7 @@ using xercesc::XMLPlatformUtils;
 using xercesc::XMLException;
 using xercesc::DOMException;
 using xercesc::XMLString;
-using PICML::XStr;
+using Utils::XStr;
 
 //#include <windows.h>
 //#include <shlobj.h>
@@ -106,7 +106,7 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
         {
           std::string outputPath;
           std::string message = "Please specify the Output Directory";
-          if (!::PICML::getPath (message, outputPath))
+          if (!::Utils::getPath (message, outputPath))
             return;
           PICML::DomainVisitor visitor (outputPath);
           PICML::RootFolder

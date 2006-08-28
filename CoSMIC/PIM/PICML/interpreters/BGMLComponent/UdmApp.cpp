@@ -7,7 +7,7 @@
 #include "UdmConfig.h"
 #include "BGML/BGML_Visitor.h"
 
-#include "PICML/Utils.h"
+#include "Utils/Utils.h"
 
 #define SetUpVisitor(type, root, visitor)                               \
   do                                                                    \
@@ -77,7 +77,7 @@ void CUdmApp::UdmMain(
     {
 		std::string outputPath;
 		std::string message = "Please specify the Output Directory";
-		PICML::getPath (message, outputPath);
+		Utils::getPath (message, outputPath);
 				
 		// Do not do anything if Cancel button is pressed
 		if (outputPath.size () == 0)

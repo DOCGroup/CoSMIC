@@ -8,7 +8,7 @@
 #include "UdmApp.h"
 #include "UdmConfig.h"
 #include "MPC_Interpreter/MPC_Visitor.h"
-#include "PICML/Utils.h"
+#include "Utils/Utils.h"
 
 #define SetUpVisitor(type, root, visitor)                               \
   do                                                                    \
@@ -77,7 +77,7 @@ void CUdmApp::UdmMain(
     {
 		std::string outputPath;
 		std::string message = "Please specify the Output Directory";
-		if (! PICML::getPath (message, outputPath))
+		if (! Utils::getPath (message, outputPath))
 			return;
 
 		bool valid_interpretation = 0;

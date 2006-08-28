@@ -8,6 +8,8 @@ using xercesc::XMLUni;
 using xercesc::XMLException;
 using xercesc::DOMText;
 
+using Utils::XStr;
+
 namespace PICML
 {
   DomainVisitor::DomainVisitor (const std::string& outputPath)
@@ -156,7 +158,7 @@ namespace PICML
                                                            label));
     std::string uuid = domain.UUID();
     if (uuid.empty())
-      domain.UUID() = uuid = ::PICML::CreateUuid();
+      domain.UUID() = uuid = ::Utils::CreateUuid();
     this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
 
     const std::set<Node> domain_nodes = domain.Node_kind_children();

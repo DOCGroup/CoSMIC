@@ -6,7 +6,7 @@
 #include "UdmApp.h"
 #include "UdmConfig.h"
 #include "CIDL_Interpreter/Cidlc_Visitor.h"
-#include "PICML/Utils.h"
+#include "Utils/Utils.h"
 
 //
 // Initialize
@@ -56,7 +56,7 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,
   std::string message = "Please specify the output directory";
 
   // If there is no output path specified
-  if (!PICML::getPath (message, output))
+  if (!Utils::getPath (message, output))
     return;
 
   // Get the root object and visit it.

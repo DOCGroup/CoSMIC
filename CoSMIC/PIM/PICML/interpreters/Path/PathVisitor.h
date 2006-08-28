@@ -16,7 +16,7 @@
 #include <boost/graph/adjacency_list.hpp>
 
 // Utility includes
-#include "XercesString.h"
+#include "Utils/XercesString.h"
 #include "Path_Export.h"
 
 namespace PICML

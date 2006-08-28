@@ -14,8 +14,8 @@
 
 // Utility includes
 #include "PICML/PICML.h"
-#include "PICML/Utils.h"
-#include "PICML/XercesString.h"
+#include "Utils/Utils.h"
+#include "Utils/XercesString.h"
 #include "Target/Domain_Export.h"
 
 namespace PICML

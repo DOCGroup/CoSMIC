@@ -237,11 +237,17 @@ namespace CQML
       this->current_netqos_ = netqos;
       this->reqqos_base_visit (netqos);
 
-      for (std::multimap <NetQoS, std::string>::iterator itr = this->qos_conn_mmap_.lower_bound (netqos);
+      for (std::multimap <NetQoS, ConnectionInfo>::iterator itr = this->qos_conn_mmap_.lower_bound (netqos);
            itr != this->qos_conn_mmap_.upper_bound (netqos);
            ++itr)
         {
-          this->curr_->appendChild (this->createSimpleContent ("connectionName", itr->second));  
+          DOMElement *connection_info = this->doc_->createElement (XStr ("connectionInfo"));
+          connection_info->appendChild (this->createSimpleContent ("connectionName", itr->second.connection_name));  
+          connection_info->appendChild (this->createSimpleContent ("client", itr->second.client));  
+          connection_info->appendChild (this->createSimpleContent ("clientPortName", itr->second.client_port_name));  
+          connection_info->appendChild (this->createSimpleContent ("server", itr->second.server));  
+          connection_info->appendChild (this->createSimpleContent ("serverPortName", itr->second.server_port_name));  
+          this->curr_->appendChild (connection_info);
         }
       this->dump_NetQoSAttributes (this->curr_, netqos);
       this->pop (); // pop connectionQoS
@@ -505,16 +511,12 @@ namespace CQML
                                          const Component& dstComp,
                                          const string& dstPortName)
   {
-    std::string source_comp_instance_path = 
-             srcComp.getPath (".",false,true,"name",true);
     std::string source_comp_instance = srcComp.UUID();
     if (source_comp_instance.empty())
       srcComp.UUID() = source_comp_instance = ::Utils::CreateUuid();
     
     source_comp_instance = std::string ("_") + source_comp_instance;
 
-    std::string dest_comp_instance_path = 
-         dstComp.getPath (".",false,true,"name",true);
     std::string dest_comp_instance = dstComp.UUID();
     if (dest_comp_instance.empty())
       dstComp.UUID() = dest_comp_instance = ::Utils::CreateUuid();
@@ -522,7 +524,15 @@ namespace CQML
     dest_comp_instance = std::string ("_") + dest_comp_instance;
 
     std::string connection = srcPortName + "_" + dstPortName + "_" + source_comp_instance + "_" + dest_comp_instance;
-    this->qos_conn_mmap_.insert (std::make_pair (this->current_netqos_, connection));
+ 
+    ConnectionInfo conn_info;
+    conn_info.connection_name = connection;
+    conn_info.client = srcComp.getPath (".",false,true,"name",true);
+    conn_info.client_port_name = srcPortName;
+    conn_info.server = dstComp.getPath (".",false,true,"name",true);
+    conn_info.server_port_name = dstPortName;
+    
+    this->qos_conn_mmap_.insert (std::make_pair (this->current_netqos_, conn_info));
   }
 
   DOMElement* NetQoSVisitor::createSimpleContent (const std::string& name,
