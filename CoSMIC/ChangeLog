@@ -15,6 +15,11 @@ Mon Aug 28 19:38:17 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
           of the process of determining whether one of the module
           openings has been imported from XME or not.
 
+        * PIM/PICML/interpreters/IDLGenerator/DependencyVisitor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/DIDLEmitVisitor.cpp:
+
+          Cosmetic changes.
+
 Mon Aug 28 19:16:34 UTC 2006  Sumant Tambe <sutambe@nospam>
 
   Added some missing files.
