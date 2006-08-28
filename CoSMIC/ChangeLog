@@ -1,3 +1,10 @@
+Mon Aug 28 16:18:52 UTC 2006  Krishnakumar B  <kitty@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp: Removed
+          an extraneous line which dealt with setting namespaces.  This
+          was cause by an accidental check-in that should have been done
+          after a new GME version has been released.
+
 Mon Aug 28 07:35:09 UTC 2006  Sumant Tambe  <sutambe@nospam>
 
 	* PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp
@@ -26,7 +33,7 @@ Mon Aug 28 01:15:09 UTC 2006  Sumant Tambe  <sutambe@nospam>
 
         Refactored some CoSMIC code into Utils directory in COSMIC_ROOT.
         Most probably it will break some builds. It is being worked upon.
-        
+
 	* cosmic.mwc
 	* cosmic_common.mpb
 	* cqmllib.mpb
