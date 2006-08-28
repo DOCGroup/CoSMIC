@@ -1,3 +1,9 @@
+Mon Aug 28 19:16:34 UTC 2006  Sumant Tambe <sutambe@nospam>
+
+	Added some missing files.
+
+	* PSM/CQML/interpreters/DeploymentPlanFramework/Injector.cpp
+
 Mon Aug 28 16:18:52 UTC 2006  Krishnakumar B  <kitty@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp: Removed
@@ -6,6 +12,9 @@ Mon Aug 28 16:18:52 UTC 2006  Krishnakumar B  <kitty@dre.vanderbilt.edu>
           after a new GME version has been released.
 
 Mon Aug 28 07:35:09 UTC 2006  Sumant Tambe  <sutambe@nospam>
+
+	Changed the NetQoS interpreter to generate deployment plans
+        using the Deployment Plan Framework.
 
 	* PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp
 	* PSM/CQML/interpreters/NetQoS/NetQoS.mpc
