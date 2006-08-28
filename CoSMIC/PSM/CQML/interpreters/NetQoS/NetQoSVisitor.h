@@ -18,6 +18,8 @@
 #include "Utils/XercesString.h"
 #include "NetQoS/NetQoS_Export.h"
 
+#include "DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h"
+
 namespace CQML
 {
   using xercesc::DOMImplementation;
@@ -92,6 +94,7 @@ namespace CQML
       std::multimap <NetQoS, ConnectionInfo> qos_conn_mmap_;
       std::map <std::string, std::string> plan_nqfile_map_;
       std::set <std::string> filenames_;
+      DeploymentPlanFrameworkVisitor dep_plan_;
 
   private:
 

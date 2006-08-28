@@ -778,7 +778,7 @@ namespace CQML
 
             this->curr_->appendChild (ele);
 
-            std::string connection = srcPortName + "_" + dstPortName;
+            std::string connection = srcPortName + "_" + dstPortName + "_" + source_comp_instance + "_" + dest_comp_instance;;
             ele->appendChild (this->createSimpleContent ("name", connection));
 
             // Source endPoint

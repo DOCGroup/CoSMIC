@@ -19,7 +19,7 @@ using Utils::CreateUuid;
 namespace CQML
 {
   NetQoSVisitor::NetQoSVisitor (const std::string& outputPath)
-    : impl_ (0), doc_ (0), root_ (0), curr_ (0), serializer_ (0), 
+    : dep_plan_ (outputPath), impl_ (0), doc_ (0), root_ (0), curr_ (0), serializer_ (0), 
       target_ (0), outputPath_ (outputPath)
   {
     this->init();
@@ -64,7 +64,7 @@ namespace CQML
       this->doc_->release();
     // Create the document
     this->doc_ =
-      this->impl_->createDocument (XStr ("http://www.telcordia.com/NetQoS/NetQoSCharacteristics"),
+      this->impl_->createDocument (XStr ("http://www.dre.vanderbilt.edu/NetQoSRequirements"),
                                    XStr (rootName.c_str()),
                                    0);
   }
@@ -79,7 +79,9 @@ namespace CQML
                                  XStr ("xmlns:xsi"),
                                  XStr ("http://www.w3.org/2001/XMLSchema-instance"));
     this->root_->setAttribute (XStr ("xsi:schemaLocation"),
-                               XStr ("http://www.telcordia.com/NetQoS/NetQoSRequirements.xsd"));
+                               XStr ("http://www.dre.vanderbilt.edu/NetQoSRequirements NetQoSRequirements.xsd"));
+    std::string id = std::string ("_") + Utils::CreateUuid();
+    this->root_->setAttribute (XStr("id"), XStr (id));
     this->curr_ = this->root_;
   }
 
@@ -126,6 +128,8 @@ namespace CQML
         ComponentImplementations comp_impl = *iter;
         comp_impl.Accept (*this);
       }
+
+    this->dep_plan_.Visit_RootFolder (rf);
   }
 
   void NetQoSVisitor::Visit_DeploymentPlans(const DeploymentPlans& plans_folder)
@@ -172,7 +176,7 @@ namespace CQML
 
   void NetQoSVisitor::Visit_ComponentImplementationContainer(const ComponentImplementationContainer &comp_impl_cont)
   {
-    this->initDocument ("NetQoS:Characteristics");
+  this->initDocument ("CIAO:NetQoSRequirements");
     this->initRootAttributes(); // this->curr_ is ROOT now.
 
     std::set<ComponentAssembly>
