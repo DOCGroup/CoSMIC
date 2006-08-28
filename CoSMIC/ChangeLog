@@ -6,7 +6,11 @@ Mon Aug 28 19:38:17 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
           of a ReturnType is set before emitting a diagnostic
           that is has been added to the model from imported IDL,
           since this attribute may be looked up as part of
-          emitting the diagnostic.
+          emitting the diagnostic. Also added code to recreate
+          the ComponentImplementations, ImplementationArtifacts,
+          and ComponentTypes folders, if we are importing an
+          XME file and the modeler has removed one or more of
+          them for some reason.
 
         * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
 

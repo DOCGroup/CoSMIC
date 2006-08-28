@@ -4516,6 +4516,17 @@ adding_visitor::add_default_container (AST_Component *node)
   container->appendChild (reference);
 
   DOMElement *ctf = be_global->component_types_folder ();
+
+  if (0 == ctf)
+    {
+      // If we import an XME file, the modeler may have removed
+      // this folder for some reason. One day, we'll make it
+      // readonly.
+      this->add_folder ("ComponentTypes",
+                        &BE_GlobalData::component_types_folder);
+      ctf = be_global->component_types_folder ();
+    }
+
   ctf->appendChild (container);
 }
 
@@ -4560,6 +4571,17 @@ adding_visitor::add_implementation_artifacts (AST_Component *node)
                               i - 1);
 
   DOMElement *iaf = be_global->implementation_artifacts_folder ();
+
+  if (0 == iaf)
+    {
+      // If we import an XME file, the modeler may have removed
+      // this folder for some reason. One day, we'll make it
+      // readonly.
+      this->add_folder ("ImplementationArtifacts",
+                        &BE_GlobalData::implementation_artifacts_folder);
+      iaf = be_global->implementation_artifacts_folder ();
+    }
+
   iaf->appendChild (container);
 
   return container;
@@ -4708,6 +4730,17 @@ adding_visitor::add_implementation (const char *id,
   this->add_component_ref (container, impl, id, node);
 
   DOMElement *cif = be_global->implementations_folder ();
+
+  if (0 == cif)
+    {
+      // If we import an XME file, the modeler may have removed
+      // this folder for some reason. One day, we'll make it
+      // readonly.
+      this->add_folder ("ComponentImplementations",
+                        &BE_GlobalData::implementations_folder);
+      cif = be_global->implementations_folder ();
+    }
+
   cif->appendChild (container);
 }
 
