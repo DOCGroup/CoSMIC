@@ -1,3 +1,12 @@
+Tue Aug 29 00:33:54 UTC 2006  Sumant Tambe <sutambe@nospam>
+
+	Fixed a deployment plan interpreter bug and refactored 
+	unique identifier creation code. Fixed UUIDManager mpc.
+
+	* PIM/PICML/addons/UUIDManager/UUIDManager.mpc
+	* PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp
+	* PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h
+
 Mon Aug 28 19:38:17 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:

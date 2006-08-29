@@ -736,26 +736,44 @@ namespace PICML
       }
   }
 
-  void DeploymentPlanVisitor::CreateConnection (const Component& srcComp,
-                                         const std::string& srcPortName,
-                                         const Component& dstComp,
-                                         const std::string& dstPortName,
-		                         const std::string& source_kind,
-				         const std::string& dest_kind)
-  {
-    std::string source_comp_instance_path = 
-             srcComp.getPath (".",false,true,"name",true);
-    std::string source_comp_instance = srcComp.UUID();
-    if (source_comp_instance.empty())
-      srcComp.UUID() = source_comp_instance = CreateUuid();
-    source_comp_instance = std::string ("_") + source_comp_instance;
+  template <typename T>
+  std::string DeploymentPlanVisitor::unique_id (const T &comp)
+    {
+      return std::string ("_") + comp.getPath (".",false,true,"name",true);
 
-    std::string dest_comp_instance_path = 
-         dstComp.getPath (".",false,true,"name",true);
-    std::string dest_comp_instance = dstComp.UUID();
-    if (dest_comp_instance.empty())
-      dstComp.UUID() = dest_comp_instance = CreateUuid();
-    dest_comp_instance = std::string ("_") + dest_comp_instance;
+      // @NOTE: Use this or the one above.
+      /*
+      std::string uuid = comp.UUID ();
+      if (uuid.empty())
+        {
+          comp.UUID() = uuid = Utils::CreateUuid();
+        }
+      return std::string ("_") + uuid;    
+      */
+    }
+
+  void DeploymentPlanVisitor::CreateConnection (const Component& srcComp,
+                                                const std::string& srcPortName,
+                                                const Component& dstComp,
+                                                const std::string& dstPortName,
+		                                            const std::string& source_kind,
+				                                        const std::string& dest_kind)
+  {
+    std::string source_comp_instance = this->unique_id (srcComp);
+    
+    //std::string source_comp_instance = srcComp.UUID();
+    //std::string source_comp_instance = source_comp_instance_path;
+    //if (source_comp_instance.empty())
+      //srcComp.UUID() = source_comp_instance = CreateUuid();
+    //source_comp_instance = std::string ("_") + source_comp_instance;
+
+    std::string dest_comp_instance = this->unique_id (dstComp);
+
+    //std::string dest_comp_instance = dstComp.UUID();
+    //std::string dest_comp_instance = dest_comp_instance_path;
+    //if (dest_comp_instance.empty())
+      //dstComp.UUID() = dest_comp_instance = CreateUuid();
+    //dest_comp_instance = std::string ("_") + dest_comp_instance;
 
     if (this->selected_instances_.find (source_comp_instance)
 		    != this->selected_instances_.end ())
@@ -765,37 +783,26 @@ namespace PICML
           {
             // Create a connection
             DOMElement* ele = this->doc_->createElement (XStr ("connection"));
-
             this->curr_->appendChild (ele);
 
-            std::string connection = srcPortName + "_" + dstPortName + "_" + source_comp_instance + "_" + dest_comp_instance;
+            std::string connection = srcPortName + "_" + dstPortName + source_comp_instance + dest_comp_instance;
             ele->appendChild (this->createSimpleContent ("name", connection));
 
             // Source endPoint
-            DOMElement* endPoint
-               = this->doc_->createElement (XStr ("internalEndpoint"));
-            endPoint->appendChild (this->createSimpleContent ("portName",
-                                   srcPortName));
-            endPoint->appendChild (this->createSimpleContent ("kind",
-                                   dest_kind));
+            DOMElement* endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
+            endPoint->appendChild (this->createSimpleContent ("portName", srcPortName));
+            endPoint->appendChild (this->createSimpleContent ("kind", dest_kind));
 		    
-            // std::string source_comp_instance = 
-            //     srcComp.getPath ("_",false,true,"name",true);
             endPoint->appendChild (this->createSimpleContent ("instance", 
-                                   source_comp_instance_path));
+                                   source_comp_instance));
             ele->appendChild (endPoint);
 
             // Destination endPoint
             endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
-            endPoint->appendChild (this->createSimpleContent ("portName",
-                                   dstPortName));
-            endPoint->appendChild (this->createSimpleContent ("kind",
-                                   source_kind));
+            endPoint->appendChild (this->createSimpleContent ("portName", dstPortName));
+            endPoint->appendChild (this->createSimpleContent ("kind", source_kind));
 		    
-            // std::string dest_comp_instance = 
-            //      dstComp.getPath ("_",false,true,"name",true);
-            endPoint->appendChild (this->createSimpleContent ("instance", 
-                                   dest_comp_instance_path));
+            endPoint->appendChild (this->createSimpleContent ("instance", dest_comp_instance));
             ele->appendChild (endPoint);
           }
       }
@@ -1584,9 +1591,8 @@ namespace PICML
 
   void DeploymentPlanVisitor::update_component_instance (Component& comp, std::string& nodeRefName)
   {
-    std::string instanceName = comp.getPath (".",false,true,"name",true);
-
-	this->deployed_instances_.insert (make_pair (instanceName, nodeRefName));
+    std::string instanceName = this->unique_id (comp);
+	  this->deployed_instances_.insert (make_pair (instanceName, nodeRefName));
   }
 
   void DeploymentPlanVisitor::create_component_instance (Component& comp)
@@ -1594,45 +1600,44 @@ namespace PICML
     // this->push ();
     DOMElement* ele = this->doc_->createElement (XStr ("instance"));
 
-    std::string instanceName = 
-        comp.getPath (".",false,true,"name",true);
+    std::string instanceName = this->unique_id (comp);
 
-	std::string nodeRefName = this->deployed_instances_[instanceName];
+	  std::string nodeRefName = this->deployed_instances_[instanceName];
 
-	std::string uniqueName = comp.UUID();
-    if (uniqueName.empty())
-      {
-        comp.UUID() = uniqueName = CreateUuid();
-      }
-	uniqueName = std::string ("_") + uniqueName;
-	// instanceName = instanceName + uniqueName;
+	  // std::string uniqueName = comp.UUID();
+    // std::string uniqueName = instanceName;
+    // if (uniqueName.empty())
+    //   {
+    //     comp.UUID() = uniqueName = CreateUuid();
+    //   }
+	  // uniqueName = std::string ("_") + uniqueName;
+	  // instanceName = instanceName + uniqueName;
 
-	this->selected_instances_.insert (uniqueName);
-    /*uniqueName += "_";
-	uniqueName += nodeRefName;
+	  this->selected_instances_.insert (instanceName);
+    /*
     uniqueName += "_";
-    uniqueName += cgName;*/
-    ele->setAttribute (XStr ("id"), XStr (uniqueName));
-    ele->appendChild
-        (this->createSimpleContent ("name", instanceName));
-    ele->appendChild
-        (this->createSimpleContent ("node", nodeRefName));
+	  uniqueName += nodeRefName;
+    uniqueName += "_";
+    uniqueName += cgName;
+    */
+    ele->setAttribute (XStr ("id"), XStr (instanceName));
+    ele->appendChild (this->createSimpleContent ("name", instanceName));
+    ele->appendChild (this->createSimpleContent ("node", nodeRefName));
     ele->appendChild (this->doc_->createElement (XStr ("source")));
     this->curr_->appendChild (ele);
     this->curr_ = ele;
 
     // std::string mimpl_name = 
-    //    mimpl.getPath ("_",false,true,"name",true);
-	std::string mimpl_name = this->mimpl_.UUID();
+    // mimpl.getPath ("_",false,true,"name",true);
+	  std::string mimpl_name = this->mimpl_.UUID();
     if (mimpl_name.empty())
       {
         this->mimpl_.UUID() = mimpl_name = CreateUuid();
       }
-	mimpl_name = std::string ("_") + mimpl_name;
+	  mimpl_name = std::string ("_") + mimpl_name;
 
-    this->curr_->appendChild
-        (this->createSimpleContent ("implementation", mimpl_name));
-	// this->pop ();
+    this->curr_->appendChild (this->createSimpleContent ("implementation", mimpl_name));
+	  // this->pop ();
   }
 
   void DeploymentPlanVisitor::update_parent_connections
@@ -2072,11 +2077,11 @@ namespace PICML
         this->push();
         this->curr_ = instance;
 
-        // std::string uniqueName = comp.getPath ("_",false,true,"name",true);
-	    std::string uniqueName = comp.UUID();
+        // std::string uniqueName = this->unique_id (comp);
+	      std::string uniqueName = comp.UUID();
         if (uniqueName.empty())
           comp.UUID() = uniqueName = CreateUuid();
-	    uniqueName = std::string ("_") + uniqueName;
+	      uniqueName = std::string ("_") + uniqueName;
 
         instance->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
         instance->appendChild (this->createSimpleContent ("name",

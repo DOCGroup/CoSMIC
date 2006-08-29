@@ -1,4 +1,4 @@
-project (UUIDManager): mfc, utils {
+project (UUIDManager): cosmic_common, mfc, utils {
   sharedname = UUIDManager
 
   includes +=  $(COSMIC_ROOT)/PIM/PICML/addons/UUIDManager \

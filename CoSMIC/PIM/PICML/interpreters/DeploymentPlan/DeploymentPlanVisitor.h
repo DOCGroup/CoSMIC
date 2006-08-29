@@ -281,6 +281,10 @@ namespace PICML
 	DeploymentPlan_Export virtual void finalize_deployment_plan_descriptor (void);
 	DeploymentPlan_Export virtual void create_label_and_uuid (DeploymentPlan& dp);
 
+  protected:
+    template <typename T>
+    std::string unique_id (const T &comp);
+
   private:
 
     DOMImplementation*  impl_;
