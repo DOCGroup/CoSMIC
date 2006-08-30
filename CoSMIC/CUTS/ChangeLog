@@ -1,3 +1,17 @@
+Wed Aug 30 06:14:47 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * docs/index.html:
+        * docs/logo.jpg:
+
+          - Added relative links to the page for navigating to other
+            pages.
+          - Added the CUTS logo to the page.
+
+        * docs/bmw-install.html:
+
+          Updated the installation information for using the MSI
+          package and changing the location of the database.
+
 Mon Aug 28 21:19:20 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/Execution_Times.aspx:
