@@ -19,9 +19,9 @@ using Utils::CreateUuid;
 
 namespace CQML
 {
-  DeploymentPlanFrameworkVisitor::DeploymentPlanFrameworkVisitor (const std::string& outputPath)
+  DeploymentPlanFrameworkVisitor::DeploymentPlanFrameworkVisitor ()
     : impl_ (0), doc_ (0), root_ (0), curr_ (0), serializer_ (0), target_ (0),
-      outputPath_ (outputPath)
+    outputPath_ ("C:\\")
   {
     this->init();
     this->injectors_.clear ();
@@ -739,15 +739,32 @@ namespace CQML
       }
   }
 
+  void DeploymentPlanFrameworkVisitor::set_path (const std::string &path)
+    {
+      this->outputPath_ = path;
+    }
+
+  DeploymentPlanFrameworkVisitor & DeploymentPlanFrameworkVisitor::instance ()
+    {
+      if (instance_ == 0)
+        {
+          instance_ = new DeploymentPlanFrameworkVisitor();
+        }
+      return *instance_;
+    }
+
+  void DeploymentPlanFrameworkVisitor::destroy_instance ()
+    {
+      delete instance_;
+    }
+
   void DeploymentPlanFrameworkVisitor::CreateConnection (const Component& srcComp,
      const std::string& srcPortName, const Component& dstComp,
      const std::string& dstPortName, const std::string& source_kind,
 		 const std::string& dest_kind)
   {
-    CQML::InstanceConnection source_connection;
-    CQML::InstanceConnection dest_connection;
-
-    std::string source_comp_instance_path = 
+    std::string source_comp_instance = this->unique_id (srcComp);
+/*    std::string source_comp_instance_path = 
         srcComp.getPath (".",false,true,"name",true);
     std::string source_comp_instance = srcComp.UUID();
 
@@ -756,8 +773,9 @@ namespace CQML
         srcComp.UUID() = source_comp_instance = ::Utils::CreateUuid();
       }
     source_comp_instance = std::string ("_") + source_comp_instance;
-
-    std::string dest_comp_instance_path = 
+*/
+    std::string dest_comp_instance = this->unique_id (dstComp);
+/*    std::string dest_comp_instance_path = 
          dstComp.getPath (".",false,true,"name",true);
     std::string dest_comp_instance = dstComp.UUID();
 
@@ -766,11 +784,11 @@ namespace CQML
         dstComp.UUID() = dest_comp_instance = ::Utils::CreateUuid();
       }
     dest_comp_instance = std::string ("_") + dest_comp_instance;
-
-    if (this->selected_instances_.find (source_comp_instance_path)
+*/
+    if (this->selected_instances_.find (source_comp_instance)
 		    != this->selected_instances_.end ())
       {
-        if (this->selected_instances_.find (dest_comp_instance_path)
+        if (this->selected_instances_.find (dest_comp_instance)
 			      != this->selected_instances_.end ())
           {
             // Create a connection
@@ -778,55 +796,41 @@ namespace CQML
 
             this->curr_->appendChild (ele);
 
-            std::string connection = srcPortName + "_" + dstPortName + "_" + source_comp_instance + "_" + dest_comp_instance;;
+            std::string connection = srcPortName + "_" + dstPortName + source_comp_instance + dest_comp_instance;;
             ele->appendChild (this->createSimpleContent ("name", connection));
 
             // Source endPoint
-            DOMElement* endPoint
-               = this->doc_->createElement (XStr ("internalEndpoint"));
-            endPoint->appendChild (this->createSimpleContent ("portName",
-                                   srcPortName));
-            endPoint->appendChild (this->createSimpleContent ("kind",
-                                   dest_kind));
-		    
-            // std::string source_comp_instance = 
-            //     srcComp.getPath ("_",false,true,"name",true);
-            std::string source_instance_id = source_comp_instance_path;
-            endPoint->appendChild (this->createSimpleContent ("instance", 
-                                   source_instance_id));
+            DOMElement* endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
+            endPoint->appendChild (this->createSimpleContent ("portName", srcPortName));
+            endPoint->appendChild (this->createSimpleContent ("kind", dest_kind));
+            endPoint->appendChild (this->createSimpleContent ("instance", source_comp_instance));
             ele->appendChild (endPoint);
-
-            source_connection.instance_name = source_comp_instance_path;
-            source_connection.port_name = srcPortName;
-            source_connection.port_kind = dest_kind;
 
             // Destination endPoint
             endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
-            endPoint->appendChild (this->createSimpleContent ("portName",
-                                   dstPortName));
-            endPoint->appendChild (this->createSimpleContent ("kind",
-                                   source_kind));
-		    
-            // std::string dest_comp_instance = 
-            //      dstComp.getPath ("_",false,true,"name",true);
-            std::string dest_instance_id = dest_comp_instance_path;
-            endPoint->appendChild (this->createSimpleContent ("instance", 
-                                   dest_instance_id));
+            endPoint->appendChild (this->createSimpleContent ("portName", dstPortName));
+            endPoint->appendChild (this->createSimpleContent ("kind", source_kind));
+		        endPoint->appendChild (this->createSimpleContent ("instance", dest_comp_instance));
             ele->appendChild (endPoint);
 
-            dest_connection.instance_name = dest_comp_instance_path;
+            CQML::InstanceConnection source_connection;
+            CQML::InstanceConnection dest_connection;
+
+            source_connection.instance_name = source_comp_instance;
+            source_connection.port_name = srcPortName;
+            source_connection.port_kind = dest_kind;
+
+            dest_connection.instance_name = dest_comp_instance;
             dest_connection.port_name = dstPortName;
             dest_connection.port_kind = source_kind;
 
             std::pair <CQML::InstanceConnection, CQML::InstanceConnection > 
               connection_pair (make_pair (source_connection, dest_connection));
 
-            std::string connection_instance = source_comp_instance_path + "_";
-            connection_instance = connection_instance + dest_comp_instance_path;
+            std::string connection_instance = source_comp_instance + "_";
+            connection_instance = connection_instance + dest_comp_instance;
 
-            this->connections_. insert (make_pair (connection_instance, connection_pair));
-
-            // this->connections_.insert (make_pair (source_connection, dest_connection));
+            this->connections_.insert (make_pair (connection_instance, connection_pair));
           }
       }
   }
@@ -1200,7 +1204,7 @@ namespace CQML
                 Component comp = component_ref.ref();
 				        this->monolith_components_.insert (comp);
 				        std::string comp_name = comp.name ();
-				        std::string component_name = comp.getPath (".",false,true,"name",true);
+				        std::string component_name = this->unique_id (comp);
 				        this->instance_monolith_components_.insert (make_pair (component_name, comp));
 				        update_component_parents (comp);
 				        update_component_instance (component_name, nodeRefName);
@@ -1223,7 +1227,7 @@ namespace CQML
 					          Component typeParent;
 					          std::string comp_in_assembly_name = comp.name ();
 					          std::string component_ref_name = comp_assembly_ref_name + comp_in_assembly_name;
-					          std::string assembly_component_name = comp.getPath (".",false,true,"name",true);
+					          std::string assembly_component_name = this->unique_id (comp);
 					          this->instance_assembly_components_.insert (make_pair (assembly_component_name, comp));
 					          update_component_instance (assembly_component_name, nodeRefName);
 					          this->final_assembly_components_.insert (comp);
@@ -1241,8 +1245,8 @@ namespace CQML
 				        Component referred_comp = shared_comp.ref();
 				        this->monolith_components_.insert (referred_comp);
                 std::string referred_component_name = referred_comp.name ();
-				        std::string shared_component_name = 
-                  referred_comp.getPath (".",false,true,"name",true);
+				        std::string shared_component_name = this->unique_id (referred_comp);
+                  //referred_comp.getPath (".",false,true,"name",true);
 				        this->instance_monolith_components_.insert 
                   (make_pair (shared_component_name, referred_comp));
 				        update_shared_component_parents (shared_comp);
@@ -1580,19 +1584,15 @@ namespace CQML
 	  this->selected_instances_.insert (instance_name);
     std::string nodeRefName = this->deployed_instances_[instance_name];
 
-    std::string id_name = std::string ("_") + instance_name;
+    //std::string id_name = std::string ("_") + instance_name;
     
     // ele->setAttribute (XStr ("id"), XStr (uniqueName));
-	  ele->setAttribute (XStr ("id"), XStr (id_name));
+	  //ele->setAttribute (XStr ("id"), XStr (id_name));
+    ele->setAttribute (XStr ("id"), XStr (instance_name));
 
-    /*ele->appendChild
-        (this->createSimpleContent ("name", instanceName));*/
-	  ele->appendChild
-        (this->createSimpleContent ("name", instance_name));
-
-    ele->appendChild
-        (this->createSimpleContent ("node", nodeRefName));
-
+    /*ele->appendChild (this->createSimpleContent ("name", instanceName));*/
+	  ele->appendChild (this->createSimpleContent ("name", instance_name));
+    ele->appendChild (this->createSimpleContent ("node", nodeRefName));
     ele->appendChild (this->doc_->createElement (XStr ("source")));
 
     this->curr_->appendChild (ele);
@@ -2044,7 +2044,7 @@ namespace CQML
         this->push();
         this->curr_ = instance;
 
-        // std::string uniqueName = comp.getPath ("_",false,true,"name",true);
+        // std::string uniqueName = this->unique_id (comp);
 	      std::string uniqueName = comp.UUID();
         if (uniqueName.empty())
           {
