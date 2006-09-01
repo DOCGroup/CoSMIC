@@ -31,9 +31,8 @@ namespace CQML
 
   class DeploymentPlanFrameworkVisitor: public Visitor
   {
-    DeploymentPlanFramework_Export DeploymentPlanFrameworkVisitor ();
   public:
-
+    DeploymentPlanFramework_Export DeploymentPlanFrameworkVisitor (const std::string& outputPath);
     DeploymentPlanFramework_Export ~DeploymentPlanFrameworkVisitor();
 
     DeploymentPlanFramework_Export void init();
@@ -282,19 +281,8 @@ namespace CQML
 	DeploymentPlanFramework_Export virtual void instantiate_deployment_plan_descriptor (DeploymentPlan& dp);
 	DeploymentPlanFramework_Export virtual void finalize_deployment_plan_descriptor (void);
 	DeploymentPlanFramework_Export virtual void create_label_and_uuid (DeploymentPlan& dp);
+	DeploymentPlanFramework_Export virtual void add_injector (const std::string& plan_name, Injector* injector);
   DeploymentPlanFramework_Export virtual void clear_private_variables (void);
-
-  public:
-
-    template <typename T>
-    std::string unique_id (T &comp) const;
-    DeploymentPlanFramework_Export void set_path (const std::string &);
-    DeploymentPlanFramework_Export static DeploymentPlanFrameworkVisitor & instance ();
-    DeploymentPlanFramework_Export static void destroy_instance ();
-	  DeploymentPlanFramework_Export void add_injector (const std::string& plan_name, Injector* injector);
-
-  private:
-    static DeploymentPlanFrameworkVisitor *instance_;
 
   private:
 
@@ -332,23 +320,5 @@ namespace CQML
 	  std::map<std::string, Injector*> injectors_;
     std::map < std::string, std::pair <CQML::InstanceConnection, CQML::InstanceConnection> > connections_;
   };
-
-template <typename T>
-std::string DeploymentPlanFrameworkVisitor::unique_id (T &comp) const
-  {
-    return std::string ("_") + comp.getPath (".",false,true,"name",true);
-
-    // @NOTE: Use this or the one above.
-    /*
-    std::string uuid = comp.UUID ();
-    if (uuid.empty())
-      {
-        comp.UUID() = uuid = Utils::CreateUuid();
-      }
-    return std::string ("_") + uuid;    
-    */
-  }
-  DeploymentPlanFrameworkVisitor *DeploymentPlanFrameworkVisitor::instance_;
-
 }
 #endif /* DEPLOYMENTPLANFRAMEWORK_VISITOR_H */

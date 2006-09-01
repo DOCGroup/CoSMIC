@@ -792,13 +792,16 @@ namespace PICML
             DOMElement* endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
             endPoint->appendChild (this->createSimpleContent ("portName", srcPortName));
             endPoint->appendChild (this->createSimpleContent ("kind", dest_kind));
-		        endPoint->appendChild (this->createSimpleContent ("instance", source_comp_instance));
+		    
+            endPoint->appendChild (this->createSimpleContent ("instance", 
+                                   source_comp_instance));
             ele->appendChild (endPoint);
 
             // Destination endPoint
             endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
             endPoint->appendChild (this->createSimpleContent ("portName", dstPortName));
-            endPoint->appendChild (this->createSimpleContent ("kind", source_kind));    
+            endPoint->appendChild (this->createSimpleContent ("kind", source_kind));
+		    
             endPoint->appendChild (this->createSimpleContent ("instance", dest_comp_instance));
             ele->appendChild (endPoint);
           }

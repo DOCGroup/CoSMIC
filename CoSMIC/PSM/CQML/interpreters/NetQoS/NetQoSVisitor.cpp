@@ -4,7 +4,6 @@
 #include "NetQoS/NetQoSVisitor.h"
 #include "UmlExt.h"
 #include "Utils/Utils.h"
-#include "DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h"
 
 using xercesc::LocalFileFormatTarget;
 using xercesc::DOMImplementationRegistry;
@@ -20,16 +19,14 @@ using Utils::CreateUuid;
 namespace CQML
 {
   NetQoSVisitor::NetQoSVisitor (const std::string& outputPath)
-    : impl_ (0), doc_ (0), root_ (0), curr_ (0), serializer_ (0), 
+    : dep_plan_ (outputPath), impl_ (0), doc_ (0), root_ (0), curr_ (0), serializer_ (0), 
       target_ (0), outputPath_ (outputPath)
   {
     this->init();
-    DeploymentPlanFrameworkVisitor::instance().set_path (outputPath);
   }
 
   NetQoSVisitor::~NetQoSVisitor ()
   {
-    DeploymentPlanFrameworkVisitor::destroy_instance();
     if (this->doc_)
       this->doc_->release();
     delete this->target_;
@@ -122,9 +119,6 @@ namespace CQML
         plans_folder.Accept (*this);
       }
 
-    this->initDocument ("CIAO:NetQoSRequirements");
-    this->initRootAttributes(); // this->curr_ is ROOT now.
-
     std::set<ComponentImplementations>
       comp_impls = rf.ComponentImplementations_kind_children();
     for (std::set<ComponentImplementations>::iterator iter = comp_impls.begin();
@@ -135,16 +129,7 @@ namespace CQML
         comp_impl.Accept (*this);
       }
 
-    for (std::set <std::string>::const_iterator iter = this->filenames_.begin();
-          iter != this->filenames_.end ();
-          ++iter)
-      {
-        std::string name = this->outputPath_ + "\\" + *iter;
-        this->initTarget (name);
-        this->dumpDocument ();
-      }
-
-    DeploymentPlanFrameworkVisitor::instance().Visit_RootFolder (rf);
+    this->dep_plan_.Visit_RootFolder (rf);
   }
 
   void NetQoSVisitor::Visit_DeploymentPlans(const DeploymentPlans& plans_folder)
@@ -191,6 +176,9 @@ namespace CQML
 
   void NetQoSVisitor::Visit_ComponentImplementationContainer(const ComponentImplementationContainer &comp_impl_cont)
   {
+  this->initDocument ("CIAO:NetQoSRequirements");
+    this->initRootAttributes(); // this->curr_ is ROOT now.
+
     std::set<ComponentAssembly>
       comp_assemblies = comp_impl_cont.ComponentAssembly_kind_children();
     for (std::set<ComponentAssembly>::iterator iter = comp_assemblies.begin();
@@ -198,8 +186,16 @@ namespace CQML
          ++iter)
       {
         ComponentAssembly comp_assembly = *iter;
-        if (!comp_assembly.isInstance())
-          comp_assembly.Accept (*this);
+        comp_assembly.Accept (*this);
+      }
+
+    for (std::set <std::string>::const_iterator iter = this->filenames_.begin();
+         iter != this->filenames_.end ();
+         ++iter)
+      {
+        std::string name = this->outputPath_ + "\\" + *iter;
+        this->initTarget (name);
+        this->dumpDocument ();
       }
   }
 
@@ -519,16 +515,25 @@ namespace CQML
                                          const Component& dstComp,
                                          const string& dstPortName)
   {
-    std::string source_comp_instance = DeploymentPlanFrameworkVisitor::instance().unique_id (srcComp);
-    std::string dest_comp_instance = DeploymentPlanFrameworkVisitor::instance().unique_id (dstComp);
+    std::string source_comp_instance = srcComp.UUID();
+    if (source_comp_instance.empty())
+      srcComp.UUID() = source_comp_instance = ::Utils::CreateUuid();
+    
+    source_comp_instance = std::string ("_") + source_comp_instance;
 
-    std::string connection = srcPortName + "_" + dstPortName + source_comp_instance + dest_comp_instance;
+    std::string dest_comp_instance = dstComp.UUID();
+    if (dest_comp_instance.empty())
+      dstComp.UUID() = dest_comp_instance = ::Utils::CreateUuid();
+    
+    dest_comp_instance = std::string ("_") + dest_comp_instance;
+
+    std::string connection = srcPortName + "_" + dstPortName + "_" + source_comp_instance + "_" + dest_comp_instance;
  
     ConnectionInfo conn_info;
     conn_info.connection_name = connection;
-    conn_info.client = source_comp_instance;
+    conn_info.client = srcComp.getPath (".",false,true,"name",true);
     conn_info.client_port_name = srcPortName;
-    conn_info.server = dest_comp_instance;
+    conn_info.server = dstComp.getPath (".",false,true,"name",true);
     conn_info.server_port_name = dstPortName;
     
     this->qos_conn_mmap_.insert (std::make_pair (this->current_netqos_, conn_info));
