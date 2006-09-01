@@ -1,3 +1,23 @@
+Fri Sep  1 18:14:01 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cosmic_utils.mpb:
+
+          This file was the original utils.mpb. I changed its name
+          becuase TAO has a utils.mpb base project as well. This was
+          causing problems with the CUTS project because it was picking
+          up the utils.mpb located in $ACE_ROOT/bin/MakeProjectCreator/config
+          instead of the one located in $COSMIC_ROOT
+
+        * cqmllib.mpb:
+        * picmllib.mpb:
+
+          Updated the base project specification to use cosmic_utils instead
+          of utils.
+
+        * utils.mpb:
+
+          Removd this file.
+
 Fri Sep  1 07:38:07 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Installer/CoSMIC_common.wxs:
