@@ -1,3 +1,15 @@
+Fri Sep  1 19:21:16 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/UUIDManager/UUIDManager.mpc:
+
+          Removed block that disabled the use of the name_modifier since
+          we are no longer using BON for this project.
+
+        * PSM/CQML/interpreters/CQML/CQML.mpc:
+
+          Updated the base project specification to use cosmic_utils instead
+          of utils.
+
 Fri Sep  1 18:14:01 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cosmic_utils.mpb:

@@ -1,8 +1,8 @@
-project (UUIDManager): cosmic_common, mfc, utils {
+project (UUIDManager): cosmic_common, mfc, cosmic_utils {
   sharedname = UUIDManager
 
   includes +=  $(COSMIC_ROOT)/PIM/PICML/addons/UUIDManager \
-	       $(GME_ROOT)/SDK/BON
+         $(GME_ROOT)/SDK/BON
 
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
@@ -11,10 +11,6 @@ project (UUIDManager): cosmic_common, mfc, utils {
      midl_flags += /server none /client none
      midl_includes += $(GME_ROOT) $(GME_ROOT)/Interfaces .
    }
-  
-specific {
-    use_lib_modifier =
-  }
 
   specific (vc6,vc7,vc71,vc8) {
     link_options += /DEF:Component.def
