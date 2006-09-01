@@ -3,7 +3,7 @@
 #include "StdAfx.h"
 #include "UdmApp.h"
 #include "Main_Dialog.h"
-#include "PICML/Utils.h"
+#include "Utils/Utils.h"
 
 #include "cuts/be/CoWorkEr_Cache.h"
 #include "cuts/be/CoWorkEr_Generator.h"
@@ -98,7 +98,7 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,
       std::string output_dir;
       std::string message ("Please specify the output directory");
 
-      if (PICML::getPath (message, output_dir))
+      if (Utils::getPath (message, output_dir))
       {
         CUTS_BE_Project_Generator * proj = new CUTS_CIAO_Project_Generator ();
         CUTS_BE_Workspace_Generator generator (output_dir, proj);

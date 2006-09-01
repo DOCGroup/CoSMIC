@@ -13,6 +13,7 @@ workspace (CUTS_CoSMIC) {
     cmdline += -include $COSMIC_ROOT
 
     $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML
+    $(COSMIC_ROOT)/Utils
   }
 
   // -- This project is necessary for the code generation projects.

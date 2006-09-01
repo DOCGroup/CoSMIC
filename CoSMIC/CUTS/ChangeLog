@@ -1,3 +1,58 @@
+Fri Sep  1 05:42:37 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * CUTS.mwc:
+        * CUTS_CoSMIC.mwc:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/PICML_CIAO_Impl.mpc:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/UdmApp.cpp:
+        * etc/config/wix.mpb:
+        * install/BMW.wxs:
+        * install/BMW_installers.mpc:
+        * install/CUTS_CoSMIC.wxs:
+        * install/CUTS_installers.mwc:
+
+          Merge for branches/CUTS-dev.
+
+Fri Sep  1 00:12:01 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * install/CUTS_CoSMIC.wxs:
+
+          Updated the file listing for the installer. It's still not
+          finished though.
+
+Fri Sep  1 00:00:06 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * CUTS.mwc:
+        * CUTS_CoSMIC.mwc:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/PICML_CIAO_Impl.mpc:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/UdmApp.cpp:
+
+          Updated build to reflect the new location of the CoSMIC utilities.
+
+        * install/CUTS_CoSMIC.wxs:
+
+          Started creating the installer for CUTS modeling tools.
+
+Thu Aug 31 22:52:08 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * etc/config/wix.mpb:
+
+          Windows Installer XML (WIX) base project.
+
+        * install/BMW.wxs:
+
+          Updated the installer use the precompiled version of the
+          website.
+
+        * install/BMW_installers.mpc:
+
+          Project(s) that precompile the BMW and then create a MSI binary
+          for the BMW.
+
+        * install/CUTS_installers.mwc:
+
+          Custom solution for creating MSI installers for the different
+          components in CUTS.
+
 Wed Aug 30 06:14:47 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * docs/index.html:

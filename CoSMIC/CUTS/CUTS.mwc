@@ -12,6 +12,7 @@ workspace (CUTS) {
     cmdline += -include $COSMIC_ROOT
 
     $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML
+    $(COSMIC_ROOT)/Utils
   }
 
   exclude {

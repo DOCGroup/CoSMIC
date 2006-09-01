@@ -1,0 +1,34 @@
+// $Id$
+
+project {
+  custom_only = 1
+  
+  Define_Custom (WXS) {
+    automatic             = 0
+    command               = $(WIX_ROOT)/candle
+    inputext              = .wxs
+    output_option         = -out
+    commandflags          = -nologo
+    source_outputext      = .wixobj
+    keyword wxs_flags     = commandflags
+  }
+
+  Define_Custom (WIXOBJ) {
+    automatic             = 0
+    command               = $(WIX_ROOT)/light
+    inputext              = .wixobj
+    output_option         = -out
+    commandflags          = -nologo
+    source_outputext      = .msi
+    keyword wixobj_flags  = commandflags
+  }
+  
+  Define_Custom (MSI) {
+    automatic             = 0
+    command               = $(WIX_ROOT)/dark
+    inputext              = .msi
+    commandflags          = -nologo
+    source_outputext      = .wxs
+    keyword msi_flags     = commandflags
+  }
+}
