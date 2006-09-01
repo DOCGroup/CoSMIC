@@ -1,3 +1,14 @@
+Fri Sep  1 18:09:40 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * CUTS_CoSMIC.mwc:
+
+          Combined the CUTS and CoSMIS specific projects into a
+          single block.
+
+        * cuts/GME/interpreters/PICML_CIAO_Impl/PICML_CIAO_Impl.mpc:
+
+          Updated the base project into include cosmic_utils.
+
 Fri Sep  1 05:42:37 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * CUTS.mwc:
