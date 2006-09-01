@@ -1,9 +1,18 @@
+Fri Sep  1 07:38:07 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Installer/CoSMIC_common.wxs:
+
+          Windows Installer XML (WIX) project file for the common
+          parts of CoSMIC (PICML.dll and Utils.dll). This allows
+          other installers to include them so that all installers
+          reference the same components.
+
 Fri Sep  1 06:31:02 UTC 2006  James Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/Interpreters.mwc:
 
           Fixed the case for BGML_Component
-        
+
 Fri Sep  1 05:46:30 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
