@@ -1,3 +1,9 @@
+Fri Sep  1 06:31:02 UTC 2006  James Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+
+          Fixed the case for BGML_Component
+        
 Fri Sep  1 05:46:30 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
