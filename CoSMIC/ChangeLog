@@ -1,3 +1,95 @@
+Mon Sep  4 20:10:44 UTC 2006  Arundhati Kogekar  <akogekar@dre.vanderbilt.edu>
+	
+	Added first version of POSAML.
+
+        * PIM/POSAML:
+
+        * PIM/POSAML/interpreters:
+
+        * PIM/POSAML/interpreters/BenchmarkInterpreter:
+
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BON2Component.h:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BON2Component.cpp:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BON2Component.sln:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkingBON2Component.vcproj:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/CompIcon.ico:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/Component.rc:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/ComponentConfig.h:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/ComponentLib.h:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/ComponentLib.tlb:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/ComponentLib_i.c:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/ComponentLib_p.c:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/GMESources.txt:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/Resource.h:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/StdAfx.h:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/StdAfx.cpp:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/benchmark_test:
+
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/benchmark_test/benchmark_test.h:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/benchmark_test/benchmark_test.sln:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/benchmark_test/benchmark_test.vcproj:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/benchmark_test/benchmark_test.cpp:
+
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/benchmark_xml.h:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/benchmark_xml.cpp:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/component.def:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/dlldata.c:
+
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter:
+
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/BON2Component.h:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/BON2Component.cpp:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/CMMLBonX.h:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/CMMLBonX.cpp:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/CompIcon.ico:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/Component.aps:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/Component.rc:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ComponentConfig.h:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ComponentLib.h:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ComponentLib.tlb:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ComponentLib_i.c:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ComponentLib_p.c:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ConfigurationBON2Component.sln:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ConfigurationBON2Component.vcproj:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/GMESources.txt:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/Resource.h:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/StdAfx.h:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/StdAfx.cpp:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/component.def:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/dlldata.c:
+
+        * PIM/POSAML/paradigms:
+
+        * PIM/POSAML/paradigms/POSAML.xme:
+        * PIM/POSAML/paradigms/POSAML.xmp:
+        * PIM/POSAML/paradigms/icons:
+
+        * PIM/POSAML/paradigms/icons/Acceptor.bmp:
+        * PIM/POSAML/paradigms/icons/Acceptor_Connector.bmp:
+        * PIM/POSAML/paradigms/icons/Connector.bmp:
+        * PIM/POSAML/paradigms/icons/Dispatcher.bmp:
+        * PIM/POSAML/paradigms/icons/Latency.bmp:
+        * PIM/POSAML/paradigms/icons/Port.bmp:
+        * PIM/POSAML/paradigms/icons/PortEndPoint.bmp:
+        * PIM/POSAML/paradigms/icons/PortSmall.bmp:
+        * PIM/POSAML/paradigms/icons/Property.bmp:
+        * PIM/POSAML/paradigms/icons/Queue.bmp:
+        * PIM/POSAML/paradigms/icons/Reactor.bmp:
+        * PIM/POSAML/paradigms/icons/Reactor_Type.bmp:
+        * PIM/POSAML/paradigms/icons/Service.bmp:
+        * PIM/POSAML/paradigms/icons/Throughput.bmp:
+        * PIM/POSAML/paradigms/icons/Transport_Handle.bmp:
+        * PIM/POSAML/paradigms/icons/Transport_HandleA.bmp:
+        * PIM/POSAML/paradigms/icons/Transport_HandleC.bmp:
+        * PIM/POSAML/paradigms/icons/concurrency.bmp:
+        * PIM/POSAML/paradigms/icons/event_handler.bmp:
+        * PIM/POSAML/paradigms/icons/handle.bmp:
+        * PIM/POSAML/paradigms/icons/handle_set.bmp:
+        * PIM/POSAML/paradigms/icons/reactor_pattern.bmp:
+        * PIM/POSAML/paradigms/icons/service_time.bmp:
+        * PIM/POSAML/paradigms/icons/sync_event.bmp:
+        * PIM/POSAML/paradigms/icons/threads.bmp:
+
 Mon Sep  4 15:25:41 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Installer/CoSMIC_common.wxs:
