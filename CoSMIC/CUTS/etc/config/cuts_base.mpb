@@ -1,10 +1,6 @@
 // $Id$
 
 project {
-  libs  += CUTS
-
-  after += CUTS
-
   specific {
     Release::dynamicflags += __CUTS_INLINE__
   }

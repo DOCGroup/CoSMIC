@@ -1,5 +1,8 @@
 // $Id$
 
 project : aceexe, cuts_base {
+  libs  += CUTS
+  after += CUTS
+
   install = $(CUTS_ROOT)/bin
 }

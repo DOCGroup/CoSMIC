@@ -1,3 +1,27 @@
+Mon Sep  4 15:44:02 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/GME/interpreters/PICML_CIAO_Impl/PICML_CIAO_Impl.mpc:
+        * cuts/be/BE.mpc:
+        * cuts/be/CIAO/UDM_CIAO_Visitor.mpc:
+
+          Inherited from the cosmic_lib project
+
+        * etc/config/cosmic_lib.mpb:
+
+          Based project for CoSMIC specific libraries.
+
+        * etc/config/cuts_base.mpb:
+        * etc/config/cutsexe.mpb:
+        * etc/config/cutslib.mpb:
+
+          Move the CUTS dependency from cuts_base to cutsexe
+          and cutslib.
+
+        * cuts/fe:
+        * cuts/fe/PICML:
+
+          Removed these files.
+
 Mon Sep  4 15:13:06 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE.mpc:

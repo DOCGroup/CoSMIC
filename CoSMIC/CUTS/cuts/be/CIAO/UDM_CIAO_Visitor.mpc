@@ -1,20 +1,16 @@
 // $Id$
 
-project (CUTS_UDM_CIAO) : cutslib, boost_base, picml_udm {
+project (CUTS_UDM_CIAO) : cosmic_lib, boost_base, picml_udm {
   sharedname    += CUTS_UDM_CIAO
   dynamicflags  += CUTS_UDM_CIAO_BUILD_DLL
 
   includes += $(CIAO_ROOT)/CCF $(ACE_ROOT)/contrib/utility
-  includes -= $(ACE_ROOT)
 
   libpaths += $(CIAO_ROOT)/CCF/CCF
-  libpaths -= $(ACE_ROOT)/lib
 
   after += CodeGenerationKit PICML CUTS_BE
-  after -= CUTS ACE
 
   libs += CodeGenerationKits CUTS_BE
-  libs -= CUTS ACE
 
   Source_Files {
     CIAO_Project_Generator.cpp

@@ -1,20 +1,11 @@
 // $Id$
 
-project (PICML_CIAO_Impl) : cutslib, boost_base, udm_component, gme_interpreter, cosmic_utils {
+project (PICML_CIAO_Impl) : cosmic_lib, boost_base, udm_component, gme_interpreter, cosmic_utils {
   sharedname = CUTS_PICML_CIAO_Impl
 
   // -- dependencies
-  after -= CUTS ACE
   after += CUTS_UDM_CIAO CUTS_BE
-
-  libs  -= CUTS ACE
   libs  += CUTS_UDM_CIAO CUTS_BE
-
-  libpaths -= $(ACE_ROOT)/lib
-  includes -= $(ACE_ROOT)
-
-  // -- required features
-  requires += boost
 
   Source_Files {
     Main_Dialog.cpp

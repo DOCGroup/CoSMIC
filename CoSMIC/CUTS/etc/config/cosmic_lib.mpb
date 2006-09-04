@@ -1,0 +1,6 @@
+// $Id$
+
+project : cuts_base {
+  libout = $(COSMIC_ROOT)/lib
+  dllout = $(COSMIC_ROOT)/bin
+}
