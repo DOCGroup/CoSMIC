@@ -1,3 +1,18 @@
+Mon Sep  4 15:13:06 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE.mpc:
+
+          Removed CUTS and ACE import libraries.
+
+        * install/CUTS_CoSMIC.wxs:
+
+          Finished the file installation portion of the installer. I
+          still need to do the registration portion of the installer.
+
+        * install/CUTS_installers.mwc:
+
+          Added CUTS_CoSMIC to the installer.
+
 Fri Sep  1 18:09:40 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * CUTS_CoSMIC.mwc:

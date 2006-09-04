@@ -22,30 +22,37 @@
     </Property>
 
     <!-- installation conditions -->
-    <Condition Message='CUTS modeling tools require CoSMIC to be installed'>PICML_INSTALLED</Condition>
+    <Condition Message='CUTS modeling tools requires CoSMIC to be installed'>PICML_INSTALLED</Condition>
 
     <!-- installation media -->
     <Media Id="1" Cabinet="CUTS_CoSMIC.cab" EmbedCab="yes" />
 
     <Directory Id='WIXUI_INSTALLDIR' Name='SourceDir'>
-      <Component Id="CUTS_components" Guid="c22f4814-e8a3-43f6-9ba7-044e405478ea">
+      <Directory Id="bin" Name="bin">
+        <Component Id="CUTS_components" Guid="c22f4814-e8a3-43f6-9ba7-044e405478ea">
 
-        <File Id="CUTS_PICML_CIAO_Impl.dll" Name="CUTSCIAO.dll" LongName="CUTS_PICML_CIAO_Impl.dll" 
-              Source="$(var.COSMIC_BIN)\CUTS_PICML_CIAO_Impl.dll" DiskId="1" />
+          <File Id="CUTS_PICML_CIAO_Impl.dll" Name="CUTSCIAO.dll" LongName="CUTS_PICML_CIAO_Impl.dll"
+                Source="$(var.COSMIC_BIN)\CUTS_PICML_CIAO_Impl.dll" DiskId="1" />
 
-        <File Id="CUTS_UDM_CIAO.dll" Name="CUTSUDM.dll" LongName="CUTS_UDM_CIAO.dll" 
-              Source="$(var.COSMIC_BIN)\CUTS_UDM_CIAO.dll" DiskId="1" />
+          <File Id="CUTS_UDM_CIAO.dll" Name="CUTSUDM.dll" LongName="CUTS_UDM_CIAO.dll"
+                Source="$(var.COSMIC_BIN)\CUTS_UDM_CIAO.dll" DiskId="1" />
 
-        <File Id="CUTS_BE.dll" Name="CUTSBE.dll" LongName="CUTS_BE.dll" 
-              Source="$(var.COSMIC_BIN)\CUTS_BE.dll" DiskId="1" />
+          <File Id="CUTS_BE.dll" Name="CUTSBE.dll" LongName="CUTS_BE.dll"
+                Source="$(var.COSMIC_BIN)\CUTS_BE.dll" DiskId="1" />
 
-      </Component>
+        </Component>
+      </Directory>
     </Directory>
-    
+
     <!-- product features -->
     <Feature Id="CUTS_CoSMIC_feature" Title="CUTS Modeling Tools for CoSMIC" Display="hidden"
              Description="Installs the default CUTS modeling tools for CoSMIC" Level="1">
       <ComponentRef Id="CUTS_components" />
+
+      <!-- components from CoSMIC_common -->
+      <ComponentRef Id="CoSMIC_utils" />
+      <ComponentRef Id="PICML" />
+      <ComponentRef Id="UDM_3_0_1" />
     </Feature>
 
     <!-- user interface -->

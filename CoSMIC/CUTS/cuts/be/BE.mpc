@@ -2,12 +2,15 @@
 
 project (CUTS_BE) : picml_udm, boost_base, cutslib {
   after += PICML
+  after -= CUTS ACE
 
   sharedname = CUTS_BE
 
   dynamicflags += CUTS_BE_BUILD_DLL
 
   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters
+
+  libs -= CUTS ACE
 
   Source_Files {
     CUTS_Project.cpp
