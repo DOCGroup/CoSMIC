@@ -1,17 +1,28 @@
 <?xml version='1.0' encoding='utf-8'?>
 
-<Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'> 
+<Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'>
   <Fragment Id='CoSMIC_common'>
     <DirectoryRef Id='bin'>
+      <!-- PICML UDM project -->
       <Component Id='PICML' Guid='8661d861-25c1-437e-921f-50d97fd61529'>
-        <File Id="PICML.dll" Name="PICML.DLL" LongName="PICML.dll" 
+        <File Id="PICML.dll" Name="PICML.DLL" LongName="PICML.dll"
               Source="$(env.COSMIC_ROOT)\bin\PICML.dll" DiskId="1" />
       </Component>
-      
-      <Component Id="Utils" Guid="817bc762-4da0-4da7-8f46-e8240bf6e960">
-        <File Id="Utils.dll" Name="UTILS.DLL" LongName="Utils.dll" 
+
+      <!-- CoSMIC utils -->
+      <Component Id="CoSMIC_utils" Guid="817bc762-4da0-4da7-8f46-e8240bf6e960">
+        <File Id="Utils.dll" Name="UTILS.DLL" LongName="Utils.dll"
               Source="$(env.COSMIC_ROOT)\bin\Utils.dll" DiskId="1" />
       </Component>
-    </DirectoryRef>    
+
+      <!-- UDM 3.0.1 -->
+      <Component Id="UDM_3_0_1" Guid="F069845F-C8E8-48e6-98CB-F9FBDFE76EDD">
+        <File Id="UDMDLL_3_0_1.DLL" Name="UDMDLL.DLL" LongName="UDMDLL_3_0_1.DLL"
+              Source="$(env.UDM_PATH)\bin\UDMDLL_3_0_1.DLL" DiskId="1" />
+        <File Id="XERCES_C_2_5_0.DLL" Name="XERCESC.DLL" LongName="XERCES-C_2_5_0.DLL"
+              Source="$(env.UDM_PATH)\3rdparty\xerces-c_2_5_0\bin\XERCES-C_2_5_0.DLL"
+              DiskId="1" />
+      </Component>
+    </DirectoryRef>
   </Fragment>
 </Wix>

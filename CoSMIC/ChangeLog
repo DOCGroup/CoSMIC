@@ -1,3 +1,9 @@
+Mon Sep  4 15:25:41 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Installer/CoSMIC_common.wxs:
+
+          Added a UDM 3.0.1 component to the installer.
+
 Fri Sep  1 19:21:16 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/UUIDManager/UUIDManager.mpc:
