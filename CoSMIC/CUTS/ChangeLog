@@ -1,3 +1,9 @@
+Mon Sep  4 20:07:53 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * CUTS.mwc:
+
+          Added $COSMIC_ROOT to the include specification.
+
 Mon Sep  4 19:22:06 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * install/CUTS_CoSMIC.wxs:
