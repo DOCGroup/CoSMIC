@@ -31,7 +31,7 @@ long CUTS_Worker::counter (void) const
 // create_action
 //
 CUTS_INLINE
-CUTS_Action * CUTS_Worker::create_action (const char * action_name)
+CUTS_Action * CUTS_Worker::create_action (const char *)
 {
   return 0;
 }

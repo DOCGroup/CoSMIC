@@ -1,3 +1,12 @@
+Tue Sep  5 00:54:01 UTC 2006  James Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/BDC_Task.cpp:
+        * cuts/System_Metrics_Visitor.inl:
+        * cuts/Worker.inl:
+        * cuts/utils/DB_Connection.inl:
+
+          Fixed compiler warning related to unused arguments.
+        
 Mon Sep  4 20:07:53 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * CUTS.mwc:

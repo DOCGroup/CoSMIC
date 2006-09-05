@@ -15,7 +15,7 @@ void CUTS_System_Metrics_Visitor::visit_system_metrics (
 //
 CUTS_INLINE
 void CUTS_System_Metrics_Visitor::visit_component_metrics (
-  CUTS_Component_Metric & metrics)
+  CUTS_Component_Metric & )
 {
 
 }

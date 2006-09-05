@@ -232,6 +232,8 @@ namespace CUTS
     }
 
     return retval;
+
+    ACE_UNUSED_ARG (instance);
   }
 
   //

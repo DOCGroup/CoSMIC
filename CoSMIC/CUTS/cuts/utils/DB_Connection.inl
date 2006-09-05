@@ -30,4 +30,9 @@ void CUTS_DB_Connection::connect (const char * username,
                                   ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->connected_ = true;
+        
+  ACE_UNUSED_ARG (username);
+  ACE_UNUSED_ARG (password);
+  ACE_UNUSED_ARG (server);
+  ACE_UNUSED_ARG (port);
 }
