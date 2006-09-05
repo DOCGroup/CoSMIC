@@ -1,5 +1,14 @@
 // $Id$
 
+///=============================================================================
+/// @file         CUTS_CoSMIC.mwc
+///
+/// @author       James H. Hill
+///
+/// @brief        This workspace builds only the modeling portion
+///               of CUTS.
+///=============================================================================
+
 workspace (CUTS_CoSMIC) {
   cmdline += -feature_file default.features
 
