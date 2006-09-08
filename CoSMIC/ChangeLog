@@ -1,3 +1,10 @@
+Fri Sep  8 20:01:13 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/icons/refarrow.bmp:
+        
+          Overall arrow for references. It's stored as a bitmap so we
+          do not lose its quality.
+
 Mon Sep  4 20:10:44 UTC 2006  Arundhati Kogekar  <akogekar@dre.vanderbilt.edu>
 	
 	Added first version of POSAML.
