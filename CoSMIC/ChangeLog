@@ -1,13 +1,20 @@
+Fri Sep  8 20:16:07 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/icons/componentref.bmp:
+
+          Update component reference bitmap to have same look and
+          feel as the component bitmap.
+          
 Fri Sep  8 20:01:13 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/paradigms/icons/refarrow.bmp:
-        
+
           Overall arrow for references. It's stored as a bitmap so we
           do not lose its quality.
 
 Mon Sep  4 20:10:44 UTC 2006  Arundhati Kogekar  <akogekar@dre.vanderbilt.edu>
-	
-	Added first version of POSAML.
+
+        Added first version of POSAML.
 
         * PIM/POSAML:
 
