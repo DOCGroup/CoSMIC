@@ -74,6 +74,15 @@ public:
   /// Print a formatted error message to the ACE_Logger.
   void print (void) const;
 
+  /**
+   * Print a formatted error message to the ACE_Logger.
+   * This will print a personal message along with the
+   * error message.
+   *
+   * @param[in]     message       Personal message to print.
+   */
+  void print (const char * message) const;
+
 protected:
   /// The native error number.
   long native_;

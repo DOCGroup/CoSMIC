@@ -60,9 +60,8 @@ protected:
    * @param[in]     name    Name to register agent.
    * @return        Registration id of the agent.
    */
-  static long register_i (::CUTS::Testing_Service_ptr ts,
-                          ::CUTS::Benchmark_Agent_ptr agent,
-                          const char * name);
+  static long register_i (CUTS::Testing_Service_ptr ts,
+                          CUTS::Component_Registration & reg);
 
   /// Pointer to the <Benchmark_Agent_i> implementation.
   Benchmark_Agent_i * benchmark_agent_;

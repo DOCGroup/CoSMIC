@@ -8,6 +8,7 @@
 
 #include "ODBC_Parameter.h"
 #include "ace/Log_Msg.h"
+#include "ace/CORBA_macros.h"
 
 //
 // ODBC_Parameter_List
@@ -66,10 +67,8 @@ ODBC_Parameter * ODBC_Parameter_List::get (size_t index)
 ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   if (!this->in_range (index))
-  {
-    throw CUTS_DB_Exception ("ODBC_Parameter_List::get () : "
-                             "index is out of range");
-  }
+    ACE_THROW_RETURN (CUTS_DB_Exception ("parameter index out of range"),
+                      0);
 
   return this->array_[index];
 }

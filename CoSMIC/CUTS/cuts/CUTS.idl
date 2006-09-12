@@ -44,6 +44,9 @@ module CUTS
     /// UUID of the CoWorkEr.
     string name;
 
+    /// The type of CoWorkEr.
+    string type;
+
     /// IP address of the CoWorkEr.
     string ipaddr;
 
@@ -125,11 +128,11 @@ module CUTS
 
   interface Testing_Service
   {
-    long register_component (in Component_Registration creg)
+    long register_component (in Component_Registration cr)
       raises (Registration_Failed,
               Registration_Limit);
 
-    void unregister_component (in Component_Registration creg)
+    void unregister_component (in Component_Registration cr)
       raises (ID_Not_Found);
   };
 };

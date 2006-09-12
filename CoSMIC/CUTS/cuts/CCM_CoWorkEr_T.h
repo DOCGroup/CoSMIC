@@ -18,7 +18,6 @@
 #include "cuts/CCM_CoWorkEr.h"
 #include "cuts/CCM_Event_Producer_T.h"
 #include "cuts/Event_Handler_Manager_T.h"
-#include "cuts/Trigger_T.h"
 #include "ace/Unbounded_Set.h"
 
 //=============================================================================
@@ -40,7 +39,7 @@
 
 template <typename COMPONENT, typename COMPONENT_CONTEXT>
 class CUTS_CCM_CoWorkEr_T :
-  public virtual COMPONENT,
+  public COMPONENT,
   public CUTS_CCM_CoWorkEr
 {
 public:
@@ -69,22 +68,21 @@ public:
   /// Enter the preactivate state.
   virtual void
     ciao_preactivate (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
-    ACE_THROW_SPEC ((::CORBA::SystemException, ::Components::CCMException));
+    ACE_THROW_SPEC ((::CORBA::SystemException,
+                     ::Components::CCMException));
 
   /// Enter the passivate state.
   virtual void
     ccm_passivate (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
-    ACE_THROW_SPEC ((::CORBA::SystemException, ::Components::CCMException));
+    ACE_THROW_SPEC ((::CORBA::SystemException,
+                     ::Components::CCMException));
 
   virtual void
     ccm_remove (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
-    ACE_THROW_SPEC ((::CORBA::SystemException, ::Components::CCMException));
+    ACE_THROW_SPEC ((::CORBA::SystemException,
+                     ::Components::CCMException));
 
 protected:
-  // @@ This needs to be turned into a worker.
-  /// Type definition for the periodic trigger.
-  typedef CUTS_Periodic_Trigger_T <COMPONENT> Periodic_Event;
-
   /// Context for the component.
   COMPONENT_CONTEXT * context_;
 };

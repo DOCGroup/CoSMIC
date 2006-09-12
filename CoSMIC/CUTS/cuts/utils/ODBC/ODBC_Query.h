@@ -111,17 +111,6 @@ public:
   virtual CUTS_DB_Record * execute (void)
     ACE_THROW_SPEC ((CUTS_DB_Exception));
 
-  void bind_parameter (SQLUSMALLINT index,
-                       SQLSMALLINT io_type,
-                       SQLSMALLINT value_type,
-                       SQLSMALLINT param_type,
-                       SQLUINTEGER column_size,
-                       SQLSMALLINT decimal_digits,
-                       SQLPOINTER param_value_ptr,
-                       SQLINTEGER buffer_length,
-                       SQLINTEGER * strlen_indptr)
-                       ACE_THROW_SPEC ((CUTS_DB_Exception));
-
   /**
    * Get the parameter.
    *
@@ -139,8 +128,13 @@ public:
   size_t parameter_count (void) const
     ACE_THROW_SPEC ((CUTS_DB_Exception));
 
+  /// Reset the query string.
+  void reset (void)
+    ACE_THROW_SPEC ((CUTS_DB_Exception));
+
 private:
-  void reset_cursor (void)
+  /// Reset the statement.
+  void reset_i (void)
     ACE_THROW_SPEC ((CUTS_DB_Exception));
 
   /// Get the pointer to the record.

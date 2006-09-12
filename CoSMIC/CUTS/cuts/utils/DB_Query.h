@@ -110,6 +110,10 @@ public:
   virtual size_t parameter_count (void) const
     ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
 
+  /// Reset the query string.
+  virtual void reset (void)
+    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+
 private:
   // prevent the following operations
   CUTS_DB_Query (const CUTS_DB_Query &);

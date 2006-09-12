@@ -45,19 +45,18 @@ namespace CUTS
 
     if (regid != 0)
     {
-      // We need to register the component with the database
-      // service since the registration was successful.
-      if (this->database_service_.register_component (regid,
-                                                      creg.name.in ()))
-      {
+      // Register the component with the database.
+      bool retval = this->database_service_.register_component (creg.name.in (),
+                                                                creg.type.in (),
+                                                                regid);
+
+      // Update the <uptime> for the component.
+      if (retval)
         this->database_service_.set_component_uptime (regid, hostid);
-      }
       else
-      {
         ACE_ERROR ((LM_ERROR,
                     "[%M] -%T - failed to register %s with database\n",
                     creg.name.in ()));
-      }
     }
 
     return regid;
@@ -66,7 +65,8 @@ namespace CUTS
   //
   // unregister_component
   //
-  void Testing_Service_Ex_exec_i::unregister_component (
+  void Testing_Service_Ex_exec_i::
+    unregister_component (
     const ::CUTS::Component_Registration & creg
     ACE_ENV_ARG_DECL_WITH_DEFAULTS)
     ACE_THROW_SPEC ((::CORBA::SystemException,
@@ -75,7 +75,7 @@ namespace CUTS
     // Set the <downtime> for the component.
     long instance_id = 0;
     if (this->database_service_.get_instance_id (creg.name.in (),
-                                                 instance_id))
+                                                 &instance_id))
     {
       this->database_service_.set_component_downtime (instance_id);
     }

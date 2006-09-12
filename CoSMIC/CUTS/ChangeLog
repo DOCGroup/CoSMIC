@@ -1,3 +1,47 @@
+Tue Sep 12 06:21:37 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/Testing_Service_Ex_exec_i.cpp:
+        * cuts/CCM_CoWorkEr.h:
+        * cuts/CCM_CoWorkEr.cpp:
+        * cuts/CCM_CoWorkEr_T.h:
+        * cuts/CCM_CoWorkEr_T.cpp:
+        * cuts/CUTS.idl:
+
+          Added support for transmitting the component type with
+          the registration information for a component.
+
+        * cuts/be/CIAO/Header_File_Generator.cpp:
+        * cuts/be/CIAO/Source_File_Generator.cpp:
+
+          Fixed bug that was caused by not registering the periodic
+          event callback with its actor.
+
+        * cuts/svcs/dbase/DBase_Service.h:
+        * cuts/svcs/dbase/DBase_Service.cpp:
+
+          Added support to the database for logging the component
+          type of a compoent instance.
+
+        * cuts/utils/DB_Exception.h:
+        * cuts/utils/DB_Exception.cpp:
+
+          - Added another print () method so clients to can print
+            a user-defined message before the error message.
+
+        * cuts/utils/DB_Query.h:
+
+          Added a reset () method to the query class.
+
+        * cuts/utils/ODBC/ODBC_Parameter_List.cpp:
+
+          get () method now has a better error message.
+
+        * cuts/utils/ODBC/ODBC_Query.h:
+        * cuts/utils/ODBC/ODBC_Query.cpp:
+
+          Fixed bug that was resulting from preparing a SQL
+          statement on a open handle.
+
 Tue Sep  5 17:19:18 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * CUTS.mwc:
@@ -6,7 +50,7 @@ Tue Sep  5 17:19:18 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
           Improved the workspace specification by deriving
           workspaces from other workspaces to reduce redundency.
-          
+
 Tue Sep  5 00:54:01 UTC 2006  James Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/BDC_Task.cpp:

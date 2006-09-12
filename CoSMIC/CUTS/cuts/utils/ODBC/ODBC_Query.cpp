@@ -34,9 +34,8 @@ ODBC_Query::ODBC_Query (HDBC handle)
 //
 ODBC_Query::~ODBC_Query (void)
 {
-  // Free the statement handle.
   if (this->stmt_ != SQL_NULL_HSTMT)
-    ::SQLFreeStmt (this->stmt_, SQL_RESET_PARAMS);
+    ::SQLFreeHandle (SQL_HANDLE_STMT, this->stmt_);
 }
 
 //
@@ -47,6 +46,7 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   SQL_VERIFY (::SQLExecute (this->stmt_),
               ODBC_Stmt_Exception (this->stmt_));
+
   this->cursor_open_ = 0;
 }
 
@@ -58,6 +58,7 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   SQL_VERIFY (::SQLExecDirect (this->stmt_, (SQLCHAR *)query, SQL_NTS),
               ODBC_Stmt_Exception (this->stmt_));
+
   this->cursor_open_ = 0;
 }
 
@@ -81,40 +82,14 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 }
 
 //
-// bind_parameter
-//
-void ODBC_Query::bind_parameter (SQLUSMALLINT index,
-                                 SQLSMALLINT io_type,
-                                 SQLSMALLINT value_type,
-                                 SQLSMALLINT param_type,
-                                 SQLUINTEGER column_size,
-                                 SQLSMALLINT decimal_digits,
-                                 SQLPOINTER param_value_ptr,
-                                 SQLINTEGER buffer_length,
-                                 SQLINTEGER * strlen_indptr)
-                                 ACE_THROW_SPEC ((CUTS_DB_Exception))
-{
-  SQL_VERIFY (::SQLBindParameter (this->stmt_,
-                                  index,
-                                  io_type,
-                                  value_type,
-                                  param_type,
-                                  column_size,
-                                  decimal_digits,
-                                  param_value_ptr,
-                                  buffer_length,
-                                  strlen_indptr),
-              ODBC_Stmt_Exception (this->stmt_));
-
-}
-
-//
 // prepare
 //
 void ODBC_Query::prepare (const char * stmt)
 ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
-  // Prepare the statement.
+  if (this->cursor_open_)
+    this->reset_i ();
+
   SQL_VERIFY (::SQLPrepare (this->stmt_, (SQLCHAR *) stmt, SQL_NTS),
               ODBC_Stmt_Exception (this->stmt_));
 
@@ -165,7 +140,8 @@ CUTS_DB_Record * ODBC_Query::execute (const char * query)
 ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   // Reset the record just in case we executed a "SELECT" statement.
-  this->reset_cursor ();
+  if (this->cursor_open_)
+    this->reset_i ();
 
   // Execute the query and set the <cursor_state_> to open.
   this->execute_no_record (query);
@@ -180,10 +156,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 CUTS_DB_Record * ODBC_Query::execute (void)
 ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
-  // Reset the record just in case we executed a "SELECT" statement.
-  this->reset_cursor ();
-
-  // Execute the query and set the <cursor_state_> to open.
   this->execute_no_record ();
   this->cursor_open_ = 1;
 
@@ -206,22 +178,6 @@ ODBC_Record * ODBC_Query::record_i (void)
 }
 
 //
-// reset
-//
-void ODBC_Query::reset_cursor (void)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
-{
-  if (this->cursor_open_)
-  {
-    // We have to close the current cursor if we are executing
-    // more than one "SELECT" statement sequentially.
-    SQL_VERIFY (::SQLCloseCursor (this->stmt_),
-                ODBC_Stmt_Exception (this->stmt_));
-    this->cursor_open_ = 0;
-  }
-}
-
-//
 // parameter
 //
 CUTS_DB_Parameter * ODBC_Query::parameter (size_t index)
@@ -237,4 +193,24 @@ size_t ODBC_Query::parameter_count (void) const
 ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   return this->params_.get () != 0 ? this->params_->count () : 0;
+}
+
+//
+// reset
+//
+void ODBC_Query::reset (void)
+ACE_THROW_SPEC ((CUTS_DB_Exception))
+{
+  if (this->stmt_ != SQL_NULL_HSTMT)
+    this->reset_i ();
+}
+
+//
+// reset_i
+//
+void ODBC_Query::reset_i (void)
+ACE_THROW_SPEC ((CUTS_DB_Exception))
+{
+  SQL_VERIFY (::SQLFreeStmt (this->stmt_, SQL_CLOSE),
+              ODBC_Stmt_Exception (this->stmt_));
 }

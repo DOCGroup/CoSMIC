@@ -103,51 +103,45 @@ void CUTS_CCM_CoWorkEr::init_realtime (CORBA::ORB_ptr orb,
 //
 // register_i
 //
-long CUTS_CCM_CoWorkEr::register_i (::CUTS::Testing_Service_ptr ts,
-                                    ::CUTS::Benchmark_Agent_ptr agent,
-                                    const char * name)
+long CUTS_CCM_CoWorkEr::
+register_i (CUTS::Testing_Service_ptr ts,
+            CUTS::Component_Registration & reg)
 {
   int regid = -1;
 
   if (!::CORBA::is_nil (ts))
   {
+    // Get the hostname and ip-address for this component.
+    char hostname[1024];
+    ACE_OS::hostname (hostname, sizeof (hostname));
+    ACE_INET_Addr inet ((u_short)0, hostname, AF_ANY);
+
+    reg.ipaddr   = ::CORBA::string_dup (inet.get_host_addr ());
+    reg.hostname = ::CORBA::string_dup (inet.get_host_name ());
+
     try
     {
-      // Initailize the <Component_Registration> data structure
-      // and register the component with the testing service.
-      ::CUTS::Component_Registration creg;
-      creg.agent = agent;
-      creg.name  = ::CORBA::string_dup (name);
-
-      char hostname[1024];
-      ACE_OS::hostname (hostname, sizeof (hostname));
-      ACE_INET_Addr inet ((u_short)0, hostname, AF_ANY);
-
-      creg.ipaddr = ::CORBA::string_dup (inet.get_host_addr ());
-      creg.hostname = ::CORBA::string_dup (inet.get_host_name ());
-
-      // Register the component with the <Testing_Service>
-      regid = ts->register_component (creg);
+      regid = ts->register_component (reg);
     }
     catch (const CUTS::Registration_Failed &)
     {
       ACE_ERROR ((LM_ERROR,
                   "[%M] -%T - component registration failed for %s\n",
-                  name));
+                  reg.name.in ()));
     }
     catch (const CUTS::Registration_Limit &)
     {
       ACE_ERROR ((LM_ERROR,
                   "[%M] -%T - component registation limit reached; failed to "
                   "register %s\n",
-                  name));
+                  reg.name.in ()));
     }
   }
   else
   {
     ACE_DEBUG ((LM_ERROR,
                 "[%M] -%T - %s is not connected to the BDC\n",
-                name));
+                reg.name.in ()));
   }
 
   return regid;

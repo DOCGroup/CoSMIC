@@ -152,6 +152,27 @@ write_component_begin (const PICML::Component & component)
       << std::endl;
   }
 
+  // Initialize all the periodic actions. This includes hooking
+  // the pediodic worker up to the component and it's callback
+  // method.
+  typedef std::vector <PICML::PeriodicAction> Periodic_Set;
+  Periodic_Set periodic_set = component.PeriodicAction_kind_children ();
+
+  if (!periodic_set.empty ())
+  {
+    this->write_single_line_comment ("Initialize all periodic actions");
+
+    for (Periodic_Set::iterator iter = periodic_set.begin ();
+        iter != periodic_set.end ();
+        iter ++)
+    {
+      this->out_
+        << "this->periodic_" << iter->name ()
+        << "_.init (this, &This_Component::periodic_" << iter->name ()
+        << ");";
+    }
+  }
+
   this->out_
     << "}";
 

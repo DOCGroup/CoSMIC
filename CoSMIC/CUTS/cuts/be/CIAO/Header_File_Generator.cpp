@@ -20,7 +20,7 @@
 CUTS_CIAO_Header_File_Generator::
 CUTS_CIAO_Header_File_Generator (void)
 {
-  
+
 }
 
 //
@@ -79,6 +79,7 @@ write_preamble (const PICML::ComponentImplementationContainer & container)
     << "#include \"cuts/config.h\"" << std::endl
     << "#include \"cuts/CCM_CoWorkEr_T.h\"" << std::endl
     << "#include \"cuts/CCM_Factory_T.h\"" << std::endl
+    << "#include \"cuts/Trigger_T.h\"" << std::endl
     << std::endl;
 }
 
@@ -114,7 +115,7 @@ write_component_begin (const PICML::Component & component)
 
   // Write the class declaration for the component.
   this->out_
-    << "class " << this->export_->export_macro () << " " 
+    << "class " << this->export_->export_macro () << " "
     << name << " :" << std::endl
     << "public CUTS_CCM_CoWorkEr_T <" << exec << ", " << context << "> {"
     << "public:" << std::endl;
@@ -392,8 +393,8 @@ write_variable (const PICML::PeriodicAction & periodic)
   this->write_single_line_comment (comment);
 
   this->out_
-    << "Periodic_Event periodic_" << periodic.name () << "_;"
-    << std::endl;
+    << "CUTS_Periodic_Trigger_T <This_Component> periodic_"
+    << periodic.name () << "_;" << std::endl;
 }
 
 //
@@ -451,7 +452,7 @@ write_component_factory_begin (const PICML::ComponentFactory & factory,
     << "// Destructor." << std::endl
     << "virtual ~" << factory_name << " (void);"
     << "};"
-    << "CUTS_FACTORY_EXPORT_DECLARE (" 
+    << "CUTS_FACTORY_EXPORT_DECLARE ("
     << this->export_->export_macro () << "," << std::endl
     << "create_";
 

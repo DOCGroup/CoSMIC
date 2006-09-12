@@ -25,6 +25,9 @@ class CUTS_System_Metric;
 // Forward decl.
 class ODBC_Connection;
 
+// Forward decl.
+class ODBC_Query;
+
 //=============================================================================
 /**
  * @class CUTS_Database_Service
@@ -93,7 +96,37 @@ public:
    * @retval         true       Successfully registered component.
    * @retval         false      Failed to register a component.
    */
-  bool register_component (long regid,  const char * uuid);
+  bool register_component (const char * uuid,
+                           const char * type,
+                           long regid);
+
+
+  /**
+   * Get the typeid of the component. The typeid is the one
+   * stored in the database for the specific component type.
+   * It is also the one used to correlate a component instance
+   * with a component type.
+   *
+   * @param[in]       type        Component type.
+   * @param[out]      type_id     Output buffer for typeid.
+   * @param[in]       auto_reg    Auto-register the type if not found.
+   * @retval          true        Successfully retrieved type.
+   * @retval          false       Failed to retrieve type.
+   */
+  bool get_component_typeid (const char * type,
+                             long * type_id = 0,
+                             bool auto_register = true);
+
+  /**
+   * Get the instance id of a component instance. The client
+   * does not have to store the instance id. If this is the
+   * case, then this method can be used to test for an instance
+   * id. The client also has the option of registering the
+   * id it is not found.
+   */
+  bool get_instance_id (const char * uuid,
+                        long * id = 0,
+                        bool auto_register = true);
 
   /**
    * Register an IP-address and hostname w/ the database. If
@@ -153,9 +186,10 @@ public:
 
   bool set_component_downtime (long cid);
 
-  bool get_instance_id (const char * instance, long & id);
 
 private:
+  ODBC_Query * create_new_query (void);
+
   /**
    * Stop the current test. This version of the method does
    * not acquire the internal lock.
@@ -166,7 +200,7 @@ private:
   bool stop_current_test_i (void);
 
   /// Disconnect form the database without acquiring lock.
-  void disconnect_no_lock (void);
+  void disconnect_i (void);
 
   /// Database connection.
   ACE_Auto_Ptr <ODBC_Connection> conn_;

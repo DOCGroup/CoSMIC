@@ -56,3 +56,16 @@ void CUTS_DB_Exception::print (void) const
               this->state_.c_str (),
               this->message_.c_str ()));
 }
+
+//
+// print
+//
+void CUTS_DB_Exception::print (const char * message) const
+{
+  ACE_ERROR ((LM_ERROR,
+              "%s\nexception (%d | %s): %s\n",
+              message,
+              this->native_,
+              this->state_.c_str (),
+              this->message_.c_str ()));
+}

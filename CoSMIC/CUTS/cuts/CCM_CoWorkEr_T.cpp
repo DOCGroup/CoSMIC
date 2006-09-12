@@ -48,9 +48,7 @@ void CUTS_CCM_CoWorkEr_T
 
   // Verify the context was properly narrowed.
   if (this->context_ == 0)
-  {
     ACE_THROW (CORBA::INTERNAL ());
-  }
 
   //// Get the instance name of the component from the context.
   //::CORBA::String_var instance_name (this->context_->_ciao_instance_id ());
@@ -131,27 +129,22 @@ void CUTS_CCM_CoWorkEr_T
 // ciao_preactivate
 //
 template <typename COMPONENT, typename COMPONENT_CONTEXT>
-void CUTS_CCM_CoWorkEr_T
-<COMPONENT, COMPONENT_CONTEXT>::ciao_preactivate (
-  ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
-  ACE_THROW_SPEC ((::CORBA::SystemException, ::Components::CCMException))
+void CUTS_CCM_CoWorkEr_T <COMPONENT, COMPONENT_CONTEXT>::
+ciao_preactivate (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+ACE_THROW_SPEC ((::CORBA::SystemException,
+                 ::Components::CCMException))
 {
-  ::CUTS::Testing_Service_var tsvc =
+  CUTS::Testing_Service::_var_type test_svc =
     this->context_->get_connection_cuts_testing_service ();
 
-  // Get the instance name of the component from the context.
-  ::CORBA::String_var instance_id (this->context_->_ciao_instance_id ());
+  // Collect registration information for the component.
+  CUTS::Component_Registration reg;
+  reg.name  = this->context_->_ciao_instance_id ();
+  reg.agent =
+    CUTS::Benchmark_Agent::_duplicate (this->benchmark_agent_->_this ());
+  reg.type  = CORBA::string_dup (this->_interface_repository_id ());
 
-  // Create a duplicate of the <benchmark_agent_servant_> before
-  // passing it over the wire.
-  ::CUTS::Benchmark_Agent_var agent =
-    ::CUTS::Benchmark_Agent::_duplicate (this->benchmark_agent_->_this ());
-
-  this->registration_id_ = CUTS_CCM_CoWorkEr::register_i (tsvc.in (),
-                                                          agent.in (),
-                                                          instance_id.in ());
-
-  // Set the parent () of the <benchmark_agent_>.
+  this->registration_id_ = this->register_i (test_svc.in (), reg);
   this->benchmark_agent_->parent (this->registration_id_);
 }
 
