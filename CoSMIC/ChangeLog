@@ -1,10 +1,26 @@
+Wed Sep 13 00:02:24 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/examples/SLICE/SLICE.xme:
+
+          Updated model to latest version of PICML.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          - Removed the interface inheritence from I/O automata
+            ActionTypes paradigm sheet.
+          - Removed the implementation inheritence from the
+            WML paradigm sheet.
+
 Fri Sep  8 20:16:07 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/paradigms/icons/componentref.bmp:
 
           Update component reference bitmap to have same look and
           feel as the component bitmap.
-          
+
 Fri Sep  8 20:01:13 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/paradigms/icons/refarrow.bmp:
