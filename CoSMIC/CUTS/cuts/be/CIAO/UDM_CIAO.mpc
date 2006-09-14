@@ -14,7 +14,6 @@ project (CUTS_UDM_CIAO) : cosmic_lib, boost_base, picml_udm {
 
   Source_Files {
     CIAO_Project_Generator.cpp
-    Port_Manager.cpp
     Export_File_Generator.cpp
     File_Generator_Base.cpp
     Header_File_Generator.cpp

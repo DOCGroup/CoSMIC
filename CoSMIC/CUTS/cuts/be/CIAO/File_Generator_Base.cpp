@@ -84,21 +84,20 @@ write_component_end (const PICML::Component & component)
   this->write_single_line_comment ("SessionComponent: ciao_preactivate");
   this->write_ciao_preactivate (component);
 
-  if (!this->has_activate_)
-  {
-    this->write_single_line_comment ("SessionComponent: ccm_activate");
+  if (!this->handle_env_.test (CCM_ACTIVATE))
     this->write_ccm_activate (component);
-  }
 
   this->write_single_line_comment ("SessionComponent: ciao_postactivate");
   this->write_ciao_postactivate (component);
 
-  this->write_single_line_comment ("SessionComponent: ccm_passivate");
-  this->write_ccm_passivate (component);
+  if (!this->handle_env_.test (CCM_PASSIVATE))
+    this->write_ccm_passivate (component);
 
-  this->write_single_line_comment ("SessionComponent: ccm_remove");
-  this->write_ccm_remove (component);
-  this->has_activate_ = false;
+  if (!this->handle_env_.test (CCM_REMOVE))
+    this->write_ccm_remove (component);
+
+  // Reset all the environment handles.
+  this->handle_env_.reset ();
 }
 
 //
@@ -233,6 +232,9 @@ write_ccm_passivate (const PICML::Component & component)
     << "::Components::CCMException))";
 }
 
+//
+// write_ccm_remove
+//
 void CUTS_CIAO_File_Generator_Base::
 write_ccm_remove (const PICML::Component & component)
 {
@@ -241,4 +243,30 @@ write_ccm_remove (const PICML::Component & component)
     << "ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)" << std::endl
     << "  ACE_THROW_SPEC ((::CORBA::SystemException," << std::endl
     << "::Components::CCMException))";
+}
+
+//
+// write_environment_begin
+//
+void CUTS_CIAO_File_Generator_Base::
+write_environment_begin (const PICML::InputAction & action)
+{
+  std::string name = action.name ();
+  PICML::Component component = PICML::Component::Cast (action.parent ());
+
+  if (name == "activate")
+  {
+    this->handle_env_.set (CCM_ACTIVATE);
+    this->write_ccm_activate (component);
+  }
+  else if (name == "remove")
+  {
+    this->handle_env_.set (CCM_REMOVE);
+    this->write_ccm_remove (component);
+  }
+  else if (name == "passivate")
+  {
+    this->handle_env_.set (CCM_PASSIVATE);
+    this->write_ccm_passivate (component);
+  }
 }

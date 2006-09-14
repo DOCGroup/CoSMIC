@@ -15,8 +15,10 @@
 
 #include "UDM_CIAO_Export.h"
 #include "cuts/be/BE_File_Generator.h"
+
 #include <fstream>
 #include <memory>
+#include <bitset>
 
 namespace Indentation
 {
@@ -67,7 +69,23 @@ public:
   virtual void write_method_begin (
     const PICML::ProvidedRequestPort & facet);
 
+  virtual void write_environment_begin (
+    const PICML::InputAction & action);
+
 protected:
+  enum _ccm_states
+  {
+    /// ccm_activate  -> activate
+    CCM_ACTIVATE    = 0,
+
+    /// ccm_passivate -> passivate
+    CCM_PASSIVATE   = 1,
+
+    /// cmm_remove    -> remove
+    CCM_REMOVE      = 2
+  };
+
+
   void write_scope (const PICML::NamedType & named_type,
                     const std::string & seperator,
                     std::string * out = 0);
@@ -103,7 +121,7 @@ protected:
 
   std::auto_ptr <Formatter_Type> formatter_;
 
-  bool has_activate_;
+  std::bitset <3> handle_env_;
 };
 
 #endif  // !defined _CUTS_CIAO_FILE_GENERATOR_BASE_H_

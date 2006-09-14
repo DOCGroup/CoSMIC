@@ -338,14 +338,21 @@ write_ciao_preactivate (const PICML::Component & component)
 void CUTS_CIAO_Source_File_Generator::
 write_ccm_activate (const PICML::Component & component)
 {
-  this->out_ << "void " << component.name () << "::";
-  CUTS_CIAO_File_Generator_Base::write_ccm_activate (component);
-  this->out_
-    << "{"
-    << std::endl
-    << "}";
+  // Determine if this is an environment operation.
+  this->ignore_env_ = !this->handle_env_.test (this->CCM_ACTIVATE);
 
-  // @@ look for cuts_activate ()
+  // Write the function declartion for the method.
+  this->write_single_line_comment ("Environment: activate");
+  this->out_ << "void " << component.name () << "::";
+  this->_super::write_ccm_activate (component);
+  this->out_ << "{";
+
+  if (!this->ignore_env_)
+    // We are writing as an environment operation.
+    this->write_dummy_record ();
+  else
+    // We are writing it with default implementation.
+    this->out_ << std::endl << "}";
 }
 
 //
@@ -355,7 +362,7 @@ void CUTS_CIAO_Source_File_Generator::
 write_ciao_postactivate (const PICML::Component & component)
 {
   this->out_ << "void " << component.name () << "::";
-  CUTS_CIAO_File_Generator_Base::write_ciao_postactivate (component);
+  this->_super::write_ciao_postactivate (component);
   this->out_
     << "{"
     << "CoWorkEr_Type::ciao_postactivate ();"
@@ -384,11 +391,17 @@ write_ciao_postactivate (const PICML::Component & component)
 void CUTS_CIAO_Source_File_Generator::
 write_ccm_passivate (const PICML::Component & component)
 {
+  // Determine how this method was called.
+  this->ignore_env_ = !this->handle_env_.test (this->CCM_PASSIVATE);
+
+  // Write the function declaration.
+  this->write_single_line_comment ("Environment: passivate");
   this->out_ << "void " << component.name () << "::";
-  CUTS_CIAO_File_Generator_Base::write_ccm_passivate (component);
+  this->_super::write_ccm_passivate (component);
+
   this->out_
     << "{"
-    << "CoWorkEr_Type::ccm_passivate ();"
+    << "this->CoWorkEr_Type::ccm_passivate ();"
     << std::endl;
 
   // Generate the code to deactivate all of the periodic events
@@ -397,8 +410,8 @@ write_ccm_passivate (const PICML::Component & component)
   Periodic_Set pset = component.PeriodicAction_kind_children ();
 
   for (Periodic_Set::iterator iter = pset.begin ();
-        iter != pset.end ();
-        iter ++)
+       iter != pset.end ();
+       iter ++)
   {
     this->out_
       << "this->periodic_" << iter->name () << "_.deactivate ();";
@@ -415,7 +428,16 @@ write_ccm_passivate (const PICML::Component & component)
       << "this->push_" << *iter << "_handler_.deactivate ();";
   }
 
-  this->out_ << "}";
+  if (!this->ignore_env_)
+  {
+    // We are writing as an environment operation.
+    this->out_ << std::endl;
+    this->write_single_line_comment ("begin passivate actions");
+    this->write_dummy_record ();
+  }
+  else
+    // We are writing it with default implementation.
+    this->out_ << std::endl << "}";
 }
 
 //
@@ -424,12 +446,21 @@ write_ccm_passivate (const PICML::Component & component)
 void CUTS_CIAO_Source_File_Generator::
 write_ccm_remove (const PICML::Component & component)
 {
+  // Determine if this is an environment operation.
+  this->ignore_env_ = !this->handle_env_.test (this->CCM_REMOVE);
+
+  // Write the function declartion for the method.
+  this->write_single_line_comment ("Environment: remove");
   this->out_ << "void " << component.name () << "::";
-  CUTS_CIAO_File_Generator_Base::write_ccm_remove (component);
-  this->out_
-    << "{"
-    << "CoWorkEr_Type::ccm_remove ();"
-    << "}";
+  this->_super::write_ccm_remove (component);
+  this->out_ << "{";
+
+  if (!this->ignore_env_)
+    // We are writing as an environment operation.
+    this->write_dummy_record ();
+  else
+    // We are writing it with default implementation.
+    this->out_ << std::endl << "}";
 }
 
 //
@@ -720,38 +751,24 @@ init_outevent_mgr (const PICML::Component & component)
 }
 
 //
-// write_environment_begin
-//
-void CUTS_CIAO_Source_File_Generator::
-write_environment_begin (const PICML::InputAction & action)
-{
-  if ((std::string)action.name () == "activate")
-  {
-    PICML::Component component =
-      PICML::Component::Cast (action.parent ());
-
-    this->out_ << "void " << component.name () << "::";
-
-    this->CUTS_CIAO_File_Generator_Base::write_ccm_activate (component);
-
-    this->out_
-      << "{"
-      << "CUTS_Activation_Record dummy_record;"
-      << "CUTS_Activation_Record * record = &dummy_record;" << std::endl;
-
-    this->skip_env_ = false;
-    this->has_activate_ = true;
-  }
-  else
-    this->skip_env_ = true;
-}
-
-//
 // write_environment_end
 //
 void CUTS_CIAO_Source_File_Generator::
 write_environment_end (void)
 {
-  if (!this->skip_env_)
+  if (!this->ignore_env_)
+  {
     this->out_ << "}";
+    this->ignore_env_ = true;
+  }
+}
+
+//
+// write_dummy_record
+void CUTS_CIAO_Source_File_Generator::
+write_dummy_record (void)
+{
+  this->out_
+    << "CUTS_Activation_Record dummy_record;"
+    << "CUTS_Activation_Record * record = &dummy_record;" << std::endl;
 }

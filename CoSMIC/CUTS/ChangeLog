@@ -1,3 +1,24 @@
+Thu Sep 14 22:54:36 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CIAO/File_Generator_Base.h:
+        * cuts/be/CIAO/File_Generator_Base.cpp:
+        * cuts/be/CIAO/Header_File_Generator.h:
+        * cuts/be/CIAO/Header_File_Generator.cpp:
+        * cuts/be/CIAO/Source_File_Generator.h:
+        * cuts/be/CIAO/Source_File_Generator.cpp:
+
+          Added support for generating workflows for passivate and
+          remove methods by connecting an Environment object to
+          an InputAction with the following name mapping:
+
+          - activate  -> ccm_activate
+          - passivate -> ccm_passivate
+          - remove    -> ccm_remove
+
+        * cuts/be/CIAO/UDM_CIAO.mpc:
+
+          Removed zombie source file.
+
 Thu Sep 14 21:25:57 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CIAO/UDM_CIAO.mpc:

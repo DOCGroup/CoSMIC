@@ -238,7 +238,7 @@ void CUTS_CIAO_Header_File_Generator::
 write_set_session_context (const PICML::Component & component)
 {
   this->out_ << "virtual void ";
-  CUTS_CIAO_File_Generator_Base::write_set_session_context (component);
+  this->_super::write_set_session_context (component);
   this->out_ << ";" << std::endl;
 }
 
@@ -249,7 +249,7 @@ void CUTS_CIAO_Header_File_Generator::
 write_ciao_preactivate (const PICML::Component & component)
 {
   this->out_ << "virtual void ";
-  CUTS_CIAO_File_Generator_Base::write_ciao_preactivate (component);
+  this->_super::write_ciao_preactivate (component);
   this->out_ << ";" << std::endl;
 }
 
@@ -259,8 +259,9 @@ write_ciao_preactivate (const PICML::Component & component)
 void CUTS_CIAO_Header_File_Generator::
 write_ccm_activate (const PICML::Component & component)
 {
+  this->write_single_line_comment ("Environment: activate");
   this->out_ << "virtual void ";
-  CUTS_CIAO_File_Generator_Base::write_ccm_activate (component);
+  this->_super::write_ccm_activate (component);
   this->out_ << ";" << std::endl;
 }
 
@@ -271,7 +272,7 @@ void CUTS_CIAO_Header_File_Generator::
 write_ciao_postactivate (const PICML::Component & component)
 {
   this->out_ << "virtual void ";
-  CUTS_CIAO_File_Generator_Base::write_ciao_postactivate (component);
+  this->_super::write_ciao_postactivate (component);
   this->out_ << ";" << std::endl;
 }
 
@@ -282,7 +283,7 @@ void CUTS_CIAO_Header_File_Generator::
 write_ccm_passivate (const PICML::Component & component)
 {
   this->out_ << "virtual void ";
-  CUTS_CIAO_File_Generator_Base::write_ccm_passivate (component);
+  this->_super::write_ccm_passivate (component);
   this->out_ << ";" << std::endl;
 }
 
@@ -293,7 +294,7 @@ void CUTS_CIAO_Header_File_Generator::
 write_ccm_remove (const PICML::Component & component)
 {
   this->out_ << "virtual void ";
-  CUTS_CIAO_File_Generator_Base::write_ccm_remove (component);
+  this->_super::write_ccm_remove (component);
   this->out_ << ";" << std::endl;
 }
 
@@ -458,20 +459,4 @@ write_component_factory_begin (const PICML::ComponentFactory & factory,
 
   this->write_scope (component, "_");
   this->out_ << factory_name << "_Impl);";
-}
-
-//
-// write_environment_begin
-//
-void CUTS_CIAO_Header_File_Generator::
-write_environment_begin (const PICML::InputAction & action)
-{
-  if ((std::string)action.name () == "activate")
-  {
-    PICML::Component component =
-      PICML::Component::Cast (action.parent ());
-
-    this->write_ccm_activate (component);
-    this->has_activate_ = true;
-  }
 }

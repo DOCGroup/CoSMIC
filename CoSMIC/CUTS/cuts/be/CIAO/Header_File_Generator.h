@@ -32,6 +32,9 @@ class CUTS_UDM_CIAO_Export CUTS_CIAO_Header_File_Generator :
   public CUTS_CIAO_File_Generator_Base
 {
 public:
+  /// Type definition of the super class.
+  typedef CUTS_CIAO_File_Generator_Base _super;
+
   /// Default constructor.
   CUTS_CIAO_Header_File_Generator (void);
 
@@ -87,9 +90,6 @@ public:
   virtual void write_component_factory_begin (
     const PICML::ComponentFactory &,
     const PICML::Component &);
-
-  virtual void write_environment_begin (
-    const PICML::InputAction & action);
 
 protected:
   void write_variable (const PICML::InEventPort & sink);

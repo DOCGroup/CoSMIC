@@ -30,6 +30,9 @@ class CUTS_UDM_CIAO_Export CUTS_CIAO_Source_File_Generator :
   public CUTS_CIAO_File_Generator_Base
 {
 public:
+  /// Type definition of the super class.
+  typedef CUTS_CIAO_File_Generator_Base _super;
+
   /// Default constructor.
   CUTS_CIAO_Source_File_Generator (void);
 
@@ -110,14 +113,13 @@ protected:
   virtual void write_ccm_remove (
     const PICML::Component & component);
 
-  virtual void write_environment_begin (
-    const PICML::InputAction & action);
-
   virtual void write_environment_end (void);
 
 private:
   void init_outevent_mgr (
     const PICML::Component & component);
+
+  void write_dummy_record (void);
 
   /// Collection of events for this component.
   CUTS_String_Set events_;
@@ -126,7 +128,7 @@ private:
 
   bool skip_action_;
 
-  bool skip_env_;
+  bool ignore_env_;
 
   CUTS_UDM_Port_Manager_T <
     const PICML::OutEventPort> outevent_mgr_;
