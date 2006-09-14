@@ -176,10 +176,10 @@ bool CUTS_Database_Service::register_component (const char * uuid,
 //
 bool CUTS_Database_Service::create_new_test (void)
 {
-  ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex,
-                         guard,
-                         this->lock_,
-                         false);
+  ACE_WRITE_GUARD_RETURN (ACE_RW_Thread_Mutex,
+                          guard,
+                          this->lock_,
+                          false);
 
   if (this->test_number_ != 0 && !this->stop_current_test_i ())
     ACE_ERROR ((LM_WARNING, "[%M] -%T - cannot stop current test\n"));
@@ -243,11 +243,6 @@ bool CUTS_Database_Service::stop_current_test_i (void)
 {
   if (this->test_number_ == 0)
     return true;
-
-  ACE_WRITE_GUARD_RETURN (ACE_RW_Thread_Mutex,
-                          guard,
-                          this->lock_,
-                          false);
 
   ACE_Auto_Ptr <ODBC_Query> query (this->create_new_query ());
   if (query.get () == 0)
