@@ -110,7 +110,7 @@ Visit_ComponentImplementationContainer (
   // one <MonolithicImplementation> in this <container>.
   if (monos.empty ())
     return;
-  
+
   // Create the pathname for the file.
   std::ostringstream pathname;
   pathname << this->outdir_ << "\\" << container.name ();
@@ -326,9 +326,11 @@ Visit_PeriodicAction (const PICML::PeriodicAction & periodic)
                               _1,
                               periodic));
 
-  PICML::Input input = periodic.srcInput ();
-  if (input != Udm::null)
-    input.Accept (*this);
+  // Visit the effect.
+  PICML::Effect effect = periodic.dstInputEffect ();
+
+  if (effect != Udm::null)
+    effect.Accept (*this);
 
   // Signal the end of writing a <PeriodicAction>.
   std::for_each (this->generators_.begin (),
@@ -378,9 +380,6 @@ void CUTS_BE_File_Generator_Manager::Visit_Input (
 void CUTS_BE_File_Generator_Manager::Visit_InputAction (
   const PICML::InputAction & action)
 {
-  // Insert the action on the call stack.
-  this->call_stack_.push (action);
-
   // Visit all the properties for this input action.
   typedef std::vector <PICML::Property> Property_Set;
   Property_Set props = action.Property_children ();
@@ -452,18 +451,7 @@ void CUTS_BE_File_Generator_Manager::Visit_State (
   PICML::Finish finish_conn = state.dstFinish ();
 
   if (finish_conn != Udm::null)
-  {
-    // Get the name of the input port.
-    PICML::InputAction finish =
-      PICML::InputAction::Cast (finish_conn.dstFinish_end ());
-
-    if (finish == this->call_stack_.top ())
-    {
-      // Remove the action from the top of the call stack.
-      this->call_stack_.pop ();
-      return;
-    }
-  }
+    return;
 
   // Get all the transitions from this state. If there is more than
   // one transition, then we need to prepare generating flow control
@@ -520,8 +508,9 @@ Visit_Transition (const PICML::Transition & transition)
   }
 
   // Get the action connected to the end of the transaction.
-  PICML::ActionBase action =
-    PICML::ActionBase::Cast (transition.dstInternalPrecondition_end ());
+  PICML::Action action =
+    PICML::Action::Cast (transition.dstInternalPrecondition_end ());
+
   std::string _typename = action.type ().name ();
 
   // We only continue at this point if the action is an instance

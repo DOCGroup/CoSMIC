@@ -138,7 +138,7 @@ private:
   /// Collection of ordered return states.
   Holding_State holding_state_;
 
-  typedef std::stack <PICML::InputAction> Call_Stack;
+  typedef std::stack <PICML::InputActionBase> Call_Stack;
 
   Call_Stack call_stack_;
 

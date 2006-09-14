@@ -16,6 +16,7 @@
 //
 CUTS_CIAO_Source_File_Generator::
 CUTS_CIAO_Source_File_Generator (void)
+: skip_action_ (false)
 {
 
 }
@@ -72,11 +73,11 @@ write_preamble (const PICML::ComponentImplementationContainer & container)
 void CUTS_CIAO_Source_File_Generator::
 write_component_begin (const PICML::Component & component)
 {
+  this->init_outevent_mgr (component);
   std::string name = component.name ();
 
   typedef std::vector <PICML::InEventPort> InEventPort_Set;
   InEventPort_Set sinks = component.InEventPort_kind_children ();
-
 
   // @@ constructor
   this->write_single_line_comment ("Default constructor.");
@@ -552,7 +553,7 @@ write_method_begin (const PICML::PeriodicAction & periodic)
     << "void " << parent.name ()
     << "::periodic_"  << periodic.name () << " (void) {"
     << "CUTS_Activation_Record dummy_record;"
-    << "CUTS_Activation_Record * record = &dummy_record;";
+    << "CUTS_Activation_Record * record = &dummy_record;" << std::endl;
 }
 
 //
@@ -591,4 +592,129 @@ write_component_factory_begin (const PICML::ComponentFactory & factory,
 
   this->write_scope (factory, "_");
   this->out_ << factory_name << "_Impl);";
+}
+
+//
+// write_action_begin
+//
+void CUTS_CIAO_Source_File_Generator::
+write_action_begin (const PICML::Worker & parent,
+                    const PICML::Action & action)
+{
+  int repetitions = static_cast <int> (action.Repetitions ());
+
+  if (repetitions == 0)
+  {
+    this->skip_action_ = true;
+    return;
+  }
+  else
+    this->skip_action_ = false;
+
+  // Print the logging strategy.
+  if (action.LogAction ())
+    this->out_ << "record->perform_action (";
+  else
+    this->out_ << "record->perform_action_no_logging (";
+  this->out_ << std::endl;
+
+  if (repetitions > 1)
+    this->out_ << repetitions << ", ";
+
+  PICML::Action action_type =
+    const_cast <PICML::Action &> (action).Archetype ();
+
+  // Print the fully qualifies name of the action.
+  std::string tempstr = parent.name ();
+  PICML::MgaObject superclass = parent.parent ();
+
+  while ((std::string)superclass.type ().name () !=
+         (std::string)PICML::WorkerFile::meta.name ())
+  {
+    tempstr.insert (0, "::");
+    tempstr.insert (0, superclass.name ());
+
+    superclass = PICML::MgaObject::Cast (superclass.parent ());
+  }
+
+  // Print the action and it's worker.
+  this->out_
+    << tempstr << "::" << action_type.name ()
+    << " (this->" << action.name () << "_";
+}
+
+//
+// write_action_begin
+//
+void CUTS_CIAO_Source_File_Generator::
+write_action_end (void)
+{
+  if (!this->skip_action_)
+    this->out_ << "));" << std::endl;
+}
+
+//
+// write_action_property
+//
+void CUTS_CIAO_Source_File_Generator::
+write_action_property (const PICML::Property & property)
+{
+  PICML::DataType data_type = property.DataType_child ();
+  PICML::PredefinedType pre_type = data_type.ref ();
+  std::string data_value = property.DataValue ();
+
+  if ((std::string)pre_type.type ().name () ==
+      (std::string)PICML::String::meta.name ())
+  {
+    this->out_ << ", \"" << data_value << "\"";
+  }
+  else if ((std::string)pre_type.type ().name () ==
+           (std::string)PICML::Byte::meta.name ())
+  {
+    this->out_ << ", '" << data_value << "'";
+  }
+  else
+  {
+    this->out_ << ", " << data_value;
+  }
+}
+
+//
+// write_action_begin
+//
+void CUTS_CIAO_Source_File_Generator::
+write_action_begin (const PICML::OutputAction & action)
+{
+  std::string scoped_name;
+
+  if (this->outevent_mgr_.get_scoped_typename (action.name (), scoped_name))
+  {
+    this->out_
+      << "record->record_exit_point ("
+      << std::endl << "\"" << action.name () << "\"," << std::endl
+      << "Event_Producer::Push_Event <OBV_"
+      << scoped_name << "> (" << std::endl
+      << "this->producer_, &CoWorkEr_Type::_ctx_type::push_"
+      << action.name ();
+  }
+}
+
+//
+// init_outevent_mgr
+//
+void CUTS_CIAO_Source_File_Generator::
+init_outevent_mgr (const PICML::Component & component)
+{
+  if (!this->outevent_mgr_.empty ())
+    this->outevent_mgr_.clear ();
+
+  typedef std::vector <PICML::OutEventPort> OutEventPort_Set;
+  OutEventPort_Set outevents = component.OutEventPort_kind_children ();
+
+  for (OutEventPort_Set::iterator iter = outevents.begin ();
+       iter != outevents.end ();
+       iter ++)
+  {
+    this->outevent_mgr_.insert (*iter);
+  }
 }

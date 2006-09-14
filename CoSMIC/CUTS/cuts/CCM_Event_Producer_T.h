@@ -42,12 +42,14 @@ public:
    */
   //===========================================================================
 
-  template <typename EVENTTYPE>
+  template <typename OBV_EVENTTYPE>
   class Push_Event_Ex
   {
   public:
     /// Type definition of the event method.
-    typedef void (CONTEXT::*Event_Method) (EVENTTYPE *);
+    typedef typename OBV_EVENTTYPE::_ptr_type _ptr_type;
+
+    typedef void (CONTEXT::*Event_Method) (_ptr_type);
 
     /**
      * Constructor.
@@ -59,7 +61,7 @@ public:
     inline
     Push_Event_Ex (CUTS_CCM_Event_Producer_T & producer,
                    Event_Method event_method,
-                   EVENTTYPE * event)
+                   _ptr_type event)
     : producer_ (producer),
       event_method_ (event_method),
       event_ (event)
@@ -88,7 +90,7 @@ public:
     Event_Method event_method_;
 
     /// Pointer the the contained event.
-    EVENTTYPE * event_;
+    _ptr_type event_;
  };
 
   //===========================================================================
@@ -99,12 +101,14 @@ public:
    */
   //===========================================================================
 
-  template <typename OBV_EVENTTYPE, typename EVENTTYPE>
+  template <typename OBV_EVENTTYPE>
   class Push_Event
   {
   public:
     /// Type definition for a pointer to a method.
-    typedef void (CONTEXT::*Event_Method) (EVENTTYPE *);
+    typedef typename OBV_EVENTTYPE::_ptr_type _ptr_type;
+
+    typedef void (CONTEXT::*Event_Method) (_ptr_type);
 
     /**
      * Constructor.
@@ -133,7 +137,7 @@ public:
     void operator () (ACE_Time_Value & toc) const
     {
       this->producer_.push_event <
-        OBV_EVENTTYPE, EVENTTYPE> (this->event_method_, toc);
+        OBV_EVENTTYPE> (this->event_method_, toc);
     }
 
   protected:
@@ -142,57 +146,6 @@ public:
 
     /// The method used to push the event.
     Event_Method event_method_;
-  };
-
-  //===========================================================================
-  /**
-   * @class Push_Data_Event
-   *
-   * Functor for pushing a data event over the context.
-   */
-  //===========================================================================
-
-  template <typename OBV_EVENTTYPE, typename EVENTTYPE>
-  class Push_Data_Event :
-    public Push_Event <OBV_EVENTTYPE, EVENTTYPE>
-  {
-  public:
-    /// Type definition for a pointer to a context method.
-    typedef void (CONTEXT::*Event_Method) (EVENTTYPE *);
-
-    /**
-     * Constructor.
-     *
-     * @param[in]     producer        Reference to the event producer.
-     * @param[in]     size            Size of the data event.
-     * @param[in]     event_method    Method to send data event.
-     */
-    inline
-    Push_Data_Event (CUTS_CCM_Event_Producer_T & producer,
-                     size_t size,
-                     Event_Method event_method)
-    : Push_Event <OBV_EVENTTYPE, EVENTTYPE> (producer, event_method),
-      size_ (size)
-    {
-
-    }
-
-    /**
-     * Functor.
-     *
-     * @param[in]       toc     Time of completion.
-     */
-    inline
-    void operator () (ACE_Time_Value & toc) const
-    {
-      this->producer_.push_data_event <
-        OBV_EVENTTYPE, EVENTTYPE>
-        (this->size_, this->event_method_, toc);
-    }
-
-  private:
-    /// The size of the event.
-    size_t size_;
   };
 
   /// Constructor.
@@ -208,22 +161,20 @@ public:
    */
   void context (CONTEXT * context);
 
-  /// Push an event using the stored context.
-  template <typename OBV_EVENTTYPE, typename EVENTTYPE>
-  void push_event (void (CONTEXT::*event_type) (EVENTTYPE *),
+  /**
+   * Push an event using the stored context.
+   */
+  template <typename OBV_EVENTTYPE>
+  void push_event (void (CONTEXT::*event_type) (typename OBV_EVENTTYPE::_ptr_type),
                    ACE_Time_Value & toc);
 
-  /// Push an event using the stored context.
-  template <typename EVENTTYPE>
-  void push_event_ex (void (CONTEXT::*event_type) (EVENTTYPE *),
-                      EVENTTYPE * event,
+  /**
+   * Push an event using the stored context.
+   */
+  template <typename OBV_EVENTTYPE>
+  void push_event_ex (void (CONTEXT::*event_type) (typename OBV_EVENTTYPE::_ptr_type),
+                      typename OBV_EVENTTYPE::_ptr_type event,
                       ACE_Time_Value & toc);
-
-  /// Push a data event using the stored context.
-  template <typename OBV_EVENTTYPE, typename EVENTTYPE>
-  void push_data_event (size_t size,
-                        void (CONTEXT::*event_type) (EVENTTYPE *),
-                        ACE_Time_Value & toc);
 
   /**
    * Activate the event producer.
@@ -232,18 +183,12 @@ public:
    */
   void activate (long owner);
 
-  /// Deactivate the event producer.
-  void deactivate (void);
-
 private:
   /// The context used to produce the events.
   CONTEXT * context_;
 
   /// Owner of the event producer.
   long owner_;
-
-  /// Active state of the event producer.
-  bool active_;
 };
 
 #if defined (__CUTS_INLINE__)

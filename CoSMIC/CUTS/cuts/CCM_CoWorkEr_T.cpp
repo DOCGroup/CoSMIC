@@ -15,7 +15,7 @@ template <typename COMPONENT, typename COMPONENT_CONTEXT>
 CUTS_CCM_CoWorkEr_T
 <COMPONENT, COMPONENT_CONTEXT>::CUTS_CCM_CoWorkEr_T (void)
 {
-  CUTS_CCM_CoWorkEr::init ();
+  this->CUTS_CCM_CoWorkEr::init ();
 }
 
 //
@@ -40,89 +40,14 @@ void CUTS_CCM_CoWorkEr_T
                    ::Components::CCMException))
 {
   // Narrow the context to the one for this component type.
-  this->context_ =
-    Component_Context::_narrow (ctx ACE_ENV_ARG_PARAMETER);
-
-  // Check the environment variable.
-  ACE_CHECK;
+  this->context_ = _ctx_type::_narrow (ctx);
 
   // Verify the context was properly narrowed.
   if (this->context_ == 0)
     ACE_THROW (CORBA::INTERNAL ());
 
-  //// Get the instance name of the component from the context.
-  //::CORBA::String_var instance_name (this->context_->_ciao_instance_id ());
-
-  //::CIAO::Session_Container * container =
-  //  this->context_->_ciao_the_Container ();
-
-  //if (container != 0)
-  //{
-  //  CORBA::ORB_var the_ORB = container->the_ORB ();
-  //  PortableServer::POA_var the_POA = container->the_POA ();
-
-  //  if (CORBA::is_nil (the_ORB.in ()))
-  //  {
-  //    ACE_ERROR ((LM_ERROR,
-  //                "[%M] -%T - container ORB for %s is NIL\n",
-  //                instance_name.in ()));
-  //  }
-  //  else if (CORBA::is_nil (the_POA.in ()))
-  //  {
-  //    ACE_ERROR ((LM_ERROR,
-  //                "[%M] -%T - container POA for %s is NIL\n",
-  //                instance_name.in ()));
-  //  }
-  //  else
-  //  {
-  //    ACE_DEBUG ((LM_DEBUG,
-  //                "[%M] -%T - initializing real-time ORB for %s\n",
-  //                instance_name.in ()));
-
-  //    try
-  //    {
-  //      CUTS_CCM_CoWorkEr::init ();
-  //      // CUTS_CCM_CoWorkEr::init_realtime (the_ORB.in (), the_POA.in ());
-  //    }
-  //    catch (const CORBA::Exception & ex)
-  //    {
-  //      // Initialize the component with the default configuration
-  //      // for the Benchmark_Agent component.
-  //      ACE_ERROR ((LM_ERROR,
-  //                  "[%M] -%T - %s\n",
-  //                  ex._info ().c_str ()));
-
-  //      ACE_ERROR ((LM_WARNING,
-  //                  "[%M] -%T - real-time ORB initialization failed for %s\n",
-  //                  instance_name.in ()));
-
-  //      CUTS_CCM_CoWorkEr::init ();
-  //    }
-  //    catch (...)
-  //    {
-  //      // Initialize the component with the default configuration
-  //      // for the Benchmark_Agent component.
-  //      ACE_ERROR ((LM_ERROR,
-  //                  "[%M] -%T - unknown exception caught\n"));
-
-  //      ACE_ERROR ((LM_WARNING,
-  //                  "[%M] -%T - real-time ORB initialization failed for %s\n",
-  //                  instance_name.in ()));
-
-  //      CUTS_CCM_CoWorkEr::init ();
-  //    }
-  //  }
-  //}
-  //else
-  //{
-  //  ACE_ERROR ((LM_ERROR,
-  //              "[%M] -%T - cannot access container of %s\n",
-  //              instance_name.in ()));
-
-  //  // Initialize the component with the default configuration
-  //  // for the Benchmark_Agent component.
-  //  CUTS_CCM_CoWorkEr::init ();
-  //}
+  // Store the <context_> in the <producer_>
+  this->producer_.context (this->context_);
 }
 
 //
@@ -146,6 +71,7 @@ ACE_THROW_SPEC ((::CORBA::SystemException,
 
   this->registration_id_ = this->register_i (test_svc.in (), reg);
   this->benchmark_agent_->parent (this->registration_id_);
+  this->producer_.activate (this->registration_id_);
 }
 
 //

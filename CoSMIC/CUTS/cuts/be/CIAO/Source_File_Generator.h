@@ -15,6 +15,7 @@
 
 #include "UDM_CIAO_Export.h"
 #include "File_Generator_Base.h"
+#include "Port_Manager_T.h"
 #include "cuts/be/String_Set.h"
 
 //=============================================================================
@@ -72,26 +73,56 @@ public:
     const PICML::ComponentFactory &,
     const PICML::Component &);
 
+  virtual void write_action_begin (
+    const PICML::Worker & parent,
+    const PICML::Action & action);
+
+  virtual void write_action_end (void);
+
+  virtual void write_action_property (
+    const PICML::Property & property);
+
+  virtual void write_action_begin (
+    const PICML::OutputAction & output);
+
 protected:
-  void write_variable (const PICML::InEventPort & sink);
-  void write_register_obv_factory (const std::string & event);
+  void write_variable (
+    const PICML::InEventPort & sink);
 
-  virtual void write_set_session_context (const PICML::Component & component);
+  void write_register_obv_factory (
+    const std::string & event);
 
-  virtual void write_ciao_preactivate (const PICML::Component & component);
+  virtual void write_set_session_context (
+    const PICML::Component & component);
 
-  virtual void write_ccm_activate (const PICML::Component & component);
+  virtual void write_ciao_preactivate (
+    const PICML::Component & component);
 
-  virtual void write_ciao_postactivate (const PICML::Component & component);
+  virtual void write_ccm_activate (
+    const PICML::Component & component);
 
-  virtual void write_ccm_passivate (const PICML::Component & component);
+  virtual void write_ciao_postactivate (
+    const PICML::Component & component);
 
-  virtual void write_ccm_remove (const PICML::Component & component);
+  virtual void write_ccm_passivate (
+    const PICML::Component & component);
+
+  virtual void write_ccm_remove (
+    const PICML::Component & component);
 
 private:
+  void init_outevent_mgr (
+    const PICML::Component & component);
+
   /// Collection of events for this component.
   CUTS_String_Set events_;
+
   CUTS_String_Set event_sinks_;
+
+  bool skip_action_;
+
+  CUTS_UDM_Port_Manager_T <
+    const PICML::OutEventPort> outevent_mgr_;
 };
 
 #if defined (__CUTS_INLINE__)

@@ -47,7 +47,7 @@ public:
   typedef COMPONENT Component_Type;
 
   /// Type definition for component type.
-  typedef COMPONENT_CONTEXT Component_Context;
+  typedef COMPONENT_CONTEXT _ctx_type;
 
   /// Type definition for the event producer.
   typedef CUTS_CCM_Event_Producer_T <COMPONENT_CONTEXT> Event_Producer;
@@ -83,6 +83,8 @@ public:
                      ::Components::CCMException));
 
 protected:
+  Event_Producer producer_;
+
   /// Context for the component.
   COMPONENT_CONTEXT * context_;
 };

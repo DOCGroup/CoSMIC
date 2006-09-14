@@ -21,7 +21,7 @@
 #include "cuts/CUTS_export.h"
 
 #include "ace/Containers_T.h"
-#include "ace/Hash_Map_Manager.h"
+#include "ace/Hash_Map_Manager_T.h"
 #include "ace/Null_Mutex.h"
 #include "ace/RW_Thread_Mutex.h"
 

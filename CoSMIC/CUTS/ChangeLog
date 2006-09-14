@@ -1,3 +1,57 @@
+Thu Sep 14 14:56:44 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CCM_CoWorkEr_T.h:
+        * cuts/CCM_CoWorkEr_T.cpp:
+
+          - Changed Context_Type to _ctx_type.
+          - set_session_context () now sets the context () of the
+            producer_ object.
+
+        * cuts/CCM_Event_Producer_T.h:
+        * cuts/CCM_Event_Producer_T.inl:
+        * cuts/CCM_Event_Producer_T.cpp:
+
+          Removed all implemenation relating to pushing data events,
+          i.e., ones that generated arbitrary event payloads.
+
+        * cuts/Port_Measurement_Pool.h:
+
+          Changed the include header to "ace/Hash_Manager_Manager_T.h"
+
+        * cuts/be/BE_File_Generator_Manager.h:
+        * cuts/be/BE_File_Generator_Manager.cpp:
+
+          - Changed casting a finish destination object from an
+            InputAction to an InputActionBase object.
+          - Removed the <call_stack_> variable since it was had
+            no true value.
+
+        * cuts/be/CIAO/UDM_CIAO_Visitor.mpc:
+
+          Added the Port_Manager_T module to the project.
+
+        * cuts/be/CIAO/Port_Manager_T.h:
+        * cuts/be/CIAO/Port_Manager_T.inl:
+        * cuts/be/CIAO/Port_Manager_T.cpp:
+
+          Implementation of manager for caching the scope
+          of port manager types.
+
+        * cuts/be/CIAO/Source_File_Generator.h:
+        * cuts/be/CIAO/Source_File_Generator.cpp:
+
+          Fixed the bug that was causing action and output
+          actions to not be generated in the source code. I
+          am still working the bug for input actions from
+          the environment.
+
+Thu Sep 14 00:40:48 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/svcs/dbase/DBase_Service.cpp:
+
+          Invoking stop_current_test () resulted in requesting a
+          write lock twice.
+
 Tue Sep 12 06:21:37 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/Testing_Service_Ex_exec_i.cpp:
