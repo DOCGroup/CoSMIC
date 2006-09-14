@@ -1,3 +1,9 @@
+Thu Sep 14 23:22:08 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CIAO/CIAO_Source_File_Generator.h:
+
+          Updated documentation for Doxygen.
+
 Thu Sep 14 23:04:23 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CIAO/UDM_CIAO.mpc:
