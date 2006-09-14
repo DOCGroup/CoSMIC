@@ -1,3 +1,30 @@
+Thu Sep 14 23:04:23 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CIAO/UDM_CIAO.mpc:
+
+          Updated project w/ the new file names.
+
+        * cuts/be/CIAO/CIAO_File_Generator_Base.h:
+        * cuts/be/CIAO/CIAO_File_Generator_Base.cpp:
+        * cuts/be/CIAO/CIAO_Header_File_Generator.h:
+        * cuts/be/CIAO/CIAO_Header_File_Generator.inl:
+        * cuts/be/CIAO/CIAO_Header_File_Generator.cpp:
+        * cuts/be/CIAO/CIAO_Source_File_Generator.h:
+        * cuts/be/CIAO/CIAO_Source_File_Generator.inl:
+        * cuts/be/CIAO/CIAO_Source_File_Generator.cpp:
+
+        * cuts/be/CIAO/File_Generator_Base.h:
+        * cuts/be/CIAO/File_Generator_Base.cpp:
+        * cuts/be/CIAO/Header_File_Generator.h:
+        * cuts/be/CIAO/Header_File_Generator.inl:
+        * cuts/be/CIAO/Header_File_Generator.cpp:
+        * cuts/be/CIAO/Source_File_Generator.h:
+        * cuts/be/CIAO/Source_File_Generator.inl:
+        * cuts/be/CIAO/Source_File_Generator.cpp:
+
+          Renamed the files in the bottom group to the names
+          in the top group.
+
 Thu Sep 14 22:54:36 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CIAO/File_Generator_Base.h:
@@ -45,7 +72,6 @@ Thu Sep 14 21:16:37 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
           Added support for handling environment input actions,
           more specifically the "activate" method.
-
 
 Thu Sep 14 14:56:44 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 

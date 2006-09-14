@@ -1,9 +1,9 @@
 // $Id$
 
-#include "Header_File_Generator.h"
+#include "CIAO_Header_File_Generator.h"
 
 #if !defined (__CUTS_INLINE__)
-#include "Header_File_Generator.inl"
+#include "CIAO_Header_File_Generator.inl"
 #endif
 
 #include "Predefined_Type_Map.h"

@@ -14,7 +14,7 @@
 #define _CUTS_BE_CIAO_SOURCE_FILE_GENERATOR_H_
 
 #include "UDM_CIAO_Export.h"
-#include "File_Generator_Base.h"
+#include "CIAO_File_Generator_Base.h"
 #include "Port_Manager_T.h"
 #include "cuts/be/String_Set.h"
 
@@ -135,7 +135,7 @@ private:
 };
 
 #if defined (__CUTS_INLINE__)
-#include "Source_File_Generator.inl"
+#include "CIAO_Source_File_Generator.inl"
 #endif
 
 #endif  // !defined _CUTS_BE_CIAO_SOURCE_FILE_GENERATOR_H_

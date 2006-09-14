@@ -1,6 +1,6 @@
 // $Id$
 
-#include "File_Generator_Base.h"
+#include "CIAO_File_Generator_Base.h"
 #include "Uml.h"
 #include "CCF/CodeGenerationKit/IndentationCxx.hpp"
 #include "CCF/CodeGenerationKit/IndentationImplanter.hpp"

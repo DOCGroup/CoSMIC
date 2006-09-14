@@ -14,7 +14,7 @@
 #define _CUTS_BE_CIAO_HEADER_FILE_GENERATOR_H_
 
 #include "UDM_CIAO_Export.h"
-#include "File_Generator_Base.h"
+#include "CIAO_File_Generator_Base.h"
 #include <memory>
 
 // Forward decl.
@@ -112,7 +112,7 @@ protected:
 };
 
 #if defined (__CUTS_INLINE__)
-#include "Header_File_Generator.inl"
+#include "CIAO_Header_File_Generator.inl"
 #endif
 
 #endif  // !defined _CUTS_BE_CIAO_HEADER_FILE_GENERATOR_H_

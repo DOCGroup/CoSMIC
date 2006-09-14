@@ -1,9 +1,9 @@
 // $Id$
 
-#include "Source_File_Generator.h"
+#include "CIAO_Source_File_Generator.h"
 
 #if !defined (__CUTS_INLINE__)
-#include "Source_File_Generator.inl"
+#include "CIAO_Source_File_Generator.inl"
 #endif
 
 #include "boost/bind.hpp"
