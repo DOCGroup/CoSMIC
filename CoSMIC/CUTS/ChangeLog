@@ -1,3 +1,10 @@
+Thu Sep 14 21:25:57 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CIAO/UDM_CIAO.mpc:
+        * cuts/be/CIAO/UDM_CIAO_Visitor.mpc:
+
+          Renamed the file.
+
 Thu Sep 14 21:16:37 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE_File_Generator_Manager.h:
