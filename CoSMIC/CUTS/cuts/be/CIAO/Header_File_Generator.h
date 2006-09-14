@@ -88,6 +88,9 @@ public:
     const PICML::ComponentFactory &,
     const PICML::Component &);
 
+  virtual void write_environment_begin (
+    const PICML::InputAction & action);
+
 protected:
   void write_variable (const PICML::InEventPort & sink);
 

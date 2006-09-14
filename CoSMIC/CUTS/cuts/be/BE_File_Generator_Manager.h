@@ -110,6 +110,9 @@ protected:
   virtual void Visit_WorkerType (
     const PICML::WorkerType & worker_type);
 
+  virtual void Visit_Environment (
+    const PICML::Environment & env);
+
 private:
   /// Clear all the component dependent information.
   void clear (void);

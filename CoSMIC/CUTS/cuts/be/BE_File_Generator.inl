@@ -308,7 +308,28 @@ write_variable (const PICML::Attribute & attribute)
 // write_variables_end
 //
 CUTS_INLINE
-void CUTS_BE_File_Generator::write_variables_end (void)
+void CUTS_BE_File_Generator::
+write_variables_end (void)
+{
+
+}
+
+//
+// write_environment_begin
+//
+CUTS_INLINE
+void CUTS_BE_File_Generator::
+write_environment_begin (const PICML::InputAction &)
+{
+
+}
+
+//
+// write_environment_begin
+//
+CUTS_INLINE
+void CUTS_BE_File_Generator::
+write_environment_end (void)
 {
 
 }

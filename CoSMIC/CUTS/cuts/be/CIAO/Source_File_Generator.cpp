@@ -718,3 +718,40 @@ init_outevent_mgr (const PICML::Component & component)
     this->outevent_mgr_.insert (*iter);
   }
 }
+
+//
+// write_environment_begin
+//
+void CUTS_CIAO_Source_File_Generator::
+write_environment_begin (const PICML::InputAction & action)
+{
+  if ((std::string)action.name () == "activate")
+  {
+    PICML::Component component =
+      PICML::Component::Cast (action.parent ());
+
+    this->out_ << "void " << component.name () << "::";
+
+    this->CUTS_CIAO_File_Generator_Base::write_ccm_activate (component);
+
+    this->out_
+      << "{"
+      << "CUTS_Activation_Record dummy_record;"
+      << "CUTS_Activation_Record * record = &dummy_record;" << std::endl;
+
+    this->skip_env_ = false;
+    this->has_activate_ = true;
+  }
+  else
+    this->skip_env_ = true;
+}
+
+//
+// write_environment_end
+//
+void CUTS_CIAO_Source_File_Generator::
+write_environment_end (void)
+{
+  if (!this->skip_env_)
+    this->out_ << "}";
+}

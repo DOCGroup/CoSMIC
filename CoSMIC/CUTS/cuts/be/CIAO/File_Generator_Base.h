@@ -102,6 +102,8 @@ protected:
   typedef Indentation::Implanter <Indentation::Cxx, char> Formatter_Type;
 
   std::auto_ptr <Formatter_Type> formatter_;
+
+  bool has_activate_;
 };
 
 #endif  // !defined _CUTS_CIAO_FILE_GENERATOR_BASE_H_

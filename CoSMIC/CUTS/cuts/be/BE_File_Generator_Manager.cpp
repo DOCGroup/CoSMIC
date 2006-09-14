@@ -221,6 +221,11 @@ Visit_Component (const PICML::Component & component)
                               _1,
                               boost::ref (*this)));
 
+  // @@ environment actions
+  PICML::Environment env = component.Environment_child ();
+  if (env != Udm::null)
+    env.Accept (*this);
+
   // @@ periodic actions
   typedef std::vector <PICML::PeriodicAction> Periodic_Set;
   Periodic_Set periodics = component.PeriodicAction_kind_children ();
@@ -762,4 +767,42 @@ get_component_factory (const PICML::Component & component)
   }
 
   return PICML::ComponentFactory ();
+}
+
+//
+// Visit_Environment
+//
+void CUTS_BE_File_Generator_Manager::
+Visit_Environment (const PICML::Environment & env)
+{
+  typedef
+    void (CUTS_BE_File_Generator::* BE_METHOD)
+    (const PICML::InputAction &);
+
+  typedef std::set <PICML::MultiInput> MultiInput_Set;
+  MultiInput_Set inputs = env.dstMultiInput ();
+
+  for (MultiInput_Set::iterator iter = inputs.begin ();
+       iter != inputs.end ();
+       iter ++)
+  {
+    PICML::InputAction action =
+      PICML::InputAction::Cast (iter->dstMultiInput_end ());
+
+    std::for_each (
+      this->generators_.begin (),
+      this->generators_.end (),
+        boost::bind (static_cast <BE_METHOD> (
+                     &CUTS_BE_File_Generator::write_environment_begin),
+                     _1,
+                     action));
+
+    action.Accept (*this);
+
+    // Signal the end of writing a <InEventPort>.
+    std::for_each (this->generators_.begin (),
+                   this->generators_.end (),
+                   boost::bind (&CUTS_BE_File_Generator::write_environment_end,
+                                _1));
+  }
 }

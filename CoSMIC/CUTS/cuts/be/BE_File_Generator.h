@@ -141,6 +141,17 @@ public:
 
   virtual void write_variables_end (void);
 
+  /**
+   * Begin the writing of a environment input action. The name
+   * of action is the type of input action for the environment.
+   *
+   * @param[in]     action       Environment input action.
+   */
+  virtual void write_environment_begin (
+    const PICML::InputAction & action);
+
+  virtual void write_environment_end (void);
+
 protected:
   /**
    * Default constructor.

@@ -110,6 +110,11 @@ protected:
   virtual void write_ccm_remove (
     const PICML::Component & component);
 
+  virtual void write_environment_begin (
+    const PICML::InputAction & action);
+
+  virtual void write_environment_end (void);
+
 private:
   void init_outevent_mgr (
     const PICML::Component & component);
@@ -120,6 +125,8 @@ private:
   CUTS_String_Set event_sinks_;
 
   bool skip_action_;
+
+  bool skip_env_;
 
   CUTS_UDM_Port_Manager_T <
     const PICML::OutEventPort> outevent_mgr_;

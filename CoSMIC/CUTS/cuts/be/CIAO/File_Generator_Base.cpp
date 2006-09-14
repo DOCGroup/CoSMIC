@@ -84,8 +84,11 @@ write_component_end (const PICML::Component & component)
   this->write_single_line_comment ("SessionComponent: ciao_preactivate");
   this->write_ciao_preactivate (component);
 
-  this->write_single_line_comment ("SessionComponent: ccm_activate");
-  this->write_ccm_activate (component);
+  if (!this->has_activate_)
+  {
+    this->write_single_line_comment ("SessionComponent: ccm_activate");
+    this->write_ccm_activate (component);
+  }
 
   this->write_single_line_comment ("SessionComponent: ciao_postactivate");
   this->write_ciao_postactivate (component);
@@ -95,6 +98,7 @@ write_component_end (const PICML::Component & component)
 
   this->write_single_line_comment ("SessionComponent: ccm_remove");
   this->write_ccm_remove (component);
+  this->has_activate_ = false;
 }
 
 //

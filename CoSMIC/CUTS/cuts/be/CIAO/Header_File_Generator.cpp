@@ -459,3 +459,19 @@ write_component_factory_begin (const PICML::ComponentFactory & factory,
   this->write_scope (component, "_");
   this->out_ << factory_name << "_Impl);";
 }
+
+//
+// write_environment_begin
+//
+void CUTS_CIAO_Header_File_Generator::
+write_environment_begin (const PICML::InputAction & action)
+{
+  if ((std::string)action.name () == "activate")
+  {
+    PICML::Component component =
+      PICML::Component::Cast (action.parent ());
+
+    this->write_ccm_activate (component);
+    this->has_activate_ = true;
+  }
+}

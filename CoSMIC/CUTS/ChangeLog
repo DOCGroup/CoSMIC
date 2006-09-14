@@ -1,3 +1,24 @@
+Thu Sep 14 21:16:37 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE_File_Generator_Manager.h:
+        * cuts/be/BE_File_Generator_Manager.cpp:
+
+          Manager now handles environment objects properly by
+          passing control to the file generators.
+
+        * cuts/be/BE_File_Generator.h:
+        * cuts/be/BE_File_Generator.inl:
+        * cuts/be/CIAO/File_Generator_Base.h:
+        * cuts/be/CIAO/File_Generator_Base.cpp:
+        * cuts/be/CIAO/Header_File_Generator.h:
+        * cuts/be/CIAO/Header_File_Generator.cpp:
+        * cuts/be/CIAO/Source_File_Generator.h:
+        * cuts/be/CIAO/Source_File_Generator.cpp:
+
+          Added support for handling environment input actions,
+          more specifically the "activate" method.
+
+
 Thu Sep 14 14:56:44 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CCM_CoWorkEr_T.h:
