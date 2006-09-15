@@ -1,8 +1,6 @@
 project(MPC): picmllib {
-   after += PICML
    sharedname = MPC
-   macros += MPC_BUILD_DLL PICML_HAS_DLL
-   libs += PICML
+   macros += MPC_BUILD_DLL
 
    Source_Files {
      MPC_Visitor.cpp

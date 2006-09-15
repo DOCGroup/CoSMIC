@@ -24,11 +24,6 @@ using std::copy;
 using std::transform;
 using std::binary_function;
 
-namespace BON
-{
-  std::string strNamespacePref;
-}
-
 template <class T>
 struct ParamSorter
   : public binary_function<T,T,bool>
@@ -244,7 +239,7 @@ GatewayGeneratorVisitor::get_namespace(const Module& module)
     }
 }
 
-void
+bool
 GatewayGeneratorVisitor::visitSystem(const System& object)
 {
   set<Module> modules = object->getModule();
@@ -255,9 +250,10 @@ GatewayGeneratorVisitor::visitSystem(const System& object)
       Module module (*iter);
       module->accept (this);
     }
+  return true;
 }
 
-void
+bool
 GatewayGeneratorVisitor::visitModule(const Module& object)
 {
   string moduleName (this->transform_name (object->getName().c_str()));
@@ -328,6 +324,7 @@ GatewayGeneratorVisitor::visitModule(const Module& object)
 
       this->header_ << "#endif /* " << upperModuleName << "_H" << " */" << endl;
     }
+  return true;
 }
 
 void
@@ -1144,7 +1141,7 @@ GatewayGeneratorVisitor::soap_struct_to_corba_struct (const Aggregate& agg,
 }
 
 
-void
+bool
 GatewayGeneratorVisitor::visitPortProxy(const PortProxy& object)
 {
   Module target = object->getDst();
@@ -1239,7 +1236,7 @@ GatewayGeneratorVisitor::visitPortProxy(const PortProxy& object)
                           throw GatewayGeneratorException();
                         }
                       this->comp_ = comp->getTypeInhObject()->getType()->getFCO();
-                      return;
+                      return true;
                     }
                 }
             }
@@ -1261,16 +1258,17 @@ GatewayGeneratorVisitor::visitPortProxy(const PortProxy& object)
       this->project_->consoleMsg (msg.str(), MSG_ERROR);
       throw GatewayGeneratorException();
     }
+  return false;
 }
 
-void
+bool
 GatewayGeneratorVisitor::visitObject (const Object& object)
 {
-
+  return true;
 }
 
 
-void
+bool
 GatewayGeneratorVisitor::visitTwowayOperation(const TwowayOperation& object)
 {
   string operationName = this->transform_name (object->getName().c_str());
@@ -1313,10 +1311,11 @@ GatewayGeneratorVisitor::visitTwowayOperation(const TwowayOperation& object)
             this->header_ << "unsigned ";
           this->header_ << this->transform_name (retTypeName.c_str()) << "& ";
           this->header_ << this->transform_name ("_return") << ");" << endl;
-          return;
+          return true;
         }
     }
   // Generate the response struct
   this->header_ << "struct " << this->defName_ << "__" << operationName
                 << "Response& _param_1)";
+  return true;
 }

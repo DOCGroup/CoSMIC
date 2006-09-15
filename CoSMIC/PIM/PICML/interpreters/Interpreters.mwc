@@ -13,9 +13,9 @@ workspace {
   IDLImporter
   BGML
   BGMLComponent
-  MPC_Interpreter
+  MPC
   MPCComponent
-  CIDL_Interpreter
+  CIDL
   CIDLComponent
   Path
   PathComponent

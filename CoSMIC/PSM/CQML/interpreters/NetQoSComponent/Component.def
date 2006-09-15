@@ -1,7 +1,5 @@
 ; Interpreter.def : Declares the module parameters.
 
-LIBRARY      "NetQoSComponent.DLL"
-
 EXPORTS
 	DllCanUnloadNow		PRIVATE
 	DllGetClassObject	PRIVATE

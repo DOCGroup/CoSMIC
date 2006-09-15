@@ -7,7 +7,7 @@
 #include "stdafx.h"
 #include "UdmApp.h"
 #include "UdmConfig.h"
-#include "MPC_Interpreter/MPC_Visitor.h"
+#include "MPC/MPC_Visitor.h"
 #include "Utils/Utils.h"
 
 #define SetUpVisitor(type, root, visitor)                               \

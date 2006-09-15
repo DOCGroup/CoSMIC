@@ -1,8 +1,9 @@
-project (PICML): picmllib {
+project (PICML): cosmic_common, udm, xerces, cosmic_utils {
 
    UDM_Files {
       gendir = .
       $(COSMIC_ROOT)/PIM/PICML/paradigms/PICML.xml
+      commandflags      = -l PICML_Export -v
    }
 
    sharedname = PICML

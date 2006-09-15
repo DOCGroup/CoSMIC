@@ -20,6 +20,7 @@
 // This text will appear in the toolbar icon tooltip and in the menu.
 #define TOOLTIP_TEXT "GatewayGenerator Interpreter"
 
+#define NAMESPACE_PREF ""
 
 // This #define determines the interpreter type:
 #define GME_INTERPRETER

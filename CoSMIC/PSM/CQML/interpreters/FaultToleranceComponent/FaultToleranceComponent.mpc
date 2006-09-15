@@ -1,4 +1,4 @@
-project (FaultToleranceComponent): mfc, cqmllib {
+project (FaultToleranceComponent): mfc, cqmllib, register {
 
   after += FaultTolerance
   macros += _USRDLL _WINDLL
@@ -7,11 +7,6 @@ project (FaultToleranceComponent): mfc, cqmllib {
 
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
-
-
-  specific {
-     use_lib_modifier =
-  }
 
   specific (vc6,vc7,vc71,vc8) {
      link_options += /DEF:Component.def
@@ -48,11 +43,11 @@ project (FaultToleranceComponent): mfc, cqmllib {
   }
 }
 
-project (RegisterFaultToleranceComponent): picmllib {
-  after += FaultToleranceComponent
-  custom_only           = 1
+// project (RegisterFaultToleranceComponent): register {
+//   after += FaultToleranceComponent
+//   custom_only           = 1
 
-  Register_Files {
-    $(COSMIC_ROOT)\bin\FaultToleranceComponent.dll
-  }
-}
+//   Register_Files {
+//     $(COSMIC_ROOT)\bin\FaultToleranceComponent.dll
+//   }
+// }

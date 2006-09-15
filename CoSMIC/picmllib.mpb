@@ -1,5 +1,7 @@
 // MPC file to generate base library
-project : cosmic_common, udm, xerces, register, cosmic_utils {
-
+project : cosmic_common, udm, xerces, cosmic_utils {
+   after += PICML
    includes += $(COSMIC_ROOT)/PIM/PICML/interpreters
+   macros += PICML_HAS_DLL
+   libs += PICML
 }

@@ -1,4 +1,4 @@
-project (CQML) : cosmic_common, udm, xerces, register, cosmic_utils {
+project (CQML) : cosmic_common, udm, xerces, cosmic_utils {
 
   UDM_Files {
       gendir = .

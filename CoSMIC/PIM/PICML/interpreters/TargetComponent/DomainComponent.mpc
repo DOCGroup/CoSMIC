@@ -1,16 +1,12 @@
-project (DomainComponent): mfc, picmllib {
-  after += PICML Domain
+project (DomainComponent): mfc, picmllib, register {
+  after += Domain
 
-  macros += PICML_HAS_DLL _USRDLL _WINDLL
+  macros +=  _USRDLL _WINDLL
   sharedname = DomainComponent
-  libs += PICML Domain
+  libs += Domain
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
 
-  specific {
-    use_lib_modifier =
-
-  }
 
   specific (vc6,vc7,vc71,vc8) {
      link_options += /DEF:Component.def
@@ -47,11 +43,11 @@ project (DomainComponent): mfc, picmllib {
   }
 }
 
-project (RegisterDomainComponent): picmllib {
-  after += DomainComponent
-  custom_only           = 1
+// project (RegisterDomainComponent): register {
+//   after += DomainComponent
+//   custom_only           = 1
 
-  Register_Files {
-    $(COSMIC_ROOT)\bin\DomainComponent.dll
-  }
-}
+//   Register_Files {
+//     $(COSMIC_ROOT)\bin\DomainComponent.dll
+//   }
+// }

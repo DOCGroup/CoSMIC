@@ -6,7 +6,7 @@
 #include <memory>
 #include <stack>
 #include <map>
-#include "PICML.h"
+#include "PICML/PICML.h"
 
 // Xerces includes
 #include <xercesc/util/PlatformUtils.hpp>

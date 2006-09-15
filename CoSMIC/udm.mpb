@@ -19,7 +19,6 @@ project : xerces {
       automatic         = 0
       dependent         = $(UDM_PATH)/bin/Udm
       command           = <%quote%>$(UDM_PATH)<%quote%>/bin/Udm
-      commandflags      = -l PICML_Export -v
       inputext          = .xml
       header_outputext  = .h
       source_outputext  = .cpp

@@ -1,8 +1,6 @@
 project(Domain): picmllib {
-   after += PICML
    sharedname = Domain
-   macros += DOMAIN_BUILD_DLL PICML_HAS_DLL
-   libs += PICML
+   macros += DOMAIN_BUILD_DLL
 
    Source_Files {
      DomainVisitor.cpp

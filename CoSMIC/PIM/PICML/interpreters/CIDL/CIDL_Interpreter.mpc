@@ -1,10 +1,8 @@
 // $Id$
 
 project(CIDL): picmllib {
-   after += PICML
    sharedname = CIDL
-   macros += CIDL_BUILD_DLL PICML_HAS_DLL
-   libs += PICML
+   macros += CIDL_BUILD_DLL
 
    Source_Files {
      Cidlc_Visitor.cpp

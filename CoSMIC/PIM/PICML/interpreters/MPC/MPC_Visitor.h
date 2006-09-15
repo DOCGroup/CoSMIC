@@ -2,8 +2,8 @@
 
 #include <iterator>
 #include "PICML/PICML.h"
-#include "MPC_Interpreter/MPCStream.h"
-#include "MPC_Interpreter/MPC_Export.h"
+#include "MPC/MPCStream.h"
+#include "MPC/MPC_Export.h"
 
 namespace PICML
 {

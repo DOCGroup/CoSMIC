@@ -1,8 +1,8 @@
-project (UUIDManager): cosmic_common, mfc, cosmic_utils {
+project (UUIDManager): cosmic_common, mfc, cosmic_utils, register {
   sharedname = UUIDManager
 
   includes +=  $(COSMIC_ROOT)/PIM/PICML/addons/UUIDManager \
-         $(GME_ROOT)/SDK/BON
+               $(GME_ROOT)/SDK/BON
 
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
@@ -39,11 +39,11 @@ project (UUIDManager): cosmic_common, mfc, cosmic_utils {
   }
 }
 
-project (RegisterUUIDManager) : register {
-  after += UUIDManager
-  custom_only = 1
+// project (RegisterUUIDManager) : register {
+//   after += UUIDManager
+//   custom_only = 1
 
-  Register_Files {
-    $(COSMIC_ROOT)\bin\UUIDManager.dll
-  }
-}
+//   Register_Files {
+//     $(COSMIC_ROOT)\bin\UUIDManager.dll
+//   }
+// }

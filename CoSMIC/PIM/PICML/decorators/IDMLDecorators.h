@@ -66,36 +66,36 @@ public:
 
   virtual void      initialize( IMgaFCO *obj, CComPtr<IMgaMetaFCO>& metaFco );
   virtual void      destroy();
-	CComPtr<IMgaFCO>	getFCO() const;
-	objtype_enum			getType() const;
-	CRect			        getBoxLocation( bool bWithBorder = false ) const;
-	long					    getBorderWidth( bool bActive = true ) const;
-	virtual CSize			getPreferredSize() const;
+  CComPtr<IMgaFCO>  getFCO() const;
+  objtype_enum      getType() const;
+  CRect             getBoxLocation( bool bWithBorder = false ) const;
+  long              getBorderWidth( bool bActive = true ) const;
+  virtual CSize     getPreferredSize() const;
   virtual void      setLocation( const CRect& cRect );
   virtual CRect     getLocation() const;
-	virtual void 			setActive( bool bActive );
-  virtual void 			draw( CDC* pDC ) = 0;
+  virtual void      setActive( bool bActive );
+  virtual void      draw( CDC* pDC ) = 0;
   virtual void      LoadBitmap() = 0;
 
-	virtual vector<PortDecorator*>  getPorts() const;
-	virtual PortDecorator*			    getPort( CComPtr<IMgaFCO> ) const;
+  virtual vector<PortDecorator*>  getPorts() const;
+  virtual PortDecorator*			    getPort( CComPtr<IMgaFCO> ) const;
 
 protected:
   DecoratorBase();
 
 protected:
   CRect                 m_rect;
-	CComPtr<IMgaFCO>	    m_mgaFco;
-	CComPtr<IMgaMetaFCO>	m_metaFco;
-	CString		            m_name;
+  CComPtr<IMgaFCO>	    m_mgaFco;
+  CComPtr<IMgaMetaFCO>	m_metaFco;
+  CString		        m_name;
   CString               m_metaName;
-	objtype_enum					m_eType;
-	CMaskedBitmap         m_bitmap;
-	long							    m_lBorderWidth;
-	bool							    m_bActive;
+  objtype_enum			m_eType;
+  CMaskedBitmap         m_bitmap;
+  long					m_lBorderWidth;
+  bool					m_bActive;
 
-	COLORREF	            m_color;
-	COLORREF	            m_nameColor;
+  COLORREF	            m_color;
+  COLORREF	            m_nameColor;
 };
 
 //########################################################
@@ -137,18 +137,18 @@ public:
 class PortDecorator	: public DecoratorBase
 {
 private :
-	CPoint m_ptInner;
+  CPoint m_ptInner;
   bool m_right;
 
 public :
-	PortDecorator( CComPtr<IMgaFCO> mgaFco, const CPoint& ptInner );
+  PortDecorator( CComPtr<IMgaFCO> mgaFco, const CPoint& ptInner );
 
-	virtual void   initialize();
-	virtual CSize	 getPreferredSize() const;
-		      CPoint getInnerPosition() const;
+  virtual void   initialize();
+  virtual CSize	 getPreferredSize() const;
+  CPoint getInnerPosition() const;
   virtual void 	 draw( CDC* pDC );
   virtual void   LoadBitmap();
-          void   setToRight();
+  void   setToRight();
 };
 
 //########################################################
@@ -160,13 +160,13 @@ public :
 class ComponentDecorator : public DecoratorBase
 {
 private:
-	CComPtr<IMgaMetaPart>	    m_metaPart;
-	vector<PortDecorator*>		m_vecLeftPorts;
-	vector<PortDecorator*>		m_vecRightPorts;
-	CComPtr<IMgaMetaAspect>	  m_spAspect;
-	long							        m_iMaxPortTextLength;
-	CString		                m_strTypeName;
-  bool							        m_bTypeNameEnabled;
+  CComPtr<IMgaMetaPart>	    m_metaPart;
+  vector<PortDecorator*>	m_vecLeftPorts;
+  vector<PortDecorator*>	m_vecRightPorts;
+  CComPtr<IMgaMetaAspect>	m_spAspect;
+  long						m_iMaxPortTextLength;
+  CString		            m_strTypeName;
+  bool						m_bTypeNameEnabled;
   int                       m_iTypeInfo;
 public:
   ComponentDecorator( CComPtr<IMgaMetaPart>	metaPart );
@@ -175,16 +175,16 @@ public:
   virtual void  initialize( IMgaFCO *obj, CComPtr<IMgaMetaFCO>& metaFco );
   virtual CSize getPreferredSize() const;
   virtual void  setLocation( const CRect& cRect );
-	virtual void  setActive( bool bActive );
+  virtual void  setActive( bool bActive );
   virtual void  draw( CDC* pDC );
   virtual void  LoadBitmap();
 
-	virtual vector<PortDecorator*>  getPorts() const;
-	virtual PortDecorator*			    getPort( CComPtr<IMgaFCO> ) const;
+  virtual vector<PortDecorator*>  getPorts() const;
+  virtual PortDecorator*		  getPort( CComPtr<IMgaFCO> ) const;
 
 private:
-	void loadPorts();
-	void orderPorts( vector<PortDecorator*>& );
+  void loadPorts();
+  void orderPorts( vector<PortDecorator*>& );
   void findPorts( vector<PortDecorator*>&, CComPtr<IMgaFCOs>& );
   void checkInherits( vector<PortDecorator*>&, CComPtr<IMgaFCO>& );
 };

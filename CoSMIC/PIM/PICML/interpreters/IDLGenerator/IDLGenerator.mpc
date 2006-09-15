@@ -1,10 +1,6 @@
-project (IDLGenerator): bon {
+project (IDLGenerator): bon, register {
    sharedname = IDLGenerator
    includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/IDLGenerator
-
-   specific {
-     use_lib_modifier =
-   }
 
    specific (vc6,vc7,vc71,vc8) {
      link_options += /DEF:Component.def
@@ -61,11 +57,11 @@ project (IDLGenerator): bon {
    }
 }
 
-project (RegisterIDLGenerator) : register {
-  after += IDLGenerator
-  custom_only = 1
+// project (RegisterIDLGenerator) : register {
+//   after += IDLGenerator
+//   custom_only = 1
 
-  Register_Files {
-    $(COSMIC_ROOT)\bin\IDLGenerator.dll
-  }
-}
+//   Register_Files {
+//     $(COSMIC_ROOT)\bin\IDLGenerator.dll
+//   }
+// }

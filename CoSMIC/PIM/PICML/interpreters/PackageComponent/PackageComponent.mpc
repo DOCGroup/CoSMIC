@@ -1,17 +1,11 @@
-project (PackageComponent): mfc, picmllib {
-  after += PICML Package
+project (PackageComponent): mfc, picmllib, register {
+  after += Package
 
 
-  macros += PICML_HAS_DLL _USRDLL _WINDLL
+  macros +=  _USRDLL _WINDLL
   sharedname = PackageComponent
-  libs += PICML Package
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
-
-
-  specific {
-     use_lib_modifier =
-  }
 
   specific (vc6,vc7,vc71,vc8) {
      link_options += /DEF:Component.def
@@ -48,11 +42,11 @@ project (PackageComponent): mfc, picmllib {
   }
 }
 
-project (RegisterPackageComponent): picmllib {
-  after += PackageComponent
-  custom_only           = 1
+// project (RegisterPackageComponent): register {
+//   after += PackageComponent
+//   custom_only           = 1
 
-  Register_Files {
-    $(COSMIC_ROOT)\bin\PackageComponent.dll
-  }
-}
+//   Register_Files {
+//     $(COSMIC_ROOT)\bin\PackageComponent.dll
+//   }
+// }

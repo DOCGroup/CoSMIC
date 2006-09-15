@@ -1,7 +1,5 @@
 ; DecoratorApp.def : Declares the module parameters.
 
-LIBRARY      "PICMLDecorator.DLL"
-
 EXPORTS
 	DllCanUnloadNow     PRIVATE
 	DllGetClassObject   PRIVATE

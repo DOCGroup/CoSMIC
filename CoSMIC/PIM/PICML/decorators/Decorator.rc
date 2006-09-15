@@ -27,18 +27,18 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE 
+1 TEXTINCLUDE
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE 
+2 TEXTINCLUDE
 BEGIN
     "#include ""winres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE 
+3 TEXTINCLUDE
 BEGIN
     "1 TYPELIB ""DecoratorLib.tlb""\r\n"
     "\0"
@@ -120,8 +120,8 @@ IDB_BITMAP_TYPEKIND     BITMAP                  "..\\paradigms\\icons\\typekind.
 IDB_BITMAP_TYPEENCODING BITMAP                  "..\\paradigms\\icons\\typeencoding.bmp"
 IDB_BITMAP_SHORTINTEGER BITMAP                  "..\\paradigms\\icons\\short.bmp"
 IDB_BITMAP_COMPONENT    BITMAP                  "..\\paradigms\\icons\\component.bmp"
-IDB_BITMAP_RECEPTACLE_RT BITMAP                  "..\\paradigms\\icons\\receptacle_rt.bmp"
 IDB_BITMAP_INEVENT_LF   BITMAP                  "..\\paradigms\\icons\\inevent_lf.bmp"
+IDB_BITMAP_RECEPTACLE_RT BITMAP                  "..\\paradigms\\icons\\receptacle_rt.bmp"
 IDB_BITMAP_INEVENT_RT   BITMAP                  "..\\paradigms\\icons\\inevent_rt.bmp"
 IDB_BITMAP_OUTEVENT_LF  BITMAP                  "..\\paradigms\\icons\\outevent_lf.bmp"
 IDB_BITMAP_OUTEVENT_RT  BITMAP                  "..\\paradigms\\icons\\outevent_rt.bmp"
@@ -133,13 +133,15 @@ IDB_BITMAP_ATTRIBUTE    BITMAP                  "..\\paradigms\\icons\\attribute
 IDB_BITMAP_READONLYATTRIBUTE BITMAP                  "..\\paradigms\\icons\\readonlyattribute.bmp"
 IDB_BITMAP_ATTRIBUTEMAPPING BITMAP                  "..\\paradigms\\icons\\AttributeMapping.bmp"
 IDB_BITMAP_DATATYPE     BITMAP                  "..\\paradigms\\icons\\DataType.bmp"
+IDB_BITMAP_COMPONENTASSEMBLY BITMAP                  "..\\paradigms\\icons\\componentassembly.bmp"
+IDB_BITMAP_COMPONENTASSEMBLYREF BITMAP                  "..\\paradigms\\icons\\componentassemblyref.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_PROJNAME            "Decorator"
 END
@@ -158,4 +160,3 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
-

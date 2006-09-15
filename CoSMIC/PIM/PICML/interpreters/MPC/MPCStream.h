@@ -6,7 +6,7 @@
 #include <vector>
 #include "PICML/PICML.h"
 
-#include "MPC_Interpreter/MPC_Export.h"
+#include "MPC/MPC_Export.h"
 
 // A dummy structure to inform TAO_OutStream's << operator to  put a newline
 // and use the current indentation for the succeeding line

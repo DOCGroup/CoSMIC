@@ -5,7 +5,7 @@
 #include "stdafx.h"
 #include "UdmApp.h"
 #include "UdmConfig.h"
-#include "CIDL_Interpreter/Cidlc_Visitor.h"
+#include "CIDL/Cidlc_Visitor.h"
 #include "Utils/Utils.h"
 
 //

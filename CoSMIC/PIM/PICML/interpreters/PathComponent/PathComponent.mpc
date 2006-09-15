@@ -1,21 +1,11 @@
-project (PathComponent): mfc, picmllib {
-  after += PICML Path
-
-
-  macros += PICML_HAS_DLL _USRDLL _WINDLL
+project (PathComponent): mfc, picmllib, register {
+  after += Path
+  macros += _USRDLL _WINDLL
   sharedname = PathComponent
-  includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML \
-              $(COSMIC_ROOT)/PIM/PICML/interpreters/Path \
-              $(COSMIC_ROOT)/PIM/PICML/interpreters/PathComponent \
-              $(BOOST_ROOT)/include/$(BOOST_VERSION)
-  libs += PICML Path
+  includes += $(BOOST_ROOT)/include/$(BOOST_VERSION)
+  libs += Path
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
-
-
-  specific {
-     use_lib_modifier =
-  }
 
   specific (vc6,vc7,vc71,vc8) {
      link_options += /DEF:Component.def
@@ -52,11 +42,11 @@ project (PathComponent): mfc, picmllib {
   }
 }
 
-project (RegisterPathComponent): picmllib {
-  after += PathComponent
-  custom_only           = 1
+// project (RegisterPathComponent): register {
+//   after += PathComponent
+//   custom_only           = 1
 
-  Register_Files {
-    $(COSMIC_ROOT)\bin\PathComponent.dll
-  }
-}
+//   Register_Files {
+//     $(COSMIC_ROOT)\bin\PathComponent.dll
+//   }
+// }
