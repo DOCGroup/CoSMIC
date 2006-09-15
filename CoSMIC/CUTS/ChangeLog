@@ -1,3 +1,10 @@
+Fri Sep 15 21:42:57 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * integration/autobuild.build:
+
+          Added support to generate workspaces for only the modeling
+          or runtime portions of CUTS.
+
 Fri Sep 15 21:35:07 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * integration:

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="CUTS Autobuild" default="build" basedir=".">
+<project name="CUTS Autobuild" default="build.all" basedir=".">
   <description>CUTS autobuild</description>
 
   <!-- setup the necessary environment variables -->
@@ -12,14 +12,33 @@
   <setenv name="CUTS_ROOT" value="%COSMIC_ROOT%\CUTS" />
   <setenv name="PATH" value="%COSMIC_ROOT%\bin;%CUTS_ROOT%\bin;%PATH%" />
 
-  <target name="build">
-    <call target="generate-workspace" />
+  <!-- target(s) for the different kinds of builds -->
+  <target name="build.all">
+    <call target="workspace.generate.all" />
   </target>
 
-  <target name="generate-workspace">
-    <!-- generate the workspace -->
+  <target name="build.modeling">
+    <call target="workspace.generate.modeling" />
+  </target>
+
+  <target name="build.runtime">
+    <call target="workspace.generate.runtime" />
+  </target>
+
+  <!-- target(s) for generating the different workspaces -->
+  <target name="workspace.generate.all">
     <exec program="perl"
           commandline="-- ${environment::get-variable('ACE_ROOT')}\bin\mwc.pl -type vc8 -features mfc=1,gme=1,udm=1,boost=1 ..\CUTS.mwc" />
+  </target>
+
+  <target name="workspace.generate.modeling">
+    <exec program="perl"
+          commandline="-- ${environment::get-variable('ACE_ROOT')}\bin\mwc.pl -type vc8 -features mfc=1,gme=1,udm=1,boost=1 ..\CUTS_CoSMIC.mwc" />
+  </target>
+
+  <target name="workspace.generate.runtime">
+    <exec program="perl"
+          commandline="-- ${environment::get-variable('ACE_ROOT')}\bin\mwc.pl -type vc8 ..\CUTS.mwc" />
   </target>
 </project>
     
