@@ -1,3 +1,10 @@
+Fri Sep 15 23:28:00 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * integration/autobuild.build:
+
+          Now all the environment variables are input properties
+          from the calling applcation, e.g., CruiseControl.
+
 Fri Sep 15 22:04:08 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * integration/autobuild.build:
