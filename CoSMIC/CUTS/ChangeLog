@@ -1,3 +1,15 @@
+Fri Sep 15 02:47:15 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CIAO/CIAO_Header_File_Generator.cpp:
+
+          Changed CoWorkEr_Type to _coworker_type in generated code.
+
+        * cuts/be/CIAO/CIAO_Source_File_Generator.h:
+        * cuts/be/CIAO/CIAO_Source_File_Generator.cpp:
+
+          - Changed CoWorkEr_Type to _coworker_type in generated code.
+          - Removed all occurences of write_variable ().
+
 Fri Sep 15 01:57:01 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CIAO/CIAO_Project_Generator.cpp:

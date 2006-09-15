@@ -279,7 +279,7 @@ write_set_session_context (const PICML::Component & component)
   CUTS_CIAO_File_Generator_Base::write_set_session_context (component);
   this->out_
     << "{"
-    << "CoWorkEr_Type::set_session_context (ctx);"
+    << "this->_coworker_type::set_session_context (ctx);"
     << std::endl;
 
   std::for_each (this->events_.begin (),
@@ -303,7 +303,7 @@ write_ciao_preactivate (const PICML::Component & component)
   CUTS_CIAO_File_Generator_Base::write_ciao_preactivate (component);
   this->out_
     << "{"
-    << "CoWorkEr_Type::ciao_preactivate ();"
+    << "this->_coworker_type::ciao_preactivate ();"
     << std::endl;
 
   // Set the parents for all the workers in this component.
@@ -365,7 +365,7 @@ write_ciao_postactivate (const PICML::Component & component)
   this->_super::write_ciao_postactivate (component);
   this->out_
     << "{"
-    << "CoWorkEr_Type::ciao_postactivate ();"
+    << "this->_coworker_type::ciao_postactivate ();"
     << std::endl;
 
   // Generate the code to activate all of the periodic events
@@ -401,7 +401,7 @@ write_ccm_passivate (const PICML::Component & component)
 
   this->out_
     << "{"
-    << "this->CoWorkEr_Type::ccm_passivate ();"
+    << "this->_coworker_type::ccm_passivate ();"
     << std::endl;
 
   // Generate the code to deactivate all of the periodic events
@@ -461,82 +461,6 @@ write_ccm_remove (const PICML::Component & component)
   else
     // We are writing it with default implementation.
     this->out_ << std::endl << "}";
-}
-
-//
-// write_variable
-//
-void CUTS_CIAO_Source_File_Generator::
-write_variable (const PICML::WorkerType & worker_type)
-{
-  //PICML::Worker worker = worker_type.ref ();
-
-  //std::string comment ("Worker: ");
-  //comment.append (worker_type.name ());
-
-  //this->write_single_line_comment (comment);
-  //this->out_
-  //  << worker.name ()
-  //  << " " << worker_type.name () << "_;"
-  //  << std::endl;
-}
-
-//
-// write_variable
-//
-void CUTS_CIAO_Source_File_Generator::
-write_variable (const PICML::Variable & variable)
-{
-  //PICML::PredefinedType ptype = variable.ref ();
-  //std::string _typename = ptype.type ().name ();
-
-  //std::string comment ("Variable: ");
-  //comment.append (variable.name ());
-
-  //this->write_single_line_comment (comment);
-  //this->out_
-  //  << CUTS_Predefined_Type_Map::instance ()->c_str (_typename.c_str ())
-  //  << " "
-  //  << variable.name ()
-  //  << "_;"
-  //  << std::endl;
-}
-
-//
-// write_variable
-//
-void CUTS_CIAO_Source_File_Generator::
-write_variable (const PICML::InEventPort & sink)
-{
-  //// Write the leading comment.
-  //std::string comment ("Event handler: ");
-  //comment.append (sink.name ());
-  //this->write_single_line_comment (comment);
-
-  //PICML::Event event = sink.ref ();
-  //if (event == Udm::null)
-  //  return;
-
-  //// Write the emulated event handler method.
-  //this->out_
-  //  << "void push_" << sink.name () << "_handler (" << std::endl;
-
-  //this->write_scope (PICML::NamedType::Cast (event));
-
-  //this->out_
-  //  << event.name () << " * ev, CUTS_Activation_Record * record);"
-  //  << std::endl
-
-  //  // Write the event handler variable.
-  //  << "CUTS_Event_Handler_Manager_T <" << std::endl
-  //  << "  This_Component, ";
-
-  //this->write_scope (PICML::NamedType::Cast (event));
-
-  //this->out_
-  //  << event.name () << "> "
-  //  << "push_" << sink.name () << "_handler_;"
-  //  << std::endl;
 }
 
 //
@@ -725,7 +649,7 @@ write_action_begin (const PICML::OutputAction & action)
       << std::endl << "\"" << action.name () << "\"," << std::endl
       << "Event_Producer::Push_Event <OBV_"
       << scoped_name << "> (" << std::endl
-      << "this->producer_, &CoWorkEr_Type::_ctx_type::push_"
+      << "this->producer_, &_coworker_type::_ctx_type::push_"
       << action.name ();
   }
 }

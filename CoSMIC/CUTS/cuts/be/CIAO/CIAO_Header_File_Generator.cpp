@@ -130,7 +130,7 @@ write_component_begin (const PICML::Component & component)
   this->out_
     << "typedef CUTS_CCM_CoWorkEr_T <" << std::endl
     << "  " << exec << "," << std::endl
-    << "  " << context << "> CoWorkEr_Type;"
+    << "  " << context << "> _coworker_type;"
     << std::endl;
 
   // @@ constructor

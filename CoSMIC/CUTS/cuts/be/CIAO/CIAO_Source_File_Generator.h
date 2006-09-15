@@ -98,31 +98,6 @@ protected:
   virtual void write_method_end (void);
 
   /**
-   * Write the variable declaration for a worker type.
-   *
-   * @param[in]     type        Type of worker.
-   */
-  virtual void write_variable (
-    const PICML::WorkerType & type);
-
-  /**
-   * Write a normal variable declaration.
-   *
-   * @param[in]     variable    Source variable.
-   */
-  virtual void write_variable (
-    const PICML::Variable & variable);
-
-  /**
-   * Write a variable declaration for an event sink. This is
-   * really dealing with the event handler for that sink.
-   *
-   * @param[in]     sink        Source sink.
-   */
-  void write_variable (
-    const PICML::InEventPort & sink);
-
-  /**
    * Begin writing a component factory.
    *
    * @param[in]   factory       Source factory.
