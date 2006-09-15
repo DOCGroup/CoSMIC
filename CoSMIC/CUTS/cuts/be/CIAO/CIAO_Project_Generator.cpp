@@ -2,8 +2,8 @@
 
 #include "CIAO_Project_Generator.h"
 #include "Export_File_Generator.h"
-#include "Header_File_Generator.h"
-#include "Source_File_Generator.h"
+#include "CIAO_Header_File_Generator.h"
+#include "CIAO_Source_File_Generator.h"
 #include "cuts/be/Dependency_Graph.h"
 #include "boost/bind.hpp"
 #include "Uml.h"
@@ -73,7 +73,7 @@ write_project (const PICML::ComponentImplementationContainer & container,
 
     if (!outfile.is_open ())
       return;
-    
+
     // Write the preamble for the project file. We need to add
     // a more detailed one in the near future.
     outfile
@@ -124,7 +124,7 @@ write_exec_project (std::ofstream & project,
 
   // Generate the STUB import libraries for this node.
   this->generate_stub_listing (project, node);
-  
+
   node->flags_ &= ~CUTS_Dependency_Node::DNF_VISITED;
   this->graph_->reset_visit_flag ();
 

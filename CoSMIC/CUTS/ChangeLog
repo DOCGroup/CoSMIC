@@ -1,3 +1,10 @@
+Fri Sep 15 01:57:01 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CIAO/CIAO_Project_Generator.cpp:
+
+          Fixed compilation error that was found as a result
+          of a rebuild all.
+
 Thu Sep 14 23:22:08 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CIAO/CIAO_Source_File_Generator.h:
