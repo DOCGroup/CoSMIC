@@ -1,3 +1,10 @@
+Fri Sep 15 22:04:08 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * integration/autobuild.build:
+
+          - Added svn.update target to the project.
+          - workspace.generate.* targets now depend on svn.update
+
 Fri Sep 15 21:42:57 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * integration/autobuild.build:
