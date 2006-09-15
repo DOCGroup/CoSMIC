@@ -1,3 +1,9 @@
+Fri Sep 15 23:55:24 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * integration/autobuild.build:
+
+          Temporarily added support for building CoSMIC.
+
 Fri Sep 15 23:28:00 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * integration/autobuild.build:

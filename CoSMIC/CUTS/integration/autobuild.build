@@ -15,10 +15,12 @@
   <!-- target(s) for the different kinds of builds -->
   <target name="build.all">
     <call target="workspace.generate.all" />
+    <call target="workspace.generate.cosmic" />
   </target>
 
   <target name="build.modeling">
     <call target="workspace.generate.modeling" />
+    <call target="workspace.generate.cosmic" />
   </target>
 
   <target name="build.runtime">
@@ -39,6 +41,11 @@
   <target name="workspace.generate.runtime">
     <exec program="perl"
           commandline="-- ${ACE_ROOT}\bin\mwc.pl -type vc8 ..\CUTS.mwc" />
+  </target>
+
+  <target name="workspace.generate.cosmic">
+    <exec program="perl"
+          commandline="-- ${ACE_ROOT}\bin\mwc.pl -type vc8 ..\..\CoSMIC.mwc" />
   </target>
 </project>
     
