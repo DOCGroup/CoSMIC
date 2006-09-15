@@ -1,3 +1,10 @@
+Fri Sep 15 21:35:07 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * integration:
+        * integration/autobuild.build:
+
+          Initial attempt to create a NANT script for building CUTS.
+
 Fri Sep 15 02:47:15 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CIAO/CIAO_Header_File_Generator.cpp:

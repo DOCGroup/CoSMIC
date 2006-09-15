@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<project name="CUTS Autobuild" default="build" basedir=".">
+  <description>CUTS autobuild</description>
+
+  <!-- setup the necessary environment variables -->
+  <setenv name="ACE_ROOT" value="D:\projects\ACE_TAO_CIAO\ACE_wrappers" />
+  <setenv name="TAO_ROOT" value="%ACE_ROOT%\TAO" />
+  <setenv name="CIAO_ROOT" value="%TAO_ROOT%\CIAO" />
+  <setenv name="PATH" value="%ACE_ROOT%\bin;%ACE_ROOT%\lib;%CIAO_ROOT%\bin;%PATH%" />
+
+  <setenv name="COSMIC_ROOT" value="D:\builds\CoSMIC" />
+  <setenv name="CUTS_ROOT" value="%COSMIC_ROOT%\CUTS" />
+  <setenv name="PATH" value="%COSMIC_ROOT%\bin;%CUTS_ROOT%\bin;%PATH%" />
+
+  <target name="build">
+    <call target="generate-workspace" />
+  </target>
+
+  <target name="generate-workspace">
+    <!-- generate the workspace -->
+    <exec program="perl"
+          commandline="-- ${environment::get-variable('ACE_ROOT')}\bin\mwc.pl -type vc8 -features mfc=1,gme=1,udm=1,boost=1 ..\CUTS.mwc" />
+  </target>
+</project>
+    
