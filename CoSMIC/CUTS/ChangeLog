@@ -1,3 +1,10 @@
+Sat Sep 16 00:05:52 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * integration/autobuild.build:
+
+          Fixed the generate.workspace.cosmic target by adding
+          -include ${COSMIC_ROOT} to the command line.
+
 Fri Sep 15 23:55:24 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * integration/autobuild.build:

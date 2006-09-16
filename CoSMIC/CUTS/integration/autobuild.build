@@ -45,7 +45,7 @@
 
   <target name="workspace.generate.cosmic">
     <exec program="perl"
-          commandline="-- ${ACE_ROOT}\bin\mwc.pl -type vc8 ..\..\CoSMIC.mwc" />
+          commandline="-- ${ACE_ROOT}\bin\mwc.pl -type vc8 -include ${COSMIC_ROOT} ..\..\CoSMIC.mwc" />
   </target>
 </project>
     
