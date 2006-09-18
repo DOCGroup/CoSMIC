@@ -1,3 +1,9 @@
+Mon Sep 18 21:14:14 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * integration/autobuild.build:
+
+          Fixed bug resulting in invalid execution of batch files.
+
 Mon Sep 18 20:56:36 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * integration/autobuild.build:
