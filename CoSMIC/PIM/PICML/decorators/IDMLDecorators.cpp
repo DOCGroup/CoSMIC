@@ -28,7 +28,7 @@ static const int HEIGHT_MODEL = 71;
 
 //########################################################
 //
-//	CLASS : DecoratorBase
+//  CLASS : DecoratorBase
 //
 //########################################################
 
@@ -49,13 +49,14 @@ DecoratorBase::~DecoratorBase()
 void
 DecoratorBase::initialize( IMgaFCO *obj, CComPtr<IMgaMetaFCO>& metaFco )
 {
-  m_mgaFco = obj;		// obj == NULL, if we are in the PartBrowser
+  m_mgaFco = obj;    // obj == NULL, if we are in the PartBrowser
   m_metaFco = metaFco;
 
   CComBSTR bstr;
   COMTHROW( m_metaFco->get_DisplayedName( &bstr ) );
-  COMTHROW (m_metaFco->get_Name(&bstr));
-  if ( bstr.Length() == 0 ) {
+
+  if ( bstr.Length() == 0 )
+  {
     bstr.Empty();
     COMTHROW( m_metaFco->get_Name( &bstr ) );
   }
@@ -63,13 +64,15 @@ DecoratorBase::initialize( IMgaFCO *obj, CComPtr<IMgaMetaFCO>& metaFco )
 
   LoadBitmap();
 
-  if ( m_mgaFco ) {
+  if ( m_mgaFco )
+  {
     CComBSTR bstr;
     COMTHROW( m_mgaFco->get_Name( &bstr ) );
     m_name = bstr;
     COMTHROW( m_mgaFco->get_ObjType( &m_eType ) );
   }
-  else {
+  else
+  {
     CComBSTR bstr;
     COMTHROW( m_metaFco->get_DisplayedName( &bstr ) );
     if ( bstr.Length() == 0 ) {
@@ -155,7 +158,7 @@ DecoratorBase::getPort( CComPtr<IMgaFCO> ) const
 
 //########################################################
 //
-//	CLASS : MemberDecorator
+//  CLASS : MemberDecorator
 //
 //########################################################
 
@@ -283,7 +286,7 @@ MemberDecorator::draw( CDC* pDC )
 
 //########################################################
 //
-//	CLASS : InheritsDecorator
+//  CLASS : InheritsDecorator
 //
 //########################################################
 
@@ -320,7 +323,7 @@ InheritsDecorator::draw( CDC* pDC )
 
 //########################################################
 //
-//	CLASS : PortDecorator
+//  CLASS : PortDecorator
 //
 //########################################################
 
@@ -431,11 +434,11 @@ struct PortLess
 
 //########################################################
 //
-//	CLASS : ComponentDecorator
+//  CLASS : ComponentDecorator
 //
 //########################################################
 
-ComponentDecorator::ComponentDecorator( CComPtr<IMgaMetaPart>	metaPart )
+ComponentDecorator::ComponentDecorator( CComPtr<IMgaMetaPart>  metaPart )
   : DecoratorBase(),
     m_metaPart( metaPart ),
     m_iMaxPortTextLength( MAX_PORT_LENGTH ),
@@ -459,7 +462,7 @@ ComponentDecorator::initialize(IMgaFCO *obj, CComPtr<IMgaMetaFCO>& metaFco)
   DecoratorBase::initialize(obj, metaFco);
   if (!m_mgaFco) return;
 
-  CComPtr<IMgaMetaAspect>	spParentAspect;
+  CComPtr<IMgaMetaAspect>  spParentAspect;
   COMTHROW( m_metaPart->get_ParentAspect( &spParentAspect ) );
 
   CComPtr<IMgaMetaFCO> spMetaFCO;
@@ -717,7 +720,7 @@ ComponentDecorator::loadPorts()
   // If we are in the Part Browser, we don't want to load ports.
   if ( !m_spAspect ) return;
 
-  vector<PortDecorator*>	vecPorts;
+  vector<PortDecorator*>  vecPorts;
   CComQIPtr<IMgaModel> spModel;
 
   if ( m_metaName == PICML_COMPONENT_NAME

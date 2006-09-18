@@ -1,3 +1,9 @@
+Mon Sep 18 14:05:56 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/decorators/IDMLDecorators.cpp:
+
+          Fixed bug that resulted from an inconsitent checkin.
+
 Fri Sep 15 22:08:25 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/interpreters/Target/Domain.mpc:
