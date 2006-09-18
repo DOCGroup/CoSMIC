@@ -13,7 +13,7 @@
   <setenv name="PATH" value="${COSMIC_ROOT}\bin;${CUTS_ROOT}\bin;%PATH%" />
 
   <!-- intialize the Visual Studio.NET environment, if necessary -->
-  <if test="${mpc.type}='vc71' or ${mpc.type}='vc8'">
+  <if test="${mpc.type='vc71' or mpc.type='vc8'}">
     <call target="environment.${mpc.type}" />
   </if>
 

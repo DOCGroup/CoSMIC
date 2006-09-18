@@ -1,3 +1,10 @@
+Mon Sep 18 20:56:36 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * integration/autobuild.build:
+
+          Fixed error in the <if> condition for selecting the vc71
+          or vc8 as the build type.
+
 Mon Sep 18 20:49:33 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * integration/autobuild.build:
