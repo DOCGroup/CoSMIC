@@ -1,3 +1,9 @@
+Mon Sep 18 20:49:33 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * integration/autobuild.build:
+
+          Update the script to actually build everything.
+
 Sat Sep 16 06:12:04 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CIAO/CIAO_Project_Generator.h:
