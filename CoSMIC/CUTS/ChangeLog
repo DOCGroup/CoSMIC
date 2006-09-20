@@ -1,3 +1,9 @@
+Wed Sep 20 04:36:53 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/svcs/dbase/DBase_Service.cpp:
+
+          Changed "transit" metric type to "queue".
+
 Wed Sep 20 04:24:19 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/Sender_Metrics.ascx:

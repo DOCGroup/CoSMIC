@@ -279,8 +279,8 @@ bool CUTS_Database_Service::stop_current_test_i (void)
 //
 // archive_system_metrics
 //
-bool CUTS_Database_Service::archive_system_metrics (
-  CUTS_System_Metric & metrics)
+bool CUTS_Database_Service::
+archive_system_metrics (CUTS_System_Metric & metrics)
 {
   ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex,
                          guard,
@@ -378,7 +378,7 @@ bool CUTS_Database_Service::archive_system_metrics (
           query->parameter (7)->null ();
           metric_count = spm_iter->second->transit_time ().count ();
 
-          ACE_OS::strcpy (metric_type, "transit");
+          ACE_OS::strcpy (metric_type, "queue");
 
           best_time = spm_iter->second->transit_time ().best_time ();
           worse_time = spm_iter->second->transit_time ().worse_time ();
