@@ -13,15 +13,16 @@
   <setenv name="PATH" value="${COSMIC_ROOT}\bin;${CUTS_ROOT}\bin;%PATH%" />
 
   <!-- store the target configuration -->
+  <property name="results.log" value="results.log" />
   <property name="build.configuration" value="debug" />
   <if test="${property::exists ('build.release')}">
     <property name="build.configuration" value="release" />
   </if>
- 
-  <!-- 
-      target(s) for the different kinds of builds 
+
+  <!--
+      target(s) for the different kinds of builds
       -->
-  
+
   <target name="build.all">
     <call target="workspace.generate.all" />
     <call target="devenv.clean" />
@@ -48,10 +49,10 @@
     <call target="devenv.build" />
   </target>
 
-  <!-- 
-      target(s) for generating the different workspaces 
+  <!--
+      target(s) for generating the different workspaces
       -->
-  
+
   <target name="workspace.generate.all">
     <echo message="Generating all workspaces" />
     <exec program="perl"
@@ -82,19 +83,19 @@
     <property name="build.workspace" value="..\..\CoSMIC.sln" />
   </target>
 
-  <!-- 
-      target(s) for executing different build engines 
+  <!--
+      target(s) for executing different build engines
       -->
   <target name="devenv.build">
     <echo message="Building ${build.workspace}..." />
-    <exec program="devenv.exe" 
-          commandline="${build.workspace} /useenv /build ${build.configuration}" />
+    <exec program="devenv.exe"
+          commandline="${build.workspace} /useenv /build ${build.configuration}"
+          output="${results.log}" />
   </target>
 
   <target name="devenv.clean">
     <echo message="Cleaning ${build.workspace}..." />
-    <exec program="devenv.exe" 
+    <exec program="devenv.exe"
           commandline="${build.workspace} /useenv /clean" />
   </target>
 </project>
-    
