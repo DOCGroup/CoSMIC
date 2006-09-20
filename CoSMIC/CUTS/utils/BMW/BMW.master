@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <title>CUTS Benchmark Manager Web Utility</title>
-  <link rel="stylesheet" href="Style.css" type="text/css" />
+  <link rel="stylesheet" href="styles/default.css" type="text/css" />
 
   <script language="javascript" type="text/javascript">
   function hilite (obj)

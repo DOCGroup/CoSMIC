@@ -1,3 +1,15 @@
+Wed Sep 20 20:37:53 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/BMW.master:
+        * utils/BMW/styles:
+        * utils/BMW/styles/default.css:
+
+          Moved Styles.css to styles/default.css
+
+        * utils/BMW/Style.css:
+
+          Removed this file.
+
 Wed Sep 20 20:33:35 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/BMW.master:
