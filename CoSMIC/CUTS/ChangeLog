@@ -1,3 +1,9 @@
+Wed Sep 20 04:24:19 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/Sender_Metrics.ascx:
+
+          Change the header title from "Worse" to "Worst".
+
 Mon Sep 18 21:14:14 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * integration/autobuild.build:

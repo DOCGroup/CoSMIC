@@ -39,6 +39,6 @@
     <asp:boundcolumn datafield="average_time"
       headertext="Average (ms)" itemstyle-width="95" />
     <asp:boundcolumn datafield="worse_time"
-      headertext="Worse (ms)" itemstyle-width="95" />
+      headertext="Worst (ms)" itemstyle-width="95" />
   </columns>
 </asp:datagrid>
