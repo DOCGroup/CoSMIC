@@ -1,3 +1,9 @@
+Wed Sep 20 21:39:50 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * install/BMW.wxs:
+
+          Updated the installer script with the new BMW files.
+
 Wed Sep 20 21:28:55 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/BMW.master:
