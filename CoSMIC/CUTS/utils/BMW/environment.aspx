@@ -1,5 +1,5 @@
-<%@ Page language="c#" codefile="Hosts.aspx.cs" autoeventwireup="true" 
-         inherits="CUTS.Hosts" masterpagefile="~/BMW.master" %>
+<%@ Page language="c#" codefile="environment.aspx.cs" autoeventwireup="true" 
+         inherits="CUTS.Environment" masterpagefile="~/BMW.master" %>
 <%@ Reference control="Node_Details.ascx" %>
 
 <asp:content runat="server"

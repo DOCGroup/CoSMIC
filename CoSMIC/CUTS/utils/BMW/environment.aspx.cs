@@ -32,7 +32,7 @@ namespace CUTS
    */
   //===========================================================================
 
-  public partial class Hosts : System.Web.UI.Page
+  public partial class Environment : System.Web.UI.Page
   {
     private CUTS_Database_Utility cuts_database_ =
       new CUTS_Database_Utility(ConfigurationManager.AppSettings["MySQL"]);

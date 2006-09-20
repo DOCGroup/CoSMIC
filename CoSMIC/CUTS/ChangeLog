@@ -1,3 +1,20 @@
+Wed Sep 20 21:28:55 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/BMW.master:
+
+          Updated the navigation link for Environment to point to
+          the new page below.
+
+        * utils/BMW/environment.aspx:
+        * utils/BMW/environment.aspx.cs:
+
+          This was the old Host.aspx* files.
+
+        * utils/BMW/Hosts.aspx:
+        * utils/BMW/Hosts.aspx.cs:
+
+          Removed these files.
+
 Wed Sep 20 21:23:16 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/BMW.master:
