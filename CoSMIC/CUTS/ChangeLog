@@ -1,3 +1,13 @@
+Wed Sep 20 21:23:16 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/BMW.master:
+
+          Added padding to the last row of the main table.
+
+        * utils/BMW/Hosts.aspx:
+
+          Added usage instructions to the page.
+
 Wed Sep 20 20:37:53 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/BMW.master:

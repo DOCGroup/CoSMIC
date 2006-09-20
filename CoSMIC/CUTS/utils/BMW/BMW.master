@@ -28,7 +28,7 @@
           Benchmark Manager Web Utility</h1></td>
   </tr>
 
-  <tr valign="top">
+  <tr valign="top" style="padding-bottom:10px">
     <td class="menu" style="width:150px;padding-left:5px">
       <!-- begin main menu -->
       <div class="title">Main Menu</div>      

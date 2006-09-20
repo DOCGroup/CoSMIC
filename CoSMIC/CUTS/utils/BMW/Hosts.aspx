@@ -7,10 +7,14 @@
              contentplaceholderid="MainContent">
              
 <!-- form for register host w/ the database -->         
-<h2>Registration</h2>
+<h2>CUTS Host Registration</h2>
+
+<p>To register a new host that is within the testing environment, 
+enter its hostname/IP-address below and click <b>Register</b>.</p>
+
 <table>
 <tr>
-  <td><b>Hostname:</b></td>
+  <td class="title">Hostname: </td>
   <td><asp:textbox runat="server" 
                    id="hostname_" 
                    width="200" 
@@ -41,12 +45,24 @@
 <!-- label for displaying messages related to registration -->
 <p><asp:label runat="server" id="register_message_" /></p>
 
-<h2>Testing Environment</h2>
+<h2>CUTS Testing Environment</h2>
+<p>The table below lists the hostname &amp; IP-address of registered 
+hosts. If a host does not appear in this listing, then use the 
+form above to register it. The port number is used to contact the 
+CUTS node daemon running on that specific host. The CUTS node 
+daemon is responsible for managing (e.g., spawning &amp; killing) 
+node managers running its machine. For more information on the CUTS
+node daemon, please see <code>$CUTS_ROOT/utils/Node_Daemon</code>. 
+The port number, which matches the listening port of the CUTS node daemon, 
+can be changed by clicking the <img src="images/edit.gif" /> icon, 
+making the desired change, and accepting the change by clicking the 
+<img src="images/ok.gif" /> icon. </p>
 
-<!-- datagrid that displays a list of registered hosts -->
-<asp:datagrid runat="server" id="hosts_" cellpadding="4" cellspacing="0"
+<asp:datagrid runat="server" id="hosts_" 
+              cellpadding="4" cellspacing="0"
               autogeneratecolumns="false" 
               width="100%" showheader="true"
+              borderstyle="solid"
               datakeyfield="hostid"
               oneditcommand="handle_oneditcommand"
               onupdatecommand="handle_onupdatecommand"
@@ -54,10 +70,10 @@
               onitemcreated="handle_onitemcreated"
               onitemcommand="handle_onitemcommand">
               
-  <headerstyle cssclass="header alternate-row" />
+  <headerstyle cssclass="header" />
   <footerstyle cssclass="footer" />
   <pagerstyle mode="NumericPages" />
-  <edititemstyle font-bold="true" />
+  <itemstyle horizontalalign="center" />
   
   <columns>
     <asp:buttoncolumn 
@@ -68,7 +84,8 @@
     
     <asp:boundcolumn datafield="hostname" 
                      headertext="Hostname"
-                     readonly="true" />
+                     readonly="true"
+                     itemstyle-horizontalalign="left" />
 
     <asp:boundcolumn datafield="ipaddr" 
                      headertext="IP Address" 
