@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="CUTS autobuild" default="build.all" basedir=".">
+<project name="CUTS autobuild" basedir="." default="build.all">
   <description>CUTS autobuild</description>
 
   <!-- setup the necessary environment variables -->
@@ -12,80 +12,89 @@
   <setenv name="CUTS_ROOT" value="${CUTS_ROOT}" />
   <setenv name="PATH" value="${COSMIC_ROOT}\bin;${CUTS_ROOT}\bin;%PATH%" />
 
-  <!-- intialize the Visual Studio.NET environment, if necessary -->
-  <if test="${mpc.type=='vc71' or mpc.type=='vc8'}">
-    <call target="environment.${mpc.type}" />
-  </if>
-
   <!-- store the target configuration -->
   <property name="build.configuration" value="debug" />
   <if test="${property::exists ('build.release')}">
     <property name="build.configuration" value="release" />
   </if>
-
-  <!-- target(s) for the different kinds of builds -->
+ 
+  <!-- 
+      target(s) for the different kinds of builds 
+      -->
+  
   <target name="build.all">
     <call target="workspace.generate.all" />
-    <call target="build.devenv" />
+    <call target="devenv.clean" />
+    <call target="devenv.build" />
 
     <call target="workspace.generate.cosmic" />
-    <call target="build.devenv" />
+    <call target="devenv.clean" />
+    <call target="devenv.build" />
   </target>
 
   <target name="build.modeling">
     <call target="workspace.generate.modeling" />
-    <call target="build.devenv" />
+    <call target="devenv.clean" />
+    <call target="devenv.build" />
 
     <call target="workspace.generate.cosmic" />
-    <call target="build.devenv" />
+    <call target="devenv.clean" />
+    <call target="devenv.build" />
   </target>
 
   <target name="build.runtime">
     <call target="workspace.generate.runtime" />
-    <call target="build.devenv" />
+    <call target="devenv.clean" />
+    <call target="devenv.build" />
   </target>
 
-  <!-- target(s) for generating the different workspaces -->
+  <!-- 
+      target(s) for generating the different workspaces 
+      -->
+  
   <target name="workspace.generate.all">
+    <echo message="Generating all workspaces" />
     <exec program="perl"
           commandline="-- ${ACE_ROOT}\bin\mwc.pl -type ${mpc.type} -features mfc=1,gme=1,udm=1,boost=1 ..\CUTS.mwc" />
+
     <property name="build.workspace" value="..\CUTS.sln" />
   </target>
 
   <target name="workspace.generate.modeling">
+    <echo message="Generating CUTS modeling workspace" />
     <exec program="perl"
           commandline="-- ${ACE_ROOT}\bin\mwc.pl -type ${mpc.type} -features mfc=1,gme=1,udm=1,boost=1 ..\CUTS_CoSMIC.mwc" />
+
     <property name="build.workspace" value="..\CUTS_CoSMIC.sln" />
   </target>
 
   <target name="workspace.generate.runtime">
+    <echo message="Generating CUTS runtime workspace" />
     <exec program="perl"
           commandline="-- ${ACE_ROOT}\bin\mwc.pl -type ${mpc.type} ..\CUTS.mwc" />
     <property name="build.workspace" value="..\CUTS.sln" />
   </target>
 
   <target name="workspace.generate.cosmic">
+    <echo message="Generating CoSMIC workspace" />
     <exec program="perl"
           commandline="-- ${ACE_ROOT}\bin\mwc.pl -type ${mpc.type} -include ${COSMIC_ROOT} ..\..\CoSMIC.mwc" />
     <property name="build.workspace" value="..\..\CoSMIC.sln" />
   </target>
 
-  <!-- target(s) for initializing different environments -->
-  <target name="environment.vc71">
-    <exec program="cmd"
-          commandline="${environment::get-variable('VS71COMNTOOLS')}\vsvars32.bat" />
+  <!-- 
+      target(s) for executing different build engines 
+      -->
+  <target name="devenv.build">
+    <echo message="Building ${build.workspace}..." />
+    <exec program="devenv.exe" 
+          commandline="${build.workspace} /useenv /build ${build.configuration}" />
   </target>
 
-  <target name="environment.vc8">
-    <exec program="cmd"
-          commandline="${environment::get-variable('VS80COMNTOOLS')}\vsvars32.bat" />
-  </target>
-
-  <!-- target(s) for executing different build engines -->
-  <target name="build.devenv">
-    <echo message="Building ${build.workspace} using ${mpc.type}..." />
-    <exec program="devenv" 
-          commandline="/useenv /build ${build.configuration} ${build.workspace}" />
+  <target name="devenv.clean">
+    <echo message="Cleaning ${build.workspace}..." />
+    <exec program="devenv.exe" 
+          commandline="${build.workspace} /useenv /clean" />
   </target>
 </project>
     

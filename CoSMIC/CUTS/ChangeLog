@@ -1,3 +1,11 @@
+Wed Sep 20 19:03:12 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * integration/autobuild.build:
+        
+          Finally resovled all build issues with the first version of
+          the NANT build script. Now you have to set all necessary
+          environment variables before calling the build script.
+
 Wed Sep 20 04:36:53 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/svcs/dbase/DBase_Service.cpp:
