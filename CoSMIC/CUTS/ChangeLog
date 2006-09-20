@@ -1,3 +1,12 @@
+Wed Sep 20 20:33:35 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/BMW.master:
+        * utils/BMW/Style.css:
+        * utils/BMW/images/menudot.gif:
+
+          Updated the look and feel to more consistent with the
+          style of the website.
+
 Wed Sep 20 19:53:46 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * integration/autobuild.build:
