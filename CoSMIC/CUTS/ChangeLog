@@ -1,7 +1,14 @@
+Wed Sep 20 19:26:21 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/Benchmark_Data_Collector_Ex.mpc:
+        * cuts/CUTS.mpc:
+
+          Fixed build dependency issues.
+
 Wed Sep 20 19:03:12 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * integration/autobuild.build:
-        
+
           Finally resovled all build issues with the first version of
           the NANT build script. Now you have to set all necessary
           environment variables before calling the build script.

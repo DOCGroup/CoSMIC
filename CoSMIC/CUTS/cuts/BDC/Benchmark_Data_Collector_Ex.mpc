@@ -50,7 +50,8 @@ project (Benchmark_Data_Collector_Ex_svnt) : cuts_servant_dnc {
 
 
 project (Benchmark_Data_Collector_Ex_exec) : cuts_component_dnc, cuts_dbasesvc {
-  after     += Benchmark_Data_Collector_Ex_svnt
+  after     += Benchmark_Data_Collector_Ex_svnt \
+               Benchmark_Data_Collector_exec
 
   sharedname = Benchmark_Data_Collector_Ex_exec
 
