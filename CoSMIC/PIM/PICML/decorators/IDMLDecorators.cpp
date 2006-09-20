@@ -54,7 +54,6 @@ DecoratorBase::initialize( IMgaFCO *obj, CComPtr<IMgaMetaFCO>& metaFco )
 
   CComBSTR bstr;
   COMTHROW( m_metaFco->get_DisplayedName( &bstr ) );
-
   if ( bstr.Length() == 0 )
   {
     bstr.Empty();
@@ -170,9 +169,9 @@ MemberDecorator::MemberDecorator()
 void
 MemberDecorator::LoadBitmap()
 {
-  if (m_metaName == PICML_MEMBER_NAME
-      || m_metaName == PICML_ATTRIBUTEMEMBER_NAME
-      || m_metaName == PICML_DATATYPE_NAME) {
+  if (NamespaceEquals (m_metaName, PICML_MEMBER_NAME)
+      || NamespaceEquals (m_metaName, PICML_ATTRIBUTEMEMBER_NAME)
+      || NamespaceEquals (m_metaName, PICML_DATATYPE_NAME)) {
     CComPtr<IMgaFCO> mgaFco = m_mgaFco;
     if ( mgaFco ) {
       CComPtr<IMgaReference> ref;
@@ -185,77 +184,77 @@ MemberDecorator::LoadBitmap()
       mgaFco->get_Meta( &metaFco );
       CComBSTR bstr;
       COMTHROW( metaFco->get_Name( &bstr ) );
-      if ( bstr == PICML_STRING_NAME ) {
+      if ( NamespaceEquals (bstr, PICML_STRING_NAME) ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_STRING );
       }
-      else if ( bstr == PICML_LONGINTEGER_NAME ) {
+      else if ( NamespaceEquals (bstr, PICML_LONGINTEGER_NAME) ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_LONG );
       }
-      else if ( bstr == PICML_BOOLEAN_NAME ) {
+      else if ( NamespaceEquals (bstr, PICML_BOOLEAN_NAME) ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_BOOLEAN );
       }
-      else if ( bstr == PICML_REALNUMBER_NAME ) {
+      else if ( NamespaceEquals (bstr, PICML_REALNUMBER_NAME) ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_REALNUMBER );
       }
-      else if ( bstr == PICML_COLLECTION_NAME ) {
+      else if ( NamespaceEquals (bstr, PICML_COLLECTION_NAME) ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_COLLECTIONREF );
       }
-      else if ( bstr == PICML_ENUM_NAME ) {
+      else if ( NamespaceEquals (bstr, PICML_ENUM_NAME) ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_ENUMREF );
       }
-      else if ( bstr == PICML_AGGREGATE_NAME ) {
+      else if ( NamespaceEquals (bstr, PICML_AGGREGATE_NAME) ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_AGGREGATEREF );
       }
-      else if ( bstr == PICML_ALIAS_NAME ) {
+      else if ( NamespaceEquals (bstr, PICML_ALIAS_NAME) ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_ALIASREF );
       }
-      else if ( bstr == PICML_SHORTINTEGER_NAME ) {
+      else if ( NamespaceEquals (bstr, PICML_SHORTINTEGER_NAME) ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_SHORTINTEGER );
       }
-      else if ( bstr == PICML_OBJECT_NAME ) {
+      else if ( NamespaceEquals (bstr, PICML_OBJECT_NAME) ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_OBJECTREF );
       }
-      else if ( bstr == PICML_VALUEOBJECT_NAME ) {
+      else if ( NamespaceEquals (bstr, PICML_VALUEOBJECT_NAME) ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_VALUEREF );
       }
-      else if ( bstr == PICML_COMPONENT_NAME ) {
+      else if ( NamespaceEquals (bstr, PICML_COMPONENT_NAME) ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_COMPONENTREF );
       }
-      else if ( bstr == PICML_EVENT_NAME ) {
+      else if ( NamespaceEquals (bstr, PICML_EVENT_NAME) ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_EVENTREF );
       }
-      else if ( bstr == PICML_COMPONENTFACTORY_NAME ) {
+      else if ( NamespaceEquals (bstr, PICML_COMPONENTFACTORY_NAME) ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_COMPONENTFACTORYREF );
       }
-      else if ( bstr == PICML_SWITCHEDAGGREGATE_NAME ) {
+      else if ( NamespaceEquals (bstr, PICML_SWITCHEDAGGREGATE_NAME) ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_SWITCHEDAGGREGATEREF );
       }
-      else if ( bstr == PICML_GENERICVALUE_NAME ) {
+      else if ( NamespaceEquals (bstr, PICML_GENERICVALUE_NAME) ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_GENERICVALUE );
       }
-      else if ( bstr == PICML_GENERICOBJECT_NAME ) {
+      else if ( NamespaceEquals (bstr, PICML_GENERICOBJECT_NAME) ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_GENERICOBJECT );
       }
-      else if ( bstr == PICML_GENERICVALUEOBJECT_NAME ) {
+      else if ( NamespaceEquals (bstr, PICML_GENERICVALUEOBJECT_NAME) ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_GENERICVALUEOBJECT );
       }
-      else if ( bstr == PICML_BYTE_NAME ) {
+      else if ( NamespaceEquals (bstr, PICML_BYTE_NAME) ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_BYTE );
       }
-      else if ( bstr == PICML_TYPEENCODING_NAME ) {
+      else if ( NamespaceEquals (bstr, PICML_TYPEENCODING_NAME) ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_TYPEENCODING );
       }
-      else if ( bstr == PICML_TYPEKIND_NAME ) {
+      else if ( NamespaceEquals (bstr, PICML_TYPEKIND_NAME) ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_TYPEKIND );
       }
-      else if ( bstr == PICML_BOXED_NAME ) {
+      else if ( NamespaceEquals (bstr, PICML_BOXED_NAME) ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_BOXEDREF );
       }
       mgaFco = NULL;
     }
     else {
-      if (m_metaName == PICML_MEMBER_NAME
-          || m_metaName == PICML_ATTRIBUTEMEMBER_NAME)
+      if (NamespaceEquals (m_metaName, PICML_MEMBER_NAME)
+          || NamespaceEquals (m_metaName, PICML_ATTRIBUTEMEMBER_NAME))
         m_bitmap.ReadFromResource(IDB_BITMAP_MEMBER);
       else
         m_bitmap.ReadFromResource(IDB_BITMAP_DATATYPE);
@@ -388,31 +387,31 @@ PortDecorator::LoadBitmap()
     mgaFco->get_Meta( &metaFco );
     CComBSTR bstr;
     COMTHROW( metaFco->get_Name( &bstr ) );
-    if ( bstr == PICML_INEVENTPORT_NAME ) {
+    if ( NamespaceEquals (bstr, PICML_INEVENTPORT_NAME) ) {
       m_bitmap.ReadFromResource( m_right
                                  ? IDB_BITMAP_INEVENT_RT
                                  : IDB_BITMAP_INEVENT_LF );
     }
-    else if ( bstr == PICML_OUTEVENTPORT_NAME ) {
+    else if ( NamespaceEquals (bstr, PICML_OUTEVENTPORT_NAME) ) {
       m_bitmap.ReadFromResource( m_right
                                  ? IDB_BITMAP_OUTEVENT_RT
                                  : IDB_BITMAP_OUTEVENT_LF );
     }
-    else if ( bstr == PICML_REQUIREDREQUESTPORT_NAME ) {
+    else if ( NamespaceEquals (bstr, PICML_REQUIREDREQUESTPORT_NAME) ) {
       m_bitmap.ReadFromResource( m_right
                                  ? IDB_BITMAP_RECEPTACLE_RT
                                  : IDB_BITMAP_RECEPTACLE_LF );
     }
-    else if ( bstr == PICML_PROVIDEDREQUESTPORT_NAME ) {
+    else if ( NamespaceEquals (bstr, PICML_PROVIDEDREQUESTPORT_NAME) ) {
       m_bitmap.ReadFromResource( IDB_BITMAP_FACET );
     }
-    else if ( bstr == PICML_READONLYATTRIBUTE_NAME ) {
+    else if ( NamespaceEquals (bstr, PICML_READONLYATTRIBUTE_NAME) ) {
       m_bitmap.ReadFromResource( IDB_BITMAP_READONLYATTRIBUTE );
     }
-    else if ( bstr == PICML_ATTRIBUTE_NAME ) {
+    else if ( NamespaceEquals (bstr, PICML_ATTRIBUTE_NAME) ) {
       m_bitmap.ReadFromResource( IDB_BITMAP_ATTRIBUTE );
     }
-    else if (bstr == PICML_ATTRIBUTEMAPPING_NAME) {
+    else if (NamespaceEquals (bstr, PICML_ATTRIBUTEMAPPING_NAME)) {
       m_bitmap.ReadFromResource (IDB_BITMAP_ATTRIBUTEMAPPING);
     }
   }
@@ -469,11 +468,11 @@ ComponentDecorator::initialize(IMgaFCO *obj, CComPtr<IMgaMetaFCO>& metaFco)
   m_mgaFco->get_Meta( &spMetaFCO );
   CComQIPtr<IMgaMetaModel> spMetaModel;
 
-  if ( m_metaName == PICML_COMPONENT_NAME
-       || m_metaName == PICML_COMPONENTASSEMBLY_NAME )
+  if ( NamespaceEquals (m_metaName, PICML_COMPONENT_NAME)
+       || NamespaceEquals (m_metaName, PICML_COMPONENTASSEMBLY_NAME) )
     spMetaModel = spMetaFCO;
-  else if (m_metaName == PICML_COMPONENTREF_NAME
-           || m_metaName == PICML_COMPONENTASMREF_NAME)
+  else if (NamespaceEquals (m_metaName, PICML_COMPONENTREF_NAME)
+           || NamespaceEquals (m_metaName, PICML_COMPONENTASMREF_NAME))
     {
       CComQIPtr<IMgaReference> spRef = m_mgaFco;
       CComPtr<IMgaFCO> spFCO = NULL;
@@ -625,13 +624,13 @@ ComponentDecorator::setActive( bool bActive )
 void
 ComponentDecorator::LoadBitmap()
 {
-  if ( m_metaName == PICML_COMPONENT_NAME)
+  if ( NamespaceEquals (m_metaName, PICML_COMPONENT_NAME))
     m_bitmap.ReadFromResource( IDB_BITMAP_COMPONENT );
-  else if (m_metaName == PICML_COMPONENTASSEMBLY_NAME)
+  else if (NamespaceEquals (m_metaName, PICML_COMPONENTASSEMBLY_NAME))
     m_bitmap.ReadFromResource( IDB_BITMAP_COMPONENTASSEMBLY);
-  else if (m_metaName == PICML_COMPONENTREF_NAME)
+  else if (NamespaceEquals (m_metaName, PICML_COMPONENTREF_NAME))
     m_bitmap.ReadFromResource( IDB_BITMAP_COMPONENTREF);
-  else if (m_metaName == PICML_COMPONENTASMREF_NAME)
+  else if (NamespaceEquals (m_metaName, PICML_COMPONENTASMREF_NAME))
     m_bitmap.ReadFromResource( IDB_BITMAP_COMPONENTASSEMBLYREF);
 }
 
@@ -723,11 +722,11 @@ ComponentDecorator::loadPorts()
   vector<PortDecorator*>  vecPorts;
   CComQIPtr<IMgaModel> spModel;
 
-  if ( m_metaName == PICML_COMPONENT_NAME
-       || m_metaName == PICML_COMPONENTASSEMBLY_NAME )
+  if ( NamespaceEquals (m_metaName, PICML_COMPONENT_NAME)
+       || NamespaceEquals (m_metaName, PICML_COMPONENTASSEMBLY_NAME) )
     spModel = m_mgaFco;
-  else if (m_metaName == PICML_COMPONENTREF_NAME
-           || m_metaName == PICML_COMPONENTASMREF_NAME)
+  else if (NamespaceEquals (m_metaName, PICML_COMPONENTREF_NAME)
+           || NamespaceEquals (m_metaName, PICML_COMPONENTASMREF_NAME))
     {
       CComQIPtr<IMgaReference> spRef = m_mgaFco;
       CComPtr<IMgaFCO> tmp = NULL;

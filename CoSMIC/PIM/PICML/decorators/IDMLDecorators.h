@@ -9,49 +9,63 @@
 #include "DecoratorLib.h"
 #include "MaskedBitmap.h"
 #include <vector>
+#include <string>
 
 using namespace std;
 
-#define PICML_AGGREGATE_NAME           "Aggregate"
-#define PICML_ALIAS_NAME               "Alias"
-#define PICML_ATTRIBUTE_NAME           "Attribute"
-#define PICML_ATTRIBUTEMEMBER_NAME     "AttributeMember"
-#define PICML_BOOLEAN_NAME             "Boolean"
-#define PICML_BOXED_NAME               "Boxed"
-#define PICML_BYTE_NAME                "Byte"
-#define PICML_COLLECTION_NAME          "Collection"
-#define PICML_COMPONENT_NAME           "Component"
-#define PICML_COMPONENTREF_NAME        "ComponentRef"
-#define PICML_COMPONENTFACTORY_NAME    "ComponentFactory"
-#define PICML_ENUM_NAME                "Enum"
-#define PICML_EVENT_NAME               "Event"
-#define PICML_GENERICOBJECT_NAME       "GenericObject"
-#define PICML_GENERICVALUE_NAME        "GenericValue"
-#define PICML_GENERICVALUEOBJECT_NAME  "GenericValueObject"
-#define PICML_INEVENTPORT_NAME         "InEventPort"
-#define PICML_INHERITS_NAME            "Inherits"
-#define PICML_LONGINTEGER_NAME         "LongInteger"
-#define PICML_MEMBER_NAME              "Member"
-#define PICML_OBJECT_NAME              "Object"
-#define PICML_OUTEVENTPORT_NAME        "OutEventPort"
-#define PICML_PROVIDEDREQUESTPORT_NAME "ProvidedRequestPort"
-#define PICML_READONLYATTRIBUTE_NAME   "ReadonlyAttribute"
-#define PICML_REALNUMBER_NAME          "RealNumber"
-#define PICML_REQUIREDREQUESTPORT_NAME "RequiredRequestPort"
-#define PICML_SHORTINTEGER_NAME        "ShortInteger"
-#define PICML_STRING_NAME              "String"
-#define PICML_SWITCHEDAGGREGATE_NAME   "SwitchedAggregate"
-#define PICML_TYPEENCODING_NAME        "TypeEncoding"
-#define PICML_TYPEKIND_NAME            "TypeKind"
-#define PICML_VALUEOBJECT_NAME         "ValueObject"
-#define PICML_COMPONENTASSEMBLY_NAME   "ComponentAssembly"
-#define PICML_COMPONENTASMREF_NAME     "ComponentAssemblyReference"
-#define PICML_DATATYPE_NAME            "DataType"
-#define PICML_ATTRIBUTEMAPPING_NAME    "AttributeMapping"
-
-static const char* PREF_TYPESHOWN				= "isTypeShown";
+static const char* PICML_AGGREGATE_NAME =         "Aggregate";
+static const char* PICML_ALIAS_NAME =             "Alias";
+static const char* PICML_ATTRIBUTE_NAME =         "Attribute";
+static const char* PICML_ATTRIBUTEMEMBER_NAME =   "AttributeMember";
+static const char* PICML_BOOLEAN_NAME =           "Boolean";
+static const char* PICML_BOXED_NAME =             "Boxed";
+static const char* PICML_BYTE_NAME =              "Byte";
+static const char* PICML_COLLECTION_NAME =        "Collection";
+static const char* PICML_COMPONENT_NAME =         "Component";
+static const char* PICML_COMPONENTREF_NAME =      "ComponentRef";
+static const char* PICML_COMPONENTFACTORY_NAME =  "ComponentFactory";
+static const char* PICML_ENUM_NAME =              "Enum";
+static const char* PICML_EVENT_NAME =             "Event";
+static const char* PICML_GENERICOBJECT_NAME =     "GenericObject";
+static const char* PICML_GENERICVALUE_NAME =      "GenericValue";
+static const char* PICML_GENERICVALUEOBJECT_NAME = "GenericValueObject";
+static const char* PICML_INEVENTPORT_NAME =       "InEventPort";
+static const char* PICML_INHERITS_NAME =          "Inherits";
+static const char* PICML_LONGINTEGER_NAME =       "LongInteger";
+static const char* PICML_MEMBER_NAME =            "Member";
+static const char* PICML_OBJECT_NAME =            "Object";
+static const char* PICML_OUTEVENTPORT_NAME =      "OutEventPort";
+static const char* PICML_PROVIDEDREQUESTPORT_NAME = "ProvidedRequestPort";
+static const char* PICML_READONLYATTRIBUTE_NAME = "ReadonlyAttribute";
+static const char* PICML_REALNUMBER_NAME =        "RealNumber";
+static const char* PICML_REQUIREDREQUESTPORT_NAME = "RequiredRequestPort";
+static const char* PICML_SHORTINTEGER_NAME =      "ShortInteger";
+static const char* PICML_STRING_NAME =            "String";
+static const char* PICML_SWITCHEDAGGREGATE_NAME = "SwitchedAggregate";
+static const char* PICML_TYPEENCODING_NAME =      "TypeEncoding";
+static const char* PICML_TYPEKIND_NAME =          "TypeKind";
+static const char* PICML_VALUEOBJECT_NAME =       "ValueObject";
+static const char* PICML_COMPONENTASSEMBLY_NAME = "ComponentAssembly";
+static const char* PICML_DATATYPE_NAME =          "DataType";
+static const char* PICML_ATTRIBUTEMAPPING_NAME =  "AttributeMapping";
+static const char* PICML_COMPONENTASMREF_NAME =   "ComponentAssemblyReference";
+static const char* PREF_TYPESHOWN = "isTypeShown";
 
 class PortDecorator;
+
+static bool NamespaceEquals (const CString& target, const char* name)
+{
+  CString nsname ("PICML::");
+  nsname += name;
+  return (target == name || target == nsname);
+}
+
+static bool NamespaceEquals (const CComBSTR& target, const char* name)
+{
+    CComBSTR nsname ("PICML::");
+    nsname += name;
+    return (target == name || target == nsname);
+}
 
 //########################################################
 //
@@ -85,17 +99,17 @@ protected:
 
 protected:
   CRect                 m_rect;
-  CComPtr<IMgaFCO>	    m_mgaFco;
+  CComPtr<IMgaFCO>	m_mgaFco;
   CComPtr<IMgaMetaFCO>	m_metaFco;
-  CString		        m_name;
+  CString		m_name;
   CString               m_metaName;
-  objtype_enum			m_eType;
+  objtype_enum		m_eType;
   CMaskedBitmap         m_bitmap;
-  long					m_lBorderWidth;
-  bool					m_bActive;
+  long			m_lBorderWidth;
+  bool			m_bActive;
 
-  COLORREF	            m_color;
-  COLORREF	            m_nameColor;
+  COLORREF	        m_color;
+  COLORREF	        m_nameColor;
 };
 
 //########################################################
@@ -161,12 +175,12 @@ class ComponentDecorator : public DecoratorBase
 {
 private:
   CComPtr<IMgaMetaPart>	    m_metaPart;
-  vector<PortDecorator*>	m_vecLeftPorts;
-  vector<PortDecorator*>	m_vecRightPorts;
-  CComPtr<IMgaMetaAspect>	m_spAspect;
-  long						m_iMaxPortTextLength;
-  CString		            m_strTypeName;
-  bool						m_bTypeNameEnabled;
+  vector<PortDecorator*>    m_vecLeftPorts;
+  vector<PortDecorator*>    m_vecRightPorts;
+  CComPtr<IMgaMetaAspect>   m_spAspect;
+  long			    m_iMaxPortTextLength;
+  CString		    m_strTypeName;
+  bool                      m_bTypeNameEnabled;
   int                       m_iTypeInfo;
 public:
   ComponentDecorator( CComPtr<IMgaMetaPart>	metaPart );

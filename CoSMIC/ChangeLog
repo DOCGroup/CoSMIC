@@ -1,3 +1,11 @@
+Wed Sep 20 01:46:24 UTC 2006  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/decorators/Decorator.cpp:
+        * PIM/PICML/decorators/IDMLDecorators.h:
+        * PIM/PICML/decorators/IDMLDecorators.cpp:  Fixed the decorator
+          problems associated with using a single decorator for multiple
+          paradigms.  We no longer rely on any specific version of GME.
+
 Mon Sep 18 14:05:56 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/decorators/IDMLDecorators.cpp:
