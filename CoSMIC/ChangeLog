@@ -1,3 +1,27 @@
+Thu Sep 21 02:43:52 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * demos/STI/BDCWebService.NET:
+        * demos/STI/BDCWebService.NET/AssemblyInfo.cpp:
+        * demos/STI/BDCWebService.NET/BDCWebService.sln:
+        * demos/STI/BDCWebService.NET/BDCWebService.vcproj:
+        * demos/STI/BDCWebService.NET/Benchmark_Data_Collector.h:
+        * demos/STI/BDCWebService.NET/Benchmark_Data_Collector.cpp:
+        * demos/STI/BDCWebService.NET/CORBA.wsdl:
+        * demos/STI/BDCWebService.NET/CORBA.xsd:
+        * demos/STI/BDCWebService.NET/SLICE.asmx:
+        * demos/STI/BDCWebService.NET/SLICE.wsdl:
+        * demos/STI/BDCWebService.NET/Web.config:
+
+          Implementation of Benchmark_Data_Collector WebService in .NET.
+          This is a hand-written one that works.
+
+        * demos/STI/BDC_WSClient/BDCClient.csproj:
+        * demos/STI/BDC_WSClient/BDC_Client.cs:
+        * demos/STI/BDC_WSClient/Benchmark_Data_Collector.cs:
+        * demos/STI/BDC_WSClient/CORBA.wsdl:
+
+          Minor updates to make BDCWebService.NET work.
+
 Wed Sep 20 01:46:24 UTC 2006  Krishnakumar B  <kitty@spam.invalid.domain>
 
         * PIM/PICML/decorators/Decorator.cpp:

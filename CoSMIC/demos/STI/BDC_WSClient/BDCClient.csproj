@@ -35,7 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BDC_Client.cs" />
-    <Compile Include="CUTSBenchmark_Data_Collector.cs" />
+    <Compile Include="Benchmark_Data_Collector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

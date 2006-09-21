@@ -64,8 +64,9 @@ namespace CUTS
                                 eventInfo.max_events);
                             Thread.Sleep(5000);
                         }
-                        catch (System.Net.WebException)
+                        catch (System.Net.WebException ex)
                         {
+                            Console.WriteLine(ex.Message);
                             CUTSTime_Info time = new CUTSTime_Info();
                             CUTSEvent_Time_Info eventInfo = new CUTSEvent_Time_Info();
                             Console.Error.WriteLine("ID {0}: Execution time (min/avg/max): ({1} ms/{2} ms/{3} ms)\t No. of Events sampled: ({4})",
