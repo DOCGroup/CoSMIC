@@ -26,14 +26,14 @@ namespace CUTS
 {
   //===========================================================================
   /**
-   * @class Component_Instances
+   * @class Components
    * 
    * Code-behind implemetation for the Component_Instances.aspx 
    * page.
    */
   //===========================================================================
 
-  public partial class Component_Instances : System.Web.UI.Page
+  public partial class Components : System.Web.UI.Page
   {
     private CUTS_Database_Utility cutsdb_ =
       new CUTS_Database_Utility(ConfigurationManager.AppSettings["MySQL"]);

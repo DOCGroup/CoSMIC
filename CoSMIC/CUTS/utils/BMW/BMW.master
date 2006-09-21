@@ -46,7 +46,7 @@
       <div class="menu_item" onmouseover="hilite (this);" onmouseout="unhilite (this);">
         <asp:image runat="server" id="menudot2" imageurl="~/images/menudot.gif" imagealign="middle" />
         <asp:hyperlink runat="server" id="ci_menu_item_"
-                       navigateurl="~/Component_Instances.aspx"
+                       navigateurl="~/components.aspx"
                        text="Components" /></div>                       
       <div class="menu_item" onmouseover="hilite(this);" onmouseout="unhilite(this);">
         <asp:image runat="server" id="menudot3" imageurl="~/images/menudot.gif" imagealign="middle" />

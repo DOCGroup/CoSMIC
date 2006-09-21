@@ -1,3 +1,18 @@
+Thu Sep 21 02:54:49 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/BMW.master:
+        * utils/BMW/components.aspx:
+        * utils/BMW/components.aspx.cs:
+        * utils/BMW/components.aspx.resx:
+
+          New location of the files removed below.
+
+        * utils/BMW/Component_Instances.aspx:
+        * utils/BMW/Component_Instances.aspx.cs:
+        * utils/BMW/Component_Instances.aspx.resx:
+
+          Removed these files.
+
 Thu Sep 21 02:45:05 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/default.aspx:

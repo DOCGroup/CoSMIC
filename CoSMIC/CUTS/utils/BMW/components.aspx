@@ -1,5 +1,5 @@
-<%@ Page language="c#" codefile="Component_Instances.aspx.cs" 
-         autoeventwireup="true" inherits="CUTS.Component_Instances" 
+<%@ Page language="c#" codefile="components.aspx.cs" 
+         autoeventwireup="true" inherits="CUTS.Components" 
          masterpagefile="~/BMW.master" %>
 
 <asp:content runat="server" 
