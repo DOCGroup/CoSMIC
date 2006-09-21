@@ -52,8 +52,8 @@
         <File Id="BMW.master" Name="BMW.MAS" LongName="BMW.master" Source="$(var.BMW_ROOT)\BMW.master"
           DiskId="1" />
 
-        <File Id="Component_Instances.aspx" Name="INSTANCE.ASP" LongName="Component_Instances.aspx"
-              Source="$(var.BMW_ROOT)\Component_Instances.aspx" DiskId="1" />
+        <File Id="components.aspx" Name="COMPONEN.ASP" LongName="components.aspx"
+              Source="$(var.BMW_ROOT)\components.aspx" DiskId="1" />
 
         <File Id="Critical_Path.aspx" Name="PATH.ASP" LongName="Critical_Path.aspx"
               Source="$(var.BMW_ROOT)\Critical_Path.aspx" DiskId="1" />
@@ -132,8 +132,8 @@
           <File Id="App_Web_component_metrics.ascx.cdcab7d2.dll" Name="COMTIME.DLL" LongName="App_Web_component_metrics.ascx.cdcab7d2.dll"
                 Source="$(var.BMW_ROOT)\bin\App_Web_component_metrics.ascx.cdcab7d2.dll" DiskId="1" />
 
-          <File Id="App_Web_component_instances.aspx.cdcab7d2.dll" Name="COMINST.DLL" LongName="App_Web_component_instances.aspx.cdcab7d2.dll"
-                Source="$(var.BMW_ROOT)\bin\App_Web_component_instances.aspx.cdcab7d2.dll" DiskId="1" />
+          <File Id="App_Web_components.aspx.cdcab7d2.dll" Name="COMPONEN.DLL" LongName="App_Web_components.aspx.cdcab7d2.dll"
+                Source="$(var.BMW_ROOT)\bin\App_Web_components.aspx.cdcab7d2.dll" DiskId="1" />
 
           <File Id="App_Web_bmw.master.cdcab7d2.dll" Name="MASTER.DLL" LongName="App_Web_bmw.master.cdcab7d2.dll"
                 Source="$(var.BMW_ROOT)\bin\App_Web_bmw.master.cdcab7d2.dll" DiskId="1" />
