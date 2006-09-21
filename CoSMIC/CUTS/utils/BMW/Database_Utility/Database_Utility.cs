@@ -501,7 +501,45 @@ public class CUTS_Database_Utility
       "SELECT * FROM component_instances ORDER BY component_id";
 
     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-    adapter.Fill(ds, "instances");
+    adapter.Fill(ds, "component_instances");
+  }
+
+  /**
+   * Get all the component instances from the database. It stores
+   * the data in the table 'instances'.
+   * 
+   * @param[out]        ds        Target dataset for query.
+   * @param[in]         typeid    Typeid of the instances.
+   */
+  public void get_component_instances(ref DataSet ds, 
+                                      System.Int32 typeid)
+  {
+    StringBuilder builder = new StringBuilder();
+    builder.Append ("SELECT * FROM component_instances WHERE typeid = ?typeid ");
+    builder.Append ("ORDER BY component_name");
+
+    MySqlCommand command = this.conn_.CreateCommand();
+    command.CommandText = builder.ToString ();
+    command.Parameters.Add("?typeid", typeid);
+
+    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+    adapter.Fill(ds, "component_instances");
+  }
+
+  /**
+   * Get all the component instances from the database. It stores
+   * the data in the table 'instances'.
+   * 
+   * @param[out]        ds        Target dataset for query.
+   */
+  public void get_component_types (ref DataSet ds)
+  {
+    MySqlCommand command = this.conn_.CreateCommand();
+    command.CommandText =
+      "SELECT * FROM component_types ORDER BY typename";
+
+    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+    adapter.Fill(ds, "component_types");
   }
 
   /**

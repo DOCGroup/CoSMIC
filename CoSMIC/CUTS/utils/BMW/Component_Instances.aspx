@@ -6,31 +6,38 @@
              id="main_content" 
              contentplaceholderid="MainContent">
              
-<h2>Registered Component Types &amp; Instances</h2>
+<h2>Registered Component Types / Instances</h2>
 <asp:label id="message_" 
            runat="server"
            forecolor="red" />
-             
-<asp:datagrid runat="server" id="component_instances_" 
-              autogeneratecolumns="false" borderstyle="solid"
-              cellpadding="4" cellspacing="0" allowpaging="true" 
-              pagesize="25" width="100%" showheader="true"
+
+<asp:datagrid runat="server" 
+              id="components_" 
+              autogeneratecolumns="false" 
+              borderstyle="solid"
+              cellpadding="4" 
+              cellspacing="0" 
+              allowpaging="true" 
+              pagesize="25" 
+              width="100%" 
+              showheader="false"
               onitemcreated="handle_onitemcreated"
-              onpageindexchanged="handle_onpageindexchanged" >
+              onpageindexchanged="handle_onpageindexchanged" 
+              onitemcommand="handle_onitemcommand"
+              datakeyfield="typeid">
               
-  <headerstyle cssclass="header" />
   <footerstyle cssclass="footer"/>
-  <alternatingitemstyle cssclass="alternate-row" />
   <pagerstyle mode="NumericPages" />
 
   <columns>
-    <asp:boundcolumn datafield="component_id" 
-                     headertext="ID" 
-                     itemstyle-horizontalalign="center" 
-                     itemstyle-width="50" />
-                     
-    <asp:boundcolumn datafield="component_name" 
-                     headertext="Component Instance Name" />
+    <asp:buttoncolumn itemstyle-width="10" 
+                      itemstyle-horizontalalign="center" 
+                      buttontype="LinkButton"
+                      text='<img src="images/plus.gif" alt="show" border="0" />'
+                      commandname="instances" />
+    
+    <asp:boundcolumn datafield="typename" 
+                     headertext="Registered Component Types" />
   </columns>
 </asp:datagrid>
 </asp:content>

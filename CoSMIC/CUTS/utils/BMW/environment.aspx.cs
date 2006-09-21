@@ -94,7 +94,7 @@ namespace CUTS
             (CUTS.Node_Details_Control)this.LoadControl("Node_Details.ascx");
           cell.Controls.Add(details);
 
-          int index = (2 * e.Item.ItemIndex) + 2;
+          int index = (2 * e.Item.ItemIndex) + 3;
           DataGridItem item = new DataGridItem(index, 0, ListItemType.Item);
           item.Visible = false;
 
@@ -127,6 +127,34 @@ namespace CUTS
               this.prev_item_ = null;
             }
           }
+          break;
+
+        case ListItemType.Pager:
+          /// Create the cool pager for the control. We need to move
+          /// this to a global location so it can be used throughout
+          /// the entire website.
+          TableCell pager = (TableCell)e.Item.Controls[0];
+          int count = pager.Controls.Count;
+
+          for (int i = 0; i < count; i += 2)
+          {
+            Object obj = pager.Controls[i];
+
+            if (obj is LinkButton)
+            {
+              LinkButton link = (LinkButton)obj;
+              link.Font.Underline = true;
+              link.ForeColor = Color.Blue;
+            }
+            else
+            {
+              Label label = (Label)obj;
+              label.Text = "[ " + label.Text + " ]";
+            }
+          }
+
+          /// Add the page title to the beginning of the text.
+          pager.Controls.AddAt(0, new LiteralControl("Page(s): "));
           break;
       }
     }
@@ -173,7 +201,7 @@ namespace CUTS
           LinkButton linkbtn = (LinkButton)cell.Controls[0];
 
           // Get the "details" row for the selected item.
-          int index = (2 * e.Item.ItemIndex) + 2;
+          int index = (2 * e.Item.ItemIndex) + 3;
           Table table = (Table)this.hosts_.Controls[0];
           TableRow row = table.Rows[index];
 
@@ -249,9 +277,10 @@ namespace CUTS
                             CommandEventArgs e)
     {
       Table table = (Table)this.hosts_.Controls[0];
+      int maxvalue = table.Rows.Count - 2;
 
-      for (int i = 2; i < table.Rows.Count; i += 2)
-        this.show_details_i(table.Rows[i - 1], table.Rows[i], true);
+      for (int i = 2; i < maxvalue; i += 2)
+        this.show_details_i(table.Rows[i], table.Rows[i + 1], true);
     }
 
     /**
@@ -264,9 +293,10 @@ namespace CUTS
                                 CommandEventArgs e)
     {
       Table table = (Table)this.hosts_.Controls[0];
+      int maxvalue = table.Rows.Count - 2;
 
-      for (int i = 2; i < table.Rows.Count; i += 2)
-        this.show_details_i(table.Rows[i - 1], table.Rows[i], false);
+      for (int i = 2; i < maxvalue; i += 2)
+        this.show_details_i(table.Rows[i], table.Rows[i + 1], false);
     }
 
     /**

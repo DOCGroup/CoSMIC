@@ -1,3 +1,21 @@
+Thu Sep 21 01:37:02 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/Component_Instances.aspx:
+        * utils/BMW/Component_Instances.aspx.cs:
+
+          This page now display the component types and instances
+          in a hierarchial format by type.
+
+        * utils/BMW/Database_Utility/Database_Utility.cs:
+
+          Added a method to get the component instances of a given
+          type.
+
+        * utils/BMW/environment.aspx:
+        * utils/BMW/environment.aspx.cs:
+
+          Added a pager to the bottom of the grid.
+
 Wed Sep 20 21:39:50 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * install/BMW.wxs:

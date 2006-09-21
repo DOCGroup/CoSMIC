@@ -64,6 +64,8 @@ making the desired change, and accepting the change by clicking the
               width="100%" showheader="true"
               borderstyle="solid"
               datakeyfield="hostid"
+              allowpaging="true"
+              pagesize="25"
               oneditcommand="handle_oneditcommand"
               onupdatecommand="handle_onupdatecommand"
               oncancelcommand="handle_oncancelcommand"
