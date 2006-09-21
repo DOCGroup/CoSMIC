@@ -214,7 +214,7 @@ namespace CUTS
      */
     private void toggle_details(TableRow header, TableRow row, System.Int32 typeid)
     {
-      this.show_details_i(header, row, typeid);
+      this.show_details_i(header, row, !row.Visible, typeid);
     }
 
     /**
@@ -226,11 +226,12 @@ namespace CUTS
      */
     private void show_details_i(TableRow header, 
                                 TableRow row, 
+                                bool show,
                                 System.Int32 typeid)
     {
       LinkButton linkbtn = (LinkButton)header.Cells[0].Controls[0];
 
-      if (!row.Visible)
+      if (show)
       {
         // Update the image.
         linkbtn.Text = "<img src=\"images/minus.gif\" alt=\"hide\" border=\"0\" />";
@@ -253,7 +254,49 @@ namespace CUTS
       row.Visible = !row.Visible;
     }
 
-    #region Web Form Designer generated code
+    /**
+     * Shows all the details of the visible nodes.
+     * 
+     * @param[in]         sender          Sender of the command.
+     * @param[in]         e               Command arguments.
+     */
+    protected void show_all(object sender,
+                            CommandEventArgs e)
+    {
+      Table table = (Table)this.components_.Controls[0];
+      int maxvalue = table.Rows.Count - 2;
+
+      for (int i = 2; i < maxvalue; i += 2)
+      {
+        System.Int32 typeid = 
+          (System.Int32)this.components_.DataKeys[(i / 2) - 1];
+
+        this.show_details_i(table.Rows[i], table.Rows[i + 1], true, typeid);
+      }
+    }
+
+    /**
+     * Shows all the details of the visible nodes.
+     * 
+     * @param[in]         sender          Sender of the command.
+     * @param[in]         e               Command arguments.
+     */
+    protected void collapse_all(object sender,
+                                CommandEventArgs e)
+    {
+      Table table = (Table)this.components_.Controls[0];
+      int maxvalue = table.Rows.Count - 2;
+
+      for (int i = 2; i < maxvalue; i += 2)
+      {
+        System.Int32 typeid =
+          (System.Int32)this.components_.DataKeys[(i / 2) - 1];
+
+        this.show_details_i(table.Rows[i], table.Rows[i + 1], false, typeid);
+      }
+    }
+
+  #region Web Form Designer generated code
     override protected void OnInit(EventArgs e)
     {
       //

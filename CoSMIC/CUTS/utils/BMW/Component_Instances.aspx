@@ -40,4 +40,29 @@
                      headertext="Registered Component Types" />
   </columns>
 </asp:datagrid>
+
+<!-- 
+  -- link buttons at the bottom of page for showing/collapsing all the
+  -- node details
+  -->
+<p>
+<asp:linkbutton id="show_all_"
+                runat="server" 
+                text="Show All" 
+                causesvalidation="false"
+                font-underline="true"
+                commandname="show-all"
+                forecolor="blue"
+                oncommand="show_all" />
+<asp:linkbutton runat="server" 
+                id="collapse_all_"
+                text="Collapse All" 
+                causesvalidation="false"
+                font-underline="true"
+                commandname="collapse-all"
+                forecolor="blue"
+                oncommand="collapse_all" />
+</p>
+
+
 </asp:content>
