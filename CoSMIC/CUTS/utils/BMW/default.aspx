@@ -8,7 +8,7 @@
   id="tests_" runat="server" autogeneratecolumns="false" 
   datakeyfield="test_number" 
   borderstyle="solid" cellpadding="2" cellspacing="0"
-  allowpaging="true" pagesize="25" width="100%" 
+  allowpaging="true" pagesize="4" width="100%" 
   showheader="true" showfooter="false" 
   enableviewstate="true"
   onpageindexchanged="handle_onpageindexchanged"

@@ -70,7 +70,8 @@ making the desired change, and accepting the change by clicking the
               onupdatecommand="handle_onupdatecommand"
               oncancelcommand="handle_oncancelcommand"
               onitemcreated="handle_onitemcreated"
-              onitemcommand="handle_onitemcommand">
+              onitemcommand="handle_onitemcommand"
+              onpageindexchanged="handle_onpageindexchanged">
               
   <headerstyle cssclass="header" />
   <footerstyle cssclass="footer" />

@@ -300,6 +300,19 @@ namespace CUTS
     }
 
     /**
+     * Callback method for changing the index of a page.
+     * 
+     * @param[in]       sender        Sender of the event.
+     * @param[in]       e             Arguments for the event.
+     */
+    protected void handle_onpageindexchanged(object sender,
+                                             DataGridPageChangedEventArgs e)
+    {
+      this.hosts_.CurrentPageIndex = e.NewPageIndex;
+      this.load_hosts_from_database();
+    }
+
+    /**
      * Verify the edit mode of the page.
      * 
      * @param[in]       mode        Mode in question.
