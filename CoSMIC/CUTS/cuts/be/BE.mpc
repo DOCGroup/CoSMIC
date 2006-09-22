@@ -15,12 +15,19 @@ project (CUTS_BE) : picml_udm, boost_base, cosmic_lib {
     Dependency_Generator.cpp
     Dependency_Graph.cpp
     CoWorkEr_Generator.cpp
+    BE_Execution_Visitor.cpp
     BE_File_Generator.cpp
     BE_File_Generator_Manager.cpp
     BE_Workspace_Generator.cpp
+    BE_Method_Visitor.cpp
+    BE_Variable_Visitor.cpp
     Null_File_Generator.cpp
     Preprocess_Data.cpp
     Project_Generator.cpp
+  }
+
+  Header_Files {
+    BE_File_Generator_Set.h
   }
 
   Template_Files {

@@ -1,3 +1,28 @@
+Fri Sep 22 00:54:02 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE.mpc:
+        * cuts/be/BE_Execution_Visitor.h:
+        * cuts/be/BE_Execution_Visitor.cpp:
+        * cuts/be/BE_File_Generator_Manager.h:
+        * cuts/be/BE_File_Generator_Manager.cpp:
+        * cuts/be/BE_File_Generator_Set.h:
+        * cuts/be/BE_Method_Visitor.h:
+        * cuts/be/BE_Method_Visitor.cpp:
+        * cuts/be/BE_Variable_Visitor.h:
+        * cuts/be/BE_Variable_Visitor.cpp:
+
+          Refactored the backend generator into the following visitors
+          objects:
+            - Method_Visitor : responsible for generating the correct
+              methods, then delegating control to the Execution_Visitor.
+            - Execution_Visitor : responsible for parsing execution
+              paths and generating the implemetation actions.
+            - Variable_Visitor : responsible for generating all
+              the variables of a component.
+
+          Hopefully this will make adding more features to the language
+          and generators easier.
+
 Thu Sep 21 04:05:22 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * install/BMW.wxs:

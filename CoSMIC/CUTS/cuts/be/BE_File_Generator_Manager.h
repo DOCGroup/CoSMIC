@@ -13,11 +13,9 @@
 #ifndef _CUTS_BE_FILE_GENERATOR_MANAGER_H_
 #define _CUTS_BE_FILE_GENERATOR_MANAGER_H_
 
-#include "Preprocess_Data.h"
 #include <stack>
-
-// Forward decl.
-class CUTS_BE_File_Generator;
+#include "Preprocess_Data.h"
+#include "BE_File_Generator_Set.h"
 
 //=============================================================================
 /**
@@ -56,6 +54,11 @@ public:
   /// Remove all the generators from the manager.
   void remove_all (void);
 
+  /**
+   * Get the preprocess data.
+   *
+   * @return    Reference to the preprocess data.
+   */
   const CUTS_BE_Preprocess_Data & preprocess_data (void);
 
 protected:
@@ -67,51 +70,6 @@ protected:
 
   virtual void Visit_Component (
     const PICML::Component & component);
-
-  virtual void Visit_InEventPort (
-    const PICML::InEventPort & sink);
-
-  virtual void Visit_ProvidedRequestPort (
-    const PICML::ProvidedRequestPort & facet);
-
-  virtual void Visit_Input (
-    const PICML::Input &);
-
-  virtual void Visit_InputAction (
-    const PICML::InputAction & action);
-
-  virtual void Visit_PeriodicAction (
-    const PICML::PeriodicAction &);
-
-  virtual void Visit_Action (
-    const PICML::Action & action);
-
-  virtual void Visit_OutputAction (
-    const PICML::OutputAction & action);
-
-  virtual void Visit_CompositeAction (
-    const PICML::CompositeAction & action);
-
-  virtual void Visit_Effect (
-    const PICML::Effect & effect);
-
-  virtual void Visit_State (
-    const PICML::State & state);
-
-  virtual void Visit_Property (
-    const PICML::Property & property);
-
-  virtual void Visit_Transition (
-    const PICML::Transition & transition);
-
-  virtual void Visit_Variable (
-    const PICML::Variable & variable);
-
-  virtual void Visit_WorkerType (
-    const PICML::WorkerType & worker_type);
-
-  virtual void Visit_Environment (
-    const PICML::Environment & env);
 
 private:
   /// Clear all the component dependent information.
@@ -129,27 +87,8 @@ private:
   /// Preprocess data for the components.
   CUTS_BE_Preprocess_Data ppd_;
 
-  /// Flag that determines if effects should be ignored.
-  bool ignore_effects_;
-
-  /// Current depth of the flow control.
-  int depth_;
-
-  /// Type definition for a ordered collection of return states
-  typedef std::stack <PICML::State> Holding_State;
-
-  /// Collection of ordered return states.
-  Holding_State holding_state_;
-
-  typedef std::stack <PICML::InputActionBase> Call_Stack;
-
-  Call_Stack call_stack_;
-
-  /// Type definition for the collection of file generators.
-  typedef std::set <CUTS_BE_File_Generator *> File_Generator_Set;
-
   /// Collection of file generators.
-  File_Generator_Set generators_;
+  CUTS_BE_File_Generator_Set generators_;
 
   // prevent the following operations
   CUTS_BE_File_Generator_Manager (const CUTS_BE_File_Generator_Manager &);
