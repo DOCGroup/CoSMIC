@@ -34,22 +34,22 @@
       <div class="title">Main Menu</div>      
       
       <div class="menu_item" onmouseover="hilite (this);" onmouseout="unhilite (this);">
-        <asp:image runat="server" id="menudot0" imageurl="~/images/menudot.gif" imagealign="middle" />
+        <asp:image runat="server" id="menudot0" imageurl="~/images/menudot.gif" imagealign="absMiddle" />
         <asp:hyperlink runat="server" id="test_menu_item_"
                        navigateurl="~/"
                        text="Tests" /></div>      
       <div class="menu_item" onmouseover="hilite (this)" onmouseout="unhilite (this)">
-        <asp:image runat="server" id="menudot1" imageurl="~/images/menudot.gif" imagealign="middle" />
+        <asp:image runat="server" id="menudot1" imageurl="~/images/menudot.gif" imagealign="absmiddle" />
         <asp:hyperlink runat="server" id="hosts_menu_item_"
                        navigateurl="~/environment.aspx"
                        text="Environment" /></div>                       
       <div class="menu_item" onmouseover="hilite (this);" onmouseout="unhilite (this);">
-        <asp:image runat="server" id="menudot2" imageurl="~/images/menudot.gif" imagealign="middle" />
+        <asp:image runat="server" id="menudot2" imageurl="~/images/menudot.gif" imagealign="absmiddle" />
         <asp:hyperlink runat="server" id="ci_menu_item_"
                        navigateurl="~/components.aspx"
                        text="Components" /></div>                       
       <div class="menu_item" onmouseover="hilite(this);" onmouseout="unhilite(this);">
-        <asp:image runat="server" id="menudot3" imageurl="~/images/menudot.gif" imagealign="middle" />
+        <asp:image runat="server" id="menudot3" imageurl="~/images/menudot.gif" imagealign="absmiddle" />
         <asp:hyperlink runat="server" id="cp_menu_item_"
                        navigateurl="~/Critical_Path.aspx"
                        text="Execution Paths" /></div>                    

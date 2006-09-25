@@ -4,26 +4,6 @@
          inherits="CUTS.Execution_Times" masterpagefile="~/BMW.master" %>
 
 <asp:content runat="server"
-             id="PageMenu"
-             contentplaceholderid="PageMenu">
-<b>Test Menu</b>
-<!--div class="menu_item"
-     onmouseover="hilite(this);"
-     onmouseout="unhilite(this);">
-  <asp:hyperlink runat="server" id="ci_menu_item_"
-                 navigateurl="~/Component_Instances.aspx"
-                 text="Component Instances" /></div>
-
-<div class="menu_item"
-     onmouseover="hilite(this);"
-     onmouseout="unhilite(this);">
-  <asp:hyperlink runat="server" id="Hyperlink1"
-                 navigateurl="~/Deployment.aspx"
-                 text="Deployment Table" /></div-->
-                 
-</asp:content>
-
-<asp:content runat="server"
              id="main_content_"
              contentplaceholderid="MainContent">
 
