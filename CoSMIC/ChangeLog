@@ -1,3 +1,22 @@
+Mon Sep 25 20:37:31 UTC 2006  akogekar  <akogekar@dre.vanderbilt.edu>
+
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BON2Component.h:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BON2Component.cpp:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreter.mpc:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/ComponentConfig.h:
+
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/benchmark_test/benchmark_test.h:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/benchmark_test/benchmark_test.cpp:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/benchmark_test/benchmark_test.mpc:
+
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/component.def:
+
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ConfiguratorInterpreter.mpc:
+
+        * PIM/POSAML/interpreters/interpreters.mwc:
+
+        Updated POSAML files
+
 Thu Sep 21 02:43:52 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * demos/STI/BDCWebService.NET:
