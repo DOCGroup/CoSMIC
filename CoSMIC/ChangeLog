@@ -1,3 +1,29 @@
+Mon Sep 25 21:16:25 UTC 2006  akogekar  <akogekar@dre.vanderbilt.edu>
+
+
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BON2Component.sln:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkingBON2Component.vcproj:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/ComponentLib.h:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/ComponentLib.tlb:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/ComponentLib_i.c:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/ComponentLib_p.c:
+
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/benchmark_test/benchmark_test.sln:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/benchmark_test/benchmark_test.vcproj:
+
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/benchmark_xml.h:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/benchmark_xml.cpp:
+
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/Component.aps:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ComponentLib.h:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ComponentLib.tlb:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ComponentLib_i.c:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ComponentLib_p.c:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ConfigurationBON2Component.sln:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ConfigurationBON2Component.vcproj:
+
+          Removed these files.
+
 Mon Sep 25 20:37:31 UTC 2006  akogekar  <akogekar@dre.vanderbilt.edu>
 
         * PIM/POSAML/interpreters/BenchmarkInterpreter/BON2Component.h:
