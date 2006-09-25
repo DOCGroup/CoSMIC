@@ -3,7 +3,9 @@
 #include "BE_Method_Visitor.h"
 #include "BE_File_Generator.h"
 #include "BE_Execution_Visitor.h"
+#include "UDM_Utility_T.h"
 #include "boost/bind.hpp"
+#include "boost/iterator/filter_iterator.hpp"
 #include <algorithm>
 
 //
@@ -51,23 +53,29 @@ Visit_Component (const PICML::Component & component)
                               _1,
                               boost::ref (*this)));
 
-  // @@ attributes
+  // @@ readonly attributes
+  typedef std::vector <PICML::ReadonlyAttribute> ReadonlyAttribute_Set;
+  ReadonlyAttribute_Set readonly_attrs = component.ReadonlyAttribute_children ();
+
+  typedef
+    is_type <PICML::ReadonlyAttribute> ReadonlyAttribute_Type;
+
+  std::for_each (
+    boost::make_filter_iterator <ReadonlyAttribute_Type> (
+      readonly_attrs.begin (), readonly_attrs.end ()),
+    boost::make_filter_iterator <ReadonlyAttribute_Type> (
+      readonly_attrs.end (), readonly_attrs.end ()),
+    boost::bind (&ReadonlyAttribute_Set::value_type::Accept,
+                 _1,
+                 boost::ref (*this)));
+
+  // @@ read/write attributes
   typedef std::vector <PICML::Attribute> Attribute_Set;
   Attribute_Set attrs = component.Attribute_kind_children ();
 
   std::for_each (attrs.begin (),
                  attrs.end (),
                  boost::bind (&Attribute_Set::value_type::Accept,
-                              _1,
-                              boost::ref (*this)));
-
-  // @@ readonly attributes
-  typedef std::vector <PICML::ReadonlyAttribute> ReadonlyAttribute_Set;
-  ReadonlyAttribute_Set readonly_attrs = component.ReadonlyAttribute_children ();
-
-  std::for_each (readonly_attrs.begin (),
-                 readonly_attrs.end (),
-                 boost::bind (&ReadonlyAttribute_Set::value_type::Accept,
                               _1,
                               boost::ref (*this)));
 

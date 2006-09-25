@@ -1,4 +1,4 @@
-// $Id$
+// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -77,14 +77,38 @@ public:
   virtual void write_method_begin (
     const PICML::PeriodicAction & periodic);
 
+  /**
+   * Begin writing the method for a attribte.
+   *
+   * @param[in]       periodic       Source periodic action.
+   */
+  virtual void write_method_begin (
+    const PICML::Attribute & attr);
+
+  /**
+   * Begin writing the method for a readonly attribute.
+   *
+   * @param[in]       periodic       Source periodic action.
+   */
+  virtual void write_method_begin (
+    const PICML::ReadonlyAttribute & attr);
+
+  /// Begin writing the variable section.
   virtual void write_variables_begin (void);
 
-  virtual void write_variable (
-    const PICML::WorkerType & worker_type);
+  /// Write the variable for a worker.
+  virtual void write_variable (const PICML::WorkerType &);
 
-  virtual void write_variable (
-    const PICML::Variable & variable);
+  /// Write the variable for a private variable.
+  virtual void write_variable (const PICML::Variable &);
 
+  /// Write the variable for a readonly attribute.
+  virtual void write_variable (const PICML::ReadonlyAttribute &);
+
+  /// Write the variable for an attribute.
+  virtual void write_variable (const PICML::Attribute &);
+
+  /// End writing the variable section.
   virtual void write_variables_end (void);
 
   virtual void write_component_factory_begin (

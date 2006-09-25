@@ -13,15 +13,20 @@ project (CUTS_UDM_CIAO) : cosmic_lib, boost_base, picml_udm {
   libs += CodeGenerationKits CUTS_BE
 
   Source_Files {
+    Export_File_Generator.cpp
+    CIAO_File_Generator_Base.cpp
     CIAO_Header_File_Generator.cpp
     CIAO_Source_File_Generator.cpp
-    CIAO_File_Generator_Base.cpp
     CIAO_Project_Generator.cpp
-    Export_File_Generator.cpp
-    Predefined_Type_Map.cpp
+    CIAO_In_Type.cpp
+    CIAO_Var_Type.cpp
+    CIAO_Retn_Type.cpp
   }
 
   Template_Files {
+    CIAO_In_Type_T.cpp
+    CIAO_Var_Type_T.cpp
+    CIAO_Retn_Type_T.cpp
     Port_Manager_T.cpp
   }
 }

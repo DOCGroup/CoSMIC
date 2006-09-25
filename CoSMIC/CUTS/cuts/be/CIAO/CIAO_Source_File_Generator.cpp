@@ -6,6 +6,9 @@
 #include "CIAO_Source_File_Generator.inl"
 #endif
 
+#include "CIAO_Var_Type.h"
+#include "CIAO_In_Type.h"
+#include "CIAO_Retn_Type.h"
 #include "boost/bind.hpp"
 #include "Uml.h"
 #include <algorithm>
@@ -689,10 +692,119 @@ write_environment_end (void)
 
 //
 // write_dummy_record
+//
 void CUTS_CIAO_Source_File_Generator::
 write_dummy_record (void)
 {
   this->out_
     << "CUTS_Activation_Record dummy_record;"
     << "CUTS_Activation_Record * record = &dummy_record;" << std::endl;
+}
+
+//
+// write_method_begin
+//
+void CUTS_CIAO_Source_File_Generator::
+write_method_begin (const PICML::ReadonlyAttribute & attr)
+{
+  PICML::AttributeMember member = attr.AttributeMember_child ();
+  PICML::MemberType mtype = member.ref ();
+
+  // Write the getter method for the attribute.
+  CUTS_CIAO_Retn_Type_T <PICML::MemberType>::write (this->out_, mtype);
+  PICML::Component parent = attr.Component_parent ();
+
+  this->out_
+    << " " << parent.name () << "::" << std::endl
+    << attr.name () << " (void ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)"
+    << std::endl << "ACE_THROW_SPEC ((::CORBA::SystemException)){";
+
+  std::string metaname = mtype.type ().name ();
+
+  if (metaname == (std::string)PICML::String::meta.name ())
+  {
+    // Strings are special case. We need to return a duplicate
+    // copy of the string, or we will have major problems.
+    this->out_
+      << "::CORBA::String_var s = ::CORBA::string_dup (this->"
+      << attr.name () << "_.c_str ());"
+      << "return s._retn ();";
+  }
+  else if (metaname == (std::string)PICML::GenericValue::meta.name ())
+  {
+    // We need to create an <Any::_var_type> for temporary
+    // storage and give control to the client using the
+    // _retn () method.
+    this->out_
+      << "CORBA::Any::_var_type tmp = new ::CORBA::Any (this->"
+      << attr.name () << "_);"
+      << "return tmp._retn ();";
+  }
+  else if (metaname == (std::string)PICML::GenericObject::meta.name ())
+  {
+    this->out_
+      << "return ::CORBA::Object::_duplicate (this->"
+      << attr.name () << "_.in ());";
+  }
+  else if (metaname == (std::string)PICML::TypeEncoding::meta.name ())
+  {
+    this->out_
+      << "return ::CORBA::TypeCode::_duplicate (this->"
+      << attr.name () << "_.in ());";
+  }
+  else
+    this->out_ << "return this->" << attr.name () << "_;";
+}
+
+//
+// write_method_begin
+//
+void CUTS_CIAO_Source_File_Generator::
+write_method_begin (const PICML::Attribute & attr)
+{
+  // Generate the getter method for the attribute.
+  PICML::Attribute temp_attr (attr);
+  PICML::ReadonlyAttribute ro = PICML::ReadonlyAttribute::Cast (temp_attr);
+  this->write_method_begin (ro);
+
+  PICML::AttributeMember member = attr.AttributeMember_child ();
+  PICML::MemberType mtype = member.ref ();
+  PICML::Component parent = attr.Component_parent ();
+
+  // Close the getter method and generate the setter method
+  // for the current attribute.
+  this->out_
+    << "}"
+    << "void " << parent.name () << "::" << std::endl
+    << attr.name () << " (";
+
+  CUTS_CIAO_In_Type_T <PICML::MemberType>::write (this->out_, mtype);
+
+  this->out_
+    << " " << attr.name () << std::endl
+    << "ACE_ENV_ARG_DECL_WITH_DEFAULTS)" << std::endl
+    << "ACE_THROW_SPEC ((::CORBA::SystemException)){"
+    << "this->" << attr.name () << "_ = ";
+
+  std::string metaname = mtype.type ().name ();
+
+  if (metaname == (std::string)PICML::GenericObject::meta.name ())
+  {
+    // We need to create a duplicate copy of the interface
+    // before we store it.
+    this->out_
+      << std::endl
+      << "\t::CORBA::Object::_duplicate (" << attr.name () << ");";
+  }
+  else if (metaname == (std::string)PICML::TypeEncoding::meta.name ())
+  {
+    // We need to create a duplicate copy of the typecode
+    // interface before we store it.
+    this->out_
+      << std::endl
+      << "\t::CORBA::TypeCode::_duplicate (" << attr.name () << ");";
+  }
+  else
+    // We can just assign the new value to its variable.
+    this->out_ << attr.name () << ";";
 }

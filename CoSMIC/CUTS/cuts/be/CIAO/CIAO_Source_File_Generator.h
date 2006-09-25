@@ -94,6 +94,22 @@ protected:
   virtual void write_method_begin (
     const PICML::PeriodicAction & periodic);
 
+  /**
+   * Begin writing the method for a attribte.
+   *
+   * @param[in]       periodic       Source periodic action.
+   */
+  virtual void write_method_begin (
+    const PICML::Attribute & attr);
+
+  /**
+   * Begin writing the method for a readonly attribute.
+   *
+   * @param[in]       periodic       Source periodic action.
+   */
+  virtual void write_method_begin (
+    const PICML::ReadonlyAttribute & attr);
+
   /// End writing the current method.
   virtual void write_method_end (void);
 

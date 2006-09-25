@@ -6,7 +6,9 @@
 #include "CIAO_Header_File_Generator.inl"
 #endif
 
-#include "Predefined_Type_Map.h"
+#include "CIAO_Var_Type.h"
+#include "CIAO_Retn_Type.h"
+#include "CIAO_In_Type.h"
 #include "Export_File_Generator.h"
 #include "cuts/be/Preprocess_Data.h"
 #include "boost/bind.hpp"
@@ -330,19 +332,17 @@ write_variable (const PICML::WorkerType & worker_type)
 void CUTS_CIAO_Header_File_Generator::
 write_variable (const PICML::Variable & variable)
 {
-  PICML::PredefinedType ptype = variable.ref ();
-  std::string _typename = ptype.type ().name ();
-
+  // Create a comment string and write it.
   std::string comment ("Variable: ");
   comment.append (variable.name ());
-
   this->write_single_line_comment (comment);
-  this->out_
-    << CUTS_Predefined_Type_Map::instance ()->c_str (_typename.c_str ())
-    << " "
-    << variable.name ()
-    << "_;"
-    << std::endl;
+
+  // Write the variable type.
+  PICML::PredefinedType ptype = variable.ref ();
+  CUTS_CIAO_Var_Type_T <PICML::PredefinedType>::write (this->out_, ptype);
+
+  // Write the varialbe name.
+  this->out_ << " " << variable.name () << "_;" << std::endl;
 }
 
 //
@@ -459,4 +459,93 @@ write_component_factory_begin (const PICML::ComponentFactory & factory,
 
   this->write_scope (component, "_");
   this->out_ << factory_name << "_Impl);";
+}
+
+//
+// write_variable
+//
+void CUTS_CIAO_Header_File_Generator::
+write_variable (const PICML::ReadonlyAttribute & attr)
+{
+  // Check for the attribute member..
+  PICML::AttributeMember member = attr.AttributeMember_child ();
+
+  if (member != Udm::null)
+  {
+    // Now, let's get its type.
+    PICML::MemberType mtype = member.ref ();
+
+    if (mtype != Udm::null)
+    {
+      // Write a header comment for the attribute.
+      std::string comment ("Attribute: ");
+      comment += attr.name ();
+      this->write_single_line_comment (comment);
+
+      // Write the variable type.
+      CUTS_CIAO_Var_Type_T <PICML::MemberType>::write (this->out_, mtype);
+
+      // Write the name of the variable.
+      this->out_ << " " << attr.name () << "_;" << std::endl;
+    }
+  }
+}
+
+//
+// write_variable
+//
+void CUTS_CIAO_Header_File_Generator::
+write_variable (const PICML::Attribute & attr)
+{
+  PICML::ReadonlyAttribute readonly (attr);
+  this->write_variable (readonly);
+}
+
+//
+// write_method_begin
+//
+void CUTS_CIAO_Header_File_Generator::
+write_method_begin (const PICML::ReadonlyAttribute & attr)
+{
+  PICML::AttributeMember member = attr.AttributeMember_child ();
+  PICML::MemberType mtype = member.ref ();
+
+  // Write the getter method for the attribute.
+  this->out_ << "virtual ";
+
+  CUTS_CIAO_Retn_Type_T <PICML::MemberType>::write (this->out_, mtype);
+  PICML::Component parent = attr.Component_parent ();
+
+  this->out_
+    << " " << attr.name () << " (" <<std::endl
+    << "void ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)" << std::endl
+    << "\tACE_THROW_SPEC ((::CORBA::SystemException));" << std::endl;
+}
+
+//
+// write_method_begin
+//
+void CUTS_CIAO_Header_File_Generator::
+write_method_begin (const PICML::Attribute & attr)
+{
+  // Generate the getter method for the attribute.
+  PICML::Attribute temp_attr (attr);
+  PICML::ReadonlyAttribute ro = PICML::ReadonlyAttribute::Cast (temp_attr);
+  this->write_method_begin (ro);
+
+  PICML::AttributeMember member = attr.AttributeMember_child ();
+  PICML::MemberType mtype = member.ref ();
+  PICML::Component parent = attr.Component_parent ();
+
+  // Close the getter method and generate the setter method
+  // for the current attribute.
+  this->out_
+    << "virtual void " << attr.name () << " (" << std::endl;
+
+  CUTS_CIAO_In_Type_T <PICML::MemberType>::write (this->out_, mtype);
+
+  this->out_
+    << " " << attr.name () << std::endl
+    << "ACE_ENV_ARG_DECL_WITH_DEFAULTS)" << std::endl
+    << "\tACE_THROW_SPEC ((::CORBA::SystemException));" << std::endl;
 }

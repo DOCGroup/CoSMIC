@@ -1,3 +1,47 @@
+Mon Sep 25 02:01:14 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CIAO/UDM_CIAO.mpc:
+
+          Updated project with new source files.
+
+        * cuts/be/CIAO/CIAO_In_Type.h:
+        * cuts/be/CIAO/CIAO_In_Type.inl:
+        * cuts/be/CIAO/CIAO_In_Type.cpp:
+        * cuts/be/CIAO/CIAO_In_Type_T.h:
+        * cuts/be/CIAO/CIAO_In_Type_T.inl:
+        * cuts/be/CIAO/CIAO_In_Type_T.cpp:
+        * cuts/be/CIAO/CIAO_Retn_Type.h:
+        * cuts/be/CIAO/CIAO_Retn_Type.inl:
+        * cuts/be/CIAO/CIAO_Retn_Type.cpp:
+        * cuts/be/CIAO/CIAO_Retn_Type_T.h:
+        * cuts/be/CIAO/CIAO_Retn_Type_T.inl:
+        * cuts/be/CIAO/CIAO_Retn_Type_T.cpp:
+        * cuts/be/CIAO/CIAO_Var_Type.h:
+        * cuts/be/CIAO/CIAO_Var_Type.inl:
+        * cuts/be/CIAO/CIAO_Var_Type.cpp:
+        * cuts/be/CIAO/CIAO_Var_Type_T.h:
+        * cuts/be/CIAO/CIAO_Var_Type_T.inl:
+        * cuts/be/CIAO/CIAO_Var_Type_T.cpp:
+
+          Trait class for generating return, input, variable
+          types for different PICML elements.
+
+        * cuts/be/BE_Method_Visitor.cpp:
+        * cuts/be/BE_Variable_Visitor.cpp:
+        * cuts/be/CIAO/CIAO_Header_File_Generator.h:
+        * cuts/be/CIAO/CIAO_Header_File_Generator.cpp:
+        * cuts/be/UDM_Utility_T.h:
+        * cuts/be/UDM_Utility_T.cpp:
+        * cuts/be/CIAO/CIAO_Source_File_Generator.h:
+        * cuts/be/CIAO/CIAO_Source_File_Generator.cpp:
+
+          Added support for attributes of all predefined types.
+
+        * cuts/be/CIAO/Predefined_Type_Map.h:
+        * cuts/be/CIAO/Predefined_Type_Map.cpp:
+
+          Removed these files.
+
 Fri Sep 22 00:54:02 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE.mpc:

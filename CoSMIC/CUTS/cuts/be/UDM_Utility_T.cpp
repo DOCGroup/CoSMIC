@@ -1,25 +1,11 @@
 // $Id$
 
+#if !defined (__CUTS_INLINE__)
+#include "UDM_Utility_T.inl"
+#endif
+
 #include <algorithm>
-
-//
-// UDM_Accept_Functor
-//
-template <typename VISITOR, typename ELEMENT>
-UDM_Accept_Functor <VISITOR, ELEMENT>::UDM_Accept_Functor (VISITOR & visitor)
-: visitor_ (visitor)
-{
-
-}
-
-//
-// operator ()
-//
-template <typename VISITOR, typename ELEMENT>
-void UDM_Accept_Functor <VISITOR, ELEMENT>::operator () (ELEMENT & element)
-{
-  element.Accept (this->visitor_);
-}
+#include "Uml.h"
 
 //
 // create_element_if_not_exist
