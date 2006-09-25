@@ -1,5 +1,5 @@
 // Component configuration file automatically generated as ComponentConfig.h
-// by ConfigureComponent on Tue Nov 22 14:06:06 2005
+// by ConfigureComponent on Tue Sep 19 16:55:17 2006
 
 
 #define BON2COMPONENT
@@ -7,18 +7,18 @@
 // COM UUID-s, names and progID
 
 #define TYPELIB_UUID "D37E1DFD-E752-40FB-8578-36FEC9FE2672"
-#define TYPELIB_NAME "MGA Interpreter TypeLibrary (Benchmarking)"
+#define TYPELIB_NAME "MGA Interpreter TypeLibrary (BenchmarkInterpreter)"
 #define COCLASS_UUID "3F471E3D-D697-4A44-8097-0C0050E50D0E"
-#define COCLASS_NAME "MGA Interpreter CoClass (Benchmarking)"
-#define COCLASS_PROGID "MGA.Interpreter.Benchmarking"
+#define COCLASS_NAME "MGA Interpreter CoClass (BenchmarkInterpreter)"
+#define COCLASS_PROGID "MGA.Interpreter.BenchmarkInterpreter"
 
 
 // This name will appear in the popup window for interpreter selection.
-#define COMPONENT_NAME "Benchmarking"
+#define COMPONENT_NAME "BenchmarkInterpreter"
 
 
 // This text will appear in the toolbar icon tooltip and in the menu.
-#define TOOLTIP_TEXT "Benchmarking Interpreter"
+#define TOOLTIP_TEXT "Benchmark Interpreter"
 
 
 // This #define determines the interpreter type:

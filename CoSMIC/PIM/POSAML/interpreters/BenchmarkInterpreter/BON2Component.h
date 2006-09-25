@@ -85,8 +85,8 @@ public:
   {
 	no_handlers_=no_han;
   }
-  void add_child(XERCES_CPP_NAMESPACE_QUALIFIER DOMDocument *doc,DOMElement *root,const String &child,const String &data);
-  void add_child(XERCES_CPP_NAMESPACE_QUALIFIER DOMDocument *doc,DOMElement *root,const String &child,int data);
+ void add_child(XERCES_CPP_NAMESPACE_QUALIFIER DOMDocument *doc,DOMElement *root,const String &child,const String &data);
+ void add_child(XERCES_CPP_NAMESPACE_QUALIFIER DOMDocument *doc,DOMElement *root,const String &child,int data);
 private:
   int no_iterations_;
   String reactor_type_;

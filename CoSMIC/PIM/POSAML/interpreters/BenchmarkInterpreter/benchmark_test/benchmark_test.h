@@ -47,6 +47,7 @@
 
 typedef std::string String;
 
+using namespace xercesc;
 class XML_Reader
 {
 public:

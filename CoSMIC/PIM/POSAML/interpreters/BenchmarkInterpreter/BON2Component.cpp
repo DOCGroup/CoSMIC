@@ -79,12 +79,14 @@ bool XML_Writer::write_file(const String &xml_file)
   
   writer->writeNode(myFormTarget,*serialize_doc);
   myFormTarget->flush();
+  delete myFormTarget;
   XMLString::release(&temp);
   XMLPlatformUtils::Terminate();
   
   return true;
 
 }
+
 namespace BON
 {
 

@@ -1,0 +1,14 @@
+
+project (benchmark_test):aceexe{
+includes+=$(XERCESCROOT)\include
+libpaths+= $(XERCESCROOT)\lib
+
+libs += xerces-c_2
+
+Header_Files {
+benchmark_test.h
+}
+Source_Files {
+benchmark_test.cpp
+}
+}

@@ -1,6 +1,6 @@
 ; Interpreter.def : Declares the module parameters.
 
-LIBRARY      "Benchmarking.DLL"
+LIBRARY      "BenchmarkInterpreter.DLL"
 
 EXPORTS
 	DllCanUnloadNow     PRIVATE

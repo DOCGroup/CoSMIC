@@ -1,4 +1,5 @@
 #include "benchmark_test.h"
+using namespace xercesc;
 
 
 void create_reactor(String reactor_type)
@@ -16,7 +17,7 @@ void create_reactor(String reactor_type)
   ACE_Reactor::instance (reactor);
 }
 static const char *output_file="benchmark_output.txt";
-XERCES_CPP_NAMESPACE_USE
+//XERCES_CPP_NAMESPACE_USE
 
 int Read_Handler::connections_=0;
 String data;
