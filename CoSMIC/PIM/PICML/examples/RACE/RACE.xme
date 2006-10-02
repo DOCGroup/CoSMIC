@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{CDB73563-127F-4800-909F-1574A9D787D0}" cdate="Mon Aug 28 11:45:18 2006" mdate="Mon Aug 28 11:45:18 2006" version="" metaguid="{144ECCB2-BDC0-487E-B225-8A9C6DC1C37D}" metaversion="" metaname="PICML">
+<project guid="{B3DFB34C-F812-4854-BF39-B7BDFBA82DD5}" cdate="Mon Aug 28 14:22:23 2006" mdate="Mon Aug 28 14:22:23 2006" version="" metaguid="{144ECCB2-BDC0-487E-B225-8A9C6DC1C37D}" metaversion="" metaname="PICML">
 	<name>RACE</name>
 	<comment></comment>
 	<author></author>
@@ -1005,146 +1005,6 @@
 					</regnode>
 				</reference>
 			</model>
-			<model id="id-0065-00000026" kind="File" relid="0x3" childrelidcntr="0x2">
-				<name>SimpleAllocationAnalyzer</name>
-				<attribute kind="PrefixTag" status="meta">
-					<value></value>
-				</attribute>
-				<model id="id-0065-00000027" kind="Package" role="Package" relid="0x2" childrelidcntr="0x1">
-					<name>CIAO</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="InterfaceDefinition" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>700,434</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="PrefixTag" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="SpecifyIdTag" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="VersionTag" status="meta">
-						<value></value>
-					</attribute>
-					<model id="id-0065-00000028" kind="Package" role="Package" relid="0x1" childrelidcntr="0x3">
-						<name>RACE</name>
-						<regnode name="PartRegs" isopaque="yes">
-							<value></value>
-							<regnode name="InterfaceDefinition" isopaque="yes">
-								<value></value>
-								<regnode name="Position" isopaque="yes">
-									<value>518,318</value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<attribute kind="PrefixTag" status="meta">
-							<value></value>
-						</attribute>
-						<attribute kind="SpecifyIdTag" status="meta">
-							<value></value>
-						</attribute>
-						<attribute kind="VersionTag" status="meta">
-							<value></value>
-						</attribute>
-						<model id="id-0065-00000029" kind="Component" role="Component" derivedfrom="id-0065-0000001e" isinstance="no" isprimary="yes" relid="0x1" childrelidcntr="0x1">
-							<name>SimpleAllocationAnalyzer</name>
-							<regnode name="PartRegs" isopaque="yes">
-								<value></value>
-								<regnode name="InterfaceDefinition" isopaque="yes">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>334,201</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="UUID">
-								<value>B94EBBDB-1C13-4925-8C3B-743D6C4B7DF1</value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="label" status="meta">
-								<value></value>
-							</attribute>
-							<model id="id-0065-0000002a" kind="ReadonlyAttribute" role="ReadonlyAttribute" derivedfrom="id-0065-0000001f" isinstance="no" isprimary="no" childrelidcntr="0x0">
-								<name>classification</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<reference id="id-0067-0000013f" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-0000013e" isinstance="no" isprimary="no" referred="id-0067-000000ac" isbound="yes">
-									<name>AttributeMember</name>
-								</reference>
-							</model>
-							<reference id="id-0067-000000a0" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-0000009f" isinstance="no" isprimary="no" referred="id-0065-00000024" isbound="yes">
-								<name>analyzer</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="exclusiveProvider" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="exclusiveUser" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="optional" status="meta">
-									<value>false</value>
-								</attribute>
-							</reference>
-						</model>
-						<model id="id-0065-0000002b" kind="ComponentFactory" role="ComponentFactory" relid="0x2" childrelidcntr="0x0">
-							<name>SimpleAllocationAnalyzer_Home</name>
-							<regnode name="PartRegs" isopaque="yes">
-								<value></value>
-								<regnode name="InterfaceDefinition" isopaque="yes">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>700,434</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-						</model>
-						<connection id="id-0068-00000004" kind="ManagesComponent" role="ManagesComponent" relid="0x3">
-							<name>ManagesComponent</name>
-							<regnode name="autorouterPref" isopaque="yes">
-								<value>Ws</value>
-							</regnode>
-							<connpoint role="dst" target="id-0065-00000029"/>
-							<connpoint role="src" target="id-0065-0000002b"/>
-						</connection>
-					</model>
-				</model>
-				<reference id="id-0067-00000003" kind="FileRef" role="FileRef" relid="0x1" referred="id-0065-0000001b">
-					<name>FileRef</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="InterfaceDefinition" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>334,201</value>
-							</regnode>
-						</regnode>
-					</regnode>
-				</reference>
-			</model>
 			<model id="id-0065-0000002c" kind="File" relid="0x4" childrelidcntr="0x1">
 				<name>RACE_common</name>
 				<attribute kind="PrefixTag" status="meta">
@@ -2111,134 +1971,6 @@
 					</model>
 				</model>
 			</model>
-			<model id="id-0065-0000004c" kind="File" relid="0xb" childrelidcntr="0x2">
-				<name>XML_Output_Adapter</name>
-				<attribute kind="PrefixTag" status="meta">
-					<value></value>
-				</attribute>
-				<model id="id-0065-0000004d" kind="Package" role="Package" relid="0x2" childrelidcntr="0x1">
-					<name>CIAO</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="InterfaceDefinition" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>700,434</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="PrefixTag" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="SpecifyIdTag" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="VersionTag" status="meta">
-						<value></value>
-					</attribute>
-					<model id="id-0065-0000004e" kind="Package" role="Package" relid="0x1" childrelidcntr="0x3">
-						<name>RACE</name>
-						<regnode name="PartRegs" isopaque="yes">
-							<value></value>
-							<regnode name="InterfaceDefinition" isopaque="yes">
-								<value></value>
-								<regnode name="Position" isopaque="yes">
-									<value>518,318</value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<attribute kind="PrefixTag" status="meta">
-							<value></value>
-						</attribute>
-						<attribute kind="SpecifyIdTag" status="meta">
-							<value></value>
-						</attribute>
-						<attribute kind="VersionTag" status="meta">
-							<value></value>
-						</attribute>
-						<model id="id-0065-0000004f" kind="Component" role="Component" derivedfrom="id-0065-0000003c" isinstance="no" isprimary="yes" relid="0x1" childrelidcntr="0x1">
-							<name>XML_Output_Adapter</name>
-							<regnode name="PartRegs" isopaque="yes">
-								<value></value>
-								<regnode name="InterfaceDefinition" isopaque="yes">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>334,201</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="UUID">
-								<value>A40D1E7B-E401-4C92-BDDC-8C19CCD767F0</value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="label" status="meta">
-								<value></value>
-							</attribute>
-							<reference id="id-0067-000000b7" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-000000b2" isinstance="no" isprimary="no" referred="id-0065-0000004a" isbound="yes">
-								<name>plan_egress</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="exclusiveProvider" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="exclusiveUser" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="optional" status="meta">
-									<value>false</value>
-								</attribute>
-							</reference>
-						</model>
-						<model id="id-0065-00000050" kind="ComponentFactory" role="ComponentFactory" relid="0x2" childrelidcntr="0x0">
-							<name>XML_Output_Adapter_Home</name>
-							<regnode name="PartRegs" isopaque="yes">
-								<value></value>
-								<regnode name="InterfaceDefinition" isopaque="yes">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>700,434</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-						</model>
-						<connection id="id-0068-00000008" kind="ManagesComponent" role="ManagesComponent" relid="0x3">
-							<name>ManagesComponent</name>
-							<regnode name="autorouterPref" isopaque="yes">
-								<value>Ws</value>
-							</regnode>
-							<connpoint role="dst" target="id-0065-0000004f"/>
-							<connpoint role="src" target="id-0065-00000050"/>
-						</connection>
-					</model>
-				</model>
-				<reference id="id-0067-00000007" kind="FileRef" role="FileRef" relid="0x1" referred="id-0065-00000039">
-					<name>FileRef</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="InterfaceDefinition" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>334,201</value>
-							</regnode>
-						</regnode>
-					</regnode>
-				</reference>
-			</model>
 			<model id="id-0065-00000051" kind="File" relid="0xc" childrelidcntr="0x3">
 				<name>Planner</name>
 				<attribute kind="PrefixTag" status="meta">
@@ -2585,7 +2317,7 @@
 							<value></value>
 						</attribute>
 						<model id="id-0065-0000005f" kind="Component" role="Component" derivedfrom="id-0065-00000054" isinstance="no" isprimary="yes" relid="0x1" childrelidcntr="0x3">
-							<name>SimpleBinPacker</name>
+							<name>StaticPlanner</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
 								<regnode name="InterfaceDefinition" isopaque="yes">
@@ -2681,7 +2413,7 @@
 							</reference>
 						</model>
 						<model id="id-0065-00000062" kind="ComponentFactory" role="ComponentFactory" relid="0x2" childrelidcntr="0x0">
-							<name>SimpleBinPacker_Home</name>
+							<name>StaticPlanner_Home</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
 								<regnode name="InterfaceDefinition" isopaque="yes">
@@ -4823,127 +4555,6 @@
 					<connpoint role="dst" target="id-0067-0000001c"/>
 				</connection>
 			</model>
-			<model id="id-0065-0000009e" kind="ComponentImplementationContainer" relid="0x2" childrelidcntr="0xb">
-				<name>SimpleAllocationAnalyzerImplementation</name>
-				<model id="id-0065-0000009f" kind="Property" role="Property" relid="0x2" childrelidcntr="0x2">
-					<name>ComponentIOR</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Packaging" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>282,168</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="DataValue">
-						<value>SimpleAllocationAnalyzer.ior</value>
-					</attribute>
-					<reference id="id-0067-0000001d" kind="DataType" role="DataType" relid="0x2" referred="id-0066-00000003">
-						<name>String</name>
-						<regnode name="PartRegs" isopaque="yes">
-							<value></value>
-							<regnode name="Packaging" isopaque="yes">
-								<value></value>
-								<regnode name="Position" isopaque="yes">
-									<value>518,318</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</reference>
-				</model>
-				<atom id="id-0066-0000000d" kind="MonolithicImplementation" role="MonolithicImplementation" relid="0x1">
-					<name>SimpleAllocationAnalyzerMonolithicImpl</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Packaging" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>125,68</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="UUID">
-						<value>14E77757-BC3A-49F4-8D45-FB447FA7F626</value>
-					</attribute>
-					<attribute kind="label" status="meta">
-						<value></value>
-					</attribute>
-				</atom>
-				<reference id="id-0067-0000001e" kind="ComponentRef" role="ComponentRef" relid="0x9" referred="id-0065-00000029">
-					<name>SimpleAllocationAnalyzerRef</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Packaging" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>910,568</value>
-							</regnode>
-						</regnode>
-					</regnode>
-				</reference>
-				<reference id="id-0067-00000114" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x3" referred="id-0066-0000001e">
-					<name>SimpleAllocationAnalyzer_stubRef</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Packaging" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>439,268</value>
-							</regnode>
-						</regnode>
-					</regnode>
-				</reference>
-				<reference id="id-0067-00000115" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-0000001f">
-					<name>SimpleAllocationAnalyzer_svntRef</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Packaging" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>596,368</value>
-							</regnode>
-						</regnode>
-					</regnode>
-				</reference>
-				<reference id="id-0067-00000116" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x5" referred="id-0066-00000020">
-					<name>SimpleAllocationAnalyzer_execRef</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Packaging" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>753,468</value>
-							</regnode>
-						</regnode>
-					</regnode>
-				</reference>
-				<connection id="id-0068-00000014" kind="ConfigProperty" role="ConfigProperty" relid="0xa">
-					<name>ConfigProperty</name>
-					<connpoint role="dst" target="id-0065-0000009f"/>
-					<connpoint role="src" target="id-0066-0000000d"/>
-				</connection>
-				<connection id="id-0068-00000015" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x6">
-					<name>MonolithprimaryArtifact</name>
-					<connpoint role="src" target="id-0066-0000000d"/>
-					<connpoint role="dst" target="id-0067-00000114"/>
-				</connection>
-				<connection id="id-0068-00000016" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x7">
-					<name>MonolithprimaryArtifact</name>
-					<connpoint role="src" target="id-0066-0000000d"/>
-					<connpoint role="dst" target="id-0067-00000115"/>
-				</connection>
-				<connection id="id-0068-00000017" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x8">
-					<name>MonolithprimaryArtifact</name>
-					<connpoint role="src" target="id-0066-0000000d"/>
-					<connpoint role="dst" target="id-0067-00000116"/>
-				</connection>
-				<connection id="id-0068-00000018" kind="Implements" role="Implements" relid="0xb">
-					<name>Implements</name>
-					<connpoint role="src" target="id-0066-0000000d"/>
-					<connpoint role="dst" target="id-0067-0000001e"/>
-				</connection>
-			</model>
 			<model id="id-0065-000000a0" kind="ComponentImplementationContainer" relid="0x3" childrelidcntr="0xb">
 				<name>Input_AdapterImplementation</name>
 				<model id="id-0065-000000a1" kind="Property" role="Property" relid="0x2" childrelidcntr="0x2">
@@ -5613,127 +5224,6 @@
 					<connpoint role="dst" target="id-0067-0000002a"/>
 				</connection>
 			</model>
-			<model id="id-0065-000000ac" kind="ComponentImplementationContainer" relid="0x8" childrelidcntr="0xb">
-				<name>XML_Output_AdapterImplementation</name>
-				<model id="id-0065-000000ad" kind="Property" role="Property" relid="0x2" childrelidcntr="0x2">
-					<name>ComponentIOR</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Packaging" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>282,168</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="DataValue">
-						<value>XML_Output_Adapter.ior</value>
-					</attribute>
-					<reference id="id-0067-0000002b" kind="DataType" role="DataType" relid="0x2" referred="id-0066-00000003">
-						<name>String</name>
-						<regnode name="PartRegs" isopaque="yes">
-							<value></value>
-							<regnode name="Packaging" isopaque="yes">
-								<value></value>
-								<regnode name="Position" isopaque="yes">
-									<value>518,318</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</reference>
-				</model>
-				<atom id="id-0066-00000013" kind="MonolithicImplementation" role="MonolithicImplementation" relid="0x1">
-					<name>XML_Output_AdapterMonolithicImpl</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Packaging" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>125,68</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="UUID">
-						<value>5A98D073-1392-4C85-AB88-1AD6E61BF34D</value>
-					</attribute>
-					<attribute kind="label" status="meta">
-						<value></value>
-					</attribute>
-				</atom>
-				<reference id="id-0067-0000002c" kind="ComponentRef" role="ComponentRef" relid="0x9" referred="id-0065-0000004f">
-					<name>XML_Output_AdapterRef</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Packaging" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>910,568</value>
-							</regnode>
-						</regnode>
-					</regnode>
-				</reference>
-				<reference id="id-0067-00000126" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x3" referred="id-0066-00000030">
-					<name>XML_Output_Adapter_stubRef</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Packaging" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>439,268</value>
-							</regnode>
-						</regnode>
-					</regnode>
-				</reference>
-				<reference id="id-0067-00000127" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-00000031">
-					<name>XML_Output_Adapter_svntRef</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Packaging" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>596,368</value>
-							</regnode>
-						</regnode>
-					</regnode>
-				</reference>
-				<reference id="id-0067-00000128" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x5" referred="id-0066-00000032">
-					<name>XML_Output_Adapter_execRef</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Packaging" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>753,468</value>
-							</regnode>
-						</regnode>
-					</regnode>
-				</reference>
-				<connection id="id-0068-00000034" kind="ConfigProperty" role="ConfigProperty" relid="0xa">
-					<name>ConfigProperty</name>
-					<connpoint role="dst" target="id-0065-000000ad"/>
-					<connpoint role="src" target="id-0066-00000013"/>
-				</connection>
-				<connection id="id-0068-00000035" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x6">
-					<name>MonolithprimaryArtifact</name>
-					<connpoint role="src" target="id-0066-00000013"/>
-					<connpoint role="dst" target="id-0067-00000126"/>
-				</connection>
-				<connection id="id-0068-00000036" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x7">
-					<name>MonolithprimaryArtifact</name>
-					<connpoint role="src" target="id-0066-00000013"/>
-					<connpoint role="dst" target="id-0067-00000127"/>
-				</connection>
-				<connection id="id-0068-00000037" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x8">
-					<name>MonolithprimaryArtifact</name>
-					<connpoint role="src" target="id-0066-00000013"/>
-					<connpoint role="dst" target="id-0067-00000128"/>
-				</connection>
-				<connection id="id-0068-00000038" kind="Implements" role="Implements" relid="0xb">
-					<name>Implements</name>
-					<connpoint role="src" target="id-0066-00000013"/>
-					<connpoint role="dst" target="id-0067-0000002c"/>
-				</connection>
-			</model>
 			<model id="id-0065-000000ae" kind="ComponentImplementationContainer" relid="0x9" childrelidcntr="0xb">
 				<name>PlannerImplementation</name>
 				<model id="id-0065-000000af" kind="Property" role="Property" relid="0x2" childrelidcntr="0x2">
@@ -5856,7 +5346,7 @@
 				</connection>
 			</model>
 			<model id="id-0065-000000b0" kind="ComponentImplementationContainer" relid="0xa" childrelidcntr="0xb">
-				<name>SimpleBinPackerImplementation</name>
+				<name>StaticPlannerImplementation</name>
 				<model id="id-0065-000000b1" kind="Property" role="Property" relid="0x2" childrelidcntr="0x2">
 					<name>ComponentIOR</name>
 					<regnode name="PartRegs" isopaque="yes">
@@ -5869,7 +5359,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="DataValue">
-						<value>SimpleBinPacker.ior</value>
+						<value>StaticPlanner.ior</value>
 					</attribute>
 					<reference id="id-0067-0000002f" kind="DataType" role="DataType" relid="0x2" referred="id-0066-00000003">
 						<name>String</name>
@@ -5885,7 +5375,7 @@
 					</reference>
 				</model>
 				<atom id="id-0066-00000015" kind="MonolithicImplementation" role="MonolithicImplementation" relid="0x1">
-					<name>SimpleBinPackerMonolithicImpl</name>
+					<name>StaticPlannerMonolithicImpl</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
@@ -5903,7 +5393,7 @@
 					</attribute>
 				</atom>
 				<reference id="id-0067-00000030" kind="ComponentRef" role="ComponentRef" relid="0x9" referred="id-0065-0000005f">
-					<name>SimpleBinPackerRef</name>
+					<name>StaticPlannerRef</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
@@ -5915,7 +5405,7 @@
 					</regnode>
 				</reference>
 				<reference id="id-0067-0000012c" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x3" referred="id-0066-00000036">
-					<name>SimpleBinPacker_stubRef</name>
+					<name>StaticPlanner_stubRef</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
@@ -5927,7 +5417,7 @@
 					</regnode>
 				</reference>
 				<reference id="id-0067-0000012d" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-00000037">
-					<name>SimpleBinPacker_svntRef</name>
+					<name>StaticPlanner_svntRef</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
@@ -5939,7 +5429,7 @@
 					</regnode>
 				</reference>
 				<reference id="id-0067-0000012e" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x5" referred="id-0066-00000038">
-					<name>SimpleBinPacker_execRef</name>
+					<name>StaticPlanner_execRef</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
@@ -6345,60 +5835,6 @@
 							</attribute>
 						</reference>
 					</model>
-					<model id="id-0065-000000ba" kind="Component" role="Component" derivedfrom="id-0065-00000029" isinstance="yes" isprimary="yes" relid="0xc" childrelidcntr="0x0">
-						<name>SimpleAllocationAnalyzer</name>
-						<regnode name="PartRegs" isopaque="yes">
-							<value></value>
-							<regnode name="Packaging" status="undefined">
-								<value></value>
-								<regnode name="Position" isopaque="yes">
-									<value>741,235</value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<attribute kind="SpecifyIdTag" status="meta">
-							<value></value>
-						</attribute>
-						<attribute kind="UUID">
-							<value>3B5E33A2-F2CF-4622-8A17-54490673A860</value>
-						</attribute>
-						<attribute kind="VersionTag" status="meta">
-							<value></value>
-						</attribute>
-						<attribute kind="label" status="meta">
-							<value></value>
-						</attribute>
-						<model id="id-0065-000000bb" kind="ReadonlyAttribute" role="ReadonlyAttribute" derivedfrom="id-0065-0000002a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-							<name>classification</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<reference id="id-0067-00000140" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-0000013f" isinstance="yes" isprimary="no" referred="id-0067-000000ac" isbound="yes">
-								<name>AttributeMember</name>
-							</reference>
-						</model>
-						<reference id="id-0067-000000a1" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-000000a0" isinstance="yes" isprimary="no" referred="id-0065-00000024" isbound="yes">
-							<name>analyzer</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-					</model>
 					<reference id="id-0067-00000037" kind="AttributeMapping" role="AttributeMapping" relid="0x4" referred="id-0065-000000b9">
 						<name>classes</name>
 						<regnode name="PartRegs" status="undefined">
@@ -6406,7 +5842,7 @@
 							<regnode name="Packaging" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>1077,125</value>
+									<value>713,132</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -6445,7 +5881,7 @@
 							<regnode name="Packaging" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>881,34</value>
+									<value>384,118</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -6475,7 +5911,7 @@
 							<regnode name="Packaging" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>258,216</value>
+									<value>734,27</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -6502,11 +5938,6 @@
 						<name>AttributeDelegate</name>
 						<connpoint role="dst" target="id-0065-000000b9"/>
 						<connpoint role="src" target="id-0067-00000037"/>
-					</connection>
-					<connection id="id-0068-0000004e" kind="invoke" role="invoke" relid="0xd">
-						<name>invoke</name>
-						<connpoint role="src" target="id-0067-00000036"/>
-						<connpoint role="dst" target="id-0067-000000a1"/>
 					</connection>
 					<connection id="id-0068-0000004f" kind="FacetDelegate" role="FacetDelegate" relid="0x11">
 						<name>FacetDelegate</name>
@@ -7082,48 +6513,6 @@
 							</attribute>
 						</reference>
 					</model>
-					<model id="id-0065-000000c7" kind="Component" role="Component" derivedfrom="id-0065-0000004f" isinstance="yes" isprimary="yes" relid="0xe" childrelidcntr="0x0">
-						<name>XML_Output_Adapter</name>
-						<regnode name="PartRegs" isopaque="yes">
-							<value></value>
-							<regnode name="Packaging" status="undefined">
-								<value></value>
-								<regnode name="Position" isopaque="yes">
-									<value>594,431</value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<attribute kind="SpecifyIdTag" status="meta">
-							<value></value>
-						</attribute>
-						<attribute kind="UUID">
-							<value>5C8C9407-96E5-46E8-8A6A-22679013B564</value>
-						</attribute>
-						<attribute kind="VersionTag" status="meta">
-							<value></value>
-						</attribute>
-						<attribute kind="label" status="meta">
-							<value></value>
-						</attribute>
-						<reference id="id-0067-000000b8" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-000000b7" isinstance="yes" isprimary="no" referred="id-0065-0000004a" isbound="yes">
-							<name>plan_egress</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-					</model>
 					<reference id="id-0067-00000044" kind="RequiredRequestPort" role="RequiredRequestPort" relid="0x8" referred="id-0065-0000004a">
 						<name>PlanEgress</name>
 						<regnode name="PartRegs" status="undefined">
@@ -7234,11 +6623,6 @@
 						<connpoint role="dst" target="id-0067-00000046"/>
 						<connpoint role="src" target="id-0067-000000c6"/>
 					</connection>
-					<connection id="id-0068-0000005e" kind="invoke" role="invoke" relid="0xf">
-						<name>invoke</name>
-						<connpoint role="dst" target="id-0067-000000b8"/>
-						<connpoint role="src" target="id-0067-000000c1"/>
-					</connection>
 				</model>
 				<reference id="id-0067-00000047" kind="ComponentRef" role="ComponentRef" relid="0x2" referred="id-0065-00000040">
 					<name>Output_Manager</name>
@@ -7257,840 +6641,6 @@
 					<connpoint role="src" target="id-0065-000000c4"/>
 					<connpoint role="dst" target="id-0067-00000047"/>
 				</connection>
-			</model>
-			<model id="id-0065-000000c8" kind="ComponentImplementationContainer" relid="0x4" childrelidcntr="0x1">
-				<name>AssemblyRACEAllocation</name>
-				<model id="id-0065-000000c9" kind="ComponentAssembly" role="ComponentAssembly" relid="0x1" childrelidcntr="0x7">
-					<name>RACEAllocation</name>
-					<regnode name="PartRegs" status="undefined">
-						<value></value>
-						<regnode name="Packaging" status="undefined">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>76,95</value>
-							</regnode>
-						</regnode>
-						<regnode name="QoSModelAspect" status="undefined">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>443,142</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="UUID">
-						<value>B260B1A5-F284-4EFC-8087-DF3216AE1858</value>
-					</attribute>
-					<attribute kind="label" status="meta">
-						<value></value>
-					</attribute>
-					<model id="id-0065-000000ca" kind="ComponentAssembly" role="ComponentAssembly" derivedfrom="id-0065-000000c4" isinstance="yes" isprimary="yes" relid="0x1" childrelidcntr="0x0">
-						<name>OutputManager</name>
-						<regnode name="PartRegs" status="undefined">
-							<value></value>
-							<regnode name="Packaging" status="undefined">
-								<value></value>
-								<regnode name="Position" isopaque="yes">
-									<value>916,186</value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<attribute kind="UUID">
-							<value>C575D040-C49C-4F9D-A4AC-C80CC0518963</value>
-						</attribute>
-						<attribute kind="label" status="meta">
-							<value></value>
-						</attribute>
-						<model id="id-0065-000000cb" kind="Component" role="Component" derivedfrom="id-0065-000000c5" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-							<name>Output_Manager</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="UUID">
-								<value>CAC85088-4AA3-4CFF-8AF2-2314E92C7B0B</value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="label" status="meta">
-								<value></value>
-							</attribute>
-							<reference id="id-0067-000000be" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-000000bd" isinstance="yes" isprimary="no" referred="id-0065-0000004a" isbound="yes">
-								<name>output</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="exclusiveProvider" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="exclusiveUser" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="optional" status="meta">
-									<value>false</value>
-								</attribute>
-							</reference>
-							<reference id="id-0067-000000c2" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-000000c1" isinstance="yes" isprimary="no" referred="id-0065-0000004a" isbound="yes">
-								<name>adapters</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="exclusiveProvider" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="exclusiveUser" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="multiple_connections" status="inherited">
-									<value>true</value>
-								</attribute>
-								<attribute kind="optional" status="meta">
-									<value>false</value>
-								</attribute>
-							</reference>
-						</model>
-						<model id="id-0065-000000cc" kind="Component" role="Component" derivedfrom="id-0065-000000c6" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-							<name>DAnCE_Output_Adapter</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="UUID">
-								<value>692AB063-1F99-4156-BE43-41A5434F0D9C</value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="label" status="meta">
-								<value></value>
-							</attribute>
-							<reference id="id-0067-000000b5" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-000000b4" isinstance="yes" isprimary="no" referred="id-0065-0000004a" isbound="yes">
-								<name>plan_egress</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="exclusiveProvider" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="exclusiveUser" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="optional" status="meta">
-									<value>false</value>
-								</attribute>
-							</reference>
-							<reference id="id-0067-000000c7" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-000000c6" isinstance="yes" isprimary="no" referred="id-0065-0000007c">
-								<name>control_output</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="exclusiveProvider" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="exclusiveUser" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="multiple_connections" status="inherited">
-									<value>false</value>
-								</attribute>
-								<attribute kind="optional" status="meta">
-									<value>false</value>
-								</attribute>
-							</reference>
-						</model>
-						<model id="id-0065-000000cd" kind="Component" role="Component" derivedfrom="id-0065-000000c7" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-							<name>XML_Output_Adapter</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="UUID">
-								<value>D2220854-B64B-4D06-B39F-2D919070260A</value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="label" status="meta">
-								<value></value>
-							</attribute>
-							<reference id="id-0067-000000b9" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-000000b8" isinstance="yes" isprimary="no" referred="id-0065-0000004a" isbound="yes">
-								<name>plan_egress</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="exclusiveProvider" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="exclusiveUser" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="optional" status="meta">
-									<value>false</value>
-								</attribute>
-							</reference>
-						</model>
-						<reference id="id-0067-00000048" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-00000044" isinstance="yes" isprimary="no" referred="id-0065-0000004a" isbound="yes">
-							<name>PlanEgress</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="multiple_connections" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000049" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000045" isinstance="yes" isprimary="no" referred="id-0065-0000004a" isbound="yes">
-							<name>PlanEgress</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-0000004a" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-00000046" isinstance="yes" isprimary="no" referred="id-0065-0000007c">
-							<name>control_output</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="multiple_connections" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<connection isbound="yes" id="id-0068-00000060" kind="ReceptacleDelegate" role="ReceptacleDelegate" derivedfrom="id-0068-0000005d" isinstance="yes" isprimary="no">
-							<name>ReceptacleDelegate</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000061" kind="invoke" role="invoke" derivedfrom="id-0068-0000005a" isinstance="yes" isprimary="no">
-							<name>invoke</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000062" kind="FacetDelegate" role="FacetDelegate" derivedfrom="id-0068-0000005b" isinstance="yes" isprimary="no">
-							<name>FacetDelegate</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000063" kind="ReceptacleDelegate" role="ReceptacleDelegate" derivedfrom="id-0068-0000005c" isinstance="yes" isprimary="no">
-							<name>ReceptacleDelegate</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000064" kind="invoke" role="invoke" derivedfrom="id-0068-0000005e" isinstance="yes" isprimary="no">
-							<name>invoke</name>
-						</connection>
-					</model>
-					<model id="id-0065-000000ce" kind="ComponentAssembly" role="ComponentAssembly" derivedfrom="id-0065-000000b7" isinstance="yes" isprimary="yes" relid="0x2" childrelidcntr="0x0">
-						<name>PlanAnalyzerAssembly</name>
-						<regnode name="PartRegs" status="undefined">
-							<value></value>
-							<regnode name="Packaging" status="undefined">
-								<value></value>
-								<regnode name="Position" isopaque="yes">
-									<value>391,193</value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<attribute kind="UUID">
-							<value>B4328835-0E38-40BC-86B7-7D320DDF6564</value>
-						</attribute>
-						<attribute kind="label" status="meta">
-							<value></value>
-						</attribute>
-						<model id="id-0065-000000cf" kind="Component" role="Component" derivedfrom="id-0065-000000b8" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-							<name>Plan_Analyzer</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="UUID">
-								<value>E7092854-CEE5-4C79-BB2A-71256A09436B</value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="label" status="meta">
-								<value></value>
-							</attribute>
-							<model id="id-0065-000000d0" kind="ReadonlyAttribute" role="ReadonlyAttribute" derivedfrom="id-0065-000000b9" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-								<name>classes</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<reference id="id-0067-000000ee" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-000000ed" isinstance="yes" isprimary="no" referred="id-0067-000000ac" isbound="yes">
-									<name>AttributeMember</name>
-								</reference>
-							</model>
-							<reference id="id-0067-0000004b" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-00000035" isinstance="yes" isprimary="no" referred="id-0065-0000006c" isbound="yes">
-								<name>planner_manager_i</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="exclusiveProvider" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="exclusiveUser" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="multiple_connections" status="inherited">
-									<value>false</value>
-								</attribute>
-								<attribute kind="optional" status="meta">
-									<value>false</value>
-								</attribute>
-							</reference>
-							<reference id="id-0067-0000004c" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-00000036" isinstance="yes" isprimary="no" referred="id-0065-00000024" isbound="yes">
-								<name>plugins</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="exclusiveProvider" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="exclusiveUser" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="multiple_connections" status="inherited">
-									<value>true</value>
-								</attribute>
-								<attribute kind="optional" status="meta">
-									<value>false</value>
-								</attribute>
-							</reference>
-							<reference id="id-0067-000000f2" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-000000f1" isinstance="yes" isprimary="no" referred="id-0065-00000077" isbound="yes">
-								<name>plan_ingress</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="exclusiveProvider" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="exclusiveUser" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="optional" status="meta">
-									<value>false</value>
-								</attribute>
-							</reference>
-						</model>
-						<model id="id-0065-000000d1" kind="Component" role="Component" derivedfrom="id-0065-000000ba" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-							<name>SimpleAllocationAnalyzer</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="UUID">
-								<value>9527C347-6FC0-4B3C-B11F-742A77948A7F</value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="label" status="meta">
-								<value></value>
-							</attribute>
-							<model id="id-0065-000000d2" kind="ReadonlyAttribute" role="ReadonlyAttribute" derivedfrom="id-0065-000000bb" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-								<name>classification</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<reference id="id-0067-00000141" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-00000140" isinstance="yes" isprimary="no" referred="id-0067-000000ac" isbound="yes">
-									<name>AttributeMember</name>
-								</reference>
-							</model>
-							<reference id="id-0067-000000a2" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-000000a1" isinstance="yes" isprimary="no" referred="id-0065-00000024" isbound="yes">
-								<name>analyzer</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="exclusiveProvider" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="exclusiveUser" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="optional" status="meta">
-									<value>false</value>
-								</attribute>
-							</reference>
-						</model>
-						<reference id="id-0067-0000004d" kind="AttributeMapping" role="AttributeMapping" derivedfrom="id-0067-00000037" isinstance="yes" isprimary="no" referred="id-0065-000000d0" isbound="yes">
-							<name>classes</name>
-						</reference>
-						<reference id="id-0067-0000004e" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000038" isinstance="yes" isprimary="no" referred="id-0065-00000077" isbound="yes">
-							<name>PlanIngress</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-0000004f" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-00000039" isinstance="yes" isprimary="no" referred="id-0065-0000006c" isbound="yes">
-							<name>Planner_Manager_I</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="multiple_connections" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000050" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-0000003a" isinstance="yes" isprimary="no" referred="id-0065-00000024" isbound="yes">
-							<name>Analyzer_I</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="multiple_connections" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<connection isbound="yes" id="id-0068-00000065" kind="AttributeDelegate" role="AttributeDelegate" derivedfrom="id-0068-0000004d" isinstance="yes" isprimary="no">
-							<name>AttributeDelegate</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000066" kind="invoke" role="invoke" derivedfrom="id-0068-0000004e" isinstance="yes" isprimary="no">
-							<name>invoke</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000067" kind="FacetDelegate" role="FacetDelegate" derivedfrom="id-0068-0000004f" isinstance="yes" isprimary="no">
-							<name>FacetDelegate</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000068" kind="ReceptacleDelegate" role="ReceptacleDelegate" derivedfrom="id-0068-00000050" isinstance="yes" isprimary="no">
-							<name>ReceptacleDelegate</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000069" kind="ReceptacleDelegate" role="ReceptacleDelegate" derivedfrom="id-0068-00000051" isinstance="yes" isprimary="no">
-							<name>ReceptacleDelegate</name>
-						</connection>
-					</model>
-					<model id="id-0065-000000d3" kind="ComponentAssembly" role="ComponentAssembly" derivedfrom="id-0065-000000bd" isinstance="yes" isprimary="yes" relid="0x3" childrelidcntr="0x0">
-						<name>AssemblyPlannerManager</name>
-						<regnode name="PartRegs" status="undefined">
-							<value></value>
-							<regnode name="Packaging" status="undefined">
-								<value></value>
-								<regnode name="Position" isopaque="yes">
-									<value>657,193</value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<attribute kind="UUID">
-							<value>C21DD78C-563F-41CC-98E0-AABC9FB99D8B</value>
-						</attribute>
-						<attribute kind="label" status="meta">
-							<value></value>
-						</attribute>
-						<model id="id-0065-000000d4" kind="Component" role="Component" derivedfrom="id-0065-000000be" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-							<name>Planner_ManagerImplementation</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="UUID">
-								<value>CA445A88-6BAA-40F7-9AE4-0E33A21E9AE3</value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="label" status="meta">
-								<value></value>
-							</attribute>
-							<model id="id-0065-000000d5" kind="ReadonlyAttribute" role="ReadonlyAttribute" derivedfrom="id-0065-000000bf" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-								<name>classes</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<reference id="id-0067-000000e3" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-000000e2" isinstance="yes" isprimary="no" referred="id-0067-000000ac" isbound="yes">
-									<name>AttributeMember</name>
-								</reference>
-							</model>
-							<reference id="id-0067-00000051" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-0000003c" isinstance="yes" isprimary="no" referred="id-0065-0000005a" isbound="yes">
-								<name>planners</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="exclusiveProvider" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="exclusiveUser" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="multiple_connections" status="inherited">
-									<value>true</value>
-								</attribute>
-								<attribute kind="optional" status="meta">
-									<value>false</value>
-								</attribute>
-							</reference>
-							<reference id="id-0067-00000052" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-0000003d" isinstance="yes" isprimary="no" referred="id-0065-0000004a" isbound="yes">
-								<name>outputs</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="exclusiveProvider" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="exclusiveUser" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="multiple_connections" status="inherited">
-									<value>true</value>
-								</attribute>
-								<attribute kind="optional" status="meta">
-									<value>false</value>
-								</attribute>
-							</reference>
-							<reference id="id-0067-000000e7" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-000000e6" isinstance="yes" isprimary="no" referred="id-0065-0000006c" isbound="yes">
-								<name>planner_manager_i</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="exclusiveProvider" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="exclusiveUser" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="optional" status="meta">
-									<value>false</value>
-								</attribute>
-							</reference>
-						</model>
-						<model id="id-0065-000000d6" kind="Component" role="Component" derivedfrom="id-0065-000000c0" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-							<name>SimpleBinPackerImplementation</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="UUID">
-								<value>E03D81DA-7BAC-4988-8C4E-AB02A250981D</value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="label" status="meta">
-								<value></value>
-							</attribute>
-							<model id="id-0065-000000d7" kind="Attribute" role="Attribute" derivedfrom="id-0065-000000c1" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-								<name>name</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<reference id="id-0067-000000ce" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-000000cd" isinstance="yes" isprimary="no" referred="id-0066-00000003" isbound="yes">
-									<name>AttributeMember</name>
-								</reference>
-							</model>
-							<model id="id-0065-000000d8" kind="Attribute" role="Attribute" derivedfrom="id-0065-000000c2" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-								<name>type</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<reference id="id-0067-000000d3" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-000000d2" isinstance="yes" isprimary="no" referred="id-0067-000000ab" isbound="yes">
-									<name>AttributeMember</name>
-								</reference>
-							</model>
-							<reference id="id-0067-000000d8" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-000000d7" isinstance="yes" isprimary="no" referred="id-0065-0000005a" isbound="yes">
-								<name>planner_i</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="exclusiveProvider" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="exclusiveUser" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="optional" status="meta">
-									<value>false</value>
-								</attribute>
-							</reference>
-							<reference id="id-0067-000000df" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-000000de" isinstance="yes" isprimary="no" referred="id-0065-00000085" isbound="yes">
-								<name>target_mgr</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="exclusiveProvider" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="exclusiveUser" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="multiple_connections" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="optional" status="meta">
-									<value>false</value>
-								</attribute>
-							</reference>
-						</model>
-						<reference id="id-0067-00000053" kind="AttributeMapping" role="AttributeMapping" derivedfrom="id-0067-0000003e" isinstance="yes" isprimary="no" referred="id-0065-000000d5" isbound="yes">
-							<name>classes</name>
-						</reference>
-						<reference id="id-0067-00000054" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-0000003f" isinstance="yes" isprimary="no" referred="id-0065-0000006c" isbound="yes">
-							<name>Planner_Manager_I</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000055" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-00000040" isinstance="yes" isprimary="no" referred="id-0065-0000005a" isbound="yes">
-							<name>Planner_I</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="multiple_connections" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000056" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-00000041" isinstance="yes" isprimary="no" referred="id-0065-0000004a" isbound="yes">
-							<name>PlanEgress</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="multiple_connections" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000057" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-00000042" isinstance="yes" isprimary="no" referred="id-0065-00000085" isbound="yes">
-							<name>TargetManager</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="multiple_connections" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<connection isbound="yes" id="id-0068-0000006a" kind="AttributeDelegate" role="AttributeDelegate" derivedfrom="id-0068-00000053" isinstance="yes" isprimary="no">
-							<name>AttributeDelegate</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-0000006b" kind="invoke" role="invoke" derivedfrom="id-0068-00000054" isinstance="yes" isprimary="no">
-							<name>invoke</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-0000006c" kind="FacetDelegate" role="FacetDelegate" derivedfrom="id-0068-00000055" isinstance="yes" isprimary="no">
-							<name>FacetDelegate</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-0000006d" kind="ReceptacleDelegate" role="ReceptacleDelegate" derivedfrom="id-0068-00000056" isinstance="yes" isprimary="no">
-							<name>ReceptacleDelegate</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-0000006e" kind="ReceptacleDelegate" role="ReceptacleDelegate" derivedfrom="id-0068-00000057" isinstance="yes" isprimary="no">
-							<name>ReceptacleDelegate</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-0000006f" kind="ReceptacleDelegate" role="ReceptacleDelegate" derivedfrom="id-0068-00000058" isinstance="yes" isprimary="no">
-							<name>ReceptacleDelegate</name>
-						</connection>
-					</model>
-					<model id="id-0065-000000d9" kind="Component" role="Component" derivedfrom="id-0065-00000037" isinstance="yes" isprimary="yes" relid="0x6" childrelidcntr="0x0">
-						<name>Interactive_Input_Adapter</name>
-						<regnode name="PartRegs" isopaque="yes">
-							<value></value>
-							<regnode name="Packaging" status="undefined">
-								<value></value>
-								<regnode name="Position" isopaque="yes">
-									<value>167,186</value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<attribute kind="SpecifyIdTag" status="meta">
-							<value></value>
-						</attribute>
-						<attribute kind="UUID">
-							<value>C1A8AD5F-4547-43B3-BF6D-E318A6D04C21</value>
-						</attribute>
-						<attribute kind="VersionTag" status="meta">
-							<value></value>
-						</attribute>
-						<attribute kind="label" status="meta">
-							<value></value>
-						</attribute>
-						<reference id="id-0067-000000af" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-000000ae" isinstance="yes" isprimary="no" referred="id-0065-00000077" isbound="yes">
-							<name>ingress</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="multiple_connections" status="inherited">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-					</model>
-					<connection id="id-0068-00000070" kind="invoke" role="invoke" relid="0x4">
-						<name>invoke</name>
-						<connpoint role="src" target="id-0067-0000004f"/>
-						<connpoint role="dst" target="id-0067-00000054"/>
-					</connection>
-					<connection id="id-0068-00000071" kind="invoke" role="invoke" relid="0x5">
-						<name>invoke</name>
-						<connpoint role="dst" target="id-0067-00000049"/>
-						<connpoint role="src" target="id-0067-00000056"/>
-					</connection>
-					<connection id="id-0068-00000072" kind="invoke" role="invoke" relid="0x7">
-						<name>invoke</name>
-						<connpoint role="dst" target="id-0067-0000004e"/>
-						<connpoint role="src" target="id-0067-000000af"/>
-					</connection>
-				</model>
 			</model>
 			<model id="id-0065-000000da" kind="ComponentImplementationContainer" relid="0x5" childrelidcntr="0x1">
 				<name>RACE</name>
@@ -8236,39 +6786,6 @@
 								</attribute>
 							</reference>
 						</model>
-						<model id="id-0065-000000df" kind="Component" role="Component" derivedfrom="id-0065-000000c7" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-							<name>XML_Output_Adapter</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="UUID">
-								<value>E35AF21D-F974-492C-BEC5-F6083F474666</value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="label" status="meta">
-								<value></value>
-							</attribute>
-							<reference id="id-0067-000000ba" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-000000b8" isinstance="yes" isprimary="no" referred="id-0065-0000004a" isbound="yes">
-								<name>plan_egress</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="exclusiveProvider" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="exclusiveUser" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="optional" status="meta">
-									<value>false</value>
-								</attribute>
-							</reference>
-						</model>
 						<reference id="id-0067-00000058" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-00000044" isinstance="yes" isprimary="no" referred="id-0065-0000004a" isbound="yes">
 							<name>PlanEgress</name>
 							<attribute kind="SpecifyIdTag" status="meta">
@@ -8340,9 +6857,6 @@
 						</connection>
 						<connection isbound="yes" id="id-0068-00000076" kind="ReceptacleDelegate" role="ReceptacleDelegate" derivedfrom="id-0068-0000005c" isinstance="yes" isprimary="no">
 							<name>ReceptacleDelegate</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000077" kind="invoke" role="invoke" derivedfrom="id-0068-0000005e" isinstance="yes" isprimary="no">
-							<name>invoke</name>
 						</connection>
 					</model>
 					<model id="id-0065-000000e0" kind="ComponentAssembly" role="ComponentAssembly" derivedfrom="id-0065-000000b7" isinstance="yes" isprimary="yes" relid="0xa" childrelidcntr="0x0">
@@ -8449,51 +6963,6 @@
 								</attribute>
 							</reference>
 						</model>
-						<model id="id-0065-000000e3" kind="Component" role="Component" derivedfrom="id-0065-000000ba" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-							<name>SimpleAllocationAnalyzer</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="UUID">
-								<value>88174B15-420E-4F79-ABBC-EEFC2993A869</value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="label" status="meta">
-								<value></value>
-							</attribute>
-							<model id="id-0065-000000e4" kind="ReadonlyAttribute" role="ReadonlyAttribute" derivedfrom="id-0065-000000bb" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-								<name>classification</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<reference id="id-0067-00000142" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-00000140" isinstance="yes" isprimary="no" referred="id-0067-000000ac" isbound="yes">
-									<name>AttributeMember</name>
-								</reference>
-							</model>
-							<reference id="id-0067-000000a3" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-000000a1" isinstance="yes" isprimary="no" referred="id-0065-00000024" isbound="yes">
-								<name>analyzer</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="exclusiveProvider" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="exclusiveUser" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="optional" status="meta">
-									<value>false</value>
-								</attribute>
-							</reference>
-						</model>
 						<reference id="id-0067-0000005d" kind="AttributeMapping" role="AttributeMapping" derivedfrom="id-0067-00000037" isinstance="yes" isprimary="no" referred="id-0065-000000e2" isbound="yes">
 							<name>classes</name>
 						</reference>
@@ -8559,9 +7028,6 @@
 						</reference>
 						<connection isbound="yes" id="id-0068-00000078" kind="AttributeDelegate" role="AttributeDelegate" derivedfrom="id-0068-0000004d" isinstance="yes" isprimary="no">
 							<name>AttributeDelegate</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000079" kind="invoke" role="invoke" derivedfrom="id-0068-0000004e" isinstance="yes" isprimary="no">
-							<name>invoke</name>
 						</connection>
 						<connection isbound="yes" id="id-0068-0000007a" kind="FacetDelegate" role="FacetDelegate" derivedfrom="id-0068-0000004f" isinstance="yes" isprimary="no">
 							<name>FacetDelegate</name>
@@ -9030,7 +7496,7 @@
 							<regnode name="Packaging" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>237,165</value>
+									<value>242,201</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -9090,7 +7556,7 @@
 							<regnode name="Packaging" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>237,39</value>
+									<value>242,61</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -9477,7 +7943,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>D98AF36F-11FA-43A4-8FAD-C14A461437EE</value>
+						<value>198AF36F-11FA-43A4-8FAD-C14A461437EE</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -9717,160 +8183,6 @@
 					<name>ArtifactDependency</name>
 					<connpoint role="dst" target="id-0066-0000001b"/>
 					<connpoint role="src" target="id-0066-0000001d"/>
-				</connection>
-			</model>
-			<model id="id-0065-000000fa" kind="ArtifactContainer" relid="0x2" childrelidcntr="0xa">
-				<name>SimpleAllocationAnalyzerArtifacts</name>
-				<model id="id-0065-000000fb" kind="Property" role="Property" relid="0x2" childrelidcntr="0x2">
-					<name>entryPoint</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Packaging" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>334,200</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="DataValue">
-						<value>create_CIAO_RACE_SimpleAllocationAnalyzer_Home_Servant</value>
-					</attribute>
-					<reference id="id-0067-00000074" kind="DataType" role="DataType" relid="0x2" referred="id-0066-00000003">
-						<name>String</name>
-						<regnode name="PartRegs" isopaque="yes">
-							<value></value>
-							<regnode name="Packaging" isopaque="yes">
-								<value></value>
-								<regnode name="Position" isopaque="yes">
-									<value>518,318</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</reference>
-				</model>
-				<model id="id-0065-000000fc" kind="Property" role="Property" relid="0x4" childrelidcntr="0x2">
-					<name>entryPoint</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Packaging" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>700,432</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="DataValue">
-						<value>create_CIAO_RACE_SimpleAllocationAnalyzer_Home_Impl</value>
-					</attribute>
-					<reference id="id-0067-00000075" kind="DataType" role="DataType" relid="0x2" referred="id-0066-00000003">
-						<name>String</name>
-						<regnode name="PartRegs" isopaque="yes">
-							<value></value>
-							<regnode name="Packaging" isopaque="yes">
-								<value></value>
-								<regnode name="Position" isopaque="yes">
-									<value>518,318</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</reference>
-				</model>
-				<atom id="id-0066-0000001e" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x1">
-					<name>SimpleAllocationAnalyzer_stub</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Packaging" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>151,84</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="UUID">
-						<value>_6BDE830C-FFA8-4F2D-9733-34F02F35020F</value>
-					</attribute>
-					<attribute kind="configuration" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="label">
-						<value></value>
-					</attribute>
-					<attribute kind="location">
-						<value>SimpleAllocationAnalyzer_stub</value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-0000001f" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
-					<name>SimpleAllocationAnalyzer_svnt</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Packaging" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>517,316</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="UUID">
-						<value>_138A0FE1-D8AA-4C1E-BB5E-4EC9714F4CA8</value>
-					</attribute>
-					<attribute kind="configuration" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="label">
-						<value></value>
-					</attribute>
-					<attribute kind="location">
-						<value>SimpleAllocationAnalyzer_svnt</value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-00000020" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x5">
-					<name>SimpleAllocationAnalyzer_exec</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Packaging" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>883,548</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="UUID">
-						<value>_621F3412-C507-4945-836B-CF9B81BDCC99</value>
-					</attribute>
-					<attribute kind="configuration" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="label">
-						<value></value>
-					</attribute>
-					<attribute kind="location">
-						<value>SimpleAllocationAnalyzer_exec</value>
-					</attribute>
-				</atom>
-				<connection id="id-0068-000000a0" kind="ArtifactExecParameter" role="ArtifactExecParameter" relid="0x7">
-					<name>ArtifactExecParameter</name>
-					<connpoint role="dst" target="id-0065-000000fb"/>
-					<connpoint role="src" target="id-0066-0000001f"/>
-				</connection>
-				<connection id="id-0068-000000a1" kind="ArtifactDependency" role="ArtifactDependency" relid="0x8">
-					<name>ArtifactDependency</name>
-					<connpoint role="dst" target="id-0066-0000001e"/>
-					<connpoint role="src" target="id-0066-0000001f"/>
-				</connection>
-				<connection id="id-0068-000000a2" kind="ArtifactExecParameter" role="ArtifactExecParameter" relid="0x8">
-					<name>ArtifactExecParameter</name>
-					<connpoint role="dst" target="id-0065-000000fc"/>
-					<connpoint role="src" target="id-0066-00000020"/>
-				</connection>
-				<connection id="id-0068-000000a3" kind="ArtifactDependency" role="ArtifactDependency" relid="0x9">
-					<name>ArtifactDependency</name>
-					<connpoint role="dst" target="id-0066-0000001f"/>
-					<connpoint role="src" target="id-0066-00000020"/>
-				</connection>
-				<connection id="id-0068-000000a4" kind="ArtifactDependency" role="ArtifactDependency" relid="0xa">
-					<name>ArtifactDependency</name>
-					<connpoint role="dst" target="id-0066-0000001e"/>
-					<connpoint role="src" target="id-0066-00000020"/>
 				</connection>
 			</model>
 			<model id="id-0065-000000fd" kind="ArtifactContainer" relid="0x3" childrelidcntr="0xa">
@@ -10643,160 +8955,6 @@
 					<connpoint role="src" target="id-0066-0000002f"/>
 				</connection>
 			</model>
-			<model id="id-0065-0000010c" kind="ArtifactContainer" relid="0x8" childrelidcntr="0xa">
-				<name>XML_Output_AdapterArtifacts</name>
-				<model id="id-0065-0000010d" kind="Property" role="Property" relid="0x2" childrelidcntr="0x2">
-					<name>entryPoint</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Packaging" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>334,200</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="DataValue">
-						<value>create_CIAO_RACE_XML_Output_Adapter_Home_Servant</value>
-					</attribute>
-					<reference id="id-0067-00000080" kind="DataType" role="DataType" relid="0x2" referred="id-0066-00000003">
-						<name>String</name>
-						<regnode name="PartRegs" isopaque="yes">
-							<value></value>
-							<regnode name="Packaging" isopaque="yes">
-								<value></value>
-								<regnode name="Position" isopaque="yes">
-									<value>518,318</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</reference>
-				</model>
-				<model id="id-0065-0000010e" kind="Property" role="Property" relid="0x4" childrelidcntr="0x2">
-					<name>entryPoint</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Packaging" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>700,432</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="DataValue">
-						<value>create_CIAO_RACE_XML_Output_Adapter_Home_Impl</value>
-					</attribute>
-					<reference id="id-0067-00000081" kind="DataType" role="DataType" relid="0x2" referred="id-0066-00000003">
-						<name>String</name>
-						<regnode name="PartRegs" isopaque="yes">
-							<value></value>
-							<regnode name="Packaging" isopaque="yes">
-								<value></value>
-								<regnode name="Position" isopaque="yes">
-									<value>518,318</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</reference>
-				</model>
-				<atom id="id-0066-00000030" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x1">
-					<name>XML_Output_Adapter_stub</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Packaging" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>151,84</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="UUID">
-						<value>_CF7C6C9B-C6E3-4356-B9F1-598FA0B4A5B7</value>
-					</attribute>
-					<attribute kind="configuration" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="label">
-						<value></value>
-					</attribute>
-					<attribute kind="location">
-						<value>XML_Output_Adapter_stub</value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-00000031" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
-					<name>XML_Output_Adapter_svnt</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Packaging" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>517,316</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="UUID">
-						<value>_437B6234-9DD3-40E4-9AE0-0923EBAF4548</value>
-					</attribute>
-					<attribute kind="configuration" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="label">
-						<value></value>
-					</attribute>
-					<attribute kind="location">
-						<value>XML_Output_Adapter_svnt</value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-00000032" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x5">
-					<name>XML_Output_Adapter_exec</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Packaging" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>883,548</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="UUID">
-						<value>_E2F1EA75-127C-4579-B692-ADD1026C6F23</value>
-					</attribute>
-					<attribute kind="configuration" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="label">
-						<value></value>
-					</attribute>
-					<attribute kind="location">
-						<value>XML_Output_Adapter_exec</value>
-					</attribute>
-				</atom>
-				<connection id="id-0068-000000be" kind="ArtifactExecParameter" role="ArtifactExecParameter" relid="0x7">
-					<name>ArtifactExecParameter</name>
-					<connpoint role="dst" target="id-0065-0000010d"/>
-					<connpoint role="src" target="id-0066-00000031"/>
-				</connection>
-				<connection id="id-0068-000000bf" kind="ArtifactDependency" role="ArtifactDependency" relid="0x8">
-					<name>ArtifactDependency</name>
-					<connpoint role="dst" target="id-0066-00000030"/>
-					<connpoint role="src" target="id-0066-00000031"/>
-				</connection>
-				<connection id="id-0068-000000c0" kind="ArtifactExecParameter" role="ArtifactExecParameter" relid="0x8">
-					<name>ArtifactExecParameter</name>
-					<connpoint role="dst" target="id-0065-0000010e"/>
-					<connpoint role="src" target="id-0066-00000032"/>
-				</connection>
-				<connection id="id-0068-000000c1" kind="ArtifactDependency" role="ArtifactDependency" relid="0x9">
-					<name>ArtifactDependency</name>
-					<connpoint role="dst" target="id-0066-00000031"/>
-					<connpoint role="src" target="id-0066-00000032"/>
-				</connection>
-				<connection id="id-0068-000000c2" kind="ArtifactDependency" role="ArtifactDependency" relid="0xa">
-					<name>ArtifactDependency</name>
-					<connpoint role="dst" target="id-0066-00000030"/>
-					<connpoint role="src" target="id-0066-00000032"/>
-				</connection>
-			</model>
 			<model id="id-0065-0000010f" kind="ArtifactContainer" relid="0x9" childrelidcntr="0xa">
 				<name>PlannerArtifacts</name>
 				<model id="id-0065-00000110" kind="Property" role="Property" relid="0x2" childrelidcntr="0x2">
@@ -10952,7 +9110,7 @@
 				</connection>
 			</model>
 			<model id="id-0065-00000112" kind="ArtifactContainer" relid="0xa" childrelidcntr="0xa">
-				<name>SimpleBinPackerArtifacts</name>
+				<name>StaticPlannerArtifacts</name>
 				<model id="id-0065-00000113" kind="Property" role="Property" relid="0x2" childrelidcntr="0x2">
 					<name>entryPoint</name>
 					<regnode name="PartRegs" isopaque="yes">
@@ -10965,7 +9123,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="DataValue">
-						<value>create_CIAO_RACE_SimpleBinPacker_Home_Servant</value>
+						<value>create_CIAO_RACE_StaticPlanner_Home_Servant</value>
 					</attribute>
 					<reference id="id-0067-00000084" kind="DataType" role="DataType" relid="0x2" referred="id-0066-00000003">
 						<name>String</name>
@@ -10992,7 +9150,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="DataValue">
-						<value>create_CIAO_RACE_SimpleBinPacker_Home_Impl</value>
+						<value>create_CIAO_RACE_StaticPlanner_Home_Impl</value>
 					</attribute>
 					<reference id="id-0067-00000085" kind="DataType" role="DataType" relid="0x2" referred="id-0066-00000003">
 						<name>String</name>
@@ -11008,7 +9166,7 @@
 					</reference>
 				</model>
 				<atom id="id-0066-00000036" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x1">
-					<name>SimpleBinPacker_stub</name>
+					<name>StaticPlanner_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
@@ -11019,7 +9177,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>_2B5FE9E6-AF4C-4BC1-92A2-58101B2ECCA8</value>
+						<value>5D271FCF-D9A6-4A29-9CE1-1E733DD9007C</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -11028,11 +9186,11 @@
 						<value></value>
 					</attribute>
 					<attribute kind="location">
-						<value>SimpleBinPacker_stub</value>
+						<value>StaticPlanner_stub</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-00000037" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
-					<name>SimpleBinPacker_svnt</name>
+					<name>StaticPlanner_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
@@ -11043,7 +9201,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>_4D375D8F-5470-4236-8614-EF07D08020E3</value>
+						<value>95FCD00B-F2C4-459F-BDE1-002D6FEF93DC</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -11052,11 +9210,11 @@
 						<value></value>
 					</attribute>
 					<attribute kind="location">
-						<value>SimpleBinPacker_svnt</value>
+						<value>StaticPlanner_svnt</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-00000038" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x5">
-					<name>SimpleBinPacker_exec</name>
+					<name>StaticPlanner_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
@@ -11067,7 +9225,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>_D6176B6C-58E4-43D4-BFC9-3DCF98249044</value>
+						<value>567AEC14-708F-4249-AFB8-D7B0EB77FE7D</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -11076,7 +9234,7 @@
 						<value></value>
 					</attribute>
 					<attribute kind="location">
-						<value>SimpleBinPacker_exec</value>
+						<value>StaticPlanner_exec</value>
 					</attribute>
 				</atom>
 				<connection id="id-0068-000000c8" kind="ArtifactExecParameter" role="ArtifactExecParameter" relid="0x7">
