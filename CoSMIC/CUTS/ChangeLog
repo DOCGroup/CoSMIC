@@ -1,3 +1,37 @@
+Wed Oct  4 15:12:09 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * install/CUTS_CoSMIC_installers.mpc:
+
+          This file was missing from the repo.
+
+        * utils/BMW/Database_Utility/Database_Utility.cs:
+
+          Added several methods for getting the component
+          instances from the database based on varoius criteria.
+
+        * utils/BMW/components.aspx.cs:
+
+          Fixed control display. It now maintains its hide/shows
+          for the details of the component types correctly.
+
+        * utils/BMW/default.aspx:
+
+          Fixed the number of displayed test. It was set to 4
+          instead of 25.
+
+        * cuts/BDC/Benchmark_Data_Collector_Ex_svnt.h:
+        * cuts/BDC/Benchmark_Data_Collector_Ex_svnt.cpp:
+        * cuts/BDC/Benchmark_Data_Collector_svnt.h:
+        * cuts/BDC/Benchmark_Data_Collector_svnt.cpp:
+
+          Removed these files.
+
+Thu Sep 28 23:23:04 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/UDM_Utility_T.inl:
+
+          Missing source file.
+
 Mon Sep 25 15:55:19 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/BMW.master:

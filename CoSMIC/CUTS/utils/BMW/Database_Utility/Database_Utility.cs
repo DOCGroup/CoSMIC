@@ -498,7 +498,7 @@ public class CUTS_Database_Utility
   {
     MySqlCommand command = this.conn_.CreateCommand();
     command.CommandText =
-      "SELECT * FROM component_instances ORDER BY component_id";
+      "SELECT * FROM component_instances ORDER BY component_name";
 
     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
     adapter.Fill(ds, "component_instances");
@@ -511,8 +511,8 @@ public class CUTS_Database_Utility
    * @param[out]        ds        Target dataset for query.
    * @param[in]         typeid    Typeid of the instances.
    */
-  public void get_component_instances(ref DataSet ds, 
-                                      System.Int32 typeid)
+  public void get_component_instances(System.Int32 typeid,
+                                      ref DataSet ds)
   {
     StringBuilder builder = new StringBuilder();
     builder.Append ("SELECT * FROM component_instances WHERE typeid = ?typeid ");
@@ -605,6 +605,38 @@ public class CUTS_Database_Utility
 
     // Execute the command and return the reader.
     return command.ExecuteReader();
+  }
+
+  public System.DateTime get_latest_collection_time (System.Int32 test)
+  {
+    // Create a new command.
+    MySqlCommand command = this.conn_.CreateCommand ();
+
+    // Initalize the command.
+    command.CommandText = "SELECT MAX(collection_time) FROM execution_time WHERE test_number = ?t";
+    command.Parameters.Add("?t", test);
+
+    // Execute the command.
+    return (System.DateTime)command.ExecuteScalar();
+  }
+
+  public void get_component_instances(System.Int32 test,
+                                      System.DateTime timestamp,
+                                      ref DataSet ds)
+  {
+    StringBuilder builder = new StringBuilder();
+    builder.Append("SELECT UNIQUE component, component_name FROM execution_time AS et ");
+    builder.Append("LEFT JOIN component_instances AS ci ");
+    builder.Append("ON (ci.component_id = et.component) ");
+    builder.Append("WHERE test_number = ?t AND collection_time = ?ct ORDER BY component_name");
+
+    MySqlCommand command = this.conn_.CreateCommand();
+    command.CommandText = builder.ToString();
+    command.Parameters.Add("?t", test);
+    command.Parameters.Add("?ct", timestamp);
+
+    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+    adapter.Fill(ds, "component_instances");
   }
 
   /// Connection object.

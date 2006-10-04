@@ -1,18 +1,22 @@
 <%@ Page language="c#" codefile="default.aspx.cs" inherits="CUTS.Test" 
          masterpagefile="~/BMW.master" %>
 
-<asp:content 
-  runat="server" id="content_"
-  contentplaceholderid="MainContent">
-<asp:datagrid 
-  id="tests_" runat="server" autogeneratecolumns="false" 
-  datakeyfield="test_number" 
-  borderstyle="solid" cellpadding="2" cellspacing="0"
-  allowpaging="true" pagesize="4" width="100%" 
-  showheader="true" showfooter="false" 
-  enableviewstate="true"
-  onpageindexchanged="handle_onpageindexchanged"
-  onitemcreated="handle_onitemcreated">
+<asp:content runat="server" id="content_" contentplaceholderid="MainContent">
+<asp:datagrid id="tests_" 
+              runat="server"
+              autogeneratecolumns="false" 
+              datakeyfield="test_number" 
+              borderstyle="solid" 
+              cellpadding="2"
+              cellspacing="0"
+              allowpaging="true" 
+              pagesize="25" 
+              width="100%" 
+              showheader="true" 
+              showfooter="false" 
+              enableviewstate="true"
+              onpageindexchanged="handle_onpageindexchanged"
+              onitemcreated="handle_onitemcreated">
 
   <headerstyle cssclass="header" />
   <footerstyle cssclass="footer" />
