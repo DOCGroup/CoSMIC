@@ -1,10 +1,18 @@
+Thu Oct  5 10:13:07 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/examples/SLICE.xme:
+        * PIM/PICML/examples/SLICE:
+        * PIM/PICML/examples/SLICE/SLICE.xme:
+
+          Moved the SLICE example to the parent directory.
+
 Wed Oct  4 00:50:15 UTC 2006  Sumant Tambe <sutambe@nospam>
 
-	  Added a model of RACE with a NetQoS planner in it. 
+          Added a model of RACE with a NetQoS planner in it.
           Fixed name typos in the RACE model.
 
-	* PIM/PICML/examples/RACE/RACE.xme
-	* PIM/PICML/examples/RACE/RACE_NetQoS.xme
+        * PIM/PICML/examples/RACE/RACE.xme
+        * PIM/PICML/examples/RACE/RACE_NetQoS.xme
 
 Mon Oct  2 20:18:57 UTC 2006  Nishanth Shanakran  <nshankar@dre.vanderbilt.edu>
 
