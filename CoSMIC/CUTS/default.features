@@ -26,13 +26,13 @@ unixodbc = 0
 /// Enable this feature if you are building any GME specific projects for
 /// CUTS, primarily includes the interpreters.
 
-gme = 1
+gme = 0
 
 /// @feature mfc
 /// Enable this feature if you are building any projects that require
 /// MFC. If you enable mfc, then it is wise to enable this feature.
 
-mfc = 1
+mfc = 0
 
 /// @feature udm
 /// Enable this feature if you are building any projects that require
@@ -40,7 +40,7 @@ mfc = 1
 /// If you enable this feature, then you must also have an environment
 /// variable named $UDM_PATH.
 
-udm = 1
+udm = 0
 
 /// @feature boost
 /// Enable this feature if you are building interpreters that generate
@@ -51,7 +51,7 @@ udm = 1
 /// and library files by set the environment variables $BOOST_INCLUDE and
 /// $BOOST_LIB, respectively.
 
-boost = 1
+boost = 0
 
 ///============================================================================
 // DO NOT CHANGE ANYTHING BELOW THIS LINE
