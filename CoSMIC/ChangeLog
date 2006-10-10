@@ -1,3 +1,15 @@
+Tue Oct 10 18:06:25 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/SIML/interpreters/GatewayGenerator/GsoapVisitor.h:
+        * PIM/SIML/interpreters/GatewayGenerator/GsoapVisitor.cpp:
+
+          Renamed the files to reflect their task.
+
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGeneratorVisitor.h:
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGeneratorVisitor.cpp:
+
+          Removed these files.
+
 Tue Oct 10 17:58:15 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
