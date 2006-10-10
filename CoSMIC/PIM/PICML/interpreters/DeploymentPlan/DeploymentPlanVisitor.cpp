@@ -98,13 +98,13 @@ namespace PICML
                                  XStr ("http://www.omg.org/Deployment"));
     this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
                                  XStr ("xmlns:xsi"),
-                                 XStr 
+                                 XStr
                                  ("http://www.w3.org/2001/XMLSchema-instance"));
     this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
                                  XStr ("xmlns:xmi"),
                                  XStr ("http://www.omg.org/XMI"));
     this->root_->setAttribute (XStr ("xsi:schemaLocation"),
-                               XStr 
+                               XStr
                               ("http://www.omg.org/Deployment Deployment.xsd"));
     this->curr_ = this->root_;
   }
@@ -337,7 +337,7 @@ namespace PICML
     this->CreatePropertyElement (property.name(), property);
   }
 
-  void DeploymentPlanVisitor::CreatePropertyElement (std::string name, 
+  void DeploymentPlanVisitor::CreatePropertyElement (std::string name,
                                                const Property& property)
   {
     this->push();
@@ -563,7 +563,7 @@ namespace PICML
         (const MonolithprimaryArtifact& mpa)
   {
     this->push();
-    const ImplementationArtifactReference iaref = 
+    const ImplementationArtifactReference iaref =
            mpa.dstMonolithprimaryArtifact_end();
     const ImplementationArtifact ref = iaref.ref();
 
@@ -573,7 +573,7 @@ namespace PICML
       ref.UUID() = uniqueName = CreateUuid();
     uniqueName = std::string ("_") + uniqueName;
 
-    this->curr_->appendChild 
+    this->curr_->appendChild
         (this->createSimpleContent ("artifact", uniqueName));
     this->pop();
   }
@@ -654,7 +654,7 @@ namespace PICML
     return;
   }
 
-  void DeploymentPlanVisitor::GetReceptacleComponents 
+  void DeploymentPlanVisitor::GetReceptacleComponents
       (const RequiredRequestPort& receptacle,
        std::map<Component,std::string>& output)
   {
@@ -696,7 +696,7 @@ namespace PICML
                          visited);
   }
 
-    void DeploymentPlanVisitor::GetEventSourceComponents 
+    void DeploymentPlanVisitor::GetEventSourceComponents
        (const OutEventPort& publisher,
         std::map<Component,std::string>& output)
   {
@@ -710,9 +710,9 @@ namespace PICML
                          visited);
   }
 
-  void DeploymentPlanVisitor::CreateConnections (const std::map<Component, 
+  void DeploymentPlanVisitor::CreateConnections (const std::map<Component,
                                            std::string>& src,
-                                           const std::map<Component, 
+                                           const std::map<Component,
                                            std::string>& dst,
 				           const std::string& source_kind,
 					   const std::string& dest_kind)
@@ -723,14 +723,14 @@ namespace PICML
       {
         Component srcComp = iter->first;
         std::string srcPortName = iter->second;
-        for (std::map<Component, 
+        for (std::map<Component,
              std::string>::const_iterator iter = dst.begin();
              iter != dst.end();
              ++iter)
           {
             Component dstComp = iter->first;
             std::string dstPortName = iter->second;
-            this->CreateConnection (srcComp, srcPortName, dstComp, 
+            this->CreateConnection (srcComp, srcPortName, dstComp,
                     dstPortName, source_kind, dest_kind);
           }
       }
@@ -739,7 +739,7 @@ namespace PICML
   template <typename T>
   std::string DeploymentPlanVisitor::unique_id (const T &comp)
     {
-      return std::string ("_") + comp.getPath (".",false,true,"name",true);
+      return comp.getPath (".",false,true,"name",true);
 
       // @NOTE: Use this or the one above.
       /*
@@ -748,7 +748,7 @@ namespace PICML
         {
           comp.UUID() = uuid = Utils::CreateUuid();
         }
-      return std::string ("_") + uuid;    
+      return std::string ("_") + uuid;
       */
     }
 
@@ -760,7 +760,7 @@ namespace PICML
 				                                        const std::string& dest_kind)
   {
     std::string source_comp_instance = this->unique_id (srcComp);
-    
+
     //std::string source_comp_instance = srcComp.UUID();
     //std::string source_comp_instance = source_comp_instance_path;
     //if (source_comp_instance.empty())
@@ -792,8 +792,8 @@ namespace PICML
             DOMElement* endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
             endPoint->appendChild (this->createSimpleContent ("portName", srcPortName));
             endPoint->appendChild (this->createSimpleContent ("kind", dest_kind));
-		    
-            endPoint->appendChild (this->createSimpleContent ("instance", 
+
+            endPoint->appendChild (this->createSimpleContent ("instance",
                                    source_comp_instance));
             ele->appendChild (endPoint);
 
@@ -801,7 +801,7 @@ namespace PICML
             endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
             endPoint->appendChild (this->createSimpleContent ("portName", dstPortName));
             endPoint->appendChild (this->createSimpleContent ("kind", source_kind));
-		    
+
             endPoint->appendChild (this->createSimpleContent ("instance", dest_comp_instance));
             ele->appendChild (endPoint);
           }
@@ -871,9 +871,9 @@ namespace PICML
     //endPoint->appendChild (this->createSimpleContent ("kind",
     //                                                  "Facet"));
     //// Facet instance
-    //std::string uni_facet_insName = 
+    //std::string uni_facet_insName =
     //    facet_comp.getPath ("_",false,true,"name",true);
-    //endPoint->appendChild (this->createSimpleContent ("instance", 
+    //endPoint->appendChild (this->createSimpleContent ("instance",
     //                         uni_facet_insName));
     //ele->appendChild (endPoint);
 
@@ -884,9 +884,9 @@ namespace PICML
     //endPoint->appendChild (this->createSimpleContent ("kind",
     //                                                  "SimplexReceptacle"));
     //// Receptacle instance
-    //std::string uni_recep_insName = 
+    //std::string uni_recep_insName =
     //      recep_comp.getPath ("_",false,true,"name",true);
-    //endPoint->appendChild (this->createSimpleContent ("instance", 
+    //endPoint->appendChild (this->createSimpleContent ("instance",
     //                         uni_recep_insName));
     //ele->appendChild (endPoint);
 
@@ -930,9 +930,9 @@ namespace PICML
     //                                                  "EventEmitter"));
 
     //// Emitter instance
-    //std::string emitter_insName = 
+    //std::string emitter_insName =
     //     emitter_comp.getPath ("_",false,true,"name",true);
-    //endPoint->appendChild (this->createSimpleContent ("instance", 
+    //endPoint->appendChild (this->createSimpleContent ("instance",
     //         emitter_insName));
     //ele->appendChild (endPoint);
 
@@ -943,9 +943,9 @@ namespace PICML
     //endPoint->appendChild (this->createSimpleContent ("kind",
     //                                                  "SimplexReceptacle"));
     //// Consumer instance
-    //std::string consumer_insName = 
+    //std::string consumer_insName =
     //      consumer_comp.getPath ("_",false,true,"name",true);
-    //endPoint->appendChild (this->createSimpleContent ("instance", 
+    //endPoint->appendChild (this->createSimpleContent ("instance",
     //                         consumer_insName));
     //ele->appendChild (endPoint);
 
@@ -1074,9 +1074,9 @@ namespace PICML
     //    endPoint->appendChild (this->createSimpleContent ("kind",
     //                                                      "EventPublisher"));
     //    // Publisher instance
-    //    std::string publisher_insName = 
+    //    std::string publisher_insName =
     //          publisher_comp.getPath ("_",false,true,"name",true);
-    //    endPoint->appendChild (this->createSimpleContent ("instance", 
+    //    endPoint->appendChild (this->createSimpleContent ("instance",
     //                             publisher_insName));
     //    ele->appendChild (endPoint);
 
@@ -1087,9 +1087,9 @@ namespace PICML
     //    endPoint->appendChild (this->createSimpleContent ("kind",
     //                                                      "EventConsumer"));
     //    // Consumer instance
-    //    std::string consumer_insName = 
+    //    std::string consumer_insName =
     //          consumer_comp.getPath ("_",false,true,"name",true);
-    //    endPoint->appendChild (this->createSimpleContent ("instance", 
+    //    endPoint->appendChild (this->createSimpleContent ("instance",
     //                              consumer_insName));
     //    ele->appendChild (endPoint);
 
@@ -1477,12 +1477,12 @@ namespace PICML
     // containing_assemblies.insert(comp_assembly_parent);
     // comp_assembly.Accept (*this);
   }
-  
+
   void DeploymentPlanVisitor::update_component_parents (Component& comp)
   {
 	ComponentAssembly component_assembly_parent;
 	component_assembly_parent = comp.ComponentAssembly_parent();
-    
+
     if (component_assembly_parent.isInstance())
       {
 		this->path_parents_.insert (component_assembly_parent);
@@ -1543,9 +1543,9 @@ namespace PICML
 
   void DeploymentPlanVisitor::create_component_config_properties (MonolithicImplementation& mimpl)
   {
-	const std::set<ConfigProperty> imcps = 
+	const std::set<ConfigProperty> imcps =
           mimpl.dstConfigProperty();
-    for (std::set<ConfigProperty>::const_iterator it2 = 
+    for (std::set<ConfigProperty>::const_iterator it2 =
          imcps.begin();
          it2 != imcps.end();
          ++it2)
@@ -1557,9 +1557,9 @@ namespace PICML
 
   void DeploymentPlanVisitor::create_component_readonly_attributes (Component& comp)
   {
-	std::set<ReadonlyAttribute> attrs = 
+	std::set<ReadonlyAttribute> attrs =
         comp.ReadonlyAttribute_children();
-    for (std::set<ReadonlyAttribute>::const_iterator 
+    for (std::set<ReadonlyAttribute>::const_iterator
          iter = attrs.begin();
          iter != attrs.end();
          ++iter)
@@ -1573,7 +1573,7 @@ namespace PICML
   {
 	ComponentAssembly component_assembly_parent;
 	component_assembly_parent = comp_ref.ComponentAssembly_parent();
-    
+
     if (component_assembly_parent.isInstance())
       {
 		this->path_parents_.insert (component_assembly_parent);
@@ -1627,7 +1627,7 @@ namespace PICML
     this->curr_->appendChild (ele);
     this->curr_ = ele;
 
-    // std::string mimpl_name = 
+    // std::string mimpl_name =
     // mimpl.getPath ("_",false,true,"name",true);
 	  std::string mimpl_name = this->mimpl_.UUID();
     if (mimpl_name.empty())
@@ -2018,7 +2018,7 @@ namespace PICML
           mapDelegates = mapping.dstAttributeMappingDelegate();
         if (mapDelegates.empty())
           {
-            std::string mapPath = 
+            std::string mapPath =
                 mapping.getPath ("_", false, true,"name",true);
 
             throw udm_exception (std::string ("AttributeMapping " +
@@ -2053,7 +2053,7 @@ namespace PICML
             Component parent = attr.Component_parent();
             std::string parentName = this->ExtractName (parent);
 
-            // std::string compName = 
+            // std::string compName =
             //      parent.getPath ("_", false, true,"name",true);
 	    std::string compName = parent.UUID();
             if (compName.empty())
@@ -2115,7 +2115,7 @@ namespace PICML
             ReadonlyAttribute attr = *iter;
             attr.Accept (*this);
           }
-        for (std::map<std::pair<std::string, std::string>, 
+        for (std::map<std::pair<std::string, std::string>,
              Property>::const_iterator iter = this->attrValues_.begin();
              iter != this->attrValues_.end();
              ++iter)
@@ -2168,7 +2168,7 @@ namespace PICML
   void DeploymentPlanVisitor::Visit_AttributeMappingDelegate
            (const AttributeMappingDelegate&){}
 
-  void DeploymentPlanVisitor::CreateAssemblyConnections 
+  void DeploymentPlanVisitor::CreateAssemblyConnections
           (std::vector<ComponentAssembly>& assemblies)
   {
     for (std::vector<ComponentAssembly>::iterator iter = assemblies.begin();
@@ -2210,7 +2210,7 @@ namespace PICML
           }
         const std::set<PublishConnector>
           connectors = subasm.PublishConnector_kind_children();
-        for (std::set<PublishConnector>::const_iterator iter = 
+        for (std::set<PublishConnector>::const_iterator iter =
              connectors.begin();
              iter != connectors.end();
              ++iter)

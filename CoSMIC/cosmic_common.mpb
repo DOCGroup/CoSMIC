@@ -1,5 +1,6 @@
 project  {
-
    libout = $(COSMIC_ROOT)/lib
    dllout = $(COSMIC_ROOT)/bin
+   includes += $(COSMIC_ROOT)
+   libpaths += $(COSMIC_ROOT)/lib
 }

@@ -1,4 +1,4 @@
-project (GatewayGenerator): bon, register {
+project (GatewayGenerator): bon, register, boost_base {
 
    sharedname = GatewayGenerator
    includes += $(COSMIC_ROOT)/PIM/SIML/interpreters

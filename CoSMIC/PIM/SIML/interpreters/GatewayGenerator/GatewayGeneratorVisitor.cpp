@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "GatewayGeneratorVisitor.h"
+#include "GsoapVisitor.h"
 #include "CCF/CodeGenerationKit/IndentationImplanter.hpp"
 #include "CCF/CodeGenerationKit/IndentationCxx.hpp"
 #include <set>
@@ -10,6 +10,8 @@
 #include <cstdio>
 #include <algorithm>
 #include <functional>
+#include <boost/bind.hpp>
+#include <boost/ref.hpp>
 
 using std::set;
 using std::vector;
@@ -23,6 +25,37 @@ using std::sort;
 using std::copy;
 using std::transform;
 using std::binary_function;
+using std::for_each;
+using boost::bind;
+using boost::ref;
+
+namespace SIML
+{
+
+PortProxyImpl*
+get_pointer (const PortProxy& proxy)
+{
+  return proxy.operator->();
+}
+
+}
+
+namespace WSML
+{
+
+ServiceRefImpl*
+get_pointer (const ServiceRef& serviceRef)
+{
+  return serviceRef.operator->();
+}
+
+ServiceImpl*
+get_pointer (const Service& service)
+{
+  return service.operator->();
+}
+
+}
 
 template <class T>
 struct ParamSorter
@@ -38,17 +71,16 @@ struct ParamSorter
   }
 };
 
-GatewayGeneratorVisitor::GatewayGeneratorVisitor (BON::Project& project,
-                                                  string outputFolder)
+GsoapVisitor::GsoapVisitor (BON::Project& project, string outputFolder)
   : project_ (project),
     outputFolder_ (outputFolder)
 {
 }
 
-GatewayGeneratorVisitor::~GatewayGeneratorVisitor()
+GsoapVisitor::~GsoapVisitor()
 {}
 
-string GatewayGeneratorVisitor::idl_scoped_name (const BON::FCO& object)
+string GsoapVisitor::idl_scoped_name (const BON::FCO& object)
 {
   PredefinedType pdt (object);
   if (pdt) return this->basic_name (pdt);
@@ -69,7 +101,7 @@ string GatewayGeneratorVisitor::idl_scoped_name (const BON::FCO& object)
   return local_name;
 }
 
-string GatewayGeneratorVisitor::wsdl_scoped_name (const BON::FCO& object)
+string GsoapVisitor::wsdl_scoped_name (const BON::FCO& object)
 {
   PredefinedType pdt (object);
   if (pdt) return this->basic_name (pdt);
@@ -93,7 +125,7 @@ string GatewayGeneratorVisitor::wsdl_scoped_name (const BON::FCO& object)
   return local_name;
 }
 
-string GatewayGeneratorVisitor::basic_name (const PredefinedType& pdt)
+string GsoapVisitor::basic_name (const PredefinedType& pdt)
 {
   if (String (pdt))             return "string";
   if (LongInteger (pdt))        return "int";
@@ -109,7 +141,7 @@ string GatewayGeneratorVisitor::basic_name (const PredefinedType& pdt)
   else                          return "";
 }
 
-string GatewayGeneratorVisitor::get_file_name (const BON::FCO& object)
+string GsoapVisitor::get_file_name (const BON::FCO& object)
 {
   BON::Model parent (object->getParentModel ());
   if (!parent) return object->getName();
@@ -119,7 +151,7 @@ string GatewayGeneratorVisitor::get_file_name (const BON::FCO& object)
 
 
 const char *
-GatewayGeneratorVisitor::utf8(char* t, const char *s)
+GsoapVisitor::utf8(char* t, const char *s)
 {
   unsigned int c = 0;
   int c1, c2, c3, c4;
@@ -161,7 +193,7 @@ GatewayGeneratorVisitor::utf8(char* t, const char *s)
 }
 
 string
-GatewayGeneratorVisitor::transform_name (const char* name)
+GsoapVisitor::transform_name (const char* name)
 {
   string result;
   if (name && *name)
@@ -184,151 +216,210 @@ GatewayGeneratorVisitor::transform_name (const char* name)
 }
 
 
-void
-GatewayGeneratorVisitor::get_namespace(const Module& module)
+bool
+GsoapVisitor::visitSystem(const System& object)
 {
-  BON::Folder rootFolder = this->project_->getRootFolder();
-  set<BON::Object> defs = rootFolder->getChildObjects ("WSML::Definitions");
-  bool serviceFound = false;
-  for (set<BON::Object>::iterator iter = defs.begin();
-       iter != defs.end();
+  set<PortProxy> proxies = object->getPortProxy();
+  for_each (proxies.begin(), proxies.end(),
+            bind (&PortProxyImpl::accept, _1, ref (this)));
+  set<ServiceRef> services = object->getWSMLServiceRef();
+  for_each (services.begin(), services.end(),
+      boost::bind (&ServiceImpl::accept,
+      boost::bind (&ServiceRefImpl::getService, _1), ref (this)));
+  return true;
+}
+
+bool
+GsoapVisitor::visitPortProxy(const PortProxy& object)
+{
+  BON::ReferencePort facetPort = object->getDst();
+  ProvidedRequestPort facet = facetPort->getFCO();
+  if (!facet)
+  {
+    stringstream msg;
+    msg << "Unable to get facet of assembly ";
+    this->project_->consoleMsg (msg.str(), MSG_ERROR);
+    throw GatewayGeneratorException();
+  }
+  ComponentAssembly assembly
+      = facet->getParentModel ("PICML::ComponentAssembly");
+  Object iface = facet->getReferred();
+  if (!iface)
+    {
+      stringstream msg;
+      msg << "Unable to get referred interface of facet "
+          << facet->getName() << endl;
+      this->project_->consoleMsg (msg.str(),
+                                  MSG_ERROR);
+      throw GatewayGeneratorException();
+    }
+  this->interfaces_[facet->getName()] = iface;
+  set<TwowayOperation> operations = iface->getTwowayOperation();
+  this->operations_.insert (operations.begin(), operations.end());
+  for (set<TwowayOperation>::iterator op = operations.begin();
+       op != operations.end();
+       ++op)
+    {
+      TwowayOperation oper (*op);
+      this->port_[oper] = facet->getName();
+    }
+  set<FacetDelegate> fdels = facet->getFacetDelegateLinks();
+  for (set<FacetDelegate>::iterator iter = fdels.begin();
+       iter != fdels.end();
        ++iter)
     {
-      Definitions def (*iter);
-      if (!def)
+      FacetDelegate del (*iter);
+      ProvidedRequestPort compFacet (del->getSrc());
+      Component comp (compFacet->getParentModel("PICML::Component"));
+      if (!comp)
         {
-          stringstream msg;
-          msg << "Unable to create Definition corresponding to module "
-              << module->getName() << endl;
-          this->project_->consoleMsg (msg.str(), MSG_ERROR);
-          throw GatewayGeneratorException();
-        }
-      set<Service> services = def->getService();
-      for (set<Service>::iterator iter1 = services.begin();
-           iter1 != services.end();
-           ++iter1)
-        {
-          Service service (*iter1);
-          if (!service)
+          compFacet = del->getDst();
+          comp = compFacet->getParentModel ("PICML::Component");
+          if (!comp)
             {
               stringstream msg;
-              msg << "Unable to create Service corresponding to Definitions "
-                  << def->getName() << endl;
+              msg << "Unable to find destination component "
+                  << "in assembly "
+                  << assembly->getName() << endl;
               this->project_->consoleMsg (msg.str(), MSG_ERROR);
               throw GatewayGeneratorException();
             }
-          if (service->getName() == module->getName())
-            {
-              serviceFound = true;
-              this->targetNamespace_ = def->gettargetNamespace();
-              this->defName_ = def->getName();
-              this->serviceName_
-                = this->transform_name (service->getName().c_str());
-              return;
-            }
         }
-
+      if (comp->getTypeInhObject()->isInstance() == false)
+        {
+          stringstream msg;
+          msg << "Unable to find destination component "
+              << "in assembly "
+              << assembly->getName() << endl;
+          this->project_->consoleMsg (msg.str(), MSG_ERROR);
+          throw GatewayGeneratorException();
+        }
+      this->comp_ = comp->getTypeInhObject()->getType()->getFCO();
+      return true;
     }
-  if (!serviceFound)
+  return false;
+}
+
+bool
+GsoapVisitor::visitService(const Service& object)
+{
+  string moduleName (this->transform_name (object->getName().c_str()));
+  Definitions def = object->getParentModel("WSML::Definitions");
+  this->targetNamespace_ = def->gettargetNamespace();
+  this->defName_ = def->getName();
+  this->serviceName_ = this->transform_name (object->getName().c_str());
+  string upperModuleName;
+  transform (moduleName.begin(), moduleName.end(),
+             back_inserter(upperModuleName), toupper);
+  string path (this->outputFolder_);
+  path += "\\";
+  path += moduleName.c_str();
+  string fileName (path + ".h");
+  this->header_.open (fileName.c_str());
+  if (!this->header_.is_open())
     {
       stringstream msg;
-      msg << "Unable to locate Service corresponding to module "
-          << module->getName() << endl;
+      msg << "Error in opening file " << fileName << endl;
       this->project_->consoleMsg (msg.str(), MSG_ERROR);
       throw GatewayGeneratorException();
     }
-}
+  Indentation::Implanter <Indentation::Cxx> header (this->header_);
+  this->header_ << "#ifndef " << upperModuleName << "_H" << endl;
+  this->header_ << "#define " << upperModuleName << "_H" << endl << endl;
 
-bool
-GatewayGeneratorVisitor::visitSystem(const System& object)
-{
-  set<Module> modules = object->getModule();
-  for (set<Module>::iterator iter = modules.begin();
-       iter != modules.end();
-       ++iter)
+  this->generate_header();
+
+  this->header_ << "#endif /* " << upperModuleName << "_H" << " */" << endl;
+
+  fileName = path + ".cpp";
+  this->source_.open (fileName.c_str());
+  if (!this->source_.is_open())
     {
-      Module module (*iter);
-      module->accept (this);
+      stringstream msg;
+      msg << "Error in opening file " << fileName << endl;
+      this->project_->consoleMsg (msg.str(), MSG_ERROR);
+      throw GatewayGeneratorException();
     }
+  Indentation::Implanter <Indentation::Cxx> source (this->source_);
+  this->source_ << "#include \"" << moduleName << ".h\"" << endl;
+  this->source_ << "#include <string>" << endl;
+  this->source_ << "using std::string;" << endl;
+
+  fileName = path + "Service.cpp";
+  this->driver_.open (fileName.c_str());
+  if (!this->driver_.is_open())
+    {
+      stringstream msg;
+      msg << "Error in opening file " << fileName << endl;
+      this->project_->consoleMsg (msg.str(), MSG_ERROR);
+      throw GatewayGeneratorException();
+    }
+  this->generate_source();
+
+  Indentation::Implanter <Indentation::Cxx> driver (this->driver_);
+  this->driver_ << "#include \"ace/Get_Opt.h\"" << endl;
+  this->driver_ << "#include \"" << moduleName << ".h\"" << endl;
+
+  this->generate_driver();
+
   return true;
 }
 
+
 bool
-GatewayGeneratorVisitor::visitModule(const Module& object)
+GsoapVisitor::visitTwowayOperation(const TwowayOperation& object)
 {
-  string moduleName (this->transform_name (object->getName().c_str()));
-  set<PortProxy> delegates = object->getOutPortProxyLinks();
-  if (!delegates.empty())
+  string operationName = this->transform_name (object->getName().c_str());
+  set<InParameter> inputParams = object->getInParameter();
+  vector<InParameter> sortedParams;
+  copy (inputParams.begin(), inputParams.end(), back_inserter (sortedParams));
+  sort(sortedParams.begin(), sortedParams.end(), ParamSorter<InParameter>());
+  for (vector<InParameter>::iterator iter = sortedParams.begin();
+       iter != sortedParams.end();
+       ++iter)
     {
-      this->get_namespace (object);
-      string upperModuleName;
-      transform (moduleName.begin(),
-                      moduleName.end(),
-                      back_inserter(upperModuleName),
-                      toupper);
-      string path (this->outputFolder_);
-      path += "\\";
-      path += moduleName.c_str();
-      string fileName (path + ".h");
-      this->header_.open (fileName.c_str());
-      if (!this->header_.is_open())
+      InParameter inputParam (*iter);
+      MemberType paramType = inputParam->getMemberType();
+      string paramTypeName = this->wsdl_scoped_name (paramType);
+      if (PredefinedType (paramType))
         {
-          stringstream msg;
-          msg << "Error in opening file " << fileName << endl;
-          this->project_->consoleMsg (msg.str(), MSG_ERROR);
-          throw GatewayGeneratorException();
+          if (ShortInteger (paramType))
+            this->header_ << "unsigned ";
+          this->header_ << this->transform_name (paramTypeName.c_str()) << " ";
         }
-      Indentation::Implanter <Indentation::Cxx> header (this->header_);
-      this->header_ << "#ifndef " << upperModuleName << "_H" << endl;
-      this->header_ << "#define " << upperModuleName << "_H" << endl << endl;
-
-      fileName = path + ".cpp";
-      this->source_.open (fileName.c_str());
-      if (!this->source_.is_open())
+      else
         {
-          stringstream msg;
-          msg << "Error in opening file " << fileName << endl;
-          this->project_->consoleMsg (msg.str(), MSG_ERROR);
-          throw GatewayGeneratorException();
+          this->header_ << this->transform_name (paramTypeName.c_str())
+                        << "* ";
         }
-      Indentation::Implanter <Indentation::Cxx> source (this->source_);
-      this->source_ << "#include \"" << moduleName << ".h\"" << endl;
-      this->source_ << "#include <string>" << endl;
-      this->source_ << "using std::string;" << endl;
-
-      fileName = path + "Service.cpp";
-      this->driver_.open (fileName.c_str());
-      if (!this->driver_.is_open())
-        {
-          stringstream msg;
-          msg << "Error in opening file " << fileName << endl;
-          this->project_->consoleMsg (msg.str(), MSG_ERROR);
-          throw GatewayGeneratorException();
-        }
-      Indentation::Implanter <Indentation::Cxx> driver (this->driver_);
-      this->driver_ << "#include \"ace/Get_Opt.h\"" << endl;
-      this->driver_ << "#include \"" << moduleName << ".h\"" << endl;
-
-      for (set<PortProxy>::iterator iter = delegates.begin();
-           iter != delegates.end();
-           ++iter)
-        {
-          PortProxy proxy (*iter);
-          proxy->accept (this);
-        }
-      this->generate_header();
-
-      this->generate_source();
-
-      this->generate_driver();
-
-      this->header_ << "#endif /* " << upperModuleName << "_H" << " */" << endl;
+      this->header_ << this->transform_name (inputParam->getName().c_str())
+                    << ", " << endl;
     }
+  set<ReturnType> retTypes = object->getReturnType();
+  for (set<ReturnType>::iterator iter = retTypes.begin();
+       iter != retTypes.end();
+       ++iter)
+    {
+      ReturnType retType (*iter);
+      MemberType returnType = retType->getMemberType();
+      string retTypeName = this->wsdl_scoped_name (returnType);
+      if (PredefinedType (returnType))
+        {
+          if (ShortInteger (returnType))
+            this->header_ << "unsigned ";
+          this->header_ << this->transform_name (retTypeName.c_str()) << "& ";
+          this->header_ << this->transform_name ("_return") << ")";
+          return true;
+        }
+    }
+  // Generate the response struct
+  this->header_ << "struct " << this->defName_ << "__" << operationName
+                << "Response& _param_1)";
   return true;
 }
 
 void
-GatewayGeneratorVisitor::generate_driver()
+GsoapVisitor::generate_driver()
 {
   // Generate the component #includes
   string idlFile = this->get_file_name (this->comp_);
@@ -467,7 +558,7 @@ GatewayGeneratorVisitor::generate_driver()
 }
 
 void
-GatewayGeneratorVisitor::generate_header()
+GsoapVisitor::generate_header()
 {
   // Generate the #includes
   for (map<string, Object>::iterator iter = this->interfaces_.begin();
@@ -548,7 +639,7 @@ GatewayGeneratorVisitor::generate_header()
 }
 
 void
-GatewayGeneratorVisitor::generate_source()
+GsoapVisitor::generate_source()
 {
   // Generate multiple argument constructor
   this->source_ << this->serviceName_ << "::" << this->serviceName_ << " (";
@@ -994,7 +1085,7 @@ GatewayGeneratorVisitor::generate_source()
 
 
 void
-GatewayGeneratorVisitor::corba_struct_to_soap_struct (const Aggregate& agg,
+GsoapVisitor::corba_struct_to_soap_struct (const Aggregate& agg,
                                                       const string& soapName,
                                                       const string& corbaName,
                                                       ofstream& os)
@@ -1060,7 +1151,7 @@ GatewayGeneratorVisitor::corba_struct_to_soap_struct (const Aggregate& agg,
 }
 
 void
-GatewayGeneratorVisitor::soap_seq_to_corba_seq (const Collection& seq,
+GsoapVisitor::soap_seq_to_corba_seq (const Collection& seq,
                                                 const string& soapName,
                                                 const string& corbaName,
                                                 ofstream& os)
@@ -1095,16 +1186,7 @@ GatewayGeneratorVisitor::soap_seq_to_corba_seq (const Collection& seq,
 }
 
 void
-GatewayGeneratorVisitor::corba_seq_to_soap_seq (const Collection& seq,
-                                                const string& soapName,
-                                                const string& corbaName,
-                                                ofstream& os)
-{
-
-}
-
-void
-GatewayGeneratorVisitor::soap_struct_to_corba_struct (const Aggregate& agg,
+GsoapVisitor::soap_struct_to_corba_struct (const Aggregate& agg,
                                                       const string& soapName,
                                                       const string& corbaName,
                                                       ofstream& os)
@@ -1140,182 +1222,11 @@ GatewayGeneratorVisitor::soap_struct_to_corba_struct (const Aggregate& agg,
     }
 }
 
-
-bool
-GatewayGeneratorVisitor::visitPortProxy(const PortProxy& object)
+void
+GsoapVisitor::corba_seq_to_soap_seq (const Collection& seq,
+                                                const string& soapName,
+                                                const string& corbaName,
+                                                ofstream& os)
 {
-  Module target = object->getDst();
-  string dstPortName = object->getdstPortName();
-  string srcPortName = object->getsrcPortName();
-  bool portFound = false;
-  bool assemblyFound = false;
-  set<BON::Object> impls = this->project_->findByKind ("PICML::ComponentAssembly");
-  for (set<BON::Object>::iterator iter = impls.begin();
-       iter != impls.end();
-       ++iter)
-    {
-      ComponentAssembly assembly (*iter);
-      if (!assembly)
-        {
-          stringstream msg;
-          msg << "Unable to create assembly corresponding to module "
-              << target->getName() << endl;
-          this->project_->consoleMsg (msg.str(), MSG_ERROR);
-          throw GatewayGeneratorException();
-        }
-      if (assembly->getName() == target->getName())
-        {
-          set<ProvidedRequestPort> facets = assembly->getProvidedRequestPort();
-          for (set<ProvidedRequestPort>::iterator iter1 = facets.begin();
-               iter1 != facets.end();
-               ++iter1)
-            {
-              ProvidedRequestPort facet (*iter1);
-              if (!facet)
-                {
-                  stringstream msg;
-                  msg << "Unable to get facets of assembly "
-                      << assembly->getName() << endl;
-                  this->project_->consoleMsg (msg.str(), MSG_ERROR);
-                  throw GatewayGeneratorException();
-                }
-              if (facet->getName() == dstPortName)
-                {
-                  portFound = true;
-                  Object iface = facet->getReferred();
-                  if (!iface)
-                    {
-                      stringstream msg;
-                      msg << "Unable to get referred interface of facet "
-                          << facet->getName() << endl;
-                      this->project_->consoleMsg (msg.str(),
-                                                  MSG_ERROR);
-                      throw GatewayGeneratorException();
-                    }
-                  this->interfaces_[facet->getName()] = iface;
-                  set<TwowayOperation>
-                    operations = iface->getTwowayOperation();
-                  this->operations_.insert (operations.begin(),
-                                            operations.end());
-                  for (set<TwowayOperation>::iterator op = operations.begin();
-                       op != operations.end();
-                       ++op)
-                    {
-                      TwowayOperation oper (*op);
-                      this->port_[oper] = facet->getName();
-                    }
-                  set<FacetDelegate> fdels = facet->getFacetDelegateLinks();
-                  for (set<FacetDelegate>::iterator iter2 = fdels.begin();
-                       iter2 != fdels.end();
-                       ++iter2)
-                    {
-                      FacetDelegate del (*iter2);
-                      ProvidedRequestPort compFacet (del->getSrc());
-                      Component comp (compFacet->getParentModel("PICML::Component"));
-                      if (!comp)
-                        {
-                          compFacet = del->getDst();
-                          comp = compFacet->getParentModel ("PICML::Component");
-                          if (!comp)
-                            {
-                              stringstream msg;
-                              msg << "Unable to find destination component "
-                                  << "in assembly "
-                                  << assembly->getName() << endl;
-                              this->project_->consoleMsg (msg.str(), MSG_ERROR);
-                              throw GatewayGeneratorException();
-                            }
-                        }
-                      if (comp->getTypeInhObject()->isInstance() == false)
-                        {
-                          stringstream msg;
-                          msg << "Unable to find destination component "
-                              << "in assembly "
-                              << assembly->getName() << endl;
-                          this->project_->consoleMsg (msg.str(), MSG_ERROR);
-                          throw GatewayGeneratorException();
-                        }
-                      this->comp_ = comp->getTypeInhObject()->getType()->getFCO();
-                      return true;
-                    }
-                }
-            }
-          if (!portFound)
-            {
-              stringstream msg;
-              msg << "Unable to find destination port "
-                  << dstPortName << " in assembly " << assembly->getName() << endl;
-              this->project_->consoleMsg (msg.str(), MSG_ERROR);
-              throw GatewayGeneratorException();
-            }
-        }
-    }
-  if (!assemblyFound)
-    {
-      stringstream msg;
-      msg << "Unable to find destination port "
-          << dstPortName << " in assembly " << target->getName() << endl;
-      this->project_->consoleMsg (msg.str(), MSG_ERROR);
-      throw GatewayGeneratorException();
-    }
-  return false;
-}
 
-bool
-GatewayGeneratorVisitor::visitObject (const Object& object)
-{
-  return true;
-}
-
-
-bool
-GatewayGeneratorVisitor::visitTwowayOperation(const TwowayOperation& object)
-{
-  string operationName = this->transform_name (object->getName().c_str());
-  set<InParameter> inputParams = object->getInParameter();
-  vector<InParameter> sortedParams;
-  copy (inputParams.begin(), inputParams.end(), back_inserter (sortedParams));
-  sort(sortedParams.begin(), sortedParams.end(), ParamSorter<InParameter>());
-  for (vector<InParameter>::iterator iter = sortedParams.begin();
-       iter != sortedParams.end();
-       ++iter)
-    {
-      InParameter inputParam (*iter);
-      MemberType paramType = inputParam->getMemberType();
-      string paramTypeName = this->wsdl_scoped_name (paramType);
-      if (PredefinedType (paramType))
-        {
-          if (ShortInteger (paramType))
-            this->header_ << "unsigned ";
-          this->header_ << this->transform_name (paramTypeName.c_str()) << " ";
-        }
-      else
-        {
-          this->header_ << this->transform_name (paramTypeName.c_str())
-                        << "* ";
-        }
-      this->header_ << this->transform_name (inputParam->getName().c_str())
-                    << ", " << endl;
-    }
-  set<ReturnType> retTypes = object->getReturnType();
-  for (set<ReturnType>::iterator iter = retTypes.begin();
-       iter != retTypes.end();
-       ++iter)
-    {
-      ReturnType retType (*iter);
-      MemberType returnType = retType->getMemberType();
-      string retTypeName = this->wsdl_scoped_name (returnType);
-      if (PredefinedType (returnType))
-        {
-          if (ShortInteger (returnType))
-            this->header_ << "unsigned ";
-          this->header_ << this->transform_name (retTypeName.c_str()) << "& ";
-          this->header_ << this->transform_name ("_return") << ");" << endl;
-          return true;
-        }
-    }
-  // Generate the response struct
-  this->header_ << "struct " << this->defName_ << "__" << operationName
-                << "Response& _param_1)";
-  return true;
 }

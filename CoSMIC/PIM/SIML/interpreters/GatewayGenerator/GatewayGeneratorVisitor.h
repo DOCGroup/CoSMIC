@@ -1,10 +1,10 @@
-#ifndef GATEWAYGENERATORVISITOR_H
-#define GATEWAYGENERATORVISITOR_H
+#ifndef GSOAPVISITOR_H
+#define GSOAPVISITOR_H
 
 #include "BON.h"
 #include "BONImpl.h"
 #include "Extensions.h"
-#include "SIMLBonX.h"
+#include "SIMLVisitor.h"
 #include <string>
 #include <exception>
 #include <map>
@@ -18,34 +18,27 @@ using std::ofstream;
 using std::map;
 using std::set;
 
-class GatewayGeneratorException
+class GsoapException
   : public std::exception
 {};
 
-class GatewayGeneratorVisitor
-  : public SIMLVisitor
+class GsoapVisitor : public SIMLVisitor
 {
-private:
-  BON::Project& project_;
-  string outputFolder_;
-  ofstream header_;
-  ofstream source_;
-  ofstream driver_;
-  map<string, Object> interfaces_;
-  set<TwowayOperation> operations_;
-  map<TwowayOperation, string> port_;
-  string targetNamespace_;
-  string defName_;
-  string serviceName_;
-  Component comp_;
+public:
+  GsoapVisitor (BON::Project& project, string outputFolder);
+  virtual ~GsoapVisitor();
+  virtual bool visitService( const Service& object );
+  virtual bool visitSystem( const System& object);
+  virtual bool visitPortProxy( const PortProxy& object );
+  virtual bool visitTwowayOperation(const TwowayOperation& object);
 
+private:
   string transform_name (const char* name);
   const char* utf8(char* t, const char* s);
   string idl_scoped_name (const BON::FCO& object);
   string wsdl_scoped_name (const BON::FCO& object);
   string basic_name (const PredefinedType& pdt);
   string get_file_name (const BON::FCO& object);
-  void get_namespace(const Module& module);
   void generate_header();
   void generate_driver();
   void generate_source();
@@ -65,15 +58,20 @@ private:
                                     const string& soapName,
                                     const string& corbaName,
                                     ofstream& os);
-public:
-  GatewayGeneratorVisitor (BON::Project& project, string outputFolder);
-  virtual ~GatewayGeneratorVisitor();
-  virtual bool visitSystem( const System& object);
-  virtual bool visitModule( const Module& object );
-  virtual bool visitPortProxy( const PortProxy& object );
-  virtual bool visitObject( const Object& object );
-  virtual bool visitTwowayOperation(const TwowayOperation& object);
- 
+private:
+  BON::Project& project_;
+  string outputFolder_;
+  ofstream header_;
+  ofstream source_;
+  ofstream driver_;
+  map<string, Object> interfaces_;
+  set<TwowayOperation> operations_;
+  map<TwowayOperation, string> port_;
+  string targetNamespace_;
+  string defName_;
+  string serviceName_;
+  Component comp_;
+  bool gsoap_;
 };
 
-#endif // GATEWAYGENERATORVISITOR_H
+#endif // GSOAPVISITOR_H

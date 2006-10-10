@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{43C1D9A7-C507-4C1A-B1AF-3CE0EF910192}" cdate="Wed Aug 16 14:32:53 2006" mdate="Wed Aug 16 14:32:53 2006" version="" metaguid="{B3568889-311A-4E5A-A3DD-A8AC2BD7DE71}" metaversion="" metaname="MetaGME">
+<project guid="{D94E7147-6C6E-42F0-B6CF-2FDE5D8EB70E}" cdate="Mon Sep 25 21:02:06 2006" mdate="Mon Sep 25 21:02:06 2006" version="" metaguid="{B3568889-311A-4E5A-A3DD-A8AC2BD7DE71}" metaversion="" metaname="MetaGME">
 	<name>WSML</name>
 	<comment>Web Services Modeling Language (WSML) is a domain-specific modeling language
   which allows definition of Web Services and interactions, and uses generative
@@ -2003,6 +2003,39 @@
 					</regnode>
 				</regnode>
 			</regnode>
+			<regnode name="ServiceRef-96-Reference" status="undefined">
+				<value></value>
+				<regnode name="KindAspects" status="undefined">
+					<value></value>
+					<regnode name="Definitions:ServiceRef" status="undefined">
+						<value></value>
+						<regnode name="ServiceDefinition" isopaque="yes">
+							<value>ServiceDefinition</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1584</value>
+					<regnode name="Definitions" status="undefined">
+						<value></value>
+						<regnode name="ServiceRef" isopaque="yes">
+							<value>1585</value>
+							<regnode name="ServiceDefinition" isopaque="yes">
+								<value>1586</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="Definitions:ServiceRef" status="undefined">
+						<value></value>
+						<regnode name="ServiceDefinition" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
 			<regnode name="Types-14-Model" status="undefined">
 				<value></value>
 				<regnode name="KindAspects" status="undefined">
@@ -2679,7 +2712,7 @@
 				</regnode>
 			</regnode>
 		</regnode>
-		<model id="id-0065-00000001" kind="ParadigmSheet" guid="{A9EFBD2D-2535-49c1-B28D-ED47353A382A}" relid="0x9" childrelidcntr="0x94">
+		<model id="id-0065-00000001" kind="ParadigmSheet" guid="{A9EFBD2D-2535-49c1-B28D-ED47353A382A}" relid="0x9" childrelidcntr="0x98">
 			<name>Definitions</name>
 			<regnode name="color" isopaque="yes">
 				<value>0x0000ff</value>
@@ -4588,6 +4621,80 @@ dName = dstBindsOperation</value>
 					<value></value>
 				</attribute>
 			</atom>
+			<atom id="id-0066-00000070" kind="Reference" role="Reference" guid="{B557B27A-798D-4d51-99AB-1960AF6F52D9}" relid="0x96">
+				<name>ServiceRef</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1010,58</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1010,58</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1010,58</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1010,58</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences">
+					<value>
+rName = ref
+rrName = referedbyServiceRef</value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
 			<reference id="id-0067-00000023" kind="ModelProxy" role="ModelProxy" guid="{8ABE7AF5-2C6E-4a26-90E3-D27ACBC1BC17}" relid="0x17" referred="id-0066-0000001f">
 				<name>Schema</name>
 				<regnode name="PartRegs" status="undefined">
@@ -4748,7 +4855,7 @@ dName = dstBindsOperation</value>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>862,55</value>
+							<value>288,20</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" status="undefined">
@@ -5278,23 +5385,6 @@ dName = dstBindsOperation</value>
 				<connpoint role="src" target="id-0066-00000002"/>
 				<connpoint role="dst" target="id-0066-0000001a"/>
 			</connection>
-			<connection id="id-0068-00000028" kind="Containment" role="Containment" guid="{30B0BF21-6225-4508-BF80-EB2DAC722C64}" relid="0x81">
-				<name>Containment</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>We</value>
-				</regnode>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<attribute kind="IsPort" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="Rolename" status="meta">
-					<value></value>
-				</attribute>
-				<connpoint role="dst" target="id-0066-00000001"/>
-				<connpoint role="src" target="id-0067-00000025"/>
-			</connection>
 			<connection id="id-0068-00000029" kind="Containment" role="Containment" guid="{D6F68724-1272-4d78-A1C4-276C14A22C74}" relid="0x83">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
@@ -5480,14 +5570,56 @@ dName = dstBindsOperation</value>
 				<connpoint role="dst" target="id-0066-0000001e"/>
 				<connpoint role="src" target="id-0069-00000001"/>
 			</connection>
-			<set id="id-0069-00000001" kind="Aspect" role="Aspect" guid="{B7C392E3-CD68-4c68-BE0D-4C31DF534A39}" relid="0xf" members="id-0066-00000001 id-0066-00000005 id-0066-00000007 id-0066-00000008 id-0066-00000009 id-0066-0000000a id-0066-0000000b id-0066-0000000c id-0066-0000000e id-0066-0000000f id-0066-00000010 id-0066-00000012 id-0066-00000013 id-0066-00000014 id-0066-00000015 id-0066-00000016 id-0066-00000017 id-0066-00000018 id-0066-00000019 id-0066-0000001a id-0066-0000001b id-0066-0000001c id-0066-0000001e">
+			<connection id="id-0068-000000c9" kind="Containment" role="Containment" guid="{AA0A8C51-D56A-46f1-9BF4-16C711346BB2}" relid="0x95">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ew</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000001"/>
+				<connpoint role="src" target="id-0067-00000025"/>
+			</connection>
+			<connection id="id-0068-000000ca" kind="Containment" role="Containment" guid="{C4987465-AE6A-40d7-9DCB-8C4DEA5D5F96}" relid="0x97">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>We</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000001"/>
+				<connpoint role="src" target="id-0066-00000070"/>
+			</connection>
+			<connection id="id-0068-000000cb" kind="ReferTo" role="ReferTo" guid="{809EF496-646B-486b-B2C7-83B61EA9F943}" relid="0x98">
+				<name>ReferTo</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000010"/>
+				<connpoint role="src" target="id-0066-00000070"/>
+			</connection>
+			<set id="id-0069-00000001" kind="Aspect" role="Aspect" guid="{B7C392E3-CD68-4c68-BE0D-4C31DF534A39}" relid="0xf" members="id-0066-00000001 id-0066-00000005 id-0066-00000007 id-0066-00000008 id-0066-00000009 id-0066-0000000a id-0066-0000000b id-0066-0000000c id-0066-0000000e id-0066-0000000f id-0066-00000010 id-0066-00000012 id-0066-00000013 id-0066-00000014 id-0066-00000015 id-0066-00000016 id-0066-00000017 id-0066-00000018 id-0066-00000019 id-0066-0000001a id-0066-0000001b id-0066-0000001c id-0066-0000001e id-0066-00000070">
 				<name>ServiceDefinition</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>995,55</value>
+							<value>925,125</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -6451,8 +6583,8 @@ notation</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000020"/>
 				<connpoint role="src" target="id-0066-00000020"/>
+				<connpoint role="dst" target="id-0066-00000020"/>
 			</connection>
 			<connection id="id-0068-00000040" kind="Containment" role="Containment" guid="{09B6F43A-E048-4a99-A350-10AD767EEECE}" relid="0x3e">
 				<name>Containment</name>

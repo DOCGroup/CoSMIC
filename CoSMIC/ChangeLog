@@ -1,3 +1,48 @@
+Tue Oct 10 17:58:15 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
+
+          Removed generation of leading underscore for component
+          implementations.
+
+        * PIM/PICML/interpreters/Package/Package.mpc:
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:
+
+          Updates to use Boost to remove a lot of redundant code.
+
+        * PIM/SIML/examples/SLICE.xme:
+
+        * PIM/SIML/interpreters/GatewayGenerator/BON2Component.cpp:
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGenerator.mpc:
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGeneratorVisitor.h:
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGeneratorVisitor.cpp:
+
+          Updates to use Boost and to reflect the changes in the
+          metamodel.
+
+        * PIM/SIML/paradigms/SIML.xme:
+        * PIM/SIML/paradigms/SIML.xmp:
+
+          Updated to reflect changes in PICML and WSML.  New additions to
+          make the modeling of gateways more intuitive.
+
+        * PIM/WSML/paradigms/WSML.xme:
+        * PIM/WSML/paradigms/WSML.xmp:
+
+          Updated to add a new ServiceRef element.
+
+        * bon.mpb:
+        * cosmic_common.mpb:
+        * cosmic_utils.mpb:
+        * udm.mpb:
+
+          Fixes to remove a bunch of inconsistencies.
+
+        * demos/STI/BDCWebService.NET/Benchmark_Data_Collector.h:
+        * demos/STI/BDCWebService.NET/Benchmark_Data_Collector.cpp:
+
+          New files that implement BDC using ASP.NET.
+
 Mon Oct  9 16:40:15 UTC 2006  Nishanth Shanakran  <nshankar@dre.vanderbilt.edu>
 
         * CUTS/default.features: Reverting to the previous version since

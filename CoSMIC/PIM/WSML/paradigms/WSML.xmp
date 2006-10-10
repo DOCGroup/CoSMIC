@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="WSML" guid="{982D5475-7DFB-447F-8141-3FF57DF820BD}" cdate="Wed Aug 16 14:32:53 2006" mdate="Wed Aug 16 14:32:53 2006" >
+<paradigm name="WSML" guid="{16F25D19-8452-4177-91EA-0299AB49B09B}" cdate="Mon Sep 25 21:02:06 2006" mdate="Mon Sep 25 21:02:06 2006" >
 
 	<comment>Web Services Modeling Language (WSML) is a domain-specific modeling language
   which allows definition of Web Services and interactions, and uses generative
@@ -139,12 +139,12 @@
 		<atom name = "SOAPHeaderFault" metaref = "1022"  attributes = "use required encodingStyle namespace">
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="ValidHeaderMessagedstCardinality14" eventmask = "0x800" depth = "1" priority = "1">
-				<![CDATA[let dstCount = self.attachingConnections( "src", HeaderMessage ) -> size in
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::HeaderMessage ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to SOAPHeaders as &quot;dst&quot; over HeaderMessage, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidHeaderPartdstCardinality16" eventmask = "0x800" depth = "1" priority = "1">
-				<![CDATA[let dstCount = self.attachingConnections( "src", HeaderPart ) -> size in
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::HeaderPart ) -> size in
                      (dstCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to SOAPHeaders as &quot;dst&quot; over HeaderPart, has to match 1.</dispname>
 			</constraint>
@@ -377,7 +377,7 @@
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyFaultRef"></regnode>
 			<constraint name="ValidSOAPFaultExtensiondstCardinality24" eventmask = "0x800" depth = "1" priority = "1">
-				<![CDATA[let dstCount = self.attachingConnections( "src", SOAPFaultExtension ) -> size in
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::SOAPFaultExtension ) -> size in
                      (dstCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to FaultRef as &quot;dst&quot; over SOAPFaultExtension, has to match 1.</dispname>
 			</constraint>
@@ -390,7 +390,7 @@
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyInputRef"></regnode>
 			<constraint name="ValidBodyBindingdstCardinality6" eventmask = "0x800" depth = "1" priority = "1">
-				<![CDATA[let dstCount = self.attachingConnections( "src", BodyBinding ) -> size in
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::BodyBinding ) -> size in
                      (dstCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to IORef as &quot;dst&quot; over BodyBinding, has to match 1.</dispname>
 			</constraint>
@@ -422,7 +422,7 @@
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyOutputRef"></regnode>
 			<constraint name="ValidBodyBindingdstCardinality6" eventmask = "0x800" depth = "1" priority = "1">
-				<![CDATA[let dstCount = self.attachingConnections( "src", BodyBinding ) -> size in
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::BodyBinding ) -> size in
                      (dstCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to IORef as &quot;dst&quot; over BodyBinding, has to match 1.</dispname>
 			</constraint>
@@ -448,6 +448,14 @@
 				<pointeritem desc = "Part"></pointeritem>
 			</pointerspec>
 		</reference>
+		<reference name = "ServiceRef" metaref = "1584">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbyServiceRef"></regnode>
+			<pointerspec name = "ref">
+				<pointeritem desc = "Service"></pointeritem>
+			</pointerspec>
+		</reference>
 		<model name = "Binding" metaref = "1044" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="binding.gif"></regnode>
@@ -462,7 +470,7 @@
 				<dispname>Multiplicity of parts, which are contained by Binding, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidBindingPortTypedstCardinality2" eventmask = "0x800" depth = "1" priority = "1">
-				<![CDATA[let dstCount = self.attachingConnections( "src", BindingPortType ) -> size in
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::BindingPortType ) -> size in
                      (dstCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to Binding as &quot;dst&quot; over BindingPortType, has to match 1.</dispname>
 			</constraint>
@@ -483,22 +491,22 @@
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="bindingoperation.gif"></regnode>
 			<constraint name="ValidBindingOperationPartCardinality27" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidBindingOperationPartCardinality28" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ExtensibleMessage" ) -> size + self.parts( "SOAPBody" ) -> size + self.parts( "SOAPFault" ) -> size + self.parts( "SOAPHeaderFault" ) -> size + self.parts( "SOAPHeader" ) -> size in
-                     (partCount >= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 1..*.</dispname>
-			</constraint>
-			<constraint name="ValidBindingOperationPartCardinality29" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ExtensibleOperation" ) -> size + self.parts( "SOAPOperation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 0..1.</dispname>
 			</constraint>
+			<constraint name="ValidBindingOperationPartCardinality28" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidBindingOperationPartCardinality29" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ExtensibleMessage" ) -> size + self.parts( "SOAPBody" ) -> size + self.parts( "SOAPFault" ) -> size + self.parts( "SOAPHeaderFault" ) -> size + self.parts( "SOAPHeader" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 1..*.</dispname>
+			</constraint>
 			<constraint name="ValidBindsOperationdstCardinality4" eventmask = "0x800" depth = "1" priority = "1">
-				<![CDATA[let dstCount = self.attachingConnections( "src", BindsOperation ) -> size in
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::BindsOperation ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to BindingOperation as &quot;dst&quot; over BindsOperation, has to match 0..1.</dispname>
 			</constraint>
@@ -543,12 +551,12 @@
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="definitions.gif"></regnode>
 			<constraint name="ValidDefinitionsPartCardinality30" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Types" ) -> size in
+				<![CDATA[let partCount = self.parts( "Messages" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Definitions, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidDefinitionsPartCardinality31" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Messages" ) -> size in
+				<![CDATA[let partCount = self.parts( "Types" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Definitions, has to match 0..1.</dispname>
 			</constraint>
@@ -567,6 +575,7 @@
 			<role name = "Messages" metaref = "1548" kind = "Messages"></role>
 			<role name = "PortType" metaref = "1099" kind = "PortType"></role>
 			<role name = "Service" metaref = "1100" kind = "Service"></role>
+			<role name = "ServiceRef" metaref = "1585" kind = "ServiceRef"></role>
 			<role name = "Types" metaref = "1101" kind = "Types"></role>
 			<aspect name = "ServiceDefinition" metaref = "1561" attributes = "targetNamespace" >
 				<part metaref = "1400" role = "Attribute" primary = "yes" linked = "no"></part>
@@ -577,6 +586,7 @@
 				<part metaref = "1549" role = "Messages" primary = "yes" linked = "no"></part>
 				<part metaref = "1110" role = "PortType" primary = "yes" linked = "no"></part>
 				<part metaref = "1111" role = "Service" primary = "yes" linked = "no"></part>
+				<part metaref = "1586" role = "ServiceRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
 				<part metaref = "1112" role = "Types" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
@@ -602,7 +612,7 @@
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="fault.bmp"></regnode>
 			<constraint name="ValidFaultMessagedstCardinality10" eventmask = "0x800" depth = "1" priority = "1">
-				<![CDATA[let dstCount = self.attachingConnections( "src", FaultMessage ) -> size in
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::FaultMessage ) -> size in
                      (dstCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to Fault as &quot;dst&quot; over FaultMessage, has to match 1.</dispname>
 			</constraint>
@@ -634,7 +644,7 @@
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="input.bmp"></regnode>
 			<constraint name="ValidInputMessagedstCardinality18" eventmask = "0x800" depth = "1" priority = "1">
-				<![CDATA[let dstCount = self.attachingConnections( "src", InputMessage ) -> size in
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::InputMessage ) -> size in
                      (dstCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to Input as &quot;dst&quot; over InputMessage, has to match 1.</dispname>
 			</constraint>
@@ -721,7 +731,7 @@
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="output.bmp"></regnode>
 			<constraint name="ValidOutputMessagedstCardinality20" eventmask = "0x800" depth = "1" priority = "1">
-				<![CDATA[let dstCount = self.attachingConnections( "src", OutputMessage ) -> size in
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::OutputMessage ) -> size in
                      (dstCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to Output as &quot;dst&quot; over OutputMessage, has to match 1.</dispname>
 			</constraint>
@@ -735,7 +745,7 @@
 				<regnode name = "icon" value ="wsdlport.bmp"></regnode>
 				<regnode name = "porticon" value ="port.gif"></regnode>
 			<constraint name="ValidPortBindingdstCardinality22" eventmask = "0x800" depth = "1" priority = "1">
-				<![CDATA[let dstCount = self.attachingConnections( "src", PortBinding ) -> size in
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::PortBinding ) -> size in
                      (dstCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to Port as &quot;dst&quot; over PortBinding, has to match 1.</dispname>
 			</constraint>
@@ -787,12 +797,12 @@
 				<dispname>Multiplicity of parts, which are contained by Operation, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidRequestResponseOperationPartCardinality40" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Output" ) -> size in
+				<![CDATA[let partCount = self.parts( "Input" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RequestResponseOperation, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidRequestResponseOperationPartCardinality41" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Input" ) -> size in
+				<![CDATA[let partCount = self.parts( "Output" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RequestResponseOperation, has to match 1.</dispname>
 			</constraint>
@@ -818,12 +828,12 @@
 		<model name = "SOAPHeader" metaref = "1205" attributes = "use required encodingStyle namespace" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="ValidHeaderMessagedstCardinality14" eventmask = "0x800" depth = "1" priority = "1">
-				<![CDATA[let dstCount = self.attachingConnections( "src", HeaderMessage ) -> size in
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::HeaderMessage ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to SOAPHeaders as &quot;dst&quot; over HeaderMessage, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidHeaderPartdstCardinality16" eventmask = "0x800" depth = "1" priority = "1">
-				<![CDATA[let dstCount = self.attachingConnections( "src", HeaderPart ) -> size in
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::HeaderPart ) -> size in
                      (dstCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to SOAPHeaders as &quot;dst&quot; over HeaderPart, has to match 1.</dispname>
 			</constraint>
@@ -908,12 +918,12 @@
 				<dispname>Multiplicity of parts, which are contained by Operation, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidSolicitResponseOperationPartCardinality43" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Output" ) -> size in
+				<![CDATA[let partCount = self.parts( "Input" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SolicitResponseOperation, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidSolicitResponseOperationPartCardinality44" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Input" ) -> size in
+				<![CDATA[let partCount = self.parts( "Output" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SolicitResponseOperation, has to match 1.</dispname>
 			</constraint>
