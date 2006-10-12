@@ -20,10 +20,20 @@
   </if>
 
   <!--
+      target(s) for Subversion
+      -->
+
+  <target name="svn.update">
+    <echo message="Updating CoSMIC workspace from repository..." />
+    <exec program="svn"
+          commandline="update ${COSMIC_ROOT}" />
+  </target>
+
+  <!--
       target(s) for the different kinds of builds
       -->
 
-  <target name="build.all">
+  <target name="build.all" depends="svn.update">
     <call target="workspace.generate.all" />
     <call target="devenv.clean" />
     <call target="devenv.build" />
@@ -33,7 +43,7 @@
     <call target="devenv.build" />
   </target>
 
-  <target name="build.modeling">
+  <target name="build.modeling" depends="svn.update">
     <call target="workspace.generate.modeling" />
     <call target="devenv.clean" />
     <call target="devenv.build" />
@@ -43,7 +53,7 @@
     <call target="devenv.build" />
   </target>
 
-  <target name="build.runtime">
+  <target name="build.runtime" depends="svn.update">
     <call target="workspace.generate.runtime" />
     <call target="devenv.clean" />
     <call target="devenv.build" />

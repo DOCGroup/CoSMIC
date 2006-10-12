@@ -1,3 +1,9 @@
+Thu Oct 12 23:41:17 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * integration/autobuild.build:
+
+          Added support for updating the workspace from the build script.
+
 Wed Oct  4 15:12:09 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * install/CUTS_CoSMIC_installers.mpc:
