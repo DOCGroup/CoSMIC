@@ -20,13 +20,14 @@
 */
 
 #include "stdafx.h"
-#include "BON2Component.h"
-#include "Utils/Utils.h"
+#include <GatewayGenerator/BON2Component.h>
+#include <Utils/Utils.h>
 #include <windows.h>
 #include <atlcomcli.h>
 #include <shlobj.h>
-#include "SIMLBonX.h"
-#include "GatewayGeneratorVisitor.h"
+#include <GatewayGenerator/SIMLBonX.h>
+#include <GatewayGenerator/GsoapVisitor.h>
+#include <GatewayGenerator/AspNetVisitor.h>
 #include <set>
 #include <boost/bind.hpp>
 #include <boost/ref.hpp>
@@ -114,21 +115,52 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
            ++sysIter)
         {
           System system (*sysIter);
-          set<PortProxy> proxies = object->getPortProxy();
-          PortProxyImpl::mapping_Type mapping = object->getmapping();
-          if (mapping == gSOAP_mapping_Type)
+          set<ServiceRef> serviceRefs = system->getWSMLServiceRef();
+          for (set<ServiceRef>::iterator serviceIter = serviceRefs.begin();
+               serviceIter != serviceRefs.end();
+               ++serviceIter)
             {
-              GsoapVisitor visitor (project, outputPath);
-              system->accept (&visitor);
+              ServiceRef serviceRef (*serviceIter);
+              Service service = serviceRef->getService();
+              set<WSML::Port> ports = service->getPort();
+              for (set<WSML::Port>::iterator portIter = ports.begin();
+                   portIter != ports.end();
+                   ++portIter)
+                {
+                  WSML::Port port (*portIter);
+                  set<PortProxy> proxies = port->getOutPortProxyLinks();
+                  for (set<PortProxy>::iterator proxyIter = proxies.begin();
+                       proxyIter != proxies.end();
+                       ++proxyIter)
+                    {
+                      PortProxy object (*proxyIter);
+                      PortProxyImpl::mapping_Type
+                        mapping = object->getmapping();
+                      if (mapping == PortProxyImpl::gSOAP_mapping_Type)
+                        {
+                          GsoapVisitor visitor (project, outputPath);
+                          system->accept (&visitor);
+                        }
+                      else if (mapping == PortProxyImpl::ASP_NET_mapping_Type)
+                        {
+                          AspNetVisitor visitor (project, outputPath);
+                          service->accept (&visitor);
+                        }
+                      break; // Break out of the loop to visit the next service
+                    }
+                  break; // Break out of the loop to visit the next service
+                }
             }
-          else if (mapping == ASP_NET_mapping_Type)
-            {
-              AspNetGeneratorVisitor
         }
     }
-  catch (GatewayGeneratorException& )
+  catch (AspNetException& )
     {
-      AfxMessageBox ("GatewayGeneratorException caught!");
+      AfxMessageBox ("AspNetException caught!");
+      return;
+    }
+  catch (GsoapException& )
+    {
+      AfxMessageBox ("GsoapException caught!");
       return;
     }
   AfxMessageBox ("Gateway skeletons were successfully generated!",

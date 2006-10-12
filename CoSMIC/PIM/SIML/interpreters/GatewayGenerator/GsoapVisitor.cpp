@@ -1,7 +1,8 @@
 #include "stdafx.h"
-#include "GsoapVisitor.h"
-#include "CCF/CodeGenerationKit/IndentationImplanter.hpp"
-#include "CCF/CodeGenerationKit/IndentationCxx.hpp"
+#include <GatewayGenerator/GsoapVisitor.h>
+#include <GatewayGenerator/GatewayGeneratorUtils.h>
+#include <CCF/CodeGenerationKit/IndentationImplanter.hpp>
+#include <CCF/CodeGenerationKit/IndentationCxx.hpp>
 #include <set>
 #include <vector>
 #include <sstream>
@@ -12,7 +13,9 @@
 #include <functional>
 #include <boost/bind.hpp>
 #include <boost/ref.hpp>
+#include <functional>
 
+using std::binary_function;
 using std::set;
 using std::vector;
 using std::string;
@@ -29,34 +32,6 @@ using std::for_each;
 using boost::bind;
 using boost::ref;
 
-namespace SIML
-{
-
-PortProxyImpl*
-get_pointer (const PortProxy& proxy)
-{
-  return proxy.operator->();
-}
-
-}
-
-namespace WSML
-{
-
-ServiceRefImpl*
-get_pointer (const ServiceRef& serviceRef)
-{
-  return serviceRef.operator->();
-}
-
-ServiceImpl*
-get_pointer (const Service& service)
-{
-  return service.operator->();
-}
-
-}
-
 template <class T>
 struct ParamSorter
   : public binary_function<T,T,bool>
@@ -70,6 +45,8 @@ struct ParamSorter
     return (lhs.first < rhs.first && lhs.second < rhs.second);
   }
 };
+
+
 
 GsoapVisitor::GsoapVisitor (BON::Project& project, string outputFolder)
   : project_ (project),
@@ -157,37 +134,37 @@ GsoapVisitor::utf8(char* t, const char *s)
   int c1, c2, c3, c4;
   c = (unsigned char)*s;
   if (c >= 0x80)
-  {
-    c1 = *++s;
-    if (c1 < 0x80)
-      s--;
-    else
     {
-      c1 &= 0x3F;
-      if (c < 0xE0)
-        c = ((c & 0x1F) << 6) | c1;
+      c1 = *++s;
+      if (c1 < 0x80)
+        s--;
       else
-      {
-        c2 = *++s & 0x3F;
-        if (c < 0xF0)
-          c = ((c & 0x0F) << 12) | (c1 << 6) | c2;
-        else
-	{
-          c3 = *++s & 0x3F;
-          if (c < 0xF8)
-            c = ((c & 0x07) << 18) | (c1 << 12) | (c2 << 6) | c3;
+        {
+          c1 &= 0x3F;
+          if (c < 0xE0)
+            c = ((c & 0x1F) << 6) | c1;
           else
-	  {
-            c4 = *++s & 0x3F;
-            if (c < 0xFC)
-              c = ((c & 0x03) << 24) | (c1 << 18) | (c2 << 12) | (c3 << 6) | c4;
-            else
-              c = ((c & 0x01) << 30) | (c1 << 24) | (c2 << 18) | (c3 << 12) | (c4 << 6) | *++s & 0x3F;
-          }
+            {
+              c2 = *++s & 0x3F;
+              if (c < 0xF0)
+                c = ((c & 0x0F) << 12) | (c1 << 6) | c2;
+              else
+                {
+                  c3 = *++s & 0x3F;
+                  if (c < 0xF8)
+                    c = ((c & 0x07) << 18) | (c1 << 12) | (c2 << 6) | c3;
+                  else
+                    {
+                      c4 = *++s & 0x3F;
+                      if (c < 0xFC)
+                        c = ((c & 0x03) << 24) | (c1 << 18) | (c2 << 12) | (c3 << 6) | c4;
+                      else
+                        c = ((c & 0x01) << 30) | (c1 << 24) | (c2 << 18) | (c3 << 12) | (c4 << 6) | *++s & 0x3F;
+                    }
+                }
+            }
         }
-      }
     }
-  }
   sprintf(t, "_x%.4x", c);
   return s;
 }
@@ -219,13 +196,10 @@ GsoapVisitor::transform_name (const char* name)
 bool
 GsoapVisitor::visitSystem(const System& object)
 {
-  set<PortProxy> proxies = object->getPortProxy();
-  for_each (proxies.begin(), proxies.end(),
-            bind (&PortProxyImpl::accept, _1, ref (this)));
   set<ServiceRef> services = object->getWSMLServiceRef();
   for_each (services.begin(), services.end(),
-      boost::bind (&ServiceImpl::accept,
-      boost::bind (&ServiceRefImpl::getService, _1), ref (this)));
+            boost::bind (&ServiceImpl::accept,
+                         boost::bind (&ServiceRefImpl::getService, _1), ref (this)));
   return true;
 }
 
@@ -235,14 +209,14 @@ GsoapVisitor::visitPortProxy(const PortProxy& object)
   BON::ReferencePort facetPort = object->getDst();
   ProvidedRequestPort facet = facetPort->getFCO();
   if (!facet)
-  {
-    stringstream msg;
-    msg << "Unable to get facet of assembly ";
-    this->project_->consoleMsg (msg.str(), MSG_ERROR);
-    throw GatewayGeneratorException();
-  }
+    {
+      stringstream msg;
+      msg << "Unable to get facet of assembly ";
+      this->project_->consoleMsg (msg.str(), MSG_ERROR);
+      throw GsoapException();
+    }
   ComponentAssembly assembly
-      = facet->getParentModel ("PICML::ComponentAssembly");
+    = facet->getParentModel ("PICML::ComponentAssembly");
   Object iface = facet->getReferred();
   if (!iface)
     {
@@ -251,7 +225,7 @@ GsoapVisitor::visitPortProxy(const PortProxy& object)
           << facet->getName() << endl;
       this->project_->consoleMsg (msg.str(),
                                   MSG_ERROR);
-      throw GatewayGeneratorException();
+      throw GsoapException();
     }
   this->interfaces_[facet->getName()] = iface;
   set<TwowayOperation> operations = iface->getTwowayOperation();
@@ -282,7 +256,7 @@ GsoapVisitor::visitPortProxy(const PortProxy& object)
                   << "in assembly "
                   << assembly->getName() << endl;
               this->project_->consoleMsg (msg.str(), MSG_ERROR);
-              throw GatewayGeneratorException();
+              throw GsoapException();
             }
         }
       if (comp->getTypeInhObject()->isInstance() == false)
@@ -292,7 +266,7 @@ GsoapVisitor::visitPortProxy(const PortProxy& object)
               << "in assembly "
               << assembly->getName() << endl;
           this->project_->consoleMsg (msg.str(), MSG_ERROR);
-          throw GatewayGeneratorException();
+          throw GsoapException();
         }
       this->comp_ = comp->getTypeInhObject()->getType()->getFCO();
       return true;
@@ -303,6 +277,17 @@ GsoapVisitor::visitPortProxy(const PortProxy& object)
 bool
 GsoapVisitor::visitService(const Service& object)
 {
+  set<WSML::Port> ports = object->getPort();
+  for (set<WSML::Port>::iterator portIter = ports.begin();
+       portIter != ports.end();
+       ++portIter)
+    {
+      WSML::Port port (*portIter);
+      set<PortProxy> proxies = port->getOutPortProxyLinks();
+      for_each (proxies.begin(), proxies.end(),
+                bind (&PortProxyImpl::accept, _1, ref (this)));
+    }
+
   string moduleName (this->transform_name (object->getName().c_str()));
   Definitions def = object->getParentModel("WSML::Definitions");
   this->targetNamespace_ = def->gettargetNamespace();
@@ -321,7 +306,7 @@ GsoapVisitor::visitService(const Service& object)
       stringstream msg;
       msg << "Error in opening file " << fileName << endl;
       this->project_->consoleMsg (msg.str(), MSG_ERROR);
-      throw GatewayGeneratorException();
+      throw GsoapException();
     }
   Indentation::Implanter <Indentation::Cxx> header (this->header_);
   this->header_ << "#ifndef " << upperModuleName << "_H" << endl;
@@ -338,7 +323,7 @@ GsoapVisitor::visitService(const Service& object)
       stringstream msg;
       msg << "Error in opening file " << fileName << endl;
       this->project_->consoleMsg (msg.str(), MSG_ERROR);
-      throw GatewayGeneratorException();
+      throw GsoapException();
     }
   Indentation::Implanter <Indentation::Cxx> source (this->source_);
   this->source_ << "#include \"" << moduleName << ".h\"" << endl;
@@ -352,7 +337,7 @@ GsoapVisitor::visitService(const Service& object)
       stringstream msg;
       msg << "Error in opening file " << fileName << endl;
       this->project_->consoleMsg (msg.str(), MSG_ERROR);
-      throw GatewayGeneratorException();
+      throw GsoapException();
     }
   this->generate_source();
 
@@ -361,7 +346,6 @@ GsoapVisitor::visitService(const Service& object)
   this->driver_ << "#include \"" << moduleName << ".h\"" << endl;
 
   this->generate_driver();
-
   return true;
 }
 
@@ -1086,9 +1070,9 @@ GsoapVisitor::generate_source()
 
 void
 GsoapVisitor::corba_struct_to_soap_struct (const Aggregate& agg,
-                                                      const string& soapName,
-                                                      const string& corbaName,
-                                                      ofstream& os)
+                                           const string& soapName,
+                                           const string& corbaName,
+                                           ofstream& os)
 {
   string scopedName = this->wsdl_scoped_name (agg);
   string aggName = this->transform_name (scopedName.c_str());
@@ -1145,16 +1129,16 @@ GsoapVisitor::corba_struct_to_soap_struct (const Aggregate& agg,
           msg << "Unhandled CORBA type " << memberType->getName()
               << " in struct " << agg->getName() << endl;
           this->project_->consoleMsg (msg.str(), MSG_ERROR);
-          throw GatewayGeneratorException();
+          throw GsoapException();
         }
     }
 }
 
 void
 GsoapVisitor::soap_seq_to_corba_seq (const Collection& seq,
-                                                const string& soapName,
-                                                const string& corbaName,
-                                                ofstream& os)
+                                     const string& soapName,
+                                     const string& corbaName,
+                                     ofstream& os)
 {
   MemberType seqType = seq->getMemberType();
   string scopedName = this->wsdl_scoped_name (seqType);
@@ -1175,7 +1159,7 @@ GsoapVisitor::soap_seq_to_corba_seq (const Collection& seq,
       msg << "Unhandled CORBA type " << seqType->getName() << "in sequence "
           << seq->getName() << endl;
       this->project_->consoleMsg (msg.str(), MSG_ERROR);
-      throw GatewayGeneratorException();
+      throw GsoapException();
     }
   this->soap_struct_to_corba_struct (agg, "element", corbaName + "Element",
                                      os);
@@ -1187,9 +1171,9 @@ GsoapVisitor::soap_seq_to_corba_seq (const Collection& seq,
 
 void
 GsoapVisitor::soap_struct_to_corba_struct (const Aggregate& agg,
-                                                      const string& soapName,
-                                                      const string& corbaName,
-                                                      ofstream& os)
+                                           const string& soapName,
+                                           const string& corbaName,
+                                           ofstream& os)
 {
   set<Member> members = agg->getMember();
   for (set<Member>::iterator iter = members.begin();
@@ -1217,16 +1201,16 @@ GsoapVisitor::soap_struct_to_corba_struct (const Aggregate& agg,
           msg << "Unhandled CORBA type " << memberType->getName() << "in struct "
               << agg->getName() << endl;
           this->project_->consoleMsg (msg.str(), MSG_ERROR);
-          throw GatewayGeneratorException();
+          throw GsoapException();
         }
     }
 }
 
 void
 GsoapVisitor::corba_seq_to_soap_seq (const Collection& seq,
-                                                const string& soapName,
-                                                const string& corbaName,
-                                                ofstream& os)
+                                     const string& soapName,
+                                     const string& corbaName,
+                                     ofstream& os)
 {
 
 }

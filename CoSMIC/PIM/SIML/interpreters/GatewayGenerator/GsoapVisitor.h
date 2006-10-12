@@ -1,10 +1,10 @@
 #ifndef GSOAPVISITOR_H
 #define GSOAPVISITOR_H
 
-#include "BON.h"
-#include "BONImpl.h"
-#include "Extensions.h"
-#include "SIMLVisitor.h"
+#include <BON.h>
+#include <BONImpl.h>
+#include <Extensions.h>
+#include <GatewayGenerator/SIMLVisitor.h>
 #include <string>
 #include <exception>
 #include <map>
@@ -74,4 +74,4 @@ private:
   bool gsoap_;
 };
 
-#endif // GSOAPVISITOR_H
+#endif /* GSOAPVISITOR_H */

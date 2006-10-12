@@ -1,3 +1,26 @@
+Thu Oct 12 01:57:57 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/SIML/examples/SLICE.xme:  Updated example to reflect changes
+          in the paradigm.
+
+        * PIM/SIML/interpreters/GatewayGenerator/AspNetVisitor.h:
+        * PIM/SIML/interpreters/GatewayGenerator/AspNetVisitor.cpp:
+        * PIM/SIML/interpreters/GatewayGenerator/BON2Component.h:
+        * PIM/SIML/interpreters/GatewayGenerator/BON2Component.cpp:
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGenerator.mpc:
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGeneratorUtils.h:
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGeneratorUtils.cpp:
+        * PIM/SIML/interpreters/GatewayGenerator/GsoapVisitor.h:
+        * PIM/SIML/interpreters/GatewayGenerator/GsoapVisitor.cpp:
+
+          New implementation which adds support for generation of ASP.NET
+          web services using C++/CLI.
+
+        * bon.mpb:  Updated to remove some erroneous include paths.
+
+        * demos/STI/BDCWebService.NET/Benchmark_Data_Collector.cpp:
+          Updated to fix some missing declarations in the destructor.
+
 Tue Oct 10 18:06:25 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/SIML/interpreters/GatewayGenerator/GsoapVisitor.h:

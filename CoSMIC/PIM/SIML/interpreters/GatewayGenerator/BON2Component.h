@@ -22,8 +22,8 @@
 #ifndef BON2Component_h
 #define BON2Component_h
 
-#include "BON.h"
-#include "BONImpl.h"
+#include <BON.h>
+#include <BONImpl.h>
 #include <ComponentConfig.h>
 
 namespace BON

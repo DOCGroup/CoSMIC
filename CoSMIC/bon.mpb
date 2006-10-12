@@ -1,6 +1,6 @@
 // MPC file to generate base library
 project : mfc, cosmic_common, cosmic_utils {
-  includes += $(GME_ROOT)/SDK/BON .
+  includes += $(GME_ROOT)/SDK/BON
   macros += BUILDER_OBJECT_NETWORK_V2
 
   specific {

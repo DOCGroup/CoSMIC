@@ -32,7 +32,9 @@ project (GatewayGenerator): bon, register, boost_base {
      BON2Component.cpp
      SIMLBonX.cpp
      SIMLVisitor.cpp
-     GatewayGeneratorVisitor.cpp
+     GatewayGeneratorUtils.cpp
+     GsoapVisitor.cpp
+     AspNetVisitor.cpp
      PICML
      WSML
      SIML
@@ -58,7 +60,9 @@ project (GatewayGenerator): bon, register, boost_base {
      BON2Component.h
      SIMLBonX.h
      SIMLVisitor.h
-     GatewayGeneratorVisitor.h
+     GatewayGeneratorUtils.h
+     GsoapVisitor.h
+     AspNetVisitor.h
      PICML
      WSML
      SIML
