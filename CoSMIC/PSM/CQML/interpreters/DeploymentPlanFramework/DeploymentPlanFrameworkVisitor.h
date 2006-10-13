@@ -284,6 +284,10 @@ namespace CQML
 	DeploymentPlanFramework_Export virtual void add_injector (const std::string& plan_name, Injector* injector);
   DeploymentPlanFramework_Export virtual void clear_private_variables (void);
 
+  public:
+    template <typename T>
+    std::string unique_id (const T &comp);
+
   private:
 
     DOMImplementation*  impl_;
@@ -320,5 +324,22 @@ namespace CQML
 	  std::map<std::string, Injector*> injectors_;
     std::map < std::string, std::pair <CQML::InstanceConnection, CQML::InstanceConnection> > connections_;
   };
+  
+  template <typename T>
+  std::string DeploymentPlanFrameworkVisitor::unique_id (const T &comp)
+    {
+      return std::string ("_") + comp.getPath (".",false,true,"name",true);
+
+      // @NOTE: Use this or the one above.
+      /*
+      std::string uuid = comp.UUID ();
+      if (uuid.empty())
+        {
+          comp.UUID() = uuid = Utils::CreateUuid();
+        }
+      return std::string ("_") + uuid;    
+      */
+    }
+
 }
 #endif /* DEPLOYMENTPLANFRAMEWORK_VISITOR_H */

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{0E091F56-83C9-4928-ABA2-58890E11C96B}" cdate="Mon Oct 02 15:28:45 2006" mdate="Mon Oct 02 15:28:45 2006" version="" metaguid="{144ECCB2-BDC0-487E-B225-8A9C6DC1C37D}" metaversion="" metaname="PICML">
+<project guid="{9D57F0C2-A09F-4A4D-AF3C-6B6D28B47F67}" cdate="Mon Oct 02 15:28:45 2006" mdate="Mon Oct 02 15:28:45 2006" version="" metaguid="{144ECCB2-BDC0-487E-B225-8A9C6DC1C37D}" metaversion="" metaname="PICML">
 	<name>RACE_NetQoS</name>
 	<comment></comment>
 	<author></author>
@@ -18,7 +18,7 @@
 					<value></value>
 				</attribute>
 				<model id="id-0065-00000002" kind="Node" role="Node" relid="0x1" childrelidcntr="0x1">
-					<name>blade29</name>
+					<name>host1</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="Target" status="undefined">
@@ -81,7 +81,7 @@
 					</model>
 				</model>
 				<model id="id-0065-00000005" kind="Node" role="Node" relid="0x2" childrelidcntr="0x1">
-					<name>blade30</name>
+					<name>host2</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="Target" status="undefined">
@@ -144,7 +144,7 @@
 					</model>
 				</model>
 				<model id="id-0065-00000008" kind="Node" role="Node" relid="0x3" childrelidcntr="0x1">
-					<name>blade31</name>
+					<name>host3</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="Target" status="undefined">
@@ -207,7 +207,7 @@
 					</model>
 				</model>
 				<model id="id-0065-0000000b" kind="Node" role="Node" relid="0x4" childrelidcntr="0x2">
-					<name>blade32</name>
+					<name>host4</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="Target" status="undefined">
@@ -270,7 +270,7 @@
 					</model>
 				</model>
 				<model id="id-0065-0000000e" kind="Node" role="Node" relid="0x5" childrelidcntr="0x1">
-					<name>blade33</name>
+					<name>host5</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="Target" status="undefined">
@@ -333,7 +333,7 @@
 					</model>
 				</model>
 				<model id="id-0065-00000011" kind="Node" role="Node" relid="0x6" childrelidcntr="0x2">
-					<name>blade34</name>
+					<name>host6</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="Target" status="undefined">
@@ -396,7 +396,7 @@
 					</model>
 				</model>
 				<model id="id-0065-00000014" kind="Node" role="Node" relid="0x7" childrelidcntr="0x1">
-					<name>blade35</name>
+					<name>host7</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="Target" status="undefined">
@@ -459,7 +459,7 @@
 					</model>
 				</model>
 				<model id="id-0065-00000017" kind="Node" role="Node" relid="0x8" childrelidcntr="0x1">
-					<name>blade36</name>
+					<name>host8</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="Target" status="undefined">
@@ -526,7 +526,7 @@
 		<folder id="id-006a-00000003" relid="0x8" childrelidcntr="0x12" kind="DeploymentPlans">
 			<name>DeploymentPlans</name>
 			<model id="id-0065-0000001a" kind="DeploymentPlan" relid="0x1" childrelidcntr="0x26">
-				<name>RACE</name>
+				<name>RACE_NetQoS</name>
 				<attribute kind="UUID">
 					<value>1D2C2C63-CE33-4088-9443-781D080D8857</value>
 				</attribute>
@@ -534,7 +534,7 @@
 					<value></value>
 				</attribute>
 				<reference id="id-0067-00000001" kind="NodeReference" role="NodeReference" relid="0x1" referred="id-0065-00000002">
-					<name>blade29</name>
+					<name>host1</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="NodeMapping" status="undefined">
@@ -546,7 +546,7 @@
 					</regnode>
 				</reference>
 				<reference id="id-0067-00000002" kind="NodeReference" role="NodeReference" relid="0x2" referred="id-0065-00000005">
-					<name>blade30</name>
+					<name>host2</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="NodeMapping" status="undefined">
@@ -658,7 +658,7 @@
 					<connpoint role="src" target="id-0069-00000002"/>
 				</connection>
 				<set id="id-0069-00000001" kind="CollocationGroup" role="CollocationGroup" relid="0x3" members="id-0067-0000007f id-0067-00000083 id-0067-00000084">
-					<name>blade29Group</name>
+					<name>host1Group</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="NodeMapping" status="undefined">
@@ -670,7 +670,7 @@
 					</regnode>
 				</set>
 				<set id="id-0069-00000002" kind="CollocationGroup" role="CollocationGroup" relid="0x4" members="id-0067-0000007e id-0067-00000080 id-0067-00000081 id-0067-00000082">
-					<name>blade30Group</name>
+					<name>host2Group</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="NodeMapping" status="undefined">

@@ -94,7 +94,7 @@ namespace CQML
       std::multimap <NetQoS, ConnectionInfo> qos_conn_mmap_;
       std::map <std::string, std::string> plan_nqfile_map_;
       std::set <std::string> filenames_;
-      DeploymentPlanFrameworkVisitor dep_plan_;
+      DeploymentPlanFrameworkVisitor dep_plan_framework_;
 
   private:
 
