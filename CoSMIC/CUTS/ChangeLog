@@ -1,3 +1,9 @@
+Fri Oct 13 00:18:04 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/GME/interpreters/PICML_CIAO_Impl/PICML_CIAO_Impl.mpc:
+
+          cosmic_lib was a base project, but it no longer existed.
+
 Thu Oct 12 23:41:17 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * integration/autobuild.build:

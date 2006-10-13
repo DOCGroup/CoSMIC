@@ -1,6 +1,6 @@
 // $Id$
 
-project (PICML_CIAO_Impl) : cosmic_lib, boost_base, udm_component, gme_interpreter, cosmic_utils {
+project (PICML_CIAO_Impl) : picmllib, boost_base, udm_component, gme_interpreter {
   sharedname = CUTS_PICML_CIAO_Impl
 
   // -- dependencies
