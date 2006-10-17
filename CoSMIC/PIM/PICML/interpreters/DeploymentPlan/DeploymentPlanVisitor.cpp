@@ -1527,7 +1527,7 @@ namespace PICML
         std::pair<std::pair<std::string, std::string>, Property>
 			attrVal = *iter;
 	    std::pair<std::string, std::string> compAttr = attrVal.first;
-	    if (compAttr.first == uniqueName)
+	    if (compAttr.first == comp.getPath(".",false,true,"name",true))
 		  {
 		    this->push();
 		    DOMElement*
@@ -2123,7 +2123,7 @@ namespace PICML
             std::pair<std::pair<std::string, std::string>, Property>
               attrVal = *iter;
             std::pair<std::string, std::string> compAttr = attrVal.first;
-            if (compAttr.first == uniqueName)
+            if (compAttr.first == comp.getPath (".",false,true,"name",true))
               {
                 this->push();
                 DOMElement*

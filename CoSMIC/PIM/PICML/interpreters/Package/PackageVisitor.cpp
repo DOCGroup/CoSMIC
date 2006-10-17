@@ -1782,7 +1782,7 @@ void PackageVisitor::CreateAssemblyInstances (set<Component>& comps)
           pair<pair<string, string>, Property>
             attrVal = *iter;
           pair<string, string> compAttr = attrVal.first;
-          if (compAttr.first == uniqueName)
+          if (compAttr.first == comp.getPath (".", false, true, "name", true))
             {
               this->push();
               DOMElement*

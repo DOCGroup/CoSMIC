@@ -1,3 +1,12 @@
+Tue Oct 17 23:34:14 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:
+
+          Fixes to ensure that configProperty associated with
+          AttributeMapping gets generated as part of the .cid file.
+          Thanks to Nishanth for reporting the bug.
+
 Tue Oct 17 21:50:53 UTC 2006  Nishanth Shankaran  <nshankar@dre.vanderbilt.edu>
 
         * PIM/PICML/examples/Sample_Strings.xme: Updated the model.
