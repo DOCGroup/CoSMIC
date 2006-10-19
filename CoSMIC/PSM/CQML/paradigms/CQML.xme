@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{0CB318BB-F8AD-4FF2-BB77-C05EACE83BC8}" cdate="Thu Oct 12 17:28:44 2006" mdate="Thu Oct 12 17:28:44 2006" version="" metaguid="{B155EEE7-1CDC-4E1F-B6C2-A7B680779457}" metaversion="" metaname="MetaGME">
+<project guid="{B97CAE33-5BFF-4606-8046-0B47E75971D2}" cdate="Thu Oct 12 17:28:44 2006" mdate="Thu Oct 12 17:28:44 2006" version="" metaguid="{B155EEE7-1CDC-4E1F-B6C2-A7B680779457}" metaversion="" metaname="MetaGME">
 	<name>CQML</name>
 	<comment>This tool supports $CIAO_ROOT/docs/schema/CIAOServerResources.xsd version 1.7. 
 Please check the cvs repository if this is the most recent version of this file.</comment>
@@ -94609,6 +94609,7 @@ let nodes = directnodes + indirectnodes in
 					<value>BEST_EFFORT
 HIGH_PRIORITY
 HIGH_RELIABILITY
+HIGH_THROUGHPUT
 VOICE
 VIDEO</value>
 				</attribute>
