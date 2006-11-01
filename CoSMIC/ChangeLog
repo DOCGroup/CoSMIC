@@ -1,9 +1,14 @@
+Wed Nov  1 20:17:03 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * demos/STI/BDCWebService.NET/BDC.mpc:  Missing MPC file to allow
+          compilation of BDCWebService.NET.
+
 Thu Oct 19 01:17:26 UTC 2006  Sumant Tambe <sutambe@nospam>
 
-	  * PSM/CQML/paradigms/CQML-uml.xme
-	  * PSM/CQML/paradigms/CQML.xme
-	  * PSM/CQML/paradigms/CQML.xml
-	  * PSM/CQML/paradigms/CQML.xmp
+          * PSM/CQML/paradigms/CQML-uml.xme
+          * PSM/CQML/paradigms/CQML.xme
+          * PSM/CQML/paradigms/CQML.xml
+          * PSM/CQML/paradigms/CQML.xmp
 
           Added the HIGH_THROUGHPUT attribute in the NetQoS.
 
