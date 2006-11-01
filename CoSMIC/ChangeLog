@@ -1,3 +1,8 @@
+Wed Nov  1 22:49:39 UTC 2006  Nishanth Shankaran  <nshankar@nospam.com>
+
+        * PIM/PICML/examples/RACE.xme: Updated the model to include the
+          XML Output Adapter.
+
 Wed Nov  1 20:17:03 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * demos/STI/BDCWebService.NET/BDC.mpc:  Missing MPC file to allow
