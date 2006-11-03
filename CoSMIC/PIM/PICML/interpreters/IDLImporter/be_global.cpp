@@ -762,7 +762,12 @@ BE_GlobalData::cache_files (char *files[], long nfiles)
 void
 BE_GlobalData::destroy (void)
 {
-  if (0 != this->writer_ && 0 != this->target_ && 0 != this->doc_)
+  bool ok_to_write = this->writer_ != 0
+                     && this->target_ != 0
+                     && this->doc_ != 0
+                     && idl_global->err_count () == 0;
+
+  if (ok_to_write)
     {
       // Write out the file last, just before cleanup.
       this->writer_->writeNode (this->target_, *this->doc_);

@@ -175,7 +175,7 @@ adding_visitor::visit_module (AST_Module *node)
           this->add_name_element (elem, node->local_name ()->get_string ());
           this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
 
-          this->insert_element (elem);
+          this->insert_element (elem, node);
           be_global->emit_diagnostic (elem);
         }
     }
@@ -263,7 +263,7 @@ adding_visitor::visit_interface (AST_Interface *node)
                               elem,
                               this->rel_id_ - 1);
 
-          this->insert_element (elem);
+          this->insert_element (elem, node);
           be_global->emit_diagnostic (elem);
         }
     }
@@ -393,7 +393,7 @@ adding_visitor::visit_valuetype (AST_ValueType *node)
           this->add_name_element (elem, node->local_name ()->get_string ());
           this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
 
-          this->insert_element (elem);
+          this->insert_element (elem, node);
           be_global->emit_diagnostic (elem);
         }
     }
@@ -503,7 +503,7 @@ adding_visitor::visit_component (AST_Component *node)
                               elem,
                               this->rel_id_ - 1);
 
-          this->insert_element (elem);
+          this->insert_element (elem, node);
           be_global->emit_diagnostic (elem);
 
           // Add the ComponentContainer model element, and its
@@ -640,7 +640,7 @@ adding_visitor::visit_home (AST_Home *node)
           this->add_name_element (elem, node->local_name ()->get_string ());
           this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
 
-          this->insert_element (elem);
+          this->insert_element (elem, node);
           be_global->emit_diagnostic (elem);
         }
     }
@@ -746,7 +746,7 @@ adding_visitor::visit_factory (AST_Factory *node)
                                 "ExceptionRef",
                                 scope_visitor.rel_id_);
 
-  this->insert_element (elem);
+  this->insert_element (elem, node);
   be_global->emit_diagnostic (elem);
 
   // Keep track of where we are in the DOM tree so the next
@@ -796,7 +796,7 @@ adding_visitor::visit_structure (AST_Structure *node)
           this->add_name_element (elem, node->local_name ()->get_string ());
           this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
 
-          this->insert_element (elem);
+          this->insert_element (elem, node);
           be_global->emit_diagnostic (elem);
         }
     }
@@ -936,7 +936,7 @@ adding_visitor::visit_exception (AST_Exception *node)
           this->add_name_element (elem, node->local_name ()->get_string ());
           this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
 
-          this->insert_element (elem);
+          this->insert_element (elem, node);
           be_global->emit_diagnostic (elem);
         }
     }
@@ -1024,7 +1024,7 @@ adding_visitor::visit_enum (AST_Enum *node)
           this->add_name_element (elem, node->local_name ()->get_string ());
           this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
 
-          this->insert_element (elem);
+          this->insert_element (elem, node);
           be_global->emit_diagnostic (elem);
         }
     }
@@ -1098,7 +1098,7 @@ adding_visitor::visit_operation (AST_Operation *node)
       this->add_name_element (elem, node->local_name ()->get_string ());
       this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
 
-      this->insert_element (elem);
+      this->insert_element (elem, node);
       be_global->emit_diagnostic (elem);
     }
 
@@ -1224,7 +1224,7 @@ adding_visitor::visit_field (AST_Field *node)
       slot = this->rel_id_ - 1;
       this->add_regnodes (node->defined_in (), elem, slot);
 
-      this->insert_element (elem);
+      this->insert_element (elem, node);
       be_global->emit_diagnostic (elem);
     }
   else
@@ -1317,7 +1317,7 @@ adding_visitor::visit_argument (AST_Argument *node)
       this->add_name_element (arg, node->local_name ()->get_string ());
       this->add_regnodes (node->defined_in (), arg, this->rel_id_ - 1);
 
-      this->insert_element (arg);
+      this->insert_element (arg, node);
       be_global->emit_diagnostic (arg);
     }
 
@@ -1402,7 +1402,7 @@ adding_visitor::visit_attribute (AST_Attribute *node)
                   );
         }
 
-      this->insert_element (elem);
+      this->insert_element (elem, node);
       be_global->emit_diagnostic (elem);
       be_global->emit_diagnostic (member);
     }
@@ -1473,7 +1473,7 @@ adding_visitor::visit_union (AST_Union *node)
           this->add_name_element (elem, node->local_name ()->get_string ());
           this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
 
-          this->insert_element (elem);
+          this->insert_element (elem, node);
           be_global->emit_diagnostic (elem);
         }
     }
@@ -1573,7 +1573,7 @@ adding_visitor::visit_union_branch (AST_UnionBranch *node)
       slot = this->rel_id_ - 1;
       this->add_regnodes (node->defined_in (), elem, slot);
 
-      this->insert_element (elem);
+      this->insert_element (elem, node);
       be_global->emit_diagnostic (elem);
     }
   else
@@ -1657,7 +1657,7 @@ adding_visitor::visit_constant (AST_Constant *node)
                               elem,
                               this->rel_id_ - 1);
 
-          this->insert_element (elem);
+          this->insert_element (elem, node);
           be_global->emit_diagnostic (elem);
         }
     }
@@ -1755,7 +1755,7 @@ adding_visitor::visit_enum_val (AST_EnumVal *node)
           this->add_name_element (elem, node->local_name ()->get_string ());
           this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
 
-          this->insert_element (elem);
+          this->insert_element (elem, node);
           be_global->emit_diagnostic (elem);
         }
     }
@@ -1863,7 +1863,7 @@ adding_visitor::visit_typedef (AST_Typedef *node)
           this->add_name_element (elem, node->local_name ()->get_string ());
           this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
 
-          this->insert_element (elem);
+          this->insert_element (elem, node);
           be_global->emit_diagnostic (elem);
         }
     }
@@ -2052,7 +2052,7 @@ adding_visitor::visit_valuebox (AST_ValueBox *node)
           this->add_name_element (elem, node->local_name ()->get_string ());
           this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
 
-          this->insert_element (elem);
+          this->insert_element (elem, node);
           be_global->emit_diagnostic (elem);
         }
     }
@@ -4939,7 +4939,7 @@ adding_visitor::add_component_ref (DOMElement *container,
 }
 
 void
-adding_visitor::insert_element (DOMElement *elem)
+adding_visitor::insert_element (DOMElement *elem, AST_Decl *d)
 {
   DOMElement *next = 0;
 
@@ -4976,6 +4976,16 @@ adding_visitor::insert_element (DOMElement *elem)
   else
     {
       next = (DOMElement *) this->previous_->getNextSibling ();
+    }
+
+  if (elem == next)
+    {
+      // We have a duplicate IDL declaration - fatal error.
+      ACE_ERROR ((LM_ERROR,
+                  "Error: illegal IDL - redefinition of %s\n",
+                  d->full_name ()));
+
+      BE_abort ();
     }
 
   // Behaves like appendChild() if next == 0.

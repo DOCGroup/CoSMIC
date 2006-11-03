@@ -94,6 +94,8 @@ BE_abort (void)
   ACE_ERROR ((LM_ERROR,
               ACE_TEXT ("Fatal Error - Aborting\n")));
 
+  idl_global->set_err_count (idl_global->err_count () + 1);
+
   // BE_cleanup will be called after the exception is caught.
   throw FE_Bailout ();
 }
@@ -116,7 +118,7 @@ BE_produce (void)
 
   // Visit the AST.
   DOMDocument *doc = be_global->doc ();
-  
+
   if (0 == doc)
     {
       ACE_ERROR ((LM_ERROR,
@@ -125,9 +127,9 @@ BE_produce (void)
       BE_abort ();
     }
   try
-    {  
+    {
       DOMElement *dom_root = doc->getDocumentElement ();
-      
+
       if (0 == dom_root)
         {
           ACE_ERROR ((LM_ERROR,
@@ -135,7 +137,7 @@ BE_produce (void)
                       ACE_TEXT ("DOM document root element is null\n")));
           BE_abort ();
         }
-        
+
       adding_visitor ast_visitor (dom_root);
 
       if (ast_visitor.visit_root (ast_root) == -1)
@@ -145,14 +147,14 @@ BE_produce (void)
                       ACE_TEXT ("failed to accept AST visitor\n")));
           BE_abort ();
         }
-      
+
       // Launch this visitor only if we have imported an XML document
       // and pruning hasn't been suppressed from the command line.
-      if (0 != be_global->input_xme () && be_global->do_removal ())  
+      if (0 != be_global->input_xme () && be_global->do_removal ())
         {
           // Visit the DOM tree.
           removing_visitor dom_visitor;
-          
+
           if (!dom_visitor.visit_root (be_global->current_idl_file ()))
             {
               ACE_ERROR ((LM_ERROR,
@@ -179,6 +181,10 @@ BE_produce (void)
                   message));
       XMLString::release (&message);
       BE_abort ();
+    }
+  catch (FE_Bailout)
+    {
+      throw;
     }
   catch (...)
     {

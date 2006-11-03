@@ -227,7 +227,7 @@ private:
                            const char *gme_id,
                            AST_Component *node);
 
-   void insert_element (DOMElement *elem);
+   void insert_element (DOMElement *elem, AST_Decl *d);
 
 private:
   DOMElement *sub_tree_;
