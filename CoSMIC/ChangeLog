@@ -1,3 +1,22 @@
+Fri Nov  3 22:22:06 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:
+
+          - Added abort and diagnostic message if an IDL redefinition
+            is found. Such a redefinition (if it occurred in a
+            different IDL file than the original) was previously
+            flagged only by the catching of an unknown exception
+            thrown by a Xerces call. Thanks to Adam Nagel
+            <nagelar@isis.vanderbilt.edu> for supplying the example
+            IDL files that pointed out the need for a more informative
+            diagnostic.
+
+          - Disabled the writing of the XME file if there is an error
+            during processing.
+
 Wed Nov  1 22:49:39 UTC 2006  Nishanth Shankaran  <nshankar@nospam.com>
 
         * PIM/PICML/examples/RACE.xme: Updated the model to include the
