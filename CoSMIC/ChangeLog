@@ -1,3 +1,15 @@
+Wed Nov  8 23:01:10 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor_cpp:
+
+          Added check for altered PredefinedTypes folder in an XME
+          file input on the command line. An upcoming version of GME
+          will allow this folder to be made readonly, until then
+          this check will output an error message and abort if items
+          have been removed from this folder, either by cutting from
+          the XME file directly or by deletion from the model that
+          generated it.
+
 Wed Nov  8 22:19:20 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
