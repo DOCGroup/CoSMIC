@@ -1,3 +1,16 @@
+Wed Nov  8 22:19:20 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:
+
+          Extended the error checking added in
+
+          Fri Nov  3 22:22:06 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+          to cover overlooked use cases. Again, thanks to Adam Nagel,
+          <nagelar@isis.vanderbilt.edu> for supplying the example IDL
+          files.
+
 Fri Nov  3 22:22:06 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
