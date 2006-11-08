@@ -253,6 +253,9 @@ adding_visitor::visit_interface (AST_Interface *node)
       // the IDL file where the node is defined.
       if (!node->imported ())
         {
+          // Checks for IDL duplicated across files.
+          this->check_for_dup (elem, node);
+
           this->set_relid_attr (elem);
           this->set_childrelidcntr_attr (elem, node);
           elem->setAttribute (X ("kind"), X ("Object"));
@@ -383,6 +386,9 @@ adding_visitor::visit_valuetype (AST_ValueType *node)
       // the IDL file where the node is defined.
       if (!node->imported ())
         {
+          // Checks for IDL duplicated across files.
+          this->check_for_dup (elem, node);
+
           this->set_relid_attr (elem);
           this->set_childrelidcntr_attr (elem, node);
           AST_Decl::NodeType nt = node->node_type ();
@@ -493,6 +499,9 @@ adding_visitor::visit_component (AST_Component *node)
       // the IDL file where the node is defined.
       if (!node->imported ())
         {
+          // Checks for IDL duplicated across files.
+          this->check_for_dup (elem, node);
+
           this->set_relid_attr (elem);
           this->set_childrelidcntr_attr (elem, node);
           elem->setAttribute (X ("kind"), X ("Component"));
@@ -633,6 +642,9 @@ adding_visitor::visit_home (AST_Home *node)
       // the IDL file where the node is defined.
       if (!node->imported ())
         {
+          // Checks for IDL duplicated across files.
+          this->check_for_dup (elem, node);
+
           this->set_relid_attr (elem);
           this->set_childrelidcntr_attr (elem, node);
           elem->setAttribute (X ("kind"), X ("ComponentFactory"));
@@ -789,6 +801,9 @@ adding_visitor::visit_structure (AST_Structure *node)
       // the IDL file where the node is defined.
       if (!node->imported ())
         {
+          // Checks for IDL duplicated across files.
+          this->check_for_dup (elem, node);
+
           elem->setAttribute (X ("kind"), X ("Aggregate"));
           elem->setAttribute (X ("role"), X ("Aggregate"));
           this->set_relid_attr (elem);
@@ -929,6 +944,9 @@ adding_visitor::visit_exception (AST_Exception *node)
       // the IDL file where the node is defined.
       if (!node->imported ())
         {
+          // Checks for IDL duplicated across files.
+          this->check_for_dup (elem, node);
+
           elem->setAttribute (X ("kind"), X ("Exception"));
           elem->setAttribute (X ("role"), X ("Exception"));
           this->set_relid_attr (elem);
@@ -1017,6 +1035,9 @@ adding_visitor::visit_enum (AST_Enum *node)
       // the IDL file where the node is defined.
       if (!node->imported ())
         {
+          // Checks for IDL duplicated across files.
+          this->check_for_dup (elem, node);
+
           elem->setAttribute (X ("kind"), X ("Enum"));
           elem->setAttribute (X ("role"), X ("Enum"));
           this->set_relid_attr (elem);
@@ -1466,6 +1487,9 @@ adding_visitor::visit_union (AST_Union *node)
       // the IDL file where the node is defined.
       if (!node->imported ())
         {
+          // Checks for IDL duplicated across files.
+          this->check_for_dup (elem, node);
+
           elem->setAttribute (X ("kind"), X ("SwitchedAggregate"));
           elem->setAttribute (X ("role"), X ("SwitchedAggregate"));
           this->set_relid_attr (elem);
@@ -1648,6 +1672,9 @@ adding_visitor::visit_constant (AST_Constant *node)
       // the IDL file where the node is defined.
       if (!node->imported ())
         {
+          // Checks for IDL duplicated across files.
+          this->check_for_dup (elem, node);
+
           elem->setAttribute (X ("kind"), X ("Constant"));
           elem->setAttribute (X ("role"), X ("Constant"));
           this->set_relid_attr (elem);
@@ -1857,6 +1884,9 @@ adding_visitor::visit_typedef (AST_Typedef *node)
       // the IDL file where the node is defined.
       if (!node->imported ())
         {
+          // Checks for IDL duplicated across files.
+          this->check_for_dup (elem, node);
+
           elem->setAttribute (X ("kind"), X (role));
           elem->setAttribute (X ("role"), X (role));
           this->set_relid_attr (elem);
@@ -2046,6 +2076,9 @@ adding_visitor::visit_valuebox (AST_ValueBox *node)
       // the IDL file where the node is defined.
       if (!node->imported ())
         {
+          // Checks for IDL duplicated across files.
+          this->check_for_dup (elem, node);
+
           elem->setAttribute (X ("kind"), X ("Boxed"));
           elem->setAttribute (X ("role"), X ("Boxed"));
           this->set_relid_attr (elem);
@@ -4981,13 +5014,49 @@ adding_visitor::insert_element (DOMElement *elem, AST_Decl *d)
   if (elem == next)
     {
       // We have a duplicate IDL declaration - fatal error.
-      ACE_ERROR ((LM_ERROR,
-                  "Error: illegal IDL - redefinition of %s\n",
-                  d->full_name ()));
-
+      this->redef_error (next, d);
       BE_abort ();
     }
 
   // Behaves like appendChild() if next == 0.
   (void) this->sub_tree_->insertBefore (elem, next);
+}
+
+void
+adding_visitor::check_for_dup (DOMElement *elem, AST_Decl *d)
+{
+  if (elem->hasAttribute (X ("kind")))
+    {
+      // If we're here, elem wasn't just added to the table
+      // from an included IDL file, it was added to the DOM
+      // tree as well, and thus represents duplicate IDL.
+      this->redef_error (elem, d);
+      BE_abort ();
+    }
+}
+
+void
+adding_visitor::redef_error (DOMElement *elem, AST_Decl *d)
+{
+  DOMElement *file = elem;
+  const XMLCh *kind_val = elem->getAttribute (X ("kind"));
+
+  while (X (kind_val) != X ("File"))
+    {
+      file = dynamic_cast<DOMElement *> (file->getParentNode ());
+      kind_val = file->getAttribute (X ("kind"));
+    }
+
+  DOMElement *name_elem =
+    dynamic_cast<DOMElement *> (file->getFirstChild ());
+  DOMText *text_node =
+    dynamic_cast<DOMText *> (name_elem->getFirstChild ());
+  const XMLCh *nameX = text_node->getData ();
+  char *name = XMLString::transcode (nameX);
+
+  ACE_ERROR ((LM_ERROR,
+              "Redefinition error: %s already defined in %s.idl\n",
+              d->full_name (),
+              name));
+  XMLString::release (&name);
 }

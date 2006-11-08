@@ -226,8 +226,9 @@ private:
                            DOMElement *impl,
                            const char *gme_id,
                            AST_Component *node);
-
    void insert_element (DOMElement *elem, AST_Decl *d);
+   void check_for_dup (DOMElement *elem, AST_Decl *d);
+   void redef_error (DOMElement *elem, AST_Decl *d);
 
 private:
   DOMElement *sub_tree_;
