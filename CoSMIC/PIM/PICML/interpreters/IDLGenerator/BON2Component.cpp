@@ -150,6 +150,8 @@ void Component::invokeEx( Project& project,
                           const std::set<FCO>& setSelectedFCOs,
                           long lParam )
 {
+  project->setName("PICML");  
+
   std::string outputPath;
   std::string message = "Please specify the Output Directory";
 
