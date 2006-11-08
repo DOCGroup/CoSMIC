@@ -8,7 +8,7 @@ Wed Nov  8 23:01:10 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
           this check will output an error message and abort if items
           have been removed from this folder, either by cutting from
           the XME file directly or by deletion from the model that
-          generated it.
+          exported it.
 
 Wed Nov  8 22:19:20 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
