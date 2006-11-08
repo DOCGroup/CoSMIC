@@ -2258,6 +2258,15 @@ adding_visitor::add_predefined_types (void)
             be_global->lookup_by_tag_and_kind (pdt_folder,
                                                "atom",
                                                pdt_name);
+
+          if (pdt == 0)
+            {
+              ACE_ERROR ((LM_ERROR,
+                          "PredefinedTypes folder, as seen in %s, has "
+                          "been altered.\n",
+                          be_global->input_xme ()));
+              BE_abort ();
+            }
         }
 
       // Store the GME id for possible rererence by other XML elements.
@@ -5025,9 +5034,10 @@ adding_visitor::insert_element (DOMElement *elem, AST_Decl *d)
 void
 adding_visitor::check_for_dup (DOMElement *elem, AST_Decl *d)
 {
+  // This attribute is always added for new declarations.
   if (elem->hasAttribute (X ("kind")))
     {
-      // If we're here, elem wasn't just added to the table
+      // If we're here, 'elem' wasn't just added to the table
       // from an included IDL file, it was added to the DOM
       // tree as well, and thus represents duplicate IDL.
       this->redef_error (elem, d);
