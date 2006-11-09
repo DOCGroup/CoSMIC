@@ -1,7 +1,6 @@
-Wed Nov  8 23:43:46 UTC 2006  Amogh Kavimandan <amoghk@dre.vanderbilt.edu>
+Thu Nov  9 17:12:39 UTC 2006  Amogh Kavimandan <amoghk@dre.vanderbilt.edu>
 
-
-        * PIM/PICML/paradigms/PICML-uml.xme: 
+        * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
@@ -10,12 +9,26 @@ Wed Nov  8 23:43:46 UTC 2006  Amogh Kavimandan <amoghk@dre.vanderbilt.edu>
         * PSM/CQML/paradigms/CQML.xme:
         * PSM/CQML/paradigms/CQML.xml:
         * PSM/CQML/paradigms/CQML.xmp:
-          PICML changes: Platform Independent QoS models additions 
+          Fixed xml files such that picml gets built.
+
+Wed Nov  8 23:43:46 UTC 2006  Amogh Kavimandan <amoghk@dre.vanderbilt.edu>
+
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+          PICML changes: Platform Independent QoS models additions
           for EC and RT configurations.
-          CQML changes: CQML changes to use PICML as a library, 
-          thus any changes to PICML would have to be accompanied 
+          CQML changes: CQML changes to use PICML as a library,
+          thus any changes to PICML would have to be accompanied
           by a corresponding library refresh in CQML.
-	
+
 
 Wed Nov  8 23:01:10 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 

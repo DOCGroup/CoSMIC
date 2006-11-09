@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{053AA0C5-515E-49D7-9A18-03B1833094D4}" cdate="Thu Oct 26 13:38:15 2006" mdate="Thu Oct 26 13:38:15 2006" version="" metaguid="{B3568889-311A-4E5A-A3DD-A8AC2BD7DE71}" metaversion="" metaname="MetaGME">
+<project guid="{F28A4080-1DFE-4A2B-84D9-A03B60821EDB}" cdate="Thu Oct 26 13:38:15 2006" mdate="Thu Oct 26 13:38:15 2006" version="" metaguid="{B3568889-311A-4E5A-A3DD-A8AC2BD7DE71}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment>This tool supports $CIAO_ROOT/docs/schema/CIAOServerResources.xsd version 1.7. 
 Please check the cvs repository if this is the most recent version of this file.</comment>
