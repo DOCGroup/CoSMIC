@@ -1,3 +1,36 @@
+Thu Nov  9 22:46:51 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/examples/SLICE.xme:
+
+          Migrated version of the SLICE example.
+
+        * PIM/PICML/migration:
+
+          Directory for XSLT scripts related to PICML.
+
+        * PIM/PICML/migration/@derivedfrom_cleaner.xsl:
+        * PIM/PICML/migration/Effect_to_InputEffect.xsl:
+        * PIM/PICML/migration/PeriodicAction_to_PeriodicEvent.xsl:
+        * PIM/PICML/migration/PeriodicEvent_disconnect.xsl:
+
+          XSLT scripts for converting old behavior models to new behavior
+          models. The scripts should be run in the following order:
+
+            - PeriodicAction_to_PeriodicEvent.xsl
+            - PeriodicEvent_disconnect.xsl
+            - Effect_to_InputEffect.xsl
+            - @derivedfrom_cleaner.xsl
+
+        * PIM/PICML/paradigms/icons/environment.gif:
+        * PIM/PICML/paradigms/icons/periodic.gif:
+
+          Missing images for the PICML paradigm.
+
+        * PIM/PICML/paradigms/icons/StartState.bmp:
+        * PIM/PICML/paradigms/icons/TimerState.bmp:
+
+          Removed these files.
+
 Thu Nov  9 20:32:18 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Installer/CoSMIC_common.wxs:
@@ -169,6 +202,14 @@ Thu Oct 12 01:57:57 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * demos/STI/BDCWebService.NET/Benchmark_Data_Collector.cpp:
           Updated to fix some missing declarations in the destructor.
+
+Tue Oct 10 20:15:12 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * bin/gme.pl:
+
+          PERL script for GME. It can be used to query the version
+          of GME and run components on a target project file. Usage
+          of the script still needs to be added.
 
 Tue Oct 10 18:06:25 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
