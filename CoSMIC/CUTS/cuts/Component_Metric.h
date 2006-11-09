@@ -80,7 +80,7 @@ private:
   ACE_Time_Value timestamp_;
 };
 
-#if defined (__CUTS_INpLINE__)
+#if defined (__CUTS_INLINE__)
 #include "cuts/Component_Metric.inl"
 #endif
 

@@ -65,8 +65,4 @@ public:
 #define ODBC_Desc_Exception(handle) \
   ODBC_Exception (handle, SQL_HANDLE_DESC)
 
-#if defined (__CUTS_INLINE__)
-#include "ODBC_Exception.inl"
-#endif
-
 #endif  // !defined _CUTS_ODBC_EXCEPTION_H_

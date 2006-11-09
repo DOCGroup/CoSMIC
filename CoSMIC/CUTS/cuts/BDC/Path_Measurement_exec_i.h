@@ -140,7 +140,7 @@ namespace CUTS
 }
 
 #if defined (__CUTS_INLINE__)
-#include "cuts/Path_Measurement_exec_i.inl"
+#include "Path_Measurement_exec_i.inl"
 #endif
 
 #include /* */ "ace/post.h"

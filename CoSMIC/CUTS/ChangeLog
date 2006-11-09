@@ -1,3 +1,21 @@
+Thu Nov  9 20:30:10 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/Path_Measurement_exec_i.h:
+        * cuts/Component_Metric.h:
+        * cuts/utils/DB_Parameter.inl:
+        * cuts/utils/DB_Types_Impl.inl:
+        * cuts/utils/ODBC/ODBC_Exception.h:
+
+          Fixed release version compilation errors.
+
+        * install/CUTS_CoSMIC.wxs:
+
+          Added reference to VC8 merge modules in the default feature.
+
+        * cuts/utils/ODBC/ODBC_Exception.inl:
+
+          Removed this file.
+
 Fri Oct 13 00:18:04 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/GME/interpreters/PICML_CIAO_Impl/PICML_CIAO_Impl.mpc:

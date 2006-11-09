@@ -62,6 +62,7 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 //
 // bind
 //
+CUTS_INLINE
 void CUTS_DB_Parameter::bind (u_long *)
 ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
