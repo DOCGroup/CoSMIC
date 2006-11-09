@@ -1,3 +1,9 @@
+Thu Nov  9 20:32:18 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Installer/CoSMIC_common.wxs:
+
+          Added a merge component for VC8 merge modules.
+
 Thu Nov  9 17:12:39 UTC 2006  Amogh Kavimandan <amoghk@dre.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:

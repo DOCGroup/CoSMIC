@@ -1,7 +1,39 @@
 <?xml version='1.0' encoding='utf-8'?>
 
 <Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'>
+  <?define COMMON_PROGRAMFILES = "$(env.CommonProgramFiles)" ?>
+
   <Fragment Id='CoSMIC_common'>
+    <DirectoryRef Id='WindowsFolder'>
+      <!-- C runtime for VC8 -->
+      <Merge Id='Microsoft_VC80_CRT_x86.msm' DiskId='1' Language='1033' 
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC80_CRT_x86.msm' />
+      <Merge Id='policy_8_0_Microsoft_VC80_CRT_x86.msm' DiskId='1' Language='1033' 
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_8_0_Microsoft_VC80_CRT_x86.msm' />
+
+      <Merge Id='Microsoft_VC80_DebugCRT_x86.msm' DiskId='1' Language='1033' 
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC80_DebugCRT_x86.msm' />
+      <Merge Id='policy_8_0_Microsoft_VC80_DebugCRT_x86.msm' DiskId='1' Language='1033' 
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_8_0_Microsoft_VC80_DebugCRT_x86.msm' />
+
+      <!-- ATL for VC8 -->
+      <Merge Id='Microsoft_VC80_ATL_x86.msm' DiskId='1' Language='1033' 
+         SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC80_ATL_x86.msm' />
+      <Merge Id='policy_8_0_Microsoft_VC80_ATL_x86.msm' DiskId='1' Language='1033' 
+         SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_8_0_Microsoft_VC80_ATL_x86.msm' />
+
+      <!-- MFC for VC8 -->
+      <Merge Id='Microsoft_VC80_MFC_x86.msm' DiskId='1' Language='1033' 
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC80_MFC_x86.msm' />
+      <Merge Id='policy_8_0_Microsoft_VC80_MFC_x86.msm' DiskId='1' Language='1033' 
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_8_0_Microsoft_VC80_MFC_x86.msm' />
+
+      <Merge Id='Microsoft_VC80_DebugMFC_x86.msm' DiskId='1' Language='1033' 
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC80_DebugMFC_x86.msm' />
+      <Merge Id='policy_8_0_Microsoft_VC80_DebugMFC_x86.msm' DiskId='1' Language='1033' 
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_8_0_Microsoft_VC80_DebugMFC_x86.msm' />
+    </DirectoryRef>
+  
     <DirectoryRef Id='bin'>
       <!-- PICML UDM project -->
       <Component Id='PICML' Guid='8661d861-25c1-437e-921f-50d97fd61529'>
