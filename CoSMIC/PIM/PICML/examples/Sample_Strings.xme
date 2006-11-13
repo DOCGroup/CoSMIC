@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{D15BE884-9AE3-40C7-AFA8-22032BD04D09}" cdate="Mon Nov 13 09:29:02 2006" mdate="Mon Nov 13 09:29:02 2006" version="" metaguid="{66061B04-B2CC-460F-A1E2-35C897A6F4CE}" metaversion="" metaname="PICML">
+<project guid="{AA4B35A7-1F6E-4CE4-8683-53B6036143E6}" cdate="Mon Nov 13 09:46:24 2006" mdate="Mon Nov 13 09:46:24 2006" version="" metaguid="{66061B04-B2CC-460F-A1E2-35C897A6F4CE}" metaversion="" metaname="PICML">
 	<name>Strings</name>
 	<comment></comment>
 	<author></author>
@@ -1525,6 +1525,18 @@
 								<name>period</name>
 							</reference>
 						</model>
+						<model id="id-0065-00000165" kind="Attribute" role="Attribute" derivedfrom="id-0065-0000015a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>load</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<reference id="id-0067-00000208" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-000001fd" isinstance="yes" isprimary="no" referred="id-0066-00000006" isbound="yes">
+								<name>period</name>
+							</reference>
+						</model>
 						<reference id="id-0067-000000f8" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000067" isinstance="yes" isprimary="no" referred="id-0065-00000080" isbound="yes">
 							<name>command_out</name>
 							<regnode name="PartRegs" status="undefined">
@@ -2917,6 +2929,18 @@
 								<name>period</name>
 							</reference>
 						</model>
+						<model id="id-0065-00000164" kind="Attribute" role="Attribute" derivedfrom="id-0065-0000015a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>load</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<reference id="id-0067-00000207" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-000001fd" isinstance="yes" isprimary="no" referred="id-0066-00000006" isbound="yes">
+								<name>period</name>
+							</reference>
+						</model>
 						<reference id="id-0067-00000115" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000067" isinstance="yes" isprimary="no" referred="id-0065-00000080" isbound="yes">
 							<name>command_out</name>
 							<attribute kind="SpecifyIdTag" status="meta">
@@ -3669,6 +3693,18 @@
 								<value></value>
 							</attribute>
 							<reference id="id-0067-00000123" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-00000066" isinstance="yes" isprimary="no" referred="id-0066-00000007" isbound="yes">
+								<name>period</name>
+							</reference>
+						</model>
+						<model id="id-0065-00000163" kind="Attribute" role="Attribute" derivedfrom="id-0065-0000015a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>load</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<reference id="id-0067-00000206" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-000001fd" isinstance="yes" isprimary="no" referred="id-0066-00000006" isbound="yes">
 								<name>period</name>
 							</reference>
 						</model>
@@ -4469,6 +4505,18 @@
 								<name>period</name>
 							</reference>
 						</model>
+						<model id="id-0065-00000162" kind="Attribute" role="Attribute" derivedfrom="id-0065-0000015a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>load</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<reference id="id-0067-00000205" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-000001fd" isinstance="yes" isprimary="no" referred="id-0066-00000006" isbound="yes">
+								<name>period</name>
+							</reference>
+						</model>
 						<reference id="id-0067-00000133" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000067" isinstance="yes" isprimary="no" referred="id-0065-00000080" isbound="yes">
 							<name>command_out</name>
 							<attribute kind="SpecifyIdTag" status="meta">
@@ -4960,6 +5008,18 @@
 								<value></value>
 							</attribute>
 							<reference id="id-0067-00000139" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-00000066" isinstance="yes" isprimary="no" referred="id-0066-00000007" isbound="yes">
+								<name>period</name>
+							</reference>
+						</model>
+						<model id="id-0065-00000161" kind="Attribute" role="Attribute" derivedfrom="id-0065-0000015a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>load</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<reference id="id-0067-00000204" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-000001fd" isinstance="yes" isprimary="no" referred="id-0066-00000006" isbound="yes">
 								<name>period</name>
 							</reference>
 						</model>
@@ -6018,6 +6078,18 @@
 								<name>period</name>
 							</reference>
 						</model>
+						<model id="id-0065-00000160" kind="Attribute" role="Attribute" derivedfrom="id-0065-0000015a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>load</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<reference id="id-0067-00000203" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-000001fd" isinstance="yes" isprimary="no" referred="id-0066-00000006" isbound="yes">
+								<name>period</name>
+							</reference>
+						</model>
 						<reference id="id-0067-00000151" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000067" isinstance="yes" isprimary="no" referred="id-0065-00000080" isbound="yes">
 							<name>command_out</name>
 							<attribute kind="SpecifyIdTag" status="meta">
@@ -6791,6 +6863,18 @@
 								<value></value>
 							</attribute>
 							<reference id="id-0067-0000015f" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-00000066" isinstance="yes" isprimary="no" referred="id-0066-00000007" isbound="yes">
+								<name>period</name>
+							</reference>
+						</model>
+						<model id="id-0065-0000015f" kind="Attribute" role="Attribute" derivedfrom="id-0065-0000015a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>load</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<reference id="id-0067-00000202" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-000001fd" isinstance="yes" isprimary="no" referred="id-0066-00000006" isbound="yes">
 								<name>period</name>
 							</reference>
 						</model>
@@ -7570,6 +7654,18 @@
 								<name>period</name>
 							</reference>
 						</model>
+						<model id="id-0065-0000015e" kind="Attribute" role="Attribute" derivedfrom="id-0065-0000015a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>load</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<reference id="id-0067-00000201" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-000001fd" isinstance="yes" isprimary="no" referred="id-0066-00000006" isbound="yes">
+								<name>period</name>
+							</reference>
+						</model>
 						<reference id="id-0067-0000016f" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000067" isinstance="yes" isprimary="no" referred="id-0065-00000080" isbound="yes">
 							<name>command_out</name>
 							<attribute kind="SpecifyIdTag" status="meta">
@@ -8343,6 +8439,18 @@
 								<name>period</name>
 							</reference>
 						</model>
+						<model id="id-0065-0000015d" kind="Attribute" role="Attribute" derivedfrom="id-0065-0000015a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>load</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<reference id="id-0067-00000200" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-000001fd" isinstance="yes" isprimary="no" referred="id-0066-00000006" isbound="yes">
+								<name>period</name>
+							</reference>
+						</model>
 						<reference id="id-0067-0000017e" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000067" isinstance="yes" isprimary="no" referred="id-0065-00000080" isbound="yes">
 							<name>command_out</name>
 							<attribute kind="SpecifyIdTag" status="meta">
@@ -9092,6 +9200,18 @@
 								<name>period</name>
 							</reference>
 						</model>
+						<model id="id-0065-0000015c" kind="Attribute" role="Attribute" derivedfrom="id-0065-0000015a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>load</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<reference id="id-0067-000001ff" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-000001fd" isinstance="yes" isprimary="no" referred="id-0066-00000006" isbound="yes">
+								<name>period</name>
+							</reference>
+						</model>
 						<reference id="id-0067-0000018d" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000067" isinstance="yes" isprimary="no" referred="id-0065-00000080" isbound="yes">
 							<name>command_out</name>
 							<attribute kind="SpecifyIdTag" status="meta">
@@ -9466,6 +9586,18 @@
 								<value></value>
 							</attribute>
 							<reference id="id-0067-0000018f" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-00000066" isinstance="yes" isprimary="no" referred="id-0066-00000007" isbound="yes">
+								<name>period</name>
+							</reference>
+						</model>
+						<model id="id-0065-0000015b" kind="Attribute" role="Attribute" derivedfrom="id-0065-0000015a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>load</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<reference id="id-0067-000001fe" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-000001fd" isinstance="yes" isprimary="no" referred="id-0066-00000006" isbound="yes">
 								<name>period</name>
 							</reference>
 						</model>
@@ -12203,7 +12335,7 @@
 							<regnode name="InterfaceDefinition" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>62,83</value>
+									<value>55,76</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -12219,7 +12351,7 @@
 						<attribute kind="abstract" status="meta">
 							<value>false</value>
 						</attribute>
-						<reference id="id-0067-0000005a" kind="Member" role="Member" relid="0x6" referred="id-0066-00000007">
+						<reference id="id-0067-0000005a" kind="Member" role="Member" relid="0x6" referred="id-0066-00000006">
 							<name>load</name>
 							<regnode name="PartRegs" status="undefined">
 								<value></value>
@@ -13019,7 +13151,7 @@
 					<attribute kind="VersionTag" status="meta">
 						<value></value>
 					</attribute>
-					<model id="id-0065-00000097" kind="Component" role="Component" relid="0x1" childrelidcntr="0x35">
+					<model id="id-0065-00000097" kind="Component" role="Component" relid="0x1" childrelidcntr="0x36">
 						<name>Trigger</name>
 						<regnode name="PartRegs" status="undefined">
 							<value></value>
@@ -13060,6 +13192,36 @@
 								<value></value>
 							</attribute>
 							<reference id="id-0067-00000066" kind="AttributeMember" role="AttributeMember" relid="0x1" referred="id-0066-00000007">
+								<name>period</name>
+								<regnode name="PartRegs" status="undefined">
+									<value></value>
+									<regnode name="InterfaceDefinition" status="undefined">
+										<value></value>
+										<regnode name="Position" isopaque="yes">
+											<value>289,317</value>
+										</regnode>
+									</regnode>
+								</regnode>
+							</reference>
+						</model>
+						<model id="id-0065-0000015a" kind="Attribute" role="Attribute" relid="0x36" childrelidcntr="0x1">
+							<name>load</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="InterfaceDefinition" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>104,377</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<reference id="id-0067-000001fd" kind="AttributeMember" role="AttributeMember" relid="0x1" referred="id-0066-00000006">
 								<name>period</name>
 								<regnode name="PartRegs" status="undefined">
 									<value></value>
