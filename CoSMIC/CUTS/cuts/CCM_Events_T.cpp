@@ -5,23 +5,31 @@
 #endif
 
 //=============================================================================
-/**
+/*
+ * CUTS_CCM_Event_T
+ */
+//=============================================================================
+
+template <typename OBV_TYPE>
+CUTS_CCM_Event_T <OBV_TYPE>::CUTS_CCM_Event_T (void)
+{
+  _ptr_type ev = 0;
+  ACE_NEW_THROW_EX (ev, OBV_TYPE (), ::CORBA::NO_MEMORY ());
+  this->event_ = ev;
+}
+
+//=============================================================================
+/*
  * CUTS_Event_T
  */
 //=============================================================================
 
-//
-// CUTS_Event_T
-//
 template <typename EVENTTYPE>
 CUTS_Event_T <EVENTTYPE>::CUTS_Event_T (void)
 {
 
 }
 
-//
-// ~CUTS_Event_T
-//
 template <typename EVENTTYPE>
 CUTS_Event_T <EVENTTYPE>::~CUTS_Event_T (void)
 {
@@ -29,7 +37,7 @@ CUTS_Event_T <EVENTTYPE>::~CUTS_Event_T (void)
 }
 
 //=============================================================================
-/**
+/*
  * CUTS_Event_init_T
  */
 //=============================================================================
@@ -52,9 +60,6 @@ CUTS_Event_init_T <EVENTTYPE>::~CUTS_Event_init_T (void)
 
 }
 
-//
-// create_for_unmarshal
-//
 template <typename EVENTTYPE>
 CORBA::ValueBase *
 CUTS_Event_init_T <EVENTTYPE>::create_for_unmarshal (ACE_ENV_SINGLE_ARG_DECL)

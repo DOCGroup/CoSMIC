@@ -2,47 +2,52 @@
 
 //=============================================================================
 /**
- * @file        Dependency_Generator.h
+ * @file      CUTS_BE_IDL_Graph.h
  *
  * $Id$
  *
- * @author      James H. Hill
+ * @author    James H. Hill
  */
 //=============================================================================
 
-#ifndef _CUTS_DEPENDENCY_GENERATOR_H_
-#define _CUTS_DEPENDENCY_GENERATOR_H_
+#ifndef _CUTS_BE_IDL_GRAPH_H_
+#define _CUTS_BE_IDL_GRAPH_H_
 
 #include "BE_export.h"
+#include "BE_Depend_Graph_T.h"
 #include "PICML/PICML.h"
 
-// Forward decl.
-class CUTS_Dependency_Graph;
-
-// Forward decl.
-class CUTS_Dependency_Node;
+struct CUTS_BE_IDL_Node;
 
 //=============================================================================
 /**
- * @class CUTS_Dependency_Generator
- *
- * @brief Walks a PICML model and creates a dependency graph.
+ * @class CUTS_BE_IDL_Graph
  */
 //=============================================================================
 
-class CUTS_BE_Export CUTS_Dependency_Generator :
+class CUTS_BE_Export CUTS_BE_IDL_Graph :
+  public CUTS_BE_Depend_Graph_T <CUTS_BE_IDL_Node>,
   public PICML::Visitor
 {
 public:
-  /**
-   * Initializing constructor.
-   *
-   * @param[in]     graph     Reference to target graph.
-   */
-  CUTS_Dependency_Generator (CUTS_Dependency_Graph & graph);
+  /// Default constructor.
+  CUTS_BE_IDL_Graph (void);
 
-  // Destructor.
-  ~CUTS_Dependency_Generator (void);
+  /// Destructor.
+  virtual ~CUTS_BE_IDL_Graph (void);
+
+  /**
+   * Get a pointer to the singleton.
+   *
+   * @return      Pointer to the singleton.
+   */
+  static CUTS_BE_IDL_Graph * instance (void);
+
+  /// Close the singleton instance (e.g., release all its resources).
+  static void singleton_close (void);
+
+  /// Reset the visit flag for all the nodes.
+  void reset_visit_flag (void);
 
 protected:
   /// Visit the RootFolder of a PICML model.
@@ -99,15 +104,14 @@ private:
    */
   void visit_file_and_package_contents (const Udm::Object & object);
 
-  /// Target dependency graph.
-  CUTS_Dependency_Graph & graph_;
+  /// The current node in the graph.
+  CUTS_BE_IDL_Node * current_node_;
 
-  /// The current node in use.
-  CUTS_Dependency_Node * current_node_;
-
-  // prevent the following operations
-  CUTS_Dependency_Generator (const CUTS_Dependency_Generator &);
-  const CUTS_Dependency_Generator & operator = (const CUTS_Dependency_Generator &);
+  /// Singleton instance of the graph.
+  static CUTS_BE_IDL_Graph * instance_;
 };
 
-#endif  // !defined _CUTS_DEPENDENCY_GENERATOR_H_
+#define CUTS_BE_IDL_GRAPH() \
+  CUTS_BE_IDL_Graph::instance ()
+
+#endif  // !defined _CUTS_BE_IDL_GRAPH_H_

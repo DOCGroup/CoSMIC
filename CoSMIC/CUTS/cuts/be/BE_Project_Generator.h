@@ -1,8 +1,8 @@
-// $Id$
+// -*- C++ -*-
 
 //=============================================================================
 /**
- * @file      Project_Generator.h
+ * @file      BE_Project_Generator.h
  *
  * $Id$
  *
@@ -10,8 +10,8 @@
  */
 //=============================================================================
 
-#ifndef _CUTS_PROJECT_GENERATOR_H_
-#define _CUTS_PROJECT_GENERATOR_H_
+#ifndef _CUTS_BE_PROJECT_GENERATOR_H_
+#define _CUTS_BE_PROJECT_GENERATOR_H_
 
 #include "BE_File_Generator_Manager.h"
 
@@ -19,13 +19,10 @@
 class CUTS_BE_File_Generator;
 
 // Forward decl.
-class CUTS_Dependency_Graph;
-
-// Forward decl.
-class CUTS_Dependency_Node;
-
-// Forward decl.
 class CUTS_BE_Preprocess_Data;
+
+// Forward decl.
+struct CUTS_BE_IDL_Node;
 
 //=============================================================================
 /**
@@ -50,15 +47,6 @@ public:
   virtual ~CUTS_BE_Project_Generator (void);
 
   /**
-   * Initialize the project generator.
-   *
-   * @param[in]     outdir      Output directory for the project.
-   * @param[in]     graph       Dependence graph for all projects.
-   */
-  void init (const std::string & outdir,
-             CUTS_Dependency_Graph * graph = 0);
-
-  /**
    * Signal to begin writing the project.
    *
    * @param[in]       container       Starting container.
@@ -66,29 +54,20 @@ public:
    */
   virtual void write_project (
     const PICML::ComponentImplementationContainer & container,
-    const CUTS_BE_Preprocess_Data & ppd);
+    const CUTS_BE_Preprocess_Data & ppd) = 0;
 
   /**
-   * Write a stub project.
+   * Write the project for a specific IDL node.
    *
    * @param[in]       node            Pointer to the source node.
    * @retval          true            Succeed to write file.
    * @retval          false           Failure to write file.
    */
-  virtual bool write_stub_project (CUTS_Dependency_Node * node);
+  virtual bool write_project (CUTS_BE_IDL_Node * node) = 0;
 
 protected:
   /// Default constructor.
   CUTS_BE_Project_Generator (void);
-
-  // @@ this needs to be in the private section w/ public acessor methods
-  // @@ since we do not want this data to change.
-
-  /// Output directory.
-  std::string outdir_;
-
-  /// Dependency graph for the entire project.
-  CUTS_Dependency_Graph * graph_;
 
   /// Collection of file generators.
   CUTS_BE_File_Generator_Manager manager_;
@@ -103,10 +82,12 @@ private:
     const PICML::MonolithicImplementation &);
 
   /// Visit a Implements object.
-  void Visit_Implements (const PICML::Implements &);
+  void Visit_Implements (
+    const PICML::Implements &);
 
   /// Visit a Component object.
-  void Visit_Component (const PICML::Component &);
+  void Visit_Component (
+    const PICML::Component &);
 
   // prevent the following operations
   CUTS_BE_Project_Generator (const CUTS_BE_Project_Generator &);
@@ -114,7 +95,7 @@ private:
 };
 
 #if defined (__CUTS_INLINE__)
-#include "Project_Generator.inl"
+#include "BE_Project_Generator.inl"
 #endif
 
-#endif  // !defined _CUTS_PROJECT_GENERATOR_H_
+#endif  // !defined _CUTS_BE_PROJECT_GENERATOR_H_

@@ -1,27 +1,26 @@
 // $Id$
 
 #include "BE_Workspace_Generator.h"
-#include "Project_Generator.h"
-#include "Dependency_Generator.h"
+#include "BE_IDL_Node.h"
+#include "BE_IDL_Graph.h"
+#include "BE_Options.h"
+#include "BE_Project_Generator.h"
+#include "CoWorkEr_Cache.h"
 #include "boost/bind.hpp"
 #include <algorithm>
 #include <sstream>
 
 const std::string WORKSPACE_SUFFIX ("_CUTS");
-const std::string CUTS_TESTING_SERVICE ("cuts_testing_service");
 
 //
 // CUTS_BE_Workspace_Generator
 //
 CUTS_BE_Workspace_Generator::
-CUTS_BE_Workspace_Generator (const std::string & outdir,
-                             CUTS_BE_Project_Generator * project)
-: outdir_ (outdir),
-  project_ (project),
+CUTS_BE_Workspace_Generator (CUTS_BE_Project_Generator * project)
+: project_ (project),
   coworker_ (false)
 {
-  this->project_->init (this->outdir_,
-                        &this->graph_);
+
 }
 
 //
@@ -41,7 +40,9 @@ Visit_RootFolder (const PICML::RootFolder & root)
   // Construct the filename for the workspace and open it for
   // writing.
   std::ostringstream filename;
-  filename << this->outdir_ << "\\" << root.name () << "_CUTS.mwc";
+  filename
+    << CUTS_BE_Options::instance ()->output_directory_
+    << "\\" << root.name () << "_CUTS.mwc";
 
   this->workspace_.open (filename.str ().c_str ());
 
@@ -61,9 +62,8 @@ Visit_RootFolder (const PICML::RootFolder & root)
       << "  // -- Explicitly specify which components(s) to build"
       << std::endl;
 
-    // Create the dependency graph for this project.
-    CUTS_Dependency_Generator depends (this->graph_);
-    PICML::RootFolder (root).Accept (depends);
+    // Create an IDL dependency graph for the entire project.
+    PICML::RootFolder (root).Accept (*CUTS_BE_IDL_Graph::instance ());
 
     // Visit the component implemenation folders.
     typedef std::vector <PICML::ComponentImplementations> Folder_Set;
@@ -75,19 +75,23 @@ Visit_RootFolder (const PICML::RootFolder & root)
                                 _1,
                                 boost::ref (*this)));
 
-    this->workspace_ 
+    this->workspace_
       << std::endl
       << "  // -- stub projects" << std::endl;
 
+    typedef
+    void (CUTS_BE_Workspace_Generator::*BE_WRITE_METHOD)
+         (CUTS_BE_IDL_Node *);
+
     std::for_each (
-      this->graph_.graph ().begin (),
-      this->graph_.graph ().end (),
-      boost::bind (&CUTS_BE_Workspace_Generator::write_stub_project,
+      CUTS_BE_IDL_Graph::instance ()->graph ().begin (),
+      CUTS_BE_IDL_Graph::instance ()->graph ().end (),
+      boost::bind (static_cast <BE_WRITE_METHOD> (
+                   &CUTS_BE_Workspace_Generator::write_project),
                    this,
-                   boost::bind (&CUTS_Dependency_Graph::Dependency_Graph::
-                                value_type::second,
+                   boost::bind (&CUTS_BE_IDL_Graph::Node_Map::value_type::second,
                                 _1)));
-                                
+
     this->workspace_ << "}" << std::endl;
     this->workspace_.close ();
   }
@@ -148,7 +152,7 @@ const PICML::ComponentImplementationContainer & container)
 
     // Write the project to the workspace.
     std::ostringstream pathname;
-    pathname << this->outdir_ << "\\" << project;
+    pathname << CUTS_BE_OPTIONS ()->output_directory_ << "\\" << project;
     this->workspace_ << "  " << project << std::endl;
 
     // Pass control to the project generator, if applicable.
@@ -187,57 +191,45 @@ Visit_MonolithicImplementation (const PICML::MonolithicImplementation & mono)
 void CUTS_BE_Workspace_Generator::
 Visit_Component (const PICML::Component & component)
 {
-  typedef std::vector <PICML::RequiredRequestPort> Receptacle_Set;
-  Receptacle_Set facets = component.RequiredRequestPort_kind_children ();
-
-  // We need to locate the facet with the name "cuts_testing_service".
-  // So, let's iterate over all the facets and look for one with the
-  // name "cuts_testing_service".
-  for (Receptacle_Set::iterator iter = facets.begin ();
-       iter != facets.end ();
-       iter ++)
-  {
-    if ((std::string) iter->name () == CUTS_TESTING_SERVICE)
-    {
-      this->coworker_ = true;
-      return;
-    }
-  }
+  this->coworker_ =
+    CUTS_CoWorkEr_Cache::instance ()->is_coworker (component);
 }
 
 //
-// write_stub_project
+// write_project
 //
 void CUTS_BE_Workspace_Generator::
-write_stub_project (CUTS_Dependency_Node * node)
+write_project (CUTS_BE_IDL_Node * node)
 {
-  if ((node->flags_ & CUTS_Dependency_Node::DNF_STUB))
-    this->write_stub_project_i (node);
-}
-
-//
-// write_stub_project
-//
-void CUTS_BE_Workspace_Generator::
-write_stub_project_i (CUTS_Dependency_Node * node)
-{
-  // We should only visit a node once.
-  if ((node->flags_ & CUTS_Dependency_Node::DNF_VISITED) != 0)
+  if ((node->flags_ & CUTS_BE_IDL_Node::IDL_VISITED) != 0)
     return;
 
-  node->flags_ |= CUTS_Dependency_Node::DNF_VISITED;
+  node->flags_ |= CUTS_BE_IDL_Node::IDL_VISITED;
+
+  if ((node->flags_ & CUTS_BE_IDL_Node::IDL_STUB) == 0)
+    return;
 
   if (this->project_.get () != 0)
   {
-    // Write the stub project and add it to the listing of 
+    // Write the stub project and add it to the listing of
     // project files if we are successful.
-    if (this->project_->write_stub_project (node))
-      this->workspace_ << "  " << node->name () << "_stub.mpc" << std::endl;
+    if (this->project_->write_project (node))
+      this->workspace_ << "  " << node->name_ << "_stub.mpc" << std::endl;
   }
 
   std::for_each (node->references_.begin (),
                  node->references_.end (),
-                 boost::bind (&CUTS_BE_Workspace_Generator::write_stub_project_i,
+                 boost::bind (&CUTS_BE_Workspace_Generator::write_project_i,
                               this,
                               _1));
+}
+
+//
+// write_project_i
+//
+void CUTS_BE_Workspace_Generator::
+write_project_i (CUTS_BE_IDL_Node * node)
+{
+  if (this->project_->write_project (node))
+    this->workspace_ << "  " << node->name_ << "_stub.mpc" << std::endl;
 }

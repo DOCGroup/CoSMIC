@@ -85,8 +85,8 @@ Visit_Component (const PICML::Component & component)
     env.Accept (*this);
 
   // @@ periodic actions
-  typedef std::vector <PICML::PeriodicAction> Periodic_Set;
-  Periodic_Set periodics = component.PeriodicAction_kind_children ();
+  typedef std::vector <PICML::PeriodicEvent> Periodic_Set;
+  Periodic_Set periodics = component.PeriodicEvent_kind_children ();
 
   std::for_each (periodics.begin (),
                  periodics.end (),
@@ -159,16 +159,16 @@ Visit_InEventPort (const PICML::InEventPort & sink)
 }
 
 //
-// Visit_PeriodicAction
+// Visit_PeriodicEvent
 //
 void CUTS_BE_Method_Visitor::
-Visit_PeriodicAction (const PICML::PeriodicAction & periodic)
+Visit_PeriodicEvent (const PICML::PeriodicEvent & periodic)
 {
   typedef
   void (CUTS_BE_File_Generator::*BE_WRITE_METHOD)
-       (const PICML::PeriodicAction &);
+       (const PICML::PeriodicEvent &);
 
-  // Signal the start of writing a <PeriodicAction>.
+  // Signal the start of writing a <PeriodicEvent>.
   std::for_each (this->generators_.begin (),
                  this->generators_.end (),
                  boost::bind (static_cast <BE_WRITE_METHOD> (
@@ -176,15 +176,16 @@ Visit_PeriodicAction (const PICML::PeriodicAction & periodic)
                               _1,
                               periodic));
 
-  PICML::Effect effect = periodic.dstInputEffect ();
+  PICML::Input input = periodic.dstInput ();
 
-  if (effect != Udm::null)
+  if (input != Udm::null)
   {
+    // Let's generate the execution sequence for this event.
     CUTS_BE_Execution_Visitor execution_visitor (this->generators_);
-    effect.Accept (execution_visitor);
+    input.Accept (execution_visitor);
   }
 
-  // Signal the end of writing a <PeriodicAction>.
+  // Signal the end of writing a <PeriodicEvent>.
   std::for_each (this->generators_.begin (),
                  this->generators_.end (),
                  boost::bind (&CUTS_BE_File_Generator::write_method_end,

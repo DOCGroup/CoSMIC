@@ -101,7 +101,7 @@ public:
     const PICML::ProvidedRequestPort & facet);
 
   virtual void write_method_begin (
-    const PICML::PeriodicAction & periodic);
+    const PICML::PeriodicEvent & periodic);
 
   virtual void write_method_begin (
     const PICML::ReadonlyAttribute & attr);

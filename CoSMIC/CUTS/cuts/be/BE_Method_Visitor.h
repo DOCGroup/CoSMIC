@@ -50,8 +50,8 @@ protected:
   /// Generate the method for an InEventPort element.
   void Visit_InEventPort (const PICML::InEventPort & );
 
-  /// Generate the method for an PeriodicAction element.
-  void Visit_PeriodicAction (const PICML::PeriodicAction &);
+  /// Generate the method for an PeriodicEvent element.
+  void Visit_PeriodicEvent (const PICML::PeriodicEvent &);
 
   /// Generate the method for a ReadonlyAttribute element.
   void Visit_ReadonlyAttribute (const PICML::ReadonlyAttribute &);

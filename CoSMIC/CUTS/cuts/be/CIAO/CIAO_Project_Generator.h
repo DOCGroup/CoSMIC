@@ -3,7 +3,7 @@
 //=============================================================================
 /**
  * @file      CIAO_Project_Generator.h
- * 
+ *
  * $Id$
  *
  * @author    James H. Hill
@@ -14,11 +14,19 @@
 #define _CUTS_BE_CIAO_PROJECT_GENERATOR_H_
 
 #include "UDM_CIAO_Export.h"
-#include "cuts/be/Project_Generator.h"
+#include "cuts/be/BE_Project_Generator.h"
 #include <iosfwd>
 
 // Forward decl.
-class CUTS_Dependency_Node;
+struct CUTS_BE_IDL_Node;
+
+//=============================================================================
+/**
+ * @class CUTS_CIAO_Project_Generator
+ *
+ * Project file generator for CIAO projects.
+ */
+//=============================================================================
 
 class CUTS_UDM_CIAO_Export CUTS_CIAO_Project_Generator :
   public CUTS_BE_Project_Generator
@@ -46,19 +54,19 @@ public:
    * @retval          true        Successfully wrote file.
    * @retval          false       Failed to write file.
    */
-  bool write_stub_project (CUTS_Dependency_Node * node);
+  bool write_project (CUTS_BE_IDL_Node * node);
 
 private:
   void write_exec_project (
     std::ofstream & out,
     const PICML::ComponentImplementationContainer &,
-    CUTS_Dependency_Node * node,
+    CUTS_BE_IDL_Node * node,
     const CUTS_BE_Preprocess_Data & ppd);
 
   void write_svnt_project (
     std::ofstream & out,
     const PICML::ComponentImplementationContainer &,
-    CUTS_Dependency_Node * node);
+    CUTS_BE_IDL_Node * node);
 
   /**
    * Generates a listing of stubs.
@@ -67,7 +75,7 @@ private:
    * @param[in]     node        Starting node.
    */
   void generate_stub_listing (std::ofstream & project,
-                              CUTS_Dependency_Node * node);
+                              CUTS_BE_IDL_Node * node);
 
   void generate_mpc_i (std::ofstream & project,
                        const CUTS_BE_Preprocess_Data & ppd);

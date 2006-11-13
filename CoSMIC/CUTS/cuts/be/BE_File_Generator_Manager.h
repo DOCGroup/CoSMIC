@@ -32,13 +32,6 @@ public:
   /// Default constructor.
   CUTS_BE_File_Generator_Manager (void);
 
-  /**
-   * Initialize the file generator manager.
-   *
-   * @param[in]       outdir      Output directory.
-   */
-  void init (const std::string & outdir);
-
   /// Destructor.
   virtual ~CUTS_BE_File_Generator_Manager (void);
 
@@ -80,9 +73,6 @@ private:
    */
   PICML::ComponentFactory
     get_component_factory (const PICML::Component & component);
-
-  /// Output directory for the manager.
-  std::string outdir_;
 
   /// Preprocess data for the components.
   CUTS_BE_Preprocess_Data ppd_;

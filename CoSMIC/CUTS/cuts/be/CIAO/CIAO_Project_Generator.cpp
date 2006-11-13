@@ -4,7 +4,11 @@
 #include "Export_File_Generator.h"
 #include "CIAO_Header_File_Generator.h"
 #include "CIAO_Source_File_Generator.h"
-#include "cuts/be/Dependency_Graph.h"
+
+#include "cuts/be/BE_Options.h"
+#include "cuts/be/BE_IDL_Node.h"
+#include "cuts/be/BE_IDL_Graph.h"
+
 #include "boost/bind.hpp"
 #include "Uml.h"
 
@@ -59,14 +63,17 @@ write_project (const PICML::ComponentImplementationContainer & container,
     parent = PICML::MgaObject::Cast (parent.parent ());
   }
 
-  CUTS_Dependency_Node * node = 0;
-  this->graph_->find_node (parent.name (), node);
+  // Locate the current node in the IDL graph.
+  CUTS_BE_IDL_Node * node = 0;
+  CUTS_BE_IDL_Graph::instance ()->find (parent.name (), node);
 
   if (node != 0)
   {
     // Open the project file for writing.
     std::ostringstream filename;
-    filename << this->outdir_ << "\\" << container.name () << ".mpc";
+    filename
+      << CUTS_BE_OPTIONS()->output_directory_
+      << "\\" << container.name () << ".mpc";
 
     std::ofstream outfile;
     outfile.open (filename.str ().c_str ());
@@ -94,7 +101,7 @@ write_project (const PICML::ComponentImplementationContainer & container,
 void CUTS_CIAO_Project_Generator::
 write_exec_project (std::ofstream & project,
                     const PICML::ComponentImplementationContainer & container,
-                    CUTS_Dependency_Node * node,
+                    CUTS_BE_IDL_Node * node,
                     const CUTS_BE_Preprocess_Data & ppd)
 {
   // Generate the export file for the project.
@@ -102,7 +109,7 @@ write_exec_project (std::ofstream & project,
   project_name.append (EXEC_SUFFIX);
 
   CUTS_Export_File_Generator efg (project_name);
-  efg.generate (this->outdir_);
+  efg.generate ();
 
   // Construct the name of the servant project.
   std::string svnt_project = container.name ();
@@ -125,8 +132,8 @@ write_exec_project (std::ofstream & project,
   // Generate the STUB import libraries for this node.
   this->generate_stub_listing (project, node);
 
-  node->flags_ &= ~CUTS_Dependency_Node::DNF_VISITED;
-  this->graph_->reset_visit_flag ();
+  node->flags_ &= ~CUTS_BE_IDL_Node::IDL_VISITED;
+  CUTS_BE_IDL_Graph::instance()->reset_visit_flag ();
 
   // Generate the remaining MPC stuff for this project.
   project
@@ -167,14 +174,14 @@ write_exec_project (std::ofstream & project,
 void CUTS_CIAO_Project_Generator::
 write_svnt_project (std::ofstream & project,
                     const PICML::ComponentImplementationContainer & container,
-                    CUTS_Dependency_Node * node)
+                    CUTS_BE_IDL_Node * node)
 {
   // Generate the export file for the project.
   std::string project_name = container.name ();
   project_name.append (SVNT_SUFFIX);
 
   CUTS_Export_File_Generator efg (project_name);
-  efg.generate (this->outdir_);
+  efg.generate ();
 
   // Generate the project, keeping in mind the export file.
   project
@@ -197,7 +204,7 @@ write_svnt_project (std::ofstream & project,
     project << "  after +=";
 
     this->generate_stub_listing (project, node);
-    this->graph_->reset_visit_flag ();
+    CUTS_BE_IDL_GRAPH ()->reset_visit_flag ();
 
     project << std::endl << std::endl;
   }
@@ -208,7 +215,7 @@ write_svnt_project (std::ofstream & project,
     project << "  libs +=";
 
     this->generate_stub_listing (project, node);
-    this->graph_->reset_visit_flag ();
+    CUTS_BE_IDL_GRAPH ()->reset_visit_flag ();
 
     project << std::endl << std::endl;
   }
@@ -246,18 +253,18 @@ write_svnt_project (std::ofstream & project,
 //
 void CUTS_CIAO_Project_Generator::
 generate_stub_listing (std::ofstream & project,
-                       CUTS_Dependency_Node * node)
+                       CUTS_BE_IDL_Node * node)
 {
-  if ((node->flags_ & CUTS_Dependency_Node::DNF_VISITED) != 0)
+  if ((node->flags_ & CUTS_BE_IDL_Node::IDL_VISITED) != 0)
     return;
 
   // Keep this node from being visited more than once, then
   // generate the STUB import libraries.
-  node->flags_ |= CUTS_Dependency_Node::DNF_VISITED;
+  node->flags_ |= CUTS_BE_IDL_Node::IDL_VISITED;
 
   project
     << " \\" << std::endl
-    << "    " << node->basename () << STUB_SUFFIX;
+    << "    " << node->basename_ << STUB_SUFFIX;
 
   std::for_each (
     node->references_.begin (),
@@ -307,12 +314,12 @@ generate_mpc_i (std::ofstream & project,
 // write_stub_project
 //
 bool CUTS_CIAO_Project_Generator::
-write_stub_project (CUTS_Dependency_Node * node)
+write_project (CUTS_BE_IDL_Node * node)
 {
   // Construct the name of the project. We use _Base as the
   // name decorator in hopes of not overwriting an existing
   // file.
-  std::string project_name = node->name ();
+  std::string project_name = node->name_;
   project_name.append ("_stub");
 
   std::string project_file = project_name;
@@ -320,7 +327,8 @@ write_stub_project (CUTS_Dependency_Node * node)
 
   std::ostringstream pathname;
   pathname
-    << this->outdir_ << "\\" << project_file << std::ends;
+    << CUTS_BE_OPTIONS ()->output_directory_
+    << "\\" << project_file << std::ends;
 
   std::ofstream project;
   project.open (pathname.str ().c_str ());
@@ -337,18 +345,18 @@ write_stub_project (CUTS_Dependency_Node * node)
     << std::endl;
 
   // Generate the export file for the project.
-  std::string name = node->basename ();
+  std::string name = node->basename_;
   name.append (STUB_SUFFIX);
 
   CUTS_Export_File_Generator efg (name);
-  efg.generate (this->outdir_);
+  efg.generate ();
 
   // Generate the project.
   project
-    << "project (" << node->basename () << STUB_SUFFIX << ") : "
+    << "project (" << node->basename_ << STUB_SUFFIX << ") : "
     << "cuts_coworker_stub {" << std::endl
     << "  sharedname = "
-    << node->basename () << STUB_SUFFIX << std::endl
+    << node->basename_ << STUB_SUFFIX << std::endl
     << std::endl
 
     // Generate the dynamic flags.
@@ -368,7 +376,7 @@ write_stub_project (CUTS_Dependency_Node * node)
     project
       << std::endl << "  after +=";
 
-    CUTS_Reference_Set::const_iterator iter;
+    CUTS_BE_IDL_Node_Set::const_iterator iter;
 
     for (iter  = node->references_.begin ();
          iter != node->references_.end ();
@@ -376,7 +384,7 @@ write_stub_project (CUTS_Dependency_Node * node)
     {
       project
         << " \\" << std::endl
-        << "    " << (*iter)->basename () << STUB_SUFFIX;
+        << "    " << (*iter)->basename_ << STUB_SUFFIX;
     }
 
     // Generate the import libraries for this project. This will be
@@ -392,7 +400,7 @@ write_stub_project (CUTS_Dependency_Node * node)
     {
       project
         << " \\" << std::endl
-        << "    " << (*iter)->basename () << STUB_SUFFIX;
+        << "    " << (*iter)->basename_ << STUB_SUFFIX;
     }
 
     project << std::endl;
@@ -402,14 +410,14 @@ write_stub_project (CUTS_Dependency_Node * node)
     << std::endl
     // Generate the IDL files for this project.
     << "  IDL_Files {" << std::endl
-    << "    " << node->basename () << ".idl" << std::endl
+    << "    " << node->basename_ << ".idl" << std::endl
     << "  }" << std::endl
     << std::endl
 
     // Generate the source files for this project.
     << "  Source_Files {" << std::endl
-    << "    " << node->basename () << SERVER_SUFFIX << ".cpp" << std::endl
-    << "    " << node->basename () << CLIENT_SUFFIX << ".cpp" << std::endl
+    << "    " << node->basename_ << SERVER_SUFFIX << ".cpp" << std::endl
+    << "    " << node->basename_ << CLIENT_SUFFIX << ".cpp" << std::endl
     << "  }" << std::endl
     << std::endl
     // Generate the header files for this project.

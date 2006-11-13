@@ -75,7 +75,7 @@ public:
     const PICML::ProvidedRequestPort & facet);
 
   virtual void write_method_begin (
-    const PICML::PeriodicAction & periodic);
+    const PICML::PeriodicEvent & periodic);
 
   /**
    * Begin writing the method for a attribte.
@@ -118,7 +118,7 @@ public:
 protected:
   void write_variable (const PICML::InEventPort & sink);
 
-  void write_variable (const PICML::PeriodicAction & periodic);
+  void write_variable (const PICML::PeriodicEvent & periodic);
 
   virtual void write_set_session_context (const PICML::Component & component);
 

@@ -165,11 +165,11 @@ write_component_end (const PICML::Component & component)
                               _1));
 
   // Write the periodic event declarations.
-  typedef std::set <PICML::PeriodicAction> Periodic_Set;
-  Periodic_Set periodics = component.PeriodicAction_kind_children ();
+  typedef std::set <PICML::PeriodicEvent> Periodic_Set;
+  Periodic_Set periodics = component.PeriodicEvent_kind_children ();
 
   typedef void (CUTS_CIAO_Header_File_Generator::*BE_METHOD_PERIODIC)
-    (const PICML::PeriodicAction &);
+    (const PICML::PeriodicEvent &);
 
   std::for_each (periodics.begin (),
                  periodics.end (),
@@ -386,7 +386,7 @@ write_variable (const PICML::InEventPort & sink)
 // write_variable
 //
 void CUTS_CIAO_Header_File_Generator::
-write_variable (const PICML::PeriodicAction & periodic)
+write_variable (const PICML::PeriodicEvent & periodic)
 {
   // Write the leading comment.
   std::string comment ("Periodic: ");
@@ -410,7 +410,7 @@ void CUTS_CIAO_Header_File_Generator::write_variables_end (void)
 // write_method_begin
 //
 void CUTS_CIAO_Header_File_Generator::
-write_method_begin (const PICML::PeriodicAction & periodic)
+write_method_begin (const PICML::PeriodicEvent & periodic)
 {
   std::string comment ("Periodic event: ");
   comment.append (periodic.name ());

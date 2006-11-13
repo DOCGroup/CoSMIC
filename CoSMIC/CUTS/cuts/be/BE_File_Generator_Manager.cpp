@@ -6,6 +6,7 @@
 #include "BE_File_Generator_Manager.inl"
 #endif
 
+#include "BE_Options.h"
 #include "BE_File_Generator.h"
 #include "BE_Method_Visitor.h"
 #include "BE_Variable_Visitor.h"
@@ -52,7 +53,7 @@ Visit_ComponentImplementationContainer (
 
   // Create the pathname for the file.
   std::ostringstream pathname;
-  pathname << this->outdir_ << "\\" << container.name ();
+  pathname << CUTS_BE_OPTIONS ()->output_directory_ << "\\" << container.name ();
 
   std::for_each (this->generators_.begin (),
                  this->generators_.end (),

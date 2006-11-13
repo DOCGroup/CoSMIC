@@ -1,27 +1,49 @@
 // $Id$
 
-#include "Dependency_Generator.h"
-#include "Dependency_Graph.h"
-#include "CoWorkEr_Cache.h"
-#include "UmlExt.h"
+#include "BE_IDL_Graph.h"
+#include "BE_IDL_Node.h"
 #include "boost/bind.hpp"
-#include  <algorithm>
+#include "Uml.h"
 
 //
-// CUTS_Dependency_Generator
+// instance_
 //
-CUTS_Dependency_Generator::CUTS_Dependency_Generator (
-  CUTS_Dependency_Graph & graph)
-: graph_ (graph),
-  current_node_ (0)
+CUTS_BE_IDL_Graph * CUTS_BE_IDL_Graph::instance_;
+
+//
+// instance
+//
+CUTS_BE_IDL_Graph * CUTS_BE_IDL_Graph::instance (void)
+{
+  if (CUTS_BE_IDL_Graph::instance_ == 0)
+    CUTS_BE_IDL_Graph::instance_ = new CUTS_BE_IDL_Graph ();
+  return CUTS_BE_IDL_Graph::instance_;
+}
+
+//
+// singleton_close
+//
+void CUTS_BE_IDL_Graph::singleton_close (void)
+{
+  if (CUTS_BE_IDL_Graph::instance_ != 0)
+  {
+    delete CUTS_BE_IDL_Graph::instance_;
+    CUTS_BE_IDL_Graph::instance_ = 0;
+  }
+}
+
+//
+// CUTS_BE_IDL_Graph
+//
+CUTS_BE_IDL_Graph::CUTS_BE_IDL_Graph (void)
 {
 
 }
 
 //
-// ~CUTS_Dependency_Generator
+// ~CUTS_BE_IDL_Graph
 //
-CUTS_Dependency_Generator::~CUTS_Dependency_Generator (void)
+CUTS_BE_IDL_Graph::~CUTS_BE_IDL_Graph (void)
 {
 
 }
@@ -29,8 +51,8 @@ CUTS_Dependency_Generator::~CUTS_Dependency_Generator (void)
 //
 // Visit_RootFolder
 //
-void CUTS_Dependency_Generator::Visit_RootFolder (
-  const PICML::RootFolder & root)
+void CUTS_BE_IDL_Graph::
+Visit_RootFolder (const PICML::RootFolder & root)
 {
   typedef std::set <PICML::InterfaceDefinitions> IDefs_Set;
   IDefs_Set defs = root.InterfaceDefinitions_kind_children ();
@@ -45,8 +67,8 @@ void CUTS_Dependency_Generator::Visit_RootFolder (
 //
 // Visit_InterfaceDefinitions
 //
-void CUTS_Dependency_Generator::Visit_InterfaceDefinitions (
-  const PICML::InterfaceDefinitions & folder)
+void CUTS_BE_IDL_Graph::
+Visit_InterfaceDefinitions (const PICML::InterfaceDefinitions & folder)
 {
   typedef std::set <PICML::File> File_Set;
   File_Set files = folder.File_kind_children ();
@@ -61,18 +83,19 @@ void CUTS_Dependency_Generator::Visit_InterfaceDefinitions (
 //
 // Visit_File
 //
-void CUTS_Dependency_Generator::Visit_File (const PICML::File & file)
+void CUTS_BE_IDL_Graph::
+Visit_File (const PICML::File & file)
 {
-  // Create a node for the new file and visit its contents.
-  this->current_node_ = this->graph_.create_node (file.name ());
+  // Find this node in the graph then visit the <file>.
+  this->find (file.name (), this->current_node_);
   this->visit_file_and_package_contents (file);
 }
 
 //
 // visit_file_and_package_contents
 //
-void CUTS_Dependency_Generator::visit_file_and_package_contents (
-  const Udm::Object & obj)
+void CUTS_BE_IDL_Graph::
+visit_file_and_package_contents (const Udm::Object & obj)
 {
   // Visit all the components at this level.
   typedef std::set <PICML::Component> Component_Set;
@@ -101,7 +124,7 @@ void CUTS_Dependency_Generator::visit_file_and_package_contents (
 //
 // Visit_Package
 //
-void CUTS_Dependency_Generator::Visit_Package (
+void CUTS_BE_IDL_Graph::Visit_Package (
   const PICML::Package & package)
 {
   this->visit_file_and_package_contents (package);
@@ -110,7 +133,7 @@ void CUTS_Dependency_Generator::Visit_Package (
 //
 // Visit_Component
 //
-void CUTS_Dependency_Generator::Visit_Component (
+void CUTS_BE_IDL_Graph::Visit_Component (
   const PICML::Component & component)
 {
   // If this component is a <subtype> of another component, there is a
@@ -188,7 +211,7 @@ void CUTS_Dependency_Generator::Visit_Component (
 //
 // Visit_OutEventPort
 //
-void CUTS_Dependency_Generator::Visit_OutEventPort (
+void CUTS_BE_IDL_Graph::Visit_OutEventPort (
   const PICML::OutEventPort & port)
 {
   PICML::Event event = port.ref ();
@@ -200,7 +223,7 @@ void CUTS_Dependency_Generator::Visit_OutEventPort (
 //
 // Visit_InEventPort
 //
-void CUTS_Dependency_Generator::Visit_InEventPort (
+void CUTS_BE_IDL_Graph::Visit_InEventPort (
   const PICML::InEventPort & port)
 {
   PICML::Event event = port.ref ();
@@ -212,7 +235,7 @@ void CUTS_Dependency_Generator::Visit_InEventPort (
 //
 // Visit_RequiredRequestPort
 //
-void CUTS_Dependency_Generator::Visit_RequiredRequestPort (
+void CUTS_BE_IDL_Graph::Visit_RequiredRequestPort (
   const PICML::RequiredRequestPort & port)
 {
   PICML::Provideable provides = port.ref ();
@@ -224,7 +247,7 @@ void CUTS_Dependency_Generator::Visit_RequiredRequestPort (
 //
 // Visit_ProvidedRequestPort
 //
-void CUTS_Dependency_Generator::Visit_ProvidedRequestPort (
+void CUTS_BE_IDL_Graph::Visit_ProvidedRequestPort (
   const PICML::ProvidedRequestPort & port)
 {
   PICML::Provideable provides = port.ref ();
@@ -236,7 +259,7 @@ void CUTS_Dependency_Generator::Visit_ProvidedRequestPort (
 //
 // Visit_Provideable
 //
-void CUTS_Dependency_Generator::Visit_Providable (
+void CUTS_BE_IDL_Graph::Visit_Providable (
   const PICML::Provideable & provides)
 {
   this->Visit_NamedType (PICML::NamedType::Cast (provides));
@@ -245,7 +268,7 @@ void CUTS_Dependency_Generator::Visit_Providable (
 //
 // Visit_Object
 //
-void CUTS_Dependency_Generator::Visit_Object (const PICML::Object & object)
+void CUTS_BE_IDL_Graph::Visit_Object (const PICML::Object & object)
 {
   this->Visit_NamedType (PICML::NamedType::Cast (object));
 }
@@ -253,7 +276,7 @@ void CUTS_Dependency_Generator::Visit_Object (const PICML::Object & object)
 //
 // Visit_Event
 //
-void CUTS_Dependency_Generator::Visit_Event (const PICML::Event & event)
+void CUTS_BE_IDL_Graph::Visit_Event (const PICML::Event & event)
 {
   this->Visit_NamedType (PICML::NamedType::Cast (event));
 }
@@ -262,7 +285,7 @@ void CUTS_Dependency_Generator::Visit_Event (const PICML::Event & event)
 // Visit_NamedType
 //
 void
-CUTS_Dependency_Generator::Visit_NamedType (const PICML::NamedType & type)
+CUTS_BE_IDL_Graph::Visit_NamedType (const PICML::NamedType & type)
 {
   PICML::Package package;
   PICML::MgaObject parent = type.parent ();
@@ -282,12 +305,14 @@ CUTS_Dependency_Generator::Visit_NamedType (const PICML::NamedType & type)
   if ((std::string) parent.type ().name () ==
       (std::string) PICML::File::meta.name ())
   {
-    if ((std::string) parent.name () != this->current_node_->name ())
+    if ((std::string) parent.name () != this->current_node_->name_)
     {
-      // Locate the node that contains this <PICML::NamedType>
-      // element since it's not located in this file.
-      CUTS_Dependency_Node * node = this->graph_.create_node (parent.name ());
-      this->current_node_->references_.insert (node);
+      // Find the node with the name of the parent.
+      CUTS_BE_IDL_Node * node = 0;
+      this->find (parent.name (), node);
+
+      if (node != 0)
+        this->current_node_->references_.insert (node);
     }
   }
 }
@@ -295,7 +320,7 @@ CUTS_Dependency_Generator::Visit_NamedType (const PICML::NamedType & type)
 //
 // Visit_Supports
 //
-void CUTS_Dependency_Generator::Visit_Supports (
+void CUTS_BE_IDL_Graph::Visit_Supports (
   const PICML::Supports & supports)
 {
   PICML::Object object = supports.ref ();
@@ -307,7 +332,7 @@ void CUTS_Dependency_Generator::Visit_Supports (
 //
 // Visit_ReadonlyAttribute
 //
-void CUTS_Dependency_Generator::Visit_ReadonlyAttribute (
+void CUTS_BE_IDL_Graph::Visit_ReadonlyAttribute (
   const PICML::ReadonlyAttribute & readonly)
 {
   PICML::AttributeMember member = readonly.AttributeMember_child ();
@@ -328,5 +353,18 @@ void CUTS_Dependency_Generator::Visit_ReadonlyAttribute (
     {
       /* bad cast: not a NamedType */
     }
+  }
+}
+
+//
+// reset_visit_flag
+//
+void CUTS_BE_IDL_Graph::reset_visit_flag (void)
+{
+  for (Node_Map::iterator iter = this->graph ().begin ();
+       iter != this->graph ().end ();
+       iter ++)
+  {
+    iter->second->flags_ &= ~CUTS_BE_IDL_Node::IDL_VISITED;
   }
 }

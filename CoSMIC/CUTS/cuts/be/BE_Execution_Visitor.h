@@ -43,8 +43,14 @@ protected:
   /// Visit an Input element.
   void Visit_Input (const PICML::Input &);
 
+  /// Visit an MultiInput element.
+  void Visit_MultiInput (const PICML::MultiInput &);
+
   /// Visit an InputAction element.
   void Visit_InputAction (const PICML::InputAction &);
+
+  /// Visit an Effect element.
+  void Visit_InputEffect (const PICML::InputEffect &);
 
   /// Visit an Effect element.
   void Visit_Effect (const PICML::Effect &);

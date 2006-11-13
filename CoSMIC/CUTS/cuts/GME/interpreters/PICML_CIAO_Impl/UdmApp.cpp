@@ -7,10 +7,9 @@
 
 #include "cuts/be/CoWorkEr_Cache.h"
 #include "cuts/be/CoWorkEr_Generator.h"
-#include "cuts/be/Dependency_Graph.h"
-#include "cuts/be/Dependency_Generator.h"
 #include "cuts/be/CUTS_Project.h"
 
+#include "cuts/be/BE_Options.h"
 #include "cuts/be/BE_Workspace_Generator.h"
 #include "cuts/be/BE_File_Generator_Manager.h"
 #include "cuts/be/CIAO/CIAO_Project_Generator.h"
@@ -98,10 +97,11 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,
       std::string output_dir;
       std::string message ("Please specify the output directory");
 
-      if (Utils::getPath (message, output_dir))
+      if (Utils::getPath (message,
+          CUTS_BE_Options::instance ()->output_directory_))
       {
         CUTS_BE_Project_Generator * proj = new CUTS_CIAO_Project_Generator ();
-        CUTS_BE_Workspace_Generator generator (output_dir, proj);
+        CUTS_BE_Workspace_Generator generator (proj);
         root.Accept (generator);
 
         ::AfxMessageBox ("Successfully completed code generation",

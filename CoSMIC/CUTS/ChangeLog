@@ -1,3 +1,92 @@
+Mon Nov 13 07:36:40 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CCM_Event_Producer_T.h:
+        * cuts/CCM_Event_Producer_T.cpp:
+
+          Removed code to insert the timestamp and sender into
+          an event.
+
+        * cuts/CCM_Events_T.h:
+        * cuts/CCM_Events_T.inl:
+        * cuts/CCM_Events_T.cpp:
+
+          Implemented a generic event class to help with the code
+          generation. The class is parameterized with the OBV type
+          and manages the lifetime of the event.
+
+        * cuts/GME/interpreters/PICML_CIAO_Impl/UdmApp.cpp:
+        * cuts/be/BE_Depend_Graph_T.h:
+        * cuts/be/BE_Depend_Graph_T.inl:
+        * cuts/be/BE_Depend_Graph_T.cpp:
+        * cuts/be/BE_File_Generator.h:
+        * cuts/be/BE_File_Generator.inl:
+        * cuts/be/BE_File_Generator_Manager.h:
+        * cuts/be/BE_File_Generator_Manager.inl:
+        * cuts/be/BE_File_Generator_Manager.cpp:
+
+          Updated implemenation to store output directory in the
+          backend options singleton instead of passing it as a
+          parameter.
+
+        * cuts/be/BE.mpc:
+
+          Updated project file to include new files.
+
+        * cuts/be/BE_IDL_Graph.h:
+        * cuts/be/BE_IDL_Graph.inl:
+        * cuts/be/BE_IDL_Graph.cpp:
+        * cuts/be/BE_IDL_Node.h:
+        * cuts/be/BE_IDL_Node.cpp:
+
+          Singleton implementation of the dependency graph. This keeps
+          from having to pass it around as a parameters. Hopefully, this
+          will simplify some of the code generator specifications.
+
+        * cuts/be/BE_Method_Visitor.h:
+        * cuts/be/BE_Method_Visitor.cpp:
+        * cuts/be/BE_Execution_Visitor.h:
+        * cuts/be/BE_Execution_Visitor.cpp:
+
+          Updated the implementation to take into account the changes
+          to the metamodel for PeriodicEvents and InputAction types.
+
+        * cuts/be/BE_Options.h:
+        * cuts/be/BE_Options.cpp:
+
+          Singleton for holding user options for the backend
+          generators.
+
+        * cuts/be/BE_Project_Generator.h:
+        * cuts/be/BE_Project_Generator.inl:
+        * cuts/be/BE_Project_Generator.cpp:
+        * cuts/be/BE_Workspace_Generator.h:
+        * cuts/be/BE_Workspace_Generator.cpp:
+
+          Updated the architecture so that is uses the singleton
+          versions of the configuration and IDL dependency graph.
+
+        * cuts/be/CIAO/CIAO_Header_File_Generator.h:
+        * cuts/be/CIAO/CIAO_Header_File_Generator.cpp:
+        * cuts/be/CIAO/CIAO_Project_Generator.h:
+        * cuts/be/CIAO/CIAO_Project_Generator.cpp:
+        * cuts/be/CIAO/CIAO_Source_File_Generator.h:
+        * cuts/be/CIAO/CIAO_Source_File_Generator.cpp:
+        * cuts/be/CIAO/Export_File_Generator.h:
+        * cuts/be/CIAO/Export_File_Generator.cpp:
+
+          Updated the architecture so that is uses the singleton
+          versions of the configuration and IDL dependency graph.
+
+        * cuts/be/Dependency_Generator.h:
+        * cuts/be/Dependency_Generator.cpp:
+        * cuts/be/Dependency_Graph.h:
+        * cuts/be/Dependency_Graph.cpp:
+        * cuts/be/Project_Generator.h:
+        * cuts/be/Project_Generator.inl:
+        * cuts/be/Project_Generator.cpp:
+
+          Removed these files.
+
 Thu Nov  9 20:30:10 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/Path_Measurement_exec_i.h:

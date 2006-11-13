@@ -1,6 +1,7 @@
 // $Id$
 
 #include "Export_File_Generator.h"
+#include "cuts/be/BE_Options.h"
 #include <algorithm>
 #include <fstream>
 #include <sstream>
@@ -83,7 +84,7 @@ CUTS_Export_File_Generator::export_file (void) const
 //
 // generate
 //
-bool CUTS_Export_File_Generator::generate (const std::string & outdir)
+bool CUTS_Export_File_Generator::generate (void)
 {
   std::string name = this->name_;
   std::transform (name.begin (),
@@ -99,7 +100,9 @@ bool CUTS_Export_File_Generator::generate (const std::string & outdir)
 
   // Construct the full path of the name file.
   std::ostringstream pathname;
-  pathname << outdir << "\\" << this->export_file_ << std::ends;
+  pathname
+    << CUTS_BE_OPTIONS ()->output_directory_
+    << "\\" << this->export_file_ << std::ends;
 
   // Open the file for writing.
   std::ofstream exportfile;

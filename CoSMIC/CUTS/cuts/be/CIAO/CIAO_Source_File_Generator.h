@@ -92,7 +92,7 @@ protected:
    * @param[in]       periodic       Source periodic action.
    */
   virtual void write_method_begin (
-    const PICML::PeriodicAction & periodic);
+    const PICML::PeriodicEvent & periodic);
 
   /**
    * Begin writing the method for a attribte.

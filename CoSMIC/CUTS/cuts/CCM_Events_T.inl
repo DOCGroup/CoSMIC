@@ -1,7 +1,36 @@
 // $Id$
 
 //=============================================================================
-/**
+/*
+ * CUTS_CCM_Event_T
+ */
+//=============================================================================
+
+template <typename OBV_TYPE>
+CUTS_INLINE
+CUTS_CCM_Event_T <OBV_TYPE>::~CUTS_CCM_Event_T (void)
+{
+
+}
+
+template <typename OBV_TYPE>
+CUTS_INLINE
+typename CUTS_CCM_Event_T <OBV_TYPE>::_ptr_type
+CUTS_CCM_Event_T <OBV_TYPE>::in (void) const
+{
+  return this->event_.in ();
+}
+
+template <typename OBV_TYPE>
+CUTS_INLINE
+typename CUTS_CCM_Event_T <OBV_TYPE>::_ptr_type
+CUTS_CCM_Event_T <OBV_TYPE>::operator -> (void) const
+{
+  return this->event_.in ();
+}
+
+//=============================================================================
+/*
  * CUTS_Event_T
  */
 //=============================================================================
@@ -15,7 +44,7 @@ ACE_THROW_SPEC ((::CORBA::SystemException))
 }
 
 //=============================================================================
-/**
+/*
  * CUTS_Event_init_T
  */
 //=============================================================================
@@ -24,11 +53,11 @@ ACE_THROW_SPEC ((::CORBA::SystemException))
 // _downcast
 //
 template <typename EVENTTYPE>
-CUTS_INLINE 
-CUTS_Event_init_T <EVENTTYPE> * 
+CUTS_INLINE
+CUTS_Event_init_T <EVENTTYPE> *
 CUTS_Event_init_T <EVENTTYPE>::_downcast (CORBA::ValueFactoryBase * v)
 {
-	return dynamic_cast < CUTS_Event_init_T <EVENTTYPE> * > (v);
+  return dynamic_cast < CUTS_Event_init_T <EVENTTYPE> * > (v);
 }
 
 //

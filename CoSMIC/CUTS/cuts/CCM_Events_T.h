@@ -14,7 +14,58 @@
 #define _CUTS_CCM_EVENTS_T_H_
 
 #include "cuts/config.h"
-#include "cuts/CUTS_exec_export.h"
+
+//=============================================================================
+/**
+ * @class CUTS_CCM_Event_T
+ *
+ * Helper class for managing events in generated code. This class
+ * is parameterized by the object by value (OBV) type of the target
+ * event. In turn, this class will properrly manage the lifetime of
+ * the real event. Therefore, code generators do not have to worry
+ * about dynamically allocating/freeing memory acquired by the event.
+ */
+//=============================================================================
+
+template <typename OBV_TYPE>
+class CUTS_CCM_Event_T
+{
+public:
+  /// Type definition of the _var type.
+  typedef typename OBV_TYPE::_var_type _var_type;
+
+  /// Type definition of the _ptr type.
+  typedef typename OBV_TYPE::_ptr_type _ptr_type;
+
+  /// Type definition of the _out type.
+  typedef typename OBV_TYPE::_out_type _out_type;
+
+  /// Default constructor.
+  CUTS_CCM_Event_T (void);
+
+  /// Destructor.
+  ~CUTS_CCM_Event_T (void);
+
+  /**
+   * Get a read-only pointer to the contained event. This
+   * method is used for passing the event between methods.
+   *
+   * @return      Pointer to the event.
+   */
+  _ptr_type in (void) const;
+
+  /**
+   * Get a pointer to the contained event. This method should
+   * be used to modify the context of the event.
+   *
+   * @return      Pointer to the event.
+   */
+  _ptr_type operator -> (void) const;
+
+private:
+  /// The contained event.
+  _var_type event_;
+};
 
 //=============================================================================
 /**

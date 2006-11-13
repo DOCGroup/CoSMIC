@@ -161,7 +161,7 @@ void CUTS_BE_File_Generator::write_method_begin (
 //
 CUTS_INLINE
 void CUTS_BE_File_Generator::write_method_begin (
-  const PICML::PeriodicAction & periodic)
+  const PICML::PeriodicEvent & periodic)
 {
 
 }

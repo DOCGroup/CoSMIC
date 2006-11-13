@@ -15,16 +15,21 @@
 
 #include "BE_export.h"
 #include "PICML/PICML.h"
-#include "Dependency_Graph.h"
 #include <fstream>
 #include <memory>
 
 // Forward decl.
 class CUTS_BE_Project_Generator;
 
+// Forward decl.
+struct CUTS_BE_IDL_Node;
+
 //=============================================================================
 /**
  * @class CUTS_BE_Workspace_Generator
+ *
+ * Visitor that will generate all workspace files in a project. This
+ * includes all source and build files.
  */
 //=============================================================================
 
@@ -35,11 +40,9 @@ public:
   /**
    * Initializing constructor.
    *
-   * @param[in]     outdir      Output directory for the workspace.
    * @param[in]     project     Project generator.
    */
-  CUTS_BE_Workspace_Generator (const std::string & outdir,
-                               CUTS_BE_Project_Generator * project = 0);
+  CUTS_BE_Workspace_Generator (CUTS_BE_Project_Generator * project);
 
   /// Destructor.
   virtual ~CUTS_BE_Workspace_Generator (void);
@@ -64,18 +67,14 @@ protected:
     const PICML::Component &);
 
 private:
-  void write_stub_project (CUTS_Dependency_Node * node);
+  /// Method for writing a specific IDL project.
+  void write_project (CUTS_BE_IDL_Node * node);
 
-  void write_stub_project_i (CUTS_Dependency_Node * node);
-
-  /// Output directory.
-  std::string outdir_;
+  /// Implementation of the write_project method.
+  void write_project_i (CUTS_BE_IDL_Node * node);
 
   /// Target project generator.
   std::auto_ptr <CUTS_BE_Project_Generator> project_;
-
-  /// Dependency graph for the project.
-  CUTS_Dependency_Graph graph_;
 
   /// Workspace output file stream.
   std::ofstream workspace_;

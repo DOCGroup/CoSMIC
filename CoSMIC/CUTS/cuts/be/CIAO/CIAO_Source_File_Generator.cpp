@@ -159,8 +159,8 @@ write_component_begin (const PICML::Component & component)
   // Initialize all the periodic actions. This includes hooking
   // the pediodic worker up to the component and it's callback
   // method.
-  typedef std::vector <PICML::PeriodicAction> Periodic_Set;
-  Periodic_Set periodic_set = component.PeriodicAction_kind_children ();
+  typedef std::vector <PICML::PeriodicEvent> Periodic_Set;
+  Periodic_Set periodic_set = component.PeriodicEvent_kind_children ();
 
   if (!periodic_set.empty ())
   {
@@ -373,8 +373,8 @@ write_ciao_postactivate (const PICML::Component & component)
 
   // Generate the code to activate all of the periodic events
   // if there are any in this component.
-  typedef std::set <PICML::PeriodicAction> Periodic_Set;
-  Periodic_Set pset = component.PeriodicAction_kind_children ();
+  typedef std::set <PICML::PeriodicEvent> Periodic_Set;
+  Periodic_Set pset = component.PeriodicEvent_kind_children ();
 
   for (Periodic_Set::iterator iter = pset.begin ();
        iter != pset.end ();
@@ -409,8 +409,8 @@ write_ccm_passivate (const PICML::Component & component)
 
   // Generate the code to deactivate all of the periodic events
   // if there are any in this component.
-  typedef std::set <PICML::PeriodicAction> Periodic_Set;
-  Periodic_Set pset = component.PeriodicAction_kind_children ();
+  typedef std::set <PICML::PeriodicEvent> Periodic_Set;
+  Periodic_Set pset = component.PeriodicEvent_kind_children ();
 
   for (Periodic_Set::iterator iter = pset.begin ();
        iter != pset.end ();
@@ -499,7 +499,7 @@ write_component_end (const PICML::Component & component)
 // write_method_begin
 //
 void CUTS_CIAO_Source_File_Generator::
-write_method_begin (const PICML::PeriodicAction & periodic)
+write_method_begin (const PICML::PeriodicEvent & periodic)
 {
   std::string comment ("Periodic event: ");
   comment.append (periodic.name ());

@@ -101,6 +101,18 @@ Visit_Input (const PICML::Input & input)
 }
 
 //
+// Visit_Input
+//
+void CUTS_BE_Execution_Visitor::
+Visit_MultiInput (const PICML::MultiInput & input)
+{
+  PICML::InputAction action =
+    PICML::InputAction::Cast (input.dstMultiInput_end ());
+
+  action.Accept (*this);
+}
+
+//
 // Visit_InputAction
 //
 void CUTS_BE_Execution_Visitor::
@@ -117,10 +129,33 @@ Visit_InputAction (const PICML::InputAction & action)
                               boost::ref (*this)));
 
   // Visit the effect.
-  PICML::Effect effect = action.dstInputEffect ();
+  PICML::InputEffect input_effect = action.dstInputEffect ();
 
-  if (effect != Udm::null)
-    effect.Accept (*this);
+  if (input_effect != Udm::null)
+    input_effect.Accept (*this);
+}
+
+//
+// Visit_InputEffect
+//
+void CUTS_BE_Execution_Visitor::
+Visit_InputEffect (const PICML::InputEffect & effect)
+{
+  // Write the postcondition for this <effect>.
+  std::string postcondition = effect.Postcondition ();
+
+  if (!postcondition.empty ())
+  {
+    std::for_each (this->generators_.begin (),
+                   this->generators_.end (),
+                   boost::bind (&CUTS_BE_File_Generator::write_postcondition,
+                                _1,
+                                postcondition));
+  }
+
+  // Visit the next state in the chain.
+  PICML::State state = effect.dstInputEffect_end ();
+  state.Accept (*this);
 }
 
 //
@@ -142,7 +177,7 @@ Visit_Effect (const PICML::Effect & effect)
   }
 
   // Visit the next state in the chain.
-  PICML::State state = effect.dstInputEffect_end ();
+  PICML::State state = effect.dstEffect_end ();
   state.Accept (*this);
 }
 
@@ -158,7 +193,7 @@ Visit_State (const PICML::State & state)
     // flows. If the state has more than one source, then we can
     // assume that we are ending one or more conditional flows.
     typedef std::set <PICML::Effect> Effect_Set;
-    Effect_Set effects = state.srcInputEffect ();
+    Effect_Set effects = state.srcEffect ();
 
     if (effects.size () > 1)
     {
@@ -234,32 +269,31 @@ Visit_Transition (const PICML::Transition & transition)
   }
 
   // Get the action connected to the end of the transaction.
-  PICML::Action action =
-    PICML::Action::Cast (transition.dstInternalPrecondition_end ());
+  PICML::ActionBase action_base = transition.dstInternalPrecondition_end ();
+  std::string _typename = action_base.type ().name ();
 
-  std::string _typename = action.type ().name ();
-
-  // We only continue at this point if the action is an instance
-  // of a predefined action, or it has more than 1 repetition
-  // specified.
-  if (action.Repetitions () > 0)
+  // We are placing the order of the action types in fast path
+  // order. We know there will be far more <Action> elements
+  // than any type.
+  if (_typename == (std::string)PICML::Action::meta.name ())
   {
-    if (_typename == (std::string)PICML::Action::meta.name ())
-    {
+    PICML::Action action = PICML::Action::Cast (action_base);
+    long reps = static_cast <long> (action.Repetitions ());
+
+    if (reps > 0)
       PICML::Action::Cast (action).Accept (*this);
-    }
-    else if (_typename == (std::string) PICML::CompositeAction::meta.name ())
-    {
-      PICML::CompositeAction::Cast (action).Accept (*this);
-    }
-    else if (_typename == (std::string) PICML::OutputAction::meta.name ())
-    {
-      PICML::OutputAction::Cast (action).Accept (*this);
-    }
+  }
+  else if (_typename == (std::string) PICML::OutputAction::meta.name ())
+  {
+    PICML::OutputAction::Cast (action_base).Accept (*this);
+  }
+  else if (_typename == (std::string) PICML::CompositeAction::meta.name ())
+  {
+    PICML::CompositeAction::Cast (action_base).Accept (*this);
   }
 
   // Continue down the chain.
-  PICML::Effect effect = action.dstInputEffect ();
+  PICML::Effect effect = action_base.dstEffect ();
   effect.Accept (*this);
 }
 
@@ -359,8 +393,10 @@ Visit_OutputAction (const PICML::OutputAction & action)
 void CUTS_BE_Execution_Visitor::
 Visit_CompositeAction (const PICML::CompositeAction & ca)
 {
-  PICML::InputAction ia = ca.InputAction_child ();
+  typedef std::vector <PICML::InputAction> InputAction_Set;
+  InputAction_Set ia_set = ca.InputAction_kind_children ();
 
-  if (ia != Udm::null)
-    ia.Accept (*this);
+  // There should only be one <InputAction> in a <CompositeAction>
+  if (ia_set.size () == 1)
+    ia_set.front ().Accept (*this);
 }

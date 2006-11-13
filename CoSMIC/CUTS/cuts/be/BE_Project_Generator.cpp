@@ -1,14 +1,15 @@
 // $Id$
 
-#include "Project_Generator.h"
+#include "BE_Project_Generator.h"
 
 #if !defined (__CUTS_INLINE__)
-#include "Project_Generator.inl"
+#include "BE_Project_Generator.inl"
 #endif
 
+#include "BE_IDL_Node.h"
+#include "BE_IDL_Graph.h"
 #include "boost/bind.hpp"
 #include "Uml.h"
-#include "cuts/be/Dependency_Graph.h"
 #include <algorithm>
 
 //
@@ -41,14 +42,13 @@ const PICML::ComponentImplementationContainer & container)
   Mono_Set monos = container.MonolithicImplementation_kind_children ();
 
   std::for_each (monos.begin (),
-                monos.end (),
-                boost::bind (&Mono_Set::value_type::Accept,
+                 monos.end (),
+                 boost::bind (&Mono_Set::value_type::Accept,
                               _1,
                               boost::ref (*this)));
 
   // Initialize the output directory for the manager and
   // allow the manager to parse the rest of the model.
-  this->manager_.init (this->outdir_);
   PICML::ComponentImplementationContainer (container).Accept (this->manager_);
 
   // We can now write the project for this container.
@@ -69,7 +69,7 @@ Visit_MonolithicImplementation (const PICML::MonolithicImplementation & mono)
 
 //
 // Visit_Implements
-// 
+//
 void CUTS_BE_Project_Generator::
 Visit_Implements (const PICML::Implements & implements)
 {
@@ -82,13 +82,10 @@ Visit_Implements (const PICML::Implements & implements)
 
 //
 // Visit_Implements
-// 
+//
 void CUTS_BE_Project_Generator::
 Visit_Component (const PICML::Component & component)
 {
-  if (this->graph_ == 0)
-    return;
-
   PICML::MgaObject parent = component.parent ();
 
   while ((std::string) parent.type ().name () !=
@@ -97,16 +94,9 @@ Visit_Component (const PICML::Component & component)
     parent = PICML::MgaObject::Cast (parent.parent ());
   }
 
-  CUTS_Dependency_Node * node = 0;
-  this->graph_->find_node (parent.name (), node);
-  node->flags_ |= CUTS_Dependency_Node::DNF_STUB;
-}
+  CUTS_BE_IDL_Node * node = 0;
+  CUTS_BE_IDL_Graph::instance ()->find (parent.name (), node);
 
-//
-// write_stub_project
-//
-bool CUTS_BE_Project_Generator::
-write_stub_project (CUTS_Dependency_Node * node)
-{
-  return false;
+  if (node != 0)
+    node->flags_ |= CUTS_BE_IDL_Node::IDL_STUB;
 }

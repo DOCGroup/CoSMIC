@@ -55,11 +55,13 @@ push_event_ex (void (CONTEXT::*event_method)(typename OBV_EVENTTYPE::_ptr_type),
 {
   // Set the sender of the event and set the time of completion
   // for the publication for client.
-  event->sender (this->owner_);
+  //event->sender (this->owner_);
   toc = ACE_OS::gettimeofday ();
 
   try
   {
+    // ?? Should we remove these checks?? In the real system,
+    // there would not be checks like this!!
     if (this->context_ == 0)
       ACE_DEBUG ((LM_ERROR, "context is NIL\n"));
     if (event_method == 0)

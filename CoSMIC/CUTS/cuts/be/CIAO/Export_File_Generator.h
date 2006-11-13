@@ -63,7 +63,7 @@ public:
 
   const std::string & build_flag (void) const;
 
-  bool generate (const std::string & outdir);
+  bool generate (void);
 
   static std::string export_macro (const std::string & name);
 

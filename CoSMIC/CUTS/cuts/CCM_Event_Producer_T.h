@@ -2,11 +2,9 @@
 
 //=============================================================================
 /**
- * @file     CCM_Event_Producer_T.h
+ * @file      CCM_Event_Producer_T.h
  *
  * $Id$
- *
- * [insert description here]
  *
  * @author    James H. Hill <hillj@isis.vanderbilt.edu>
  */
