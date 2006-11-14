@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{DD463069-1C6D-43A0-AE31-AB04159362C9}" cdate="Mon Nov 13 20:49:46 2006" mdate="Mon Nov 13 20:49:46 2006" version="" metaguid="{66061B04-B2CC-460F-A1E2-35C897A6F4CE}" metaversion="" metaname="PICML">
+<project guid="{E4369705-958E-428C-8A09-9FBF3B994DE1}" cdate="Mon Nov 13 20:49:46 2006" mdate="Mon Nov 13 20:49:46 2006" version="" metaguid="{66061B04-B2CC-460F-A1E2-35C897A6F4CE}" metaversion="" metaname="PICML">
 	<name>SPACE</name>
 	<comment></comment>
 	<author></author>
@@ -5910,21 +5910,21 @@
 					<connpoint role="dst" target="id-0067-0000009e"/>
 				</connection>
 			</model>
-			<model id="id-0065-0000008a" kind="PackageContainer" relid="0xb" childrelidcntr="0x5">
+			<model id="id-0065-0000008a" kind="PackageContainer" relid="0xb" childrelidcntr="0x8">
 				<name>Gizmo2_High</name>
-				<atom id="id-0066-00000040" kind="ComponentPackage" role="ComponentPackage" relid="0x1">
+				<atom id="id-0066-00000045" kind="ComponentPackage" role="ComponentPackage" relid="0x6">
 					<name>Gizmo2_High_Package</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="Packaging" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>240,163</value>
+								<value>240,184</value>
 							</regnode>
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>145905C3-B549-4865-952D-3B5C170390CF</value>
+						<value>C51F5379-2DBC-4B5A-B0F2-084022BD5580</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -5954,35 +5954,32 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-0000008e" kind="PackageInterface" role="PackageInterface" relid="0x4">
-					<name>PackageInterface</name>
-					<connpoint role="src" target="id-0066-00000040"/>
-					<connpoint role="dst" target="id-0067-0000009f"/>
-				</connection>
-				<connection id="id-0068-0000008f" kind="Implementation" role="Implementation" relid="0x5">
+				<connection id="id-0068-00000095" kind="Implementation" role="Implementation" relid="0x7">
 					<name>Implementation</name>
-					<regnode name="autorouterPref" isopaque="yes">
-						<value>W</value>
-					</regnode>
-					<connpoint role="src" target="id-0066-00000040"/>
+					<connpoint role="src" target="id-0066-00000045"/>
 					<connpoint role="dst" target="id-0067-000000a0"/>
 				</connection>
+				<connection id="id-0068-00000096" kind="PackageInterface" role="PackageInterface" relid="0x8">
+					<name>PackageInterface</name>
+					<connpoint role="src" target="id-0066-00000045"/>
+					<connpoint role="dst" target="id-0067-0000009f"/>
+				</connection>
 			</model>
-			<model id="id-0065-0000008d" kind="PackageContainer" relid="0xc" childrelidcntr="0x5">
+			<model id="id-0065-0000008d" kind="PackageContainer" relid="0xc" childrelidcntr="0x8">
 				<name>Analysis_Component</name>
-				<atom id="id-0066-00000043" kind="ComponentPackage" role="ComponentPackage" relid="0x2">
+				<atom id="id-0066-00000046" kind="ComponentPackage" role="ComponentPackage" relid="0x6">
 					<name>Analysis_Component_Package</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="Packaging" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>240,163</value>
+								<value>233,191</value>
 							</regnode>
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>145905C3-B549-4865-952D-3B5C170390CF</value>
+						<value>144B0EAE-FE64-4FD3-B7EF-D7DA8B9286E1</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -6012,18 +6009,21 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-00000092" kind="PackageInterface" role="PackageInterface" relid="0x4">
-					<name>PackageInterface</name>
-					<connpoint role="src" target="id-0066-00000043"/>
-					<connpoint role="dst" target="id-0067-000000a3"/>
-				</connection>
-				<connection id="id-0068-00000093" kind="Implementation" role="Implementation" relid="0x5">
+				<connection id="id-0068-00000097" kind="Implementation" role="Implementation" relid="0x7">
 					<name>Implementation</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>W</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-00000043"/>
+					<connpoint role="src" target="id-0066-00000046"/>
 					<connpoint role="dst" target="id-0067-000000a4"/>
+				</connection>
+				<connection id="id-0068-00000098" kind="PackageInterface" role="PackageInterface" relid="0x8">
+					<name>PackageInterface</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>E</value>
+					</regnode>
+					<connpoint role="src" target="id-0066-00000046"/>
+					<connpoint role="dst" target="id-0067-000000a3"/>
 				</connection>
 			</model>
 		</folder>
@@ -6417,27 +6417,27 @@
 					<connpoint role="dst" target="id-0067-000000a1"/>
 				</connection>
 			</model>
-			<model id="id-0065-0000008c" kind="PackageConfigurationContainer" relid="0xb" childrelidcntr="0x3">
+			<model id="id-0065-0000008c" kind="PackageConfigurationContainer" relid="0xb" childrelidcntr="0x5">
 				<name>Gizmo2_High</name>
-				<atom id="id-0066-00000042" kind="PackageConfiguration" role="PackageConfiguration" relid="0x1">
+				<atom id="id-0066-00000048" kind="PackageConfiguration" role="PackageConfiguration" relid="0x4">
 					<name>Gizmo2_High</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="Packaging" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>163,121</value>
+								<value>170,205</value>
 							</regnode>
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>599E2835-C0EE-4AA2-B438-B0F87FC5C8EE</value>
+						<value>712A7D4F-DB20-49DE-A6F5-3B1E6057586A</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-000000a2" kind="ComponentPackageReference" role="ComponentPackageReference" relid="0x2" referred="id-0066-00000040">
+				<reference id="id-0067-000000a2" kind="ComponentPackageReference" role="ComponentPackageReference" relid="0x2" referred="id-0066-00000045">
 					<name>Gizmo2_High_Reference</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -6458,36 +6458,36 @@
 						<value></value>
 					</attribute>
 				</reference>
-				<connection id="id-0068-00000091" kind="PackageConfReference" role="PackageConfReference" relid="0x3">
+				<connection id="id-0068-0000009a" kind="PackageConfReference" role="PackageConfReference" relid="0x5">
 					<name>PackageConfReference</name>
 					<regnode name="autorouterPref" isopaque="yes">
-						<value>Ew</value>
+						<value>w</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-00000042"/>
+					<connpoint role="src" target="id-0066-00000048"/>
 					<connpoint role="dst" target="id-0067-000000a2"/>
 				</connection>
 			</model>
-			<model id="id-0065-0000008e" kind="PackageConfigurationContainer" relid="0xc" childrelidcntr="0x3">
+			<model id="id-0065-0000008e" kind="PackageConfigurationContainer" relid="0xc" childrelidcntr="0x5">
 				<name>Analysis_Component</name>
-				<atom id="id-0066-00000044" kind="PackageConfiguration" role="PackageConfiguration" relid="0x2">
+				<atom id="id-0066-00000047" kind="PackageConfiguration" role="PackageConfiguration" relid="0x4">
 					<name>Analysis_Component</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="Packaging" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>142,128</value>
+								<value>135,212</value>
 							</regnode>
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>CEB2688C-90BC-416B-BFA7-A117947C542C</value>
+						<value>ED5E780C-AE34-4BED-9A87-A37A9E50DEC4</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-000000a5" kind="ComponentPackageReference" role="ComponentPackageReference" relid="0x1" referred="id-0066-00000043">
+				<reference id="id-0067-000000a5" kind="ComponentPackageReference" role="ComponentPackageReference" relid="0x1" referred="id-0066-00000046">
 					<name>Analysis_Component_Reference</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -6508,9 +6508,12 @@
 						<value></value>
 					</attribute>
 				</reference>
-				<connection id="id-0068-00000094" kind="PackageConfReference" role="PackageConfReference" relid="0x3">
+				<connection id="id-0068-00000099" kind="PackageConfReference" role="PackageConfReference" relid="0x5">
 					<name>PackageConfReference</name>
-					<connpoint role="src" target="id-0066-00000044"/>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>E</value>
+					</regnode>
+					<connpoint role="src" target="id-0066-00000047"/>
 					<connpoint role="dst" target="id-0067-000000a5"/>
 				</connection>
 			</model>
