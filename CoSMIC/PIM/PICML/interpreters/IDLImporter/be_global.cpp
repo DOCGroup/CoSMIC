@@ -733,7 +733,8 @@ BE_GlobalData::cache_files (char *files[], long nfiles)
         {
           file =
             this->imported_dom_element (this->interface_definitions_folder_,
-                                        lname_cstr);
+                                        lname_cstr,
+                                        false);
         }
 
       if (0 == file)
@@ -876,6 +877,7 @@ BE_GlobalData::make_gme_id (kind_id kind)
 DOMElement *
 BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
                                      const char *local_name,
+                                     bool node_imported,
                                      kind_id elem_kind,
                                      bool by_referred,
                                      bool in_file_iteration)
@@ -888,9 +890,7 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
 
   // At global scope, we may be visiting an included file, so we
   // may have to look in all File elements to find an XML import.
-  bool importing = idl_global->import ();
-  bool in_main = idl_global->in_main_file ();
-  if (!in_file_iteration && importing && !in_main)
+  if (!in_file_iteration && node_imported)
     {
       if (X ("File") == sub_tree->getAttribute (X ("kind")))
         {
@@ -912,6 +912,7 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
                 {
                   retval = this->imported_dom_element (file,
                                                        local_name,
+                                                       node_imported,
                                                        elem_kind,
                                                        by_referred,
                                                        true);

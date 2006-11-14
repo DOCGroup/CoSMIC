@@ -222,7 +222,8 @@ adding_visitor::visit_interface (AST_Interface *node)
   DOMElement *elem =
     be_global->imported_dom_element (
         this->sub_tree_,
-        node->local_name ()->get_string ()
+        node->local_name ()->get_string (),
+        node->imported ()
       );
 
   // Also see if it's been put in the decl table.
@@ -335,7 +336,8 @@ adding_visitor::visit_interface_fwd (AST_InterfaceFwd *node)
   elem =
     be_global->imported_dom_element (
         this->sub_tree_,
-        node->local_name ()->get_string ()
+        node->local_name ()->get_string (),
+        node->imported ()
       );
 
   // If we have not imported this element, create it now.
@@ -360,7 +362,8 @@ adding_visitor::visit_valuetype (AST_ValueType *node)
   DOMElement *elem =
     be_global->imported_dom_element (
         this->sub_tree_,
-        node->local_name ()->get_string ()
+        node->local_name ()->get_string (),
+        node->imported ()
       );
 
   // Also see if it's been put in the decl table.
@@ -466,7 +469,8 @@ adding_visitor::visit_component (AST_Component *node)
   DOMElement *elem =
     be_global->imported_dom_element (
         this->sub_tree_,
-        node->local_name ()->get_string ()
+        node->local_name ()->get_string (),
+        node->imported ()
       );
 
   // Also see if it's been put in the decl table.
@@ -612,7 +616,8 @@ adding_visitor::visit_home (AST_Home *node)
   DOMElement *elem =
     be_global->imported_dom_element (
         this->sub_tree_,
-        node->local_name ()->get_string ()
+        node->local_name ()->get_string (),
+        node->imported ()
       );
 
   // Also see if it's been put in the decl table.
@@ -717,7 +722,8 @@ adding_visitor::visit_factory (AST_Factory *node)
   elem =
     be_global->imported_dom_element (
         this->sub_tree_,
-        node->local_name ()->get_string ()
+        node->local_name ()->get_string (),
+        node->imported ()
       );
 
   // If not, create it.
@@ -775,7 +781,8 @@ adding_visitor::visit_structure (AST_Structure *node)
   DOMElement *elem =
     be_global->imported_dom_element (
         this->sub_tree_,
-        node->local_name ()->get_string ()
+        node->local_name ()->get_string (),
+        node->imported ()
       );
 
   // Also see if it's been put in the decl table.
@@ -880,7 +887,8 @@ adding_visitor::visit_structure_fwd (AST_StructureFwd *node)
   elem =
     be_global->imported_dom_element (
         this->sub_tree_,
-        node->local_name ()->get_string ()
+        node->local_name ()->get_string (),
+        node->imported ()
       );
 
   // If we have imported this element, just put it in the tables
@@ -918,7 +926,8 @@ adding_visitor::visit_exception (AST_Exception *node)
   DOMElement *elem =
     be_global->imported_dom_element (
         this->sub_tree_,
-        node->local_name ()->get_string ()
+        node->local_name ()->get_string (),
+        node->imported ()
       );
 
   // Also see if it's been put in the decl table.
@@ -1009,7 +1018,8 @@ adding_visitor::visit_enum (AST_Enum *node)
   DOMElement *elem =
     be_global->imported_dom_element (
         this->sub_tree_,
-        node->local_name ()->get_string ()
+        node->local_name ()->get_string (),
+        node->imported ()
       );
 
   // Also see if it's been put in the decl table.
@@ -1099,7 +1109,8 @@ adding_visitor::visit_operation (AST_Operation *node)
   DOMElement *elem =
     be_global->imported_dom_element (
         this->sub_tree_,
-        node->local_name ()->get_string ()
+        node->local_name ()->get_string (),
+        node->imported ()
       );
 
   DOMElement *return_type = 0;
@@ -1231,6 +1242,7 @@ adding_visitor::visit_field (AST_Field *node)
     be_global->imported_dom_element (
         this->sub_tree_,
         node->local_name ()->get_string (),
+        node->imported (),
         BE_GlobalData::REF
       );
 
@@ -1307,6 +1319,7 @@ adding_visitor::visit_argument (AST_Argument *node)
     be_global->imported_dom_element (
         this->sub_tree_,
         node->local_name ()->get_string (),
+        node->imported (),
         BE_GlobalData::REF
       );
 
@@ -1376,7 +1389,8 @@ adding_visitor::visit_attribute (AST_Attribute *node)
   DOMElement *elem =
     be_global->imported_dom_element (
         this->sub_tree_,
-        node->local_name ()->get_string ()
+        node->local_name ()->get_string (),
+        node->imported ()
       );
 
   if (0 == elem)
@@ -1461,7 +1475,8 @@ adding_visitor::visit_union (AST_Union *node)
   DOMElement *elem =
     be_global->imported_dom_element (
         this->sub_tree_,
-        node->local_name ()->get_string ()
+        node->local_name ()->get_string (),
+        node->imported ()
       );
 
   // Also see if it's been put in the decl table.
@@ -1572,6 +1587,7 @@ adding_visitor::visit_union_branch (AST_UnionBranch *node)
     be_global->imported_dom_element (
         this->sub_tree_,
         node->local_name ()->get_string (),
+        node->imported (),
         BE_GlobalData::REF
       );
 
@@ -1646,6 +1662,7 @@ adding_visitor::visit_constant (AST_Constant *node)
     be_global->imported_dom_element (
         this->sub_tree_,
         node->local_name ()->get_string (),
+        node->imported (),
         BE_GlobalData::REF
       );
 
@@ -1750,6 +1767,7 @@ adding_visitor::visit_enum_val (AST_EnumVal *node)
     be_global->imported_dom_element (
         this->sub_tree_,
         node->local_name ()->get_string (),
+        node->imported (),
         BE_GlobalData::ATOM
       );
 
@@ -1839,6 +1857,7 @@ adding_visitor::visit_typedef (AST_Typedef *node)
     be_global->imported_dom_element (
         this->sub_tree_,
         node->local_name ()->get_string (),
+        node->imported (),
         BE_GlobalData::REF
       );
 
@@ -2048,6 +2067,7 @@ adding_visitor::visit_valuebox (AST_ValueBox *node)
     be_global->imported_dom_element (
         this->sub_tree_,
         node->local_name ()->get_string (),
+        node->imported (),
         BE_GlobalData::REF
       );
 
@@ -2427,7 +2447,8 @@ adding_visitor::add_file_element (DOMElement *parent,
 
   // See if we have already imported this file. If so, just return it.
   DOMElement *file = be_global->imported_dom_element (parent,
-                                                      tmp_cstr);
+                                                      tmp_cstr,
+                                                      false);
 
   if (0 == file)
     {
@@ -2683,6 +2704,7 @@ adding_visitor::add_include_elements (UTL_Scope *container, DOMElement *parent)
       DOMElement *fileref =
         be_global->imported_dom_element (parent,
                                          tmp,
+                                         false,
                                          BE_GlobalData::REF,
                                          true);
 
@@ -2836,6 +2858,7 @@ adding_visitor::add_one_inherited (DOMElement *parent,
     be_global->imported_dom_element (
         parent,
         node->local_name ()->get_string (),
+        node->imported (),
         BE_GlobalData::REF,
         true
       );
@@ -2917,6 +2940,7 @@ adding_visitor::add_supported_elements (DOMElement *parent,
         be_global->imported_dom_element (
             parent,
             supports[i]->local_name ()->get_string (),
+            supports[i]->imported,
             BE_GlobalData::REF,
             true
           );
@@ -2972,6 +2996,7 @@ adding_visitor::add_exception_elements (DOMElement *parent,
       DOMElement *elem =
         be_global->imported_dom_element (parent,
                                          ex->local_name ()->get_string (),
+                                         ex->imported (),
                                          BE_GlobalData::REF,
                                          true);
 
@@ -3026,6 +3051,7 @@ adding_visitor::add_discriminator (DOMElement *parent, AST_Union *u)
   DOMElement *elem =
     be_global->imported_dom_element (parent,
                                      "Discriminator",
+                                     false,
                                      BE_GlobalData::REF);
 
   if (0 == elem)
@@ -3069,6 +3095,7 @@ adding_visitor::add_labels (AST_UnionBranch *ub,
       DOMElement *label =
         be_global->imported_dom_element (this->sub_tree_,
                                          label_name.c_str (),
+                                         false,
                                          BE_GlobalData::ATOM);
 
       if (0 == label)
@@ -3403,6 +3430,7 @@ adding_visitor::add_ports (DOMElement *parent, AST_Component *node)
       DOMElement *provides_port =
         be_global->imported_dom_element (parent,
                                          pd->id->get_string (),
+                                         pd->impl->imported (),
                                          BE_GlobalData::REF);
 
       if (0 == provides_port)
@@ -3452,6 +3480,7 @@ adding_visitor::add_ports (DOMElement *parent, AST_Component *node)
       DOMElement *uses_port =
         be_global->imported_dom_element (parent,
                                          pd->id->get_string (),
+                                         pd->impl->imported (),
                                          BE_GlobalData::REF);
 
       if (0 == uses_port)
@@ -3501,6 +3530,7 @@ adding_visitor::add_ports (DOMElement *parent, AST_Component *node)
       DOMElement *emits_port =
         be_global->imported_dom_element (parent,
                                          pd->id->get_string (),
+                                         pd->impl->imported (),
                                          BE_GlobalData::REF);
 
       if (0 == emits_port)
@@ -3550,6 +3580,7 @@ adding_visitor::add_ports (DOMElement *parent, AST_Component *node)
       DOMElement *publishes_port =
         be_global->imported_dom_element (parent,
                                          pd->id->get_string (),
+                                         pd->impl->imported (),
                                          BE_GlobalData::REF);
 
       if (0 == publishes_port)
@@ -3599,6 +3630,7 @@ adding_visitor::add_ports (DOMElement *parent, AST_Component *node)
       DOMElement *consumes_port =
         be_global->imported_dom_element (parent,
                                          pd->id->get_string (),
+                                         pd->impl->imported (),
                                          BE_GlobalData::REF);
 
       if (0 == consumes_port)
@@ -3827,7 +3859,8 @@ adding_visitor::add_home_factories (DOMElement *parent, AST_Home *node)
       i.next (op);
       DOMElement *factory =
         be_global->imported_dom_element (parent,
-                                         (*op)->local_name ()->get_string ());
+                                         (*op)->local_name ()->get_string (),
+                                         node->imported ());
 
       if (0 == factory)
         {
@@ -3891,7 +3924,8 @@ adding_visitor::add_finders (DOMElement *parent, AST_Home *node)
       i.next (op);
       DOMElement *finder =
         be_global->imported_dom_element (parent,
-                                         (*op)->local_name ()->get_string ());
+                                         (*op)->local_name ()->get_string (),
+                                         node->imported ());
 
       if (0 == finder)
         {
@@ -4454,7 +4488,8 @@ adding_visitor::can_skip_import (UTL_Scope *node, DOMElement *parent)
       DOMElement *elem =
         be_global->imported_dom_element (
             parent,
-            d->local_name ()->get_string ()
+            d->local_name ()->get_string (),
+            d->imported ()
           );
 
       // If it's not one of the above types and not in the
