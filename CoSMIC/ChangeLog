@@ -1,3 +1,17 @@
+Tue Nov 14 000:04:29 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+
+          Modified BE_GlobalData::imported_dom_element() to accept
+          an additional argument, the boolean return value of a
+          call to imported() on the AST node corresponding to the
+          DOM being searched for. The previous branching of
+          imported_dom_element() on an 'imported' node was based
+          on calls to the IDL_GLobalData state, which did not
+          always return the values expected.
+
 Mon Nov 13 19:27:06 UTC 2006  Nishanth Shankaran  <nshnakar@nospam.com>
 
         * PIM/PICML/examples/Sample_Strings.xme: Updated the example.
