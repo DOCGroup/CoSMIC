@@ -1,3 +1,8 @@
+Tue Nov 14 06:19:35 UTC 2006  Nishanth Shankran  <nshankar@nospam.com>
+
+        * PIM/PICML/examples/Sample_Strings.xme: Updated the model to
+          include the "combination string".
+
 Tue Nov 14 000:04:29 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
