@@ -1,3 +1,9 @@
+Wed Nov 15 14:42:59 UTC 2006  Nishanth Shanakran  <nshankar@dre.vanderbilt.edu>
+
+        * PIM/PICML/examples/Sample_Strings.xme: Modified the names of the
+          components to Gizmo, Comm, Analysis, etc. Also, created the
+          deployment plan for the "combination string".
+
 Tue Nov 14 06:19:35 UTC 2006  Nishanth Shankran  <nshankar@nospam.com>
 
         * PIM/PICML/examples/Sample_Strings.xme: Updated the model to
