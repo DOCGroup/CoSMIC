@@ -1,3 +1,18 @@
+Mon Nov 20 22:33:06 UTC 2006  Sumant Tambe <sutambe@dre.vanderbilt.edu>
+
+	The first version of NetQoS attribute splitting functionality.
+	This feature is not complete yet and should not be included in the
+	compilation.
+
+	* PSM/CQML/interpreters/NetQoS/common.h
+	* PSM/CQML/interpreters/NetQoS/NetQoS.mpc
+	* PSM/CQML/interpreters/NetQoS/NetQoS_Splitter.cpp
+	* PSM/CQML/interpreters/NetQoS/NetQoS_Splitter.h
+	* PSM/CQML/interpreters/NetQoS/NetQoSRequirementsIterator.cpp
+	* PSM/CQML/interpreters/NetQoS/NetQoSRequirementsIterator.h
+	* PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp
+	* PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h
+
 Wed Nov 15 14:42:59 UTC 2006  Nishanth Shanakran  <nshankar@nospam.com>
 
         * PIM/PICML/examples/Sample_Strings.xme: Modified the names of the

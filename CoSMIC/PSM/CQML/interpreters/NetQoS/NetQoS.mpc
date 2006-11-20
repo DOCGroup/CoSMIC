@@ -13,5 +13,6 @@ project(NetQoS): cqmllib {
    Header_Files {
      NetQoSVisitor.h
      NetQoS_Export.h
+     common.h
    }
 }

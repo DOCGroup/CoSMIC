@@ -19,6 +19,7 @@
 #include "NetQoS/NetQoS_Export.h"
 
 #include "DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h"
+#include "common.h"
 
 namespace CQML
 {
@@ -82,16 +83,14 @@ namespace CQML
                                        Port generic_port);
     void reqqos_base_visit (const ReqQoSBase & reqqos_base);
 
+//    friend class NetQoSRequirementsIterator;
+//    NetQoSRequirementsIterator iterator_begin () const;
+//    NetQoSRequirementsIterator iterator_end () const;
+
   private:
-      struct ConnectionInfo
-        {
-          std::string connection_name;
-          std::string client, client_port_name;
-          std::string server, server_port_name;
-        };
 
       NetQoS current_netqos_;
-      std::multimap <NetQoS, ConnectionInfo> qos_conn_mmap_;
+      NetQoSRequirements qos_conn_mmap_;
       std::map <std::string, std::string> plan_nqfile_map_;
       std::set <std::string> filenames_;
       DeploymentPlanFrameworkVisitor dep_plan_framework_;
@@ -289,5 +288,7 @@ namespace CQML
     virtual void Visit_Input(const Input&) {}
   };
 }
+
+//#include "NetQoSRequirementsIterator.h"
 
 #endif /* NETQOS_VISITOR_H */

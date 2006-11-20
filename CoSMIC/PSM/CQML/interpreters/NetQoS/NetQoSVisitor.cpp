@@ -568,6 +568,15 @@ namespace CQML
       }
     return string("<no name specified>");
   }
-
-
+/*
+  NetQoSRequirementsIterator NetQoSVisitor::iterator_begin () const
+    {
+      return NetQoSRequirementsIterator (*this, this->qos_conn_mmap_.begin ());
+    }
+  
+  NetQoSRequirementsIterator NetQoSVisitor::iterator_end () const
+    {
+      return NetQoSRequirementsIterator (*this, this->qos_conn_mmap_.end ());
+    }
+*/
 }
