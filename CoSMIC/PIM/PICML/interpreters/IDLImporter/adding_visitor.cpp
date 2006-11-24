@@ -2940,7 +2940,7 @@ adding_visitor::add_supported_elements (DOMElement *parent,
         be_global->imported_dom_element (
             parent,
             supports[i]->local_name ()->get_string (),
-            supports[i]->imported,
+            supports[i]->imported (),
             BE_GlobalData::REF,
             true
           );
