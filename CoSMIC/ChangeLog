@@ -1,3 +1,18 @@
+Sat Nov 25 20:02:30 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/examples/SLICE.xme:
+
+          Updated the model to the latest version of PICML.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Relaxed the cardinality containts for Finish connection
+          between state and input actions so that a state is allowed
+          to have multiple finish connections.
+
 Fri Nov 24 17:11:22 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp (add_supported_elements):
