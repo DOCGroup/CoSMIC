@@ -1,3 +1,12 @@
+Sat Nov 25 20:07:31 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE_Execution_Visitor.cpp:
+
+          Fixed compilation errors to handle the following change
+          in CoSMIC (i.e., PICML).
+
+          Sat Nov 25 20:02:30 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
 Mon Nov 13 07:36:40 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CCM_Event_Producer_T.h:

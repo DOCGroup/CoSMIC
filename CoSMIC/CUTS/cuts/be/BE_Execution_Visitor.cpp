@@ -209,9 +209,10 @@ Visit_State (const PICML::State & state)
     this->ignore_effects_ = false;
 
   // Check for a finishing transition from this state.
-  PICML::Finish finish_conn = state.dstFinish ();
+  typedef std::set <PICML::Finish> Finish_Set;
+  Finish_Set fini_set = state.dstFinish ();
 
-  if (finish_conn != Udm::null)
+  if (!fini_set.empty ())
     return;
 
   // Get all the transitions from this state. If there is more than
