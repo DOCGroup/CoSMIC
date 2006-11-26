@@ -1,3 +1,12 @@
+Sun Nov 26 16:03:41 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Refreshed the PICML library in CQML.
+
 Sat Nov 25 20:02:30 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/examples/SLICE.xme:

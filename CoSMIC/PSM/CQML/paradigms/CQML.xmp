@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="CQML" guid="{E2466984-1002-4182-B626-BE90F89CCCAC}" cdate="Mon Oct 30 08:24:09 2006" mdate="Mon Oct 30 08:24:09 2006" >
+<paradigm name="CQML" guid="{A015EDBD-A2DA-4045-8A90-E0ACA53FC9E1}" cdate="Sun Nov 26 09:32:54 2006" mdate="Sun Nov 26 09:32:54 2006" >
 
 	<comment>This tool supports $CIAO_ROOT/docs/schema/CIAOServerResources.xsd version 1.7. 
 Please check the cvs repository if this is the most recent version of this file.</comment>
@@ -119,25 +119,25 @@ endif]]>
           (let supported = ref.refersTo ().oclAsType (gme::Model) in
           supported.localOps () + supported.inheritedOps (supported)))]]>
 		</constraint>
-		<attrdef name="Abstract" metaref = "3942" valuetype = "boolean" defvalue = "false">
+		<attrdef name="Abstract" metaref = "4210" valuetype = "boolean" defvalue = "false">
 			<dispname>Abstract:</dispname>
 			<regnode name="help" value = "Flag that specifys if the worker is abstract. An abstract worker is one that cannot be used directly in a class as a worker. However, it can be subclassed by other workers."></regnode>
 		</attrdef>
 		<attrdef name="CmdLineOptions" metaref = "3746" valuetype = "string" defvalue = "">
 		</attrdef>
-		<attrdef name="ConfigureRTQoS" metaref = "3943" valuetype = "boolean" defvalue = "true">
+		<attrdef name="ConfigureRTQoS" metaref = "3818" valuetype = "boolean" defvalue = "true">
 			<dispname>Support for RealTime QoS configuration for event channel</dispname>
 		</attrdef>
-		<attrdef name="ConsumerBasedFiltering" metaref = "3944" valuetype = "boolean" defvalue = "true">
+		<attrdef name="ConsumerBasedFiltering" metaref = "3819" valuetype = "boolean" defvalue = "true">
 			<dispname>Enable/Disable consumer specific filtering</dispname>
 		</attrdef>
 		<attrdef name="DataValue" metaref = "1001" valuetype = "string" defvalue = "">
 			<dispname>value</dispname>
 		</attrdef>
-		<attrdef name="DisconnectDanglingConnections" metaref = "3945" valuetype = "boolean" defvalue = "true">
+		<attrdef name="DisconnectDanglingConnections" metaref = "3820" valuetype = "boolean" defvalue = "true">
 			<dispname>Configure EC Factory against dangling supplier/consumer</dispname>
 		</attrdef>
-		<attrdef name="DispatchingMultithreadingLevel" metaref = "3946" valuetype = "string" defvalue = "">
+		<attrdef name="DispatchingMultithreadingLevel" metaref = "4211" valuetype = "string" defvalue = "">
 		</attrdef>
 		<attrdef name="ECConsumerControl" metaref = "1002" valuetype = "enum" defvalue = "null (default)">
 			<enumitem dispname = "null (default)" value = "null (default)"></enumitem>
@@ -157,7 +157,7 @@ endif]]>
 		</attrdef>
 		<attrdef name="ECDispatchingThreads" metaref = "1006" valuetype = "integer" defvalue = "1">
 		</attrdef>
-		<attrdef name="ECFilterType" metaref = "3947" valuetype = "enum" defvalue = "LogicalAND">
+		<attrdef name="ECFilterType" metaref = "3822" valuetype = "enum" defvalue = "LogicalAND">
 			<dispname>Type of filter; i.e. GroupOR, LogicalAND or GroupAND</dispname>
 			<enumitem dispname = "GroupOR" value = "GroupOR"></enumitem>
 			<enumitem dispname = "LogicalAND" value = "LogicalAND"></enumitem>
@@ -232,41 +232,41 @@ endif]]>
 			<enumitem dispname = "CONJUNCTION" value = "CONJUNCTION"></enumitem>
 			<enumitem dispname = "LOGICAL_AND" value = "LOGICAL_AND"></enumitem>
 		</attrdef>
-		<attrdef name="Location" metaref = "3949" valuetype = "string" defvalue = "">
+		<attrdef name="Location" metaref = "4212" valuetype = "string" defvalue = "">
 			<dispname>Location</dispname>
 			<regnode name="help" value = "Specifies the location of the object on disk. It can be a relative or absolute location."></regnode>
 		</attrdef>
-		<attrdef name="LogAction" metaref = "3950" valuetype = "boolean" defvalue = "false">
+		<attrdef name="LogAction" metaref = "4213" valuetype = "boolean" defvalue = "false">
 			<dispname>Enable Logging:</dispname>
 			<regnode name="help" value = "This determines whether or not to log an action. The semantics of logging is dependent on the interpreter."></regnode>
 		</attrdef>
 		<attrdef name="Metric" metaref = "3270" valuetype = "double" defvalue = "0.0">
 		</attrdef>
-		<attrdef name="MultithreadedConsumer" metaref = "3951" valuetype = "boolean" defvalue = "false">
+		<attrdef name="MultithreadedConsumer" metaref = "4214" valuetype = "boolean" defvalue = "false">
 		</attrdef>
-		<attrdef name="MultithreadedSupplier" metaref = "3952" valuetype = "boolean" defvalue = "false">
+		<attrdef name="MultithreadedSupplier" metaref = "4215" valuetype = "boolean" defvalue = "false">
 		</attrdef>
 		<attrdef name="ORBServices" metaref = "1022" valuetype = "string" defvalue = "">
 		</attrdef>
-		<attrdef name="Period" metaref = "3953" valuetype = "integer" defvalue = "1000">
+		<attrdef name="Period" metaref = "4216" valuetype = "integer" defvalue = "1000">
 			<dispname>Period (msec):</dispname>
 			<regnode name="help" value = "The period of the action. The units of value is milliseconds."></regnode>
 		</attrdef>
-		<attrdef name="Postcondition" metaref = "3954" valuetype = "string" defvalue = "">
+		<attrdef name="Postcondition" metaref = "4217" valuetype = "string" defvalue = "">
 			<dispname>Postcondition:</dispname>
 			<regnode name="help" value = "Defines the effects of executing the previous action."></regnode>
 		</attrdef>
-		<attrdef name="Precondition" metaref = "3955" valuetype = "string" defvalue = "">
+		<attrdef name="Precondition" metaref = "4218" valuetype = "string" defvalue = "">
 			<dispname>Precondition:</dispname>
 			<regnode name="help" value = "Defines the condition that allows execution of the next action."></regnode>
 		</attrdef>
 		<attrdef name="PrefixTag" metaref = "1023" valuetype = "string" defvalue = "">
 		</attrdef>
-		<attrdef name="Probability" metaref = "3956" valuetype = "double" defvalue = "1.0">
+		<attrdef name="Probability" metaref = "4219" valuetype = "double" defvalue = "1.0">
 			<dispname>Probability</dispname>
 			<regnode name="help" value = "The probability of the action occurring."></regnode>
 		</attrdef>
-		<attrdef name="Repetitions" metaref = "3957" valuetype = "integer" defvalue = "1">
+		<attrdef name="Repetitions" metaref = "4220" valuetype = "integer" defvalue = "1">
 			<dispname>Number of Repetitions:</dispname>
 			<regnode name="help" value = "Specifies the number of repetitions for an operation. Actions with 0 repetitions are considered non-repetitive actions."></regnode>
 		</attrdef>
@@ -289,7 +289,7 @@ endif]]>
 		</attrdef>
 		<attrdef name="SpecifyIdTag" metaref = "1026" valuetype = "string" defvalue = "">
 		</attrdef>
-		<attrdef name="SupplierBasedFiltering" metaref = "3958" valuetype = "boolean" defvalue = "true">
+		<attrdef name="SupplierBasedFiltering" metaref = "3825" valuetype = "boolean" defvalue = "true">
 			<dispname>EC tries to push to global collection of consumers if disabled</dispname>
 		</attrdef>
 		<attrdef name="SvcConf" metaref = "3747" valuetype = "string" defvalue = "">
@@ -359,7 +359,7 @@ endif]]>
 			<enumitem dispname = "DISJUNCTION" value = "DISJUNCTION"></enumitem>
 			<enumitem dispname = "REMOTE_DEPENDANT" value = "REMOTE_DEPENDANT"></enumitem>
 		</attrdef>
-		<attrdef name="initial_thread_number" metaref = "3959" valuetype = "integer" defvalue = "2">
+		<attrdef name="initial_thread_number" metaref = "3826" valuetype = "integer" defvalue = "2">
 			<dispname>Steady state number of threads</dispname>
 		</attrdef>
 		<attrdef name="iterations" metaref = "1041" valuetype = "integer" defvalue = "">
@@ -378,7 +378,7 @@ endif]]>
 		</attrdef>
 		<attrdef name="max_buffered_requests" metaref = "2734" valuetype = "integer" defvalue = "0">
 		</attrdef>
-		<attrdef name="maximum_thread_number" metaref = "3960" valuetype = "integer" defvalue = "2">
+		<attrdef name="maximum_thread_number" metaref = "4221" valuetype = "integer" defvalue = "2">
 			<dispname>The maximum number of threads </dispname>
 		</attrdef>
 		<attrdef name="optional" metaref = "1045" valuetype = "boolean" defvalue = "false">
@@ -409,7 +409,7 @@ endif]]>
 		</attrdef>
 		<attrdef name="rate" metaref = "1050" valuetype = "integer" defvalue = "-1">
 		</attrdef>
-		<attrdef name="require_banding" metaref = "3961" valuetype = "boolean" defvalue = "false">
+		<attrdef name="require_banding" metaref = "3828" valuetype = "boolean" defvalue = "false">
 			<dispname>Clients require banded connections, i.e. separate connection for a request.</dispname>
 		</attrdef>
 		<attrdef name="requiredName" metaref = "1051" valuetype = "string" defvalue = "">
@@ -437,7 +437,7 @@ endif]]>
 		</attrdef>
 		<attrdef name="static_threads" metaref = "2736" valuetype = "integer" defvalue = "1">
 		</attrdef>
-		<attrdef name="thread_priority" metaref = "3962" valuetype = "integer" defvalue = "127">
+		<attrdef name="thread_priority" metaref = "3829" valuetype = "integer" defvalue = "127">
 		</attrdef>
 		<attrdef name="threads" metaref = "1058" valuetype = "integer" defvalue = "1">
 		</attrdef>
@@ -511,7 +511,7 @@ self.connectedFCOs(Implementation)->forAll (i : Reference | i.refersTo().kindNam
 			</constraint>
 				<regnode name = "icon" value ="ComponentPackage.bmp"></regnode>
 		</atom>
-		<atom name = "Connections" metaref = "3963"  attributes = "require_banding">
+		<atom name = "Connections" metaref = "3830"  attributes = "require_banding">
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
 		<atom name = "DisplayNode" metaref = "2844" >
@@ -528,10 +528,10 @@ self.connectedFCOs(Implementation)->forAll (i : Reference | i.refersTo().kindNam
 			</constraint>
 				<regnode name = "icon" value ="vertex.bmp"></regnode>
 		</atom>
-		<atom name = "ECBehavior" metaref = "3964"  attributes = "DisconnectDanglingConnections ConsumerBasedFiltering SupplierBasedFiltering MultithreadedSupplier MultithreadedConsumer DispatchingMultithreadingLevel">
+		<atom name = "ECBehavior" metaref = "4222"  attributes = "DisconnectDanglingConnections ConsumerBasedFiltering SupplierBasedFiltering MultithreadedSupplier MultithreadedConsumer DispatchingMultithreadingLevel">
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
-		<atom name = "ECEventFilterConfiguration" metaref = "3965"  attributes = "ECFilterType">
+		<atom name = "ECEventFilterConfiguration" metaref = "4223"  attributes = "ECFilterType">
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
 		<atom name = "EC_Filter_Group" metaref = "3752"  attributes = "FilterType">
@@ -555,7 +555,7 @@ self.connectedFCOs(Implementation)->forAll (i : Reference | i.refersTo().kindNam
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="enumvalue.bmp"></regnode>
 		</atom>
-		<atom name = "Environment" metaref = "3966" >
+		<atom name = "Environment" metaref = "4224" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="environment.gif"></regnode>
 				<regnode name = "isNameEnabled" value ="false"></regnode>
@@ -670,7 +670,7 @@ self.connectedFCOs(Implementation)->forAll (i : Reference | i.refersTo().kindNam
 			</constraint>
 				<regnode name = "icon" value ="MonolithicImplementation.bmp"></regnode>
 		</atom>
-		<atom name = "Multithreading" metaref = "3968"  attributes = "initial_thread_number thread_priority maximum_thread_number">
+		<atom name = "Multithreading" metaref = "4225"  attributes = "initial_thread_number thread_priority maximum_thread_number">
 				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
 		<atom name = "NetQoS" metaref = "3741"  attributes = "quality custom admissionPriority fwdBW revBW">
@@ -740,7 +740,7 @@ self.connectedFCOs(PortQoS)->size() = 0]]>
 			</constraint>
 				<regnode name = "icon" value ="Periodic-Bench.bmp"></regnode>
 		</atom>
-		<atom name = "PeriodicEvent" metaref = "3969"  attributes = "Period Probability">
+		<atom name = "PeriodicEvent" metaref = "4226"  attributes = "Period Probability">
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="ValidInputdstCardinality88" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", meta::Input ) -> size in
@@ -888,7 +888,7 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				<dispname>Not a valid identifier</dispname>
 			</constraint>
 		</atom>
-		<atom name = "State" metaref = "3971" >
+		<atom name = "State" metaref = "4227" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="HasPrecondition" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let conns = self.attachingConnections ("src", Transition) in
@@ -898,11 +898,6 @@ conns->size > 1 implies
                         iter.Precondition.trim ().size > 0)
 ]]>
 				<dispname>States with more than one transition must define a precondition for all transitions.</dispname>
-			</constraint>
-			<constraint name="ValidFinishdstCardinality72" eventmask = "0x800" depth = "1" priority = "1">
-				<![CDATA[let dstCount = self.attachingConnections( "src", meta::Finish ) -> size in
-                     (dstCount <= 1)]]>
-				<dispname>Multiplicity of objects, which are associated to State as &quot;dst&quot; over Finish, has to match 0..1.</dispname>
 			</constraint>
 				<regnode name = "icon" value ="State.bmp"></regnode>
 				<regnode name = "isNameEnabled" value ="false"></regnode>
@@ -1403,7 +1398,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "Consumer2BehaviorConnection" metaref = "3972" >
+		<connection name = "Consumer2BehaviorConnection" metaref = "4228" >
 				<regnode name = "sName" value ="srcConsumer2BehaviorConnection"></regnode>
 				<regnode name = "dName" value ="dstConsumer2BehaviorConnection"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
@@ -1492,7 +1487,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "Effect" metaref = "3974" attributes = "Postcondition" >
+		<connection name = "Effect" metaref = "4229" attributes = "Postcondition" >
 				<regnode name = "sName" value ="srcEffect"></regnode>
 				<regnode name = "dName" value ="dstEffect"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
@@ -1683,7 +1678,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "Finish" metaref = "3975" >
+		<connection name = "Finish" metaref = "4230" >
 				<regnode name = "sName" value ="srcFinish"></regnode>
 				<regnode name = "dName" value ="dstFinish"></regnode>
 				<regnode name = "color" value ="0xFF00FF"></regnode>
@@ -1827,7 +1822,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "Input" metaref = "3977" >
+		<connection name = "Input" metaref = "4231" >
 				<regnode name = "sName" value ="srcInput"></regnode>
 				<regnode name = "dName" value ="dstInput"></regnode>
 				<regnode name = "color" value ="0x0000FF"></regnode>
@@ -1844,7 +1839,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "InputEffect" metaref = "3978" attributes = "Postcondition" >
+		<connection name = "InputEffect" metaref = "4232" attributes = "Postcondition" >
 				<regnode name = "sName" value ="srcInputEffect"></regnode>
 				<regnode name = "dName" value ="dstInputEffect"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
@@ -2060,7 +2055,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "MultiInput" metaref = "3979" >
+		<connection name = "MultiInput" metaref = "4233" >
 				<regnode name = "sName" value ="srcMultiInput"></regnode>
 				<regnode name = "dName" value ="dstMultiInput"></regnode>
 				<regnode name = "color" value ="0x0000FF"></regnode>
@@ -2403,7 +2398,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "RecursiveFilterConnection" metaref = "3981" >
+		<connection name = "RecursiveFilterConnection" metaref = "4234" >
 				<regnode name = "sName" value ="srcRecursiveFilterConnection"></regnode>
 				<regnode name = "dName" value ="dstRecursiveFilterConnection"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
@@ -2477,7 +2472,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "Supplier2FilterConnection" metaref = "3982" >
+		<connection name = "Supplier2FilterConnection" metaref = "4235" >
 				<regnode name = "sName" value ="srcSupplier2FilterConnection"></regnode>
 				<regnode name = "dName" value ="dstSupplier2FilterConnection"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
@@ -2541,7 +2536,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "Transition" metaref = "3984" attributes = "Precondition" >
+		<connection name = "Transition" metaref = "4236" attributes = "Precondition" >
 				<regnode name = "sName" value ="srcInternalPrecondition"></regnode>
 				<regnode name = "dName" value ="dstInternalPrecondition"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
@@ -3861,7 +3856,7 @@ endif
 				<pointeritem desc = "Object"></pointeritem>
 			</pointerspec>
 		</reference>
-		<reference name = "Variable" metaref = "3985">
+		<reference name = "Variable" metaref = "4237">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyVariable"></regnode>
@@ -3884,7 +3879,7 @@ endif
 				<pointeritem desc = "TypeKind"></pointeritem>
 			</pointerspec>
 		</reference>
-		<reference name = "WorkerType" metaref = "3986">
+		<reference name = "WorkerType" metaref = "4238">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyWorkerType"></regnode>
@@ -3897,7 +3892,7 @@ endif
 				<pointeritem desc = "Worker"></pointeritem>
 			</pointerspec>
 		</reference>
-		<model name = "Action" metaref = "3987" attributes = "Repetitions LogAction" >
+		<model name = "Action" metaref = "4239" attributes = "Repetitions LogAction" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="action.bmp"></regnode>
 				<regnode name = "icon" value ="action.bmp"></regnode>
@@ -3970,12 +3965,12 @@ endif]]>
 			<role name = "ArtifactDeployRequirement" metaref = "1213" kind = "ArtifactDeployRequirement"></role>
 			<role name = "ArtifactExecParameter" metaref = "1214" kind = "ArtifactExecParameter"></role>
 			<role name = "ArtifactInfoProperty" metaref = "1215" kind = "ArtifactInfoProperty"></role>
-			<role name = "ECConfiguration" metaref = "3988" kind = "ECConfiguration"></role>
+			<role name = "ECConfiguration" metaref = "4240" kind = "ECConfiguration"></role>
 			<role name = "FOU_Requirement" metaref = "3271" kind = "FOU_Requirement"></role>
 			<role name = "ImplementationArtifact" metaref = "1216" kind = "ImplementationArtifact"></role>
 			<role name = "ImplementationArtifactReference" metaref = "1217" kind = "ImplementationArtifactReference"></role>
 			<role name = "Property" metaref = "1218" kind = "Property"></role>
-			<role name = "RTConfiguration" metaref = "3989" kind = "RTConfiguration"></role>
+			<role name = "RTConfiguration" metaref = "4241" kind = "RTConfiguration"></role>
 			<role name = "RepGRequirement" metaref = "3191" kind = "RepGRequirement"></role>
 			<role name = "Requirement" metaref = "1219" kind = "Requirement"></role>
 			<aspect name = "Packaging" metaref = "1220" >
@@ -3984,12 +3979,12 @@ endif]]>
 				<part metaref = "1223" role = "ArtifactDeployRequirement" primary = "yes" linked = "no"></part>
 				<part metaref = "1224" role = "ArtifactExecParameter" primary = "yes" linked = "no"></part>
 				<part metaref = "1225" role = "ArtifactInfoProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "3990" role = "ECConfiguration" primary = "yes" linked = "no"></part>
+				<part metaref = "4242" role = "ECConfiguration" primary = "yes" linked = "no"></part>
 				<part metaref = "3272" role = "FOU_Requirement" primary = "yes" linked = "no"></part>
 				<part metaref = "1226" role = "ImplementationArtifact" primary = "yes" linked = "no"></part>
 				<part metaref = "1227" role = "ImplementationArtifactReference" primary = "yes" linked = "no"></part>
 				<part metaref = "1228" role = "Property" primary = "yes" linked = "no"></part>
-				<part metaref = "3991" role = "RTConfiguration" primary = "yes" linked = "no"></part>
+				<part metaref = "3840" role = "RTConfiguration" primary = "yes" linked = "no"></part>
 				<part metaref = "3193" role = "RepGRequirement" primary = "yes" linked = "no"></part>
 				<part metaref = "1229" role = "Requirement" primary = "yes" linked = "no"></part>
 			</aspect>
@@ -4230,28 +4225,28 @@ referenceParts (RequiredRequestPort)->forAll (a, b : gme::Reference | a <> b imp
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<role name = "Action" metaref = "3992" kind = "Action"></role>
+			<role name = "Action" metaref = "4243" kind = "Action"></role>
 			<role name = "Attribute" metaref = "1294" kind = "Attribute"></role>
-			<role name = "CompositeAction" metaref = "3993" kind = "CompositeAction"></role>
-			<role name = "Effect" metaref = "3994" kind = "Effect"></role>
-			<role name = "Environment" metaref = "3995" kind = "Environment"></role>
-			<role name = "Finish" metaref = "3996" kind = "Finish"></role>
+			<role name = "CompositeAction" metaref = "4244" kind = "CompositeAction"></role>
+			<role name = "Effect" metaref = "4245" kind = "Effect"></role>
+			<role name = "Environment" metaref = "4246" kind = "Environment"></role>
+			<role name = "Finish" metaref = "4247" kind = "Finish"></role>
 			<role name = "InEventPort" metaref = "1295" kind = "InEventPort"></role>
-			<role name = "Input" metaref = "3997" kind = "Input"></role>
-			<role name = "InputAction" metaref = "3998" kind = "InputAction"></role>
-			<role name = "InputEffect" metaref = "3999" kind = "InputEffect"></role>
-			<role name = "MultiInput" metaref = "4000" kind = "MultiInput"></role>
+			<role name = "Input" metaref = "4248" kind = "Input"></role>
+			<role name = "InputAction" metaref = "4249" kind = "InputAction"></role>
+			<role name = "InputEffect" metaref = "4250" kind = "InputEffect"></role>
+			<role name = "MultiInput" metaref = "4251" kind = "MultiInput"></role>
 			<role name = "OutEventPort" metaref = "1296" kind = "OutEventPort"></role>
-			<role name = "OutputAction" metaref = "4001" kind = "OutputAction"></role>
-			<role name = "PeriodicEvent" metaref = "4002" kind = "PeriodicEvent"></role>
+			<role name = "OutputAction" metaref = "4252" kind = "OutputAction"></role>
+			<role name = "PeriodicEvent" metaref = "4253" kind = "PeriodicEvent"></role>
 			<role name = "ProvidedRequestPort" metaref = "1297" kind = "ProvidedRequestPort"></role>
 			<role name = "ReadonlyAttribute" metaref = "1298" kind = "ReadonlyAttribute"></role>
 			<role name = "RequiredRequestPort" metaref = "1299" kind = "RequiredRequestPort"></role>
-			<role name = "State" metaref = "4003" kind = "State"></role>
+			<role name = "State" metaref = "4254" kind = "State"></role>
 			<role name = "Supports" metaref = "1300" kind = "Supports"></role>
-			<role name = "Transition" metaref = "4004" kind = "Transition"></role>
-			<role name = "Variable" metaref = "4005" kind = "Variable"></role>
-			<role name = "WorkerType" metaref = "4006" kind = "WorkerType"></role>
+			<role name = "Transition" metaref = "4255" kind = "Transition"></role>
+			<role name = "Variable" metaref = "4256" kind = "Variable"></role>
+			<role name = "WorkerType" metaref = "4257" kind = "WorkerType"></role>
 			<aspect name = "InterfaceDefinition" metaref = "1301" attributes = "VersionTag SpecifyIdTag UUID label" >
 				<part metaref = "1302" role = "Attribute" primary = "yes" linked = "yes"></part>
 				<part metaref = "1303" role = "InEventPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
@@ -4262,25 +4257,25 @@ referenceParts (RequiredRequestPort)->forAll (a, b : gme::Reference | a <> b imp
 				<part metaref = "1308" role = "Supports" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 			</aspect>
 			<aspect name = "Behavior" metaref = "1978" attributes = "VersionTag SpecifyIdTag UUID label" >
-				<part metaref = "4007" role = "Action" primary = "yes" linked = "no"></part>
-				<part metaref = "4008" role = "CompositeAction" primary = "yes" linked = "no"></part>
-				<part metaref = "4009" role = "Effect" primary = "yes" linked = "no"></part>
-				<part metaref = "4010" role = "Environment" primary = "yes" linked = "no"></part>
-				<part metaref = "4011" role = "Finish" primary = "yes" linked = "no"></part>
+				<part metaref = "4258" role = "Action" primary = "yes" linked = "no"></part>
+				<part metaref = "4259" role = "CompositeAction" primary = "yes" linked = "no"></part>
+				<part metaref = "4260" role = "Effect" primary = "yes" linked = "no"></part>
+				<part metaref = "4261" role = "Environment" primary = "yes" linked = "no"></part>
+				<part metaref = "4262" role = "Finish" primary = "yes" linked = "no"></part>
 				<part metaref = "2000" role = "InEventPort" primary = "no" kindaspect = "InterfaceDefinition" linked = "yes"></part>
-				<part metaref = "4012" role = "Input" primary = "yes" linked = "no"></part>
-				<part metaref = "4013" role = "InputAction" primary = "yes" linked = "no"></part>
-				<part metaref = "4014" role = "InputEffect" primary = "yes" linked = "no"></part>
-				<part metaref = "4015" role = "MultiInput" primary = "yes" linked = "no"></part>
+				<part metaref = "4263" role = "Input" primary = "yes" linked = "no"></part>
+				<part metaref = "4264" role = "InputAction" primary = "yes" linked = "no"></part>
+				<part metaref = "4265" role = "InputEffect" primary = "yes" linked = "no"></part>
+				<part metaref = "4266" role = "MultiInput" primary = "yes" linked = "no"></part>
 				<part metaref = "2001" role = "OutEventPort" primary = "no" kindaspect = "InterfaceDefinition" linked = "yes"></part>
-				<part metaref = "4016" role = "OutputAction" primary = "yes" linked = "no"></part>
-				<part metaref = "4017" role = "PeriodicEvent" primary = "yes" linked = "no"></part>
+				<part metaref = "4267" role = "OutputAction" primary = "yes" linked = "no"></part>
+				<part metaref = "4268" role = "PeriodicEvent" primary = "yes" linked = "no"></part>
 				<part metaref = "2002" role = "ProvidedRequestPort" primary = "no" kindaspect = "InterfaceDefinition" linked = "yes"></part>
 				<part metaref = "2003" role = "RequiredRequestPort" primary = "no" kindaspect = "InterfaceDefinition" linked = "yes"></part>
-				<part metaref = "4018" role = "State" primary = "yes" linked = "no"></part>
-				<part metaref = "4019" role = "Transition" primary = "yes" linked = "no"></part>
-				<part metaref = "4020" role = "Variable" primary = "yes" linked = "no"></part>
-				<part metaref = "4021" role = "WorkerType" primary = "yes" kindaspect = "Behavior" linked = "no"></part>
+				<part metaref = "4269" role = "State" primary = "yes" linked = "no"></part>
+				<part metaref = "4270" role = "Transition" primary = "yes" linked = "no"></part>
+				<part metaref = "4271" role = "Variable" primary = "yes" linked = "no"></part>
+				<part metaref = "4272" role = "WorkerType" primary = "yes" kindaspect = "Behavior" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "ComponentAssembly" metaref = "1309" attributes = "UUID label" >
@@ -4384,7 +4379,7 @@ instances->forAll (x : Component |
 			<role name = "ComponentPackageReference" metaref = "1321" kind = "ComponentPackageReference"></role>
 			<role name = "ComponentQoS" metaref = "3773" kind = "ComponentQoS"></role>
 			<role name = "ComponentRef" metaref = "2875" kind = "ComponentRef"></role>
-			<role name = "ECConfiguration" metaref = "4022" kind = "ECConfiguration"></role>
+			<role name = "ECConfiguration" metaref = "4273" kind = "ECConfiguration"></role>
 			<role name = "EventChannelConfiguration" metaref = "3774" kind = "EventChannelConfiguration"></role>
 			<role name = "EventSinkDelegate" metaref = "2876" kind = "EventSinkDelegate"></role>
 			<role name = "EventSinkPublish" metaref = "3704" kind = "EventSinkPublish"></role>
@@ -4406,7 +4401,7 @@ instances->forAll (x : Component |
 			<role name = "QoSCharRef" metaref = "3776" kind = "QoSCharRef"></role>
 			<role name = "QoSConnector" metaref = "3502" kind = "QoSConnector"></role>
 			<role name = "QoSReq" metaref = "3707" kind = "QoSReq"></role>
-			<role name = "RTConfiguration" metaref = "4023" kind = "RTConfiguration"></role>
+			<role name = "RTConfiguration" metaref = "4274" kind = "RTConfiguration"></role>
 			<role name = "RealTimeConfiguration" metaref = "3777" kind = "RealTimeConfiguration"></role>
 			<role name = "RecepInvoke" metaref = "3708" kind = "RecepInvoke"></role>
 			<role name = "ReceptacleDelegate" metaref = "2882" kind = "ReceptacleDelegate"></role>
@@ -4432,7 +4427,7 @@ instances->forAll (x : Component |
 				<part metaref = "1350" role = "ComponentPackage" primary = "yes" linked = "no"></part>
 				<part metaref = "1351" role = "ComponentPackageReference" primary = "yes" linked = "no"></part>
 				<part metaref = "2896" role = "ComponentRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "4024" role = "ECConfiguration" primary = "yes" linked = "no"></part>
+				<part metaref = "4275" role = "ECConfiguration" primary = "yes" linked = "no"></part>
 				<part metaref = "2897" role = "EventSinkDelegate" primary = "yes" linked = "no"></part>
 				<part metaref = "2898" role = "EventSourceDelegate" primary = "yes" linked = "no"></part>
 				<part metaref = "2899" role = "ExternalDelegate" primary = "yes" linked = "no"></part>
@@ -4444,7 +4439,7 @@ instances->forAll (x : Component |
 				<part metaref = "1359" role = "Property" primary = "yes" linked = "no"></part>
 				<part metaref = "1360" role = "ProvidedRequestPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
 				<part metaref = "2902" role = "PublishConnector" primary = "yes" linked = "no"></part>
-				<part metaref = "4025" role = "RTConfiguration" primary = "yes" linked = "no"></part>
+				<part metaref = "4276" role = "RTConfiguration" primary = "yes" linked = "no"></part>
 				<part metaref = "2903" role = "ReceptacleDelegate" primary = "yes" linked = "no"></part>
 				<part metaref = "3197" role = "RepGRequirement" primary = "yes" linked = "no"></part>
 				<part metaref = "1363" role = "RequiredRequestPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
@@ -4600,22 +4595,22 @@ instances->forAll (x : Component |
 				<dispname>Primary Artifacts of a MonolithicImplementation should have unique names</dispname>
 			</constraint>
 			<constraint name="ValidComponentImplementationContainerPartCardinality186" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidComponentImplementationContainerPartCardinality187" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ComponentImplementation" ) -> size + self.parts( "MonolithicImplementation" ) -> size + self.parts( "ComponentAssembly" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 1.</dispname>
 			</constraint>
+			<constraint name="ValidComponentImplementationContainerPartCardinality187" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
+			</constraint>
 			<constraint name="ValidComponentImplementationContainerPartCardinality188" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Implements" ) -> size in
+				<![CDATA[let partCount = self.parts( "PathReference" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidComponentImplementationContainerPartCardinality189" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PathReference" ) -> size in
+				<![CDATA[let partCount = self.parts( "Implements" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -4671,7 +4666,7 @@ instances->forAll (x : Component |
 				<part metaref = "1454" role = "DataType" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "CompositeAction" metaref = "4048" >
+		<model name = "CompositeAction" metaref = "4277" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="action.bmp"></regnode>
 				<regnode name = "icon" value ="composite.bmp"></regnode>
@@ -4691,29 +4686,29 @@ inputs.size () = 1
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to ActionBase as &quot;src&quot; over Transition, has to match 0..1.</dispname>
 			</constraint>
-			<role name = "Action" metaref = "4049" kind = "Action"></role>
-			<role name = "CompositeAction" metaref = "4050" kind = "CompositeAction"></role>
-			<role name = "Effect" metaref = "4051" kind = "Effect"></role>
-			<role name = "Finish" metaref = "4052" kind = "Finish"></role>
-			<role name = "InputAction" metaref = "4053" kind = "InputAction"></role>
-			<role name = "InputEffect" metaref = "4054" kind = "InputEffect"></role>
-			<role name = "OutputAction" metaref = "4055" kind = "OutputAction"></role>
+			<role name = "Action" metaref = "4278" kind = "Action"></role>
+			<role name = "CompositeAction" metaref = "4279" kind = "CompositeAction"></role>
+			<role name = "Effect" metaref = "4280" kind = "Effect"></role>
+			<role name = "Finish" metaref = "4281" kind = "Finish"></role>
+			<role name = "InputAction" metaref = "4282" kind = "InputAction"></role>
+			<role name = "InputEffect" metaref = "4283" kind = "InputEffect"></role>
+			<role name = "OutputAction" metaref = "4284" kind = "OutputAction"></role>
 			<role name = "Property" metaref = "3326" kind = "Property"></role>
-			<role name = "State" metaref = "4056" kind = "State"></role>
-			<role name = "Transition" metaref = "4057" kind = "Transition"></role>
-			<role name = "Variable" metaref = "4058" kind = "Variable"></role>
+			<role name = "State" metaref = "4285" kind = "State"></role>
+			<role name = "Transition" metaref = "4286" kind = "Transition"></role>
+			<role name = "Variable" metaref = "4287" kind = "Variable"></role>
 			<aspect name = "Behavior" metaref = "3329" >
-				<part metaref = "4059" role = "Action" primary = "yes" linked = "no"></part>
-				<part metaref = "4060" role = "CompositeAction" primary = "yes" linked = "no"></part>
-				<part metaref = "4061" role = "Effect" primary = "yes" linked = "no"></part>
-				<part metaref = "4062" role = "Finish" primary = "yes" linked = "no"></part>
-				<part metaref = "4063" role = "InputAction" primary = "yes" linked = "no"></part>
-				<part metaref = "4064" role = "InputEffect" primary = "yes" linked = "no"></part>
-				<part metaref = "4065" role = "OutputAction" primary = "yes" linked = "no"></part>
+				<part metaref = "4288" role = "Action" primary = "yes" linked = "no"></part>
+				<part metaref = "4289" role = "CompositeAction" primary = "yes" linked = "no"></part>
+				<part metaref = "4290" role = "Effect" primary = "yes" linked = "no"></part>
+				<part metaref = "4291" role = "Finish" primary = "yes" linked = "no"></part>
+				<part metaref = "4292" role = "InputAction" primary = "yes" linked = "no"></part>
+				<part metaref = "4293" role = "InputEffect" primary = "yes" linked = "no"></part>
+				<part metaref = "4294" role = "OutputAction" primary = "yes" linked = "no"></part>
 				<part metaref = "3331" role = "Property" primary = "yes" linked = "no"></part>
-				<part metaref = "4066" role = "State" primary = "yes" linked = "no"></part>
-				<part metaref = "4067" role = "Transition" primary = "yes" linked = "no"></part>
-				<part metaref = "4068" role = "Variable" primary = "yes" linked = "no"></part>
+				<part metaref = "4295" role = "State" primary = "yes" linked = "no"></part>
+				<part metaref = "4296" role = "Transition" primary = "yes" linked = "no"></part>
+				<part metaref = "4297" role = "Variable" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "ConnectedComponent" metaref = "2011" >
@@ -4791,40 +4786,40 @@ inputs.size () = 1
 				<part metaref = "1488" role = "Shares" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "ECConfiguration" metaref = "4069" attributes = "resourceType" >
+		<model name = "ECConfiguration" metaref = "4298" attributes = "resourceType" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Requirement.bmp"></regnode>
-			<role name = "Consumer2BehaviorConnection" metaref = "4070" kind = "Consumer2BehaviorConnection"></role>
-			<role name = "ECConsumer" metaref = "4071" kind = "ECConsumer"></role>
-			<role name = "ECSupplier" metaref = "4072" kind = "ECSupplier"></role>
-			<role name = "Property" metaref = "4073" kind = "Property"></role>
-			<role name = "RecursiveFilterConnection" metaref = "4074" kind = "RecursiveFilterConnection"></role>
+			<role name = "Consumer2BehaviorConnection" metaref = "4299" kind = "Consumer2BehaviorConnection"></role>
+			<role name = "ECConsumer" metaref = "4300" kind = "ECConsumer"></role>
+			<role name = "ECSupplier" metaref = "3848" kind = "ECSupplier"></role>
+			<role name = "Property" metaref = "3849" kind = "Property"></role>
+			<role name = "RecursiveFilterConnection" metaref = "3850" kind = "RecursiveFilterConnection"></role>
 			<aspect name = "Packaging" metaref = "4075" attributes = "resourceType" >
-				<part metaref = "4076" role = "Property" primary = "yes" linked = "no"></part>
+				<part metaref = "3852" role = "Property" primary = "yes" linked = "no"></part>
 			</aspect>
 			<aspect name = "EventChannelRequirement" metaref = "4077" attributes = "resourceType" >
-				<part metaref = "4078" role = "Consumer2BehaviorConnection" primary = "yes" linked = "no"></part>
-				<part metaref = "4079" role = "ECConsumer" primary = "yes" linked = "no"></part>
-				<part metaref = "4080" role = "ECSupplier" primary = "yes" linked = "no"></part>
-				<part metaref = "4081" role = "RecursiveFilterConnection" primary = "yes" linked = "no"></part>
+				<part metaref = "3854" role = "Consumer2BehaviorConnection" primary = "yes" linked = "no"></part>
+				<part metaref = "4301" role = "ECConsumer" primary = "yes" linked = "no"></part>
+				<part metaref = "3856" role = "ECSupplier" primary = "yes" linked = "no"></part>
+				<part metaref = "4302" role = "RecursiveFilterConnection" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "ECConsumer" metaref = "4082" attributes = "ConfigureRTQoS" >
+		<model name = "ECConsumer" metaref = "3858" attributes = "ConfigureRTQoS" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<role name = "ECBehavior" metaref = "4083" kind = "ECBehavior"></role>
-			<role name = "ECEventFilterConfiguration" metaref = "4084" kind = "ECEventFilterConfiguration"></role>
-			<role name = "RecursiveFilterConnection" metaref = "4085" kind = "RecursiveFilterConnection"></role>
+			<role name = "ECBehavior" metaref = "4303" kind = "ECBehavior"></role>
+			<role name = "ECEventFilterConfiguration" metaref = "4304" kind = "ECEventFilterConfiguration"></role>
+			<role name = "RecursiveFilterConnection" metaref = "4305" kind = "RecursiveFilterConnection"></role>
 			<aspect name = "EventChannelRequirement" metaref = "4086" attributes = "ConfigureRTQoS" >
-				<part metaref = "4087" role = "ECBehavior" primary = "yes" linked = "no"></part>
-				<part metaref = "4088" role = "ECEventFilterConfiguration" primary = "yes" linked = "no"></part>
-				<part metaref = "4089" role = "RecursiveFilterConnection" primary = "yes" linked = "no"></part>
+				<part metaref = "3863" role = "ECBehavior" primary = "yes" linked = "no"></part>
+				<part metaref = "4306" role = "ECEventFilterConfiguration" primary = "yes" linked = "no"></part>
+				<part metaref = "3865" role = "RecursiveFilterConnection" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "ECSupplier" metaref = "4090" attributes = "ConfigureRTQoS" >
+		<model name = "ECSupplier" metaref = "4307" attributes = "ConfigureRTQoS" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<role name = "Supplier2FilterConnection" metaref = "4091" kind = "Supplier2FilterConnection"></role>
+			<role name = "Supplier2FilterConnection" metaref = "3867" kind = "Supplier2FilterConnection"></role>
 			<aspect name = "EventChannelRequirement" metaref = "4092" attributes = "ConfigureRTQoS" >
-				<part metaref = "4093" role = "Supplier2FilterConnection" primary = "yes" linked = "no"></part>
+				<part metaref = "4308" role = "Supplier2FilterConnection" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "EC_In_Port" metaref = "4094" >
@@ -5162,7 +5157,7 @@ self.connectedFCOs(ComponentQoS)->size() = 0]]>
 				<part metaref = "1605" role = "Property" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "InputAction" metaref = "4124" >
+		<model name = "InputAction" metaref = "4309" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="InputAction.bmp"></regnode>
 			<constraint name="MustHaveFinish" eventmask = "0x0" depth = "1" priority = "1">
@@ -5394,7 +5389,7 @@ self.connectedFCOs(ComponentQoS)->size() = 0]]>
 				<part metaref = "1667" role = "InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "OutputAction" metaref = "4125" >
+		<model name = "OutputAction" metaref = "4310" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="action.bmp"></regnode>
 				<regnode name = "icon" value ="OutputAction.bmp"></regnode>
@@ -5484,14 +5479,14 @@ ports.exists (iter : OutEventPort | iter->name () = self.name ())]]>
 				<dispname>A PackageConfiguration can either specialize another PackageConfiguration, or contain a ComponentPackage, or contain a reference to a ComponentPackage</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality195" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
+				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality196" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfiguration" ) -> size in
-                     (partCount >= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 1..*.</dispname>
+				<![CDATA[let partCount = self.parts( "PackageConfSpecializedConfig" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality197" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PackageConfBasePackage" ) -> size in
@@ -5504,18 +5499,18 @@ ports.exists (iter : OutEventPort | iter->name () = self.name ())]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality199" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
+				<![CDATA[let partCount = self.parts( "PackageConfiguration" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 1..*.</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality200" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfSpecializedConfig" ) -> size in
+				<![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<role name = "ComponentPackage" metaref = "1703" kind = "ComponentPackage"></role>
 			<role name = "ComponentPackageReference" metaref = "1704" kind = "ComponentPackageReference"></role>
-			<role name = "ECConfiguration" metaref = "4126" kind = "ECConfiguration"></role>
+			<role name = "ECConfiguration" metaref = "4311" kind = "ECConfiguration"></role>
 			<role name = "FOU_Requirement" metaref = "3281" kind = "FOU_Requirement"></role>
 			<role name = "PackageConfBasePackage" metaref = "1705" kind = "PackageConfBasePackage"></role>
 			<role name = "PackageConfConfigProperty" metaref = "1706" kind = "PackageConfConfigProperty"></role>
@@ -5524,13 +5519,13 @@ ports.exists (iter : OutEventPort | iter->name () = self.name ())]]>
 			<role name = "PackageConfSpecializedConfig" metaref = "1709" kind = "PackageConfSpecializedConfig"></role>
 			<role name = "PackageConfiguration" metaref = "1710" kind = "PackageConfiguration"></role>
 			<role name = "Property" metaref = "1711" kind = "Property"></role>
-			<role name = "RTConfiguration" metaref = "4127" kind = "RTConfiguration"></role>
+			<role name = "RTConfiguration" metaref = "3871" kind = "RTConfiguration"></role>
 			<role name = "RepGRequirement" metaref = "3225" kind = "RepGRequirement"></role>
 			<role name = "Requirement" metaref = "1712" kind = "Requirement"></role>
 			<aspect name = "Packaging" metaref = "1713" >
 				<part metaref = "1714" role = "ComponentPackage" primary = "yes" linked = "no"></part>
 				<part metaref = "1715" role = "ComponentPackageReference" primary = "yes" linked = "no"></part>
-				<part metaref = "4128" role = "ECConfiguration" primary = "yes" linked = "no"></part>
+				<part metaref = "4312" role = "ECConfiguration" primary = "yes" linked = "no"></part>
 				<part metaref = "3282" role = "FOU_Requirement" primary = "yes" linked = "no"></part>
 				<part metaref = "1716" role = "PackageConfBasePackage" primary = "yes" linked = "no"></part>
 				<part metaref = "1717" role = "PackageConfConfigProperty" primary = "yes" linked = "no"></part>
@@ -5539,7 +5534,7 @@ ports.exists (iter : OutEventPort | iter->name () = self.name ())]]>
 				<part metaref = "1720" role = "PackageConfSpecializedConfig" primary = "yes" linked = "no"></part>
 				<part metaref = "1721" role = "PackageConfiguration" primary = "yes" linked = "no"></part>
 				<part metaref = "1722" role = "Property" primary = "yes" linked = "no"></part>
-				<part metaref = "4129" role = "RTConfiguration" primary = "yes" linked = "no"></part>
+				<part metaref = "3873" role = "RTConfiguration" primary = "yes" linked = "no"></part>
 				<part metaref = "3227" role = "RepGRequirement" primary = "yes" linked = "no"></part>
 				<part metaref = "1723" role = "Requirement" primary = "yes" linked = "no"></part>
 			</aspect>
@@ -5563,12 +5558,12 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageContainerPartCardinality202" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageInterface" ) -> size in
+				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageContainerPartCardinality203" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
+				<![CDATA[let partCount = self.parts( "PackageInterface" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -5666,28 +5661,28 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 				<part metaref = "1758" role = "DataType" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "RTConfiguration" metaref = "4130" attributes = "resourceType" >
+		<model name = "RTConfiguration" metaref = "4313" attributes = "resourceType" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Requirement.bmp"></regnode>
 			<constraint name="ValidRTConfigurationPartCardinality205" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Multithreading" ) -> size in
-                     (partCount >= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by RTConfiguration, has to match 1..*.</dispname>
-			</constraint>
-			<constraint name="ValidRTConfigurationPartCardinality206" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Connections" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RTConfiguration, has to match 1..*.</dispname>
 			</constraint>
-			<role name = "Connections" metaref = "4131" kind = "Connections"></role>
-			<role name = "Multithreading" metaref = "4132" kind = "Multithreading"></role>
-			<role name = "Property" metaref = "4133" kind = "Property"></role>
+			<constraint name="ValidRTConfigurationPartCardinality206" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Multithreading" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by RTConfiguration, has to match 1..*.</dispname>
+			</constraint>
+			<role name = "Connections" metaref = "4314" kind = "Connections"></role>
+			<role name = "Multithreading" metaref = "3876" kind = "Multithreading"></role>
+			<role name = "Property" metaref = "3877" kind = "Property"></role>
 			<aspect name = "Packaging" metaref = "4134" attributes = "resourceType" >
-				<part metaref = "4135" role = "Property" primary = "yes" linked = "no"></part>
+				<part metaref = "3879" role = "Property" primary = "yes" linked = "no"></part>
 			</aspect>
 			<aspect name = "RealTimeRequirement" metaref = "4136" attributes = "resourceType" >
-				<part metaref = "4137" role = "Connections" primary = "yes" linked = "no"></part>
-				<part metaref = "4138" role = "Multithreading" primary = "yes" linked = "no"></part>
+				<part metaref = "3881" role = "Connections" primary = "yes" linked = "no"></part>
+				<part metaref = "3882" role = "Multithreading" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "ReadonlyAttribute" metaref = "1785" attributes = "VersionTag SpecifyIdTag" >
@@ -5763,12 +5758,12 @@ self.connectedFCOs(PortQoS)->size() = 0]]>
 				<dispname>Can not connect to different QoSCharacteristic type</dispname>
 			</constraint>
 			<constraint name="ValidRealTimeConfigurationPartCardinality208" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "EnvironmentConf" ) -> size in
+				<![CDATA[let partCount = self.parts( "PriorityModelPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RealTimeConfiguration, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidRealTimeConfigurationPartCardinality209" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PriorityModelPolicy" ) -> size in
+				<![CDATA[let partCount = self.parts( "EnvironmentConf" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RealTimeConfiguration, has to match 0..1.</dispname>
 			</constraint>
@@ -5982,12 +5977,12 @@ let nodes = directnodes + indirectnodes in
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidSwitchedAggregatePartCardinality216" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
+				<![CDATA[let partCount = self.parts( "Label" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
 			<constraint name="ValidSwitchedAggregatePartCardinality217" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Label" ) -> size in
+				<![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
@@ -6039,7 +6034,7 @@ let nodes = directnodes + indirectnodes in
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="TopLevelPackageConfiguration.bmp"></regnode>
 			<constraint name="ValidTopLevelPackageContainerPartCardinality219" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
+				<![CDATA[let partCount = self.parts( "package" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -6049,7 +6044,7 @@ let nodes = directnodes + indirectnodes in
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidTopLevelPackageContainerPartCardinality221" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "package" ) -> size in
+				<![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -6185,44 +6180,44 @@ let nodes = directnodes + indirectnodes in
 				<part metaref = "1895" role = "TwowayOperation" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "Worker" metaref = "4147" attributes = "Abstract" >
+		<model name = "Worker" metaref = "4315" attributes = "Abstract" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="worker.gif"></regnode>
-			<role name = "Action" metaref = "4148" kind = "Action"></role>
+			<role name = "Action" metaref = "4316" kind = "Action"></role>
 			<aspect name = "Behavior" metaref = "2958" attributes = "Abstract" >
-				<part metaref = "4149" role = "Action" primary = "yes" linked = "no"></part>
+				<part metaref = "4317" role = "Action" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "WorkerFile" metaref = "4150" attributes = "Location" >
+		<model name = "WorkerFile" metaref = "4318" attributes = "Location" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="file.bmp"></regnode>
-			<role name = "Worker" metaref = "4151" kind = "Worker"></role>
-			<role name = "WorkerPackage" metaref = "4152" kind = "WorkerPackage"></role>
+			<role name = "Worker" metaref = "4319" kind = "Worker"></role>
+			<role name = "WorkerPackage" metaref = "4320" kind = "WorkerPackage"></role>
 			<aspect name = "Behavior" metaref = "2990" attributes = "Location" >
-				<part metaref = "4153" role = "Worker" primary = "yes" linked = "no"></part>
-				<part metaref = "4154" role = "WorkerPackage" primary = "yes" linked = "no"></part>
+				<part metaref = "4321" role = "Worker" primary = "yes" linked = "no"></part>
+				<part metaref = "4322" role = "WorkerPackage" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "WorkerLibrary" metaref = "4155" attributes = "Location" >
+		<model name = "WorkerLibrary" metaref = "4323" attributes = "Location" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="UniqueWorker" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let workers = self->parts (Worker) in
     workers->isUnique (iter : Worker | iter->name ())]]>
 				<dispname>Worker library constains duplicate worker names</dispname>
 			</constraint>
-			<role name = "WorkerFile" metaref = "4156" kind = "WorkerFile"></role>
+			<role name = "WorkerFile" metaref = "4324" kind = "WorkerFile"></role>
 			<aspect name = "Behavior" metaref = "2966" attributes = "Location" >
-				<part metaref = "4157" role = "WorkerFile" primary = "yes" linked = "no"></part>
+				<part metaref = "4325" role = "WorkerFile" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "WorkerPackage" metaref = "4158" >
+		<model name = "WorkerPackage" metaref = "4326" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="package.bmp"></regnode>
-			<role name = "Worker" metaref = "4159" kind = "Worker"></role>
-			<role name = "WorkerPackage" metaref = "4160" kind = "WorkerPackage"></role>
+			<role name = "Worker" metaref = "4327" kind = "Worker"></role>
+			<role name = "WorkerPackage" metaref = "4328" kind = "WorkerPackage"></role>
 			<aspect name = "Behavior" metaref = "2993" >
-				<part metaref = "4161" role = "Worker" primary = "yes" linked = "no"></part>
-				<part metaref = "4162" role = "WorkerPackage" primary = "yes" linked = "no"></part>
+				<part metaref = "4329" role = "Worker" primary = "yes" linked = "no"></part>
+				<part metaref = "4330" role = "WorkerPackage" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<folder name = "ComponentAnalyses" metaref = "1896"  rootobjects = "BenchmarkAnalysis" >
@@ -6264,7 +6259,7 @@ let nodes = directnodes + indirectnodes in
 		</folder>
 		<folder name = "TopLevelPackages" metaref = "1908"  rootobjects = "TopLevelPackageContainer" >
 		</folder>
-		<folder name = "WorkerLibraries" metaref = "4163"  rootobjects = "WorkerLibrary" >
+		<folder name = "WorkerLibraries" metaref = "4331"  rootobjects = "WorkerLibrary" >
 		</folder>
 	</folder>
 </paradigm>
