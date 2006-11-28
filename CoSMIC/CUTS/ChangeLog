@@ -1,3 +1,10 @@
+Tue Nov 28 02:10:06 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * etc/config/cuts_bdcsvc.mpb:
+
+          MPC base class for including the necessary project
+          settings for BDC service objects.
+
 Tue Nov 28 01:33:05 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * SQL/CUTS-create.sql:
