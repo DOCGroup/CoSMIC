@@ -1,14 +1,21 @@
 // -*- C++ -*-
 
+//=============================================================================
+/**
+ * @file      Time_Metric.h
+ *
+ * $Id$
+ *
+ * @author    James H. Hill
+ */
+//=============================================================================
+
 #ifndef _CUTS_TIME_METRIC_H_
 #define _CUTS_TIME_METRIC_H_
 
-#include "cuts/config.h"
 #include "cuts/CUTS_export.h"
-
 #include "ace/Time_Value.h"
 #include "ace/RW_Thread_Mutex.h"
-#include "ace/Guard_T.h"
 
 // Forward decl.
 class CUTS_System_Metrics_Visitor;
@@ -16,13 +23,16 @@ class CUTS_System_Metrics_Visitor;
 //=============================================================================
 /**
  * @class CUTS_Time_Metric
+ *
+ * Timing measurement container. This object keeps track of timing data
+ * (i.e., worst, average, and best) timing measurements.
  */
 //=============================================================================
 
 class CUTS_Export CUTS_Time_Metric
 {
 public:
-  /// Constructor.
+  /// Default constructor.
   CUTS_Time_Metric (void);
 
   /// Copy constructor.
@@ -32,19 +42,22 @@ public:
   ~CUTS_Time_Metric (void);
 
   /// Number of samples in the timing metric.
-  long count (void);
+  long count (void) const;
 
   /// Best execution timing metric.
-  long best_time (void);
+  long best_time (void) const;
 
   /// Worse execution timing metric.
-  long worse_time (void);
+  long worse_time (void) const;
 
   /// Average execution timing metric.
-  long average_time (void);
+  long total_time (void) const;
+
+  /// Get the average time for the metrics.
+  double avg_time (void) const;
 
   /// Set the execution timing metrics.
-  void update (size_t count, long avg, long best, long worse);
+  void update (size_t count, long total, long best, long worse);
 
   /// Reset all the timing metrics.
   void reset (void);
@@ -97,8 +110,8 @@ private:
   /// Worse execution timing metric.
   ACE_Time_Value worse_time_;
 
-  /// Average execution timing metric.
-  ACE_Time_Value average_time_;
+  /// Total execution timing metric.
+  ACE_Time_Value total_time_;
 
   /// Locking mechanism for sychronization.
   ACE_RW_Thread_Mutex lock_;

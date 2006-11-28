@@ -8,6 +8,7 @@
 #define BENCHMARK_DATA_COLLECTOR_EXEC_EXPORT_H
 
 #include "ace/config-all.h"
+#include "cuts/config.h"
 
 #if !defined (BENCHMARK_DATA_COLLECTOR_EXEC_HAS_DLL)
 #  define BENCHMARK_DATA_COLLECTOR_EXEC_HAS_DLL 1

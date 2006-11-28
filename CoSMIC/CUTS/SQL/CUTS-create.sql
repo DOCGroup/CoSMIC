@@ -49,8 +49,8 @@ CREATE TABLE IF NOT EXISTS component_types
   UNIQUE (typename)
 );
 
-INSERT INTO component_types (typeid, typename)
-  VALUES (0, 'Unknown');
+INSERT INTO component_types (typename)
+  VALUES ('Unknown');
 
 --
 -- This table contains the mapping of UUIDs their appropriate
@@ -73,6 +73,9 @@ CREATE TABLE IF NOT EXISTS component_instances
     ON DELETE RESTRICT
     ON UPDATE CASCADE
 );
+
+INSERT INTO component_instances (typeid, component_name)
+  VALUES (1, 'Unknown');
 
 --
 -- Create the table that contains all the critical paths created by the
@@ -173,21 +176,21 @@ CREATE TABLE IF NOT EXISTS execution_time
   dst               varchar (255)               default NULL,
 
   best_time         int NOT NULL default 0,
-  average_time      int NOT NULL default 0,
   worse_time        int NOT NULL default 0,
+  total_time        int NOT NULL default 0,
 
   INDEX (test_number),
   INDEX (collection_time),
-  INDEX (test_number, collection_time),
+  INDEX (test_number, collection_time)
 
-  FOREIGN KEY (test_number) REFERENCES tests (test_number)
-    ON DELETE CASCADE,
-  FOREIGN KEY (component) REFERENCES component_instances (component_id)
-    ON DELETE RESTRICT
-    ON UPDATE CASCADE,
-  FOREIGN KEY (sender) REFERENCES component_instances (component_id)
-    ON DELETE RESTRICT
-    ON UPDATE CASCADE
+--  FOREIGN KEY (test_number) REFERENCES tests (test_number)
+--    ON DELETE CASCADE,
+--  FOREIGN KEY (component) REFERENCES component_instances (component_id)
+--    ON DELETE RESTRICT
+--    ON UPDATE CASCADE,
+--  FOREIGN KEY (sender) REFERENCES component_instances (component_id)
+--    ON DELETE RESTRICT
+--    ON UPDATE CASCADE
 );
 
 --

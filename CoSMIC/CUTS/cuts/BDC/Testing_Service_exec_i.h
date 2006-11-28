@@ -12,8 +12,8 @@
  */
 //=============================================================================
 
-#ifndef _CUTS_TEST_SERVICE_EXEC_H_
-#define _CUTS_TEST_SERVICE_EXEC_H_
+#ifndef _CUTS_TESTING_SERVICE_EXEC_H_
+#define _CUTS_TESTING_SERVICE_EXEC_H_
 
 #include /**/ "ace/pre.h"
 
@@ -55,7 +55,7 @@ namespace CUTS
   {
   public:
     /// Constructor.
-    Testing_Service_exec_i (void);
+    Testing_Service_exec_i (CCM_Component_Registry * registry);
 
     /// Destructor.
     virtual ~Testing_Service_exec_i (void);
@@ -96,25 +96,21 @@ namespace CUTS
     virtual void unregister_component (
       const ::CUTS::Component_Registration & creg
       ACE_ENV_ARG_DECL_WITH_DEFAULTS)
-      ACE_THROW_SPEC ((::CORBA::SystemException,
-                       ::CUTS::ID_Not_Found));
+      ACE_THROW_SPEC ((::CORBA::SystemException));
 
     /**
      * Get the concrete implementation of the registry.
      *
      * @return Pointer to a CCM component registry.
      */
-    const CCM_Component_Registry * registry_i (void) const;
-
-    /**
-     * Get the concrete implementation of the registry.
-     *
-     * @return Pointer to a CCM component registry.
-     */
-    CCM_Component_Registry * registry_i (void);
+    CCM_Component_Registry * ccm_registry (void) const;
   };
 }
 
+#if defined (__CUTS_INLINE__)
+#include "Testing_Service_exec_i.inl"
+#endif
+
 #include /**/ "ace/post.h"
 
-#endif  // !define _CUTS_TEST_SERVICE_EXEC_H_
+#endif  // !define _CUTS_TESTING_SERVICE_EXEC_H_

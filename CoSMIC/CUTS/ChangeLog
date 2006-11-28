@@ -1,3 +1,154 @@
+Tue Nov 28 01:33:05 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * SQL/CUTS-create.sql:
+
+          - The execution_time table now stores the sum of all
+            the execution times instead of the average.
+          - Added 'Unknown' to the component_instance table.
+          - Added 'Unknown' to the component_type table.
+
+        * cuts/ActivationRecord.h:
+        * cuts/ActivationRecord.cpp:
+
+          The sender is alway's unknown now since we are refactoring
+          how the sender is inserted/extracted to the message.
+
+        * cuts/BDC/BDC_export.h:
+        * cuts/BDC/BDC_Service.h:
+        * cuts/BDC/BDC_Service.inl:
+        * cuts/BDC/BDC_Service.cpp:
+        * cuts/BDC/BDC_Service_Manager.h:
+        * cuts/BDC/BDC_Service_Manager.inl:
+        * cuts/BDC/BDC_Service_Manager.cpp:
+
+          This is a new feature of the Benchmark_Data_Collector (BDC). It
+          allows the BDC to host service objects that can operate on the
+          collected metrics. The main goal is to decouple the metrics
+          collection from analyzing the metrics. The BDC_Service_Manager.*
+          contains the object responsible for managing service objects. The
+          BDC_Service.* contains the base class for all BDC service objects.
+
+        * cuts/BDC/BDC_Task.h:
+        * cuts/BDC/BDC_Task.inl:
+        * cuts/BDC/BDC_Task.cpp:
+
+          Refactored the so that it acts like an active object (i.e.,
+          has open/close) methods and uses the event object from the
+          Benchmark_Data_Collector when signalling the completion of
+          collection metrics.
+
+        * cuts/BDC/Benchmark_Data_Collector.idl:
+        * cuts/BDC/Benchmark_Data_Collector.mpc:
+        * cuts/BDC/Benchmark_Data_Collector_exec_export.h:
+        * cuts/BDC/Benchmark_Data_Collector_exec_i.h:
+        * cuts/BDC/Benchmark_Data_Collector_exec_i.cpp:
+
+          Reimplemented the BDC so that is acts like a service configurator
+          for objects that want to analyze performance metrics.
+
+        * cuts/BDC/BDC_Control_Handle_exec_i.h:
+        * cuts/BDC/BDC_Control_Handle_exec_i.cpp:
+
+          Added methods that allow the handle to interact with the service
+          manager for the Benchmark_Data_Collector.
+
+        * cuts/BDC/Path_Measurement_exec_i.cpp:
+        * cuts/BDC/Testing_Service_exec_i.h:
+        * cuts/BDC/Testing_Service_exec_i.inl:
+        * cuts/BDC/Testing_Service_exec_i.cpp:
+
+
+        * cuts/BDC/service.idl:
+
+          IDL that contains the remoting interface for CUTS_BDC_Service
+          objects.
+
+        * cuts/CUTS.idl:
+
+          Refactored the IDL file and removed the following
+          interfaces:
+
+            - Path_Measurement since it will become a CUTS_BDC_Service
+              object.
+            - BDC_Control_Handle since it only has meaning to the
+              Benchmark_Data_Collector.
+
+        * cuts/CUTS.mpc:
+        * cuts/CUTS_export.h:
+        * cuts/Testing_Service.h:
+        * cuts/Testing_Service.inl:
+        * cuts/Testing_Service.cpp:
+        * cuts/BDC/CCM_Component_Registry.h:
+        * cuts/BDC/CCM_Component_Registry.cpp:
+        * cuts/Component_Info.h:
+        * cuts/Component_Registry.h:
+        * cuts/Component_Registry.inl:
+        * cuts/Component_Registry.cpp:
+        * cuts/Component_Registry_Handler.h:
+        * cuts/Component_Registry_Node.h:
+        * cuts/Component_Registry_Node.inl:
+        * cuts/Component_Registry_Node.cpp:
+
+          Refactored the registry and testing service so that it is an active
+          object as well and will be able to notify registered handles of
+          components that change state (i.e., register and unregister).
+
+        * cuts/Event_Handler_T.cpp:
+
+          Suppressed setting the sender of the event. Now all events
+          are sent from "unknown" components.
+
+        * cuts/Log_Msg.h:
+
+          First pass at a log message that extends the ACE log
+          message macro.
+
+        * cuts/IDL_Streams.cpp:
+        * cuts/Time_Metric.h:
+        * cuts/Time_Metric.inl:
+        * cuts/Time_Metric.cpp:
+
+          Updated the metric calculators so that they do not calculate
+          the average in memory.
+
+        * cuts/config.h:
+
+          Added macro definition CUTS_UNKNOWN_IMPL and CUTS_UNKNOWN_TYPE
+          that define the id of unknown types and implementations.
+
+        * cuts/svcs/dbase/DBase_Service.h:
+        * cuts/svcs/dbase/DBase_Service.inl:
+        * cuts/svcs/dbase/DBase_Service.cpp:
+        * cuts/svcs/dbase/DBase_Service.mpc:
+
+          Reimplemented the database service as a CUTS_BDC_Service
+          object.
+
+        * cuts/BDC/BDC_Task_Ex.h:
+        * cuts/BDC/BDC_Task_Ex.inl:
+        * cuts/BDC/BDC_Task_Ex.cpp:
+        * cuts/BDC/Benchmark_Data_Collector_Ex.cidl:
+        * cuts/BDC/Benchmark_Data_Collector_Ex.idl:
+        * cuts/BDC/Benchmark_Data_Collector_Ex.mpc:
+        * cuts/BDC/Benchmark_Data_Collector_Ex_exec_export.h:
+        * cuts/BDC/Benchmark_Data_Collector_Ex_exec_i.h:
+        * cuts/BDC/Benchmark_Data_Collector_Ex_exec_i.cpp:
+        * cuts/BDC/Benchmark_Data_Collector_Ex_stub_export.h:
+        * cuts/BDC/Benchmark_Data_Collector_Ex_svnt_export.h:
+        * cuts/BDC/Benchmark_Data_Collector_Impl.h:
+        * cuts/BDC/Benchmark_Data_Collector_Impl.inl:
+        * cuts/BDC/Benchmark_Data_Collector_Impl.cpp:
+        * cuts/BDC/Database_Service_exec_i.h:
+        * cuts/BDC/Database_Service_exec_i.cpp:
+        * cuts/BDC/Testing_Service_Ex_exec_i.h:
+        * cuts/BDC/Testing_Service_Ex_exec_i.inl:
+        * cuts/BDC/Testing_Service_Ex_exec_i.cpp:
+        * cuts/XML_System_Metrics_Visitor.h:
+        * cuts/XML_System_Metrics_Visitor.inl:
+        * cuts/XML_System_Metrics_Visitor.cpp:
+
+          Removed these files.
+
 Sat Nov 25 20:07:31 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE_Execution_Visitor.cpp:

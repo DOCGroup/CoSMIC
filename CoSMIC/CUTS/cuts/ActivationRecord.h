@@ -97,7 +97,7 @@ public:
   void reset (void);
 
   /// Activate the activation record.
-  virtual void activate (long owner = -1);
+  virtual void activate (long owner = 1);
 
   /// Close the activation record.
   virtual void close (void);

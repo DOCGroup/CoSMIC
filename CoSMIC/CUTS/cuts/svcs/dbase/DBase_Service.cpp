@@ -1,6 +1,7 @@
 // $Id$
 
 #include "DBase_Service.h"
+#include "cuts/Component_Info.h"
 #include "cuts/System_Metric.h"
 #include "cuts/Component_Metric.h"
 #include "cuts/Port_Metric.h"
@@ -11,6 +12,7 @@
 #include "cuts/utils/ODBC/ODBC_Record.h"
 #include "cuts/utils/ODBC/ODBC_Parameter.h"
 #include "cuts/utils/ODBC/ODBC_Types.h"
+#include "cuts/Log_Msg.h"
 
 #include "ace/Guard_T.h"
 #include "ace/Auto_Ptr.h"
@@ -20,6 +22,9 @@
 #include "ace/OS_NS_time.h"
 #include "ace/OS_NS_string.h"
 #include "ace/OS_NS_sys_time.h"
+#include "ace/CORBA_macros.h"
+#include "ace/Get_Opt.h"
+#include "ace/streams.h"
 
 #include <sstream>
 
@@ -29,16 +34,23 @@
 #include "DBase_Service.inl"
 #endif
 
+CUTS_BDC_SERVICE_IMPL (CUTS_Database_Service);
+
 //
 // CUTS_Database_Service
 //
 CUTS_Database_Service::CUTS_Database_Service (void)
-: test_number_ (0)
+: server_ ("localhost"),
+  username_ ("cuts"),
+  password_ ("cuts"),
+  port_ (3306),
+  verbose_ (false),
+  test_number_ (0)
 {
   // Right now we are binding directly to ODBC. In the future we would
   // like to ask the <CUTS_DB_Manager> for a connection object.
   ODBC_Connection * conn = 0;
-  ACE_NEW (conn, ODBC_Connection ());
+  ACE_NEW_THROW_EX (conn, ODBC_Connection (), ACE_bad_alloc ());
 
   this->conn_.reset (conn);
 }
@@ -49,6 +61,114 @@ CUTS_Database_Service::CUTS_Database_Service (void)
 CUTS_Database_Service::~CUTS_Database_Service (void)
 {
   this->disconnect ();
+}
+
+//
+// init
+//
+int CUTS_Database_Service::init (int argc, ACE_TCHAR * argv [])
+{
+  if (this->parse_args (argc, argv) != 0)
+    return -1;
+
+  if (this->verbose_)
+  {
+    ACE_DEBUG ((LM_DEBUG,
+                "connecting the database [server=%s; username=%s; "
+                "password=%s; port=%d]\n",
+                this->server_.c_str (),
+                this->username_.c_str (),
+                this->password_.c_str (),
+                this->port_));
+  }
+
+  this->connect (this->username_.c_str (),
+                 this->password_.c_str (),
+                 this->server_.c_str (),
+                 this->port_);
+
+  return 0;
+}
+
+//
+// parse_args
+//
+int CUTS_Database_Service::parse_args (int argc, ACE_TCHAR * argv [])
+{
+  const char * opts = ACE_TEXT ("u:p:s:P:");
+  ACE_Get_Opt get_opt (argc, argv, opts, 0);
+
+  get_opt.long_option ("username", 'u', ACE_Get_Opt::ARG_REQUIRED);
+  get_opt.long_option ("password", 'p', ACE_Get_Opt::ARG_REQUIRED);
+  get_opt.long_option ("server", 's', ACE_Get_Opt::ARG_REQUIRED);
+  get_opt.long_option ("port", 'P', ACE_Get_Opt::ARG_REQUIRED);
+  get_opt.long_option ("verbose", ACE_Get_Opt::NO_ARG);
+
+  int option;
+
+  while ((option = get_opt ()) != EOF)
+  {
+    switch (option)
+    {
+    case 0:
+      if (ACE_OS::strcmp (get_opt.long_option (), "username") == 0)
+      {
+        this->username_ = get_opt.opt_arg ();
+      }
+      else if (ACE_OS::strcmp (get_opt.long_option (), "password") == 0)
+      {
+        this->password_ = get_opt.opt_arg ();
+      }
+      else if (ACE_OS::strcmp (get_opt.long_option (), "server") == 0)
+      {
+        ACE_DEBUG ((LM_DEBUG, "setting the server\n"));
+
+        this->server_ = get_opt.opt_arg ();
+      }
+      else if (ACE_OS::strcmp (get_opt.long_option (), "port") == 0)
+      {
+        this->port_ = ACE_OS::atoi (get_opt.opt_arg ());
+      }
+      else if (ACE_OS::strcmp (get_opt.long_option (), "verbose") == 0)
+      {
+        this->verbose_ = true;
+      }
+      break;
+
+    case 'u':
+      this->username_ = get_opt.opt_arg ();
+      break;
+
+    case 'p':
+      this->password_ = get_opt.opt_arg ();
+      break;
+
+    case 's':
+      ACE_DEBUG ((LM_DEBUG, "setting the server\n"));
+      this->server_ = get_opt.opt_arg ();
+      break;
+
+    case 'P':
+      this->port_ = ACE_OS::atoi (get_opt.opt_arg ());
+      break;
+
+    case '?':
+      // unknown option; do nothing
+      break;
+
+    case ':':
+      ACE_ERROR_RETURN ((LM_ERROR,
+                         "%c is missing an argument\n",
+                         get_opt.opt_opt ()),
+                         1);
+      break;
+
+    default:
+      /* do nothing */;
+    }
+  }
+
+  return 0;
 }
 
 //
@@ -91,9 +211,10 @@ void CUTS_Database_Service::disconnect (void)
 //
 // register_component
 //
-bool CUTS_Database_Service::register_component (const char * uuid,
-                                                const char * type,
-                                                long regid)
+bool CUTS_Database_Service::
+register_component (const char * uuid,
+                    const char * type,
+                    long regid)
 {
   // Get the <type_id> for the component. We do not care if the
   // operation succeeds or fails.
@@ -269,9 +390,8 @@ bool CUTS_Database_Service::stop_current_test_i (void)
   }
   catch (...)
   {
-    ACE_ERROR ((LM_ERROR,
-                "[%M] -%T - unknown exception in "
-                "CUTS_Database_Service::stop_current_test_i\n"));
+    CUTS_ERROR (LM_ERROR,
+                "unknown exception in stop_current_test_i ()\n");
   }
   return false;
 }
@@ -279,21 +399,17 @@ bool CUTS_Database_Service::stop_current_test_i (void)
 //
 // archive_system_metrics
 //
-bool CUTS_Database_Service::
-archive_system_metrics (CUTS_System_Metric & metrics)
+int CUTS_Database_Service::handle_metrics (void)
 {
-  ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex,
-                         guard,
-                         this->lock_,
-                         false);
-
+  ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex, guard, this->lock_, 0);
   ACE_Auto_Ptr <ODBC_Query> query (this->create_new_query ());
+
   if (query.get () == 0)
-    return false;
+    return 0;
 
   long best_time,
        worse_time,
-       average_time,
+       total_time,
        metric_count,
        component,
        sender;
@@ -306,16 +422,18 @@ archive_system_metrics (CUTS_System_Metric & metrics)
   try
   {
     // Convert the <timestamp> to a known type.
-    ODBC_Date_Time collection_time (ACE_Date_Time (metrics.timestamp ()));
+    ACE_Time_Value timestamp = this->metrics ().timestamp ();
+    ACE_Date_Time ct (timestamp);
+    ODBC_Date_Time datetime (ct);
 
     // Prepare the statement and bind all the parameters.
     const char * str_stmt =
       "INSERT INTO execution_time (test_number, collection_time, metric_type, "
-      "metric_count, component, sender, src, dst, best_time, average_time, "
+      "metric_count, component, sender, src, dst, best_time, total_time, "
       "worse_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     query->prepare (str_stmt);
     query->parameter (0)->bind (&this->test_number_);
-    query->parameter (1)->bind (&collection_time);
+    query->parameter (1)->bind (&datetime);
     query->parameter (2)->bind (metric_type, 0);
     query->parameter (3)->bind (&metric_count);
     query->parameter (4)->bind (&component);
@@ -323,32 +441,31 @@ archive_system_metrics (CUTS_System_Metric & metrics)
     query->parameter (6)->bind (src, 0);
     query->parameter (7)->bind (dst, 0);
     query->parameter (8)->bind (&best_time);
-    query->parameter (9)->bind (&average_time);
+    query->parameter (9)->bind (&total_time);
     query->parameter (10)->bind (&worse_time);
 
-    ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex,
-                            metric_lock,
-                            metrics.lock (),
-                            false);
+    //ACE_READ_GUARD (ACE_RW_Thread_Mutex,
+    //                metric_lock,
+    //                this->metrics ().lock ());
 
     CUTS_Component_Metric_Map::const_iterator cm_iter;
 
-    for (cm_iter  = metrics.component_metrics ().begin ();
-         cm_iter != metrics.component_metrics ().end ();
+    for (cm_iter  = this->metrics ().component_metrics ().begin ();
+         cm_iter != this->metrics ().component_metrics ().end ();
          cm_iter ++)
     {
       // Determine if this component has any metrics that correspond
       // with the lastest timestamp for the system metrics. If it does
       // not then why bother going any further.
-      if (metrics.timestamp () != cm_iter->second->timestamp ())
+      if (timestamp != cm_iter->second->timestamp ())
         continue;
 
       component = this->component_mapping_[cm_iter->first];
 
       ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex,
-                            component_lock,
-                            cm_iter->second->lock (),
-                            false);
+                             component_lock,
+                             cm_iter->second->lock (),
+                             0);
 
       // Iterate over all the ports in the <component_metric>.
       CUTS_Port_Metric_Map::const_iterator pm_iter;
@@ -368,7 +485,7 @@ archive_system_metrics (CUTS_System_Metric & metrics)
           // Determine if this port has any metrics that correspond
           // with the lastest timestamp for the system metrics. If it does
           // not then why bother going any further.
-          if (metrics.timestamp () != spm_iter->second->timestamp ())
+          if (timestamp != spm_iter->second->timestamp ())
             continue;
 
           // Copy the metrics for the process data into the appropriate
@@ -382,7 +499,7 @@ archive_system_metrics (CUTS_System_Metric & metrics)
 
           best_time = spm_iter->second->transit_time ().best_time ();
           worse_time = spm_iter->second->transit_time ().worse_time ();
-          average_time = spm_iter->second->transit_time ().average_time ();
+          total_time = spm_iter->second->transit_time ().total_time ();
 
           // Execute the "prepared" statement using the parameters
           // we have stored.
@@ -399,8 +516,11 @@ archive_system_metrics (CUTS_System_Metric & metrics)
             // Determine if this port has any metrics that correspond
             // with the lastest timestamp for the system metrics. If it
             // does not then why bother going any further.
-            if (metrics.timestamp () != em_iter->second->timestamp ())
+            if (this->metrics ().timestamp () !=
+                em_iter->second->timestamp ())
+            {
               continue;
+            }
 
             // Copy the metrics for the process data into the appropriate
             // parameters before we execute the statement.
@@ -412,7 +532,7 @@ archive_system_metrics (CUTS_System_Metric & metrics)
             metric_count = em_iter->second->count ();
             best_time = em_iter->second->best_time ();
             worse_time = em_iter->second->worse_time ();
-            average_time = em_iter->second->average_time ();
+            total_time = em_iter->second->total_time ();
 
             // Execute the "prepared" statement using the parameters
             // we have stored.
@@ -421,20 +541,18 @@ archive_system_metrics (CUTS_System_Metric & metrics)
         }
       }
     }
-
-    return true;
   }
   catch (CUTS_DB_Exception & ex)
   {
-    ex.print ("failed to archive metrics");
+    ex.print ("failed to log metrics to database");
   }
   catch (...)
   {
-    ACE_ERROR ((LM_ERROR,
-                "[%M] -%T - unknown exception in "
-                "CUTS_Database_Service::archive_system_metrics\n"));
+    CUTS_ERROR (LM_ERROR,
+                "unknown exception in handle_metrics () \n");
   }
-  return false;
+
+  return 0;
 }
 
 //
@@ -726,10 +844,8 @@ bool CUTS_Database_Service::get_instance_id (const char * uuid,
 
     if (dest != 0)
     {
-      long temp_id;
-
       record->fetch ();
-      record->get_data (1, temp_id);
+      record->get_data (1, *dest);
       return true;
     }
     else
@@ -826,10 +942,32 @@ get_component_typeid (const char * type,
   }
   catch (...)
   {
-    ACE_ERROR ((LM_ERROR,
-                "[%M] -%T - unknown exception in "
-                "CUTS_Database_Service::get_component_type_id\n"));
+    CUTS_ERROR (LM_ERROR,
+                "unknown exception in get_component_type_id ()\n");
   }
 
   return false;
 }
+
+//
+// handle_component
+//
+int CUTS_Database_Service::
+handle_component (const CUTS_Component_Info & info)
+{
+  if (info.state_ == 1)
+    this->register_component (info.inst_.c_str (),
+                              "Unknown",
+                              info.uid_);
+  return 0;
+}
+
+//
+// fini
+//
+int CUTS_Database_Service::fini (void)
+{
+  this->disconnect ();
+  return CUTS_BDC_Service::fini ();
+}
+

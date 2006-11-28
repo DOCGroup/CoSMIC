@@ -6,10 +6,14 @@
 #include "cuts/Testing_Service.inl"
 #endif
 
+#include "cuts/Component_Registry.h"
+
 //
 // CUTS_Testing_Service
 //
-CUTS_Testing_Service::CUTS_Testing_Service (void)
+CUTS_Testing_Service::
+CUTS_Testing_Service (CUTS_Component_Registry * registry)
+: registry_ (registry)
 {
 
 }

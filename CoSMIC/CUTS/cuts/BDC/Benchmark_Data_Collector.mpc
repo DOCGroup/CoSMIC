@@ -1,12 +1,36 @@
-// generate_component_mpc.pl,v 1.10 2005/09/27 17:57:44 wotte Exp
-// This file is generated with "generate_component_mpc.pl -p CUTS Benchmark_Data_Collector"
+// $Id$
 
-project (Benchmark_Data_Collector_stub): cuts_client_dnc {
+project (CUTS_BDC) : cutslib, portableserver {
+  sharedname = CUTS_BDC
+
+  dynamicflags += CUTS_BDC_BUILD_DLL
+
+  idlflags += -Wb,export_macro=CUTS_BDC_Export \
+              -Wb,export_include=BDC_export.h
+
+  Source_Files {
+    BDC_Service.cpp
+    BDC_Service_Manager.cpp
+
+    serviceC.cpp
+    serviceS.cpp
+  }
+
+  Header_Files {
+    BDC_export.h
+  }
+
+  IDL_Files {
+    service.idl
+  }
+}
+
+project (Benchmark_Data_Collector_stub): cuts_bdcsvc, cuts_client_dnc {
   sharedname = Benchmark_Data_Collector_stub
 
   idlflags += -Wb,export_macro=BENCHMARK_DATA_COLLECTOR_STUB_Export \
               -Wb,export_include=Benchmark_Data_Collector_stub_export.h
-              
+
   dynamicflags = BENCHMARK_DATA_COLLECTOR_STUB_BUILD_DLL
 
   IDL_Files {
@@ -19,12 +43,12 @@ project (Benchmark_Data_Collector_stub): cuts_client_dnc {
   }
 }
 
-project (Benchmark_Data_Collector_svnt) : cuts_servant_dnc {
+project (Benchmark_Data_Collector_svnt) : cuts_bdcsvc, cuts_servant_dnc {
   sharedname  = Benchmark_Data_Collector_svnt
-  
-  after      += Benchmark_Data_Collector_stub 
-  
-  libs       += Benchmark_Data_Collector_stub 
+
+  after      += Benchmark_Data_Collector_stub
+
+  libs       += Benchmark_Data_Collector_stub
 
   idlflags  +=  -Wb,export_macro=BENCHMARK_DATA_COLLECTOR_SVNT_Export \
                 -Wb,export_include=Benchmark_Data_Collector_svnt_export.h
@@ -47,11 +71,13 @@ project (Benchmark_Data_Collector_svnt) : cuts_servant_dnc {
 
 project (Benchmark_Data_Collector_exec) : cuts_component_dnc, rt_client {
   sharedname  = Benchmark_Data_Collector_exec
-  
-  after      += Benchmark_Data_Collector_svnt
-  
+
+  after      += Benchmark_Data_Collector_svnt \
+                CUTS_BDC
+
   libs       += Benchmark_Data_Collector_stub \
-                Benchmark_Data_Collector_svnt 
+                Benchmark_Data_Collector_svnt \
+                CUTS_BDC
 
   idlflags  +=  -Wb,export_macro=BENCHMARK_DATA_COLLECTOR_EXEC_Export \
                 -Wb,export_include=Benchmark_Data_Collector_exec_export.h
@@ -63,12 +89,10 @@ project (Benchmark_Data_Collector_exec) : cuts_component_dnc, rt_client {
   }
 
   Source_Files {
-    BDC_Control_Handle_exec_i.cpp
     BDC_Task.cpp
-    Benchmark_Data_Collector_Impl.cpp
+    BDC_Control_Handle_exec_i.cpp
     Benchmark_Data_Collector_exec_i.cpp
     CCM_Component_Registry.cpp
-    Path_Measurement_exec_i.cpp
     Testing_Service_exec_i.cpp
   }
 }

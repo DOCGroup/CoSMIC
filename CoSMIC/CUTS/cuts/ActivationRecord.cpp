@@ -17,7 +17,7 @@
 //
 CUTS_Activation_Record::CUTS_Activation_Record (void)
 : active_ (false),
-  owner_ (-1),
+  owner_ (0),
   transit_time_ (ACE_Time_Value::zero),
   queue_time_ (ACE_Time_Value::zero)
 {

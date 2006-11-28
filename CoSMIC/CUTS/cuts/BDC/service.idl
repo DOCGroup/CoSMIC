@@ -1,0 +1,66 @@
+// -*- IDL -*-
+
+//=============================================================================
+/**
+ * @file        service.idl
+ *
+ * $Id$
+ *
+ * @author      James H. Hill
+ */
+//=============================================================================
+
+#ifndef _CUTS_BDC_SERVICE_IDL_
+#define _CUTS_BDC_SERVICE_IDL_
+
+module CUTS
+{
+  //===========================================================================
+  /**
+   * @struct BDC_Service_Descriptor
+   *
+   * Structure for describing a Benchmark_Data_Collector service object. The
+   * descriptor inclde information about the service's name, which is decided
+   * by the client, location on disk (i.e., path), and the arguments used
+   * at initialization time. The command-line arguments are similar to the
+   * int argc, char *argv [] parameters passed into main () for normal
+   * executables (i.e., .exe files).
+   */
+  //===========================================================================
+
+  struct BDC_Service_Descriptor
+  {
+    /// Unique name of the service for identification.
+    string name;
+
+    /// Location of the service. This can be a absolute or
+    /// relative path.
+    string path;
+
+    /// Command-line arguments for the service. This will
+    /// be passed to the service at initialization time.
+    string args;
+  };
+
+  /// Type definition for a collection of BDC_Service_Descriptor objects.
+  typedef sequence <BDC_Service_Descriptor> BDC_Service_Descriptors;
+
+  /// Type definition for a listing of service names.
+  typedef sequence <string> BDC_Service_Names;
+
+  //===========================================================================
+  /**
+   * @interface BDC_Service
+   *
+   * Base interface for all Benchmark_Data_Collector service objects
+   * that facilitate remote interaction.
+   */
+  //===========================================================================
+
+  interface BDC_Service
+  {
+
+  };
+};
+
+#endif  // !defined _CUTS_BDC_SERVICE_IDL_

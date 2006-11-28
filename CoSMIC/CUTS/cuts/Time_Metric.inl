@@ -4,27 +4,17 @@
 // average_time
 //
 CUTS_INLINE
-long CUTS_Time_Metric::average_time (void)
+long CUTS_Time_Metric::total_time (void) const
 {
-  ACE_READ_GUARD_RETURN (
-    ACE_RW_Thread_Mutex,
-    guard,
-    this->lock_,
-    this->average_time_.msec ());
-  return this->average_time_.msec ();
+  return this->total_time_.msec ();
 }
 
 //
 // best_time
 //
 CUTS_INLINE
-long CUTS_Time_Metric::best_time (void)
+long CUTS_Time_Metric::best_time (void) const
 {
-  ACE_READ_GUARD_RETURN (
-    ACE_RW_Thread_Mutex,
-    guard,
-    this->lock_,
-    this->best_time_.msec ());
   return this->best_time_.msec ();
 }
 
@@ -32,13 +22,8 @@ long CUTS_Time_Metric::best_time (void)
 // worse_time
 //
 CUTS_INLINE
-long CUTS_Time_Metric::worse_time (void)
+long CUTS_Time_Metric::worse_time (void) const
 {
-  ACE_READ_GUARD_RETURN (
-    ACE_RW_Thread_Mutex,
-    guard,
-    this->lock_,
-    this->worse_time_.msec ());
   return this->worse_time_.msec ();
 }
 
@@ -46,13 +31,8 @@ long CUTS_Time_Metric::worse_time (void)
 // count
 //
 CUTS_INLINE
-long CUTS_Time_Metric::count (void)
+long CUTS_Time_Metric::count (void) const
 {
-  ACE_READ_GUARD_RETURN (
-    ACE_RW_Thread_Mutex,
-    guard,
-    this->lock_,
-    this->count_);
   return this->count_;
 }
 
@@ -72,4 +52,13 @@ CUTS_INLINE
 void CUTS_Time_Metric::timestamp (const ACE_Time_Value & timestamp)
 {
   this->timestamp_ = timestamp;
+}
+
+//
+// avg_time
+//
+CUTS_INLINE
+double CUTS_Time_Metric::avg_time (void) const
+{
+  return this->count_ != 0 ? this->total_time_.msec () / this->count_ : 0.0;
 }

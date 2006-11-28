@@ -7,6 +7,7 @@
 #endif
 
 #include "cuts/System_Metrics_Visitor.h"
+#include "ace/Guard_T.h"
 
 //
 // CUTS_Time_Metric
@@ -15,16 +16,19 @@ CUTS_Time_Metric::CUTS_Time_Metric (void)
 : count_ (0),
   best_time_ (ACE_Time_Value::zero),
   worse_time_ (ACE_Time_Value::zero),
-  average_time_ (ACE_Time_Value::zero)
+  total_time_ (ACE_Time_Value::zero)
 {
 
 }
 
+//
+// CUTS_Time_Metric
+//
 CUTS_Time_Metric::CUTS_Time_Metric (const CUTS_Time_Metric & tm)
 : count_ (tm.count_),
   best_time_ (tm.best_time_),
   worse_time_ (tm.worse_time_),
-  average_time_ (tm.average_time_)
+  total_time_ (tm.total_time_)
 {
 
 }
@@ -46,7 +50,7 @@ CUTS_Time_Metric::operator = (const CUTS_Time_Metric & tm)
   ACE_WRITE_GUARD_RETURN (ACE_RW_Thread_Mutex, guard, this->lock_, *this);
 
   this->count_ = tm.count_;
-  this->average_time_ = tm.average_time_;
+  this->total_time_ = tm.total_time_;
   this->best_time_ = tm.best_time_;
   this->worse_time_ = tm.worse_time_;
 
@@ -57,14 +61,14 @@ CUTS_Time_Metric::operator = (const CUTS_Time_Metric & tm)
 // update
 //
 void CUTS_Time_Metric::update (size_t count,
-                               long avg,
+                               long total,
                                long best,
                                long worse)
 {
   ACE_WRITE_GUARD (ACE_RW_Thread_Mutex, guard, this->lock_);
 
   this->count_ = count;
-  this->average_time_.msec (avg);
+  this->total_time_.msec (total);
   this->best_time_.msec (best);
   this->worse_time_.msec (worse);
 }
@@ -79,7 +83,7 @@ void CUTS_Time_Metric::reset (void)
   this->count_ = 0;
   this->best_time_ = ACE_Time_Value::zero;
   this->worse_time_ = ACE_Time_Value::zero;
-  this->average_time_ = ACE_Time_Value::zero;
+  this->total_time_ = ACE_Time_Value::zero;
 }
 
 //
@@ -101,7 +105,7 @@ CUTS_Time_Metric::operator += (const CUTS_Time_Metric & rhs)
 {
   ACE_WRITE_GUARD_RETURN (ACE_RW_Thread_Mutex, guard, this->lock_, *this);
 
-  this->average_time_ += rhs.average_time_;
+  this->total_time_ += rhs.total_time_;
   this->best_time_ += rhs.best_time_;
   this->worse_time_ += rhs.worse_time_;
   return *this;

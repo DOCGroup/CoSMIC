@@ -85,15 +85,9 @@ namespace CUTS
   void operator >> (const Time_Sample & time_sample,
                     CUTS_Time_Metric & time_metric)
   {
-    // Calculate the average timing metric.
-    long average = 0;
-
-    if (time_sample.count > 0)
-      average = time_sample.time.total / time_sample.count;
-
     // Update the timing information.
     time_metric.update (time_sample.count,
-                        average,
+                        time_sample.time.total,
                         time_sample.time.min,
                         time_sample.time.max);
   }

@@ -1,1 +1,6 @@
 // $Id$
+
+namespace CUTS
+{
+
+}

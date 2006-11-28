@@ -11,8 +11,10 @@
 
 #include "Benchmark_Data_Collector_exec_export.h"
 #include "Benchmark_Data_CollectorEC.h"
-#include "cuts/config.h"
 #include "tao/LocalObject.h"
+
+// Forward decl.
+class CUTS_BDC_Service_Manager;
 
 namespace CUTS
 {
@@ -23,7 +25,7 @@ namespace CUTS
   /**
    * @class BDC_Control_Handle_exec_i
    *
-   * @brief Implementation of the BDC_Control_Handle object.
+   * Implementation of the BDC_Control_Handle interface.
    */
   //=========================================================================
 
@@ -33,37 +35,46 @@ namespace CUTS
   {
   public:
     /// Constructor.
-    BDC_Control_Handle_exec_i (void);
+    BDC_Control_Handle_exec_i (BDC_Task * task,
+                               CUTS_BDC_Service_Manager * svc_mgr);
 
     /// Destructor.
     virtual ~BDC_Control_Handle_exec_i (void);
 
     /**
-     * Force the collection of the performance data from all the
-     * component in the system. This is a blocking method and does
-     * not return until all components are handled.
+     * Force the collection of the performance data from all the component
+     * in the system. This is a blocking method and does not return until
+     * all components are handled.
      */
-    virtual
-      void collect_performance_data (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+    virtual void collect_performance_data (
+      ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
       ACE_THROW_SPEC ((CORBA::SystemException));
 
-    /**
-     * Initialize the task of the control agent.
-     *
-     * @param[in]     task      Pointer to the new task agent.
-     */
-    void task (BDC_Task * task);
+    virtual ::CORBA::ULong load_services (
+      const CUTS::BDC_Service_Descriptors & svcs
+      ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+      ACE_THROW_SPEC ((CORBA::SystemException));
 
-    /**
-     * Get the task contained in the control.
-     *
-     * @return  Pointer to the task.
-     */
-    BDC_Task * task (void) const;
+    virtual void unload_services (
+      const CUTS::BDC_Service_Names & names
+      ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+      ACE_THROW_SPEC ((CORBA::SystemException));
+
+    virtual CUTS::BDC_Service_ptr get_service (
+      const char * name
+      ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+      ACE_THROW_SPEC ((CORBA::SystemException));
+
+    virtual void list_services (
+      CUTS::BDC_Service_Names_out)
+      ACE_THROW_SPEC ((CORBA::SystemException));
 
   private:
     /// Pointer reference to the benchmark data collector.
     BDC_Task * task_;
+
+    /// Pointer to the service manager for the BDC.
+    CUTS_BDC_Service_Manager * svc_mgr_;
   };
 }
 

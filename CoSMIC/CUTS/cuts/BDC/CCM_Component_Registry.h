@@ -9,9 +9,9 @@
 #pragma once
 #endif /* ACE_LACKS_PRAGMA_ONCE */
 
-#include "Benchmark_Data_Collector_exec_export.h"
-#include "Benchmark_Data_CollectorEC.h"
 #include "cuts/config.h"
+#include "cuts/CUTSC.h"
+#include "cuts/Component_Registry_Node.h"
 #include "cuts/Component_Registry.h"
 #include "ace/RW_Thread_Mutex.h"
 
@@ -36,7 +36,7 @@ namespace CUTS
      * @param[in]     agent       Reference to the benchmark agent.
      */
     virtual int handle_agent (const char * instance,
-                              ::CUTS::Benchmark_Agent_ptr agent) = 0;
+                              ::CUTS::Benchmark_Agent::_ptr_type agent) = 0;
   };
 
   //===========================================================================
@@ -45,7 +45,7 @@ namespace CUTS
    */
   //===========================================================================
 
-  class BENCHMARK_DATA_COLLECTOR_EXEC_Export CCM_Component_Registry_Node :
+  class CCM_Component_Registry_Node :
     public CUTS_Component_Registry_Node
   {
   public:
@@ -57,7 +57,7 @@ namespace CUTS
 
     ::CUTS::Benchmark_Agent_ptr benchmark_agent (void);
 
-    void benchmark_agent (::CUTS::Benchmark_Agent_ptr agent);
+    void benchmark_agent (::CUTS::Benchmark_Agent::_ptr_type agent);
 
     void reset (void);
 
@@ -71,7 +71,7 @@ namespace CUTS
    */
   //===========================================================================
 
-  class BENCHMARK_DATA_COLLECTOR_EXEC_Export CCM_Component_Registry :
+  class CCM_Component_Registry :
     public CUTS_Component_Registry
   {
   public:
@@ -81,17 +81,28 @@ namespace CUTS
     /// Destructor.
     ~CCM_Component_Registry (void);
 
-    long register_component (const char * uuid,
-                             ::CUTS::Benchmark_Agent_ptr agent);
+    /**
+     *
+     */
+    size_t register_component (const char * uuid);
 
-    bool unregister_component (const char * uuid,
-                               ::CUTS::Benchmark_Agent_ptr agent);
+    /**
+     *
+     */
+    size_t register_component (const char * uuid,
+                               CUTS::Benchmark_Agent::_ptr_type agent);
 
-    long get_registration (const char * uuid,
-                           bool auto_register = true);
+    /**
+     *
+     */
+    void unregister_component (const char * uuid,
+                               CUTS::Benchmark_Agent::_ptr_type agent);
+
+    size_t get_registration (const char * uuid,
+                             bool auto_register = true);
 
     size_t get_benchmark_agents (Benchmark_Agent_Handler * handler,
-         size_t & count);
+                                 size_t & count);
 
     void reset_registration (const char * uuid);
 

@@ -23,15 +23,18 @@
 
 #include "Benchmark_Data_Collector_exec_export.h"
 #include "CCM_Component_Registry.h"
-#include "ace/Task_Ex_T.h"
-#include "ace/Message_Queue_T.h"
-#include "ace/Event.h"
 #include "ace/Atomic_Op_T.h"
-#include "ace/Time_Value.h"
 #include "ace/streams.h"
+#include "ace/Task_Ex_T.h"
 
 // Forward decl.
 class CUTS_System_Metric;
+
+// Forward decl.
+class ACE_Time_Value;
+
+// Forward decl.
+class ACE_Event;
 
 namespace CUTS
 {
@@ -60,20 +63,11 @@ namespace CUTS
     public ACE_Task_Ex <ACE_MT_SYNCH, ::CUTS::Benchmark_Agent>
   {
   public:
-    /**
-     * Initializing contructor. The reference to the system metrics
-     * objects is needed so the BDC_Task always an object to cache
-     * its metrics.
-     *
-     * @param[in]      metrics   Reference to a system metrics object.
-     */
+    /// Default constructor.
     BDC_Task (void);
 
     /// Destructor.
     virtual ~BDC_Task (void);
-
-    /// Set the testing service for the task.
-    void testing_service (Testing_Service_exec_i * testing_service);
 
     /**
      * Activate the task. This will activate all the threads in
@@ -82,43 +76,17 @@ namespace CUTS
      * agents. The other threads, if applicable, are responsible for
      * collecting the performance metrics from the agents as the
      * thread gathering the agents delegates the work.
+     *
+     * @param[in]     tsvc      Pointer to the testing service.
      */
-    bool activate (void);
+    bool activate (const ACE_Time_Value & delay,
+                   const ACE_Time_Value & interval,
+                   Testing_Service_exec_i * tsvc,
+                   CUTS_System_Metric * metric,
+                   ACE_Event * notify);
 
     /// Deactivate the task.
     void deactivate (void);
-
-    /**
-     * Get the timeout value for the task. The timeout value
-     * is in the order of seconds.
-     *
-     * return         Number of seconds to wait per timeout.
-     */
-    long timeout (void) const;
-
-    /**
-     * Set the timeout value for the task. The timeout value
-     * is in order of seconds.
-     *
-     * @param[in]     timeout     Number of seconds per collection.
-     */
-    void timeout (long timeout);
-
-    /**
-     * Set the number of threads used to collect the performance
-     * metrics from all the components in the system.
-     *
-     * @param[in]     threads     Number of threads.
-     */
-    void collection_threads (size_t threads);
-
-    /**
-     * Get the number of threads used to collect the performance
-     * metrics from all the components.
-     *
-     * @return      Number of threads.
-     */
-    size_t collection_threads (void) const;
 
     /**
      * Force the task to collect performance metrics for all to
@@ -129,26 +97,15 @@ namespace CUTS
     void collect_data (void);
 
     /**
-     * Get the name of the metrics output file.
+     * Wait for the collection done event.
      *
-     * @return      Name of the metrics outfile.
+     * @param[in]     abstime       Absolute timeout value.
      */
-    const std::string & metrics_outfile (void) const;
-
-    /**
-     * Set the name of the metrics output file.
-     *
-     * @param[in]   filename    Name of the file.
-     */
-    void metrics_outfile (const std::string & filename);
-
-    void wait_for_collection_done (void);
-
-    void system_metrics (CUTS_System_Metric * metrics);
+    void wait_for_collection_done (const ACE_Time_Value * abstime = 0);
 
   protected:
     /// Storage location for the system metrics.
-    CUTS_System_Metric * system_metrics_;
+    CUTS_System_Metric * metrics_;
 
     /// Enqueues a benchmark agent for data collection.
     virtual int handle_agent (const char * instance,
@@ -165,16 +122,13 @@ namespace CUTS
     int handle_timeout (const ACE_Time_Value & curr_time, const void * act);
 
     /// Helper method to descrement the count.
-    int decrement_count (void);
+    size_t decrement_count (void);
 
-    /// Helper method to write metrics to output file.
-    void write_metrics_to_file (void);
+    /// Finalize the collection of the metrics.
+    void finalize_collection (void);
 
     /// Flag containing the active state for the task.
     bool active_;
-
-    /// Timeout value for the task.
-    long timeout_;
 
     /// ID of the timer for the timeout.
     long timer_;
@@ -186,17 +140,8 @@ namespace CUTS
     /// Number of components remaining to collect.
     ACE_Atomic_Op <ACE_RW_Thread_Mutex, size_t> count_;
 
-    /// Event that is signaled with the collection is complete.
-    ACE_Event collection_done_;
-
-    /// Output file for the performance metrics.
-    ofstream outfile_;
-
-    /// Number of threads used to collect the performance metrics.
-    size_t collection_threads_;
-
-    /// Name of the output file for the metrics.
-    std::string metrics_outfile_;
+    /// Condition variable for sychronizing with data collection.
+    ACE_Event * collect_done_;
   };
 }
 

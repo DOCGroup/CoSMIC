@@ -14,14 +14,16 @@
 #define _CUTS_TESTING_SERVICE_H_
 
 #include "cuts/Host_Table.h"
-#include "cuts/Component_Registry.h"
 #include "ace/Auto_Ptr.h"
+
+// Forward decl.
+class CUTS_Component_Registry;
 
 //=============================================================================
 /**
  * @class CUTS_Testing_Service
  *
- * @brief Base container class for testing service objects.
+ * Base container class for testing service objects.
  */
 //=============================================================================
 
@@ -29,7 +31,7 @@ class CUTS_Export CUTS_Testing_Service
 {
 public:
   /// Default constructor.
-  CUTS_Testing_Service (void);
+  CUTS_Testing_Service (CUTS_Component_Registry * registry);
 
   /// Default destructor.
   virtual ~CUTS_Testing_Service (void);
@@ -49,28 +51,13 @@ public:
   CUTS_Host_Table & host_table (void);
 
   /**
-   * Set the implemenation of the component registry. The client
-   * is responsible for deleting the registrt
-   *
-   * @param[in]     registry      Pointer to the registry.
-   */
-  void registry (CUTS_Component_Registry * registry);
-
-  /**
-   * Get the component registry.
-   *
-   * @return Read-only pointer to the registry.
-   */
-  const CUTS_Component_Registry * registry (void) const;
-
-  /**
    * Get the component registry.
    *
    * @return Pointer to the registry.
    */
-  CUTS_Component_Registry * registry (void);
+  virtual CUTS_Component_Registry * registry (void) const;
 
-private:
+protected:
   /// The mapping of IP-addresses to hostnames.
   CUTS_Host_Table host_table_;
 

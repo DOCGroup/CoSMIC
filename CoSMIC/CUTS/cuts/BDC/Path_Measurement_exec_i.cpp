@@ -271,7 +271,7 @@ namespace CUTS
 
     // Create a new <Time_Info> for the client to view its path
     // performance.
-    time_info.time.total = time_metric.average_time ();
+    time_info.time.total = ACE_static_cast (long, time_metric.avg_time ());
     time_info.time.max   = time_metric.worse_time ();
     time_info.time.min   = time_metric.best_time ();
     return time_info;

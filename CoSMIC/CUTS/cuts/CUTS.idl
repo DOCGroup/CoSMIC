@@ -21,14 +21,20 @@
 
 module CUTS
 {
-  exception Binding_Failed        { };
-  exception ID_Not_Found          { };
-  exception Operation_Failed      { };
   exception Registration_Failed   { };
   exception Registration_Limit    { };
 
-  // Forward decl.
-  interface Benchmark_Agent;
+  //===========================================================================
+  /**
+   * @interface Benchmark_Agent
+   */
+  //===========================================================================
+
+  interface Benchmark_Agent
+  {
+    /// Get the performance data from the agent.
+    Benchmark_Data collect_performance_data ();
+  };
 
   //===========================================================================
   /**
@@ -56,72 +62,6 @@ module CUTS
 
   //===========================================================================
   /**
-   * @struct Path_Element
-   */
-  //===========================================================================
-
-  struct Path_Element
-  {
-    /// UUID of the component.
-    string node;
-
-    /// Name of the source port.
-    string src;
-
-    /// Name of the destination port.
-    string dst;
-  };
-
-  /// Type definition for a path sequence.
-  typedef sequence <Path_Element> Path_Sequence;
-
-  //===========================================================================
-  /**
-   * @interface Path_Measurement
-   */
-  //===========================================================================
-
-  interface Path_Measurement
-  {
-    const unsigned short BPF_TRANSIT = 1;
-    const unsigned short BPF_PROCESS = 2;
-    const unsigned short BPF_BOTH    = 3;
-
-    long bind_to_path (in Path_Sequence path, in unsigned short flags)
-      raises (Binding_Failed);
-
-    void unbind_to_path (in long path_id)
-      raises (ID_Not_Found);
-
-    Event_Time_Info execution_time (in long path_id)
-      raises (ID_Not_Found, Operation_Failed);
-  };
-
-  //===========================================================================
-  /**
-   * @interface BDC_Control_Handle
-   */
-  //===========================================================================
-
-  interface BDC_Control_Handle
-  {
-    void collect_performance_data ();
-  };
-
-  //===========================================================================
-  /**
-   * @interface Benchmark_Agent
-   */
-  //===========================================================================
-
-  interface Benchmark_Agent
-  {
-    /// Get the performance data from the agent.
-    Benchmark_Data collect_performance_data ();
-  };
-
-  //===========================================================================
-  /**
    * @interface Testing_Service
    */
   //===========================================================================
@@ -132,8 +72,7 @@ module CUTS
       raises (Registration_Failed,
               Registration_Limit);
 
-    void unregister_component (in Component_Registration cr)
-      raises (ID_Not_Found);
+    void unregister_component (in Component_Registration cr);
   };
 };
 

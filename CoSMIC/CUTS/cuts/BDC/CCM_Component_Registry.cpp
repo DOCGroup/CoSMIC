@@ -2,8 +2,7 @@
 
 #include "CCM_Component_Registry.h"
 #include "ace/Guard_T.h"
-
-#include  <typeinfo>
+#include <typeinfo>
 
 namespace CUTS
 {
@@ -16,8 +15,9 @@ namespace CUTS
   //
   // CCM_Component_Registry_Node
   //
-  CCM_Component_Registry_Node::CCM_Component_Registry_Node (void)
-    : benchmark_agent_ (::CUTS::Benchmark_Agent::_nil ())
+  CCM_Component_Registry_Node::
+  CCM_Component_Registry_Node (void)
+  : benchmark_agent_ (::CUTS::Benchmark_Agent::_nil ())
   {
 
   }
@@ -25,9 +25,9 @@ namespace CUTS
   //
   // CCM_Component_Registry_Node
   //
-  CCM_Component_Registry_Node::CCM_Component_Registry_Node (
-    ::CUTS::Benchmark_Agent_ptr agent)
-    : benchmark_agent_ (::CUTS::Benchmark_Agent::_duplicate (agent))
+  CCM_Component_Registry_Node::
+  CCM_Component_Registry_Node (::CUTS::Benchmark_Agent_ptr agent)
+  : benchmark_agent_ (::CUTS::Benchmark_Agent::_duplicate (agent))
   {
 
   }
@@ -113,7 +113,7 @@ namespace CUTS
   //
   CCM_Component_Registry::CCM_Component_Registry (void)
   {
-
+    this->register_component ("Unknown");
   }
 
   //
@@ -125,15 +125,25 @@ namespace CUTS
   }
 
   //
+  // register_component
+  //
+  size_t CCM_Component_Registry::register_component (const char * uuid)
+  {
+    return this->register_component (uuid, ::CUTS::Benchmark_Agent::_nil ());
+  }
+
+  //
   // get_registration
   //
-  long CCM_Component_Registry::get_registration (
-    const char * uuid, bool auto_register)
+  size_t CCM_Component_Registry::
+  get_registration (const char * uuid,
+                    bool auto_register)
   {
     // Use the base class to get the <registration> for the
     // <uuid> without registering it since we are using a
     // different <node> type.
-    long regid = CUTS_Component_Registry::get_registration (uuid, false);
+    size_t regid =
+      CUTS_Component_Registry::get_registration (uuid, false);
 
     if (regid == 0 && auto_register)
     {
@@ -157,12 +167,12 @@ namespace CUTS
   //
   // register_component
   //
-  long CCM_Component_Registry::register_component (
-    const char * uuid,
-    ::CUTS::Benchmark_Agent_ptr agent)
+  size_t CCM_Component_Registry::
+  register_component (const char * uuid,
+                      CUTS::Benchmark_Agent::_ptr_type agent)
   {
     // Determine if the component has already been registered.
-    CCM_Component_Registry_Node * node = get_node (uuid);
+    CCM_Component_Registry_Node * node = this->get_node (uuid);
 
     if (node == 0)
     {
@@ -179,39 +189,47 @@ namespace CUTS
 
       if (result.second)
       {
-        // Since we were able to insert the <node> into the
-        // <registry_> then we can unmanage the resource.
-        // Otherwise, we let the <auto_clean> continue to
-        // manage the resource, which will handle the reference
-        // counting for the <agent> as well.
+        // @@ This really needs to be fixed. It's a quick fix solution
+        // but what really needs to happen is someway to guarantee that
+        // *Unknown* always has a UID of 1.
+        if (ACE_OS::strcmp (uuid, "Unknown") == 0)
+          node->info ().uid_ = CUTS_UNKNOWN_IMPL;
+
+        node->info ().inst_ = uuid;
         auto_clean.release ();
+      }
+      else
+      {
+        node = ACE_dynamic_cast (CCM_Component_Registry_Node *,
+                                 result.first->second);
       }
     }
 
-    return reinterpret_cast <long> (node);
+    node->info ().state_ = 1;
+    this->info_queue_.enqueue_tail (node);
+
+    return node->info ().uid_;
   }
 
   //
   // unregister_component
   //
-  bool CCM_Component_Registry::unregister_component (
-    const char * uuid,
-    ::CUTS::Benchmark_Agent_ptr agent)
+  void CCM_Component_Registry::
+  unregister_component (const char * uuid,
+                        ::CUTS::Benchmark_Agent_ptr agent)
   {
-    CCM_Component_Registry_Node * node = get_node (uuid);
+    CCM_Component_Registry_Node * node = this->get_node (uuid);
 
     // Verify we have a <node> and the <node> contains
     // the same <agent>.
-    if (node == 0 ||
-        !agent->_is_equivalent (node->benchmark_agent ()))
+    if (node != 0 &&
+        agent->_is_equivalent (node->benchmark_agent ()))
     {
-      return false;
-    }
+      node->reset ();
 
-    // Just reset the <node> but do not remove it. We need to
-    // maintain persistance as long as the registry is active.
-    node->reset ();
-    return true;
+      node->info ().state_ = 0;
+      this->info_queue_.enqueue_tail (node);
+    }
   }
 
   //
@@ -232,16 +250,7 @@ namespace CUTS
     CUTS_Component_Registry_Map::iterator iter = this->registry_.find (uuid);
 
     if (iter != this->registry_.end ())
-    {
-      try
-      {
-        node = dynamic_cast <CCM_Component_Registry_Node *> (iter->second);
-      }
-      catch (std::bad_cast &)
-      {
-
-      }
-    }
+      node = ACE_dynamic_cast (CCM_Component_Registry_Node *, iter->second);
 
     return node;
   }
@@ -262,26 +271,17 @@ namespace CUTS
 
     CUTS_Component_Registry_Map ::iterator iter;
 
-    for (iter = this->registry_.begin ();
+    for (iter  = this->registry_.begin ();
          iter != this->registry_.end ();
          iter ++)
     {
-      try
-      {
-        // Cast the pointer to a <CCM_Component_Registry_Node>.
-        CCM_Component_Registry_Node * node =
-          dynamic_cast <CCM_Component_Registry_Node *> (iter->second);
+      // Cast the pointer to a <CCM_Component_Registry_Node>.
+      CCM_Component_Registry_Node * node =
+        ACE_dynamic_cast (CCM_Component_Registry_Node *, iter->second);
 
-        // Pass the benchmark agent to the handler.
-        handler->handle_agent (iter->first.c_str (),
-                               node->benchmark_agent ());
-      }
-      catch (std::bad_cast &)
-      {
-        // Since we did not handle this agent we can decrement the
-        // counter.
-        count --;
-      }
+      // Pass the benchmark agent to the handler.
+      handler->handle_agent (iter->first.c_str (),
+                             node->benchmark_agent ());
     }
 
     return agents;
@@ -294,11 +294,9 @@ namespace CUTS
   {
     // Get the node with the registration. If the node is valid then
     // reset it. This will set the agent value to NIL.
-    CCM_Component_Registry_Node * node = get_node (uuid);
+    CCM_Component_Registry_Node * node = this->get_node (uuid);
 
     if (node)
-    {
       node->reset ();
-    }
   }
 }

@@ -1,12 +1,10 @@
 // $Id$
 
-project (CUTS_Database_Service) : cutslib, cutsutils, odbc {
-  sharedname += CUTS_Database_Service
+project (CUTS_Database_Service) : cuts_bdcsvc, cutslib, cutsutils, odbc {
+  sharedname  += CUTS_Database_Service
+  dynamicflags = DBASE_SVC_BUILD_DLL
 
-  dynamicflags += CUTS_BUILD_DLL
-
-  libs += CUTS_ODBC_DBase CUTS_Utils_DBase
-
+  libs  += CUTS_ODBC_DBase CUTS_Utils_DBase
   after += CUTS_ODBC_DBase CUTS_Utils_DBase
 
   Source_Files {

@@ -1,6 +1,11 @@
 // $Id$
 
 #include "Testing_Service_exec_i.h"
+
+#if !defined (__CUTS_INLINE__)
+#include "Testing_Service_exec_i.inl"
+#endif
+
 #include "CCM_Component_Registry.h"
 #include <typeinfo>
 
@@ -9,14 +14,11 @@ namespace CUTS
   //
   // Testing_Service_exec_i
   //
-  Testing_Service_exec_i::Testing_Service_exec_i (void)
+  Testing_Service_exec_i::
+  Testing_Service_exec_i (CCM_Component_Registry * registry)
+  : CUTS_Testing_Service (registry)
   {
-    CCM_Component_Registry * registry = 0;
-    ACE_NEW_THROW_EX (registry,
-                      CCM_Component_Registry (),
-                      ::CORBA::NO_MEMORY ());
 
-    CUTS_Testing_Service::registry (registry);
   }
 
   //
@@ -60,7 +62,7 @@ namespace CUTS
     }
 
     // Get the correct implementation of the <registry_>.
-    CCM_Component_Registry * registry = this->registry_i ();
+    CCM_Component_Registry * registry = this->ccm_registry ();
 
     if (registry != 0)
     {
@@ -82,58 +84,23 @@ namespace CUTS
   //
   // unregister_component
   //
-  void Testing_Service_exec_i::unregister_component (
-    const ::CUTS::Component_Registration & creg
+  void Testing_Service_exec_i::
+    unregister_component (const ::CUTS::Component_Registration & creg
     ACE_ENV_ARG_DECL_WITH_DEFAULTS)
-    ACE_THROW_SPEC ((::CORBA::SystemException,
-                     ::CUTS::ID_Not_Found))
+    ACE_THROW_SPEC ((::CORBA::SystemException))
   {
-    ACE_DEBUG ((LM_TRACE,
-                "[%M] -%T - unregistering component %s\n",
-                creg.name.in ()));
-
-    CCM_Component_Registry * registry = this->registry_i ();
+    CCM_Component_Registry * registry = this->ccm_registry ();
 
     if (registry != 0)
-    {
       registry->reset_registration (creg.name.in ());
-    }
   }
 
   //
-  // registry_i
+  // registry
   //
-  const CCM_Component_Registry *
-    Testing_Service_exec_i::registry_i (void) const
+  CCM_Component_Registry * Testing_Service_exec_i::ccm_registry (void) const
   {
-    try
-    {
-      return dynamic_cast <const CCM_Component_Registry *> (
-        this->registry ());
-    }
-    catch (std::bad_alloc &)
-    {
-      ACE_ERROR ((LM_ERROR,
-                  "[%M] -%T - failed to get registry\n"));
-      return 0;
-    }
-  }
-
-  //
-  // registry_i
-  //
-  CCM_Component_Registry * Testing_Service_exec_i::registry_i (void)
-  {
-    try
-    {
-      return dynamic_cast <CCM_Component_Registry *> (
-        this->registry ());
-    }
-    catch (std::bad_alloc &)
-    {
-      ACE_ERROR ((LM_ERROR,
-                  "[%M] -%T - failed to get registry\n"));
-      return 0;
-    }
+    return ACE_dynamic_cast (CCM_Component_Registry *,
+                             this->registry_.get ());
   }
 }

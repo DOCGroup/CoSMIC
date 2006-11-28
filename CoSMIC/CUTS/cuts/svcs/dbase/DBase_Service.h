@@ -13,14 +13,13 @@
 #ifndef _CUTS_DBASE_SERVICE_H_
 #define _CUTS_DBASE_SERVICE_H_
 
-#include "cuts/config.h"
-#include "cuts/CUTS_export.h"
+#include "cuts/BDC/BDC_Service.h"
+#include "DBase_Service_export.h"
 #include "ace/RW_Thread_Mutex.h"
 #include "ace/Auto_Ptr.h"
+#include "ace/SStringfwd.h"
+#include "ace/String_Base.h"
 #include <map>
-
-// Forward decl.
-class CUTS_System_Metric;
 
 // Forward decl.
 class ODBC_Connection;
@@ -36,16 +35,18 @@ class ODBC_Query;
  */
 //=============================================================================
 
-typedef std::map <long, long> CUTS_DBase_Svc_Component_Map;
+typedef std::map <long,
+                  long> CUTS_DBase_Svc_Component_Map;
 
 //=============================================================================
 /**
  * @class CUTS_Database_Service
  *
+ * Database service object for the BDC.
  */
 //=============================================================================
 
-class CUTS_Export CUTS_Database_Service
+class CUTS_Database_Service : public CUTS_BDC_Service
 {
 public:
   /// Constructor.
@@ -53,6 +54,37 @@ public:
 
   /// Destructor.
   ~CUTS_Database_Service (void);
+
+  /**
+   * Initialize the database service.
+   *
+   * @param[in]       argc        Number of command-line arguments
+   * @param[in]       argv        Command-line arguments
+   */
+  int init (int argc, ACE_TCHAR * argv []);
+
+  /// Finalize the object (i.e., destroy it).
+  int fini (void);
+
+  /**
+   * Activate the service object. This allows the service object
+   * to perform any initial operations on the system metrics.
+   */
+  int handle_activate (void);
+
+  /**
+   * Deactivate the service object. This allows the service object
+   * to perform any final operations on the system metrics.
+   */
+  int handle_deactivate (void);
+
+  /**
+   * Signal the service object to handle the new set of data. This
+   * method is required by all service objects because it is their
+   * only way of processing data collected from the testing
+   * environment.
+   */
+  int handle_metrics (void);
 
   /**
    * Connect to the database.
@@ -158,15 +190,6 @@ public:
                     long &hostid);
 
   /**
-   * Archive system metrics.
-   *
-   * @param[in]     metrics     System metrics.
-   * @retval        true        Successfully archived metrics.
-   * @retval        false       Failed to archive metrics.
-   */
-  bool archive_system_metrics (CUTS_System_Metric & metrics);
-
-  /**
    * Get the current test number.
    *
    * @return The current test number.
@@ -186,8 +209,11 @@ public:
 
   bool set_component_downtime (long cid);
 
+  int handle_component (const CUTS_Component_Info & info);
 
 private:
+  int parse_args (int argc, ACE_TCHAR * argv []);
+
   ODBC_Query * create_new_query (void);
 
   /**
@@ -201,6 +227,21 @@ private:
 
   /// Disconnect form the database without acquiring lock.
   void disconnect_i (void);
+
+  /// Location of the database.
+  ACE_CString server_;
+
+  /// Username for the login (default='cuts').
+  ACE_CString username_;
+
+  /// Password for the login (default='cuts')
+  ACE_CString password_;
+
+  /// Verbose flag for the service.
+  bool verbose_;
+
+  /// Port number for database connection.
+  int port_;
 
   /// Database connection.
   ACE_Auto_Ptr <ODBC_Connection> conn_;
@@ -218,5 +259,7 @@ private:
 #if defined (__CUTS_INLINE__)
 #include "DBase_Service.inl"
 #endif
+
+CUTS_BDC_SERVICE_DECL (DBASE_SVC_Export);
 
 #endif  // !defined _CUTS_DBASE_SERVICE_H_

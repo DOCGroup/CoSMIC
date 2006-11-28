@@ -50,7 +50,7 @@ handle_event_i (EVENTTYPE * ev,
   // Create a new activation record.
   CUTS_Activation_Record * record =
     this->port_agent ().create_activation_record ();
-  record->activate (ev->sender ());
+  record->activate (CUTS_UNKNOWN_IMPL /*ev->sender ()*/);
 
   // Make an upcall to the callback and pass it a record for
   // logging its performance.
