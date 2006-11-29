@@ -12,23 +12,31 @@
 workspace (CUTS_CoSMIC) {
   cmdline += -feature_file default.features
 
-  exclude (!vc6, !vc7, !vc71, !vc8) {
+  exclude (!vc71, !vc8) {
     cmdline += -include $COSMIC_ROOT \
                -include $CUTS_ROOT/etc/config
 
     // -- CUTS projects
     cuts/be
     cuts/GME
-    
-    // -- CoSMIC projects
-    $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML
-    $(COSMIC_ROOT)/Utils
-  }
 
-  // -- This project is necessary for the code generation projects.
-  exclude (!vc6, !vc7, !vc71, !vc8) {
-    cmdline += -static
-    
-    $(CIAO_ROOT)/CCF/CCF/CodeGenerationKit
+    cosmic {
+      // CoSMIC related projects. This will determine if the following
+      // project are built in CUTS or CoSMIC. If you want to build the
+      // following projects in CUTS, the set -feature cosmic=1.
+
+      cmdline += -include $COSMIC_ROOT \
+                 -include $CUTS_ROOT/etc/config \
+                 -base requires_cosmic
+
+      $(COSMIC_ROOT)/Utils
+      $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML
+    }
+
+    static {
+      cmdline = -static
+
+      $(CIAO_ROOT)/CCF/CCF/CodeGenerationKit
+    }
   }
 }

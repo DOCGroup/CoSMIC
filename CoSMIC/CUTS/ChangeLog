@@ -1,3 +1,22 @@
+Wed Nov 29 19:30:03 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * CUTS_CoSMIC.mwc:
+
+          - Simplified the workspace specification using scopes.
+          - CoSMIC related projects (i.e., those that required to
+            build the CoSMIC related tools in CUTS, not the CUTS
+            tools) can be enabled/disabled using the 'cosmic' feature.
+
+        * etc/config/requires_cosmic.mpb:
+
+          Defines the feature requirement 'cosmic' to determine
+          inclusion of projects based on enabling/disabling the
+          'cosmic' feature.
+
+        * CUTS_Release.mwc:
+
+          Removed this file.
+
 Wed Nov 29 18:57:03 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/BMW.mwc:
