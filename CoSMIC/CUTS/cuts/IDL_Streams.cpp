@@ -17,7 +17,8 @@ namespace CUTS
     // occurrence. We also update the timestamp for the metrics.
     CUTS_Component_Metric * metric =
       sys_metrics.component_metrics (data->owner);
-    metric->timestamp (sys_metrics.timestamp ());
+
+    metric->timestamp (sys_metrics.get_timestamp ());
 
     // Get the <ports> and the <length> of the <port> sequence.
     Port_Measurement_Seq ports = data->ports;

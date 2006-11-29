@@ -422,7 +422,7 @@ int CUTS_Database_Service::handle_metrics (void)
   try
   {
     // Convert the <timestamp> to a known type.
-    ACE_Time_Value timestamp = this->metrics ().timestamp ();
+    ACE_Time_Value timestamp = this->metrics ().get_timestamp ();
     ACE_Date_Time ct (timestamp);
     ODBC_Date_Time datetime (ct);
 
@@ -516,7 +516,7 @@ int CUTS_Database_Service::handle_metrics (void)
             // Determine if this port has any metrics that correspond
             // with the lastest timestamp for the system metrics. If it
             // does not then why bother going any further.
-            if (this->metrics ().timestamp () !=
+            if (this->metrics ().get_timestamp () !=
                 em_iter->second->timestamp ())
             {
               continue;

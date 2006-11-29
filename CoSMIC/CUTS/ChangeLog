@@ -1,3 +1,22 @@
+Wed Nov 29 20:39:45 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/System_Metric.h:
+        * cuts/System_Metric.inl:
+        * cuts/System_Metric.cpp:
+
+          - Added support for initializing/setting the timestamp of the
+            system metrics both internally and externally.
+          - Added support for determining the duration of a collection
+            period.
+
+        * cuts/BDC/BDC_Service.cpp:
+        * cuts/BDC/BDC_Task.cpp:
+        * cuts/IDL_Streams.cpp:
+        * cuts/svcs/dbase/DBase_Service.cpp:
+
+          Updated the following classes to support the modifications
+          to the CUTS_System_Metric class.
+
 Wed Nov 29 19:55:16 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/BDC.xme:

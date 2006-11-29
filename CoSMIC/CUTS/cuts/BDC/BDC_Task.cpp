@@ -124,8 +124,8 @@ namespace CUTS
     }
     else
     {
-      // Initialize the timestamp.
-      this->metrics_->timestamp (ACE_OS::gettimeofday ());
+      // Update the timestamp for the collected metrics.
+      this->metrics_->set_timestamp ();
 
       // Get all the benchmark agents contained in the testing service.
       CCM_Component_Registry * reg = this->testing_service_->ccm_registry ();
@@ -143,6 +143,10 @@ namespace CUTS
   //
   int BDC_Task::svc (void)
   {
+    // Initialize the metrics timing values.
+    this->metrics_->init_timestamp ();
+
+    // Enter the event loop.
     while (this->active_)
       this->reactor ()->handle_events ();
 

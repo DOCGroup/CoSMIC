@@ -10,6 +10,7 @@
 #include "cuts/System_Metrics_Visitor.h"
 #include "ace/Guard_T.h"
 #include "ace/Auto_Ptr.h"
+#include "ace/OS_NS_sys_time.h"
 
 //
 // CUTS_System_Metric
@@ -104,7 +105,45 @@ CUTS_System_Metric::component_metrics (long regid)
 //
 // accept
 //
-void CUTS_System_Metric::accept (CUTS_System_Metrics_Visitor & visitor)
+void CUTS_System_Metric::
+accept (CUTS_System_Metrics_Visitor & visitor)
 {
   return visitor.visit_system_metrics (*this);
+}
+
+//
+// timestamp
+//
+void CUTS_System_Metric::
+set_timestamp (const ACE_Time_Value * timestamp)
+{
+  // Save the previous timestamp before we set the
+  // new timestamp value.
+  ACE_Time_Value prev_time = this->timestamp_;
+  this->timestamp_i (timestamp);
+
+  // Calculate the duration between time values.
+  this->duration_ = prev_time - this->timestamp_;
+}
+
+//
+// init_timestamp
+//
+void CUTS_System_Metric::
+init_timestamp (const ACE_Time_Value * timestamp)
+{
+  this->timestamp_i (timestamp);
+  this->duration_ = ACE_Time_Value::zero;
+}
+
+//
+// timestamp_i
+//
+void CUTS_System_Metric::
+timestamp_i (const ACE_Time_Value * timestamp)
+{
+  if (timestamp)
+    this->timestamp_ = *timestamp;
+  else
+    this->timestamp_ = ACE_OS::gettimeofday ();
 }

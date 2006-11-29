@@ -34,18 +34,20 @@ ACE_THR_FUNC_RETURN CUTS_BDC_Service::svc (void * param)
 
   // Get the current timestamp for the metrics before we
   // enter the event loop.
-  ACE_Time_Value tm = svp->svc_->metrics_->timestamp ();
+  ACE_Time_Value last_time =
+    svp->svc_->metrics_->get_timestamp ();
 
   while (svp->svc_->active_)
   {
     // Wait for notification then signal the service to handle
     // a new set of metrics!!
-    if (tm == svp->svc_->metrics_->timestamp ())
+    if (last_time == svp->svc_->metrics_->get_timestamp ())
     {
       svp->notify_->wait ();
       svp->notify_->reset ();
 
-      tm = svp->svc_->metrics_->timestamp ();
+      // Let's update our value with the latest timestamp.
+      last_time = svp->svc_->metrics_->get_timestamp ();
     }
 
     // Make an upcall to the service object. There is a chance that

@@ -20,19 +20,21 @@ CUTS_System_Metric::component_metrics (void) const
 }
 
 //
-// timestamp
+// get_timestamp
 //
 CUTS_INLINE
-const ACE_Time_Value & CUTS_System_Metric::timestamp (void) const
+const ACE_Time_Value &
+CUTS_System_Metric::get_timestamp (void) const
 {
   return this->timestamp_;
 }
 
 //
-// timestamp
+// get_timestamp
 //
 CUTS_INLINE
-void CUTS_System_Metric::timestamp (const ACE_Time_Value & timestamp)
+const ACE_Time_Value &
+CUTS_System_Metric::get_duration (void) const
 {
-  this->timestamp_ = timestamp;
+  return this->duration_;
 }

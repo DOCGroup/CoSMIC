@@ -74,18 +74,54 @@ public:
    */
   void accept (CUTS_System_Metrics_Visitor & visitor);
 
-  const ACE_Time_Value & timestamp (void) const;
+  /***
+   * Initialize the timestamp stored in the metrics database. This
+   * is necessary if you want to calculate the duration between
+   * collection times.
+   *
+   * @param[in]     timestamp       Pointer to the timestamp.
+   */
+  void init_timestamp (const ACE_Time_Value * timestamp = 0);
 
-  void timestamp (const ACE_Time_Value & timestamp);
+  /**
+   * This method update the timestamp. If the \a timestamp is
+   * 0, then the system will get the current time of day. If
+   * \a timestamp is not zero, then the metrics will store the
+   * specified value.
+   *
+   * @param[in]     timestamp       Pointer to the timestamp.
+   */
+  void set_timestamp (const ACE_Time_Value * timestamp = 0);
+
+  /**
+   * Get a reference to the current timestamp.
+   *
+   * @return        Reference to the current timestamp.
+   */
+  const ACE_Time_Value & get_timestamp (void) const;
+
+  /**
+   * Get the elapsed time for the current collection.
+   *
+   * @return        Reference to the elapsed time.
+   */
+  const ACE_Time_Value & get_duration (void) const;
 
 private:
-  /// Component metrics for the system.
-  CUTS_Component_Metric_Map component_metrics_;
+  /// Helper method for setting the timestamp accordingly.
+  void timestamp_i (const ACE_Time_Value * timestamp = 0);
+
+  /// The current timestamp of the metrics.
+  ACE_Time_Value timestamp_;
+
+  /// The duration between metric collections.
+  ACE_Time_Value duration_;
 
   /// Locking mechanism for the object.
   ACE_RW_Thread_Mutex lock_;
 
-  ACE_Time_Value timestamp_;
+  /// Component metrics for the system.
+  CUTS_Component_Metric_Map component_metrics_;
 };
 
 #if defined (__CUTS_INLINE__)
