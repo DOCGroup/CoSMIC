@@ -1,3 +1,18 @@
+Wed Nov 29 00:12:53 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/BMW.mpc:
+
+          Added project file that specifies this directory as
+          the base directory for a web application.
+
+        * utils/BMW/BMW.mwc:
+
+          Removed the CORBA utility project.
+
+        * utils/BMW/Database_Utility/Database_Utility.mpc:
+
+          Removed the ASPX_Files and Config_Files groupings.
+
 Tue Nov 28 02:10:06 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * etc/config/cuts_bdcsvc.mpb:

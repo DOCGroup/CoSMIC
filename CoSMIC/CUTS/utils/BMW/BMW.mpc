@@ -1,0 +1,5 @@
+// $Id$
+
+project (BMW) {
+  webapp = 1
+}

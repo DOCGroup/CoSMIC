@@ -19,12 +19,4 @@ project (CUTS_Database_Utility) {
   Source_Files {
     Database_Utility.cs
   }
-
-  ASPX_Files {
-
-  }
-
-  Config_Files {
-
-  }
 }

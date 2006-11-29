@@ -1,18 +1,13 @@
 // $Id$
 
 workspace (BMW) {
-  // -- C++ projects
-  cplusplus {
-    cmdline = -language cplusplus \
-              -include $CUTS_ROOT/etc/config
-
-    // CORBA_Utility
-  }
-
+  // -- web application
+  BMW.mpc
+  
   // C# projects
   csharp {
     cmdline = -language csharp
 
-    Database_Utility
+    $(CUTS_ROOT)/utils/BMW/Database_Utility
   }
 }
