@@ -1,3 +1,16 @@
+Wed Nov 29 19:55:16 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/BDC.xme:
+
+          GME model of the BDC that should be either imported, or
+          attached as a library, to the target CUTS project. The
+          main goal is to simplify extending models to use CUTS.
+
+        * cuts/BDC/Benchmark_Data_Collector.idl:
+
+          Removed cuts/Events.idl from the listing of include
+          files.
+
 Wed Nov 29 19:30:03 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * CUTS_CoSMIC.mwc:

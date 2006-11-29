@@ -3,9 +3,8 @@
 #ifndef _BENCHMARK_DATA_COLLECTOR_IDL_
 #define _BENCHMARK_DATA_COLLECTOR_IDL_
 
-#include "cuts/CUTS.idl"
-#include "cuts/Events.idl"
 #include "service.idl"
+#include "cuts/CUTS.idl"
 
 module CUTS
 {
