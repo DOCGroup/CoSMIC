@@ -1,12 +1,13 @@
 // $Id$
 
 workspace (BMW) {
-  // -- web application
+  // web application (i.e., webapp = 1)
   BMW.mpc
-  
-  // C# projects
+
   csharp {
-    cmdline = -language csharp
+    // process the following directories using C#
+    // as the target language.
+    cmdline += -language csharp
 
     $(CUTS_ROOT)/utils/BMW/Database_Utility
   }

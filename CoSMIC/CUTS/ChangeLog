@@ -1,9 +1,23 @@
+Wed Nov 29 14:23:48 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * CUTS.mwc:
+
+          Added support for building the BMW by default when the project
+          type is vc8.
+
+        * utils/BMW/BMW.mwc:
+
+          Added the abolute location of Database_Utility based on the
+          environment variable $(CUTS_ROOT). This is a temporary fix
+          until a projected bug has been fixed in MPC.
+
 Wed Nov 29 00:12:53 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/BMW.mpc:
 
           Added project file that specifies this directory as
-          the base directory for a web application.
+          the base directory for a web application. This requires
+          revision 1080 or greater in MPC.
 
         * utils/BMW/BMW.mwc:
 
