@@ -1,3 +1,11 @@
+Wed Nov 29 18:57:03 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/BMW.mwc:
+
+          Removed hack that used the absolute location of the
+          Database_Utility directory, instead of the relative
+          location based on this workspace.
+
 Wed Nov 29 15:23:36 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * NEWS:

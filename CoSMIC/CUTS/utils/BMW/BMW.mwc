@@ -9,6 +9,6 @@ workspace (BMW) {
     // as the target language.
     cmdline += -language csharp
 
-    $(CUTS_ROOT)/utils/BMW/Database_Utility
+    Database_Utility
   }
 }
