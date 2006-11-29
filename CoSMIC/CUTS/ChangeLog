@@ -1,3 +1,13 @@
+Wed Nov 29 15:23:36 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * NEWS:
+
+          Initial pass at a NEW file based on revision numbers. We
+          can use the revision numbers since SVN takes a global snapshot
+          of the repo for each revision number. We can therefore get
+          all the necessary files/updates just by using a single revision
+          number.
+
 Wed Nov 29 15:09:12 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/WebCharts:

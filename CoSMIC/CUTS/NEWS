@@ -1,0 +1,32 @@
+USER VISIBLE CHANGES IN CUTS AFTER REVISION 926
+====================================================
+
+. The Benchmark Data Collector (BDC) is now a service object
+  that collects metrics and manages components registration
+  The BDC notifies loaded services of events that occur
+  in the environment that may be of interest. Services
+  are loaded into the BDC using by setting the attribute
+  service attribute as follows:
+
+  <svc_name> <svc_path> <svc_args>;
+
+  Mulitple services can be loaded by chaining series of
+  the statment above as follows:
+
+  <svc_name> <svc_path> <svc_args>;<svc_name> <svc_path> <svc_args>;
+
+  We currently recommend that svc_name and svc_path do not
+  have spaces in their name.
+
+. The BDC does not explicitly provide a Path_Measurement
+  receptacle type and is being transitioned into a service
+  object for the BDC.
+
+. There is no longer a Benchmark_Data_Collector_Ex (extended
+  BDC for storing metrics into a database. Instead, it is
+  a service object that is located in the shared library
+  CUTS_Database_Service
+
+. There is no attribute on the BDC for dumping metrics to
+  an XML file. This is also being transitioned into a service
+  object that's located in the shared library CUTS_XML.
