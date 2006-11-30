@@ -36,6 +36,18 @@
 
 CUTS_BDC_SERVICE_IMPL (CUTS_Database_Service);
 
+#define VERBOSE_MESSAGE(msg) \
+  if (this->verbose_) \
+  { \
+    ACE_ERROR (msg); \
+  }
+
+#define VERBOSE_MESSAGE_RETURN(msg) \
+  if (this->verbose_) \
+  { \
+    ACE_ERROR_RETURN (msg); \
+  }
+
 //
 // CUTS_Database_Service
 //
@@ -71,22 +83,18 @@ int CUTS_Database_Service::init (int argc, ACE_TCHAR * argv [])
   if (this->parse_args (argc, argv) != 0)
     return -1;
 
-  if (this->verbose_)
-  {
-    ACE_DEBUG ((LM_DEBUG,
-                "connecting the database [server=%s; username=%s; "
-                "password=%s; port=%d]\n",
-                this->server_.c_str (),
-                this->username_.c_str (),
-                this->password_.c_str (),
-                this->port_));
-  }
+  VERBOSE_MESSAGE ((LM_DEBUG,
+                    "connecting the database [server=%s; username=%s; "
+                    "password=%s; port=%d]\n",
+                    this->server_.c_str (),
+                    this->username_.c_str (),
+                    this->password_.c_str (),
+                    this->port_));
 
   this->connect (this->username_.c_str (),
                  this->password_.c_str (),
                  this->server_.c_str (),
                  this->port_);
-
   return 0;
 }
 
