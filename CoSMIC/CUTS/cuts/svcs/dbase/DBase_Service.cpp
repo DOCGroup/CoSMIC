@@ -95,13 +95,11 @@ int CUTS_Database_Service::init (int argc, ACE_TCHAR * argv [])
 //
 int CUTS_Database_Service::parse_args (int argc, ACE_TCHAR * argv [])
 {
-  const char * opts = ACE_TEXT ("u:p:s:P:");
+  const char * opts = ACE_TEXT ("s:p:");
   ACE_Get_Opt get_opt (argc, argv, opts, 0);
 
-  get_opt.long_option ("username", 'u', ACE_Get_Opt::ARG_REQUIRED);
-  get_opt.long_option ("password", 'p', ACE_Get_Opt::ARG_REQUIRED);
   get_opt.long_option ("server", 's', ACE_Get_Opt::ARG_REQUIRED);
-  get_opt.long_option ("port", 'P', ACE_Get_Opt::ARG_REQUIRED);
+  get_opt.long_option ("port", 'p', ACE_Get_Opt::ARG_REQUIRED);
   get_opt.long_option ("verbose", ACE_Get_Opt::NO_ARG);
 
   int option;
@@ -111,18 +109,8 @@ int CUTS_Database_Service::parse_args (int argc, ACE_TCHAR * argv [])
     switch (option)
     {
     case 0:
-      if (ACE_OS::strcmp (get_opt.long_option (), "username") == 0)
+      if (ACE_OS::strcmp (get_opt.long_option (), "server") == 0)
       {
-        this->username_ = get_opt.opt_arg ();
-      }
-      else if (ACE_OS::strcmp (get_opt.long_option (), "password") == 0)
-      {
-        this->password_ = get_opt.opt_arg ();
-      }
-      else if (ACE_OS::strcmp (get_opt.long_option (), "server") == 0)
-      {
-        ACE_DEBUG ((LM_DEBUG, "setting the server\n"));
-
         this->server_ = get_opt.opt_arg ();
       }
       else if (ACE_OS::strcmp (get_opt.long_option (), "port") == 0)
@@ -135,20 +123,12 @@ int CUTS_Database_Service::parse_args (int argc, ACE_TCHAR * argv [])
       }
       break;
 
-    case 'u':
-      this->username_ = get_opt.opt_arg ();
-      break;
-
-    case 'p':
-      this->password_ = get_opt.opt_arg ();
-      break;
-
     case 's':
       ACE_DEBUG ((LM_DEBUG, "setting the server\n"));
       this->server_ = get_opt.opt_arg ();
       break;
 
-    case 'P':
+    case 'p':
       this->port_ = ACE_OS::atoi (get_opt.opt_arg ());
       break;
 
