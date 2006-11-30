@@ -103,14 +103,6 @@ void CUTS_CCM_CoWorkEr_T
 
       testing_service->unregister_component (creg);
     }
-    catch (const ::CUTS::ID_Not_Found &)
-    {
-      ACE_ERROR ((
-        LM_ERROR,
-        "[%M] -%T - ID not found for %s; component was not registered\n",
-        instance_id.in ()));
-
-    }
     catch (const ::CORBA::Exception & ex)
     {
       ACE_ERROR ((LM_ERROR,

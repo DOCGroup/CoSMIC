@@ -1,3 +1,13 @@
+Thu Nov 30 00:41:35 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/Benchmark_Data_Collector_exec_i.cpp:
+
+          Fixed bug in parsing service declarations.
+
+        * cuts/CCM_CoWorkEr_T.cpp:
+
+          Template class still has reminents of deprecated exceptions.
+
 Wed Nov 29 20:39:45 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/System_Metric.h:

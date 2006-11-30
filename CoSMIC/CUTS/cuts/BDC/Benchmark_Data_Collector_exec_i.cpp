@@ -196,29 +196,46 @@ namespace CUTS
     {
       // Save the service attribute.
       this->svcs_ = svc;
-      char * svc_temp = ACE_OS::strdup (svc);
 
-      // Extract the name.
-      char * svc_name = svc_temp;
-
-      // Extract the path.
-      char * svc_path = ACE_OS::strchr (svc_temp, ' ');
-      *svc_path ++ = '\0';
-
-      // Extract the arguments.
-      char * svc_args = ACE_OS::strchr (svc_path, ' ');
-      *svc_args ++ = '\0';
-
-      if (CUTS_BDC_SVC_MANAGER ()->load_service (svc_name,
-                                                 svc_path,
-                                                 svc_args) != 0)
+      if (this->svcs_.length () > 0)
       {
-        ACE_ERROR ((LM_ERROR,
-                    "failed to load service '%s'\n",
-                    svc_name));
-      }
+        // Create a copy so we can butcher it accordingly.
+        char * svc_temp = ACE_OS::strdup (svc);
+        char * next_svc = svc_temp;
 
-      delete [] svc_temp;
+        do
+        {
+          // Save the name of the service and locate where the
+          // path begins the seperate the path from the name.
+          char * svc_name = next_svc;
+          char * svc_path = ACE_OS::strchr (next_svc, ' ');
+          *svc_path ++ = '\0';
+
+          // Locate where the service path ends and seperate
+          // the path from the arguments. We need to save the
+          // old value before we continue as well.
+          char * svc_args = ACE_OS::strchr (svc_path, ' ');
+          *svc_args ++ = '\0';
+
+          // Locate the end of the service declaration and
+          // seperate it from the next service declaration,
+          // if applicable.
+          next_svc = ACE_OS::strchr (svc_args, ';');
+          *next_svc ++ = '\0';
+
+          if (CUTS_BDC_SVC_MANAGER ()->load_service (svc_name,
+                                                     svc_path,
+                                                     svc_args) != 0)
+          {
+            ACE_ERROR ((LM_ERROR,
+                        "failed to load service '%s'\n",
+                        svc_name));
+          }
+        } while (*next_svc != '\0');
+
+        // Delete the temporary string.
+        delete [] svc_temp;
+      }
     }
 
     //
