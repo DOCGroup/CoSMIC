@@ -1,5 +1,15 @@
 // -*- IDL -*-
 
+//=============================================================================
+/**
+ * @file      Benchmark_Data_Collector.idl
+ *
+ * $Id$
+ *
+ * @author    James H. Hill
+ */
+//=============================================================================
+
 #ifndef _BENCHMARK_DATA_COLLECTOR_IDL_
 #define _BENCHMARK_DATA_COLLECTOR_IDL_
 
@@ -8,6 +18,13 @@
 
 module CUTS
 {
+  /// Exception thrown when the specified service name is
+  /// not found in the manager.
+  exception Service_Not_Found { };
+
+  /// Type definition for a listing of service names.
+  typedef sequence <string> BDC_Service_Names;
+
   //===========================================================================
   /**
    * @interface BDC_Control_Handle
@@ -34,7 +51,8 @@ module CUTS
     void unload_services (in BDC_Service_Names names);
 
     /// Get a reference to a particular service.
-    BDC_Service get_service (in string name);
+    BDC_Service get_service (in string name)
+      raises (Service_Not_Found);
 
     /// Get a listing of all the services loaded.
     void list_services (out BDC_Service_Names svcs);

@@ -18,6 +18,7 @@
 #include "ace/Null_Mutex.h"
 #include "ace/Service_Gestalt.h"
 #include "ace/Singleton.h"
+#include "ace/Vector_T.h"
 #include "tao/ORB.h"
 
 // Forward decl.
@@ -31,6 +32,9 @@ class ACE_Thread_Manager;
 
 // Forward decl.
 class ACE_Event;
+
+/// Type decleration for a collection of service names.
+typedef ACE_Vector <const char *>  CUTS_BDC_Service_Names;
 
 //=============================================================================
 /**
@@ -103,6 +107,21 @@ public:
   int close (ACE_Time_Value * timeout = 0);
 
   int handle_component (const CUTS_Component_Info & info);
+
+  /**
+   * Get the number of services currently loaded.
+   *
+   * @return        The number of services.
+   */
+  size_t get_service_count (void) const;
+
+  /**
+   * Get a listing of all the loaded services. This method will
+   * change the size of \a names.
+   *
+   * @param[in]       names         Target object for names.
+   */
+  void get_service_names (CUTS_BDC_Service_Names & names);
 
 private:
   /// The main ORB for this manager.

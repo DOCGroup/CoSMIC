@@ -63,7 +63,8 @@ namespace CUTS
     virtual CUTS::BDC_Service_ptr get_service (
       const char * name
       ACE_ENV_ARG_DECL_WITH_DEFAULTS)
-      ACE_THROW_SPEC ((CORBA::SystemException));
+      ACE_THROW_SPEC ((CORBA::SystemException,
+                       CUTS::Service_Not_Found));
 
     virtual void list_services (
       CUTS::BDC_Service_Names_out)

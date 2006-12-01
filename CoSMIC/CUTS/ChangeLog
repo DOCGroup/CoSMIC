@@ -1,3 +1,28 @@
+Fri Dec  1 16:47:35 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/BDC_Control_Handle_exec_i.h:
+        * cuts/BDC/BDC_Control_Handle_exec_i.cpp:
+
+          - Finished implementing list_services ()
+          - get_service () now throws Service_Not_Found exception
+            if the service name is not found in the manager.
+
+        * cuts/BDC/BDC_Service_Manager.h:
+        * cuts/BDC/BDC_Service_Manager.inl:
+        * cuts/BDC/BDC_Service_Manager.cpp:
+
+          Implemented get_service_names (), which returns a set
+          contains the names of the loaded services.
+
+        * cuts/BDC/Benchmark_Data_Collector.idl:
+
+          - Added Service_Not_Found exception.
+
+        * cuts/BDC/service.idl:
+
+          Moved the BDC_Service_Names type definition to
+          Benchmark_Data_Collector.idl
+
 Thu Nov 30 00:59:40 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/svcs/dbase/DBase_Service.cpp:

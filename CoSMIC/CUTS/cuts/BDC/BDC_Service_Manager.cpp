@@ -214,7 +214,7 @@ handle_component (const CUTS_Component_Info & info)
 {
   // Create an iterator to the underlying repo so we can
   // iterate over all the loaded services.
-  ACE_Service_Repository_Iterator iter (*this->repo_, 0);
+  ACE_Service_Repository_Iterator iter (*this->repo_, 1);
   ACE_Service_Type * svc_type = 0;
 
   while (iter.next (svc_type) == 1)
@@ -250,4 +250,32 @@ get_service (const char * name,
 {
   svc = ACE_Dynamic_Service <CUTS_BDC_Service>::instance (this, name);
   return svc != 0 ? 0 : -1;
+}
+
+//
+// get_service_names
+//
+void CUTS_BDC_Service_Manager::
+get_service_names (CUTS_BDC_Service_Names & names)
+{
+  // Set the size of names.
+  names.resize (this->get_service_count (), 0);
+
+  // Create an iterator to the underlying repo so we can
+  // iterate over all the loaded services. We do not want
+  // to bypass the suspended services in this case.
+  ACE_Service_Repository_Iterator iter (*this->repo_, 0);
+  ACE_Service_Type * svc_type = 0;
+  size_t i = 0;
+
+  while (iter.next (svc_type) == 1)
+  {
+    // Extract the <CUTS_BDC_Service> from the service object
+    // and store it's name into the <names> object.
+    const ACE_Service_Type_Impl * type = svc_type->type ();
+    names[i ++] = type->name ();
+
+    // Move to the next service.
+    iter.advance ();
+  }
 }

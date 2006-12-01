@@ -45,9 +45,6 @@ module CUTS
   /// Type definition for a collection of BDC_Service_Descriptor objects.
   typedef sequence <BDC_Service_Descriptor> BDC_Service_Descriptors;
 
-  /// Type definition for a listing of service names.
-  typedef sequence <string> BDC_Service_Names;
-
   //===========================================================================
   /**
    * @interface BDC_Service

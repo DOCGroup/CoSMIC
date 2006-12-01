@@ -118,25 +118,44 @@ namespace CUTS
   CUTS::BDC_Service_ptr BDC_Control_Handle_exec_i::
     get_service (const char * name
     ACE_ENV_ARG_DECL_WITH_DEFAULTS)
-    ACE_THROW_SPEC ((CORBA::SystemException))
+    ACE_THROW_SPEC ((CORBA::SystemException,
+                     CUTS::Service_Not_Found))
   {
+    // Get the actual service from the manager.
     CUTS_BDC_Service * svc = 0;
     int retval = this->svc_mgr_->get_service (name, svc);
 
-    // @@ Eventually we will want to throw an exception if we can't
-    // find the service (i.e., Service_Unavailable or Service_Not_Found).
-    return retval == 0 && svc != 0 ?
-           svc->get_remote_object () :
-           CUTS::BDC_Service::_nil ();
+    if (retval == -1 || svc == 0)
+      ACE_THROW (CUTS::Service_Not_Found ());
+
+    // Get the remote object from the service.
+    return svc->get_remote_object ();
   }
 
   //
   // list_services
   //
   void BDC_Control_Handle_exec_i::
-    list_services (CUTS::BDC_Service_Names_out)
+    list_services (CUTS::BDC_Service_Names_out names)
     ACE_THROW_SPEC ((CORBA::SystemException))
   {
+    // Get the names of all the loaded services.
+    CUTS_BDC_Service_Names svc_names;
+    this->svc_mgr_->get_service_names (svc_names);
+    size_t length = svc_names.size ();
 
+    // Allocate a new <CUTS::BDC_Service_Names> object and store
+    // it in the <names> object. Then make sure to set the real
+    // length of the sequence.
+    ACE_NEW_THROW_EX (names,
+                      CUTS::BDC_Service_Names (length),
+                      ::CORBA::NO_MEMORY ());
+
+    names->length (length);
+
+    // Let's copy all the names into the sequence making sure to
+    // create a duplicate of the string before storing it.
+    for (size_t i = 0; i < length; i ++)
+      names[i] = ::CORBA::string_dup (svc_names[i]);
   }
 }
