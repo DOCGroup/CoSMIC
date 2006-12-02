@@ -194,8 +194,11 @@ namespace CUTS
     {
       try
       {
-        // Get <performance_data> and store it in the cache.
-        ::CUTS::Benchmark_Data_var data = agent->collect_performance_data ();
+        ::CUTS::Benchmark_Data_var data;
+
+        // Collect the performance data from the component the
+        // store it in the in-memory database.
+        agent->collect_performance_data (data);
         data >> (*this->metrics_);
       }
       catch (const CORBA::Exception & ex)

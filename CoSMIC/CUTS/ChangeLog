@@ -1,3 +1,13 @@
+Sat Dec  2 17:21:52 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/BDC_Task.cpp:
+        * cuts/Benchmark_Agent_i.h:
+        * cuts/Benchmark_Agent_i.cpp:
+        * cuts/CUTS.idl:
+
+          Converted the return value of collect_performance_data () in
+          the CUTS::Benchmark_Agent interface to a out parameter.
+
 Fri Dec  1 16:47:35 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/BDC_Control_Handle_exec_i.h:

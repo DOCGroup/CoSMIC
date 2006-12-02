@@ -36,8 +36,9 @@ public:
   virtual ~Benchmark_Agent_i (void);
 
   /// Get the performance data from the Benchmark_Agent
-  virtual ::CUTS::Benchmark_Data *  collect_performance_data (
-    ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+  virtual void collect_performance_data (
+    ::CUTS::Benchmark_Data_out data
+    ACE_ENV_ARG_DECL_WITH_DEFAULTS)
     ACE_THROW_SPEC ((::CORBA::SystemException));
 };
 

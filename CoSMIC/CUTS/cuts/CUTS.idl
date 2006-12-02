@@ -27,18 +27,29 @@ module CUTS
   //===========================================================================
   /**
    * @interface Benchmark_Agent
+   *
+   * Collection object that all components contain internally. This
+   * allows an external object to poll each component during runtime
+   * and collect performance metrics.
    */
   //===========================================================================
 
   interface Benchmark_Agent
   {
     /// Get the performance data from the agent.
-    Benchmark_Data collect_performance_data ();
+    void collect_performance_data (out Benchmark_Data data);
   };
 
   //===========================================================================
   /**
+   * @struct Component_Registration
    *
+   * Registration information about the component. This allows a component
+   * to let a monitoring object/component realize the existence of active
+   * objects in the system. The registration information contains the details
+   * of the component, such as type, instance name, and more importantly the
+   * Benchmark_Agent for the component (if applicable) so that the monitoring
+   * component can poll it periodically for performance information.
    */
   //===========================================================================
 
