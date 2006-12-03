@@ -9,6 +9,48 @@
 
 //=============================================================================
 /**
+ * @struct Is_Finish_Connection
+ *
+ * Functor for determining if a Finish connection belongs to
+ * a particular input action.
+ */
+//=============================================================================
+
+struct Is_Finish_Connection
+{
+  /**
+   * Initializing constructor.
+   *
+   * @param[in]     src_input       The target input action.
+   */
+  inline
+  Is_Finish_Connection (const PICML::InputAction & src_input)
+    : src_input_ (src_input)
+  {
+
+  }
+
+  /**
+   * Functor method responsible for determining the owner
+   * of the finish connection.
+   *
+   * @param[in]     finish          The next finish connection.
+   */
+  inline
+  bool operator () (const PICML::Finish & finish)
+  {
+    PICML::InputAction ia =
+      PICML::InputAction::Cast (finish.dstFinish_end ());
+
+    return ia == this->src_input_;
+  }
+
+  // Source input action we are looking for.
+  const PICML::InputAction & src_input_;
+};
+
+//=============================================================================
+/**
  * @struct Sort_By_Position
  *
  * @brief Help functor to sort objects by their position. The object
@@ -101,7 +143,7 @@ Visit_Input (const PICML::Input & input)
 }
 
 //
-// Visit_Input
+// Visit_MultiInput
 //
 void CUTS_BE_Execution_Visitor::
 Visit_MultiInput (const PICML::MultiInput & input)
@@ -118,6 +160,9 @@ Visit_MultiInput (const PICML::MultiInput & input)
 void CUTS_BE_Execution_Visitor::
 Visit_InputAction (const PICML::InputAction & action)
 {
+  // Add the <action> to the top of the stack.
+  this->action_stack_.push (action);
+
   // Visit all the properties for this input action.
   typedef std::vector <PICML::Property> Property_Set;
   Property_Set props = action.Property_children ();
@@ -133,6 +178,10 @@ Visit_InputAction (const PICML::InputAction & action)
 
   if (input_effect != Udm::null)
     input_effect.Accept (*this);
+
+  // Remove the <action> from the stack since we have
+  // completed its behavior.
+  this->action_stack_.pop ();
 }
 
 //
@@ -210,9 +259,17 @@ Visit_State (const PICML::State & state)
 
   // Check for a finishing transition from this state.
   typedef std::set <PICML::Finish> Finish_Set;
-  Finish_Set fini_set = state.dstFinish ();
+  Finish_Set finish_set = state.dstFinish ();
 
-  if (!fini_set.empty ())
+  // We need to store the current size of the <action_stack_>
+  // just in case one of the finish connections in for this
+  // particular behavior workflow.
+  Finish_Set::iterator finish_iter =
+    std::find_if (finish_set.begin (),
+                  finish_set.end (),
+                  Is_Finish_Connection (this->action_stack_.top ()));
+
+  if (finish_iter != finish_set.end ())
     return;
 
   // Get all the transitions from this state. If there is more than
@@ -400,4 +457,20 @@ Visit_CompositeAction (const PICML::CompositeAction & ca)
   // There should only be one <InputAction> in a <CompositeAction>
   if (ia_set.size () == 1)
     ia_set.front ().Accept (*this);
+}
+
+//
+// Visit_Finish
+//
+void CUTS_BE_Execution_Visitor::
+Visit_Finish (const PICML::Finish & finish)
+{
+  PICML::InputActionBase iab = finish.dstFinish_end ();
+  PICML::InputAction ia = PICML::InputAction::Cast (iab);
+
+  if (!this->action_stack_.empty () &&
+      ia != this->action_stack_.top ())
+  {
+    this->action_stack_.pop ();
+  }
 }

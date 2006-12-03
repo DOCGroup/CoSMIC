@@ -73,6 +73,9 @@ protected:
   /// Visit a CompositeAction element.
   void Visit_CompositeAction (const PICML::CompositeAction &);
 
+  /// Visit a Finish connection.
+  void Visit_Finish (const PICML::Finish & finish);
+
 private:
   /// Collection of file generators.
   const CUTS_BE_File_Generator_Set & generators_;
@@ -88,6 +91,10 @@ private:
 
   /// Collection of ordered return states.
   Holding_State holding_state_;
+
+  typedef std::stack <PICML::InputAction> Action_Stack;
+
+  Action_Stack action_stack_;
 
   // prevent the following operations
   CUTS_BE_Execution_Visitor (CUTS_BE_Execution_Visitor &);
