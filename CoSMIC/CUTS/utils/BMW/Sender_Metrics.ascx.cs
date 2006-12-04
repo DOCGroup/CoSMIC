@@ -59,7 +59,8 @@ namespace CUTS
     {
       System.Text.StringBuilder builder = new System.Text.StringBuilder ();
       builder.Append ("SELECT metric_count, metric_type, src, dst, best_time, ");
-      builder.Append ("average_time, worse_time FROM execution_time WHERE (");
+      builder.Append ("(total_time / metric_count) AS average_time, worse_time ");
+      builder.Append ("FROM execution_time WHERE (");
       builder.Append ("test_number = ? AND component = ? AND sender = ? AND ");
       builder.Append ("collection_time = ?)");
 

@@ -1,3 +1,11 @@
+Mon Dec  4 09:19:55 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/Sender_Metrics.ascx.cs:
+
+          Fixed execution time table to properly display the average
+          value based on the new changes to the database. This update
+          requires MySQL Connector/ODBC 3.51.
+
 Sun Dec  3 06:37:15 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE_Execution_Visitor.h:
