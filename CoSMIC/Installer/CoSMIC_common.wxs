@@ -48,8 +48,8 @@
       </Component>
 
       <!-- UDM 3.0.1 -->
-      <Component Id="UDM_3_0_1" Guid="F069845F-C8E8-48e6-98CB-F9FBDFE76EDD">
-        <File Id="UDMDLL_3_0_1.DLL" Name="UDMDLL.DLL" LongName="UDMDLL_3_0_1.DLL"
+      <Component Id="UDM_3_1_1" Guid="F069845F-C8E8-48e6-98CB-F9FBDFE76EDD">
+        <File Id="UDMDLL_3_1_1.DLL" Name="UDMDLL.DLL" LongName="UDMDLL_3_1_1.DLL"
               Source="$(env.UDM_PATH)\bin\UDMDLL_3_0_1.DLL" DiskId="1" />
         <File Id="XERCES_C_2_5_0.DLL" Name="XERCESC.DLL" LongName="XERCES-C_2_5_0.DLL"
               Source="$(env.UDM_PATH)\3rdparty\xerces-c_2_5_0\bin\XERCES-C_2_5_0.DLL"

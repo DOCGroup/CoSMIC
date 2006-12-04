@@ -1,3 +1,9 @@
+Mon Dec  4 21:38:45 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Installer/CoSMIC_common.wxs:
+
+          Updated the script to use UDM 3.1.1.
+
 Sun Nov 26 16:03:41 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PSM/CQML/paradigms/CQML-uml.xme:
