@@ -1,3 +1,11 @@
+USER VISIBLE CHANGES IN CUTS AFTER REVISION 942
+====================================================
+
+. The Benchmark Manager Web Utility now requires
+  MySQL Connector/ODBC 3.51. This is necessary because
+  it contain several bug fixes that are reflected in
+  the current build of the BMW.
+
 USER VISIBLE CHANGES IN CUTS AFTER REVISION 926
 ====================================================
 
