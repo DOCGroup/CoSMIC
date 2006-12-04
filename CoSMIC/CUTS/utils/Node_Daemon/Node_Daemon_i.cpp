@@ -361,7 +361,7 @@ namespace CUTS
 
     Process_List::iterator iter (active_list);
 
-    for (iter; iter.done () != 1; iter.advance ())
+    while (iter.done () == 0)
     {
       // Get the next process for the <active_list>. We only need
       // to continue if we successfully have gotten an entry.
@@ -430,6 +430,9 @@ namespace CUTS
         delete a_process;
         a_process = 0;
       }
+
+      // Advance to the next element in the collection.
+      iter.advance ();
     }
 
     // Remove all unnecessary entries from the log.

@@ -25,6 +25,7 @@ workspace (CUTS) : CUTS_CoSMIC {
   cuts/CUTS_Worker.mpc
   cuts/BDC
   cuts/svcs
+  cuts/utils
 
   //-- utility applications
   utils/Node_Daemon

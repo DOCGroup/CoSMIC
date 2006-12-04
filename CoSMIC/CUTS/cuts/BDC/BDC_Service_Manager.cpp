@@ -45,7 +45,7 @@ int CUTS_BDC_Service_Manager::close (ACE_Time_Value * timeout)
   // Create an iterator to the underlying repo so we can
   // iterate over all the loaded services.
   ACE_Service_Repository_Iterator iter (*this->repo_, 0);
-  ACE_Service_Type * svc_type = 0;
+  const ACE_Service_Type * svc_type = 0;
 
   while (iter.next (svc_type) == 1)
   {
@@ -76,7 +76,7 @@ int CUTS_BDC_Service_Manager::close (ACE_Time_Value * timeout)
   // Wait for all service threads to exit. Then we can close
   // the underlying service manager in ACE.
   this->notify_->signal ();
-  int retval = this->thr_mgr_->wait ();
+  int retval = this->thr_mgr_->wait (timeout);
 
   retval |= ACE_Service_Gestalt::close ();
   return retval;
@@ -215,7 +215,7 @@ handle_component (const CUTS_Component_Info & info)
   // Create an iterator to the underlying repo so we can
   // iterate over all the loaded services.
   ACE_Service_Repository_Iterator iter (*this->repo_, 1);
-  ACE_Service_Type * svc_type = 0;
+  const ACE_Service_Type * svc_type = 0;
 
   while (iter.next (svc_type) == 1)
   {
@@ -265,7 +265,7 @@ get_service_names (CUTS_BDC_Service_Names & names)
   // iterate over all the loaded services. We do not want
   // to bypass the suspended services in this case.
   ACE_Service_Repository_Iterator iter (*this->repo_, 0);
-  ACE_Service_Type * svc_type = 0;
+  const ACE_Service_Type * svc_type = 0;
   size_t i = 0;
 
   while (iter.next (svc_type) == 1)

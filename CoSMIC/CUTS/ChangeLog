@@ -1,3 +1,14 @@
+Mon Dec  4 18:38:44 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * CUTS.mwc:
+        
+          Included missing project from the build.
+        
+        * cuts/BDC/BDC_Service_Manager.cpp:
+        * utils/Node_Daemon/Node_Daemon_i.cpp:
+        
+          Fixed compilation errors/warnings on Linux.
+
 Mon Dec  4 09:24:54 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * NEWS:
