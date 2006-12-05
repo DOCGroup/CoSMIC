@@ -1,3 +1,15 @@
+Tue Dec  5 22:08:14 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/svcs/GEMS/CUTS_GEMS.mpc:
+        * cuts/BDC/svcs/GEMS/README:
+
+          Added a README for the service that contains its description
+          and usage (i.e., valid options).
+
+        * cuts/BDC/svcs/dbase/README:
+
+          Updated its formatting.
+
 Tue Dec  5 22:00:12 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/svcs/dbase/README:

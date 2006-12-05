@@ -8,7 +8,6 @@
 -- CUTS database service for the Benchmark Data Collector. This service
 -- archives collected metrics into a database for offline processing. The
 -- schema for the database is located in $CUTS_ROOT/SQL.
---
 ===============================================================================
 
 USAGE: CUTS_Database_Service [OPTIONS]

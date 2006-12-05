@@ -19,4 +19,8 @@ project (CUTS_GEMS) : cuts_bdcsvc {
   Inline_Files {
 
   }
+
+  Documentation_Files {
+    README
+  }
 }
