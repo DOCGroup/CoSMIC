@@ -10,4 +10,8 @@ project (CUTS_Database_Service) : cuts_bdcsvc, cutslib, cutsutils, odbc {
   Source_Files {
     DBase_Service.cpp
   }
+
+  Documentation_Files {
+    README
+  }
 }

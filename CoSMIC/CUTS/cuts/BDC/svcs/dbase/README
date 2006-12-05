@@ -1,0 +1,21 @@
+$Id$
+
+===============================================================================
+-- @file:     README
+--
+-- Author:    James H. Hill
+--
+-- CUTS database service for the Benchmark Data Collector. This service
+-- archives collected metrics into a database for offline processing. The
+-- schema for the database is located in $CUTS_ROOT/SQL.
+--
+===============================================================================
+
+USAGE: CUTS_Database_Service [OPTIONS]
+
+Database connection properties:
+  -s, --server=VALUE        database is hosted on VALUE
+  -p, --port=VALUE          connect to database on port VALUE
+
+Miscellaneous:
+  --verbose                 print information about progress
