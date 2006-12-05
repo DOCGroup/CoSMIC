@@ -4,8 +4,8 @@ project (CUTS_BDC_client) : ciao_client_dnc, cutsexe {
   exename = bdc_client
   install = $(CUTS_ROOT)/bin
 
-  libs    += Benchmark_Data_Collector_stub CUTS_stub
-  after   += Benchmark_Data_Collector_stub CUTS_stub
+  libs    += Benchmark_Data_Collector_stub CUTS_BDC CUTS_stub
+  after   += Benchmark_Data_Collector_stub CUTS_BDC CUTS_stub
 
   Source_Files {
     client.cpp
