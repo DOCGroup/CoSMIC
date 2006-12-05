@@ -6,6 +6,7 @@
 #include "BDC_Service.inl"
 #endif
 
+#include "BDC_Service_Manager.h"
 #include "cuts/System_Metric.h"
 #include "ace/Event.h"
 #include "ace/Guard_T.h"
@@ -15,7 +16,7 @@
 // CUTS_BDC_Service
 //
 CUTS_BDC_Service::CUTS_BDC_Service (void)
-: metrics_ (0),
+: svc_mgr_ (0),
   active_ (0)
 {
 
@@ -32,22 +33,21 @@ ACE_THR_FUNC_RETURN CUTS_BDC_Service::svc (void * param)
     ACE_reinterpret_cast (CUTS_BDC_Service::Svc_Thread_Param *, param);
   ACE_Auto_Ptr <CUTS_BDC_Service::Svc_Thread_Param> auto_clean (svp);
 
-  // Get the current timestamp for the metrics before we
-  // enter the event loop.
-  ACE_Time_Value last_time =
-    svp->svc_->metrics_->get_timestamp ();
+  // Get current timestamp for metrics before entering loop.
+  CUTS_System_Metric * metric = svp->svc_->svc_mgr ()->metrics ();
+  ACE_Time_Value last_time = metric->get_timestamp ();
 
-  while (svp->svc_->active_)
+  while (svp->svc_->is_active ())
   {
     // Wait for notification then signal the service to handle
     // a new set of metrics!!
-    if (last_time == svp->svc_->metrics_->get_timestamp ())
+    if (last_time == metric->get_timestamp ())
     {
       svp->notify_->wait ();
       svp->notify_->reset ();
 
       // Let's update our value with the latest timestamp.
-      last_time = svp->svc_->metrics_->get_timestamp ();
+      last_time = metric->get_timestamp ();
     }
 
     // Make an upcall to the service object. There is a chance that
@@ -55,27 +55,9 @@ ACE_THR_FUNC_RETURN CUTS_BDC_Service::svc (void * param)
     // anymore. We therefore need to make sure we are *active*
     // before we make an upcall, or else we can have undesireable
     // effects!!
-    if (svp->svc_->active_)
+    if (svp->svc_->is_active ())
       svp->svc_->handle_metrics ();
   }
 
   return 0;
 }
-
-//
-// fini
-//
-int CUTS_BDC_Service::fini (void)
-{
-  try
-  {
-    ::CORBA::release (this->orb_.in ());
-    this->orb_ = ::CORBA::ORB::_nil ();
-  }
-  catch (...)
-  {
-
-  }
-  return 0;
-}
-

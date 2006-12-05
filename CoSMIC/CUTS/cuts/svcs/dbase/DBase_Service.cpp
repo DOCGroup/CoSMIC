@@ -1,18 +1,19 @@
 // $Id$
 
 #include "DBase_Service.h"
+
 #include "cuts/Component_Info.h"
 #include "cuts/System_Metric.h"
 #include "cuts/Component_Metric.h"
 #include "cuts/Port_Metric.h"
 #include "cuts/Time.h"
-
+#include "cuts/Log_Msg.h"
+#include "cuts/BDC/BDC_Service_Manager.h"
 #include "cuts/utils/ODBC/ODBC_Connection.h"
 #include "cuts/utils/ODBC/ODBC_Query.h"
 #include "cuts/utils/ODBC/ODBC_Record.h"
 #include "cuts/utils/ODBC/ODBC_Parameter.h"
 #include "cuts/utils/ODBC/ODBC_Types.h"
-#include "cuts/Log_Msg.h"
 
 #include "ace/Guard_T.h"
 #include "ace/Auto_Ptr.h"
@@ -410,7 +411,8 @@ int CUTS_Database_Service::handle_metrics (void)
   try
   {
     // Convert the <timestamp> to a known type.
-    ACE_Time_Value timestamp = this->metrics ().get_timestamp ();
+    CUTS_System_Metric * metric = this->svc_mgr ()->metrics ();
+    ACE_Time_Value timestamp = metric->get_timestamp ();
     ACE_Date_Time ct (timestamp);
     ODBC_Date_Time datetime (ct);
 
@@ -434,12 +436,12 @@ int CUTS_Database_Service::handle_metrics (void)
 
     //ACE_READ_GUARD (ACE_RW_Thread_Mutex,
     //                metric_lock,
-    //                this->metrics ().lock ());
+    //                metric->lock ());
 
     CUTS_Component_Metric_Map::const_iterator cm_iter;
 
-    for (cm_iter  = this->metrics ().component_metrics ().begin ();
-         cm_iter != this->metrics ().component_metrics ().end ();
+    for (cm_iter  = metric->component_metrics ().begin ();
+         cm_iter != metric->component_metrics ().end ();
          cm_iter ++)
     {
       // Determine if this component has any metrics that correspond
@@ -504,11 +506,8 @@ int CUTS_Database_Service::handle_metrics (void)
             // Determine if this port has any metrics that correspond
             // with the lastest timestamp for the system metrics. If it
             // does not then why bother going any further.
-            if (this->metrics ().get_timestamp () !=
-                em_iter->second->timestamp ())
-            {
+            if (metric->get_timestamp () != em_iter->second->timestamp ())
               continue;
-            }
 
             // Copy the metrics for the process data into the appropriate
             // parameters before we execute the statement.

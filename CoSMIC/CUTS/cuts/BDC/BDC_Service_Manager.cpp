@@ -130,9 +130,8 @@ load_service (const char * name,
 
     if (svc != 0)
     {
-      // Initialize all the private members for the service.
-      svc->metrics_ = this->metrics_;
-      svc->orb_ = ::CORBA::ORB::_duplicate (this->orb_.in ());
+      // Initialize the parent of the service.
+      svc->svc_mgr_ = this;
 
       if (svc->handle_activate () != 0)
       {

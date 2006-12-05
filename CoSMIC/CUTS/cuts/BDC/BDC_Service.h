@@ -15,7 +15,6 @@
 #include "cuts/Component_Registry_Handler.h"
 #include "ace/Service_Object.h"
 #include "ace/Thread_Mutex.h"
-#include "tao/ORB.h"
 
 // Forward decl.
 class CUTS_System_Metric;
@@ -96,6 +95,14 @@ public:
    */
   virtual CUTS::BDC_Service_ptr get_remote_object (void) const;
 
+  /**
+   * Determine if the service is currently active.
+   *
+   * @retval      true      The service is active.
+   * @retval      false     The service is not active.
+   */
+  bool is_active (void) const;
+
 protected:
   /// Default constructor.
   CUTS_BDC_Service (void);
@@ -104,15 +111,13 @@ protected:
   virtual ~CUTS_BDC_Service (void);
 
   /**
-   * Accessor method to the system metrics. We do not allow
-   * direct access to the metrics for security reasons.
+   * Get the service manager for this service object. This method
+   * should only be used if the service is active. Otherwise, this
+   * method will return NIL.
    *
-   * @return        Reference to the system metrics.
+   * @return      Pointer to the service manager.
    */
-  const CUTS_System_Metric & metrics (void) const;
-
-  /// The hosting ORB for this service.
-  ::CORBA::ORB_var orb_;
+  CUTS_BDC_Service_Manager * svc_mgr (void);
 
 private:
   //===========================================================================
@@ -142,8 +147,8 @@ private:
    */
   static ACE_THR_FUNC_RETURN svc (void * param);
 
-  /// Pointer to the system metrics.
-  CUTS_System_Metric * metrics_;
+  /// Pointer to the parent service manager.
+  CUTS_BDC_Service_Manager * svc_mgr_;
 
   /// Active state of the service.
   int active_;

@@ -123,6 +123,21 @@ public:
    */
   void get_service_names (CUTS_BDC_Service_Names & names);
 
+  /**
+   * Get the ORB for the manager. The client must store this in
+   * a _var since its reference count will be duplicated.
+   *
+   * @return      Pointer reference to the ORB.
+   */
+  ::CORBA::ORB_ptr get_orb (void) const;
+
+  /**
+   * Get a pointer to the system metrics.
+   *
+   * @return        Pointer to the metrics.
+   */
+  CUTS_System_Metric * metrics (void);
+
 private:
   /// The main ORB for this manager.
   ::CORBA::ORB_var orb_;

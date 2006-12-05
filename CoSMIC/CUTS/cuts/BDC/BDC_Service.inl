@@ -39,15 +39,6 @@ int CUTS_BDC_Service::handle_deactivate (void)
 }
 
 //
-// metrics
-//
-CUTS_INLINE
-const CUTS_System_Metric & CUTS_BDC_Service::metrics (void) const
-{
-  return *this->metrics_;
-}
-
-//
 // handle_component
 //
 CUTS_INLINE
@@ -75,3 +66,31 @@ get_remote_object (void) const
 {
   return CUTS::BDC_Service::_nil ();
 }
+
+//
+// is_active
+//
+CUTS_INLINE
+bool CUTS_BDC_Service::is_active (void) const
+{
+  return this->active_;
+}
+
+//
+// svc_mgr
+//
+CUTS_INLINE
+CUTS_BDC_Service_Manager * CUTS_BDC_Service::svc_mgr (void)
+{
+  return this->svc_mgr_;
+}
+
+//
+// fini
+//
+CUTS_INLINE
+int CUTS_BDC_Service::fini (void)
+{
+  return 0;
+}
+
