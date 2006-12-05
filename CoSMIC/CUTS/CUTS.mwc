@@ -24,8 +24,10 @@ workspace (CUTS) : CUTS_CoSMIC {
   cuts/CUTS.mpc
   cuts/CUTS_Worker.mpc
   cuts/BDC
-  cuts/svcs
   cuts/utils
+
+  // -- MDE environment projects
+  MDE
 
   //-- utility applications
   utils/Node_Daemon

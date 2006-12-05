@@ -1,3 +1,68 @@
+Tue Dec  5 18:50:53 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * CUTS_CoSMIC.mwc:
+
+          Remove reference to an invalid directory.
+
+        * CUTS.mwc:
+
+          Added new MDE directory to the build.
+
+        * MDE:
+
+          Directory for hosting utility projects related to a specific
+          to MDE environment used in CUTS. The goal is to host the project
+          here until it matures enough to become (1) a stand-alone project
+          or integrated w/ the respective MDE environment.
+
+        * MDE/GEMS:
+        * MDE/GEMS/GEMS.h:
+        * MDE/GEMS/GEMS.inl:
+        * MDE/GEMS/GEMS.cpp:
+        * MDE/GEMS/GEMSServer.idl:
+        * MDE/GEMS/GEMS_CRN.mpc:
+        * MDE/GEMS/GEMS_CRN_export.h:
+
+          Initial implementation of a model builder network (GEM CORBA
+          Remote Network) for GEMS. The goal is to manage the complexity
+          of interacting w/ GEMS from the CORBA world via its remoting
+          interface.
+
+        * cuts/BDC/svcs:
+
+          Directory that will host services provided by the BDC.
+
+        * cuts/BDC/svcs/GEMS:
+        * cuts/BDC/svcs/GEMS/CUTS_GEMS.h:
+        * cuts/BDC/svcs/GEMS/CUTS_GEMS.inl:
+        * cuts/BDC/svcs/GEMS/CUTS_GEMS.cpp:
+        * cuts/BDC/svcs/GEMS/CUTS_GEMS.mpc:
+        * cuts/BDC/svcs/GEMS/CUTS_GEMS_export.h:
+
+          Initial implementation of a BDC service for GEMS. This service
+          takes metrics collected during an experiement and pushes them
+          to the GEMS deployment model. This will allow GEMS to use its
+          constaint solver on dynamic constraints to locate a better
+          deployment.
+
+        * cuts/BDC/svcs/dbase:
+
+          The directory previously located under $CUTS_ROOT/cuts/svcs
+
+        * etc/config/cuts_base.mpb:
+
+          Added $CUTS_ROOT/MDE to the include keyword.
+
+        * cuts/svcs/dbase:
+        * cuts/svcs/dbase/DBase_Service.h:
+        * cuts/svcs/dbase/DBase_Service.inl:
+        * cuts/svcs/dbase/DBase_Service.cpp:
+        * cuts/svcs/dbase/DBase_Service.mpc:
+        * cuts/svcs/dbase/DBase_Service_export.h:
+
+          Removed these files and moved them to the svcs
+          directory under the $CUTS_ROOT/cuts/BDC.
+
 Tue Dec  5 06:05:15 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/BDC_Service.h:

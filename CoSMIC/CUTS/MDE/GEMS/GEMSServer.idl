@@ -1,0 +1,35 @@
+#ifndef __GEMSSERVER_IDL
+#define __GEMSSERVER_IDL
+
+module GEMSServer
+{
+  enum Operation {Insert, Update, Delete};
+
+  typedef sequence<string> ParameterSeq;
+
+  struct EntityRecord
+  {
+    Operation op;
+    string predicate;
+    ParameterSeq params;
+  };
+
+  typedef sequence<EntityRecord> EntityRecordSeq;
+
+  exception ModelUpdateException
+  {
+    string reason;
+  };
+
+  interface Model
+  {
+    void applyChanges(in EntityRecordSeq entities)
+                      raises(ModelUpdateException);
+
+    void getEntities(in long offset,
+                     in long max_cnt,
+                     out EntityRecordSeq entities);
+  };
+};
+
+#endif // __GEMSSERVER_IDL

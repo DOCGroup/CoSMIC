@@ -9,6 +9,6 @@ project {
     compile_flags += /wd4290 /wd4251
   }
 
-  includes += $(CUTS_ROOT)
+  includes += $(CUTS_ROOT) $(CUTS_ROOT)/MDE
   libpaths += $(COSMIC_ROOT)/lib
 }
