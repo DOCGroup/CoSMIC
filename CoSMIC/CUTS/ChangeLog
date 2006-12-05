@@ -1,3 +1,23 @@
+Tue Dec  5 21:01:39 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+
+        * utils/System_Monitor:
+        * utils/System_Monitor/System_Monitor.cidl:
+        * utils/System_Monitor/System_Monitor.idl:
+        * utils/System_Monitor/System_Monitor.mpc:
+        * utils/System_Monitor/System_Monitor.xme:
+        * utils/System_Monitor/System_Monitor_Task.h:
+        * utils/System_Monitor/System_Monitor_Task.inl:
+        * utils/System_Monitor/System_Monitor_Task.cpp:
+        * utils/System_Monitor/System_Monitor_exec_export.h:
+        * utils/System_Monitor/System_Monitor_exec_i.h:
+        * utils/System_Monitor/System_Monitor_exec_i.cpp:
+        * utils/System_Monitor/System_Monitor_stub_export.h:
+        * utils/System_Monitor/System_Monitor_svnt_export.h:
+
+          This is now obsolete since the implementation of the
+          BDC has changed.
+
 Tue Dec  5 18:50:53 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * CUTS_CoSMIC.mwc:
