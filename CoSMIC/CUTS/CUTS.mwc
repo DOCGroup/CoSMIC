@@ -31,6 +31,7 @@ workspace (CUTS) : CUTS_CoSMIC {
 
   //-- utility applications
   utils/Node_Daemon
+  utils/BDC
 
   exclude (!vc8) {
     utils/BMW/BMW.mwc

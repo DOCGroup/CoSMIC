@@ -1,0 +1,13 @@
+// $Id$
+
+project (client) : ciao_client_dnc, cutsexe {
+  exename = bdc_client
+  install = $(CUTS_ROOT)/bin
+
+  libs    += Benchmark_Data_Collector_stub CUTS_stub
+  after   += Benchmark_Data_Collector_stub CUTS_stub
+
+  Source_Files {
+    client.cpp
+  }
+}

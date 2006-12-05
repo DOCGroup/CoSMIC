@@ -1,3 +1,24 @@
+Tue Dec  5 21:07:57 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * CUTS.mwc:
+
+          Added the BDC client application back to build.
+
+        * utils/BDC:
+
+          New directory for the BDC client.
+
+        * utils/BDC/BDC_Client.mpc:
+
+          - Change the exename property to 'bdc_client'
+          - Updated the source file declarations.
+
+        * utils/BDC_Client:
+        * utils/BDC_Client/BDC_Client.mpc:
+        * utils/BDC_Client/BDC_Client.cpp:
+
+          Moved the files to utils/BDC
+
 Tue Dec  5 21:01:39 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
 
