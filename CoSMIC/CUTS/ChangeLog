@@ -1,3 +1,11 @@
+Tue Dec  5 21:12:57 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BDC/client.mpc:
+
+          Changed the project name to 'CUTS_BDC_client'. This will
+          allow w/ graphical IDE (i.e., Visual Studio) that display
+          the solution space to place it close to the other BDC projects.
+
 Tue Dec  5 21:10:20 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BDC/client.mpc:
