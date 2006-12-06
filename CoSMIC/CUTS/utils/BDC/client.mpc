@@ -10,4 +10,8 @@ project (CUTS_BDC_client) : ciao_client_dnc, cutsexe {
   Source_Files {
     client.cpp
   }
+
+  Header_Files {
+    Client_Options.h
+  }
 }
