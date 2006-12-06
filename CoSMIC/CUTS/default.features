@@ -53,6 +53,17 @@ udm = 0
 
 boost = 0
 
+/// @feature bmw
+/// Enable this feature if you are building the Benchmark Manager Web (BMW)
+/// Utility. The BMW is a web application written in Microsoft .NET 2.0 and
+/// thus can only be built using vc8 (Visual Studio .NET 2005). To enable
+/// the building of this project (disabled by default), set this features
+/// value to 1.
+///
+/// The BMW is located in $CUTS_ROOT/utils/BMW
+
+bmw = 0
+
 ///============================================================================
 // DO NOT CHANGE ANYTHING BELOW THIS LINE
 ///============================================================================

@@ -1,3 +1,13 @@
+Wed Dec  6 16:01:58 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * default.features:
+        * utils/BMW/BMW.mpc:
+
+          Added the feature 'bmw' to allow enabling/disabling of this
+          project in vc8 builds. By default this feature is disabled.
+          Thanks to Andy Gokhale (a.gokhale at vanderbilt dot edu)
+          for implicitly recommending this feature.
+
 Wed Dec  6 02:06:17 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BDC/client.mpc:
