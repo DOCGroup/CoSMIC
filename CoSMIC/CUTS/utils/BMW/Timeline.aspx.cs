@@ -75,7 +75,7 @@ namespace CUTS
 
         // Create the command to get the desired execution times
         System.Text.StringBuilder builder = new System.Text.StringBuilder ();
-        builder.Append ("SELECT collection_time, best_time, average_time, worse_time ");
+        builder.Append("SELECT collection_time, best_time, (total_time / metric_count) AS average_time, worse_time ");
         builder.Append ("FROM execution_time WHERE (test_number = ? AND component = ? ");
         builder.Append ("AND sender = ? AND metric_type = ? AND src = ?");
         if (dst != "")

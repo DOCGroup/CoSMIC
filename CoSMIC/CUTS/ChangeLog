@@ -1,3 +1,10 @@
+Thu Dec  7 22:46:41 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/Timeline.aspx.cs:
+
+          Fixed bug that prevent the timeline for a metric from being
+          displayed. I still need to fix the visualization.
+
 Wed Dec  6 16:01:58 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * default.features:
