@@ -1439,7 +1439,6 @@ adding_visitor::visit_attribute (AST_Attribute *node)
 
       this->insert_element (elem, node);
       be_global->emit_diagnostic (elem);
-      be_global->emit_diagnostic (member);
     }
 
   this->add_replace_id_element (elem, node);

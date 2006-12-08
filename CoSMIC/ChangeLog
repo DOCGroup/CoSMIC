@@ -1,3 +1,39 @@
+Fri Dec  8 16:45:10 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp (visit_attribute):
+
+          Removed the call to emit_diagnostic() for the AttributeMember,
+          which followed immediately after the corresponding call for
+          the Attribute itself. The AttributeMember is a GME Reference,
+          but its "referred" attribute hasn't been set yet - this action
+          was deferred in order to catch a possible type change in the
+          IDL attribute. Just before this GME attribute is set, a call
+          to BE_GlobalData::type_change_diagnostic() is made. This
+          method has been modified (see below) to output an "adding"
+          diagnostic if the GME "referred" attribute wasn't previously
+          set.
+
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+
+          emit_diagnotic() - when processing a GME Reference, simply
+          return if the "referred" GME attribute hasn't been set.
+          Better to omit a diagnostic message (which can be caught
+          and fixed later) than to crash due to making a call on
+          a null pointer.
+
+          type_change_diagnostic() - modified this method to do more
+          than just return when a GME Reference's "referred" attribute
+          hasn't been set (the previous behavior). Now the method
+          will output an "added" diagnostic, using the value for
+          the "referred" GME attribute which was passed in as an
+          argument, and which will be set immediately after this call
+          returns. So if there is an existing value for the
+          DOMElement's "referred" attribute, a "type changed" diagnostic
+          is output, otherwise an "added" diagnostic is output.
+
+          Thanks to Abdullah Sowayan <abdullah.sowayan@lmco.com> for
+          reporting the bug and providing IDL for testing.
+
 Mon Dec  4 21:38:45 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Installer/CoSMIC_common.wxs:

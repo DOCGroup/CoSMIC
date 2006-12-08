@@ -1157,6 +1157,16 @@ BE_GlobalData::emit_diagnostic (DOMElement *node, diagnostic_type dt)
     {
       DOMElement *referred =
         this->doc_->getElementById (node->getAttribute (X ("referred")));
+
+      // It's possible that for some good reason, this attribute hasn't
+      // been set yet. In that case, better to overlook a diagnostic
+      // message than to crash. If the former case is important, it
+      // will eventually be reported and fixed.
+      if (referred == 0)
+        {
+          return;
+        }
+
       const XMLCh *id = referred->getAttribute (X ("id"));
       char *r_name = this->get_name (referred);
 
@@ -1403,9 +1413,39 @@ BE_GlobalData::type_change_diagnostic (DOMElement *node,
       return;
     }
 
-  // If it hasn't been set yet, it can't have been changed.
+  DOMElement *new_type = this->doc_->getElementById (new_ref);
+  DOMElement *parent = (DOMElement *) node->getParentNode ();
+
+  char *new_type_name = this->get_name (new_type);
+  char *child_name = this->get_name (node);
+  char *parent_name = this->get_name (parent);
+  char *changed_kind =
+    XMLString::transcode (node->getAttribute (X ("kind")));
+  char *parent_kind =
+    XMLString::transcode (parent->getAttribute (X ("kind")));
+
+  // The setting of the 'referred' attribute is often delayed to
+  // catch a possible type change. If there is no such attribute
+  // yet, it means we are adding the model element, so we output
+  // the appropriate diagnostic.
   if (!node->hasAttribute (X ("referred")))
     {
+      cout << "Added " << changed_kind << " "
+           << (ACE_OS::strcmp (child_name, changed_kind) == 0
+                 ? "<no name>"
+                 : child_name)
+           << " in " << parent_kind << " "
+           << (ACE_OS::strcmp (parent_name, parent_kind) == 0
+                 ? "<no name>"
+                 : parent_name)
+           << endl;
+
+      XMLString::release (&new_type_name);
+      XMLString::release (&parent_name);
+      XMLString::release (&child_name);
+      XMLString::release (&changed_kind);
+      XMLString::release (&parent_kind);
+
       return;
     }
 
@@ -1417,17 +1457,7 @@ BE_GlobalData::type_change_diagnostic (DOMElement *node,
     }
 
   DOMElement *old_type = this->doc_->getElementById (old_ref);
-  DOMElement *new_type = this->doc_->getElementById (new_ref);
-  DOMElement *parent = (DOMElement *) node->getParentNode ();
-
   char *old_type_name = this->get_name (old_type);
-  char *new_type_name = this->get_name (new_type);
-  char *child_name = this->get_name (node);
-  char *parent_name = this->get_name (parent);
-  char *changed_kind =
-    XMLString::transcode (node->getAttribute (X ("kind")));
-  char *parent_kind =
-    XMLString::transcode (parent->getAttribute (X ("kind")));
 
   cout << "type of " << changed_kind << " "
        << (0 == ACE_OS::strcmp (child_name, changed_kind)
