@@ -1,0 +1,8 @@
+; Interpreter.def : Declares the module parameters.
+
+LIBRARY      "SecurityQoSComponent.DLL"
+EXPORTS
+	DllCanUnloadNow		PRIVATE
+	DllGetClassObject	PRIVATE
+	DllRegisterServer	PRIVATE
+	DllUnregisterServer	PRIVATE
