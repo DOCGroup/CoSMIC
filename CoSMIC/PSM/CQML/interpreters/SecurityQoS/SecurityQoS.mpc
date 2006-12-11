@@ -5,7 +5,6 @@ project(SecurityQoS): cqmllib {
    macros += SECURITYQOS_BUILD_DLL DEPLOYMENTPLANFRAMEWORK_HAS_DLL
    libs += DeploymentPlanFramework
 
-
    Source_Files {
      SecurityQoSVisitor.cpp
      SecurityQoSAdder.cpp

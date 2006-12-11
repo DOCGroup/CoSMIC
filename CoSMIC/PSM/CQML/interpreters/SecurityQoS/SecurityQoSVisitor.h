@@ -169,6 +169,6 @@ namespace CQML
   };
 }
 
-//#include "SecurityQoSRequirementsIterator.h"
 
 #endif /* SECURITYQOS_VISITOR_H */
+

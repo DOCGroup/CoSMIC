@@ -2,7 +2,5 @@
 
 namespace CQML
   {
-
-
   
   }

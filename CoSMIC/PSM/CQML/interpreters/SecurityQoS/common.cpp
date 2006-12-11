@@ -11,6 +11,7 @@ namespace CQML
 
     std::ofstream outfile ("C:\\Documents and Settings\\Aky\\Desktop\\security_debug.txt");   
 
+
     void DOMBuilder::push()
     {
       this->curr_stack_.push (this->curr_);

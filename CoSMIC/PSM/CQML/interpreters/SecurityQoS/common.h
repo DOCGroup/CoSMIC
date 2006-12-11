@@ -101,3 +101,4 @@ namespace CQML
   }
 
 #endif  // __COMMON_H_
+
