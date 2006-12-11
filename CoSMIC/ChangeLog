@@ -1,3 +1,40 @@
+Mon Dec 11 19:52:44 UTC 2006  Akshay V. Dabholkar  <aky@dre.vanderbilt.edu>
+
+        * PSM/CQML/interpreters/NetQoSComponent/compicon.ico:
+        * PSM/CQML/interpreters/NetQoSComponent/resource.h:
+
+    	  Corrected Interpreter Icon problem
+
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoS.mpc:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSAdder.h:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSAdder.cpp:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSDumper.h:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSDumper.cpp:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSInjector.h:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSInjector.cpp:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.h:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.cpp:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoS_Export.h:
+        * PSM/CQML/interpreters/SecurityQoS/common.h:
+        * PSM/CQML/interpreters/SecurityQoS/common.cpp:
+
+        * PSM/CQML/interpreters/SecurityQoSComponent/CompIcon.ico:
+        * PSM/CQML/interpreters/SecurityQoSComponent/Component.def:
+        * PSM/CQML/interpreters/SecurityQoSComponent/Component.rc:
+        * PSM/CQML/interpreters/SecurityQoSComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/SecurityQoSComponent/RawComponent.h:
+        * PSM/CQML/interpreters/SecurityQoSComponent/RawComponent.cpp:
+        * PSM/CQML/interpreters/SecurityQoSComponent/SecurityQoSComponent.mpc:
+        * PSM/CQML/interpreters/SecurityQoSComponent/StdAfx.h:
+        * PSM/CQML/interpreters/SecurityQoSComponent/StdAfx.cpp:
+        * PSM/CQML/interpreters/SecurityQoSComponent/UdmApp.h:
+        * PSM/CQML/interpreters/SecurityQoSComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/SecurityQoSComponent/UdmConfig.h:
+        * PSM/CQML/interpreters/SecurityQoSComponent/resource.h:
+
+	Added Interpreter for Security QoS for CQML. Metamodel remaining to be checked in.
+
+
 Fri Dec  8 16:45:10 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp (visit_attribute):
