@@ -11,7 +11,6 @@
   this software.
 */
 
-
 // UdmApp.cpp: implementation of the CUdmApp class.
 // This file was automatically generated as UdmApp.cpp
 // by UDM Interpreter Wizard on Monday, May 13, 2002 13:45:42

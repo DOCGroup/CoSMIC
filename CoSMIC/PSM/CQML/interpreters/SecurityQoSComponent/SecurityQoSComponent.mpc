@@ -8,6 +8,7 @@ project (SecurityQoSComponent): mfc, cqmllib, register {
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
 
+
   specific (vc6,vc7,vc71,vc8) {
      link_options += /DEF:Component.def
   }

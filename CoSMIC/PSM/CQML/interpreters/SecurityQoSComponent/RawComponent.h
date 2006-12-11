@@ -4,7 +4,6 @@
 
 // Declaration of the main RAW COM component interface class
 
-
 #ifdef BUILDER_OBJECT_NETWORK
 #error   This file should only be included in the RAW COM configurations
 #endif

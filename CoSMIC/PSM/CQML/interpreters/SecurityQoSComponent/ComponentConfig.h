@@ -3,7 +3,6 @@
 
 #define RAWCOMPONENT
 
-
 // COM UUID-s, names and ProgID
                       
 #define TYPELIB_UUID "CD8E819E-2FD7-4674-A436-55E7CF6F9B13"

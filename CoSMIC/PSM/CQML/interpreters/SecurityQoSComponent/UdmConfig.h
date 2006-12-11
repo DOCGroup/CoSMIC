@@ -5,7 +5,6 @@
 #ifndef UDM_CONFIG_H
 #define UDM_CONFIG_H
 
-
 #define _USE_DOM
 
 #include "CQML/CQML.h"
