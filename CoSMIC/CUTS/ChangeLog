@@ -1,3 +1,9 @@
+Tue Dec 12 01:50:21 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BDC/Client_Options.h:
+
+          Missing header file.
+
 Thu Dec  7 22:46:41 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/Timeline.aspx.cs:
