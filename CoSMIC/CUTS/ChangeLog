@@ -1,3 +1,21 @@
+Tue Dec 12 23:04:40 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * integration/vc71.bat:
+        * integration/vc8.bat:
+
+          Batch files for building CUTS using CruiseControl
+          NT service.
+
+        * integration/autobuild.build:
+
+          - Changed all backslashes to forward slashes
+          - VS build output now piped to build log with name same
+            as MPC type (e.g., vc71.build.log for vc71 builds).
+
+        * integration/logs:
+
+          Empty directory that hold the build logs.
+
 Tue Dec 12 01:58:48 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GEMS/GEMS.cpp (stringify):
