@@ -1,3 +1,9 @@
+Tue Dec 12 01:58:48 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GEMS/GEMS.cpp (stringify):
+
+          Fixed compiliation error on vc8.
+
 Tue Dec 12 01:50:21 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BDC/Client_Options.h:

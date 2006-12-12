@@ -11,7 +11,7 @@ namespace GEMS
 {
   std::string & stringify (std::string & str)
   {
-    str.insert (0, '\'');
+    str.insert (0, '\'', 1);
     return str.append (1, '\'');
   }
 
