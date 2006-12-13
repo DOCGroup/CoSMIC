@@ -1,3 +1,9 @@
+Wed Dec 13 02:00:52 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * integration/status:
+
+          This directory is not really needed.
+
 Wed Dec 13 00:55:05 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * integration/vc8-msi.bat:
