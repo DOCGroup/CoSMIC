@@ -1,8 +1,6 @@
 // $Id$
 
 project {
-  requires += udm
-
   includes  += $(COSMIC_ROOT)/PIM/PICML/interpreters \
                $(UDM_PATH)/include
 

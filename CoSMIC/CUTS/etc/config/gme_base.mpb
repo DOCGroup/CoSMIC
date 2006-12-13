@@ -6,8 +6,6 @@ project : mfc, regsvr32 {
 
   includes += . $(GME_ROOT)/SDK/BON $(GME_ROOT)
 
-  requires += gme
-
   specific (vc6, vc7, vc71, vc8, nmake) {
     dllout = $(COSMIC_ROOT)/bin
     libout = $(COSMIC_ROOT)/lib

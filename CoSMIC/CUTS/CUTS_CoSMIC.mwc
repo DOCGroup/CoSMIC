@@ -35,7 +35,8 @@ workspace (CUTS_CoSMIC) {
       // We are going to force the following projects to be built
       // as static libraries instead of shared objects.
 
-      cmdline += -static
+      cmdline += -static \
+                 -base requires_cosmic
 
       $(CIAO_ROOT)/CCF/CCF/CodeGenerationKit
     }

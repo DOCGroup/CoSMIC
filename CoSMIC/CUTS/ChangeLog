@@ -1,3 +1,31 @@
+Wed Dec 13 20:36:05 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * CUTS_CoSMIC.mwc:
+
+          Gave the CodeGenerationKit a cosmic requirement.
+
+        * cuts/GME/interpreters/PICML_CIAO_Impl/PICML_CIAO_Impl.mpc:
+
+          Gave project modeling requirement.
+
+        * default.features:
+
+          - Added modeling = 0 to the feature files (i.e., disables
+            modeling by default)
+          - Enabled mfc feature by default.
+
+        * etc/config/cosmic_lib.mpb:
+
+          Added a modeling requirement.
+
+        * etc/config/gme_base.mpb:
+
+          Removed the gme requirement.
+
+        * etc/config/picml_udm.mpb:
+
+          Removed the udm requirement.
+
 Wed Dec 13 02:00:52 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * integration/status:
