@@ -1,3 +1,10 @@
+Wed Dec 13 00:55:05 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * integration/vc8-msi.bat:
+
+          Continuous intergration build wrapper for CUTS vc8
+          installers
+
 Wed Dec 13 00:46:54 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * install/CUTS_CoSMIC.wxs:
