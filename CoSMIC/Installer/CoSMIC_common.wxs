@@ -6,34 +6,34 @@
   <Fragment Id='CoSMIC_common'>
     <DirectoryRef Id='WindowsFolder'>
       <!-- C runtime for VC8 -->
-      <Merge Id='Microsoft_VC80_CRT_x86.msm' DiskId='1' Language='1033' 
+      <Merge Id='Microsoft_VC80_CRT_x86.msm' DiskId='1' Language='1033'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC80_CRT_x86.msm' />
-      <Merge Id='policy_8_0_Microsoft_VC80_CRT_x86.msm' DiskId='1' Language='1033' 
+      <Merge Id='policy_8_0_Microsoft_VC80_CRT_x86.msm' DiskId='1' Language='1033'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_8_0_Microsoft_VC80_CRT_x86.msm' />
 
-      <Merge Id='Microsoft_VC80_DebugCRT_x86.msm' DiskId='1' Language='1033' 
+      <Merge Id='Microsoft_VC80_DebugCRT_x86.msm' DiskId='1' Language='1033'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC80_DebugCRT_x86.msm' />
-      <Merge Id='policy_8_0_Microsoft_VC80_DebugCRT_x86.msm' DiskId='1' Language='1033' 
+      <Merge Id='policy_8_0_Microsoft_VC80_DebugCRT_x86.msm' DiskId='1' Language='1033'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_8_0_Microsoft_VC80_DebugCRT_x86.msm' />
 
       <!-- ATL for VC8 -->
-      <Merge Id='Microsoft_VC80_ATL_x86.msm' DiskId='1' Language='1033' 
+      <Merge Id='Microsoft_VC80_ATL_x86.msm' DiskId='1' Language='1033'
          SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC80_ATL_x86.msm' />
-      <Merge Id='policy_8_0_Microsoft_VC80_ATL_x86.msm' DiskId='1' Language='1033' 
+      <Merge Id='policy_8_0_Microsoft_VC80_ATL_x86.msm' DiskId='1' Language='1033'
          SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_8_0_Microsoft_VC80_ATL_x86.msm' />
 
       <!-- MFC for VC8 -->
-      <Merge Id='Microsoft_VC80_MFC_x86.msm' DiskId='1' Language='1033' 
+      <Merge Id='Microsoft_VC80_MFC_x86.msm' DiskId='1' Language='1033'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC80_MFC_x86.msm' />
-      <Merge Id='policy_8_0_Microsoft_VC80_MFC_x86.msm' DiskId='1' Language='1033' 
+      <Merge Id='policy_8_0_Microsoft_VC80_MFC_x86.msm' DiskId='1' Language='1033'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_8_0_Microsoft_VC80_MFC_x86.msm' />
 
-      <Merge Id='Microsoft_VC80_DebugMFC_x86.msm' DiskId='1' Language='1033' 
+      <Merge Id='Microsoft_VC80_DebugMFC_x86.msm' DiskId='1' Language='1033'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC80_DebugMFC_x86.msm' />
-      <Merge Id='policy_8_0_Microsoft_VC80_DebugMFC_x86.msm' DiskId='1' Language='1033' 
+      <Merge Id='policy_8_0_Microsoft_VC80_DebugMFC_x86.msm' DiskId='1' Language='1033'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_8_0_Microsoft_VC80_DebugMFC_x86.msm' />
     </DirectoryRef>
-  
+
     <DirectoryRef Id='bin'>
       <!-- PICML UDM project -->
       <Component Id='PICML' Guid='8661d861-25c1-437e-921f-50d97fd61529'>
@@ -50,7 +50,7 @@
       <!-- UDM 3.0.1 -->
       <Component Id="UDM_3_1_1" Guid="F069845F-C8E8-48e6-98CB-F9FBDFE76EDD">
         <File Id="UDMDLL_3_1_1.DLL" Name="UDMDLL.DLL" LongName="UDMDLL_3_1_1.DLL"
-              Source="$(env.UDM_PATH)\bin\UDMDLL_3_0_1.DLL" DiskId="1" />
+              Source="$(env.UDM_PATH)\bin\UDMDLL_3_1_1.DLL" DiskId="1" />
         <File Id="XERCES_C_2_5_0.DLL" Name="XERCESC.DLL" LongName="XERCES-C_2_5_0.DLL"
               Source="$(env.UDM_PATH)\3rdparty\xerces-c_2_5_0\bin\XERCES-C_2_5_0.DLL"
               DiskId="1" />
