@@ -35,18 +35,30 @@
 
   <target name="build.all" depends="svn.update">
     <call target="workspace.generate.all" />
+
     <call target="devenv.clean" />
     <call target="devenv.build" />
   </target>
 
   <target name="build.modeling" depends="svn.update">
     <call target="workspace.generate.modeling" />
+
     <call target="devenv.clean" />
     <call target="devenv.build" />
   </target>
 
   <target name="build.runtime" depends="svn.update">
     <call target="workspace.generate.runtime" />
+
+    <call target="devenv.clean" />
+    <call target="devenv.build" />
+  </target>
+
+  <target name="build.installers" depends="build.modeling">
+    <!-- we only distribute the release version -->
+    <property name="build.configuration" value="release" />
+
+    <call target="workspace.generate.installers" />
     <call target="devenv.clean" />
     <call target="devenv.build" />
   </target>
@@ -78,6 +90,14 @@
     <exec program="perl"
           commandline="-- ${ACE_ROOT}/bin/mwc.pl -type ${mpc.type} ${CUTS_ROOT}/CUTS.mwc" />
     <property name="build.workspace" value="${CUTS_ROOT}/CUTS.sln" />
+  </target>
+
+  <target name="workspace.generate.installers">
+    <!-- this uses the CUTS.mwc workspace -->
+    <echo message="Generating CUTS installers workspace" />
+    <exec program="perl"
+          commandline="-- ${ACE_ROOT}/bin/mwc.pl -type ${mpc.type} ${CUTS_ROOT}/install/CUTS_installers.mwc" />
+    <property name="build.workspace" value="${CUTS_ROOT}/install/CUTS_installers.sln" />
   </target>
 
   <!--

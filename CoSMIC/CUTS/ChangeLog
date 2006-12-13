@@ -1,3 +1,19 @@
+Wed Dec 13 00:46:54 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * install/CUTS_CoSMIC.wxs:
+
+          Updated UDM component reference to the latest version of
+          UDM (i.e., UDM 3.1.1)
+
+        * integration/autobuild.build:
+
+          Create new target for building the installers.
+
+        * integration/status:
+
+          Empty directory that holds status files created by the
+          continuous integration server.
+
 Tue Dec 12 23:04:40 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * integration/vc71.bat:
@@ -14,7 +30,8 @@ Tue Dec 12 23:04:40 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * integration/logs:
 
-          Empty directory that hold the build logs.
+          Empty directory that hold the build logs created by
+          the continuous integration server.
 
 Tue Dec 12 01:58:48 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 

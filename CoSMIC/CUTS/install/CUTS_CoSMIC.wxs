@@ -95,15 +95,15 @@
       <!-- components from CoSMIC_common -->
       <ComponentRef Id="CoSMIC_utils" />
       <ComponentRef Id="PICML" />
-      <ComponentRef Id="UDM_3_0_1" />
+      <ComponentRef Id="UDM_3_1_1" />
 
       <!-- VC8 merge modules -->
       <MergeRef Id="Microsoft_VC80_CRT_x86.msm" />
       <MergeRef Id="policy_8_0_Microsoft_VC80_CRT_x86.msm" />
-      
+
       <MergeRef Id="Microsoft_VC80_DebugCRT_x86.msm" />
       <MergeRef Id="policy_8_0_Microsoft_VC80_DebugCRT_x86.msm" />
-      
+
       <MergeRef Id="Microsoft_VC80_ATL_x86.msm" />
       <MergeRef Id="policy_8_0_Microsoft_VC80_ATL_x86.msm" />
 
