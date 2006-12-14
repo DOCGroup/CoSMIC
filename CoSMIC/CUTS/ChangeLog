@@ -1,3 +1,10 @@
+Thu Dec 14 21:13:22 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * integration/autobuild.build:
+
+          Updated the features for workspace.generate.* target(s)
+          to reflect new changes to modeling project requirements.
+
 Wed Dec 13 20:36:05 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * CUTS_CoSMIC.mwc:

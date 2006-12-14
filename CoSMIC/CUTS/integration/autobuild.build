@@ -71,7 +71,7 @@
     <!-- this uses the CUTS.mwc workspace -->
     <echo message="Generating all workspaces" />
     <exec program="perl"
-          commandline="-- ${ACE_ROOT}/bin/mwc.pl -type ${mpc.type} -features mfc=1,gme=1,udm=1,boost=1,cosmic=1 ${CUTS_ROOT}/CUTS.mwc" />
+          commandline="-- ${ACE_ROOT}/bin/mwc.pl -type ${mpc.type} -features modeling=1,cosmic=1 ${CUTS_ROOT}/CUTS.mwc" />
 
     <property name="build.workspace" value="${CUTS_ROOT}/CUTS.sln" />
   </target>
@@ -80,7 +80,7 @@
     <!-- this uses the CUTS_CoSMIC.mwc workspace -->
     <echo message="Generating CUTS modeling workspace" />
     <exec program="perl"
-          commandline="-- ${ACE_ROOT}/bin/mwc.pl -type ${mpc.type} -features mfc=1,gme=1,udm=1,boost=1,cosmic=1 ${CUTS_ROOT}/CUTS_CoSMIC.mwc" />
+          commandline="-- ${ACE_ROOT}/bin/mwc.pl -type ${mpc.type} -features modeling=1,cosmic=1 ${CUTS_ROOT}/CUTS_CoSMIC.mwc" />
     <property name="build.workspace" value="${CUTS_ROOT}/CUTS_CoSMIC.sln" />
   </target>
 
@@ -88,7 +88,7 @@
     <!-- this uses the CUTS.mwc workspace -->
     <echo message="Generating CUTS runtime workspace" />
     <exec program="perl"
-          commandline="-- ${ACE_ROOT}/bin/mwc.pl -type ${mpc.type} ${CUTS_ROOT}/CUTS.mwc" />
+          commandline="-- ${ACE_ROOT}/bin/mwc.pl -type ${mpc.type} -features modeling=0,cosmic=0 ${CUTS_ROOT}/CUTS.mwc" />
     <property name="build.workspace" value="${CUTS_ROOT}/CUTS.sln" />
   </target>
 
