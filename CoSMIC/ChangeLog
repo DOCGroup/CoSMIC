@@ -1,3 +1,28 @@
+Fri Dec 15 02:16:11 UTC 2006  Akshay V. Dabholkar <aky@dre.vanderbilt.edu>
+
+        * PSM/CQML/paradigms/icons/assembly_qos.bmp:
+        * PSM/CQML/paradigms/icons/assembly_ref.bmp:
+        * PSM/CQML/paradigms/icons/assembly_rule.GIF:
+        * PSM/CQML/paradigms/icons/component_qos.bmp:
+        * PSM/CQML/paradigms/icons/component_rule.gif:
+        * PSM/CQML/paradigms/icons/critical_path.bmp:
+        * PSM/CQML/paradigms/icons/critical_path_ref.bmp:
+        * PSM/CQML/paradigms/icons/group.bmp:
+        * PSM/CQML/paradigms/icons/initiator.bmp:
+        * PSM/CQML/paradigms/icons/operation_set.bmp:
+        * PSM/CQML/paradigms/icons/policy_set.bmp:
+        * PSM/CQML/paradigms/icons/port_qos.bmp:
+        * PSM/CQML/paradigms/icons/port_rule.GIF:
+        * PSM/CQML/paradigms/icons/realm.bmp:
+        * PSM/CQML/paradigms/icons/rights.bmp:
+        * PSM/CQML/paradigms/icons/role.bmp:
+        * PSM/CQML/paradigms/icons/role_access_rights.bmp:
+        * PSM/CQML/paradigms/icons/security_domain.bmp:
+        * PSM/CQML/paradigms/icons/security_policy.bmp:
+        * PSM/CQML/paradigms/icons/user.gif:
+
+				Added some security QoS icons
+
 Wed Dec 13 00:49:31 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Installer/CoSMIC_common.wxs:
