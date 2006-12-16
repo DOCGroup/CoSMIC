@@ -276,11 +276,22 @@ namespace CQML
               qos_itr != sec_qos_map.end();
               ++qos_itr)
           {
-            SecurityQoSInfo seqqos = qos_itr->first;
+            SecurityQoSInfo secqosinfo = qos_itr->first;
+            SecurityQoS secqos = secqosinfo.secqos_;
             SecurityQoSTargetSet seqqos_tgtset = qos_itr->second;
-            RuleSet rule_set = seqqos.rule_set_;
-            
-            outfile << "For "<<seqqos.secqos_.name()<<" "<< seqqos_tgtset.size() <<" targets \n";
+            RuleSet rule_set = secqosinfo.rule_set_;
+
+            Auto_DOM rootdom (*this, "security-qos-requirements");
+            rootdom.curr()->setAttribute (XStr("authentication"), XStr (std::string (secqos.Authentication()?"true":"false")));
+            rootdom.curr()->setAttribute (XStr("audit-level"), XStr (std::string (secqos.AuditLevel())));
+            rootdom.curr()->setAttribute (XStr("delegation-policy"), XStr (std::string (secqos.DelegationPolicy())));
+            rootdom.curr()->setAttribute (XStr("integrity-level"), XStr (std::string (secqos.IntegrityLevel())));
+            rootdom.curr()->setAttribute (XStr("confidentiality-level"), XStr (std::string (secqos.ConfidentialityLevel())));
+            rootdom.curr()->setAttribute (XStr("security-level"), XStr (std::string (secqos.SecurityLevel())));
+            rootdom.curr()->setAttribute (XStr("security-policy"), XStr (std::string (secqos.SecurityLevel())));
+            rootdom.curr()->setAttribute (XStr("nonrepudiation"), XStr (std::string (secqos.NonRepudiation()?"true":"false")));
+
+            outfile << "For "<<secqos.name()<<" "<< seqqos_tgtset.size() <<" targets \n";
             for (SecurityQoSTargetSet::iterator tgt_itr = seqqos_tgtset.begin();
                   tgt_itr != seqqos_tgtset.end();
                   ++tgt_itr)
@@ -323,7 +334,7 @@ namespace CQML
                     // If the rule is for this target
                     if (rule.target_ == target)
                       {
-                      outfile << "Rule "<<rule.rule_base_.name()<<"\n";
+                        outfile << "Rule "<<rule.rule_base_.name()<<"\n";
                         Auto_DOM dom1 (*this, "role-permission");  
                         dom1.curr()->setAttribute (XStr("role-name"), XStr (std::string (rule.role_.name())));
 
