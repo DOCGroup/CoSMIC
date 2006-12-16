@@ -1,3 +1,32 @@
+Sat Dec 16 04:23:21 UTC 2006  unknown  <aky@dre.vanderbilt.edu>
+
+        * ChangeLog:
+        
+        * PSM/CQML/examples/BasicSP.xme:	
+				Works with new CQML containing FT and Security QoS
+
+
+        * PSM/CQML/interpreters/Interpreters.mwc:
+
+				Added Security QoS interpreter.
+
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSDumper.cpp:
+	
+				Now the interpreter dumps the metadeta for CCM Container configuration
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+				FT now conforms to CQML
+
+        * PSM/CQML/paradigms/icons/DeploymentPlan.bmp:
+        * PSM/CQML/paradigms/icons/RootRiskGroup.bmp:
+        * PSM/CQML/paradigms/icons/TargetReliabilityModel.bmp:
+
+				FT icon upgraded
+				
 Fri Dec 15 02:16:11 UTC 2006  Akshay V. Dabholkar <aky@dre.vanderbilt.edu>
 
         * PSM/CQML/paradigms/icons/assembly_qos.bmp:
@@ -21,7 +50,7 @@ Fri Dec 15 02:16:11 UTC 2006  Akshay V. Dabholkar <aky@dre.vanderbilt.edu>
         * PSM/CQML/paradigms/icons/security_policy.bmp:
         * PSM/CQML/paradigms/icons/user.gif:
 
-				Added some security QoS icons
+                                Added some security QoS icons
 
 Wed Dec 13 00:49:31 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
