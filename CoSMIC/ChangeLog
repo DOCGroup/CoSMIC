@@ -1,8 +1,12 @@
+Sat Dec 16 04:31:58 UTC 2006  Akshay V. Dabholkar  <aky@dre.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML.xmp:
+				
+				Latest interpreted version for CQML.
+
 Sat Dec 16 04:23:21 UTC 2006  Akshay V. Dabholkar  <aky@dre.vanderbilt.edu>
 
-        * ChangeLog:
-        
-        * PSM/CQML/examples/BasicSP.xme:	
+        * PSM/CQML/examples/BasicSP.xme:
 				Works with new CQML containing FT and Security QoS
 
 
@@ -11,7 +15,7 @@ Sat Dec 16 04:23:21 UTC 2006  Akshay V. Dabholkar  <aky@dre.vanderbilt.edu>
 				Added Security QoS interpreter.
 
         * PSM/CQML/interpreters/SecurityQoS/SecurityQoSDumper.cpp:
-	
+
 				Now the interpreter dumps the metadeta for CCM Container configuration
 
         * PSM/CQML/paradigms/CQML-uml.xme:
@@ -25,8 +29,8 @@ Sat Dec 16 04:23:21 UTC 2006  Akshay V. Dabholkar  <aky@dre.vanderbilt.edu>
         * PSM/CQML/paradigms/icons/RootRiskGroup.bmp:
         * PSM/CQML/paradigms/icons/TargetReliabilityModel.bmp:
 
-				FT icon upgraded
-				
+				FT icons upgraded
+
 Fri Dec 15 02:16:11 UTC 2006  Akshay V. Dabholkar <aky@dre.vanderbilt.edu>
 
         * PSM/CQML/paradigms/icons/assembly_qos.bmp:
