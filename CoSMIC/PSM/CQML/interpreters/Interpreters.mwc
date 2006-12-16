@@ -5,6 +5,8 @@ workspace {
   CQML
   NetQoS  
   NetQoSComponent
+	SecurityQoS  
+	SecurityQoSComponent
 //  DeploymentPlan
 //  DeploymentPlanComponent
   DeploymentPlanFramework
