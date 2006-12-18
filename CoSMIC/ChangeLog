@@ -1,3 +1,9 @@
+Mon Dec 18 17:09:35 UTC 2006  Joe Hoffert  <jhofert@dre.vanderbilt.edu>
+
+        * PSM/
+				
+				Added DQML (DDS QoS Modeling Language) directories.
+
 Sat Dec 16 04:31:58 UTC 2006  Akshay V. Dabholkar  <aky@dre.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML.xmp:
