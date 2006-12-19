@@ -1,3 +1,34 @@
+Tue Dec 19 18:02:18 UTC 2006  akogekar  <akogekar@dre.vanderbilt.edu>
+
+        * PIM/POSAML/interpreters/OmnetInterpreter:
+
+        * PIM/POSAML/interpreters/OmnetInterpreter/BON2Component.h:
+        * PIM/POSAML/interpreters/OmnetInterpreter/BON2Component.cpp:
+        * PIM/POSAML/interpreters/OmnetInterpreter/CompIcon.ico:
+        * PIM/POSAML/interpreters/OmnetInterpreter/Component.rc:
+        * PIM/POSAML/interpreters/OmnetInterpreter/ComponentConfig.h:
+        * PIM/POSAML/interpreters/OmnetInterpreter/GMESources.txt:
+        * PIM/POSAML/interpreters/OmnetInterpreter/Interpreter.h:
+        * PIM/POSAML/interpreters/OmnetInterpreter/Interpreter.cpp:
+        * PIM/POSAML/interpreters/OmnetInterpreter/OmnetInterpreter.mpc:
+        * PIM/POSAML/interpreters/OmnetInterpreter/Patterns.h:
+        * PIM/POSAML/interpreters/OmnetInterpreter/Patterns.cpp:
+        * PIM/POSAML/interpreters/OmnetInterpreter/Resource.h:
+        * PIM/POSAML/interpreters/OmnetInterpreter/StdAfx.h:
+        * PIM/POSAML/interpreters/OmnetInterpreter/StdAfx.cpp:
+        * PIM/POSAML/interpreters/OmnetInterpreter/component.def:
+        * PIM/POSAML/interpreters/OmnetInterpreter/dlldata.c:
+
+        Added a new interpreter to generate OMNeT++ files
+
+        * PIM/POSAML/interpreters/interpreters.mwc:
+
+        * PIM/POSAML/paradigms/POSAML.xme:
+        * PIM/POSAML/paradigms/POSAML.xmp:
+
+        Latest version of POSAML
+
+
 Tue Dec 19 06:25:33 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * bin/gme.pl:
