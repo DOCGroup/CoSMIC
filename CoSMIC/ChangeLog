@@ -1,41 +1,48 @@
+Tue Dec 19 06:25:33 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * bin/gme.pl:
+
+          Update script so that it releases GME resources, i.e., invokes
+          Exit, once it is finished.
+
 Mon Dec 18 17:09:35 UTC 2006  Joe Hoffert  <jhofert@dre.vanderbilt.edu>
 
         * PSM/
-				
-				Added DQML (DDS QoS Modeling Language) directories.
+
+        Added DQML (DDS QoS Modeling Language) directories.
 
 Sat Dec 16 04:31:58 UTC 2006  Akshay V. Dabholkar  <aky@dre.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML.xmp:
-				
-				Latest interpreted version for CQML.
+
+        Latest interpreted version for CQML.
 
 Sat Dec 16 04:23:21 UTC 2006  Akshay V. Dabholkar  <aky@dre.vanderbilt.edu>
 
         * PSM/CQML/examples/BasicSP.xme:
-				Works with new CQML containing FT and Security QoS
+        Works with new CQML containing FT and Security QoS
 
 
         * PSM/CQML/interpreters/Interpreters.mwc:
 
-				Added Security QoS interpreter.
+        Added Security QoS interpreter.
 
         * PSM/CQML/interpreters/SecurityQoS/SecurityQoSDumper.cpp:
 
-				Now the interpreter dumps the metadeta for CCM Container configuration
+        Now the interpreter dumps the metadeta for CCM Container configuration
 
         * PSM/CQML/paradigms/CQML-uml.xme:
         * PSM/CQML/paradigms/CQML.xme:
         * PSM/CQML/paradigms/CQML.xml:
         * PSM/CQML/paradigms/CQML.xmp:
 
-				FT now conforms to CQML
+        FT now conforms to CQML
 
         * PSM/CQML/paradigms/icons/DeploymentPlan.bmp:
         * PSM/CQML/paradigms/icons/RootRiskGroup.bmp:
         * PSM/CQML/paradigms/icons/TargetReliabilityModel.bmp:
 
-				FT icons upgraded
+        FT icons upgraded
 
 Fri Dec 15 02:16:11 UTC 2006  Akshay V. Dabholkar <aky@dre.vanderbilt.edu>
 

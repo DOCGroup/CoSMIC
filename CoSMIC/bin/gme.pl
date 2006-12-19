@@ -57,7 +57,7 @@ sub parse_args ()
 sub get_gme ()
 {
   # Create an instance of GME.
-  my ($gme) = Win32::OLE->new ('GME.Application')
+  my ($gme) = Win32::OLE->new ('GME.Application', 'Exit')
     or die 'GME is not installed\n';
 
   return $gme;
