@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{869937F7-8283-4963-9425-64E6C43F2B1C}" cdate="Mon Nov 13 09:12:27 2006" mdate="Mon Nov 13 09:12:27 2006" version="" metaguid="{B3568889-311A-4E5A-A3DD-A8AC2BD7DE71}" metaversion="" metaname="MetaGME">
+<project guid="{82F43991-4137-47E0-88AE-29729A3BE64D}" cdate="Thu Jan 04 22:23:34 2007" mdate="Thu Jan 04 22:23:34 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment>This tool supports $CIAO_ROOT/docs/schema/CIAOServerResources.xsd version 1.7. 
 Please check the cvs repository if this is the most recent version of this file.</comment>
@@ -2095,8 +2095,8 @@ endif</value>
 					<attribute kind="Rolename" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="src" target="id-0066-0000000a"/>
 					<connpoint role="dst" target="id-0066-0000000a"/>
+					<connpoint role="src" target="id-0066-0000000a"/>
 				</connection>
 				<connection id="id-0068-00000017" kind="Containment" role="Containment" guid="{AA6E2700-9CB2-470d-81D4-78D4E161F19A}" relid="0x6a">
 					<name>Containment</name>
@@ -5498,9 +5498,7 @@ dName = dstInputEffect</value>
 						<value>Input actions must have one finish connection</value>
 					</attribute>
 					<attribute kind="ConstraintEqn">
-						<value>let count = self.attachingConnections( &quot;dst&quot;, Finish ) -&gt; size in
-  (count == 1)
-</value>
+						<value>self.attachingConnections( &quot;dst&quot;, Finish ) -&gt; size = 1</value>
 					</attribute>
 					<attribute kind="ConstraintParam" status="meta">
 						<value></value>
@@ -7721,7 +7719,7 @@ inputs.size () = 1
 						<value>Se</value>
 					</regnode>
 					<attribute kind="Cardinality">
-						<value>1</value>
+						<value>0..1</value>
 					</attribute>
 					<attribute kind="IsPort" status="meta">
 						<value>false</value>
@@ -41382,8 +41380,8 @@ ResourceUsesPort</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="src" target="id-0066-00000063"/>
 				<connpoint role="dst" target="id-0066-00000063"/>
+				<connpoint role="src" target="id-0066-00000063"/>
 			</connection>
 			<connection id="id-0068-000000a6" kind="HasAspect" role="HasAspect" guid="{14F5F5EC-1F59-4f39-AB1A-4010C83B6898}" relid="0x54">
 				<name>HasAspect</name>
@@ -84107,8 +84105,8 @@ instances-&gt;forAll (x : Component |
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="src" target="id-0066-0000021c"/>
 				<connpoint role="dst" target="id-0066-0000021c"/>
+				<connpoint role="src" target="id-0066-0000021c"/>
 			</connection>
 			<connection id="id-0068-0000036f" kind="Containment" role="Containment" guid="{E0E0AC44-0FD0-4a4a-A7BE-BE8EC0D7A70F}" relid="0x9d">
 				<name>Containment</name>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{F8551059-E1B2-4664-A5E4-9B1D032F56B8}" cdate="Tue Nov 14 14:41:38 2006" mdate="Tue Nov 14 14:41:38 2006" version="" metaguid="{F4AE6FF7-DECF-4B33-AAB4-BBCF7283281C}" metaversion="" metaname="PICML">
+<project guid="{825C945F-C1CA-40A1-B09C-9661B5E4C567}" cdate="Thu Jan 04 22:35:11 2007" mdate="Thu Jan 04 22:35:11 2007" version="" metaguid="{4BCE1B29-E208-41B9-A6C3-E4E31499AC7A}" metaversion="" metaname="PICML">
 	<name>SLICE</name>
 	<comment>SLICE scenario</comment>
 	<author>James H. Hill</author>
@@ -7662,34 +7662,34 @@
 						<reference id="id-0067-00000059" kind="WorkerType" role="WorkerType" guid="{A0F89BCB-5C50-468e-A454-29FD04BBDDF3}" derivedfrom="id-0067-00000048" isinstance="yes" isprimary="no" referred="id-0065-00000016" isbound="yes">
 							<name>cpu</name>
 						</reference>
-						<connection isbound="yes" id="id-0068-0000008b" kind="Finish" role="Finish" guid="{207BB2A7-A564-4b73-ABF8-3E6E5EFD23CF}" derivedfrom="id-0068-00000060" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-0000008b" kind="Effect" role="Effect" guid="{9D998EDC-0E1A-4fbf-B119-DF7AFF34F2F4}" derivedfrom="id-0068-0000005f" isinstance="yes" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-0000008c" kind="Effect" role="Effect" guid="{841632C7-AE9D-4cda-B10D-2BD13F372EB3}" derivedfrom="id-0068-00000062" isinstance="yes" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-0000008d" kind="Finish" role="Finish" guid="{207BB2A7-A564-4b73-ABF8-3E6E5EFD23CF}" derivedfrom="id-0068-00000060" isinstance="yes" isprimary="no">
 							<name>Finish</name>
 						</connection>
-						<connection isbound="yes" id="id-0068-0000008c" kind="Effect" role="Effect" guid="{988C1633-F0B7-42b2-86E0-A31EC1CB8753}" derivedfrom="id-0068-00000061" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-0000008e" kind="Effect" role="Effect" guid="{988C1633-F0B7-42b2-86E0-A31EC1CB8753}" derivedfrom="id-0068-00000061" isinstance="yes" isprimary="no">
 							<name>Effect</name>
 							<attribute kind="Postcondition" status="meta">
 								<value></value>
 							</attribute>
 						</connection>
-						<connection isbound="yes" id="id-0068-0000008d" kind="Effect" role="Effect" guid="{9D998EDC-0E1A-4fbf-B119-DF7AFF34F2F4}" derivedfrom="id-0068-0000005f" isinstance="yes" isprimary="no">
-							<name>Effect</name>
-							<attribute kind="Postcondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-0000008e" kind="Transition" role="Transition" guid="{D4A26B4E-A7CB-482c-885D-570F162F06D7}" derivedfrom="id-0068-0000005d" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-0000008f" kind="Transition" role="Transition" guid="{D4A26B4E-A7CB-482c-885D-570F162F06D7}" derivedfrom="id-0068-0000005d" isinstance="yes" isprimary="no">
 							<name>Transition</name>
 							<attribute kind="Precondition" status="meta">
 								<value></value>
 							</attribute>
 						</connection>
-						<connection isbound="yes" id="id-0068-0000008f" kind="Effect" role="Effect" guid="{71E3B5C0-5F8A-43d6-88F0-1BEC5082823C}" derivedfrom="id-0068-0000005e" isinstance="yes" isprimary="no">
-							<name>Effect</name>
-							<attribute kind="Postcondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000090" kind="Effect" role="Effect" guid="{841632C7-AE9D-4cda-B10D-2BD13F372EB3}" derivedfrom="id-0068-00000062" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-00000090" kind="Effect" role="Effect" guid="{71E3B5C0-5F8A-43d6-88F0-1BEC5082823C}" derivedfrom="id-0068-0000005e" isinstance="yes" isprimary="no">
 							<name>Effect</name>
 							<attribute kind="Postcondition" status="meta">
 								<value></value>
@@ -8532,7 +8532,13 @@
 						<model id="id-0065-000000ec" kind="InputAction" role="InputAction" guid="{7A1E55CD-9730-43c8-84D8-D38E67EB55F3}" derivedfrom="id-0065-0000007d" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 							<name></name>
 						</model>
-						<atom id="id-0066-00000065" kind="PeriodicEvent" role="PeriodicEvent" guid="{319C8556-52A3-4190-AC91-763F08FDC69A}" derivedfrom="id-0066-0000001e" isinstance="yes" isprimary="no">
+						<atom id="id-0066-00000065" kind="State" role="State" guid="{85D80829-2399-4bb1-99B8-9E52C65B3E52}" derivedfrom="id-0066-0000001f" isinstance="yes" isprimary="no">
+							<name>State</name>
+						</atom>
+						<atom id="id-0066-00000066" kind="State" role="State" guid="{2B1748CD-5580-4ccc-A2EC-B7349D3DF80A}" derivedfrom="id-0066-00000020" isinstance="yes" isprimary="no">
+							<name>State</name>
+						</atom>
+						<atom id="id-0066-00000067" kind="PeriodicEvent" role="PeriodicEvent" guid="{319C8556-52A3-4190-AC91-763F08FDC69A}" derivedfrom="id-0066-0000001e" isinstance="yes" isprimary="no">
 							<name>DoCommand</name>
 							<attribute kind="Period" status="inherited">
 								<value>1000</value>
@@ -8540,12 +8546,6 @@
 							<attribute kind="Probability" status="inherited">
 								<value>1</value>
 							</attribute>
-						</atom>
-						<atom id="id-0066-00000066" kind="State" role="State" guid="{85D80829-2399-4bb1-99B8-9E52C65B3E52}" derivedfrom="id-0066-0000001f" isinstance="yes" isprimary="no">
-							<name>State</name>
-						</atom>
-						<atom id="id-0066-00000067" kind="State" role="State" guid="{2B1748CD-5580-4ccc-A2EC-B7349D3DF80A}" derivedfrom="id-0066-00000020" isinstance="yes" isprimary="no">
-							<name>State</name>
 						</atom>
 						<atom id="id-0066-00000068" kind="State" role="State" guid="{1B1C3ACB-CAA2-4d83-9D42-28261D2D3D6B}" derivedfrom="id-0066-00000021" isinstance="yes" isprimary="no">
 							<name>State</name>
