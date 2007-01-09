@@ -1,3 +1,11 @@
+Tue Jan  9 21:48:03 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE_Set.h:
+        * cuts/be/BE_Set.inl:
+        * cuts/be/BE_Set.cpp:
+
+          Added missing files.
+
 Tue Jan  9 21:08:52 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CUTS.mpc:
