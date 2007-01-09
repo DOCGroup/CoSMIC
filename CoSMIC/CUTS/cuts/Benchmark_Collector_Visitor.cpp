@@ -50,10 +50,6 @@ visit_port_agent (const CUTS_Port_Agent & agent)
   while (!pmm_iter.done ())
   {
     this->active_mpm_ = &this->active_pm_->measurements[index ++];
-    ACE_DEBUG ((LM_DEBUG,
-                "id = %u\n",
-                (*pmm_iter).ext_id_));
-
     this->active_mpm_->owner = (*pmm_iter).ext_id_;
 
     (*pmm_iter).int_id_->accept (*this);
