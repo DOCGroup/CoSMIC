@@ -20,7 +20,7 @@ CUTS_Async_Event_Handler_T (Config_Type & config)
 : Event_Handler_Base (config),
   priority_ (ACE_DEFAULT_THREAD_PRIORITY)
 {
-
+  this->activate ();
 }
 
 //
@@ -30,7 +30,7 @@ template <typename COMPONENT, typename EVENTTYPE>
 CUTS_Async_Event_Handler_T <COMPONENT, EVENTTYPE>::
 ~CUTS_Async_Event_Handler_T (void)
 {
-
+  this->deactivate ();
 }
 
 //
@@ -85,14 +85,11 @@ CUTS_Async_Event_Handler_T <COMPONENT, EVENTTYPE>::event_loop (void * param)
 template <typename COMPONENT, typename EVENTTYPE>
 void CUTS_Async_Event_Handler_T <COMPONENT, EVENTTYPE>::activate (void)
 {
-  if (this->is_active ())
-    return;
+  // We may need to activate the event queue.
+  if (this->event_queue_.deactivated ())
+    this->event_queue_.activate ();
 
-  // Perform all the one-time operations that should be called
-  // the first time the <activate> method is invoked.
-  Event_Handler_Base::activate ();
-  this->event_queue_.activate ();
-
+  // Make sure we have at least default number of threads spawned.
   if (this->thread_count () == 0)
     this->spawn_i (CUTS_DEFAULT_THREAD_COUNT);
 }
@@ -103,9 +100,6 @@ void CUTS_Async_Event_Handler_T <COMPONENT, EVENTTYPE>::activate (void)
 template <typename COMPONENT, typename EVENTTYPE>
 void CUTS_Async_Event_Handler_T <COMPONENT, EVENTTYPE>::deactivate (void)
 {
-  if (!this->is_active ())
-    return;
-
   // Gracefully empty the <event_queue_> and releasing all the
   // references to the CORBA events.
   if (!this->event_queue_.is_empty ())
@@ -120,28 +114,22 @@ void CUTS_Async_Event_Handler_T <COMPONENT, EVENTTYPE>::deactivate (void)
   // by the manager to exit.
   this->event_queue_.deactivate ();
   this->thread_count (0);
-
-  // Finalize the deactivation.
-  Event_Handler_Base::deactivate ();
 }
 
 //
 // handle_event
 //
 template <typename COMPONENT, typename EVENTTYPE>
-void CUTS_Async_Event_Handler_T <COMPONENT, EVENTTYPE>::handle_event (
-  EVENTTYPE * ev)
+void CUTS_Async_Event_Handler_T <COMPONENT, EVENTTYPE>::
+handle_event (EVENTTYPE * ev)
 {
-  if (this->is_active ())
-  {
-    /// @note We are discarding the transit time and using the queuing
-    /// time as the transit time. Until we have a better solution for
-    /// handling transit times, we are discarding it.
-    ev->dispatch_time (ACE_OS::gettimeofday ().msec ());
+  /// @note We are discarding the transit time and using the queuing
+  /// time as the transit time. Until we have a better solution for
+  /// handling transit times, we are discarding it.
+  ev->dispatch_time (ACE_OS::gettimeofday ().msec ());
 
-    ::CORBA::add_ref (ev);
-    this->event_queue_.enqueue_tail (ev);
-  }
+  ::CORBA::add_ref (ev);
+  this->event_queue_.enqueue_tail (ev);
 }
 
 //

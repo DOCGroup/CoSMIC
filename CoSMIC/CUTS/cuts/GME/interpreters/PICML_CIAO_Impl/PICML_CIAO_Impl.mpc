@@ -4,8 +4,8 @@ project (PICML_CIAO_Impl) : picmllib, boost_base, udm_component, gme_interpreter
   sharedname = CUTS_PICML_CIAO_Impl
 
   // -- dependencies
-  after += CUTS_UDM_CIAO CUTS_BE
-  libs  += CUTS_UDM_CIAO CUTS_BE
+  after +=  CUTS_BE_CIAO
+  libs  +=  CUTS_BE CUTS_BE_CIAO
 
   Source_Files {
     Main_Dialog.cpp

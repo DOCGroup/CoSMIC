@@ -1,36 +1,8 @@
 // $Id$
 
 #include "BE_IDL_Graph.h"
-#include "BE_IDL_Node.h"
 #include "boost/bind.hpp"
 #include "Uml.h"
-
-//
-// instance_
-//
-CUTS_BE_IDL_Graph * CUTS_BE_IDL_Graph::instance_;
-
-//
-// instance
-//
-CUTS_BE_IDL_Graph * CUTS_BE_IDL_Graph::instance (void)
-{
-  if (CUTS_BE_IDL_Graph::instance_ == 0)
-    CUTS_BE_IDL_Graph::instance_ = new CUTS_BE_IDL_Graph ();
-  return CUTS_BE_IDL_Graph::instance_;
-}
-
-//
-// singleton_close
-//
-void CUTS_BE_IDL_Graph::singleton_close (void)
-{
-  if (CUTS_BE_IDL_Graph::instance_ != 0)
-  {
-    delete CUTS_BE_IDL_Graph::instance_;
-    CUTS_BE_IDL_Graph::instance_ = 0;
-  }
-}
 
 //
 // CUTS_BE_IDL_Graph
@@ -87,8 +59,32 @@ void CUTS_BE_IDL_Graph::
 Visit_File (const PICML::File & file)
 {
   // Find this node in the graph then visit the <file>.
-  this->find (file.name (), this->current_node_);
-  this->visit_file_and_package_contents (file);
+  if (this->find (file.name (), this->current_node_) == -1)
+    return;
+
+  // We are trying to keep from parsing this file more than once.
+  // So, if we are have already visited this file, then we do
+  // not need to do it again!! Just a waste of time.
+  if (!this->current_node_->flags_[CUTS_BE_IDL_Node::IDL_VISITED])
+  {
+    // Set the visit flag. See above for reason.
+    this->current_node_->flags_[CUTS_BE_IDL_Node::IDL_VISITED] = true;
+
+    // Save the active file and visit its contents.
+    this->active_file_ = file;
+    this->visit_file_and_package_contents (file);
+
+    while (!this->pending_files_.empty ())
+    {
+      // Get the first file in the collection.
+      File_Set::iterator iter = this->pending_files_.begin ();
+      PICML::File file = *iter;
+
+      // Remove the file from the collection and visit it.
+      this->pending_files_.erase (iter);
+      file.Accept (*this);
+    }
+  }
 }
 
 //
@@ -97,12 +93,39 @@ Visit_File (const PICML::File & file)
 void CUTS_BE_IDL_Graph::
 visit_file_and_package_contents (const Udm::Object & obj)
 {
+  // Visit all the events at this level.
+  typedef std::vector <PICML::Event> Event_Set;
+
+  Event_Set events =
+    Udm::ChildrenAttr <PICML::Event> (
+    obj.__impl (), Udm::NULLCHILDROLE);
+
+  std::for_each (events.begin (),
+                 events.end (),
+                 boost::bind (&Event_Set::value_type::Accept,
+                              _1,
+                              boost::ref (*this)));
+
+  // Visit all the objects at this level.
+  typedef std::vector <PICML::Object> Object_Set;
+
+  Object_Set objects =
+    Udm::ChildrenAttr <PICML::Object> (
+    obj.__impl (), Udm::NULLCHILDROLE);
+
+  std::for_each (objects.begin (),
+                 objects.end (),
+                 boost::bind (&Object_Set::value_type::Accept,
+                              _1,
+                              boost::ref (*this)));
+
   // Visit all the components at this level.
-  typedef std::set <PICML::Component> Component_Set;
+  typedef std::vector <PICML::Component> Component_Set;
 
   Component_Set components =
-    Udm::ChildrenAttr <PICML::Component> (obj.__impl (),
-                                          Udm::NULLCHILDROLE);
+    Udm::ChildrenAttr <PICML::Component> (
+    obj.__impl (), Udm::NULLCHILDROLE);
+
   std::for_each (components.begin (),
                  components.end (),
                  boost::bind (&Component_Set::value_type::Accept,
@@ -111,8 +134,10 @@ visit_file_and_package_contents (const Udm::Object & obj)
 
   // Visit all the packages at this level.
   typedef std::set <PICML::Package> Package_Set;
+
   Package_Set packages =
-    Udm::ChildrenAttr <PICML::Package> (obj.__impl (), Udm::NULLCHILDROLE);
+    Udm::ChildrenAttr <PICML::Package> (
+    obj.__impl (), Udm::NULLCHILDROLE);
 
   std::for_each (packages.begin (),
                  packages.end (),
@@ -124,8 +149,8 @@ visit_file_and_package_contents (const Udm::Object & obj)
 //
 // Visit_Package
 //
-void CUTS_BE_IDL_Graph::Visit_Package (
-  const PICML::Package & package)
+void CUTS_BE_IDL_Graph::
+Visit_Package (const PICML::Package & package)
 {
   this->visit_file_and_package_contents (package);
 }
@@ -133,18 +158,9 @@ void CUTS_BE_IDL_Graph::Visit_Package (
 //
 // Visit_Component
 //
-void CUTS_BE_IDL_Graph::Visit_Component (
-  const PICML::Component & component)
+void CUTS_BE_IDL_Graph::
+Visit_Component (const PICML::Component & component)
 {
-  // If this component is a <subtype> of another component, there is a
-  // chance that it is located in another file. If this is the case
-  // then we have to update its references.
-  if (component.isSubtype ())
-  {
-    PICML::NamedType subtype = PICML::NamedType::Cast (component).Archetype ();
-    this->Visit_NamedType (subtype);
-  }
-
   // Determine if the component has output events.
   typedef std::vector <PICML::OutEventPort> OutEventPort_Set;
   OutEventPort_Set oep_set = component.OutEventPort_kind_children ();
@@ -206,13 +222,24 @@ void CUTS_BE_IDL_Graph::Visit_Component (
                  boost::bind (&Readonly_Set::value_type::Accept,
                               _1,
                               boost::ref (*this)));
+
+  // If this component is a <subtype> of another component, there is a
+  // chance that it is located in another file. If this is the case
+  // then we have to update its references.
+  if (component.isSubtype ())
+  {
+    PICML::NamedType subtype =
+      PICML::NamedType::Cast (component).Archetype ();
+
+    this->Visit_NamedType (subtype);
+  }
 }
 
 //
 // Visit_OutEventPort
 //
-void CUTS_BE_IDL_Graph::Visit_OutEventPort (
-  const PICML::OutEventPort & port)
+void CUTS_BE_IDL_Graph::
+Visit_OutEventPort (const PICML::OutEventPort & port)
 {
   PICML::Event event = port.ref ();
 
@@ -223,8 +250,8 @@ void CUTS_BE_IDL_Graph::Visit_OutEventPort (
 //
 // Visit_InEventPort
 //
-void CUTS_BE_IDL_Graph::Visit_InEventPort (
-  const PICML::InEventPort & port)
+void CUTS_BE_IDL_Graph::
+Visit_InEventPort (const PICML::InEventPort & port)
 {
   PICML::Event event = port.ref ();
 
@@ -235,8 +262,8 @@ void CUTS_BE_IDL_Graph::Visit_InEventPort (
 //
 // Visit_RequiredRequestPort
 //
-void CUTS_BE_IDL_Graph::Visit_RequiredRequestPort (
-  const PICML::RequiredRequestPort & port)
+void CUTS_BE_IDL_Graph::
+Visit_RequiredRequestPort (const PICML::RequiredRequestPort & port)
 {
   PICML::Provideable provides = port.ref ();
 
@@ -247,8 +274,8 @@ void CUTS_BE_IDL_Graph::Visit_RequiredRequestPort (
 //
 // Visit_ProvidedRequestPort
 //
-void CUTS_BE_IDL_Graph::Visit_ProvidedRequestPort (
-  const PICML::ProvidedRequestPort & port)
+void CUTS_BE_IDL_Graph::
+Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort & port)
 {
   PICML::Provideable provides = port.ref ();
 
@@ -259,8 +286,8 @@ void CUTS_BE_IDL_Graph::Visit_ProvidedRequestPort (
 //
 // Visit_Provideable
 //
-void CUTS_BE_IDL_Graph::Visit_Providable (
-  const PICML::Provideable & provides)
+void CUTS_BE_IDL_Graph::
+Visit_Providable (const PICML::Provideable & provides)
 {
   this->Visit_NamedType (PICML::NamedType::Cast (provides));
 }
@@ -268,7 +295,8 @@ void CUTS_BE_IDL_Graph::Visit_Providable (
 //
 // Visit_Object
 //
-void CUTS_BE_IDL_Graph::Visit_Object (const PICML::Object & object)
+void CUTS_BE_IDL_Graph::
+Visit_Object (const PICML::Object & object)
 {
   this->Visit_NamedType (PICML::NamedType::Cast (object));
 }
@@ -276,7 +304,8 @@ void CUTS_BE_IDL_Graph::Visit_Object (const PICML::Object & object)
 //
 // Visit_Event
 //
-void CUTS_BE_IDL_Graph::Visit_Event (const PICML::Event & event)
+void CUTS_BE_IDL_Graph::
+Visit_Event (const PICML::Event & event)
 {
   this->Visit_NamedType (PICML::NamedType::Cast (event));
 }
@@ -284,56 +313,47 @@ void CUTS_BE_IDL_Graph::Visit_Event (const PICML::Event & event)
 //
 // Visit_NamedType
 //
-void
-CUTS_BE_IDL_Graph::Visit_NamedType (const PICML::NamedType & type)
+void CUTS_BE_IDL_Graph::
+Visit_NamedType (const PICML::NamedType & type)
 {
-  PICML::Package package;
-  PICML::MgaObject parent = type.parent ();
-
-  // Continue building the name of the event type until we have
-  // reached the File, or end of the Package tree.
-  while ((std::string) parent.type ().name () ==
-         (std::string) PICML::Package::meta.name ())
-  {
-    package = PICML::Package::Cast (parent);
-    parent = package.parent ();
-  }
+  // Get the parent of the named type.
+  PICML::File parent = this->NamedType_parent (type);
 
   // Determine the location of this NamedType. If this event is not
   // in the current file then, when we need to add it to the list of
   // depends.
-  if ((std::string) parent.type ().name () ==
-      (std::string) PICML::File::meta.name ())
-  {
-    if ((std::string) parent.name () != this->current_node_->name_)
-    {
-      // Find the node with the name of the parent.
-      CUTS_BE_IDL_Node * node = 0;
-      this->find (parent.name (), node);
+  CUTS_BE_IDL_Node * node = 0;
 
-      if (node != 0)
-        this->current_node_->references_.insert (node);
-    }
+  if (this->active_file_ != parent)
+  {
+    // Find the node with the name of the parent.
+    this->find (parent.name (), node);
+
+    if (node != 0)
+      this->current_node_->references_.insert (node);
+
+    // Ok, now we have to parse the <parent> before quiting.
+    this->pending_files_.insert (parent);
   }
 }
 
 //
 // Visit_Supports
 //
-void CUTS_BE_IDL_Graph::Visit_Supports (
-  const PICML::Supports & supports)
+void CUTS_BE_IDL_Graph::
+Visit_Supports (const PICML::Supports & supports)
 {
   PICML::Object object = supports.ref ();
 
   if (object != Udm::null)
-    this->Visit_NamedType (object);
+    object.Accept (*this);
 }
 
 //
 // Visit_ReadonlyAttribute
 //
-void CUTS_BE_IDL_Graph::Visit_ReadonlyAttribute (
-  const PICML::ReadonlyAttribute & readonly)
+void CUTS_BE_IDL_Graph::
+Visit_ReadonlyAttribute (const PICML::ReadonlyAttribute & readonly)
 {
   PICML::AttributeMember member = readonly.AttributeMember_child ();
 
@@ -357,14 +377,15 @@ void CUTS_BE_IDL_Graph::Visit_ReadonlyAttribute (
 }
 
 //
-// reset_visit_flag
+// NamedType_parent
 //
-void CUTS_BE_IDL_Graph::reset_visit_flag (void)
+PICML::File CUTS_BE_IDL_Graph::
+NamedType_parent (const PICML::NamedType & type)
 {
-  for (Node_Map::iterator iter = this->graph ().begin ();
-       iter != this->graph ().end ();
-       iter ++)
-  {
-    iter->second->flags_ &= ~CUTS_BE_IDL_Node::IDL_VISITED;
-  }
+  PICML::MgaObject parent = type.parent ();
+
+  while (parent.type () != PICML::File::meta)
+    parent = PICML::MgaObject::Cast (parent.parent ());
+
+  return PICML::File::Cast (parent);
 }

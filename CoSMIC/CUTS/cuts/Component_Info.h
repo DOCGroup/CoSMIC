@@ -4,8 +4,7 @@
 #define _CUTS_COMPONENT_INFO_H_
 
 #include "cuts/CUTS_export.h"
-#include "ace/SStringfwd.h"
-#include "ace/String_Base.h"
+#include "ace/SString.h"
 
 struct CUTS_Export CUTS_Component_Info
 {

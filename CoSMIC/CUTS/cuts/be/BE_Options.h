@@ -28,14 +28,23 @@
 
 struct CUTS_BE_Export CUTS_BE_Options
 {
-  /// Selected output directory for the backend.
-  std::string output_directory_;
-
   /// Get a pointer to the singleton instance.
   static CUTS_BE_Options * instance (void);
 
   /// Close the singleton instance and release its resources.
   static void close_singleton (void);
+
+  /// Name of the project.
+  std::string project_name_;
+
+  /// Selected output directory for the backend.
+  std::string output_directory_;
+
+  /// Suffix for the executor files.
+  std::string exec_suffix_;
+
+  /// Suffix for the proxy exeuctor files.
+  std::string proxy_suffix_;
 
 private:
   /// Instance of the singleton.

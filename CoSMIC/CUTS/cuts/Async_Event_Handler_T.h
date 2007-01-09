@@ -22,6 +22,7 @@
 #include "ace/Atomic_Op.h"
 #include "ace/Condition_Thread_Mutex.h"
 #include "ace/Hash_Map_Manager_T.h"
+#include "ace/Message_Queue_T.h"
 #include "ace/Thread_Manager.h"
 #include "ace/Unbounded_Queue.h"
 #include "ace/Unbounded_Set.h"
@@ -66,10 +67,10 @@ public:
   virtual ~CUTS_Async_Event_Handler_T (void);
 
   /// Activate the event handler.
-  virtual void activate (void);
+  void activate (void);
 
   /// Deactivate the event handler.
-  virtual void deactivate (void);
+  void deactivate (void);
 
   /// Handle the event. This will invoke the callback method.
   virtual void handle_event (EVENTTYPE * ev);

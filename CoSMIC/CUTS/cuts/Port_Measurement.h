@@ -20,6 +20,9 @@
 #include <map>
 #include <string>
 
+// Forward decl.
+class CUTS_Benchmark_Visitor;
+
 //=============================================================================
 /**
  * @class CUTS_Port_Measurement
@@ -35,7 +38,7 @@ public:
   typedef std::map <long, CUTS_Worker_Measurement> Worker_Map;
 
   /// Type definition for mapping exit points to timing data.
-  typedef std::map <std::string, CUTS_Time_Measurement> Exit_Points;
+  typedef std::map <size_t, CUTS_Time_Measurement> Exit_Points;
 
   /// Constructor.
   CUTS_Port_Measurement (void);
@@ -60,7 +63,7 @@ public:
                      const ACE_Time_Value & tm);
 
   /// Record an exit point entry.
-  void record_exit_point_time (const std::string & uuid,
+  void record_exit_point_time (size_t uid,
                                const ACE_Time_Value & tv);
 
   /// Reset all the collected data.
@@ -77,6 +80,8 @@ public:
 
   /// Get the collection of exit points.
   const Exit_Points & exit_points (void) const;
+
+  void accept (CUTS_Benchmark_Visitor & visitor);
 
 private:
   /// Time taken to complete the port operation.

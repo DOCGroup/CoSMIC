@@ -25,8 +25,9 @@ class CUTS_Component_Registry_Node;
  */
 //=============================================================================
 
-typedef std::map <
-  std::string, CUTS_Component_Registry_Node *> CUTS_Component_Registry_Map;
+typedef std::map <std::string,
+                  CUTS_Component_Registry_Node *>
+                  CUTS_Component_Registry_Map;
 
 
 //=============================================================================

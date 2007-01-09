@@ -15,15 +15,18 @@
 #ifndef _CUTS_BENCHMARK_AGENT_H_
 #define _CUTS_BENCHMARK_AGENT_H_
 
-#include "cuts/config.h"
 #include "cuts/CUTS_export.h"
+#include "ace/SString.h"
 #include <map>
 #include <set>
-#include <string>
 
-// forward declarations
+// Forward decl.
 class CUTS_Port_Agent;
 
+// Forward decl.
+class CUTS_Benchmark_Visitor;
+
+/// Type defintion for a collection of CUTS_Port_Agent objects.
 typedef std::set <CUTS_Port_Agent *> CUTS_Port_Agent_Set;
 
 //=============================================================================
@@ -43,38 +46,41 @@ public:
   /// Destructor.
   virtual ~CUTS_Benchmark_Agent (void);
 
-  /// Register a port agent.
-  bool register_port_agent (CUTS_Port_Agent * agent);
-
-  /// Unregister a port agent.
-  void unregister_port_agent (CUTS_Port_Agent * agent);
-
   /// Get the parent ID of the agent.
   long parent (void) const;
 
   /// Set the parent ID of the agent.
   void parent (long parent);
 
-  /// Register an exit point w/ the agent.
-  bool register_exit_point (const std::string & uuid,
-                            const std::string & name);
+  /// Register a port agent.
+  bool register_agent (CUTS_Port_Agent * agent);
 
-  /// Unregister an exit point w/ the agent.
-  void unregister_exit_point (const std::string & uuid);
+  /// Unregister a port agent.
+  void unregister_agent (CUTS_Port_Agent * agent);
+
+  /// Register an exit point w/ the agent.
+  int register_endpoint (const ACE_CString & endpoint,
+                         size_t & endpoint_id);
+
+  void accept (CUTS_Benchmark_Visitor & visitor);
+
+  const char * endpoint_name (size_t id) const;
+
+  /// Get the collection of port agents.
+  const CUTS_Port_Agent_Set & port_agents (void) const;
 
 protected:
   /// Get the collection of port agents.
   CUTS_Port_Agent_Set & port_agents (void);
 
-  /// Type definition for mapping exit point UUIDs to names.
-  typedef std::map <std::string, std::string> Exit_Points;
-
-  /// Collection of exit points available to the agent.
-  Exit_Points exit_points_;
-
-private:
   /// Owner of this object.
   long parent_;
+
+  /// Type definition for mapping exit point UUIDs to names.
+  typedef std::map <ACE_CString, size_t> Endpoint_Map;
+
+  /// Collection of exit points available to the agent.
+  Endpoint_Map endpoints_;
 
   /// Set of port agents managed by this benchmark agent.
   CUTS_Port_Agent_Set port_agents_;

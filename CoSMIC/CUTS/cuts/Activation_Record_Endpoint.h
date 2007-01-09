@@ -1,0 +1,7 @@
+// -*- C++ -*-
+
+#ifndef _CUTS_ACTIVATION_RECORD_ENDPOINT_H_
+#define _CUTS_ACTIVATION_RECORD_ENDPOINT_H_
+
+
+#endif  // !defined _CUTS_ACTIVATION_RECORD_ENDPOINT_H_

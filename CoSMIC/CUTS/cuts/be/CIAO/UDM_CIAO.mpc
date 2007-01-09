@@ -1,7 +1,7 @@
 // $Id$
 
-project (CUTS_UDM_CIAO) : cosmic_lib, boost_base, picml_udm {
-  sharedname    += CUTS_UDM_CIAO
+project (CUTS_BE_CIAO) : cosmic_lib, boost_base, picml_udm {
+  sharedname    += CUTS_BE_CIAO
   dynamicflags  += CUTS_UDM_CIAO_BUILD_DLL
 
   includes += $(CIAO_ROOT)/CCF $(ACE_ROOT)/contrib/utility
@@ -14,13 +14,18 @@ project (CUTS_UDM_CIAO) : cosmic_lib, boost_base, picml_udm {
 
   Source_Files {
     Export_File_Generator.cpp
-    CIAO_File_Generator_Base.cpp
-    CIAO_Header_File_Generator.cpp
-    CIAO_Source_File_Generator.cpp
-    CIAO_Project_Generator.cpp
     CIAO_In_Type.cpp
     CIAO_Var_Type.cpp
     CIAO_Retn_Type.cpp
+
+    CIAO_Traits_Base.cpp
+    CIAO_Header_Traits.cpp
+    CIAO_Source_Traits.cpp
+    CIAO_Exec_Header_Traits.cpp
+    CIAO_Exec_Source_Traits.cpp
+    CIAO_Proxy_Header_Traits.cpp
+    CIAO_Proxy_Source_Traits.cpp
+    CIAO_Project_Generator.cpp
   }
 
   Template_Files {
@@ -28,5 +33,13 @@ project (CUTS_UDM_CIAO) : cosmic_lib, boost_base, picml_udm {
     CIAO_Var_Type_T.cpp
     CIAO_Retn_Type_T.cpp
     Port_Manager_T.cpp
+  }
+
+  Header_Files {
+    CIAO_Manager.h
+  }
+
+  Inline_Files {
+
   }
 }

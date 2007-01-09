@@ -17,8 +17,7 @@
 #include "cuts/CUTS_export.h"
 #include "ace/Hash_Map_Manager_T.h"
 #include "ace/Null_Mutex.h"
-#include "ace/SStringfwd.h"
-#include "ace/String_Base.h"
+#include "ace/SString.h"
 
 // Forward decl.
 class CUTS_Worker;

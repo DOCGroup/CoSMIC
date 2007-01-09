@@ -54,4 +54,5 @@ private:
   /// Singleton instance.
   static CUTS_CoWorkEr_Cache * instance_;
 };
+
 #endif  // !defined _CUTS_COWORKER_CACHE_

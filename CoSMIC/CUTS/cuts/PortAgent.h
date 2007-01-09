@@ -1,20 +1,28 @@
 // -*- C++ -*-
 
+//=============================================================================
+/**
+ * @file      Port_Agent.h
+ *
+ * $Id$
+ *
+ * @author    James H. Hill
+ */
+//=============================================================================
+
 #ifndef _CUTS_PORT_AGENT_H_
 #define _CUTS_PORT_AGENT_H_
 
-#if !defined (ACE_LACKS_PRAGMA_ONCE)
-# pragma once
-#endif /* ACE_LACKS_PRAGMA_ONCE */
-
-#include "cuts/ActivationRecord.h"
 #include "cuts/Port_Measurement_Pool.h"
-#include "ace/Condition_Thread_Mutex.h"
-#include "ace/Message_Queue_T.h"
-#include "ace/Free_List.h"
-
-#include <string>
+#include "ace/SStringfwd.h"
+#include "ace/String_Base.h"
 #include <map>
+
+// Forward decl.
+class CUTS_Activation_Record;
+
+// Forward decl.
+class CUTS_Benchmark_Visitor;
 
 //=============================================================================
 /**
@@ -44,57 +52,51 @@ public:
   virtual void deactivate (void);
 
   /**
-   * Create a new activation record from the port agent. This is
-   * a factory method for all port agents.
+   * Update the port agent with a new activation record. This
+   * method takes the information in the record and consolidates
+   * it.
    *
-   * @return    Pointer to a clean activation record.
+   * @param[in]       record      Pointer to the new record.
+   *
+   * @todo Add support to keeping a history of the records.
    */
-  CUTS_Activation_Record * create_activation_record (void);
+  void update (const CUTS_Activation_Record * record);
 
   /**
-   * Close an activation record. This causes the benchmark agent
-   * to consolidate the record contents into a single location.
-   */
-  void destroy_activation_record (CUTS_Activation_Record * record);
-
-  /**
-   * Get the current port measurement map. This will call the
+   * Get the current port measurement map. This will cause the
    * port agent to switch to a new map for metrics collection.
    *
    * @return      Reference to the lastest port measurement map.
    */
   CUTS_Port_Measurement_Map & port_measurements (void);
 
-protected:
-  /// Service handler for the port agent.
-  static ACE_THR_FUNC_RETURN event_loop (void * param);
+  /**
+   * Get the current port measurement map. This will cause the
+   * port agent to switch to a new map for metrics collection.
+   *
+   * @return      Reference to the lastest port measurement map.
+   */
+  const CUTS_Port_Measurement_Map & port_measurements (void) const;
 
+  /**
+   * Determine the active state of the port agent.
+   *
+   * @retval      true        The port agent is active.
+   * @retval      false       The port agent is not active.
+   */
+  bool is_active (void) const;
+
+  void accept (CUTS_Benchmark_Visitor & visitor);
+
+protected:
   /// Name of the port.
   std::string name_;
 
   /// The active state of the port agent.
   bool active_;
 
-  /// Collection of free activation records.
-  ACE_Locked_Free_List <
-    CUTS_Cached_Activation_Record,
-    ACE_SYNCH_RW_MUTEX> free_list_;
-
   /// Collection of port measurements used by the port agent.
-  CUTS_Port_Measurement_Pool measurement_pool_;
-
-private:
-  /// Helper method to recored the methics in a record.
-  void record_metrics (CUTS_Activation_Record * record);
-
-  /// Helper method to add an activation record to the free list.
-  void add_to_free_list (CUTS_Activation_Record * record);
-
-  ACE_Message_Queue_Ex <CUTS_Activation_Record,
-                        ACE_MT_SYNCH> closed_list_;
-
-  /// The group id for the port agent's threads.
-  long grp_id_;
+  mutable CUTS_Port_Measurement_Pool measurement_pool_;
 };
 
 #if defined (__CUTS_INLINE__)

@@ -15,9 +15,7 @@
 
 #include "cuts/config.h"
 #include "cuts/CUTS_export.h"
-
-#include "ace/SStringfwd.h"
-#include "ace/String_Base.h"
+#include "ace/SString.h"
 
 // Forward decl.
 class CUTS_Action;

@@ -14,11 +14,12 @@
 #define _CUTS_BE_CIAO_PROJECT_GENERATOR_H_
 
 #include "UDM_CIAO_Export.h"
-#include "cuts/be/BE_Project_Generator.h"
-#include <iosfwd>
 
-// Forward decl.
-struct CUTS_BE_IDL_Node;
+#include "cuts/be/BE_Project_Generator.h"
+#include "cuts/be/String_Set.h"
+
+#include <iosfwd>
+#include <string>
 
 //=============================================================================
 /**
@@ -38,35 +39,20 @@ public:
   /// Destructor.
   virtual ~CUTS_CIAO_Project_Generator (void);
 
-  /**
-   * Signal to begin writing the project.
-   *
-   * @param[in]       container       Starting container.
-   */
-  void write_project (
-    const PICML::ComponentImplementationContainer & container,
-    const CUTS_BE_Preprocess_Data & ppd);
+  virtual bool generate_stub (const CUTS_BE_IDL_Node & node);
 
-  /**
-   * Write a stub project.
-   *
-   * @param[in]       node        Node for the stub project.
-   * @retval          true        Successfully wrote file.
-   * @retval          false       Failed to write file.
-   */
-  bool write_project (CUTS_BE_IDL_Node * node);
+  virtual bool generate_exec (const CUTS_BE_Impl_Node & node);
+
+  virtual bool generate_proxy (const CUTS_BE_Impl_Node & node);
 
 private:
-  void write_exec_project (
-    std::ofstream & out,
-    const PICML::ComponentImplementationContainer &,
-    CUTS_BE_IDL_Node * node,
-    const CUTS_BE_Preprocess_Data & ppd);
+  void generate_impl_project (std::ofstream & out,
+                              const CUTS_BE_Impl_Node & node,
+                              bool executor_type);
 
-  void write_svnt_project (
-    std::ofstream & out,
-    const PICML::ComponentImplementationContainer &,
-    CUTS_BE_IDL_Node * node);
+  void generate_svnt_project (std::ofstream & out,
+                              const CUTS_BE_Impl_Node & node);
+
 
   /**
    * Generates a listing of stubs.
@@ -75,14 +61,18 @@ private:
    * @param[in]     node        Starting node.
    */
   void generate_stub_listing (std::ofstream & project,
-                              CUTS_BE_IDL_Node * node);
+                              const CUTS_BE_IDL_Node * node);
 
   void generate_mpc_i (std::ofstream & project,
-                       const CUTS_BE_Preprocess_Data & ppd);
+                       const CUTS_BE_Impl_Node & node);
 
   void generate_mpc_values (std::ofstream & project,
                             const std::string & heading,
                             const CUTS_String_Set & listing);
+
+  typedef std::set <const CUTS_BE_IDL_Node *> IDL_Node_Set;
+
+  IDL_Node_Set visited_nodes_;
 };
 
 #endif  // !defined _CUTS_BE_CIAO_PROJECT_GENERATOR_H_

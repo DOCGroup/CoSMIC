@@ -157,21 +157,21 @@ namespace CUTS
         ACE_THROW_SPEC ((::CORBA::SystemException,
                          ::Components::CCMException));
     };
-
-    //=========================================================================
-    /**
-     * Entry point for the Benchmark_Data_Collector executor.
-     *
-     * @return Reference to the factory object for creating the
-     * Benchmark_Data_Collector component.
-     */
-    //=========================================================================
-
-    extern "C" BENCHMARK_DATA_COLLECTOR_EXEC_Export
-      ::Components::HomeExecutorBase_ptr
-      create_CUTS_Benchmark_Data_Collector_Home_Impl (void);
   }
 }
+
+//=========================================================================
+/**
+  * Entry point for the Benchmark_Data_Collector executor.
+  *
+  * @return Reference to the factory object for creating the
+  * Benchmark_Data_Collector component.
+  */
+//=========================================================================
+
+extern "C" BENCHMARK_DATA_COLLECTOR_EXEC_Export
+::Components::HomeExecutorBase_ptr
+create_CUTS_Benchmark_Data_Collector_Home_Impl (void);
 
 #include /**/ "ace/post.h"
 

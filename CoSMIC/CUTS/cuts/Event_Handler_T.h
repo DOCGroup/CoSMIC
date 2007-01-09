@@ -39,8 +39,7 @@ public:
   typedef EVENTTYPE Event_Type;
 
   /// Type definition for the callback method.
-  typedef void (COMPONENT::*Event_Method) (EVENTTYPE *,
-                                           CUTS_Activation_Record *);
+  typedef void (COMPONENT::*Event_Method) (EVENTTYPE *);
 
   /// Default constructor.
   CUTS_Event_Handler_Config_T (void);
@@ -51,8 +50,7 @@ public:
    * @param[in]     ev              Source event.
    * @param[in]     record          Pointer to activation record.
    */
-  bool dispatch_event (EVENTTYPE * ev,
-                       CUTS_Activation_Record * record) const;
+  bool dispatch_event (EVENTTYPE * ev) const;
 
   /// Port agent for the event handler.
   CUTS_Port_Agent port_agent_;
@@ -85,8 +83,7 @@ public:
   typedef EVENTTYPE Event_Type;
 
   /// Type definition for the callback method.
-  typedef void (COMPONENT::*Event_Method) (EVENTTYPE *,
-                                           CUTS_Activation_Record *);
+  typedef void (COMPONENT::*Event_Method) (EVENTTYPE *);
 
   /**
    * Handle an event.
@@ -94,12 +91,6 @@ public:
    * @param[in]       ev      Pointer to the event.
    */
   virtual void handle_event (EVENTTYPE * ev) = 0;
-
-  /// Activate the event handler.
-  virtual void activate (void) = 0;
-
-  /// Deactivate the event handler.
-  virtual void deactivate (void) = 0;
 
   /// Destructor.
   virtual ~CUTS_Event_Handler_T (void);
@@ -143,26 +134,12 @@ public:
   /// Destructor.
   virtual ~CUTS_Event_Handler_Base_T (void);
 
-  /// Activate the event handler.
-  virtual void activate (void);
-
-  /// Deactivate the event handler.
-  virtual void deactivate (void);
-
   /**
    * Handle an event.
    *
    * @param[in]       ev      Pointer to the event.
    */
   virtual void handle_event (EVENTTYPE * ev) = 0;
-
-  /**
-   * Return the active state of the event handler.
-   *
-   * @retval    true      The event handler is active.
-   * @retval    false     The event handler is not active.
-   */
-  bool is_active (void) const;
 
 protected:
   /**
@@ -203,9 +180,6 @@ protected:
   const char * name (void) const;
 
 private:
-  /// Active state of the event handler.
-  bool active_;
-
   /// Reference to the configuration type.
   Config_Type & config_;
 };

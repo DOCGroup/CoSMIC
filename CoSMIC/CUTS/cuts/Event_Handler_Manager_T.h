@@ -66,12 +66,6 @@ public:
   /// Handle the event. This will invoke the callback method.
   void handle_event (EVENTTYPE * ev);
 
-  /// Activate the event handler.
-  void activate (void);
-
-  /// Deactivate the event handler.
-  void deactivate (void);
-
   /// Get the port agent for the event handler.
   CUTS_Port_Agent & port_agent (void);
 

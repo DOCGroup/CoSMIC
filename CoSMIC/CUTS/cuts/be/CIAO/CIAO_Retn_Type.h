@@ -27,14 +27,18 @@ template <>
 class CUTS_CIAO_Retn_Type_T <PICML::MemberType>
 {
 public:
+  CUTS_CIAO_Retn_Type_T (const PICML::MemberType & element);
+
   /**
    * Write the type identifier for a predefined type.
    *
    * @param[in]       out         Target stream
-   * @param[in]       type        Source type.
    */
-  static void write (std::ostream & out,
-                     const PICML::MemberType & type);
+  void write (std::ostream & out) const;
+
+private:
+  /// The member type element.
+  const PICML::MemberType & element_;
 };
 
 //=============================================================================
@@ -50,13 +54,24 @@ class CUTS_CIAO_Retn_Type_T <PICML::PredefinedType>
 {
 public:
   /**
+   * Initializing constructor.
+   *
+   * @param[in]       element     Source model element.
+   */
+  explicit CUTS_CIAO_Retn_Type_T (
+    const PICML::PredefinedType & element);
+
+  /**
    * Write the type identifier for a predefined type.
    *
    * @param[in]       out         Target stream
    * @param[in]       type        Source type.
    */
-  static void write (std::ostream & out,
-                     const PICML::PredefinedType & type);
+  void write (std::ostream & out) const;
+
+private:
+  /// Source predefined type element.
+  const PICML::PredefinedType & element_;
 };
 
 //=============================================================================

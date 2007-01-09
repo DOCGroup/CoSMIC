@@ -6,6 +6,7 @@
 #include "cuts/Port_Measurement.inl"
 #endif
 
+#include "cuts/Benchmark_Visitor.h"
 #include <algorithm>
 
 //
@@ -49,4 +50,12 @@ void CUTS_Port_Measurement::reset (void)
     this->exit_points_.begin (),
     this->exit_points_.end (),
     Reset_Exit_Times ());
+}
+
+//
+// accept
+//
+void CUTS_Port_Measurement::accept (CUTS_Benchmark_Visitor & visitor)
+{
+  visitor.visit_port_measurement (*this);
 }

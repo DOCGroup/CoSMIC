@@ -33,38 +33,23 @@ class CUTS_Time_Metric;
 class CUTS_Port_Metric;
 class CUTS_System_Metric;
 
-namespace CUTS
-{
-  //===========================================================================
-  // extraction operations
+//===========================================================================
+// extraction operations
 
-  void CUTS_STUB_Export operator >> (const Time_Sample &,
-                                     CUTS_Time_Metric &);
+void CUTS_STUB_Export operator >> (const ::CUTS::Time_Sample &,
+                                   CUTS_Time_Metric &);
 
-  void CUTS_STUB_Export operator >> (const Mapped_Port_Measurement &,
-                                     CUTS_Port_Metric &);
+void CUTS_STUB_Export operator >> (const ::CUTS::Mapped_Port_Measurement &,
+                                   CUTS_Port_Metric &);
 
-  void CUTS_STUB_Export operator >> (const Benchmark_Data_var &,
-                                     CUTS_System_Metric &);
+void CUTS_STUB_Export operator >> (const ::CUTS::Benchmark_Data_var &,
+                                   CUTS_System_Metric &);
 
-  //===========================================================================
-  // insertion operations
+//===========================================================================
+// insertion operations
 
-  void CUTS_STUB_Export operator << (Port_Measurement_Seq & pms,
-                                     const CUTS_Port_Agent_Set &);
-
-  void CUTS_STUB_Export operator << (Mapped_Port_Measurement_Seq &,
-                                     CUTS_Port_Measurement_Map &);
-
-  void CUTS_STUB_Export operator << (Mapped_Port_Measurement &,
-                                     const CUTS_Port_Measurement &);
-
-  void CUTS_STUB_Export operator << (Exit_Point_Time_Seq &,
-                                     const CUTS_Port_Measurement::Exit_Points &);
-
-  void CUTS_STUB_Export operator << (Time_Sample &,
-                                     const CUTS_Time_Measurement &);
-}
+void CUTS_STUB_Export operator << (::CUTS::Time_Sample &,
+                                   const CUTS_Time_Measurement &);
 
 #include /**/ "ace/post.h"
 

@@ -44,10 +44,22 @@ public:
    *
    * @param[in]       name        Name of the node.
    * @param[out]      node        Pointer to the node.
+   * @retval          1           The node already existed.
+   * @retval          0           The node was newly created.
+   * @retval          -1          Error.
+   */
+  int find (const std::string & name, T * &node);
+
+  /**
+   * Locate the node with the specified name in the graph. If the
+   * node is not in the path, one is created.
+   *
+   * @param[in]       name        Name of the node.
+   * @param[out]      node        Pointer to the node.
    * @retval          true        The node was found.
    * @retval          false       the node was not found
    */
-  void find (const std::string & name, T * &node);
+  bool find (const std::string & name, const T * &node) const;
 
   /**
    * Get a reference to the underlying graph.

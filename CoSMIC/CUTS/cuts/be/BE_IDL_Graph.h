@@ -13,11 +13,9 @@
 #ifndef _CUTS_BE_IDL_GRAPH_H_
 #define _CUTS_BE_IDL_GRAPH_H_
 
-#include "BE_export.h"
 #include "BE_Depend_Graph_T.h"
+#include "BE_IDL_Node.h"
 #include "PICML/PICML.h"
-
-struct CUTS_BE_IDL_Node;
 
 //=============================================================================
 /**
@@ -25,7 +23,7 @@ struct CUTS_BE_IDL_Node;
  */
 //=============================================================================
 
-class CUTS_BE_Export CUTS_BE_IDL_Graph :
+class CUTS_BE_IDL_Graph :
   public CUTS_BE_Depend_Graph_T <CUTS_BE_IDL_Node>,
   public PICML::Visitor
 {
@@ -35,19 +33,6 @@ public:
 
   /// Destructor.
   virtual ~CUTS_BE_IDL_Graph (void);
-
-  /**
-   * Get a pointer to the singleton.
-   *
-   * @return      Pointer to the singleton.
-   */
-  static CUTS_BE_IDL_Graph * instance (void);
-
-  /// Close the singleton instance (e.g., release all its resources).
-  static void singleton_close (void);
-
-  /// Reset the visit flag for all the nodes.
-  void reset_visit_flag (void);
 
 protected:
   /// Visit the RootFolder of a PICML model.
@@ -80,9 +65,6 @@ protected:
   /// Visit an RequiredRequestPort of a PICML model.
   void Visit_RequiredRequestPort (const PICML::RequiredRequestPort &);
 
-  /// Visit a NameType element in a PICML model.
-  void Visit_NamedType (const PICML::NamedType &);
-
   /// Visit an Event in a PICML model.
   void Visit_Event (const PICML::Event &);
 
@@ -95,7 +77,18 @@ protected:
   /// Visit a ReadonlyAttribute in a PICML model.
   void Visit_ReadonlyAttribute (const PICML::ReadonlyAttribute &);
 
+  /// Visit a NameType element in a PICML model.
+  void Visit_NamedType (const PICML::NamedType & type);
+
 private:
+  /**
+   * Get the parent file of a named type.
+   *
+   * @param[in]     type      The source named type.
+   * @return        The parent of the named type.
+   */
+  PICML::File NamedType_parent (const PICML::NamedType & type);
+
   /**
    * Visit the contents of a File/Package element in a PICML
    * model.
@@ -104,11 +97,20 @@ private:
    */
   void visit_file_and_package_contents (const Udm::Object & object);
 
+  /// Singleton instance of the graph.
+  static CUTS_BE_IDL_Graph * instance_;
+
   /// The current node in the graph.
   CUTS_BE_IDL_Node * current_node_;
 
-  /// Singleton instance of the graph.
-  static CUTS_BE_IDL_Graph * instance_;
+  /// Type definition for a collection of files.
+  typedef std::set <PICML::File> File_Set;
+
+  /// Files that need to be parsed.
+  File_Set pending_files_;
+
+  /// The file that's currently being preprocessed.
+  PICML::File active_file_;
 };
 
 #define CUTS_BE_IDL_GRAPH() \

@@ -19,36 +19,48 @@ void CUTS_Port_Agent::name (const char * name)
 }
 
 //
-// create_activation_record
+// port_measurements
 //
 CUTS_INLINE
-CUTS_Activation_Record * CUTS_Port_Agent::create_activation_record (void)
+CUTS_Port_Measurement_Map &
+CUTS_Port_Agent::port_measurements (void)
 {
-  return this->free_list_.remove ();
+  return this->measurement_pool_.advance ();
 }
 
 //
 // port_measurements
 //
 CUTS_INLINE
-CUTS_Port_Measurement_Map & CUTS_Port_Agent::port_measurements (void)
+const CUTS_Port_Measurement_Map &
+CUTS_Port_Agent::port_measurements (void) const
 {
   return this->measurement_pool_.advance ();
 }
 
 //
-// destroy_activation_record
+// activate
 //
 CUTS_INLINE
-void CUTS_Port_Agent::destroy_activation_record (
-  CUTS_Activation_Record * record)
+void CUTS_Port_Agent::activate (void)
 {
-  if (this->active_)
-  {
-    this->closed_list_.enqueue_tail (record);
-  }
-  else
-  {
-    this->add_to_free_list (record);
-  }
+  this->active_ = true;
+}
+
+//
+// deactivate
+//
+CUTS_INLINE
+void CUTS_Port_Agent::deactivate (void)
+{
+  this->active_ = false;
+}
+
+//
+// is_active
+//
+CUTS_INLINE
+bool CUTS_Port_Agent::is_active (void) const
+{
+  return this->active_;
 }

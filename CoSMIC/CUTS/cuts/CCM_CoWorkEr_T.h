@@ -83,7 +83,6 @@ public:
                      ::Components::CCMException));
 
 protected:
-  Event_Producer producer_;
 
   /// Context for the component.
   COMPONENT_CONTEXT * context_;

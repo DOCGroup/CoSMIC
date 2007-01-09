@@ -4,7 +4,6 @@
 #include "BE_Depend_Graph_T.inl"
 #endif
 
-#include "boost/bind.hpp"
 #include <algorithm>
 
 //
@@ -28,20 +27,16 @@ CUTS_BE_Depend_Graph_T <T>::~CUTS_BE_Depend_Graph_T (void)
   {
     delete iter->second;
   }
-
-  //std::for_each (this->graph_.begin (),
-  //               this->graph_.end (),
-  //               boost::bind (boost::lambda::delete_ptr (),
-  //               boost::bind (&Node_Map::value_type::second, _1)));
 }
 
 //
 // find
 //
 template <typename T>
-void CUTS_BE_Depend_Graph_T <T>::
+int CUTS_BE_Depend_Graph_T <T>::
 find (const std::string & name, T * &node)
 {
+  int retval = -1;
   Node_Map::iterator iter = this->graph_.find (name);
 
   if (iter == this->graph_.end ())
@@ -55,8 +50,32 @@ find (const std::string & name, T * &node)
     {
       delete node;
       node = iter->second;
+      retval = 1;
     }
+    else
+      retval = 0;
   }
   else
+  {
     node = iter->second;
+    retval = 1;
+  }
+
+  return retval;
+}
+
+//
+// find
+//
+template <typename T>
+bool CUTS_BE_Depend_Graph_T <T>::
+find (const std::string & name, const T * &node) const
+{
+  Node_Map::const_iterator iter = this->graph_.find (name);
+
+  if (iter == this->graph_.end ())
+    return false;
+
+  node = iter->second;
+  return true;
 }

@@ -7,19 +7,18 @@
 
 #include "cuts/be/CoWorkEr_Cache.h"
 #include "cuts/be/CoWorkEr_Generator.h"
-#include "cuts/be/CUTS_Project.h"
 
 #include "cuts/be/BE_Options.h"
-#include "cuts/be/BE_Workspace_Generator.h"
-#include "cuts/be/BE_File_Generator_Manager.h"
-#include "cuts/be/CIAO/CIAO_Project_Generator.h"
+#include "cuts/be/CIAO/CIAO_Manager.h"
 
-/* Dummy function for UDM meta initialization */
+//
+// dummy function for UDM meta initialization
+//
 extern void dummy(void);
 
-// Initialization function. The framework calls it before preparing the
-// backend. Initialize here the settings in the config static object.
-// Return 0 if successful.
+//
+// Initialize
+//
 int CUdmApp::Initialize()
 {
   return 0;
@@ -51,39 +50,24 @@ int CUdmApp::Initialize()
   You can override this behavior by catching udm_exception. Use
   udm_exception::what() to form an error message.
 */
-
-/***********************************************/
-/* Main entry point for Udm-based Interpreter  */
-/***********************************************/
-
 void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,
                       Udm::Object focusObject,
                       set <Udm::Object> selectedObjects,
                       long param)
 {
-  PICML::RootFolder root =
-    PICML::RootFolder::Cast (p_backend->GetRootObject());
-
-  root.Accept (*CUTS_Project::instance ());
-
-  if (!CUTS_Project::instance ()->is_valid ())
-  {
-    ::AfxMessageBox (CUTS_Project::instance ()->message ().c_str (),
-                     MB_OK | MB_ICONEXCLAMATION);
-    CUTS_Project::close ();
-    return;
-  }
-
-
   // Show the main dialog and let the <end-user> select which
   // <option> they want to execute. If the user selects to
   // cancel the process then we just return.
-  Main_Dialog main_dialog (::AfxGetMainWnd ());
+  Main_Dialog dialog (::AfxGetMainWnd ());
 
-  if (main_dialog.DoModal () == IDCANCEL)
+  if (dialog.DoModal () == IDCANCEL)
     return;
 
-  switch (main_dialog.option ())
+  // Get the root folder for the project.
+  PICML::RootFolder root =
+    PICML::RootFolder::Cast (p_backend->GetRootObject());
+
+  switch (dialog.option ())
   {
   case Main_Dialog::OPT_GENERATE_MODELS:
     {
@@ -94,22 +78,35 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,
 
   case Main_Dialog::OPT_GENERATE_SOURCE:
     {
-      std::string output_dir;
-      std::string message ("Please specify the output directory");
+      // Initialize the backend options. Eventually, the user will
+      // be able to set these via a dialog.
+      CUTS_BE_OPTIONS ()->project_name_ = root.name ();
+      CUTS_BE_OPTIONS ()->exec_suffix_  = "_exec";
+      CUTS_BE_OPTIONS ()->proxy_suffix_ = "_proxy";
 
-      if (Utils::getPath (message,
-          CUTS_BE_Options::instance ()->output_directory_))
+      // Request the user to select an output directory.
+      bool valid = Utils::getPath ("Please specify the output directory",
+                                   CUTS_BE_OPTIONS ()->output_directory_);
+      if (valid)
       {
-        CUTS_BE_Project_Generator * proj = new CUTS_CIAO_Project_Generator ();
-        CUTS_BE_Workspace_Generator generator (proj);
-        root.Accept (generator);
+        // Create a CIAO manager and pass it the root element.
+        CIAO_BE_Manager manager;
+        manager.handle (root);
 
-        ::AfxMessageBox ("Successfully completed code generation",
+        // Display a useful dialog message to the user.
+        ::AfxMessageBox ("Implementation code generation complete",
+                         MB_OK | MB_ICONINFORMATION);
+      }
+      else
+      {
+        // Display a useful dialog message to the user.
+        ::AfxMessageBox ("Operation has been canceled",
                          MB_OK | MB_ICONINFORMATION);
       }
     }
     break;
-  }
 
-  CUTS_Project::close ();
+  default:
+    ::AfxMessageBox ("Invalid selection", MB_OK | MB_ICONERROR);
+  }
 }

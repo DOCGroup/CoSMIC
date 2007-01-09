@@ -16,6 +16,7 @@
 #include "BDC_export.h"
 #include "cuts/Component_Registry_Handler.h"
 #include "ace/Null_Mutex.h"
+#include "ace/Thread_Manager.h"
 #include "ace/Service_Gestalt.h"
 #include "ace/Singleton.h"
 #include "ace/Vector_T.h"
@@ -26,9 +27,6 @@ class CUTS_System_Metric;
 
 // Forward decl.
 class CUTS_BDC_Service;
-
-// Forward decl.
-class ACE_Thread_Manager;
 
 // Forward decl.
 class ACE_Event;

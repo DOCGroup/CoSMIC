@@ -4,6 +4,8 @@
 #include "cuts/Event_Handler_T.inl"
 #endif
 
+#include "cuts/Thread_Activation_Record.h"
+
 //
 // CUTS_Event_Handler_Config_T
 //
@@ -22,10 +24,9 @@ CUTS_Event_Handler_Config_T (void)
 template <typename COMPONENT, typename EVENTTYPE>
 CUTS_Event_Handler_Base_T <COMPONENT, EVENTTYPE>::
 CUTS_Event_Handler_Base_T (Config_Type & config)
-: active_ (false),
-  config_ (config)
+: config_ (config)
 {
-
+  this->port_agent ().activate ();
 }
 
 //
@@ -35,7 +36,7 @@ template <typename COMPONENT, typename EVENTTYPE>
 CUTS_Event_Handler_Base_T <COMPONENT, EVENTTYPE>::
 ~CUTS_Event_Handler_Base_T (void)
 {
-  this->deactivate ();
+  this->port_agent ().deactivate ();
 }
 
 //
@@ -47,44 +48,23 @@ CUTS_Event_Handler_Base_T <COMPONENT, EVENTTYPE>::
 handle_event_i (EVENTTYPE * ev,
                 const ACE_Time_Value & queue_time)
 {
-  // Create a new activation record.
-  CUTS_Activation_Record * record =
-    this->port_agent ().create_activation_record ();
-  record->activate (CUTS_UNKNOWN_IMPL /*ev->sender ()*/);
+  // Get the activation record for the thread and open
+  // it for logging metrics at the application level.
+  CUTS_Activation_Record * record = CUTS_THR_ACTIVATION_RECORD ();
+  record->open ();
 
-  // Make an upcall to the callback and pass it a record for
-  // logging its performance.
-  if (!this->config_.dispatch_event (ev, record))
+  // Make an upcall to the callback
+  if (!this->config_.dispatch_event (ev))
   {
     ACE_ERROR ((LM_ERROR,
                 "[%M] -%T - failed to dispatch an event\n"));
   }
 
-  // Store the <queueing_time> for the event in the record.
+  // Close the record and store it's queueing time as well.
   record->close ();
-  record->transit_time (queue_time);
+  record->queue_time (queue_time);
 
-  // Close the activation record.
-  this->port_agent ().destroy_activation_record (record);
+  // We should now update the port agent.
+  this->port_agent ().update (record);
+  record->reset ();
 }
-
-//
-// activate
-//
-template <typename COMPONENT, typename EVENTTYPE>
-void CUTS_Event_Handler_Base_T <COMPONENT, EVENTTYPE>::activate (void)
-{
-  this->active_ = true;
-  this->port_agent ().activate ();
-}
-
-//
-// deactivate
-//
-template <typename COMPONENT, typename EVENTTYPE>
-void CUTS_Event_Handler_Base_T <COMPONENT, EVENTTYPE>::deactivate (void)
-{
-  this->active_ = false;
-  this->port_agent ().deactivate ();
-}
-

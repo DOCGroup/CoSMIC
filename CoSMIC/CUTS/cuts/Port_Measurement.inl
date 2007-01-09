@@ -51,8 +51,11 @@ CUTS_Port_Measurement::worker_measurements (void)
 // record_entry
 //
 CUTS_INLINE
-void CUTS_Port_Measurement::record_entry (size_t reps, long worker, long opid,
-                                          const ACE_Time_Value & tm)
+void CUTS_Port_Measurement::
+record_entry (size_t reps,
+              long worker,
+              long opid,
+              const ACE_Time_Value & tm)
 {
   this->workers_[worker].record_operation (reps, opid, tm);
 }
@@ -61,8 +64,8 @@ void CUTS_Port_Measurement::record_entry (size_t reps, long worker, long opid,
 // record_exit_time
 //
 CUTS_INLINE
-void CUTS_Port_Measurement::record_exit_point_time (const std::string & uid,
-                                                    const ACE_Time_Value & tv)
+void CUTS_Port_Measurement::
+record_exit_point_time (size_t uid, const ACE_Time_Value & tv)
 {
   this->exit_points_[uid] += tv;
 }

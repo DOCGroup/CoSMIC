@@ -1,3 +1,288 @@
+Tue Jan  9 21:08:52 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CUTS.mpc:
+
+          Added new files to the project.
+
+        * cuts/Action_Iterator.h:
+        * cuts/Component_Info.h:
+        * cuts/Host_Table.h:
+        * cuts/Worker_Library.h:
+
+          Fixed compilation errors resulting from using incorrect
+          include files for ACE_CString.
+
+        * cuts/Activation_Record.h:
+        * cuts/Activation_Record.inl:
+        * cuts/Activation_Record.cpp:
+        * cuts/Activation_Record_Endpoint.h:
+        * cuts/Activation_Record_Endpoint.inl:
+        * cuts/Activation_Record_Endpoint.cpp:
+        * cuts/Activation_Record_Entry.h:
+        * cuts/Activation_Record_Entry.inl:
+        * cuts/Activation_Record_Entry.cpp:
+
+          Reimplemented the activation records so that the entries
+          and endpoints are stand-alone classes and not typedefs
+          inside the CUTS_Activation_Record class.
+
+        * cuts/Activation_Record_T.cpp:
+
+          Removed record_exit_point () from the class and replaced
+          it with log_endpoint () method in the base class.
+
+        * cuts/Async_Event_Handler_T.h:
+        * cuts/Async_Event_Handler_T.cpp:
+
+          activate () and deactivate () methods are now protected
+          methods in this class since the strategy no longer requires
+          these methods to be defined.
+
+        * cuts/BDC/BDC.xme:
+
+          Updated the file to the lastest version of PICML.
+
+        * cuts/BDC/BDC_Service_Manager.h:
+        * cuts/BDC/BDC_Service_Manager.cpp:
+
+          - Moved the ace/Thread_Manager.h include from the source
+            to the header file.
+          - Removed the forward declaration of ACE_Thread_Manager.
+
+        * cuts/BDC/Benchmark_Data_Collector_exec_i.h:
+        * cuts/BDC/Benchmark_Data_Collector_exec_i.cpp:
+
+          - Updated formatting of file.
+          - Moved the entry point method to the top-level scope.
+
+        * cuts/Benchmark_Visitor.h:
+        * cuts/Benchmark_Visitor.inl:
+        * cuts/Benchmark_Visitor.cpp:
+
+          Visitor strategy for handling/visiting the metrics that
+          are collected in a component.
+
+        * cuts/Benchmark_Collector_Visitor.h:
+        * cuts/Benchmark_Collector_Visitor.cpp:
+
+          Implementation of the CUTS_Benchmark_Visitor that packages
+          component metrics into an CORBA IDL structure for transmitting
+          across the network.
+
+        * cuts/Benchmark_Agent.h:
+        * cuts/Benchmark_Agent.inl:
+        * cuts/Benchmark_Agent.cpp:
+        * cuts/Benchmark_Agent_i.cpp:
+
+          - The benchmark agent now stores an name/id pair for all
+            the exit points from its host component.
+          - Switched to metric packaging from the IDL streams to the
+            CUTS_Benchmark_Visitor.
+
+        * cuts/CCM_CoWorkEr_Proxy.h:
+        * cuts/CCM_CoWorkEr_Proxy.inl:
+        * cuts/CCM_CoWorkEr_Proxy.cpp:
+        * cuts/CCM_CoWorkEr_Proxy_T.h:
+        * cuts/CCM_CoWorkEr_Proxy_T.inl:
+        * cuts/CCM_CoWorkEr_Proxy_T.cpp:
+        * cuts/CCM_CoWorkEr_T.h:
+        * cuts/CCM_CoWorkEr_T.inl:
+        * cuts/CCM_CoWorkEr_T.cpp:
+        * cuts/CCM_Context_T.h:
+        * cuts/CCM_Context_T.inl:
+        * cuts/CCM_Context_T.cpp:
+        * cuts/CUTS_exec_export.h:
+
+          Reimplemented the CoWorkEr so that it is a proxy that can
+          host/instrument real and faux components.
+
+        * cuts/Component_Registry.h:
+
+          Fixed formatting of the typedef.
+
+        * cuts/Event_Handler_Manager_T.h:
+        * cuts/Event_Handler_Manager_T.inl:
+        * cuts/Event_Handler_T.h:
+        * cuts/Event_Handler_T.inl:
+        * cuts/Event_Handler_T.cpp:
+
+          Removed the activate () and deactivate () methods.
+
+        * cuts/IDL_Streams.h:
+        * cuts/IDL_Streams.cpp:
+
+          Removed the insertion oprerations for packaging metrics into
+          CORBA IDL structures. This has be replaced by the CUTS_Benchmark_Visitor
+          class.
+
+        * cuts/Pending_Op_List_T.h:
+        * cuts/Pending_Op_List_T.inl:
+        * cuts/Pending_Op_List_T.cpp:
+        * cuts/Pending_Op_T.h:
+        * cuts/Pending_Op_T.inl:
+        * cuts/Pending_Op_T.cpp:
+
+          Structure used by proxies to store operations that should be
+          executed once the instrumented component has been loaded.
+
+        * cuts/PortAgent.h:
+        * cuts/PortAgent.inl:
+        * cuts/PortAgent.cpp:
+
+          - Removed the free-list implementation of activation records since
+            thread-specific storage is now the primary storage strategy.
+          - Removed seperate thread of execution for consolidating the current
+            activation record for a port.
+
+        * cuts/Port_Measurement.h:
+        * cuts/Port_Measurement.inl:
+        * cuts/Port_Measurement.cpp:
+
+          Changed the endpoint storage id from string to unsigned integer.
+
+        * cuts/Thread_Activation_Record.h:
+        * cuts/Thread_Activation_Record.inl:
+        * cuts/Thread_Activation_Record.cpp:
+
+          Object that uses thread-specific storage to manage activation
+          records.
+
+        * cuts/be/BE.mpc:
+        * cuts/be/BE_Depend_Graph_T.h:
+        * cuts/be/BE_Depend_Graph_T.cpp:
+        * cuts/be/BE_Env_Visitor_T.h:
+        * cuts/be/BE_Env_Visitor_T.cpp:
+        * cuts/be/BE_Execution_Visitor_T.h:
+        * cuts/be/BE_Execution_Visitor_T.cpp:
+        * cuts/be/BE_File_Traits.h:
+        * cuts/be/BE_File_Traits.inl:
+        * cuts/be/BE_File_Traits.cpp:
+        * cuts/be/BE_IDL_Graph.h:
+        * cuts/be/BE_IDL_Graph.cpp:
+        * cuts/be/BE_IDL_Node.h:
+        * cuts/be/BE_IDL_Node.cpp:
+        * cuts/be/BE_Impl_Generator_T.h:
+        * cuts/be/BE_Impl_Generator_T.inl:
+        * cuts/be/BE_Impl_Generator_T.cpp:
+        * cuts/be/BE_Impl_Graph.h:
+        * cuts/be/BE_Impl_Graph.cpp:
+        * cuts/be/BE_Impl_Node.h:
+        * cuts/be/BE_Impl_Node.inl:
+        * cuts/be/BE_Impl_Node.cpp:
+        * cuts/be/BE_List_T.h:
+        * cuts/be/BE_List_T.inl:
+        * cuts/be/BE_List_T.cpp:
+        * cuts/be/BE_Manager.h:
+        * cuts/be/BE_Manager.inl:
+        * cuts/be/BE_Manager.cpp:
+        * cuts/be/BE_Manager_T.h:
+        * cuts/be/BE_Manager_T.cpp:
+        * cuts/be/BE_Options.h:
+        * cuts/be/BE_Preprocessor.h:
+        * cuts/be/BE_Preprocessor.inl:
+        * cuts/be/BE_Preprocessor.cpp:
+        * cuts/be/BE_Project_Generator.h:
+        * cuts/be/BE_Project_Generator.cpp:
+        * cuts/be/BE_Traits.h:
+        * cuts/be/BE_Traits.inl:
+        * cuts/be/BE_Traits.cpp:
+        * cuts/be/BE_Workspace_Generator_T.h:
+        * cuts/be/BE_Workspace_Generator_T.cpp:
+
+          Reimplemented the backend generators so that it uses a design
+          pattern approach to constructing interpreters. Their is a basic
+          strategy the defines the template of how to model should be
+          parsed, and when the interpreter should generate text. The basic
+          strategy is then parameterized with the correct backend to generate
+          the leanest and meanest interpreter possible without have to
+          rewrite the model parsing strategy.
+
+        * cuts/be/CIAO/CIAO_Exec_Header_Traits.h:
+        * cuts/be/CIAO/CIAO_Exec_Header_Traits.inl:
+        * cuts/be/CIAO/CIAO_Exec_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.h:
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.inl:
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Header_Traits.h:
+        * cuts/be/CIAO/CIAO_Header_Traits.inl:
+        * cuts/be/CIAO/CIAO_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_In_Type.inl:
+        * cuts/be/CIAO/CIAO_Manager.h:
+        * cuts/be/CIAO/CIAO_Project_Generator.h:
+        * cuts/be/CIAO/CIAO_Project_Generator.cpp:
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.h:
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.inl:
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.h:
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.inl:
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Retn_Type.h:
+        * cuts/be/CIAO/CIAO_Retn_Type.inl:
+        * cuts/be/CIAO/CIAO_Retn_Type.cpp:
+        * cuts/be/CIAO/CIAO_Retn_Type_T.h:
+        * cuts/be/CIAO/CIAO_Retn_Type_T.inl:
+        * cuts/be/CIAO/CIAO_Source_Traits.h:
+        * cuts/be/CIAO/CIAO_Source_Traits.inl:
+        * cuts/be/CIAO/CIAO_Source_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Traits_Base.h:
+        * cuts/be/CIAO/CIAO_Traits_Base.cpp:
+        * cuts/be/CIAO/Export_File_Generator.cpp:
+        * cuts/be/CIAO/UDM_CIAO.mpc:
+        * cuts/be/CIAO/UDM_CIAO_Export.h:
+
+          Reimplemented the CIAO backend interpreter using the strategized
+          template design above.
+
+        * cuts/GME/interpreters/PICML_CIAO_Impl/PICML_CIAO_Impl.mpc:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/UdmApp.cpp:
+
+          Updated the frontend to use the new backend implementation.
+
+        * cuts/be/CoWorkEr_Cache.h:
+        * cuts/be/CoWorkEr_Cache.cpp:
+
+          Updated the definition of a CoWorkEr, i.e., it's model element
+          requirements.
+
+        * cuts/be/UDM_Utility_T.h:
+
+          Added a new functor named is_not_type (), which determines if
+          an element is not a specific type.
+
+        * cuts/ActivationRecord.h:
+        * cuts/ActivationRecord.inl:
+        * cuts/ActivationRecord.cpp:
+        * cuts/CCM_CoWorkEr.h:
+        * cuts/CCM_CoWorkEr.inl:
+        * cuts/CCM_CoWorkEr.cpp:
+        * cuts/be/BE_Execution_Visitor.h:
+        * cuts/be/BE_Execution_Visitor.cpp:
+        * cuts/be/BE_File_Generator.h:
+        * cuts/be/BE_File_Generator.inl:
+        * cuts/be/BE_File_Generator.cpp:
+        * cuts/be/BE_File_Generator_Manager.h:
+        * cuts/be/BE_File_Generator_Manager.inl:
+        * cuts/be/BE_File_Generator_Manager.cpp:
+        * cuts/be/BE_File_Generator_Set.h:
+        * cuts/be/BE_Workspace_Generator.h:
+        * cuts/be/BE_Workspace_Generator.cpp:
+        * cuts/be/CIAO/CIAO_File_Generator_Base.h:
+        * cuts/be/CIAO/CIAO_File_Generator_Base.cpp:
+        * cuts/be/CIAO/CIAO_Header_File_Generator.h:
+        * cuts/be/CIAO/CIAO_Header_File_Generator.inl:
+        * cuts/be/CIAO/CIAO_Header_File_Generator.cpp:
+        * cuts/be/CIAO/CIAO_Source_File_Generator.h:
+        * cuts/be/CIAO/CIAO_Source_File_Generator.inl:
+        * cuts/be/CIAO/CIAO_Source_File_Generator.cpp:
+        * cuts/be/Null_File_Generator.h:
+        * cuts/be/Null_File_Generator.inl:
+        * cuts/be/Null_File_Generator.cpp:
+        * cuts/be/Preprocess_Data.h:
+        * cuts/be/Preprocess_Data.inl:
+        * cuts/be/Preprocess_Data.cpp:
+
+          Removed these files.
+
 Thu Dec 14 21:13:22 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * integration/autobuild.build:

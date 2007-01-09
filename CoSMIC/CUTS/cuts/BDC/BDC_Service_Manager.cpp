@@ -13,7 +13,6 @@
 #include "ace/Dynamic_Service.h"
 #include "ace/Event.h"
 #include "ace/Service_Types.h"
-#include "ace/Thread_Manager.h"
 #include <sstream>
 
 //

@@ -9,61 +9,61 @@
 #include "Uml.h"
 
 //
-// write
+// <PICML::MemberType> write
 //
 void CUTS_CIAO_Retn_Type_T <PICML::MemberType>::
-write (std::ostream & out, const PICML::MemberType & type)
+write (std::ostream & out) const
 {
   try
   {
-    PICML::PredefinedType ptype = PICML::PredefinedType::Cast (type);
-    CUTS_CIAO_Retn_Type_T <PICML::PredefinedType>::write (out, ptype);
+    CUTS_CIAO_Retn_Type_T <PICML::PredefinedType> (
+      PICML::PredefinedType::Cast (this->element_)).write (out);
   }
   catch (...)
   {
-    PICML::NamedType ntype = PICML::NamedType::Cast (type);
-    CUTS_CIAO_Retn_Type_T <PICML::NamedType>::write (out, ntype);
+    CUTS_CIAO_Retn_Type_T <PICML::NamedType> (
+      PICML::NamedType::Cast (this->element_)).write (out);
   }
 }
 
 //
-// write
+// <PICML::PredefinedType> write
 //
 void CUTS_CIAO_Retn_Type_T <PICML::PredefinedType>::
-write (std::ostream & out, const PICML::PredefinedType & type)
+write (std::ostream & out) const
 {
-  std::string metaname = type.type ().name ();
+  Uml::Class metatype = this->element_.type ();
 
-  if (metaname == (std::string)PICML::String::meta.name ())
+  if (metatype == PICML::String::meta)
     CUTS_CIAO_Retn_Type_T <PICML::String>::write (out);
 
-  else if (metaname == (std::string)PICML::Byte::meta.name ())
+  else if (metatype == PICML::Byte::meta)
     CUTS_CIAO_Retn_Type_T <PICML::Byte>::write (out);
 
-  else if (metaname == (std::string)PICML::ShortInteger::meta.name ())
+  else if (metatype == PICML::ShortInteger::meta)
     CUTS_CIAO_Retn_Type_T <PICML::ShortInteger>::write (out);
 
-  else if (metaname == (std::string)PICML::LongInteger::meta.name ())
+  else if (metatype == PICML::LongInteger::meta)
     CUTS_CIAO_Retn_Type_T <PICML::LongInteger>::write (out);
 
-  else if (metaname == (std::string)PICML::Boolean::meta.name ())
+  else if (metatype == PICML::Boolean::meta)
     CUTS_CIAO_Retn_Type_T <PICML::Boolean>::write (out);
 
-  else if (metaname == (std::string)PICML::RealNumber::meta.name ())
+  else if (metatype == PICML::RealNumber::meta)
     CUTS_CIAO_Retn_Type_T <PICML::RealNumber>::write (out);
 
-  else if (metaname == (std::string)PICML::GenericObject::meta.name ())
+  else if (metatype == PICML::GenericObject::meta)
     CUTS_CIAO_Retn_Type_T <PICML::GenericObject>::write (out);
 
-  else if (metaname == (std::string)PICML::GenericValue::meta.name ())
+  else if (metatype == PICML::GenericValue::meta)
     CUTS_CIAO_Retn_Type_T <PICML::GenericValue>::write (out);
 
-  else if (metaname == (std::string)PICML::TypeKind::meta.name ())
+  else if (metatype == PICML::TypeKind::meta)
     CUTS_CIAO_Retn_Type_T <PICML::TypeKind>::write (out);
 
-  else if (metaname == (std::string)PICML::TypeEncoding::meta.name ())
+  else if (metatype == PICML::TypeEncoding::meta)
     CUTS_CIAO_Retn_Type_T <PICML::TypeEncoding>::write (out);
 
   else
-    out << "/* unsupported type [" << metaname << "] */";
+    out << "/* unsupported type [" << metatype.name () << "] */";
 }

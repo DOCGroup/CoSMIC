@@ -1,28 +1,6 @@
 // $Id$
 
 //
-// activate
-//
-template <typename COMPONENT, typename EVENTTYPE>
-CUTS_INLINE
-void CUTS_Event_Handler_Manager_T <COMPONENT, EVENTTYPE>::activate (void)
-{
-  this->impl_->activate ();
-}
-
-//
-// deactivate
-//
-template <typename COMPONENT, typename EVENTTYPE>
-CUTS_INLINE
-void
-CUTS_Event_Handler_Manager_T <COMPONENT, EVENTTYPE>::
-deactivate (void)
-{
-  this->impl_->deactivate ();
-}
-
-//
 // handle_event
 //
 template <typename COMPONENT, typename EVENTTYPE>

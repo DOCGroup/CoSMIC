@@ -4,7 +4,7 @@ CUTS_INLINE
 void CUTS_CIAO_In_Type_T <PICML::String>::
 write (std::ostream & out)
 {
-  out << "char *";
+  out << "const char *";
 }
 
 CUTS_INLINE

@@ -255,22 +255,32 @@ namespace CUTS
     // Benchmark_Data_Collector_Home_exec_i
     //==================================================================
 
-    Benchmark_Data_Collector_Home_exec_i::Benchmark_Data_Collector_Home_exec_i (void)
+    //
+    // Benchmark_Data_Collector_Home_exec_i
+    //
+    Benchmark_Data_Collector_Home_exec_i::
+      Benchmark_Data_Collector_Home_exec_i (void)
     {
 
     }
 
-    Benchmark_Data_Collector_Home_exec_i::~Benchmark_Data_Collector_Home_exec_i (void)
+    //
+    // ~Benchmark_Data_Collector_Home_exec_i
+    //
+    Benchmark_Data_Collector_Home_exec_i::
+      ~Benchmark_Data_Collector_Home_exec_i (void)
     {
 
     }
 
+    //
+    // create
+    //
     ::Components::EnterpriseComponent_ptr
-    Benchmark_Data_Collector_Home_exec_i::create (
-      ACE_ENV_SINGLE_ARG_DECL)
-    ACE_THROW_SPEC ((
-                      ::CORBA::SystemException,
-                      ::Components::CCMException))
+      Benchmark_Data_Collector_Home_exec_i::
+      create (ACE_ENV_SINGLE_ARG_DECL)
+      ACE_THROW_SPEC ((::CORBA::SystemException,
+                       ::Components::CCMException))
     {
       ::Components::EnterpriseComponent_ptr retval =
         ::Components::EnterpriseComponent::_nil ();
@@ -283,20 +293,22 @@ namespace CUTS
 
       return retval;
     }
-
-    extern "C" BENCHMARK_DATA_COLLECTOR_EXEC_Export
-      ::Components::HomeExecutorBase_ptr
-      create_CUTS_Benchmark_Data_Collector_Home_Impl (void)
-    {
-      ::Components::HomeExecutorBase_ptr retval =
-      ::Components::HomeExecutorBase::_nil ();
-
-      ACE_NEW_RETURN (
-        retval,
-        Benchmark_Data_Collector_Home_exec_i,
-        ::Components::HomeExecutorBase::_nil ());
-
-      return retval;
-    }
   }
+}
+
+//
+// create_CUTS_Benchmark_Data_Collector_Home_Impl
+//
+::Components::HomeExecutorBase_ptr
+create_CUTS_Benchmark_Data_Collector_Home_Impl (void)
+{
+  ::Components::HomeExecutorBase_ptr retval =
+    ::Components::HomeExecutorBase::_nil ();
+
+  ACE_NEW_RETURN (retval,
+                  CUTS::CIDL_Benchmark_Data_Collector_Impl::
+                  Benchmark_Data_Collector_Home_exec_i,
+                  ::Components::HomeExecutorBase::_nil ());
+
+  return retval;
 }

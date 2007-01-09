@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{1A25557B-3AD9-44D0-BEAA-ADE37F185DF1}" cdate="Tue Nov 14 14:41:38 2006" mdate="Tue Nov 14 14:41:38 2006" version="" metaguid="{F4AE6FF7-DECF-4B33-AAB4-BBCF7283281C}" metaversion="" metaname="PICML">
+<project guid="{1A25557B-3AD9-44D0-BEAA-ADE37F185DF1}" cdate="Sun Jan 07 17:43:41 2007" mdate="Sun Jan 07 17:43:41 2007" version="" metaguid="{4BCE1B29-E208-41B9-A6C3-E4E31499AC7A}" metaversion="" metaname="PICML">
 	<name>CUTS</name>
 	<comment>SLICE scenario</comment>
 	<author>James H. Hill</author>
 	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0xc" kind="RootFolder" guid="{F1819BB3-901E-40fb-94F7-A20058D05651}">
 		<name>CUTS</name>
-		<folder id="id-006a-00000004" relid="0x5" childrelidcntr="0x3" kind="WorkerLibraries" guid="{7C34D701-9BDB-4fda-9AB2-2BAD0F4A467F}">
+		<folder id="id-006a-00000002" relid="0x5" childrelidcntr="0x3" kind="WorkerLibraries" guid="{7C34D701-9BDB-4fda-9AB2-2BAD0F4A467F}">
 			<name>CUTS_WorkerLibraries</name>
-			<model id="id-0065-00000014" kind="WorkerLibrary" guid="{71269A0F-5999-4ebb-B442-848B72CAF3DF}" relid="0x1" childrelidcntr="0x4">
+			<model id="id-0065-00000001" kind="WorkerLibrary" guid="{71269A0F-5999-4ebb-B442-848B72CAF3DF}" relid="0x1" childrelidcntr="0x4">
 				<name>CUTS_CPU_Worker</name>
 				<attribute kind="Location">
 					<value></value>
 				</attribute>
-				<model id="id-0065-00000015" kind="WorkerFile" role="WorkerFile" guid="{3EE29946-2CAA-464a-8019-0DF837570AF4}" relid="0x2" childrelidcntr="0x2">
+				<model id="id-0065-00000002" kind="WorkerFile" role="WorkerFile" guid="{3EE29946-2CAA-464a-8019-0DF837570AF4}" relid="0x2" childrelidcntr="0x2">
 					<name>cuts/CPUWorker</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -28,7 +28,7 @@
 					<attribute kind="Location" status="meta">
 						<value></value>
 					</attribute>
-					<model id="id-0065-00000016" kind="Worker" role="Worker" guid="{50F1AE10-9DD4-418f-A5AF-A7B48231F9A1}" relid="0x1" childrelidcntr="0x1">
+					<model id="id-0065-00000003" kind="Worker" role="Worker" guid="{50F1AE10-9DD4-418f-A5AF-A7B48231F9A1}" relid="0x1" childrelidcntr="0x1">
 						<name>CUTS_CPU_Worker</name>
 						<regnode name="PartRegs" status="undefined">
 							<value></value>
@@ -48,7 +48,7 @@
 						<attribute kind="Abstract" status="meta">
 							<value>false</value>
 						</attribute>
-						<model id="id-0065-00000017" kind="Action" role="Action" guid="{3D0A3190-7714-42d4-A917-D86AB26EED67}" relid="0x1" childrelidcntr="0x0">
+						<model id="id-0065-00000004" kind="Action" role="Action" guid="{3D0A3190-7714-42d4-A917-D86AB26EED67}" relid="0x1" childrelidcntr="0x0">
 							<name>Run_Processor</name>
 							<regnode name="PartRegs" status="undefined">
 								<value></value>
@@ -69,12 +69,12 @@
 					</model>
 				</model>
 			</model>
-			<model id="id-0065-00000018" kind="WorkerLibrary" guid="{DFC40329-CF43-4654-A9D1-F026195F9716}" relid="0x2" childrelidcntr="0x1">
+			<model id="id-0065-00000005" kind="WorkerLibrary" guid="{DFC40329-CF43-4654-A9D1-F026195F9716}" relid="0x2" childrelidcntr="0x1">
 				<name>CUTS_Memory_Worker</name>
 				<attribute kind="Location">
 					<value></value>
 				</attribute>
-				<model id="id-0065-00000019" kind="WorkerFile" role="WorkerFile" guid="{3F093E37-9167-4f78-AFEE-D1941BA3F994}" relid="0x1" childrelidcntr="0x1">
+				<model id="id-0065-00000006" kind="WorkerFile" role="WorkerFile" guid="{3F093E37-9167-4f78-AFEE-D1941BA3F994}" relid="0x1" childrelidcntr="0x1">
 					<name>cuts/MemoryWorker</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -88,7 +88,7 @@
 					<attribute kind="Location" status="meta">
 						<value></value>
 					</attribute>
-					<model id="id-0065-0000001a" kind="Worker" role="Worker" guid="{0EEA21A5-BAF4-4e47-9C72-6A7A6F89E247}" relid="0x1" childrelidcntr="0x2">
+					<model id="id-0065-00000007" kind="Worker" role="Worker" guid="{0EEA21A5-BAF4-4e47-9C72-6A7A6F89E247}" relid="0x1" childrelidcntr="0x2">
 						<name>CUTS_Memory_Worker</name>
 						<regnode name="PartRegs" status="undefined">
 							<value></value>
@@ -108,7 +108,7 @@
 						<attribute kind="Abstract" status="meta">
 							<value>false</value>
 						</attribute>
-						<model id="id-0065-0000001b" kind="Action" role="Action" guid="{656E0541-B5D2-4804-A70E-DB99135C0DEC}" relid="0x1" childrelidcntr="0x1">
+						<model id="id-0065-00000008" kind="Action" role="Action" guid="{656E0541-B5D2-4804-A70E-DB99135C0DEC}" relid="0x1" childrelidcntr="0x1">
 							<name>Allocate_Memory</name>
 							<regnode name="PartRegs" status="undefined">
 								<value></value>
@@ -125,7 +125,7 @@
 							<attribute kind="Repetitions" status="meta">
 								<value>1</value>
 							</attribute>
-							<model id="id-0065-0000001c" kind="Property" role="Property" guid="{53375A84-0B9A-4265-B87E-9D8D23622631}" relid="0x1" childrelidcntr="0x1">
+							<model id="id-0065-00000009" kind="Property" role="Property" guid="{53375A84-0B9A-4265-B87E-9D8D23622631}" relid="0x1" childrelidcntr="0x1">
 								<name>kilobytes</name>
 								<regnode name="PartRegs" status="undefined">
 									<value></value>
@@ -139,7 +139,7 @@
 								<attribute kind="DataValue" status="meta">
 									<value></value>
 								</attribute>
-								<reference id="id-0067-000000bf" kind="DataType" role="DataType" guid="{D0571306-493D-45f3-8C9C-21FC1B7EAB9F}" relid="0x1" referred="id-0066-0000000a">
+								<reference id="id-0067-0000000a" kind="DataType" role="DataType" guid="{D0571306-493D-45f3-8C9C-21FC1B7EAB9F}" relid="0x1" referred="id-0066-00000002">
 									<name>LongInteger</name>
 									<regnode name="PartRegs" status="undefined">
 										<value></value>
@@ -153,7 +153,7 @@
 								</reference>
 							</model>
 						</model>
-						<model id="id-0065-0000001d" kind="Action" role="Action" guid="{BE5E42BF-5C1D-47e7-BA3C-47100192BFB0}" relid="0x2" childrelidcntr="0x1">
+						<model id="id-0065-0000000a" kind="Action" role="Action" guid="{BE5E42BF-5C1D-47e7-BA3C-47100192BFB0}" relid="0x2" childrelidcntr="0x1">
 							<name>Deallocate_Memory</name>
 							<regnode name="PartRegs" status="undefined">
 								<value></value>
@@ -170,7 +170,7 @@
 							<attribute kind="Repetitions" status="meta">
 								<value>1</value>
 							</attribute>
-							<model id="id-0065-0000001e" kind="Property" role="Property" guid="{79F73F59-EDF5-4481-928E-120459C368B2}" relid="0x1" childrelidcntr="0x1">
+							<model id="id-0065-0000000b" kind="Property" role="Property" guid="{79F73F59-EDF5-4481-928E-120459C368B2}" relid="0x1" childrelidcntr="0x1">
 								<name>kilobytes</name>
 								<regnode name="PartRegs" status="undefined">
 									<value></value>
@@ -184,7 +184,7 @@
 								<attribute kind="DataValue" status="meta">
 									<value></value>
 								</attribute>
-								<reference id="id-0067-000000cc" kind="DataType" role="DataType" guid="{82F7E21C-F528-4122-BBE9-9BD42F1F96A5}" relid="0x1" referred="id-0066-0000000a">
+								<reference id="id-0067-0000000b" kind="DataType" role="DataType" guid="{82F7E21C-F528-4122-BBE9-9BD42F1F96A5}" relid="0x1" referred="id-0066-00000002">
 									<name>LongInteger</name>
 									<regnode name="PartRegs" status="undefined">
 										<value></value>
@@ -201,12 +201,12 @@
 					</model>
 				</model>
 			</model>
-			<model id="id-0065-0000001f" kind="WorkerLibrary" guid="{EC9A1F67-832C-4f28-AEE1-CD1DA131000B}" relid="0x3" childrelidcntr="0x1">
+			<model id="id-0065-0000000c" kind="WorkerLibrary" guid="{EC9A1F67-832C-4f28-AEE1-CD1DA131000B}" relid="0x3" childrelidcntr="0x1">
 				<name>CUTS_Database_Worker</name>
 				<attribute kind="Location">
 					<value></value>
 				</attribute>
-				<model id="id-0065-00000020" kind="WorkerFile" role="WorkerFile" guid="{2E9C0D62-958E-4ccb-A690-754A03750529}" relid="0x1" childrelidcntr="0x1">
+				<model id="id-0065-0000000d" kind="WorkerFile" role="WorkerFile" guid="{2E9C0D62-958E-4ccb-A690-754A03750529}" relid="0x1" childrelidcntr="0x1">
 					<name>cuts/DatabaseWorker</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -220,7 +220,7 @@
 					<attribute kind="Location" status="meta">
 						<value></value>
 					</attribute>
-					<model id="id-0065-00000021" kind="Worker" role="Worker" guid="{A11635C5-FA40-492d-81A3-B793E0E5874F}" relid="0x1" childrelidcntr="0x3">
+					<model id="id-0065-0000000e" kind="Worker" role="Worker" guid="{A11635C5-FA40-492d-81A3-B793E0E5874F}" relid="0x1" childrelidcntr="0x3">
 						<name>CUTS_Database_Worker</name>
 						<regnode name="PartRegs" status="undefined">
 							<value></value>
@@ -240,7 +240,7 @@
 						<attribute kind="Abstract" status="meta">
 							<value>false</value>
 						</attribute>
-						<model id="id-0065-00000022" kind="Action" role="Action" guid="{A9933EE8-D9AA-4739-8D60-8C7DF4CA592D}" relid="0x1" childrelidcntr="0x2">
+						<model id="id-0065-0000000f" kind="Action" role="Action" guid="{A9933EE8-D9AA-4739-8D60-8C7DF4CA592D}" relid="0x1" childrelidcntr="0x2">
 							<name>Process</name>
 							<regnode name="PartRegs" status="undefined">
 								<value></value>
@@ -257,7 +257,7 @@
 							<attribute kind="Repetitions" status="meta">
 								<value>1</value>
 							</attribute>
-							<model id="id-0065-00000023" kind="Property" role="Property" guid="{4330317A-339E-4520-BADE-88A622B2CFD9}" relid="0x1" childrelidcntr="0x1">
+							<model id="id-0065-00000010" kind="Property" role="Property" guid="{4330317A-339E-4520-BADE-88A622B2CFD9}" relid="0x1" childrelidcntr="0x1">
 								<name>count</name>
 								<regnode name="PartRegs" status="undefined">
 									<value></value>
@@ -271,7 +271,7 @@
 								<attribute kind="DataValue">
 									<value>16</value>
 								</attribute>
-								<reference id="id-0067-000000d9" kind="DataType" role="DataType" guid="{DE48C5AA-F783-457f-AB0B-B18A1D9E8626}" relid="0x1" referred="id-0066-0000000a">
+								<reference id="id-0067-0000000c" kind="DataType" role="DataType" guid="{DE48C5AA-F783-457f-AB0B-B18A1D9E8626}" relid="0x1" referred="id-0066-00000002">
 									<name>LongInteger</name>
 									<regnode name="PartRegs" status="undefined">
 										<value></value>
@@ -285,7 +285,7 @@
 								</reference>
 							</model>
 						</model>
-						<model id="id-0065-00000024" kind="Action" role="Action" guid="{11318FCD-0C7A-4c59-8B5E-6BA1F5E653F3}" relid="0x2" childrelidcntr="0x1">
+						<model id="id-0065-00000011" kind="Action" role="Action" guid="{11318FCD-0C7A-4c59-8B5E-6BA1F5E653F3}" relid="0x2" childrelidcntr="0x1">
 							<name>Create_Connection</name>
 							<regnode name="PartRegs" status="undefined">
 								<value></value>
@@ -302,12 +302,12 @@
 							<attribute kind="Repetitions" status="meta">
 								<value>1</value>
 							</attribute>
-							<model id="id-0065-00000025" kind="Property" role="Property" guid="{02DFBC40-4529-4ffd-9B35-5A469D17DA33}" relid="0x1" childrelidcntr="0x1">
+							<model id="id-0065-00000012" kind="Property" role="Property" guid="{02DFBC40-4529-4ffd-9B35-5A469D17DA33}" relid="0x1" childrelidcntr="0x1">
 								<name>hostname</name>
 								<attribute kind="DataValue" status="meta">
 									<value></value>
 								</attribute>
-								<reference id="id-0067-000000e5" kind="DataType" role="DataType" guid="{6E9614B0-3AC8-4249-B892-01732EAFB118}" relid="0x1" referred="id-0066-00000009">
+								<reference id="id-0067-0000000d" kind="DataType" role="DataType" guid="{6E9614B0-3AC8-4249-B892-01732EAFB118}" relid="0x1" referred="id-0066-00000001">
 									<name>String</name>
 									<regnode name="PartRegs" status="undefined">
 										<value></value>
@@ -321,7 +321,7 @@
 								</reference>
 							</model>
 						</model>
-						<model id="id-0065-00000026" kind="Action" role="Action" guid="{CAB66375-4DC9-4a94-A547-258FE7783601}" relid="0x3" childrelidcntr="0x0">
+						<model id="id-0065-00000013" kind="Action" role="Action" guid="{CAB66375-4DC9-4a94-A547-258FE7783601}" relid="0x3" childrelidcntr="0x0">
 							<name>Destroy_Connection</name>
 							<regnode name="PartRegs" status="undefined">
 								<value></value>
@@ -343,14 +343,14 @@
 				</model>
 			</model>
 		</folder>
-		<folder id="id-006a-00000005" relid="0x2" childrelidcntr="0x4" kind="InterfaceDefinitions" guid="{1097A217-6B94-4925-885D-14C95505D22C}">
+		<folder id="id-006a-00000003" relid="0x2" childrelidcntr="0x4" kind="InterfaceDefinitions" guid="{1097A217-6B94-4925-885D-14C95505D22C}">
 			<name>CUTS_InterfaceDefinitions</name>
-			<model id="id-0065-00000027" kind="File" guid="{E527014B-A96E-4481-BF09-737512247621}" relid="0x1" childrelidcntr="0x2">
+			<model id="id-0065-00000014" kind="File" guid="{E527014B-A96E-4481-BF09-737512247621}" relid="0x1" childrelidcntr="0x2">
 				<name>cuts/CUTS</name>
 				<attribute kind="PrefixTag" status="meta">
 					<value></value>
 				</attribute>
-				<model id="id-0065-00000028" kind="Package" role="Package" guid="{F250A31E-C261-4ad3-9EDA-7B6A68BBD246}" relid="0x3" childrelidcntr="0x15">
+				<model id="id-0065-00000015" kind="Package" role="Package" guid="{F250A31E-C261-4ad3-9EDA-7B6A68BBD246}" relid="0x3" childrelidcntr="0x15">
 					<name>CUTS</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -370,7 +370,7 @@
 					<attribute kind="VersionTag" status="meta">
 						<value></value>
 					</attribute>
-					<model id="id-0065-0000002c" kind="Object" role="Object" guid="{81C64A17-6CA5-4630-A730-106D2611A436}" relid="0x4" childrelidcntr="0x2">
+					<model id="id-0065-00000016" kind="Object" role="Object" guid="{81C64A17-6CA5-4630-A730-106D2611A436}" relid="0x4" childrelidcntr="0x2">
 						<name>Testing_Service</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -396,7 +396,7 @@
 						<attribute kind="local" status="meta">
 							<value>false</value>
 						</attribute>
-						<model id="id-0065-0000002d" kind="TwowayOperation" role="TwowayOperation" guid="{90ECC551-D52D-49b3-8C91-9252F3B4F4FB}" relid="0x1" childrelidcntr="0x1">
+						<model id="id-0065-00000017" kind="TwowayOperation" role="TwowayOperation" guid="{90ECC551-D52D-49b3-8C91-9252F3B4F4FB}" relid="0x1" childrelidcntr="0x1">
 							<name>register_component</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -414,7 +414,7 @@
 								<value></value>
 							</attribute>
 						</model>
-						<model id="id-0065-0000002e" kind="TwowayOperation" role="TwowayOperation" guid="{8C9ED892-9793-4bf6-A5F4-4DB690A90207}" relid="0x2" childrelidcntr="0x0">
+						<model id="id-0065-00000018" kind="TwowayOperation" role="TwowayOperation" guid="{8C9ED892-9793-4bf6-A5F4-4DB690A90207}" relid="0x2" childrelidcntr="0x0">
 							<name>unregister_component</name>
 							<regnode name="PartRegs" status="undefined">
 								<value></value>
@@ -435,12 +435,12 @@
 					</model>
 				</model>
 			</model>
-			<model id="id-0065-00000043" kind="File" guid="{BF24CAA0-6390-459d-9AE6-70B898E60FE7}" relid="0x3" childrelidcntr="0x1">
+			<model id="id-0065-00000019" kind="File" guid="{BF24CAA0-6390-459d-9AE6-70B898E60FE7}" relid="0x3" childrelidcntr="0x1">
 				<name>cuts/BDC/Benchmark_Data_Collector</name>
 				<attribute kind="PrefixTag" status="meta">
 					<value></value>
 				</attribute>
-				<model id="id-0065-00000044" kind="Package" role="Package" guid="{453006D2-8F5F-4771-A503-0667C16CFF3E}" relid="0x1" childrelidcntr="0x4">
+				<model id="id-0065-0000001a" kind="Package" role="Package" guid="{453006D2-8F5F-4771-A503-0667C16CFF3E}" relid="0x1" childrelidcntr="0x4">
 					<name>CUTS</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -460,7 +460,7 @@
 					<attribute kind="VersionTag" status="meta">
 						<value></value>
 					</attribute>
-					<model id="id-0065-00000034" kind="Object" role="Object" guid="{D6E7DD94-9965-443d-AEBA-B892FBC11AD2}" relid="0x4" childrelidcntr="0x5">
+					<model id="id-0065-0000001b" kind="Object" role="Object" guid="{D6E7DD94-9965-443d-AEBA-B892FBC11AD2}" relid="0x4" childrelidcntr="0x5">
 						<name>BDC_Control_Handle</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -486,7 +486,7 @@
 						<attribute kind="local" status="meta">
 							<value>false</value>
 						</attribute>
-						<model id="id-0065-00000035" kind="TwowayOperation" role="TwowayOperation" guid="{2EDE6004-A904-40b4-AABC-D23D1664FD8F}" relid="0x1" childrelidcntr="0x0">
+						<model id="id-0065-0000001c" kind="TwowayOperation" role="TwowayOperation" guid="{2EDE6004-A904-40b4-AABC-D23D1664FD8F}" relid="0x1" childrelidcntr="0x0">
 							<name>collect_performance_data</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -504,7 +504,7 @@
 								<value></value>
 							</attribute>
 						</model>
-						<model id="id-0065-00000144" kind="TwowayOperation" role="TwowayOperation" guid="{A49AD25C-0426-4672-87FE-43DE6F0BDBDC}" relid="0x2" childrelidcntr="0x0">
+						<model id="id-0065-0000001d" kind="TwowayOperation" role="TwowayOperation" guid="{A49AD25C-0426-4672-87FE-43DE6F0BDBDC}" relid="0x2" childrelidcntr="0x0">
 							<name>load_services</name>
 							<regnode name="PartRegs" status="undefined">
 								<value></value>
@@ -522,7 +522,7 @@
 								<value></value>
 							</attribute>
 						</model>
-						<model id="id-0065-00000145" kind="TwowayOperation" role="TwowayOperation" guid="{9F22358B-7D99-4a38-95A4-6CD93EDF1A4D}" relid="0x3" childrelidcntr="0x0">
+						<model id="id-0065-0000001e" kind="TwowayOperation" role="TwowayOperation" guid="{9F22358B-7D99-4a38-95A4-6CD93EDF1A4D}" relid="0x3" childrelidcntr="0x0">
 							<name>unload_services</name>
 							<regnode name="PartRegs" status="undefined">
 								<value></value>
@@ -540,7 +540,7 @@
 								<value></value>
 							</attribute>
 						</model>
-						<model id="id-0065-00000146" kind="TwowayOperation" role="TwowayOperation" guid="{872C7742-08B3-4cd4-97B2-99AFD31AE162}" relid="0x4" childrelidcntr="0x0">
+						<model id="id-0065-0000001f" kind="TwowayOperation" role="TwowayOperation" guid="{872C7742-08B3-4cd4-97B2-99AFD31AE162}" relid="0x4" childrelidcntr="0x0">
 							<name>get_service</name>
 							<regnode name="PartRegs" status="undefined">
 								<value></value>
@@ -558,7 +558,7 @@
 								<value></value>
 							</attribute>
 						</model>
-						<model id="id-0065-00000147" kind="TwowayOperation" role="TwowayOperation" guid="{001C15AD-7F15-4763-ACE8-1336A239621C}" relid="0x5" childrelidcntr="0x0">
+						<model id="id-0065-00000020" kind="TwowayOperation" role="TwowayOperation" guid="{001C15AD-7F15-4763-ACE8-1336A239621C}" relid="0x5" childrelidcntr="0x0">
 							<name>list_services</name>
 							<regnode name="PartRegs" status="undefined">
 								<value></value>
@@ -577,7 +577,7 @@
 							</attribute>
 						</model>
 					</model>
-					<model id="id-0065-00000045" kind="Component" role="Component" guid="{DC509605-8730-46e9-B1C4-24646B6AF3E8}" relid="0x1" childrelidcntr="0x8">
+					<model id="id-0065-00000021" kind="Component" role="Component" guid="{DC509605-8730-46e9-B1C4-24646B6AF3E8}" relid="0x1" childrelidcntr="0x8">
 						<name>Benchmark_Data_Collector</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -600,7 +600,7 @@
 						<attribute kind="label" status="meta">
 							<value></value>
 						</attribute>
-						<model id="id-0065-00000046" kind="Attribute" role="Attribute" guid="{C458BB8A-7B6C-4cdd-901F-7A65578AECD3}" relid="0xa" childrelidcntr="0x1">
+						<model id="id-0065-00000022" kind="Attribute" role="Attribute" guid="{C458BB8A-7B6C-4cdd-901F-7A65578AECD3}" relid="0xa" childrelidcntr="0x1">
 							<name>timeout</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -617,7 +617,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-00000105" kind="AttributeMember" role="AttributeMember" guid="{77A61D2E-64EF-482c-9EBD-96A710216A8A}" relid="0x1" referred="id-0066-0000000a">
+							<reference id="id-0067-0000000e" kind="AttributeMember" role="AttributeMember" guid="{77A61D2E-64EF-482c-9EBD-96A710216A8A}" relid="0x1" referred="id-0066-00000002">
 								<name>AttributeMember</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -630,7 +630,7 @@
 								</regnode>
 							</reference>
 						</model>
-						<model id="id-0065-0000013d" kind="Attribute" role="Attribute" guid="{1E6CDF70-A7BF-4b77-878D-BCF9BC673A35}" relid="0x8" childrelidcntr="0x1">
+						<model id="id-0065-00000023" kind="Attribute" role="Attribute" guid="{1E6CDF70-A7BF-4b77-878D-BCF9BC673A35}" relid="0x8" childrelidcntr="0x1">
 							<name>service</name>
 							<regnode name="PartRegs" status="undefined">
 								<value></value>
@@ -647,7 +647,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-00000123" kind="AttributeMember" role="AttributeMember" guid="{8E0D236E-E454-4510-8443-09148673E8F4}" relid="0x1" referred="id-0066-00000009">
+							<reference id="id-0067-0000000f" kind="AttributeMember" role="AttributeMember" guid="{8E0D236E-E454-4510-8443-09148673E8F4}" relid="0x1" referred="id-0066-00000001">
 								<name>AttributeMember</name>
 								<regnode name="PartRegs" status="undefined">
 									<value></value>
@@ -660,7 +660,7 @@
 								</regnode>
 							</reference>
 						</model>
-						<reference id="id-0067-00000016" kind="ProvidedRequestPort" role="ProvidedRequestPort" guid="{76CEB857-DAC8-4a6b-9827-F24C857B1B2D}" relid="0x7" referred="id-0065-0000002c">
+						<reference id="id-0067-00000001" kind="ProvidedRequestPort" role="ProvidedRequestPort" guid="{76CEB857-DAC8-4a6b-9827-F24C857B1B2D}" relid="0x7" referred="id-0065-00000016">
 							<name>testing_service</name>
 							<regnode name="PartRegs" status="undefined">
 								<value></value>
@@ -693,7 +693,7 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000017" kind="ProvidedRequestPort" role="ProvidedRequestPort" guid="{2D9DD590-7A1F-4035-B713-76151F26E28D}" relid="0x3" referred="id-0065-00000034">
+						<reference id="id-0067-00000002" kind="ProvidedRequestPort" role="ProvidedRequestPort" guid="{2D9DD590-7A1F-4035-B713-76151F26E28D}" relid="0x3" referred="id-0065-0000001b">
 							<name>controls</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -721,7 +721,7 @@
 							</attribute>
 						</reference>
 					</model>
-					<model id="id-0065-00000047" kind="ComponentFactory" role="ComponentFactory" guid="{57D75EC9-9DBE-4ed9-81A6-FD82EE646B13}" relid="0x2" childrelidcntr="0x0">
+					<model id="id-0065-00000024" kind="ComponentFactory" role="ComponentFactory" guid="{57D75EC9-9DBE-4ed9-81A6-FD82EE646B13}" relid="0x2" childrelidcntr="0x0">
 						<name>Benchmark_Data_Collector_Home</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -739,31 +739,31 @@
 							<value></value>
 						</attribute>
 					</model>
-					<connection id="id-0068-00000006" kind="ManagesComponent" role="ManagesComponent" guid="{9FB6A84A-BF61-4e16-B36B-D628025273A3}" relid="0x3">
+					<connection id="id-0068-00000001" kind="ManagesComponent" role="ManagesComponent" guid="{9FB6A84A-BF61-4e16-B36B-D628025273A3}" relid="0x3">
 						<name>ManagesComponent</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>Ws</value>
 						</regnode>
-						<connpoint role="dst" target="id-0065-00000045"/>
-						<connpoint role="src" target="id-0065-00000047"/>
+						<connpoint role="dst" target="id-0065-00000021"/>
+						<connpoint role="src" target="id-0065-00000024"/>
 					</connection>
 				</model>
 			</model>
 		</folder>
-		<folder id="id-006a-00000006" relid="0x1" childrelidcntr="0xb" kind="PredefinedTypes" guid="{3D9746FC-FBB5-4a06-A1FB-A37B9765D458}">
+		<folder id="id-006a-00000004" relid="0x1" childrelidcntr="0xb" kind="PredefinedTypes" guid="{3D9746FC-FBB5-4a06-A1FB-A37B9765D458}">
 			<name>CUTS_PredefinedTypes</name>
-			<atom id="id-0066-00000009" kind="String" guid="{27C807B4-6529-43a8-8B08-5CF8704D593E}" relid="0x9">
+			<atom id="id-0066-00000001" kind="String" guid="{27C807B4-6529-43a8-8B08-5CF8704D593E}" relid="0x9">
 				<name>String</name>
 			</atom>
-			<atom id="id-0066-0000000a" kind="LongInteger" guid="{BB6258E3-194C-4186-B7D3-4CD5D11A338A}" relid="0x5">
+			<atom id="id-0066-00000002" kind="LongInteger" guid="{BB6258E3-194C-4186-B7D3-4CD5D11A338A}" relid="0x5">
 				<name>LongInteger</name>
 			</atom>
 		</folder>
-		<folder id="id-006a-00000007" relid="0x3" childrelidcntr="0x1" kind="ComponentImplementations" guid="{2DD292DD-4A0E-4d05-ABAF-4590F0CB0541}">
+		<folder id="id-006a-00000005" relid="0x3" childrelidcntr="0x1" kind="ComponentImplementations" guid="{2DD292DD-4A0E-4d05-ABAF-4590F0CB0541}">
 			<name>CUTS_ComponentImplementations</name>
-			<model id="id-0065-00000050" kind="ComponentImplementationContainer" guid="{8CE35FB4-DD2E-4c1f-AB35-60DDA66B07A4}" relid="0x1" childrelidcntr="0xb">
+			<model id="id-0065-00000025" kind="ComponentImplementationContainer" guid="{8CE35FB4-DD2E-4c1f-AB35-60DDA66B07A4}" relid="0x1" childrelidcntr="0xb">
 				<name>cuts/BDC/Benchmark_Data_Collector</name>
-				<model id="id-0065-00000051" kind="Property" role="Property" guid="{D5EE0BED-92ED-4db8-B69F-3188AA87838A}" relid="0xa" childrelidcntr="0x2">
+				<model id="id-0065-00000026" kind="Property" role="Property" guid="{D5EE0BED-92ED-4db8-B69F-3188AA87838A}" relid="0xa" childrelidcntr="0x2">
 					<name>ComponentIOR</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -777,7 +777,7 @@
 					<attribute kind="DataValue">
 						<value>Benchmark_Data_Collector.ior</value>
 					</attribute>
-					<reference id="id-0067-0000001e" kind="DataType" role="DataType" guid="{A3F06D7A-E9CE-44ef-B636-96D7AD873ED4}" relid="0x2" referred="id-0066-00000009">
+					<reference id="id-0067-00000003" kind="DataType" role="DataType" guid="{A3F06D7A-E9CE-44ef-B636-96D7AD873ED4}" relid="0x2" referred="id-0066-00000001">
 						<name>String</name>
 						<regnode name="PartRegs" status="undefined">
 							<value></value>
@@ -790,7 +790,7 @@
 						</regnode>
 					</reference>
 				</model>
-				<atom id="id-0066-0000000c" kind="MonolithicImplementation" role="MonolithicImplementation" guid="{66AEF47A-334F-488e-97E8-27A7D6C15CC7}" relid="0x5">
+				<atom id="id-0066-00000003" kind="MonolithicImplementation" role="MonolithicImplementation" guid="{66AEF47A-334F-488e-97E8-27A7D6C15CC7}" relid="0x5">
 					<name>Benchmark_Data_Collector_Impl</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -808,7 +808,7 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-0000001f" kind="ComponentRef" role="ComponentRef" guid="{E4C16FA9-B16D-4004-97E4-0695683747D5}" relid="0x1" referred="id-0065-00000045">
+				<reference id="id-0067-00000004" kind="ComponentRef" role="ComponentRef" guid="{E4C16FA9-B16D-4004-97E4-0695683747D5}" relid="0x1" referred="id-0065-00000021">
 					<name>Benchmark_Data_Collector</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -820,7 +820,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000010d" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{203096E1-5EBF-42a9-864D-802CB446DD99}" relid="0x2" referred="id-0066-0000000f">
+				<reference id="id-0067-00000010" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{203096E1-5EBF-42a9-864D-802CB446DD99}" relid="0x2" referred="id-0066-00000006">
 					<name>BDC_exec</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -832,7 +832,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000010e" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{354E62EE-77C7-493a-9D55-536BEF5C6E63}" relid="0x3" referred="id-0066-0000000e">
+				<reference id="id-0067-00000011" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{354E62EE-77C7-493a-9D55-536BEF5C6E63}" relid="0x3" referred="id-0066-00000005">
 					<name>BDC_svnt</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -844,7 +844,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000010f" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{C5C44610-F527-445d-BC00-13A33B608F04}" relid="0x4" referred="id-0066-0000000d">
+				<reference id="id-0067-00000012" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{C5C44610-F527-445d-BC00-13A33B608F04}" relid="0x4" referred="id-0066-00000004">
 					<name>BDC_stub</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -856,53 +856,53 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-0000000d" kind="Implements" role="Implements" guid="{ADBDA073-1F73-4577-897A-D666D44D2BA4}" relid="0x6">
+				<connection id="id-0068-00000002" kind="Implements" role="Implements" guid="{ADBDA073-1F73-4577-897A-D666D44D2BA4}" relid="0x6">
 					<name>Implements</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ns</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-0000000c"/>
-					<connpoint role="dst" target="id-0067-0000001f"/>
+					<connpoint role="src" target="id-0066-00000003"/>
+					<connpoint role="dst" target="id-0067-00000004"/>
 				</connection>
-				<connection id="id-0068-0000000e" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{67769CED-14BE-4b61-A301-CC790BCBECD0}" relid="0x7">
+				<connection id="id-0068-00000003" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{67769CED-14BE-4b61-A301-CC790BCBECD0}" relid="0x7">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-0000000c"/>
-					<connpoint role="dst" target="id-0067-0000010e"/>
+					<connpoint role="src" target="id-0066-00000003"/>
+					<connpoint role="dst" target="id-0067-00000011"/>
 				</connection>
-				<connection id="id-0068-0000000f" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{8B3C77D8-20A4-44d2-9D11-CEC338E4057F}" relid="0x8">
+				<connection id="id-0068-00000004" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{8B3C77D8-20A4-44d2-9D11-CEC338E4057F}" relid="0x8">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-0000000c"/>
-					<connpoint role="dst" target="id-0067-0000010f"/>
+					<connpoint role="src" target="id-0066-00000003"/>
+					<connpoint role="dst" target="id-0067-00000012"/>
 				</connection>
-				<connection id="id-0068-00000010" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{27EC4636-0BAA-4b2c-8F5C-AF606A621DD2}" relid="0x9">
+				<connection id="id-0068-00000005" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{27EC4636-0BAA-4b2c-8F5C-AF606A621DD2}" relid="0x9">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-0000000c"/>
-					<connpoint role="dst" target="id-0067-0000010d"/>
+					<connpoint role="src" target="id-0066-00000003"/>
+					<connpoint role="dst" target="id-0067-00000010"/>
 				</connection>
-				<connection id="id-0068-00000011" kind="ConfigProperty" role="ConfigProperty" guid="{1D36B711-2C95-4df5-A986-AA9D20225DBA}" relid="0xb">
+				<connection id="id-0068-00000006" kind="ConfigProperty" role="ConfigProperty" guid="{1D36B711-2C95-4df5-A986-AA9D20225DBA}" relid="0xb">
 					<name>ConfigProperty</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>S</value>
 					</regnode>
-					<connpoint role="dst" target="id-0065-00000051"/>
-					<connpoint role="src" target="id-0066-0000000c"/>
+					<connpoint role="dst" target="id-0065-00000026"/>
+					<connpoint role="src" target="id-0066-00000003"/>
 				</connection>
 			</model>
 		</folder>
-		<folder id="id-006a-00000008" relid="0x4" childrelidcntr="0x2" kind="ImplementationArtifacts" guid="{9E7613D1-A70A-4260-8E2D-DB9E36BFDCCF}">
+		<folder id="id-006a-00000006" relid="0x4" childrelidcntr="0x2" kind="ImplementationArtifacts" guid="{9E7613D1-A70A-4260-8E2D-DB9E36BFDCCF}">
 			<name>CUTS_ImplementationArtifacts</name>
-			<model id="id-0065-00000052" kind="ArtifactContainer" guid="{382D01E4-A919-4cce-934E-5C2D5FE7A18D}" relid="0x1" childrelidcntr="0xa">
+			<model id="id-0065-00000027" kind="ArtifactContainer" guid="{382D01E4-A919-4cce-934E-5C2D5FE7A18D}" relid="0x1" childrelidcntr="0xa">
 				<name>BDC_Artifacts</name>
-				<model id="id-0065-00000053" kind="Property" role="Property" guid="{28630049-BEE0-40db-BEB9-0A949664162C}" relid="0x2" childrelidcntr="0x2">
+				<model id="id-0065-00000028" kind="Property" role="Property" guid="{28630049-BEE0-40db-BEB9-0A949664162C}" relid="0x2" childrelidcntr="0x2">
 					<name>entryPoint</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -916,7 +916,7 @@
 					<attribute kind="DataValue">
 						<value>create_CUTS_Benchmark_Data_Collector_Home_Servant</value>
 					</attribute>
-					<reference id="id-0067-00000020" kind="DataType" role="DataType" guid="{F4295058-80C1-4fd0-93DC-2225065F2147}" relid="0x2" referred="id-0066-00000009">
+					<reference id="id-0067-00000005" kind="DataType" role="DataType" guid="{F4295058-80C1-4fd0-93DC-2225065F2147}" relid="0x2" referred="id-0066-00000001">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -929,7 +929,7 @@
 						</regnode>
 					</reference>
 				</model>
-				<model id="id-0065-00000054" kind="Property" role="Property" guid="{797A6265-495A-4011-9860-86BF666C3419}" relid="0x4" childrelidcntr="0x2">
+				<model id="id-0065-00000029" kind="Property" role="Property" guid="{797A6265-495A-4011-9860-86BF666C3419}" relid="0x4" childrelidcntr="0x2">
 					<name>entryPoint</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -943,7 +943,7 @@
 					<attribute kind="DataValue">
 						<value>create_CUTS_Benchmark_Data_Collector_Home_Impl</value>
 					</attribute>
-					<reference id="id-0067-00000021" kind="DataType" role="DataType" guid="{A6060F1A-F839-4056-B75A-B8C2AAAC235A}" relid="0x2" referred="id-0066-00000009">
+					<reference id="id-0067-00000006" kind="DataType" role="DataType" guid="{A6060F1A-F839-4056-B75A-B8C2AAAC235A}" relid="0x2" referred="id-0066-00000001">
 						<name>String</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -956,7 +956,7 @@
 						</regnode>
 					</reference>
 				</model>
-				<atom id="id-0066-0000000d" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{C230E290-8FEB-4b08-ACB5-C1ECB1D0F5C3}" relid="0x1">
+				<atom id="id-0066-00000004" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{C230E290-8FEB-4b08-ACB5-C1ECB1D0F5C3}" relid="0x1">
 					<name>BDC_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -980,7 +980,7 @@
 						<value>Benchmark_Data_Collector_stub</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000000e" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{03324BD3-1CA0-4561-8E47-BE35F3B5C92F}" relid="0x3">
+				<atom id="id-0066-00000005" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{03324BD3-1CA0-4561-8E47-BE35F3B5C92F}" relid="0x3">
 					<name>BDC_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1004,7 +1004,7 @@
 						<value>Benchmark_Data_Collector_svnt</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000000f" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{86512463-851B-4099-83D1-E3575C677FF0}" relid="0x5">
+				<atom id="id-0066-00000006" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{86512463-851B-4099-83D1-E3575C677FF0}" relid="0x5">
 					<name>BDC_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1028,38 +1028,38 @@
 						<value>Benchmark_Data_Collector_exec</value>
 					</attribute>
 				</atom>
-				<connection id="id-0068-00000012" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{591C2CFE-AABC-47f4-9446-54A5BD94F11F}" relid="0x7">
+				<connection id="id-0068-00000007" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{591C2CFE-AABC-47f4-9446-54A5BD94F11F}" relid="0x7">
 					<name>ArtifactExecParameter</name>
-					<connpoint role="dst" target="id-0065-00000053"/>
-					<connpoint role="src" target="id-0066-0000000e"/>
+					<connpoint role="dst" target="id-0065-00000028"/>
+					<connpoint role="src" target="id-0066-00000005"/>
 				</connection>
-				<connection id="id-0068-00000013" kind="ArtifactDependency" role="ArtifactDependency" guid="{AAA987C6-C5FF-4b93-B385-4EA0F0131274}" relid="0x8">
+				<connection id="id-0068-00000008" kind="ArtifactDependency" role="ArtifactDependency" guid="{AAA987C6-C5FF-4b93-B385-4EA0F0131274}" relid="0x8">
 					<name>ArtifactDependency</name>
-					<connpoint role="dst" target="id-0066-0000000d"/>
-					<connpoint role="src" target="id-0066-0000000e"/>
+					<connpoint role="dst" target="id-0066-00000004"/>
+					<connpoint role="src" target="id-0066-00000005"/>
 				</connection>
-				<connection id="id-0068-00000014" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{A2FA4AD7-DA34-4eed-AB20-5D5B21ADBF27}" relid="0x8">
+				<connection id="id-0068-00000009" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{A2FA4AD7-DA34-4eed-AB20-5D5B21ADBF27}" relid="0x8">
 					<name>ArtifactExecParameter</name>
-					<connpoint role="dst" target="id-0065-00000054"/>
-					<connpoint role="src" target="id-0066-0000000f"/>
+					<connpoint role="dst" target="id-0065-00000029"/>
+					<connpoint role="src" target="id-0066-00000006"/>
 				</connection>
-				<connection id="id-0068-00000015" kind="ArtifactDependency" role="ArtifactDependency" guid="{AE9C1873-F127-42cc-8BF9-0F86D2783312}" relid="0x9">
+				<connection id="id-0068-0000000a" kind="ArtifactDependency" role="ArtifactDependency" guid="{AE9C1873-F127-42cc-8BF9-0F86D2783312}" relid="0x9">
 					<name>ArtifactDependency</name>
-					<connpoint role="dst" target="id-0066-0000000e"/>
-					<connpoint role="src" target="id-0066-0000000f"/>
+					<connpoint role="dst" target="id-0066-00000005"/>
+					<connpoint role="src" target="id-0066-00000006"/>
 				</connection>
-				<connection id="id-0068-00000016" kind="ArtifactDependency" role="ArtifactDependency" guid="{F16E22DB-E233-40a9-94FB-A7BDFBC927D4}" relid="0xa">
+				<connection id="id-0068-0000000b" kind="ArtifactDependency" role="ArtifactDependency" guid="{F16E22DB-E233-40a9-94FB-A7BDFBC927D4}" relid="0xa">
 					<name>ArtifactDependency</name>
-					<connpoint role="dst" target="id-0066-0000000d"/>
-					<connpoint role="src" target="id-0066-0000000f"/>
+					<connpoint role="dst" target="id-0066-00000004"/>
+					<connpoint role="src" target="id-0066-00000006"/>
 				</connection>
 			</model>
 		</folder>
-		<folder id="id-006a-00000009" relid="0x5" childrelidcntr="0x1" kind="ComponentTypes" guid="{32B8B6E8-CBBC-44fb-9DB5-B73A374B1CA6}">
+		<folder id="id-006a-00000007" relid="0x5" childrelidcntr="0x1" kind="ComponentTypes" guid="{32B8B6E8-CBBC-44fb-9DB5-B73A374B1CA6}">
 			<name>CUTS_ComponentTypes</name>
-			<model id="id-0065-00000058" kind="ComponentContainer" guid="{23838819-1FC9-4443-AF2E-ED48C93D61DA}" relid="0x1" childrelidcntr="0x1">
+			<model id="id-0065-0000002a" kind="ComponentContainer" guid="{23838819-1FC9-4443-AF2E-ED48C93D61DA}" relid="0x1" childrelidcntr="0x1">
 				<name>BDC_Container</name>
-				<reference id="id-0067-00000024" kind="ComponentRef" role="ComponentRef" guid="{C8C1DED6-ABA0-4d3c-88FC-D89EE7A5E892}" relid="0x1" referred="id-0065-00000045">
+				<reference id="id-0067-00000007" kind="ComponentRef" role="ComponentRef" guid="{C8C1DED6-ABA0-4d3c-88FC-D89EE7A5E892}" relid="0x1" referred="id-0065-00000021">
 					<name>Benchmark_Data_Collector</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1073,11 +1073,11 @@
 				</reference>
 			</model>
 		</folder>
-		<folder id="id-006a-0000000a" relid="0x3" childrelidcntr="0x2" kind="ComponentPackages" guid="{92C65CE9-E1B6-4c0f-B2BC-0362E7A80F66}">
+		<folder id="id-006a-00000008" relid="0x3" childrelidcntr="0x2" kind="ComponentPackages" guid="{92C65CE9-E1B6-4c0f-B2BC-0362E7A80F66}">
 			<name>CUTS_ComponentPackages</name>
-			<model id="id-0065-0000005a" kind="PackageContainer" guid="{C6F801A3-F709-457a-B52E-8ED91D5D3378}" relid="0x1" childrelidcntr="0x5">
+			<model id="id-0065-0000002b" kind="PackageContainer" guid="{C6F801A3-F709-457a-B52E-8ED91D5D3378}" relid="0x1" childrelidcntr="0x5">
 				<name>BDC_Package</name>
-				<atom id="id-0066-00000013" kind="ComponentPackage" role="ComponentPackage" guid="{990373F3-4019-4cea-A28B-80006F3022F0}" relid="0x3">
+				<atom id="id-0066-00000007" kind="ComponentPackage" role="ComponentPackage" guid="{990373F3-4019-4cea-A28B-80006F3022F0}" relid="0x3">
 					<name>Benchmark_Data_Collector_Package</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -1095,7 +1095,7 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-00000026" kind="ComponentImplementationReference" role="ComponentImplementationReference" guid="{15447254-BE7E-4c4f-B5E9-EF3CBF453537}" relid="0x1" referred="id-0066-0000000c">
+				<reference id="id-0067-00000008" kind="ComponentImplementationReference" role="ComponentImplementationReference" guid="{15447254-BE7E-4c4f-B5E9-EF3CBF453537}" relid="0x1" referred="id-0066-00000003">
 					<name>Benchmark_Data_Collector_Impl</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -1107,7 +1107,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000027" kind="ComponentRef" role="ComponentRef" guid="{1C4F886E-2631-48bc-9F5D-DA4408B83AA4}" relid="0x2" referred="id-0065-00000045">
+				<reference id="id-0067-00000009" kind="ComponentRef" role="ComponentRef" guid="{1C4F886E-2631-48bc-9F5D-DA4408B83AA4}" relid="0x2" referred="id-0065-00000021">
 					<name>Benchmark_Data_Collector</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -1119,21 +1119,21 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-0000001c" kind="Implementation" role="Implementation" guid="{A34158F6-2560-4de4-8BA9-CD56FEC1BD25}" relid="0x4">
+				<connection id="id-0068-0000000c" kind="Implementation" role="Implementation" guid="{A34158F6-2560-4de4-8BA9-CD56FEC1BD25}" relid="0x4">
 					<name>Implementation</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Es</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-00000013"/>
-					<connpoint role="dst" target="id-0067-00000026"/>
+					<connpoint role="src" target="id-0066-00000007"/>
+					<connpoint role="dst" target="id-0067-00000008"/>
 				</connection>
-				<connection id="id-0068-0000001d" kind="PackageInterface" role="PackageInterface" guid="{9F1BBF61-9434-41ad-8652-B412FC369819}" relid="0x5">
+				<connection id="id-0068-0000000d" kind="PackageInterface" role="PackageInterface" guid="{9F1BBF61-9434-41ad-8652-B412FC369819}" relid="0x5">
 					<name>PackageInterface</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ws</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-00000013"/>
-					<connpoint role="dst" target="id-0067-00000027"/>
+					<connpoint role="src" target="id-0066-00000007"/>
+					<connpoint role="dst" target="id-0067-00000009"/>
 				</connection>
 			</model>
 		</folder>

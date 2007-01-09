@@ -31,14 +31,42 @@ template <typename T>
 class CUTS_CIAO_Retn_Type_T
 {
 public:
+  /// Type definition for the element type.
+  typedef T type;
+
   /**
-   * Write the variable to the output stream.
+   * Initializing constructor.
    *
-   * @param[in]     out       Destination output stream.
-   * @param[in]     element   Source element.
+   * @parma[in]       element       Source element.
    */
-  static void write (std::ostream & out, const T & element);
+  explicit CUTS_CIAO_Retn_Type_T (const T & element);
+
+  /**
+   * Write the element to the output stream. Since this is the
+   * default return type, it will generates a unsupported type
+   * message. To generate the real return type, you MUST specialize
+   * this class.
+   *
+   * @param[in]     out         Destination output stream.
+   * @param[in]     element     The source element.
+   */
+  void write (std::ostream & out) const;
 };
+
+template <typename T>
+inline CUTS_CIAO_Retn_Type_T <T>
+CUTS_CIAO_Retn_Type (const T & element)
+{
+  return CUTS_CIAO_Retn_Type_T <T> (element);
+}
+
+template <typename T>
+inline std::ostream &
+operator << (std::ostream & out, const CUTS_CIAO_Retn_Type_T <T> & retn)
+{
+  retn.write (out);
+  return out;
+}
 
 #if defined (__CUTS_INLINE__)
 #include "CIAO_Retn_Type_T.inl"

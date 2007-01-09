@@ -13,8 +13,8 @@
 #ifndef _CUTS_UDM_UTILITY_T_H_
 #define _CUTS_UDM_UTILITY_T_H_
 
-#include <string>
 #include "cuts/config.h"
+#include <string>
 
 //=============================================================================
 /**
@@ -72,6 +72,24 @@ struct is_type
 {
 public:
   bool operator () (const T & element);
+};
+
+template <typename T>
+struct not_is_type
+{
+  inline
+  not_is_type (const std::string & type)
+  : type_ (type) { }
+
+  inline
+  bool operator () (const T & element)
+  {
+    return this->type_ != element.type ().name ();
+  }
+
+private:
+  /// Name of the type.
+  const std::string & type_;
 };
 
 #if defined (__CUTS_INLINE__)

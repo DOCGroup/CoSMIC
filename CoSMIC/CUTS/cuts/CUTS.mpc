@@ -32,6 +32,7 @@ project(CUTS_stub): rt_server, cuts_client_dnc, ciao_events_base_dnc {
     EventsS.cpp
 
     Benchmark_Agent_i.cpp
+    Benchmark_Collector_Visitor.cpp
     IDL_Streams.cpp
   }
 }
@@ -55,11 +56,12 @@ project (CUTS_exec) : rt_server, cuts_component_dnc {
   }
 
   Source_Files {
-    CCM_CoWorkEr.cpp
+    CCM_CoWorkEr_Proxy.cpp
   }
 
   Template_Files {
-    CCM_CoWorkEr_T.cpp
+    CCM_Context_T.cpp
+    CCM_CoWorkEr_Proxy_T.cpp
     CCM_Event_Handler_T.cpp
     CCM_Event_Producer_T.cpp
     CCM_Events_T.cpp
@@ -88,14 +90,18 @@ project (CUTS) : cutslib {
     Component_Registry_Handler.h
     CUTS_export.h
     Log_Msg.h
+//    mem_action_t.h
     WML_Macros.h
   }
 
   Source_Files {
     Action.cpp
     Action_Iterator.cpp
-    ActivationRecord.cpp
+    Activation_Record.cpp
+    Activation_Record_Entry.cpp
+    Activation_Record_Endpoint.cpp
     Benchmark_Agent.cpp
+    Benchmark_Visitor.cpp
     Component_Metric.cpp
     Component_Registry_Node.cpp
     Counter.cpp
@@ -113,12 +119,12 @@ project (CUTS) : cutslib {
     Time.cpp
     Time_Metric.cpp
     Time_Measurement.cpp
+    Thread_Activation_Record.cpp
     System_Metric.cpp
     System_Metrics_Visitor.cpp
     Worker.cpp
     Worker_Library.cpp
     Worker_Measurement.cpp
-//    XML_System_Metrics_Visitor.cpp
   }
 
   Template_Files {
@@ -131,6 +137,9 @@ project (CUTS) : cutslib {
     Event_Guard_T.cpp
     Event_Handler_T.cpp
     Event_Handler_Manager_T.cpp
+    mem_action_t.h
+    Pending_Op_T.cpp
+    Pending_Op_List_T.cpp
     Trigger_T.cpp
     Sync_Event_Handler_T.cpp
     Worker_T.cpp

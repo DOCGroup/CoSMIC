@@ -13,10 +13,9 @@
 #ifndef _CUTS_HOST_TABLE_H_
 #define _CUTS_HOST_TABLE_H_
 
-#include "cuts/config.h"
 #include "cuts/CUTS_export.h"
 #include "ace/Hash_Map_Manager_T.h"
-#include "ace/SStringfwd.h"
+#include "ace/SString.h"
 
 // Forward decl.
 class ACE_RW_Thread_Mutex;

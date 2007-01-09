@@ -123,6 +123,7 @@ bool CUTS_Export_File_Generator::generate (void)
     << "#define _" << name << "_EXPORT_H_" << std::endl
     << std::endl
     << "#include \"ace/config-all.h\"" << std::endl
+    << "#include \"cuts/config.h\"" << std::endl
     << std::endl
     << "#if !defined (" << hasdll << ")" << std::endl
     << "#  define " << hasdll << " 1" << std::endl

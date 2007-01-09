@@ -3,6 +3,7 @@
 
 #include "BE_export.h"
 #include "String_Set.h"
+#include <bitset>
 
 // Forward decl.
 struct CUTS_BE_IDL_Node;
@@ -28,20 +29,17 @@ struct CUTS_BE_Export CUTS_BE_IDL_Node
   CUTS_BE_IDL_Node (const std::string & name);
 
   /// Flags for the dependency node.
-  enum IDL_Flags
+  enum _idl_bits_
   {
-    /// None of the flags are set.
-    IDL_NONE        = 0x0000,
+    /// The stub project is necessary.
+    IDL_STUB    = 0,
 
-    /// The stub project is necessary (value 1).
-    IDL_STUB        = 0x0001,
-
-    /// The node has been visited (value 2).
-    IDL_VISITED     = 0x0002
+    /// The IDL file has been visited.
+    IDL_VISITED = 1
   };
 
   /// Node flags.
-  long flags_;
+  std::bitset <2> flags_;
 
   /// Name of the node.
   const std::string name_;
