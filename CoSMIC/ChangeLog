@@ -1,3 +1,21 @@
+Thu Jan 11 01:26:11 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager:
+        * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
+        * PIM/PICML/addons/CBMLManager/Component.def:
+        * PIM/PICML/addons/CBMLManager/Component.rc:
+        * PIM/PICML/addons/CBMLManager/ComponentConfig.h:
+        * PIM/PICML/addons/CBMLManager/RawComponent.h:
+        * PIM/PICML/addons/CBMLManager/RawComponent.inl:
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+        * PIM/PICML/addons/CBMLManager/Resource.h:
+        * PIM/PICML/addons/CBMLManager/StdAfx.h:
+        * PIM/PICML/addons/CBMLManager/StdAfx.cpp:
+
+          Initial implementation of an add-on that simplifies the generation
+          of CBML models in PICML. Currently, the add-on fails with
+          behavior models are pasted.
+
 Fri Jan  5 06:19:28 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PSM/CQML/paradigms/CQML-uml.xme:
