@@ -306,9 +306,14 @@ void RawComponent::handle_objevent_created (IMgaObject * obj)
     {
       this->create_state_and_connect (object, L"Effect");
     }
+    else if (metaname == L"State")
+    {
+      this->active_state_.Release ();
+      object->QueryInterface (&this->active_state_);
+    }
     else if (metaname == L"InputAction")
     {
-      if (this->active_state_ != 0)
+      if (this->active_state_)
         this->active_state_.Release ();
 
       this->create_state_and_connect (object, L"InputEffect");
@@ -443,26 +448,28 @@ create_state_and_connect (IMgaObject * src,
                           const std::wstring & conntype)
 {
   // Get the parent of the current action element.
-  CComPtr <IMgaObject> object (src);
   CComPtr <IMgaObject> parent;
-
-  objtype_enum objtype;
-  object->GetParent (&parent, &objtype);
-
-  // Get the parent of the active state and determine if this
-  // state is in the same model as the current action.
-  if (this->active_state_)
-  {
-    CComPtr <IMgaObject> active_parent;
-    this->active_state_->GetParent (&active_parent, &objtype);
-
-    if (active_parent != parent)
-      this->active_state_.Release ();
-  }
+  CComPtr <IMgaObject> object (src);
+  object->GetParent (&parent);
 
   // Get the model interface from the parent.
   CComPtr <IMgaModel> parent_model;
   parent->QueryInterface (&parent_model);
+
+  if (this->active_state_)
+  {
+    // Get the parent of the active state and determine if this
+    // state is in the same model as the current action.
+    CComPtr <IMgaObject> temp;
+    this->active_state_->GetParent (&temp);
+
+    VARIANT_BOOL is_equal;
+    parent->get_IsEqual (temp, &is_equal);
+
+    if (is_equal == VARIANT_FALSE)
+      this->active_state_.Release ();
+  }
+
 
   // Get the FCO interface from the object. We also need to
   // change the auto router preferences for the action.
@@ -478,39 +485,44 @@ create_state_and_connect (IMgaObject * src,
     CComPtr <IMgaFCO> transition;
 
     this->create_connection (L"Transition",
-                              parent_model,
-                              this->active_state_,
-                              action,
-                              &transition);
+                             parent_model,
+                             this->active_state_,
+                             action,
+                             &transition);
   }
 
   // Create the new state element for the action.
   CComPtr <IMgaFCO> state;
   this->create_model (L"State", parent_model, &state);
-  state->put_RegistryValue (PREF_AUTOROUTER, PREF_AUTOROUTER_ALL);
 
-  if (this->active_state_ != 0)
+  if (state)
   {
-    // Align newly created action with previous state.
-    this->get_position (this->active_state_, position);
-    position.shift (OFFSET_X, OFFSET_Y);
-    this->set_position (action, position);
+    state->put_RegistryValue (PREF_AUTOROUTER, PREF_AUTOROUTER_ALL);
+
+    if (this->active_state_ != 0)
+    {
+      // Align newly created action with previous state.
+      this->get_position (this->active_state_, position);
+      position.shift (OFFSET_X, OFFSET_Y);
+      this->set_position (action, position);
+    }
+
+    this->active_state_ = state;
+
+    // Create the effect connection from the action to the state.
+    CComPtr <IMgaFCO> effect;
+
+    this->create_connection (conntype.c_str (),
+                             parent_model,
+                             action,
+                             this->active_state_,
+                             &effect);
+
+    // Align the <state> to the right of the <action>.
+    this->get_position (action, position);
+    position.shift (OFFSET_X, -OFFSET_Y);
+    this->set_position (this->active_state_, position);
   }
 
-  this->active_state_ = state;
-
-  // Create the effect connection from the action to the state.
-  CComPtr <IMgaFCO> effect;
-
-  this->create_connection (conntype.c_str (),
-                           parent_model,
-                           action,
-                           this->active_state_,
-                           &effect);
-
-  // Align the <state> to the right of the <action>.
-  this->get_position (action, position);
-  position.shift (OFFSET_X, -OFFSET_Y);
-  this->set_position (this->active_state_, position);
   return S_OK;
 }

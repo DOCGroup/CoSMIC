@@ -1,3 +1,15 @@
+Thu Jan 11 08:51:04 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+
+          - Fixed bug that was preventing a newly added state from becoming
+            the active state for the next action.
+          - Fixed bug that involved trying to connect a state to an action
+            that was not in the same model.
+
+          - TODO: fix bug that is affecting adding behavior to a component
+                  that has subtypes.
+
 Thu Jan 11 01:26:11 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/CBMLManager:
