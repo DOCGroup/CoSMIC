@@ -5,6 +5,7 @@
 #include "Main_Dialog.h"
 #include "Utils/Utils.h"
 
+#include "cuts/be/CUTS_Project.h"
 #include "cuts/be/CoWorkEr_Cache.h"
 #include "cuts/be/CoWorkEr_Generator.h"
 
@@ -71,6 +72,8 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,
   {
   case Main_Dialog::OPT_GENERATE_MODELS:
     {
+      root.Accept (*CUTS_Project::instance ());
+
       CUTS_UDM_CoWorkEr_Generator coworker_generator;
       root.Accept (coworker_generator);
     }

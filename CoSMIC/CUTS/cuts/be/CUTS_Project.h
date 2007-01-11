@@ -14,6 +14,8 @@ public:
 
   const PICML::File & get_cuts_file (void) const;
 
+  const PICML::String & get_string_type (void) const;
+
   bool is_valid (void) const;
 
   const std::string & message (void) const;
@@ -28,13 +30,20 @@ private:
   virtual ~CUTS_Project (void);
 
   void Visit_RootFolder (const PICML::RootFolder &);
+
+  void Visit_PredefinedTypes (const PICML::PredefinedTypes &);
+
   void Visit_InterfaceDefinitions (const PICML::InterfaceDefinitions &);
+
   void Visit_Package (const PICML::Package &);
+
   void Visit_File (const PICML::File &);
 
   PICML::Object testing_service_;
 
   PICML::File cuts_file_;
+
+  PICML::String string_;
 
   bool valid_;
 

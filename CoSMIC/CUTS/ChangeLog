@@ -1,3 +1,16 @@
+Thu Jan 11 00:23:21 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CUTS_Project.h:
+        * cuts/be/CUTS_Project.cpp:
+
+          Re-enabled the CUTS project validator.
+
+        * cuts/GME/interpreters/PICML_CIAO_Impl/UdmApp.cpp:
+        * cuts/be/CoWorkEr_Generator.cpp:
+
+          Updated model generator to generate valid CoWorkEr proxy
+          model elements.
+
 Tue Jan  9 22:37:04 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Benchmark_Collector_Visitor.cpp:

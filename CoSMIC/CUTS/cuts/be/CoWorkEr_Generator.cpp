@@ -12,6 +12,9 @@ static const std::string COWORKER_POSTFIX ("_CoWorkEr");
 static const std::string COWORKER_RECEPTACLE ("cuts_testing_service");
 
 // Static decl.
+static const std::string COWORKER_PROXY_IMPL ("cuts_proxy_impl");
+
+// Static decl.
 static const std::string CUTS_PREFIX ("CUTS_");
 
 // Static decl.
@@ -347,7 +350,7 @@ Package_Visitor::Visit_Package (const PICML::Package & package)
           Udm::NULLCHILDROLE,
           target_pkg))
     {
-      target_pkg.name () = iter->name ();
+      target_pkg.SetStrValue ("name", iter->name ());
     }
 
     Package_Visitor pkg_visitor (target_pkg);
@@ -413,7 +416,7 @@ Package_Visitor::Visit_Component (const PICML::Component & component)
                                    Udm::NULLCHILDROLE,
                                    testing_service))
   {
-    testing_service.name () = COWORKER_RECEPTACLE;
+    testing_service.SetStrValue ("name", COWORKER_RECEPTACLE);
   }
 
   // Verify <COWORKER_FACET> is connected to <Testing_Service> object.
@@ -422,6 +425,35 @@ Package_Visitor::Visit_Component (const PICML::Component & component)
   {
     testing_service.ref () = CUTS_Project::instance ()->get_testing_service ();
   }
+
+  // We need to locate the cuts_proxy_impl attribute. If we cannot locate
+  // it then we need to create it.
+  typedef std::vector <PICML::Attribute> Attribute_Set;
+  Attribute_Set attributes = component.Attribute_kind_children ();
+
+  PICML::Attribute proxy_impl;
+
+  if (create_element_if_not_exist (attributes,
+                                   Find_Element_By_Name <
+                                      PICML::Attribute> (
+                                      COWORKER_PROXY_IMPL),
+                                   this->coworker_,
+                                   Udm::NULLCHILDROLE,
+                                   proxy_impl))
+  {
+    proxy_impl.SetStrValue ("name", COWORKER_PROXY_IMPL);
+  }
+
+  // We now need to verify that the attribute is a string type.
+  PICML::AttributeMember member = proxy_impl.AttributeMember_child ();
+
+  if (member == Udm::null)
+    member = PICML::AttributeMember::Create (proxy_impl, Udm::NULLCHILDROLE);
+
+  PICML::MemberType mtype = member.ref ();
+
+  if (mtype == Udm::null || mtype.type () != PICML::String::meta)
+    member.ref () = CUTS_Project::instance ()->get_string_type ();
 
   // Verify that the <coworker_> do not already have an <ComponentFactory>
   // attached to it.
@@ -448,7 +480,7 @@ Package_Visitor::Visit_Component (const PICML::Component & component)
 
   PICML::ComponentFactory cfactory = factory.CreateDerived (this->parent_);
   std::string name = (std::string)cfactory.name () + COWORKER_POSTFIX;
-  cfactory.name () = name;
+  cfactory.SetStrValue ("name", name);
 
   // Create the connection between <cfactory> and <coworker_>
   PICML::ManagesComponent manage =
