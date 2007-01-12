@@ -1,3 +1,9 @@
+Fri Jan 12 02:51:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * docs/cuts.doxygen:
+
+          Updated doxygen configuration file to 1.5.1-p1.
+
 Thu Jan 11 00:23:21 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CUTS_Project.h:
