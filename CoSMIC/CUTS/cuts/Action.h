@@ -4,6 +4,9 @@
 /**
  * @file      Action.h
  *
+ * @brief     Defines classes related to worker actions used to emulate
+ *            behavior and workloads.
+ *
  * $Id$
  *
  * @author    James H. Hill
@@ -61,13 +64,11 @@ private:
 /**
  * @class CUTS_Action_Traits
  *
- * @bried Defines traits of an action.
- *
- * Specializing this class for a particular action is not mandatory.
- * However, if detailed information about an action's performance
- * is needed, this class should be specialized. Failing to specialize
- * this clas will result in the action using the default /a action_id_
- * for identification purposes.
+ * Defines the traits of an action. Specializing this class for a
+ * particular action is not mandatory. If detailed information about
+ * an action's performance is needed, however, this class should be
+ * specialized. Failing to specialize this clas will result in the action
+ * using the default /a action_id_ for identification purposes.
  */
 //=============================================================================
 

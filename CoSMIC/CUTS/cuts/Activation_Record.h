@@ -2,7 +2,10 @@
 
 //=============================================================================
 /**
- * @file      ActivationRecord.h
+ * @file      Activation_Record.h
+ *
+ * @brief     Defines classes related to activation records used
+ *            for logging performance metrics.
  *
  * $Id$
  *
@@ -33,12 +36,11 @@ typedef ACE_Hash_Map_Manager <size_t,
 /**
  * @class CUTS_Activation_Record
  *
- * @brief Isolated in-memory storage for performance metrics.
- *
- * Activation records do not require any locking mechnisms when
- * logging the performance because each event in the system is allocated
- * is own record. This is possible since we are assuming the number of
- * active events in determistics and of a small amount.
+ * Isolated in-memory storage for performance metrics. Activation records
+ * do not require any locking mechnisms when logging the performance because
+ * each event in the system is allocated is own record. This is possible
+ * since we are assuming the number of active events in determistics and
+ * of a small amount.
  *
  * Actication records work in conjection with worker actions. While
  * a record is active/open, worker actions can be exectued in its context.
@@ -118,33 +120,69 @@ public:
    */
   void owner (size_t);
 
+  /**
+   * Set the queueing time for the record.
+   *
+   * @param[in]     queue_time      The queuing time.
+   */
   void queue_time (const ACE_Time_Value & queue_time);
 
+  /**
+   * Get the queueing time for the record.
+   *
+   * @return        The queueing time for the record.
+   */
   const ACE_Time_Value & queue_time (void) const;
 
-  /// Perform the specified action without any logging.
+  /**
+   * Perform the specified action without any logging. The \a action
+   * is a functor that defines the method operator ().
+   *
+   * @param[in]     action          The action to execute.
+   */
   template <typename ACTION>
   void perform_action_no_logging (const ACTION & action);
 
-  /// Perform the specified action without any logging.
+  /**
+   * Perform the specified action without any logging. This version
+   * of the method has a \a repetitions parameter that allows
+   * the action to be executed multiple times before returning.
+   *
+   * @param[in]     repetitions     Number of repetitions
+   * @param[in]     action          The action to execute.
+   */
   template <typename ACTION>
-  void perform_action_no_logging (size_t repetitions, const ACTION & action);
+  void perform_action_no_logging (size_t repetitions,
+                                  const ACTION & action);
 
-  /// Perform the specified action and log its performance.
+  /**
+   * Perform the specified action and log its performance. Logging
+   * the performance of the action entails recording the amount
+   * of time it takes to execute the \a action.
+   *
+   * @param[in]     action          The action to execute.
+   */
   template <typename ACTION>
   void perform_action (const ACTION & action);
 
-  /// Perform the specified action and log its performance.
+  /**
+   * Perform the specified action and log its performance. Logging
+   * the performance of the action entails recording the amount of
+   * time it takes to execute the \a action. This version of the
+   * method also has a \a repetitions parameter to specify how many
+   * times to execute the \a action.
+   *
+   * @param[in]     repetitions     Number of times to execute action.
+   * @param[in]     action          The action to execute.
+   */
   template <typename ACTION>
   void perform_action (size_t repetitions, const ACTION & action);
 
   /**
    * Log an endpoint to the activation record. This will store the
-   * time of completion (TOC) for the endpoint, which is contained
-   * as an \a action.
+   * time of completion (TOC) for the endpoint.
    *
    * @param[in]         uid         Unique id for the endpoint.
-   * @param[in]         action      The action/endpoint.
    */
   void log_endpoint (size_t uid);
 

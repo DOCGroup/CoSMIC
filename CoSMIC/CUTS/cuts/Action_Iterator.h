@@ -4,9 +4,15 @@
 /**
  * @file      Action_Iterator.h
  *
+ * @brief     Defines classes related to iterating over the actions
+ *            contained by a worker.
+ *
  * $Id$
  *
  * @author    James H. Hill
+ *
+ * @remarks   There are plans to move the contents of this file to
+ *            Action.h
  */
 //=============================================================================
 
@@ -24,12 +30,11 @@ class CUTS_Action;
 /**
  * @class CUTS_Action_Iterator
  *
- * @brief Base iterator class for iterating over action tables.
- *
- * This class uses the NULL object pattern, meaning each of the supported
- * operations does nothing. This iterator class is primarily used by clients
- * as a base interface. It allows clients to get the name of the actions, as
- * well as, create actions. This is useful when parsing the actions contained
+ * Base iterator class for iterating over action tables. This class uses
+ * the NULL object pattern, meaning each of the supported operations does
+ * nothing. This iterator class is primarily used by clients as a base
+ * interface. It allows clients to get the name of the actions, as well
+ * as, create actions. This is useful when parsing the actions contained
  * in a worker and creating them on the fly if the name is not known ahead
  * of time.
  */
