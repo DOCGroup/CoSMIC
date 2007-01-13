@@ -218,14 +218,7 @@ private:
   /// The active state in the model.
   CComPtr <IMgaFCO> active_state_;
 
-  /// Type definition for point to methods.
-  typedef void (RawComponent::*OBJEVENT_HANDLER) (IMgaObject * obj);
-
-  /// Type definition for mapping object events to handler methods..
-  typedef std::map <unsigned long, OBJEVENT_HANDLER> Event_Handler_Map;
-
-  /// Mapping of object events to handler methods.
-  Event_Handler_Map event_handler_map_;
+  CComPtr <IMgaFCO> last_action_;
 
   /// Flag specifying if the add-on is importing.
   bool importing_;

@@ -1,3 +1,15 @@
+Sat Jan 13 09:12:25 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager/ComponentConfig.h:
+        * PIM/PICML/addons/CBMLManager/RawComponent.h:
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+        * PIM/PICML/addons/CBMLManager/StdAfx.h:
+
+          Fixed bug that was causing the add-on to try and auto-generate
+          elements for instances.
+
+          Still trying to resolve the same bug related to subtypes.
+
 Thu Jan 11 08:51:04 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/CBMLManager/RawComponent.cpp:

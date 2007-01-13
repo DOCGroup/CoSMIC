@@ -49,16 +49,7 @@ RawComponent::wstring_set RawComponent::actions_types_;
 // RawComponent
 //
 RawComponent::RawComponent (void)
-: importing_ (false)
 {
-  this->event_handler_map_.insert (
-    Event_Handler_Map::value_type (OBJEVENT_SELECT,
-                                   &RawComponent::handle_objevent_select));
-
-  this->event_handler_map_.insert (
-    Event_Handler_Map::value_type (OBJEVENT_DESTROYED,
-                                   &RawComponent::handle_objevent_destroyed));
-
   // Initialize the collection of action types we are interested
   // in when creating action -> state transitions.
   if (RawComponent::actions_types_.empty ())
@@ -82,6 +73,7 @@ RawComponent::~RawComponent (void)
 //
 STDMETHODIMP RawComponent::Initialize (struct IMgaProject *)
 {
+  this->importing_ = false;
   return S_OK;
 }
 
@@ -167,17 +159,17 @@ STDMETHODIMP RawComponent::ObjectEvent(IMgaObject * obj,
   // favoring this event more than anything. We then assume that
   // all other events have the same probability of being triggered.
 
-  if (eventmask == OBJEVENT_CREATED)
-  {
+  if ((eventmask & OBJEVENT_CREATED))
     this->handle_objevent_created (obj);
-  }
-  else
-  {
-    Event_Handler_Map::iterator iter = this->event_handler_map_.find (eventmask);
 
-    if (iter != this->event_handler_map_.end ())
-      (this->*iter->second) (obj);
-  }
+  if ((eventmask & OBJEVENT_SELECT))
+    this->handle_objevent_select (obj);
+
+  //if ((eventmask & OBJEVENT_CLOSEMODEL))
+  //  AfxMessageBox ("OBJEVENT_CLOSEMODEL");
+
+  if ((eventmask & OBJEVENT_DESTROYED))
+    this->handle_objevent_destroyed (obj);
 
   return S_OK;
 }
@@ -294,6 +286,18 @@ void RawComponent::handle_objevent_created (IMgaObject * obj)
     metaname.Empty ();
     metabase.Release ();
 
+    CComPtr <IMgaFCO> parent_fco;
+    parent->QueryInterface (&parent_fco);
+
+    // There is no need to run the rest of this auto handle method
+    // if we are interacting with an instance of a component. There
+    // is no way possible we can add to it.
+    VARIANT_BOOL is_instance;
+    parent_fco->get_IsInstance (&is_instance);
+
+    if (is_instance == VARIANT_TRUE)
+      return;
+
     // Determine if this object is an action we need to manage.
     object->get_MetaBase (&metabase);
     metabase->get_Name (&metaname);
@@ -304,12 +308,12 @@ void RawComponent::handle_objevent_created (IMgaObject * obj)
     if (RawComponent::actions_types_.find (metaname.m_str) !=
         RawComponent::actions_types_.end ())
     {
+      CComPtr <IMgaFCO> base_type;
+      parent_fco->get_DerivedFrom (&base_type);
+
+      // First, go ahead and connect the state to the action.
       this->create_state_and_connect (object, L"Effect");
-    }
-    else if (metaname == L"State")
-    {
-      this->active_state_.Release ();
-      object->QueryInterface (&this->active_state_);
+
     }
     else if (metaname == L"InputAction")
     {
