@@ -15,23 +15,24 @@ namespace GEMS
   //
   // stringify
   //
-  std::string & stringify (std::string & str)
+  std::string stringify (const std::string & str)
   {
-    str.insert (0, '\'', 1);
-    return str.append (1, '\'');
+    std::string tempstr (1, '\'');
+    tempstr += str + '\'';
+    return tempstr;
   }
 
   //
   // destringify
   //
-  std::string & destringify (std::string & str)
+  std::string destringify (const std::string & str)
   {
     size_t length = str.length ();
 
     if (str[0] == '\'' && str[length - 1] == '\'')
-      str.erase (length - 1, 1).erase (0, 1);
-
-    return str;
+      return str.substr (1, length - 2);
+    else
+      return str;
   }
 
   //===========================================================================
@@ -59,7 +60,6 @@ namespace GEMS
     // the two new additions to the knowledge base.
     size_t length = Model_Manager::instance ()->changes_.length ();
     Model_Manager::instance ()->changes_.length (length + 2);
-    size_t new_length = Model_Manager::instance ()->changes_.length ();
 
     char idstr[7];
     GEMSServer::EntityRecord entity;

@@ -160,8 +160,8 @@ private:
  */
 //=============================================================================
 
-#define CUTS_BDC_SERVICE_DECL(export) \
-  extern "C" export ACE_Service_Object * \
+#define CUTS_BDC_SERVICE_DECL(export_marco) \
+  extern "C" export_marco ACE_Service_Object * \
   _make_CUTS_BDC_Service (void (**gobbler) (void *))
 
 //=============================================================================
@@ -175,7 +175,7 @@ private:
   { \
     ACE_Service_Object * svcobj = \
       ACE_reinterpret_cast (ACE_Service_Object *, arg); \
-    delete arg; \
+    delete svcobj; \
   } \
   ACE_Service_Object  * \
   _make_CUTS_BDC_Service (void (**gobbler) (void *)) \

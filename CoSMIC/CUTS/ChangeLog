@@ -1,3 +1,15 @@
+Mon Jan 15 21:50:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GEMS/GEMS.cpp:
+         
+          - The stringify () and destringify () methods now take a const
+            string and return a non-referenced string.
+          - Fixed unused variable warnings.
+
+        * cuts/BDC/BDC_Service.h:
+        
+          Fixed unused variable warnings.
+
 Mon Jan 15 21:35:44 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GEMS/GEMS.h:
