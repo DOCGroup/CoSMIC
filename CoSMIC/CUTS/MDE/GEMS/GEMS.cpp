@@ -1,20 +1,29 @@
+// $Id$
+
 #include "GEMS.h"
 
 #if !defined (__CUTS_INLINE__)
 #include "GEMS.inl"
 #endif
 
+#include <algorithm>
 #include <iostream>
 #include <sstream>
 
 namespace GEMS
 {
+  //
+  // stringify
+  //
   std::string & stringify (std::string & str)
   {
     str.insert (0, '\'', 1);
     return str.append (1, '\'');
   }
 
+  //
+  // destringify
+  //
   std::string & destringify (std::string & str)
   {
     size_t length = str.length ();
@@ -31,6 +40,9 @@ namespace GEMS
    */
   //===========================================================================
 
+  //
+  // create
+  //
   Model * Model::create (GEMS::Model * parent, const std::string & type)
   {
     // Create a new model.
@@ -62,17 +74,15 @@ namespace GEMS
 
     // Add the parent for the model and add to the knowledge base.
     entity.predicate = ::CORBA::string_dup ("self_parent");
-    ACE_DEBUG ((LM_DEBUG,
-                "model %d has parent %d\n",
-                model->id (),
-                parent->id ()));
-
     entity.params[1] = ::CORBA::string_dup (ACE_OS::itoa (parent->id (), idstr, 10));
     Model_Manager::instance ()->changes_[length] = entity;
 
     return model;
   }
 
+  //
+  // Model
+  //
   Model::Model (size_t id)
     : id_ (id),
       parent_ (0)
@@ -80,11 +90,17 @@ namespace GEMS
 
   }
 
+  //
+  // ~Model
+  //
   Model::~Model (void)
   {
 
   }
 
+  //
+  // children
+  //
   Model_Set Model::children (const std::string & type)
   {
     Model_Set children;
@@ -100,11 +116,16 @@ namespace GEMS
     return children;
   }
 
+  //
+  // role
+  //
   void Model::role (const std::string & role,
                     const std::string & value)
   {
-    char idstr[7];
     this->roles_[role] = value;
+
+    std::string temp_value = value;
+    stringify (temp_value);
 
     std::string predicate ("self_");
     predicate.append (role);
@@ -113,12 +134,14 @@ namespace GEMS
     rec.op = GEMSServer::Insert;
     rec.predicate = ::CORBA::string_dup (predicate.c_str ());
 
+    char idstr[7];
+
     rec.params.length (2);
     rec.params[0] = ::CORBA::string_dup (ACE_OS::itoa (this->id_, idstr, 10));
-    rec.params[1] = ::CORBA::string_dup (value.c_str ());
+    rec.params[1] = ::CORBA::string_dup (temp_value.c_str ());
 
     // Resize the <changes_> collection.
-    size_t length = Model_Manager::instance ()->changes_.length ();
+    ::CORBA::ULong length = Model_Manager::instance ()->changes_.length ();
     Model_Manager::instance ()->changes_.length (length + 1);
     Model_Manager::instance ()->changes_[length] = rec;
   }
@@ -129,17 +152,96 @@ namespace GEMS
    */
   //===========================================================================
 
+  //
+  // Connection
+  //
   Connection::Connection (size_t id)
-    : id_ (id),
+    : Model (id),
       target_ (0),
       source_ (0)
   {
 
   }
 
+  //
+  // Connection
+  //
   Connection::~Connection (void)
   {
 
+  }
+
+  //
+  // target
+  //
+  Model * Connection::target (Model * model)
+  {
+    // Save the current target.
+    Model * prev_target = this->target_i (model);
+
+    // TODO: Update the model with the new target.
+
+    // Return the previous target.
+    return prev_target;
+  }
+
+  //
+  // target_i
+  //
+  Model * Connection::target_i (Model * model)
+  {
+    if (this->target_ != model)
+    {
+      std::swap (this->target_, model);
+
+      // Remove previous target from the children collection.
+      if (model)
+        this->children_.erase (model);
+
+      // Save the new target in the children collection.
+      if (this->target_)
+        this->children_.insert (this->target_);
+    }
+
+    // Return the previous target.
+    return model;
+  }
+
+  //
+  // source
+  //
+  Model * Connection::source (Model * model)
+  {
+    // Set the new source model.
+    Model * prev_source = this->source_i (model);
+
+    // TODO: Update the model with the new source.
+
+    // Return the previous source.
+    return prev_source;
+  }
+
+  //
+  // source_i
+  //
+  Model * Connection::source_i (Model * model)
+  {
+    if (this->source_ != model)
+    {
+      // Save the new source element.
+      std::swap (this->source_, model);
+
+      // Remove previous source from the children collection.
+      if (model)
+        this->children_.erase (model);
+
+      // Store the new source in the children collection.
+      if (this->target_)
+        this->children_.insert (this->target_);
+    }
+
+    // Return the previous source.
+    return model;
   }
 
   //===========================================================================
@@ -148,15 +250,25 @@ namespace GEMS
    */
   //===========================================================================
 
+  //
+  // instance_
+  //
   Model_Manager * Model_Manager::instance_ = 0;
 
+  //
+  // instance
+  //
   Model_Manager * Model_Manager::instance (void)
   {
     if (Model_Manager::instance_ == 0)
       Model_Manager::instance_ = new Model_Manager ();
+
     return Model_Manager::instance_;
   }
 
+  //
+  // close_singleton
+  //
   void Model_Manager::close_singleton (void)
   {
     if (Model_Manager::instance_ != 0)
@@ -166,6 +278,9 @@ namespace GEMS
     }
   }
 
+  //
+  // Model_Manager
+  //
   Model_Manager::Model_Manager (void)
     : root_ (0),
       next_id_ (0)
@@ -173,6 +288,9 @@ namespace GEMS
 
   }
 
+  //
+  // ~Model_Manager
+  //
   Model_Manager::~Model_Manager (void)
   {
     for (Model_Map::iterator iter = this->models_.begin ();
@@ -190,11 +308,17 @@ namespace GEMS
     }
   }
 
+  //
+  // next_id
+  //
   size_t Model_Manager::next_id (void)
   {
     return this->next_id_ ++;
   }
 
+  //
+  // build
+  //
   int Model_Manager::build (GEMSServer::Model_ptr gems_model)
   {
     this->gems_model_ =
@@ -202,11 +326,13 @@ namespace GEMS
 
     try
     {
+      // Right now, there isn't a predefined max value for the
+      // number of records that can be returned.
       GEMSServer::EntityRecordSeq_var recs;
       this->gems_model_->getEntities (0, 3000, recs);
-      size_t length = recs->length ();
+      ::CORBA::ULong length = recs->length ();
 
-      for (size_t i = 0; i < length; i ++)
+      for (::CORBA::ULong i = 0; i < length; i ++)
       {
         GEMSServer::EntityRecord & rec = recs[i];
 
@@ -214,95 +340,71 @@ namespace GEMS
         const char * role = this->get_role (rec);
         size_t id = this->get_id (rec);
 
-        if (this->is_parameter_list (rec.params[1].in ()) == 0)
+        if (this->is_string_value (rec.params[1].in ()) == 0)
         {
-          // Ok, we aren't working with a record that has a parameter
-          // list. This means that we have a record where the second
-          // parameter is either a string or an id.
+          // The value of the second parameter is an id of a existing
+          // element, or an type element AFAIK. So this means we need
+          // the distinguish between the role and its value so that we
+          // can handle it properly.
 
-          if (this->is_string_value (rec.params[1].in ()))
+          if (ACE_OS::strcmp (role, "type") == 0)
           {
-            // Since it is a stringified value, we can just store
-            // it into the role database for the model.
-            GEMS::Model * model = this->get_model (rec);
-            model->roles_[role] = rec.params[1].in ();
+            Connection_Map::iterator c_iter = this->conns_.find (id);
+
+            if (c_iter != this->conns_.end ())
+            {
+              c_iter->second->type_ = rec.params[1].in ();
+            }
+            else
+            {
+              GEMS::Model * model = this->get_model (id);
+              model->type_ = rec.params[1].in ();
+            }
           }
-          else
+          else if (ACE_OS::strcmp (role, "parent") == 0)
           {
-            // The value of the second parameter is an id of a existing
-            // element, or an type element AFAIK. So this means we need
-            // the distinguish between the role and its value so that we
-            // can handle it properly.
+            // Get the current model.
+            GEMS::Model * model = this->get_model (id);
 
-            if (ACE_OS::strcmp (role, "type") == 0)
-            {
-              Connection_Map::iterator c_iter = this->conns_.find (id);
+            // Get the parent model for this record.
+            size_t parent_id = ACE_OS::atoi (rec.params[1].in ());
+            GEMS::Model * parent = this->get_model (parent_id);
 
-              if (c_iter != this->conns_.end ())
-              {
-                c_iter->second->type_ = rec.params[1].in ();
-              }
-              else
-              {
-                GEMS::Model * model = this->get_model (id);
-                model->type_ = rec.params[1].in ();
-              }
-            }
-            else if (ACE_OS::strcmp (role, "id") == 0)
-            {
-              size_t id = ACE_OS::atoi (rec.params[0].in ());
+            // Update the models parent and the parent's children.
+            model->parent_ = parent;
+            parent->children_.insert (model);
+          }
+          else if (ACE_OS::strcmp (role, "id") == 0)
+          {
+            // We are going to use the id role to determine the next valid
+            // id. This will ensure we are always greater than current ids
+            // of the elements.
+            size_t id = ACE_OS::atoi (rec.params[0].in ());
 
-              if (id > this->next_id_)
-                this->next_id_ = id + 1;
-            }
-            else if (ACE_OS::strcmp (role, "source") == 0)
-            {
-              Connection * conn = this->get_connection (rec);
+            if (id > this->next_id_)
+              this->next_id_ = id + 1;
+          }
+          else if (ACE_OS::strcmp (role, "source") == 0)
+          {
+            size_t source_id =  ACE_OS::atoi (rec.params[1].in ());
 
-              conn->source_ =
-                this->get_model (ACE_OS::atoi (rec.params[1].in ()));
-            }
-            else if (ACE_OS::strcmp (role, "target") == 0)
-            {
-              Connection * conn = this->get_connection (rec);
+            Connection * conn = this->get_connection (rec);
+            conn->source_i (this->get_model (source_id));
+          }
+          else if (ACE_OS::strcmp (role, "target") == 0)
+          {
+            size_t target_id = ACE_OS::atoi (rec.params[1].in ());
 
-              conn->target_
-                = this->get_model (ACE_OS::atoi (rec.params[1].in ()));
-            }
+            Connection * conn = this->get_connection (rec);
+            conn->target_i (this->get_model (target_id));
           }
         }
-        else if (ACE_OS::strcmp (role, "children") == 0)
+        else
         {
-          // The only parameter list we are concerned with when building
-          // the original model is children. For the time being, we can
-          // just ignore all the other parameter list since they are really
-          // specialization of this role, or connection roles.
-
-          Model * parent = this->get_model (rec);
-
-          std::istringstream istr (rec.params[1].in ());
-          istr.ignore ();
-
-          if (istr.peek () != ']')
-          {
-            // So we indeed have a parameter list and not an
-            // empty list at our disposal.
-            char ch;
-            size_t id;
-
-            do
-            {
-              // Get the next id in the parameter list. Then we need
-              // to locate the model for that id.
-              istr >> id >> ch;
-              Model * child = this->get_model (id);
-
-              // Update the children of the parent model and attach
-              // the parant to the child model for walking the model.
-              parent->children_.insert (child);
-              child->parent_ = parent;
-            } while (ch != ']');
-          }
+          // Since it is a stringified value, we can just store
+          // it into the role database for the model.
+          GEMS::Model * model = this->get_model (rec);
+          model->roles_[role] = destringify (std::string (rec.params[1].in ()));
         }
       }
 
@@ -322,6 +424,9 @@ namespace GEMS
     return -1;
   }
 
+  //
+  // apply_changes
+  //
   int Model_Manager::apply_changes (void)
   {
     try
@@ -338,14 +443,19 @@ namespace GEMS
     return -1;
   }
 
+  //
+  // get_model
+  //
   Model * Model_Manager::get_model (size_t id)
   {
     Model_Map::iterator iter = this->models_.find (id);
 
     Model * model = 0;
     if (iter != this->models_.end ())
+    {
       // Save the already existing model.
       model = iter->second;
+    }
     else
     {
       // Create a new model and insert it into the map.
@@ -356,6 +466,9 @@ namespace GEMS
     return model;
   }
 
+  //
+  // dump
+  //
   void Model_Manager::dump (void) const
   {
     ACE_DEBUG ((LM_DEBUG,
@@ -404,26 +517,17 @@ namespace GEMS
     }
   }
 
-  Connection_Set Model_Manager::connections (const std::string & type)
-  {
-    Connection_Set conns;
-
-    for (Connection_Map::iterator iter = this->conns_.begin ();
-         iter != this->conns_.end ();
-         iter ++)
-    {
-      if (iter->second->type () == type)
-        conns.insert (iter->second);
-    }
-
-    return conns;
-  }
-
+  //
+  // root
+  //
   Model * Model_Manager::root (void) const
   {
+    // Check for the root element.
     if (this->root_ != 0)
       return this->root_;
 
+    // Since we do not have it, we need to locate it. We are
+    // going to store it as well for later use.
     for (Model_Map::const_iterator iter = this->models_.begin ();
         iter != this->models_.end ();
         iter ++)
@@ -438,6 +542,9 @@ namespace GEMS
     return this->root_;
   }
 
+  //
+  // get_connection
+  //
   Connection * Model_Manager::get_connection (size_t id)
   {
     Connection * conn = 0;
@@ -468,7 +575,6 @@ namespace GEMS
         this->models_.erase (iter);
       }
     }
-
 
     return conn;
   }

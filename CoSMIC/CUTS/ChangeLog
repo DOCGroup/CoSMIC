@@ -1,3 +1,22 @@
+Mon Jan 15 21:35:44 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GEMS/GEMS.h:
+        * MDE/GEMS/GEMS.inl:
+        * MDE/GEMS/GEMS.cpp:
+
+          - Added support for creating new elements.
+          - Reimplemented the Connection object as a subtype of a
+            model object.
+
+        * cuts/BDC/svcs/GEMS/CUTS_GEMS.cpp:
+
+          Removed the stringify and destringify methods since the
+          are no embedded inside the implementation.
+
+        * etc/config/gme_bon2.mpb:
+
+          Added the missing default project source files.
+
 Fri Jan 12 05:35:12 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Action.h:

@@ -175,8 +175,8 @@ int CUTS_GEMS_Service::handle_deactivate (void)
   {
     // Create the instance name from the GME model.
     std::string inst_name =
-      GEMS::destringify ((*model_iter)->role ("annotation")) +
-      "." + GEMS::destringify ((*model_iter)->role ("name"));
+      (*model_iter)->role ("annotation") +
+      "." + (*model_iter)->role ("name");
 
     VERBOSE_MESSAGE ((LM_DEBUG,
                       "getting metrics for %s\n",
@@ -234,22 +234,33 @@ int CUTS_GEMS_Service::handle_deactivate (void)
       // request that verbose mode be used for the service.
       double total_util = ports > 0 ? acc_util / ports : 0.0;
 
+      GEMS::Model * cpu_req = 0;
       GEMS::Model_Set reqs = (*model_iter)->children ("requirement");
 
+      // Locate the CPU requirement in the child models.
       for (GEMS::Model_Set::iterator reqs_iter = reqs.begin ();
-            reqs_iter != reqs.end ();
-            reqs_iter ++)
+           reqs_iter != reqs.end ();
+           reqs_iter ++)
       {
-        if (GEMS::destringify ((*reqs_iter)->role ("name")) == "CPU")
+        if ((*reqs_iter)->role ("name") == "CPU")
         {
-          // Convert the <total_util> to a string value.
-          std::ostringstream ostr;
-          ostr << total_util;
-
-          // Set the value role for the requirement.
-          (*reqs_iter)->role ("value", GEMS::stringify (ostr.str ()));
+          cpu_req = *reqs_iter;
+          break;
         }
       }
+
+      if (cpu_req == 0)
+      {
+        // We need to create a CPU requirement for the model.
+        GEMS::Model * cpu_req = GEMS::Model::create (*model_iter, "requirement");
+        cpu_req->role ("name", "CPU");
+      }
+
+      // Convert the <total_util> to a string value.
+      std::ostringstream ostr;
+      ostr << total_util;
+
+      cpu_req->role ("value", ostr.str ());
 
       VERBOSE_MESSAGE ((LM_DEBUG,
                         "CPU for %s is %f\n"

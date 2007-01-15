@@ -94,26 +94,14 @@ namespace GEMS
   //===========================================================================
 
   CUTS_INLINE
-  Model * Connection::source (void)
+  Model * Connection::source (void) const
   {
     return this->source_;
   }
 
   CUTS_INLINE
-  Model * Connection::target (void)
+  Model * Connection::target (void) const
   {
     return this->target_;
-  }
-
-  CUTS_INLINE
-  const std::string & Connection::type (void) const
-  {
-    return this->type_;
-  }
-
-  CUTS_INLINE
-  size_t Connection::id (void) const
-  {
-    return this->id_;
   }
 }
