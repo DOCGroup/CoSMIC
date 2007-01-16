@@ -1,3 +1,19 @@
+Tue Jan 16 00:54:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp
+
+          Implemented a partial fix for the subtype issue. For the time
+          being, it may be best to not turn on this add-on until the
+          next release of GME. The main problem is that when a new child
+          element is added to a model, the OBJEVENT_CREATED event is sent
+          for the GME subtypes and instances of the newly created child
+          element before it sent for the source element. This poses a
+          major problem because the add-on has to determine whehter or
+          not the auto generation of elements should take occur because
+          it can add unnecessary elements to the model. A fix is going
+          into GME to reverse the ordering of tranmitting events, i.e,
+          the source element then the subtypes and instances.
+
 Sat Jan 13 09:12:25 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/CBMLManager/ComponentConfig.h:

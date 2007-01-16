@@ -314,6 +314,10 @@ void RawComponent::handle_objevent_created (IMgaObject * obj)
       // First, go ahead and connect the state to the action.
       this->create_state_and_connect (object, L"Effect");
 
+      if (this->last_action_)
+        this->last_action_.Release ();
+
+      object->QueryInterface (&this->last_action_);
     }
     else if (metaname == L"InputAction")
     {
@@ -321,6 +325,11 @@ void RawComponent::handle_objevent_created (IMgaObject * obj)
         this->active_state_.Release ();
 
       this->create_state_and_connect (object, L"InputEffect");
+
+      if (this->last_action_)
+        this->last_action_.Release ();
+
+      object->QueryInterface (&this->last_action_);
     }
   }
 }
@@ -451,6 +460,26 @@ HRESULT RawComponent::
 create_state_and_connect (IMgaObject * src,
                           const std::wstring & conntype)
 {
+  if (this->last_action_)
+  {
+    // Delete the <active_state_> if the <last_action_> is a subtype
+    // of the newly created action.
+    CComPtr <IMgaFCO> basetype;
+    this->last_action_->get_DerivedFrom (&basetype);
+
+    if (basetype)
+    {
+      VARIANT_BOOL is_equal;
+      basetype->get_IsEqual (src, &is_equal);
+
+      if (is_equal == VARIANT_TRUE)
+      {
+        this->active_state_->DestroyObject ();
+        this->active_state_.Release ();
+      }
+    }
+  }
+
   // Get the parent of the current action element.
   CComPtr <IMgaObject> parent;
   CComPtr <IMgaObject> object (src);
