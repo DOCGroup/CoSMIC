@@ -1,13 +1,31 @@
+Wed Jan 17 03:05:14 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Async_Event_Handler_T.cpp:
+
+          Removed the explicit dispatch_time () invocations on
+          an event since events are no longer required to have a
+          dispatch_time field.
+
+        * cuts/be/BE_Impl_Graph.cpp:
+        * cuts/be/BE_Workspace_Generator_T.cpp:
+        * cuts/be/CIAO/CIAO_Exec_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.cpp:
+
+          Fixed bug that was causing implementations to be generated
+          when they were not supposted to be generated. Now, proxy
+          components and implementation components can no longer be
+          generated from the same component.
+
 Mon Jan 15 21:50:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GEMS/GEMS.cpp:
-         
+
           - The stringify () and destringify () methods now take a const
             string and return a non-referenced string.
           - Fixed unused variable warnings.
 
         * cuts/BDC/BDC_Service.h:
-        
+
           Fixed unused variable warnings.
 
 Mon Jan 15 21:35:44 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>

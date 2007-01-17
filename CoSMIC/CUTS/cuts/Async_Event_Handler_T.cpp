@@ -59,16 +59,9 @@ CUTS_Async_Event_Handler_T <COMPONENT, EVENTTYPE>::event_loop (void * param)
     {
       if (event != 0)
       {
-        // Calculate the amount of time the event was in the queue.
-        ACE_Time_Value enqueue_time;
-        enqueue_time.msec (event->dispatch_time ());
-
-        ACE_Time_Value queue_time = ACE_OS::gettimeofday ();
-        queue_time -= enqueue_time;
-
         // Pass control to the shared implementation. When the call
         // returns we need to release the <ev> object.
-        _this->handle_event_i (event, queue_time);
+        _this->handle_event_i (event, ACE_Time_Value::zero);
         ::CORBA::remove_ref (event);
       }
     }
@@ -123,11 +116,6 @@ template <typename COMPONENT, typename EVENTTYPE>
 void CUTS_Async_Event_Handler_T <COMPONENT, EVENTTYPE>::
 handle_event (EVENTTYPE * ev)
 {
-  /// @note We are discarding the transit time and using the queuing
-  /// time as the transit time. Until we have a better solution for
-  /// handling transit times, we are discarding it.
-  ev->dispatch_time (ACE_OS::gettimeofday ().msec ());
-
   ::CORBA::add_ref (ev);
   this->event_queue_.enqueue_tail (ev);
 }

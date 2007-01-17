@@ -10,6 +10,8 @@
 #include "CIAO_Retn_Type.h"
 #include "CIAO_In_Type.h"
 #include "CIAO_Var_Type.h"
+
+#include "cuts/be/BE_Preprocessor.h"
 #include "cuts/be/BE_Options.h"
 
 // UDM headers
@@ -76,6 +78,13 @@ CUTS_CIAO_Exec_Source_Traits::~CUTS_CIAO_Exec_Source_Traits (void)
 bool CUTS_CIAO_Exec_Source_Traits::
 open_file (const PICML::ComponentImplementationContainer & container)
 {
+  const CUTS_BE_Impl_Node * node = 0;
+  if (!CUTS_BE_PREPROCESSOR ()->impls ().find (container.name (), node))
+    return false;
+
+  if (node->impl_flags_[CUTS_BE_Impl_Node::IMPL_PROXY])
+    return false;
+
   // Construct the name of the file.
   std::ostringstream ostr;
   ostr
@@ -604,6 +613,8 @@ write_action_begin (const PICML::Worker & parent,
 
     PICML::Action action_type =
       const_cast <PICML::Action &> (action).Archetype ();
+
+    std::string name = action_type.name ();
 
     // Print the fully qualifies name of the action.
     std::string tempstr = parent.name ();

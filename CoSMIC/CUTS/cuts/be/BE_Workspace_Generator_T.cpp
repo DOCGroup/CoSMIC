@@ -114,21 +114,23 @@ generate_impl_project (std::ofstream & outfile,
   // recognize if the impl is a proxy or executor. It would be easier
   // if we recognize it ourselves at this level and tell the generator
   // which type of project to generate (i.e., exec or proxy).
-
-  if (node->impl_flags_[CUTS_BE_Impl_Node::IMPL_EXEC] &&
-      this->proj_generator_.generate_exec (*node))
+  if (node->impl_flags_[CUTS_BE_Impl_Node::IMPL_PROXY])
   {
-    outfile
-      << "  " << node->name_
-      << CUTS_BE_OPTIONS ()->exec_suffix_ << ".mpc" << std::endl;
+    if (this->proj_generator_.generate_proxy (*node))
+    {
+      outfile
+        << "  " << node->name_
+        << CUTS_BE_OPTIONS ()->proxy_suffix_ << ".mpc" << std::endl;
+    }
   }
-
-  if (node->impl_flags_[CUTS_BE_Impl_Node::IMPL_PROXY] &&
-      this->proj_generator_.generate_proxy (*node))
+  else
   {
-    outfile
-      << "  " << node->name_
-      << CUTS_BE_OPTIONS ()->proxy_suffix_ << ".mpc" << std::endl;
+    if (this->proj_generator_.generate_exec (*node))
+    {
+      outfile
+        << "  " << node->name_
+        << CUTS_BE_OPTIONS ()->exec_suffix_ << ".mpc" << std::endl;
+    }
   }
 
   // Now, we need to add all the stubs for this implementation to the
