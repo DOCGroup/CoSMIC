@@ -1,3 +1,10 @@
+Wed Jan 17 04:00:30 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/examples/SLICE.xme:
+
+          Updated the SLICE scenarios to support the proxy-based
+          version of CUTS.
+
 Tue Jan 16 00:54:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/CBMLManager/RawComponent.cpp
