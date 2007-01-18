@@ -18,13 +18,11 @@
 #endif
 
 #include "cuts/config.h"
+#include "cuts/Async_Event_Handler_Queue_T.h"
 #include "cuts/Event_Handler_T.h"
 #include "ace/Atomic_Op.h"
-#include "ace/Condition_Thread_Mutex.h"
 #include "ace/Hash_Map_Manager_T.h"
-#include "ace/Message_Queue_T.h"
 #include "ace/Thread_Manager.h"
-#include "ace/Unbounded_Queue.h"
 #include "ace/Unbounded_Set.h"
 
 //=============================================================================
@@ -150,9 +148,6 @@ private:
   /// Priority of the event handler.
   int priority_;
 
-  /// Collection of free activation records.
-  ACE_Message_Queue_Ex <EVENTTYPE, ACE_MT_SYNCH> event_queue_;
-
   /// Thread manager for the event handler.
   ACE_Thread_Manager thr_manager_;
 
@@ -169,6 +164,9 @@ private:
 
   /// Listing of threads being killed.
   Kill_List kill_list_;
+
+  /// The event queue for the event handler.
+  CUTS_Async_Event_Handler_Queue_T <EVENTTYPE> event_queue_;
 };
 
 #if defined (__CUTS_INLINE__)

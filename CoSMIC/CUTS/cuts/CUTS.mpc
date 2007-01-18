@@ -132,6 +132,7 @@ project (CUTS) : cutslib {
     Action_Iterator_T.cpp
     Activation_Record_T.cpp
     Async_Event_Handler_T.cpp
+    Async_Event_Handler_Queue_T.cpp
     Auto_Release_Ptr.cpp
     Counter_T.cpp
     Event_Guard_T.cpp

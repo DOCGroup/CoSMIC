@@ -53,15 +53,22 @@ CUTS_Async_Event_Handler_T <COMPONENT, EVENTTYPE>::event_loop (void * param)
 
   while (active)
   {
+    // Get the next event from the queue.
     EVENTTYPE * event = 0;
+    ACE_Time_Value toc;
 
-    if (_this->event_queue_.dequeue_head (event) != -1)
+    if (_this->event_queue_.dequeue (event, &toc) != -1)
     {
+      // Calculate how long the event was in the queue.
+      ACE_Time_Value queue_time = ACE_OS::gettimeofday ();
+      queue_time -= toc;
+
       if (event != 0)
       {
-        // Pass control to the shared implementation. When the call
-        // returns we need to release the <ev> object.
-        _this->handle_event_i (event, ACE_Time_Value::zero);
+        // Pass control to the shared implementation.
+        _this->handle_event_i (event, queue_time);
+
+        // Release the event.
         ::CORBA::remove_ref (event);
       }
     }
@@ -78,10 +85,6 @@ CUTS_Async_Event_Handler_T <COMPONENT, EVENTTYPE>::event_loop (void * param)
 template <typename COMPONENT, typename EVENTTYPE>
 void CUTS_Async_Event_Handler_T <COMPONENT, EVENTTYPE>::activate (void)
 {
-  // We may need to activate the event queue.
-  if (this->event_queue_.deactivated ())
-    this->event_queue_.activate ();
-
   // Make sure we have at least default number of threads spawned.
   if (this->thread_count () == 0)
     this->spawn_i (CUTS_DEFAULT_THREAD_COUNT);
@@ -99,13 +102,12 @@ void CUTS_Async_Event_Handler_T <COMPONENT, EVENTTYPE>::deactivate (void)
   {
     EVENTTYPE * ev = 0;
 
-    while (this->event_queue_.dequeue_head (ev) > 0)
+    while (this->event_queue_.dequeue (ev) > 0)
       ::CORBA::remove_ref (ev);
   }
 
   // Deactivate the <event_queue_> and wait all threads owned
   // by the manager to exit.
-  this->event_queue_.deactivate ();
   this->thread_count (0);
 }
 
@@ -117,7 +119,7 @@ void CUTS_Async_Event_Handler_T <COMPONENT, EVENTTYPE>::
 handle_event (EVENTTYPE * ev)
 {
   ::CORBA::add_ref (ev);
-  this->event_queue_.enqueue_tail (ev);
+  this->event_queue_.enqueue (ev);
 }
 
 //

@@ -1,3 +1,13 @@
+Thu Jan 18 05:21:30 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Async_Event_Handler_Queue_T.h:
+        * cuts/Async_Event_Handler_Queue_T.inl:
+        * cuts/Async_Event_Handler_Queue_T.cpp:
+        * cuts/Async_Event_Handler_T.h:
+        * cuts/Async_Event_Handler_T.cpp:
+        * cuts/CUTS.mpc:
+        * cuts/config.h:
+
 Wed Jan 17 03:05:14 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Async_Event_Handler_T.cpp:
