@@ -1,3 +1,10 @@
+Thu Jan 18 05:24:20 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/examples/SLICE.xme:
+
+          Added the proxy version of the SLICE assembly to the model.
+          It, however, is missing the necessary attribute values.
+
 Wed Jan 17 04:00:30 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/examples/SLICE.xme:
