@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{72A827CE-F751-42F6-8A3D-994B8A96235F}" cdate="Wed Jan 17 10:33:01 2007" mdate="Wed Jan 17 10:33:01 2007" version="" metaguid="{4BCE1B29-E208-41B9-A6C3-E4E31499AC7A}" metaversion="" metaname="PICML">
+<project guid="{87A0ADD1-0E0F-4A80-BE56-E7288E70A90C}" cdate="Wed Jan 17 10:33:01 2007" mdate="Wed Jan 17 10:33:01 2007" version="" metaguid="{4BCE1B29-E208-41B9-A6C3-E4E31499AC7A}" metaversion="" metaname="PICML">
 	<name>PICML</name>
 	<comment>SLICE scenario</comment>
 	<author>James H. Hill</author>
@@ -184,7 +184,7 @@
 					<attribute kind="VersionTag" status="meta">
 						<value></value>
 					</attribute>
-					<model id="id-0065-0000000a" kind="Component" role="Component" guid="{0BAC743F-2818-4088-A59D-F4DB7B2B3613}" relid="0x11" childrelidcntr="0x79">
+					<model id="id-0065-0000000a" kind="Component" role="Component" guid="{0BAC743F-2818-4088-A59D-F4DB7B2B3613}" relid="0x11" childrelidcntr="0x7c">
 						<name>ConfigOp</name>
 						<regnode name="PartRegs" status="undefined">
 							<value></value>
@@ -266,36 +266,6 @@
 							<regnode name="autorouterPref" isopaque="yes">
 								<value>NEWSnews</value>
 							</regnode>
-						</model>
-						<model id="id-0065-000000e2" kind="Action" role="Action" guid="{188332F4-C8CB-44f2-B10E-A1816A1D534A}" derivedfrom="id-0065-000000bb" isinstance="yes" isprimary="yes" relid="0x39" childrelidcntr="0x0">
-							<name>db_handle</name>
-							<regnode name="PartRegs" status="undefined">
-								<value></value>
-								<regnode name="Behavior" status="undefined">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>332,248</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<regnode name="autorouterPref" isopaque="yes">
-								<value>NEWSnews</value>
-							</regnode>
-							<attribute kind="LogAction" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="Repetitions">
-								<value>1</value>
-							</attribute>
-							<model id="id-0065-000000e3" kind="Property" role="Property" guid="{88FB19F8-CDEF-497d-98E9-9CD875947782}" derivedfrom="id-0065-000000bc" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-								<name>count</name>
-								<attribute kind="DataValue">
-									<value>25</value>
-								</attribute>
-								<reference id="id-0067-0000007d" kind="DataType" role="DataType" guid="{ADF410D5-2D65-4fee-A71F-67B72D285919}" derivedfrom="id-0067-00000063" isinstance="yes" isprimary="no" referred="id-0066-00000032" isbound="yes">
-									<name>LongInteger</name>
-								</reference>
-							</model>
 						</model>
 						<model id="id-0065-000000e8" kind="Action" role="Action" guid="{B74F94A4-D110-45f7-947C-3674E2416A91}" derivedfrom="id-0065-000000b0" isinstance="yes" isprimary="yes" relid="0x3d" childrelidcntr="0x0">
 							<name>cpu</name>
@@ -546,6 +516,42 @@
 								</attribute>
 								<reference id="id-0067-00000092" kind="DataType" role="DataType" guid="{90E4D1D3-D853-40e0-BBD1-19AC36138E09}" derivedfrom="id-0067-00000062" isinstance="yes" isprimary="no" referred="id-0066-00000032" isbound="yes">
 									<name>LongInteger</name>
+								</reference>
+							</model>
+						</model>
+						<model id="id-0065-000001f0" kind="Action" role="Action" guid="{50F78B37-0707-40fa-8347-1D5137877F40}" derivedfrom="id-0065-000000bd" isinstance="yes" isprimary="yes" relid="0x7a" childrelidcntr="0x0">
+							<name>db_handle</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Behavior" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>332,248</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="LogAction" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="Repetitions" status="meta">
+								<value>1</value>
+							</attribute>
+							<model id="id-0065-000001f1" kind="Property" role="Property" guid="{7A27AAC2-4F68-4749-82F9-D1AE4359FA69}" derivedfrom="id-0065-000000be" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+								<name>hostname</name>
+								<regnode name="PartRegs" status="undefined">
+									<value></value>
+									<regnode name="Behavior" status="undefined">
+										<value></value>
+										<regnode name="Position" isopaque="yes">
+											<value>13,13</value>
+										</regnode>
+									</regnode>
+								</regnode>
+								<attribute kind="DataValue">
+									<value>localhost</value>
+								</attribute>
+								<reference id="id-0067-00000179" kind="DataType" role="DataType" guid="{1945580A-8710-4cad-BEE0-770AC791A641}" derivedfrom="id-0067-00000064" isinstance="yes" isprimary="no" referred="id-0066-00000033" isbound="yes">
+									<name>String</name>
 								</reference>
 							</model>
 						</model>
@@ -920,14 +926,6 @@
 							<connpoint role="src" target="id-0065-0000000b"/>
 							<connpoint role="dst" target="id-0066-00000002"/>
 						</connection>
-						<connection id="id-0068-00000002" kind="Effect" role="Effect" guid="{CB597868-7801-4496-97DA-1DE836783EAA}" relid="0x3c">
-							<name></name>
-							<attribute kind="Postcondition" status="meta">
-								<value></value>
-							</attribute>
-							<connpoint role="src" target="id-0065-000000e2"/>
-							<connpoint role="dst" target="id-0066-00000003"/>
-						</connection>
 						<connection id="id-0068-00000003" kind="Transition" role="Transition" guid="{991E94B6-9BB9-4333-896D-4718D557C0D6}" relid="0x3e">
 							<name></name>
 							<attribute kind="Precondition" status="meta">
@@ -991,17 +989,6 @@
 							</attribute>
 							<connpoint role="src" target="id-0065-000000f7"/>
 							<connpoint role="dst" target="id-0066-00000007"/>
-						</connection>
-						<connection id="id-0068-0000000b" kind="Transition" role="Transition" guid="{BEDA6F5C-B1FB-491c-AFAF-2DD061566064}" relid="0x4d">
-							<name>Transition</name>
-							<regnode name="autorouterPref" isopaque="yes">
-								<value>Ew</value>
-							</regnode>
-							<attribute kind="Precondition" status="meta">
-								<value></value>
-							</attribute>
-							<connpoint role="dst" target="id-0065-000000e2"/>
-							<connpoint role="src" target="id-0066-00000006"/>
 						</connection>
 						<connection id="id-0068-0000000c" kind="Finish" role="Finish" guid="{190C23D1-EEEA-4412-8074-E12C20B8A0A1}" relid="0x4e">
 							<name>Finish</name>
@@ -1163,8 +1150,30 @@
 							<connpoint role="dst" target="id-0065-0000000d"/>
 							<connpoint role="src" target="id-0066-0000000f"/>
 						</connection>
+						<connection id="id-0068-0000028b" kind="Transition" role="Transition" guid="{13D8F59C-6EF5-49d8-8E80-66A49DBEAD56}" relid="0x7b">
+							<name>Transition</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>Ew</value>
+							</regnode>
+							<attribute kind="Precondition" status="meta">
+								<value></value>
+							</attribute>
+							<connpoint role="dst" target="id-0065-000001f0"/>
+							<connpoint role="src" target="id-0066-00000006"/>
+						</connection>
+						<connection id="id-0068-0000028f" kind="Effect" role="Effect" guid="{96AA368C-BE95-49c9-948F-405C50142BB3}" relid="0x7c">
+							<name>Effect</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>Ew</value>
+							</regnode>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+							<connpoint role="src" target="id-0065-000001f0"/>
+							<connpoint role="dst" target="id-0066-00000003"/>
+						</connection>
 					</model>
-					<model id="id-0065-0000000f" kind="Component" role="Component" guid="{BC669EBE-E9AD-4076-9214-61020F415F37}" relid="0x12" childrelidcntr="0x33">
+					<model id="id-0065-0000000f" kind="Component" role="Component" guid="{BC669EBE-E9AD-4076-9214-61020F415F37}" relid="0x12" childrelidcntr="0x3d">
 						<name>PlannerOne</name>
 						<regnode name="PartRegs" status="undefined">
 							<value></value>
@@ -1358,6 +1367,54 @@
 								</reference>
 							</model>
 						</model>
+						<model id="id-0065-000001f8" kind="InputAction" role="InputAction" guid="{D6BFD6C5-7BAE-4a6b-89A9-69FBA6730F56}" relid="0x35" childrelidcntr="0x0">
+							<name>activate</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Behavior" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>132,293</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</model>
+						<model id="id-0065-000001fc" kind="Action" role="Action" guid="{A9BBBE3D-A514-42a5-8A02-519244F76066}" derivedfrom="id-0065-000000bd" isinstance="yes" isprimary="yes" relid="0x37" childrelidcntr="0x0">
+							<name>db_handle</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Behavior" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>241,290</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="LogAction" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="Repetitions" status="meta">
+								<value>1</value>
+							</attribute>
+							<model id="id-0065-000001fd" kind="Property" role="Property" guid="{6B482BDD-0615-4c4a-B775-5E3D40E56707}" derivedfrom="id-0065-000000be" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+								<name>hostname</name>
+								<regnode name="PartRegs" status="undefined">
+									<value></value>
+									<regnode name="Behavior" status="undefined">
+										<value></value>
+										<regnode name="Position" isopaque="yes">
+											<value>13,13</value>
+										</regnode>
+									</regnode>
+								</regnode>
+								<attribute kind="DataValue">
+									<value>localhost</value>
+								</attribute>
+								<reference id="id-0067-0000017d" kind="DataType" role="DataType" guid="{B39F1318-42BA-4d95-9985-56C8AE6D7751}" derivedfrom="id-0067-00000064" isinstance="yes" isprimary="no" referred="id-0066-00000033" isbound="yes">
+									<name>String</name>
+								</reference>
+							</model>
+						</model>
 						<atom id="id-0066-00000010" kind="State" role="State" guid="{1AA6995D-B615-4565-92AF-BF8FBCCFF4E4}" relid="0x6">
 							<name></name>
 							<regnode name="PartRegs" status="undefined">
@@ -1494,6 +1551,42 @@
 							</regnode>
 							<regnode name="autorouterPref" isopaque="yes">
 								<value>NEWSnews</value>
+							</regnode>
+						</atom>
+						<atom id="id-0066-00000125" kind="Environment" role="Environment" guid="{2270745A-E2EF-48ce-90B6-640C49D71AD8}" relid="0x34">
+							<name>Environment</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Behavior" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>52,277</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</atom>
+						<atom id="id-0066-00000129" kind="State" role="State" guid="{CAB33133-E47B-4d04-84DF-1A28327C847F}" relid="0x38">
+							<name>State</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Behavior" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>191,289</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</atom>
+						<atom id="id-0066-0000012d" kind="State" role="State" guid="{876B3747-ADE3-454b-90FA-0EFB635F6C0A}" relid="0x39">
+							<name>State</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Behavior" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>282,289</value>
+									</regnode>
+								</regnode>
 							</regnode>
 						</atom>
 						<reference id="id-0067-00000004" kind="OutEventPort" role="OutEventPort" guid="{8956F987-54F3-489f-9E15-3E949595EC21}" relid="0x1" referred="id-0065-00000005">
@@ -1796,6 +1889,55 @@
 							<connpoint role="dst" target="id-0065-00000012"/>
 							<connpoint role="src" target="id-0066-00000018"/>
 						</connection>
+						<connection id="id-0068-00000293" kind="MultiInput" role="MultiInput" guid="{55089021-E261-41d5-8D89-C7E7C584AB83}" relid="0x36">
+							<name>MultiInput</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>Ew</value>
+							</regnode>
+							<connpoint role="dst" target="id-0065-000001f8"/>
+							<connpoint role="src" target="id-0066-00000125"/>
+						</connection>
+						<connection id="id-0068-00000297" kind="InputEffect" role="InputEffect" guid="{19407DC3-3764-4bcf-B0F5-1BEAC2133C64}" relid="0x3a">
+							<name>InputEffect</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>Ew</value>
+							</regnode>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+							<connpoint role="src" target="id-0065-000001f8"/>
+							<connpoint role="dst" target="id-0066-00000129"/>
+						</connection>
+						<connection id="id-0068-0000029b" kind="Transition" role="Transition" guid="{E8E0862F-5FA0-4b1b-8E74-630FCCEE8220}" relid="0x3b">
+							<name>Transition</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>Ew</value>
+							</regnode>
+							<attribute kind="Precondition" status="meta">
+								<value></value>
+							</attribute>
+							<connpoint role="dst" target="id-0065-000001fc"/>
+							<connpoint role="src" target="id-0066-00000129"/>
+						</connection>
+						<connection id="id-0068-0000029f" kind="Effect" role="Effect" guid="{88A08D06-E379-4f28-9628-056EC4799BE2}" relid="0x3c">
+							<name>Effect</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>Ew</value>
+							</regnode>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+							<connpoint role="src" target="id-0065-000001fc"/>
+							<connpoint role="dst" target="id-0066-0000012d"/>
+						</connection>
+						<connection id="id-0068-000002a3" kind="Finish" role="Finish" guid="{D55B20DB-7219-47ef-9689-454EA4BBAC8A}" relid="0x3d">
+							<name>Finish</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>Nn</value>
+							</regnode>
+							<connpoint role="dst" target="id-0065-000001f8"/>
+							<connpoint role="src" target="id-0066-0000012d"/>
+						</connection>
 					</model>
 					<model id="id-0065-00000014" kind="Component" role="Component" guid="{659B96AC-FC0D-44f4-B0EF-B3455F0C95EB}" relid="0x13" childrelidcntr="0x2a">
 						<name>PlannerTwo</name>
@@ -2007,8 +2149,8 @@
 										</regnode>
 									</regnode>
 								</regnode>
-								<attribute kind="DataValue" status="meta">
-									<value></value>
+								<attribute kind="DataValue">
+									<value>localhost</value>
 								</attribute>
 								<reference id="id-0067-000000b9" kind="DataType" role="DataType" guid="{BE41151D-D3FA-4c3c-B370-C9CD466C8606}" derivedfrom="id-0067-00000064" isinstance="yes" isprimary="no" referred="id-0066-00000033" isbound="yes">
 									<name>String</name>
@@ -2964,7 +3106,7 @@
 							<connpoint role="src" target="id-0067-00000009"/>
 						</connection>
 					</model>
-					<model id="id-0065-0000001d" kind="Component" role="Component" guid="{F19B9DC6-88EC-4988-B2D7-B38FE08DEC42}" relid="0x15" childrelidcntr="0x25">
+					<model id="id-0065-0000001d" kind="Component" role="Component" guid="{F19B9DC6-88EC-4988-B2D7-B38FE08DEC42}" relid="0x15" childrelidcntr="0x2f">
 						<name>Sensor</name>
 						<regnode name="PartRegs" status="undefined">
 							<value></value>
@@ -3149,6 +3291,54 @@
 								<value>30</value>
 							</attribute>
 						</model>
+						<model id="id-0065-00000204" kind="InputAction" role="InputAction" guid="{783DF11A-21EB-435d-A1F5-14E9FA5D4761}" relid="0x27" childrelidcntr="0x0">
+							<name>activate</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Behavior" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>160,349</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</model>
+						<model id="id-0065-0000020a" kind="Action" role="Action" guid="{FE33FD12-5454-4412-83E3-3519D823DBC8}" derivedfrom="id-0065-000000bd" isinstance="yes" isprimary="yes" relid="0x2a" childrelidcntr="0x0">
+							<name>db_handle</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Behavior" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>269,346</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="LogAction" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="Repetitions" status="meta">
+								<value>1</value>
+							</attribute>
+							<model id="id-0065-0000020b" kind="Property" role="Property" guid="{CBADCB0F-5567-4848-A8F0-CD84BBDE259E}" derivedfrom="id-0065-000000be" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+								<name>hostname</name>
+								<regnode name="PartRegs" status="undefined">
+									<value></value>
+									<regnode name="Behavior" status="undefined">
+										<value></value>
+										<regnode name="Position" isopaque="yes">
+											<value>13,13</value>
+										</regnode>
+									</regnode>
+								</regnode>
+								<attribute kind="DataValue">
+									<value>localhost</value>
+								</attribute>
+								<reference id="id-0067-00000181" kind="DataType" role="DataType" guid="{DC284A4B-661E-4fb9-BB2D-B51064E9F5E9}" derivedfrom="id-0067-00000064" isinstance="yes" isprimary="no" referred="id-0066-00000033" isbound="yes">
+									<name>String</name>
+								</reference>
+							</model>
+						</model>
 						<atom id="id-0066-0000002b" kind="State" role="State" guid="{C4980EF5-B387-4516-9F2C-FB7DACA66A43}" relid="0x4">
 							<name></name>
 							<regnode name="PartRegs" status="undefined">
@@ -3252,6 +3442,42 @@
 							</regnode>
 							<regnode name="autorouterPref" isopaque="yes">
 								<value>NEWSnews</value>
+							</regnode>
+						</atom>
+						<atom id="id-0066-00000131" kind="Environment" role="Environment" guid="{02363390-5EA2-498d-903F-6FA984A7105B}" relid="0x26">
+							<name>Environment</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Behavior" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>86,338</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</atom>
+						<atom id="id-0066-00000137" kind="State" role="State" guid="{A4837D18-67FA-4246-AC0B-8A1CE8BDFE2D}" relid="0x29">
+							<name>State</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Behavior" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>219,345</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</atom>
+						<atom id="id-0066-0000013d" kind="State" role="State" guid="{4F209290-C64A-44b7-9DCD-87230F4ADE66}" relid="0x2b">
+							<name>State</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Behavior" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>317,345</value>
+									</regnode>
+								</regnode>
 							</regnode>
 						</atom>
 						<reference id="id-0067-0000000b" kind="InEventPort" role="InEventPort" guid="{104B17AA-66B7-4065-BE10-85CBCE45A5AA}" relid="0x1" referred="id-0065-00000005">
@@ -3488,6 +3714,55 @@
 							<connpoint role="dst" target="id-0065-0000001e"/>
 							<connpoint role="src" target="id-0066-00000030"/>
 						</connection>
+						<connection id="id-0068-000002a7" kind="MultiInput" role="MultiInput" guid="{B64F1B86-236F-4927-9F30-FC8BA8F8635A}" relid="0x28">
+							<name>MultiInput</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>Ew</value>
+							</regnode>
+							<connpoint role="dst" target="id-0065-00000204"/>
+							<connpoint role="src" target="id-0066-00000131"/>
+						</connection>
+						<connection id="id-0068-000002ad" kind="InputEffect" role="InputEffect" guid="{30B6D8BA-4E1F-4cfd-B5C9-DA541D04B05F}" relid="0x2c">
+							<name>InputEffect</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>Ew</value>
+							</regnode>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+							<connpoint role="src" target="id-0065-00000204"/>
+							<connpoint role="dst" target="id-0066-00000137"/>
+						</connection>
+						<connection id="id-0068-000002b3" kind="Transition" role="Transition" guid="{F0E7430E-791A-43dc-BFC8-439B310F6EDE}" relid="0x2d">
+							<name>Transition</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>Ew</value>
+							</regnode>
+							<attribute kind="Precondition" status="meta">
+								<value></value>
+							</attribute>
+							<connpoint role="dst" target="id-0065-0000020a"/>
+							<connpoint role="src" target="id-0066-00000137"/>
+						</connection>
+						<connection id="id-0068-000002b9" kind="Effect" role="Effect" guid="{B33011AE-3E01-4d36-83C0-0C68F1A7B31D}" relid="0x2e">
+							<name>Effect</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>Ew</value>
+							</regnode>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+							<connpoint role="src" target="id-0065-0000020a"/>
+							<connpoint role="dst" target="id-0066-0000013d"/>
+						</connection>
+						<connection id="id-0068-000002bf" kind="Finish" role="Finish" guid="{FA4512D7-585D-4431-BE57-3D9C31A8181B}" relid="0x2f">
+							<name>Finish</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>Nn</value>
+							</regnode>
+							<connpoint role="dst" target="id-0065-00000204"/>
+							<connpoint role="src" target="id-0066-0000013d"/>
+						</connection>
 					</model>
 					<model id="id-0065-00000020" kind="ComponentFactory" role="ComponentFactory" guid="{CD7E8932-BFFA-4f35-BC40-21A726BF5416}" relid="0x16" childrelidcntr="0x0">
 						<name>ConfigOp_Home</name>
@@ -3650,7 +3925,7 @@
 			<name>CoWorkEr_ComponentImplementations</name>
 			<model id="id-0065-00000025" kind="ComponentImplementationContainer" guid="{A698119A-20C8-443a-87B6-ED9DCAF4432D}" relid="0x1" childrelidcntr="0x1">
 				<name>SLICE</name>
-				<model id="id-0065-00000026" kind="ComponentAssembly" role="ComponentAssembly" guid="{30574F26-E3BE-421e-A918-8F2541AFCFF0}" relid="0x1" childrelidcntr="0x4c">
+				<model id="id-0065-00000026" kind="ComponentAssembly" role="ComponentAssembly" guid="{30574F26-E3BE-421e-A918-8F2541AFCFF0}" relid="0x1" childrelidcntr="0x60">
 					<name>SLICE</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -3662,7 +3937,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>337C0ED9-0F9D-4165-9FEB-7AE8F202061A</value>
+						<value>EE36F432-B6F9-402E-8C35-8CDBFBE187B5</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -3834,24 +4109,6 @@
 								</reference>
 							</model>
 						</model>
-						<model id="id-0065-00000192" kind="Action" role="Action" guid="{11E201F3-45ED-41f2-9C94-63F2BF5CF1CD}" derivedfrom="id-0065-000000e6" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-							<name>db_handle</name>
-							<attribute kind="LogAction" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="Repetitions" status="inherited">
-								<value>1</value>
-							</attribute>
-							<model id="id-0065-00000193" kind="Property" role="Property" guid="{3215A3EC-BD1D-42d0-948D-DF3B886B5CA3}" derivedfrom="id-0065-000000e7" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-								<name>count</name>
-								<attribute kind="DataValue" status="inherited">
-									<value>25</value>
-								</attribute>
-								<reference id="id-0067-00000122" kind="DataType" role="DataType" guid="{B8114E71-92E3-4f4a-81B6-C59829F2F96E}" derivedfrom="id-0067-0000007f" isinstance="yes" isprimary="no" referred="id-0066-00000032" isbound="yes">
-									<name>LongInteger</name>
-								</reference>
-							</model>
-						</model>
 						<model id="id-0065-00000194" kind="Action" role="Action" guid="{63E57E35-2AC3-47fe-8424-1A62E697AEBF}" derivedfrom="id-0065-000000fb" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 							<name>heap</name>
 							<attribute kind="LogAction" status="meta">
@@ -3875,6 +4132,24 @@
 						</model>
 						<model id="id-0065-00000197" kind="InputAction" role="InputAction" guid="{B7D7BA7A-C85F-46d9-A25E-CBAE8CCF3402}" derivedfrom="id-0065-000000cc" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 							<name></name>
+						</model>
+						<model id="id-0065-000001f6" kind="Action" role="Action" guid="{F94080DB-889A-49f7-8BC1-AB26D88DD24A}" derivedfrom="id-0065-000001f4" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>db_handle</name>
+							<attribute kind="LogAction" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="Repetitions" status="meta">
+								<value>1</value>
+							</attribute>
+							<model id="id-0065-000001f7" kind="Property" role="Property" guid="{A43BCE19-E1DD-4fe4-86DE-190AA2E8EA35}" derivedfrom="id-0065-000001f5" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+								<name>hostname</name>
+								<attribute kind="DataValue" status="inherited">
+									<value>localhost</value>
+								</attribute>
+								<reference id="id-0067-0000017c" kind="DataType" role="DataType" guid="{6FE300AC-A0BB-45e1-A939-C257B0540F0F}" derivedfrom="id-0067-0000017b" isinstance="yes" isprimary="no" referred="id-0066-00000033" isbound="yes">
+									<name>String</name>
+								</reference>
+							</model>
 						</model>
 						<atom id="id-0066-000000e2" kind="State" role="State" guid="{A9D497BF-95A5-45c3-AD5C-4EEAC5551DD6}" derivedfrom="id-0066-000000bd" isinstance="yes" isprimary="no">
 							<name></name>
@@ -4068,12 +4343,6 @@
 								<value></value>
 							</attribute>
 						</connection>
-						<connection isbound="yes" id="id-0068-000001ed" kind="Transition" role="Transition" guid="{1A50A347-B468-45d5-8DB9-4291C1655DCA}" derivedfrom="id-0068-00000195" isinstance="yes" isprimary="no">
-							<name>Transition</name>
-							<attribute kind="Precondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
 						<connection isbound="yes" id="id-0068-000001ee" kind="Effect" role="Effect" guid="{1BF550DF-E6C0-4d0e-8BC9-483E06779F29}" derivedfrom="id-0068-000001a1" isinstance="yes" isprimary="no">
 							<name></name>
 							<attribute kind="Postcondition" status="meta">
@@ -4167,15 +4436,21 @@
 								<value></value>
 							</attribute>
 						</connection>
-						<connection isbound="yes" id="id-0068-000001ff" kind="Effect" role="Effect" guid="{4DC37817-8B4B-456d-8F3C-88ED079C4BFB}" derivedfrom="id-0068-0000018c" isinstance="yes" isprimary="no">
-							<name></name>
-							<attribute kind="Postcondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
 						<connection isbound="yes" id="id-0068-00000200" kind="Transition" role="Transition" guid="{7E1A5121-1499-4ff7-A629-05DEC4CD797E}" derivedfrom="id-0068-0000018f" isinstance="yes" isprimary="no">
 							<name></name>
 							<attribute kind="Precondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-0000028e" kind="Transition" role="Transition" guid="{5220862A-0E67-4524-9D01-AC764222F14C}" derivedfrom="id-0068-0000028d" isinstance="yes" isprimary="no">
+							<name>Transition</name>
+							<attribute kind="Precondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000292" kind="Effect" role="Effect" guid="{D1CD8241-125E-4104-86BC-9A04B7EFC3A3}" derivedfrom="id-0068-00000291" isinstance="yes" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
 								<value></value>
 							</attribute>
 						</connection>
@@ -4890,6 +5165,27 @@
 						<model id="id-0065-000001bc" kind="InputAction" role="InputAction" guid="{EEE313D8-58DA-425e-93C2-D23A32CA95E5}" derivedfrom="id-0065-000000c3" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 							<name>SendCommand</name>
 						</model>
+						<model id="id-0065-000001fa" kind="InputAction" role="InputAction" guid="{77C743E1-CC9E-4ce5-8783-838F78976878}" derivedfrom="id-0065-000001f9" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>activate</name>
+						</model>
+						<model id="id-0065-00000200" kind="Action" role="Action" guid="{DD797DE5-3E58-4a73-89D7-1B701EF8A7AD}" derivedfrom="id-0065-000001fe" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>db_handle</name>
+							<attribute kind="LogAction" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="Repetitions" status="meta">
+								<value>1</value>
+							</attribute>
+							<model id="id-0065-00000201" kind="Property" role="Property" guid="{AACA0339-D987-47b3-A272-397C8BCE859D}" derivedfrom="id-0065-000001ff" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+								<name>hostname</name>
+								<attribute kind="DataValue" status="inherited">
+									<value>localhost</value>
+								</attribute>
+								<reference id="id-0067-0000017f" kind="DataType" role="DataType" guid="{40097666-0A6C-4e33-991A-B904251F2A4C}" derivedfrom="id-0067-0000017e" isinstance="yes" isprimary="no" referred="id-0066-00000033" isbound="yes">
+									<name>String</name>
+								</reference>
+							</model>
+						</model>
 						<atom id="id-0066-00000103" kind="State" role="State" guid="{6E00A0E4-F645-46d8-82BC-A794522E3F43}" derivedfrom="id-0066-000000b9" isinstance="yes" isprimary="no">
 							<name></name>
 						</atom>
@@ -4922,6 +5218,15 @@
 						</atom>
 						<atom id="id-0066-0000010b" kind="State" role="State" guid="{542A64FE-94E8-4c26-B9FD-BFF1FF4373A9}" derivedfrom="id-0066-000000b1" isinstance="yes" isprimary="no">
 							<name></name>
+						</atom>
+						<atom id="id-0066-00000127" kind="Environment" role="Environment" guid="{85073247-0530-412b-BB01-3D0433C96B62}" derivedfrom="id-0066-00000126" isinstance="yes" isprimary="no">
+							<name>Environment</name>
+						</atom>
+						<atom id="id-0066-0000012b" kind="State" role="State" guid="{1E56256B-D3D4-4af9-91C1-E40B5F400FBF}" derivedfrom="id-0066-0000012a" isinstance="yes" isprimary="no">
+							<name>State</name>
+						</atom>
+						<atom id="id-0066-0000012f" kind="State" role="State" guid="{257BF0D8-EB98-44da-8A03-E7A5AFA20726}" derivedfrom="id-0066-0000012e" isinstance="yes" isprimary="no">
+							<name>State</name>
 						</atom>
 						<reference id="id-0067-00000136" kind="InEventPort" role="InEventPort" guid="{B3E7592B-10DD-4b82-A4D6-846AE81F2864}" derivedfrom="id-0067-00000067" isinstance="yes" isprimary="no" referred="id-0065-00000007" isbound="yes">
 							<name>TrackEvent</name>
@@ -5115,6 +5420,30 @@
 								<value></value>
 							</attribute>
 						</connection>
+						<connection isbound="yes" id="id-0068-00000295" kind="MultiInput" role="MultiInput" guid="{3B6CD4E9-4790-4e0a-9ADD-E5C794931F0E}" derivedfrom="id-0068-00000294" isinstance="yes" isprimary="no">
+							<name>MultiInput</name>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000299" kind="InputEffect" role="InputEffect" guid="{C1DC2088-1EB7-416a-901B-93E470EFF095}" derivedfrom="id-0068-00000298" isinstance="yes" isprimary="no">
+							<name>InputEffect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-0000029d" kind="Transition" role="Transition" guid="{1B73FCDB-D8EF-423c-83E4-2D1651F7DD21}" derivedfrom="id-0068-0000029c" isinstance="yes" isprimary="no">
+							<name>Transition</name>
+							<attribute kind="Precondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002a1" kind="Effect" role="Effect" guid="{44312B15-DBAD-41aa-8BE4-C20BDE62AB74}" derivedfrom="id-0068-000002a0" isinstance="yes" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002a5" kind="Finish" role="Finish" guid="{81CC55BA-3CF9-4d16-957C-F3D9F6A142DB}" derivedfrom="id-0068-000002a4" isinstance="yes" isprimary="no">
+							<name>Finish</name>
+						</connection>
 					</model>
 					<model id="id-0065-000001bd" kind="Component" role="Component" guid="{4B041836-2216-49ba-8D7C-315B443458F4}" derivedfrom="id-0065-000000dc" isinstance="yes" isprimary="yes" relid="0x34" childrelidcntr="0x0">
 						<name>PlannerTwo</name>
@@ -5149,8 +5478,8 @@
 							</attribute>
 							<model id="id-0065-000001bf" kind="Property" role="Property" guid="{BE34A8B5-0181-473f-874C-D3E41C25B14F}" derivedfrom="id-0065-00000145" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 								<name>hostname</name>
-								<attribute kind="DataValue" status="meta">
-									<value></value>
+								<attribute kind="DataValue" status="inherited">
+									<value>localhost</value>
 								</attribute>
 								<reference id="id-0067-00000147" kind="DataType" role="DataType" guid="{1E4CFA42-F87C-48f0-A2A5-F1D15B448139}" derivedfrom="id-0067-000000ba" isinstance="yes" isprimary="no" referred="id-0066-00000033" isbound="yes">
 									<name>String</name>
@@ -5550,6 +5879,27 @@
 						<model id="id-0065-000001d6" kind="InputAction" role="InputAction" guid="{5C999ED1-6EAD-4254-981C-11D842F53406}" derivedfrom="id-0065-000000d1" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 							<name></name>
 						</model>
+						<model id="id-0065-00000208" kind="InputAction" role="InputAction" guid="{F651B085-46AB-4b15-9777-F7B03E88F48C}" derivedfrom="id-0065-00000207" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>activate</name>
+						</model>
+						<model id="id-0065-00000212" kind="Action" role="Action" guid="{850A4422-D6B1-46a5-B956-99E9109EB26D}" derivedfrom="id-0065-00000210" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>db_handle</name>
+							<attribute kind="LogAction" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="Repetitions" status="meta">
+								<value>1</value>
+							</attribute>
+							<model id="id-0065-00000213" kind="Property" role="Property" guid="{1886A21B-E07B-4889-8B4B-8CD65909358B}" derivedfrom="id-0065-00000211" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+								<name>hostname</name>
+								<attribute kind="DataValue" status="inherited">
+									<value>localhost</value>
+								</attribute>
+								<reference id="id-0067-00000185" kind="DataType" role="DataType" guid="{2952D716-D887-4d69-ADF3-0EAD44F90992}" derivedfrom="id-0067-00000184" isinstance="yes" isprimary="no" referred="id-0066-00000033" isbound="yes">
+									<name>String</name>
+								</reference>
+							</model>
+						</model>
 						<atom id="id-0066-00000115" kind="State" role="State" guid="{3365058C-5F6A-4dce-AC5D-74F3EFAAEAB0}" derivedfrom="id-0066-000000cc" isinstance="yes" isprimary="no">
 							<name></name>
 						</atom>
@@ -5570,6 +5920,15 @@
 						</atom>
 						<atom id="id-0066-0000011b" kind="State" role="State" guid="{77B402F7-9824-4e9d-878D-34C1032A300D}" derivedfrom="id-0066-000000ce" isinstance="yes" isprimary="no">
 							<name></name>
+						</atom>
+						<atom id="id-0066-00000134" kind="Environment" role="Environment" guid="{2807DEDB-98E1-4908-8CFE-18CF7DBEF612}" derivedfrom="id-0066-00000132" isinstance="yes" isprimary="no">
+							<name>Environment</name>
+						</atom>
+						<atom id="id-0066-0000013b" kind="State" role="State" guid="{B584E5DB-8ACE-4db1-A749-1E6D00E2D229}" derivedfrom="id-0066-0000013a" isinstance="yes" isprimary="no">
+							<name>State</name>
+						</atom>
+						<atom id="id-0066-00000141" kind="State" role="State" guid="{EF577393-2240-49f7-AE5B-FD472F5B18CC}" derivedfrom="id-0066-00000140" isinstance="yes" isprimary="no">
+							<name>State</name>
 						</atom>
 						<reference id="id-0067-0000014c" kind="WorkerType" role="WorkerType" guid="{3C506636-EA73-409c-BE8E-C13D99619A62}" derivedfrom="id-0067-000000ec" isinstance="yes" isprimary="no" referred="id-0065-000000b3" isbound="yes">
 							<name>heap</name>
@@ -5727,6 +6086,30 @@
 								<value></value>
 							</attribute>
 						</connection>
+						<connection isbound="yes" id="id-0068-000002ab" kind="MultiInput" role="MultiInput" guid="{A2FC41F5-1D3A-4c40-AEEC-CB4072822B05}" derivedfrom="id-0068-000002aa" isinstance="yes" isprimary="no">
+							<name>MultiInput</name>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002b1" kind="InputEffect" role="InputEffect" guid="{B2E13531-24AC-49e0-8EDD-3B7AD5080D23}" derivedfrom="id-0068-000002b0" isinstance="yes" isprimary="no">
+							<name>InputEffect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002b7" kind="Transition" role="Transition" guid="{EE8324D5-229E-43b4-8809-73C096927FDB}" derivedfrom="id-0068-000002b6" isinstance="yes" isprimary="no">
+							<name>Transition</name>
+							<attribute kind="Precondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002bd" kind="Effect" role="Effect" guid="{A7AE408C-4C6A-4617-A3D6-5F34D14C20DA}" derivedfrom="id-0068-000002bc" isinstance="yes" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002c3" kind="Finish" role="Finish" guid="{9C5EE93F-404D-4b76-AE62-46EFADA2E96F}" derivedfrom="id-0068-000002c2" isinstance="yes" isprimary="no">
+							<name>Finish</name>
+						</connection>
 					</model>
 					<model id="id-0065-000001d7" kind="Component" role="Component" guid="{7260EF59-77C8-419d-BD1D-05F080DAEA84}" derivedfrom="id-0065-000000d0" isinstance="yes" isprimary="yes" relid="0x36" childrelidcntr="0x0">
 						<name>Sensor_Main</name>
@@ -5841,6 +6224,27 @@
 						<model id="id-0065-000001e2" kind="InputAction" role="InputAction" guid="{0018C663-08E7-4d7b-AF63-04DBE5A80B02}" derivedfrom="id-0065-000000d1" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 							<name></name>
 						</model>
+						<model id="id-0065-00000209" kind="InputAction" role="InputAction" guid="{24EAC582-DDB8-4126-993E-1BF9AE597AD0}" derivedfrom="id-0065-00000207" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>activate</name>
+						</model>
+						<model id="id-0065-00000214" kind="Action" role="Action" guid="{526D33D3-2503-42e4-8D85-1EEFCBB4BF13}" derivedfrom="id-0065-00000210" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>db_handle</name>
+							<attribute kind="LogAction" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="Repetitions" status="meta">
+								<value>1</value>
+							</attribute>
+							<model id="id-0065-00000215" kind="Property" role="Property" guid="{070797B6-0AFC-4a82-B624-18E23608F8E8}" derivedfrom="id-0065-00000211" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+								<name>hostname</name>
+								<attribute kind="DataValue" status="inherited">
+									<value>localhost</value>
+								</attribute>
+								<reference id="id-0067-00000186" kind="DataType" role="DataType" guid="{FEA90449-EF8F-4d52-AB7E-A352FF968CD0}" derivedfrom="id-0067-00000184" isinstance="yes" isprimary="no" referred="id-0066-00000033" isbound="yes">
+									<name>String</name>
+								</reference>
+							</model>
+						</model>
 						<atom id="id-0066-0000011c" kind="State" role="State" guid="{A5246573-C323-435f-9734-5EFDC3B80195}" derivedfrom="id-0066-000000cc" isinstance="yes" isprimary="no">
 							<name></name>
 						</atom>
@@ -5861,6 +6265,15 @@
 						</atom>
 						<atom id="id-0066-00000122" kind="State" role="State" guid="{1E061338-BC1A-4d6b-A24A-1D38999C0E65}" derivedfrom="id-0066-000000ce" isinstance="yes" isprimary="no">
 							<name></name>
+						</atom>
+						<atom id="id-0066-00000133" kind="Environment" role="Environment" guid="{A60AE572-850B-4fbf-8E70-478E3F87F5C5}" derivedfrom="id-0066-00000132" isinstance="yes" isprimary="no">
+							<name>Environment</name>
+						</atom>
+						<atom id="id-0066-0000013c" kind="State" role="State" guid="{885A7B6C-7557-4a3f-9A32-118C29B083A3}" derivedfrom="id-0066-0000013a" isinstance="yes" isprimary="no">
+							<name>State</name>
+						</atom>
+						<atom id="id-0066-00000142" kind="State" role="State" guid="{A9B516B0-4E0B-47ea-89D6-C85DB5E67C6F}" derivedfrom="id-0066-00000140" isinstance="yes" isprimary="no">
+							<name>State</name>
 						</atom>
 						<reference id="id-0067-00000156" kind="WorkerType" role="WorkerType" guid="{C07778DB-B744-41b1-8DB7-9E1BEDFEECEF}" derivedfrom="id-0067-000000ec" isinstance="yes" isprimary="no" referred="id-0065-000000b3" isbound="yes">
 							<name>heap</name>
@@ -6018,6 +6431,30 @@
 								<value></value>
 							</attribute>
 						</connection>
+						<connection isbound="yes" id="id-0068-000002ac" kind="MultiInput" role="MultiInput" guid="{D6BC6392-7430-4d8d-A078-376D75B4D268}" derivedfrom="id-0068-000002aa" isinstance="yes" isprimary="no">
+							<name>MultiInput</name>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002b2" kind="InputEffect" role="InputEffect" guid="{94932568-B66E-4119-ACCC-3EAC59F50BA6}" derivedfrom="id-0068-000002b0" isinstance="yes" isprimary="no">
+							<name>InputEffect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002b8" kind="Transition" role="Transition" guid="{ABE06AEA-4CB3-4adb-BC52-0EBD2114B8A8}" derivedfrom="id-0068-000002b6" isinstance="yes" isprimary="no">
+							<name>Transition</name>
+							<attribute kind="Precondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002be" kind="Effect" role="Effect" guid="{5F1FC79B-BEEA-4a3f-BD5E-0543401A151B}" derivedfrom="id-0068-000002bc" isinstance="yes" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002c4" kind="Finish" role="Finish" guid="{0E70670F-8355-4531-AC63-A522D5B19065}" derivedfrom="id-0068-000002c2" isinstance="yes" isprimary="no">
+							<name>Finish</name>
+						</connection>
 					</model>
 					<model id="id-0065-000001e3" kind="Component" role="Component" guid="{9EB451B6-2701-4258-B36A-0B340ED0DCD2}" derivedfrom="id-0065-00000050" isinstance="yes" isprimary="yes" relid="0x45" childrelidcntr="0x0">
 						<name>Benchmark_Data_Collector</name>
@@ -6026,7 +6463,7 @@
 							<regnode name="Packaging" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>579,61</value>
+									<value>544,61</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -6101,6 +6538,222 @@
 							<attribute kind="optional" status="meta">
 								<value>false</value>
 							</attribute>
+						</reference>
+					</model>
+					<model id="id-0065-000001e7" kind="Property" role="Property" guid="{5E88855B-98E7-4902-89F7-3F6EAB5F3EDF}" relid="0x4d" childrelidcntr="0x1">
+						<name>cuts_proxy_impl</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Packaging" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>156,114</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="DataValue">
+							<value>Sensor_exec:create_SLICE_Sensor_Impl</value>
+						</attribute>
+						<reference id="id-0067-00000170" kind="DataType" role="DataType" guid="{A83A0640-6A49-4fcb-8F66-55581C74076B}" relid="0x1" referred="id-0066-00000033">
+							<name>String</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Packaging" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>312,165</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</reference>
+					</model>
+					<model id="id-0065-000001e9" kind="Property" role="Property" guid="{95C8E2F6-ED4B-40bf-854A-A92AAC48408F}" relid="0x50" childrelidcntr="0x1">
+						<name>cuts_proxy_impl</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Packaging" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>69,454</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="DataValue">
+							<value>Sensor_exec:create_SLICE_Sensor_Impl</value>
+						</attribute>
+						<reference id="id-0067-00000172" kind="DataType" role="DataType" guid="{40FA36AC-67C8-4c0a-A6B7-215C35313AEA}" relid="0x1" referred="id-0066-00000033">
+							<name>String</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Packaging" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>312,165</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</reference>
+					</model>
+					<model id="id-0065-000001ea" kind="Property" role="Property" guid="{C6E2C712-2A46-4b6f-92E6-ED525435DF36}" relid="0x51" childrelidcntr="0x1">
+						<name>cuts_proxy_impl</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Packaging" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>335,412</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="DataValue">
+							<value>PlannerOne_exec:create_SLICE_PlannerOne_Impl</value>
+						</attribute>
+						<reference id="id-0067-00000173" kind="DataType" role="DataType" guid="{E19C4980-37E8-4b4e-989F-3EADDE3009A9}" relid="0x1" referred="id-0066-00000033">
+							<name>String</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Packaging" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>312,165</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</reference>
+					</model>
+					<model id="id-0065-000001eb" kind="Property" role="Property" guid="{083D5DF1-995A-4e74-88CD-51423162E111}" relid="0x52" childrelidcntr="0x1">
+						<name>cuts_proxy_impl</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Packaging" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>580,412</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="DataValue">
+							<value>PlannerTwo_exec:create_SLICE_PlannerTwo_Impl</value>
+						</attribute>
+						<reference id="id-0067-00000174" kind="DataType" role="DataType" guid="{8CE5A991-C28C-4b46-A302-CC57413A6516}" relid="0x1" referred="id-0066-00000033">
+							<name>String</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Packaging" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>312,165</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</reference>
+					</model>
+					<model id="id-0065-000001ec" kind="Property" role="Property" guid="{CB27D755-4B82-438f-823E-6B1E230F2D7B}" relid="0x53" childrelidcntr="0x1">
+						<name>cuts_proxy_impl</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Packaging" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>1014,104</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="DataValue">
+							<value>Effector_exec:create_SLICE_Effector_Impl</value>
+						</attribute>
+						<reference id="id-0067-00000175" kind="DataType" role="DataType" guid="{81A24DDC-921D-4c2d-85F7-A2B14048DBC8}" relid="0x1" referred="id-0066-00000033">
+							<name>String</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Packaging" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>312,165</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</reference>
+					</model>
+					<model id="id-0065-000001ed" kind="Property" role="Property" guid="{9C2382C7-946E-4d08-9FFB-38F692D24ACF}" relid="0x54" childrelidcntr="0x1">
+						<name>cuts_proxy_impl</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Packaging" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>1014,468</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="DataValue">
+							<value>Effector_exec:create_SLICE_Effector_Impl</value>
+						</attribute>
+						<reference id="id-0067-00000176" kind="DataType" role="DataType" guid="{656A059A-FD3F-45a5-936D-5BE1C6924003}" relid="0x1" referred="id-0066-00000033">
+							<name>String</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Packaging" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>312,165</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</reference>
+					</model>
+					<model id="id-0065-000001ee" kind="Property" role="Property" guid="{7355E798-D4A2-4d91-A0B8-E6D12285BA56}" relid="0x55" childrelidcntr="0x1">
+						<name>cuts_proxy_impl</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Packaging" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>790,412</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="DataValue">
+							<value>ConfigOp_exec:create_SLICE_ConfigOp_Impl</value>
+						</attribute>
+						<reference id="id-0067-00000177" kind="DataType" role="DataType" guid="{F2A47213-EC89-443a-8C18-65A90DA81805}" relid="0x1" referred="id-0066-00000033">
+							<name>String</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Packaging" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>312,165</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</reference>
+					</model>
+					<model id="id-0065-000001ef" kind="Property" role="Property" guid="{320263F3-A573-45c9-8C2E-FC9CE59B96A7}" relid="0x5f" childrelidcntr="0x1">
+						<name>timeout</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Packaging" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>776,76</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="DataValue">
+							<value>30</value>
+						</attribute>
+						<reference id="id-0067-00000178" kind="DataType" role="DataType" guid="{D9906A82-D44F-4be9-9368-0E400D338017}" relid="0x1" referred="id-0066-00000032">
+							<name>LongInteger</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Packaging" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>382,137</value>
+									</regnode>
+								</regnode>
+							</regnode>
 						</reference>
 					</model>
 					<atom id="id-0066-00000123" kind="PublishConnector" role="PublishConnector" guid="{FB1AB620-218D-4396-93A7-EC6C4EE13E2B}" relid="0x37">
@@ -6246,6 +6899,70 @@
 						<connpoint role="src" target="id-0067-0000012b"/>
 						<connpoint role="dst" target="id-0067-00000161"/>
 					</connection>
+					<connection id="id-0068-0000027e" kind="AttributeValue" role="AttributeValue" guid="{298AA7C6-3953-4b76-A1ED-DD718B9D85EC}" relid="0x4e">
+						<name>AttributeValue</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>w</value>
+						</regnode>
+						<connpoint role="src" target="id-0065-000001d9"/>
+						<connpoint role="dst" target="id-0065-000001e7"/>
+					</connection>
+					<connection id="id-0068-0000027f" kind="AttributeValue" role="AttributeValue" guid="{FAB4E9E6-AF3B-4894-BCDA-F8DE5ABEB6F9}" relid="0x56">
+						<name>AttributeValue</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>w</value>
+						</regnode>
+						<connpoint role="src" target="id-0065-0000019f"/>
+						<connpoint role="dst" target="id-0065-000001ec"/>
+					</connection>
+					<connection id="id-0068-00000280" kind="AttributeValue" role="AttributeValue" guid="{B37D4359-96E7-4b30-8096-A41EEA89C542}" relid="0x57">
+						<name>AttributeValue</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>w</value>
+						</regnode>
+						<connpoint role="src" target="id-0065-000001ab"/>
+						<connpoint role="dst" target="id-0065-000001ed"/>
+					</connection>
+					<connection id="id-0068-00000284" kind="AttributeValue" role="AttributeValue" guid="{B305CEF7-F8C5-4030-BDB1-1BDA50D6CD1B}" relid="0x5b">
+						<name>AttributeValue</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>n</value>
+						</regnode>
+						<connpoint role="src" target="id-0065-000001cd"/>
+						<connpoint role="dst" target="id-0065-000001e9"/>
+					</connection>
+					<connection id="id-0068-00000285" kind="AttributeValue" role="AttributeValue" guid="{4A2F1189-C3B6-4cdc-AD8B-3441C1B3D24E}" relid="0x5c">
+						<name>AttributeValue</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>w</value>
+						</regnode>
+						<connpoint role="src" target="id-0065-000001b8"/>
+						<connpoint role="dst" target="id-0065-000001ea"/>
+					</connection>
+					<connection id="id-0068-00000286" kind="AttributeValue" role="AttributeValue" guid="{43686C2B-9D0A-4ac7-8DDE-8FEE625713C7}" relid="0x5d">
+						<name>AttributeValue</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>w</value>
+						</regnode>
+						<connpoint role="src" target="id-0065-000001c7"/>
+						<connpoint role="dst" target="id-0065-000001eb"/>
+					</connection>
+					<connection id="id-0068-00000287" kind="AttributeValue" role="AttributeValue" guid="{37C859A2-AA63-4df5-BE41-A41425E99EDF}" relid="0x5e">
+						<name>AttributeValue</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>w</value>
+						</regnode>
+						<connpoint role="src" target="id-0065-0000018f"/>
+						<connpoint role="dst" target="id-0065-000001ee"/>
+					</connection>
+					<connection id="id-0068-00000288" kind="AttributeValue" role="AttributeValue" guid="{C227A24A-2C81-4dfb-9C65-B53E26F4DFD1}" relid="0x60">
+						<name>AttributeValue</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>w</value>
+						</regnode>
+						<connpoint role="src" target="id-0065-000001e5"/>
+						<connpoint role="dst" target="id-0065-000001ef"/>
+					</connection>
 				</model>
 			</model>
 			<model id="id-0065-00000027" kind="ComponentImplementationContainer" guid="{01CE9642-3A0E-4f45-8166-4B20F7EAC2CF}" relid="0x2" childrelidcntr="0xb">
@@ -6262,7 +6979,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>AAE7B0FE-BF51-4988-B47C-607893708123</value>
+						<value>03BA9773-064B-44DA-9ABD-F35CF2473FF5</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -6363,7 +7080,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>7B8AA8BD-F577-49CD-9A4F-D0B33C495A70</value>
+						<value>B5021115-D153-4729-90A2-07C05EF731F7</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -6464,7 +7181,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>9F325747-79CA-4312-8AA8-017EE3BB32F1</value>
+						<value>FBB0C3F1-9F3D-4017-BF1A-0F8061CEA0A5</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -6565,7 +7282,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>800556A9-AA33-4DA3-B4E1-59F508ADC1DA</value>
+						<value>F824DA02-EB20-4350-85DD-192D3D6D0B98</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -6666,7 +7383,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>E2A6F490-85A0-4BB9-BDFE-14567D307B3B</value>
+						<value>63539553-6611-4D55-B661-4CB678510415</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -6797,7 +7514,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="DataValue">
-						<value>create_SLICE_Effector_Home_CoWorkEr_Impl</value>
+						<value>create_SLICE_Effector_Home_CoWorkEr_Proxy</value>
 					</attribute>
 					<reference id="id-0067-0000000f" kind="DataType" role="DataType" guid="{3DC69B7D-0731-4d70-BCEA-28AFE2AABC46}" relid="0x1" referred="id-0066-00000033">
 						<name>String</name>
@@ -6824,7 +7541,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>BE422A36-FF21-4CC3-A10C-8D593FAF73ED</value>
+						<value>69005D44-2F5D-458C-91EF-06D5D5CF8D57</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -6848,7 +7565,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>46B740C9-37D3-4833-A604-397E0D8D84A3</value>
+						<value>92EE243C-67B9-4845-B32F-EF38C4985FE6</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -6872,7 +7589,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>C79F7CB2-EDAC-43EE-83DB-707C42A4928D</value>
+						<value>24ADD305-F4E1-4A61-BD17-05A61BD5FE24</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -6966,7 +7683,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="DataValue">
-						<value>create_SLICE_Sensor_Home_CoWorkEr_Impl</value>
+						<value>create_SLICE_Sensor_Home_CoWorkEr_Proxy</value>
 					</attribute>
 					<reference id="id-0067-00000011" kind="DataType" role="DataType" guid="{6208A099-88C2-4c35-AAE1-5BAB35D370B3}" relid="0x1" referred="id-0066-00000033">
 						<name>String</name>
@@ -6993,7 +7710,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>94A79119-CB51-4759-9AA4-BC62CCBF960C</value>
+						<value>71146FE8-6FEA-47BF-ABAB-A3CC6206B34A</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -7017,7 +7734,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>9E61FD41-9386-4C72-A492-8B15A86D8A83</value>
+						<value>C8D88BF2-4444-4CED-8A56-229BFA9B4457</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -7041,7 +7758,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>CC1EA8F4-9A4F-45E5-82EC-3057DDCA2CBE</value>
+						<value>3DACE8FE-8EF4-4B1A-9CE2-57FB19F7A0B3</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -7162,7 +7879,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>9374D62D-656D-456E-B3A4-18DA212778EB</value>
+						<value>0A263813-C628-41CE-878B-6A576BD4F359</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -7186,7 +7903,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>CB51CE92-D32E-4EE8-9401-D2948ACD7C3B</value>
+						<value>87B5BA4F-A04F-4C03-A357-66A1064C72E0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -7210,7 +7927,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>5E591377-7339-475B-A41B-974A06D723CA</value>
+						<value>8B09159C-F0B7-4874-B643-4C23D32B5546</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -7304,7 +8021,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="DataValue">
-						<value>create_SLICE_PlannerOne_Home_CoWorkEr_Impl</value>
+						<value>create_SLICE_PlannerOne_Home_CoWorkEr_Proxy</value>
 					</attribute>
 					<reference id="id-0067-00000015" kind="DataType" role="DataType" guid="{46E41228-80EB-45ea-A01A-52B3F8DD8EE3}" relid="0x1" referred="id-0066-00000033">
 						<name>String</name>
@@ -7331,7 +8048,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>1E77DE44-A742-4AB0-845C-C2DAD7A95FA8</value>
+						<value>3A5D3A84-EAF9-4B77-9C82-8AB15B79E287</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -7355,7 +8072,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>3D731442-66EF-47A3-9C35-2814EC667893</value>
+						<value>D6F56E74-B4AE-44F7-9200-CD9B705E6D32</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -7379,7 +8096,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>3F31493C-A2EC-4D9E-9475-632B108FDDA2</value>
+						<value>FACAEB2D-09A8-49CC-8744-AC1012D21D6A</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -7446,7 +8163,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="DataValue">
-						<value>create_SLICE_PlannerTwo_Home_CoWorkEr_Impl</value>
+						<value>create_SLICE_PlannerTwo_Home_CoWorkEr_Proxy</value>
 					</attribute>
 					<reference id="id-0067-00000016" kind="DataType" role="DataType" guid="{CDFC9D08-1983-4f8d-AA7A-0D3D645F1CB5}" relid="0x1" referred="id-0066-00000033">
 						<name>String</name>
@@ -7500,7 +8217,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>BDBFE580-127C-4213-AD8F-D07A86FB32CD</value>
+						<value>36660146-7787-4E30-B834-39D11427C136</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -7524,7 +8241,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>0FD8DF9E-FCFA-40BA-9760-8B0A7F8416B4</value>
+						<value>4F07E8CA-FA2F-459F-B726-89D5646CF2D5</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -7548,7 +8265,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>586F7461-82E1-434E-8E63-786261AA7717</value>
+						<value>3A343884-0320-4247-AE8F-D2392F1FDC86</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -7985,7 +8702,7 @@
 		<folder id="id-006a-00000008" relid="0xb" childrelidcntr="0x2" kind="DeploymentPlans" guid="{DAA25A66-0DEB-49e2-9328-99A589C3DAB1}">
 			<name>SLICE_DeploymentPlans</name>
 			<model id="id-0065-00000045" kind="DeploymentPlan" guid="{2407ADCA-18A9-42a4-ACDD-A2047126F8DB}" relid="0x1" childrelidcntr="0x14">
-				<name>DeploymentPlan</name>
+				<name>SLICE</name>
 				<attribute kind="UUID">
 					<value>9E4D3818-256E-4164-A0DA-FC3A08647CD3</value>
 				</attribute>
@@ -9395,7 +10112,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="DataValue">
-						<value>create_SLICE_Effector_Servant</value>
+						<value>create_SLICE_Effector_Home_Impl</value>
 					</attribute>
 					<reference id="id-0067-00000029" kind="DataType" role="DataType" guid="{2A70BAD1-5434-47cd-B842-816EF4E2741F}" relid="0x1" referred="id-0066-00000033">
 						<name>String</name>
@@ -9422,7 +10139,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="DataValue">
-						<value>create_SLICE_Effector_Impl</value>
+						<value>create_SLICE_Effector_Home_Servant</value>
 					</attribute>
 					<reference id="id-0067-0000002a" kind="DataType" role="DataType" guid="{85FBDD25-CF9C-4115-A019-B1D7F1B25B12}" relid="0x1" referred="id-0066-00000033">
 						<name>String</name>
@@ -9497,7 +10214,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>9FBF6EA5-4B24-4820-B559-E61C97C9E926</value>
+						<value>D68647EA-D688-401A-8964-C1D67755640F</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -9550,7 +10267,7 @@
 					<connpoint role="src" target="id-0066-00000057"/>
 				</connection>
 			</model>
-			<model id="id-0065-00000077" kind="ArtifactContainer" guid="{D372350D-DC07-45c7-B86C-D42C7C7361B0}" relid="0x2" childrelidcntr="0xa">
+			<model id="id-0065-00000077" kind="ArtifactContainer" guid="{D372350D-DC07-45c7-B86C-D42C7C7361B0}" relid="0x2" childrelidcntr="0xc">
 				<name>ConfigOp</name>
 				<model id="id-0065-00000078" kind="Property" role="Property" guid="{C6834E83-DB11-46b0-84D6-9DA94398D96A}" relid="0x8" childrelidcntr="0x1">
 					<name>entryPoint</name>
@@ -9559,12 +10276,12 @@
 						<regnode name="Packaging" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>349,293</value>
+								<value>118,286</value>
 							</regnode>
 						</regnode>
 					</regnode>
 					<attribute kind="DataValue">
-						<value>create_SLICE_ConfigOp_Impl</value>
+						<value>create_SLICE_ConfigOp_Home_Impl</value>
 					</attribute>
 					<reference id="id-0067-0000002b" kind="DataType" role="DataType" guid="{BD827E55-30B3-4535-BB6E-1742248BE0AE}" relid="0x1" referred="id-0066-00000033">
 						<name>String</name>
@@ -9586,12 +10303,12 @@
 						<regnode name="Packaging" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>118,293</value>
+								<value>349,279</value>
 							</regnode>
 						</regnode>
 					</regnode>
 					<attribute kind="DataValue">
-						<value>create_SLICE_ConfigOp_Servant</value>
+						<value>create_SLICE_ConfigOp_Home_Servant</value>
 					</attribute>
 					<reference id="id-0067-0000002c" kind="DataType" role="DataType" guid="{3FE9DA13-6799-41eb-B2A1-94BA16D725CB}" relid="0x1" referred="id-0066-00000033">
 						<name>String</name>
@@ -9642,7 +10359,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>CBB7E2DE-C200-48C0-8222-1E77E97B4088</value>
+						<value>6E15FDCC-650C-4825-9193-75B2EBA1594B</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -9666,7 +10383,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>5E120CD8-287C-4444-B5EB-BF5AB18B03CD</value>
+						<value>680D107D-0CA3-41C7-855E-FA88F70E8E36</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -9678,22 +10395,6 @@
 						<value>ConfigOp_exec</value>
 					</attribute>
 				</atom>
-				<connection id="id-0068-000000b6" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{E1E62BE2-7B43-499f-9EC1-8D27BB69126E}" relid="0xa">
-					<name>ArtifactExecParameter</name>
-					<regnode name="autorouterPref" isopaque="yes">
-						<value>Sn</value>
-					</regnode>
-					<connpoint role="dst" target="id-0065-00000078"/>
-					<connpoint role="src" target="id-0066-00000058"/>
-				</connection>
-				<connection id="id-0068-000000b7" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{1DDFF646-E444-40c0-BE3B-717C733F1988}" relid="0x9">
-					<name>ArtifactExecParameter</name>
-					<regnode name="autorouterPref" isopaque="yes">
-						<value>S</value>
-					</regnode>
-					<connpoint role="dst" target="id-0065-00000079"/>
-					<connpoint role="src" target="id-0066-0000005a"/>
-				</connection>
 				<connection id="id-0068-000000b8" kind="ArtifactDependency" role="ArtifactDependency" guid="{2D34BDD2-1F75-48a7-ABDB-DA6C81FB8BD9}" relid="0x6">
 					<name>ArtifactDependency</name>
 					<regnode name="autorouterPref" isopaque="yes">
@@ -9718,6 +10419,22 @@
 					<connpoint role="dst" target="id-0066-00000059"/>
 					<connpoint role="src" target="id-0066-0000005a"/>
 				</connection>
+				<connection id="id-0068-00000289" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{08AC8A39-9B92-4e9b-BAFF-E7558FC18579}" relid="0xb">
+					<name>ArtifactExecParameter</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>Sn</value>
+					</regnode>
+					<connpoint role="dst" target="id-0065-00000079"/>
+					<connpoint role="src" target="id-0066-00000058"/>
+				</connection>
+				<connection id="id-0068-0000028a" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{06762224-F347-4788-AF0C-910893FE8C40}" relid="0xc">
+					<name>ArtifactExecParameter</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>Sn</value>
+					</regnode>
+					<connpoint role="dst" target="id-0065-00000078"/>
+					<connpoint role="src" target="id-0066-0000005a"/>
+				</connection>
 			</model>
 			<model id="id-0065-0000007a" kind="ArtifactContainer" guid="{59282E15-8591-4aea-A62A-0BBA7C6346A7}" relid="0x3" childrelidcntr="0xa">
 				<name>Sensor</name>
@@ -9733,7 +10450,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="DataValue">
-						<value>create_SLICE_Sensor_Servant</value>
+						<value>create_SLICE_Sensor_Home_Impl</value>
 					</attribute>
 					<reference id="id-0067-0000002d" kind="DataType" role="DataType" guid="{3164BF0F-C3B5-4afa-855D-A0BFCBA973D5}" relid="0x1" referred="id-0066-00000033">
 						<name>String</name>
@@ -9760,7 +10477,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="DataValue">
-						<value>create_SLICE_Sensor_Impl</value>
+						<value>create_SLICE_Sensor_Home_Servant</value>
 					</attribute>
 					<reference id="id-0067-0000002e" kind="DataType" role="DataType" guid="{76D25282-C3B7-4d2f-AD58-AFCC047C08B1}" relid="0x1" referred="id-0066-00000033">
 						<name>String</name>
@@ -9787,7 +10504,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>5E120CD8-287C-4444-B5EB-BF5AB18B03CD</value>
+						<value>DC0FFC56-2F9F-4B5E-9B9F-EA221CA63425</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -9811,7 +10528,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>CBB7E2DE-C200-48C0-8222-1E77E97B4088</value>
+						<value>7EA51A62-4CF0-4576-8B30-2B5FDFBF8793</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -9835,7 +10552,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>9FBF6EA5-4B24-4820-B559-E61C97C9E926</value>
+						<value>06829A9B-5B81-45F5-8459-7147985061F0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -9902,7 +10619,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="DataValue">
-						<value>create_SLICE_PlannerOne_Servant</value>
+						<value>create_SLICE_PlannerOne_Home_Impl</value>
 					</attribute>
 					<reference id="id-0067-0000002f" kind="DataType" role="DataType" guid="{FCDE3315-EA33-4207-9C79-CFDCEAAFE322}" relid="0x1" referred="id-0066-00000033">
 						<name>String</name>
@@ -9929,7 +10646,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="DataValue">
-						<value>create_SLICE_PlannerOne_Impl</value>
+						<value>create_SLICE_PlannerOne_Home_Servant</value>
 					</attribute>
 					<reference id="id-0067-00000030" kind="DataType" role="DataType" guid="{A563F8EB-F2FC-4bbb-84AE-F31E41DA1712}" relid="0x1" referred="id-0066-00000033">
 						<name>String</name>
@@ -9956,7 +10673,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>5E120CD8-287C-4444-B5EB-BF5AB18B03CD</value>
+						<value>0F18735D-18C3-4F3B-8504-903E53221122</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -9980,7 +10697,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>CBB7E2DE-C200-48C0-8222-1E77E97B4088</value>
+						<value>D20EEC0A-7FC0-485C-B90B-459E5CF68ED9</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -10004,7 +10721,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>9FBF6EA5-4B24-4820-B559-E61C97C9E926</value>
+						<value>BF3426BA-DBC0-4208-AA7F-47678CFDCF53</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -10071,7 +10788,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="DataValue">
-						<value>create_SLICE_PlannerTwo_Servant</value>
+						<value>create_SLICE_PlannerTwo_Home_Impl</value>
 					</attribute>
 					<reference id="id-0067-00000031" kind="DataType" role="DataType" guid="{8D7B2E02-9021-467b-AE91-EE15E112826C}" relid="0x1" referred="id-0066-00000033">
 						<name>String</name>
@@ -10098,7 +10815,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="DataValue">
-						<value>create_SLICE_PlannerTwo_Impl</value>
+						<value>create_SLICE_PlannerTwo_Home_Servant</value>
 					</attribute>
 					<reference id="id-0067-00000032" kind="DataType" role="DataType" guid="{10D06B92-2ED3-437f-8675-8A6F1E2AAA9B}" relid="0x1" referred="id-0066-00000033">
 						<name>String</name>
@@ -10125,7 +10842,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>5E120CD8-287C-4444-B5EB-BF5AB18B03CD</value>
+						<value>29C55C4D-C4A8-4EBD-9FF6-A2D3CD1D0C4C</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -10149,7 +10866,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>CBB7E2DE-C200-48C0-8222-1E77E97B4088</value>
+						<value>C19B6CEC-CF8A-484E-AA4E-00FBF51E4813</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -10173,7 +10890,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>9FBF6EA5-4B24-4820-B559-E61C97C9E926</value>
+						<value>8ECD5FEB-1EDC-49DF-88A0-AADE00533054</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -10384,24 +11101,6 @@
 						<model id="id-0065-0000008a" kind="OutputAction" role="OutputAction" guid="{60457782-16FF-4837-B345-B11C6A34E473}" derivedfrom="id-0065-0000000e" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 							<name>CommandEvent</name>
 						</model>
-						<model id="id-0065-000000e4" kind="Action" role="Action" guid="{702954ED-5D52-40f2-8BCF-491F8FD01C31}" derivedfrom="id-0065-000000e2" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-							<name>db_handle</name>
-							<attribute kind="LogAction" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="Repetitions" status="inherited">
-								<value>1</value>
-							</attribute>
-							<model id="id-0065-000000e5" kind="Property" role="Property" guid="{D483F7BE-86D2-4192-9B67-B40FF0211F53}" derivedfrom="id-0065-000000e3" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-								<name>count</name>
-								<attribute kind="DataValue" status="inherited">
-									<value>25</value>
-								</attribute>
-								<reference id="id-0067-0000007e" kind="DataType" role="DataType" guid="{61B68A37-B619-4ce5-816D-3BA511D2A78D}" derivedfrom="id-0067-0000007d" isinstance="yes" isprimary="no" referred="id-0066-00000032" isbound="yes">
-									<name>LongInteger</name>
-								</reference>
-							</model>
-						</model>
 						<model id="id-0065-000000e9" kind="Action" role="Action" guid="{6507B373-547B-400e-96E1-3A2800C3ACF6}" derivedfrom="id-0065-000000e8" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 							<name>cpu</name>
 							<attribute kind="LogAction" status="meta">
@@ -10546,6 +11245,24 @@
 								</reference>
 							</model>
 						</model>
+						<model id="id-0065-000001f2" kind="Action" role="Action" guid="{DAD11841-68A1-4b0e-9375-BF7AEF9CB17F}" derivedfrom="id-0065-000001f0" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>db_handle</name>
+							<attribute kind="LogAction" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="Repetitions" status="meta">
+								<value>1</value>
+							</attribute>
+							<model id="id-0065-000001f3" kind="Property" role="Property" guid="{80F7ED1D-FCA8-4471-A0CA-9DA7B0F8C055}" derivedfrom="id-0065-000001f1" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+								<name>hostname</name>
+								<attribute kind="DataValue" status="inherited">
+									<value>localhost</value>
+								</attribute>
+								<reference id="id-0067-0000017a" kind="DataType" role="DataType" guid="{19BAAF96-C160-43ae-8B97-46368623497A}" derivedfrom="id-0067-00000179" isinstance="yes" isprimary="no" referred="id-0066-00000033" isbound="yes">
+									<name>String</name>
+								</reference>
+							</model>
+						</model>
 						<atom id="id-0066-00000065" kind="Environment" role="Environment" guid="{C1BC0638-EC32-45fe-AA7F-52C6F9CCA0B2}" derivedfrom="id-0066-00000001" isinstance="yes" isprimary="no">
 							<name>Environment</name>
 						</atom>
@@ -10666,12 +11383,6 @@
 								<value></value>
 							</attribute>
 						</connection>
-						<connection isbound="yes" id="id-0068-000000cf" kind="Effect" role="Effect" guid="{2301EFBF-1DD6-4497-873E-A7928E377533}" derivedfrom="id-0068-00000002" isinstance="yes" isprimary="no">
-							<name></name>
-							<attribute kind="Postcondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
 						<connection isbound="yes" id="id-0068-000000d0" kind="Transition" role="Transition" guid="{878107D7-01BC-447b-9A5D-9CE355B15DFB}" derivedfrom="id-0068-00000003" isinstance="yes" isprimary="no">
 							<name></name>
 							<attribute kind="Precondition" status="meta">
@@ -10717,12 +11428,6 @@
 						<connection isbound="yes" id="id-0068-000000d7" kind="Effect" role="Effect" guid="{1CE025D5-B75F-48c1-A194-3F9867B2B118}" derivedfrom="id-0068-0000000a" isinstance="yes" isprimary="no">
 							<name></name>
 							<attribute kind="Postcondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-000000d8" kind="Transition" role="Transition" guid="{ECD30C99-449D-43f6-A612-C1F6079A5AF2}" derivedfrom="id-0068-0000000b" isinstance="yes" isprimary="no">
-							<name>Transition</name>
-							<attribute kind="Precondition" status="meta">
 								<value></value>
 							</attribute>
 						</connection>
@@ -10828,6 +11533,18 @@
 						<connection isbound="yes" id="id-0068-000000ec" kind="Finish" role="Finish" guid="{896A3A99-67BD-4173-B5AC-EBBC751FC275}" derivedfrom="id-0068-0000001f" isinstance="yes" isprimary="no">
 							<name>Finish</name>
 						</connection>
+						<connection isbound="yes" id="id-0068-0000028c" kind="Transition" role="Transition" guid="{1FBE63ED-28C5-419d-A878-B25E6E791DCA}" derivedfrom="id-0068-0000028b" isinstance="yes" isprimary="no">
+							<name>Transition</name>
+							<attribute kind="Precondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000290" kind="Effect" role="Effect" guid="{C7361EDE-21C9-4023-AFCB-5C2D477B7B79}" derivedfrom="id-0068-0000028f" isinstance="yes" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
 					</model>
 					<model id="id-0065-0000008b" kind="Component" role="Component" guid="{87F6E0DB-EB31-4780-B854-593F7EDCEC9E}" derivedfrom="id-0065-0000000f" isinstance="yes" isprimary="yes" relid="0x2" childrelidcntr="0x0">
 						<name>PlannerOne</name>
@@ -10927,6 +11644,27 @@
 								</reference>
 							</model>
 						</model>
+						<model id="id-0065-000001fb" kind="InputAction" role="InputAction" guid="{A16D6818-DE8E-494b-B054-06E8BAAF3D0E}" derivedfrom="id-0065-000001f8" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>activate</name>
+						</model>
+						<model id="id-0065-00000202" kind="Action" role="Action" guid="{A260A21E-CE90-4b4a-9AE7-016853A0F874}" derivedfrom="id-0065-000001fc" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>db_handle</name>
+							<attribute kind="LogAction" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="Repetitions" status="meta">
+								<value>1</value>
+							</attribute>
+							<model id="id-0065-00000203" kind="Property" role="Property" guid="{782B367F-8B19-46c3-8518-D09D6AA87A57}" derivedfrom="id-0065-000001fd" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+								<name>hostname</name>
+								<attribute kind="DataValue" status="inherited">
+									<value>localhost</value>
+								</attribute>
+								<reference id="id-0067-00000180" kind="DataType" role="DataType" guid="{13079984-47D4-490f-9CB0-88FBEAC72CAE}" derivedfrom="id-0067-0000017d" isinstance="yes" isprimary="no" referred="id-0066-00000033" isbound="yes">
+									<name>String</name>
+								</reference>
+							</model>
+						</model>
 						<atom id="id-0066-00000074" kind="State" role="State" guid="{74D6E546-4691-4867-8C77-1479983BEECF}" derivedfrom="id-0066-00000010" isinstance="yes" isprimary="no">
 							<name></name>
 						</atom>
@@ -10959,6 +11697,15 @@
 						</atom>
 						<atom id="id-0066-0000007c" kind="State" role="State" guid="{1610DC05-910A-4a38-8DEC-F73B98387DB9}" derivedfrom="id-0066-00000018" isinstance="yes" isprimary="no">
 							<name></name>
+						</atom>
+						<atom id="id-0066-00000128" kind="Environment" role="Environment" guid="{18A70C1E-A6B2-43d6-9126-106AE73D7FAD}" derivedfrom="id-0066-00000125" isinstance="yes" isprimary="no">
+							<name>Environment</name>
+						</atom>
+						<atom id="id-0066-0000012c" kind="State" role="State" guid="{BCFB6ABB-9F27-48e9-888A-CFFA1A5B2FAF}" derivedfrom="id-0066-00000129" isinstance="yes" isprimary="no">
+							<name>State</name>
+						</atom>
+						<atom id="id-0066-00000130" kind="State" role="State" guid="{CE48FF91-F781-45b5-B14A-C0A36AFC5215}" derivedfrom="id-0066-0000012d" isinstance="yes" isprimary="no">
+							<name>State</name>
 						</atom>
 						<reference id="id-0067-0000003a" kind="OutEventPort" role="OutEventPort" guid="{1BC07355-9EB1-48e3-8C32-CB3A270C930F}" derivedfrom="id-0067-00000004" isinstance="yes" isprimary="no" referred="id-0065-00000005" isbound="yes">
 							<name>CommandEvent</name>
@@ -11131,6 +11878,30 @@
 						<connection isbound="yes" id="id-0068-000000fe" kind="Finish" role="Finish" guid="{FA1CC370-2BF6-4099-AC44-1D7376D470A8}" derivedfrom="id-0068-00000031" isinstance="yes" isprimary="no">
 							<name>Finish</name>
 						</connection>
+						<connection isbound="yes" id="id-0068-00000296" kind="MultiInput" role="MultiInput" guid="{5D2B670E-FB68-49be-9896-61C8543E4C13}" derivedfrom="id-0068-00000293" isinstance="yes" isprimary="no">
+							<name>MultiInput</name>
+						</connection>
+						<connection isbound="yes" id="id-0068-0000029a" kind="InputEffect" role="InputEffect" guid="{91BF1D5D-717C-47b7-B5B8-6DAC9035CD06}" derivedfrom="id-0068-00000297" isinstance="yes" isprimary="no">
+							<name>InputEffect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-0000029e" kind="Transition" role="Transition" guid="{E04CC1D1-4AB8-47ee-931D-9192B318CE23}" derivedfrom="id-0068-0000029b" isinstance="yes" isprimary="no">
+							<name>Transition</name>
+							<attribute kind="Precondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002a2" kind="Effect" role="Effect" guid="{F87B3471-C693-4cfe-97EF-28395085A264}" derivedfrom="id-0068-0000029f" isinstance="yes" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002a6" kind="Finish" role="Finish" guid="{CB606DE6-0561-45f3-A553-E5F08DC77B48}" derivedfrom="id-0068-000002a3" isinstance="yes" isprimary="no">
+							<name>Finish</name>
+						</connection>
 					</model>
 					<model id="id-0065-00000090" kind="Component" role="Component" guid="{C7236C81-AE05-46d6-AB41-AB2EFA131E62}" derivedfrom="id-0065-00000014" isinstance="yes" isprimary="yes" relid="0x3" childrelidcntr="0x0">
 						<name>PlannerTwo</name>
@@ -11237,8 +12008,8 @@
 							</attribute>
 							<model id="id-0065-00000147" kind="Property" role="Property" guid="{32515147-B916-4075-8CF9-80D88FB09CA7}" derivedfrom="id-0065-00000143" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 								<name>hostname</name>
-								<attribute kind="DataValue" status="meta">
-									<value></value>
+								<attribute kind="DataValue" status="inherited">
+									<value>localhost</value>
 								</attribute>
 								<reference id="id-0067-000000bb" kind="DataType" role="DataType" guid="{8BE1254E-64AA-406e-A611-6246499253B9}" derivedfrom="id-0067-000000b9" isinstance="yes" isprimary="no" referred="id-0066-00000033" isbound="yes">
 									<name>String</name>
@@ -12055,6 +12826,27 @@
 								<value>30</value>
 							</attribute>
 						</model>
+						<model id="id-0065-00000206" kind="InputAction" role="InputAction" guid="{A51B94A4-9BA9-475f-AF22-BA847E92D32F}" derivedfrom="id-0065-00000204" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>activate</name>
+						</model>
+						<model id="id-0065-0000020e" kind="Action" role="Action" guid="{79899C55-B76A-4c8e-AE08-7A697B558AA2}" derivedfrom="id-0065-0000020a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>db_handle</name>
+							<attribute kind="LogAction" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="Repetitions" status="meta">
+								<value>1</value>
+							</attribute>
+							<model id="id-0065-0000020f" kind="Property" role="Property" guid="{FEDF75F7-F03C-4fb6-9A0D-6C762036E376}" derivedfrom="id-0065-0000020b" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+								<name>hostname</name>
+								<attribute kind="DataValue" status="inherited">
+									<value>localhost</value>
+								</attribute>
+								<reference id="id-0067-00000183" kind="DataType" role="DataType" guid="{1062117B-547F-4cb5-9ADC-EE4D898911A6}" derivedfrom="id-0067-00000181" isinstance="yes" isprimary="no" referred="id-0066-00000033" isbound="yes">
+									<name>String</name>
+								</reference>
+							</model>
+						</model>
 						<atom id="id-0066-00000098" kind="State" role="State" guid="{93FF3DAF-78A5-4f01-A2ED-B3C6D13D511D}" derivedfrom="id-0066-0000002b" isinstance="yes" isprimary="no">
 							<name></name>
 						</atom>
@@ -12075,6 +12867,15 @@
 						</atom>
 						<atom id="id-0066-0000009e" kind="State" role="State" guid="{E07F52FC-BB89-472d-871B-77487F347F46}" derivedfrom="id-0066-00000031" isinstance="yes" isprimary="no">
 							<name></name>
+						</atom>
+						<atom id="id-0066-00000136" kind="Environment" role="Environment" guid="{C801790E-3802-44d9-9235-F9EA16DEA99C}" derivedfrom="id-0066-00000131" isinstance="yes" isprimary="no">
+							<name>Environment</name>
+						</atom>
+						<atom id="id-0066-00000139" kind="State" role="State" guid="{A39F401A-94CB-4d3a-99CF-C1CB2B398FE4}" derivedfrom="id-0066-00000137" isinstance="yes" isprimary="no">
+							<name>State</name>
+						</atom>
+						<atom id="id-0066-0000013f" kind="State" role="State" guid="{B1A4D24E-1F24-4338-8ADD-821B7CB36F9C}" derivedfrom="id-0066-0000013d" isinstance="yes" isprimary="no">
+							<name>State</name>
 						</atom>
 						<reference id="id-0067-00000043" kind="InEventPort" role="InEventPort" guid="{E75415A1-C2F0-4dff-BC57-D4BC9F62B580}" derivedfrom="id-0067-0000000b" isinstance="yes" isprimary="no" referred="id-0065-00000005" isbound="yes">
 							<name>CommandEvent</name>
@@ -12211,6 +13012,30 @@
 						<connection isbound="yes" id="id-0068-00000143" kind="Finish" role="Finish" guid="{72B73E0B-3ACC-4b24-83DA-4B5F6A97B04B}" derivedfrom="id-0068-00000064" isinstance="yes" isprimary="no">
 							<name>Finish</name>
 						</connection>
+						<connection isbound="yes" id="id-0068-000002a9" kind="MultiInput" role="MultiInput" guid="{D0FD3BAC-B1C3-4918-BA2A-3B883A38D941}" derivedfrom="id-0068-000002a7" isinstance="yes" isprimary="no">
+							<name>MultiInput</name>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002af" kind="InputEffect" role="InputEffect" guid="{9CDE3767-2109-401f-B5F4-4FABCBBC4D15}" derivedfrom="id-0068-000002ad" isinstance="yes" isprimary="no">
+							<name>InputEffect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002b5" kind="Transition" role="Transition" guid="{0E81AA32-E3B3-4045-9044-8825EE7F9F11}" derivedfrom="id-0068-000002b3" isinstance="yes" isprimary="no">
+							<name>Transition</name>
+							<attribute kind="Precondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002bb" kind="Effect" role="Effect" guid="{3E50EA33-7418-4ddb-A0FB-0E08363CB628}" derivedfrom="id-0068-000002b9" isinstance="yes" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002c1" kind="Finish" role="Finish" guid="{DA146EC8-24BB-4d26-965C-30763C9244F2}" derivedfrom="id-0068-000002bf" isinstance="yes" isprimary="no">
+							<name>Finish</name>
+						</connection>
 					</model>
 					<model id="id-0065-000000a1" kind="Component" role="Component" guid="{D2A588D7-210F-4980-9B93-E4954FD0180C}" derivedfrom="id-0065-0000001d" isinstance="yes" isprimary="yes" relid="0x7" childrelidcntr="0x0">
 						<name>Sensor_Main</name>
@@ -12313,6 +13138,27 @@
 								<value>30</value>
 							</attribute>
 						</model>
+						<model id="id-0065-00000205" kind="InputAction" role="InputAction" guid="{58E83EB9-1E66-4156-A60A-8D037FA409D5}" derivedfrom="id-0065-00000204" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>activate</name>
+						</model>
+						<model id="id-0065-0000020c" kind="Action" role="Action" guid="{59090D60-0185-48d5-ACE5-F1CFE1303C17}" derivedfrom="id-0065-0000020a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>db_handle</name>
+							<attribute kind="LogAction" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="Repetitions" status="meta">
+								<value>1</value>
+							</attribute>
+							<model id="id-0065-0000020d" kind="Property" role="Property" guid="{A24763AB-E785-4b3c-A4A5-E9F682F30AC3}" derivedfrom="id-0065-0000020b" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+								<name>hostname</name>
+								<attribute kind="DataValue" status="inherited">
+									<value>localhost</value>
+								</attribute>
+								<reference id="id-0067-00000182" kind="DataType" role="DataType" guid="{F0F831A5-628A-4595-AA04-3B292619C4DE}" derivedfrom="id-0067-00000181" isinstance="yes" isprimary="no" referred="id-0066-00000033" isbound="yes">
+									<name>String</name>
+								</reference>
+							</model>
+						</model>
 						<atom id="id-0066-0000009f" kind="State" role="State" guid="{FB247D88-E75C-4b8c-B8AA-8B69F7487DC7}" derivedfrom="id-0066-0000002b" isinstance="yes" isprimary="no">
 							<name></name>
 						</atom>
@@ -12333,6 +13179,15 @@
 						</atom>
 						<atom id="id-0066-000000a5" kind="State" role="State" guid="{0771FFA2-5CD8-4f34-8B21-4198B6B9162E}" derivedfrom="id-0066-00000031" isinstance="yes" isprimary="no">
 							<name></name>
+						</atom>
+						<atom id="id-0066-00000135" kind="Environment" role="Environment" guid="{590BF794-27DD-4e9b-BE44-9BCCF539F833}" derivedfrom="id-0066-00000131" isinstance="yes" isprimary="no">
+							<name>Environment</name>
+						</atom>
+						<atom id="id-0066-00000138" kind="State" role="State" guid="{9F377822-6D02-4512-A32C-55938FCD1EA7}" derivedfrom="id-0066-00000137" isinstance="yes" isprimary="no">
+							<name>State</name>
+						</atom>
+						<atom id="id-0066-0000013e" kind="State" role="State" guid="{330660CF-08B4-46ae-900C-BCBE966E95CC}" derivedfrom="id-0066-0000013d" isinstance="yes" isprimary="no">
+							<name>State</name>
 						</atom>
 						<reference id="id-0067-00000045" kind="InEventPort" role="InEventPort" guid="{57F0B3E6-2990-4fae-8BBF-B7ABB7FE8A8F}" derivedfrom="id-0067-0000000b" isinstance="yes" isprimary="no" referred="id-0065-00000005" isbound="yes">
 							<name>CommandEvent</name>
@@ -12467,6 +13322,30 @@
 							</attribute>
 						</connection>
 						<connection isbound="yes" id="id-0068-00000152" kind="Finish" role="Finish" guid="{88631261-B450-4c8d-9C73-47D7D08B09CC}" derivedfrom="id-0068-00000064" isinstance="yes" isprimary="no">
+							<name>Finish</name>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002a8" kind="MultiInput" role="MultiInput" guid="{821CCED0-21A3-4a3f-9B28-6C5FDFE61EE7}" derivedfrom="id-0068-000002a7" isinstance="yes" isprimary="no">
+							<name>MultiInput</name>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002ae" kind="InputEffect" role="InputEffect" guid="{972AEEA9-3B16-4ae3-85AD-4A3F9F611765}" derivedfrom="id-0068-000002ad" isinstance="yes" isprimary="no">
+							<name>InputEffect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002b4" kind="Transition" role="Transition" guid="{AB68DC03-3A24-4ba7-93F4-84778AED9A05}" derivedfrom="id-0068-000002b3" isinstance="yes" isprimary="no">
+							<name>Transition</name>
+							<attribute kind="Precondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002ba" kind="Effect" role="Effect" guid="{3D16FB37-95AF-40fe-8A6B-036F8E62C1D7}" derivedfrom="id-0068-000002b9" isinstance="yes" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002c0" kind="Finish" role="Finish" guid="{504ED6B7-A463-4261-A5EB-22CFAE2C7941}" derivedfrom="id-0068-000002bf" isinstance="yes" isprimary="no">
 							<name>Finish</name>
 						</connection>
 					</model>
@@ -13784,6 +14663,27 @@
 								</reference>
 							</model>
 						</model>
+						<model id="id-0065-000001f9" kind="InputAction" role="InputAction" guid="{19D76320-EC65-44d9-ABF4-DAEF24B64236}" derivedfrom="id-0065-000001f8" isinstance="no" isprimary="no" childrelidcntr="0x0">
+							<name>activate</name>
+						</model>
+						<model id="id-0065-000001fe" kind="Action" role="Action" guid="{782B5B89-0FB6-4f5a-9CF5-BD8C73FAD625}" derivedfrom="id-0065-000001fc" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>db_handle</name>
+							<attribute kind="LogAction" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="Repetitions" status="meta">
+								<value>1</value>
+							</attribute>
+							<model id="id-0065-000001ff" kind="Property" role="Property" guid="{08E1ED97-E048-4847-8765-1F26D4A30FD8}" derivedfrom="id-0065-000001fd" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+								<name>hostname</name>
+								<attribute kind="DataValue" status="inherited">
+									<value>localhost</value>
+								</attribute>
+								<reference id="id-0067-0000017e" kind="DataType" role="DataType" guid="{6480743A-DCB1-4e60-996B-A52ABA200C40}" derivedfrom="id-0067-0000017d" isinstance="yes" isprimary="no" referred="id-0066-00000033" isbound="yes">
+									<name>String</name>
+								</reference>
+							</model>
+						</model>
 						<atom id="id-0066-000000b1" kind="State" role="State" guid="{336C24E1-7F78-4805-AC48-2992D1C896C4}" derivedfrom="id-0066-00000010" isinstance="no" isprimary="no">
 							<name></name>
 						</atom>
@@ -13816,6 +14716,15 @@
 						</atom>
 						<atom id="id-0066-000000b9" kind="State" role="State" guid="{932F79F1-7126-480c-A08C-CC27368E0E77}" derivedfrom="id-0066-00000018" isinstance="no" isprimary="no">
 							<name></name>
+						</atom>
+						<atom id="id-0066-00000126" kind="Environment" role="Environment" guid="{0318B0FA-7FD6-42b1-AAD1-F107746B72BA}" derivedfrom="id-0066-00000125" isinstance="no" isprimary="no">
+							<name>Environment</name>
+						</atom>
+						<atom id="id-0066-0000012a" kind="State" role="State" guid="{FCF4E88D-944D-4f8a-BD4B-7732776ED397}" derivedfrom="id-0066-00000129" isinstance="no" isprimary="no">
+							<name>State</name>
+						</atom>
+						<atom id="id-0066-0000012e" kind="State" role="State" guid="{54B4BCAB-D0E4-4ad8-8249-14BFF3408F5F}" derivedfrom="id-0066-0000012d" isinstance="no" isprimary="no">
+							<name>State</name>
 						</atom>
 						<reference id="id-0067-00000065" kind="OutEventPort" role="OutEventPort" guid="{66E3B1DE-605B-4b62-ACB5-F6371046439E}" derivedfrom="id-0067-00000004" isinstance="no" isprimary="no" referred="id-0065-00000005" isbound="yes">
 							<name>CommandEvent</name>
@@ -14027,6 +14936,30 @@
 						<connection isbound="yes" id="id-0068-0000018a" kind="Finish" role="Finish" guid="{A3F0C855-0A3A-46d8-9726-A23E528DB8F4}" derivedfrom="id-0068-00000031" isinstance="no" isprimary="no">
 							<name>Finish</name>
 						</connection>
+						<connection isbound="yes" id="id-0068-00000294" kind="MultiInput" role="MultiInput" guid="{DFCD438B-4AE7-4d8b-80AE-F669BDDC0277}" derivedfrom="id-0068-00000293" isinstance="no" isprimary="no">
+							<name>MultiInput</name>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000298" kind="InputEffect" role="InputEffect" guid="{923F11CD-99E9-4022-8512-70E413307909}" derivedfrom="id-0068-00000297" isinstance="no" isprimary="no">
+							<name>InputEffect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-0000029c" kind="Transition" role="Transition" guid="{004E1E4B-7A8E-44db-832D-D5DE7A97FCFC}" derivedfrom="id-0068-0000029b" isinstance="no" isprimary="no">
+							<name>Transition</name>
+							<attribute kind="Precondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002a0" kind="Effect" role="Effect" guid="{CEC6AAB6-2E67-4e01-AB31-64798982595F}" derivedfrom="id-0068-0000029f" isinstance="no" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002a4" kind="Finish" role="Finish" guid="{271742E8-AC47-4c1a-B4FF-B6CB040AAE20}" derivedfrom="id-0068-000002a3" isinstance="no" isprimary="no">
+							<name>Finish</name>
+						</connection>
 					</model>
 					<model id="id-0065-000000c8" kind="ComponentFactory" role="ComponentFactory" guid="{DD58F9CF-BD46-452c-B10D-DA3AE55F224D}" derivedfrom="id-0065-00000021" isinstance="no" isprimary="yes" relid="0x2" childrelidcntr="0x0">
 						<name>PlannerOne_Home_CoWorkEr</name>
@@ -14095,24 +15028,6 @@
 									<value></value>
 								</regnode>
 							</reference>
-						</model>
-						<model id="id-0065-000000e6" kind="Action" role="Action" guid="{0C028E9E-5CD1-43f1-B905-A1B4B6FCEFE3}" derivedfrom="id-0065-000000e2" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-							<name>db_handle</name>
-							<attribute kind="LogAction" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="Repetitions" status="inherited">
-								<value>1</value>
-							</attribute>
-							<model id="id-0065-000000e7" kind="Property" role="Property" guid="{E52643AA-EE9D-4cb7-AF8F-8CDE61DB368C}" derivedfrom="id-0065-000000e3" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-								<name>count</name>
-								<attribute kind="DataValue" status="inherited">
-									<value>25</value>
-								</attribute>
-								<reference id="id-0067-0000007f" kind="DataType" role="DataType" guid="{2EF25C5C-60E5-4419-9456-A602F5A3D92C}" derivedfrom="id-0067-0000007d" isinstance="yes" isprimary="no" referred="id-0066-00000032" isbound="yes">
-									<name>LongInteger</name>
-								</reference>
-							</model>
 						</model>
 						<model id="id-0065-000000ea" kind="Action" role="Action" guid="{65F1502F-F6F7-463d-A605-0E10F524B8CB}" derivedfrom="id-0065-000000e8" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 							<name>cpu</name>
@@ -14255,6 +15170,24 @@
 								</attribute>
 								<reference id="id-0067-00000094" kind="DataType" role="DataType" guid="{3939C63E-EB66-4d49-8881-56CDE12F017F}" derivedfrom="id-0067-00000092" isinstance="yes" isprimary="no" referred="id-0066-00000032" isbound="yes">
 									<name>LongInteger</name>
+								</reference>
+							</model>
+						</model>
+						<model id="id-0065-000001f4" kind="Action" role="Action" guid="{F542AD05-726B-4d2e-9581-F8692C237C56}" derivedfrom="id-0065-000001f0" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>db_handle</name>
+							<attribute kind="LogAction" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="Repetitions" status="meta">
+								<value>1</value>
+							</attribute>
+							<model id="id-0065-000001f5" kind="Property" role="Property" guid="{6CE196CC-6973-4d6e-8FD2-1658808D7694}" derivedfrom="id-0065-000001f1" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+								<name>hostname</name>
+								<attribute kind="DataValue" status="inherited">
+									<value>localhost</value>
+								</attribute>
+								<reference id="id-0067-0000017b" kind="DataType" role="DataType" guid="{16B7D84F-0D27-470c-92B8-44D78876ECAC}" derivedfrom="id-0067-00000179" isinstance="yes" isprimary="no" referred="id-0066-00000033" isbound="yes">
+									<name>String</name>
 								</reference>
 							</model>
 						</model>
@@ -14417,12 +15350,6 @@
 								<value></value>
 							</attribute>
 						</connection>
-						<connection isbound="yes" id="id-0068-0000018c" kind="Effect" role="Effect" guid="{26617845-2CC1-4691-A989-EDB02B847287}" derivedfrom="id-0068-00000002" isinstance="no" isprimary="no">
-							<name></name>
-							<attribute kind="Postcondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
 						<connection isbound="yes" id="id-0068-0000018d" kind="Transition" role="Transition" guid="{8FFA64F0-0EDF-4003-80DA-6D752E54FC50}" derivedfrom="id-0068-00000003" isinstance="no" isprimary="no">
 							<name></name>
 							<attribute kind="Precondition" status="meta">
@@ -14468,12 +15395,6 @@
 						<connection isbound="yes" id="id-0068-00000194" kind="Effect" role="Effect" guid="{78217417-3473-4e3b-BFDC-D88B5A9A2619}" derivedfrom="id-0068-0000000a" isinstance="no" isprimary="no">
 							<name></name>
 							<attribute kind="Postcondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000195" kind="Transition" role="Transition" guid="{2434F726-DC6E-4023-AA77-59B741924FE4}" derivedfrom="id-0068-0000000b" isinstance="no" isprimary="no">
-							<name>Transition</name>
-							<attribute kind="Precondition" status="meta">
 								<value></value>
 							</attribute>
 						</connection>
@@ -14578,6 +15499,18 @@
 						</connection>
 						<connection isbound="yes" id="id-0068-000001a9" kind="Finish" role="Finish" guid="{E2415CFC-8BC5-4195-8575-C4E722F78DD9}" derivedfrom="id-0068-0000001f" isinstance="no" isprimary="no">
 							<name>Finish</name>
+						</connection>
+						<connection isbound="yes" id="id-0068-0000028d" kind="Transition" role="Transition" guid="{9A55443C-34A5-4f9b-B141-B993D8365D5E}" derivedfrom="id-0068-0000028b" isinstance="no" isprimary="no">
+							<name>Transition</name>
+							<attribute kind="Precondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000291" kind="Effect" role="Effect" guid="{9015F9E0-FCD9-41e0-8C3A-71CABF68D5F8}" derivedfrom="id-0068-0000028f" isinstance="no" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
 						</connection>
 					</model>
 					<model id="id-0065-000000cf" kind="ComponentFactory" role="ComponentFactory" guid="{4135E785-6415-454f-BFE1-228E52A63AF7}" derivedfrom="id-0065-00000020" isinstance="no" isprimary="yes" relid="0x5" childrelidcntr="0x0">
@@ -14714,6 +15647,27 @@
 								<value>30</value>
 							</attribute>
 						</model>
+						<model id="id-0065-00000207" kind="InputAction" role="InputAction" guid="{EE89F682-BBE3-4778-A5E5-892D23EA36BD}" derivedfrom="id-0065-00000204" isinstance="no" isprimary="no" childrelidcntr="0x0">
+							<name>activate</name>
+						</model>
+						<model id="id-0065-00000210" kind="Action" role="Action" guid="{5D6044E8-67DB-4a16-A231-7614109089DF}" derivedfrom="id-0065-0000020a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>db_handle</name>
+							<attribute kind="LogAction" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="Repetitions" status="meta">
+								<value>1</value>
+							</attribute>
+							<model id="id-0065-00000211" kind="Property" role="Property" guid="{CF244F9C-4B61-479a-8894-2AC5BEB2BA62}" derivedfrom="id-0065-0000020b" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+								<name>hostname</name>
+								<attribute kind="DataValue" status="inherited">
+									<value>localhost</value>
+								</attribute>
+								<reference id="id-0067-00000184" kind="DataType" role="DataType" guid="{0A377274-5685-445f-B54A-6449D1C835C2}" derivedfrom="id-0067-00000181" isinstance="yes" isprimary="no" referred="id-0066-00000033" isbound="yes">
+									<name>String</name>
+								</reference>
+							</model>
+						</model>
 						<atom id="id-0066-000000c9" kind="State" role="State" guid="{17F835B9-8A50-4779-8EB9-707C724F5D79}" derivedfrom="id-0066-0000002b" isinstance="no" isprimary="no">
 							<name></name>
 						</atom>
@@ -14734,6 +15688,15 @@
 						</atom>
 						<atom id="id-0066-000000cf" kind="State" role="State" guid="{D58116C6-FBA7-4efe-A3E5-15552D5C2A65}" derivedfrom="id-0066-00000031" isinstance="no" isprimary="no">
 							<name></name>
+						</atom>
+						<atom id="id-0066-00000132" kind="Environment" role="Environment" guid="{809720B1-4157-4e93-A925-99BA47D17D40}" derivedfrom="id-0066-00000131" isinstance="no" isprimary="no">
+							<name>Environment</name>
+						</atom>
+						<atom id="id-0066-0000013a" kind="State" role="State" guid="{98BF5B04-1C01-4f7c-9DC8-F9921B38D559}" derivedfrom="id-0066-00000137" isinstance="no" isprimary="no">
+							<name>State</name>
+						</atom>
+						<atom id="id-0066-00000140" kind="State" role="State" guid="{59B75AD3-6E90-4d4e-BC45-436684FC6248}" derivedfrom="id-0066-0000013d" isinstance="no" isprimary="no">
+							<name>State</name>
 						</atom>
 						<reference id="id-0067-0000006f" kind="InEventPort" role="InEventPort" guid="{DCA0A908-BDA4-4bfd-BFA3-40B1270A3CF9}" derivedfrom="id-0067-0000000b" isinstance="no" isprimary="no" referred="id-0065-00000005" isbound="yes">
 							<name>CommandEvent</name>
@@ -14907,6 +15870,30 @@
 							</attribute>
 						</connection>
 						<connection isbound="yes" id="id-0068-000001b8" kind="Finish" role="Finish" guid="{CDBB0DD6-5049-4e92-A943-C70E1EE29D6A}" derivedfrom="id-0068-00000064" isinstance="no" isprimary="no">
+							<name>Finish</name>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002aa" kind="MultiInput" role="MultiInput" guid="{D5E757BB-5275-4837-98BA-F9CFB1F47752}" derivedfrom="id-0068-000002a7" isinstance="no" isprimary="no">
+							<name>MultiInput</name>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002b0" kind="InputEffect" role="InputEffect" guid="{6E70EB9C-B138-4d70-A3C1-0EA8EA97FAF9}" derivedfrom="id-0068-000002ad" isinstance="no" isprimary="no">
+							<name>InputEffect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002b6" kind="Transition" role="Transition" guid="{CC5A6CAC-1325-4df6-BCF8-D56C164B97A0}" derivedfrom="id-0068-000002b3" isinstance="no" isprimary="no">
+							<name>Transition</name>
+							<attribute kind="Precondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002bc" kind="Effect" role="Effect" guid="{A9D60C1B-53CC-40b1-BDF7-A5815613E8B5}" derivedfrom="id-0068-000002b9" isinstance="no" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000002c2" kind="Finish" role="Finish" guid="{029703D0-D650-4b55-B4F7-1E013FBE2FA1}" derivedfrom="id-0068-000002bf" isinstance="no" isprimary="no">
 							<name>Finish</name>
 						</connection>
 					</model>
@@ -15354,8 +16341,8 @@
 							</attribute>
 							<model id="id-0065-00000145" kind="Property" role="Property" guid="{3FDD9869-49EB-4878-B665-0D27A6AC4E11}" derivedfrom="id-0065-00000143" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 								<name>hostname</name>
-								<attribute kind="DataValue" status="meta">
-									<value></value>
+								<attribute kind="DataValue" status="inherited">
+									<value>localhost</value>
 								</attribute>
 								<reference id="id-0067-000000ba" kind="DataType" role="DataType" guid="{04626DB0-1866-4674-A9CE-A1EDD67F8F01}" derivedfrom="id-0067-000000b9" isinstance="yes" isprimary="no" referred="id-0066-00000033" isbound="yes">
 									<name>String</name>
@@ -15649,7 +16636,7 @@
 		<folder id="id-006a-00000018" relid="0x1c" childrelidcntr="0x1" kind="DeploymentPlans" guid="{75252A65-49AF-402c-B4A7-6C8696A1801F}">
 			<name>CoWorkEr_DeploymentPlans</name>
 			<model id="id-0065-000001e6" kind="DeploymentPlan" guid="{B04F9114-4D18-4272-839F-1DF5FC2159D8}" relid="0x1" childrelidcntr="0x14">
-				<name>SLICE</name>
+				<name>SLICE_CoWorkEr</name>
 				<attribute kind="UUID">
 					<value>62705012-346B-4C46-88BA-7E33B0DFB08C</value>
 				</attribute>

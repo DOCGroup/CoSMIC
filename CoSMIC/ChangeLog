@@ -1,3 +1,10 @@
+Thu Jan 18 20:53:42 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/examples/SLICE.xme:
+
+          Fixed broken entry points for implementation artifacts in the
+          non-CoWorkEr version of the strings.
+
 Thu Jan 18 05:24:20 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/examples/SLICE.xme:
