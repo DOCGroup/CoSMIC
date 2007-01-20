@@ -1,3 +1,46 @@
+Sat Jan 20 09:28:27 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Updated the paradigm to add defaultVersion attribute to
+          MonolithicImplementation and artifactVersion, operatingSystem,
+          architecture attributes to ImplementationArtifact.  Added new
+          constraints to check for valid version numbers, modified
+          constraints that check for unique component names and also
+          removed a redundant constraint constraint
+          "RequireComponentPackage", that was getting triggered if the
+          user didn't model any packaging related elements at all.
+
+        * PIM/PICML/examples/BasicSP.xme:
+        * PIM/PICML/examples/RACE.xme:
+        * PIM/PICML/examples/RobotAssembly.xme:
+        * PIM/PICML/examples/SLICE.xme:
+        * PIM/PICML/examples/SPACE.xme:
+        * PIM/PICML/examples/Sample_Strings.xme:
+
+          Updated the models to the latest paradigm.
+
+
+        * PIM/SIML/paradigms/SIML.xme:
+        * PIM/SIML/paradigms/SIML.xmp:
+
+          Updated the referenced PICML library due to the above changes.
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Updated the referenced PICML library due to the changes in PICML
+          noted above.
+
+        * PIM/PICML/examples/SLICE-Path.xme:
+
+          Removed this file.
+
 Thu Jan 18 20:53:42 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/examples/SLICE.xme:

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{82F43991-4137-47E0-88AE-29729A3BE64D}" cdate="Thu Jan 04 22:23:34 2007" mdate="Thu Jan 04 22:23:34 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
+<project guid="{3CA5A502-094B-4E0A-900A-DDAD5556ED17}" cdate="Fri Jan 19 14:22:20 2007" mdate="Fri Jan 19 14:22:20 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
-	<comment>This tool supports $CIAO_ROOT/docs/schema/CIAOServerResources.xsd version 1.7. 
-Please check the cvs repository if this is the most recent version of this file.</comment>
+	<comment>Platform-Independent Component Modeling Language (PICML) is a domain-specific
+modeling language that allows design, packaging and deployment of component 
+middleware-based applications.</comment>
 	<author></author>
 	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0xb" kind="RootFolder" guid="{8FF6906F-6F22-4544-8D19-ADBD2D2E6B6A}">
 		<name>PICML</name>
@@ -2095,8 +2096,8 @@ endif</value>
 					<attribute kind="Rolename" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="dst" target="id-0066-0000000a"/>
 					<connpoint role="src" target="id-0066-0000000a"/>
+					<connpoint role="dst" target="id-0066-0000000a"/>
 				</connection>
 				<connection id="id-0068-00000017" kind="Containment" role="Containment" guid="{AA6E2700-9CB2-470d-81D4-78D4E161F19A}" relid="0x6a">
 					<name>Containment</name>
@@ -10566,6 +10567,12 @@ dName = dstMultiInput</value>
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1031</value>
+				</regnode>
+			</regnode>
+			<regnode name="defaultVersion-7b-FieldAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>3885</value>
 				</regnode>
 			</regnode>
 			<regnode name="dynamic-78-BooleanAttribute" status="undefined">
@@ -25535,10 +25542,28 @@ dName = dstMultiInput</value>
 					<value>1903</value>
 				</regnode>
 			</regnode>
+			<regnode name="architecture-5d-EnumAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>3883</value>
+				</regnode>
+			</regnode>
+			<regnode name="artifactVersion-58-FieldAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>3884</value>
+				</regnode>
+			</regnode>
 			<regnode name="configuration-45-FieldAttribute" isopaque="yes">
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1032</value>
+				</regnode>
+			</regnode>
+			<regnode name="operatingSystem-5b-EnumAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>3886</value>
 				</regnode>
 			</regnode>
 		</regnode>
@@ -35709,7 +35734,7 @@ dName = dstMultiInput</value>
 				</regnode>
 			</regnode>
 		</regnode>
-		<model id="id-0065-00000007" kind="ParadigmSheet" guid="{18AC3F70-7064-466d-9BC7-8CDB1A53EB5B}" relid="0x13" childrelidcntr="0x79">
+		<model id="id-0065-00000007" kind="ParadigmSheet" guid="{18AC3F70-7064-466d-9BC7-8CDB1A53EB5B}" relid="0x13" childrelidcntr="0x7e">
 			<name>Attributes</name>
 			<atom id="id-0066-00000041" kind="FieldAttribute" role="FieldAttribute" guid="{D4279E88-D5BE-4821-AC8C-956A78232B63}" relid="0x1">
 				<name>UUID</name>
@@ -36238,7 +36263,7 @@ ResourceUsesPort</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>15,251</value>
+							<value>218,321</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -36289,6 +36314,42 @@ ResourceUsesPort</value>
 				</attribute>
 				<attribute kind="IsViewable" status="meta">
 					<value>true</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000248" kind="FieldAttribute" role="FieldAttribute" guid="{366F410F-48C5-4b83-A6A3-22FC3AB4D226}" relid="0x7b">
+				<name>defaultVersion</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>310,702</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="ContentType" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DataType" status="meta">
+					<value>string</value>
+				</attribute>
+				<attribute kind="FieldDefault">
+					<value>0.0.0.0</value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
 				</attribute>
 				<attribute kind="Prompt" status="meta">
 					<value></value>
@@ -36391,6 +36452,12 @@ ResourceUsesPort</value>
 							<value>176,180</value>
 						</regnode>
 					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>246,12</value>
+						</regnode>
+					</regnode>
 				</regnode>
 				<attribute kind="Decorator" status="meta">
 					<value></value>
@@ -36445,7 +36512,7 @@ ResourceUsesPort</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>449,230</value>
+							<value>442,222</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -36463,7 +36530,7 @@ ResourceUsesPort</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>162,195</value>
+							<value>358,12</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -36520,7 +36587,7 @@ ResourceUsesPort</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>8,167</value>
+							<value>22,181</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -36538,7 +36605,7 @@ ResourceUsesPort</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>232,97</value>
+							<value>316,181</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -36754,7 +36821,7 @@ ResourceUsesPort</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>344,181</value>
+							<value>428,265</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -36829,7 +36896,7 @@ ResourceUsesPort</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>246,278</value>
+							<value>456,488</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -37189,7 +37256,13 @@ ResourceUsesPort</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>204,97</value>
+							<value>274,97</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,279</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -37261,6 +37334,12 @@ ResourceUsesPort</value>
 							<value>288,180</value>
 						</regnode>
 					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>246,362</value>
+						</regnode>
+					</regnode>
 				</regnode>
 				<attribute kind="Decorator" status="meta">
 					<value></value>
@@ -37325,6 +37404,12 @@ ResourceUsesPort</value>
 						<value></value>
 						<regnode name="Position" isopaque="yes">
 							<value>8,265</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,13</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -37396,6 +37481,12 @@ ResourceUsesPort</value>
 							<value>274,279</value>
 						</regnode>
 					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,363</value>
+						</regnode>
+					</regnode>
 				</regnode>
 				<attribute kind="Decorator" status="meta">
 					<value></value>
@@ -37462,7 +37553,13 @@ ResourceUsesPort</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>8,13</value>
+							<value>8,97</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>120,13</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -37531,7 +37628,13 @@ ResourceUsesPort</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>92,97</value>
+							<value>274,13</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>274,279</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -37603,6 +37706,12 @@ ResourceUsesPort</value>
 							<value>8,181</value>
 						</regnode>
 					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>246,111</value>
+						</regnode>
+					</regnode>
 				</regnode>
 				<attribute kind="Decorator" status="meta">
 					<value></value>
@@ -37657,7 +37766,7 @@ ResourceUsesPort</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>8,13</value>
+							<value>78,82</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -37669,7 +37778,13 @@ ResourceUsesPort</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>134,13</value>
+							<value>162,12</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>176,180</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -37738,7 +37853,85 @@ ResourceUsesPort</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>246,13</value>
+							<value>386,13</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,475</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</reference>
+			<reference id="id-0067-000000b4" kind="AtomProxy" role="AtomProxy" guid="{643B410A-1802-4ddb-8724-2D37E171C52A}" relid="0x7a" referred="id-0066-0000017c">
+				<name>MonolithicImplementation</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>64,699</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>652,629</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>400,279</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>92,97</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -37962,6 +38155,14 @@ ResourceUsesPort</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-00000050"/>
 				<connpoint role="dst" target="id-0067-00000073"/>
+			</connection>
+			<connection id="id-0068-000003c1" kind="HasAttribute" role="HasAttribute" guid="{75957C73-72C3-4971-8FE8-E16D6C7DB7AE}" relid="0x7c">
+				<name>HasAttribute</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>We</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-00000248"/>
+				<connpoint role="dst" target="id-0067-000000b4"/>
 			</connection>
 		</model>
 		<model id="id-0065-00000008" kind="ParadigmSheet" guid="{F40C81EB-62AE-4e02-B10D-84B4BB76C70C}" relid="0x2b" childrelidcntr="0x26">
@@ -41380,8 +41581,8 @@ ResourceUsesPort</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000063"/>
 				<connpoint role="src" target="id-0066-00000063"/>
+				<connpoint role="dst" target="id-0066-00000063"/>
 			</connection>
 			<connection id="id-0068-000000a6" kind="HasAspect" role="HasAspect" guid="{14F5F5EC-1F59-4f39-AB1A-4010C83B6898}" relid="0x54">
 				<name>HasAspect</name>
@@ -61631,7 +61832,7 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-00000015" kind="ParadigmSheet" guid="{CAD82429-4285-4da2-BB46-9C362FA49ED4}" relid="0x8" childrelidcntr="0x57">
+		<model id="id-0065-00000015" kind="ParadigmSheet" guid="{CAD82429-4285-4da2-BB46-9C362FA49ED4}" relid="0x8" childrelidcntr="0x60">
 			<name>ImplementationArtifact</name>
 			<atom id="id-0066-0000013e" kind="Folder" role="Folder" guid="{BA2B5669-4736-422d-811B-5A33CBBD032C}" relid="0xc">
 				<name>ImplementationArtifacts</name>
@@ -61781,7 +61982,7 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>351,34</value>
+							<value>295,90</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -62021,7 +62222,7 @@ rrName = referedbyImplementationArtifactReference</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>499,219</value>
+							<value>610,195</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -62227,7 +62428,7 @@ rrName = referedbyImplementationArtifactReference</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>107,450</value>
+							<value>78,517</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -62603,7 +62804,7 @@ rrName = referedbyImplementationArtifactReference</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>358,335</value>
+							<value>253,377</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -62639,7 +62840,7 @@ rrName = referedbyImplementationArtifactReference</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>314,321</value>
+							<value>251,370</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -62666,7 +62867,8 @@ rrName = referedbyImplementationArtifactReference</value>
 				</attribute>
 				<attribute kind="ConstraintEqn">
 					<value>let artifacts = self.atomParts(ImplementationArtifact) in
-   artifacts-&gt;isUnique (i : ImplementationArtifact | i.name.trim())</value>
+artifacts-&gt;forAll ( i, j : ImplementationArtifact | 
+                    i.name.trim() = j.name.trim() =&gt; (i = j or i.artifactVersion.trim() &lt;&gt; j.artifactVersion.trim() ))</value>
 				</attribute>
 				<attribute kind="ConstraintParam" status="meta">
 					<value></value>
@@ -62810,7 +63012,7 @@ dName = dstArtifactDependency</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>104,363</value>
+							<value>111,419</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -62837,7 +63039,10 @@ dName = dstArtifactDependency</value>
 				</attribute>
 				<attribute kind="ConstraintEqn">
 					<value>let artifacts = self.referenceParts(ImplementationArtifactReference) in
-   artifacts-&gt;isUnique (i : ImplementationArtifactReference | i.name.trim())</value>
+   artifacts-&gt;forAll (i,j : ImplementationArtifactReference |
+                      let p : ImplementationArtifact = i.refersTo() in
+                      let q : ImplementationArtifact = j.refersTo() in
+                        i.name.trim() = j.name.trim() =&gt; ( p = q or p.artifactVersion.trim() &lt;&gt; q.artifactVersion.trim() ))</value>
 				</attribute>
 				<attribute kind="ConstraintParam" status="meta">
 					<value></value>
@@ -62962,7 +63167,7 @@ dName = dstArtifactDependency</value>
 					<regnode name="Constraints" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>461,132</value>
+							<value>461,111</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -62996,6 +63201,208 @@ dName = dstArtifactDependency</value>
 				</attribute>
 				<attribute kind="ConstraintPriority">
 					<value>1</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000024a" kind="FieldAttribute" role="FieldAttribute" guid="{97DD880C-A4F2-48d7-A98F-91504FB1AF25}" relid="0x58">
+				<name>artifactVersion</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>442,433</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="ContentType" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DataType" status="meta">
+					<value>string</value>
+				</attribute>
+				<attribute kind="FieldDefault">
+					<value>0.0.0.0</value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000024e" kind="EnumAttribute" role="EnumAttribute" guid="{03C73BB3-1269-4dd8-BD84-AF914758E820}" relid="0x5b">
+				<name>operatingSystem</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>597,422</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="DefaultItem">
+					<value>Linux</value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="MenuItems">
+					<value>Linux
+Win32
+Darwin
+Win64
+SunOS
+VxWorks
+FreeBSD
+NetBSD
+OpenBSD
+AIX
+BSDi
+VMS
+Tru64
+DigitalUnix
+HPUX
+IRIX</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000024f" kind="EnumAttribute" role="EnumAttribute" guid="{9EDC50DC-E1C2-48d3-B335-AA8C43392E7E}" relid="0x5d">
+				<name>architecture</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>366,513</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="DefaultItem">
+					<value>x86</value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="MenuItems">
+					<value>x86
+x86-64
+PowerPC
+SPARC
+MIPS
+HPPA</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000250" kind="Constraint" role="Constraint" guid="{59891F8C-8A72-42d7-AC9E-0B9938781595}" relid="0x5f">
+				<name>ValidVersion</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>447,419</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>Version should be of the form n.n.n.n, where 0 &lt;= n &lt;= 65535</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value>let digit = &quot;[0-9]&quot; in
+let twodigits = digit + digit in
+let threedigits = twodigits + digit in
+let fourdigits = threedigits + digit in
+let singleversion = &quot;(&quot; + digit + &quot;|&quot; + twodigits + &quot;|&quot; + threedigits + &quot;|&quot; + fourdigits + &quot;|&quot; 
+                    + &quot;[0-5]&quot; + fourdigits + &quot;|&quot;
+                    + &quot;6[0-4]&quot; + threedigits + &quot;|&quot;
+                    + &quot;65[0-4]&quot; + twodigits + &quot;|&quot;
+                    + &quot;655[0-2]&quot; + digit + &quot;|&quot;
+                    + &quot;65553[0-5]&quot; + &quot;)&quot; in
+let version = self.artifactVersion.trim() in
+   version.match(singleversion + &quot;\.&quot; + singleversion + &quot;\.&quot; + singleversion + &quot;\.&quot; + singleversion + &quot;$&quot;)</value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority" status="meta">
+					<value>2</value>
 				</attribute>
 				<attribute kind="CreateEvent" status="meta">
 					<value>false</value>
@@ -63113,7 +63520,7 @@ dName = dstArtifactDependency</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>183,153</value>
+							<value>204,216</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -63535,6 +63942,38 @@ dName = dstArtifactDependency</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-0000014a"/>
 				<connpoint role="src" target="id-0066-00000152"/>
+			</connection>
+			<connection id="id-0068-000003c5" kind="HasAttribute" role="HasAttribute" guid="{CEBA1C95-8471-4bf9-9B7E-1DB33AD4289A}" relid="0x59">
+				<name>HasAttribute</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>N</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-0000014a"/>
+				<connpoint role="src" target="id-0066-0000024a"/>
+			</connection>
+			<connection id="id-0068-000003c6" kind="HasAttribute" role="HasAttribute" guid="{AF2D6BDE-225D-4282-A844-9CC1EA37BECF}" relid="0x5c">
+				<name>HasAttribute</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-0000014a"/>
+				<connpoint role="src" target="id-0066-0000024e"/>
+			</connection>
+			<connection id="id-0068-000003c7" kind="HasAttribute" role="HasAttribute" guid="{76B58C7F-B2EE-4352-88FF-76AB086F3989}" relid="0x5e">
+				<name>HasAttribute</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>N</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-0000014a"/>
+				<connpoint role="src" target="id-0066-0000024f"/>
+			</connection>
+			<connection id="id-0068-000003c8" kind="HasConstraint" role="HasConstraint" guid="{58D43F5D-6BE1-4c2f-A97C-829E2930B37F}" relid="0x60">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>N</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-0000014a"/>
+				<connpoint role="src" target="id-0066-00000250"/>
 			</connection>
 			<set id="id-0069-0000000c" kind="Aspect" role="Aspect" guid="{546DA4BE-FC88-46e4-9A0F-C7E2EBF39D74}" relid="0x0" members="id-0066-00000140 id-0066-00000141 id-0066-00000143 id-0066-00000145 id-0066-00000146 id-0066-00000147 id-0066-0000014a id-0066-0000014f id-0067-00000026 id-0067-00000027">
 				<name>ArtifactPackaging</name>
@@ -65399,7 +65838,7 @@ dName = dstArtifactDependency</value>
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-00000017" kind="ParadigmSheet" guid="{4EEB5652-2F57-4720-B9D9-21AE941FCFF9}" relid="0x6" childrelidcntr="0x13a">
+		<model id="id-0065-00000017" kind="ParadigmSheet" guid="{4EEB5652-2F57-4720-B9D9-21AE941FCFF9}" relid="0x6" childrelidcntr="0x13e">
 			<name>ComponentImplementation</name>
 			<atom id="id-0066-00000166" kind="Connector" role="Connector" guid="{144FC44E-81DC-42d4-A89F-882F7B7210C6}" relid="0x7a">
 				<name>Connector</name>
@@ -66598,7 +67037,7 @@ dName = dstArtifactDependency</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>8,237</value>
+							<value>309,538</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -67421,6 +67860,92 @@ dName = dstCriticalPath</value>
 					<value>false</value>
 				</attribute>
 			</atom>
+			<atom id="id-0066-00000251" kind="Constraint" role="Constraint" guid="{31289676-1DA3-4c4f-871D-14F742D043B9}" relid="0x13d">
+				<name>ValidVersion</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>797,475</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>Version should be of the form n.n.n.n, where 0 &lt;= n &lt;= 65535</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value>let digit = &quot;[0-9]&quot; in
+let twodigits = digit + digit in
+let threedigits = twodigits + digit in
+let fourdigits = threedigits + digit in
+let singleversion = &quot;(&quot; + digit + &quot;|&quot; + twodigits + &quot;|&quot; + threedigits + &quot;|&quot; + fourdigits + &quot;|&quot; 
+                    + &quot;[0-5]&quot; + fourdigits + &quot;|&quot;
+                    + &quot;6[0-4]&quot; + threedigits + &quot;|&quot;
+                    + &quot;65[0-4]&quot; + twodigits + &quot;|&quot;
+                    + &quot;655[0-2]&quot; + digit + &quot;|&quot;
+                    + &quot;65553[0-5]&quot; + &quot;)&quot; in
+let version = self.defaultVersion.trim() in
+   version.match(singleversion + &quot;\.&quot; + singleversion + &quot;\.&quot; + singleversion + &quot;\.&quot; + singleversion + &quot;$&quot;)</value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority" status="meta">
+					<value>2</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
 			<reference id="id-0067-0000002c" kind="ReferenceProxy" role="ReferenceProxy" guid="{C66DD169-B6C0-4cf4-BCAA-3ABF06DA8849}" relid="0x5e" referred="id-0066-000000ea">
 				<name>ComponentInterfaceReference</name>
 				<regnode name="PartRegs" isopaque="yes">
@@ -67791,6 +68316,12 @@ dName = dstCriticalPath</value>
 				<name>ImplementationRequirement</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,236</value>
+						</regnode>
+					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
@@ -67863,7 +68394,7 @@ dName = dstCriticalPath</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>8,307</value>
+							<value>50,349</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -67947,6 +68478,12 @@ dName = dstCriticalPath</value>
 				<name>PathReference</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,153</value>
+						</regnode>
+					</regnode>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
@@ -68624,6 +69161,14 @@ dName = dstCriticalPath</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-0000017c"/>
 				<connpoint role="src" target="id-0066-00000184"/>
+			</connection>
+			<connection id="id-0068-000003c9" kind="HasConstraint" role="HasConstraint" guid="{48745E46-AE6C-404c-A666-665B04C59D8D}" relid="0x13e">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>N</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-0000017c"/>
+				<connpoint role="src" target="id-0066-00000251"/>
 			</connection>
 			<set id="id-0069-0000001d" kind="Aspect" role="Aspect" guid="{AFB4C8E4-0566-4d9c-AE6A-8AD1407E471B}" relid="0x0" members="id-0066-00000167 id-0066-00000169 id-0066-0000016b id-0066-0000016e id-0066-0000016f id-0066-00000172 id-0066-00000173 id-0066-00000177 id-0066-00000178 id-0066-00000179 id-0066-0000017b id-0066-00000180 id-0067-0000002c id-0067-0000002d id-0067-0000002e id-0067-0000002f id-0067-00000030 id-0067-00000031 id-0067-000000aa">
 				<name>ImplPackaging</name>
@@ -81771,101 +82316,6 @@ instances-&gt;forAll (x : Component |
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000222" kind="Constraint" role="Constraint" guid="{17826C3D-E170-4f6e-824F-9806C07CE225}" relid="0x130">
-				<name>RequiredComponentPackage</name>
-				<regnode name="PartRegs" isopaque="yes">
-					<value></value>
-					<regnode name="Constraints" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>412,377</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="AddSetEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ChangeAttributeEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ChangePropertyEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ChangeRelationEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="CloseEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ConnectEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ConstraintDescription">
-					<value>Every component instance in an assembly should have a corresponding MonolithicImplementation implementing its interface and packaged in a ComponentPackage.</value>
-				</attribute>
-				<attribute kind="ConstraintEqn">
-					<value>let instances = self.modelParts(Component) in
-let packages = project.allInstancesOf (ComponentPackage) in
-instances-&gt;forAll (x : Component |
-    let myType = x.ComponentParentType() in
-         packages-&gt;exists (pkg: ComponentPackage | 
-               let pkgInterfaces = pkg.connectedFCOs(PackageInterface) in 
-               let mimpls = pkg.MonolithicImpls() in
-               mimpls-&gt;size() &gt;= 1 and pkgInterfaces-&gt;size() = 1 and
-               mimpls-&gt;forAll (impl  : MonolithicImplementation | 
-                     let impleIfs = impl.connectedFCOs(Implements) in 
-                          impleIfs-&gt;size() = 1 and
-                          impleIfs-&gt;forAll (ref1 : Reference | 
-                                              pkgInterfaces-&gt;forAll (ref2 : Reference |  
-                                                                     ref1.refersTo().name = ref2.refersTo().name
-                                                                      and 
-                                                                     ref1.refersTo().name = myType.name() 
-                                                                    )
-                                           ) 
-                               )
-                          )
-                   )</value>
-				</attribute>
-				<attribute kind="ConstraintParam" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="ConstraintPriority" status="meta">
-					<value>2</value>
-				</attribute>
-				<attribute kind="CreateEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="DeleteEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="Depth" status="meta">
-					<value>1</value>
-				</attribute>
-				<attribute kind="DeriveEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="DisconnectEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="LostChildEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="MoveEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NewChildEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ReferenceEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="RemoveSetEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="UnReferenceEvent" status="meta">
-					<value>false</value>
-				</attribute>
-			</atom>
 			<atom id="id-0066-00000223" kind="Constraint" role="Constraint" guid="{9B571A3D-7142-4771-9D88-C8A89C679257}" relid="0x17a">
 				<name>UniqueConnectorNames</name>
 				<regnode name="PartRegs" isopaque="yes">
@@ -84105,8 +84555,8 @@ instances-&gt;forAll (x : Component |
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-0000021c"/>
 				<connpoint role="src" target="id-0066-0000021c"/>
+				<connpoint role="dst" target="id-0066-0000021c"/>
 			</connection>
 			<connection id="id-0068-0000036f" kind="Containment" role="Containment" guid="{E0E0AC44-0FD0-4a4a-A7BE-BE8EC0D7A70F}" relid="0x9d">
 				<name>Containment</name>
@@ -84178,14 +84628,6 @@ instances-&gt;forAll (x : Component |
 				<name>HasConstraint</name>
 				<connpoint role="dst" target="id-0066-0000021c"/>
 				<connpoint role="src" target="id-0066-00000221"/>
-			</connection>
-			<connection id="id-0068-00000376" kind="HasConstraint" role="HasConstraint" guid="{C7652EA9-49D7-4226-826E-90D41FA7CE8D}" relid="0x131">
-				<name>HasConstraint</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>w</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-0000021c"/>
-				<connpoint role="src" target="id-0066-00000222"/>
 			</connection>
 			<connection id="id-0068-00000377" kind="HasConstraint" role="HasConstraint" guid="{1DE7D7B2-7A54-4ffa-AA60-BA5D93DBDB5D}" relid="0x148">
 				<name>HasConstraint</name>

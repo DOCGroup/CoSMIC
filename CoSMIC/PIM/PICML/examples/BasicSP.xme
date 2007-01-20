@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{D5C41C51-ACE1-4565-9F20-9A13F04C6D81}" cdate="Wed Apr 13 16:43:31 2005" mdate="Wed Apr 13 16:43:31 2005" version="" metaguid="{02F92DA4-8C61-4C4D-9618-FD600EE5CACF}" metaversion="" metaname="PICML">
+<project guid="{2EE132A7-C32E-4BC5-9803-86298597B706}" cdate="Fri Jan 19 22:28:25 2007" mdate="Fri Jan 19 22:28:25 2007" version="" metaguid="{53F77B87-26D7-4736-A3F2-3CB623589294}" metaversion="" metaname="PICML">
 	<name>BasicSP</name>
 	<comment></comment>
 	<author></author>
-	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0xc" kind="RootFolder">
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0xc" kind="RootFolder" guid="{09BC6603-91E4-42a7-8497-F717860A021E}">
 		<name>BasicSP</name>
-		<folder id="id-006a-00000002" relid="0x1" childrelidcntr="0xb" kind="PredefinedTypes">
+		<folder id="id-006a-00000002" relid="0x1" childrelidcntr="0xb" kind="PredefinedTypes" guid="{FF816793-F4FD-411e-BB70-EDF061401276}">
 			<name>PredefinedTypes</name>
-			<atom id="id-0066-00000001" kind="TypeKind" relid="0xb">
+			<atom id="id-0066-00000001" kind="TypeKind" guid="{E1BF48D5-69D8-4b0c-815A-38B6A8D4C771}" relid="0xb">
 				<name>TypeKind</name>
 			</atom>
-			<atom id="id-0066-00000002" kind="TypeEncoding" relid="0xa">
+			<atom id="id-0066-00000002" kind="TypeEncoding" guid="{B443B212-1B47-4ef6-9661-76F728E55D34}" relid="0xa">
 				<name>TypeEncoding</name>
 			</atom>
-			<atom id="id-0066-00000003" kind="String" relid="0x9">
+			<atom id="id-0066-00000003" kind="String" guid="{E7686E52-21E1-4c57-8631-440E18366EBC}" relid="0x9">
 				<name>String</name>
 			</atom>
-			<atom id="id-0066-00000004" kind="Boolean" relid="0x8">
+			<atom id="id-0066-00000004" kind="Boolean" guid="{70B678AF-46B1-45ee-B87E-93C3FFE35C3B}" relid="0x8">
 				<name>Boolean</name>
 			</atom>
-			<atom id="id-0066-00000005" kind="ShortInteger" relid="0x7">
+			<atom id="id-0066-00000005" kind="ShortInteger" guid="{7E8EF1D3-3B12-49df-A9A5-B3959182F8E2}" relid="0x7">
 				<name>ShortInteger</name>
 			</atom>
-			<atom id="id-0066-00000006" kind="RealNumber" relid="0x6">
+			<atom id="id-0066-00000006" kind="RealNumber" guid="{FBA378BF-228F-436f-8B3E-B9DA4188418F}" relid="0x6">
 				<name>RealNumber</name>
 			</atom>
-			<atom id="id-0066-00000007" kind="LongInteger" relid="0x5">
+			<atom id="id-0066-00000007" kind="LongInteger" guid="{C329EB68-8D84-4f5c-94AE-6BDC84A03DCF}" relid="0x5">
 				<name>LongInteger</name>
 			</atom>
-			<atom id="id-0066-00000008" kind="GenericValueObject" relid="0x4">
+			<atom id="id-0066-00000008" kind="GenericValueObject" guid="{1A83A0B5-EB5F-44f5-B55E-28E593223BEB}" relid="0x4">
 				<name>GenericValueObject</name>
 			</atom>
-			<atom id="id-0066-00000009" kind="GenericValue" relid="0x3">
+			<atom id="id-0066-00000009" kind="GenericValue" guid="{1B181507-ECB7-4c36-B424-828068849B5D}" relid="0x3">
 				<name>GenericValue</name>
 			</atom>
-			<atom id="id-0066-0000000a" kind="GenericObject" relid="0x2">
+			<atom id="id-0066-0000000a" kind="GenericObject" guid="{3F9CDBA6-0410-42ca-A069-C28D03E68DE0}" relid="0x2">
 				<name>GenericObject</name>
 			</atom>
-			<atom id="id-0066-0000000b" kind="Byte" relid="0x1">
+			<atom id="id-0066-0000000b" kind="Byte" guid="{6FCFA348-2D1C-4db0-A51C-F596FDC2739C}" relid="0x1">
 				<name>Byte</name>
 			</atom>
 		</folder>
-		<folder id="id-006a-00000003" relid="0x2" childrelidcntr="0x5" kind="InterfaceDefinitions">
+		<folder id="id-006a-00000003" relid="0x2" childrelidcntr="0x5" kind="InterfaceDefinitions" guid="{0AC99189-9C06-4171-8156-EEF796E507F9}">
 			<name>InterfaceDefinitions</name>
-			<model id="id-0065-00000001" kind="File" relid="0x1" childrelidcntr="0x1">
+			<model id="id-0065-00000001" kind="File" guid="{0F0C3B99-AEC8-41d0-85BD-A3D062D7B1A4}" relid="0x1" childrelidcntr="0x1">
 				<name>BasicSP</name>
 				<attribute kind="PrefixTag" status="meta">
 					<value></value>
 				</attribute>
-				<model id="id-0065-00000002" kind="Package" role="Package" relid="0x1" childrelidcntr="0x3">
+				<model id="id-0065-00000002" kind="Package" role="Package" guid="{F09C29F9-27B7-4058-B373-C023D4E368A6}" relid="0x1" childrelidcntr="0x3">
 					<name>BasicSP</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -70,7 +70,7 @@
 					<attribute kind="VersionTag" status="meta">
 						<value></value>
 					</attribute>
-					<model id="id-0065-00000003" kind="Object" role="Object" relid="0x1" childrelidcntr="0x1">
+					<model id="id-0065-00000003" kind="Object" role="Object" guid="{469095EB-8E19-42cd-ABEA-885C72CDFB11}" relid="0x1" childrelidcntr="0x1">
 						<name>ReadData</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -96,7 +96,7 @@
 						<attribute kind="local" status="meta">
 							<value>false</value>
 						</attribute>
-						<model id="id-0065-00000004" kind="TwowayOperation" role="TwowayOperation" relid="0x1" childrelidcntr="0x1">
+						<model id="id-0065-00000004" kind="TwowayOperation" role="TwowayOperation" guid="{3419F398-33F2-49d8-80ED-64B681DDA7B6}" relid="0x1" childrelidcntr="0x1">
 							<name>get_data</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -113,7 +113,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-00000001" kind="ReturnType" role="ReturnType" relid="0x1" referred="id-0066-00000003">
+							<reference id="id-0067-00000001" kind="ReturnType" role="ReturnType" guid="{4C2B2BAF-E5F0-4258-9506-083A75FF3EFE}" relid="0x1" referred="id-0066-00000003">
 								<name>ReturnType</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -127,7 +127,7 @@
 							</reference>
 						</model>
 					</model>
-					<model id="id-0065-00000005" kind="Event" role="Event" relid="0x2" childrelidcntr="0x0">
+					<model id="id-0065-00000005" kind="Event" role="Event" guid="{94016C73-063D-4ecd-AD13-9D4C0CD5D404}" relid="0x2" childrelidcntr="0x0">
 						<name>TimeOut</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -151,7 +151,7 @@
 							<value>false</value>
 						</attribute>
 					</model>
-					<model id="id-0065-00000006" kind="Event" role="Event" relid="0x3" childrelidcntr="0x0">
+					<model id="id-0065-00000006" kind="Event" role="Event" guid="{36B9CA46-D565-49be-BCEB-710553495214}" relid="0x3" childrelidcntr="0x0">
 						<name>DataAvailable</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -177,12 +177,12 @@
 					</model>
 				</model>
 			</model>
-			<model id="id-0065-00000007" kind="File" relid="0x2" childrelidcntr="0x2">
+			<model id="id-0065-00000007" kind="File" guid="{625B2575-A193-4e8c-B1A8-A64EF45D315A}" relid="0x2" childrelidcntr="0x2">
 				<name>BMClosedED</name>
 				<attribute kind="PrefixTag" status="meta">
 					<value></value>
 				</attribute>
-				<model id="id-0065-00000008" kind="Package" role="Package" relid="0x2" childrelidcntr="0x3">
+				<model id="id-0065-00000008" kind="Package" role="Package" guid="{9DDFE266-DD91-4a87-9B00-3987F683926C}" relid="0x2" childrelidcntr="0x3">
 					<name>BasicSP</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -202,7 +202,7 @@
 					<attribute kind="VersionTag" status="meta">
 						<value></value>
 					</attribute>
-					<model id="id-0065-00000009" kind="Component" role="Component" relid="0x1" childrelidcntr="0x4">
+					<model id="id-0065-00000009" kind="Component" role="Component" guid="{4B97D7C9-1EFD-43be-902E-E486AF783C67}" relid="0x1" childrelidcntr="0x4">
 						<name>BMClosedED</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -216,8 +216,8 @@
 						<attribute kind="SpecifyIdTag" status="meta">
 							<value></value>
 						</attribute>
-						<attribute kind="UUID" status="meta">
-							<value></value>
+						<attribute kind="UUID">
+							<value>9EA291C1-C1F5-44BB-9CD2-4299645F64C8</value>
 						</attribute>
 						<attribute kind="VersionTag" status="meta">
 							<value></value>
@@ -225,7 +225,7 @@
 						<attribute kind="label" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000002" kind="ProvidedRequestPort" role="ProvidedRequestPort" relid="0x1" referred="id-0065-00000003">
+						<reference id="id-0067-00000002" kind="ProvidedRequestPort" role="ProvidedRequestPort" guid="{79E5B952-F608-4ca2-9A9E-A6CF4477949C}" relid="0x1" referred="id-0065-00000003">
 							<name>dataout</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -252,7 +252,7 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000003" kind="RequiredRequestPort" role="RequiredRequestPort" relid="0x2" referred="id-0065-00000003">
+						<reference id="id-0067-00000003" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{B3CC37CB-A0F2-4ef9-949C-9F4AAC10A0E1}" relid="0x2" referred="id-0065-00000003">
 							<name>datain</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -282,7 +282,7 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000004" kind="OutEventPort" role="OutEventPort" relid="0x3" referred="id-0065-00000006">
+						<reference id="id-0067-00000004" kind="OutEventPort" role="OutEventPort" guid="{003E3861-E442-40bb-BD98-4383EDAB258D}" relid="0x3" referred="id-0065-00000006">
 							<name>out_avail</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -315,7 +315,7 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000005" kind="InEventPort" role="InEventPort" relid="0x4" referred="id-0065-00000006">
+						<reference id="id-0067-00000005" kind="InEventPort" role="InEventPort" guid="{8F4BF1CE-A1B1-4072-B5AE-B609584574B6}" relid="0x4" referred="id-0065-00000006">
 							<name>in_avail</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -343,7 +343,7 @@
 							</attribute>
 						</reference>
 					</model>
-					<model id="id-0065-0000000a" kind="ComponentFactory" role="ComponentFactory" relid="0x2" childrelidcntr="0x0">
+					<model id="id-0065-0000000a" kind="ComponentFactory" role="ComponentFactory" guid="{E443AC03-8C8D-4be7-84E5-FD532182058B}" relid="0x2" childrelidcntr="0x0">
 						<name>BMClosedEDHome</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -361,7 +361,7 @@
 							<value></value>
 						</attribute>
 					</model>
-					<connection id="id-0068-00000001" kind="ManagesComponent" role="ManagesComponent" relid="0x3">
+					<connection id="id-0068-00000001" kind="ManagesComponent" role="ManagesComponent" guid="{7B9248B6-ADAB-4e29-B722-5E8C3C53B768}" relid="0x3">
 						<name>ManagesComponent</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>Ws</value>
@@ -370,7 +370,7 @@
 						<connpoint role="src" target="id-0065-0000000a"/>
 					</connection>
 				</model>
-				<reference id="id-0067-00000006" kind="FileRef" role="FileRef" relid="0x1" referred="id-0065-00000001">
+				<reference id="id-0067-00000006" kind="FileRef" role="FileRef" guid="{6DCB5F3E-9AE8-4d32-8563-1A0EC56CCECC}" relid="0x1" referred="id-0065-00000001">
 					<name>FileRef</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -383,12 +383,12 @@
 					</regnode>
 				</reference>
 			</model>
-			<model id="id-0065-0000000b" kind="File" relid="0x3" childrelidcntr="0x2">
+			<model id="id-0065-0000000b" kind="File" guid="{2C8F7FA9-9C8A-4f54-8C95-EFA79A479E4B}" relid="0x3" childrelidcntr="0x2">
 				<name>BMDevice</name>
 				<attribute kind="PrefixTag" status="meta">
 					<value></value>
 				</attribute>
-				<model id="id-0065-0000000c" kind="Package" role="Package" relid="0x2" childrelidcntr="0x3">
+				<model id="id-0065-0000000c" kind="Package" role="Package" guid="{7F769B6A-57DD-4a90-B507-512C7F199704}" relid="0x2" childrelidcntr="0x3">
 					<name>BasicSP</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -408,7 +408,7 @@
 					<attribute kind="VersionTag" status="meta">
 						<value></value>
 					</attribute>
-					<model id="id-0065-0000000d" kind="Component" role="Component" relid="0x1" childrelidcntr="0x3">
+					<model id="id-0065-0000000d" kind="Component" role="Component" guid="{F3AAC174-61C2-4a1d-92F5-487762FEE52D}" relid="0x1" childrelidcntr="0x3">
 						<name>BMDevice</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -422,8 +422,8 @@
 						<attribute kind="SpecifyIdTag" status="meta">
 							<value></value>
 						</attribute>
-						<attribute kind="UUID" status="meta">
-							<value></value>
+						<attribute kind="UUID">
+							<value>2C4D9415-75DE-4DF4-B186-3DC6BDE6D28E</value>
 						</attribute>
 						<attribute kind="VersionTag" status="meta">
 							<value></value>
@@ -431,7 +431,7 @@
 						<attribute kind="label" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000007" kind="ProvidedRequestPort" role="ProvidedRequestPort" relid="0x1" referred="id-0065-00000003">
+						<reference id="id-0067-00000007" kind="ProvidedRequestPort" role="ProvidedRequestPort" guid="{CA7CEABC-C3BC-40bb-8D8A-D5F7CF34D1E0}" relid="0x1" referred="id-0065-00000003">
 							<name>data_read</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -458,7 +458,7 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000008" kind="OutEventPort" role="OutEventPort" relid="0x2" referred="id-0065-00000006">
+						<reference id="id-0067-00000008" kind="OutEventPort" role="OutEventPort" guid="{4DCFA106-309B-4e5e-86A6-7565916B3273}" relid="0x2" referred="id-0065-00000006">
 							<name>data_available</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -491,7 +491,7 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000009" kind="InEventPort" role="InEventPort" relid="0x3" referred="id-0065-00000005">
+						<reference id="id-0067-00000009" kind="InEventPort" role="InEventPort" guid="{3819C3C1-EA84-42ff-96A5-B9690146703D}" relid="0x3" referred="id-0065-00000005">
 							<name>timeout</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -519,7 +519,7 @@
 							</attribute>
 						</reference>
 					</model>
-					<model id="id-0065-0000000e" kind="ComponentFactory" role="ComponentFactory" relid="0x2" childrelidcntr="0x0">
+					<model id="id-0065-0000000e" kind="ComponentFactory" role="ComponentFactory" guid="{E4CE4221-AFD2-4d6f-993E-C56743075859}" relid="0x2" childrelidcntr="0x0">
 						<name>BMDeviceHome</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -537,7 +537,7 @@
 							<value></value>
 						</attribute>
 					</model>
-					<connection id="id-0068-00000002" kind="ManagesComponent" role="ManagesComponent" relid="0x3">
+					<connection id="id-0068-00000002" kind="ManagesComponent" role="ManagesComponent" guid="{E5F53B46-4A23-420c-AB7C-B08D951D8781}" relid="0x3">
 						<name>ManagesComponent</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>Ws</value>
@@ -546,7 +546,7 @@
 						<connpoint role="src" target="id-0065-0000000e"/>
 					</connection>
 				</model>
-				<reference id="id-0067-0000000a" kind="FileRef" role="FileRef" relid="0x1" referred="id-0065-00000001">
+				<reference id="id-0067-0000000a" kind="FileRef" role="FileRef" guid="{755A09FB-2F30-49c9-BBBB-746F717FC241}" relid="0x1" referred="id-0065-00000001">
 					<name>FileRef</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -559,12 +559,12 @@
 					</regnode>
 				</reference>
 			</model>
-			<model id="id-0065-0000000f" kind="File" relid="0x4" childrelidcntr="0x2">
+			<model id="id-0065-0000000f" kind="File" guid="{DD579FFD-8E77-4f61-BC98-3EE2709C63F7}" relid="0x4" childrelidcntr="0x2">
 				<name>BMDisplay</name>
 				<attribute kind="PrefixTag" status="meta">
 					<value></value>
 				</attribute>
-				<model id="id-0065-00000010" kind="Package" role="Package" relid="0x2" childrelidcntr="0x3">
+				<model id="id-0065-00000010" kind="Package" role="Package" guid="{69FD64F8-C3EF-4ecd-AA3D-4EAD52BBBC98}" relid="0x2" childrelidcntr="0x3">
 					<name>BasicSP</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -584,7 +584,7 @@
 					<attribute kind="VersionTag" status="meta">
 						<value></value>
 					</attribute>
-					<model id="id-0065-00000011" kind="Component" role="Component" relid="0x1" childrelidcntr="0x2">
+					<model id="id-0065-00000011" kind="Component" role="Component" guid="{81331979-3426-4eb8-AFAB-C157DA3581F3}" relid="0x1" childrelidcntr="0x2">
 						<name>BMDisplay</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -598,8 +598,8 @@
 						<attribute kind="SpecifyIdTag" status="meta">
 							<value></value>
 						</attribute>
-						<attribute kind="UUID" status="meta">
-							<value></value>
+						<attribute kind="UUID">
+							<value>3C03B8D3-0862-473D-9391-B1300FBC8CCC</value>
 						</attribute>
 						<attribute kind="VersionTag" status="meta">
 							<value></value>
@@ -607,7 +607,7 @@
 						<attribute kind="label" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-0000000b" kind="RequiredRequestPort" role="RequiredRequestPort" relid="0x1" referred="id-0065-00000003">
+						<reference id="id-0067-0000000b" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{076DE870-219A-4878-9507-67598D60A2CF}" relid="0x1" referred="id-0065-00000003">
 							<name>comp_data</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -637,7 +637,7 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-0000000c" kind="InEventPort" role="InEventPort" relid="0x2" referred="id-0065-00000006">
+						<reference id="id-0067-0000000c" kind="InEventPort" role="InEventPort" guid="{E2423326-BE41-48fc-AB68-1DB5CD7117DD}" relid="0x2" referred="id-0065-00000006">
 							<name>data_ready</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -665,7 +665,7 @@
 							</attribute>
 						</reference>
 					</model>
-					<model id="id-0065-00000012" kind="ComponentFactory" role="ComponentFactory" relid="0x2" childrelidcntr="0x0">
+					<model id="id-0065-00000012" kind="ComponentFactory" role="ComponentFactory" guid="{9AED1FC5-3924-4540-90EF-DE5664032916}" relid="0x2" childrelidcntr="0x0">
 						<name>BMDisplayHome</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -683,7 +683,7 @@
 							<value></value>
 						</attribute>
 					</model>
-					<connection id="id-0068-00000003" kind="ManagesComponent" role="ManagesComponent" relid="0x3">
+					<connection id="id-0068-00000003" kind="ManagesComponent" role="ManagesComponent" guid="{D5136912-0232-4144-9C89-B2B6FBE56CC9}" relid="0x3">
 						<name>ManagesComponent</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>Ws</value>
@@ -692,7 +692,7 @@
 						<connpoint role="src" target="id-0065-00000012"/>
 					</connection>
 				</model>
-				<reference id="id-0067-0000000d" kind="FileRef" role="FileRef" relid="0x1" referred="id-0065-00000001">
+				<reference id="id-0067-0000000d" kind="FileRef" role="FileRef" guid="{C0A38C08-04D6-4dd6-9A84-7DC4FBDEB92C}" relid="0x1" referred="id-0065-00000001">
 					<name>FileRef</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -705,12 +705,12 @@
 					</regnode>
 				</reference>
 			</model>
-			<model id="id-0065-00000013" kind="File" relid="0x5" childrelidcntr="0x2">
+			<model id="id-0065-00000013" kind="File" guid="{3F81817D-46B5-40d0-A8B1-AC3D23917914}" relid="0x5" childrelidcntr="0x2">
 				<name>EC</name>
 				<attribute kind="PrefixTag" status="meta">
 					<value></value>
 				</attribute>
-				<model id="id-0065-00000014" kind="Package" role="Package" relid="0x2" childrelidcntr="0x4">
+				<model id="id-0065-00000014" kind="Package" role="Package" guid="{6F2087DB-51AA-48f9-8A8E-B6E0182C4118}" relid="0x2" childrelidcntr="0x4">
 					<name>BasicSP</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -730,7 +730,7 @@
 					<attribute kind="VersionTag" status="meta">
 						<value></value>
 					</attribute>
-					<model id="id-0065-00000015" kind="Object" role="Object" relid="0x1" childrelidcntr="0x2">
+					<model id="id-0065-00000015" kind="Object" role="Object" guid="{142B01A3-487A-4a76-BBF5-0CB5CF3A0948}" relid="0x1" childrelidcntr="0x2">
 						<name>trigger</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -756,7 +756,7 @@
 						<attribute kind="local" status="meta">
 							<value>false</value>
 						</attribute>
-						<model id="id-0065-00000016" kind="TwowayOperation" role="TwowayOperation" relid="0x1" childrelidcntr="0x0">
+						<model id="id-0065-00000016" kind="TwowayOperation" role="TwowayOperation" guid="{340A0465-6678-4b7e-BA46-C5938DAAEE15}" relid="0x1" childrelidcntr="0x0">
 							<name>start</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -774,7 +774,7 @@
 								<value></value>
 							</attribute>
 						</model>
-						<model id="id-0065-00000017" kind="TwowayOperation" role="TwowayOperation" relid="0x2" childrelidcntr="0x0">
+						<model id="id-0065-00000017" kind="TwowayOperation" role="TwowayOperation" guid="{0744E35C-935D-48f4-9FE4-F793265235A9}" relid="0x2" childrelidcntr="0x0">
 							<name>stop</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -793,7 +793,7 @@
 							</attribute>
 						</model>
 					</model>
-					<model id="id-0065-00000018" kind="Component" role="Component" relid="0x2" childrelidcntr="0x3">
+					<model id="id-0065-00000018" kind="Component" role="Component" guid="{0F6E4F15-8B66-49b9-9B66-DE4AFE4F39F2}" relid="0x2" childrelidcntr="0x3">
 						<name>EC</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -807,8 +807,8 @@
 						<attribute kind="SpecifyIdTag" status="meta">
 							<value></value>
 						</attribute>
-						<attribute kind="UUID" status="meta">
-							<value></value>
+						<attribute kind="UUID">
+							<value>DDCB4DE0-091A-467C-BBFC-D32669EFB9B4</value>
 						</attribute>
 						<attribute kind="VersionTag" status="meta">
 							<value></value>
@@ -816,7 +816,7 @@
 						<attribute kind="label" status="meta">
 							<value></value>
 						</attribute>
-						<model id="id-0065-00000019" kind="Attribute" role="Attribute" relid="0x3" childrelidcntr="0x1">
+						<model id="id-0065-00000019" kind="Attribute" role="Attribute" guid="{CCA1514E-94A6-4558-8DE9-6C6A1C77B4F4}" relid="0x3" childrelidcntr="0x1">
 							<name>hertz</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -833,7 +833,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-0000000e" kind="AttributeMember" role="AttributeMember" relid="0x1" referred="id-0066-00000007">
+							<reference id="id-0067-0000000e" kind="AttributeMember" role="AttributeMember" guid="{54F15F42-420B-4e42-8517-5DB24C07ED13}" relid="0x1" referred="id-0066-00000007">
 								<name>AttributeMember</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -846,7 +846,7 @@
 								</regnode>
 							</reference>
 						</model>
-						<reference id="id-0067-0000000f" kind="Supports" role="Supports" relid="0x1" referred="id-0065-00000015">
+						<reference id="id-0067-0000000f" kind="Supports" role="Supports" guid="{90D170B5-B8CA-4621-BC2B-48C982FD2013}" relid="0x1" referred="id-0065-00000015">
 							<name>Supports</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -858,7 +858,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000010" kind="OutEventPort" role="OutEventPort" relid="0x2" referred="id-0065-00000005">
+						<reference id="id-0067-00000010" kind="OutEventPort" role="OutEventPort" guid="{B861ED4D-1A98-488c-B1B6-E0308E8E9029}" relid="0x2" referred="id-0065-00000005">
 							<name>timeout</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -892,7 +892,7 @@
 							</attribute>
 						</reference>
 					</model>
-					<model id="id-0065-0000001a" kind="ComponentFactory" role="ComponentFactory" relid="0x3" childrelidcntr="0x1">
+					<model id="id-0065-0000001a" kind="ComponentFactory" role="ComponentFactory" guid="{A734ECBD-D9AD-4d0f-8B1E-1E2D9B51BCF5}" relid="0x3" childrelidcntr="0x1">
 						<name>ECHome</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -909,7 +909,7 @@
 						<attribute kind="VersionTag" status="meta">
 							<value></value>
 						</attribute>
-						<model id="id-0065-0000001b" kind="FactoryOperation" role="FactoryOperation" relid="0x1" childrelidcntr="0x1">
+						<model id="id-0065-0000001b" kind="FactoryOperation" role="FactoryOperation" guid="{005E421E-A8E5-461f-B590-761799C6AAF6}" relid="0x1" childrelidcntr="0x1">
 							<name>new_EC</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -926,7 +926,7 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-00000011" kind="InParameter" role="InParameter" relid="0x1" referred="id-0066-00000007">
+							<reference id="id-0067-00000011" kind="InParameter" role="InParameter" guid="{E5F092A5-D2F8-4599-BDA1-C870E759B83E}" relid="0x1" referred="id-0066-00000007">
 								<name>hertz</name>
 								<regnode name="PartRegs" isopaque="yes">
 									<value></value>
@@ -940,7 +940,7 @@
 							</reference>
 						</model>
 					</model>
-					<connection id="id-0068-00000004" kind="ManagesComponent" role="ManagesComponent" relid="0x4">
+					<connection id="id-0068-00000004" kind="ManagesComponent" role="ManagesComponent" guid="{81575ECA-3B95-4209-8AB9-C1A2C7FE1C35}" relid="0x4">
 						<name>ManagesComponent</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>Ws</value>
@@ -949,7 +949,7 @@
 						<connpoint role="src" target="id-0065-0000001a"/>
 					</connection>
 				</model>
-				<reference id="id-0067-00000012" kind="FileRef" role="FileRef" relid="0x1" referred="id-0065-00000001">
+				<reference id="id-0067-00000012" kind="FileRef" role="FileRef" guid="{A15F81B5-DD9A-4416-955C-28BD5F47A327}" relid="0x1" referred="id-0065-00000001">
 					<name>FileRef</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -963,11 +963,11 @@
 				</reference>
 			</model>
 		</folder>
-		<folder id="id-006a-00000004" relid="0x3" childrelidcntr="0x5" kind="ImplementationArtifacts">
+		<folder id="id-006a-00000004" relid="0x3" childrelidcntr="0x5" kind="ImplementationArtifacts" guid="{8F763365-EB78-4723-B79B-05D6CBD278AF}">
 			<name>ImplementationArtifacts</name>
-			<model id="id-0065-0000001c" kind="ArtifactContainer" relid="0x1" childrelidcntr="0x14">
+			<model id="id-0065-0000001c" kind="ArtifactContainer" guid="{5FA9FC9E-8891-4fe3-A6BA-B7C6D07711B5}" relid="0x1" childrelidcntr="0x15">
 				<name>BMClosedED</name>
-				<model id="id-0065-0000001d" kind="Property" role="Property" relid="0x4" childrelidcntr="0x1">
+				<model id="id-0065-0000001d" kind="Property" role="Property" guid="{F1A5EBA0-662B-482e-B1A3-1CCAA28CFBA3}" relid="0x4" childrelidcntr="0x1">
 					<name>entryPoint</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -981,7 +981,7 @@
 					<attribute kind="DataValue">
 						<value>createBMClosedEDHome_Servant</value>
 					</attribute>
-					<reference id="id-0067-00000013" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000003">
+					<reference id="id-0067-00000013" kind="DataType" role="DataType" guid="{1688D1FC-8906-4e90-88CF-55FF88DD3903}" relid="0x1" referred="id-0066-00000003">
 						<name>DataType</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -994,7 +994,7 @@
 						</regnode>
 					</reference>
 				</model>
-				<model id="id-0065-0000001e" kind="Property" role="Property" relid="0x5" childrelidcntr="0x1">
+				<model id="id-0065-0000001e" kind="Property" role="Property" guid="{AD33F0EF-36A7-476b-A6DE-B72B143C8169}" relid="0x5" childrelidcntr="0x1">
 					<name>entryPoint</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1008,7 +1008,7 @@
 					<attribute kind="DataValue">
 						<value>createBMClosedEDHome_Impl</value>
 					</attribute>
-					<reference id="id-0067-00000014" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000003">
+					<reference id="id-0067-00000014" kind="DataType" role="DataType" guid="{6EF3D8AC-3B42-4c0b-96EA-8FB47C079AB6}" relid="0x1" referred="id-0066-00000003">
 						<name>DataType</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -1021,7 +1021,7 @@
 						</regnode>
 					</reference>
 				</model>
-				<atom id="id-0066-0000000c" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x1">
+				<atom id="id-0066-0000000c" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{0B0A5DD9-9F06-4bd2-8A3A-6BC58489C326}" relid="0x1">
 					<name>BMClosedED_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1032,8 +1032,14 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>396EF214-CE5E-4A3B-8F0F-5DB1F6A23F12</value>
+					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion">
+						<value>1.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -1044,8 +1050,11 @@
 					<attribute kind="location">
 						<value>BMClosedED_exec</value>
 					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
+					</attribute>
 				</atom>
-				<atom id="id-0066-0000000d" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
+				<atom id="id-0066-0000000d" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{EE941032-C649-4c2f-AE29-1AA0BF8CF184}" relid="0x2">
 					<name>BMClosedED_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1056,8 +1065,14 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>D1890470-82F5-4832-8C99-2E6DF64C636F</value>
+					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion">
+						<value>1.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -1068,8 +1083,11 @@
 					<attribute kind="location">
 						<value>BMClosedED_stub</value>
 					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
+					</attribute>
 				</atom>
-				<atom id="id-0066-0000000e" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
+				<atom id="id-0066-0000000e" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{522C3171-E4B4-4429-980D-BFAE016434BA}" relid="0x3">
 					<name>BMClosedED_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1080,8 +1098,14 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>6D5A2477-3CD7-4AE6-BB00-D9948E77058B</value>
+					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion">
+						<value>1.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -1092,8 +1116,11 @@
 					<attribute kind="location">
 						<value>BMClosedED_svnt</value>
 					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
+					</attribute>
 				</atom>
-				<reference id="id-0067-00000015" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x8" referred="id-0066-0000000d">
+				<reference id="id-0067-00000015" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{32752D78-81BE-45ce-B584-A44B61605949}" relid="0x8" referred="id-0066-0000000d">
 					<name>BMClosedED_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1105,7 +1132,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000016" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0xf" referred="id-0066-0000000e">
+				<reference id="id-0067-00000016" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{67B85C7D-9CAE-4d21-9D54-E1522A662845}" relid="0xf" referred="id-0066-0000000e">
 					<name>BMClosedED_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1117,7 +1144,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000071" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x11" referred="id-0066-00000018">
+				<reference id="id-0067-00000071" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{B665D760-F8FC-4688-82CC-A47D3C69C361}" relid="0x11" referred="id-0066-00000018">
 					<name>BasicSP_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1129,7 +1156,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000072" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x12" referred="id-0066-00000019">
+				<reference id="id-0067-00000072" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{5BDC4284-E4BC-4648-8224-D5C5E4F601E5}" relid="0x12" referred="id-0066-00000019">
 					<name>BasicSP_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1141,22 +1168,22 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-00000005" kind="ArtifactExecParameter" role="ArtifactExecParameter" relid="0x6">
+				<connection id="id-0068-00000005" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{A4D5F76C-CD14-4ba6-BFB0-2AB1E311FF29}" relid="0x6">
 					<name>ArtifactExecParameter</name>
 					<connpoint role="dst" target="id-0065-0000001e"/>
 					<connpoint role="src" target="id-0066-0000000c"/>
 				</connection>
-				<connection id="id-0068-00000006" kind="ArtifactExecParameter" role="ArtifactExecParameter" relid="0x7">
+				<connection id="id-0068-00000006" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{F54D9598-E91C-4bc4-A74A-6F1F8BD0B51B}" relid="0x7">
 					<name>ArtifactExecParameter</name>
 					<connpoint role="dst" target="id-0065-0000001d"/>
 					<connpoint role="src" target="id-0066-0000000e"/>
 				</connection>
-				<connection id="id-0068-00000007" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0xa">
+				<connection id="id-0068-00000007" kind="ArtifactDependsOn" role="ArtifactDependsOn" guid="{3D62744F-E9D6-4b03-916E-714A931F660D}" relid="0xa">
 					<name>ArtifactDependsOn</name>
 					<connpoint role="src" target="id-0066-0000000e"/>
 					<connpoint role="dst" target="id-0067-00000015"/>
 				</connection>
-				<connection id="id-0068-00000008" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x10">
+				<connection id="id-0068-00000008" kind="ArtifactDependsOn" role="ArtifactDependsOn" guid="{C92B69E7-5031-476b-A4BF-5E736402E4F7}" relid="0x10">
 					<name>ArtifactDependsOn</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>N</value>
@@ -1164,20 +1191,20 @@
 					<connpoint role="src" target="id-0066-0000000c"/>
 					<connpoint role="dst" target="id-0067-00000016"/>
 				</connection>
-				<connection id="id-0068-00000009" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x13">
+				<connection id="id-0068-00000009" kind="ArtifactDependsOn" role="ArtifactDependsOn" guid="{55EF5BAC-63A0-4569-AF00-B7BADC324265}" relid="0x13">
 					<name>ArtifactDependsOn</name>
 					<connpoint role="src" target="id-0066-0000000d"/>
 					<connpoint role="dst" target="id-0067-00000071"/>
 				</connection>
-				<connection id="id-0068-0000000a" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x14">
+				<connection id="id-0068-0000000a" kind="ArtifactDependsOn" role="ArtifactDependsOn" guid="{DA834029-B84C-49b3-873E-83F351FCBCBC}" relid="0x14">
 					<name>ArtifactDependsOn</name>
 					<connpoint role="src" target="id-0066-0000000d"/>
 					<connpoint role="dst" target="id-0067-00000072"/>
 				</connection>
 			</model>
-			<model id="id-0065-0000001f" kind="ArtifactContainer" relid="0x2" childrelidcntr="0x10">
+			<model id="id-0065-0000001f" kind="ArtifactContainer" guid="{5116F108-573F-4f42-9000-6B0F0624CDF6}" relid="0x2" childrelidcntr="0x17">
 				<name>BMDevice</name>
-				<model id="id-0065-00000020" kind="Property" role="Property" relid="0x4" childrelidcntr="0x1">
+				<model id="id-0065-00000020" kind="Property" role="Property" guid="{EB115FE6-9E1B-4f5e-9254-2A0E92D9EAE7}" relid="0x4" childrelidcntr="0x1">
 					<name>entryPoint</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1191,7 +1218,7 @@
 					<attribute kind="DataValue">
 						<value>createBMDeviceHome_Servant</value>
 					</attribute>
-					<reference id="id-0067-00000017" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000003">
+					<reference id="id-0067-00000017" kind="DataType" role="DataType" guid="{EF66975A-E849-4e04-998F-2AD5B8C0E44E}" relid="0x1" referred="id-0066-00000003">
 						<name>DataType</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -1204,7 +1231,7 @@
 						</regnode>
 					</reference>
 				</model>
-				<model id="id-0065-00000021" kind="Property" role="Property" relid="0x5" childrelidcntr="0x1">
+				<model id="id-0065-00000021" kind="Property" role="Property" guid="{F4561208-1F06-479a-BD2A-8E9DB909F501}" relid="0x5" childrelidcntr="0x1">
 					<name>entryPoint</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1218,7 +1245,7 @@
 					<attribute kind="DataValue">
 						<value>createBMDeviceHome_Impl</value>
 					</attribute>
-					<reference id="id-0067-00000018" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000003">
+					<reference id="id-0067-00000018" kind="DataType" role="DataType" guid="{12D04563-87D0-4829-AF45-C1320C86F63E}" relid="0x1" referred="id-0066-00000003">
 						<name>DataType</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -1231,7 +1258,7 @@
 						</regnode>
 					</reference>
 				</model>
-				<atom id="id-0066-0000000f" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x1">
+				<atom id="id-0066-0000000f" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{78163448-FFA9-4ac6-A61A-DB659B75E4F9}" relid="0x1">
 					<name>BMDevice_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1242,8 +1269,14 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>62852846-B6C5-4779-9E79-52B67E3DE268</value>
+					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion">
+						<value>1.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -1254,8 +1287,11 @@
 					<attribute kind="location">
 						<value>BMDevice_exec</value>
 					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
+					</attribute>
 				</atom>
-				<atom id="id-0066-00000010" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
+				<atom id="id-0066-00000010" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{4D1B4BEA-3131-4a79-BD84-2F9FAD3EB469}" relid="0x2">
 					<name>BMDevice_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1266,8 +1302,14 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>5060A846-E6AA-402D-A14C-774B914BF9EF</value>
+					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion">
+						<value>1.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -1278,8 +1320,11 @@
 					<attribute kind="location">
 						<value>BMDevice_stub</value>
 					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
+					</attribute>
 				</atom>
-				<atom id="id-0066-00000011" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
+				<atom id="id-0066-00000011" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{2666F5BC-934F-4300-AC7F-12B9E0FE1C0D}" relid="0x3">
 					<name>BMDevice_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1290,8 +1335,14 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>DED02302-3E81-4A6E-B71D-8821D6CEB2FE</value>
+					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion">
+						<value>1.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -1302,8 +1353,11 @@
 					<attribute kind="location">
 						<value>BMDevice_svnt</value>
 					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
+					</attribute>
 				</atom>
-				<reference id="id-0067-00000019" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x8" referred="id-0066-00000010">
+				<reference id="id-0067-00000019" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{73A73AA7-4EA1-4633-8EAC-9815CAD81321}" relid="0x8" referred="id-0066-00000010">
 					<name>BMDevice_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1315,7 +1369,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000001a" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0xf" referred="id-0066-00000011">
+				<reference id="id-0067-0000001a" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{BA5B5F00-7A64-49fa-A4F0-008A998B3CBF}" relid="0xf" referred="id-0066-00000011">
 					<name>BMDevice_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1327,7 +1381,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000073" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0xb" referred="id-0066-00000018">
+				<reference id="id-0067-00000073" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{1139CEA0-C5D0-4241-88E2-F063A3CCF382}" relid="0xb" referred="id-0066-00000018">
 					<name>BasicSP_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1339,7 +1393,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000074" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0xc" referred="id-0066-00000019">
+				<reference id="id-0067-00000074" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{10D3EE87-DF18-4da9-A96E-24071BC8765B}" relid="0xc" referred="id-0066-00000019">
 					<name>BasicSP_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1351,17 +1405,17 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-0000000b" kind="ArtifactExecParameter" role="ArtifactExecParameter" relid="0x6">
+				<connection id="id-0068-0000000b" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{C4455BE8-208C-4eec-BA83-E747912E4E7F}" relid="0x6">
 					<name>ArtifactExecParameter</name>
 					<connpoint role="dst" target="id-0065-00000021"/>
 					<connpoint role="src" target="id-0066-0000000f"/>
 				</connection>
-				<connection id="id-0068-0000000c" kind="ArtifactExecParameter" role="ArtifactExecParameter" relid="0x7">
+				<connection id="id-0068-0000000c" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{DD9BEE28-BCA8-4000-879A-BE3ACDBB6E63}" relid="0x7">
 					<name>ArtifactExecParameter</name>
 					<connpoint role="dst" target="id-0065-00000020"/>
 					<connpoint role="src" target="id-0066-00000011"/>
 				</connection>
-				<connection id="id-0068-0000000d" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0xa">
+				<connection id="id-0068-0000000d" kind="ArtifactDependsOn" role="ArtifactDependsOn" guid="{8CC4D430-821D-4cb2-8968-4FADBF7A5C41}" relid="0xa">
 					<name>ArtifactDependsOn</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Nw</value>
@@ -1369,25 +1423,25 @@
 					<connpoint role="src" target="id-0066-00000011"/>
 					<connpoint role="dst" target="id-0067-00000019"/>
 				</connection>
-				<connection id="id-0068-0000000e" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0xd">
+				<connection id="id-0068-0000000e" kind="ArtifactDependsOn" role="ArtifactDependsOn" guid="{1DF2C382-018C-49ba-80AF-F69FE3CDEC67}" relid="0xd">
 					<name>ArtifactDependsOn</name>
 					<connpoint role="src" target="id-0066-00000010"/>
 					<connpoint role="dst" target="id-0067-00000073"/>
 				</connection>
-				<connection id="id-0068-0000000f" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0xe">
+				<connection id="id-0068-0000000f" kind="ArtifactDependsOn" role="ArtifactDependsOn" guid="{58D10350-0DBA-4853-BC11-A63828D48EE8}" relid="0xe">
 					<name>ArtifactDependsOn</name>
 					<connpoint role="src" target="id-0066-00000010"/>
 					<connpoint role="dst" target="id-0067-00000074"/>
 				</connection>
-				<connection id="id-0068-00000010" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x10">
+				<connection id="id-0068-00000010" kind="ArtifactDependsOn" role="ArtifactDependsOn" guid="{264F9DFC-2A18-4236-88A5-4D4603B79891}" relid="0x10">
 					<name>ArtifactDependsOn</name>
 					<connpoint role="src" target="id-0066-0000000f"/>
 					<connpoint role="dst" target="id-0067-0000001a"/>
 				</connection>
 			</model>
-			<model id="id-0065-00000022" kind="ArtifactContainer" relid="0x3" childrelidcntr="0x12">
+			<model id="id-0065-00000022" kind="ArtifactContainer" guid="{A73ADF89-66E9-4b94-8C7C-6F77E2110224}" relid="0x3" childrelidcntr="0x13">
 				<name>BMDisplay</name>
-				<model id="id-0065-00000023" kind="Property" role="Property" relid="0x3" childrelidcntr="0x1">
+				<model id="id-0065-00000023" kind="Property" role="Property" guid="{B594C259-3A20-4f54-BFBD-C7280FDFB991}" relid="0x3" childrelidcntr="0x1">
 					<name>entryPoint</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1401,7 +1455,7 @@
 					<attribute kind="DataValue">
 						<value>createBMDisplayHome_Impl</value>
 					</attribute>
-					<reference id="id-0067-0000001b" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000003">
+					<reference id="id-0067-0000001b" kind="DataType" role="DataType" guid="{41890DB2-BB0C-4153-B345-0713CC2464A7}" relid="0x1" referred="id-0066-00000003">
 						<name>DataType</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -1414,7 +1468,7 @@
 						</regnode>
 					</reference>
 				</model>
-				<model id="id-0065-00000024" kind="Property" role="Property" relid="0x5" childrelidcntr="0x1">
+				<model id="id-0065-00000024" kind="Property" role="Property" guid="{395D0B29-ADB7-4dd1-A652-9246CEE1935F}" relid="0x5" childrelidcntr="0x1">
 					<name>entryPoint</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1428,7 +1482,7 @@
 					<attribute kind="DataValue">
 						<value>createBMDisplayHome_Servant</value>
 					</attribute>
-					<reference id="id-0067-0000001c" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000003">
+					<reference id="id-0067-0000001c" kind="DataType" role="DataType" guid="{831CF1E8-B5AB-4efd-9E11-98D4F2D66EAA}" relid="0x1" referred="id-0066-00000003">
 						<name>DataType</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -1441,7 +1495,7 @@
 						</regnode>
 					</reference>
 				</model>
-				<atom id="id-0066-00000012" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x1">
+				<atom id="id-0066-00000012" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{905B956C-78C2-44b8-A3AF-F23738AEE357}" relid="0x1">
 					<name>BMDisplay_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1452,8 +1506,14 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>2621661F-D144-4317-AEEE-118E8AFAAC7E</value>
+					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion">
+						<value>1.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -1464,8 +1524,11 @@
 					<attribute kind="location">
 						<value>BMDisplay_exec</value>
 					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
+					</attribute>
 				</atom>
-				<atom id="id-0066-00000013" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
+				<atom id="id-0066-00000013" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{9035E8AF-C229-46ed-B8FD-AE677BC2F8B8}" relid="0x2">
 					<name>BMDisplay_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1476,8 +1539,14 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>673E9592-F577-4EF4-96E7-A64EA82D2AAE</value>
+					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion">
+						<value>1.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -1488,8 +1557,11 @@
 					<attribute kind="location">
 						<value>BMDisplay_svnt</value>
 					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
+					</attribute>
 				</atom>
-				<atom id="id-0066-00000014" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x4">
+				<atom id="id-0066-00000014" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{D81A34FD-BB7C-494a-A259-34E37CC3CD28}" relid="0x4">
 					<name>BMDisplay_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1500,8 +1572,14 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>5015E55E-3D64-4A41-A828-93118654490F</value>
+					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion">
+						<value>1.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -1512,8 +1590,44 @@
 					<attribute kind="location">
 						<value>BMDisplay_stub</value>
 					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
+					</attribute>
 				</atom>
-				<reference id="id-0067-0000001d" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x8" referred="id-0066-00000014">
+				<atom id="id-0066-0000002b" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{BBA10D29-CD44-405f-A155-E09C9FED5500}" relid="0x13">
+					<name>ImplementationArtifact</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Packaging" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>499,492</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="UUID">
+						<value>CAD6E9CB-4272-43D2-817E-0551F2C43831</value>
+					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion">
+						<value>1.2.44555.0</value>
+					</attribute>
+					<attribute kind="configuration" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="label" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="location" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
+					</attribute>
+				</atom>
+				<reference id="id-0067-0000001d" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{68FA6EE0-5C0E-4eba-8CC7-C04ECD93E76D}" relid="0x8" referred="id-0066-00000014">
 					<name>BMDisplay_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1525,7 +1639,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000001e" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x11" referred="id-0066-00000013">
+				<reference id="id-0067-0000001e" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{B5F9CFDD-1960-45f1-B336-B107E1F305C8}" relid="0x11" referred="id-0066-00000013">
 					<name>BMDisplay_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1537,7 +1651,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000075" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0xb" referred="id-0066-00000018">
+				<reference id="id-0067-00000075" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{A324A8AF-D81A-4c85-8994-FF061BECF867}" relid="0xb" referred="id-0066-00000018">
 					<name>BasicSP_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1549,7 +1663,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000076" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0xc" referred="id-0066-00000019">
+				<reference id="id-0067-00000076" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{0695D654-7DA0-4dbc-B81B-7B93AE39FE4B}" relid="0xc" referred="id-0066-00000019">
 					<name>BasicSP_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1561,17 +1675,17 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-00000011" kind="ArtifactExecParameter" role="ArtifactExecParameter" relid="0x6">
+				<connection id="id-0068-00000011" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{5A99593F-BF63-4a36-8D47-8D00CD6C6521}" relid="0x6">
 					<name>ArtifactExecParameter</name>
 					<connpoint role="dst" target="id-0065-00000023"/>
 					<connpoint role="src" target="id-0066-00000012"/>
 				</connection>
-				<connection id="id-0068-00000012" kind="ArtifactExecParameter" role="ArtifactExecParameter" relid="0x7">
+				<connection id="id-0068-00000012" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{60D2413C-7508-40ad-90BF-7B05E8A19FFF}" relid="0x7">
 					<name>ArtifactExecParameter</name>
 					<connpoint role="dst" target="id-0065-00000024"/>
 					<connpoint role="src" target="id-0066-00000013"/>
 				</connection>
-				<connection id="id-0068-00000013" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0xa">
+				<connection id="id-0068-00000013" kind="ArtifactDependsOn" role="ArtifactDependsOn" guid="{9281C948-D7C3-496e-905B-921A96405FE3}" relid="0xa">
 					<name>ArtifactDependsOn</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Nw</value>
@@ -1579,25 +1693,25 @@
 					<connpoint role="src" target="id-0066-00000013"/>
 					<connpoint role="dst" target="id-0067-0000001d"/>
 				</connection>
-				<connection id="id-0068-00000014" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0xd">
+				<connection id="id-0068-00000014" kind="ArtifactDependsOn" role="ArtifactDependsOn" guid="{D2A52067-4BC7-4d6d-BFF8-24255AC2F51C}" relid="0xd">
 					<name>ArtifactDependsOn</name>
 					<connpoint role="src" target="id-0066-00000014"/>
 					<connpoint role="dst" target="id-0067-00000076"/>
 				</connection>
-				<connection id="id-0068-00000015" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0xe">
+				<connection id="id-0068-00000015" kind="ArtifactDependsOn" role="ArtifactDependsOn" guid="{163F738B-682B-49dd-AEB3-EF56A5DEA52A}" relid="0xe">
 					<name>ArtifactDependsOn</name>
 					<connpoint role="src" target="id-0066-00000014"/>
 					<connpoint role="dst" target="id-0067-00000075"/>
 				</connection>
-				<connection id="id-0068-00000016" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x12">
+				<connection id="id-0068-00000016" kind="ArtifactDependsOn" role="ArtifactDependsOn" guid="{A15AC373-5A09-4a9e-81AD-6191A1CB259B}" relid="0x12">
 					<name>ArtifactDependsOn</name>
 					<connpoint role="src" target="id-0066-00000012"/>
 					<connpoint role="dst" target="id-0067-0000001e"/>
 				</connection>
 			</model>
-			<model id="id-0065-00000025" kind="ArtifactContainer" relid="0x4" childrelidcntr="0x13">
+			<model id="id-0065-00000025" kind="ArtifactContainer" guid="{C345F549-13ED-498d-8349-F57DF1F9C35C}" relid="0x4" childrelidcntr="0x13">
 				<name>EC</name>
-				<model id="id-0065-00000026" kind="Property" role="Property" relid="0x4" childrelidcntr="0x1">
+				<model id="id-0065-00000026" kind="Property" role="Property" guid="{3FC1C1A7-5795-496d-BDD1-FB16240FD34A}" relid="0x4" childrelidcntr="0x1">
 					<name>entryPoint</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1611,7 +1725,7 @@
 					<attribute kind="DataValue">
 						<value>createECHome_Impl</value>
 					</attribute>
-					<reference id="id-0067-0000001f" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000003">
+					<reference id="id-0067-0000001f" kind="DataType" role="DataType" guid="{0CB54B26-9C19-4d24-AF76-31BE7D4E47D4}" relid="0x1" referred="id-0066-00000003">
 						<name>DataType</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -1624,7 +1738,7 @@
 						</regnode>
 					</reference>
 				</model>
-				<model id="id-0065-00000027" kind="Property" role="Property" relid="0x5" childrelidcntr="0x1">
+				<model id="id-0065-00000027" kind="Property" role="Property" guid="{0B67B398-8165-417d-8C0F-1A69DF695DCE}" relid="0x5" childrelidcntr="0x1">
 					<name>entryPoint</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1638,7 +1752,7 @@
 					<attribute kind="DataValue">
 						<value>createECHome_Servant</value>
 					</attribute>
-					<reference id="id-0067-00000020" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000003">
+					<reference id="id-0067-00000020" kind="DataType" role="DataType" guid="{BE6890CD-D9E0-4578-BAE0-9643EC93FC17}" relid="0x1" referred="id-0066-00000003">
 						<name>DataType</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -1651,7 +1765,7 @@
 						</regnode>
 					</reference>
 				</model>
-				<atom id="id-0066-00000015" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x1">
+				<atom id="id-0066-00000015" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{F26BE3C5-2728-4eda-8AF7-7DDB37115C06}" relid="0x1">
 					<name>EC_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1662,8 +1776,14 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>0164A487-96D7-41C5-8035-9F61E47E0F99</value>
+					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion">
+						<value>1.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -1674,8 +1794,11 @@
 					<attribute kind="location">
 						<value>EC_exec</value>
 					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
+					</attribute>
 				</atom>
-				<atom id="id-0066-00000016" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
+				<atom id="id-0066-00000016" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{5DA29DAF-48B2-4a2f-AFCA-E7E29C670851}" relid="0x2">
 					<name>EC_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1686,8 +1809,14 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>D2F6D6D3-A06D-426D-A179-484F35A6AE98</value>
+					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion">
+						<value>1.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -1698,8 +1827,11 @@
 					<attribute kind="location">
 						<value>EC_svnt</value>
 					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
+					</attribute>
 				</atom>
-				<atom id="id-0066-00000017" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x3">
+				<atom id="id-0066-00000017" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{366552F6-D47B-46eb-9108-92955D8D3627}" relid="0x3">
 					<name>EC_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1710,8 +1842,14 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>3F773C52-78B8-49D1-8E0C-8C7DD346B3D9</value>
+					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion">
+						<value>1.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -1722,8 +1860,11 @@
 					<attribute kind="location">
 						<value>EC_stub</value>
 					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
+					</attribute>
 				</atom>
-				<reference id="id-0067-00000021" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x8" referred="id-0066-00000017">
+				<reference id="id-0067-00000021" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{7A02F6AF-BA87-4b32-82F1-2F03841CDDF0}" relid="0x8" referred="id-0066-00000017">
 					<name>EC_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1735,19 +1876,19 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000022" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x11" referred="id-0066-00000016">
+				<reference id="id-0067-00000022" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{65677585-9C17-4576-A35D-546279865468}" relid="0x11" referred="id-0066-00000016">
 					<name>EC_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>186,11</value>
+								<value>174,13</value>
 							</regnode>
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000077" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0xb" referred="id-0066-00000018">
+				<reference id="id-0067-00000077" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{EDA30AE2-8DB5-4cbf-ABB6-AD2A5DCD600C}" relid="0xb" referred="id-0066-00000018">
 					<name>BasicSP_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1759,7 +1900,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000078" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0xc" referred="id-0066-00000019">
+				<reference id="id-0067-00000078" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{35B6CA7B-C13F-48a9-8787-D064872E7135}" relid="0xc" referred="id-0066-00000019">
 					<name>BasicSP_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1771,12 +1912,12 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-00000017" kind="ArtifactExecParameter" role="ArtifactExecParameter" relid="0x6">
+				<connection id="id-0068-00000017" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{552F8251-06BB-43fc-BFCA-B92731269954}" relid="0x6">
 					<name>ArtifactExecParameter</name>
 					<connpoint role="dst" target="id-0065-00000026"/>
 					<connpoint role="src" target="id-0066-00000015"/>
 				</connection>
-				<connection id="id-0068-00000018" kind="ArtifactExecParameter" role="ArtifactExecParameter" relid="0x7">
+				<connection id="id-0068-00000018" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{FB8862CE-AE08-431a-826C-E173F445FA94}" relid="0x7">
 					<name>ArtifactExecParameter</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
@@ -1784,7 +1925,7 @@
 					<connpoint role="dst" target="id-0065-00000027"/>
 					<connpoint role="src" target="id-0066-00000016"/>
 				</connection>
-				<connection id="id-0068-00000019" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0xa">
+				<connection id="id-0068-00000019" kind="ArtifactDependsOn" role="ArtifactDependsOn" guid="{71D579C9-04B8-44aa-9548-84CC670943B3}" relid="0xa">
 					<name>ArtifactDependsOn</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
@@ -1792,17 +1933,17 @@
 					<connpoint role="src" target="id-0066-00000016"/>
 					<connpoint role="dst" target="id-0067-00000021"/>
 				</connection>
-				<connection id="id-0068-0000001a" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0xd">
+				<connection id="id-0068-0000001a" kind="ArtifactDependsOn" role="ArtifactDependsOn" guid="{EDCAB1A6-3A04-4497-BA3D-298AA21CE10D}" relid="0xd">
 					<name>ArtifactDependsOn</name>
 					<connpoint role="src" target="id-0066-00000017"/>
 					<connpoint role="dst" target="id-0067-00000077"/>
 				</connection>
-				<connection id="id-0068-0000001b" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0xe">
+				<connection id="id-0068-0000001b" kind="ArtifactDependsOn" role="ArtifactDependsOn" guid="{BD31F96B-7DB7-4868-B148-6A18580016A7}" relid="0xe">
 					<name>ArtifactDependsOn</name>
 					<connpoint role="src" target="id-0066-00000017"/>
 					<connpoint role="dst" target="id-0067-00000078"/>
 				</connection>
-				<connection id="id-0068-0000001c" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x12">
+				<connection id="id-0068-0000001c" kind="ArtifactDependsOn" role="ArtifactDependsOn" guid="{0C5EEA95-E38F-4829-9EC7-F7CE2BEFD8AA}" relid="0x12">
 					<name>ArtifactDependsOn</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>N</value>
@@ -1810,15 +1951,15 @@
 					<connpoint role="src" target="id-0066-00000015"/>
 					<connpoint role="dst" target="id-0067-00000022"/>
 				</connection>
-				<connection id="id-0068-0000001d" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x13">
+				<connection id="id-0068-0000001d" kind="ArtifactDependsOn" role="ArtifactDependsOn" guid="{FD0A9BCE-58F1-4589-A2A7-1352710C0A97}" relid="0x13">
 					<name>ArtifactDependsOn</name>
 					<connpoint role="src" target="id-0066-00000015"/>
 					<connpoint role="dst" target="id-0067-00000021"/>
 				</connection>
 			</model>
-			<model id="id-0065-00000028" kind="ArtifactContainer" relid="0x5" childrelidcntr="0x4">
+			<model id="id-0065-00000028" kind="ArtifactContainer" guid="{10FCB52A-F494-4bf2-85C5-A871BF9E13D8}" relid="0x5" childrelidcntr="0x4">
 				<name>CommonArtifacts</name>
-				<atom id="id-0066-00000018" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x1">
+				<atom id="id-0066-00000018" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{66EBCE34-501E-4042-BF95-83EF81987862}" relid="0x1">
 					<name>BasicSP_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1829,8 +1970,14 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>5CF0BFBB-81CE-4FA4-85C2-36287EF9495A</value>
+					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion">
+						<value>1.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -1841,8 +1988,11 @@
 					<attribute kind="location" status="meta">
 						<value></value>
 					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
+					</attribute>
 				</atom>
-				<atom id="id-0066-00000019" kind="ImplementationArtifact" role="ImplementationArtifact" relid="0x2">
+				<atom id="id-0066-00000019" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{93A5CBA0-6561-4409-8802-5E1064A8DE66}" relid="0x2">
 					<name>BasicSP_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1853,8 +2003,14 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>E7C42E93-353F-4D17-96C5-3DAF63647247</value>
+					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion">
+						<value>1.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
 						<value></value>
@@ -1865,8 +2021,11 @@
 					<attribute kind="location" status="meta">
 						<value></value>
 					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
+					</attribute>
 				</atom>
-				<reference id="id-0067-00000023" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x3" referred="id-0066-00000018">
+				<reference id="id-0067-00000023" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{BB5AF1F1-3FE5-49f1-80F5-C39BE3FE9381}" relid="0x3" referred="id-0066-00000018">
 					<name>BasicSP_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1878,18 +2037,18 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-0000001e" kind="ArtifactDependsOn" role="ArtifactDependsOn" relid="0x4">
+				<connection id="id-0068-0000001e" kind="ArtifactDependsOn" role="ArtifactDependsOn" guid="{3CE606F5-5142-4d61-8800-8C10E6A4EC53}" relid="0x4">
 					<name>ArtifactDependsOn</name>
 					<connpoint role="src" target="id-0066-00000019"/>
 					<connpoint role="dst" target="id-0067-00000023"/>
 				</connection>
 			</model>
 		</folder>
-		<folder id="id-006a-00000005" relid="0x4" childrelidcntr="0x4" kind="ComponentTypes">
+		<folder id="id-006a-00000005" relid="0x4" childrelidcntr="0x4" kind="ComponentTypes" guid="{68A82657-1284-4666-9268-E25F8A22F055}">
 			<name>ComponentTypes</name>
-			<model id="id-0065-00000029" kind="ComponentContainer" relid="0x1" childrelidcntr="0x1">
+			<model id="id-0065-00000029" kind="ComponentContainer" guid="{C91B8FA6-CB74-493d-9F99-7E0C2DCDA14C}" relid="0x1" childrelidcntr="0x1">
 				<name>BMClosedED</name>
-				<reference id="id-0067-00000024" kind="ComponentRef" role="ComponentRef" relid="0x1" referred="id-0065-00000009">
+				<reference id="id-0067-00000024" kind="ComponentRef" role="ComponentRef" guid="{D9AAF46B-6436-4f11-8BDD-CA17F68139F2}" relid="0x1" referred="id-0065-00000009">
 					<name>BMClosedED</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1902,9 +2061,9 @@
 					</regnode>
 				</reference>
 			</model>
-			<model id="id-0065-0000002a" kind="ComponentContainer" relid="0x2" childrelidcntr="0x1">
+			<model id="id-0065-0000002a" kind="ComponentContainer" guid="{22DE9C6A-CB68-4f2d-A4E4-CBCA4FC62C7F}" relid="0x2" childrelidcntr="0x1">
 				<name>BMDisplay</name>
-				<reference id="id-0067-00000025" kind="ComponentRef" role="ComponentRef" relid="0x1" referred="id-0065-00000011">
+				<reference id="id-0067-00000025" kind="ComponentRef" role="ComponentRef" guid="{58FD9A5F-173D-419b-AE0F-0440456C738A}" relid="0x1" referred="id-0065-00000011">
 					<name>BMDisplay</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1917,9 +2076,9 @@
 					</regnode>
 				</reference>
 			</model>
-			<model id="id-0065-0000002b" kind="ComponentContainer" relid="0x3" childrelidcntr="0x1">
+			<model id="id-0065-0000002b" kind="ComponentContainer" guid="{A7232596-D562-417f-95B1-E087BBE097E4}" relid="0x3" childrelidcntr="0x1">
 				<name>BMDevice</name>
-				<reference id="id-0067-00000026" kind="ComponentRef" role="ComponentRef" relid="0x1" referred="id-0065-0000000d">
+				<reference id="id-0067-00000026" kind="ComponentRef" role="ComponentRef" guid="{63CEC143-8E8D-425b-9A82-E092FB94B26A}" relid="0x1" referred="id-0065-0000000d">
 					<name>BMDevice</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1932,9 +2091,9 @@
 					</regnode>
 				</reference>
 			</model>
-			<model id="id-0065-0000002c" kind="ComponentContainer" relid="0x4" childrelidcntr="0x1">
+			<model id="id-0065-0000002c" kind="ComponentContainer" guid="{B3137456-D6F8-414f-AB4C-363821103A88}" relid="0x4" childrelidcntr="0x1">
 				<name>EC</name>
-				<reference id="id-0067-00000027" kind="ComponentRef" role="ComponentRef" relid="0x1" referred="id-0065-00000018">
+				<reference id="id-0067-00000027" kind="ComponentRef" role="ComponentRef" guid="{5D7F2486-7E65-42e8-BD81-07E9BE6F0928}" relid="0x1" referred="id-0065-00000018">
 					<name>EC</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1948,11 +2107,11 @@
 				</reference>
 			</model>
 		</folder>
-		<folder id="id-006a-00000006" relid="0x5" childrelidcntr="0x5" kind="ComponentImplementations">
+		<folder id="id-006a-00000006" relid="0x5" childrelidcntr="0x5" kind="ComponentImplementations" guid="{83FA8B6F-5997-4e3a-A799-9984D32D2FEE}">
 			<name>ComponentImplementations</name>
-			<model id="id-0065-0000002d" kind="ComponentImplementationContainer" relid="0x1" childrelidcntr="0xb">
+			<model id="id-0065-0000002d" kind="ComponentImplementationContainer" guid="{F8D43903-8CED-44e0-87C8-A67AE64EBAA7}" relid="0x1" childrelidcntr="0xb">
 				<name>BMClosedED</name>
-				<model id="id-0065-0000002e" kind="Property" role="Property" relid="0xa" childrelidcntr="0x1">
+				<model id="id-0065-0000002e" kind="Property" role="Property" guid="{239A9A95-9375-48c0-B144-2F06AD498657}" relid="0xa" childrelidcntr="0x1">
 					<name>ComponentIOR</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1966,7 +2125,7 @@
 					<attribute kind="DataValue">
 						<value>BMClosedED.ior</value>
 					</attribute>
-					<reference id="id-0067-00000028" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000003">
+					<reference id="id-0067-00000028" kind="DataType" role="DataType" guid="{9EC73BC3-CCC0-469e-817A-5F930C713727}" relid="0x1" referred="id-0066-00000003">
 						<name>DataType</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -1979,7 +2138,7 @@
 						</regnode>
 					</reference>
 				</model>
-				<atom id="id-0066-0000001a" kind="MonolithicImplementation" role="MonolithicImplementation" relid="0x1">
+				<atom id="id-0066-0000001a" kind="MonolithicImplementation" role="MonolithicImplementation" guid="{0C3AD030-EE45-4256-B21D-06E23DF3B09A}" relid="0x1">
 					<name>BMClosedED</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -1990,14 +2149,17 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>3EE0A8F7-2D8F-4450-B042-4DCB52669E9C</value>
+					</attribute>
+					<attribute kind="defaultVersion">
+						<value>1.0.0.0</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-00000029" kind="ComponentRef" role="ComponentRef" relid="0x2" referred="id-0065-00000009">
+				<reference id="id-0067-00000029" kind="ComponentRef" role="ComponentRef" guid="{18DE3B20-EE8B-4d11-9616-F7DF2EBAABFB}" relid="0x2" referred="id-0065-00000009">
 					<name>BMClosedED</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2009,7 +2171,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000002a" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-0000000c">
+				<reference id="id-0067-0000002a" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{3B970EE5-C59F-4fb9-A486-86B5632C237A}" relid="0x4" referred="id-0066-0000000c">
 					<name>BMClosedED_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2021,7 +2183,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000002b" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x5" referred="id-0066-0000000d">
+				<reference id="id-0067-0000002b" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{AAF47260-52AC-4595-871B-8150720077D4}" relid="0x5" referred="id-0066-0000000d">
 					<name>BMClosedED_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2033,7 +2195,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000002c" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-0000000e">
+				<reference id="id-0067-0000002c" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{9F840DC5-D7C5-4a01-8B79-41FC49A5717B}" relid="0x6" referred="id-0066-0000000e">
 					<name>BMClosedED_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2045,7 +2207,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-0000001f" kind="Implements" role="Implements" relid="0x3">
+				<connection id="id-0068-0000001f" kind="Implements" role="Implements" guid="{16CD3021-82D1-4856-8E95-1DFCDD34AE86}" relid="0x3">
 					<name>Implements</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
@@ -2053,7 +2215,7 @@
 					<connpoint role="src" target="id-0066-0000001a"/>
 					<connpoint role="dst" target="id-0067-00000029"/>
 				</connection>
-				<connection id="id-0068-00000020" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x7">
+				<connection id="id-0068-00000020" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{B594913A-9145-4776-81BE-5EE5A5D1C149}" relid="0x7">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -2061,7 +2223,7 @@
 					<connpoint role="src" target="id-0066-0000001a"/>
 					<connpoint role="dst" target="id-0067-0000002a"/>
 				</connection>
-				<connection id="id-0068-00000021" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x8">
+				<connection id="id-0068-00000021" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{C93CA0E7-85A7-49b8-8AA8-6032F0878051}" relid="0x8">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -2069,7 +2231,7 @@
 					<connpoint role="src" target="id-0066-0000001a"/>
 					<connpoint role="dst" target="id-0067-0000002c"/>
 				</connection>
-				<connection id="id-0068-00000022" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x9">
+				<connection id="id-0068-00000022" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{0C7121E9-71C8-4130-99B2-82DFB2129A6C}" relid="0x9">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
@@ -2077,7 +2239,7 @@
 					<connpoint role="src" target="id-0066-0000001a"/>
 					<connpoint role="dst" target="id-0067-0000002b"/>
 				</connection>
-				<connection id="id-0068-00000023" kind="ConfigProperty" role="ConfigProperty" relid="0xb">
+				<connection id="id-0068-00000023" kind="ConfigProperty" role="ConfigProperty" guid="{75F3548C-A3E1-4424-9E85-DF635646DC91}" relid="0xb">
 					<name>ConfigProperty</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Wn</value>
@@ -2086,9 +2248,9 @@
 					<connpoint role="src" target="id-0066-0000001a"/>
 				</connection>
 			</model>
-			<model id="id-0065-0000002f" kind="ComponentImplementationContainer" relid="0x2" childrelidcntr="0xc">
+			<model id="id-0065-0000002f" kind="ComponentImplementationContainer" guid="{20D75C40-3AD8-4f9c-9DEE-1EADE8C1CA16}" relid="0x2" childrelidcntr="0xc">
 				<name>BMDevice</name>
-				<model id="id-0065-00000030" kind="Property" role="Property" relid="0x7" childrelidcntr="0x1">
+				<model id="id-0065-00000030" kind="Property" role="Property" guid="{D0968BC5-A61C-4acd-AFB9-DF7B010A661E}" relid="0x7" childrelidcntr="0x1">
 					<name>ComponentIOR</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2102,7 +2264,7 @@
 					<attribute kind="DataValue">
 						<value>BMDevice.ior</value>
 					</attribute>
-					<reference id="id-0067-0000002d" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000003">
+					<reference id="id-0067-0000002d" kind="DataType" role="DataType" guid="{3ADD9306-E1AB-495e-845D-033DA0AC5C5D}" relid="0x1" referred="id-0066-00000003">
 						<name>DataType</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -2115,7 +2277,7 @@
 						</regnode>
 					</reference>
 				</model>
-				<atom id="id-0066-0000001b" kind="MonolithicImplementation" role="MonolithicImplementation" relid="0x1">
+				<atom id="id-0066-0000001b" kind="MonolithicImplementation" role="MonolithicImplementation" guid="{DCB68B2D-4FEA-4b01-A76E-5149B57A0332}" relid="0x1">
 					<name>BMDevice</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2126,14 +2288,17 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>7904D02B-4D2B-417D-90B7-C08C5E4466A4</value>
+					</attribute>
+					<attribute kind="defaultVersion">
+						<value>1.0.0.0</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-0000002e" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x2" referred="id-0066-0000000f">
+				<reference id="id-0067-0000002e" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{FFC0BC30-8660-485c-B3E9-CB64E2BB5747}" relid="0x2" referred="id-0066-0000000f">
 					<name>BMDevice_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2145,7 +2310,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000002f" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x3" referred="id-0066-00000010">
+				<reference id="id-0067-0000002f" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{2A563B7C-6876-4a0c-8D3F-F622E9D89936}" relid="0x3" referred="id-0066-00000010">
 					<name>BMDevice_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2157,7 +2322,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000030" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-00000011">
+				<reference id="id-0067-00000030" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{5A1B0B30-2900-4cb2-876C-AF74A3B7D26B}" relid="0x4" referred="id-0066-00000011">
 					<name>BMDevice_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2169,7 +2334,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000031" kind="ComponentRef" role="ComponentRef" relid="0x5" referred="id-0065-0000000d">
+				<reference id="id-0067-00000031" kind="ComponentRef" role="ComponentRef" guid="{03F02618-D401-4cd1-B6EA-816FE78DE159}" relid="0x5" referred="id-0065-0000000d">
 					<name>BMDevice</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2181,7 +2346,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-00000024" kind="Implements" role="Implements" relid="0x8">
+				<connection id="id-0068-00000024" kind="Implements" role="Implements" guid="{ABE2C5A1-C3F1-4fdd-BB0F-C568C7EC157E}" relid="0x8">
 					<name>Implements</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
@@ -2189,7 +2354,7 @@
 					<connpoint role="src" target="id-0066-0000001b"/>
 					<connpoint role="dst" target="id-0067-00000031"/>
 				</connection>
-				<connection id="id-0068-00000025" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x9">
+				<connection id="id-0068-00000025" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{9EEA325D-8C2C-468e-AD12-E5B30C360D24}" relid="0x9">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
@@ -2197,7 +2362,7 @@
 					<connpoint role="src" target="id-0066-0000001b"/>
 					<connpoint role="dst" target="id-0067-0000002e"/>
 				</connection>
-				<connection id="id-0068-00000026" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0xa">
+				<connection id="id-0068-00000026" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{0D85BBAF-C220-4c58-B17D-E5609FCC2FDA}" relid="0xa">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -2205,7 +2370,7 @@
 					<connpoint role="src" target="id-0066-0000001b"/>
 					<connpoint role="dst" target="id-0067-0000002f"/>
 				</connection>
-				<connection id="id-0068-00000027" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0xb">
+				<connection id="id-0068-00000027" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{BC6DC92D-6603-4f3d-9113-57E8FB0D4D5F}" relid="0xb">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -2213,7 +2378,7 @@
 					<connpoint role="src" target="id-0066-0000001b"/>
 					<connpoint role="dst" target="id-0067-00000030"/>
 				</connection>
-				<connection id="id-0068-00000028" kind="ConfigProperty" role="ConfigProperty" relid="0xc">
+				<connection id="id-0068-00000028" kind="ConfigProperty" role="ConfigProperty" guid="{16FA8992-FE83-400c-9274-1FAD3ACE2920}" relid="0xc">
 					<name>ConfigProperty</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -2222,9 +2387,9 @@
 					<connpoint role="src" target="id-0066-0000001b"/>
 				</connection>
 			</model>
-			<model id="id-0065-00000031" kind="ComponentImplementationContainer" relid="0x3" childrelidcntr="0xc">
+			<model id="id-0065-00000031" kind="ComponentImplementationContainer" guid="{F9A3E6EA-E122-42d2-B0A1-40ACC6CBB10D}" relid="0x3" childrelidcntr="0xc">
 				<name>BMDisplay</name>
-				<model id="id-0065-00000032" kind="Property" role="Property" relid="0xb" childrelidcntr="0x1">
+				<model id="id-0065-00000032" kind="Property" role="Property" guid="{7E3F10B2-1959-4e0e-95F4-5BBBE883A225}" relid="0xb" childrelidcntr="0x1">
 					<name>ComponentIOR</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2238,7 +2403,7 @@
 					<attribute kind="DataValue">
 						<value>BMDisplay.ior</value>
 					</attribute>
-					<reference id="id-0067-00000032" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000003">
+					<reference id="id-0067-00000032" kind="DataType" role="DataType" guid="{7D1B2137-FAFF-4163-B788-DC46FA659DEB}" relid="0x1" referred="id-0066-00000003">
 						<name>DataType</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -2251,7 +2416,7 @@
 						</regnode>
 					</reference>
 				</model>
-				<atom id="id-0066-0000001c" kind="MonolithicImplementation" role="MonolithicImplementation" relid="0x1">
+				<atom id="id-0066-0000001c" kind="MonolithicImplementation" role="MonolithicImplementation" guid="{3C8C1761-F573-43ae-889D-F4444B2AF1FF}" relid="0x1">
 					<name>BMDisplay</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2262,14 +2427,17 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>93E35D4C-1B7E-4D51-8677-8FC4E3C7FCDC</value>
+					</attribute>
+					<attribute kind="defaultVersion">
+						<value>1.0.0.0</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-00000033" kind="ComponentRef" role="ComponentRef" relid="0x2" referred="id-0065-00000011">
+				<reference id="id-0067-00000033" kind="ComponentRef" role="ComponentRef" guid="{D73AD01E-BBF1-4324-82BF-451D98ABFA48}" relid="0x2" referred="id-0065-00000011">
 					<name>BMDisplay</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2281,7 +2449,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000034" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x3" referred="id-0066-00000012">
+				<reference id="id-0067-00000034" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{D7A17081-5FE7-44de-87C3-85789E7FF03A}" relid="0x3" referred="id-0066-00000012">
 					<name>BMDisplay_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2293,7 +2461,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000035" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-00000014">
+				<reference id="id-0067-00000035" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{69519546-D5C7-4a30-B102-0DF316732241}" relid="0x4" referred="id-0066-00000014">
 					<name>BMDisplay_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2305,7 +2473,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000036" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x5" referred="id-0066-00000013">
+				<reference id="id-0067-00000036" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{A2AA2794-67A2-4f45-829C-42F329D25F11}" relid="0x5" referred="id-0066-00000013">
 					<name>BMDisplay_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2317,7 +2485,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-00000029" kind="Implements" role="Implements" relid="0x6">
+				<connection id="id-0068-00000029" kind="Implements" role="Implements" guid="{3F4AFF01-C446-4a6a-9E59-DE03C2B31FDD}" relid="0x6">
 					<name>Implements</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
@@ -2325,17 +2493,17 @@
 					<connpoint role="src" target="id-0066-0000001c"/>
 					<connpoint role="dst" target="id-0067-00000033"/>
 				</connection>
-				<connection id="id-0068-0000002a" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x7">
+				<connection id="id-0068-0000002a" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{E8E1B7B2-DFB0-4ce5-904A-511DC9FF27C0}" relid="0x7">
 					<name>MonolithprimaryArtifact</name>
 					<connpoint role="src" target="id-0066-0000001c"/>
 					<connpoint role="dst" target="id-0067-00000034"/>
 				</connection>
-				<connection id="id-0068-0000002b" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x8">
+				<connection id="id-0068-0000002b" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{8F42EE0A-85F1-43aa-9DC5-2145EFD54240}" relid="0x8">
 					<name>MonolithprimaryArtifact</name>
 					<connpoint role="src" target="id-0066-0000001c"/>
 					<connpoint role="dst" target="id-0067-00000036"/>
 				</connection>
-				<connection id="id-0068-0000002c" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0xa">
+				<connection id="id-0068-0000002c" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{2D8F8AEC-F8F4-46a1-86A1-7B84D4AF5C63}" relid="0xa">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
@@ -2343,7 +2511,7 @@
 					<connpoint role="src" target="id-0066-0000001c"/>
 					<connpoint role="dst" target="id-0067-00000035"/>
 				</connection>
-				<connection id="id-0068-0000002d" kind="ConfigProperty" role="ConfigProperty" relid="0xc">
+				<connection id="id-0068-0000002d" kind="ConfigProperty" role="ConfigProperty" guid="{32DF392D-7C88-4922-80CF-5A13F529336D}" relid="0xc">
 					<name>ConfigProperty</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -2352,9 +2520,9 @@
 					<connpoint role="src" target="id-0066-0000001c"/>
 				</connection>
 			</model>
-			<model id="id-0065-00000033" kind="ComponentImplementationContainer" relid="0x4" childrelidcntr="0xb">
+			<model id="id-0065-00000033" kind="ComponentImplementationContainer" guid="{BCC064B8-9255-4d91-91BD-D869146EFB57}" relid="0x4" childrelidcntr="0xb">
 				<name>EC</name>
-				<model id="id-0065-00000034" kind="Property" role="Property" relid="0x2" childrelidcntr="0x1">
+				<model id="id-0065-00000034" kind="Property" role="Property" guid="{DD830B29-8226-4341-9E1C-E11C68AA80E5}" relid="0x2" childrelidcntr="0x1">
 					<name>ComponentIOR</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2368,7 +2536,7 @@
 					<attribute kind="DataValue">
 						<value>EC.ior</value>
 					</attribute>
-					<reference id="id-0067-00000037" kind="DataType" role="DataType" relid="0x1" referred="id-0066-00000003">
+					<reference id="id-0067-00000037" kind="DataType" role="DataType" guid="{4C876216-0BFB-4a92-BBF1-91E8A4293BD7}" relid="0x1" referred="id-0066-00000003">
 						<name>DataType</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -2381,7 +2549,7 @@
 						</regnode>
 					</reference>
 				</model>
-				<atom id="id-0066-0000001d" kind="MonolithicImplementation" role="MonolithicImplementation" relid="0x1">
+				<atom id="id-0066-0000001d" kind="MonolithicImplementation" role="MonolithicImplementation" guid="{722836DE-4AE5-4d4c-B5F5-F187CFC0C064}" relid="0x1">
 					<name>EC</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2392,14 +2560,17 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>29C945B8-738D-4990-AEDB-984E29A3F359</value>
+					</attribute>
+					<attribute kind="defaultVersion">
+						<value>1.0.0.0</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-00000038" kind="ComponentRef" role="ComponentRef" relid="0x3" referred="id-0065-00000018">
+				<reference id="id-0067-00000038" kind="ComponentRef" role="ComponentRef" guid="{B3CD7007-61A7-4a12-B5D1-25228299DE63}" relid="0x3" referred="id-0065-00000018">
 					<name>EC</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2411,7 +2582,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000039" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x4" referred="id-0066-00000015">
+				<reference id="id-0067-00000039" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{B0BA718C-6720-44f5-8C2B-2CD51E7BA0D8}" relid="0x4" referred="id-0066-00000015">
 					<name>EC_exec</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2423,7 +2594,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000003a" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x5" referred="id-0066-00000017">
+				<reference id="id-0067-0000003a" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{028BFA7A-39AF-4d71-93C7-6AB41BC4A328}" relid="0x5" referred="id-0066-00000017">
 					<name>EC_stub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2435,7 +2606,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000003b" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x6" referred="id-0066-00000016">
+				<reference id="id-0067-0000003b" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{55FB5F36-EFA9-4465-8EE8-90D85D1EDBAE}" relid="0x6" referred="id-0066-00000016">
 					<name>EC_svnt</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2447,7 +2618,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-0000002e" kind="Implements" role="Implements" relid="0x7">
+				<connection id="id-0068-0000002e" kind="Implements" role="Implements" guid="{78BF74F6-E21B-4267-A483-7E054F6C6D76}" relid="0x7">
 					<name>Implements</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
@@ -2455,7 +2626,7 @@
 					<connpoint role="src" target="id-0066-0000001d"/>
 					<connpoint role="dst" target="id-0067-00000038"/>
 				</connection>
-				<connection id="id-0068-0000002f" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x8">
+				<connection id="id-0068-0000002f" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{018A83A9-9DD6-42e8-9CC4-028357312C09}" relid="0x8">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -2463,7 +2634,7 @@
 					<connpoint role="src" target="id-0066-0000001d"/>
 					<connpoint role="dst" target="id-0067-0000003a"/>
 				</connection>
-				<connection id="id-0068-00000030" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0x9">
+				<connection id="id-0068-00000030" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{E911E693-14D5-46ce-B7B6-562DFE8BC9D6}" relid="0x9">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -2471,7 +2642,7 @@
 					<connpoint role="src" target="id-0066-0000001d"/>
 					<connpoint role="dst" target="id-0067-0000003b"/>
 				</connection>
-				<connection id="id-0068-00000031" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" relid="0xa">
+				<connection id="id-0068-00000031" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{DA0F2DB9-4C1F-4906-939A-0A46EFC19FFD}" relid="0xa">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -2479,7 +2650,7 @@
 					<connpoint role="src" target="id-0066-0000001d"/>
 					<connpoint role="dst" target="id-0067-00000039"/>
 				</connection>
-				<connection id="id-0068-00000032" kind="ConfigProperty" role="ConfigProperty" relid="0xb">
+				<connection id="id-0068-00000032" kind="ConfigProperty" role="ConfigProperty" guid="{749A523C-F0CE-4b75-9FDE-259237C956DF}" relid="0xb">
 					<name>ConfigProperty</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -2488,9 +2659,9 @@
 					<connpoint role="src" target="id-0066-0000001d"/>
 				</connection>
 			</model>
-			<model id="id-0065-00000035" kind="ComponentImplementationContainer" relid="0x5" childrelidcntr="0x1">
+			<model id="id-0065-00000035" kind="ComponentImplementationContainer" guid="{073D72FD-F418-4ce3-9355-C6AFBC038336}" relid="0x5" childrelidcntr="0x1">
 				<name>BasicSP</name>
-				<model id="id-0065-00000036" kind="ComponentAssembly" role="ComponentAssembly" relid="0x1" childrelidcntr="0x12">
+				<model id="id-0065-00000036" kind="ComponentAssembly" role="ComponentAssembly" guid="{F77F2D9F-850A-4b7f-80D5-D26C5F61341D}" relid="0x1" childrelidcntr="0x12">
 					<name>BasicSP</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2501,13 +2672,13 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>4C7B261E-A358-4455-80C2-5977D1B48691</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
-					<model id="id-0065-00000037" kind="Component" role="Component" derivedfrom="id-0065-00000009" isinstance="yes" isprimary="yes" relid="0x1" childrelidcntr="0x0">
+					<model id="id-0065-00000037" kind="Component" role="Component" guid="{B9FF2DBD-2A1F-4771-964D-9E2298A8875C}" derivedfrom="id-0065-00000009" isinstance="yes" isprimary="yes" relid="0x1" childrelidcntr="0x0">
 						<name>BMClosedED</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -2521,8 +2692,8 @@
 						<attribute kind="SpecifyIdTag" status="meta">
 							<value></value>
 						</attribute>
-						<attribute kind="UUID" status="meta">
-							<value></value>
+						<attribute kind="UUID">
+							<value>F937DF8D-9FCC-4DFA-A49F-C60CD65B429C</value>
 						</attribute>
 						<attribute kind="VersionTag" status="meta">
 							<value></value>
@@ -2530,7 +2701,25 @@
 						<attribute kind="label" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-0000003c" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000002" isinstance="yes" isprimary="no" referred="id-0065-00000003" isbound="yes">
+						<reference id="id-0067-0000003c" kind="InEventPort" role="InEventPort" guid="{CAEE626B-ABA5-42da-84F8-7412A4B426ED}" derivedfrom="id-0067-00000005" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+							<name>in_avail</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-0000003d" kind="ProvidedRequestPort" role="ProvidedRequestPort" guid="{8AA6B786-9BAA-4a9e-B68A-F497DA80441A}" derivedfrom="id-0067-00000002" isinstance="yes" isprimary="no" referred="id-0065-00000003" isbound="yes">
 							<name>dataout</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -2548,28 +2737,7 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-0000003d" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-00000003" isinstance="yes" isprimary="no" referred="id-0065-00000003" isbound="yes">
-							<name>datain</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="multiple_connections" status="inherited">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-0000003e" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000004" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+						<reference id="id-0067-0000003e" kind="OutEventPort" role="OutEventPort" guid="{A5BE7233-9480-4eb8-8E05-9041189324BE}" derivedfrom="id-0067-00000004" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 							<name>out_avail</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -2593,8 +2761,8 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-0000003f" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-00000005" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
-							<name>in_avail</name>
+						<reference id="id-0067-0000003f" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{40303AF5-AF57-4776-9124-DADD95974D61}" derivedfrom="id-0067-00000003" isinstance="yes" isprimary="no" referred="id-0065-00000003" isbound="yes">
+							<name>datain</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
 							</attribute>
@@ -2607,12 +2775,15 @@
 							<attribute kind="exclusiveUser" status="meta">
 								<value>false</value>
 							</attribute>
+							<attribute kind="multiple_connections" status="inherited">
+								<value>false</value>
+							</attribute>
 							<attribute kind="optional" status="meta">
 								<value>false</value>
 							</attribute>
 						</reference>
 					</model>
-					<model id="id-0065-00000038" kind="Component" role="Component" derivedfrom="id-0065-0000000d" isinstance="yes" isprimary="yes" relid="0x2" childrelidcntr="0x0">
+					<model id="id-0065-00000038" kind="Component" role="Component" guid="{8FBB8458-34FC-487b-BD97-A535982B6F04}" derivedfrom="id-0065-0000000d" isinstance="yes" isprimary="yes" relid="0x2" childrelidcntr="0x0">
 						<name>BMDevice</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -2626,8 +2797,8 @@
 						<attribute kind="SpecifyIdTag" status="meta">
 							<value></value>
 						</attribute>
-						<attribute kind="UUID" status="meta">
-							<value></value>
+						<attribute kind="UUID">
+							<value>BC660E46-2990-4AF7-B8C7-93A0E155A0ED</value>
 						</attribute>
 						<attribute kind="VersionTag" status="meta">
 							<value></value>
@@ -2635,25 +2806,7 @@
 						<attribute kind="label" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000040" kind="ProvidedRequestPort" role="ProvidedRequestPort" derivedfrom="id-0067-00000007" isinstance="yes" isprimary="no" referred="id-0065-00000003" isbound="yes">
-							<name>data_read</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000041" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-00000009" isinstance="yes" isprimary="no" referred="id-0065-00000005" isbound="yes">
+						<reference id="id-0067-00000040" kind="InEventPort" role="InEventPort" guid="{CA209F99-317E-469c-BEE4-DF0E5FFF3A6F}" derivedfrom="id-0067-00000009" isinstance="yes" isprimary="no" referred="id-0065-00000005" isbound="yes">
 							<name>timeout</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -2671,7 +2824,25 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000042" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000008" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+						<reference id="id-0067-00000041" kind="ProvidedRequestPort" role="ProvidedRequestPort" guid="{960B8612-5C9C-4f65-B2A4-D4180233774D}" derivedfrom="id-0067-00000007" isinstance="yes" isprimary="no" referred="id-0065-00000003" isbound="yes">
+							<name>data_read</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000042" kind="OutEventPort" role="OutEventPort" guid="{1C84105E-1299-4115-BEBD-A9CCB6D2A6C9}" derivedfrom="id-0067-00000008" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 							<name>data_available</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -2696,7 +2867,7 @@
 							</attribute>
 						</reference>
 					</model>
-					<model id="id-0065-00000039" kind="Component" role="Component" derivedfrom="id-0065-00000011" isinstance="yes" isprimary="yes" relid="0x3" childrelidcntr="0x0">
+					<model id="id-0065-00000039" kind="Component" role="Component" guid="{4233B9E6-47F8-46a2-B78C-B7924620BCF3}" derivedfrom="id-0065-00000011" isinstance="yes" isprimary="yes" relid="0x3" childrelidcntr="0x0">
 						<name>BMDisplay</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -2710,8 +2881,8 @@
 						<attribute kind="SpecifyIdTag" status="meta">
 							<value></value>
 						</attribute>
-						<attribute kind="UUID" status="meta">
-							<value></value>
+						<attribute kind="UUID">
+							<value>E0ACF7E9-53B2-4CF5-AEC2-1E7CB407BD45</value>
 						</attribute>
 						<attribute kind="VersionTag" status="meta">
 							<value></value>
@@ -2719,25 +2890,7 @@
 						<attribute kind="label" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000043" kind="InEventPort" role="InEventPort" derivedfrom="id-0067-0000000c" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
-							<name>data_ready</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000044" kind="RequiredRequestPort" role="RequiredRequestPort" derivedfrom="id-0067-0000000b" isinstance="yes" isprimary="no" referred="id-0065-00000003" isbound="yes">
+						<reference id="id-0067-00000043" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{14628D85-77AF-4bf4-A6BC-92F6F1A5B11A}" derivedfrom="id-0067-0000000b" isinstance="yes" isprimary="no" referred="id-0065-00000003" isbound="yes">
 							<name>comp_data</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -2758,8 +2911,26 @@
 								<value>false</value>
 							</attribute>
 						</reference>
+						<reference id="id-0067-00000044" kind="InEventPort" role="InEventPort" guid="{0C02A683-884A-460f-A54F-D898E48B47A2}" derivedfrom="id-0067-0000000c" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+							<name>data_ready</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</reference>
 					</model>
-					<model id="id-0065-0000003a" kind="Component" role="Component" derivedfrom="id-0065-00000018" isinstance="yes" isprimary="yes" relid="0x4" childrelidcntr="0x0">
+					<model id="id-0065-0000003a" kind="Component" role="Component" guid="{47E5BA93-E888-4194-81F0-770FA70A888A}" derivedfrom="id-0065-00000018" isinstance="yes" isprimary="yes" relid="0x4" childrelidcntr="0x0">
 						<name>EC</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -2773,8 +2944,8 @@
 						<attribute kind="SpecifyIdTag" status="meta">
 							<value></value>
 						</attribute>
-						<attribute kind="UUID" status="meta">
-							<value></value>
+						<attribute kind="UUID">
+							<value>42BEDD65-36B4-47FD-A48B-C5BE680F4BBA</value>
 						</attribute>
 						<attribute kind="VersionTag" status="meta">
 							<value></value>
@@ -2782,7 +2953,7 @@
 						<attribute kind="label" status="meta">
 							<value></value>
 						</attribute>
-						<model id="id-0065-0000003b" kind="Attribute" role="Attribute" derivedfrom="id-0065-00000019" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+						<model id="id-0065-0000003b" kind="Attribute" role="Attribute" guid="{55723C91-8181-49f7-B9A6-AC1C54990E73}" derivedfrom="id-0065-00000019" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 							<name>hertz</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -2790,14 +2961,14 @@
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-00000046" kind="AttributeMember" role="AttributeMember" derivedfrom="id-0067-0000000e" isinstance="yes" isprimary="no" referred="id-0066-00000007" isbound="yes">
+							<reference id="id-0067-00000045" kind="AttributeMember" role="AttributeMember" guid="{335868A1-7826-4042-9436-E8B32C66D9A2}" derivedfrom="id-0067-0000000e" isinstance="yes" isprimary="no" referred="id-0066-00000007" isbound="yes">
 								<name>AttributeMember</name>
 							</reference>
 						</model>
-						<reference id="id-0067-00000045" kind="Supports" role="Supports" derivedfrom="id-0067-0000000f" isinstance="yes" isprimary="no" referred="id-0065-00000015" isbound="yes">
+						<reference id="id-0067-00000046" kind="Supports" role="Supports" guid="{10548F9D-5FC3-4169-A7A7-E3A76821AFE4}" derivedfrom="id-0067-0000000f" isinstance="yes" isprimary="no" referred="id-0065-00000015" isbound="yes">
 							<name>Supports</name>
 						</reference>
-						<reference id="id-0067-00000047" kind="OutEventPort" role="OutEventPort" derivedfrom="id-0067-00000010" isinstance="yes" isprimary="no" referred="id-0065-00000005" isbound="yes">
+						<reference id="id-0067-00000047" kind="OutEventPort" role="OutEventPort" guid="{AB1D87DC-FB7E-4ba4-8D61-86376D41D0AC}" derivedfrom="id-0067-00000010" isinstance="yes" isprimary="no" referred="id-0065-00000005" isbound="yes">
 							<name>timeout</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -2822,7 +2993,7 @@
 							</attribute>
 						</reference>
 					</model>
-					<atom id="id-0066-0000001e" kind="PublishConnector" role="PublishConnector" relid="0x7">
+					<atom id="id-0066-0000001e" kind="PublishConnector" role="PublishConnector" guid="{E5853FA1-127D-4597-926F-F1E94D2FF281}" relid="0x7">
 						<name>c1</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -2834,7 +3005,7 @@
 							</regnode>
 						</regnode>
 					</atom>
-					<atom id="id-0066-0000001f" kind="PublishConnector" role="PublishConnector" relid="0xa">
+					<atom id="id-0066-0000001f" kind="PublishConnector" role="PublishConnector" guid="{D52CE367-FD17-4654-8EBD-8F3ACFBD9473}" relid="0xa">
 						<name>c2</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -2846,7 +3017,7 @@
 							</regnode>
 						</regnode>
 					</atom>
-					<atom id="id-0066-00000020" kind="PublishConnector" role="PublishConnector" relid="0xe">
+					<atom id="id-0066-00000020" kind="PublishConnector" role="PublishConnector" guid="{85C6195A-D08B-4b9e-B685-BCD0265BBD43}" relid="0xe">
 						<name>c3</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -2858,7 +3029,7 @@
 							</regnode>
 						</regnode>
 					</atom>
-					<connection id="id-0068-00000033" kind="publish" role="publish" relid="0x8">
+					<connection id="id-0068-00000033" kind="publish" role="publish" guid="{293D5C08-2699-4f81-A492-7A723EDFEF31}" relid="0x8">
 						<name>publish</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>w</value>
@@ -2866,49 +3037,49 @@
 						<connpoint role="dst" target="id-0066-0000001e"/>
 						<connpoint role="src" target="id-0067-00000047"/>
 					</connection>
-					<connection id="id-0068-00000034" kind="deliverTo" role="deliverTo" relid="0x9">
+					<connection id="id-0068-00000034" kind="deliverTo" role="deliverTo" guid="{E001B871-2F1D-4c80-983A-3FD78A48245F}" relid="0x9">
 						<name>deliverTo</name>
 						<connpoint role="src" target="id-0066-0000001e"/>
-						<connpoint role="dst" target="id-0067-00000041"/>
+						<connpoint role="dst" target="id-0067-00000040"/>
 					</connection>
-					<connection id="id-0068-00000035" kind="publish" role="publish" relid="0xb">
+					<connection id="id-0068-00000035" kind="publish" role="publish" guid="{232D7A0D-BC0F-409f-845C-070E26E7229F}" relid="0xb">
 						<name>publish</name>
 						<connpoint role="dst" target="id-0066-0000001f"/>
 						<connpoint role="src" target="id-0067-00000042"/>
 					</connection>
-					<connection id="id-0068-00000036" kind="deliverTo" role="deliverTo" relid="0xc">
+					<connection id="id-0068-00000036" kind="deliverTo" role="deliverTo" guid="{3BF41E38-6A1C-4b0c-B7ED-DDDB346FC686}" relid="0xc">
 						<name>deliverTo</name>
 						<connpoint role="src" target="id-0066-0000001f"/>
-						<connpoint role="dst" target="id-0067-0000003f"/>
+						<connpoint role="dst" target="id-0067-0000003c"/>
 					</connection>
-					<connection id="id-0068-00000037" kind="invoke" role="invoke" relid="0xd">
+					<connection id="id-0068-00000037" kind="invoke" role="invoke" guid="{A09493D2-4646-4e1b-90A4-8EB784CB4967}" relid="0xd">
 						<name>invoke</name>
-						<connpoint role="src" target="id-0067-0000003d"/>
-						<connpoint role="dst" target="id-0067-00000040"/>
+						<connpoint role="src" target="id-0067-0000003f"/>
+						<connpoint role="dst" target="id-0067-00000041"/>
 					</connection>
-					<connection id="id-0068-00000038" kind="publish" role="publish" relid="0xf">
+					<connection id="id-0068-00000038" kind="publish" role="publish" guid="{3158AEB0-874E-4871-96E5-A9D936ABA7A2}" relid="0xf">
 						<name>publish</name>
 						<connpoint role="dst" target="id-0066-00000020"/>
 						<connpoint role="src" target="id-0067-0000003e"/>
 					</connection>
-					<connection id="id-0068-00000039" kind="deliverTo" role="deliverTo" relid="0x10">
+					<connection id="id-0068-00000039" kind="deliverTo" role="deliverTo" guid="{A629577B-A110-4c4c-B754-C523C6A21DB4}" relid="0x10">
 						<name>deliverTo</name>
 						<connpoint role="src" target="id-0066-00000020"/>
-						<connpoint role="dst" target="id-0067-00000043"/>
+						<connpoint role="dst" target="id-0067-00000044"/>
 					</connection>
-					<connection id="id-0068-0000003a" kind="invoke" role="invoke" relid="0x12">
+					<connection id="id-0068-0000003a" kind="invoke" role="invoke" guid="{E7668391-2531-461d-B82D-A1A6B62B4A47}" relid="0x12">
 						<name>invoke</name>
-						<connpoint role="dst" target="id-0067-0000003c"/>
-						<connpoint role="src" target="id-0067-00000044"/>
+						<connpoint role="dst" target="id-0067-0000003d"/>
+						<connpoint role="src" target="id-0067-00000043"/>
 					</connection>
 				</model>
 			</model>
 		</folder>
-		<folder id="id-006a-00000007" relid="0x6" childrelidcntr="0x5" kind="ComponentPackages">
+		<folder id="id-006a-00000007" relid="0x6" childrelidcntr="0x5" kind="ComponentPackages" guid="{79B039A8-5C63-4a83-A88B-0CCD87DBBE28}">
 			<name>ComponentPackages</name>
-			<model id="id-0065-0000003c" kind="PackageContainer" relid="0x1" childrelidcntr="0x5">
+			<model id="id-0065-0000003c" kind="PackageContainer" guid="{467D568C-6675-4cc4-8A87-274AEA0AAF71}" relid="0x1" childrelidcntr="0x5">
 				<name>BMClosedED</name>
-				<atom id="id-0066-00000021" kind="ComponentPackage" role="ComponentPackage" relid="0x1">
+				<atom id="id-0066-00000021" kind="ComponentPackage" role="ComponentPackage" guid="{2754C8EF-6C48-4475-8BA7-1372040C17BF}" relid="0x1">
 					<name>BMClosedED</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2919,14 +3090,14 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>F46001A6-03CF-47AF-A19F-7EE3E86C9AEA</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-00000048" kind="ComponentImplementationReference" role="ComponentImplementationReference" relid="0x2" referred="id-0066-0000001a">
+				<reference id="id-0067-00000048" kind="ComponentImplementationReference" role="ComponentImplementationReference" guid="{613026A0-8962-4114-A0F1-40548896E0F7}" relid="0x2" referred="id-0066-0000001a">
 					<name>BMClosedED</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2938,7 +3109,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000049" kind="ComponentRef" role="ComponentRef" relid="0x3" referred="id-0065-00000009">
+				<reference id="id-0067-00000049" kind="ComponentRef" role="ComponentRef" guid="{34E280E1-152B-4f6f-9049-94B74172471F}" relid="0x3" referred="id-0065-00000009">
 					<name>BMClosedED</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2950,12 +3121,12 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-0000003b" kind="Implementation" role="Implementation" relid="0x4">
+				<connection id="id-0068-0000003b" kind="Implementation" role="Implementation" guid="{B968DD71-4E13-4bbe-B46A-A4AB5B0B3218}" relid="0x4">
 					<name>Implementation</name>
 					<connpoint role="src" target="id-0066-00000021"/>
 					<connpoint role="dst" target="id-0067-00000048"/>
 				</connection>
-				<connection id="id-0068-0000003c" kind="PackageInterface" role="PackageInterface" relid="0x5">
+				<connection id="id-0068-0000003c" kind="PackageInterface" role="PackageInterface" guid="{C5193C05-536D-4d63-952E-B4620FB7C72A}" relid="0x5">
 					<name>PackageInterface</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
@@ -2964,9 +3135,9 @@
 					<connpoint role="dst" target="id-0067-00000049"/>
 				</connection>
 			</model>
-			<model id="id-0065-0000003d" kind="PackageContainer" relid="0x2" childrelidcntr="0x5">
+			<model id="id-0065-0000003d" kind="PackageContainer" guid="{281CF7B8-E129-48d1-AFE2-813950BCEBFF}" relid="0x2" childrelidcntr="0x5">
 				<name>BMDisplay</name>
-				<atom id="id-0066-00000022" kind="ComponentPackage" role="ComponentPackage" relid="0x1">
+				<atom id="id-0066-00000022" kind="ComponentPackage" role="ComponentPackage" guid="{51E6DECF-5657-412e-80FD-9DCF8B325F1D}" relid="0x1">
 					<name>BMDisplay</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2977,14 +3148,14 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>3126D691-BF35-42C5-BF8B-43DED73D8E00</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-0000004a" kind="ComponentImplementationReference" role="ComponentImplementationReference" relid="0x2" referred="id-0066-0000001c">
+				<reference id="id-0067-0000004a" kind="ComponentImplementationReference" role="ComponentImplementationReference" guid="{1D67FF02-9C5F-4a3c-B5B1-754180523E67}" relid="0x2" referred="id-0066-0000001c">
 					<name>BMDisplay</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2996,7 +3167,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000004b" kind="ComponentRef" role="ComponentRef" relid="0x3" referred="id-0065-00000011">
+				<reference id="id-0067-0000004b" kind="ComponentRef" role="ComponentRef" guid="{09933B39-5D76-4e1b-ABE4-BC4B1954C6FC}" relid="0x3" referred="id-0065-00000011">
 					<name>BMDisplay</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3008,7 +3179,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-0000003d" kind="PackageInterface" role="PackageInterface" relid="0x4">
+				<connection id="id-0068-0000003d" kind="PackageInterface" role="PackageInterface" guid="{C4ECD600-A838-4f95-B579-92F5B1CF8287}" relid="0x4">
 					<name>PackageInterface</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -3016,7 +3187,7 @@
 					<connpoint role="src" target="id-0066-00000022"/>
 					<connpoint role="dst" target="id-0067-0000004b"/>
 				</connection>
-				<connection id="id-0068-0000003e" kind="Implementation" role="Implementation" relid="0x5">
+				<connection id="id-0068-0000003e" kind="Implementation" role="Implementation" guid="{757BAC49-DBFA-4234-9F6D-E61D4DADEFE6}" relid="0x5">
 					<name>Implementation</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -3025,9 +3196,9 @@
 					<connpoint role="dst" target="id-0067-0000004a"/>
 				</connection>
 			</model>
-			<model id="id-0065-0000003e" kind="PackageContainer" relid="0x3" childrelidcntr="0x5">
+			<model id="id-0065-0000003e" kind="PackageContainer" guid="{D6FAF92F-AE7B-43ac-B0C7-9EDF2DF8054F}" relid="0x3" childrelidcntr="0x5">
 				<name>BMDevice</name>
-				<atom id="id-0066-00000023" kind="ComponentPackage" role="ComponentPackage" relid="0x1">
+				<atom id="id-0066-00000023" kind="ComponentPackage" role="ComponentPackage" guid="{BFFD4BA4-077D-4c9f-84E7-CA3D87E8DBD7}" relid="0x1">
 					<name>BMDevice</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3038,14 +3209,14 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>7042FEF6-4895-4CF9-AE6A-B753ADAA56CE</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-0000004c" kind="ComponentImplementationReference" role="ComponentImplementationReference" relid="0x2" referred="id-0066-0000001b">
+				<reference id="id-0067-0000004c" kind="ComponentImplementationReference" role="ComponentImplementationReference" guid="{C65BF931-F547-47e7-91F5-D7338BD254D9}" relid="0x2" referred="id-0066-0000001b">
 					<name>BMDevice</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3057,7 +3228,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000004d" kind="ComponentRef" role="ComponentRef" relid="0x3" referred="id-0065-0000000d">
+				<reference id="id-0067-0000004d" kind="ComponentRef" role="ComponentRef" guid="{D1C3E1F2-8A38-4b5d-BCC4-B895264510C6}" relid="0x3" referred="id-0065-0000000d">
 					<name>BMDevice</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3069,12 +3240,12 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-0000003f" kind="Implementation" role="Implementation" relid="0x4">
+				<connection id="id-0068-0000003f" kind="Implementation" role="Implementation" guid="{969BC100-66AD-4420-8AFE-2F998BFE1A89}" relid="0x4">
 					<name>Implementation</name>
 					<connpoint role="src" target="id-0066-00000023"/>
 					<connpoint role="dst" target="id-0067-0000004c"/>
 				</connection>
-				<connection id="id-0068-00000040" kind="PackageInterface" role="PackageInterface" relid="0x5">
+				<connection id="id-0068-00000040" kind="PackageInterface" role="PackageInterface" guid="{E7E0D1AB-F3A2-4636-8B6A-DC4DCB53A106}" relid="0x5">
 					<name>PackageInterface</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
@@ -3083,9 +3254,9 @@
 					<connpoint role="dst" target="id-0067-0000004d"/>
 				</connection>
 			</model>
-			<model id="id-0065-0000003f" kind="PackageContainer" relid="0x4" childrelidcntr="0x6">
+			<model id="id-0065-0000003f" kind="PackageContainer" guid="{D8C6FEB1-5A44-4481-80BD-5E34748FD7D7}" relid="0x4" childrelidcntr="0x6">
 				<name>EC</name>
-				<atom id="id-0066-00000024" kind="ComponentPackage" role="ComponentPackage" relid="0x2">
+				<atom id="id-0066-00000024" kind="ComponentPackage" role="ComponentPackage" guid="{6D6D1D57-6C5B-4dd2-9E11-6D4CCF052FEE}" relid="0x2">
 					<name>EC</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3096,14 +3267,14 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>E26C6173-16EB-4046-A45F-76773CDC1D49</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-0000004e" kind="ComponentImplementationReference" role="ComponentImplementationReference" relid="0x1" referred="id-0066-0000001d">
+				<reference id="id-0067-0000004e" kind="ComponentImplementationReference" role="ComponentImplementationReference" guid="{43D89B8C-90F1-4494-A6FD-3A38400A27C7}" relid="0x1" referred="id-0066-0000001d">
 					<name>EC</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3115,7 +3286,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000004f" kind="ComponentRef" role="ComponentRef" relid="0x3" referred="id-0065-00000018">
+				<reference id="id-0067-0000004f" kind="ComponentRef" role="ComponentRef" guid="{9428003E-36E2-4420-A190-3729860F36FE}" relid="0x3" referred="id-0065-00000018">
 					<name>EC</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3127,12 +3298,12 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-00000041" kind="Implementation" role="Implementation" relid="0x4">
+				<connection id="id-0068-00000041" kind="Implementation" role="Implementation" guid="{04073670-CCF6-4574-A728-962BA938C101}" relid="0x4">
 					<name>Implementation</name>
 					<connpoint role="src" target="id-0066-00000024"/>
 					<connpoint role="dst" target="id-0067-0000004e"/>
 				</connection>
-				<connection id="id-0068-00000042" kind="PackageInterface" role="PackageInterface" relid="0x6">
+				<connection id="id-0068-00000042" kind="PackageInterface" role="PackageInterface" guid="{38DF9CBC-E77D-4e0f-A6C0-567C977B8A22}" relid="0x6">
 					<name>PackageInterface</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -3141,9 +3312,9 @@
 					<connpoint role="dst" target="id-0067-0000004f"/>
 				</connection>
 			</model>
-			<model id="id-0065-00000040" kind="PackageContainer" relid="0x5" childrelidcntr="0x6">
+			<model id="id-0065-00000040" kind="PackageContainer" guid="{033BADDF-052F-4f80-BCB7-803648289788}" relid="0x5" childrelidcntr="0x6">
 				<name>BasicSP</name>
-				<atom id="id-0066-00000025" kind="ComponentPackage" role="ComponentPackage" relid="0x1">
+				<atom id="id-0066-00000025" kind="ComponentPackage" role="ComponentPackage" guid="{6EDD02D4-C43B-437f-B8D5-02E3FD693F76}" relid="0x1">
 					<name>BasicSP</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3154,14 +3325,14 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>11C64A4A-6B80-43FA-A9F0-D797D1747E9A</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-00000050" kind="ComponentImplementationReference" role="ComponentImplementationReference" relid="0x5" referred="id-0065-00000036">
+				<reference id="id-0067-00000050" kind="ComponentImplementationReference" role="ComponentImplementationReference" guid="{8CCC10D4-534E-4e67-9947-7B0436B43B25}" relid="0x5" referred="id-0065-00000036">
 					<name>BasicSP</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3173,7 +3344,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-00000043" kind="Implementation" role="Implementation" relid="0x6">
+				<connection id="id-0068-00000043" kind="Implementation" role="Implementation" guid="{BBA8D957-5895-455c-87A9-FF7D12662D06}" relid="0x6">
 					<name>Implementation</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
@@ -3183,12 +3354,12 @@
 				</connection>
 			</model>
 		</folder>
-		<folder id="id-006a-00000008" relid="0x7" childrelidcntr="0x1" kind="PackageConfigurations">
+		<folder id="id-006a-00000008" relid="0x7" childrelidcntr="0x4" kind="PackageConfigurations" guid="{09731EC1-CF8A-478c-BD23-7EE7FCA79E9F}">
 			<name>PackageConfigurations</name>
-			<model id="id-0065-00000041" kind="PackageConfigurationContainer" relid="0x1" childrelidcntr="0x9">
-				<name>Default</name>
-				<atom id="id-0066-00000026" kind="PackageConfiguration" role="PackageConfiguration" relid="0x2">
-					<name>Default</name>
+			<model id="id-0065-00000041" kind="PackageConfigurationContainer" guid="{526BDA0D-56EA-4e28-A492-EF6BD2B5EE8D}" relid="0x1" childrelidcntr="0xb">
+				<name>BMClosedED</name>
+				<atom id="id-0066-00000026" kind="PackageConfiguration" role="PackageConfiguration" guid="{F5ADA805-BC62-4e4f-B4F1-091EBD0E5687}" relid="0x2">
+					<name>BMClosedED</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
@@ -3198,50 +3369,197 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="UUID" status="meta">
-						<value></value>
+					<attribute kind="UUID">
+						<value>2067AB69-17C2-452E-966F-90BF8337B23E</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-00000051" kind="ComponentPackageReference" role="ComponentPackageReference" relid="0x8" referred="id-0066-00000025">
-					<name>BasicSP</name>
-					<regnode name="PartRegs" isopaque="yes">
+				<reference id="id-0067-0000007b" kind="ComponentPackageReference" role="ComponentPackageReference" guid="{6CA987D0-4E58-4cc3-AF01-3D6159175123}" relid="0xa" referred="id-0066-00000021">
+					<name>BMClosedED</name>
+					<regnode name="PartRegs" status="undefined">
 						<value></value>
-						<regnode name="Packaging" isopaque="yes">
+						<regnode name="Packaging" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>662,305</value>
+								<value>776,286</value>
 							</regnode>
 						</regnode>
 					</regnode>
 					<attribute kind="requiredName" status="meta">
 						<value></value>
 					</attribute>
-					<attribute kind="requiredType">
-						<value>BasicSP</value>
+					<attribute kind="requiredType" status="meta">
+						<value></value>
 					</attribute>
 					<attribute kind="requiredUUID" status="meta">
 						<value></value>
 					</attribute>
 				</reference>
-				<connection id="id-0068-00000044" kind="PackageConfReference" role="PackageConfReference" relid="0x9">
+				<connection id="id-0068-0000004c" kind="PackageConfReference" role="PackageConfReference" guid="{755ED8A2-D8A4-4960-824F-1DB1700B6ED0}" relid="0xb">
+					<name>PackageConfReference</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>w</value>
+					</regnode>
+					<connpoint role="src" target="id-0066-00000026"/>
+					<connpoint role="dst" target="id-0067-0000007b"/>
+				</connection>
+			</model>
+			<model id="id-0065-0000005d" kind="PackageConfigurationContainer" guid="{9E82CEFF-3299-4f18-9418-350CCB0DFE01}" relid="0x2" childrelidcntr="0x3">
+				<name>BMDevice</name>
+				<atom id="id-0066-0000002c" kind="PackageConfiguration" role="PackageConfiguration" guid="{6CC3C53A-10EC-41ca-86F8-B1B34AD2FE7E}" relid="0x1">
+					<name>BMDevice</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Packaging" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>258,251</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="UUID">
+						<value>5279C6C7-41B8-4FC7-9BDE-F67E6CF75425</value>
+					</attribute>
+					<attribute kind="label" status="meta">
+						<value></value>
+					</attribute>
+				</atom>
+				<reference id="id-0067-00000079" kind="ComponentPackageReference" role="ComponentPackageReference" guid="{E69EB685-58EA-4875-BA54-B1A481CB6A4B}" relid="0x2" referred="id-0066-00000023">
+					<name>BMDevice</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Packaging" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>580,251</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="requiredName" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="requiredType" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="requiredUUID" status="meta">
+						<value></value>
+					</attribute>
+				</reference>
+				<connection id="id-0068-0000004a" kind="PackageConfReference" role="PackageConfReference" guid="{DD95F9CD-6609-4410-A7DB-FFCBB9662E8B}" relid="0x3">
+					<name>PackageConfReference</name>
+					<connpoint role="src" target="id-0066-0000002c"/>
+					<connpoint role="dst" target="id-0067-00000079"/>
+				</connection>
+			</model>
+			<model id="id-0065-0000005e" kind="PackageConfigurationContainer" guid="{63D321B9-ADD9-490e-8864-5BCF4C57FB80}" relid="0x3" childrelidcntr="0x3">
+				<name>BMDisplay</name>
+				<atom id="id-0066-0000002d" kind="PackageConfiguration" role="PackageConfiguration" guid="{9AED52FF-391D-47da-841E-316035EC3C98}" relid="0x1">
+					<name>BMDisplay</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Packaging" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>226,268</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="UUID">
+						<value>7F9037AA-5A66-4178-A3E7-A17CBCDE4FD2</value>
+					</attribute>
+					<attribute kind="label" status="meta">
+						<value></value>
+					</attribute>
+				</atom>
+				<reference id="id-0067-0000007a" kind="ComponentPackageReference" role="ComponentPackageReference" guid="{325FF9BE-1755-4a69-84B1-CDE23B837C3C}" relid="0x2" referred="id-0066-00000022">
+					<name>BMDisplay</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Packaging" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>601,244</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="requiredName" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="requiredType" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="requiredUUID" status="meta">
+						<value></value>
+					</attribute>
+				</reference>
+				<connection id="id-0068-0000004b" kind="PackageConfReference" role="PackageConfReference" guid="{05967788-F13B-4ddb-BADB-ACC6E92743AA}" relid="0x3">
 					<name>PackageConfReference</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-00000026"/>
-					<connpoint role="dst" target="id-0067-00000051"/>
+					<connpoint role="src" target="id-0066-0000002d"/>
+					<connpoint role="dst" target="id-0067-0000007a"/>
+				</connection>
+			</model>
+			<model id="id-0065-0000005f" kind="PackageConfigurationContainer" guid="{6B7E3EE0-9041-4180-805E-5E1DF80EC896}" relid="0x4" childrelidcntr="0x3">
+				<name>EC</name>
+				<atom id="id-0066-0000002e" kind="PackageConfiguration" role="PackageConfiguration" guid="{97EB60E1-7CB5-4e75-B83C-622B2BA2DD65}" relid="0x1">
+					<name>EC</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Packaging" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>275,247</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="UUID">
+						<value>7C613345-17EF-40E6-B968-FA2E15FABEDE</value>
+					</attribute>
+					<attribute kind="label" status="meta">
+						<value></value>
+					</attribute>
+				</atom>
+				<reference id="id-0067-0000007c" kind="ComponentPackageReference" role="ComponentPackageReference" guid="{E9871BC4-A0F9-4634-89F2-E2700E8790FE}" relid="0x2" referred="id-0066-00000024">
+					<name>EC</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Packaging" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>650,237</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="requiredName" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="requiredType" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="requiredUUID" status="meta">
+						<value></value>
+					</attribute>
+				</reference>
+				<connection id="id-0068-0000004d" kind="PackageConfReference" role="PackageConfReference" guid="{3DF0E5E5-E216-494f-B9B4-DE969E43E07C}" relid="0x3">
+					<name>PackageConfReference</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>E</value>
+					</regnode>
+					<connpoint role="src" target="id-0066-0000002e"/>
+					<connpoint role="dst" target="id-0067-0000007c"/>
 				</connection>
 			</model>
 		</folder>
-		<folder id="id-006a-00000009" relid="0x8" childrelidcntr="0x1" kind="TopLevelPackages">
+		<folder id="id-006a-00000009" relid="0x8" childrelidcntr="0x4" kind="TopLevelPackages" guid="{7266BA29-09B2-4b5e-8512-AE5EC9248010}">
 			<name>TopLevelPackages</name>
-			<model id="id-0065-00000042" kind="TopLevelPackageContainer" relid="0x1" childrelidcntr="0x3">
-				<name>BasicSP</name>
-				<atom id="id-0066-00000027" kind="TopLevelPackage" role="TopLevelPackage" relid="0x1">
-					<name>TopLevelPackage</name>
+			<model id="id-0065-00000042" kind="TopLevelPackageContainer" guid="{9E5BE476-A306-4d09-B505-CF5CA9B5303A}" relid="0x1" childrelidcntr="0x5">
+				<name>BMDevice</name>
+				<atom id="id-0066-00000027" kind="TopLevelPackage" role="TopLevelPackage" guid="{EA3FE1F6-BA17-4206-82FA-2245FDDB1802}" relid="0x1">
+					<name>BMDevice</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
@@ -3252,36 +3570,141 @@
 						</regnode>
 					</regnode>
 				</atom>
-				<reference id="id-0067-00000052" kind="PackageConfigurationReference" role="PackageConfigurationReference" relid="0x2" referred="id-0066-00000026">
-					<name>Default</name>
-					<regnode name="PartRegs" isopaque="yes">
+				<reference id="id-0067-0000007d" kind="PackageConfigurationReference" role="PackageConfigurationReference" guid="{4370E9AA-9487-4eb7-8BC4-6CD16F43D14E}" relid="0x4" referred="id-0066-0000002c">
+					<name>BMDevice</name>
+					<regnode name="PartRegs" status="undefined">
 						<value></value>
-						<regnode name="Packaging" isopaque="yes">
+						<regnode name="Packaging" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>389,116</value>
+								<value>552,265</value>
 							</regnode>
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-00000045" kind="package" role="package" relid="0x3">
+				<connection id="id-0068-0000004e" kind="package" role="package" guid="{44C231F9-8216-4e02-BF7C-E4E168F92EA2}" relid="0x5">
 					<name>package</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>Ew</value>
+					</regnode>
 					<connpoint role="src" target="id-0066-00000027"/>
-					<connpoint role="dst" target="id-0067-00000052"/>
+					<connpoint role="dst" target="id-0067-0000007d"/>
+				</connection>
+			</model>
+			<model id="id-0065-00000060" kind="TopLevelPackageContainer" guid="{DBD4C233-D9B6-42bc-B48B-0EDD0E48ACD6}" relid="0x2" childrelidcntr="0x3">
+				<name>BMDisplay</name>
+				<atom id="id-0066-0000002f" kind="TopLevelPackage" role="TopLevelPackage" guid="{ACA2E2E5-B64E-4c11-9FBE-A96D7487F2F8}" relid="0x1">
+					<name>BMDisplay</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Packaging" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>184,296</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</atom>
+				<reference id="id-0067-0000007e" kind="PackageConfigurationReference" role="PackageConfigurationReference" guid="{4827DDB9-EC76-49fd-B6B4-3B4652F4649A}" relid="0x2" referred="id-0066-0000002d">
+					<name>BMDisplay</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Packaging" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>475,251</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</reference>
+				<connection id="id-0068-0000004f" kind="package" role="package" guid="{0674951E-BBFC-4ea7-9B78-9B46CF9BB442}" relid="0x3">
+					<name>package</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>Ew</value>
+					</regnode>
+					<connpoint role="src" target="id-0066-0000002f"/>
+					<connpoint role="dst" target="id-0067-0000007e"/>
+				</connection>
+			</model>
+			<model id="id-0065-00000061" kind="TopLevelPackageContainer" guid="{F5920C9E-F67B-4ef3-AFEC-3AF883CE770D}" relid="0x3" childrelidcntr="0x3">
+				<name>EC</name>
+				<atom id="id-0066-00000030" kind="TopLevelPackage" role="TopLevelPackage" guid="{96109952-6C66-4ff6-B260-E01B65B81E6D}" relid="0x1">
+					<name>EC</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Packaging" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>205,317</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</atom>
+				<reference id="id-0067-0000007f" kind="PackageConfigurationReference" role="PackageConfigurationReference" guid="{6658F524-9480-4bac-978A-8FD4CD0D9BFF}" relid="0x2" referred="id-0066-0000002e">
+					<name>EC</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Packaging" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>601,349</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</reference>
+				<connection id="id-0068-00000050" kind="package" role="package" guid="{3626E537-0D13-4f8b-8014-1F0AE51704CF}" relid="0x3">
+					<name>package</name>
+					<connpoint role="src" target="id-0066-00000030"/>
+					<connpoint role="dst" target="id-0067-0000007f"/>
+				</connection>
+			</model>
+			<model id="id-0065-00000062" kind="TopLevelPackageContainer" guid="{26D4A7CD-D6FD-429b-B209-2E3E23CCC305}" relid="0x4" childrelidcntr="0x3">
+				<name>BMClosedED</name>
+				<atom id="id-0066-00000031" kind="TopLevelPackage" role="TopLevelPackage" guid="{8F5DADFD-8962-4a44-8645-EAC8AB0CA7FC}" relid="0x1">
+					<name>BMClosedED</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Packaging" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>184,254</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</atom>
+				<reference id="id-0067-00000080" kind="PackageConfigurationReference" role="PackageConfigurationReference" guid="{ED96C231-0E01-4afd-BB88-54D819933DC0}" relid="0x2" referred="id-0066-00000026">
+					<name>BMClosedED</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Packaging" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>580,251</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</reference>
+				<connection id="id-0068-00000051" kind="package" role="package" guid="{0EFDC52B-8CB6-486e-890D-BEF97FAA265B}" relid="0x3">
+					<name>package</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>w</value>
+					</regnode>
+					<connpoint role="src" target="id-0066-00000031"/>
+					<connpoint role="dst" target="id-0067-00000080"/>
 				</connection>
 			</model>
 		</folder>
-		<folder id="id-006a-0000000a" relid="0x9" childrelidcntr="0x1" kind="Targets">
+		<folder id="id-006a-0000000a" relid="0x9" childrelidcntr="0x1" kind="Targets" guid="{8C7D4222-2EC7-477b-A5EF-F591DAAA13A6}">
 			<name>Target</name>
-			<model id="id-0065-00000043" kind="Domain" relid="0x1" childrelidcntr="0x3">
+			<model id="id-0065-00000043" kind="Domain" guid="{62B366C9-AD1F-43ea-A764-F64E3920D211}" relid="0x1" childrelidcntr="0x3">
 				<name>Domain</name>
-				<attribute kind="UUID" status="meta">
-					<value></value>
+				<attribute kind="UUID">
+					<value>9FEE8CBC-9904-4A00-9DB8-B474F973C8C6</value>
 				</attribute>
 				<attribute kind="label" status="meta">
 					<value></value>
 				</attribute>
-				<model id="id-0065-00000044" kind="Node" role="Node" relid="0x1" childrelidcntr="0x0">
+				<model id="id-0065-00000044" kind="Node" role="Node" guid="{48C7AC37-B2D8-4058-BA93-2E941F763A8E}" relid="0x1" childrelidcntr="0x0">
 					<name>BMDisplay</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3296,7 +3719,7 @@
 						<value>BMDisplay</value>
 					</attribute>
 				</model>
-				<model id="id-0065-00000045" kind="Node" role="Node" relid="0x3" childrelidcntr="0x0">
+				<model id="id-0065-00000045" kind="Node" role="Node" guid="{A6CE90BD-7B4B-4b97-A6A8-C312FB2E40F8}" relid="0x3" childrelidcntr="0x0">
 					<name>EC</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3313,14 +3736,17 @@
 				</model>
 			</model>
 		</folder>
-		<folder id="id-006a-0000000b" relid="0xa" childrelidcntr="0x1" kind="DeploymentPlans">
+		<folder id="id-006a-0000000b" relid="0xa" childrelidcntr="0x1" kind="DeploymentPlans" guid="{02ED2D30-B178-4956-841B-4AEFA675CD5D}">
 			<name>DeploymentPlan</name>
-			<model id="id-0065-00000046" kind="DeploymentPlan" relid="0x1" childrelidcntr="0x11">
+			<model id="id-0065-00000046" kind="DeploymentPlan" guid="{CD1CE674-5302-410f-959A-2FBD1A1A3017}" relid="0x1" childrelidcntr="0x11">
 				<name>Plan</name>
+				<attribute kind="UUID">
+					<value>1D6FDF7A-96B6-42C0-8C29-D9135ACD5491</value>
+				</attribute>
 				<attribute kind="label" status="meta">
 					<value></value>
 				</attribute>
-				<reference id="id-0067-00000053" kind="ComponentRef" role="ComponentRef" relid="0x5" referred="id-0065-00000037">
+				<reference id="id-0067-00000053" kind="ComponentRef" role="ComponentRef" guid="{DAEFB2C0-05CD-4bb8-B1F4-2C6119E6E40F}" relid="0x5" referred="id-0065-00000037">
 					<name>BMClosedED</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3332,7 +3758,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000054" kind="ComponentRef" role="ComponentRef" relid="0x6" referred="id-0065-00000038">
+				<reference id="id-0067-00000054" kind="ComponentRef" role="ComponentRef" guid="{8D42EE55-8A8C-47cb-96B8-9A6FE8325747}" relid="0x6" referred="id-0065-00000038">
 					<name>BMDevice</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3344,7 +3770,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000055" kind="ComponentRef" role="ComponentRef" relid="0x7" referred="id-0065-00000039">
+				<reference id="id-0067-00000055" kind="ComponentRef" role="ComponentRef" guid="{7E4739F1-E0B0-40d7-845B-49A622791121}" relid="0x7" referred="id-0065-00000039">
 					<name>BMDisplay</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3356,7 +3782,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000056" kind="ComponentRef" role="ComponentRef" relid="0x8" referred="id-0065-0000003a">
+				<reference id="id-0067-00000056" kind="ComponentRef" role="ComponentRef" guid="{56C3AF95-FB14-4893-9A77-473B4546170D}" relid="0x8" referred="id-0065-0000003a">
 					<name>EC</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3368,7 +3794,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000057" kind="NodeReference" role="NodeReference" relid="0xe" referred="id-0065-00000044">
+				<reference id="id-0067-00000057" kind="NodeReference" role="NodeReference" guid="{9D2B17D3-A9BE-4ef6-B312-2107ECAF14EF}" relid="0xe" referred="id-0065-00000044">
 					<name>BMDisplay</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3380,7 +3806,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000058" kind="NodeReference" role="NodeReference" relid="0xf" referred="id-0065-00000045">
+				<reference id="id-0067-00000058" kind="NodeReference" role="NodeReference" guid="{C97B1025-A00B-4b13-8410-A96FF7716129}" relid="0xf" referred="id-0065-00000045">
 					<name>EC</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3392,17 +3818,17 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-00000046" kind="InstanceMapping" role="InstanceMapping" relid="0x10">
+				<connection id="id-0068-00000046" kind="InstanceMapping" role="InstanceMapping" guid="{CEF7C13B-E8A8-4c82-8F44-873EE34BE53F}" relid="0x10">
 					<name>InstanceMapping</name>
 					<connpoint role="dst" target="id-0067-00000057"/>
 					<connpoint role="src" target="id-0069-00000001"/>
 				</connection>
-				<connection id="id-0068-00000047" kind="InstanceMapping" role="InstanceMapping" relid="0x11">
+				<connection id="id-0068-00000047" kind="InstanceMapping" role="InstanceMapping" guid="{E01D542E-F2CE-4883-AF87-DC24739CD7CA}" relid="0x11">
 					<name>InstanceMapping</name>
 					<connpoint role="dst" target="id-0067-00000058"/>
 					<connpoint role="src" target="id-0069-00000002"/>
 				</connection>
-				<set id="id-0069-00000001" kind="CollocationGroup" role="CollocationGroup" relid="0x1" members="id-0067-00000055 id-0067-00000053 id-0067-00000054">
+				<set id="id-0069-00000001" kind="CollocationGroup" role="CollocationGroup" guid="{45DE621B-7BD7-49d8-B3A8-F8C04779638C}" relid="0x1" members="id-0067-00000053 id-0067-00000054 id-0067-00000055">
 					<name>CollocationGroup</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3414,7 +3840,7 @@
 						</regnode>
 					</regnode>
 				</set>
-				<set id="id-0069-00000002" kind="CollocationGroup" role="CollocationGroup" relid="0x9" members="id-0067-00000056">
+				<set id="id-0069-00000002" kind="CollocationGroup" role="CollocationGroup" guid="{422E9C5E-5FD5-4e1c-B974-22AFE774AC2E}" relid="0x9" members="id-0067-00000056">
 					<name>CollocationGroup</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3428,11 +3854,11 @@
 				</set>
 			</model>
 		</folder>
-		<folder id="id-006a-0000000c" relid="0xb" childrelidcntr="0x1" kind="ComponentBuild">
+		<folder id="id-006a-0000000c" relid="0xb" childrelidcntr="0x1" kind="ComponentBuild" guid="{B6307648-339E-4159-9EC1-D29792108C77}">
 			<name>Build</name>
-			<model id="id-0065-00000047" kind="MPC" relid="0x1" childrelidcntr="0x7">
+			<model id="id-0065-00000047" kind="MPC" guid="{125356EF-C910-4a53-9AA1-22C553F31B03}" relid="0x1" childrelidcntr="0x7">
 				<name>BasicSPMPC</name>
-				<model id="id-0065-00000048" kind="Project" role="Project" relid="0x3" childrelidcntr="0x3">
+				<model id="id-0065-00000048" kind="Project" role="Project" guid="{9F7A0D82-1A2F-40b4-8ADC-A7D67F126557}" relid="0x3" childrelidcntr="0x3">
 					<name>BMClosedED</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3443,7 +3869,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<model id="id-0065-00000049" kind="ExecutorProject" role="ExecutorProject" relid="0x1" childrelidcntr="0x1">
+					<model id="id-0065-00000049" kind="ExecutorProject" role="ExecutorProject" guid="{C84F6D77-AF2F-481a-971D-201D15DCC33E}" relid="0x1" childrelidcntr="0x1">
 						<name>ExecutorProject</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -3463,7 +3889,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000059" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-0000000c">
+						<reference id="id-0067-00000059" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{42240006-6A00-42bb-804F-5E2B02A9820A}" relid="0x1" referred="id-0066-0000000c">
 							<name>BMClosedED_exec</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -3476,7 +3902,7 @@
 							</regnode>
 						</reference>
 					</model>
-					<model id="id-0065-0000004a" kind="ServantProject" role="ServantProject" relid="0x2" childrelidcntr="0x2">
+					<model id="id-0065-0000004a" kind="ServantProject" role="ServantProject" guid="{1C4A53A5-B05B-4390-8057-10167A8445B6}" relid="0x2" childrelidcntr="0x2">
 						<name>ServantProject</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -3496,7 +3922,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-0000005a" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-0000000e">
+						<reference id="id-0067-0000005a" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{3F9CCF60-3C7A-402f-ACD4-A15083205EA1}" relid="0x1" referred="id-0066-0000000e">
 							<name>BMClosedED_svnt</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -3508,7 +3934,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000005b" kind="FileRef" role="FileRef" relid="0x2" referred="id-0065-00000007">
+						<reference id="id-0067-0000005b" kind="FileRef" role="FileRef" guid="{AD71B1EE-4CC4-41a2-9D49-7646E1325AC7}" relid="0x2" referred="id-0065-00000007">
 							<name>BMClosedED</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -3521,7 +3947,7 @@
 							</regnode>
 						</reference>
 					</model>
-					<model id="id-0065-0000004b" kind="StubProject" role="StubProject" relid="0x3" childrelidcntr="0x2">
+					<model id="id-0065-0000004b" kind="StubProject" role="StubProject" guid="{C995C6A7-FBC0-4bb3-805A-98D64E4EA024}" relid="0x3" childrelidcntr="0x2">
 						<name>StubProject</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -3541,7 +3967,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-0000005c" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-0000000d">
+						<reference id="id-0067-0000005c" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{CE26509A-EFDB-4273-89F2-1C31F644803A}" relid="0x1" referred="id-0066-0000000d">
 							<name>BMClosedED_stub</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -3553,7 +3979,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000005d" kind="FileRef" role="FileRef" relid="0x2" referred="id-0065-00000007">
+						<reference id="id-0067-0000005d" kind="FileRef" role="FileRef" guid="{8D0BA0C2-E3ED-475b-8FB2-7C4E54B61A0D}" relid="0x2" referred="id-0065-00000007">
 							<name>BMClosedED</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -3567,7 +3993,7 @@
 						</reference>
 					</model>
 				</model>
-				<model id="id-0065-0000004c" kind="Project" role="Project" relid="0x4" childrelidcntr="0x3">
+				<model id="id-0065-0000004c" kind="Project" role="Project" guid="{D1B32BDE-47C1-4043-B4DE-FB7EDFF7ABD6}" relid="0x4" childrelidcntr="0x3">
 					<name>BMDevice</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3578,7 +4004,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<model id="id-0065-0000004d" kind="ExecutorProject" role="ExecutorProject" relid="0x1" childrelidcntr="0x1">
+					<model id="id-0065-0000004d" kind="ExecutorProject" role="ExecutorProject" guid="{60DB6013-D6B7-4e79-9EE3-51E04942AE2E}" relid="0x1" childrelidcntr="0x1">
 						<name>ExecutorProject</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -3598,7 +4024,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-0000005e" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-0000000f">
+						<reference id="id-0067-0000005e" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{1E6770DE-8A9E-4b6a-B3A0-117CC12A3A9A}" relid="0x1" referred="id-0066-0000000f">
 							<name>BMDevice_exec</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -3611,7 +4037,7 @@
 							</regnode>
 						</reference>
 					</model>
-					<model id="id-0065-0000004e" kind="ServantProject" role="ServantProject" relid="0x2" childrelidcntr="0x2">
+					<model id="id-0065-0000004e" kind="ServantProject" role="ServantProject" guid="{777F87DE-3F00-4d0f-BF6F-182FEB23C16B}" relid="0x2" childrelidcntr="0x2">
 						<name>ServantProject</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -3631,7 +4057,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-0000005f" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-00000011">
+						<reference id="id-0067-0000005f" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{BD46C100-6273-4cfe-A8BF-1B4ABFF25E9A}" relid="0x1" referred="id-0066-00000011">
 							<name>BMDevice_svnt</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -3643,7 +4069,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000060" kind="FileRef" role="FileRef" relid="0x2" referred="id-0065-0000000b">
+						<reference id="id-0067-00000060" kind="FileRef" role="FileRef" guid="{B421AF30-CFCC-42ec-BB4C-2B0DF7F32057}" relid="0x2" referred="id-0065-0000000b">
 							<name>BMDevice</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -3656,7 +4082,7 @@
 							</regnode>
 						</reference>
 					</model>
-					<model id="id-0065-0000004f" kind="StubProject" role="StubProject" relid="0x3" childrelidcntr="0x2">
+					<model id="id-0065-0000004f" kind="StubProject" role="StubProject" guid="{36059925-D807-4260-AEAF-114C810408B7}" relid="0x3" childrelidcntr="0x2">
 						<name>StubProject</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -3676,7 +4102,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000061" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-00000010">
+						<reference id="id-0067-00000061" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{5FBB59CC-2842-4731-BFBD-F1B1EE010E62}" relid="0x1" referred="id-0066-00000010">
 							<name>BMDevice_stub</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -3688,7 +4114,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000062" kind="FileRef" role="FileRef" relid="0x2" referred="id-0065-0000000b">
+						<reference id="id-0067-00000062" kind="FileRef" role="FileRef" guid="{A6DB8D4C-81BA-4deb-9AD7-C18033F5EEB5}" relid="0x2" referred="id-0065-0000000b">
 							<name>BMDevice</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -3702,7 +4128,7 @@
 						</reference>
 					</model>
 				</model>
-				<model id="id-0065-00000050" kind="Project" role="Project" relid="0x5" childrelidcntr="0x4">
+				<model id="id-0065-00000050" kind="Project" role="Project" guid="{A6477F99-29DE-434e-A925-7A9F04773103}" relid="0x5" childrelidcntr="0x4">
 					<name>BasicSP</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3713,7 +4139,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<model id="id-0065-00000051" kind="StubProject" role="StubProject" relid="0x1" childrelidcntr="0x2">
+					<model id="id-0065-00000051" kind="StubProject" role="StubProject" guid="{5B7B4FD6-1A4A-452d-8E3D-667140503E6F}" relid="0x1" childrelidcntr="0x2">
 						<name>StubProject</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -3733,7 +4159,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000063" kind="FileRef" role="FileRef" relid="0x1" referred="id-0065-00000001">
+						<reference id="id-0067-00000063" kind="FileRef" role="FileRef" guid="{17FA1BBB-3498-4081-877C-7BC3CC8A6077}" relid="0x1" referred="id-0065-00000001">
 							<name>BasicSP</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -3745,7 +4171,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000064" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x2" referred="id-0066-00000018">
+						<reference id="id-0067-00000064" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{F01BDDBF-2B0F-416f-94F0-B8EF86549311}" relid="0x2" referred="id-0066-00000018">
 							<name>BasicSP_stub</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -3758,7 +4184,7 @@
 							</regnode>
 						</reference>
 					</model>
-					<model id="id-0065-00000052" kind="ServantProject" role="ServantProject" relid="0x2" childrelidcntr="0x1">
+					<model id="id-0065-00000052" kind="ServantProject" role="ServantProject" guid="{78DE2E76-E5CC-48c9-A60F-DD607554ACCF}" relid="0x2" childrelidcntr="0x1">
 						<name>ServantProject</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -3778,7 +4204,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000065" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-00000019">
+						<reference id="id-0067-00000065" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{2340B5CD-A423-4bad-8FE7-65C23E6228F6}" relid="0x1" referred="id-0066-00000019">
 							<name>BasicSP_svnt</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -3792,7 +4218,7 @@
 						</reference>
 					</model>
 				</model>
-				<model id="id-0065-00000053" kind="Project" role="Project" relid="0x6" childrelidcntr="0x3">
+				<model id="id-0065-00000053" kind="Project" role="Project" guid="{F98814C5-F1E1-4373-84C6-446620F07154}" relid="0x6" childrelidcntr="0x3">
 					<name>EC</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3803,7 +4229,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<model id="id-0065-00000054" kind="ExecutorProject" role="ExecutorProject" relid="0x1" childrelidcntr="0x1">
+					<model id="id-0065-00000054" kind="ExecutorProject" role="ExecutorProject" guid="{4C1F4BDF-4179-4987-B349-2E3EDBC1ACD8}" relid="0x1" childrelidcntr="0x1">
 						<name>ExecutorProject</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -3823,7 +4249,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000066" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-00000015">
+						<reference id="id-0067-00000066" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{2DD2DA3E-807F-4314-8B16-BB05AEE2979D}" relid="0x1" referred="id-0066-00000015">
 							<name>EC_exec</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -3836,7 +4262,7 @@
 							</regnode>
 						</reference>
 					</model>
-					<model id="id-0065-00000055" kind="ServantProject" role="ServantProject" relid="0x2" childrelidcntr="0x2">
+					<model id="id-0065-00000055" kind="ServantProject" role="ServantProject" guid="{50165265-B067-41ef-91A9-08F53B503B20}" relid="0x2" childrelidcntr="0x2">
 						<name>ServantProject</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -3856,7 +4282,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000067" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-00000016">
+						<reference id="id-0067-00000067" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{54A259E6-80DA-4705-BB02-A87AC5111B31}" relid="0x1" referred="id-0066-00000016">
 							<name>EC_svnt</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -3874,7 +4300,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000068" kind="FileRef" role="FileRef" relid="0x2" referred="id-0065-00000013">
+						<reference id="id-0067-00000068" kind="FileRef" role="FileRef" guid="{40548F91-C9EF-4a31-908C-74ABD4BFB596}" relid="0x2" referred="id-0065-00000013">
 							<name>EC</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -3887,7 +4313,7 @@
 							</regnode>
 						</reference>
 					</model>
-					<model id="id-0065-00000056" kind="StubProject" role="StubProject" relid="0x3" childrelidcntr="0x2">
+					<model id="id-0065-00000056" kind="StubProject" role="StubProject" guid="{912B4E2A-3E8B-4046-BCB0-24E880899260}" relid="0x3" childrelidcntr="0x2">
 						<name>StubProject</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -3907,7 +4333,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000069" kind="FileRef" role="FileRef" relid="0x1" referred="id-0065-00000013">
+						<reference id="id-0067-00000069" kind="FileRef" role="FileRef" guid="{A7239F58-B5A2-41b1-B218-CF4DFE6A0DEC}" relid="0x1" referred="id-0065-00000013">
 							<name>EC</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -3919,7 +4345,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000006a" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x2" referred="id-0066-00000017">
+						<reference id="id-0067-0000006a" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{81E545F0-0CCA-497b-8CF4-9579FCDC8C2A}" relid="0x2" referred="id-0066-00000017">
 							<name>EC_stub</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -3933,7 +4359,7 @@
 						</reference>
 					</model>
 				</model>
-				<model id="id-0065-00000057" kind="Project" role="Project" relid="0x7" childrelidcntr="0x3">
+				<model id="id-0065-00000057" kind="Project" role="Project" guid="{339CD269-AA4C-45c6-B75E-8B9530D5AB9F}" relid="0x7" childrelidcntr="0x3">
 					<name>BMDisplay</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3944,7 +4370,7 @@
 							</regnode>
 						</regnode>
 					</regnode>
-					<model id="id-0065-00000058" kind="StubProject" role="StubProject" relid="0x1" childrelidcntr="0x2">
+					<model id="id-0065-00000058" kind="StubProject" role="StubProject" guid="{8F0070A3-22EB-4997-A885-4B8BF71D2177}" relid="0x1" childrelidcntr="0x2">
 						<name>StubProject</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -3964,7 +4390,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-0000006b" kind="FileRef" role="FileRef" relid="0x1" referred="id-0065-0000000f">
+						<reference id="id-0067-0000006b" kind="FileRef" role="FileRef" guid="{E54A9B1B-E825-47c5-85BF-6E0212D16255}" relid="0x1" referred="id-0065-0000000f">
 							<name>BMDisplay</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -3976,7 +4402,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000006c" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x2" referred="id-0066-00000014">
+						<reference id="id-0067-0000006c" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{A7D09198-DD35-454f-B9EA-0734E9ACCA22}" relid="0x2" referred="id-0066-00000014">
 							<name>BMDisplay_stub</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -3989,7 +4415,7 @@
 							</regnode>
 						</reference>
 					</model>
-					<model id="id-0065-00000059" kind="ServantProject" role="ServantProject" relid="0x2" childrelidcntr="0x2">
+					<model id="id-0065-00000059" kind="ServantProject" role="ServantProject" guid="{6503A5F7-CE52-47cd-ACB7-696564E7AF35}" relid="0x2" childrelidcntr="0x2">
 						<name>ServantProject</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -4009,7 +4435,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-0000006d" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-00000013">
+						<reference id="id-0067-0000006d" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{E4F5E1A9-0A64-41e5-AF58-4FFE9AAEEB97}" relid="0x1" referred="id-0066-00000013">
 							<name>BMDisplay_svnt</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -4027,7 +4453,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000006e" kind="FileRef" role="FileRef" relid="0x2" referred="id-0065-0000000f">
+						<reference id="id-0067-0000006e" kind="FileRef" role="FileRef" guid="{8DE5893E-1DD2-447b-B592-B8907D51CAE0}" relid="0x2" referred="id-0065-0000000f">
 							<name>BMDisplay</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -4040,7 +4466,7 @@
 							</regnode>
 						</reference>
 					</model>
-					<model id="id-0065-0000005a" kind="ExecutorProject" role="ExecutorProject" relid="0x3" childrelidcntr="0x1">
+					<model id="id-0065-0000005a" kind="ExecutorProject" role="ExecutorProject" guid="{A3992637-209A-403a-8DE0-1351A6622D51}" relid="0x3" childrelidcntr="0x1">
 						<name>ExecutorProject</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -4060,7 +4486,7 @@
 						<attribute kind="sharedname" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-0000006f" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" relid="0x1" referred="id-0066-00000012">
+						<reference id="id-0067-0000006f" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{0A41F032-D4E5-44f8-9367-DB8B1167E65B}" relid="0x1" referred="id-0066-00000012">
 							<name>BMDisplay_exec</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -4076,11 +4502,11 @@
 				</model>
 			</model>
 		</folder>
-		<folder id="id-006a-0000000d" relid="0xc" childrelidcntr="0x1" kind="ComponentAnalyses">
+		<folder id="id-006a-0000000d" relid="0xc" childrelidcntr="0x1" kind="ComponentAnalyses" guid="{039A9B78-309F-4aec-A4E6-5EA5833B793C}">
 			<name>Benchmark</name>
-			<model id="id-0065-0000005b" kind="BenchmarkAnalysis" relid="0x1" childrelidcntr="0xb">
+			<model id="id-0065-0000005b" kind="BenchmarkAnalysis" guid="{AC02F443-B3D2-4fcd-803E-F9D571EEA89D}" relid="0x1" childrelidcntr="0xb">
 				<name>PerfAnal</name>
-				<model id="id-0065-0000005c" kind="Latency" role="Latency" relid="0x2" childrelidcntr="0x0">
+				<model id="id-0065-0000005c" kind="Latency" role="Latency" guid="{B3BEE311-3D5C-4975-816A-9FC5618E9E70}" relid="0x2" childrelidcntr="0x0">
 					<name>Latency</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4110,7 +4536,7 @@
 						<value>500</value>
 					</attribute>
 				</model>
-				<atom id="id-0066-00000028" kind="Task" role="Task" relid="0x5">
+				<atom id="id-0066-00000028" kind="Task" role="Task" guid="{180047E0-E74F-4ad9-8498-91312AE9ACE7}" relid="0x5">
 					<name>Task</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4122,7 +4548,7 @@
 						</regnode>
 					</regnode>
 				</atom>
-				<atom id="id-0066-00000029" kind="Task" role="Task" relid="0x6">
+				<atom id="id-0066-00000029" kind="Task" role="Task" guid="{4B18C78C-602A-4485-A14B-E06C9B6DAE02}" relid="0x6">
 					<name>Task</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4134,7 +4560,7 @@
 						</regnode>
 					</regnode>
 				</atom>
-				<reference id="id-0067-00000070" kind="OperationRef" role="OperationRef" relid="0x8" referred="id-0065-00000004">
+				<reference id="id-0067-00000070" kind="OperationRef" role="OperationRef" guid="{9FE603E8-ADC6-4d9e-83E5-B68A68613305}" relid="0x8" referred="id-0065-00000004">
 					<name>get_data</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4146,17 +4572,17 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-00000048" kind="WorkloadCharacteristics" role="WorkloadCharacteristics" relid="0x7">
+				<connection id="id-0068-00000048" kind="WorkloadCharacteristics" role="WorkloadCharacteristics" guid="{50814F91-5E1D-4e9c-8059-C4DACD9D8285}" relid="0x7">
 					<name>WorkloadCharacteristics</name>
 					<connpoint role="src" target="id-0065-0000005c"/>
 					<connpoint role="dst" target="id-0069-00000003"/>
 				</connection>
-				<connection id="id-0068-00000049" kind="MetricConnection" role="MetricConnection" relid="0x9">
+				<connection id="id-0068-00000049" kind="MetricConnection" role="MetricConnection" guid="{4250F30E-809F-478c-9E9D-059C9D214AEF}" relid="0x9">
 					<name>MetricConnection</name>
 					<connpoint role="dst" target="id-0065-0000005c"/>
 					<connpoint role="src" target="id-0067-00000070"/>
 				</connection>
-				<set id="id-0069-00000003" kind="TaskSet" role="TaskSet" relid="0x4" members="id-0066-00000029 id-0066-00000028">
+				<set id="id-0069-00000003" kind="TaskSet" role="TaskSet" guid="{FB315576-CB83-4e2e-8761-D7836CC57E79}" relid="0x4" members="id-0066-00000028 id-0066-00000029">
 					<name>TaskSet</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4176,5 +4602,23 @@
 				</set>
 			</model>
 		</folder>
+		<regnode name="ConstraintManagerSettings" status="undefined">
+			<value></value>
+			<regnode name="ModelDepth" isopaque="yes">
+				<value>0</value>
+			</regnode>
+			<regnode name="ShortCircuitIterators" isopaque="yes">
+				<value>yes</value>
+			</regnode>
+			<regnode name="ShortCircuitLogicalOperators" isopaque="yes">
+				<value>yes</value>
+			</regnode>
+			<regnode name="Tracking" isopaque="yes">
+				<value>yes</value>
+			</regnode>
+			<regnode name="ViolationCount" isopaque="yes">
+				<value>-2</value>
+			</regnode>
+		</regnode>
 	</folder>
 </project>
