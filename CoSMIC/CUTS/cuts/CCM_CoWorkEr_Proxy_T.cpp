@@ -203,7 +203,7 @@ ACE_THROW_SPEC ((::CORBA::SystemException,
   }
   else
   {
-    ACE_DEBUG ((LM_ERROR,
+    ACE_DEBUG ((LM_INFO,
                 "[%M] -%T - %s not connected to data collector\n",
                 this->instance_.c_str ()));
   }
@@ -257,7 +257,7 @@ ACE_THROW_SPEC ((::CORBA::SystemException,
   }
   else
   {
-    ACE_DEBUG ((LM_ERROR,
+    ACE_DEBUG ((LM_INFO,
                 "[%M] -%T - %s not connected to data collector\n",
                 this->instance_.c_str ()));
   }

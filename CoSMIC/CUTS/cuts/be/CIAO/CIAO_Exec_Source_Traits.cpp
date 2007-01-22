@@ -595,10 +595,6 @@ write_action_begin (const PICML::Worker & parent,
     // Now, how are we to log this action. If logging is enabled
     // then we need to invoke the logging method. If not, then we
     // need to invoke the non-logging method.
-    //
-    // Question:
-    // Should we even have a non-logging method? If logging is not
-    // enabled, shouldn't we just directly invoke the target method.
 
     if (action.LogAction ())
       this->outfile () << "record->perform_action (" << std::endl;
@@ -608,6 +604,7 @@ write_action_begin (const PICML::Worker & parent,
     // Since we have overloaded the methods based on the number of
     // repetitions specified for an action, let's call the appropriate
     // one. This is a minor optimization.
+
     if (repetitions > 1)
       this->outfile () << repetitions << ", ";
 
@@ -655,24 +652,9 @@ write_action_property (const PICML::Property & property)
 {
   // Extract the type information from the <property>.
   PICML::DataType datatype = property.DataType_child ();
-  PICML::PredefinedType type = datatype.ref ();
-  Uml::Class metatype = type.type ();
 
-  if (metatype == PICML::String::meta)
-  {
-    this->outfile ()
-      << ", \"" << property.DataValue () << "\"";
-  }
-  else if (metatype == PICML::Byte::meta)
-  {
-    this->outfile ()
-      << ", '" << property.DataValue () << "'";
-  }
-  else
-  {
-    this->outfile ()
-      << ", " << property.DataValue ();
-  }
+  this->outfile ()
+    << ", " << property.DataValue ();
 }
 
 //

@@ -1,350 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{1A25557B-3AD9-44D0-BEAA-ADE37F185DF1}" cdate="Sun Jan 07 17:43:41 2007" mdate="Sun Jan 07 17:43:41 2007" version="" metaguid="{4BCE1B29-E208-41B9-A6C3-E4E31499AC7A}" metaversion="" metaname="PICML">
-	<name>CUTS</name>
+<project guid="{D85513B0-DFF5-43DF-B46F-C34EDD647033}" cdate="Fri Jan 19 13:06:40 2007" mdate="Fri Jan 19 13:06:40 2007" version="" metaguid="{4BCE1B29-E208-41B9-A6C3-E4E31499AC7A}" metaversion="" metaname="PICML">
+	<name>CUTS_BDC</name>
 	<comment>SLICE scenario</comment>
 	<author>James H. Hill</author>
 	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0xc" kind="RootFolder" guid="{F1819BB3-901E-40fb-94F7-A20058D05651}">
-		<name>CUTS</name>
-		<folder id="id-006a-00000002" relid="0x5" childrelidcntr="0x3" kind="WorkerLibraries" guid="{7C34D701-9BDB-4fda-9AB2-2BAD0F4A467F}">
-			<name>CUTS_WorkerLibraries</name>
-			<model id="id-0065-00000001" kind="WorkerLibrary" guid="{71269A0F-5999-4ebb-B442-848B72CAF3DF}" relid="0x1" childrelidcntr="0x4">
-				<name>CUTS_CPU_Worker</name>
-				<attribute kind="Location">
-					<value></value>
-				</attribute>
-				<model id="id-0065-00000002" kind="WorkerFile" role="WorkerFile" guid="{3EE29946-2CAA-464a-8019-0DF837570AF4}" relid="0x2" childrelidcntr="0x2">
-					<name>cuts/CPUWorker</name>
-					<regnode name="PartRegs" status="undefined">
-						<value></value>
-						<regnode name="Behavior" status="undefined">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>90,55</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="Location" status="meta">
-						<value></value>
-					</attribute>
-					<model id="id-0065-00000003" kind="Worker" role="Worker" guid="{50F1AE10-9DD4-418f-A5AF-A7B48231F9A1}" relid="0x1" childrelidcntr="0x1">
-						<name>CUTS_CPU_Worker</name>
-						<regnode name="PartRegs" status="undefined">
-							<value></value>
-							<regnode name="Aspect" status="undefined">
-								<value></value>
-								<regnode name="Position" isopaque="yes">
-									<value>103,48</value>
-								</regnode>
-							</regnode>
-							<regnode name="Behavior" status="undefined">
-								<value></value>
-								<regnode name="Position" isopaque="yes">
-									<value>96,13</value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<attribute kind="Abstract" status="meta">
-							<value>false</value>
-						</attribute>
-						<model id="id-0065-00000004" kind="Action" role="Action" guid="{3D0A3190-7714-42d4-A917-D86AB26EED67}" relid="0x1" childrelidcntr="0x0">
-							<name>Run_Processor</name>
-							<regnode name="PartRegs" status="undefined">
-								<value></value>
-								<regnode name="Behavior" status="undefined">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>114,79</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<attribute kind="LogAction" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="Repetitions" status="meta">
-								<value>1</value>
-							</attribute>
-						</model>
-					</model>
-				</model>
-			</model>
-			<model id="id-0065-00000005" kind="WorkerLibrary" guid="{DFC40329-CF43-4654-A9D1-F026195F9716}" relid="0x2" childrelidcntr="0x1">
-				<name>CUTS_Memory_Worker</name>
-				<attribute kind="Location">
-					<value></value>
-				</attribute>
-				<model id="id-0065-00000006" kind="WorkerFile" role="WorkerFile" guid="{3F093E37-9167-4f78-AFEE-D1941BA3F994}" relid="0x1" childrelidcntr="0x1">
-					<name>cuts/MemoryWorker</name>
-					<regnode name="PartRegs" status="undefined">
-						<value></value>
-						<regnode name="Behavior" status="undefined">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>482,55</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="Location" status="meta">
-						<value></value>
-					</attribute>
-					<model id="id-0065-00000007" kind="Worker" role="Worker" guid="{0EEA21A5-BAF4-4e47-9C72-6A7A6F89E247}" relid="0x1" childrelidcntr="0x2">
-						<name>CUTS_Memory_Worker</name>
-						<regnode name="PartRegs" status="undefined">
-							<value></value>
-							<regnode name="Aspect" status="undefined">
-								<value></value>
-								<regnode name="Position" isopaque="yes">
-									<value>135,86</value>
-								</regnode>
-							</regnode>
-							<regnode name="Behavior" status="undefined">
-								<value></value>
-								<regnode name="Position" isopaque="yes">
-									<value>110,27</value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<attribute kind="Abstract" status="meta">
-							<value>false</value>
-						</attribute>
-						<model id="id-0065-00000008" kind="Action" role="Action" guid="{656E0541-B5D2-4804-A70E-DB99135C0DEC}" relid="0x1" childrelidcntr="0x1">
-							<name>Allocate_Memory</name>
-							<regnode name="PartRegs" status="undefined">
-								<value></value>
-								<regnode name="Behavior" status="undefined">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>78,85</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<attribute kind="LogAction" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="Repetitions" status="meta">
-								<value>1</value>
-							</attribute>
-							<model id="id-0065-00000009" kind="Property" role="Property" guid="{53375A84-0B9A-4265-B87E-9D8D23622631}" relid="0x1" childrelidcntr="0x1">
-								<name>kilobytes</name>
-								<regnode name="PartRegs" status="undefined">
-									<value></value>
-									<regnode name="Behavior" status="undefined">
-										<value></value>
-										<regnode name="Position" isopaque="yes">
-											<value>58,163</value>
-										</regnode>
-									</regnode>
-								</regnode>
-								<attribute kind="DataValue" status="meta">
-									<value></value>
-								</attribute>
-								<reference id="id-0067-0000000a" kind="DataType" role="DataType" guid="{D0571306-493D-45f3-8C9C-21FC1B7EAB9F}" relid="0x1" referred="id-0066-00000002">
-									<name>LongInteger</name>
-									<regnode name="PartRegs" status="undefined">
-										<value></value>
-										<regnode name="Packaging" status="undefined">
-											<value></value>
-											<regnode name="Position" isopaque="yes">
-												<value>123,88</value>
-											</regnode>
-										</regnode>
-									</regnode>
-								</reference>
-							</model>
-						</model>
-						<model id="id-0065-0000000a" kind="Action" role="Action" guid="{BE5E42BF-5C1D-47e7-BA3C-47100192BFB0}" relid="0x2" childrelidcntr="0x1">
-							<name>Deallocate_Memory</name>
-							<regnode name="PartRegs" status="undefined">
-								<value></value>
-								<regnode name="Behavior" status="undefined">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>274,85</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<attribute kind="LogAction" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="Repetitions" status="meta">
-								<value>1</value>
-							</attribute>
-							<model id="id-0065-0000000b" kind="Property" role="Property" guid="{79F73F59-EDF5-4481-928E-120459C368B2}" relid="0x1" childrelidcntr="0x1">
-								<name>kilobytes</name>
-								<regnode name="PartRegs" status="undefined">
-									<value></value>
-									<regnode name="Behavior" status="undefined">
-										<value></value>
-										<regnode name="Position" isopaque="yes">
-											<value>86,156</value>
-										</regnode>
-									</regnode>
-								</regnode>
-								<attribute kind="DataValue" status="meta">
-									<value></value>
-								</attribute>
-								<reference id="id-0067-0000000b" kind="DataType" role="DataType" guid="{82F7E21C-F528-4122-BBE9-9BD42F1F96A5}" relid="0x1" referred="id-0066-00000002">
-									<name>LongInteger</name>
-									<regnode name="PartRegs" status="undefined">
-										<value></value>
-										<regnode name="Packaging" status="undefined">
-											<value></value>
-											<regnode name="Position" isopaque="yes">
-												<value>46,123</value>
-											</regnode>
-										</regnode>
-									</regnode>
-								</reference>
-							</model>
-						</model>
-					</model>
-				</model>
-			</model>
-			<model id="id-0065-0000000c" kind="WorkerLibrary" guid="{EC9A1F67-832C-4f28-AEE1-CD1DA131000B}" relid="0x3" childrelidcntr="0x1">
-				<name>CUTS_Database_Worker</name>
-				<attribute kind="Location">
-					<value></value>
-				</attribute>
-				<model id="id-0065-0000000d" kind="WorkerFile" role="WorkerFile" guid="{2E9C0D62-958E-4ccb-A690-754A03750529}" relid="0x1" childrelidcntr="0x1">
-					<name>cuts/DatabaseWorker</name>
-					<regnode name="PartRegs" status="undefined">
-						<value></value>
-						<regnode name="Behavior" status="undefined">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>286,55</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="Location" status="meta">
-						<value></value>
-					</attribute>
-					<model id="id-0065-0000000e" kind="Worker" role="Worker" guid="{A11635C5-FA40-492d-81A3-B793E0E5874F}" relid="0x1" childrelidcntr="0x3">
-						<name>CUTS_Database_Worker</name>
-						<regnode name="PartRegs" status="undefined">
-							<value></value>
-							<regnode name="Aspect" status="undefined">
-								<value></value>
-								<regnode name="Position" isopaque="yes">
-									<value>142,142</value>
-								</regnode>
-							</regnode>
-							<regnode name="Behavior" status="undefined">
-								<value></value>
-								<regnode name="Position" isopaque="yes">
-									<value>12,13</value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<attribute kind="Abstract" status="meta">
-							<value>false</value>
-						</attribute>
-						<model id="id-0065-0000000f" kind="Action" role="Action" guid="{A9933EE8-D9AA-4739-8D60-8C7DF4CA592D}" relid="0x1" childrelidcntr="0x2">
-							<name>Process</name>
-							<regnode name="PartRegs" status="undefined">
-								<value></value>
-								<regnode name="Behavior" status="undefined">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>142,205</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<attribute kind="LogAction" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="Repetitions" status="meta">
-								<value>1</value>
-							</attribute>
-							<model id="id-0065-00000010" kind="Property" role="Property" guid="{4330317A-339E-4520-BADE-88A622B2CFD9}" relid="0x1" childrelidcntr="0x1">
-								<name>count</name>
-								<regnode name="PartRegs" status="undefined">
-									<value></value>
-									<regnode name="Behavior" status="undefined">
-										<value></value>
-										<regnode name="Position" isopaque="yes">
-											<value>107,191</value>
-										</regnode>
-									</regnode>
-								</regnode>
-								<attribute kind="DataValue">
-									<value>16</value>
-								</attribute>
-								<reference id="id-0067-0000000c" kind="DataType" role="DataType" guid="{DE48C5AA-F783-457f-AB0B-B18A1D9E8626}" relid="0x1" referred="id-0066-00000002">
-									<name>LongInteger</name>
-									<regnode name="PartRegs" status="undefined">
-										<value></value>
-										<regnode name="Packaging" status="undefined">
-											<value></value>
-											<regnode name="Position" isopaque="yes">
-												<value>200,200</value>
-											</regnode>
-										</regnode>
-									</regnode>
-								</reference>
-							</model>
-						</model>
-						<model id="id-0065-00000011" kind="Action" role="Action" guid="{11318FCD-0C7A-4c59-8B5E-6BA1F5E653F3}" relid="0x2" childrelidcntr="0x1">
-							<name>Create_Connection</name>
-							<regnode name="PartRegs" status="undefined">
-								<value></value>
-								<regnode name="Behavior" status="undefined">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>164,38</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<attribute kind="LogAction" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="Repetitions" status="meta">
-								<value>1</value>
-							</attribute>
-							<model id="id-0065-00000012" kind="Property" role="Property" guid="{02DFBC40-4529-4ffd-9B35-5A469D17DA33}" relid="0x1" childrelidcntr="0x1">
-								<name>hostname</name>
-								<attribute kind="DataValue" status="meta">
-									<value></value>
-								</attribute>
-								<reference id="id-0067-0000000d" kind="DataType" role="DataType" guid="{6E9614B0-3AC8-4249-B892-01732EAFB118}" relid="0x1" referred="id-0066-00000001">
-									<name>String</name>
-									<regnode name="PartRegs" status="undefined">
-										<value></value>
-										<regnode name="Packaging" status="undefined">
-											<value></value>
-											<regnode name="Position" isopaque="yes">
-												<value>144,32</value>
-											</regnode>
-										</regnode>
-									</regnode>
-								</reference>
-							</model>
-						</model>
-						<model id="id-0065-00000013" kind="Action" role="Action" guid="{CAB66375-4DC9-4a94-A547-258FE7783601}" relid="0x3" childrelidcntr="0x0">
-							<name>Destroy_Connection</name>
-							<regnode name="PartRegs" status="undefined">
-								<value></value>
-								<regnode name="Behavior" status="undefined">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>52,73</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<attribute kind="LogAction" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="Repetitions" status="meta">
-								<value>1</value>
-							</attribute>
-						</model>
-					</model>
-				</model>
-			</model>
-		</folder>
+		<name>CUTS_BDC</name>
 		<folder id="id-006a-00000003" relid="0x2" childrelidcntr="0x4" kind="InterfaceDefinitions" guid="{1097A217-6B94-4925-885D-14C95505D22C}">
-			<name>CUTS_InterfaceDefinitions</name>
+			<name>CUTS_BDC_InterfaceDefinitions</name>
 			<model id="id-0065-00000014" kind="File" guid="{E527014B-A96E-4481-BF09-737512247621}" relid="0x1" childrelidcntr="0x2">
 				<name>cuts/CUTS</name>
 				<attribute kind="PrefixTag" status="meta">
@@ -751,7 +415,7 @@
 			</model>
 		</folder>
 		<folder id="id-006a-00000004" relid="0x1" childrelidcntr="0xb" kind="PredefinedTypes" guid="{3D9746FC-FBB5-4a06-A1FB-A37B9765D458}">
-			<name>CUTS_PredefinedTypes</name>
+			<name>CUTS_BDC_PredefinedTypes</name>
 			<atom id="id-0066-00000001" kind="String" guid="{27C807B4-6529-43a8-8B08-5CF8704D593E}" relid="0x9">
 				<name>String</name>
 			</atom>
@@ -760,7 +424,7 @@
 			</atom>
 		</folder>
 		<folder id="id-006a-00000005" relid="0x3" childrelidcntr="0x1" kind="ComponentImplementations" guid="{2DD292DD-4A0E-4d05-ABAF-4590F0CB0541}">
-			<name>CUTS_ComponentImplementations</name>
+			<name>CUTS_BDC_ComponentImplementations</name>
 			<model id="id-0065-00000025" kind="ComponentImplementationContainer" guid="{8CE35FB4-DD2E-4c1f-AB35-60DDA66B07A4}" relid="0x1" childrelidcntr="0xb">
 				<name>cuts/BDC/Benchmark_Data_Collector</name>
 				<model id="id-0065-00000026" kind="Property" role="Property" guid="{D5EE0BED-92ED-4db8-B69F-3188AA87838A}" relid="0xa" childrelidcntr="0x2">
@@ -899,7 +563,7 @@
 			</model>
 		</folder>
 		<folder id="id-006a-00000006" relid="0x4" childrelidcntr="0x2" kind="ImplementationArtifacts" guid="{9E7613D1-A70A-4260-8E2D-DB9E36BFDCCF}">
-			<name>CUTS_ImplementationArtifacts</name>
+			<name>CUTS_BDC_ImplementationArtifacts</name>
 			<model id="id-0065-00000027" kind="ArtifactContainer" guid="{382D01E4-A919-4cce-934E-5C2D5FE7A18D}" relid="0x1" childrelidcntr="0xa">
 				<name>BDC_Artifacts</name>
 				<model id="id-0065-00000028" kind="Property" role="Property" guid="{28630049-BEE0-40db-BEB9-0A949664162C}" relid="0x2" childrelidcntr="0x2">
@@ -1056,7 +720,7 @@
 			</model>
 		</folder>
 		<folder id="id-006a-00000007" relid="0x5" childrelidcntr="0x1" kind="ComponentTypes" guid="{32B8B6E8-CBBC-44fb-9DB5-B73A374B1CA6}">
-			<name>CUTS_ComponentTypes</name>
+			<name>CUTS_BDC_ComponentTypes</name>
 			<model id="id-0065-0000002a" kind="ComponentContainer" guid="{23838819-1FC9-4443-AF2E-ED48C93D61DA}" relid="0x1" childrelidcntr="0x1">
 				<name>BDC_Container</name>
 				<reference id="id-0067-00000007" kind="ComponentRef" role="ComponentRef" guid="{C8C1DED6-ABA0-4d3c-88FC-D89EE7A5E892}" relid="0x1" referred="id-0065-00000021">
@@ -1074,7 +738,7 @@
 			</model>
 		</folder>
 		<folder id="id-006a-00000008" relid="0x3" childrelidcntr="0x2" kind="ComponentPackages" guid="{92C65CE9-E1B6-4c0f-B2BC-0362E7A80F66}">
-			<name>CUTS_ComponentPackages</name>
+			<name>CUTS_BDC_ComponentPackages</name>
 			<model id="id-0065-0000002b" kind="PackageContainer" guid="{C6F801A3-F709-457a-B52E-8ED91D5D3378}" relid="0x1" childrelidcntr="0x5">
 				<name>BDC_Package</name>
 				<atom id="id-0066-00000007" kind="ComponentPackage" role="ComponentPackage" guid="{990373F3-4019-4cea-A28B-80006F3022F0}" relid="0x3">

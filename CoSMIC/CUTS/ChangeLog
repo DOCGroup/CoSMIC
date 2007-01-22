@@ -1,3 +1,25 @@
+Mon Jan 22 22:32:34 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/BDC.xme:
+
+          Removed the default CUTS worker libraries from the file.
+
+        * cuts/CCM_CoWorkEr_Proxy_T.cpp:
+
+          Changed the missing connection to the BDC from an error message
+          to a info message.
+
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.cpp:
+
+          The values of action properties are now generated verbatim. This
+          allows programming the properties with any arbitrary value, include
+          variables and attributes.
+
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.cpp:
+
+          Fixed bug that was generating invalid homes for CoWorkErs since
+          IDLML doesn't used GME-subtypeing to show inheritance.
+
 Mon Jan 22 22:03:54 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * examples/PICML/SLICE:

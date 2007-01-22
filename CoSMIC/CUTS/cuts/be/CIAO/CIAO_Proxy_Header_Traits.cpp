@@ -138,18 +138,21 @@ void CUTS_CIAO_Proxy_Header_Traits::
 write_impl_begin (const PICML::MonolithicImplementation & monoimpl,
                   const PICML::Component & component)
 {
-  PICML::ComponentFactory factory;
-  this->get_component_factory (component, factory);
-
   std::string name = component.name ();
   std::string proxy_exec = name + "_Exec";
   std::string proxy_ctx = proxy_exec + "_Context";
 
+  PICML::Component supertype = PICML::Component (component).Archetype ();
+
+  PICML::ComponentFactory supertype_factory;
+  this->get_component_factory (supertype, supertype_factory);
+
   std::string ccm_type =
-    scope (component, "::") + "CCM_" + name;
+    scope (supertype, "::") + "CCM_" + (std::string)supertype.name ();
 
   std::string ccm_home =
-    scope (factory, "::") + "CCM_" + (std::string)factory.name ();
+    scope (supertype_factory, "::") +
+    "CCM_" + (std::string)supertype_factory.name ();
 
   std::string proxy_type = name + "_Proxy";
 
@@ -160,7 +163,8 @@ write_impl_begin (const PICML::MonolithicImplementation & monoimpl,
 
     // Generate the context proxy for the component.
     << "class " << ctx_proxy << " :" << std::endl
-    << "  public CUTS_CCM_Context_T <" << ccm_type << "_Context> {"
+    << "  public CUTS_CCM_Context_T <" << scope (component, "::")
+    << "CCM_" << name << "_Context> {"
     << "public:" << std::endl
     << single_line_comment ("constructor")
     << "explicit " << ctx_proxy << " (" << std::endl
