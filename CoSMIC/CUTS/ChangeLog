@@ -1,3 +1,9 @@
+Tue Jan 23 22:50:55 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * etc/config/cuts_base.mpb:
+
+          Fixed a typo in the file.
+
 Tue Jan 23 22:46:48 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * etc/config/cuts_base.mpb:
