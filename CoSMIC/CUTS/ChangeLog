@@ -1,3 +1,10 @@
+Tue Jan 23 22:46:48 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * etc/config/cuts_base.mpb:
+
+          Temporary solution to workaround a bug in the latest
+          version of MPC.
+
 Tue Jan 23 17:40:30 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * integration/vc71.bat:
