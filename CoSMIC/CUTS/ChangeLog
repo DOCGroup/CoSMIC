@@ -1,3 +1,10 @@
+Tue Jan 23 01:00:53 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * integration/vc8.bat:
+
+          Generalize the ant script so it can be used with multiple
+          vc8 project builds.
+
 Mon Jan 22 22:32:34 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/BDC.xme:
