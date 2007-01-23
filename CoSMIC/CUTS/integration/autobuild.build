@@ -5,7 +5,6 @@
   <property environment="env" />
 
   <!-- store the target configuration -->
-  <property name="results.log" value="results.log" />
   <property name="build.configuration" value="debug" />
 
   <!--

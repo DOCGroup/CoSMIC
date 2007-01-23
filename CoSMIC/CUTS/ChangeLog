@@ -1,3 +1,14 @@
+Tue Jan 23 17:37:02 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * integration/autobuild.build:
+        * integration/vc8.bat:
+
+          Removed the results.log property.
+
+        * integration/vc8-msi.bat:
+
+          Removed this file.
+
 Tue Jan 23 17:33:57 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * integration/autobuild.build:
