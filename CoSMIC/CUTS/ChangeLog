@@ -1,3 +1,9 @@
+Tue Jan 23 17:40:30 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * integration/vc71.bat:
+
+          Updated the vc71 batch file to resemble the vc8 version.
+
 Tue Jan 23 17:37:02 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * integration/autobuild.build:
