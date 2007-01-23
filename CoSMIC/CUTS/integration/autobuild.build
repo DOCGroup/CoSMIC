@@ -60,7 +60,6 @@
       -->
 
   <target name="svn.update">
-    <echo message="Updating CoSMIC workspace from repository..." />
     <exec executable="svn">
       <arg value="update" />
       <arg path="${env.COSMIC_ROOT}" />
@@ -73,8 +72,6 @@
 
   <target name="workspace.generate">
     <!-- this uses the CUTS.mwc workspace -->
-    <echo message="Generating all workspaces" />
-
     <exec executable="perl">
       <arg value="--" />
       <arg path="${env.ACE_ROOT}/bin/mwc.pl" />
@@ -86,20 +83,16 @@
       target(s) for executing different build engines
       -->
   <target name="devenv.build">
-    <echo message="Building ${build.workspace}..." />
-
-    <exec executable="devenv.exe">
+    <exec executable="devenv.com">
       <arg path="${build.workspace}" />
-      <arg line="/useenv /out ${results.log} /build ${build.configuration}" />
+      <arg line="/useenv /build ${build.configuration}" />
     </exec>
   </target>
 
   <target name="devenv.clean">
-    <echo message="Cleaning ${build.workspace}..." />
-
-    <exec executable="devenv.exe">
+    <exec executable="devenv.com">
       <arg path="${build.workspace}" />
-      <arg line="/useenv /out ${results.log} /clean ${build.configuration}" />
+      <arg line="/useenv /clean ${build.configuration}" />
     </exec>
   </target>
 </project>
