@@ -1,3 +1,10 @@
+Wed Jan 24 23:49:58 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/svcs/GEMS/CUTS_GEMS.cpp:
+
+          Fixed bug that was causing the service to crash
+          during deactivation.
+
 Wed Jan 24 22:46:52 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GEMS/GEMS.cpp:

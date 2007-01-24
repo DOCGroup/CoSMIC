@@ -386,9 +386,9 @@ int CUTS_GEMS_Service::fini_gems (void)
 {
   try
   {
-    // Release the CORBA reference to GEMS.
-    ::CORBA::release (this->gems_.in ());
-    this->gems_ = GEMSServer::Model::_nil ();
+    // Transfer ownership of the GEMS model so we can release
+    // it during out finalization steps.
+    GEMSServer::Model_var gems = this->gems_._retn ();
 
     VERBOSE_MESSAGE ((LM_DEBUG,
                       "successfully disconnected from GEMS server\n"));
