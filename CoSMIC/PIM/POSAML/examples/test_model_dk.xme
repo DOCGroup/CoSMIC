@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project SYSTEM "mga.dtd">
+
+<project guid="{498C8BC5-71F5-4A51-8D3F-593F5BB6F0EE}" cdate="Tue Jan 23 13:24:06 2007" mdate="Tue Jan 23 13:24:06 2007" version="" metaguid="{C90A17B4-1246-4641-8E14-93756747319F}" metaversion="" metaname="POSAML">
+	<name>Root Folder</name>
+	<comment></comment>
+	<author></author>
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x1" kind="RootFolder">
+		<name>Root Folder</name>
+		<model id="id-0065-00000001" kind="Middleware" relid="0x1" childrelidcntr="0x4">
+			<name>NewMiddleware</name>
+			<model id="id-0065-00000002" kind="Bridge" role="Bridge" relid="0x4" childrelidcntr="0xc">
+				<name>Bridge</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Benchmarking" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>387,149</value>
+						</regnode>
+					</regnode>
+					<regnode name="Feature" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>387,149</value>
+						</regnode>
+					</regnode>
+					<regnode name="Pattern" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>387,149</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<model id="id-0065-00000003" kind="Abstraction" role="Abstraction" relid="0x1" childrelidcntr="0x0">
+					<name>Abstraction</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="AOP" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>226,30</value>
+							</regnode>
+						</regnode>
+						<regnode name="Bridge_Aspect" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>226,30</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</model>
+				<model id="id-0065-00000004" kind="ConcreteImplementation" role="ConcreteImplementation" relid="0x2" childrelidcntr="0x0">
+					<name>ConcreteImplementation</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="AOP" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>196,210</value>
+							</regnode>
+						</regnode>
+						<regnode name="Bridge_Aspect" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>105,147</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</model>
+				<model id="id-0065-00000005" kind="AspectFeature" role="AspectFeature" relid="0x4" childrelidcntr="0x2">
+					<name>AspectFeature</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="AOP" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>63,84</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="TypeOfAspect" status="meta">
+						<value>Logging</value>
+					</attribute>
+					<atom id="id-0066-00000001" kind="Advice" role="Advice" relid="0x1">
+						<name>Advice</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="AOP" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>180,47</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="TypeOfAdvice" status="meta">
+							<value>around()</value>
+						</attribute>
+					</atom>
+					<atom id="id-0066-00000002" kind="Pointcut" role="Pointcut" relid="0x2">
+						<name>Pointcut</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="AOP" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>264,47</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</atom>
+				</model>
+				<model id="id-0065-00000006" kind="ConcreteImplementation" role="ConcreteImplementation" relid="0x5" childrelidcntr="0x0">
+					<name>ConcreteImplementation</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="AOP" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>389,216</value>
+							</regnode>
+						</regnode>
+						<regnode name="Bridge_Aspect" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>345,142</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</model>
+				<model id="id-0065-00000007" kind="AspectFeature" role="AspectFeature" relid="0x8" childrelidcntr="0x1">
+					<name>AspectFeature</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="AOP" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>434,77</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="TypeOfAspect" status="meta">
+						<value>Logging</value>
+					</attribute>
+					<atom id="id-0066-00000003" kind="Pointcut" role="Pointcut" relid="0x1">
+						<name>Pointcut</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="AOP" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>296,184</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</atom>
+				</model>
+				<connection id="id-0068-00000001" kind="Connection" role="Connection" relid="0x6">
+					<name>Connection</name>
+					<connpoint role="src" target="id-0065-00000003"/>
+					<connpoint role="dst" target="id-0065-00000006"/>
+				</connection>
+				<connection id="id-0068-00000002" kind="Connection" role="Connection" relid="0x7">
+					<name>Connection</name>
+					<connpoint role="src" target="id-0065-00000003"/>
+					<connpoint role="dst" target="id-0065-00000004"/>
+				</connection>
+				<connection id="id-0068-00000003" kind="ConnectionAspectAbstract" role="ConnectionAspectAbstract" relid="0x9">
+					<name>ConnectionAspectAbstract</name>
+					<connpoint role="src" target="id-0065-00000003"/>
+					<connpoint role="dst" target="id-0065-00000005"/>
+				</connection>
+				<connection id="id-0068-00000004" kind="ConnectionAspectImplement" role="ConnectionAspectImplement" relid="0xa">
+					<name>ConnectionAspectImplement</name>
+					<connpoint role="dst" target="id-0065-00000004"/>
+					<connpoint role="src" target="id-0065-00000005"/>
+				</connection>
+				<connection id="id-0068-00000005" kind="ConnectionAspectAbstract" role="ConnectionAspectAbstract" relid="0xb">
+					<name>ConnectionAspectAbstract</name>
+					<connpoint role="src" target="id-0065-00000003"/>
+					<connpoint role="dst" target="id-0065-00000007"/>
+				</connection>
+				<connection id="id-0068-00000006" kind="ConnectionAspectImplement" role="ConnectionAspectImplement" relid="0xc">
+					<name>ConnectionAspectImplement</name>
+					<connpoint role="dst" target="id-0065-00000006"/>
+					<connpoint role="src" target="id-0065-00000007"/>
+				</connection>
+			</model>
+		</model>
+	</folder>
+</project>
