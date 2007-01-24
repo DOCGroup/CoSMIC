@@ -430,26 +430,8 @@ namespace GEMS
   //
   int Model_Manager::apply_changes (void)
   {
-    ACE_DEBUG ((LM_TRACE,
-                "entered Model_Manager::apply_changes\n"));
-
     try
     {
-      CORBA::ULong length = this->changes_.length ();
-
-      for (CORBA::ULong i = 0; i < length; i ++)
-      {
-        CORBA::ULong params = this->changes_[i].params.length ();
-
-        ACE_DEBUG ((LM_DEBUG,
-                    "Record %d: <%d> %s (%s, %s)\n",
-                    i,
-                    this->changes_[i].op,
-                    this->changes_[i].predicate,
-                    this->changes_[i].params[0].in (),
-                    this->changes_[i].params[1].in ()));
-      }
-
       this->gems_model_->applyChanges (this->changes_);
       this->changes_.length (0);
       return 0;
