@@ -1,6 +1,27 @@
+Wed Jan 24 19:05:46 UTC 2007  akogekar  <akogekar@dre.vanderbilt.edu>
+
+        * PIM/POSAML/examples:
+
+        * PIM/POSAML/examples/test_model_arun.xme:
+
+        * PIM/POSAML/interpreters/OmnetInterpreter/OmnetInterpreter.mpc:
+
+        * PIM/POSAML/paradigms/POSAML.xme:
+
+        * PIM/POSAML/paradigms/icons/activation_queue.bmp:
+        * PIM/POSAML/paradigms/icons/active_object.bmp:
+        * PIM/POSAML/paradigms/icons/method_request.bmp:
+        * PIM/POSAML/paradigms/icons/proxy.bmp:
+        * PIM/POSAML/paradigms/icons/scheduler.bmp:
+        * PIM/POSAML/paradigms/icons/servant.bmp:
+
+        * PIM/POSAML/paradigms/POSAML.xmp:
+
+          Removed this file.
+
 Wed Jan 24 17:17:52 UTC 2007  DimpleKaul  <dkaul@isis.vanderbilt.edu>
 
-  	Icons for Automation of Aspects
+        Icons for Automation of Aspects
         * PIM/POSAML/paradigms/icons/Implementation.bmp:
         * PIM/POSAML/paradigms/icons/Pointcut.bmp:
         * PIM/POSAML/paradigms/icons/abstract.bmp:
