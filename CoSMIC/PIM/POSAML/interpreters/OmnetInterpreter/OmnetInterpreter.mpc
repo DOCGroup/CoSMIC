@@ -37,6 +37,7 @@ project (OMNeTInterpreter): bon, register {
      $(GME_ROOT)/SDK/BON/Utils.cpp
      BON2Component.cpp
      Interpreter.cpp
+     Patterns.cpp
    }
 
    Header_Files {
@@ -58,6 +59,7 @@ project (OMNeTInterpreter): bon, register {
      $(GME_ROOT)/SDK/BON/Utils.h
      BON2Component.h
      Interpreter.h
+     Patterns.h
    }
 
    Resource_Files {
