@@ -1,3 +1,21 @@
+Wed Jan 24 22:36:25 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GEMS/GEMS.h:
+        * MDE/GEMS/GEMS.cpp:
+
+          Fixed bug that prevented newly created models to be
+          assigned to a parent.
+
+        * cuts/BDC/svcs/GEMS/CUTS_GEMS.h:
+        * cuts/BDC/svcs/GEMS/CUTS_GEMS.cpp:
+
+          - The names, instead of annotations, is used to refer
+            to components.
+          - The service only stores a mapping existing GEMS components.
+            Currently, there is bug in GEMS that prevents creating
+            new components if they did not exist in the model.
+          - Commented out the handle_activate () method.
+
 Tue Jan 23 22:50:55 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * etc/config/cuts_base.mpb:

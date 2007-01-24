@@ -75,7 +75,7 @@ namespace GEMS
     // Add the parent for the model and add to the knowledge base.
     entity.predicate = ::CORBA::string_dup ("self_parent");
     entity.params[1] = ::CORBA::string_dup (ACE_OS::itoa (parent->id (), idstr, 10));
-    Model_Manager::instance ()->changes_[length] = entity;
+    Model_Manager::instance ()->changes_[length + 1] = entity;
 
     return model;
   }
@@ -406,6 +406,7 @@ namespace GEMS
           GEMS::Model * model = this->get_model (rec);
           model->roles_[role] = destringify (std::string (rec.params[1].in ()));
         }
+
       }
 
       return 0;
@@ -429,15 +430,46 @@ namespace GEMS
   //
   int Model_Manager::apply_changes (void)
   {
+    ACE_DEBUG ((LM_TRACE,
+                "entered Model_Manager::apply_changes\n"));
+
     try
     {
+      CORBA::ULong length = this->changes_.length ();
+
+      for (CORBA::ULong i = 0; i < length; i ++)
+      {
+        CORBA::ULong params = this->changes_[i].params.length ();
+
+        ACE_DEBUG ((LM_DEBUG,
+                    "Record %d: <%d> %s (%s, %s)\n",
+                    i,
+                    this->changes_[i].op,
+                    this->changes_[i].predicate,
+                    this->changes_[i].params[0].in (),
+                    this->changes_[i].params[1].in ()));
+      }
+
       this->gems_model_->applyChanges (this->changes_);
       this->changes_.length (0);
       return 0;
     }
+    catch (const ::GEMSServer::ModelUpdateException & ex)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "failed to apply changes: %s\n",
+                  ex.reason.in ()));
+    }
+    catch (const ::CORBA::Exception & ex)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "caught unknown CORBA exception: %s\n",
+                  ex._info ().c_str ()));
+    }
     catch (...)
     {
-
+      ACE_ERROR ((LM_ERROR,
+                  "caught unknown exception when updating GEMS model\n"));
     }
 
     return -1;
@@ -472,16 +504,19 @@ namespace GEMS
   void Model_Manager::dump (void) const
   {
     ACE_DEBUG ((LM_DEBUG,
-                "Number of models: %d\n\n",
-                this->models_.size ()));
+                "Number of models: %d\n"
+                "Root Element: %d\n",
+                this->models_.size (),
+                this->root ("deploymentplan")->id ()));
 
     for (Model_Map::const_iterator iter = this->models_.begin ();
          iter != this->models_.end ();
          iter ++)
     {
       ACE_DEBUG ((LM_DEBUG,
-                  "Model ID: %d\n",
-                  iter->second->id ()));
+                  "Model ID: %d\n  Type -> %s\n",
+                  iter->second->id (),
+                  iter->second->type ().c_str ()));
 
       for (GEMS::Model::Role_Map::iterator r_iter = iter->second->roles ().begin ();
            r_iter != iter->second->roles ().end ();
@@ -520,19 +555,20 @@ namespace GEMS
   //
   // root
   //
-  Model * Model_Manager::root (void) const
+  Model * Model_Manager::root (const std::string & type) const
   {
     // Check for the root element.
-    if (this->root_ != 0)
+    if (this->root_ != 0 && this->root_->type () == type)
       return this->root_;
 
     // Since we do not have it, we need to locate it. We are
     // going to store it as well for later use.
     for (Model_Map::const_iterator iter = this->models_.begin ();
-        iter != this->models_.end ();
-        iter ++)
+         iter != this->models_.end ();
+         iter ++)
     {
-      if (iter->second->parent () == 0)
+      if (iter->second->parent () == 0 &&
+          iter->second->type () == type)
       {
         this->root_ = iter->second;
         break;
@@ -540,6 +576,24 @@ namespace GEMS
     }
 
     return this->root_;
+  }
+
+  //
+  // models
+  //
+  Model_Set Model_Manager::models (const std::string & type) const
+  {
+    Model_Set models;
+
+    for (Model_Map::const_iterator iter = this->models_.begin ();
+         iter != this->models_.end ();
+         iter ++)
+    {
+      if (iter->second->type () == type)
+        models.insert (iter->second);
+    }
+
+    return models;
   }
 
   //

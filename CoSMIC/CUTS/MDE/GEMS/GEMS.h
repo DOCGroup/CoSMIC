@@ -326,7 +326,14 @@ namespace GEMS
      *
      * @return      Pointer to the root element.
      */
-    Model * root (void) const;
+    Model * root (const std::string & type) const;
+
+    /**
+     * Get all the models in the project of a specific \a type.
+     *
+     * @return      Collection of models.
+     */
+    Model_Set models (const std::string & type) const;
 
   private:
     /// Default constructor.
@@ -370,6 +377,9 @@ namespace GEMS
     size_t next_id_;
   };
 }
+
+#define GEMS_MODEL_MANAGER() \
+  GEMS::Model_Manager::instance ()
 
 #if defined (__CUTS_INLINE__)
 #include "GEMS.inl"

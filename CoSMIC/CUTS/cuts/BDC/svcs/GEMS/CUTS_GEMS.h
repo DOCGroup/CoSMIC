@@ -16,8 +16,8 @@
 #include "CUTS_GEMS_export.h"
 #include "GEMS/GEMSServerC.h"
 #include "cuts/BDC/BDC_Service.h"
-#include "ace/SStringfwd.h"
-#include "ace/String_Base.h"
+#include "GEMS/GEMS.h"
+#include "ace/SString.h"
 #include <map>
 #include <string>
 
@@ -53,17 +53,30 @@ public:
 private:
   int parse_args (int argc, ACE_TCHAR * argv []);
 
+  /// Initialize service connection to GEMS.
   int init_gems (void);
+
+  /// Finalize service connection to GEMS.
   int fini_gems (void);
+
+  /// Populate the node map with GEMS node elements.
+  int populate_component_map (void);
+
+  typedef std::map <std::string, size_t> Name_Id_Map;
+
+  typedef std::map <size_t, std::string> Id_Name_Map;
+
+  /// Type definition for mapping names to GME models.
+  typedef std::map <std::string, GEMS::Model *> GEMS_Model_Map;
+
+  /// Verbose flag for the service.
+  bool verbose_;
 
   /// The GEMS remote server.
   ::GEMSServer::Model_var gems_;
 
   /// Stringy version of the GEMS reference.
   ACE_CString gems_string_;
-
-  typedef std::map <std::string, size_t> Name_Id_Map;
-  typedef std::map <size_t, std::string> Id_Name_Map;
 
   /// Id -> name mapping for GEMS.
   Name_Id_Map gems_id_;
@@ -73,8 +86,8 @@ private:
 
   Id_Name_Map cuts_id_ex_;
 
-  /// Verbose flag for the service.
-  bool verbose_;
+  /// Map for mapping names to nodes in GEMS.
+  GEMS_Model_Map component_map_;
 };
 
 CUTS_BDC_SERVICE_DECL (CUTS_GEMS_Export);

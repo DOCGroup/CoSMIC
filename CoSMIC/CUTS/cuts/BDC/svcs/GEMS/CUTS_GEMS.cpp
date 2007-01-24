@@ -11,7 +11,6 @@
 #include "cuts/Port_Metric.h"
 #include "cuts/System_Metric.h"
 #include "cuts/BDC/BDC_Service_Manager.h"
-#include "GEMS/GEMS.h"
 #include "ace/Get_Opt.h"
 #include "ace/streams.h"
 
@@ -129,10 +128,25 @@ int CUTS_GEMS_Service::handle_activate (void)
 
     // Let's build the GEM model in our address space so that
     // we can manage it accordingly.
-    if (GEMS::Model_Manager::instance ()->build (this->gems_.in ()) != 0)
+    VERBOSE_MESSAGE ((LM_DEBUG,
+                      "building GEMS model...\n"));
+
+    if (GEMS_MODEL_MANAGER ()->build (this->gems_.in ()) != 0)
     {
       ACE_ERROR_RETURN ((LM_ERROR,
                          "failed to build GEMS model\n"),
+                         -1);
+    }
+
+    GEMS_MODEL_MANAGER ()->dump ();
+
+    // Let's extract all the components and populate the node
+    // map. We need this so we can push the metrics back into
+    // the model.
+    if (this->populate_component_map () == -1)
+    {
+      ACE_ERROR_RETURN ((LM_ERROR,
+                         "failed to extract nodes from GEMS\n"),
                          -1);
     }
 
@@ -158,123 +172,123 @@ int CUTS_GEMS_Service::handle_activate (void)
 //
 int CUTS_GEMS_Service::handle_deactivate (void)
 {
-  // Get the root element for the model and get all its components.
-  GEMS::Model * root = GEMS::Model_Manager::instance ()->root ();
-  GEMS::Model_Set components = root->children ("component");
+  //// Get the root element for the model and get all its components.
+  //GEMS::Model * root = GEMS_MODEL_MANAGER ()->root ("");
+  //GEMS::Model_Set components = root->children ("component");
 
-  VERBOSE_MESSAGE ((LM_DEBUG,
-                    "extracted %d components from GEMS\n",
-                    components.size ()));
+  //VERBOSE_MESSAGE ((LM_DEBUG,
+  //                  "extracted %d components from GEMS\n",
+  //                  components.size ()));
 
-  // Get the metrics for the system.
-  CUTS_System_Metric * metric = this->svc_mgr ()->metrics ();
+  //// Get the metrics for the system.
+  //CUTS_System_Metric * metric = this->svc_mgr ()->metrics ();
 
-  for (GEMS::Model_Set::iterator model_iter = components.begin ();
-       model_iter != components.end ();
-       model_iter ++)
-  {
-    // Create the instance name from the GME model.
-    std::string inst_name =
-      (*model_iter)->role ("annotation") +
-      "." + (*model_iter)->role ("name");
+  //for (GEMS::Model_Set::iterator model_iter = components.begin ();
+  //     model_iter != components.end ();
+  //     model_iter ++)
+  //{
+  //  // Create the instance name from the GME model.
+  //  std::string inst_name =
+  //    (*model_iter)->role ("annotation") +
+  //    "." + (*model_iter)->role ("name");
 
-    VERBOSE_MESSAGE ((LM_DEBUG,
-                      "getting metrics for %s\n",
-                      inst_name.c_str ()));
+  //  VERBOSE_MESSAGE ((LM_DEBUG,
+  //                    "getting metrics for %s\n",
+  //                    inst_name.c_str ()));
 
-    // Get the CUTS id for the component.
-    Name_Id_Map::iterator nid_iter = this->cuts_id_.find (inst_name);
+  //  // Get the CUTS id for the component.
+  //  Name_Id_Map::iterator nid_iter = this->cuts_id_.find (inst_name);
 
-    if (nid_iter != this->cuts_id_.end ())
-    {
-      // Get the metrics for the component.
-      CUTS_Component_Metric * com_metric =
-        metric->component_metrics (nid_iter->second);
+  //  if (nid_iter != this->cuts_id_.end ())
+  //  {
+  //    // Get the metrics for the component.
+  //    CUTS_Component_Metric * com_metric =
+  //      metric->component_metrics (nid_iter->second);
 
-      size_t ports = 0;
-      double acc_util = 0.0;
-      const CUTS_Port_Metric_Map & pmm = com_metric->port_metrics ();
+  //    size_t ports = 0;
+  //    double acc_util = 0.0;
+  //    const CUTS_Port_Metric_Map & pmm = com_metric->port_metrics ();
 
-      for (CUTS_Port_Metric_Map::const_iterator pmm_iter = pmm.begin ();
-           pmm_iter != pmm.end ();
-           pmm_iter ++)
-      {
-        CUTS_Sender_Port_Map spm = pmm_iter->second;
+  //    for (CUTS_Port_Metric_Map::const_iterator pmm_iter = pmm.begin ();
+  //         pmm_iter != pmm.end ();
+  //         pmm_iter ++)
+  //    {
+  //      CUTS_Sender_Port_Map spm = pmm_iter->second;
 
-        if (!spm.empty ())
-        {
-          CUTS_Port_Metric * pm = spm.begin ()->second;
+  //      if (!spm.empty ())
+  //      {
+  //        CUTS_Port_Metric * pm = spm.begin ()->second;
 
-          if (!pm->endpoints ().empty ())
-          {
-            CUTS_Time_Metric * tm = pm->endpoints ().begin ()->second;
-            double util = 0.0;
+  //        if (!pm->endpoints ().empty ())
+  //        {
+  //          CUTS_Time_Metric * tm = pm->endpoints ().begin ()->second;
+  //          double util = 0.0;
 
-            if (tm != 0)
-            {
-              /* util = service_rate * TPUT */
-              util = tm->avg_time () *
-                (tm->count () / metric->get_duration ().msec ());
-            }
+  //          if (tm != 0)
+  //          {
+  //            /* util = service_rate * TPUT */
+  //            util = tm->avg_time () *
+  //              (tm->count () / metric->get_duration ().msec ());
+  //          }
 
-            VERBOSE_MESSAGE ((LM_DEBUG,
-                              "utilization for port %s is %f\n",
-                              pmm_iter->first.c_str (),
-                              util));
+  //          VERBOSE_MESSAGE ((LM_DEBUG,
+  //                            "utilization for port %s is %f\n",
+  //                            pmm_iter->first.c_str (),
+  //                            util));
 
-            // Add the calculated utilization and increment
-            // the port number count.
-            acc_util += util;
-            ports ++;
-          }
-        }
-      }
+  //          // Add the calculated utilization and increment
+  //          // the port number count.
+  //          acc_util += util;
+  //          ports ++;
+  //        }
+  //      }
+  //    }
 
-      // Let's print a status message to the users if they
-      // request that verbose mode be used for the service.
-      double total_util = ports > 0 ? acc_util / ports : 0.0;
+  //    // Let's print a status message to the users if they
+  //    // request that verbose mode be used for the service.
+  //    double total_util = ports > 0 ? acc_util / ports : 0.0;
 
-      GEMS::Model * cpu_req = 0;
-      GEMS::Model_Set reqs = (*model_iter)->children ("requirement");
+  //    GEMS::Model * cpu_req = 0;
+  //    GEMS::Model_Set reqs = (*model_iter)->children ("requirement");
 
-      // Locate the CPU requirement in the child models.
-      for (GEMS::Model_Set::iterator reqs_iter = reqs.begin ();
-           reqs_iter != reqs.end ();
-           reqs_iter ++)
-      {
-        if ((*reqs_iter)->role ("name") == "CPU")
-        {
-          cpu_req = *reqs_iter;
-          break;
-        }
-      }
+  //    // Locate the CPU requirement in the child models.
+  //    for (GEMS::Model_Set::iterator reqs_iter = reqs.begin ();
+  //         reqs_iter != reqs.end ();
+  //         reqs_iter ++)
+  //    {
+  //      if ((*reqs_iter)->role ("name") == "CPU")
+  //      {
+  //        cpu_req = *reqs_iter;
+  //        break;
+  //      }
+  //    }
 
-      if (cpu_req == 0)
-      {
-        // We need to create a CPU requirement for the model.
-        GEMS::Model * cpu_req = GEMS::Model::create (*model_iter, "requirement");
-        cpu_req->role ("name", "CPU");
-      }
+  //    if (cpu_req == 0)
+  //    {
+  //      // We need to create a CPU requirement for the model.
+  //      GEMS::Model * cpu_req = GEMS::Model::create (*model_iter, "requirement");
+  //      cpu_req->role ("name", "CPU");
+  //    }
 
-      // Convert the <total_util> to a string value.
-      std::ostringstream ostr;
-      ostr << total_util;
+  //    // Convert the <total_util> to a string value.
+  //    std::ostringstream ostr;
+  //    ostr << total_util;
 
-      cpu_req->role ("value", ostr.str ());
+  //    cpu_req->role ("value", ostr.str ());
 
-      VERBOSE_MESSAGE ((LM_DEBUG,
-                        "CPU for %s is %f\n"
-                        "-------------------------------------\n",
-                        inst_name.c_str (),
-                        total_util));
-    }
-    else
-    {
-      ACE_ERROR ((LM_ERROR,
-                  "failed to find id for %s\n",
-                  inst_name.c_str ()));
-    }
-  }
+  //    VERBOSE_MESSAGE ((LM_DEBUG,
+  //                      "CPU for %s is %f\n"
+  //                      "-------------------------------------\n",
+  //                      inst_name.c_str (),
+  //                      total_util));
+  //  }
+  //  else
+  //  {
+  //    ACE_ERROR ((LM_ERROR,
+  //                "failed to find id for %s\n",
+  //                inst_name.c_str ()));
+  //  }
+  //}
 
   GEMS::Model_Manager::close_singleton ();
   return this->fini_gems ();
@@ -321,10 +335,46 @@ int CUTS_GEMS_Service::init_gems (void)
 int CUTS_GEMS_Service::
 handle_component (const CUTS_Component_Info & info)
 {
-  // Save the name -> id mapping for CUTS.
-  this->cuts_id_.insert (Name_Id_Map::value_type (
-                         info.inst_.c_str (),
-                         info.uid_));
+  // We ingore unknown implemenations
+  if (info.inst_ == "Unknown")
+    return 0;
+
+  // Let's try and find the component in the GEMS node map.
+  GEMS_Model_Map::iterator iter =
+    this->component_map_.find (info.inst_.c_str ());
+
+  if (iter == this->component_map_.end ())
+  {
+    VERBOSE_MESSAGE ((
+      LM_DEBUG,
+      "%s not located in GEMS model, creating new component\n",
+      info.inst_.c_str ()));
+
+    // Get the root element and create a new component.
+    GEMS::Model * root = GEMS_MODEL_MANAGER ()->root ("");
+    GEMS::Model * component = GEMS::Model::create (root, "component");
+
+    if (component == 0)
+    {
+      ACE_ERROR_RETURN ((LM_ERROR,
+                         "failed to create model element for %s\n",
+                         info.inst_.c_str ()),
+                         -1);
+    }
+
+    // Set the name and annotation for the component.
+    component->role ("name", info.inst_.c_str ());
+
+    // Apply the changes to the model. We need to provide another
+    // admin method so we don't have to apply changes everytime
+    // we create a new element.
+    if (GEMS_MODEL_MANAGER ()->apply_changes () == -1)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "failed to add %s to GEMS model\n",
+                  info.inst_.c_str ()));
+    }
+  }
 
   return 0;
 }
@@ -360,4 +410,28 @@ int CUTS_GEMS_Service::fini_gems (void)
               "failed to finalize connection to GEM model server\n"));
 
   return -1;
+}
+
+//
+// populate_nodemap
+//
+int CUTS_GEMS_Service::populate_component_map (void)
+{
+  // Now, let's extract all the nodes from the model and
+  // cache them.
+  GEMS::Model_Set components =
+    GEMS_MODEL_MANAGER ()->models ("component");
+
+  for (GEMS::Model_Set::iterator iter = components.begin ();
+       iter != components.end ();
+       iter ++)
+  {
+    this->component_map_.insert (
+      GEMS_Model_Map::value_type ((*iter)->role ("name"), *iter));
+  }
+
+  VERBOSE_MESSAGE ((LM_DEBUG,
+                    "extracted %d component model(s) from GEMS\n",
+                    this->component_map_.size ()));
+  return 0;
 }
