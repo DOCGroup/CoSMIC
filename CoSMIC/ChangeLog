@@ -1,3 +1,13 @@
+Wed Jan 24 17:17:52 UTC 2007  DimpleKaul  <dkaul@isis.vanderbilt.edu>
+
+  	Icons for Automation of Aspects
+        * PIM/POSAML/paradigms/icons/Implementation.bmp:
+        * PIM/POSAML/paradigms/icons/Pointcut.bmp:
+        * PIM/POSAML/paradigms/icons/abstract.bmp:
+        * PIM/POSAML/paradigms/icons/advice.bmp:
+        * PIM/POSAML/paradigms/icons/myaspect.bmp:
+        * PIM/POSAML/paradigms/icons/myclass.bmp:
+
 Sat Jan 20 09:28:27 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
