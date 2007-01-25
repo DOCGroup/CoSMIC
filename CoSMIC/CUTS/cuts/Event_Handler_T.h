@@ -14,7 +14,7 @@
 #define _CUTS_EVENT_HANDLER_T_H_
 
 #include "cuts/Event_Handler.h"
-#include "cuts/PortAgent.h"
+#include "cuts/Port_Agent.h"
 #include "ace/Auto_Ptr.h"
 #include "ace/SString.h"
 

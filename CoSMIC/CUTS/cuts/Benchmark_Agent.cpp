@@ -7,7 +7,7 @@
 #endif
 
 #include "cuts/Benchmark_Visitor.h"
-#include "cuts/PortAgent.h"
+#include "cuts/Port_Agent.h"
 
 //
 // CUTS_Benchmark_Agent

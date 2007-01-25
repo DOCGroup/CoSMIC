@@ -2,7 +2,7 @@
 
 #include "cuts/Benchmark_Collector_Visitor.h"
 #include "cuts/IDL_Streams.h"
-#include "cuts/PortAgent.h"
+#include "cuts/Port_Agent.h"
 
 CUTS_Benchmark_Collector_Visitor::
 CUTS_Benchmark_Collector_Visitor (::CUTS::Benchmark_Data & data)

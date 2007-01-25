@@ -1,9 +1,9 @@
 // $Id$
 
-#include "cuts/PortAgent.h"
+#include "cuts/Port_Agent.h"
 
 #if !defined (__CUTS_INLINE__)
-#include "cuts/PortAgent.inl"
+#include "cuts/Port_Agent.inl"
 #endif
 
 #include "cuts/Activation_Record.h"

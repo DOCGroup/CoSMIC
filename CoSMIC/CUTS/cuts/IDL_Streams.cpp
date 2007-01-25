@@ -5,7 +5,7 @@
 #include "cuts/Port_Metric.h"
 #include "cuts/System_Metric.h"
 #include "cuts/Component_Metric.h"
-#include "cuts/PortAgent.h"
+#include "cuts/Port_Agent.h"
 
 //===========================================================================
 // extraction operations

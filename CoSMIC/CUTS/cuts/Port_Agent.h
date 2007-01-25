@@ -14,8 +14,7 @@
 #define _CUTS_PORT_AGENT_H_
 
 #include "cuts/Port_Measurement_Pool.h"
-#include "ace/SStringfwd.h"
-#include "ace/String_Base.h"
+#include "ace/SString.h"
 #include <map>
 
 // Forward decl.
@@ -100,7 +99,7 @@ protected:
 };
 
 #if defined (__CUTS_INLINE__)
-#include "cuts/PortAgent.inl"
+#include "cuts/Port_Agent.inl"
 #endif
 
 #endif  // !defined _CUTS_PORT_AGENT_H_

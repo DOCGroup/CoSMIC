@@ -6,7 +6,7 @@
 #include "cuts/Benchmark_Agent_i.inl"
 #endif
 
-#include "cuts/PortAgent.h"
+#include "cuts/Port_Agent.h"
 #include "cuts/Port_Measurement.h"
 #include "cuts/Activation_Record.h"
 #include "cuts/Benchmark_Collector_Visitor.h"

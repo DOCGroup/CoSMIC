@@ -1,3 +1,24 @@
+Thu Jan 25 00:55:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Benchmark_Agent.cpp:
+        * cuts/Benchmark_Agent_i.cpp:
+        * cuts/Benchmark_Collector_Visitor.cpp:
+        * cuts/CUTS.mpc:
+        * cuts/Event_Handler_T.h:
+        * cuts/IDL_Streams.cpp:
+        * cuts/Port_Agent.h:
+        * cuts/Port_Agent.inl:
+        * cuts/Port_Agent.cpp:
+
+          Fixed the inclusion of invalid file name related to
+          the change below.
+
+        * cuts/PortAgent.h:
+        * cuts/PortAgent.inl:
+        * cuts/PortAgent.cpp:
+
+          Removed these files.
+
 Thu Jan 25 00:29:11 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/PortAgent.cpp:
