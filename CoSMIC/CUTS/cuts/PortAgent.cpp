@@ -127,6 +127,7 @@ update (const CUTS_Activation_Record * record)
   {
     // Record the processing time for the activation record.
     measurement->process_time (record->stop_time () - record->start_time ());
+    measurement->transit_time (record->queue_time ());
 
     // Record all the entries in the activation record.
     std::for_each (record->entries ().begin (),
