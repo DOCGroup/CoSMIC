@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="SIML" guid="{6A1D1282-0D78-493A-A727-DADA38B0D09D}" cdate="Sat Jan 20 01:49:45 2007" mdate="Sat Jan 20 01:49:45 2007" >
+<paradigm name="SIML" guid="{D1E99130-EA3C-4894-BBB7-264EEDFB0697}" cdate="Thu Jan 25 22:06:05 2007" mdate="Thu Jan 25 22:06:05 2007" >
 
 	<comment>System Integration Modeling Language (SIML) is a domain-specific modeling 
 language that allows integration of systems using different middleware 
@@ -52,15 +52,15 @@ endif]]>
 		</constraint>
 		<constraint type="function" name="allFileScopeDecls" defdfornamesp = "PICML">
 			<![CDATA[method;gme::Folder;;ocl::Set;
-			let closure = self.models ("File") in
+			let closure = self.models (File) in
           if (closure->size < 1) then
           Set{}
           else
           closure->iterate (x ; accu = Set{} | accu
           + x.parts ()
-          - x.parts ("FileRef")
-          - x.parts ("ComponentRef")
-          - x.parts ("ManagesComponent"))
+          - x.parts (FileRef)
+          - x.parts (ComponentRef)
+          - x.parts (ManagesComponent))
           endif]]>
 		</constraint>
 		<constraint type="function" name="allOps" defdfornamesp = "PICML">
@@ -112,7 +112,7 @@ endif]]>
           (let supported = ref.refersTo ().oclAsType (gme::Model) in
           supported.localOps () + supported.inheritedOps (supported)))]]>
 		</constraint>
-		<attrdef name="Abstract" metaref = "8198" valuetype = "boolean" defvalue = "false">
+		<attrdef name="Abstract" metaref = "8847" valuetype = "boolean" defvalue = "false">
 			<dispname>Abstract:</dispname>
 			<regnode name="help" value = "Flag that specifys if the worker is abstract. An abstract worker is one that cannot be used directly in a class as a worker. However, it can be subclassed by other workers."></regnode>
 		</attrdef>
@@ -139,11 +139,11 @@ endif]]>
 			<enumitem dispname = "LogicalAND" value = "LogicalAND"></enumitem>
 			<enumitem dispname = "GroupAND" value = "GroupAND"></enumitem>
 		</attrdef>
-		<attrdef name="Location" metaref = "8199" valuetype = "string" defvalue = "">
+		<attrdef name="Location" metaref = "8848" valuetype = "string" defvalue = "">
 			<dispname>Location</dispname>
 			<regnode name="help" value = "Specifies the location of the object on disk. It can be a relative or absolute location."></regnode>
 		</attrdef>
-		<attrdef name="LogAction" metaref = "8200" valuetype = "boolean" defvalue = "false">
+		<attrdef name="LogAction" metaref = "8849" valuetype = "boolean" defvalue = "false">
 			<dispname>Enable Logging:</dispname>
 			<regnode name="help" value = "This determines whether or not to log an action. The semantics of logging is dependent on the interpreter."></regnode>
 		</attrdef>
@@ -158,25 +158,25 @@ endif]]>
 		<attrdef name="Order" metaref = "7233" valuetype = "integer" defvalue = "0">
 			<regnode name="help" value = "Determines the processing order of child Elements of an Element"></regnode>
 		</attrdef>
-		<attrdef name="Period" metaref = "8201" valuetype = "integer" defvalue = "1000">
+		<attrdef name="Period" metaref = "8850" valuetype = "integer" defvalue = "1000">
 			<dispname>Period (msec):</dispname>
 			<regnode name="help" value = "The period of the action. The units of value is milliseconds."></regnode>
 		</attrdef>
-		<attrdef name="Postcondition" metaref = "8202" valuetype = "string" defvalue = "">
+		<attrdef name="Postcondition" metaref = "8851" valuetype = "string" defvalue = "">
 			<dispname>Postcondition:</dispname>
 			<regnode name="help" value = "Defines the effects of executing the previous action."></regnode>
 		</attrdef>
-		<attrdef name="Precondition" metaref = "8203" valuetype = "string" defvalue = "">
+		<attrdef name="Precondition" metaref = "8852" valuetype = "string" defvalue = "">
 			<dispname>Precondition:</dispname>
 			<regnode name="help" value = "Defines the condition that allows execution of the next action."></regnode>
 		</attrdef>
 		<attrdef name="PrefixTag" metaref = "1023" valuetype = "string" defvalue = "">
 		</attrdef>
-		<attrdef name="Probability" metaref = "8204" valuetype = "double" defvalue = "1.0">
+		<attrdef name="Probability" metaref = "8853" valuetype = "double" defvalue = "1.0">
 			<dispname>Probability</dispname>
 			<regnode name="help" value = "The probability of the action occurring."></regnode>
 		</attrdef>
-		<attrdef name="Repetitions" metaref = "8205" valuetype = "integer" defvalue = "1">
+		<attrdef name="Repetitions" metaref = "8854" valuetype = "integer" defvalue = "1">
 			<dispname>Number of Repetitions:</dispname>
 			<regnode name="help" value = "Specifies the number of repetitions for an operation. Actions with 0 repetitions are considered non-repetitive actions."></regnode>
 		</attrdef>
@@ -495,7 +495,7 @@ self.connectedFCOs(Implementation)->forAll (i : Reference | i.refersTo().kindNam
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="enumvalue.bmp"></regnode>
 		</atom>
-		<atom name = "PICML::Environment" metaref = "8206" >
+		<atom name = "PICML::Environment" metaref = "8855" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="environment.gif"></regnode>
 				<regnode name = "isNameEnabled" value ="false"></regnode>
@@ -682,7 +682,7 @@ let version = self.defaultVersion.trim() in
 			</constraint>
 				<regnode name = "icon" value ="Periodic-Bench.bmp"></regnode>
 		</atom>
-		<atom name = "PICML::PeriodicEvent" metaref = "8207"  attributes = "Period Probability">
+		<atom name = "PICML::PeriodicEvent" metaref = "8856"  attributes = "Period Probability">
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="ValidPICML__InputdstCardinality72" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", meta::PICML::Input ) -> size in
@@ -746,7 +746,7 @@ self.connectedFCOs(deliverTo)->forAll (x : FCO | x.parent() <> self.parent())]]>
 				<dispname>Not a valid identifier</dispname>
 			</constraint>
 		</atom>
-		<atom name = "PICML::State" metaref = "8208" >
+		<atom name = "PICML::State" metaref = "8857" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="HasPrecondition" eventmask = "0x0" depth = "1" defdfornamesp = "PICML" priority = "2">
 				<![CDATA[let conns = self.attachingConnections ("src", Transition) in
@@ -1320,7 +1320,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "PICML::Effect" metaref = "8209" attributes = "Postcondition" >
+		<connection name = "PICML::Effect" metaref = "8858" attributes = "Postcondition" >
 				<regnode name = "sName" value ="srcEffect"></regnode>
 				<regnode name = "dName" value ="dstEffect"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
@@ -1448,7 +1448,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "PICML::Finish" metaref = "8210" >
+		<connection name = "PICML::Finish" metaref = "8859" >
 				<regnode name = "sName" value ="srcFinish"></regnode>
 				<regnode name = "dName" value ="dstFinish"></regnode>
 				<regnode name = "color" value ="0xFF00FF"></regnode>
@@ -1553,7 +1553,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "PICML::Input" metaref = "8211" >
+		<connection name = "PICML::Input" metaref = "8860" >
 				<regnode name = "sName" value ="srcInput"></regnode>
 				<regnode name = "dName" value ="dstInput"></regnode>
 				<regnode name = "color" value ="0x0000FF"></regnode>
@@ -1570,7 +1570,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "PICML::InputEffect" metaref = "8212" attributes = "Postcondition" >
+		<connection name = "PICML::InputEffect" metaref = "8861" attributes = "Postcondition" >
 				<regnode name = "sName" value ="srcInputEffect"></regnode>
 				<regnode name = "dName" value ="dstInputEffect"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
@@ -1753,7 +1753,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "PICML::MultiInput" metaref = "8213" >
+		<connection name = "PICML::MultiInput" metaref = "8862" >
 				<regnode name = "sName" value ="srcMultiInput"></regnode>
 				<regnode name = "dName" value ="dstMultiInput"></regnode>
 				<regnode name = "color" value ="0x0000FF"></regnode>
@@ -2071,7 +2071,7 @@ conns->size > 1 implies
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "PICML::Transition" metaref = "8214" attributes = "Precondition" >
+		<connection name = "PICML::Transition" metaref = "8863" attributes = "Precondition" >
 				<regnode name = "sName" value ="srcInternalPrecondition"></regnode>
 				<regnode name = "dName" value ="dstInternalPrecondition"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
@@ -2832,7 +2832,7 @@ let props = self.connectedFCOs(AttributeMappingValue) in
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<attrdef name="value" metaref = "8215" valuetype = "string" defvalue = "">
+			<attrdef name="value" metaref = "8864" valuetype = "string" defvalue = "">
 			</attrdef>
 			<regnode name = "icon" value ="const.bmp"></regnode>
 			<pointerspec name = "ref">
@@ -3284,7 +3284,7 @@ endif
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<attrdef name="single_destination" metaref = "8216" valuetype = "boolean" defvalue = "false">
+			<attrdef name="single_destination" metaref = "8865" valuetype = "boolean" defvalue = "false">
 			</attrdef>
 			<regnode name = "icon" value ="outeventport.bmp"></regnode>
 			<pointerspec name = "ref">
@@ -3451,7 +3451,7 @@ endif
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<attrdef name="multiple_connections" metaref = "8217" valuetype = "boolean" defvalue = "false">
+			<attrdef name="multiple_connections" metaref = "8866" valuetype = "boolean" defvalue = "false">
 			</attrdef>
 			<regnode name = "icon" value ="requiredrequestport.bmp"></regnode>
 			<pointerspec name = "ref">
@@ -3530,7 +3530,7 @@ endif
 				<pointeritem desc = "PICML::Object"></pointeritem>
 			</pointerspec>
 		</reference>
-		<reference name = "PICML::Variable" metaref = "8218">
+		<reference name = "PICML::Variable" metaref = "8867">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyVariable"></regnode>
@@ -3553,7 +3553,7 @@ endif
 				<pointeritem desc = "PICML::TypeKind"></pointeritem>
 			</pointerspec>
 		</reference>
-		<reference name = "PICML::WorkerType" metaref = "8219">
+		<reference name = "PICML::WorkerType" metaref = "8868">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyWorkerType"></regnode>
@@ -3658,7 +3658,7 @@ endif
 				<pointeritem desc = "WSML::Service"></pointeritem>
 			</pointerspec>
 		</reference>
-		<model name = "PICML::Action" metaref = "8220" attributes = "Repetitions LogAction" >
+		<model name = "PICML::Action" metaref = "8869" attributes = "Repetitions LogAction" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="action.bmp"></regnode>
 				<regnode name = "icon" value ="action.bmp"></regnode>
@@ -3684,9 +3684,9 @@ endif]]>
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to PICML::ActionBase as &quot;src&quot; over PICML::Transition, has to match 0..1.</dispname>
 			</constraint>
-			<role name = "PICML::Property" metaref = "8221" kind = "PICML::Property"></role>
+			<role name = "PICML::Property" metaref = "8870" kind = "PICML::Property"></role>
 			<aspect name = "Behavior" metaref = "3706" attributes = "Repetitions LogAction" >
-				<part metaref = "8222" role = "PICML::Property" primary = "yes" linked = "no"></part>
+				<part metaref = "8871" role = "PICML::Property" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::Aggregate" metaref = "1206" attributes = "VersionTag SpecifyIdTag" >
@@ -3704,9 +3704,9 @@ endif]]>
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<role name = "PICML::Member" metaref = "8223" kind = "PICML::Member"></role>
+			<role name = "PICML::Member" metaref = "8872" kind = "PICML::Member"></role>
 			<aspect name = "InterfaceDefinition" metaref = "3709" attributes = "VersionTag SpecifyIdTag" >
-				<part metaref = "8224" role = "PICML::Member" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "8873" role = "PICML::Member" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::ArtifactContainer" metaref = "1210" >
@@ -3730,29 +3730,29 @@ artifacts->forAll ( i, j : ImplementationArtifact |
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::ArtifactContainer, has to match 1..*.</dispname>
 			</constraint>
-			<role name = "PICML::ArtifactDependency" metaref = "8225" kind = "PICML::ArtifactDependency"></role>
-			<role name = "PICML::ArtifactDependsOn" metaref = "8226" kind = "PICML::ArtifactDependsOn"></role>
-			<role name = "PICML::ArtifactDeployRequirement" metaref = "8227" kind = "PICML::ArtifactDeployRequirement"></role>
-			<role name = "PICML::ArtifactExecParameter" metaref = "8228" kind = "PICML::ArtifactExecParameter"></role>
-			<role name = "PICML::ArtifactInfoProperty" metaref = "8229" kind = "PICML::ArtifactInfoProperty"></role>
-			<role name = "PICML::ECConfiguration" metaref = "8230" kind = "PICML::ECConfiguration"></role>
-			<role name = "PICML::ImplementationArtifact" metaref = "8231" kind = "PICML::ImplementationArtifact"></role>
-			<role name = "PICML::ImplementationArtifactReference" metaref = "8232" kind = "PICML::ImplementationArtifactReference"></role>
-			<role name = "PICML::Property" metaref = "8233" kind = "PICML::Property"></role>
-			<role name = "PICML::RTConfiguration" metaref = "8234" kind = "PICML::RTConfiguration"></role>
-			<role name = "PICML::Requirement" metaref = "8235" kind = "PICML::Requirement"></role>
+			<role name = "PICML::ArtifactDependency" metaref = "8874" kind = "PICML::ArtifactDependency"></role>
+			<role name = "PICML::ArtifactDependsOn" metaref = "8875" kind = "PICML::ArtifactDependsOn"></role>
+			<role name = "PICML::ArtifactDeployRequirement" metaref = "8876" kind = "PICML::ArtifactDeployRequirement"></role>
+			<role name = "PICML::ArtifactExecParameter" metaref = "8877" kind = "PICML::ArtifactExecParameter"></role>
+			<role name = "PICML::ArtifactInfoProperty" metaref = "8878" kind = "PICML::ArtifactInfoProperty"></role>
+			<role name = "PICML::ECConfiguration" metaref = "8879" kind = "PICML::ECConfiguration"></role>
+			<role name = "PICML::ImplementationArtifact" metaref = "8880" kind = "PICML::ImplementationArtifact"></role>
+			<role name = "PICML::ImplementationArtifactReference" metaref = "8881" kind = "PICML::ImplementationArtifactReference"></role>
+			<role name = "PICML::Property" metaref = "8882" kind = "PICML::Property"></role>
+			<role name = "PICML::RTConfiguration" metaref = "8883" kind = "PICML::RTConfiguration"></role>
+			<role name = "PICML::Requirement" metaref = "8884" kind = "PICML::Requirement"></role>
 			<aspect name = "Packaging" metaref = "8236" >
-				<part metaref = "8237" role = "PICML::ArtifactDependency" primary = "yes" linked = "no"></part>
-				<part metaref = "8238" role = "PICML::ArtifactDependsOn" primary = "yes" linked = "no"></part>
-				<part metaref = "8239" role = "PICML::ArtifactDeployRequirement" primary = "yes" linked = "no"></part>
-				<part metaref = "8240" role = "PICML::ArtifactExecParameter" primary = "yes" linked = "no"></part>
-				<part metaref = "8241" role = "PICML::ArtifactInfoProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "8242" role = "PICML::ECConfiguration" primary = "yes" linked = "no"></part>
-				<part metaref = "8243" role = "PICML::ImplementationArtifact" primary = "yes" linked = "no"></part>
-				<part metaref = "8244" role = "PICML::ImplementationArtifactReference" primary = "yes" linked = "no"></part>
-				<part metaref = "8245" role = "PICML::Property" primary = "yes" linked = "no"></part>
-				<part metaref = "8246" role = "PICML::RTConfiguration" primary = "yes" linked = "no"></part>
-				<part metaref = "8247" role = "PICML::Requirement" primary = "yes" linked = "no"></part>
+				<part metaref = "8885" role = "PICML::ArtifactDependency" primary = "yes" linked = "no"></part>
+				<part metaref = "8886" role = "PICML::ArtifactDependsOn" primary = "yes" linked = "no"></part>
+				<part metaref = "8887" role = "PICML::ArtifactDeployRequirement" primary = "yes" linked = "no"></part>
+				<part metaref = "8888" role = "PICML::ArtifactExecParameter" primary = "yes" linked = "no"></part>
+				<part metaref = "8889" role = "PICML::ArtifactInfoProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "8890" role = "PICML::ECConfiguration" primary = "yes" linked = "no"></part>
+				<part metaref = "8891" role = "PICML::ImplementationArtifact" primary = "yes" linked = "no"></part>
+				<part metaref = "8892" role = "PICML::ImplementationArtifactReference" primary = "yes" linked = "no"></part>
+				<part metaref = "8893" role = "PICML::Property" primary = "yes" linked = "no"></part>
+				<part metaref = "8894" role = "PICML::RTConfiguration" primary = "yes" linked = "no"></part>
+				<part metaref = "8895" role = "PICML::Requirement" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::Attribute" metaref = "1230" attributes = "VersionTag SpecifyIdTag" >
@@ -3808,63 +3808,63 @@ let props = self.connectedFCOs(AttributeValue) in
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<role name = "PICML::AttributeMember" metaref = "8248" kind = "PICML::AttributeMember"></role>
-			<role name = "PICML::GetException" metaref = "8249" kind = "PICML::GetException"></role>
-			<role name = "PICML::SetException" metaref = "8250" kind = "PICML::SetException"></role>
+			<role name = "PICML::AttributeMember" metaref = "8896" kind = "PICML::AttributeMember"></role>
+			<role name = "PICML::GetException" metaref = "8897" kind = "PICML::GetException"></role>
+			<role name = "PICML::SetException" metaref = "8898" kind = "PICML::SetException"></role>
 			<aspect name = "InterfaceDefinition" metaref = "3737" attributes = "VersionTag SpecifyIdTag" >
-				<part metaref = "8251" role = "PICML::AttributeMember" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8252" role = "PICML::GetException" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8253" role = "PICML::SetException" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "8899" role = "PICML::AttributeMember" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "8900" role = "PICML::GetException" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "8901" role = "PICML::SetException" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::BenchmarkAnalysis" metaref = "1238" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<role name = "PICML::Average" metaref = "8254" kind = "PICML::Average"></role>
-			<role name = "PICML::BenchmarkCharacteristics" metaref = "8255" kind = "PICML::BenchmarkCharacteristics"></role>
-			<role name = "PICML::CompRef" metaref = "8256" kind = "PICML::CompRef"></role>
-			<role name = "PICML::ComponentOperation" metaref = "8257" kind = "PICML::ComponentOperation"></role>
-			<role name = "PICML::Event" metaref = "8258" kind = "PICML::Event"></role>
-			<role name = "PICML::EventRef" metaref = "8259" kind = "PICML::EventRef"></role>
-			<role name = "PICML::FactoryOperation" metaref = "8260" kind = "PICML::FactoryOperation"></role>
-			<role name = "PICML::FixedIterationBenchmarks" metaref = "8261" kind = "PICML::FixedIterationBenchmarks"></role>
-			<role name = "PICML::Jitter" metaref = "8262" kind = "PICML::Jitter"></role>
-			<role name = "PICML::Latency" metaref = "8263" kind = "PICML::Latency"></role>
-			<role name = "PICML::LookupOperation" metaref = "8264" kind = "PICML::LookupOperation"></role>
-			<role name = "PICML::Maximum" metaref = "8265" kind = "PICML::Maximum"></role>
-			<role name = "PICML::MetricConnection" metaref = "8266" kind = "PICML::MetricConnection"></role>
-			<role name = "PICML::Minimum" metaref = "8267" kind = "PICML::Minimum"></role>
-			<role name = "PICML::OnewayOperation" metaref = "8268" kind = "PICML::OnewayOperation"></role>
-			<role name = "PICML::OperationRef" metaref = "8269" kind = "PICML::OperationRef"></role>
-			<role name = "PICML::PeriodicBenchmarks" metaref = "8270" kind = "PICML::PeriodicBenchmarks"></role>
-			<role name = "PICML::Task" metaref = "8271" kind = "PICML::Task"></role>
-			<role name = "PICML::TaskSet" metaref = "8272" kind = "PICML::TaskSet"></role>
-			<role name = "PICML::Throughput" metaref = "8273" kind = "PICML::Throughput"></role>
-			<role name = "PICML::TimeProbe" metaref = "8274" kind = "PICML::TimeProbe"></role>
-			<role name = "PICML::TimerConnection" metaref = "8275" kind = "PICML::TimerConnection"></role>
-			<role name = "PICML::TimerEventSinkConn" metaref = "8276" kind = "PICML::TimerEventSinkConn"></role>
-			<role name = "PICML::TriggerBenchmarks" metaref = "8277" kind = "PICML::TriggerBenchmarks"></role>
-			<role name = "PICML::TwowayOperation" metaref = "8278" kind = "PICML::TwowayOperation"></role>
-			<role name = "PICML::WorkLoadOperationConnection" metaref = "8279" kind = "PICML::WorkLoadOperationConnection"></role>
-			<role name = "PICML::WorkloadCharacteristics" metaref = "8280" kind = "PICML::WorkloadCharacteristics"></role>
+			<role name = "PICML::Average" metaref = "8902" kind = "PICML::Average"></role>
+			<role name = "PICML::BenchmarkCharacteristics" metaref = "8903" kind = "PICML::BenchmarkCharacteristics"></role>
+			<role name = "PICML::CompRef" metaref = "8904" kind = "PICML::CompRef"></role>
+			<role name = "PICML::ComponentOperation" metaref = "8905" kind = "PICML::ComponentOperation"></role>
+			<role name = "PICML::Event" metaref = "8906" kind = "PICML::Event"></role>
+			<role name = "PICML::EventRef" metaref = "8907" kind = "PICML::EventRef"></role>
+			<role name = "PICML::FactoryOperation" metaref = "8908" kind = "PICML::FactoryOperation"></role>
+			<role name = "PICML::FixedIterationBenchmarks" metaref = "8909" kind = "PICML::FixedIterationBenchmarks"></role>
+			<role name = "PICML::Jitter" metaref = "8910" kind = "PICML::Jitter"></role>
+			<role name = "PICML::Latency" metaref = "8911" kind = "PICML::Latency"></role>
+			<role name = "PICML::LookupOperation" metaref = "8912" kind = "PICML::LookupOperation"></role>
+			<role name = "PICML::Maximum" metaref = "8913" kind = "PICML::Maximum"></role>
+			<role name = "PICML::MetricConnection" metaref = "8914" kind = "PICML::MetricConnection"></role>
+			<role name = "PICML::Minimum" metaref = "8915" kind = "PICML::Minimum"></role>
+			<role name = "PICML::OnewayOperation" metaref = "8916" kind = "PICML::OnewayOperation"></role>
+			<role name = "PICML::OperationRef" metaref = "8917" kind = "PICML::OperationRef"></role>
+			<role name = "PICML::PeriodicBenchmarks" metaref = "8918" kind = "PICML::PeriodicBenchmarks"></role>
+			<role name = "PICML::Task" metaref = "8919" kind = "PICML::Task"></role>
+			<role name = "PICML::TaskSet" metaref = "8920" kind = "PICML::TaskSet"></role>
+			<role name = "PICML::Throughput" metaref = "8921" kind = "PICML::Throughput"></role>
+			<role name = "PICML::TimeProbe" metaref = "8922" kind = "PICML::TimeProbe"></role>
+			<role name = "PICML::TimerConnection" metaref = "8923" kind = "PICML::TimerConnection"></role>
+			<role name = "PICML::TimerEventSinkConn" metaref = "8924" kind = "PICML::TimerEventSinkConn"></role>
+			<role name = "PICML::TriggerBenchmarks" metaref = "8925" kind = "PICML::TriggerBenchmarks"></role>
+			<role name = "PICML::TwowayOperation" metaref = "8926" kind = "PICML::TwowayOperation"></role>
+			<role name = "PICML::WorkLoadOperationConnection" metaref = "8927" kind = "PICML::WorkLoadOperationConnection"></role>
+			<role name = "PICML::WorkloadCharacteristics" metaref = "8928" kind = "PICML::WorkloadCharacteristics"></role>
 			<aspect name = "ComponentMetrics" metaref = "3771" >
-				<part metaref = "8281" role = "PICML::BenchmarkCharacteristics" primary = "yes" linked = "no"></part>
-				<part metaref = "8282" role = "PICML::CompRef" primary = "yes" linked = "no"></part>
-				<part metaref = "8283" role = "PICML::ComponentOperation" primary = "yes" linked = "no"></part>
-				<part metaref = "8284" role = "PICML::EventRef" primary = "yes" linked = "no"></part>
-				<part metaref = "8285" role = "PICML::FixedIterationBenchmarks" primary = "yes" linked = "no"></part>
-				<part metaref = "8286" role = "PICML::Latency" primary = "yes" linked = "no"></part>
-				<part metaref = "8287" role = "PICML::MetricConnection" primary = "yes" linked = "no"></part>
-				<part metaref = "8288" role = "PICML::OperationRef" primary = "yes" linked = "no"></part>
-				<part metaref = "8289" role = "PICML::PeriodicBenchmarks" primary = "yes" linked = "no"></part>
-				<part metaref = "8290" role = "PICML::Task" primary = "yes" linked = "no"></part>
-				<part metaref = "8291" role = "PICML::TaskSet" primary = "yes" linked = "no"></part>
-				<part metaref = "8292" role = "PICML::Throughput" primary = "yes" linked = "no"></part>
-				<part metaref = "8293" role = "PICML::TimeProbe" primary = "yes" linked = "no"></part>
-				<part metaref = "8294" role = "PICML::TimerConnection" primary = "yes" linked = "no"></part>
-				<part metaref = "8295" role = "PICML::TimerEventSinkConn" primary = "yes" linked = "no"></part>
-				<part metaref = "8296" role = "PICML::TriggerBenchmarks" primary = "yes" linked = "no"></part>
-				<part metaref = "8297" role = "PICML::WorkLoadOperationConnection" primary = "yes" linked = "no"></part>
-				<part metaref = "8298" role = "PICML::WorkloadCharacteristics" primary = "yes" linked = "no"></part>
+				<part metaref = "8929" role = "PICML::BenchmarkCharacteristics" primary = "yes" linked = "no"></part>
+				<part metaref = "8930" role = "PICML::CompRef" primary = "yes" linked = "no"></part>
+				<part metaref = "8931" role = "PICML::ComponentOperation" primary = "yes" linked = "no"></part>
+				<part metaref = "8932" role = "PICML::EventRef" primary = "yes" linked = "no"></part>
+				<part metaref = "8933" role = "PICML::FixedIterationBenchmarks" primary = "yes" linked = "no"></part>
+				<part metaref = "8934" role = "PICML::Latency" primary = "yes" linked = "no"></part>
+				<part metaref = "8935" role = "PICML::MetricConnection" primary = "yes" linked = "no"></part>
+				<part metaref = "8936" role = "PICML::OperationRef" primary = "yes" linked = "no"></part>
+				<part metaref = "8937" role = "PICML::PeriodicBenchmarks" primary = "yes" linked = "no"></part>
+				<part metaref = "8938" role = "PICML::Task" primary = "yes" linked = "no"></part>
+				<part metaref = "8939" role = "PICML::TaskSet" primary = "yes" linked = "no"></part>
+				<part metaref = "8940" role = "PICML::Throughput" primary = "yes" linked = "no"></part>
+				<part metaref = "8941" role = "PICML::TimeProbe" primary = "yes" linked = "no"></part>
+				<part metaref = "8942" role = "PICML::TimerConnection" primary = "yes" linked = "no"></part>
+				<part metaref = "8943" role = "PICML::TimerEventSinkConn" primary = "yes" linked = "no"></part>
+				<part metaref = "8944" role = "PICML::TriggerBenchmarks" primary = "yes" linked = "no"></part>
+				<part metaref = "8945" role = "PICML::WorkLoadOperationConnection" primary = "yes" linked = "no"></part>
+				<part metaref = "8946" role = "PICML::WorkloadCharacteristics" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::Bridge" metaref = "1285" attributes = "label" >
@@ -3880,9 +3880,9 @@ let props = self.connectedFCOs(AttributeValue) in
                      (srcCount >= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to PICML::Bridge as &quot;src&quot; over PICML::Interconnect2Bridge, has to match 1..*.</dispname>
 			</constraint>
-			<role name = "PICML::Resource" metaref = "8299" kind = "PICML::Resource"></role>
+			<role name = "PICML::Resource" metaref = "8947" kind = "PICML::Resource"></role>
 			<aspect name = "Target" metaref = "3791" attributes = "label" >
-				<part metaref = "8300" role = "PICML::Resource" primary = "yes" linked = "no"></part>
+				<part metaref = "8948" role = "PICML::Resource" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::Capability" metaref = "1289" attributes = "resourceType" >
@@ -3897,9 +3897,9 @@ let props = self.connectedFCOs(AttributeValue) in
           sp->forAll (elem : SatisfierProperty | elem.SatisfierPropertyKind <> #Capacity && elem.SatisfierPropertyKind <> #Quantity)]]>
 				<dispname>Capability elements cannot have a SatisfierProperty with kind Capacity or Quantity</dispname>
 			</constraint>
-			<role name = "PICML::SatisfierProperty" metaref = "8301" kind = "PICML::SatisfierProperty"></role>
+			<role name = "PICML::SatisfierProperty" metaref = "8949" kind = "PICML::SatisfierProperty"></role>
 			<aspect name = "Packaging" metaref = "3801" attributes = "resourceType" >
-				<part metaref = "8302" role = "PICML::SatisfierProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "8950" role = "PICML::SatisfierProperty" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::Component" metaref = "1293" attributes = "VersionTag SpecifyIdTag UUID label" >
@@ -3991,57 +3991,57 @@ referenceParts (RequiredRequestPort)->forAll (a, b : gme::Reference | a <> b imp
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<role name = "PICML::Action" metaref = "8303" kind = "PICML::Action"></role>
-			<role name = "PICML::Attribute" metaref = "8304" kind = "PICML::Attribute"></role>
-			<role name = "PICML::CompositeAction" metaref = "8305" kind = "PICML::CompositeAction"></role>
-			<role name = "PICML::Effect" metaref = "8306" kind = "PICML::Effect"></role>
-			<role name = "PICML::Environment" metaref = "8307" kind = "PICML::Environment"></role>
-			<role name = "PICML::Finish" metaref = "8308" kind = "PICML::Finish"></role>
-			<role name = "PICML::InEventPort" metaref = "8309" kind = "PICML::InEventPort"></role>
-			<role name = "PICML::Input" metaref = "8310" kind = "PICML::Input"></role>
-			<role name = "PICML::InputAction" metaref = "8311" kind = "PICML::InputAction"></role>
-			<role name = "PICML::InputEffect" metaref = "8312" kind = "PICML::InputEffect"></role>
-			<role name = "PICML::MultiInput" metaref = "8313" kind = "PICML::MultiInput"></role>
-			<role name = "PICML::OutEventPort" metaref = "8314" kind = "PICML::OutEventPort"></role>
-			<role name = "PICML::OutputAction" metaref = "8315" kind = "PICML::OutputAction"></role>
-			<role name = "PICML::PeriodicEvent" metaref = "8316" kind = "PICML::PeriodicEvent"></role>
-			<role name = "PICML::ProvidedRequestPort" metaref = "8317" kind = "PICML::ProvidedRequestPort"></role>
-			<role name = "PICML::ReadonlyAttribute" metaref = "8318" kind = "PICML::ReadonlyAttribute"></role>
-			<role name = "PICML::RequiredRequestPort" metaref = "8319" kind = "PICML::RequiredRequestPort"></role>
-			<role name = "PICML::State" metaref = "8320" kind = "PICML::State"></role>
-			<role name = "PICML::Supports" metaref = "8321" kind = "PICML::Supports"></role>
-			<role name = "PICML::Transition" metaref = "8322" kind = "PICML::Transition"></role>
-			<role name = "PICML::Variable" metaref = "8323" kind = "PICML::Variable"></role>
-			<role name = "PICML::WorkerType" metaref = "8324" kind = "PICML::WorkerType"></role>
+			<role name = "PICML::Action" metaref = "8951" kind = "PICML::Action"></role>
+			<role name = "PICML::Attribute" metaref = "8952" kind = "PICML::Attribute"></role>
+			<role name = "PICML::CompositeAction" metaref = "8953" kind = "PICML::CompositeAction"></role>
+			<role name = "PICML::Effect" metaref = "8954" kind = "PICML::Effect"></role>
+			<role name = "PICML::Environment" metaref = "8955" kind = "PICML::Environment"></role>
+			<role name = "PICML::Finish" metaref = "8956" kind = "PICML::Finish"></role>
+			<role name = "PICML::InEventPort" metaref = "8957" kind = "PICML::InEventPort"></role>
+			<role name = "PICML::Input" metaref = "8958" kind = "PICML::Input"></role>
+			<role name = "PICML::InputAction" metaref = "8959" kind = "PICML::InputAction"></role>
+			<role name = "PICML::InputEffect" metaref = "8960" kind = "PICML::InputEffect"></role>
+			<role name = "PICML::MultiInput" metaref = "8961" kind = "PICML::MultiInput"></role>
+			<role name = "PICML::OutEventPort" metaref = "8962" kind = "PICML::OutEventPort"></role>
+			<role name = "PICML::OutputAction" metaref = "8963" kind = "PICML::OutputAction"></role>
+			<role name = "PICML::PeriodicEvent" metaref = "8964" kind = "PICML::PeriodicEvent"></role>
+			<role name = "PICML::ProvidedRequestPort" metaref = "8965" kind = "PICML::ProvidedRequestPort"></role>
+			<role name = "PICML::ReadonlyAttribute" metaref = "8966" kind = "PICML::ReadonlyAttribute"></role>
+			<role name = "PICML::RequiredRequestPort" metaref = "8967" kind = "PICML::RequiredRequestPort"></role>
+			<role name = "PICML::State" metaref = "8968" kind = "PICML::State"></role>
+			<role name = "PICML::Supports" metaref = "8969" kind = "PICML::Supports"></role>
+			<role name = "PICML::Transition" metaref = "8970" kind = "PICML::Transition"></role>
+			<role name = "PICML::Variable" metaref = "8971" kind = "PICML::Variable"></role>
+			<role name = "PICML::WorkerType" metaref = "8972" kind = "PICML::WorkerType"></role>
 			<aspect name = "InterfaceDefinition" metaref = "8325" attributes = "VersionTag SpecifyIdTag UUID label" >
-				<part metaref = "8326" role = "PICML::Attribute" primary = "yes" linked = "yes"></part>
-				<part metaref = "8327" role = "PICML::InEventPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
-				<part metaref = "8328" role = "PICML::OutEventPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
-				<part metaref = "8329" role = "PICML::ProvidedRequestPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
-				<part metaref = "8330" role = "PICML::ReadonlyAttribute" primary = "yes" linked = "yes"></part>
-				<part metaref = "8331" role = "PICML::RequiredRequestPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
-				<part metaref = "8332" role = "PICML::Supports" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "8973" role = "PICML::Attribute" primary = "yes" linked = "yes"></part>
+				<part metaref = "8974" role = "PICML::InEventPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
+				<part metaref = "8975" role = "PICML::OutEventPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
+				<part metaref = "8976" role = "PICML::ProvidedRequestPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
+				<part metaref = "8977" role = "PICML::ReadonlyAttribute" primary = "yes" linked = "yes"></part>
+				<part metaref = "8978" role = "PICML::RequiredRequestPort" primary = "yes" kindaspect = "InterfaceDefinition" linked = "yes"></part>
+				<part metaref = "8979" role = "PICML::Supports" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 			</aspect>
 			<aspect name = "Behavior" metaref = "8333" attributes = "VersionTag SpecifyIdTag UUID label" >
-				<part metaref = "8334" role = "PICML::Action" primary = "yes" linked = "no"></part>
-				<part metaref = "8335" role = "PICML::CompositeAction" primary = "yes" linked = "no"></part>
-				<part metaref = "8336" role = "PICML::Effect" primary = "yes" linked = "no"></part>
-				<part metaref = "8337" role = "PICML::Environment" primary = "yes" linked = "no"></part>
-				<part metaref = "8338" role = "PICML::Finish" primary = "yes" linked = "no"></part>
-				<part metaref = "8339" role = "PICML::InEventPort" primary = "yes" linked = "yes"></part>
-				<part metaref = "8340" role = "PICML::Input" primary = "yes" linked = "no"></part>
-				<part metaref = "8341" role = "PICML::InputAction" primary = "yes" linked = "no"></part>
-				<part metaref = "8342" role = "PICML::InputEffect" primary = "yes" linked = "no"></part>
-				<part metaref = "8343" role = "PICML::MultiInput" primary = "yes" linked = "no"></part>
-				<part metaref = "8344" role = "PICML::OutEventPort" primary = "yes" linked = "yes"></part>
-				<part metaref = "8345" role = "PICML::OutputAction" primary = "yes" linked = "no"></part>
-				<part metaref = "8346" role = "PICML::PeriodicEvent" primary = "yes" linked = "no"></part>
-				<part metaref = "8347" role = "PICML::ProvidedRequestPort" primary = "yes" linked = "yes"></part>
-				<part metaref = "8348" role = "PICML::RequiredRequestPort" primary = "yes" linked = "yes"></part>
-				<part metaref = "8349" role = "PICML::State" primary = "yes" linked = "no"></part>
-				<part metaref = "8350" role = "PICML::Transition" primary = "yes" linked = "no"></part>
-				<part metaref = "8351" role = "PICML::Variable" primary = "yes" linked = "no"></part>
-				<part metaref = "8352" role = "PICML::WorkerType" primary = "yes" kindaspect = "Behavior" linked = "no"></part>
+				<part metaref = "8980" role = "PICML::Action" primary = "yes" linked = "no"></part>
+				<part metaref = "8981" role = "PICML::CompositeAction" primary = "yes" linked = "no"></part>
+				<part metaref = "8982" role = "PICML::Effect" primary = "yes" linked = "no"></part>
+				<part metaref = "8983" role = "PICML::Environment" primary = "yes" linked = "no"></part>
+				<part metaref = "8984" role = "PICML::Finish" primary = "yes" linked = "no"></part>
+				<part metaref = "8985" role = "PICML::InEventPort" primary = "yes" linked = "yes"></part>
+				<part metaref = "8986" role = "PICML::Input" primary = "yes" linked = "no"></part>
+				<part metaref = "8987" role = "PICML::InputAction" primary = "yes" linked = "no"></part>
+				<part metaref = "8988" role = "PICML::InputEffect" primary = "yes" linked = "no"></part>
+				<part metaref = "8989" role = "PICML::MultiInput" primary = "yes" linked = "no"></part>
+				<part metaref = "8990" role = "PICML::OutEventPort" primary = "yes" linked = "yes"></part>
+				<part metaref = "8991" role = "PICML::OutputAction" primary = "yes" linked = "no"></part>
+				<part metaref = "8992" role = "PICML::PeriodicEvent" primary = "yes" linked = "no"></part>
+				<part metaref = "8993" role = "PICML::ProvidedRequestPort" primary = "yes" linked = "yes"></part>
+				<part metaref = "8994" role = "PICML::RequiredRequestPort" primary = "yes" linked = "yes"></part>
+				<part metaref = "8995" role = "PICML::State" primary = "yes" linked = "no"></part>
+				<part metaref = "8996" role = "PICML::Transition" primary = "yes" linked = "no"></part>
+				<part metaref = "8997" role = "PICML::Variable" primary = "yes" linked = "no"></part>
+				<part metaref = "8998" role = "PICML::WorkerType" primary = "yes" kindaspect = "Behavior" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::ComponentAssembly" metaref = "1309" attributes = "UUID label" >
@@ -4105,73 +4105,73 @@ instances->forAll (x : Component |
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to PICML::ComponentImplementation as &quot;dst&quot; over PICML::Implements, has to match 0..1.</dispname>
 			</constraint>
-			<role name = "PICML::AssemblyConfigProperty" metaref = "8353" kind = "PICML::AssemblyConfigProperty"></role>
-			<role name = "PICML::AssemblyDeployRequirement" metaref = "8354" kind = "PICML::AssemblyDeployRequirement"></role>
-			<role name = "PICML::AssemblyselectRequirement" metaref = "8355" kind = "PICML::AssemblyselectRequirement"></role>
-			<role name = "PICML::AttributeDelegate" metaref = "8356" kind = "PICML::AttributeDelegate"></role>
-			<role name = "PICML::AttributeMapping" metaref = "8357" kind = "PICML::AttributeMapping"></role>
-			<role name = "PICML::AttributeMappingDelegate" metaref = "8358" kind = "PICML::AttributeMappingDelegate"></role>
-			<role name = "PICML::AttributeMappingValue" metaref = "8359" kind = "PICML::AttributeMappingValue"></role>
-			<role name = "PICML::AttributeValue" metaref = "8360" kind = "PICML::AttributeValue"></role>
-			<role name = "PICML::Component" metaref = "8361" kind = "PICML::Component"></role>
-			<role name = "PICML::ComponentAssembly" metaref = "8362" kind = "PICML::ComponentAssembly"></role>
-			<role name = "PICML::ComponentAssemblyReference" metaref = "8363" kind = "PICML::ComponentAssemblyReference"></role>
-			<role name = "PICML::ComponentPackage" metaref = "8364" kind = "PICML::ComponentPackage"></role>
-			<role name = "PICML::ComponentPackageReference" metaref = "8365" kind = "PICML::ComponentPackageReference"></role>
-			<role name = "PICML::ComponentRef" metaref = "8366" kind = "PICML::ComponentRef"></role>
-			<role name = "PICML::ECConfiguration" metaref = "8367" kind = "PICML::ECConfiguration"></role>
-			<role name = "PICML::EventSinkDelegate" metaref = "8368" kind = "PICML::EventSinkDelegate"></role>
-			<role name = "PICML::EventSourceDelegate" metaref = "8369" kind = "PICML::EventSourceDelegate"></role>
-			<role name = "PICML::ExternalDelegate" metaref = "8370" kind = "PICML::ExternalDelegate"></role>
-			<role name = "PICML::ExternalReferenceEndPoint" metaref = "8371" kind = "PICML::ExternalReferenceEndPoint"></role>
-			<role name = "PICML::FacetDelegate" metaref = "8372" kind = "PICML::FacetDelegate"></role>
-			<role name = "PICML::InEventPort" metaref = "8373" kind = "PICML::InEventPort"></role>
-			<role name = "PICML::OutEventPort" metaref = "8374" kind = "PICML::OutEventPort"></role>
-			<role name = "PICML::Property" metaref = "8375" kind = "PICML::Property"></role>
-			<role name = "PICML::ProvidedRequestPort" metaref = "8376" kind = "PICML::ProvidedRequestPort"></role>
-			<role name = "PICML::PublishConnector" metaref = "8377" kind = "PICML::PublishConnector"></role>
-			<role name = "PICML::RTConfiguration" metaref = "8378" kind = "PICML::RTConfiguration"></role>
-			<role name = "PICML::ReceptacleDelegate" metaref = "8379" kind = "PICML::ReceptacleDelegate"></role>
-			<role name = "PICML::RequiredRequestPort" metaref = "8380" kind = "PICML::RequiredRequestPort"></role>
-			<role name = "PICML::Requirement" metaref = "8381" kind = "PICML::Requirement"></role>
-			<role name = "PICML::deliverTo" metaref = "8382" kind = "PICML::deliverTo"></role>
-			<role name = "PICML::emit" metaref = "8383" kind = "PICML::emit"></role>
-			<role name = "PICML::invoke" metaref = "8384" kind = "PICML::invoke"></role>
-			<role name = "PICML::publish" metaref = "8385" kind = "PICML::publish"></role>
+			<role name = "PICML::AssemblyConfigProperty" metaref = "8999" kind = "PICML::AssemblyConfigProperty"></role>
+			<role name = "PICML::AssemblyDeployRequirement" metaref = "9000" kind = "PICML::AssemblyDeployRequirement"></role>
+			<role name = "PICML::AssemblyselectRequirement" metaref = "9001" kind = "PICML::AssemblyselectRequirement"></role>
+			<role name = "PICML::AttributeDelegate" metaref = "9002" kind = "PICML::AttributeDelegate"></role>
+			<role name = "PICML::AttributeMapping" metaref = "9003" kind = "PICML::AttributeMapping"></role>
+			<role name = "PICML::AttributeMappingDelegate" metaref = "9004" kind = "PICML::AttributeMappingDelegate"></role>
+			<role name = "PICML::AttributeMappingValue" metaref = "9005" kind = "PICML::AttributeMappingValue"></role>
+			<role name = "PICML::AttributeValue" metaref = "9006" kind = "PICML::AttributeValue"></role>
+			<role name = "PICML::Component" metaref = "9007" kind = "PICML::Component"></role>
+			<role name = "PICML::ComponentAssembly" metaref = "9008" kind = "PICML::ComponentAssembly"></role>
+			<role name = "PICML::ComponentAssemblyReference" metaref = "9009" kind = "PICML::ComponentAssemblyReference"></role>
+			<role name = "PICML::ComponentPackage" metaref = "9010" kind = "PICML::ComponentPackage"></role>
+			<role name = "PICML::ComponentPackageReference" metaref = "9011" kind = "PICML::ComponentPackageReference"></role>
+			<role name = "PICML::ComponentRef" metaref = "9012" kind = "PICML::ComponentRef"></role>
+			<role name = "PICML::ECConfiguration" metaref = "9013" kind = "PICML::ECConfiguration"></role>
+			<role name = "PICML::EventSinkDelegate" metaref = "9014" kind = "PICML::EventSinkDelegate"></role>
+			<role name = "PICML::EventSourceDelegate" metaref = "9015" kind = "PICML::EventSourceDelegate"></role>
+			<role name = "PICML::ExternalDelegate" metaref = "9016" kind = "PICML::ExternalDelegate"></role>
+			<role name = "PICML::ExternalReferenceEndPoint" metaref = "9017" kind = "PICML::ExternalReferenceEndPoint"></role>
+			<role name = "PICML::FacetDelegate" metaref = "9018" kind = "PICML::FacetDelegate"></role>
+			<role name = "PICML::InEventPort" metaref = "9019" kind = "PICML::InEventPort"></role>
+			<role name = "PICML::OutEventPort" metaref = "9020" kind = "PICML::OutEventPort"></role>
+			<role name = "PICML::Property" metaref = "9021" kind = "PICML::Property"></role>
+			<role name = "PICML::ProvidedRequestPort" metaref = "9022" kind = "PICML::ProvidedRequestPort"></role>
+			<role name = "PICML::PublishConnector" metaref = "9023" kind = "PICML::PublishConnector"></role>
+			<role name = "PICML::RTConfiguration" metaref = "9024" kind = "PICML::RTConfiguration"></role>
+			<role name = "PICML::ReceptacleDelegate" metaref = "9025" kind = "PICML::ReceptacleDelegate"></role>
+			<role name = "PICML::RequiredRequestPort" metaref = "9026" kind = "PICML::RequiredRequestPort"></role>
+			<role name = "PICML::Requirement" metaref = "9027" kind = "PICML::Requirement"></role>
+			<role name = "PICML::deliverTo" metaref = "9028" kind = "PICML::deliverTo"></role>
+			<role name = "PICML::emit" metaref = "9029" kind = "PICML::emit"></role>
+			<role name = "PICML::invoke" metaref = "9030" kind = "PICML::invoke"></role>
+			<role name = "PICML::publish" metaref = "9031" kind = "PICML::publish"></role>
 			<aspect name = "Packaging" metaref = "6357" attributes = "UUID label" >
-				<part metaref = "8386" role = "PICML::AssemblyConfigProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "8387" role = "PICML::AssemblyDeployRequirement" primary = "yes" linked = "no"></part>
-				<part metaref = "8388" role = "PICML::AssemblyselectRequirement" primary = "yes" linked = "no"></part>
-				<part metaref = "8389" role = "PICML::AttributeDelegate" primary = "yes" linked = "no"></part>
-				<part metaref = "8390" role = "PICML::AttributeMapping" primary = "yes" linked = "yes"></part>
-				<part metaref = "8391" role = "PICML::AttributeMappingDelegate" primary = "yes" linked = "no"></part>
-				<part metaref = "8392" role = "PICML::AttributeMappingValue" primary = "yes" linked = "no"></part>
-				<part metaref = "8393" role = "PICML::AttributeValue" primary = "yes" linked = "no"></part>
-				<part metaref = "8394" role = "PICML::Component" primary = "yes" linked = "no"></part>
-				<part metaref = "8395" role = "PICML::ComponentAssembly" primary = "yes" linked = "no"></part>
-				<part metaref = "8396" role = "PICML::ComponentAssemblyReference" primary = "yes" kindaspect = "Packaging" linked = "no"></part>
-				<part metaref = "8397" role = "PICML::ComponentPackage" primary = "yes" linked = "no"></part>
-				<part metaref = "8398" role = "PICML::ComponentPackageReference" primary = "yes" linked = "no"></part>
-				<part metaref = "8399" role = "PICML::ComponentRef" primary = "yes" linked = "no"></part>
-				<part metaref = "8400" role = "PICML::ECConfiguration" primary = "yes" linked = "no"></part>
-				<part metaref = "8401" role = "PICML::EventSinkDelegate" primary = "yes" linked = "no"></part>
-				<part metaref = "8402" role = "PICML::EventSourceDelegate" primary = "yes" linked = "no"></part>
-				<part metaref = "8403" role = "PICML::ExternalDelegate" primary = "yes" linked = "no"></part>
-				<part metaref = "8404" role = "PICML::ExternalReferenceEndPoint" primary = "yes" linked = "no"></part>
-				<part metaref = "8405" role = "PICML::FacetDelegate" primary = "yes" linked = "no"></part>
-				<part metaref = "8406" role = "PICML::InEventPort" primary = "yes" linked = "yes"></part>
-				<part metaref = "8407" role = "PICML::OutEventPort" primary = "yes" linked = "yes"></part>
-				<part metaref = "8408" role = "PICML::Property" primary = "yes" linked = "no"></part>
-				<part metaref = "8409" role = "PICML::ProvidedRequestPort" primary = "yes" linked = "yes"></part>
-				<part metaref = "8410" role = "PICML::PublishConnector" primary = "yes" linked = "no"></part>
-				<part metaref = "8411" role = "PICML::RTConfiguration" primary = "yes" linked = "no"></part>
-				<part metaref = "8412" role = "PICML::ReceptacleDelegate" primary = "yes" linked = "no"></part>
-				<part metaref = "8413" role = "PICML::RequiredRequestPort" primary = "yes" linked = "yes"></part>
-				<part metaref = "8414" role = "PICML::Requirement" primary = "yes" linked = "no"></part>
-				<part metaref = "8415" role = "PICML::deliverTo" primary = "yes" linked = "no"></part>
-				<part metaref = "8416" role = "PICML::emit" primary = "yes" linked = "no"></part>
-				<part metaref = "8417" role = "PICML::invoke" primary = "yes" linked = "no"></part>
-				<part metaref = "8418" role = "PICML::publish" primary = "yes" linked = "no"></part>
+				<part metaref = "9032" role = "PICML::AssemblyConfigProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "9033" role = "PICML::AssemblyDeployRequirement" primary = "yes" linked = "no"></part>
+				<part metaref = "9034" role = "PICML::AssemblyselectRequirement" primary = "yes" linked = "no"></part>
+				<part metaref = "9035" role = "PICML::AttributeDelegate" primary = "yes" linked = "no"></part>
+				<part metaref = "9036" role = "PICML::AttributeMapping" primary = "yes" linked = "yes"></part>
+				<part metaref = "9037" role = "PICML::AttributeMappingDelegate" primary = "yes" linked = "no"></part>
+				<part metaref = "9038" role = "PICML::AttributeMappingValue" primary = "yes" linked = "no"></part>
+				<part metaref = "9039" role = "PICML::AttributeValue" primary = "yes" linked = "no"></part>
+				<part metaref = "9040" role = "PICML::Component" primary = "yes" linked = "no"></part>
+				<part metaref = "9041" role = "PICML::ComponentAssembly" primary = "yes" linked = "no"></part>
+				<part metaref = "9042" role = "PICML::ComponentAssemblyReference" primary = "yes" kindaspect = "Packaging" linked = "no"></part>
+				<part metaref = "9043" role = "PICML::ComponentPackage" primary = "yes" linked = "no"></part>
+				<part metaref = "9044" role = "PICML::ComponentPackageReference" primary = "yes" linked = "no"></part>
+				<part metaref = "9045" role = "PICML::ComponentRef" primary = "yes" linked = "no"></part>
+				<part metaref = "9046" role = "PICML::ECConfiguration" primary = "yes" linked = "no"></part>
+				<part metaref = "9047" role = "PICML::EventSinkDelegate" primary = "yes" linked = "no"></part>
+				<part metaref = "9048" role = "PICML::EventSourceDelegate" primary = "yes" linked = "no"></part>
+				<part metaref = "9049" role = "PICML::ExternalDelegate" primary = "yes" linked = "no"></part>
+				<part metaref = "9050" role = "PICML::ExternalReferenceEndPoint" primary = "yes" linked = "no"></part>
+				<part metaref = "9051" role = "PICML::FacetDelegate" primary = "yes" linked = "no"></part>
+				<part metaref = "9052" role = "PICML::InEventPort" primary = "yes" linked = "yes"></part>
+				<part metaref = "9053" role = "PICML::OutEventPort" primary = "yes" linked = "yes"></part>
+				<part metaref = "9054" role = "PICML::Property" primary = "yes" linked = "no"></part>
+				<part metaref = "9055" role = "PICML::ProvidedRequestPort" primary = "yes" linked = "yes"></part>
+				<part metaref = "9056" role = "PICML::PublishConnector" primary = "yes" linked = "no"></part>
+				<part metaref = "9057" role = "PICML::RTConfiguration" primary = "yes" linked = "no"></part>
+				<part metaref = "9058" role = "PICML::ReceptacleDelegate" primary = "yes" linked = "no"></part>
+				<part metaref = "9059" role = "PICML::RequiredRequestPort" primary = "yes" linked = "yes"></part>
+				<part metaref = "9060" role = "PICML::Requirement" primary = "yes" linked = "no"></part>
+				<part metaref = "9061" role = "PICML::deliverTo" primary = "yes" linked = "no"></part>
+				<part metaref = "9062" role = "PICML::emit" primary = "yes" linked = "no"></part>
+				<part metaref = "9063" role = "PICML::invoke" primary = "yes" linked = "no"></part>
+				<part metaref = "9064" role = "PICML::publish" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::ComponentContainer" metaref = "1369" >
@@ -4181,19 +4181,19 @@ instances->forAll (x : Component |
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::ComponentContainer, has to match 0..1.</dispname>
 			</constraint>
-			<role name = "PICML::ComponentConfigProperty" metaref = "8419" kind = "PICML::ComponentConfigProperty"></role>
-			<role name = "PICML::ComponentInfoProperty" metaref = "8420" kind = "PICML::ComponentInfoProperty"></role>
-			<role name = "PICML::ComponentProperty" metaref = "8421" kind = "PICML::ComponentProperty"></role>
-			<role name = "PICML::ComponentPropertyDescription" metaref = "8422" kind = "PICML::ComponentPropertyDescription"></role>
-			<role name = "PICML::ComponentRef" metaref = "8423" kind = "PICML::ComponentRef"></role>
-			<role name = "PICML::Property" metaref = "8424" kind = "PICML::Property"></role>
+			<role name = "PICML::ComponentConfigProperty" metaref = "9065" kind = "PICML::ComponentConfigProperty"></role>
+			<role name = "PICML::ComponentInfoProperty" metaref = "9066" kind = "PICML::ComponentInfoProperty"></role>
+			<role name = "PICML::ComponentProperty" metaref = "9067" kind = "PICML::ComponentProperty"></role>
+			<role name = "PICML::ComponentPropertyDescription" metaref = "9068" kind = "PICML::ComponentPropertyDescription"></role>
+			<role name = "PICML::ComponentRef" metaref = "9069" kind = "PICML::ComponentRef"></role>
+			<role name = "PICML::Property" metaref = "9070" kind = "PICML::Property"></role>
 			<aspect name = "Packaging" metaref = "8425" >
-				<part metaref = "8426" role = "PICML::ComponentConfigProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "8427" role = "PICML::ComponentInfoProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "8428" role = "PICML::ComponentProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "8429" role = "PICML::ComponentPropertyDescription" primary = "yes" linked = "no"></part>
-				<part metaref = "8430" role = "PICML::ComponentRef" primary = "yes" linked = "no"></part>
-				<part metaref = "8431" role = "PICML::Property" primary = "yes" linked = "no"></part>
+				<part metaref = "9071" role = "PICML::ComponentConfigProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "9072" role = "PICML::ComponentInfoProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "9073" role = "PICML::ComponentProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "9074" role = "PICML::ComponentPropertyDescription" primary = "yes" linked = "no"></part>
+				<part metaref = "9075" role = "PICML::ComponentRef" primary = "yes" linked = "no"></part>
+				<part metaref = "9076" role = "PICML::Property" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::ComponentFactory" metaref = "1383" attributes = "VersionTag SpecifyIdTag" >
@@ -4248,39 +4248,39 @@ instances->forAll (x : Component |
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<role name = "PICML::Aggregate" metaref = "8432" kind = "PICML::Aggregate"></role>
-			<role name = "PICML::Alias" metaref = "8433" kind = "PICML::Alias"></role>
-			<role name = "PICML::Attribute" metaref = "8434" kind = "PICML::Attribute"></role>
-			<role name = "PICML::Collection" metaref = "8435" kind = "PICML::Collection"></role>
-			<role name = "PICML::Constant" metaref = "8436" kind = "PICML::Constant"></role>
-			<role name = "PICML::Enum" metaref = "8437" kind = "PICML::Enum"></role>
-			<role name = "PICML::Exception" metaref = "8438" kind = "PICML::Exception"></role>
-			<role name = "PICML::FactoryOperation" metaref = "8439" kind = "PICML::FactoryOperation"></role>
-			<role name = "PICML::Inherits" metaref = "8440" kind = "PICML::Inherits"></role>
-			<role name = "PICML::LookupKey" metaref = "8441" kind = "PICML::LookupKey"></role>
-			<role name = "PICML::LookupOperation" metaref = "8442" kind = "PICML::LookupOperation"></role>
-			<role name = "PICML::OnewayOperation" metaref = "8443" kind = "PICML::OnewayOperation"></role>
-			<role name = "PICML::ReadonlyAttribute" metaref = "8444" kind = "PICML::ReadonlyAttribute"></role>
-			<role name = "PICML::Supports" metaref = "8445" kind = "PICML::Supports"></role>
-			<role name = "PICML::SwitchedAggregate" metaref = "8446" kind = "PICML::SwitchedAggregate"></role>
-			<role name = "PICML::TwowayOperation" metaref = "8447" kind = "PICML::TwowayOperation"></role>
+			<role name = "PICML::Aggregate" metaref = "9077" kind = "PICML::Aggregate"></role>
+			<role name = "PICML::Alias" metaref = "9078" kind = "PICML::Alias"></role>
+			<role name = "PICML::Attribute" metaref = "9079" kind = "PICML::Attribute"></role>
+			<role name = "PICML::Collection" metaref = "9080" kind = "PICML::Collection"></role>
+			<role name = "PICML::Constant" metaref = "9081" kind = "PICML::Constant"></role>
+			<role name = "PICML::Enum" metaref = "9082" kind = "PICML::Enum"></role>
+			<role name = "PICML::Exception" metaref = "9083" kind = "PICML::Exception"></role>
+			<role name = "PICML::FactoryOperation" metaref = "9084" kind = "PICML::FactoryOperation"></role>
+			<role name = "PICML::Inherits" metaref = "9085" kind = "PICML::Inherits"></role>
+			<role name = "PICML::LookupKey" metaref = "9086" kind = "PICML::LookupKey"></role>
+			<role name = "PICML::LookupOperation" metaref = "9087" kind = "PICML::LookupOperation"></role>
+			<role name = "PICML::OnewayOperation" metaref = "9088" kind = "PICML::OnewayOperation"></role>
+			<role name = "PICML::ReadonlyAttribute" metaref = "9089" kind = "PICML::ReadonlyAttribute"></role>
+			<role name = "PICML::Supports" metaref = "9090" kind = "PICML::Supports"></role>
+			<role name = "PICML::SwitchedAggregate" metaref = "9091" kind = "PICML::SwitchedAggregate"></role>
+			<role name = "PICML::TwowayOperation" metaref = "9092" kind = "PICML::TwowayOperation"></role>
 			<aspect name = "InterfaceDefinition" metaref = "3880" attributes = "VersionTag SpecifyIdTag" >
-				<part metaref = "8448" role = "PICML::Aggregate" primary = "yes" linked = "no"></part>
-				<part metaref = "8449" role = "PICML::Alias" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8450" role = "PICML::Attribute" primary = "yes" linked = "no"></part>
-				<part metaref = "8451" role = "PICML::Collection" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8452" role = "PICML::Constant" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8453" role = "PICML::Enum" primary = "yes" linked = "no"></part>
-				<part metaref = "8454" role = "PICML::Exception" primary = "yes" linked = "no"></part>
-				<part metaref = "8455" role = "PICML::FactoryOperation" primary = "yes" linked = "no"></part>
-				<part metaref = "8456" role = "PICML::Inherits" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8457" role = "PICML::LookupKey" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8458" role = "PICML::LookupOperation" primary = "yes" linked = "no"></part>
-				<part metaref = "8459" role = "PICML::OnewayOperation" primary = "yes" linked = "no"></part>
-				<part metaref = "8460" role = "PICML::ReadonlyAttribute" primary = "yes" linked = "no"></part>
-				<part metaref = "8461" role = "PICML::Supports" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8462" role = "PICML::SwitchedAggregate" primary = "yes" linked = "no"></part>
-				<part metaref = "8463" role = "PICML::TwowayOperation" primary = "yes" linked = "no"></part>
+				<part metaref = "9093" role = "PICML::Aggregate" primary = "yes" linked = "no"></part>
+				<part metaref = "9094" role = "PICML::Alias" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9095" role = "PICML::Attribute" primary = "yes" linked = "no"></part>
+				<part metaref = "9096" role = "PICML::Collection" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9097" role = "PICML::Constant" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9098" role = "PICML::Enum" primary = "yes" linked = "no"></part>
+				<part metaref = "9099" role = "PICML::Exception" primary = "yes" linked = "no"></part>
+				<part metaref = "9100" role = "PICML::FactoryOperation" primary = "yes" linked = "no"></part>
+				<part metaref = "9101" role = "PICML::Inherits" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9102" role = "PICML::LookupKey" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9103" role = "PICML::LookupOperation" primary = "yes" linked = "no"></part>
+				<part metaref = "9104" role = "PICML::OnewayOperation" primary = "yes" linked = "no"></part>
+				<part metaref = "9105" role = "PICML::ReadonlyAttribute" primary = "yes" linked = "no"></part>
+				<part metaref = "9106" role = "PICML::Supports" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9107" role = "PICML::SwitchedAggregate" primary = "yes" linked = "no"></part>
+				<part metaref = "9108" role = "PICML::TwowayOperation" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::ComponentImplementationContainer" metaref = "1417" >
@@ -4296,12 +4296,12 @@ instances->forAll (x : Component |
 				<dispname>Primary Artifacts of a MonolithicImplementation should have unique names</dispname>
 			</constraint>
 			<constraint name="ValidPICML__ComponentImplementationContainerPartCardinality176" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::ComponentImplementation" ) -> size + self.parts( "PICML::MonolithicImplementation" ) -> size + self.parts( "PICML::ComponentAssembly" ) -> size in
-                     (partCount = 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PICML::ComponentImplementationContainer, has to match 1.</dispname>
+				<![CDATA[let partCount = self.parts( "PICML::Implements" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PICML::ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPICML__ComponentImplementationContainerPartCardinality177" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::Implements" ) -> size in
+				<![CDATA[let partCount = self.parts( "PICML::ComponentRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -4311,47 +4311,47 @@ instances->forAll (x : Component |
 				<dispname>Multiplicity of parts, which are contained by PICML::ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPICML__ComponentImplementationContainerPartCardinality179" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::ComponentRef" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PICML::ComponentImplementationContainer, has to match 0..1.</dispname>
+				<![CDATA[let partCount = self.parts( "PICML::ComponentImplementation" ) -> size + self.parts( "PICML::MonolithicImplementation" ) -> size + self.parts( "PICML::ComponentAssembly" ) -> size in
+                     (partCount = 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PICML::ComponentImplementationContainer, has to match 1.</dispname>
 			</constraint>
-			<role name = "PICML::Capability" metaref = "8464" kind = "PICML::Capability"></role>
-			<role name = "PICML::ComponentAssembly" metaref = "8465" kind = "PICML::ComponentAssembly"></role>
-			<role name = "PICML::ComponentRef" metaref = "8466" kind = "PICML::ComponentRef"></role>
-			<role name = "PICML::ConfigProperty" metaref = "8467" kind = "PICML::ConfigProperty"></role>
-			<role name = "PICML::CriticalPath" metaref = "8468" kind = "PICML::CriticalPath"></role>
-			<role name = "PICML::ImplementationArtifactReference" metaref = "8469" kind = "PICML::ImplementationArtifactReference"></role>
-			<role name = "PICML::ImplementationCapability" metaref = "8470" kind = "PICML::ImplementationCapability"></role>
-			<role name = "PICML::ImplementationDependency" metaref = "8471" kind = "PICML::ImplementationDependency"></role>
-			<role name = "PICML::ImplementationDependsOn" metaref = "8472" kind = "PICML::ImplementationDependsOn"></role>
-			<role name = "PICML::ImplementationRequirement" metaref = "8473" kind = "PICML::ImplementationRequirement"></role>
-			<role name = "PICML::Implements" metaref = "8474" kind = "PICML::Implements"></role>
-			<role name = "PICML::InfoProperty" metaref = "8475" kind = "PICML::InfoProperty"></role>
-			<role name = "PICML::MonolithDeployRequirement" metaref = "8476" kind = "PICML::MonolithDeployRequirement"></role>
-			<role name = "PICML::MonolithExecParameter" metaref = "8477" kind = "PICML::MonolithExecParameter"></role>
-			<role name = "PICML::MonolithicImplementation" metaref = "8478" kind = "PICML::MonolithicImplementation"></role>
-			<role name = "PICML::MonolithprimaryArtifact" metaref = "8479" kind = "PICML::MonolithprimaryArtifact"></role>
-			<role name = "PICML::PathReference" metaref = "8480" kind = "PICML::PathReference"></role>
-			<role name = "PICML::Property" metaref = "8481" kind = "PICML::Property"></role>
+			<role name = "PICML::Capability" metaref = "9109" kind = "PICML::Capability"></role>
+			<role name = "PICML::ComponentAssembly" metaref = "9110" kind = "PICML::ComponentAssembly"></role>
+			<role name = "PICML::ComponentRef" metaref = "9111" kind = "PICML::ComponentRef"></role>
+			<role name = "PICML::ConfigProperty" metaref = "9112" kind = "PICML::ConfigProperty"></role>
+			<role name = "PICML::CriticalPath" metaref = "9113" kind = "PICML::CriticalPath"></role>
+			<role name = "PICML::ImplementationArtifactReference" metaref = "9114" kind = "PICML::ImplementationArtifactReference"></role>
+			<role name = "PICML::ImplementationCapability" metaref = "9115" kind = "PICML::ImplementationCapability"></role>
+			<role name = "PICML::ImplementationDependency" metaref = "9116" kind = "PICML::ImplementationDependency"></role>
+			<role name = "PICML::ImplementationDependsOn" metaref = "9117" kind = "PICML::ImplementationDependsOn"></role>
+			<role name = "PICML::ImplementationRequirement" metaref = "9118" kind = "PICML::ImplementationRequirement"></role>
+			<role name = "PICML::Implements" metaref = "9119" kind = "PICML::Implements"></role>
+			<role name = "PICML::InfoProperty" metaref = "9120" kind = "PICML::InfoProperty"></role>
+			<role name = "PICML::MonolithDeployRequirement" metaref = "9121" kind = "PICML::MonolithDeployRequirement"></role>
+			<role name = "PICML::MonolithExecParameter" metaref = "9122" kind = "PICML::MonolithExecParameter"></role>
+			<role name = "PICML::MonolithicImplementation" metaref = "9123" kind = "PICML::MonolithicImplementation"></role>
+			<role name = "PICML::MonolithprimaryArtifact" metaref = "9124" kind = "PICML::MonolithprimaryArtifact"></role>
+			<role name = "PICML::PathReference" metaref = "9125" kind = "PICML::PathReference"></role>
+			<role name = "PICML::Property" metaref = "9126" kind = "PICML::Property"></role>
 			<aspect name = "Packaging" metaref = "3915" >
-				<part metaref = "8482" role = "PICML::Capability" primary = "yes" linked = "no"></part>
-				<part metaref = "8483" role = "PICML::ComponentAssembly" primary = "yes" linked = "no"></part>
-				<part metaref = "8484" role = "PICML::ComponentRef" primary = "yes" linked = "no"></part>
-				<part metaref = "8485" role = "PICML::ConfigProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "8486" role = "PICML::CriticalPath" primary = "yes" linked = "no"></part>
-				<part metaref = "8487" role = "PICML::ImplementationArtifactReference" primary = "yes" linked = "no"></part>
-				<part metaref = "8488" role = "PICML::ImplementationCapability" primary = "yes" linked = "no"></part>
-				<part metaref = "8489" role = "PICML::ImplementationDependency" primary = "yes" linked = "no"></part>
-				<part metaref = "8490" role = "PICML::ImplementationDependsOn" primary = "yes" linked = "no"></part>
-				<part metaref = "8491" role = "PICML::ImplementationRequirement" primary = "yes" linked = "no"></part>
-				<part metaref = "8492" role = "PICML::Implements" primary = "yes" linked = "no"></part>
-				<part metaref = "8493" role = "PICML::InfoProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "8494" role = "PICML::MonolithDeployRequirement" primary = "yes" linked = "no"></part>
-				<part metaref = "8495" role = "PICML::MonolithExecParameter" primary = "yes" linked = "no"></part>
-				<part metaref = "8496" role = "PICML::MonolithicImplementation" primary = "yes" linked = "no"></part>
-				<part metaref = "8497" role = "PICML::MonolithprimaryArtifact" primary = "yes" linked = "no"></part>
-				<part metaref = "8498" role = "PICML::PathReference" primary = "yes" linked = "no"></part>
-				<part metaref = "8499" role = "PICML::Property" primary = "yes" linked = "no"></part>
+				<part metaref = "9127" role = "PICML::Capability" primary = "yes" linked = "no"></part>
+				<part metaref = "9128" role = "PICML::ComponentAssembly" primary = "yes" linked = "no"></part>
+				<part metaref = "9129" role = "PICML::ComponentRef" primary = "yes" linked = "no"></part>
+				<part metaref = "9130" role = "PICML::ConfigProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "9131" role = "PICML::CriticalPath" primary = "yes" linked = "no"></part>
+				<part metaref = "9132" role = "PICML::ImplementationArtifactReference" primary = "yes" linked = "no"></part>
+				<part metaref = "9133" role = "PICML::ImplementationCapability" primary = "yes" linked = "no"></part>
+				<part metaref = "9134" role = "PICML::ImplementationDependency" primary = "yes" linked = "no"></part>
+				<part metaref = "9135" role = "PICML::ImplementationDependsOn" primary = "yes" linked = "no"></part>
+				<part metaref = "9136" role = "PICML::ImplementationRequirement" primary = "yes" linked = "no"></part>
+				<part metaref = "9137" role = "PICML::Implements" primary = "yes" linked = "no"></part>
+				<part metaref = "9138" role = "PICML::InfoProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "9139" role = "PICML::MonolithDeployRequirement" primary = "yes" linked = "no"></part>
+				<part metaref = "9140" role = "PICML::MonolithExecParameter" primary = "yes" linked = "no"></part>
+				<part metaref = "9141" role = "PICML::MonolithicImplementation" primary = "yes" linked = "no"></part>
+				<part metaref = "9142" role = "PICML::MonolithprimaryArtifact" primary = "yes" linked = "no"></part>
+				<part metaref = "9143" role = "PICML::PathReference" primary = "yes" linked = "no"></part>
+				<part metaref = "9144" role = "PICML::Property" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::ComponentPropertyDescription" metaref = "1451" >
@@ -4362,12 +4362,12 @@ instances->forAll (x : Component |
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::ComponentPropertyDescription, has to match 1.</dispname>
 			</constraint>
-			<role name = "PICML::DataType" metaref = "8500" kind = "PICML::DataType"></role>
+			<role name = "PICML::DataType" metaref = "9145" kind = "PICML::DataType"></role>
 			<aspect name = "Packaging" metaref = "3935" >
-				<part metaref = "8501" role = "PICML::DataType" primary = "yes" linked = "no"></part>
+				<part metaref = "9146" role = "PICML::DataType" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "PICML::CompositeAction" metaref = "8502" >
+		<model name = "PICML::CompositeAction" metaref = "9147" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="action.bmp"></regnode>
 				<regnode name = "icon" value ="composite.bmp"></regnode>
@@ -4387,29 +4387,29 @@ inputs.size () = 1
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to PICML::ActionBase as &quot;src&quot; over PICML::Transition, has to match 0..1.</dispname>
 			</constraint>
-			<role name = "PICML::Action" metaref = "8503" kind = "PICML::Action"></role>
-			<role name = "PICML::CompositeAction" metaref = "8504" kind = "PICML::CompositeAction"></role>
-			<role name = "PICML::Effect" metaref = "8505" kind = "PICML::Effect"></role>
-			<role name = "PICML::Finish" metaref = "8506" kind = "PICML::Finish"></role>
-			<role name = "PICML::InputAction" metaref = "8507" kind = "PICML::InputAction"></role>
-			<role name = "PICML::InputEffect" metaref = "8508" kind = "PICML::InputEffect"></role>
-			<role name = "PICML::OutputAction" metaref = "8509" kind = "PICML::OutputAction"></role>
-			<role name = "PICML::Property" metaref = "8510" kind = "PICML::Property"></role>
-			<role name = "PICML::State" metaref = "8511" kind = "PICML::State"></role>
-			<role name = "PICML::Transition" metaref = "8512" kind = "PICML::Transition"></role>
-			<role name = "PICML::Variable" metaref = "8513" kind = "PICML::Variable"></role>
+			<role name = "PICML::Action" metaref = "9148" kind = "PICML::Action"></role>
+			<role name = "PICML::CompositeAction" metaref = "9149" kind = "PICML::CompositeAction"></role>
+			<role name = "PICML::Effect" metaref = "9150" kind = "PICML::Effect"></role>
+			<role name = "PICML::Finish" metaref = "9151" kind = "PICML::Finish"></role>
+			<role name = "PICML::InputAction" metaref = "9152" kind = "PICML::InputAction"></role>
+			<role name = "PICML::InputEffect" metaref = "9153" kind = "PICML::InputEffect"></role>
+			<role name = "PICML::OutputAction" metaref = "9154" kind = "PICML::OutputAction"></role>
+			<role name = "PICML::Property" metaref = "9155" kind = "PICML::Property"></role>
+			<role name = "PICML::State" metaref = "9156" kind = "PICML::State"></role>
+			<role name = "PICML::Transition" metaref = "9157" kind = "PICML::Transition"></role>
+			<role name = "PICML::Variable" metaref = "9158" kind = "PICML::Variable"></role>
 			<aspect name = "Behavior" metaref = "3947" >
-				<part metaref = "8514" role = "PICML::Action" primary = "yes" linked = "no"></part>
-				<part metaref = "8515" role = "PICML::CompositeAction" primary = "yes" linked = "no"></part>
-				<part metaref = "8516" role = "PICML::Effect" primary = "yes" linked = "no"></part>
-				<part metaref = "8517" role = "PICML::Finish" primary = "yes" linked = "no"></part>
-				<part metaref = "8518" role = "PICML::InputAction" primary = "yes" linked = "no"></part>
-				<part metaref = "8519" role = "PICML::InputEffect" primary = "yes" linked = "no"></part>
-				<part metaref = "8520" role = "PICML::OutputAction" primary = "yes" linked = "no"></part>
-				<part metaref = "8521" role = "PICML::Property" primary = "yes" linked = "no"></part>
-				<part metaref = "8522" role = "PICML::State" primary = "yes" linked = "no"></part>
-				<part metaref = "8523" role = "PICML::Transition" primary = "yes" linked = "no"></part>
-				<part metaref = "8524" role = "PICML::Variable" primary = "yes" linked = "no"></part>
+				<part metaref = "9159" role = "PICML::Action" primary = "yes" linked = "no"></part>
+				<part metaref = "9160" role = "PICML::CompositeAction" primary = "yes" linked = "no"></part>
+				<part metaref = "9161" role = "PICML::Effect" primary = "yes" linked = "no"></part>
+				<part metaref = "9162" role = "PICML::Finish" primary = "yes" linked = "no"></part>
+				<part metaref = "9163" role = "PICML::InputAction" primary = "yes" linked = "no"></part>
+				<part metaref = "9164" role = "PICML::InputEffect" primary = "yes" linked = "no"></part>
+				<part metaref = "9165" role = "PICML::OutputAction" primary = "yes" linked = "no"></part>
+				<part metaref = "9166" role = "PICML::Property" primary = "yes" linked = "no"></part>
+				<part metaref = "9167" role = "PICML::State" primary = "yes" linked = "no"></part>
+				<part metaref = "9168" role = "PICML::Transition" primary = "yes" linked = "no"></part>
+				<part metaref = "9169" role = "PICML::Variable" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::ConnectedComponent" metaref = "2011" >
@@ -4424,17 +4424,17 @@ inputs.size () = 1
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to PICML::GraphVertex as &quot;src&quot; over PICML::SrcEdge, has to match 0..1.</dispname>
 			</constraint>
-			<role name = "PICML::DstEdge" metaref = "8525" kind = "PICML::DstEdge"></role>
-			<role name = "PICML::InEventPort" metaref = "8526" kind = "PICML::InEventPort"></role>
-			<role name = "PICML::OutEventPort" metaref = "8527" kind = "PICML::OutEventPort"></role>
-			<role name = "PICML::ProvidedRequestPort" metaref = "8528" kind = "PICML::ProvidedRequestPort"></role>
-			<role name = "PICML::RequiredRequestPort" metaref = "8529" kind = "PICML::RequiredRequestPort"></role>
+			<role name = "PICML::DstEdge" metaref = "9170" kind = "PICML::DstEdge"></role>
+			<role name = "PICML::InEventPort" metaref = "9171" kind = "PICML::InEventPort"></role>
+			<role name = "PICML::OutEventPort" metaref = "9172" kind = "PICML::OutEventPort"></role>
+			<role name = "PICML::ProvidedRequestPort" metaref = "9173" kind = "PICML::ProvidedRequestPort"></role>
+			<role name = "PICML::RequiredRequestPort" metaref = "9174" kind = "PICML::RequiredRequestPort"></role>
 			<aspect name = "PathDiagram" metaref = "3969" >
-				<part metaref = "8530" role = "PICML::DstEdge" primary = "yes" linked = "no"></part>
-				<part metaref = "8531" role = "PICML::InEventPort" primary = "yes" linked = "no"></part>
-				<part metaref = "8532" role = "PICML::OutEventPort" primary = "yes" linked = "no"></part>
-				<part metaref = "8533" role = "PICML::ProvidedRequestPort" primary = "yes" linked = "no"></part>
-				<part metaref = "8534" role = "PICML::RequiredRequestPort" primary = "yes" linked = "no"></part>
+				<part metaref = "9175" role = "PICML::DstEdge" primary = "yes" linked = "no"></part>
+				<part metaref = "9176" role = "PICML::InEventPort" primary = "yes" linked = "no"></part>
+				<part metaref = "9177" role = "PICML::OutEventPort" primary = "yes" linked = "no"></part>
+				<part metaref = "9178" role = "PICML::ProvidedRequestPort" primary = "yes" linked = "no"></part>
+				<part metaref = "9179" role = "PICML::RequiredRequestPort" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::DeploymentPlan" metaref = "1455" attributes = "UUID label" >
@@ -4444,83 +4444,83 @@ inputs.size () = 1
           properties->isUnique (i : Property | i.name.trim())]]>
 				<dispname>Names of the properties in a deployment plan should be unique</dispname>
 			</constraint>
-			<role name = "PICML::CollocationGroup" metaref = "8535" kind = "PICML::CollocationGroup"></role>
-			<role name = "PICML::ComponentAssemblyReference" metaref = "8536" kind = "PICML::ComponentAssemblyReference"></role>
-			<role name = "PICML::ComponentRef" metaref = "8537" kind = "PICML::ComponentRef"></role>
-			<role name = "PICML::InstanceMapping" metaref = "8538" kind = "PICML::InstanceMapping"></role>
-			<role name = "PICML::NodeReference" metaref = "8539" kind = "PICML::NodeReference"></role>
-			<role name = "PICML::Property" metaref = "8540" kind = "PICML::Property"></role>
-			<role name = "PICML::SharedComponentReference" metaref = "8541" kind = "PICML::SharedComponentReference"></role>
+			<role name = "PICML::CollocationGroup" metaref = "9180" kind = "PICML::CollocationGroup"></role>
+			<role name = "PICML::ComponentAssemblyReference" metaref = "9181" kind = "PICML::ComponentAssemblyReference"></role>
+			<role name = "PICML::ComponentRef" metaref = "9182" kind = "PICML::ComponentRef"></role>
+			<role name = "PICML::InstanceMapping" metaref = "9183" kind = "PICML::InstanceMapping"></role>
+			<role name = "PICML::NodeReference" metaref = "9184" kind = "PICML::NodeReference"></role>
+			<role name = "PICML::Property" metaref = "9185" kind = "PICML::Property"></role>
+			<role name = "PICML::SharedComponentReference" metaref = "9186" kind = "PICML::SharedComponentReference"></role>
 			<aspect name = "NodeMapping" metaref = "3988" attributes = "UUID label" >
-				<part metaref = "8542" role = "PICML::CollocationGroup" primary = "yes" linked = "no"></part>
-				<part metaref = "8543" role = "PICML::ComponentAssemblyReference" primary = "yes" linked = "no"></part>
-				<part metaref = "8544" role = "PICML::ComponentRef" primary = "yes" linked = "no"></part>
-				<part metaref = "8545" role = "PICML::InstanceMapping" primary = "yes" linked = "no"></part>
-				<part metaref = "8546" role = "PICML::NodeReference" primary = "yes" linked = "no"></part>
-				<part metaref = "8547" role = "PICML::Property" primary = "yes" linked = "no"></part>
-				<part metaref = "8548" role = "PICML::SharedComponentReference" primary = "yes" linked = "no"></part>
+				<part metaref = "9187" role = "PICML::CollocationGroup" primary = "yes" linked = "no"></part>
+				<part metaref = "9188" role = "PICML::ComponentAssemblyReference" primary = "yes" linked = "no"></part>
+				<part metaref = "9189" role = "PICML::ComponentRef" primary = "yes" linked = "no"></part>
+				<part metaref = "9190" role = "PICML::InstanceMapping" primary = "yes" linked = "no"></part>
+				<part metaref = "9191" role = "PICML::NodeReference" primary = "yes" linked = "no"></part>
+				<part metaref = "9192" role = "PICML::Property" primary = "yes" linked = "no"></part>
+				<part metaref = "9193" role = "PICML::SharedComponentReference" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::Domain" metaref = "1467" attributes = "UUID label" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Domain"></regnode>
-			<role name = "PICML::Bridge" metaref = "8549" kind = "PICML::Bridge"></role>
-			<role name = "PICML::Bridge2Interconnect" metaref = "8550" kind = "PICML::Bridge2Interconnect"></role>
-			<role name = "PICML::Interconnect" metaref = "8551" kind = "PICML::Interconnect"></role>
-			<role name = "PICML::Interconnect2Bridge" metaref = "8552" kind = "PICML::Interconnect2Bridge"></role>
-			<role name = "PICML::Interconnect2Node" metaref = "8553" kind = "PICML::Interconnect2Node"></role>
-			<role name = "PICML::Node" metaref = "8554" kind = "PICML::Node"></role>
-			<role name = "PICML::Node2Interconnect" metaref = "8555" kind = "PICML::Node2Interconnect"></role>
-			<role name = "PICML::Property" metaref = "8556" kind = "PICML::Property"></role>
-			<role name = "PICML::SharedResource" metaref = "8557" kind = "PICML::SharedResource"></role>
-			<role name = "PICML::Shares" metaref = "8558" kind = "PICML::Shares"></role>
+			<role name = "PICML::Bridge" metaref = "9194" kind = "PICML::Bridge"></role>
+			<role name = "PICML::Bridge2Interconnect" metaref = "9195" kind = "PICML::Bridge2Interconnect"></role>
+			<role name = "PICML::Interconnect" metaref = "9196" kind = "PICML::Interconnect"></role>
+			<role name = "PICML::Interconnect2Bridge" metaref = "9197" kind = "PICML::Interconnect2Bridge"></role>
+			<role name = "PICML::Interconnect2Node" metaref = "9198" kind = "PICML::Interconnect2Node"></role>
+			<role name = "PICML::Node" metaref = "9199" kind = "PICML::Node"></role>
+			<role name = "PICML::Node2Interconnect" metaref = "9200" kind = "PICML::Node2Interconnect"></role>
+			<role name = "PICML::Property" metaref = "9201" kind = "PICML::Property"></role>
+			<role name = "PICML::SharedResource" metaref = "9202" kind = "PICML::SharedResource"></role>
+			<role name = "PICML::Shares" metaref = "9203" kind = "PICML::Shares"></role>
 			<aspect name = "Target" metaref = "4005" attributes = "UUID label" >
-				<part metaref = "8559" role = "PICML::Bridge" primary = "yes" linked = "no"></part>
-				<part metaref = "8560" role = "PICML::Bridge2Interconnect" primary = "yes" linked = "no"></part>
-				<part metaref = "8561" role = "PICML::Interconnect" primary = "yes" linked = "no"></part>
-				<part metaref = "8562" role = "PICML::Interconnect2Bridge" primary = "yes" linked = "no"></part>
-				<part metaref = "8563" role = "PICML::Interconnect2Node" primary = "yes" linked = "no"></part>
-				<part metaref = "8564" role = "PICML::Node" primary = "yes" linked = "no"></part>
-				<part metaref = "8565" role = "PICML::Node2Interconnect" primary = "yes" linked = "no"></part>
-				<part metaref = "8566" role = "PICML::Property" primary = "yes" linked = "no"></part>
-				<part metaref = "8567" role = "PICML::SharedResource" primary = "yes" linked = "no"></part>
-				<part metaref = "8568" role = "PICML::Shares" primary = "yes" linked = "no"></part>
+				<part metaref = "9204" role = "PICML::Bridge" primary = "yes" linked = "no"></part>
+				<part metaref = "9205" role = "PICML::Bridge2Interconnect" primary = "yes" linked = "no"></part>
+				<part metaref = "9206" role = "PICML::Interconnect" primary = "yes" linked = "no"></part>
+				<part metaref = "9207" role = "PICML::Interconnect2Bridge" primary = "yes" linked = "no"></part>
+				<part metaref = "9208" role = "PICML::Interconnect2Node" primary = "yes" linked = "no"></part>
+				<part metaref = "9209" role = "PICML::Node" primary = "yes" linked = "no"></part>
+				<part metaref = "9210" role = "PICML::Node2Interconnect" primary = "yes" linked = "no"></part>
+				<part metaref = "9211" role = "PICML::Property" primary = "yes" linked = "no"></part>
+				<part metaref = "9212" role = "PICML::SharedResource" primary = "yes" linked = "no"></part>
+				<part metaref = "9213" role = "PICML::Shares" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::ECConfiguration" metaref = "3845" attributes = "resourceType" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Requirement.bmp"></regnode>
-			<role name = "PICML::Consumer2BehaviorConnection" metaref = "8569" kind = "PICML::Consumer2BehaviorConnection"></role>
-			<role name = "PICML::ECConsumer" metaref = "8570" kind = "PICML::ECConsumer"></role>
-			<role name = "PICML::ECSupplier" metaref = "8571" kind = "PICML::ECSupplier"></role>
-			<role name = "PICML::Property" metaref = "8572" kind = "PICML::Property"></role>
-			<role name = "PICML::RecursiveFilterConnection" metaref = "8573" kind = "PICML::RecursiveFilterConnection"></role>
+			<role name = "PICML::Consumer2BehaviorConnection" metaref = "9214" kind = "PICML::Consumer2BehaviorConnection"></role>
+			<role name = "PICML::ECConsumer" metaref = "9215" kind = "PICML::ECConsumer"></role>
+			<role name = "PICML::ECSupplier" metaref = "9216" kind = "PICML::ECSupplier"></role>
+			<role name = "PICML::Property" metaref = "9217" kind = "PICML::Property"></role>
+			<role name = "PICML::RecursiveFilterConnection" metaref = "9218" kind = "PICML::RecursiveFilterConnection"></role>
 			<aspect name = "Packaging" metaref = "8574" attributes = "resourceType" >
-				<part metaref = "8575" role = "PICML::Property" primary = "yes" linked = "no"></part>
+				<part metaref = "9219" role = "PICML::Property" primary = "yes" linked = "no"></part>
 			</aspect>
 			<aspect name = "EventChannelRequirement" metaref = "8576" attributes = "resourceType" >
-				<part metaref = "8577" role = "PICML::Consumer2BehaviorConnection" primary = "yes" linked = "no"></part>
-				<part metaref = "8578" role = "PICML::ECConsumer" primary = "yes" linked = "no"></part>
-				<part metaref = "8579" role = "PICML::ECSupplier" primary = "yes" linked = "no"></part>
-				<part metaref = "8580" role = "PICML::RecursiveFilterConnection" primary = "yes" linked = "no"></part>
+				<part metaref = "9220" role = "PICML::Consumer2BehaviorConnection" primary = "yes" linked = "no"></part>
+				<part metaref = "9221" role = "PICML::ECConsumer" primary = "yes" linked = "no"></part>
+				<part metaref = "9222" role = "PICML::ECSupplier" primary = "yes" linked = "no"></part>
+				<part metaref = "9223" role = "PICML::RecursiveFilterConnection" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::ECConsumer" metaref = "3858" attributes = "ConfigureRTQoS" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<role name = "PICML::ECBehavior" metaref = "8581" kind = "PICML::ECBehavior"></role>
-			<role name = "PICML::ECEventFilterConfiguration" metaref = "8582" kind = "PICML::ECEventFilterConfiguration"></role>
-			<role name = "PICML::RecursiveFilterConnection" metaref = "8583" kind = "PICML::RecursiveFilterConnection"></role>
+			<role name = "PICML::ECBehavior" metaref = "9224" kind = "PICML::ECBehavior"></role>
+			<role name = "PICML::ECEventFilterConfiguration" metaref = "9225" kind = "PICML::ECEventFilterConfiguration"></role>
+			<role name = "PICML::RecursiveFilterConnection" metaref = "9226" kind = "PICML::RecursiveFilterConnection"></role>
 			<aspect name = "EventChannelRequirement" metaref = "8584" attributes = "ConfigureRTQoS" >
-				<part metaref = "8585" role = "PICML::ECBehavior" primary = "yes" linked = "no"></part>
-				<part metaref = "8586" role = "PICML::ECEventFilterConfiguration" primary = "yes" linked = "no"></part>
-				<part metaref = "8587" role = "PICML::RecursiveFilterConnection" primary = "yes" linked = "no"></part>
+				<part metaref = "9227" role = "PICML::ECBehavior" primary = "yes" linked = "no"></part>
+				<part metaref = "9228" role = "PICML::ECEventFilterConfiguration" primary = "yes" linked = "no"></part>
+				<part metaref = "9229" role = "PICML::RecursiveFilterConnection" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::ECSupplier" metaref = "3866" attributes = "ConfigureRTQoS" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<role name = "PICML::Supplier2FilterConnection" metaref = "8588" kind = "PICML::Supplier2FilterConnection"></role>
+			<role name = "PICML::Supplier2FilterConnection" metaref = "9230" kind = "PICML::Supplier2FilterConnection"></role>
 			<aspect name = "EventChannelRequirement" metaref = "8589" attributes = "ConfigureRTQoS" >
-				<part metaref = "8590" role = "PICML::Supplier2FilterConnection" primary = "yes" linked = "no"></part>
+				<part metaref = "9231" role = "PICML::Supplier2FilterConnection" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::Enum" metaref = "1489" attributes = "VersionTag SpecifyIdTag" >
@@ -4543,9 +4543,9 @@ inputs.size () = 1
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<role name = "PICML::EnumValue" metaref = "8591" kind = "PICML::EnumValue"></role>
+			<role name = "PICML::EnumValue" metaref = "9232" kind = "PICML::EnumValue"></role>
 			<aspect name = "InterfaceDefinition" metaref = "4017" attributes = "VersionTag SpecifyIdTag" >
-				<part metaref = "8592" role = "PICML::EnumValue" primary = "yes" linked = "no"></part>
+				<part metaref = "9233" role = "PICML::EnumValue" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::Event" metaref = "1493" attributes = "VersionTag PrefixTag SpecifyIdTag abstract" >
@@ -4592,43 +4592,43 @@ inputs.size () = 1
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<attrdef name="abstract" metaref = "8593" valuetype = "boolean" defvalue = "false">
+			<attrdef name="abstract" metaref = "9234" valuetype = "boolean" defvalue = "false">
 			</attrdef>
-			<role name = "PICML::Aggregate" metaref = "8594" kind = "PICML::Aggregate"></role>
-			<role name = "PICML::Alias" metaref = "8595" kind = "PICML::Alias"></role>
-			<role name = "PICML::Attribute" metaref = "8596" kind = "PICML::Attribute"></role>
-			<role name = "PICML::Collection" metaref = "8597" kind = "PICML::Collection"></role>
-			<role name = "PICML::Constant" metaref = "8598" kind = "PICML::Constant"></role>
-			<role name = "PICML::Enum" metaref = "8599" kind = "PICML::Enum"></role>
-			<role name = "PICML::Exception" metaref = "8600" kind = "PICML::Exception"></role>
-			<role name = "PICML::FactoryOperation" metaref = "8601" kind = "PICML::FactoryOperation"></role>
-			<role name = "PICML::Inherits" metaref = "8602" kind = "PICML::Inherits"></role>
-			<role name = "PICML::MakeMemberPrivate" metaref = "8603" kind = "PICML::MakeMemberPrivate"></role>
-			<role name = "PICML::Member" metaref = "8604" kind = "PICML::Member"></role>
-			<role name = "PICML::OnewayOperation" metaref = "8605" kind = "PICML::OnewayOperation"></role>
-			<role name = "PICML::PrivateFlag" metaref = "8606" kind = "PICML::PrivateFlag"></role>
-			<role name = "PICML::ReadonlyAttribute" metaref = "8607" kind = "PICML::ReadonlyAttribute"></role>
-			<role name = "PICML::Supports" metaref = "8608" kind = "PICML::Supports"></role>
-			<role name = "PICML::SwitchedAggregate" metaref = "8609" kind = "PICML::SwitchedAggregate"></role>
-			<role name = "PICML::TwowayOperation" metaref = "8610" kind = "PICML::TwowayOperation"></role>
+			<role name = "PICML::Aggregate" metaref = "9235" kind = "PICML::Aggregate"></role>
+			<role name = "PICML::Alias" metaref = "9236" kind = "PICML::Alias"></role>
+			<role name = "PICML::Attribute" metaref = "9237" kind = "PICML::Attribute"></role>
+			<role name = "PICML::Collection" metaref = "9238" kind = "PICML::Collection"></role>
+			<role name = "PICML::Constant" metaref = "9239" kind = "PICML::Constant"></role>
+			<role name = "PICML::Enum" metaref = "9240" kind = "PICML::Enum"></role>
+			<role name = "PICML::Exception" metaref = "9241" kind = "PICML::Exception"></role>
+			<role name = "PICML::FactoryOperation" metaref = "9242" kind = "PICML::FactoryOperation"></role>
+			<role name = "PICML::Inherits" metaref = "9243" kind = "PICML::Inherits"></role>
+			<role name = "PICML::MakeMemberPrivate" metaref = "9244" kind = "PICML::MakeMemberPrivate"></role>
+			<role name = "PICML::Member" metaref = "9245" kind = "PICML::Member"></role>
+			<role name = "PICML::OnewayOperation" metaref = "9246" kind = "PICML::OnewayOperation"></role>
+			<role name = "PICML::PrivateFlag" metaref = "9247" kind = "PICML::PrivateFlag"></role>
+			<role name = "PICML::ReadonlyAttribute" metaref = "9248" kind = "PICML::ReadonlyAttribute"></role>
+			<role name = "PICML::Supports" metaref = "9249" kind = "PICML::Supports"></role>
+			<role name = "PICML::SwitchedAggregate" metaref = "9250" kind = "PICML::SwitchedAggregate"></role>
+			<role name = "PICML::TwowayOperation" metaref = "9251" kind = "PICML::TwowayOperation"></role>
 			<aspect name = "InterfaceDefinition" metaref = "4037" attributes = "VersionTag PrefixTag SpecifyIdTag abstract" >
-				<part metaref = "8611" role = "PICML::Aggregate" primary = "yes" linked = "no"></part>
-				<part metaref = "8612" role = "PICML::Alias" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8613" role = "PICML::Attribute" primary = "yes" linked = "no"></part>
-				<part metaref = "8614" role = "PICML::Collection" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8615" role = "PICML::Constant" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8616" role = "PICML::Enum" primary = "yes" linked = "no"></part>
-				<part metaref = "8617" role = "PICML::Exception" primary = "yes" linked = "no"></part>
-				<part metaref = "8618" role = "PICML::FactoryOperation" primary = "yes" linked = "no"></part>
-				<part metaref = "8619" role = "PICML::Inherits" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8620" role = "PICML::MakeMemberPrivate" primary = "yes" linked = "no"></part>
-				<part metaref = "8621" role = "PICML::Member" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8622" role = "PICML::OnewayOperation" primary = "yes" linked = "no"></part>
-				<part metaref = "8623" role = "PICML::PrivateFlag" primary = "yes" linked = "no"></part>
-				<part metaref = "8624" role = "PICML::ReadonlyAttribute" primary = "yes" linked = "no"></part>
-				<part metaref = "8625" role = "PICML::Supports" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8626" role = "PICML::SwitchedAggregate" primary = "yes" linked = "no"></part>
-				<part metaref = "8627" role = "PICML::TwowayOperation" primary = "yes" linked = "no"></part>
+				<part metaref = "9252" role = "PICML::Aggregate" primary = "yes" linked = "no"></part>
+				<part metaref = "9253" role = "PICML::Alias" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9254" role = "PICML::Attribute" primary = "yes" linked = "no"></part>
+				<part metaref = "9255" role = "PICML::Collection" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9256" role = "PICML::Constant" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9257" role = "PICML::Enum" primary = "yes" linked = "no"></part>
+				<part metaref = "9258" role = "PICML::Exception" primary = "yes" linked = "no"></part>
+				<part metaref = "9259" role = "PICML::FactoryOperation" primary = "yes" linked = "no"></part>
+				<part metaref = "9260" role = "PICML::Inherits" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9261" role = "PICML::MakeMemberPrivate" primary = "yes" linked = "no"></part>
+				<part metaref = "9262" role = "PICML::Member" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9263" role = "PICML::OnewayOperation" primary = "yes" linked = "no"></part>
+				<part metaref = "9264" role = "PICML::PrivateFlag" primary = "yes" linked = "no"></part>
+				<part metaref = "9265" role = "PICML::ReadonlyAttribute" primary = "yes" linked = "no"></part>
+				<part metaref = "9266" role = "PICML::Supports" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9267" role = "PICML::SwitchedAggregate" primary = "yes" linked = "no"></part>
+				<part metaref = "9268" role = "PICML::TwowayOperation" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::Exception" metaref = "1552" attributes = "VersionTag SpecifyIdTag" >
@@ -4638,9 +4638,9 @@ inputs.size () = 1
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<role name = "PICML::Member" metaref = "8628" kind = "PICML::Member"></role>
+			<role name = "PICML::Member" metaref = "9269" kind = "PICML::Member"></role>
 			<aspect name = "InterfaceDefinition" metaref = "4077" attributes = "VersionTag SpecifyIdTag" >
-				<part metaref = "8629" role = "PICML::Member" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9270" role = "PICML::Member" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::ExecutorProject" metaref = "1556" attributes = "libraryexport sharedname ORBServices" >
@@ -4655,9 +4655,9 @@ inputs.size () = 1
 				<![CDATA[self.instances ()->size <= 1]]>
 				<dispname>One An executor project can exist as a part of the Component Project</dispname>
 			</constraint>
-			<role name = "PICML::ImplementationArtifactReference" metaref = "8630" kind = "PICML::ImplementationArtifactReference"></role>
+			<role name = "PICML::ImplementationArtifactReference" metaref = "9271" kind = "PICML::ImplementationArtifactReference"></role>
 			<aspect name = "LibraryArtifact" metaref = "4080" attributes = "libraryexport sharedname ORBServices" >
-				<part metaref = "8631" role = "PICML::ImplementationArtifactReference" primary = "yes" linked = "no"></part>
+				<part metaref = "9272" role = "PICML::ImplementationArtifactReference" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::FactoryOperation" metaref = "1560" attributes = "VersionTag SpecifyIdTag" >
@@ -4681,11 +4681,11 @@ inputs.size () = 1
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<role name = "PICML::ExceptionRef" metaref = "8632" kind = "PICML::ExceptionRef"></role>
-			<role name = "PICML::InParameter" metaref = "8633" kind = "PICML::InParameter"></role>
+			<role name = "PICML::ExceptionRef" metaref = "9273" kind = "PICML::ExceptionRef"></role>
+			<role name = "PICML::InParameter" metaref = "9274" kind = "PICML::InParameter"></role>
 			<aspect name = "InterfaceDefinition" metaref = "4098" attributes = "VersionTag SpecifyIdTag" >
-				<part metaref = "8634" role = "PICML::ExceptionRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8635" role = "PICML::InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9275" role = "PICML::ExceptionRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9276" role = "PICML::InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::File" metaref = "1566" attributes = "PrefixTag" >
@@ -4694,52 +4694,52 @@ inputs.size () = 1
 				<![CDATA[referenceParts (FileRef)->forAll (x, y : gme::Reference | x <> y implies x.refersTo ().name <> y.refersTo ().name)]]>
 				<dispname>A file cannot be included more than once</dispname>
 			</constraint>
-			<role name = "PICML::Aggregate" metaref = "8636" kind = "PICML::Aggregate"></role>
-			<role name = "PICML::Alias" metaref = "8637" kind = "PICML::Alias"></role>
-			<role name = "PICML::Boxed" metaref = "8638" kind = "PICML::Boxed"></role>
-			<role name = "PICML::Collection" metaref = "8639" kind = "PICML::Collection"></role>
-			<role name = "PICML::Component" metaref = "8640" kind = "PICML::Component"></role>
-			<role name = "PICML::ComponentFactory" metaref = "8641" kind = "PICML::ComponentFactory"></role>
-			<role name = "PICML::ComponentRef" metaref = "8642" kind = "PICML::ComponentRef"></role>
-			<role name = "PICML::Constant" metaref = "8643" kind = "PICML::Constant"></role>
-			<role name = "PICML::Enum" metaref = "8644" kind = "PICML::Enum"></role>
-			<role name = "PICML::Event" metaref = "8645" kind = "PICML::Event"></role>
-			<role name = "PICML::Exception" metaref = "8646" kind = "PICML::Exception"></role>
-			<role name = "PICML::FileRef" metaref = "8647" kind = "PICML::FileRef"></role>
-			<role name = "PICML::ManagesComponent" metaref = "8648" kind = "PICML::ManagesComponent"></role>
-			<role name = "PICML::Object" metaref = "8649" kind = "PICML::Object"></role>
-			<role name = "PICML::Package" metaref = "8650" kind = "PICML::Package"></role>
-			<role name = "PICML::SwitchedAggregate" metaref = "8651" kind = "PICML::SwitchedAggregate"></role>
-			<role name = "PICML::ValueObject" metaref = "8652" kind = "PICML::ValueObject"></role>
+			<role name = "PICML::Aggregate" metaref = "9277" kind = "PICML::Aggregate"></role>
+			<role name = "PICML::Alias" metaref = "9278" kind = "PICML::Alias"></role>
+			<role name = "PICML::Boxed" metaref = "9279" kind = "PICML::Boxed"></role>
+			<role name = "PICML::Collection" metaref = "9280" kind = "PICML::Collection"></role>
+			<role name = "PICML::Component" metaref = "9281" kind = "PICML::Component"></role>
+			<role name = "PICML::ComponentFactory" metaref = "9282" kind = "PICML::ComponentFactory"></role>
+			<role name = "PICML::ComponentRef" metaref = "9283" kind = "PICML::ComponentRef"></role>
+			<role name = "PICML::Constant" metaref = "9284" kind = "PICML::Constant"></role>
+			<role name = "PICML::Enum" metaref = "9285" kind = "PICML::Enum"></role>
+			<role name = "PICML::Event" metaref = "9286" kind = "PICML::Event"></role>
+			<role name = "PICML::Exception" metaref = "9287" kind = "PICML::Exception"></role>
+			<role name = "PICML::FileRef" metaref = "9288" kind = "PICML::FileRef"></role>
+			<role name = "PICML::ManagesComponent" metaref = "9289" kind = "PICML::ManagesComponent"></role>
+			<role name = "PICML::Object" metaref = "9290" kind = "PICML::Object"></role>
+			<role name = "PICML::Package" metaref = "9291" kind = "PICML::Package"></role>
+			<role name = "PICML::SwitchedAggregate" metaref = "9292" kind = "PICML::SwitchedAggregate"></role>
+			<role name = "PICML::ValueObject" metaref = "9293" kind = "PICML::ValueObject"></role>
 			<aspect name = "InterfaceDefinition" metaref = "4127" attributes = "PrefixTag" >
-				<part metaref = "8653" role = "PICML::Aggregate" primary = "yes" linked = "no"></part>
-				<part metaref = "8654" role = "PICML::Alias" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8655" role = "PICML::Boxed" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8656" role = "PICML::Collection" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8657" role = "PICML::Component" primary = "yes" linked = "no"></part>
-				<part metaref = "8658" role = "PICML::ComponentFactory" primary = "yes" linked = "no"></part>
-				<part metaref = "8659" role = "PICML::ComponentRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8660" role = "PICML::Constant" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8661" role = "PICML::Enum" primary = "yes" linked = "no"></part>
-				<part metaref = "8662" role = "PICML::Event" primary = "yes" linked = "no"></part>
-				<part metaref = "8663" role = "PICML::Exception" primary = "yes" linked = "no"></part>
-				<part metaref = "8664" role = "PICML::FileRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8665" role = "PICML::ManagesComponent" primary = "yes" linked = "no"></part>
-				<part metaref = "8666" role = "PICML::Object" primary = "yes" linked = "no"></part>
-				<part metaref = "8667" role = "PICML::Package" primary = "yes" linked = "no"></part>
-				<part metaref = "8668" role = "PICML::SwitchedAggregate" primary = "yes" linked = "no"></part>
-				<part metaref = "8669" role = "PICML::ValueObject" primary = "yes" linked = "no"></part>
+				<part metaref = "9294" role = "PICML::Aggregate" primary = "yes" linked = "no"></part>
+				<part metaref = "9295" role = "PICML::Alias" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9296" role = "PICML::Boxed" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9297" role = "PICML::Collection" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9298" role = "PICML::Component" primary = "yes" linked = "no"></part>
+				<part metaref = "9299" role = "PICML::ComponentFactory" primary = "yes" linked = "no"></part>
+				<part metaref = "9300" role = "PICML::ComponentRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9301" role = "PICML::Constant" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9302" role = "PICML::Enum" primary = "yes" linked = "no"></part>
+				<part metaref = "9303" role = "PICML::Event" primary = "yes" linked = "no"></part>
+				<part metaref = "9304" role = "PICML::Exception" primary = "yes" linked = "no"></part>
+				<part metaref = "9305" role = "PICML::FileRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9306" role = "PICML::ManagesComponent" primary = "yes" linked = "no"></part>
+				<part metaref = "9307" role = "PICML::Object" primary = "yes" linked = "no"></part>
+				<part metaref = "9308" role = "PICML::Package" primary = "yes" linked = "no"></part>
+				<part metaref = "9309" role = "PICML::SwitchedAggregate" primary = "yes" linked = "no"></part>
+				<part metaref = "9310" role = "PICML::ValueObject" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::ImplementationRequirement" metaref = "1602" attributes = "resourceType resourcePort componentPort ResourceUsageKind" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="ImplementationRequirement.bmp"></regnode>
-			<role name = "PICML::Property" metaref = "8670" kind = "PICML::Property"></role>
+			<role name = "PICML::Property" metaref = "9311" kind = "PICML::Property"></role>
 			<aspect name = "Packaging" metaref = "4146" attributes = "resourceType resourcePort componentPort ResourceUsageKind" >
-				<part metaref = "8671" role = "PICML::Property" primary = "yes" linked = "no"></part>
+				<part metaref = "9312" role = "PICML::Property" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "PICML::InputAction" metaref = "8672" >
+		<model name = "PICML::InputAction" metaref = "9313" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="InputAction.bmp"></regnode>
 			<constraint name="MustHaveFinish" eventmask = "0x0" depth = "1" defdfornamesp = "PICML" priority = "1">
@@ -4766,9 +4766,9 @@ inputs.size () = 1
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to PICML::InputActionBase as &quot;src&quot; over PICML::MultiInput, has to match 0..1.</dispname>
 			</constraint>
-			<role name = "PICML::Property" metaref = "8673" kind = "PICML::Property"></role>
+			<role name = "PICML::Property" metaref = "9314" kind = "PICML::Property"></role>
 			<aspect name = "Behavior" metaref = "4150" >
-				<part metaref = "8674" role = "PICML::Property" primary = "yes" linked = "no"></part>
+				<part metaref = "9315" role = "PICML::Property" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::Interconnect" metaref = "1606" attributes = "label" >
@@ -4784,9 +4784,9 @@ inputs.size () = 1
                      (srcCount >= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to PICML::Interconnect as &quot;src&quot; over PICML::Node2Interconnect, has to match 1..*.</dispname>
 			</constraint>
-			<role name = "PICML::Resource" metaref = "8675" kind = "PICML::Resource"></role>
+			<role name = "PICML::Resource" metaref = "9316" kind = "PICML::Resource"></role>
 			<aspect name = "Target" metaref = "4153" attributes = "label" >
-				<part metaref = "8676" role = "PICML::Resource" primary = "yes" linked = "no"></part>
+				<part metaref = "9317" role = "PICML::Resource" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::Latency" metaref = "1610" attributes = "fileName priority rate warmup iterations resolution" >
@@ -4807,15 +4807,15 @@ inputs.size () = 1
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to PICML::MetricsBase as &quot;dst&quot; over PICML::WorkloadCharacteristics, has to match 0..1.</dispname>
 			</constraint>
-			<role name = "PICML::Average" metaref = "8677" kind = "PICML::Average"></role>
-			<role name = "PICML::Jitter" metaref = "8678" kind = "PICML::Jitter"></role>
-			<role name = "PICML::Maximum" metaref = "8679" kind = "PICML::Maximum"></role>
-			<role name = "PICML::Minimum" metaref = "8680" kind = "PICML::Minimum"></role>
+			<role name = "PICML::Average" metaref = "9318" kind = "PICML::Average"></role>
+			<role name = "PICML::Jitter" metaref = "9319" kind = "PICML::Jitter"></role>
+			<role name = "PICML::Maximum" metaref = "9320" kind = "PICML::Maximum"></role>
+			<role name = "PICML::Minimum" metaref = "9321" kind = "PICML::Minimum"></role>
 			<aspect name = "DataAnalysis" metaref = "4159" attributes = "fileName priority rate warmup iterations resolution" >
-				<part metaref = "8681" role = "PICML::Average" primary = "yes" linked = "no"></part>
-				<part metaref = "8682" role = "PICML::Jitter" primary = "yes" linked = "no"></part>
-				<part metaref = "8683" role = "PICML::Maximum" primary = "yes" linked = "no"></part>
-				<part metaref = "8684" role = "PICML::Minimum" primary = "yes" linked = "no"></part>
+				<part metaref = "9322" role = "PICML::Average" primary = "yes" linked = "no"></part>
+				<part metaref = "9323" role = "PICML::Jitter" primary = "yes" linked = "no"></part>
+				<part metaref = "9324" role = "PICML::Maximum" primary = "yes" linked = "no"></part>
+				<part metaref = "9325" role = "PICML::Minimum" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::LookupOperation" metaref = "1620" attributes = "VersionTag SpecifyIdTag" >
@@ -4839,28 +4839,28 @@ inputs.size () = 1
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<role name = "PICML::ExceptionRef" metaref = "8685" kind = "PICML::ExceptionRef"></role>
-			<role name = "PICML::InParameter" metaref = "8686" kind = "PICML::InParameter"></role>
+			<role name = "PICML::ExceptionRef" metaref = "9326" kind = "PICML::ExceptionRef"></role>
+			<role name = "PICML::InParameter" metaref = "9327" kind = "PICML::InParameter"></role>
 			<aspect name = "InterfaceDefinition" metaref = "4166" attributes = "VersionTag SpecifyIdTag" >
-				<part metaref = "8687" role = "PICML::ExceptionRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8688" role = "PICML::InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9328" role = "PICML::ExceptionRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9329" role = "PICML::InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::MPC" metaref = "1626" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<role name = "PICML::Project" metaref = "8689" kind = "PICML::Project"></role>
-			<role name = "PICML::Workspaces" metaref = "8690" kind = "PICML::Workspaces"></role>
+			<role name = "PICML::Project" metaref = "9330" kind = "PICML::Project"></role>
+			<role name = "PICML::Workspaces" metaref = "9331" kind = "PICML::Workspaces"></role>
 			<aspect name = "Workspace" metaref = "4171" >
-				<part metaref = "8691" role = "PICML::Project" primary = "yes" linked = "no"></part>
-				<part metaref = "8692" role = "PICML::Workspaces" primary = "yes" linked = "no"></part>
+				<part metaref = "9332" role = "PICML::Project" primary = "yes" linked = "no"></part>
+				<part metaref = "9333" role = "PICML::Workspaces" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::Node" metaref = "1632" attributes = "label" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Node"></regnode>
-			<role name = "PICML::Resource" metaref = "8693" kind = "PICML::Resource"></role>
+			<role name = "PICML::Resource" metaref = "9334" kind = "PICML::Resource"></role>
 			<aspect name = "Target" metaref = "4175" attributes = "label" >
-				<part metaref = "8694" role = "PICML::Resource" primary = "yes" linked = "no"></part>
+				<part metaref = "9335" role = "PICML::Resource" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::Object" metaref = "1636" attributes = "VersionTag PrefixTag SpecifyIdTag local abstract" >
@@ -4910,35 +4910,35 @@ inputs.size () = 1
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<attrdef name="abstract" metaref = "8695" valuetype = "boolean" defvalue = "false">
+			<attrdef name="abstract" metaref = "9336" valuetype = "boolean" defvalue = "false">
 			</attrdef>
-			<attrdef name="local" metaref = "8696" valuetype = "boolean" defvalue = "false">
+			<attrdef name="local" metaref = "9337" valuetype = "boolean" defvalue = "false">
 			</attrdef>
-			<role name = "PICML::Aggregate" metaref = "8697" kind = "PICML::Aggregate"></role>
-			<role name = "PICML::Alias" metaref = "8698" kind = "PICML::Alias"></role>
-			<role name = "PICML::Attribute" metaref = "8699" kind = "PICML::Attribute"></role>
-			<role name = "PICML::Collection" metaref = "8700" kind = "PICML::Collection"></role>
-			<role name = "PICML::Constant" metaref = "8701" kind = "PICML::Constant"></role>
-			<role name = "PICML::Enum" metaref = "8702" kind = "PICML::Enum"></role>
-			<role name = "PICML::Exception" metaref = "8703" kind = "PICML::Exception"></role>
-			<role name = "PICML::Inherits" metaref = "8704" kind = "PICML::Inherits"></role>
-			<role name = "PICML::OnewayOperation" metaref = "8705" kind = "PICML::OnewayOperation"></role>
-			<role name = "PICML::ReadonlyAttribute" metaref = "8706" kind = "PICML::ReadonlyAttribute"></role>
-			<role name = "PICML::SwitchedAggregate" metaref = "8707" kind = "PICML::SwitchedAggregate"></role>
-			<role name = "PICML::TwowayOperation" metaref = "8708" kind = "PICML::TwowayOperation"></role>
+			<role name = "PICML::Aggregate" metaref = "9338" kind = "PICML::Aggregate"></role>
+			<role name = "PICML::Alias" metaref = "9339" kind = "PICML::Alias"></role>
+			<role name = "PICML::Attribute" metaref = "9340" kind = "PICML::Attribute"></role>
+			<role name = "PICML::Collection" metaref = "9341" kind = "PICML::Collection"></role>
+			<role name = "PICML::Constant" metaref = "9342" kind = "PICML::Constant"></role>
+			<role name = "PICML::Enum" metaref = "9343" kind = "PICML::Enum"></role>
+			<role name = "PICML::Exception" metaref = "9344" kind = "PICML::Exception"></role>
+			<role name = "PICML::Inherits" metaref = "9345" kind = "PICML::Inherits"></role>
+			<role name = "PICML::OnewayOperation" metaref = "9346" kind = "PICML::OnewayOperation"></role>
+			<role name = "PICML::ReadonlyAttribute" metaref = "9347" kind = "PICML::ReadonlyAttribute"></role>
+			<role name = "PICML::SwitchedAggregate" metaref = "9348" kind = "PICML::SwitchedAggregate"></role>
+			<role name = "PICML::TwowayOperation" metaref = "9349" kind = "PICML::TwowayOperation"></role>
 			<aspect name = "InterfaceDefinition" metaref = "4194" attributes = "VersionTag PrefixTag SpecifyIdTag local abstract" >
-				<part metaref = "8709" role = "PICML::Aggregate" primary = "yes" linked = "no"></part>
-				<part metaref = "8710" role = "PICML::Alias" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8711" role = "PICML::Attribute" primary = "yes" linked = "no"></part>
-				<part metaref = "8712" role = "PICML::Collection" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8713" role = "PICML::Constant" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8714" role = "PICML::Enum" primary = "yes" linked = "no"></part>
-				<part metaref = "8715" role = "PICML::Exception" primary = "yes" linked = "no"></part>
-				<part metaref = "8716" role = "PICML::Inherits" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8717" role = "PICML::OnewayOperation" primary = "yes" linked = "no"></part>
-				<part metaref = "8718" role = "PICML::ReadonlyAttribute" primary = "yes" linked = "no"></part>
-				<part metaref = "8719" role = "PICML::SwitchedAggregate" primary = "yes" linked = "no"></part>
-				<part metaref = "8720" role = "PICML::TwowayOperation" primary = "yes" linked = "no"></part>
+				<part metaref = "9350" role = "PICML::Aggregate" primary = "yes" linked = "no"></part>
+				<part metaref = "9351" role = "PICML::Alias" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9352" role = "PICML::Attribute" primary = "yes" linked = "no"></part>
+				<part metaref = "9353" role = "PICML::Collection" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9354" role = "PICML::Constant" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9355" role = "PICML::Enum" primary = "yes" linked = "no"></part>
+				<part metaref = "9356" role = "PICML::Exception" primary = "yes" linked = "no"></part>
+				<part metaref = "9357" role = "PICML::Inherits" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9358" role = "PICML::OnewayOperation" primary = "yes" linked = "no"></part>
+				<part metaref = "9359" role = "PICML::ReadonlyAttribute" primary = "yes" linked = "no"></part>
+				<part metaref = "9360" role = "PICML::SwitchedAggregate" primary = "yes" linked = "no"></part>
+				<part metaref = "9361" role = "PICML::TwowayOperation" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::OnewayOperation" metaref = "1664" attributes = "VersionTag SpecifyIdTag" >
@@ -4956,12 +4956,12 @@ inputs.size () = 1
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<role name = "PICML::InParameter" metaref = "8721" kind = "PICML::InParameter"></role>
+			<role name = "PICML::InParameter" metaref = "9362" kind = "PICML::InParameter"></role>
 			<aspect name = "InterfaceDefinition" metaref = "4208" attributes = "VersionTag SpecifyIdTag" >
-				<part metaref = "8722" role = "PICML::InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9363" role = "PICML::InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "PICML::OutputAction" metaref = "8723" >
+		<model name = "PICML::OutputAction" metaref = "9364" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="action.bmp"></regnode>
 				<regnode name = "icon" value ="OutputAction.bmp"></regnode>
@@ -4982,9 +4982,9 @@ ports.exists (iter : OutEventPort | iter->name () = self.name ())]]>
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to PICML::ActionBase as &quot;src&quot; over PICML::Transition, has to match 0..1.</dispname>
 			</constraint>
-			<role name = "PICML::Property" metaref = "8724" kind = "PICML::Property"></role>
+			<role name = "PICML::Property" metaref = "9365" kind = "PICML::Property"></role>
 			<aspect name = "Behavior" metaref = "4212" >
-				<part metaref = "8725" role = "PICML::Property" primary = "yes" linked = "no"></part>
+				<part metaref = "9366" role = "PICML::Property" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::Package" metaref = "1668" attributes = "VersionTag PrefixTag SpecifyIdTag" >
@@ -5007,39 +5007,39 @@ ports.exists (iter : OutEventPort | iter->name () = self.name ())]]>
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<role name = "PICML::Aggregate" metaref = "8726" kind = "PICML::Aggregate"></role>
-			<role name = "PICML::Alias" metaref = "8727" kind = "PICML::Alias"></role>
-			<role name = "PICML::Boxed" metaref = "8728" kind = "PICML::Boxed"></role>
-			<role name = "PICML::Collection" metaref = "8729" kind = "PICML::Collection"></role>
-			<role name = "PICML::Component" metaref = "8730" kind = "PICML::Component"></role>
-			<role name = "PICML::ComponentFactory" metaref = "8731" kind = "PICML::ComponentFactory"></role>
-			<role name = "PICML::ComponentRef" metaref = "8732" kind = "PICML::ComponentRef"></role>
-			<role name = "PICML::Constant" metaref = "8733" kind = "PICML::Constant"></role>
-			<role name = "PICML::Enum" metaref = "8734" kind = "PICML::Enum"></role>
-			<role name = "PICML::Event" metaref = "8735" kind = "PICML::Event"></role>
-			<role name = "PICML::Exception" metaref = "8736" kind = "PICML::Exception"></role>
-			<role name = "PICML::ManagesComponent" metaref = "8737" kind = "PICML::ManagesComponent"></role>
-			<role name = "PICML::Object" metaref = "8738" kind = "PICML::Object"></role>
-			<role name = "PICML::Package" metaref = "8739" kind = "PICML::Package"></role>
-			<role name = "PICML::SwitchedAggregate" metaref = "8740" kind = "PICML::SwitchedAggregate"></role>
-			<role name = "PICML::ValueObject" metaref = "8741" kind = "PICML::ValueObject"></role>
+			<role name = "PICML::Aggregate" metaref = "9367" kind = "PICML::Aggregate"></role>
+			<role name = "PICML::Alias" metaref = "9368" kind = "PICML::Alias"></role>
+			<role name = "PICML::Boxed" metaref = "9369" kind = "PICML::Boxed"></role>
+			<role name = "PICML::Collection" metaref = "9370" kind = "PICML::Collection"></role>
+			<role name = "PICML::Component" metaref = "9371" kind = "PICML::Component"></role>
+			<role name = "PICML::ComponentFactory" metaref = "9372" kind = "PICML::ComponentFactory"></role>
+			<role name = "PICML::ComponentRef" metaref = "9373" kind = "PICML::ComponentRef"></role>
+			<role name = "PICML::Constant" metaref = "9374" kind = "PICML::Constant"></role>
+			<role name = "PICML::Enum" metaref = "9375" kind = "PICML::Enum"></role>
+			<role name = "PICML::Event" metaref = "9376" kind = "PICML::Event"></role>
+			<role name = "PICML::Exception" metaref = "9377" kind = "PICML::Exception"></role>
+			<role name = "PICML::ManagesComponent" metaref = "9378" kind = "PICML::ManagesComponent"></role>
+			<role name = "PICML::Object" metaref = "9379" kind = "PICML::Object"></role>
+			<role name = "PICML::Package" metaref = "9380" kind = "PICML::Package"></role>
+			<role name = "PICML::SwitchedAggregate" metaref = "9381" kind = "PICML::SwitchedAggregate"></role>
+			<role name = "PICML::ValueObject" metaref = "9382" kind = "PICML::ValueObject"></role>
 			<aspect name = "InterfaceDefinition" metaref = "4230" attributes = "VersionTag PrefixTag SpecifyIdTag" >
-				<part metaref = "8742" role = "PICML::Aggregate" primary = "yes" linked = "no"></part>
-				<part metaref = "8743" role = "PICML::Alias" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8744" role = "PICML::Boxed" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8745" role = "PICML::Collection" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8746" role = "PICML::Component" primary = "yes" linked = "no"></part>
-				<part metaref = "8747" role = "PICML::ComponentFactory" primary = "yes" linked = "no"></part>
-				<part metaref = "8748" role = "PICML::ComponentRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8749" role = "PICML::Constant" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8750" role = "PICML::Enum" primary = "yes" linked = "no"></part>
-				<part metaref = "8751" role = "PICML::Event" primary = "yes" linked = "no"></part>
-				<part metaref = "8752" role = "PICML::Exception" primary = "yes" linked = "no"></part>
-				<part metaref = "8753" role = "PICML::ManagesComponent" primary = "yes" linked = "no"></part>
-				<part metaref = "8754" role = "PICML::Object" primary = "yes" linked = "no"></part>
-				<part metaref = "8755" role = "PICML::Package" primary = "yes" linked = "no"></part>
-				<part metaref = "8756" role = "PICML::SwitchedAggregate" primary = "yes" linked = "no"></part>
-				<part metaref = "8757" role = "PICML::ValueObject" primary = "yes" linked = "no"></part>
+				<part metaref = "9383" role = "PICML::Aggregate" primary = "yes" linked = "no"></part>
+				<part metaref = "9384" role = "PICML::Alias" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9385" role = "PICML::Boxed" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9386" role = "PICML::Collection" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9387" role = "PICML::Component" primary = "yes" linked = "no"></part>
+				<part metaref = "9388" role = "PICML::ComponentFactory" primary = "yes" linked = "no"></part>
+				<part metaref = "9389" role = "PICML::ComponentRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9390" role = "PICML::Constant" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9391" role = "PICML::Enum" primary = "yes" linked = "no"></part>
+				<part metaref = "9392" role = "PICML::Event" primary = "yes" linked = "no"></part>
+				<part metaref = "9393" role = "PICML::Exception" primary = "yes" linked = "no"></part>
+				<part metaref = "9394" role = "PICML::ManagesComponent" primary = "yes" linked = "no"></part>
+				<part metaref = "9395" role = "PICML::Object" primary = "yes" linked = "no"></part>
+				<part metaref = "9396" role = "PICML::Package" primary = "yes" linked = "no"></part>
+				<part metaref = "9397" role = "PICML::SwitchedAggregate" primary = "yes" linked = "no"></part>
+				<part metaref = "9398" role = "PICML::ValueObject" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::PackageConfigurationContainer" metaref = "1702" >
@@ -5051,60 +5051,60 @@ ports.exists (iter : OutEventPort | iter->name () = self.name ())]]>
 				<dispname>A PackageConfiguration can either specialize another PackageConfiguration, or contain a ComponentPackage, or contain a reference to a ComponentPackage</dispname>
 			</constraint>
 			<constraint name="ValidPICML__PackageConfigurationContainerPartCardinality183" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::PackageConfSpecializedConfig" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPICML__PackageConfigurationContainerPartCardinality184" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::PackageConfBasePackage" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPICML__PackageConfigurationContainerPartCardinality185" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::PackageConfReference" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPICML__PackageConfigurationContainerPartCardinality186" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::ComponentPackage" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPICML__PackageConfigurationContainerPartCardinality187" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::PackageConfiguration" ) -> size in
-                     (partCount >= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 1..*.</dispname>
-			</constraint>
-			<constraint name="ValidPICML__PackageConfigurationContainerPartCardinality188" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PICML::ComponentPackageReference" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
-			<role name = "PICML::ComponentPackage" metaref = "8758" kind = "PICML::ComponentPackage"></role>
-			<role name = "PICML::ComponentPackageReference" metaref = "8759" kind = "PICML::ComponentPackageReference"></role>
-			<role name = "PICML::ECConfiguration" metaref = "8760" kind = "PICML::ECConfiguration"></role>
-			<role name = "PICML::PackageConfBasePackage" metaref = "8761" kind = "PICML::PackageConfBasePackage"></role>
-			<role name = "PICML::PackageConfConfigProperty" metaref = "8762" kind = "PICML::PackageConfConfigProperty"></role>
-			<role name = "PICML::PackageConfReference" metaref = "8763" kind = "PICML::PackageConfReference"></role>
-			<role name = "PICML::PackageConfSelectRequirement" metaref = "8764" kind = "PICML::PackageConfSelectRequirement"></role>
-			<role name = "PICML::PackageConfSpecializedConfig" metaref = "8765" kind = "PICML::PackageConfSpecializedConfig"></role>
-			<role name = "PICML::PackageConfiguration" metaref = "8766" kind = "PICML::PackageConfiguration"></role>
-			<role name = "PICML::Property" metaref = "8767" kind = "PICML::Property"></role>
-			<role name = "PICML::RTConfiguration" metaref = "8768" kind = "PICML::RTConfiguration"></role>
-			<role name = "PICML::Requirement" metaref = "8769" kind = "PICML::Requirement"></role>
+			<constraint name="ValidPICML__PackageConfigurationContainerPartCardinality184" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PICML::ComponentPackage" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPICML__PackageConfigurationContainerPartCardinality185" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PICML::PackageConfBasePackage" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPICML__PackageConfigurationContainerPartCardinality186" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PICML::PackageConfReference" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPICML__PackageConfigurationContainerPartCardinality187" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PICML::PackageConfSpecializedConfig" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPICML__PackageConfigurationContainerPartCardinality188" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PICML::PackageConfiguration" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PICML::PackageConfigurationContainer, has to match 1..*.</dispname>
+			</constraint>
+			<role name = "PICML::ComponentPackage" metaref = "9399" kind = "PICML::ComponentPackage"></role>
+			<role name = "PICML::ComponentPackageReference" metaref = "9400" kind = "PICML::ComponentPackageReference"></role>
+			<role name = "PICML::ECConfiguration" metaref = "9401" kind = "PICML::ECConfiguration"></role>
+			<role name = "PICML::PackageConfBasePackage" metaref = "9402" kind = "PICML::PackageConfBasePackage"></role>
+			<role name = "PICML::PackageConfConfigProperty" metaref = "9403" kind = "PICML::PackageConfConfigProperty"></role>
+			<role name = "PICML::PackageConfReference" metaref = "9404" kind = "PICML::PackageConfReference"></role>
+			<role name = "PICML::PackageConfSelectRequirement" metaref = "9405" kind = "PICML::PackageConfSelectRequirement"></role>
+			<role name = "PICML::PackageConfSpecializedConfig" metaref = "9406" kind = "PICML::PackageConfSpecializedConfig"></role>
+			<role name = "PICML::PackageConfiguration" metaref = "9407" kind = "PICML::PackageConfiguration"></role>
+			<role name = "PICML::Property" metaref = "9408" kind = "PICML::Property"></role>
+			<role name = "PICML::RTConfiguration" metaref = "9409" kind = "PICML::RTConfiguration"></role>
+			<role name = "PICML::Requirement" metaref = "9410" kind = "PICML::Requirement"></role>
 			<aspect name = "Packaging" metaref = "4259" >
-				<part metaref = "8770" role = "PICML::ComponentPackage" primary = "yes" linked = "no"></part>
-				<part metaref = "8771" role = "PICML::ComponentPackageReference" primary = "yes" linked = "no"></part>
-				<part metaref = "8772" role = "PICML::ECConfiguration" primary = "yes" linked = "no"></part>
-				<part metaref = "8773" role = "PICML::PackageConfBasePackage" primary = "yes" linked = "no"></part>
-				<part metaref = "8774" role = "PICML::PackageConfConfigProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "8775" role = "PICML::PackageConfReference" primary = "yes" linked = "no"></part>
-				<part metaref = "8776" role = "PICML::PackageConfSelectRequirement" primary = "yes" linked = "no"></part>
-				<part metaref = "8777" role = "PICML::PackageConfSpecializedConfig" primary = "yes" linked = "no"></part>
-				<part metaref = "8778" role = "PICML::PackageConfiguration" primary = "yes" linked = "no"></part>
-				<part metaref = "8779" role = "PICML::Property" primary = "yes" linked = "no"></part>
-				<part metaref = "8780" role = "PICML::RTConfiguration" primary = "yes" linked = "no"></part>
-				<part metaref = "8781" role = "PICML::Requirement" primary = "yes" linked = "no"></part>
+				<part metaref = "9411" role = "PICML::ComponentPackage" primary = "yes" linked = "no"></part>
+				<part metaref = "9412" role = "PICML::ComponentPackageReference" primary = "yes" linked = "no"></part>
+				<part metaref = "9413" role = "PICML::ECConfiguration" primary = "yes" linked = "no"></part>
+				<part metaref = "9414" role = "PICML::PackageConfBasePackage" primary = "yes" linked = "no"></part>
+				<part metaref = "9415" role = "PICML::PackageConfConfigProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "9416" role = "PICML::PackageConfReference" primary = "yes" linked = "no"></part>
+				<part metaref = "9417" role = "PICML::PackageConfSelectRequirement" primary = "yes" linked = "no"></part>
+				<part metaref = "9418" role = "PICML::PackageConfSpecializedConfig" primary = "yes" linked = "no"></part>
+				<part metaref = "9419" role = "PICML::PackageConfiguration" primary = "yes" linked = "no"></part>
+				<part metaref = "9420" role = "PICML::Property" primary = "yes" linked = "no"></part>
+				<part metaref = "9421" role = "PICML::RTConfiguration" primary = "yes" linked = "no"></part>
+				<part metaref = "9422" role = "PICML::Requirement" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::PackageContainer" metaref = "1724" >
@@ -5121,7 +5121,7 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 				<dispname>Monolithic implementation in a ComponentPackage should all implement the same component interface</dispname>
 			</constraint>
 			<constraint name="ValidPICML__PackageContainerPartCardinality189" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::PackageInterface" ) -> size in
+				<![CDATA[let partCount = self.parts( "PICML::ComponentRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::PackageContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -5131,84 +5131,84 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 				<dispname>Multiplicity of parts, which are contained by PICML::PackageContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPICML__PackageContainerPartCardinality191" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::ComponentRef" ) -> size in
+				<![CDATA[let partCount = self.parts( "PICML::PackageInterface" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::PackageContainer, has to match 0..1.</dispname>
 			</constraint>
-			<role name = "PICML::ComponentImplementationReference" metaref = "8782" kind = "PICML::ComponentImplementationReference"></role>
-			<role name = "PICML::ComponentPackage" metaref = "8783" kind = "PICML::ComponentPackage"></role>
-			<role name = "PICML::ComponentRef" metaref = "8784" kind = "PICML::ComponentRef"></role>
-			<role name = "PICML::Implementation" metaref = "8785" kind = "PICML::Implementation"></role>
-			<role name = "PICML::PackageConfigProperty" metaref = "8786" kind = "PICML::PackageConfigProperty"></role>
-			<role name = "PICML::PackageInfoProperty" metaref = "8787" kind = "PICML::PackageInfoProperty"></role>
-			<role name = "PICML::PackageInterface" metaref = "8788" kind = "PICML::PackageInterface"></role>
-			<role name = "PICML::Property" metaref = "8789" kind = "PICML::Property"></role>
+			<role name = "PICML::ComponentImplementationReference" metaref = "9423" kind = "PICML::ComponentImplementationReference"></role>
+			<role name = "PICML::ComponentPackage" metaref = "9424" kind = "PICML::ComponentPackage"></role>
+			<role name = "PICML::ComponentRef" metaref = "9425" kind = "PICML::ComponentRef"></role>
+			<role name = "PICML::Implementation" metaref = "9426" kind = "PICML::Implementation"></role>
+			<role name = "PICML::PackageConfigProperty" metaref = "9427" kind = "PICML::PackageConfigProperty"></role>
+			<role name = "PICML::PackageInfoProperty" metaref = "9428" kind = "PICML::PackageInfoProperty"></role>
+			<role name = "PICML::PackageInterface" metaref = "9429" kind = "PICML::PackageInterface"></role>
+			<role name = "PICML::Property" metaref = "9430" kind = "PICML::Property"></role>
 			<aspect name = "Packaging" metaref = "4280" >
-				<part metaref = "8790" role = "PICML::ComponentImplementationReference" primary = "yes" kindaspect = "Packaging" linked = "no"></part>
-				<part metaref = "8791" role = "PICML::ComponentPackage" primary = "yes" linked = "no"></part>
-				<part metaref = "8792" role = "PICML::ComponentRef" primary = "yes" linked = "no"></part>
-				<part metaref = "8793" role = "PICML::Implementation" primary = "yes" linked = "no"></part>
-				<part metaref = "8794" role = "PICML::PackageConfigProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "8795" role = "PICML::PackageInfoProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "8796" role = "PICML::PackageInterface" primary = "yes" linked = "no"></part>
-				<part metaref = "8797" role = "PICML::Property" primary = "yes" linked = "no"></part>
+				<part metaref = "9431" role = "PICML::ComponentImplementationReference" primary = "yes" kindaspect = "Packaging" linked = "no"></part>
+				<part metaref = "9432" role = "PICML::ComponentPackage" primary = "yes" linked = "no"></part>
+				<part metaref = "9433" role = "PICML::ComponentRef" primary = "yes" linked = "no"></part>
+				<part metaref = "9434" role = "PICML::Implementation" primary = "yes" linked = "no"></part>
+				<part metaref = "9435" role = "PICML::PackageConfigProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "9436" role = "PICML::PackageInfoProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "9437" role = "PICML::PackageInterface" primary = "yes" linked = "no"></part>
+				<part metaref = "9438" role = "PICML::Property" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::Path" metaref = "2116" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<role name = "PICML::ComponentRef" metaref = "8798" kind = "PICML::ComponentRef"></role>
-			<role name = "PICML::ConnectedComponent" metaref = "8799" kind = "PICML::ConnectedComponent"></role>
-			<role name = "PICML::DisplayNode" metaref = "8800" kind = "PICML::DisplayNode"></role>
-			<role name = "PICML::DstEdge" metaref = "8801" kind = "PICML::DstEdge"></role>
-			<role name = "PICML::Edge" metaref = "8802" kind = "PICML::Edge"></role>
-			<role name = "PICML::EdgeProperty" metaref = "8803" kind = "PICML::EdgeProperty"></role>
-			<role name = "PICML::InEventPort" metaref = "8804" kind = "PICML::InEventPort"></role>
-			<role name = "PICML::OutEventPort" metaref = "8805" kind = "PICML::OutEventPort"></role>
-			<role name = "PICML::Property" metaref = "8806" kind = "PICML::Property"></role>
-			<role name = "PICML::ProvidedRequestPort" metaref = "8807" kind = "PICML::ProvidedRequestPort"></role>
-			<role name = "PICML::RequiredRequestPort" metaref = "8808" kind = "PICML::RequiredRequestPort"></role>
-			<role name = "PICML::SrcEdge" metaref = "8809" kind = "PICML::SrcEdge"></role>
+			<role name = "PICML::ComponentRef" metaref = "9439" kind = "PICML::ComponentRef"></role>
+			<role name = "PICML::ConnectedComponent" metaref = "9440" kind = "PICML::ConnectedComponent"></role>
+			<role name = "PICML::DisplayNode" metaref = "9441" kind = "PICML::DisplayNode"></role>
+			<role name = "PICML::DstEdge" metaref = "9442" kind = "PICML::DstEdge"></role>
+			<role name = "PICML::Edge" metaref = "9443" kind = "PICML::Edge"></role>
+			<role name = "PICML::EdgeProperty" metaref = "9444" kind = "PICML::EdgeProperty"></role>
+			<role name = "PICML::InEventPort" metaref = "9445" kind = "PICML::InEventPort"></role>
+			<role name = "PICML::OutEventPort" metaref = "9446" kind = "PICML::OutEventPort"></role>
+			<role name = "PICML::Property" metaref = "9447" kind = "PICML::Property"></role>
+			<role name = "PICML::ProvidedRequestPort" metaref = "9448" kind = "PICML::ProvidedRequestPort"></role>
+			<role name = "PICML::RequiredRequestPort" metaref = "9449" kind = "PICML::RequiredRequestPort"></role>
+			<role name = "PICML::SrcEdge" metaref = "9450" kind = "PICML::SrcEdge"></role>
 			<aspect name = "PathDiagram" metaref = "4301" >
-				<part metaref = "8810" role = "PICML::ComponentRef" primary = "yes" linked = "no"></part>
-				<part metaref = "8811" role = "PICML::ConnectedComponent" primary = "yes" linked = "no"></part>
-				<part metaref = "8812" role = "PICML::DisplayNode" primary = "yes" linked = "no"></part>
-				<part metaref = "8813" role = "PICML::DstEdge" primary = "yes" linked = "no"></part>
-				<part metaref = "8814" role = "PICML::Edge" primary = "yes" linked = "no"></part>
-				<part metaref = "8815" role = "PICML::EdgeProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "8816" role = "PICML::InEventPort" primary = "yes" linked = "no"></part>
-				<part metaref = "8817" role = "PICML::OutEventPort" primary = "yes" linked = "no"></part>
-				<part metaref = "8818" role = "PICML::Property" primary = "yes" linked = "no"></part>
-				<part metaref = "8819" role = "PICML::ProvidedRequestPort" primary = "yes" linked = "no"></part>
-				<part metaref = "8820" role = "PICML::RequiredRequestPort" primary = "yes" linked = "no"></part>
-				<part metaref = "8821" role = "PICML::SrcEdge" primary = "yes" linked = "no"></part>
+				<part metaref = "9451" role = "PICML::ComponentRef" primary = "yes" linked = "no"></part>
+				<part metaref = "9452" role = "PICML::ConnectedComponent" primary = "yes" linked = "no"></part>
+				<part metaref = "9453" role = "PICML::DisplayNode" primary = "yes" linked = "no"></part>
+				<part metaref = "9454" role = "PICML::DstEdge" primary = "yes" linked = "no"></part>
+				<part metaref = "9455" role = "PICML::Edge" primary = "yes" linked = "no"></part>
+				<part metaref = "9456" role = "PICML::EdgeProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "9457" role = "PICML::InEventPort" primary = "yes" linked = "no"></part>
+				<part metaref = "9458" role = "PICML::OutEventPort" primary = "yes" linked = "no"></part>
+				<part metaref = "9459" role = "PICML::Property" primary = "yes" linked = "no"></part>
+				<part metaref = "9460" role = "PICML::ProvidedRequestPort" primary = "yes" linked = "no"></part>
+				<part metaref = "9461" role = "PICML::RequiredRequestPort" primary = "yes" linked = "no"></part>
+				<part metaref = "9462" role = "PICML::SrcEdge" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::Paths" metaref = "3072" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<role name = "PICML::Path" metaref = "8822" kind = "PICML::Path"></role>
-			<role name = "PICML::PathProperty" metaref = "8823" kind = "PICML::PathProperty"></role>
-			<role name = "PICML::Property" metaref = "8824" kind = "PICML::Property"></role>
+			<role name = "PICML::Path" metaref = "9463" kind = "PICML::Path"></role>
+			<role name = "PICML::PathProperty" metaref = "9464" kind = "PICML::PathProperty"></role>
+			<role name = "PICML::Property" metaref = "9465" kind = "PICML::Property"></role>
 			<aspect name = "PathDiagram" metaref = "4317" >
-				<part metaref = "8825" role = "PICML::Path" primary = "yes" linked = "no"></part>
-				<part metaref = "8826" role = "PICML::PathProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "8827" role = "PICML::Property" primary = "yes" linked = "no"></part>
+				<part metaref = "9466" role = "PICML::Path" primary = "yes" linked = "no"></part>
+				<part metaref = "9467" role = "PICML::PathProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "9468" role = "PICML::Property" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::Project" metaref = "1742" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="comp-proj.bmp"></regnode>
-			<role name = "PICML::ExecutorProject" metaref = "8828" kind = "PICML::ExecutorProject"></role>
-			<role name = "PICML::ExtResourceConn" metaref = "8829" kind = "PICML::ExtResourceConn"></role>
-			<role name = "PICML::ExternalResources" metaref = "8830" kind = "PICML::ExternalResources"></role>
-			<role name = "PICML::ImplementationArtifact" metaref = "8831" kind = "PICML::ImplementationArtifact"></role>
-			<role name = "PICML::ServantProject" metaref = "8832" kind = "PICML::ServantProject"></role>
-			<role name = "PICML::StubProject" metaref = "8833" kind = "PICML::StubProject"></role>
+			<role name = "PICML::ExecutorProject" metaref = "9469" kind = "PICML::ExecutorProject"></role>
+			<role name = "PICML::ExtResourceConn" metaref = "9470" kind = "PICML::ExtResourceConn"></role>
+			<role name = "PICML::ExternalResources" metaref = "9471" kind = "PICML::ExternalResources"></role>
+			<role name = "PICML::ImplementationArtifact" metaref = "9472" kind = "PICML::ImplementationArtifact"></role>
+			<role name = "PICML::ServantProject" metaref = "9473" kind = "PICML::ServantProject"></role>
+			<role name = "PICML::StubProject" metaref = "9474" kind = "PICML::StubProject"></role>
 			<aspect name = "ComponentLibraries" metaref = "4345" >
-				<part metaref = "8834" role = "PICML::ExecutorProject" primary = "yes" linked = "no"></part>
-				<part metaref = "8835" role = "PICML::ExtResourceConn" primary = "yes" linked = "no"></part>
-				<part metaref = "8836" role = "PICML::ExternalResources" primary = "yes" linked = "no"></part>
-				<part metaref = "8837" role = "PICML::ServantProject" primary = "yes" linked = "no"></part>
-				<part metaref = "8838" role = "PICML::StubProject" primary = "yes" linked = "no"></part>
+				<part metaref = "9475" role = "PICML::ExecutorProject" primary = "yes" linked = "no"></part>
+				<part metaref = "9476" role = "PICML::ExtResourceConn" primary = "yes" linked = "no"></part>
+				<part metaref = "9477" role = "PICML::ExternalResources" primary = "yes" linked = "no"></part>
+				<part metaref = "9478" role = "PICML::ServantProject" primary = "yes" linked = "no"></part>
+				<part metaref = "9479" role = "PICML::StubProject" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::Property" metaref = "1755" attributes = "DataValue" >
@@ -5224,9 +5224,9 @@ let impls = self.referenceParts(ComponentImplementationReference) in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::Property, has to match 1.</dispname>
 			</constraint>
-			<role name = "PICML::DataType" metaref = "8839" kind = "PICML::DataType"></role>
+			<role name = "PICML::DataType" metaref = "9480" kind = "PICML::DataType"></role>
 			<aspect name = "Packaging" metaref = "4352" attributes = "DataValue" >
-				<part metaref = "8840" role = "PICML::DataType" primary = "yes" linked = "no"></part>
+				<part metaref = "9481" role = "PICML::DataType" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::RTConfiguration" metaref = "3874" attributes = "resourceType" >
@@ -5242,15 +5242,15 @@ let impls = self.referenceParts(ComponentImplementationReference) in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::RTConfiguration, has to match 1..*.</dispname>
 			</constraint>
-			<role name = "PICML::Connections" metaref = "8841" kind = "PICML::Connections"></role>
-			<role name = "PICML::Multithreading" metaref = "8842" kind = "PICML::Multithreading"></role>
-			<role name = "PICML::Property" metaref = "8843" kind = "PICML::Property"></role>
+			<role name = "PICML::Connections" metaref = "9482" kind = "PICML::Connections"></role>
+			<role name = "PICML::Multithreading" metaref = "9483" kind = "PICML::Multithreading"></role>
+			<role name = "PICML::Property" metaref = "9484" kind = "PICML::Property"></role>
 			<aspect name = "Packaging" metaref = "8844" attributes = "resourceType" >
-				<part metaref = "8845" role = "PICML::Property" primary = "yes" linked = "no"></part>
+				<part metaref = "9485" role = "PICML::Property" primary = "yes" linked = "no"></part>
 			</aspect>
 			<aspect name = "RealTimeRequirement" metaref = "8846" attributes = "resourceType" >
-				<part metaref = "8847" role = "PICML::Connections" primary = "yes" linked = "no"></part>
-				<part metaref = "8848" role = "PICML::Multithreading" primary = "yes" linked = "no"></part>
+				<part metaref = "9486" role = "PICML::Connections" primary = "yes" linked = "no"></part>
+				<part metaref = "9487" role = "PICML::Multithreading" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::ReadonlyAttribute" metaref = "1785" attributes = "VersionTag SpecifyIdTag" >
@@ -5305,19 +5305,19 @@ let props = self.connectedFCOs(AttributeValue) in
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<role name = "PICML::AttributeMember" metaref = "8849" kind = "PICML::AttributeMember"></role>
-			<role name = "PICML::GetException" metaref = "8850" kind = "PICML::GetException"></role>
+			<role name = "PICML::AttributeMember" metaref = "9488" kind = "PICML::AttributeMember"></role>
+			<role name = "PICML::GetException" metaref = "9489" kind = "PICML::GetException"></role>
 			<aspect name = "InterfaceDefinition" metaref = "4444" attributes = "VersionTag SpecifyIdTag" >
-				<part metaref = "8851" role = "PICML::AttributeMember" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8852" role = "PICML::GetException" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9490" role = "PICML::AttributeMember" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9491" role = "PICML::GetException" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::Requirement" metaref = "1791" attributes = "resourceType" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Requirement.bmp"></regnode>
-			<role name = "PICML::Property" metaref = "8853" kind = "PICML::Property"></role>
+			<role name = "PICML::Property" metaref = "9492" kind = "PICML::Property"></role>
 			<aspect name = "Packaging" metaref = "4451" attributes = "resourceType" >
-				<part metaref = "8854" role = "PICML::Property" primary = "yes" linked = "no"></part>
+				<part metaref = "9493" role = "PICML::Property" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::Resource" metaref = "1795" attributes = "resourceType" >
@@ -5327,9 +5327,9 @@ let props = self.connectedFCOs(AttributeValue) in
 				<![CDATA[self.resourceType <> ""]]>
 				<dispname>ResourceType should contain atleast one element</dispname>
 			</constraint>
-			<role name = "PICML::SatisfierProperty" metaref = "8855" kind = "PICML::SatisfierProperty"></role>
+			<role name = "PICML::SatisfierProperty" metaref = "9494" kind = "PICML::SatisfierProperty"></role>
 			<aspect name = "Target" metaref = "4454" attributes = "resourceType" >
-				<part metaref = "8856" role = "PICML::SatisfierProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "9495" role = "PICML::SatisfierProperty" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::SatisfierProperty" metaref = "1799" attributes = "dynamic DataValue SatisfierPropertyKind" >
@@ -5340,36 +5340,36 @@ let props = self.connectedFCOs(AttributeValue) in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::SatisfierProperty, has to match 1.</dispname>
 			</constraint>
-			<role name = "PICML::DataType" metaref = "8857" kind = "PICML::DataType"></role>
+			<role name = "PICML::DataType" metaref = "9496" kind = "PICML::DataType"></role>
 			<aspect name = "Packaging" metaref = "4471" attributes = "dynamic DataValue SatisfierPropertyKind" >
-				<part metaref = "8858" role = "PICML::DataType" primary = "yes" linked = "no"></part>
+				<part metaref = "9497" role = "PICML::DataType" primary = "yes" linked = "no"></part>
 			</aspect>
 			<aspect name = "Target" metaref = "4469" attributes = "dynamic DataValue SatisfierPropertyKind" >
-				<part metaref = "8859" role = "PICML::DataType" primary = "yes" linked = "no"></part>
+				<part metaref = "9498" role = "PICML::DataType" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::ServantProject" metaref = "1803" attributes = "libraryexport sharedname ORBServices" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="project.bmp"></regnode>
 			<constraint name="ValidPICML__ServantProjectPartCardinality197" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::ImplementationArtifactReference" ) -> size in
-                     (partCount = 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PICML::ServantProject, has to match 1.</dispname>
-			</constraint>
-			<constraint name="ValidPICML__ServantProjectPartCardinality198" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PICML::FileRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::ServantProject, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPICML__ServantProjectPartCardinality198" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PICML::ImplementationArtifactReference" ) -> size in
+                     (partCount = 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PICML::ServantProject, has to match 1.</dispname>
 			</constraint>
 			<constraint name="servantOneInstance" eventmask = "0x0" depth = "1" defdfornamesp = "PICML" priority = "2">
 				<![CDATA[self.instances ()->size <= 1]]>
 				<dispname>Only A servant project can exists as a part of the Component project</dispname>
 			</constraint>
-			<role name = "PICML::FileRef" metaref = "8860" kind = "PICML::FileRef"></role>
-			<role name = "PICML::ImplementationArtifactReference" metaref = "8861" kind = "PICML::ImplementationArtifactReference"></role>
+			<role name = "PICML::FileRef" metaref = "9499" kind = "PICML::FileRef"></role>
+			<role name = "PICML::ImplementationArtifactReference" metaref = "9500" kind = "PICML::ImplementationArtifactReference"></role>
 			<aspect name = "LibraryArtifact" metaref = "4475" attributes = "libraryexport sharedname ORBServices" >
-				<part metaref = "8862" role = "PICML::FileRef" primary = "yes" linked = "no"></part>
-				<part metaref = "8863" role = "PICML::ImplementationArtifactReference" primary = "yes" linked = "no"></part>
+				<part metaref = "9501" role = "PICML::FileRef" primary = "yes" linked = "no"></part>
+				<part metaref = "9502" role = "PICML::ImplementationArtifactReference" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::SharedResource" metaref = "1809" attributes = "resourceType" >
@@ -5384,21 +5384,21 @@ let props = self.connectedFCOs(AttributeValue) in
                      (srcCount >= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to PICML::SharedResource as &quot;src&quot; over PICML::Shares, has to match 1..*.</dispname>
 			</constraint>
-			<role name = "PICML::SatisfierProperty" metaref = "8864" kind = "PICML::SatisfierProperty"></role>
+			<role name = "PICML::SatisfierProperty" metaref = "9503" kind = "PICML::SatisfierProperty"></role>
 			<aspect name = "Target" metaref = "4479" attributes = "resourceType" >
-				<part metaref = "8865" role = "PICML::SatisfierProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "9504" role = "PICML::SatisfierProperty" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::StubProject" metaref = "1813" attributes = "libraryexport sharedname ORBServices" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="project.bmp"></regnode>
 			<constraint name="ValidPICML__StubProjectPartCardinality199" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::ImplementationArtifactReference" ) -> size in
+				<![CDATA[let partCount = self.parts( "PICML::FileRef" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::StubProject, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidPICML__StubProjectPartCardinality200" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::FileRef" ) -> size in
+				<![CDATA[let partCount = self.parts( "PICML::ImplementationArtifactReference" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::StubProject, has to match 1.</dispname>
 			</constraint>
@@ -5406,11 +5406,11 @@ let props = self.connectedFCOs(AttributeValue) in
 				<![CDATA[self.instances ()->size <= 1]]>
 				<dispname>Only One stub project can exisit as a part of the Component project</dispname>
 			</constraint>
-			<role name = "PICML::FileRef" metaref = "8866" kind = "PICML::FileRef"></role>
-			<role name = "PICML::ImplementationArtifactReference" metaref = "8867" kind = "PICML::ImplementationArtifactReference"></role>
+			<role name = "PICML::FileRef" metaref = "9505" kind = "PICML::FileRef"></role>
+			<role name = "PICML::ImplementationArtifactReference" metaref = "9506" kind = "PICML::ImplementationArtifactReference"></role>
 			<aspect name = "LibraryArtifact" metaref = "4495" attributes = "libraryexport sharedname ORBServices" >
-				<part metaref = "8868" role = "PICML::FileRef" primary = "yes" linked = "no"></part>
-				<part metaref = "8869" role = "PICML::ImplementationArtifactReference" primary = "yes" linked = "no"></part>
+				<part metaref = "9507" role = "PICML::FileRef" primary = "yes" linked = "no"></part>
+				<part metaref = "9508" role = "PICML::ImplementationArtifactReference" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::SwitchedAggregate" metaref = "1819" attributes = "VersionTag SpecifyIdTag" >
@@ -5446,33 +5446,33 @@ let props = self.connectedFCOs(AttributeValue) in
 				<dispname>Not a valid identifier</dispname>
 			</constraint>
 			<constraint name="ValidPICML__SwitchedAggregatePartCardinality201" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::LabelConnection" ) -> size in
-                     (partCount >= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PICML::SwitchedAggregate, has to match 1..*.</dispname>
-			</constraint>
-			<constraint name="ValidPICML__SwitchedAggregatePartCardinality202" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PICML::Label" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
-			<constraint name="ValidPICML__SwitchedAggregatePartCardinality203" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPICML__SwitchedAggregatePartCardinality202" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PICML::Discriminator" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::SwitchedAggregate, has to match 1.</dispname>
+			</constraint>
+			<constraint name="ValidPICML__SwitchedAggregatePartCardinality203" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PICML::LabelConnection" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PICML::SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
 			<constraint name="ValidVersion" eventmask = "0x1" depth = "1" defdfornamesp = "PICML" priority = "1">
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<role name = "PICML::Discriminator" metaref = "8870" kind = "PICML::Discriminator"></role>
-			<role name = "PICML::Label" metaref = "8871" kind = "PICML::Label"></role>
-			<role name = "PICML::LabelConnection" metaref = "8872" kind = "PICML::LabelConnection"></role>
-			<role name = "PICML::Member" metaref = "8873" kind = "PICML::Member"></role>
+			<role name = "PICML::Discriminator" metaref = "9509" kind = "PICML::Discriminator"></role>
+			<role name = "PICML::Label" metaref = "9510" kind = "PICML::Label"></role>
+			<role name = "PICML::LabelConnection" metaref = "9511" kind = "PICML::LabelConnection"></role>
+			<role name = "PICML::Member" metaref = "9512" kind = "PICML::Member"></role>
 			<aspect name = "InterfaceDefinition" metaref = "4502" attributes = "VersionTag SpecifyIdTag" >
-				<part metaref = "8874" role = "PICML::Discriminator" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8875" role = "PICML::Label" primary = "yes" linked = "no"></part>
-				<part metaref = "8876" role = "PICML::LabelConnection" primary = "yes" linked = "no"></part>
-				<part metaref = "8877" role = "PICML::Member" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9513" role = "PICML::Discriminator" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9514" role = "PICML::Label" primary = "yes" linked = "no"></part>
+				<part metaref = "9515" role = "PICML::LabelConnection" primary = "yes" linked = "no"></part>
+				<part metaref = "9516" role = "PICML::Member" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::Throughput" metaref = "1829" attributes = "fileName priority rate warmup iterations resolution" >
@@ -5493,42 +5493,42 @@ let props = self.connectedFCOs(AttributeValue) in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to PICML::MetricsBase as &quot;dst&quot; over PICML::WorkloadCharacteristics, has to match 0..1.</dispname>
 			</constraint>
-			<role name = "PICML::Average" metaref = "8878" kind = "PICML::Average"></role>
-			<role name = "PICML::Jitter" metaref = "8879" kind = "PICML::Jitter"></role>
-			<role name = "PICML::Maximum" metaref = "8880" kind = "PICML::Maximum"></role>
-			<role name = "PICML::Minimum" metaref = "8881" kind = "PICML::Minimum"></role>
+			<role name = "PICML::Average" metaref = "9517" kind = "PICML::Average"></role>
+			<role name = "PICML::Jitter" metaref = "9518" kind = "PICML::Jitter"></role>
+			<role name = "PICML::Maximum" metaref = "9519" kind = "PICML::Maximum"></role>
+			<role name = "PICML::Minimum" metaref = "9520" kind = "PICML::Minimum"></role>
 			<aspect name = "DataAnalysis" metaref = "4514" attributes = "fileName priority rate warmup iterations resolution" >
-				<part metaref = "8882" role = "PICML::Average" primary = "yes" linked = "no"></part>
-				<part metaref = "8883" role = "PICML::Jitter" primary = "yes" linked = "no"></part>
-				<part metaref = "8884" role = "PICML::Maximum" primary = "yes" linked = "no"></part>
-				<part metaref = "8885" role = "PICML::Minimum" primary = "yes" linked = "no"></part>
+				<part metaref = "9521" role = "PICML::Average" primary = "yes" linked = "no"></part>
+				<part metaref = "9522" role = "PICML::Jitter" primary = "yes" linked = "no"></part>
+				<part metaref = "9523" role = "PICML::Maximum" primary = "yes" linked = "no"></part>
+				<part metaref = "9524" role = "PICML::Minimum" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::TopLevelPackageContainer" metaref = "1839" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="TopLevelPackageConfiguration.bmp"></regnode>
 			<constraint name="ValidPICML__TopLevelPackageContainerPartCardinality205" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PICML::package" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PICML::TopLevelPackageContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPICML__TopLevelPackageContainerPartCardinality206" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PICML::PackageConfigurationReference" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::TopLevelPackageContainer, has to match 1.</dispname>
+			</constraint>
+			<constraint name="ValidPICML__TopLevelPackageContainerPartCardinality206" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PICML::package" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PICML::TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPICML__TopLevelPackageContainerPartCardinality207" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PICML::TopLevelPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PICML::TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>
-			<role name = "PICML::PackageConfigurationReference" metaref = "8886" kind = "PICML::PackageConfigurationReference"></role>
-			<role name = "PICML::TopLevelPackage" metaref = "8887" kind = "PICML::TopLevelPackage"></role>
-			<role name = "PICML::package" metaref = "8888" kind = "PICML::package"></role>
+			<role name = "PICML::PackageConfigurationReference" metaref = "9525" kind = "PICML::PackageConfigurationReference"></role>
+			<role name = "PICML::TopLevelPackage" metaref = "9526" kind = "PICML::TopLevelPackage"></role>
+			<role name = "PICML::package" metaref = "9527" kind = "PICML::package"></role>
 			<aspect name = "Packaging" metaref = "4522" >
-				<part metaref = "8889" role = "PICML::PackageConfigurationReference" primary = "yes" linked = "no"></part>
-				<part metaref = "8890" role = "PICML::TopLevelPackage" primary = "yes" linked = "no"></part>
-				<part metaref = "8891" role = "PICML::package" primary = "yes" linked = "no"></part>
+				<part metaref = "9528" role = "PICML::PackageConfigurationReference" primary = "yes" linked = "no"></part>
+				<part metaref = "9529" role = "PICML::TopLevelPackage" primary = "yes" linked = "no"></part>
+				<part metaref = "9530" role = "PICML::package" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::TwowayOperation" metaref = "1847" attributes = "VersionTag SpecifyIdTag" >
@@ -5557,17 +5557,17 @@ let props = self.connectedFCOs(AttributeValue) in
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<role name = "PICML::ExceptionRef" metaref = "8892" kind = "PICML::ExceptionRef"></role>
-			<role name = "PICML::InParameter" metaref = "8893" kind = "PICML::InParameter"></role>
-			<role name = "PICML::InoutParameter" metaref = "8894" kind = "PICML::InoutParameter"></role>
-			<role name = "PICML::OutParameter" metaref = "8895" kind = "PICML::OutParameter"></role>
-			<role name = "PICML::ReturnType" metaref = "8896" kind = "PICML::ReturnType"></role>
+			<role name = "PICML::ExceptionRef" metaref = "9531" kind = "PICML::ExceptionRef"></role>
+			<role name = "PICML::InParameter" metaref = "9532" kind = "PICML::InParameter"></role>
+			<role name = "PICML::InoutParameter" metaref = "9533" kind = "PICML::InoutParameter"></role>
+			<role name = "PICML::OutParameter" metaref = "9534" kind = "PICML::OutParameter"></role>
+			<role name = "PICML::ReturnType" metaref = "9535" kind = "PICML::ReturnType"></role>
 			<aspect name = "InterfaceDefinition" metaref = "4531" attributes = "VersionTag SpecifyIdTag" >
-				<part metaref = "8897" role = "PICML::ExceptionRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8898" role = "PICML::InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8899" role = "PICML::InoutParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8900" role = "PICML::OutParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8901" role = "PICML::ReturnType" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9536" role = "PICML::ExceptionRef" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9537" role = "PICML::InParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9538" role = "PICML::InoutParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9539" role = "PICML::OutParameter" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9540" role = "PICML::ReturnType" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PICML::ValueObject" metaref = "1859" attributes = "VersionTag PrefixTag SpecifyIdTag abstract" >
@@ -5615,93 +5615,93 @@ let props = self.connectedFCOs(AttributeValue) in
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
 				<dispname>Version must be a valid decimal number</dispname>
 			</constraint>
-			<attrdef name="abstract" metaref = "8902" valuetype = "boolean" defvalue = "false">
+			<attrdef name="abstract" metaref = "9541" valuetype = "boolean" defvalue = "false">
 			</attrdef>
-			<role name = "PICML::Aggregate" metaref = "8903" kind = "PICML::Aggregate"></role>
-			<role name = "PICML::Alias" metaref = "8904" kind = "PICML::Alias"></role>
-			<role name = "PICML::Attribute" metaref = "8905" kind = "PICML::Attribute"></role>
-			<role name = "PICML::Collection" metaref = "8906" kind = "PICML::Collection"></role>
-			<role name = "PICML::Constant" metaref = "8907" kind = "PICML::Constant"></role>
-			<role name = "PICML::Enum" metaref = "8908" kind = "PICML::Enum"></role>
-			<role name = "PICML::Exception" metaref = "8909" kind = "PICML::Exception"></role>
-			<role name = "PICML::FactoryOperation" metaref = "8910" kind = "PICML::FactoryOperation"></role>
-			<role name = "PICML::Inherits" metaref = "8911" kind = "PICML::Inherits"></role>
-			<role name = "PICML::MakeMemberPrivate" metaref = "8912" kind = "PICML::MakeMemberPrivate"></role>
-			<role name = "PICML::Member" metaref = "8913" kind = "PICML::Member"></role>
-			<role name = "PICML::OnewayOperation" metaref = "8914" kind = "PICML::OnewayOperation"></role>
-			<role name = "PICML::PrivateFlag" metaref = "8915" kind = "PICML::PrivateFlag"></role>
-			<role name = "PICML::ReadonlyAttribute" metaref = "8916" kind = "PICML::ReadonlyAttribute"></role>
-			<role name = "PICML::Supports" metaref = "8917" kind = "PICML::Supports"></role>
-			<role name = "PICML::SwitchedAggregate" metaref = "8918" kind = "PICML::SwitchedAggregate"></role>
-			<role name = "PICML::TwowayOperation" metaref = "8919" kind = "PICML::TwowayOperation"></role>
+			<role name = "PICML::Aggregate" metaref = "9542" kind = "PICML::Aggregate"></role>
+			<role name = "PICML::Alias" metaref = "9543" kind = "PICML::Alias"></role>
+			<role name = "PICML::Attribute" metaref = "9544" kind = "PICML::Attribute"></role>
+			<role name = "PICML::Collection" metaref = "9545" kind = "PICML::Collection"></role>
+			<role name = "PICML::Constant" metaref = "9546" kind = "PICML::Constant"></role>
+			<role name = "PICML::Enum" metaref = "9547" kind = "PICML::Enum"></role>
+			<role name = "PICML::Exception" metaref = "9548" kind = "PICML::Exception"></role>
+			<role name = "PICML::FactoryOperation" metaref = "9549" kind = "PICML::FactoryOperation"></role>
+			<role name = "PICML::Inherits" metaref = "9550" kind = "PICML::Inherits"></role>
+			<role name = "PICML::MakeMemberPrivate" metaref = "9551" kind = "PICML::MakeMemberPrivate"></role>
+			<role name = "PICML::Member" metaref = "9552" kind = "PICML::Member"></role>
+			<role name = "PICML::OnewayOperation" metaref = "9553" kind = "PICML::OnewayOperation"></role>
+			<role name = "PICML::PrivateFlag" metaref = "9554" kind = "PICML::PrivateFlag"></role>
+			<role name = "PICML::ReadonlyAttribute" metaref = "9555" kind = "PICML::ReadonlyAttribute"></role>
+			<role name = "PICML::Supports" metaref = "9556" kind = "PICML::Supports"></role>
+			<role name = "PICML::SwitchedAggregate" metaref = "9557" kind = "PICML::SwitchedAggregate"></role>
+			<role name = "PICML::TwowayOperation" metaref = "9558" kind = "PICML::TwowayOperation"></role>
 			<aspect name = "InterfaceDefinition" metaref = "4555" attributes = "VersionTag PrefixTag SpecifyIdTag abstract" >
-				<part metaref = "8920" role = "PICML::Aggregate" primary = "yes" linked = "no"></part>
-				<part metaref = "8921" role = "PICML::Alias" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8922" role = "PICML::Attribute" primary = "yes" linked = "no"></part>
-				<part metaref = "8923" role = "PICML::Collection" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8924" role = "PICML::Constant" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8925" role = "PICML::Enum" primary = "yes" linked = "no"></part>
-				<part metaref = "8926" role = "PICML::Exception" primary = "yes" linked = "no"></part>
-				<part metaref = "8927" role = "PICML::FactoryOperation" primary = "yes" linked = "no"></part>
-				<part metaref = "8928" role = "PICML::Inherits" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8929" role = "PICML::MakeMemberPrivate" primary = "yes" linked = "no"></part>
-				<part metaref = "8930" role = "PICML::Member" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8931" role = "PICML::OnewayOperation" primary = "yes" linked = "no"></part>
-				<part metaref = "8932" role = "PICML::PrivateFlag" primary = "yes" linked = "no"></part>
-				<part metaref = "8933" role = "PICML::ReadonlyAttribute" primary = "yes" linked = "no"></part>
-				<part metaref = "8934" role = "PICML::Supports" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
-				<part metaref = "8935" role = "PICML::SwitchedAggregate" primary = "yes" linked = "no"></part>
-				<part metaref = "8936" role = "PICML::TwowayOperation" primary = "yes" linked = "no"></part>
+				<part metaref = "9559" role = "PICML::Aggregate" primary = "yes" linked = "no"></part>
+				<part metaref = "9560" role = "PICML::Alias" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9561" role = "PICML::Attribute" primary = "yes" linked = "no"></part>
+				<part metaref = "9562" role = "PICML::Collection" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9563" role = "PICML::Constant" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9564" role = "PICML::Enum" primary = "yes" linked = "no"></part>
+				<part metaref = "9565" role = "PICML::Exception" primary = "yes" linked = "no"></part>
+				<part metaref = "9566" role = "PICML::FactoryOperation" primary = "yes" linked = "no"></part>
+				<part metaref = "9567" role = "PICML::Inherits" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9568" role = "PICML::MakeMemberPrivate" primary = "yes" linked = "no"></part>
+				<part metaref = "9569" role = "PICML::Member" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9570" role = "PICML::OnewayOperation" primary = "yes" linked = "no"></part>
+				<part metaref = "9571" role = "PICML::PrivateFlag" primary = "yes" linked = "no"></part>
+				<part metaref = "9572" role = "PICML::ReadonlyAttribute" primary = "yes" linked = "no"></part>
+				<part metaref = "9573" role = "PICML::Supports" primary = "yes" kindaspect = "InterfaceDefinition" linked = "no"></part>
+				<part metaref = "9574" role = "PICML::SwitchedAggregate" primary = "yes" linked = "no"></part>
+				<part metaref = "9575" role = "PICML::TwowayOperation" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "PICML::Worker" metaref = "8937" attributes = "Abstract" >
+		<model name = "PICML::Worker" metaref = "9576" attributes = "Abstract" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="worker.gif"></regnode>
-			<role name = "PICML::Action" metaref = "8938" kind = "PICML::Action"></role>
+			<role name = "PICML::Action" metaref = "9577" kind = "PICML::Action"></role>
 			<aspect name = "Behavior" metaref = "4577" attributes = "Abstract" >
-				<part metaref = "8939" role = "PICML::Action" primary = "yes" linked = "no"></part>
+				<part metaref = "9578" role = "PICML::Action" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "PICML::WorkerFile" metaref = "8940" attributes = "Location" >
+		<model name = "PICML::WorkerFile" metaref = "9579" attributes = "Location" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="file.bmp"></regnode>
-			<role name = "PICML::Worker" metaref = "8941" kind = "PICML::Worker"></role>
-			<role name = "PICML::WorkerPackage" metaref = "8942" kind = "PICML::WorkerPackage"></role>
+			<role name = "PICML::Worker" metaref = "9580" kind = "PICML::Worker"></role>
+			<role name = "PICML::WorkerPackage" metaref = "9581" kind = "PICML::WorkerPackage"></role>
 			<aspect name = "Behavior" metaref = "4584" attributes = "Location" >
-				<part metaref = "8943" role = "PICML::Worker" primary = "yes" linked = "no"></part>
-				<part metaref = "8944" role = "PICML::WorkerPackage" primary = "yes" linked = "no"></part>
+				<part metaref = "9582" role = "PICML::Worker" primary = "yes" linked = "no"></part>
+				<part metaref = "9583" role = "PICML::WorkerPackage" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "PICML::WorkerLibrary" metaref = "8945" attributes = "Location" >
+		<model name = "PICML::WorkerLibrary" metaref = "9584" attributes = "Location" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="UniqueWorker" eventmask = "0x0" depth = "1" defdfornamesp = "PICML" priority = "2">
 				<![CDATA[let workers = self->parts (Worker) in
     workers->isUnique (iter : Worker | iter->name ())]]>
 				<dispname>Worker library constains duplicate worker names</dispname>
 			</constraint>
-			<role name = "PICML::WorkerFile" metaref = "8946" kind = "PICML::WorkerFile"></role>
+			<role name = "PICML::WorkerFile" metaref = "9585" kind = "PICML::WorkerFile"></role>
 			<aspect name = "Behavior" metaref = "4589" attributes = "Location" >
-				<part metaref = "8947" role = "PICML::WorkerFile" primary = "yes" linked = "no"></part>
+				<part metaref = "9586" role = "PICML::WorkerFile" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "PICML::WorkerPackage" metaref = "8948" >
+		<model name = "PICML::WorkerPackage" metaref = "9587" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="package.bmp"></regnode>
-			<role name = "PICML::Worker" metaref = "8949" kind = "PICML::Worker"></role>
-			<role name = "PICML::WorkerPackage" metaref = "8950" kind = "PICML::WorkerPackage"></role>
+			<role name = "PICML::Worker" metaref = "9588" kind = "PICML::Worker"></role>
+			<role name = "PICML::WorkerPackage" metaref = "9589" kind = "PICML::WorkerPackage"></role>
 			<aspect name = "Behavior" metaref = "4594" >
-				<part metaref = "8951" role = "PICML::Worker" primary = "yes" linked = "no"></part>
-				<part metaref = "8952" role = "PICML::WorkerPackage" primary = "yes" linked = "no"></part>
+				<part metaref = "9590" role = "PICML::Worker" primary = "yes" linked = "no"></part>
+				<part metaref = "9591" role = "PICML::WorkerPackage" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "SIML::System" metaref = "4685" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<role name = "PICML::ComponentAssemblyReference" metaref = "8953" kind = "PICML::ComponentAssemblyReference"></role>
+			<role name = "PICML::ComponentAssemblyReference" metaref = "9592" kind = "PICML::ComponentAssemblyReference"></role>
 			<role name = "SIML::PortProxy" metaref = "6408" kind = "SIML::PortProxy"></role>
 			<role name = "SIML::System" metaref = "8192" kind = "SIML::System"></role>
 			<role name = "WSML::ServiceRef" metaref = "8193" kind = "WSML::ServiceRef"></role>
 			<aspect name = "Integration" metaref = "4803" >
-				<part metaref = "8954" role = "PICML::ComponentAssemblyReference" primary = "yes" linked = "no"></part>
+				<part metaref = "9593" role = "PICML::ComponentAssemblyReference" primary = "yes" linked = "no"></part>
 				<part metaref = "6410" role = "SIML::PortProxy" primary = "yes" linked = "no"></part>
 				<part metaref = "8194" role = "SIML::System" primary = "yes" linked = "no"></part>
 				<part metaref = "8196" role = "WSML::ServiceRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
@@ -5711,14 +5711,14 @@ let props = self.connectedFCOs(AttributeValue) in
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="binding.gif"></regnode>
 			<constraint name="ValidWSML__BindingPartCardinality209" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "WSML::Documentation" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by WSML::Binding, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidWSML__BindingPartCardinality210" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "WSML::ExtensibleBinding" ) -> size + self.parts( "WSML::SOAPBinding" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by WSML::Binding, has to match 1.</dispname>
+			</constraint>
+			<constraint name="ValidWSML__BindingPartCardinality210" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "WSML::Documentation" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by WSML::Binding, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidWSML__BindingPortTypedstCardinality150" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", meta::WSML::BindingPortType ) -> size in
@@ -5742,9 +5742,9 @@ let props = self.connectedFCOs(AttributeValue) in
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="bindingoperation.gif"></regnode>
 			<constraint name="ValidWSML__BindingOperationPartCardinality211" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "WSML::Documentation" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by WSML::BindingOperation, has to match 0..1.</dispname>
+				<![CDATA[let partCount = self.parts( "WSML::ExtensibleMessage" ) -> size + self.parts( "WSML::SOAPBody" ) -> size + self.parts( "WSML::SOAPFault" ) -> size + self.parts( "WSML::SOAPHeaderFault" ) -> size + self.parts( "WSML::SOAPHeader" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by WSML::BindingOperation, has to match 1..*.</dispname>
 			</constraint>
 			<constraint name="ValidWSML__BindingOperationPartCardinality212" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "WSML::ExtensibleOperation" ) -> size + self.parts( "WSML::SOAPOperation" ) -> size in
@@ -5752,9 +5752,9 @@ let props = self.connectedFCOs(AttributeValue) in
 				<dispname>Multiplicity of parts, which are contained by WSML::BindingOperation, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidWSML__BindingOperationPartCardinality213" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "WSML::ExtensibleMessage" ) -> size + self.parts( "WSML::SOAPBody" ) -> size + self.parts( "WSML::SOAPFault" ) -> size + self.parts( "WSML::SOAPHeaderFault" ) -> size + self.parts( "WSML::SOAPHeader" ) -> size in
-                     (partCount >= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by WSML::BindingOperation, has to match 1..*.</dispname>
+				<![CDATA[let partCount = self.parts( "WSML::Documentation" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by WSML::BindingOperation, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidWSML__BindsOperationdstCardinality152" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", meta::WSML::BindsOperation ) -> size in
@@ -5802,12 +5802,12 @@ let props = self.connectedFCOs(AttributeValue) in
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="definitions.gif"></regnode>
 			<constraint name="ValidWSML__DefinitionsPartCardinality214" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "WSML::Types" ) -> size in
+				<![CDATA[let partCount = self.parts( "WSML::Messages" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by WSML::Definitions, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidWSML__DefinitionsPartCardinality215" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "WSML::Messages" ) -> size in
+				<![CDATA[let partCount = self.parts( "WSML::Types" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by WSML::Definitions, has to match 0..1.</dispname>
 			</constraint>
@@ -6254,7 +6254,7 @@ let props = self.connectedFCOs(AttributeValue) in
 		</folder>
 		<folder name = "PICML::TopLevelPackages" metaref = "1908"  rootobjects = "PICML::TopLevelPackageContainer" >
 		</folder>
-		<folder name = "PICML::WorkerLibraries" metaref = "8955"  rootobjects = "PICML::WorkerLibrary" >
+		<folder name = "PICML::WorkerLibraries" metaref = "9594"  rootobjects = "PICML::WorkerLibrary" >
 		</folder>
 	</folder>
 </paradigm>

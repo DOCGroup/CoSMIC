@@ -1,3 +1,32 @@
+Fri Jan 26 05:12:55 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * .svnignore: Added a new file which contains a list of patterns
+          that we want to be ignored by svn status and friends.
+
+        * */*:  Applied the patterns in .svnignore to all directories
+          recursively.  If you make changes to this file, please update
+          the svn:ignore property on all the directories by first changing
+          to $(COSMIC_ROOT) and running,
+                 svn propset -R svn:ignore -F .svnignore
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Updated the metamodel to remove an error in the constraint
+          UniqueGlobalDeclNames which used stringified GME kind names
+          which doesn't work with composed languages.
+
+        * PIM/PICML/examples/SLICE-Path.xme:  Resurrected this file after
+          migrating the file to the current version of PICML metamodel.
+
+        * PIM/SIML/examples/SLICE.xme:
+        * PIM/SIML/paradigms/SIML.xme:
+        * PIM/SIML/paradigms/SIML.xmp:
+
+          Fixes to match the changes in PICML.
+
 Wed Jan 24 19:11:49 UTC 2007  DimpleKaul  <dkaul@isis.vanderbilt.edu>
 
         * PIM/POSAML/examples/test_model_dk.xme:
