@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{988E9B16-CDE6-420B-8629-F73AE7CF2563}" cdate="Thu Jan 25 21:27:24 2007" mdate="Thu Jan 25 21:27:24 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
+<project guid="{519B0592-75C9-4C32-BD1E-97695C80A05B}" cdate="Fri Jan 26 21:31:35 2007" mdate="Fri Jan 26 21:31:35 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment>Platform-Independent Component Modeling Language (PICML) is a domain-specific
 modeling language that allows design, packaging and deployment of component 
@@ -2096,8 +2096,8 @@ endif</value>
 					<attribute kind="Rolename" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="dst" target="id-0066-0000000a"/>
 					<connpoint role="src" target="id-0066-0000000a"/>
+					<connpoint role="dst" target="id-0066-0000000a"/>
 				</connection>
 				<connection id="id-0068-00000017" kind="Containment" role="Containment" guid="{AA6E2700-9CB2-470d-81D4-78D4E161F19A}" relid="0x6a">
 					<name>Containment</name>
@@ -25560,6 +25560,12 @@ dName = dstMultiInput</value>
 					<value>1032</value>
 				</regnode>
 			</regnode>
+			<regnode name="configuration-61-EnumAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>3887</value>
+				</regnode>
+			</regnode>
 			<regnode name="operatingSystem-5b-EnumAttribute" status="undefined">
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
@@ -41581,8 +41587,8 @@ ResourceUsesPort</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000064"/>
 				<connpoint role="src" target="id-0066-00000064"/>
+				<connpoint role="dst" target="id-0066-00000064"/>
 			</connection>
 			<connection id="id-0068-000000a7" kind="HasAspect" role="HasAspect" guid="{14F5F5EC-1F59-4f39-AB1A-4010C83B6898}" relid="0x54">
 				<name>HasAspect</name>
@@ -48735,6 +48741,12 @@ ResourceUsesPort</value>
 				<name>NoInheritable</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,153</value>
+						</regnode>
+					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
@@ -59055,15 +59067,7 @@ rrName = referedbyDataType</value>
 				</attribute>
 				<attribute kind="ConstraintEqn">
 					<value>let packages = project.allInstancesOf (ComponentPackage) in
-   packages-&gt;forAll 
-                       (x : ComponentPackage | 
-                          self &lt;&gt; x implies 
-                                   (
-                                     (  x.UUID.trim() &lt;&gt; self.UUID.trim()  )
-                                     or
-                                     ( x.UUID.trim() = &quot;&quot;  or self.UUID.trim() = &quot;&quot;)
-                                   ) 
-                       )</value>
+   packages-&gt;isUnique (i : ComponentPackage | i.UUID.trim() )</value>
 				</attribute>
 				<attribute kind="ConstraintParam" status="meta">
 					<value></value>
@@ -59292,9 +59296,9 @@ self.connectedFCOs(Implementation)-&gt;forAll (i : Reference | i.refersTo().kind
 				</attribute>
 				<attribute kind="ConstraintEqn">
 					<value>let impls = self.bagConnectedFCOs(Implementation) in
-   impls-&gt;isUnique (a : ComponentImplementationReference | a.refersTo().name.trim())
-     and
-   impls-&gt;isUnique (a: ComponentImplementationReference | a.name.trim())</value>
+   impls-&gt;forAll (i, j : ComponentImplementationReference | 
+                (i.name().trim() = j.name().trim() =&gt; i = j) and 
+                (i.refersTo() = j.refersTo() =&gt; i = j ) )</value>
 				</attribute>
 				<attribute kind="ConstraintParam" status="meta">
 					<value></value>
@@ -61832,7 +61836,7 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-00000015" kind="ParadigmSheet" guid="{CAD82429-4285-4da2-BB46-9C362FA49ED4}" relid="0x8" childrelidcntr="0x60">
+		<model id="id-0065-00000015" kind="ParadigmSheet" guid="{CAD82429-4285-4da2-BB46-9C362FA49ED4}" relid="0x8" childrelidcntr="0x65">
 			<name>ImplementationArtifact</name>
 			<atom id="id-0066-0000013f" kind="Folder" role="Folder" guid="{BA2B5669-4736-422d-811B-5A33CBBD032C}" relid="0xc">
 				<name>ImplementationArtifacts</name>
@@ -62234,7 +62238,7 @@ rrName = referedbyImplementationArtifactReference</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>499,219</value>
+							<value>813,216</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -62416,7 +62420,7 @@ rrName = referedbyImplementationArtifactReference</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>107,450</value>
+							<value>50,468</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -62797,42 +62801,6 @@ rrName = referedbyImplementationArtifactReference</value>
 					<value>false</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000014d" kind="FieldAttribute" role="FieldAttribute" guid="{8BB3C599-E786-4412-AE68-B93CF685C146}" relid="0x45">
-				<name>configuration</name>
-				<regnode name="PartRegs" isopaque="yes">
-					<value></value>
-					<regnode name="Attributes" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>253,377</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="ContentType" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DataType" status="meta">
-					<value>string</value>
-				</attribute>
-				<attribute kind="FieldDefault" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="GlobalScope" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="Help" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="IsViewable" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="Multiline" status="meta">
-					<value>1</value>
-				</attribute>
-				<attribute kind="Prompt" status="meta">
-					<value></value>
-				</attribute>
-			</atom>
 			<atom id="id-0066-0000014e" kind="Constraint" role="Constraint" guid="{647C79B0-7018-49aa-A571-CACF3AC01800}" relid="0x49">
 				<name>UniqueImplementationArtifacts</name>
 				<regnode name="PartRegs" isopaque="yes">
@@ -62840,7 +62808,7 @@ rrName = referedbyImplementationArtifactReference</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>251,370</value>
+							<value>202,426</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -62863,12 +62831,12 @@ rrName = referedbyImplementationArtifactReference</value>
 					<value>false</value>
 				</attribute>
 				<attribute kind="ConstraintDescription">
-					<value>Implementation Artifacts should have unique names</value>
+					<value>Implementation Artifacts should have unique names or they should differ in atleast one of configuration, operatingSystem, artifactVersion or architecture  attributes</value>
 				</attribute>
 				<attribute kind="ConstraintEqn">
 					<value>let artifacts = self.atomParts(ImplementationArtifact) in
 artifacts-&gt;forAll ( i, j : ImplementationArtifact | 
-                    i.name.trim() = j.name.trim() =&gt; (i = j or i.artifactVersion.trim() &lt;&gt; j.artifactVersion.trim() ))</value>
+    i.name.trim() = j.name.trim() =&gt; (i = j or i.ArtifactNotEqual (j))  )</value>
 				</attribute>
 				<attribute kind="ConstraintParam" status="meta">
 					<value></value>
@@ -63005,85 +62973,6 @@ dName = dstArtifactDependency</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000151" kind="Constraint" role="Constraint" guid="{EC51515B-CEAB-41da-9E11-61E9570B0181}" relid="0x52">
-				<name>UniqueImplementationArtifactReferences</name>
-				<regnode name="PartRegs" isopaque="yes">
-					<value></value>
-					<regnode name="Constraints" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>111,419</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="AddSetEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ChangeAttributeEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ChangePropertyEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ChangeRelationEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="CloseEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ConnectEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ConstraintDescription">
-					<value>ImplementationArtifactReferences should have unique names</value>
-				</attribute>
-				<attribute kind="ConstraintEqn">
-					<value>let artifacts = self.referenceParts(ImplementationArtifactReference) in
-   artifacts-&gt;forAll (i,j : ImplementationArtifactReference |
-                      let p : ImplementationArtifact = i.refersTo() in
-                      let q : ImplementationArtifact = j.refersTo() in
-                        i.name.trim() = j.name.trim() =&gt; ( p = q or p.artifactVersion.trim() &lt;&gt; q.artifactVersion.trim() ))</value>
-				</attribute>
-				<attribute kind="ConstraintParam" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="ConstraintPriority" status="meta">
-					<value>2</value>
-				</attribute>
-				<attribute kind="CreateEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="DeleteEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="Depth" status="meta">
-					<value>1</value>
-				</attribute>
-				<attribute kind="DeriveEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="DisconnectEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="LostChildEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="MoveEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NewChildEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ReferenceEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="RemoveSetEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="UnReferenceEvent" status="meta">
-					<value>false</value>
-				</attribute>
-			</atom>
 			<atom id="id-0066-00000152" kind="Constraint" role="Constraint" guid="{BBE84E11-F084-4231-8996-FB1F875973C1}" relid="0x54">
 				<name>UniqueDependencies</name>
 				<regnode name="PartRegs" status="undefined">
@@ -63091,7 +62980,7 @@ dName = dstArtifactDependency</value>
 					<regnode name="Constraints" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>510,314</value>
+							<value>643,279</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -63118,7 +63007,9 @@ dName = dstArtifactDependency</value>
 				</attribute>
 				<attribute kind="ConstraintEqn">
 					<value>let artifacts = self.bagConnectedFCOs(ArtifactDependsOn) in
-   artifacts-&gt;isUnique (a : ImplementationArtifactReference | a.refersTo().name().trim())</value>
+   artifacts-&gt;forAll (i,j : ImplementationArtifactReference | 
+           i.refersTo() = j.refersTo() =&gt; i = j)
+                  </value>
 				</attribute>
 				<attribute kind="ConstraintParam" status="meta">
 					<value></value>
@@ -63167,7 +63058,7 @@ dName = dstArtifactDependency</value>
 					<regnode name="Constraints" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>461,111</value>
+							<value>594,174</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -63194,7 +63085,8 @@ dName = dstArtifactDependency</value>
 				</attribute>
 				<attribute kind="ConstraintEqn">
 					<value>let artifacts = self.bagConnectedFCOs(ArtifactDependency) in
-   artifacts-&gt;isUnique (a : ImplementationArtifact |  a.name().trim() )</value>
+   artifacts-&gt;forAll (i,j : ImplementationArtifact |
+                      i.name().trim() = j.name().trim() =&gt; i = j)</value>
 				</attribute>
 				<attribute kind="ConstraintParam" status="meta">
 					<value></value>
@@ -63359,7 +63251,7 @@ HPPA</value>
 					<regnode name="Constraints" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>447,419</value>
+							<value>552,377</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -63397,6 +63289,143 @@ let singleversion = &quot;(&quot; + digit + &quot;|&quot; + twodigits + &quot;|&
                     + &quot;65553[0-5]&quot; + &quot;)&quot; in
 let version = self.artifactVersion.trim() in
    version.match(singleversion + &quot;\.&quot; + singleversion + &quot;\.&quot; + singleversion + &quot;\.&quot; + singleversion + &quot;$&quot;)</value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority" status="meta">
+					<value>2</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000024d" kind="EnumAttribute" role="EnumAttribute" guid="{8D811433-E5FC-4570-913D-DBF586586247}" relid="0x61">
+				<name>configuration</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>218,398</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="DefaultItem">
+					<value>Release</value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="MenuItems">
+					<value>Release
+Debug</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000024e" kind="ConstraintFunc" role="ConstraintFunc" guid="{69945D9E-7789-498b-8AA1-00FAAF2C72A6}" relid="0x63">
+				<name>ArtifactNotEqual</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>419,454</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="CFuncContext">
+					<value>meta::ImplementationArtifact</value>
+				</attribute>
+				<attribute kind="CFuncDefinition">
+					<value>self.operatingSystem &lt;&gt; j.operatingSystem or
+self.configuration &lt;&gt; j.configuration or
+self.artifactVersion.trim() &lt;&gt; j.artifactVersion.trim() or
+self.architecture &lt;&gt; j.architecture </value>
+				</attribute>
+				<attribute kind="CFuncParamList">
+					<value>j: ImplementationArtifact</value>
+				</attribute>
+				<attribute kind="CFuncReturnType">
+					<value>ocl::Boolean</value>
+				</attribute>
+				<attribute kind="CFuncStereotype" status="meta">
+					<value>method</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000024f" kind="Constraint" role="Constraint" guid="{EBAA890B-B456-44db-9AE1-E8669FC941BC}" relid="0x64">
+				<name>UniqueUUID</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>219,303</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>ImplementationArtifacts should have unique UUIDs</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value>let artifacts = self.atomParts(ImplementationArtifact) in
+ artifacts-&gt;isUnique (i : ImplementationArtifact | i.UUID.trim())</value>
 				</attribute>
 				<attribute kind="ConstraintParam" status="meta">
 					<value></value>
@@ -63859,11 +63888,6 @@ let version = self.artifactVersion.trim() in
 				<connpoint role="dst" target="id-0066-00000141"/>
 				<connpoint role="src" target="id-0066-0000014c"/>
 			</connection>
-			<connection id="id-0068-00000228" kind="HasAttribute" role="HasAttribute" guid="{FE4389DA-6640-4b8e-B70D-9D34DFE37633}" relid="0x46">
-				<name>HasAttribute</name>
-				<connpoint role="dst" target="id-0066-0000014b"/>
-				<connpoint role="src" target="id-0066-0000014d"/>
-			</connection>
 			<connection id="id-0068-00000229" kind="HasConstraint" role="HasConstraint" guid="{69D14889-E151-42bd-A3D8-29892670562B}" relid="0x4b">
 				<name>HasConstraint</name>
 				<connpoint role="dst" target="id-0066-00000146"/>
@@ -63919,14 +63943,6 @@ let version = self.artifactVersion.trim() in
 				<connpoint role="dst" target="id-0066-00000146"/>
 				<connpoint role="src" target="id-0066-00000150"/>
 			</connection>
-			<connection id="id-0068-0000022e" kind="HasConstraint" role="HasConstraint" guid="{B0AD3009-83F7-4f5c-AE9C-D16728A25912}" relid="0x53">
-				<name>HasConstraint</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ns</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-00000146"/>
-				<connpoint role="src" target="id-0066-00000151"/>
-			</connection>
 			<connection id="id-0068-0000022f" kind="HasConstraint" role="HasConstraint" guid="{780F6371-AD28-43bd-8765-067E7C6CE971}" relid="0x55">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
@@ -63974,6 +63990,22 @@ let version = self.artifactVersion.trim() in
 				</regnode>
 				<connpoint role="dst" target="id-0066-0000014b"/>
 				<connpoint role="src" target="id-0066-00000157"/>
+			</connection>
+			<connection id="id-0068-000003c6" kind="HasAttribute" role="HasAttribute" guid="{1F08E07F-2253-4d46-BE49-2D090DFF717C}" relid="0x62">
+				<name>HasAttribute</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-0000014b"/>
+				<connpoint role="src" target="id-0066-0000024d"/>
+			</connection>
+			<connection id="id-0068-000003c7" kind="HasConstraint" role="HasConstraint" guid="{A272D106-DF61-40b2-A2DE-699330CE379E}" relid="0x65">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>We</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000146"/>
+				<connpoint role="src" target="id-0066-0000024f"/>
 			</connection>
 			<set id="id-0069-0000000c" kind="Aspect" role="Aspect" guid="{546DA4BE-FC88-46e4-9A0F-C7E2EBF39D74}" relid="0x0" members="id-0066-00000141 id-0066-00000142 id-0066-00000144 id-0066-00000146 id-0066-00000147 id-0066-00000148 id-0066-0000014b id-0066-00000150 id-0067-00000026 id-0067-00000027">
 				<name>ArtifactPackaging</name>
@@ -65838,7 +65870,7 @@ let version = self.artifactVersion.trim() in
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-00000017" kind="ParadigmSheet" guid="{4EEB5652-2F57-4720-B9D9-21AE941FCFF9}" relid="0x6" childrelidcntr="0x13e">
+		<model id="id-0065-00000017" kind="ParadigmSheet" guid="{4EEB5652-2F57-4720-B9D9-21AE941FCFF9}" relid="0x6" childrelidcntr="0x140">
 			<name>ComponentImplementation</name>
 			<atom id="id-0066-0000016b" kind="Connector" role="Connector" guid="{144FC44E-81DC-42d4-A89F-882F7B7210C6}" relid="0x7a">
 				<name>Connector</name>
@@ -67559,7 +67591,7 @@ let version = self.artifactVersion.trim() in
 					<regnode name="Constraints" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>786,289</value>
+							<value>491,202</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" status="undefined">
@@ -67631,82 +67663,6 @@ dName = dstCriticalPath</value>
 						</regnode>
 					</regnode>
 				</regnode>
-			</atom>
-			<atom id="id-0066-00000187" kind="Constraint" role="Constraint" guid="{8AB39B78-587A-4ddc-AE8E-E410CCF812B4}" relid="0x12e">
-				<name>UniquePrimaryArtifacts</name>
-				<regnode name="PartRegs" status="undefined">
-					<value></value>
-					<regnode name="Constraints" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>370,216</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="AddSetEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ChangeAttributeEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ChangePropertyEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ChangeRelationEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="CloseEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ConnectEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ConstraintDescription">
-					<value>Primary Artifacts of a MonolithicImplementation should have unique names</value>
-				</attribute>
-				<attribute kind="ConstraintEqn">
-					<value>let artifacts = self.referenceParts(ImplementationArtifactReference) in
-   artifacts-&gt;isUnique (i : ImplementationArtifactReference | i.name.trim())</value>
-				</attribute>
-				<attribute kind="ConstraintParam" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="ConstraintPriority" status="meta">
-					<value>2</value>
-				</attribute>
-				<attribute kind="CreateEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="DeleteEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="Depth" status="meta">
-					<value>1</value>
-				</attribute>
-				<attribute kind="DeriveEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="DisconnectEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="LostChildEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="MoveEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NewChildEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ReferenceEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="RemoveSetEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="UnReferenceEvent" status="meta">
-					<value>false</value>
-				</attribute>
 			</atom>
 			<atom id="id-0066-00000188" kind="Constraint" role="Constraint" guid="{6D0B5A99-7C67-49cb-9238-6D28D9244E5B}" relid="0x130">
 				<name>UniqueComponentImplementations</name>
@@ -67785,7 +67741,7 @@ dName = dstCriticalPath</value>
 				</attribute>
 			</atom>
 			<atom id="id-0066-00000189" kind="Constraint" role="Constraint" guid="{95DAD610-A1B3-4ef5-9AF2-DD138B03D576}" relid="0x132">
-				<name>UniqueArtifacts</name>
+				<name>UniquePrimaryArtifacts</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
 					<regnode name="Constraints" status="undefined">
@@ -67818,7 +67774,9 @@ dName = dstCriticalPath</value>
 				</attribute>
 				<attribute kind="ConstraintEqn">
 					<value>let artifacts = self.bagConnectedFCOs(MonolithprimaryArtifact) in
-  artifacts-&gt;isUnique (a : ImplementationArtifactReference |  a.name().trim())</value>
+  artifacts-&gt;forAll (i,j  : ImplementationArtifactReference | 
+            i.name().trim() = j.name().trim() =&gt; i = j and 
+            i.refersTo() = j.refersTo() =&gt; i = j )</value>
 				</attribute>
 				<attribute kind="ConstraintParam" status="meta">
 					<value></value>
@@ -67905,6 +67863,84 @@ let singleversion = &quot;(&quot; + digit + &quot;|&quot; + twodigits + &quot;|&
                     + &quot;65553[0-5]&quot; + &quot;)&quot; in
 let version = self.defaultVersion.trim() in
    version.match(singleversion + &quot;\.&quot; + singleversion + &quot;\.&quot; + singleversion + &quot;\.&quot; + singleversion + &quot;$&quot;)</value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority" status="meta">
+					<value>2</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000250" kind="Constraint" role="Constraint" guid="{596C8660-6D99-4150-B205-4DF19447A61A}" relid="0x13f">
+				<name>AtleastOneArtifact</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>779,247</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>Every MonolithicImplementation should have atleast one ImplementationArtifact whose artifactVersion matches the defaultVersion</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value>let artifacts = self.connectedFCOs(MonolithprimaryArtifact) in
+  artifacts-&gt;exists (i : ImplementationArtifactReference | 
+                     let artifact: ImplementationArtifact = i.refersTo() in
+                      self.defaultVersion.trim() = artifact.artifactVersion.trim() )</value>
 				</attribute>
 				<attribute kind="ConstraintParam" status="meta">
 					<value></value>
@@ -69138,14 +69174,6 @@ let version = self.defaultVersion.trim() in
 				<connpoint role="src" target="id-0066-00000183"/>
 				<connpoint role="dst" target="id-0067-000000ab"/>
 			</connection>
-			<connection id="id-0068-0000028f" kind="HasConstraint" role="HasConstraint" guid="{14B1F9FD-757A-4364-A885-D15257E961BA}" relid="0x12f">
-				<name>HasConstraint</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>We</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-0000017e"/>
-				<connpoint role="src" target="id-0066-00000187"/>
-			</connection>
 			<connection id="id-0068-00000290" kind="HasConstraint" role="HasConstraint" guid="{4A30A3F0-F8D7-4c18-BCA6-2013A650656A}" relid="0x131">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
@@ -69169,6 +69197,14 @@ let version = self.defaultVersion.trim() in
 				</regnode>
 				<connpoint role="dst" target="id-0066-00000181"/>
 				<connpoint role="src" target="id-0066-0000018a"/>
+			</connection>
+			<connection id="id-0068-000003c8" kind="HasConstraint" role="HasConstraint" guid="{BCABF866-E2A6-451f-95A7-87EB6C0B37DF}" relid="0x140">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000181"/>
+				<connpoint role="src" target="id-0066-00000250"/>
 			</connection>
 			<set id="id-0069-0000001d" kind="Aspect" role="Aspect" guid="{AFB4C8E4-0566-4d9c-AE6A-8AD1407E471B}" relid="0x0" members="id-0066-0000016c id-0066-0000016e id-0066-00000170 id-0066-00000173 id-0066-00000174 id-0066-00000177 id-0066-00000178 id-0066-0000017c id-0066-0000017d id-0066-0000017e id-0066-00000180 id-0066-00000185 id-0067-0000002c id-0067-0000002d id-0067-0000002e id-0067-0000002f id-0067-00000030 id-0067-00000031 id-0067-000000ab">
 				<name>ImplPackaging</name>
@@ -84555,8 +84591,8 @@ instances-&gt;forAll (x : Component |
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000222"/>
 				<connpoint role="src" target="id-0066-00000222"/>
+				<connpoint role="dst" target="id-0066-00000222"/>
 			</connection>
 			<connection id="id-0068-00000375" kind="Containment" role="Containment" guid="{E0E0AC44-0FD0-4a4a-A7BE-BE8EC0D7A70F}" relid="0x9d">
 				<name>Containment</name>
