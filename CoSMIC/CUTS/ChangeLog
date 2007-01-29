@@ -1,3 +1,17 @@
+Mon Jan 29 15:25:35 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/GME_export.h:
+
+          Removed unncessary macro definitions.
+
+        * MDE/GME/Folder.h:
+        * MDE/GME/Model.h:
+        * MDE/GME/Project.h:
+        * MDE/GME/Reference.h:
+
+          Updated the documentation for the file and its contained
+          classes
+
 Mon Jan 29 15:09:48 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/Exception.h:

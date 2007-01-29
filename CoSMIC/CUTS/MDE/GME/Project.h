@@ -1,8 +1,5 @@
 // -*- C++ -*-
 
-#ifndef _GME_PROJECT_H_
-#define _GME_PROJECT_H_
-
 //===========================================================================
 /**
  * @file        Project.h
@@ -12,6 +9,9 @@
  * @author      James H. Hill
  */
 //===========================================================================
+
+#ifndef _GME_PROJECT_H_
+#define _GME_PROJECT_H_
 
 #include "Territory.h"
 #include "Folder.h"
