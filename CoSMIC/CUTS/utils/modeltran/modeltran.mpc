@@ -1,0 +1,12 @@
+// $Id$
+
+project (gems2picml) : taoexe, cutsexe {
+  exename = gems2picml
+
+  after += GEMS_CRN GME
+  libs  += GEMS_CRN GME
+
+  Source_Files {
+    gems2picml.cpp
+  }
+}

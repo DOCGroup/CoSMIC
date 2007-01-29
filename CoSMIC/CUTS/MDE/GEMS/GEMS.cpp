@@ -579,6 +579,24 @@ namespace GEMS
   }
 
   //
+  // connections
+  //
+  Connection_Set Model_Manager::connections (const std::string & type) const
+  {
+    Connection_Set conns;
+
+    for (Connection_Map::const_iterator iter = this->conns_.begin ();
+         iter != this->conns_.end ();
+         iter ++)
+    {
+      if (iter->second->type () == type)
+        conns.insert (iter->second);
+    }
+
+    return conns;
+  }
+
+  //
   // get_connection
   //
   Connection * Model_Manager::get_connection (size_t id)

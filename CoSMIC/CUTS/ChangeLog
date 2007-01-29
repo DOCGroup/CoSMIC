@@ -1,3 +1,56 @@
+Mon Jan 29 05:37:03 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * CUTS.mwc:
+
+          Added the modeltran and GEMS subdirectories to the
+          workspace.
+
+        * MDE/GEMS/GEMS.h:
+        * MDE/GEMS/GEMS.cpp:
+
+          Removed unnecessary debug messages.
+
+        * MDE/GME:
+        * MDE/GME/Atom.h:
+        * MDE/GME/Atom.cpp:
+        * MDE/GME/Exception.h:
+        * MDE/GME/Exception.inl:
+        * MDE/GME/Exception.cpp:
+        * MDE/GME/FCO.h:
+        * MDE/GME/FCO.cpp:
+        * MDE/GME/Folder.h:
+        * MDE/GME/Folder.cpp:
+        * MDE/GME/GME.h:
+        * MDE/GME/GME.cpp:
+        * MDE/GME/GME.mpc:
+        * MDE/GME/GME_export.h:
+        * MDE/GME/GME_fwd.h:
+        * MDE/GME/MetaBase.h:
+        * MDE/GME/MetaBase.cpp:
+        * MDE/GME/Model.h:
+        * MDE/GME/Model.cpp:
+        * MDE/GME/Object.h:
+        * MDE/GME/Object.cpp:
+        * MDE/GME/Project.h:
+        * MDE/GME/Project.cpp:
+        * MDE/GME/Reference.h:
+        * MDE/GME/Reference.cpp:
+        * MDE/GME/Set.h:
+        * MDE/GME/Set.cpp:
+        * MDE/GME/Territory.h:
+        * MDE/GME/Territory.cpp:
+
+          Initial implementation of wrappers for GME interfaces. This
+          allows us to easily create GEM raw components.
+
+        * utils/modeltran:
+        * utils/modeltran/gems2picml.cpp:
+        * utils/modeltran/modeltran.mpc:
+
+          Initial implementation of GEMS to PICML converter. It currently
+          is hard-coded to handle on a specific conversion method for
+          prove of concept.
+
 Thu Jan 25 00:55:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Benchmark_Agent.cpp:

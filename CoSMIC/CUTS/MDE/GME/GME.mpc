@@ -1,0 +1,46 @@
+// $Id$
+
+project (GME) : cutslib {
+  sharedname = GME
+
+  // remove the unnecessary libraries
+  after -= CUTS
+  libs  -= CUTS
+
+  dynamicflags += GME_BUILD_DLL _WIN32_DCOM
+
+  specific (nmake, vc6, vc7, vc71, vc8) {
+     midl_includes += $(GME_ROOT)Interfaces
+     midl_flags    += /client stub /server none
+     midl_notlb     = 1
+  }
+
+  Source_Files {
+    $(GME_ROOT)Interfaces/Mga.idl
+
+    GME.cpp
+
+    MetaBase.cpp
+
+    Exception.cpp
+    Folder.cpp
+    Object.cpp
+    FCO.cpp
+    Model.cpp
+    Atom.cpp
+    Project.cpp
+    Set.cpp
+    Reference.cpp
+
+    Territory.cpp
+  }
+
+  Template_Files {
+
+  }
+
+  Header_Files {
+    GME_export.h
+    GME_fwd.h
+  }
+}

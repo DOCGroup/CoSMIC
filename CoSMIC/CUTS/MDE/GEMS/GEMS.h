@@ -331,9 +331,19 @@ namespace GEMS
     /**
      * Get all the models in the project of a specific \a type.
      *
+     * @param[in]   type      The type of connection.
      * @return      Collection of models.
      */
     Model_Set models (const std::string & type) const;
+
+    /**
+     * Get all the connections in the project of a
+     * specific type.
+     *
+     * @param[in]   type      The type of connection.
+     * @return      Collection of connections.
+     */
+    Connection_Set connections (const std::string & type) const;
 
   private:
     /// Default constructor.
