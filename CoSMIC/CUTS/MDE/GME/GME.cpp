@@ -10,8 +10,7 @@ namespace GME
   //
   void init (void)
   {
-    // We would like to use CoInitializeEx (...) here instead.
-    VERIFY_HRESULT (CoInitializeEx (0, COINIT_APARTMENTTHREADED));
+    VERIFY_HRESULT (::CoInitializeEx (0, COINIT_APARTMENTTHREADED));
   }
 
   //

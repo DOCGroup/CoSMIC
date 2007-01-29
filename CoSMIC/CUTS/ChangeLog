@@ -1,3 +1,12 @@
+Mon Jan 29 06:09:44 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/GME.h:
+        * MDE/GME/GME.cpp:
+        * MDE/GME/GME_fwd.h:
+        * MDE/GME/Object.h:
+
+          Updated the documentation.
+
 Mon Jan 29 05:37:03 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * CUTS.mwc:
