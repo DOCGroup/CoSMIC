@@ -1,5 +1,15 @@
 // -*- C++ -*-
 
+//=============================================================================
+/**
+ * @file      Territory
+ *
+ * $Id$
+ *
+ * @author    James H. Hill
+ */
+//=============================================================================
+
 #ifndef _GME_TERRITORY_H_
 #define _GME_TERRITORY_H_
 
@@ -10,6 +20,14 @@
 
 namespace GME
 {
+  //===========================================================================
+  /**
+   * @class Territory
+   *
+   * Wrapper class for the IMgaTerritory interface.
+   */
+  //===========================================================================
+
   class GME_Export Territory
   {
   public:
@@ -33,14 +51,28 @@ namespace GME
     /// Destructor.
     ~Territory (void);
 
-    /// Close the territory.
+    /**
+     * Close the territory. After this method call, the territory
+     * is no longer valid.
+     */
     void close (void);
 
+    /**
+     * Attach to an existing territory.
+     *
+     * @param[in]       terr      Source territory.
+     */
     void attach (IMgaTerritory * terr);
 
+    /**
+     * Convert the territory to an interface pointer.
+     *
+     * @return          Interface pointer to the territory.
+     */
     operator IMgaTerritory * (void) const;
 
   private:
+    /// The COM pointer to the underlying territory.
     CComPtr <IMgaTerritory> terr_;
   };
 }

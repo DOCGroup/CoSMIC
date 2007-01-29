@@ -29,6 +29,9 @@ namespace GME
   class GME_Export Object
   {
   public:
+    /// Type definition of the COM pointer type.
+    typedef IMgaObject _type;
+
     /// Default constructor.
     Object (void);
 
