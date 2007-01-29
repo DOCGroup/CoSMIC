@@ -142,7 +142,9 @@ void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
 generate (const PICML::SingleInputBase & base)
 {
   PICML::Input input = base.dstInput ();
-  input.Accept (*this);
+
+  if (input != Udm::null)
+    input.Accept (*this);
 }
 
 
@@ -156,11 +158,14 @@ generate (const PICML::MultiInputBase & base)
   typedef std::set <PICML::MultiInput> MultiInput_Set;
   MultiInput_Set inputs = base.dstMultiInput ();
 
-  std::for_each (inputs.begin (),
-                 inputs.end (),
-                 boost::bind (&MultiInput_Set::value_type::Accept,
-                              _1,
-                              boost::ref (*this)));
+  if (!inputs.empty ())
+  {
+    std::for_each (inputs.begin (),
+                   inputs.end (),
+                   boost::bind (&MultiInput_Set::value_type::Accept,
+                                _1,
+                                boost::ref (*this)));
+  }
 }
 
 //
