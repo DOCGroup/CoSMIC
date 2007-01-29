@@ -40,20 +40,4 @@ namespace GME
   {
 
   }
-
-  //
-  // Null_Type
-  //
-  Null_Type::Null_Type (void)
-  {
-
-  }
-
-  //
-  // Null_Type
-  //
-  Null_Type::~Null_Type (void)
-  {
-
-  }
 }

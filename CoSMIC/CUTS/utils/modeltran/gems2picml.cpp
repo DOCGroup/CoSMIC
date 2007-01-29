@@ -172,11 +172,6 @@ int main (int argc, char * argv [])
                 "*** error: GEM operation failed [0x%X]\n",
                 ex.value ()));
   }
-  catch (const GME::Null_Type &)
-  {
-    ACE_ERROR ((LM_ERROR,
-                "*** error: cannot operate on null refernce\n"));
-  }
   catch (const ::CORBA::Exception & ex)
   {
     ACE_ERROR ((LM_ERROR,

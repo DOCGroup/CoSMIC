@@ -1,3 +1,12 @@
+Mon Jan 29 14:48:02 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/Exception.h:
+        * MDE/GME/Exception.cpp:
+        * utils/modeltran/gems2picml.cpp:
+
+          Removed the Null_Type exception, and all its occurrences
+          in the implementation.
+
 Mon Jan 29 14:44:59 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/FCO.h:

@@ -83,20 +83,6 @@ namespace GME
     /// The resulting error code.
     const HRESULT value_;
   };
-
-  //===========================================================================
-  /**
-   * @class Null_Type
-   */
-  //===========================================================================
-
-  class GME_Export Null_Type : public GME::Exception
-  {
-  public:
-    Null_Type (void);
-
-    virtual ~Null_Type (void);
-  };
 }
 
 #if defined (__CUTS_INLINE__)
