@@ -1,3 +1,11 @@
+Mon Jan 29 19:07:12 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * SQL/CUTS-baseline.sql:
+
+          Baseline table for storing the baseline metrics of each
+          component that can be referenced later during real
+          experiments.
+
 Mon Jan 29 18:47:15 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/GME.mpc:
