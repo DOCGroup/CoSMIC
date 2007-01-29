@@ -473,14 +473,21 @@ Package_Visitor::Visit_Component (const PICML::Component & component)
   // There is no need to continue if we already have a factory attached
   // to the <coworker_>.
 
-  // @@todo We need make sure the factory of the coworker component is
+  // @todo We need make sure the factory of the coworker component is
   // an instance of the real component's factory.
   if (!curr_manages.empty ())
     return;
 
-  PICML::ComponentFactory cfactory = factory.CreateDerived (this->parent_);
-  std::string name = (std::string)cfactory.name () + COWORKER_POSTFIX;
+  // Create the component factory and inherit from the subtypes
+  // component factory.
+  PICML::ComponentFactory cfactory =
+    PICML::ComponentFactory::Create (this->parent_);
+
+  std::string name = (std::string)factory.name () + COWORKER_POSTFIX;
   cfactory.SetStrValue ("name", name);
+
+  PICML::Inherits inherits = PICML::Inherits::Create (cfactory);
+  inherits.ref () = factory;
 
   // Create the connection between <cfactory> and <coworker_>
   PICML::ManagesComponent manage =
