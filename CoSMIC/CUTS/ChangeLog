@@ -1,3 +1,13 @@
+Mon Jan 29 15:09:48 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/Exception.h:
+        * MDE/GME/MetaBase.h:
+        * MDE/GME/Reference.h:
+        * MDE/GME/Set.h:
+
+          Updated the documentation for the file and its contained
+          classes
+
 Mon Jan 29 14:48:02 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/Exception.h:

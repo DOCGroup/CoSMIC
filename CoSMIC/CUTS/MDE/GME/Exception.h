@@ -1,4 +1,4 @@
-// $Id$
+// -*- C++ -*-
 
 //=============================================================================
 /**
@@ -15,6 +15,10 @@
 
 #include "GME_export.h"
 
+/**
+ * Helper method that will verify the success of a COM operation and
+ * if it fails, throw the GME::Failed_Result exception.
+ */
 #define VERIFY_HRESULT(method) \
   { \
     HRESULT hr = method; \

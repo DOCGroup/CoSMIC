@@ -1,3 +1,15 @@
+// -*- C++ -*-
+
+//=============================================================================
+/**
+ * @file      Set.h
+ *
+ * $Id$
+ *
+ * @author    James H. Hill
+ */
+//=============================================================================
+
 #ifndef _GME_SET_H_
 #define _GME_SET_H_
 
@@ -7,18 +19,26 @@ namespace GME
 {
   //===========================================================================
   /**
-   * @class Folder
+   * @class Set
+   *
+   * Wrapper class for the IMgaSet interface.
    */
   //===========================================================================
 
   class GME_Export Set : public FCO
   {
   public:
+    /// Type definition for the interface pointer.
     typedef IMgaSet _type;
 
     /// Default constructor.
     Set (void);
 
+    /**
+     * Initializing constructor.
+     *
+     * @param[in]       set       The source interface.
+     */
     Set (IMgaSet * set);
 
     /**
@@ -39,17 +59,43 @@ namespace GME
      */
     const Set & operator = (const Set & set);
 
+    /**
+     * Insert an FCO into the set.
+     *
+     * @param[in]     fco       The source FCO object.
+     */
     void insert (const FCO & fco);
+
+    /**
+     * Remove an FCO from the set.
+     *
+     * @param[in]     fco       The source FCO object.
+     */
     void remove (const FCO & fco);
 
+    /**
+     * Determine if the set contains a specific FCO object.
+     *
+     * @retval        true      The set contains the object.
+     * @retval        false     The set does not contain the object.
+     */
     bool contains (const FCO & fco);
 
+    /// Clear all the objects from the set.
     void clear (void);
 
+    /**
+     * Get all the objects in the set.
+     *
+     * @return        The collection of FCO members for the set.
+     */
     std::vector <FCO> members (void) const;
 
   protected:
+    /// Helper method for getting the correct implemenation.
     IMgaSet * impl (void) const;
+
+    /// The underlying COM interface pointer.
     mutable CComPtr <IMgaSet> set_;
   };
 }
