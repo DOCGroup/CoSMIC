@@ -13,8 +13,7 @@
 #ifndef _GME_TERRITORY_H_
 #define _GME_TERRITORY_H_
 
-#include <atlbase.h>
-#include <string>
+#include "Exception.h"
 #include "Mga.h"
 #include "GME_export.h"
 

@@ -1,3 +1,15 @@
+Mon Jan 29 15:29:41 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/Exception.h:
+        * MDE/GME/MetaBase.h:
+        * MDE/GME/Territory.h:
+
+          - Fixed broken include sequence resulting from not defining
+            HRESULT
+          - Exception.h is now contains all the necessary includes
+            for using COM and should be included by all GME header
+            files either directly, or indirectly.
+
 Mon Jan 29 15:25:35 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/GME_export.h:

@@ -13,10 +13,8 @@
 #ifndef _GME_METABASE_H_
 #define _GME_METABASE_H_
 
-#include <atlbase.h>
-#include <string>
-#include "Mga.h"
 #include "Exception.h"
+#include "Mga.h"
 
 namespace GME
 {

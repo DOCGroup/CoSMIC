@@ -14,6 +14,8 @@
 #define _GME_EXCEPTION_H_
 
 #include "GME_export.h"
+#include <atlbase.h>
+#include <string>
 
 /**
  * Helper method that will verify the success of a COM operation and
