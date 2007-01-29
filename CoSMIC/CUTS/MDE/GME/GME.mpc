@@ -16,6 +16,7 @@ project (GME) : cutslib {
   }
 
   Source_Files {
+    $(GME_ROOT)Interfaces/Meta.idl
     $(GME_ROOT)Interfaces/Mga.idl
 
     GME.cpp

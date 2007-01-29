@@ -3,7 +3,6 @@
 project {
   specific {
     Release::dynamicflags += __CUTS_INLINE__
-    Debug::dynamicflags +=
   }
 
   specific (vc6, vc7, vc71, vc8, nmake) {

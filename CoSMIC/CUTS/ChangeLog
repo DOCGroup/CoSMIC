@@ -1,3 +1,15 @@
+Mon Jan 29 18:47:15 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/GME.mpc:
+
+          Added Meta.idl to the source compilation to fix build
+          errors.
+
+        * etc/config/cuts_base.mpb:
+
+          Removed workaround for bug that was causing scoped
+          properties to be ignored.
+
 Mon Jan 29 18:28:56 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CoWorkEr_Generator.cpp:
