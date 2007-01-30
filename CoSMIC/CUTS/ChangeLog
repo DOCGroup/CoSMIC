@@ -1,3 +1,10 @@
+Tue Jan 30 01:39:14 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/GME.mpc:
+        
+          Added the modeling feature requirement to prevent this project
+          from building if modeling is not enabled.
+
 Mon Jan 29 19:07:12 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * SQL/CUTS-baseline.sql:

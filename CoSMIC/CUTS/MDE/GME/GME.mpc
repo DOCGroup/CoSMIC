@@ -3,6 +3,8 @@
 project (GME) : cutslib {
   sharedname = GME
 
+  requires += modeling
+
   // remove the unnecessary libraries
   after -= CUTS
   libs  -= CUTS
