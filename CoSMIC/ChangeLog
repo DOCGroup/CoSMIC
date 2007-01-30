@@ -1,11 +1,17 @@
+Tue Jan 30 19:46:02 UTC 2007  Akshay V. Dabholkar  <aky@dre.vanderbilt.edu>
+
+        * PSM/CQML/SQML - Project Report.doc:
+        * PSM/CQML/SQML-SecurityQoSDSML.ppt:
+					Added the Security Modeling report and presentation
+					
 Tue Jan 30 18:43:21 UTC 2007  Shanshan Jiang <shanshan.jiang@vanderbilt.edu>
 
         * PIM/PICML/interpreters/Package/PackagerVisitor.h
         * PIM/PICML/interpreters/Package/ZIP_create.cpp
         * PIM/PICML/interpreters/Package/ZIP_create.h
-        
+
           Remove the use of ACE_ERROR.
-        
+
 Mon Jan 29 22:27:08 UTC 2007  Shanshan Jiang <shanshan.jiang@vanderbilt.edu>
 
         * PIM/PICML/interpreters/Package/Packager_Export.h
@@ -13,17 +19,17 @@ Mon Jan 29 22:27:08 UTC 2007  Shanshan Jiang <shanshan.jiang@vanderbilt.edu>
         * PIM/PICML/interpreters/Package/PackagerVisitor.h
         * PIM/PICML/interpreters/Package/ZIP_create.cpp
         * PIM/PICML/interpreters/Package/ZIP_create.h
-        
+
           Added these files to add the packager tool, which copies the descriptor
           files and implementation files for a component package into a directory
           and zip it into a component package file.
-          
+
         * PIM/PICML/interpreters/Package/Package.mpc
         * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc
         * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp
-        
+
           Updated these files to add the above functionality.
-        
+
 Sat Jan 27 10:18:24 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
