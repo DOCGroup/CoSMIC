@@ -37,6 +37,7 @@
 #include "Utils/Utils.h"
 #include "PICML/PICML.h"
 #include "Package/PackageVisitor.h"
+#include "Package/PackagerVisitor.h"
 
 using xercesc::XMLPlatformUtils;
 using xercesc::XMLException;
@@ -93,19 +94,19 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
                       set<Udm::Object> selectedObjects,	// Selected objects
                       long param)			// Parameters
 {
+  std::string descriptorDir;
   try
     {
       XMLPlatformUtils::Initialize();
       try
         {
-          std::string outputPath;
-          std::string message = "Please specify the Output Directory";
-          if (!::Utils::getPath (message, outputPath))
+          std::string message = "Please specify the Output Directory of the descriptor files";
+          if (!::Utils::getPath (message, descriptorDir))
             return;
-          PICML::PackageVisitor visitor (outputPath);
+          PICML::PackageVisitor package_visitor (descriptorDir);
           PICML::RootFolder
-            start = PICML::RootFolder::Cast (p_backend->GetRootObject());
-          start.Accept (visitor);
+            package_start = PICML::RootFolder::Cast (p_backend->GetRootObject());
+          package_start.Accept (package_visitor);
         }
       catch(udm_exception &e)
         {
@@ -138,5 +139,57 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
     }
   AfxMessageBox ("Descriptor files were successfully generated!",
                  MB_OK| MB_ICONINFORMATION);
+
+
+  std::string outputPath;
+  std::string implementationDir;
+  try
+    {
+      XMLPlatformUtils::Initialize();
+      try
+        {
+          std::string message = "Please specify the Input Directory of the implementation files";
+          if (!::Utils::getPath (message, implementationDir))
+            return;
+          message = "Please specify the Output Directory of the packages";
+          if (!::Utils::getPath (message, outputPath))
+            return;
+          PICML::PackagerVisitor packager_visitor (descriptorDir, implementationDir, outputPath);
+          PICML::RootFolder
+            packager_start = PICML::RootFolder::Cast (p_backend->GetRootObject());
+          packager_start.Accept (packager_visitor);
+        }
+      catch(udm_exception &e)
+        {
+          AfxMessageBox ("Interpretation Failed. Caught UDM Exception: "
+                         + CString (e.what()));
+          return;
+        }
+      catch (const DOMException& e)
+        {
+          const unsigned int maxChars = 2047;
+          XMLCh errText[maxChars + 1];
+
+          std::stringstream estream;
+          estream << "DOMException code: " << e.code << std::endl;
+          if (xercesc::DOMImplementation::loadDOMExceptionMsg(e.code, errText, maxChars))
+            {
+              std::string message (XMLString::transcode (errText));
+              estream << "Message is: " << message << std::endl;
+            }
+          AfxMessageBox (estream.str().c_str());
+          return;
+        }
+      XMLPlatformUtils::Terminate();
+    }
+  catch (const XMLException& e)
+    {
+      std::string message (XMLString::transcode (e.getMessage()));
+      AfxMessageBox (message.c_str());
+      return;
+    }
+  AfxMessageBox ("Packages files were successfully generated!",
+                 MB_OK| MB_ICONINFORMATION);
+
   return;
 }

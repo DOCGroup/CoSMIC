@@ -1,13 +1,24 @@
-project(Package): picmllib, boost_base {
+project(Package): acedefaults, picmllib, boost_base, zlib {
    sharedname = Package
-   macros += PACKAGE_BUILD_DLL
+   
+   includes += $(ACE_ROOT)/contrib/minizip
+   requires += zlib
+   after += minizip
+   libpaths += $(ACE_ROOT)/lib 
+   libs += ACE minizip
+   macros += PACKAGE_BUILD_DLL PACKAGER_BUILD_DLL
 
    Source_Files {
      PackageVisitor.cpp
+     PackagerVisitor.cpp
+     ZIP_create.cpp
    }
 
    Header_Files {
      PackageVisitor.h
+     PackagerVisitor.h
      Package_Export.h
+     Packager_Export.h
+     ZIP_create.h
    }
 }

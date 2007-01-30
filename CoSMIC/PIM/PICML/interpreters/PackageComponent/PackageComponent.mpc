@@ -1,6 +1,7 @@
-project (PackageComponent): mfc, picmllib, register {
+project (PackageComponent): acedefaults, mfc, picmllib, register {
   after += Package
-
+  libpaths    += $(ACE_ROOT)/lib 
+  libs += ACE
 
   macros +=  _USRDLL _WINDLL
   sharedname = PackageComponent
