@@ -18,15 +18,12 @@ int ZIP_create::compress(const std::string filename,
 {
   ACE_TCHAR full_path[MAXPATHLEN];
   if (ACE_OS::getcwd (full_path, sizeof(full_path)) == NULL)
-    ACE_ERROR_RETURN ((LM_ERROR,
-                       ACE_TEXT ("getcwd: failed\n")),
-                      -1);
+    throw udm_exception (string ("Get cwd failed: ") + string (full_path));
 
   get_filenames(dir, full_path);
 
   if (ACE_OS::chdir (full_path) == -1)
-    ACE_ERROR ((LM_ERROR,
-                ACE_TEXT ("chdir: %p\n"), full_path));
+    throw udm_exception (string ("chdir failed: ") + string (full_path));
 
   // append to existing zip file
   if (append == 2)
@@ -39,10 +36,7 @@ int ZIP_create::compress(const std::string filename,
   // open the zip file
   zipFile zf = zipOpen(filename.c_str (), (append == 2) ? 2 : 0);
   if (zf == NULL)
-    ACE_ERROR_RETURN((LM_DEBUG,
-                      ACE_TEXT("There is some problem in opening the zipfile %s using zipOpen\n"),
-	  		              filename),
-                     ZIP_ERRNO);
+    throw udm_exception (string ("There is some problem in opening the zipfile using zipOpen: " + filename));
 
   // add each dir passed in vector to zip file 
   for(unsigned int i = 0; i < dirs_.size(); i++)
@@ -60,18 +54,14 @@ int ZIP_create::compress(const std::string filename,
       int err = zipOpenNewFileInZip(zf, dirname.c_str (), &zi, NULL, 0, NULL, 0, NULL,
                                     (compress_level != 0) ? Z_DEFLATED : 0, compress_level);                
       if (err != ZIP_OK)
-        ACE_ERROR_RETURN((LM_DEBUG,
-                          ACE_TEXT("There is some problem in opening %s in zipfile using zipOpenNewFileInZip\n"),
-	  		                  dirnameinzip),
-                         ZIP_ERRNO);
+        throw udm_exception
+          (string ("There is some problem in opening in zipfile using zipOpenNewFileInZip: " + dirnameinzip));
     
       // close the file inside zipfile
       err = zipCloseFileInZip(zf);
       if (err != ZIP_OK)
-        ACE_ERROR_RETURN((LM_DEBUG,
-                          ACE_TEXT("There is some problem in closing %s in zipfile using zipCloseFileInZip\n"),
-	  		                  dirnameinzip),
-                         ZIP_ERRNO);
+        throw udm_exception
+          (string ("There is some problem in opening in closing zipfile using zipCloseFileInZip: " + dirnameinzip));
     }
 
 	void *buf;
@@ -92,17 +82,13 @@ int ZIP_create::compress(const std::string filename,
       int err = zipOpenNewFileInZip(zf, filename.c_str (), &zi, NULL, 0, NULL, 0, NULL,
                                     (compress_level != 0) ? Z_DEFLATED : 0, compress_level);                
       if (err != ZIP_OK)
-        ACE_ERROR_RETURN((LM_DEBUG,
-                          ACE_TEXT("There is some problem in opening %s in zipfile using zipOpenNewFileInZip\n"),
-	  		                  filenameinzip),
-                         ZIP_ERRNO);
+        throw udm_exception
+          (string ("There is some problem in opening in opening zipfile using zipOpenNewFileInZip: " + filenameinzip));
 
       FILE *fin = fopen(filenameinzip.c_str (), "rb");
       if (fin == NULL)
-        ACE_ERROR_RETURN((LM_DEBUG,
-                          ACE_TEXT("There is some problem in opening %s for reading\n"),
-	  		                  filenameinzip),
-                         ZIP_ERRNO);
+        throw udm_exception
+          (string ("There is some problem in opening in opening file: " + filenameinzip));
 
       buf = (void*) malloc(WRITEBUFFERSIZE);      
       int size_read;
@@ -124,10 +110,8 @@ int ZIP_create::compress(const std::string filename,
       // close the file inside zipfile
       err = zipCloseFileInZip(zf);
       if (err != ZIP_OK)
-        ACE_ERROR_RETURN((LM_DEBUG,
-                          ACE_TEXT("There is some problem in closing %s in zipfile using zipCloseFileInZip\n"),
-	  		                  filenameinzip),
-                         ZIP_ERRNO);
+        throw udm_exception
+          (string ("There is some problem in opening in closing zipfile using zipCloseFileInZip: " + filenameinzip));
     }
 
   free(buf);
@@ -136,10 +120,8 @@ int ZIP_create::compress(const std::string filename,
   // close the zip file
   int errclose = zipClose(zf,NULL);
   if (errclose != ZIP_OK)
-    ACE_ERROR_RETURN((LM_DEBUG,
-                      ACE_TEXT("There is some problem in closing the zipFile %s using zipClose\n"),
-                      filename),
-                     ZIP_ERRNO);
+    throw udm_exception
+      (string ("There is some problem in opening in closing zipFile using zipClose: " + filename));
     
   return 0;
 }
@@ -160,12 +142,10 @@ void ZIP_create::get_filenames(const std::string dirname,
                                const std::string dirname_bak)
 {  
   if (ACE_OS::chdir (dirname_bak.c_str ()) == -1)
-                ACE_ERROR ((LM_ERROR,
-                            ACE_TEXT ("chdir: %p\n"), dirname_bak.c_str ()));
+    throw udm_exception (string ("chdir failed: " + dirname_bak));
 
   if (ACE_OS::chdir (dirname.c_str ()) == -1)
-    ACE_ERROR ((LM_ERROR,
-                ACE_TEXT ("chdir: %p\n"), dirname.c_str ()));
+    throw udm_exception (string ("chdir failed: " + dirname));
 
   ACE_Dirent dir (DIR_DOT);
 
@@ -177,9 +157,7 @@ void ZIP_create::get_filenames(const std::string dirname,
 
       ACE_stat stat_buf;
       if (ACE_OS::lstat (directory->d_name, &stat_buf) == -1)
-        ACE_ERROR ((LM_ERROR,
-                           ACE_TEXT ("%p\n"),
-                           directory->d_name));
+        throw udm_exception (string ("lstat failed: ") + string (directory->d_name));
 
       std::string temp = dirname;
       temp += "/";
@@ -194,8 +172,7 @@ void ZIP_create::get_filenames(const std::string dirname,
           dirs_.push_back(temp + "/");
           get_filenames(temp, dirname_bak);
           if (ACE_OS::chdir (ACE_TEXT ("..")) == -1)
-                ACE_ERROR ((LM_ERROR,
-                            ACE_TEXT ("chdir: %p\n"), dirname.c_str ()));
+            throw udm_exception (string ("chdir failed: " + dirname));
           break;
 
         default:

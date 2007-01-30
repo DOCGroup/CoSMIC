@@ -1,3 +1,11 @@
+Tue Jan 30 18:43:21 UTC 2007  Shanshan Jiang <shanshan.jiang@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Package/PackagerVisitor.h
+        * PIM/PICML/interpreters/Package/ZIP_create.cpp
+        * PIM/PICML/interpreters/Package/ZIP_create.h
+        
+          Remove the use of ACE_ERROR.
+        
 Mon Jan 29 22:27:08 UTC 2007  Shanshan Jiang <shanshan.jiang@vanderbilt.edu>
 
         * PIM/PICML/interpreters/Package/Packager_Export.h

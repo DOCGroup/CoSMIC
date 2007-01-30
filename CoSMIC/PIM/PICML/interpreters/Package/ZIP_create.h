@@ -4,7 +4,9 @@
 #include <string>
 #include <vector>
 
+#include "PICML/PICML.h"
 #include "zip.h"
+
 /**
  * @class ZIP_create
  *

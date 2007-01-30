@@ -7,7 +7,6 @@
 #include "ace/OS_NS_fcntl.h"
 #include "ace/OS_NS_unistd.h"
 #include "ace/Message_Block.h"
-#include "ace/log_msg.h"
 
 #include "PICML/PICML.h"
 #include "Package/Packager_Export.h"
