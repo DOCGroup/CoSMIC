@@ -203,7 +203,7 @@ namespace CUTS
                             "successfully terminated process with id %u\n",
                             pid));
 
-          this->process_exits (pid);
+          this->unmanage (pid);
           ++ count;
         }
         else
@@ -233,7 +233,7 @@ namespace CUTS
   //
   // process_exits
   //
-  void Node_Daemon_i::process_exits (pid_t pid)
+  void Node_Daemon_i::unmanage (pid_t pid)
   {
     Process_Map::VALUE entry = 0;
 

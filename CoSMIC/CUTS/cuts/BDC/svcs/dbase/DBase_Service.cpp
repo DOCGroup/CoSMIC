@@ -944,7 +944,7 @@ handle_component (const CUTS_Component_Info & info)
 {
   if (info.state_ == 1)
     this->register_component (info.inst_.c_str (),
-                              "Unknown",
+                              info.type_.c_str (),
                               info.uid_);
   return 0;
 }

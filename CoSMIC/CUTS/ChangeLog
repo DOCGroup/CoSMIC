@@ -1,7 +1,31 @@
+Tue Jan 30 21:47:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/svcs/dbase/DBase_Service.h:
+
+          Replaced #include "ace/SString_fwd.h" and "ace/String_Base.h"
+          with #include "ace/SString.h"
+
+        * cuts/BDC/svcs/dbase/DBase_Service.cpp (handle_component):
+
+          Now the type information of a component is stored into the
+          database, instead of "Unknown"
+
+        * utils/Node_Daemon/Node_Daemon_i.h:
+
+          - Removed friend declaration of Node_Daemon_Event_Handler.
+          - Changed process_exits (...) to unmanage (...) and exposed
+            it as a public method.
+
+        * utils/Node_Daemon/Node_Daemon_Event_Handler.cpp:
+        * utils/Node_Daemon/Node_Daemon_i.cpp:
+
+          Changed all occurrences of process_exits (...) to
+          unmanage (...)
+
 Tue Jan 30 01:39:14 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/GME.mpc:
-        
+
           Added the modeling feature requirement to prevent this project
           from building if modeling is not enabled.
 

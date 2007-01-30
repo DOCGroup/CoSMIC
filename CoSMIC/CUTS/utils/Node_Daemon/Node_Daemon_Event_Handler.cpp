@@ -30,7 +30,7 @@ int Node_Daemon_Event_Handler::handle_exit (ACE_Process * process)
   ACE_DEBUG ((LM_DEBUG, "handle_exit\n"));
 
   if (process != 0)
-    this->daemon_->process_exits (process->getpid ());
+    this->daemon_->unmanage (process->getpid ());
   else
     ACE_ERROR ((LM_WARNING, "unknown process has exited\n"));
 

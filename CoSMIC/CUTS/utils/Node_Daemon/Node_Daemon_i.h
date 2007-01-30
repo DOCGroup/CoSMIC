@@ -37,9 +37,6 @@ namespace CUTS
     public virtual POA_CUTS::Node_Daemon,
     public ACE_Event_Handler
   {
-    // Friend decl.
-    friend class Node_Daemon_Event_Handler;
-
   public:
     /// Default contructor.
     Node_Daemon_i (::CORBA::ORB_ptr orb);
@@ -96,6 +93,16 @@ namespace CUTS
     /// Clean the log file.
     void clean (void);
 
+    /**
+     * Notify the node daemon to stop managing particular process.
+     * This can be the result of the process exiting, or no longer
+     * a concern. In either case, it will remove the process for
+     * monitoring by the daemon.
+     *
+     * @param[in]     pid         Id of the process.
+     */
+    void unmanage (pid_t pid);
+
   private:
     /// Timeout handler for the cleaning thread.
     int handle_timeout (const ACE_Time_Value & tv,
@@ -121,14 +128,6 @@ namespace CUTS
     pid_t spawn_i (u_short port,
                    bool localhost,
                    ACE_Process_Options & p_options);
-
-    /**
-     * Notify the node daemon that a particular process has
-     * exited.
-     *
-     * @param[in]     pid         Id of the process.
-     */
-    void process_exits (pid_t pid);
 
     /// Type definition of mapping ports to processes.
     typedef ACE_Hash_Map_Manager <u_short,

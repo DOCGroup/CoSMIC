@@ -17,8 +17,7 @@
 #include "DBase_Service_export.h"
 #include "ace/RW_Thread_Mutex.h"
 #include "ace/Auto_Ptr.h"
-#include "ace/SStringfwd.h"
-#include "ace/String_Base.h"
+#include "ace/SString.h"
 #include <map>
 
 // Forward decl.
