@@ -378,7 +378,7 @@ write_eventsink_variable (const PICML::InEventPort & sink)
   this->outfile ()
     << single_line_comment ((std::string)sink.name () + " event handler")
     << "CUTS_Event_Handler_Manager_T <" << std::endl
-    << "  typename _proxy_type::_impl_type," << std::endl
+    << "  _proxy_type::_impl_type," << std::endl
     << "  " << scope (event, "::") << event.name () << "> "
     << "push_" << sink.name () << "_;"
     << std::endl;

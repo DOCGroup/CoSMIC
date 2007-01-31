@@ -50,6 +50,9 @@ int CUTS_Baseline_Service::handle_deactivate (void)
 {
   if (this->warmup_count_ == 0)
   {
+    // Get the component metrics for the component whose id
+    // we stored during its activation.
+
     CUTS_System_Metric * metrics = this->svc_mgr ()->metrics ();
     CUTS_Component_Metric * component_metric =
       metrics->component_metrics (this->uid_);
@@ -60,6 +63,10 @@ int CUTS_Baseline_Service::handle_deactivate (void)
          inport != map.end ();
          inport ++)
     {
+      // Get the sender port of the unknown implemenation type. We
+      // are only concerned with this one since we do not know the
+      // id of the test component causing the work.
+
       CUTS_Sender_Port_Map::const_iterator sender =
         inport->second.find (CUTS_UNKNOWN_IMPL);
 
