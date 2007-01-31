@@ -70,6 +70,9 @@ public:
 
   void timestamp (const ACE_Time_Value & timestamp);
 
+  const CUTS_Component_Metric & operator += (
+    const CUTS_Component_Metric & metric);
+
 private:
   /// Mapping of name to port metrics.
   CUTS_Port_Metric_Map port_metrics_;

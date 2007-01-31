@@ -52,6 +52,8 @@ public:
 
   void timestamp (const ACE_Time_Value & timestamp);
 
+  const CUTS_Port_Metric & operator += (const CUTS_Port_Metric & metric);
+
 private:
   /// Time metrics for the port.
   CUTS_Endpoint_Metric_Map endpoints_;

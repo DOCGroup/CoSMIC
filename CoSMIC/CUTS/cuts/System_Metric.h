@@ -107,6 +107,8 @@ public:
    */
   const ACE_Time_Value & get_duration (void) const;
 
+  const CUTS_System_Metric & operator += (const CUTS_System_Metric & metric);
+
 private:
   /// Helper method for setting the timestamp accordingly.
   void timestamp_i (const ACE_Time_Value * timestamp = 0);

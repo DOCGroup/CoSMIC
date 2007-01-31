@@ -1,3 +1,31 @@
+Wed Jan 31 07:13:17 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/svcs/baseline:
+        * cuts/BDC/svcs/baseline/Baseline_Service.h:
+        * cuts/BDC/svcs/baseline/Baseline_Service.cpp:
+        * cuts/BDC/svcs/baseline/Baseline_Service.mpc:
+        * cuts/BDC/svcs/baseline/Baseline_Service_export.h:
+        * cuts/BDC/svcs/baseline/README:
+
+          Initial implementation of the CUTS baseline benchmark
+          service. See README for more details.
+
+        * cuts/Component_Metric.h:
+        * cuts/Component_Metric.cpp:
+        * cuts/Port_Metric.h:
+        * cuts/Port_Metric.cpp:
+        * cuts/System_Metric.h:
+        * cuts/System_Metric.cpp:
+
+          Implemented operator += methods for simplying the process
+          of accumulating timing measurements.
+
+        * cuts/Time_Metric.cpp (operator +=):
+
+          Accumulates the timing measurement in the avg_time_, while
+          it keeps track of the best/worst timing measurements between
+          then lhs and rhs of the operator.
+
 Tue Jan 30 21:47:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/svcs/dbase/DBase_Service.h:

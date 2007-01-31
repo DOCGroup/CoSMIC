@@ -77,3 +77,34 @@ void CUTS_Component_Metric::accept (CUTS_System_Metrics_Visitor & visitor)
 {
   visitor.visit_component_metrics (*this);
 }
+
+//
+// operator +=
+//
+const CUTS_Component_Metric &
+CUTS_Component_Metric::operator += (const CUTS_Component_Metric & metric)
+{
+  CUTS_Port_Metric_Map::const_iterator iter;
+
+  for (iter  = metric.port_metrics ().begin ();
+       iter != metric.port_metrics ().end ();
+       iter ++)
+  {
+    CUTS_Sender_Port_Map::const_iterator sender;
+
+    for (sender  = iter->second.begin ();
+         sender != iter->second.end ();
+         sender ++)
+    {
+      if (sender->second)
+      {
+        CUTS_Port_Metric * port_metric =
+          this->port_metrics (iter->first.c_str (), sender->first);
+
+        *port_metric += *sender->second;
+      }
+    }
+  }
+
+  return *this;
+}

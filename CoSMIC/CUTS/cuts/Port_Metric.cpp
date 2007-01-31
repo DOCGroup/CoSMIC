@@ -109,7 +109,33 @@ CUTS_Time_Metric * CUTS_Port_Metric::endpoint (const char * endpoint)
 //
 // accept
 //
-void CUTS_Port_Metric::accept (CUTS_System_Metrics_Visitor & visitor)
+void CUTS_Port_Metric::
+accept (CUTS_System_Metrics_Visitor & visitor)
 {
   visitor.visit_port_metrics (*this);
+}
+
+//
+// operator +=
+//
+const CUTS_Port_Metric &
+CUTS_Port_Metric::operator += (const CUTS_Port_Metric & metric)
+{
+  // Accumulate the transit time.
+  this->transit_time_ += metric.transit_time_;
+
+  CUTS_Endpoint_Metric_Map::const_iterator iter;
+
+  for (iter  = metric.endpoints_.begin ();
+       iter != metric.endpoints_.end ();
+       iter ++)
+  {
+    if (iter->second)
+    {
+      CUTS_Time_Metric * timing = this->endpoint (iter->first.c_str ());
+      *timing += *iter->second;
+    }
+  }
+
+  return *this;
 }

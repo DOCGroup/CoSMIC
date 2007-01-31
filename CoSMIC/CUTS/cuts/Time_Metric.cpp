@@ -94,6 +94,7 @@ const CUTS_Time_Metric operator + (const CUTS_Time_Metric & lhs,
 {
   CUTS_Time_Metric time_metric (lhs);
   time_metric += rhs;
+
   return time_metric;
 }
 
@@ -105,9 +106,18 @@ CUTS_Time_Metric::operator += (const CUTS_Time_Metric & rhs)
 {
   ACE_WRITE_GUARD_RETURN (ACE_RW_Thread_Mutex, guard, this->lock_, *this);
 
+  // We need to sum the source with this object.
+  this->count_ += rhs.count_;
   this->total_time_ += rhs.total_time_;
-  this->best_time_ += rhs.best_time_;
-  this->worse_time_ += rhs.worse_time_;
+
+  // Store the best time of the two.
+  if (rhs.best_time_ > this->best_time_)
+    this->best_time_ = rhs.best_time_;
+
+  // Store the worst time of the two.
+  if (rhs.worse_time_ > this->worse_time_)
+    this->worse_time_ = rhs.worse_time_;
+
   return *this;
 }
 

@@ -147,3 +147,25 @@ timestamp_i (const ACE_Time_Value * timestamp)
   else
     this->timestamp_ = ACE_OS::gettimeofday ();
 }
+
+//
+// operator +=
+//
+const CUTS_System_Metric & CUTS_System_Metric::
+operator += (const CUTS_System_Metric & metric)
+{
+  // Add the <duration_> of the source metrics.
+  this->duration_ += metric.duration_;
+
+  CUTS_Component_Metric_Map::const_iterator iter;
+
+  for (iter  = metric.component_metrics ().begin ();
+       iter != metric.component_metrics ().end ();
+       iter ++)
+  {
+    CUTS_Component_Metric * cmetric = this->component_metrics (iter->first);
+    *cmetric += *iter->second;
+  }
+
+  return *this;
+}

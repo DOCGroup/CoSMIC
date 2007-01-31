@@ -1,0 +1,30 @@
+===============================================================================
+-- @file:     README
+--
+-- Author:    James H. Hill
+--
+-- $Id: README 956 2006-12-05 22:09:03Z hillj $
+--
+-- CUTS baseline benchmark service for the Benchmark Data Collector.
+-- This service collects metrics for a single component over a period
+-- of time by monitoring the activity of its ports. When the service
+-- is notified of new metrics, it accumulates them with the metrics
+-- of the previous collection periods. Once the service is deactivated,
+-- it stores the accumulated metrics to a database as a baseline metric
+-- for that component.
+===============================================================================
+
+USAGE: CUTS_Baseline_Service [OPTIONS]
+
+Benchmark options:
+  -d, --default-baseline,     default basline metric for component on
+                              all hosts
+  -w, --warmup-count=VALUE    number of collections to ingore due to
+                              system warmup; default is 1
+
+Database options:
+  --server=VALUE              location of the database; default is
+                              'localhost'
+
+Miscellaneous:
+  --verbose                   print information about progress
