@@ -87,7 +87,6 @@ project (CUTS) : cutslib {
   Header_Files {
     config.h
     Component_Info.h
-    Component_Registry_Handler.h
     CUTS_export.h
     Log_Msg.h
 //    mem_action_t.h
@@ -104,6 +103,7 @@ project (CUTS) : cutslib {
     Benchmark_Visitor.cpp
     Component_Metric.cpp
     Component_Registry_Node.cpp
+    Component_Registry_Handler.cpp
     Counter.cpp
     Event_Guard.cpp
     Event_Handler.cpp

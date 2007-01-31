@@ -1,3 +1,11 @@
+Wed Jan 31 19:54:02 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CUTS.mpc:
+        * cuts/Component_Registry_Handler.h:
+        * cuts/Component_Registry_Handler.cpp:
+
+          Added missing virtual destructor.
+        
 Wed Jan 31 19:46:17 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/svcs/baseline/Baseline_Service.cpp:

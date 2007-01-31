@@ -34,6 +34,9 @@ public:
    * @param[in]       info      Information about the component.
    */
   virtual int handle_component (const CUTS_Component_Info & info) = 0;
+
+  /// Destructor.
+  virtual ~CUTS_Component_Registry_Handler (void);
 };
 
 #endif  // !defined _CUTS_COMPONENT_REGISTRY_HANDLER_H_
