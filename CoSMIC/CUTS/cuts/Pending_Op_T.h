@@ -36,7 +36,7 @@ class CUTS_Pending_Op0_T :
 public:
   typedef void (T::*method_type) (void);
 
-  inline CUTS_Pending_Op0_T (typename method_type method)
+  inline CUTS_Pending_Op0_T (method_type method)
     : method_ (method)
   {
 
@@ -48,7 +48,7 @@ public:
   }
 
 private:
-  typename method_type method_;
+  method_type method_;
 };
 
 //=============================================================================
@@ -65,7 +65,7 @@ class CUTS_Pending_Op1_T :
 public:
   typedef void (T::*method_type) (P1);
 
-  inline CUTS_Pending_Op1_T (typename method_type method,
+  inline CUTS_Pending_Op1_T (method_type method,
                              A1 arg1)
     : method_ (method),
       arg1_ (arg1)
@@ -79,7 +79,7 @@ public:
   }
 
 private:
-  typename method_type method_;
+  method_type method_;
 
   A1 arg1_;
 };

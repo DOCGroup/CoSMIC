@@ -19,6 +19,14 @@ CUTS_Action::CUTS_Action (const CUTS_Action &)
 }
 
 //
+// CUTS_Action
+//
+CUTS_Action::~CUTS_Action (void)
+{
+
+}
+
+//
 // release
 //
 void CUTS_Action::release (void)

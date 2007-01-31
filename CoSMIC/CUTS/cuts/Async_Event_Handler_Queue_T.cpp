@@ -33,7 +33,7 @@ int CUTS_Async_Event_Handler_Queue_T <EVENTTYPE>::
 enqueue (EVENTTYPE * event)
 {
   // Get a node from the free list.
-  typename _cache_type * node = this->free_list_.remove ();
+  _cache_type * node = this->free_list_.remove ();
 
   if (node != 0)
   {
@@ -56,7 +56,7 @@ int CUTS_Async_Event_Handler_Queue_T <EVENTTYPE>::
 dequeue (EVENTTYPE * & event, ACE_Time_Value * toc)
 {
   // Get a node from the free list.
-  typename _node_type * node = 0;
+  _node_type * node = 0;
   int retval = this->event_queue_.dequeue (node);
 
   if (retval != -1)
@@ -68,7 +68,7 @@ dequeue (EVENTTYPE * & event, ACE_Time_Value * toc)
       *toc = node->toc_;
 
     // Place the node back on the free list.
-    this->free_list_.add (static_cast <typename _cache_type *> (node));
+    this->free_list_.add (static_cast <_cache_type *> (node));
   }
 
   return retval;

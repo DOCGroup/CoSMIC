@@ -13,7 +13,7 @@ template <typename T>
 void CUTS_Pending_Op_List_T <T>::reset (void)
 {
   CUTS_Pending_Op_T <T> ** op = 0;
-  Pending_Op_Queue::ITERATOR iter (this->queue_);
+  typename Pending_Op_Queue::ITERATOR iter (this->queue_);
 
   while (iter.next (op) != 0)
   {
@@ -32,7 +32,7 @@ template <typename T>
 int CUTS_Pending_Op_List_T <T>::process (T * object)
 {
   CUTS_Pending_Op_T <T> ** op = 0;
-  Pending_Op_Queue::ITERATOR iter (this->queue_);
+  typename Pending_Op_Queue::ITERATOR iter (this->queue_);
 
   while (iter.next (op) != 0)
   {

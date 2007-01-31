@@ -55,6 +55,9 @@ protected:
   /// Copy constructor.
   CUTS_Action (const CUTS_Action &);
 
+  /// Destructor.
+  virtual ~CUTS_Action (void);
+
 private:
   // prevent the following operations
   const CUTS_Action & operator = (const CUTS_Action &);

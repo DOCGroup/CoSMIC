@@ -1,3 +1,23 @@
+Wed Jan 31 19:41:54 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Action.h:
+        * cuts/Action.cpp:
+        
+          Added missing virtual destructor.
+        
+        * cuts/Async_Event_Handler_Queue_T.h:
+        * cuts/Async_Event_Handler_Queue_T.cpp:
+        * cuts/Pending_Op_List_T.cpp:
+        * cuts/Pending_Op_T.h:
+
+          Fixed compilation errors resulting from improper usage
+          of the typename keyword.
+        
+        * etc/config/cuts_coworker_exec.mpb:
+
+          Removed obsolete lib specifcation for 
+          Benchmark_Data_Collector_Ex_svnt.
+        
 Wed Jan 31 07:13:17 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/svcs/baseline:
