@@ -18,6 +18,8 @@
 #include "cuts/System_Metric.h"
 #include "ace/SString.h"
 
+class ODBC_Connection;
+
 //=============================================================================
 /**
  * @class CUTS_Baseline_Service
@@ -52,6 +54,8 @@ public:
   int handle_metrics (void);
 
 private:
+  long get_host_id (const char * hostname);
+
   /**
    * Helper method for parsing the command-line arguments
    * for the service.
@@ -77,7 +81,16 @@ private:
   size_t uid_;
 
   /// System metrics for accumulating the metrics.
-  CUTS_System_Metric metrics_;
+  CUTS_System_Metric baseline_;
+
+  /// ODBC connection object.
+  ACE_Auto_Ptr <ODBC_Connection> conn_;
+
+  ACE_CString instance_;
+
+  long database_id_;
+
+  long host_id_;
 };
 
 CUTS_BDC_SERVICE_DECL (CUTS_BASELINE_SERVICE_Export);

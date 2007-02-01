@@ -124,7 +124,7 @@ get_registration (const char * uuid,
 //
 // get_component_by_id
 //
-std::string CUTS_Component_Registry::get_component_by_id (long regid) const
+ACE_CString CUTS_Component_Registry::get_component_by_id (long regid) const
 {
   CUTS_Component_Registry_Map::const_iterator iter;
 

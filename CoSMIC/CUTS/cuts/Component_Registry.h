@@ -1,3 +1,15 @@
+// -*- C++ -*-
+
+//=============================================================================
+/**
+ * @file        Component_Registry.h
+ *
+ * $Id$
+ *
+ * @author      James H. Hill
+ */
+//=============================================================================
+
 #ifndef _CUTS_COMPONENT_REGISTRY_H_
 #define _CUTS_COMPONENT_REGISTRY_H_
 
@@ -5,10 +17,8 @@
 #include "ace/Condition_Thread_Mutex.h"
 #include "ace/Message_Queue_T.h"
 #include "ace/Unbounded_Set.h"
-#include "ace/Synch_Traits.h"
-
+#include "ace/SString.h"
 #include <map>
-#include <string>
 
 // Forward decl.
 struct CUTS_Component_Info;
@@ -18,17 +28,6 @@ class CUTS_Component_Registry_Handler;
 
 // Forward decl.
 class CUTS_Component_Registry_Node;
-
-//=============================================================================
-/**
- *
- */
-//=============================================================================
-
-typedef std::map <std::string,
-                  CUTS_Component_Registry_Node *>
-                  CUTS_Component_Registry_Map;
-
 
 //=============================================================================
 /**
@@ -78,24 +77,32 @@ public:
 
   ACE_RW_Thread_Mutex & lock (void);
 
-  std::string get_component_by_id (long regid) const;
+  ACE_CString get_component_by_id (long regid) const;
 
 protected:
+  /// Type definition of the component registry map.
+  typedef std::map <ACE_CString,
+                    CUTS_Component_Registry_Node *>
+                    CUTS_Component_Registry_Map;
+
+  /// Type defintion of registration queue.
+  typedef ACE_Message_Queue_Ex <
+          CUTS_Component_Registry_Node,
+          ACE_MT_SYNCH> CUTS_Message_Queue;
+
   CUTS_Component_Registry_Node * get_node (const char * uuid);
 
   CUTS_Component_Registry_Map registry_;
 
   ACE_RW_Thread_Mutex lock_;
 
-  typedef ACE_Message_Queue_Ex <
-          CUTS_Component_Registry_Node,
-          ACE_MT_SYNCH> CUTS_Message_Queue;
-
   /// Queue that contains the component information.
   CUTS_Message_Queue info_queue_;
 
 private:
-  ///
+  /// Service thread for the registry. It is responsible for
+  /// signaling registered objects when components changes
+  /// their registration information.
   static ACE_THR_FUNC_RETURN thr_svc (void * param);
 
   /// Open state for the registry.

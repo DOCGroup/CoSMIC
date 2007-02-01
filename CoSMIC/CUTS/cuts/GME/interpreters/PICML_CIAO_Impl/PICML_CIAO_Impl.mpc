@@ -3,6 +3,10 @@
 project (PICML_CIAO_Impl) : picmllib, boost_base, udm_component, gme_interpreter, cosmic_lib {
   sharedname = CUTS_PICML_CIAO_Impl
 
+  specific (vc7, vc71, vc8) {
+    midl_notlb = 1
+  }
+
   // -- dependencies
   after +=  CUTS_BE_CIAO
   libs  +=  CUTS_BE CUTS_BE_CIAO

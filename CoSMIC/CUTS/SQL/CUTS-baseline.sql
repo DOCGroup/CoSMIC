@@ -23,11 +23,17 @@ CREATE TABLE IF NOT EXISTS baseline
 (
   bid             INT             NOT NULL auto_increment,
   instance        INT             NOT NULL,
-  host            INT             NOT NULL,
-  metric          INT,
+  host            INT             NOT NULL DEFAULT 0,
+  inport          VARCHAR(255)    NOT NULL,
+  outport         VARCHAR(255)    NOT NULL,
+  metric_count    INT             NOT NULL,
+  metric_total    INT             NOT NULL,
 
   -- set the primary key
   PRIMARY KEY (bid),
+
+  -- set the unique keys
+  UNIQUE (instance, host, inport, outport),
 
   -- set the foreign key(s)
   FOREIGN KEY (instance) REFERENCES component_instances (component_id)

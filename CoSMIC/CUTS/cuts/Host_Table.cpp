@@ -1,6 +1,7 @@
 // $Id$
 
 #include "cuts/Host_Table.h"
+#include "cuts/Host_Table_Entry.h"
 #include "ace/String_Base.h"
 
 //
@@ -16,7 +17,12 @@ CUTS_Host_Table::CUTS_Host_Table (void)
 //
 CUTS_Host_Table::~CUTS_Host_Table (void)
 {
+  Entry_Table::ITERATOR iter (this->entries_);
 
+  while (!iter.done ())
+  {
+    iter.advance ();
+  }
 }
 
 //
@@ -25,76 +31,77 @@ CUTS_Host_Table::~CUTS_Host_Table (void)
 int CUTS_Host_Table::bind (const ACE_CString & ipaddr,
                            const ACE_CString & hostname)
 {
-  // Place the IP address on its map.
-  IP_Address_Map::ENTRY * ipaddr_entry = 0;
-  int result = this->ipaddr_map_.bind (ipaddr, 0, ipaddr_entry);
+  // Determine if we have already bound an ip-address
+  // or hostname using either parameter.
+  int result_1 = this->ipaddr_index_.find (ipaddr);
+  int result_2 = this->host_index_.find (hostname);
 
-  if (result == 0)
-  {
-    // Place the hostname on its map.
-    Hostname_Map::ENTRY * hostname_entry = 0;
-    result = this->host_map_.bind (hostname, 0, hostname_entry);
+  if (result_1 == 0 || result_2 == 0)
+    return 1;
 
-    // Map the IP-address to the hostname.
-    ipaddr_entry->int_id_ = hostname_entry;
-    hostname_entry->int_id_ = ipaddr_entry;
-  }
+  // Create a new entry for the host table.
+  CUTS_Host_Table_Entry * entry = 0;
+  ACE_NEW_RETURN (entry, CUTS_Host_Table_Entry, -1);
 
-  return result;
+  entry->ipaddr_ = ipaddr;
+  entry->hostname_ = hostname;
+
+  // Update the index table(s) for fast access.
+  this->ipaddr_index_.bind (ipaddr, entry);
+  this->host_index_.bind (hostname, entry);
+  return 0;
 }
 
 //
 // find
 //
 int CUTS_Host_Table::find_by_name (const ACE_CString & hostname,
-                                   ACE_CString & ipaddr)
+                                   const CUTS_Host_Table_Entry * entry)
 {
-  // Locate the <entry> in the <host_map_>, whose <int_id_> is
-  // of type <void *>.
-  IP_Address_Map::ENTRY * entry = 0;
-  int result = this->find_by_name_i (hostname, entry);
+  CUTS_Host_Table_Entry * temp = 0;
+  int retval = this->host_index_.find (hostname, temp);
 
-  if (result == 0 && entry != 0)
-  {
-    ipaddr = entry->ext_id_;
-  }
+  if (retval == 0)
+    entry = temp;
 
-  return result;
+  return retval;
 }
 
 //
 // find
 //
 int CUTS_Host_Table::find_by_addr (const ACE_CString & ipaddr,
-                                   ACE_CString & hostname)
+                                   const CUTS_Host_Table_Entry * entry)
 {
-  // Locate the <entry> in the <host_map_>, whose <int_id_> is
-  // of type <void *>.
-  Hostname_Map::ENTRY * entry = 0;
-  int result = this->find_by_addr_i (ipaddr, entry);
+  CUTS_Host_Table_Entry * temp = 0;
+  int retval = this->ipaddr_index_.find (ipaddr, temp);
 
-  if (result == 0 && entry != 0)
-  {
-    hostname = entry->ext_id_;
-  }
+  if (retval == 0)
+    entry = temp;
 
-  return result;
+  return retval;
 }
 
 //
 // unbind
 //
-void CUTS_Host_Table::unbind_by_addr (const ACE_CString & ipaddr)
+void CUTS_Host_Table::unbind_by_ipaddr (const ACE_CString & ipaddr)
 {
   // Locate the <ipaddr> in the map.
-  Hostname_Map::ENTRY * entry = 0;
-  int result = this->find_by_addr_i (ipaddr, entry);
+  Ipaddr_Index::ENTRY * entry = 0;
+  int result = this->ipaddr_index_.find (ipaddr, entry);
 
   if (result == 0 && entry != 0)
   {
-    // Remove both entries from their respective maps.
-    this->ipaddr_map_.unbind (ipaddr);
-    this->host_map_.unbind (entry);
+    // Remove the entry for the <host_index_>.
+    this->host_index_.unbind (entry->int_id_->hostname_);
+
+    // Delete the entry from the <entries_> table.
+    this->entries_.remove (entry->int_id_);
+    delete entry->int_id_;
+
+    // Remove the entry from <ipaddr_index_>.
+    this->ipaddr_index_.unbind (entry);
   }
 }
 
@@ -103,48 +110,20 @@ void CUTS_Host_Table::unbind_by_addr (const ACE_CString & ipaddr)
 //
 void CUTS_Host_Table::unbind_by_name (const ACE_CString & hostname)
 {
-  // Locate the IP-address entry.
-  IP_Address_Map::ENTRY * entry = 0;
-  int result = this->find_by_name_i (hostname, entry);
+  // Locate the <hostname> in the map.
+  Hostname_Index::ENTRY * entry = 0;
+  int result = this->host_index_.find (hostname, entry);
 
   if (result == 0 && entry != 0)
   {
-    // Remove both entries from their respective maps.
-    this->host_map_.unbind (hostname);
-    this->ipaddr_map_.unbind (entry);
+    // Remove the entry for the <ipaddr_index_>.
+    this->ipaddr_index_.unbind (entry->int_id_->ipaddr_);
+
+    // Delete the entry from the <entries_> table.
+    this->entries_.remove (entry->int_id_);
+    delete entry->int_id_;
+
+    // Remove the entry from <ipaddr_index_>.
+    this->host_index_.unbind (entry);
   }
-}
-
-//
-// find_by_name_i
-//
-int CUTS_Host_Table::find_by_name_i (const ACE_CString & hostname,
-                                     IP_Address_Map::ENTRY * & entry)
-{
-  void * temp = 0;
-  int result = this->host_map_.find (hostname, temp);
-
-  if (result == 0)
-  {
-    entry = reinterpret_cast <IP_Address_Map::ENTRY *> (temp);
-  }
-
-  return result;
-}
-
-//
-// find_by_addr_i
-//
-int CUTS_Host_Table::find_by_addr_i (const ACE_CString & ipaddr,
-                                     Hostname_Map::ENTRY * & entry)
-{
-  void * temp = 0;
-  int result = this->ipaddr_map_.find (ipaddr, temp);
-
-  if (result == 0)
-  {
-    entry = reinterpret_cast <Hostname_Map::ENTRY *> (temp);
-  }
-
-  return result;
 }

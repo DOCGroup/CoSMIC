@@ -4,8 +4,8 @@ project (CUTS_Baseline_Service) : cuts_bdcsvc, cutslib, cutsutils, odbc {
   sharedname  += CUTS_Baseline_Service
   dynamicflags = CUTS_BASELINE_SERVICE_BUILD_DLL
 
-  libs  += CUTS_Utils_DBase
-  after += CUTS_Utils_DBase
+  libs  += CUTS_Utils_DBase CUTS_ODBC_DBase
+  after += CUTS_Utils_DBase CUTS_ODBC_DBase
 
   Source_Files {
     Baseline_Service.cpp

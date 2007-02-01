@@ -135,7 +135,7 @@ load_service (const char * name,
       if (svc->handle_activate () != 0)
       {
         ACE_ERROR ((LM_ERROR,
-                    "%s failed during handle_activate ()\n",
+                    "*** error: %s failed during handle_activate ()\n",
                     name));
 
         // Increment the number of errors.
@@ -191,7 +191,7 @@ unload_service (const char * name)
     if (svc->handle_deactivate () != 0)
     {
       ACE_ERROR ((LM_ERROR,
-                  "%s failed during handle_deactivate ()\n",
+                  "*** error: %s failed during handle_deactivate ()\n",
                   name));
     }
 
@@ -229,7 +229,7 @@ handle_component (const CUTS_Component_Info & info)
         svc->handle_component (info) != 0)
     {
       ACE_ERROR ((LM_ERROR,
-                  "%s failed during handle_component ()\n",
+                  "*** error: %s failed during handle_component ()\n",
                   type->name ()));
     }
 

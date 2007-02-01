@@ -1,3 +1,53 @@
+Thu Feb  1 23:35:36 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * SQL/CUTS-baseline.sql:
+
+          - Added constraints to prevent duplicate baseline metrics.
+          - Added port infomration to the baseline metrics.
+
+        * cuts/BDC/BDC_Service_Manager.cpp:
+
+          Updated the format of the ACE_DEBUG messages.
+
+        * cuts/BDC/svcs/baseline/Baseline_Service.h:
+        * cuts/BDC/svcs/baseline/Baseline_Service.cpp:
+        * cuts/BDC/svcs/baseline/Baseline_Service.mpc:
+
+          Finished implementing the first version of the baseline
+          metrics Benchmark Data Collector service.
+
+        * cuts/CUTS.mpc:
+
+          Added new files to the project.
+
+        * cuts/Component_Info.h:
+
+          Added host information to the information.
+
+        * cuts/Component_Registry.h:
+        * cuts/Component_Registry.cpp:
+
+          - Changed std::string to ACE_CString.
+          - Moved the CUTS_Component_Registry_Map inside the class
+            definition.
+
+        * cuts/GME/interpreters/PICML_CIAO_Impl/PICML_CIAO_Impl.mpc:
+
+          Added the midl_notlb flag to suppress the creation
+          of a type library.
+
+        * cuts/Host_Table_Entry.h:
+
+          New class that is the entry for the host table.
+
+        * cuts/Host_Table.h:
+        * cuts/Host_Table.cpp:
+
+          - Re-implemented the host table to consist of a unbounded
+            set of CUTS_Host_Table_Entry objects.
+          - Re-implemented the indexer to be compatible with the format
+            of entry table.
+
 Wed Jan 31 19:54:02 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CUTS.mpc:
@@ -5,7 +55,7 @@ Wed Jan 31 19:54:02 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
         * cuts/Component_Registry_Handler.cpp:
 
           Added missing virtual destructor.
-        
+
 Wed Jan 31 19:46:17 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/svcs/baseline/Baseline_Service.cpp:

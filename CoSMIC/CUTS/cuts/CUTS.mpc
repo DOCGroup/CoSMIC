@@ -88,6 +88,7 @@ project (CUTS) : cutslib {
     config.h
     Component_Info.h
     CUTS_export.h
+    Host_Table_Entry.h
     Log_Msg.h
 //    mem_action_t.h
     WML_Macros.h

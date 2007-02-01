@@ -15,16 +15,20 @@
 
 #include "cuts/CUTS_export.h"
 #include "ace/Hash_Map_Manager_T.h"
+#include "ace/Unbounded_Set.h"
 #include "ace/SString.h"
 
 // Forward decl.
 class ACE_RW_Thread_Mutex;
 
+// Forward decl.
+class CUTS_Host_Table_Entry;
+
 //=============================================================================
 /**
  * @class CUTS_Host_Table
  *
- * @brief Mapping of IP-addresses to names of hosts.
+ * Mapping of IP-addresses to names of hosts.
  */
 //=============================================================================
 
@@ -53,7 +57,7 @@ public:
    *
    * @param[in]     hostname    Target hostname.
    */
-  void unbind_by_addr (const ACE_CString & hostname);
+  void unbind_by_ipaddr (const ACE_CString & ipaddr);
 
   /**
    * Remove an entry by using its IP-address.
@@ -68,7 +72,7 @@ public:
    * @retval      -1      The hostname was not found.
    */
   int find_by_addr (const ACE_CString & ipaddr,
-                    ACE_CString & hostname);
+                    const CUTS_Host_Table_Entry * entry);
 
   /**
    * Find the IP-address given a hostname.
@@ -76,46 +80,30 @@ public:
    * @retval      -1      The hostname was not found.
    */
   int find_by_name (const ACE_CString & hostname,
-                    ACE_CString & ipaddr);
+                    const CUTS_Host_Table_Entry * entry);
 
 private:
   /// Type definition of an IP-address map.
   typedef ACE_Hash_Map_Manager <ACE_CString,
-                                void *,
-                                ACE_RW_Thread_Mutex> IP_Address_Map;
+                                CUTS_Host_Table_Entry *,
+                                ACE_RW_Thread_Mutex> Ipaddr_Index;
 
   /// Type defintion of a hostname map.
   typedef ACE_Hash_Map_Manager <ACE_CString,
-                                void *,
-                                ACE_RW_Thread_Mutex> Hostname_Map;
+                                CUTS_Host_Table_Entry *,
+                                ACE_RW_Thread_Mutex> Hostname_Index;
 
-  /**
-   * Locates the entry for the IP-address.
-   *
-   * @param[in]       ipaddr      Target IP-address.
-   * @param[out]      entry       Pointer to the hostname map entry.
-   * @return          0           Successfully found entry.
-   * @return          -1          Failed to find entry.
-   */
-  int find_by_addr_i (const ACE_CString & ipaddr,
-                      Hostname_Map::ENTRY * & entry);
+  /// Type defintion of the entry list.
+  typedef ACE_Unbounded_Set <CUTS_Host_Table_Entry *> Entry_Table;
 
-  /**
-   * Locates the entry for the hostname.
-   *
-   * @param[in]       hostname    Target hostname.
-   * @param[out]      entry       Pointer to the IP-address map entry.
-   * @return          0           Successfully found entry.
-   * @return          -1          Failed to find entry.
-   */
-  int find_by_name_i (const ACE_CString & hostname,
-                      IP_Address_Map::ENTRY * & entry);
+  /// Collection of registered ipaddr->hosts pairs.
+  Entry_Table entries_;
 
   /// Mapping of IP-address to hostname.
-  IP_Address_Map ipaddr_map_;
+  Ipaddr_Index ipaddr_index_;
 
   /// Mapping of hostname to IP-address.
-  Hostname_Map host_map_;
+  Hostname_Index host_index_;
 };
 
 #endif  // !defined _CUTS_HOST_TABLE_H_
