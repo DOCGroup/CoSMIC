@@ -1,3 +1,21 @@
+Fri Feb  2 21:03:18 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/Testing_Service_exec_i.cpp:
+
+          We now support unregisration of components.
+        
+        * cuts/BDC/svcs/baseline/Baseline_Service.cpp:
+
+          Placed the code in handle_deactivate () inside of a try...catch
+          block just in case the connection operation fails.
+        
+        * cuts/CCM_CoWorkEr_Proxy_T.inl:
+        * cuts/CCM_CoWorkEr_Proxy_T.cpp:
+
+          Guarded all method calls on the hosted component by
+          CORBA::is_nil () just in case the component is not
+          loaded
+
 Fri Feb  2 16:36:30 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * tests/Msg_Log.cpp:

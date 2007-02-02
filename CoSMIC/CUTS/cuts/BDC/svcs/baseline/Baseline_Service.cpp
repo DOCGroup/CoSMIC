@@ -74,162 +74,171 @@ int CUTS_Baseline_Service::handle_deactivate (void)
   }
 
 
-  // Open a connection to the database. We only need to continue
-  // if we have established a connection.
-  this->conn_->connect (CUTS_USERNAME,
-                        CUTS_PASSWORD,
-                        this->server_.c_str (),
-                        CUTS_DEFAULT_PORT);
-
-  if (this->conn_->is_connected ())
+  try
   {
-    VERBOSE_MESSAGE ((LM_INFO,
-                      "*** info: successfully connected to database "
-                      "on %s\n",
-                      this->server_.c_str ()));
-
-    // Insert statement for the database.
-    const char * insert_stmt =
-      "INSERT INTO baseline "
-      "(instance, host, inport, outport, metric_count, metric_total) "
-      "VALUES (?, ?, ?, ?, ?, ?)";
-
-    // Update statement for the database.
-    const char * update_stmt =
-      "UPDATE baseline SET metric_count = ?, metric_total = ? "
-      "WHERE instance = ? AND host = ? AND inport = ? AND outport = ?";
-
-    try
-    {
-      long count,     /* number of events */
-           total;     /* total execution time */
-
-      char inport  [MAX_VARCHAR_LENGTH],    /* name of input port */
-           outport [MAX_VARCHAR_LENGTH];    /* name of output port */
-
-      // Create the query.
-      ACE_Auto_Ptr <ODBC_Query> insert (
-        dynamic_cast <ODBC_Query *> (this->conn_->create_query ()));
-
-      // Create the query.
-      ACE_Auto_Ptr <ODBC_Query> update (
-        dynamic_cast <ODBC_Query *> (this->conn_->create_query ()));
-
-      // Prepare the insert statement and its parameters.
-      insert->prepare (insert_stmt);
-      insert->parameter (0)->bind (&this->database_id_);
-      insert->parameter (1)->bind (&this->host_id_);
-      insert->parameter (2)->bind (inport, 0);
-      insert->parameter (3)->bind (outport, 0);
-      insert->parameter (4)->bind (&count);
-      insert->parameter (5)->bind (&total);
-
-      // Prepare the update statement and its parameters.
-      update->prepare (update_stmt);
-      update->parameter (0)->bind (&count);
-      update->parameter (1)->bind (&total);
-      update->parameter (2)->bind (&this->database_id_);
-      update->parameter (3)->bind (&this->host_id_);
-      update->parameter (4)->bind (inport, 0);
-      update->parameter (5)->bind (outport, 0);
-
-      // Get the component metrics for the component whose id
-      // we stored during its activation.
-      CUTS_Component_Metric * component_metric =
-        this->baseline_.component_metrics (this->uid_);
-
-      const CUTS_Port_Metric_Map & map = component_metric->port_metrics ();
-
-      for (CUTS_Port_Metric_Map::const_iterator port = map.begin ();
-            port != map.end ();
-            port ++)
+    // Open a connection to the database. We only need to continue
+    // if we have established a connection.
+    this->conn_->connect (CUTS_USERNAME,
+                          CUTS_PASSWORD,
+                          this->server_.c_str (),
+                          CUTS_DEFAULT_PORT);
+    
+    if (this->conn_->is_connected ())
       {
-        // Copy the <inport> to the parameter.
-        ACE_OS::strcpy (inport, port->first.c_str ());
-
-        // Get the sender port of the unknown implemenation type. We
-        // are only concerned with this one since we do not know the
-        // id of the test component causing the work.
-
-        CUTS_Sender_Port_Map::const_iterator sender =
-          port->second.find (CUTS_UNKNOWN_IMPL);
-
-        CUTS_Endpoint_Metric_Map::const_iterator endpoint;
-
-        for (endpoint  = sender->second->endpoints ().begin ();
-              endpoint != sender->second->endpoints ().end ();
-              endpoint ++)
-        {
-          // Finish updating the remaining parameters.
-          ACE_OS::strcpy (outport, endpoint->first.c_str ());
-          count = endpoint->second->count ();
-          total = endpoint->second->total_time ();
-
-          try
+        VERBOSE_MESSAGE ((LM_INFO,
+                          "*** info: successfully connected to database "
+                          "on %s\n",
+                          this->server_.c_str ()));
+        
+        // Insert statement for the database.
+        const char * insert_stmt =
+          "INSERT INTO baseline "
+          "(instance, host, inport, outport, metric_count, metric_total) "
+          "VALUES (?, ?, ?, ?, ?, ?)";
+        
+        // Update statement for the database.
+        const char * update_stmt =
+          "UPDATE baseline SET metric_count = ?, metric_total = ? "
+          "WHERE instance = ? AND host = ? AND inport = ? AND outport = ?";
+        
+        try
           {
-            // Write the record to the database.
-            insert->execute_no_record ();
+            long count,     /* number of events */
+              total;     /* total execution time */
+            
+            char inport  [MAX_VARCHAR_LENGTH],    /* name of input port */
+              outport [MAX_VARCHAR_LENGTH];    /* name of output port */
+            
+            // Create the query.
+            ACE_Auto_Ptr <ODBC_Query> insert (
+                                              dynamic_cast <ODBC_Query *> (this->conn_->create_query ()));
+            
+            // Create the query.
+            ACE_Auto_Ptr <ODBC_Query> update (
+                                              dynamic_cast <ODBC_Query *> (this->conn_->create_query ()));
+            
+            // Prepare the insert statement and its parameters.
+            insert->prepare (insert_stmt);
+            insert->parameter (0)->bind (&this->database_id_);
+            insert->parameter (1)->bind (&this->host_id_);
+            insert->parameter (2)->bind (inport, 0);
+            insert->parameter (3)->bind (outport, 0);
+            insert->parameter (4)->bind (&count);
+            insert->parameter (5)->bind (&total);
+            
+            // Prepare the update statement and its parameters.
+            update->prepare (update_stmt);
+            update->parameter (0)->bind (&count);
+            update->parameter (1)->bind (&total);
+            update->parameter (2)->bind (&this->database_id_);
+            update->parameter (3)->bind (&this->host_id_);
+            update->parameter (4)->bind (inport, 0);
+            update->parameter (5)->bind (outport, 0);
+            
+            // Get the component metrics for the component whose id
+            // we stored during its activation.
+            CUTS_Component_Metric * component_metric =
+              this->baseline_.component_metrics (this->uid_);
+            
+            const CUTS_Port_Metric_Map & map = component_metric->port_metrics ();
+            
+            for (CUTS_Port_Metric_Map::const_iterator port = map.begin ();
+                 port != map.end ();
+                 port ++)
+              {
+                // Copy the <inport> to the parameter.
+                ACE_OS::strcpy (inport, port->first.c_str ());
+                
+                // Get the sender port of the unknown implemenation type. We
+                // are only concerned with this one since we do not know the
+                // id of the test component causing the work.
+                
+                CUTS_Sender_Port_Map::const_iterator sender =
+                  port->second.find (CUTS_UNKNOWN_IMPL);
+                
+                CUTS_Endpoint_Metric_Map::const_iterator endpoint;
+                
+                for (endpoint  = sender->second->endpoints ().begin ();
+                     endpoint != sender->second->endpoints ().end ();
+                     endpoint ++)
+                  {
+                    // Finish updating the remaining parameters.
+                    ACE_OS::strcpy (outport, endpoint->first.c_str ());
+                    count = endpoint->second->count ();
+                    total = endpoint->second->total_time ();
+                    
+                    try
+                      {
+                        // Write the record to the database.
+                        insert->execute_no_record ();
+                      }
+                    catch (const CUTS_DB_Exception & ex)
+                      {
+                        // We need to update the record if we get a duplicate record
+                        // exception. This would be signified by the state '23000'.
+                        if (ex.state () == "23000")
+                          {
+                            try
+                              {
+                                update->execute_no_record ();
+                              }
+                            catch (const CUTS_DB_Exception & ex)
+                              {
+                                ACE_ERROR ((LM_ERROR,
+                                            "*** error [baseline]: %s\n"
+                                            "*** error [baseline]: failed to update baseline "
+                                            "metric\n",
+                                            ex.message ().c_str ()));
+                                
+                              }
+                          }
+                      }
+                    
+                    // Notify the user of the collected baseline metrics.
+                    VERBOSE_MESSAGE ((LM_DEBUG,
+                                      "*** info [baseline]: %s -> %s ("
+                                      "count: %d; min: %d; avg: %f; max: %d)\n",
+                                      inport,
+                                      outport,
+                                      count,
+                                      endpoint->second->best_time (),
+                                      endpoint->second->avg_time (),
+                                      endpoint->second->worse_time ()));
+                  }
+              }
           }
-          catch (const CUTS_DB_Exception & ex)
+        catch (CUTS_DB_Exception & ex)
           {
-            // We need to update the record if we get a duplicate record
-            // exception. This would be signified by the state '23000'.
-            if (ex.state () == "23000")
-            {
-              try
-              {
-                update->execute_no_record ();
-              }
-              catch (const CUTS_DB_Exception & ex)
-              {
-                ACE_ERROR ((LM_ERROR,
-                            "*** error [baseline]: %s\n"
-                            "*** error [baseline]: failed to update baseline "
-                            "metric\n",
-                            ex.message ().c_str ()));
-
-              }
-            }
+            ACE_ERROR ((LM_ERROR,
+                        "*** error [baseline]: %s\n",
+                        ex.message ().c_str ()));
           }
-
-          // Notify the user of the collected baseline metrics.
-          VERBOSE_MESSAGE ((LM_DEBUG,
-                            "*** info [baseline]: %s -> %s ("
-                            "count: %d; min: %d; avg: %f; max: %d)\n",
-                            inport,
-                            outport,
-                            count,
-                            endpoint->second->best_time (),
-                            endpoint->second->avg_time (),
-                            endpoint->second->worse_time ()));
-        }
+        catch (...)
+          {
+            ACE_ERROR ((LM_ERROR,
+                        "*** error [baseline]: "
+                        "unknown exception in handle_deactivate\n"));
+          }
       }
-    }
-    catch (CUTS_DB_Exception & ex)
+    else
+      {
+        // Notify the user that we failed to connect to the
+        // specified databsae.
+        ACE_ERROR ((LM_ERROR,
+                    "*** error [baseline]: failed to connect to database "
+                    "on %s\n",
+                    this->server_.c_str ()));
+      }
+    
+    if (this->conn_->is_connected ())
+      this->conn_->disconnect ();
+  }
+  catch (const CUTS_DB_Exception & ex)
     {
       ACE_ERROR ((LM_ERROR,
                   "*** error [baseline]: %s\n",
                   ex.message ().c_str ()));
     }
-    catch (...)
-    {
-      ACE_ERROR ((LM_ERROR,
-                  "*** error [baseline]: "
-                  "unknown exception in handle_deactivate\n"));
-    }
-  }
-  else
-  {
-    // Notify the user that we failed to connect to the
-    // specified databsae.
-    ACE_ERROR ((LM_ERROR,
-                "*** error [baseline]: failed to connect to database "
-                "on %s\n",
-                this->server_.c_str ()));
-  }
-
-  if (this->conn_->is_connected ())
-    this->conn_->disconnect ();
 
   return 0;
 }

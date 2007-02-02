@@ -83,15 +83,17 @@ namespace CUTS
     ACE_ENV_ARG_DECL_WITH_DEFAULTS)
     ACE_THROW_SPEC ((::CORBA::SystemException))
   {
-    // Currently, we do not implement this method.
-  }
+    try
+      {
+        this->registry_.unregister_component (creg.name.in ());
+      }
+    catch (const ::CORBA::Exception & ex)
+      {
 
-  ////
-  //// registry
-  ////
-  //CCM_Component_Registry * Testing_Service_exec_i::ccm_registry (void) const
-  //{
-  //  return ACE_dynamic_cast (CCM_Component_Registry *,
-  //                           this->registry_.get ());
-  //}
+      }
+    catch (...)
+      {
+
+      }
+  }
 }

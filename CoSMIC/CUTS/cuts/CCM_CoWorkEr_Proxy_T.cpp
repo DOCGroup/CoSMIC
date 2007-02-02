@@ -166,49 +166,56 @@ ACE_THROW_SPEC ((::CORBA::SystemException,
   ::CUTS::Testing_Service_var tsvc =
     this->context_->get_connection_cuts_testing_service ();
 
-  if (!::CORBA::is_nil (tsvc.in ()))
-  {
-    try
+  if (::CORBA::is_nil (tsvc.in ()))
     {
-      CUTS::Component_Registration reg;
-      reg.name  = ::CORBA::string_dup (this->instance_.c_str ());
-      reg.agent = ::CUTS::Benchmark_Agent::_duplicate (this->agent_->_this ());
-      reg.type  = ::CORBA::string_dup (this->type_impl_->_interface_repository_id ());
-
-      // Pass control to the base class to finish the registration.
-      size_t regid = this->register_i (tsvc.in (), reg);
-
-      if (regid == CUTS_UNKNOWN_IMPL)
-      {
-        ACE_ERROR ((LM_ERROR,
-                    "failed to register %s; setting id to %u\n",
-                    reg.name.in (),
-                    regid));
-      }
-
-      // Store registration id and pass control to hosted component.
-      this->agent_->parent (regid);
+      ACE_DEBUG ((LM_INFO,
+                  "[%M] -%T - %s not connected to data collector\n",
+                  this->instance_.c_str ())); 
     }
-    catch (const ::CORBA::Exception & ex)
+  else if (::CORBA::is_nil (this->type_impl_.in ()))
     {
-      ACE_ERROR ((LM_ERROR,
-                  "[%M] -%T - %s\n",
-                  ex._info ().c_str ()));
+      ACE_DEBUG ((LM_WARNING,
+                  "[%M] -%T - %s does not have a loaded component\n",
+                  this->instance_.c_str ()));
     }
-    catch (...)
-    {
-      ACE_ERROR ((LM_ERROR,
-                  "[%M] -%T - unknown exception has occurred\n"));
-    }
-  }
   else
-  {
-    ACE_DEBUG ((LM_INFO,
-                "[%M] -%T - %s not connected to data collector\n",
-                this->instance_.c_str ()));
-  }
+    {
+      try
+        {
+          CUTS::Component_Registration reg;
+          reg.name  = ::CORBA::string_dup (this->instance_.c_str ());
+          reg.agent = ::CUTS::Benchmark_Agent::_duplicate (this->agent_->_this ());
+          reg.type  = ::CORBA::string_dup (this->type_impl_->_interface_repository_id ());
+          
+          // Pass control to the base class to finish the registration.
+          size_t regid = this->register_i (tsvc.in (), reg);
+          
+          if (regid == CUTS_UNKNOWN_IMPL)
+            {
+              ACE_ERROR ((LM_ERROR,
+                          "failed to register %s; setting id to %u\n",
+                          reg.name.in (),
+                          regid));
+            }
+          
+          // Store registration id and pass control to hosted component.
+          this->agent_->parent (regid);
+        }
+      catch (const ::CORBA::Exception & ex)
+        {
+          ACE_ERROR ((LM_ERROR,
+                      "[%M] -%T - %s\n",
+                      ex._info ().c_str ()));
+        }
+      catch (...)
+        {
+          ACE_ERROR ((LM_ERROR,
+                      "[%M] -%T - unknown exception has occurred\n"));
+        }
 
-  this->sc_->ciao_preactivate ();
+      if (!::CORBA::is_nil (this->sc_.in ()))
+        this->sc_->ciao_preactivate ();
+    }
 }
 
 //
@@ -224,7 +231,8 @@ ACE_THROW_SPEC ((::CORBA::SystemException,
   // We need to let the real component passivate itself before
   // we try to do anything. This is just in case the real component
   // still want to perform some operations that requires its id.
-  this->sc_->ccm_passivate ();
+  if (!::CORBA::is_nil (this->sc_.in ()))
+    this->sc_->ccm_passivate ();
 
   // Let's get the testing service so that we can go ahead
   // and get a registration id for this component we are hosting.
@@ -240,25 +248,28 @@ ACE_THROW_SPEC ((::CORBA::SystemException,
       reg.name  = ::CORBA::string_dup (this->instance_.c_str ());
       reg.agent = ::CUTS::Benchmark_Agent::_duplicate (this->agent_->_this ());
 
-      tsvc->unregister_component (reg);
-      this->agent_->parent (CUTS_UNKNOWN_IMPL);
+      if (this->agent_->parent () != CUTS_UNKNOWN_IMPL)
+        {
+          this->agent_->parent (CUTS_UNKNOWN_IMPL);
+          tsvc->unregister_component (reg);
+        }
     }
     catch (const ::CORBA::Exception & ex)
     {
       ACE_ERROR ((LM_ERROR,
-                  "[%M] -%T - %s\n",
+                  "[%M] (passivate) -%T - %s\n",
                   ex._info ().c_str ()));
     }
     catch (...)
     {
       ACE_ERROR ((LM_ERROR,
-                  "[%M] -%T - unknown exception has occurred\n"));
+                  "[%M] (passivate) -%T - unknown exception has occurred\n"));
     }
   }
   else
   {
     ACE_DEBUG ((LM_INFO,
-                "[%M] -%T - %s not connected to data collector\n",
+                "[%M] (passivate) -%T - %s not connected to data collector\n",
                 this->instance_.c_str ()));
   }
 }
@@ -273,7 +284,9 @@ ccm_remove (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
 ACE_THROW_SPEC ((::CORBA::SystemException,
                  ::Components::CCMException))
 {
-  this->sc_->ccm_remove ();
+  if (!::CORBA::is_nil (this->sc_.in ()))
+    this->sc_->ccm_remove ();
+
   this->reset ();
 
   CUTS_Thread_Activation_Record::fini_singleton ();

@@ -1,3 +1,4 @@
+// -*- C++ -*-
 // $Id$
 
 //
@@ -11,7 +12,8 @@ ccm_activate (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
 ACE_THROW_SPEC ((::CORBA::SystemException,
                  ::Components::CCMException))
 {
-  this->sc_->ccm_activate ();
+  if (!::CORBA::is_nil (this->sc_.in ()))     
+    this->sc_->ccm_activate ();
 }
 
 //
@@ -25,5 +27,6 @@ ciao_postactivate (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
 ACE_THROW_SPEC ((::CORBA::SystemException,
                  ::Components::CCMException))
 {
-  this->sc_->ciao_postactivate ();
+  if (!::CORBA::is_nil (this->sc_.in ()))
+    this->sc_->ciao_postactivate ();
 }
