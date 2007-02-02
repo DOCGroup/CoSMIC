@@ -111,28 +111,64 @@ namespace CUTS
   {
     if (this->testing_service_ == 0)
     {
-      CUTS_ERROR (LM_ERROR, "no testing service present\n");
+      ACE_ERROR ((LM_ERROR,
+                  "*** fatal: no testing service present\n"));
     }
     else if (!this->active_)
     {
-      CUTS_ERROR (LM_WARNING, "collection task not active\n");
+      ACE_ERROR ((LM_WARNING,
+                  "*** warn: collection object not active\n"));
     }
     else if (this->count_ != 0)
     {
-      CUTS_ERROR (LM_WARNING,
-                  "collecting metrics from previous timeout\n");
+      ACE_ERROR ((LM_WARNING,
+                  "*** warn: collecting metrics from previous timeout\n"));
     }
     else
     {
       // Update the timestamp for the collected metrics.
       this->metrics_->set_timestamp ();
 
-      // Get all the benchmark agents contained in the testing service.
-      CCM_Component_Registry * reg = this->testing_service_->ccm_registry ();
-      size_t count = reg->get_benchmark_agents (this, this->count_.value_i ());
+      // Store the size of the registry and get an iterator to its
+      // entries. We store the <count> in both the local variable and
+      // the atomic one.
+      size_t count = this->testing_service_->registry ().registry_size ();
+      this->count_ = count;
 
-      // Apparently there wasn't any components in the registration
-      // so we can go ahead and signal the waiting task.
+      CUTS_Component_Registry::CONST_ITERATOR iter =
+        this->testing_service_->registry ().entries ();
+
+      for (iter; !iter.done (); iter.advance ())
+      {
+        try
+        {
+          // We need to get the benchmark agent from the node.
+          ::CUTS::CCM_Component_Registry_Node * node =
+            dynamic_cast <::CUTS::CCM_Component_Registry_Node *> (iter->int_id_);
+          ::CUTS::Benchmark_Agent_ptr agent = node->benchmark_agent ();
+
+          // Verify this is actual an agent connected to the testing
+          // service. If the component was "preregistered" then the
+          // agent reference will be NIL until it comes online.
+          if (!::CORBA::is_nil (agent))
+          {
+            this->putq (agent);
+            this->reactor ()->notify (this, ACE_Event_Handler::READ_MASK);
+          }
+          else
+            this->decrement_count ();
+        }
+        catch (...)
+        {
+          // @todo Implement catch block for std::bad_cast.
+          ACE_ERROR ((LM_ERROR,
+                      "*** error: %s has an invalid registration\n",
+                      iter->ext_id_.c_str ()));
+        }
+      }
+
+      // If we never had any components to begin with, then we have to
+      // perform the finalization ourselves.
       if (count == 0)
         this->finalize_collection ();
     }
@@ -158,7 +194,9 @@ namespace CUTS
   //
   void BDC_Task::finalize_collection (void)
   {
-    CUTS_DEBUG (LM_DEBUG, "notifying services\n");
+    ACE_DEBUG ((LM_INFO,
+                "*** info: notifying services that collection is finished\n"));
+
     this->collect_done_->signal ();
   }
 
@@ -216,35 +254,6 @@ namespace CUTS
 
     this->decrement_count ();
     return 0;
-  }
-
-  //
-  // handle_agent
-  //
-  int BDC_Task::handle_agent (const char * instance,
-                              ::CUTS::Benchmark_Agent::_ptr_type agent)
-  {
-    int retval = 1;
-
-    if (this->active_)
-    {
-      // Verify this is actual an agent connected to the testing
-      // service. If the component was "preregistered" then the
-      // agent reference will be NIL until it comes online.
-      if (!::CORBA::is_nil (agent))
-      {
-        this->putq (agent);
-        this->reactor ()->notify (this, ACE_Event_Handler::READ_MASK);
-      }
-      else
-      {
-        retval = this->decrement_count ();
-      }
-    }
-
-    return retval;
-
-    ACE_UNUSED_ARG (instance);
   }
 
   //

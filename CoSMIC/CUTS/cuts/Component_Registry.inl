@@ -1,23 +1,13 @@
 // $Id$
 
 //
-// lock
-//
-CUTS_INLINE
-ACE_RW_Thread_Mutex & CUTS_Component_Registry::
-lock (void)
-{
-  return this->lock_;
-}
-
-//
 // is_registered
 //
 CUTS_INLINE
 bool CUTS_Component_Registry::
-is_registered (const char * uuid)
+is_registered (const char * inst)
 {
-  return this->registry_.find (uuid) != this->registry_.end ();
+  return this->registry_.find (inst) == 0;
 }
 
 //
@@ -43,7 +33,35 @@ int CUTS_Component_Registry::is_open (void)
 // registry_size
 //
 CUTS_INLINE
-size_t CUTS_Component_Registry::registry_size (void)
+size_t CUTS_Component_Registry::registry_size (void) const
 {
-  return this->registry_.size ();
+  return this->registry_.current_size ();
+}
+
+//
+// hosts
+//
+CUTS_INLINE
+const CUTS_Host_Table & CUTS_Component_Registry::hosts (void) const
+{
+  return this->hosts_;
+}
+
+//
+// hosts
+//
+CUTS_INLINE
+CUTS_Host_Table & CUTS_Component_Registry::hosts (void)
+{
+  return this->hosts_;
+}
+
+//
+// entries
+//
+CUTS_INLINE
+const CUTS_Component_Registry::Component_Registry_Map &
+CUTS_Component_Registry::entries (void) const
+{
+  return this->registry_;
 }

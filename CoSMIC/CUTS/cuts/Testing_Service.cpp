@@ -7,21 +7,4 @@
 #endif
 
 #include "cuts/Component_Registry.h"
-
-//
-// CUTS_Testing_Service
-//
-CUTS_Testing_Service::
-CUTS_Testing_Service (CUTS_Component_Registry * registry)
-: registry_ (registry)
-{
-
-}
-
-//
-// ~CUTS_Testing_Service
-//
-CUTS_Testing_Service::~CUTS_Testing_Service (void)
-{
-
-}
+#include "cuts/Component_Registry_Node.h"

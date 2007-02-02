@@ -5,6 +5,7 @@
 #include "cuts/Component_Info.h"
 #include "cuts/System_Metric.h"
 #include "cuts/Component_Metric.h"
+#include "cuts/Host_Table_Entry.h"
 #include "cuts/Port_Metric.h"
 #include "cuts/Time.h"
 #include "cuts/Log_Msg.h"
@@ -623,9 +624,7 @@ bool CUTS_Database_Service::register_host (const char * ipaddr,
     query->execute ();
 
     if (hostid != 0)
-    {
       *hostid = query->last_insert_id ();
-    }
 
     return true;
   }
@@ -943,9 +942,16 @@ int CUTS_Database_Service::
 handle_component (const CUTS_Component_Info & info)
 {
   if (info.state_ == 1)
+  {
+    // Register the component information.
     this->register_component (info.inst_.c_str (),
                               info.type_.c_str (),
                               info.uid_);
+
+    // Register the host information.
+    this->register_host (info.host_info_->ipaddr_.c_str (),
+                         info.host_info_->hostname_.c_str ());
+  }
   return 0;
 }
 

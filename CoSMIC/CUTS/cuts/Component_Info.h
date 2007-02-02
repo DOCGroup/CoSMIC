@@ -32,11 +32,11 @@ class CUTS_Host_Table_Entry;
 struct CUTS_Export CUTS_Component_Info
 {
   /// Default constructor.
-  inline CUTS_Component_Info (void)
-    : host_info_ (0) { }
+  inline CUTS_Component_Info (size_t uid)
+    : uid_ (uid), host_info_ (0) { }
 
   /// Unique id for the component.
-  size_t uid_;
+  const size_t uid_;
 
   /// The state of the component.
   int state_;
@@ -48,7 +48,7 @@ struct CUTS_Export CUTS_Component_Info
   ACE_CString type_;
 
   /// Host information about the component.
-  CUTS_Host_Table_Entry * host_info_;
+  const CUTS_Host_Table_Entry * host_info_;
 };
 
 #endif  // !defined _CUTS_COMPONENT_INFO_H_

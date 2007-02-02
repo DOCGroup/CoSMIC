@@ -1,47 +1,30 @@
-// $Id$
+// -*- C++ -*-
+
+//=============================================================================
+/**
+ * @file      CCM_Component_Registry.h
+ *
+ * $Id$
+ *
+ * @author    James H. Hill
+ */
+//=============================================================================
 
 #ifndef _CUTS_CCM_COMPONENT_REGISTRY_H_
 #define _CUTS_CCM_COMPONENT_REGISTRY_H_
 
-#include /**/ "ace/pre.h"
-
-#if !defined (ACE_LACKS_PRAGMA_ONCE)
-#pragma once
-#endif /* ACE_LACKS_PRAGMA_ONCE */
-
-#include "cuts/config.h"
 #include "cuts/CUTSC.h"
 #include "cuts/Component_Registry_Node.h"
-#include "cuts/Component_Registry.h"
-#include "ace/RW_Thread_Mutex.h"
-
-#include <map>
-#include <string>
 
 namespace CUTS
 {
   //===========================================================================
   /**
-   * @class Benchmark_Agent_Handler
-   */
-  //===========================================================================
-
-  class Benchmark_Agent_Handler
-  {
-  public:
-    /**
-     * Callback method for handling a benchmark agent. This method
-     * is called everytime an agent needs "attention".
-     *
-     * @param[in]     agent       Reference to the benchmark agent.
-     */
-    virtual int handle_agent (const char * instance,
-                              ::CUTS::Benchmark_Agent::_ptr_type agent) = 0;
-  };
-
-  //===========================================================================
-  /**
    * @class CCM_Component_Registry_Node
+   *
+   * CCM implementation of the component registry node. This version
+   * allows storage of the Benchmark_Agent object with the registration
+   * information of a component.
    */
   //===========================================================================
 
@@ -49,70 +32,28 @@ namespace CUTS
     public CUTS_Component_Registry_Node
   {
   public:
-    CCM_Component_Registry_Node (void);
-
+    /**
+     * Initializing constructor.
+     *
+     * @param[in]       agent       The benchmark agent.
+     */
     CCM_Component_Registry_Node (::CUTS::Benchmark_Agent_ptr agent);
 
+    /// Destructor.
     virtual ~CCM_Component_Registry_Node (void);
 
+    /**
+     * Get the benchmark agent. This return value must be stored
+     * in a _var type. This will ensure proper memory management.
+     *
+     * @return          The registered benchmark agent.
+     */
     ::CUTS::Benchmark_Agent_ptr benchmark_agent (void);
 
-    void benchmark_agent (::CUTS::Benchmark_Agent::_ptr_type agent);
-
-    void reset (void);
-
   private:
-    ::CUTS::Benchmark_Agent_ptr benchmark_agent_;
-  };
-
-  //===========================================================================
-  /**
-   * @class CCM_Component_Registry
-   */
-  //===========================================================================
-
-  class CCM_Component_Registry :
-    public CUTS_Component_Registry
-  {
-  public:
-    /// Constructor.
-    CCM_Component_Registry (void);
-
-    /// Destructor.
-    ~CCM_Component_Registry (void);
-
-    /**
-     *
-     */
-    size_t register_component (const char * uuid);
-
-    /**
-     *
-     */
-    size_t register_component (const char * uuid,
-                               CUTS::Benchmark_Agent::_ptr_type agent);
-
-    /**
-     *
-     */
-    void unregister_component (const char * uuid,
-                               CUTS::Benchmark_Agent::_ptr_type agent);
-
-    size_t get_registration (const char * uuid,
-                             bool auto_register = true);
-
-    size_t get_benchmark_agents (Benchmark_Agent_Handler * handler,
-                                 size_t & count);
-
-    void reset_registration (const char * uuid);
-
-  private:
-    CCM_Component_Registry_Node * get_node (const char * uuid);
-
-    ACE_RW_Thread_Mutex lock_;
+    /// The benchmark agent for the component.
+    ::CUTS::Benchmark_Agent_var agent_;
   };
 }
-
-#include /**/ "ace/post.h"
 
 #endif  // !defined _CUTS_CCM_COMPONENT_REGISTRY_H_

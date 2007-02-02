@@ -59,7 +59,6 @@ namespace CUTS
   //=========================================================================
 
   class BENCHMARK_DATA_COLLECTOR_EXEC_Export BDC_Task :
-    public Benchmark_Agent_Handler,
     public ACE_Task_Ex <ACE_MT_SYNCH, ::CUTS::Benchmark_Agent>
   {
   public:
@@ -106,10 +105,6 @@ namespace CUTS
   protected:
     /// Storage location for the system metrics.
     CUTS_System_Metric * metrics_;
-
-    /// Enqueues a benchmark agent for data collection.
-    virtual int handle_agent (const char * instance,
-                              ::CUTS::Benchmark_Agent_ptr agent);
 
     /// Input handler for the task.
     virtual int handle_input (ACE_HANDLE);

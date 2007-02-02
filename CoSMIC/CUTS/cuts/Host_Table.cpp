@@ -29,27 +29,45 @@ CUTS_Host_Table::~CUTS_Host_Table (void)
 // bind
 //
 int CUTS_Host_Table::bind (const ACE_CString & ipaddr,
-                           const ACE_CString & hostname)
+                           const ACE_CString & hostname,
+                           const CUTS_Host_Table_Entry ** entry)
 {
   // Determine if we have already bound an ip-address
   // or hostname using either parameter.
-  int result_1 = this->ipaddr_index_.find (ipaddr);
-  int result_2 = this->host_index_.find (hostname);
+  CUTS_Host_Table_Entry * temp = 0;
+  int result = this->ipaddr_index_.find (ipaddr, temp);
 
-  if (result_1 == 0 || result_2 == 0)
+  if (result == 0)
+  {
+    if (entry != 0)
+      *entry = temp;
     return 1;
+  }
 
-  // Create a new entry for the host table.
-  CUTS_Host_Table_Entry * entry = 0;
-  ACE_NEW_RETURN (entry, CUTS_Host_Table_Entry, -1);
+  // Create a new temp for the host table.
+  ACE_NEW_RETURN (temp, CUTS_Host_Table_Entry, -1);
 
-  entry->ipaddr_ = ipaddr;
-  entry->hostname_ = hostname;
+  if (this->entries_.insert (temp) == 0)
+  {
+    temp->ipaddr_ = ipaddr;
+    temp->hostname_ = hostname;
 
-  // Update the index table(s) for fast access.
-  this->ipaddr_index_.bind (ipaddr, entry);
-  this->host_index_.bind (hostname, entry);
-  return 0;
+    // Update the index table(s) for fast access.
+    this->ipaddr_index_.bind (ipaddr, temp);
+    this->host_index_.bind (hostname, temp);
+
+    if (entry != 0)
+      *entry = temp;
+  }
+  else
+  {
+    // Delete the temp since we could not insert it
+    // into the <entries_> table.
+    delete temp;
+    temp = 0;
+  }
+
+  return temp != 0 ? 0 : -1;
 }
 
 //

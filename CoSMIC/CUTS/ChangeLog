@@ -1,3 +1,70 @@
+Fri Feb  2 06:26:50 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/BDC_Task.h:
+        * cuts/BDC/BDC_Task.cpp:
+
+          - Moved the code for handle_agent () to collect_data ()
+          - Removed the base class CUTS_Benchmark_Agent_Handler.
+          - Re-implemented the collect_data () method to use the
+            iterator provided by registry when gathering components
+            that are registered.
+
+        * cuts/BDC/Benchmark_Data_Collector_exec_i.h:
+        * cuts/BDC/Benchmark_Data_Collector_exec_i.cpp:
+
+          - Removed the registry_ variable since the testing service
+            now contains the registry by default.
+          - Switched to the default constructor when creating
+            Testing_Service_exec_i object.
+
+        * cuts/BDC/CCM_Component_Registry.h:
+        * cuts/BDC/CCM_Component_Registry.cpp:
+
+          - Removed the CCM version of the registry since only registry
+            nodes need to be subclassed.
+          - The CCM registry node can only be created with the
+            initialization constructor, and the agent cannont be
+            changed once the node is created.
+
+        * cuts/BDC/Testing_Service_exec_i.h:
+        * cuts/BDC/Testing_Service_exec_i.cpp:
+
+        * cuts/BDC/svcs/dbase/DBase_Service.cpp:
+
+          Added support for adding host information to the database.
+
+        * cuts/Component_Info.h:
+
+          - Now contains a pointer to the host information for the
+            component.
+          - The uid_ element is now const declared.
+
+        * cuts/Component_Registry.h:
+        * cuts/Component_Registry.inl:
+        * cuts/Component_Registry.cpp:
+
+          The registry now contains a CUTS_Host_Table element. It
+          is accessible via the accessor methods.
+
+        * cuts/Component_Registry_Node.h:
+        * cuts/Component_Registry_Node.inl:
+        * cuts/Component_Registry_Node.cpp:
+
+          Removed the info () accessor methods and moved the info_
+          variable to the public section.
+
+        * cuts/Testing_Service.h:
+        * cuts/Testing_Service.inl:
+        * cuts/Testing_Service.cpp:
+
+          The testing service now contains the component registry.
+
+        * cuts/Host_Table.h:
+        * cuts/Host_Table.cpp:
+
+          The bind method now can return a read-only pointer to newly
+          created entry.
+
 Thu Feb  1 23:35:36 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * SQL/CUTS-baseline.sql:

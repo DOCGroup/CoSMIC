@@ -55,7 +55,7 @@ namespace CUTS
   {
   public:
     /// Constructor.
-    Testing_Service_exec_i (CCM_Component_Registry * registry);
+    Testing_Service_exec_i (void);
 
     /// Destructor.
     virtual ~Testing_Service_exec_i (void);
@@ -98,12 +98,12 @@ namespace CUTS
       ACE_ENV_ARG_DECL_WITH_DEFAULTS)
       ACE_THROW_SPEC ((::CORBA::SystemException));
 
-    /**
-     * Get the concrete implementation of the registry.
-     *
-     * @return Pointer to a CCM component registry.
-     */
-    CCM_Component_Registry * ccm_registry (void) const;
+    ///**
+    // * Get the concrete implementation of the registry.
+    // *
+    // * @return Pointer to a CCM component registry.
+    // */
+    //CCM_Component_Registry * ccm_registry (void) const;
   };
 }
 

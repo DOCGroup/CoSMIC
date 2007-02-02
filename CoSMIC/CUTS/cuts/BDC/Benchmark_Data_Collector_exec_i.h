@@ -12,7 +12,6 @@
 #include "Benchmark_Data_Collector_exec_export.h"
 #include "Benchmark_Data_Collector_svnt.h"
 #include "BDC_Task.h"
-#include "CCM_Component_Registry.h"
 #include "cuts/System_Metric.h"
 #include "tao/LocalObject.h"
 #include "ace/Manual_Event.h"
@@ -124,8 +123,6 @@ namespace CUTS
       ACE_Manual_Event collect_done_;
 
       ACE_CString svcs_;
-
-      CCM_Component_Registry registry_;
     };
 
     //=========================================================================

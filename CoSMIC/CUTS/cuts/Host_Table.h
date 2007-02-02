@@ -46,11 +46,13 @@ public:
    *
    * @param[in]     ipaddr            IP-address.
    * @param[in]     hostname          Name of the host.
+   * @param[out]    entry             The table entry.
    * @retval        >0                Succeeded
    * @retval        -1                Failed
    */
   int bind (const ACE_CString & ipaddr,
-            const ACE_CString & hostname);
+            const ACE_CString & hostname,
+            const CUTS_Host_Table_Entry ** entry = 0);
 
   /**
    * Remove an entry by using its hostname.

@@ -22,7 +22,7 @@ namespace CUTS
       Testing_Service_exec_i * tsvc = 0;
 
       ACE_NEW_THROW_EX (tsvc,
-                        Testing_Service_exec_i (&this->registry_),
+                        Testing_Service_exec_i (),
                         ::CORBA::NO_MEMORY ());
 
       this->tsvc_.reset (tsvc);
@@ -79,8 +79,8 @@ namespace CUTS
       ACE_THROW_SPEC ((::CORBA::SystemException,
                        ::Components::CCMException))
     {
-      this->registry_.register_handler (CUTS_BDC_SVC_MANAGER ());
-      this->registry_.open ();
+      this->tsvc_->registry ().register_handler (CUTS_BDC_SVC_MANAGER ());
+      this->tsvc_->registry ().open ();
     }
 
     //
@@ -135,11 +135,11 @@ namespace CUTS
     {
       // Unregister the service manager from the <registry_>. Then
       // we can actually close the <CUTS_BDC_SVC_MANAGER>.
-      this->registry_.unregister_handler (CUTS_BDC_SVC_MANAGER ());
+      this->tsvc_->registry ().unregister_handler (CUTS_BDC_SVC_MANAGER ());
       CUTS_BDC_SVC_MANAGER ()->close ();
 
       // Now, lets close the <registry_>.
-      this->registry_.close ();
+      this->tsvc_->registry ().close ();
     }
 
     //

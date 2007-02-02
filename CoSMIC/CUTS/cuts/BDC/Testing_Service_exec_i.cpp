@@ -14,9 +14,7 @@ namespace CUTS
   //
   // Testing_Service_exec_i
   //
-  Testing_Service_exec_i::
-  Testing_Service_exec_i (CCM_Component_Registry * registry)
-  : CUTS_Testing_Service (registry)
+  Testing_Service_exec_i::Testing_Service_exec_i (void)
   {
 
   }
@@ -49,36 +47,32 @@ namespace CUTS
                   creg.name.in ()));
     }
 
-    // Bind the IP-address to the hostname.
-    long result = this->host_table().bind(creg.ipaddr.in (),
-                                          creg.hostname.in());
+    // Register the host information about the component. This will
+    // return the host table entry for later usage.
+    const CUTS_Host_Table_Entry * entry = 0;
+    this->registry_.hosts ().bind (creg.ipaddr.in (),
+                                   creg.hostname.in (),
+                                   &entry);
 
-    if (result == -1)
+    // Create a new registration node for the component.
+    CCM_Component_Registry_Node * component = 0;
+    ACE_NEW_THROW_EX (component,
+                      CUTS::CCM_Component_Registry_Node (creg.agent.in ()),
+                      ::CORBA::NO_MEMORY ());
+
+    // Initialize the registration node.
+    component->info_.inst_ = creg.name.in ();
+    component->info_.type_ = creg.type.in ();
+    component->info_.host_info_ = entry;
+
+    // Place the node inside the <registry_>.
+    if (this->registry_.register_component (component) != 0)
     {
-      ACE_ERROR ((LM_WARNING,
-                  "[%M] -%T - failed to bind %s to %s\n",
-                  creg.ipaddr.in (),
-                  creg.hostname.in ()));
+      delete component;
+      throw CUTS::Registration_Failed ();
     }
 
-    // Get the correct implementation of the <registry_>.
-    CCM_Component_Registry * registry = this->ccm_registry ();
-
-    if (registry != 0)
-    {
-      result = registry->register_component (creg.name.in (),
-                                             creg.agent.in ());
-
-    }
-
-    // Check the <result> of the registration. If the result is zero,
-    // then we know the registration has failed.
-    if (result == 0)
-    {
-      throw Registration_Failed ();
-    }
-
-    return result;
+    return component->info_.uid_;
   }
 
   //
@@ -89,18 +83,15 @@ namespace CUTS
     ACE_ENV_ARG_DECL_WITH_DEFAULTS)
     ACE_THROW_SPEC ((::CORBA::SystemException))
   {
-    CCM_Component_Registry * registry = this->ccm_registry ();
-
-    if (registry != 0)
-      registry->reset_registration (creg.name.in ());
+    // Currently, we do not implement this method.
   }
 
-  //
-  // registry
-  //
-  CCM_Component_Registry * Testing_Service_exec_i::ccm_registry (void) const
-  {
-    return ACE_dynamic_cast (CCM_Component_Registry *,
-                             this->registry_.get ());
-  }
+  ////
+  //// registry
+  ////
+  //CCM_Component_Registry * Testing_Service_exec_i::ccm_registry (void) const
+  //{
+  //  return ACE_dynamic_cast (CCM_Component_Registry *,
+  //                           this->registry_.get ());
+  //}
 }

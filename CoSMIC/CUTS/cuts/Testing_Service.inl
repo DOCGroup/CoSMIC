@@ -1,31 +1,37 @@
 // $Id$
 
 //
-// host_table
+// CUTS_Testing_Service
 //
 CUTS_INLINE
-const CUTS_Host_Table &
-CUTS_Testing_Service::host_table (void) const
+CUTS_Testing_Service::CUTS_Testing_Service (void)
 {
-  return this->host_table_;
+
 }
 
 //
-// host_table
+// ~CUTS_Testing_Service
 //
 CUTS_INLINE
-CUTS_Host_Table &
-CUTS_Testing_Service::host_table (void)
+CUTS_Testing_Service::~CUTS_Testing_Service (void)
 {
-  return this->host_table_;
+
 }
 
 //
 // registry
 //
 CUTS_INLINE
-CUTS_Component_Registry *
-CUTS_Testing_Service::registry (void) const
+const CUTS_Component_Registry & CUTS_Testing_Service::registry (void) const
 {
-  return this->registry_.get ();
+  return this->registry_;
+}
+
+//
+// registry
+//
+CUTS_INLINE
+CUTS_Component_Registry & CUTS_Testing_Service::registry (void)
+{
+  return this->registry_;
 }
