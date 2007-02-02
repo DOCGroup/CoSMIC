@@ -1,6 +1,6 @@
 // $Id$
 
-project (CUTS_Test) : cutslib, cuts_test_base {
+project (CUTS_Test) : cuts_test_base, cutslib {
   sharedname = CUTS_Test
 
   Header_Files {
@@ -8,13 +8,14 @@ project (CUTS_Test) : cutslib, cuts_test_base {
   }
 
   Source_Files {
-    Test.cpp
-    Unit_Test.cpp
+    Msg_Log.cpp
+    Test_Suite.cpp
   }
 }
 
-project (CUTS_Test_Client) : cutsexe, cuts_test_base {
+project (CUTS_Test_Client) : cuts_test_base, cutsexe {
   exename = CUTS_Test_Client
+  after  += CUTS_Test
 
   Source_Files {
     Test_Client.cpp

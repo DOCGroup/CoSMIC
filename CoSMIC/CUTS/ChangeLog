@@ -1,13 +1,75 @@
+Fri Feb  2 16:36:30 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * tests/Msg_Log.cpp:
+        * tests/Msg_Log.h:
+
+          Empty file placeholders.
+
+        * tests/Test_Client.cpp:
+        * tests/Test_Macros.h:
+        * tests/Test_Suite.h:
+        * tests/Test_Suite.cpp:
+
+          Re-implemented the testing suite the minimize the number
+          of macro definition and effort need to write a unit test
+          for the CUTS framework.
+
+        * tests/cuts/Time_Measurement_Test.cpp:
+        * tests/cuts/Time_Metric_Test.cpp:
+        * tests/cuts/test.mpc:
+
+          Removed the worker unit test since they are obsolete.
+
+        * tests/test.mpc:
+
+          - Removed the Unit_Test.* file(s)
+          - Added the Msg_Log.* files.
+
+        * tests/test.mwc:
+
+        * tests/etc:
+        * tests/etc/config:
+        * tests/etc/config/cuts_test_base.mpb:
+        * etc/config/cuts_test_base.mpb:
+
+          Moved MPC base project to test configuration
+          directory.
+
+        * tests/Test.h:
+        * tests/Test.cpp:
+        * tests/Unit_Test.h:
+        * tests/Unit_Test.cpp:
+        * tests/coworker:
+        * tests/coworker/cpu:
+        * tests/coworker/cpu/CPU_CUTS.mwc:
+        * tests/coworker/cpu/Sender.cidl:
+        * tests/coworker/cpu/Sender.idl:
+        * tests/coworker/cpu/Sender_CoWorkEr.h:
+        * tests/coworker/cpu/Sender_CoWorkEr.cpp:
+        * tests/coworker/cpu/Sender_CoWorkEr.mpc:
+        * tests/coworker/cpu/cpu.xme:
+        * tests/coworker/cpu/descriptors:
+        * tests/coworker/cpu/descriptors/Sender.cdp:
+        * tests/coworker/cpu/descriptors/node_map.dat:
+        * tests/cuts/Time_Measurement_Test.h:
+        * tests/cuts/Time_Metric_Test.h:
+        * tests/cuts/Worker_T_Test.h:
+        * tests/cuts/Worker_T_Test.cpp:
+        * tests/cuts/Worker_Test.h:
+        * tests/cuts/Worker_Test.cpp:
+
+          Removed these files.
+
 Fri Feb  2 07:23:20 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * bin/cuts_node.pl:
-        
+
           Removed debug output.
 
         * cuts/BDC/BDC_Task.cpp (collect_data):
-        
+
           Fixed compilation errors.
-        
+
 Fri Feb  2 06:26:50 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/BDC_Task.h:

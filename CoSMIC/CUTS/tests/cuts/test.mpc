@@ -1,33 +1,19 @@
 // $Id$
 
-project (Time_Metric_Test) : cuts_test {
+project (Time_Metric_Test) : cutslib, cuts_test_base {
   sharedname = Time_Metric_Test
+  after += CUTS_Test CUTS_Test_Client
 
   Source_Files {
     Time_Metric_Test.cpp
   }
 }
 
-project (Time_Measurement_Test) : cuts_test {
+project (Time_Measurement_Test) : cutslib, cuts_test_base {
   sharedname = Time_Measurement_Test
+  after += CUTS_Test CUTS_Test_Client
 
   Source_Files {
     Time_Measurement_Test.cpp
-  }
-}
-
-project (Worker_Test) : cuts_test {
-  sharedname = Worker_Test
-
-  Source_Files {
-    Worker_Test.cpp
-  }
-}
-
-project (Worker_T_Test) : cuts_test {
-  sharedname = Worker_T_Test
-
-  Source_Files {
-    Worker_T_Test.cpp
   }
 }

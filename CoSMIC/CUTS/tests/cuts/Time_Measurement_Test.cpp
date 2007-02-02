@@ -1,6 +1,7 @@
 // $Id$
 
-#include "Time_Measurement_Test.h"
+#include "Test_Suite.h"
+#include "Test_Macros.h"
 #include "cuts/Time_Measurement.h"
 #include "ace/OS_NS_unistd.h"
 #include "ace/OS_NS_stdlib.h"
@@ -9,24 +10,7 @@
 #include <vector>
 #include <numeric>
 
-namespace CUTS_Test_Data
-{
-  CUTS_Time_Measurement tm_;
-}
-
-//=============================================================================
-/*
- * CUTS_Time_Measurement_Test
- */
-//=============================================================================
-
-CUTS_TEST_EXPORT (CUTS_Time_Measurement_Test)
-
-CUTS_TEST_IMPL_BEGIN (CUTS_Time_Measurement_Test, "Time_Measurement_Test")
-  CUTS_ADD_UNIT_TEST (Time_Measurement_Constructor)
-  CUTS_ADD_UNIT_TEST (Time_Measurement_Add_Time)
-  CUTS_ADD_UNIT_TEST (Time_Measurement_Reset)
-CUTS_TEST_IMPL_END (CUTS_Time_Measurement_Test)
+static CUTS_Time_Measurement tm_;
 
 //=============================================================================
 /*
@@ -34,12 +18,8 @@ CUTS_TEST_IMPL_END (CUTS_Time_Measurement_Test)
  */
 //=============================================================================
 
-CUTS_UNIT_TEST_IMPL (Time_Measurement_Constructor, "constructor");
-
-CUTS_UNIT_TEST_RUN_IMPL (Time_Measurement_Constructor)
+CUTS_UNIT_TEST (Time_Measurement_Constructor)
 {
-  using namespace CUTS_Test_Data;
-
   CUTS_VERIFY_TEST ((tm_.maximum () != ACE_Time_Value::zero ||
                      tm_.minimum () != ACE_Time_Value::zero ||
                      tm_.accumulation () != ACE_Time_Value::zero ||
@@ -54,9 +34,7 @@ CUTS_UNIT_TEST_RUN_IMPL (Time_Measurement_Constructor)
  */
 //=============================================================================
 
-CUTS_UNIT_TEST_IMPL (Time_Measurement_Add_Time, "Add_Time")
-
-CUTS_UNIT_TEST_RUN_IMPL (Time_Measurement_Add_Time)
+CUTS_UNIT_TEST (Time_Measurement_Add_Time)
 {
   ACE_Time_Value tv;
 
@@ -81,7 +59,6 @@ CUTS_UNIT_TEST_RUN_IMPL (Time_Measurement_Add_Time)
   // randomly generate 50-100 numbers and verify the time measurement
   // object handles them correctly.
 
-  using namespace CUTS_Test_Data;
   size_t length = 50 + (ACE_OS::rand () % 50);
 
   typedef std::vector <long> Long_Vector;
@@ -120,11 +97,8 @@ CUTS_UNIT_TEST_RUN_IMPL (Time_Measurement_Add_Time)
  */
 //=============================================================================
 
-CUTS_UNIT_TEST_IMPL (Time_Measurement_Reset, "Reset");
-
-CUTS_UNIT_TEST_RUN_IMPL (Time_Measurement_Reset)
+CUTS_UNIT_TEST (Time_Measurement_Reset)
 {
-  using namespace CUTS_Test_Data;
   tm_.reset ();
 
   CUTS_VERIFY_TEST ((tm_.maximum () != ACE_Time_Value::zero ||
@@ -134,3 +108,15 @@ CUTS_UNIT_TEST_RUN_IMPL (Time_Measurement_Reset)
                      "reset operation failed");
   return 0;
 }
+
+//=============================================================================
+/*
+ * CUTS_Time_Measurement_Test_Suite
+ */
+//=============================================================================
+
+CUTS_TEST_SUITE_BEGIN (CUTS_Time_Measurement_TS, CUTS_Time_Measurement)
+  CUTS_ADD_UNIT_TEST ("Constructor", Time_Measurement_Constructor)
+  CUTS_ADD_UNIT_TEST ("Add_Time", Time_Measurement_Add_Time)
+  CUTS_ADD_UNIT_TEST ("Reset", Time_Measurement_Reset)
+CUTS_TEST_SUITE_END (CUTS_Time_Measurement_TS)

@@ -10,22 +10,17 @@
  */
 //=============================================================================
 
-#ifndef _CUTS_TEST_H_
-#define _CUTS_TEST_H_
+#ifndef _CUTS_TEST_SUITE_H_
+#define _CUTS_TEST_SUITE_H_
 
 #include "CUTS_Test_export.h"
-#include <string>
 #include <list>
-
-// forward declarations
-class CUTS_Unit_Test;
-
-typedef
-std::list <CUTS_Unit_Test *> CUTS_Unit_Test_List;
+#include <string>
+#include <utility>
 
 //=============================================================================
 /**
- * @class CUTS_Test
+ * @class CUTS_Test_Suite
  *
  * Base class for all test run by the testing client. This class defines
  * the necessary data/methods to provide meaningful information to the
@@ -33,7 +28,7 @@ std::list <CUTS_Unit_Test *> CUTS_Unit_Test_List;
  */
 //=============================================================================
 
-class CUTS_TEST_Export CUTS_Test
+class CUTS_TEST_Export CUTS_Test_Suite
 {
 public:
   /**
@@ -59,24 +54,32 @@ public:
   virtual size_t failed (void) const;
 
 protected:
+  typedef int (* unit_test_ptr) (void);
+
   /**
    * Add a unit test to the test.
    *
    * @param[in]     unit_test       Pointer to the unit test.
    */
-  void add_unit_test (CUTS_Unit_Test * unit_test);
+  void add_unit_test (const std::string & name,
+                      unit_test_ptr unit_test);
 
   /// Initializing constructor.
-  CUTS_Test (const char *);
+  CUTS_Test_Suite (const char *);
 
   /// Destructor.
-  virtual ~CUTS_Test (void);
+  virtual ~CUTS_Test_Suite (void);
 
-  /// Name of the test.
+private:
+  // Type definition for a collection of unit tests.
+  typedef std::list <std::pair <std::string,
+                                unit_test_ptr> > Unit_Test_List;
+
+  /// Name of the test suite.
   std::string name_;
 
   /// Collection of unit test.
-  CUTS_Unit_Test_List unit_test_;
+  Unit_Test_List unit_test_;
 
   /// Number of passed test.
   size_t passed_;
@@ -85,4 +88,4 @@ protected:
   size_t failed_;
 };
 
-#endif  // !defined _CUTS_TEST_H_
+#endif  // !defined _CUTS_TEST_SUITE_H_

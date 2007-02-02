@@ -2,7 +2,7 @@
 
 #include "ace/DLL.h"
 #include "ace/Log_Msg.h"
-#include "Test.h"
+#include "Test_Suite.h"
 
 static const char * CUTS_TEST_SYMBOL = "create_cuts_test";
 
@@ -17,12 +17,12 @@ int main (int argc, char * argv [])
   {
     // Load the export symbol to create the test and create the
     // test using the symbol.
-    typedef CUTS_Test * (* CUTS_TEXT_EXPORT_SYMBOL)(void);
+    typedef CUTS_Test_Suite * (* CUTS_TEXT_EXPORT_SYMBOL)(void);
 
     CUTS_TEXT_EXPORT_SYMBOL create_cuts_test =
       (CUTS_TEXT_EXPORT_SYMBOL) test_dll.symbol (CUTS_TEST_SYMBOL);
 
-    CUTS_Test * test = 0;
+    CUTS_Test_Suite * test = 0;
 
     if (create_cuts_test != 0)
     {
