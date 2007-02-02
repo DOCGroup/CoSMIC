@@ -6,6 +6,7 @@
 #include "BDC_Task.inl"
 #endif
 
+#include "CCM_Component_Registry.h"
 #include "Testing_Service_exec_i.h"
 #include "cuts/Time_Metric.h"
 #include "cuts/Port_Metric.h"
@@ -138,13 +139,13 @@ namespace CUTS
       CUTS_Component_Registry::CONST_ITERATOR iter =
         this->testing_service_->registry ().entries ();
 
-      for (iter; !iter.done (); iter.advance ())
+      while (!iter.done ())
       {
         try
         {
           // We need to get the benchmark agent from the node.
           ::CUTS::CCM_Component_Registry_Node * node =
-            dynamic_cast <::CUTS::CCM_Component_Registry_Node *> (iter->int_id_);
+            dynamic_cast < ::CUTS::CCM_Component_Registry_Node * > (iter->int_id_);
           ::CUTS::Benchmark_Agent_ptr agent = node->benchmark_agent ();
 
           // Verify this is actual an agent connected to the testing
@@ -165,6 +166,9 @@ namespace CUTS
                       "*** error: %s has an invalid registration\n",
                       iter->ext_id_.c_str ()));
         }
+
+        // Move to the next element.
+        iter.advance ();
       }
 
       // If we never had any components to begin with, then we have to

@@ -1,3 +1,13 @@
+Fri Feb  2 07:23:20 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * bin/cuts_node.pl:
+        
+          Removed debug output.
+
+        * cuts/BDC/BDC_Task.cpp (collect_data):
+        
+          Fixed compilation errors.
+        
 Fri Feb  2 06:26:50 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/BDC_Task.h:

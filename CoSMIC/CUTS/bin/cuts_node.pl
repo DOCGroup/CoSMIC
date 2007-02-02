@@ -50,7 +50,6 @@ $node_daemon = "$CIAO_ROOT/DAnCE/NodeManager/NodeManager";
 for (1..$spawn) {
     $node_args = "-ORBEndpoint iiop://$hostname:$port -s $CIAO_ROOT/DAnCE/NodeApplication/NodeApplication";
     $port ++;
-    print $node_args;
 
     $temp = new PerlACE::Process ($node_daemon, $node_args);
     if ($temp->Spawn () != -1) {
