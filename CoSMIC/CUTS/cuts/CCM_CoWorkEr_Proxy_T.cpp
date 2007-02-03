@@ -169,27 +169,27 @@ ACE_THROW_SPEC ((::CORBA::SystemException,
   if (::CORBA::is_nil (tsvc.in ()))
     {
       ACE_DEBUG ((LM_INFO,
-                  "[%M] -%T - %s not connected to data collector\n",
+                  "[%M] (preactivate) -%T - %s not connected to data collector\n",
                   this->instance_.c_str ())); 
     }
   else if (::CORBA::is_nil (this->type_impl_.in ()))
     {
       ACE_DEBUG ((LM_WARNING,
-                  "[%M] -%T - %s does not have a loaded component\n",
+                  "[%M] (preactivate) -%T - %s does not have a loaded component\n",
                   this->instance_.c_str ()));
     }
   else
     {
       try
         {
-          CUTS::Component_Registration reg;
+          ::CUTS::Component_Registration reg;
           reg.name  = ::CORBA::string_dup (this->instance_.c_str ());
           reg.agent = ::CUTS::Benchmark_Agent::_duplicate (this->agent_->_this ());
           reg.type  = ::CORBA::string_dup (this->type_impl_->_interface_repository_id ());
-          
+
           // Pass control to the base class to finish the registration.
           size_t regid = this->register_i (tsvc.in (), reg);
-          
+
           if (regid == CUTS_UNKNOWN_IMPL)
             {
               ACE_ERROR ((LM_ERROR,
@@ -204,13 +204,13 @@ ACE_THROW_SPEC ((::CORBA::SystemException,
       catch (const ::CORBA::Exception & ex)
         {
           ACE_ERROR ((LM_ERROR,
-                      "[%M] -%T - %s\n",
+                      "[%M] (preactivate) -%T - %s\n",
                       ex._info ().c_str ()));
         }
       catch (...)
         {
           ACE_ERROR ((LM_ERROR,
-                      "[%M] -%T - unknown exception has occurred\n"));
+                      "[%M] (preactivate) -%T - unknown exception has occurred\n"));
         }
 
       if (!::CORBA::is_nil (this->sc_.in ()))

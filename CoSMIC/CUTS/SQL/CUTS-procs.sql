@@ -2,7 +2,7 @@
 
 DELIMITER //
 
-use cuts
+use cuts//
 
 --
 -- This process retruns all the components in a given

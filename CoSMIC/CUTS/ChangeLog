@@ -1,14 +1,29 @@
+Sat Feb  3 02:37:52 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * SQL/CUTS-procs.sql:
+        
+          Added missing deliminator to the `use' statement.
+
+        * cuts/BDC/Testing_Service_exec_i.cpp (unregister_component):
+        
+          Removed try...catch block(s).
+
+        * cuts/CCM_CoWorkEr_Proxy_T.cpp:
+        
+          Added `preactivate' label error messages to help identify
+          their origin.
+
 Fri Feb  2 21:03:18 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/Testing_Service_exec_i.cpp:
 
           We now support unregisration of components.
-        
+
         * cuts/BDC/svcs/baseline/Baseline_Service.cpp:
 
           Placed the code in handle_deactivate () inside of a try...catch
           block just in case the connection operation fails.
-        
+
         * cuts/CCM_CoWorkEr_Proxy_T.inl:
         * cuts/CCM_CoWorkEr_Proxy_T.cpp:
 

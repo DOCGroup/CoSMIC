@@ -83,17 +83,6 @@ namespace CUTS
     ACE_ENV_ARG_DECL_WITH_DEFAULTS)
     ACE_THROW_SPEC ((::CORBA::SystemException))
   {
-    try
-      {
-        this->registry_.unregister_component (creg.name.in ());
-      }
-    catch (const ::CORBA::Exception & ex)
-      {
-
-      }
-    catch (...)
-      {
-
-      }
+    this->registry_.unregister_component (creg.name.in ());
   }
 }
