@@ -14,9 +14,13 @@
 #define _CUTS_TEST_SUITE_H_
 
 #include "CUTS_Test_export.h"
+#include "Test_Macros.h"
+#include "Msg_Log.h"
+
 #include <list>
 #include <string>
 #include <utility>
+#include <sstream>
 
 //=============================================================================
 /**

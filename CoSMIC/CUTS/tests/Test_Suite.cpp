@@ -1,6 +1,7 @@
 // $Id$
 
 #include "Test_Suite.h"
+#include "Msg_Log.h"
 
 //
 // CUTS_Test_Suite
@@ -26,6 +27,10 @@ CUTS_Test_Suite::~CUTS_Test_Suite (void)
 //
 void CUTS_Test_Suite::run (int argc, char * argv [])
 {
+  // Open the message log.
+  CUTS_Msg_Log::instance ()->open (this->name_);
+
+  // Run all the unit test in the test suite.
   for (Unit_Test_List::iterator iter = this->unit_test_.begin ();
        iter != this->unit_test_.end ();
        iter ++)
@@ -35,6 +40,9 @@ void CUTS_Test_Suite::run (int argc, char * argv [])
     else
       ++ this->failed_;
   }
+
+  // Close the message log.
+  CUTS_Msg_Log::instance ()->close ();
 }
 
 //

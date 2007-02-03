@@ -1,7 +1,6 @@
 // $Id$
 
 #include "Test_Suite.h"
-#include "Test_Macros.h"
 #include "cuts/Time_Metric.h"
 #include "ace/OS_NS_unistd.h"
 #include "ace/OS_NS_sys_time.h"

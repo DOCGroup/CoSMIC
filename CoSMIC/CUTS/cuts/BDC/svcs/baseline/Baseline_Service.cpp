@@ -82,41 +82,41 @@ int CUTS_Baseline_Service::handle_deactivate (void)
                           CUTS_PASSWORD,
                           this->server_.c_str (),
                           CUTS_DEFAULT_PORT);
-    
+
     if (this->conn_->is_connected ())
       {
         VERBOSE_MESSAGE ((LM_INFO,
                           "*** info: successfully connected to database "
                           "on %s\n",
                           this->server_.c_str ()));
-        
+
         // Insert statement for the database.
         const char * insert_stmt =
           "INSERT INTO baseline "
           "(instance, host, inport, outport, metric_count, metric_total) "
           "VALUES (?, ?, ?, ?, ?, ?)";
-        
+
         // Update statement for the database.
         const char * update_stmt =
           "UPDATE baseline SET metric_count = ?, metric_total = ? "
           "WHERE instance = ? AND host = ? AND inport = ? AND outport = ?";
-        
+
         try
           {
             long count,     /* number of events */
               total;     /* total execution time */
-            
+
             char inport  [MAX_VARCHAR_LENGTH],    /* name of input port */
               outport [MAX_VARCHAR_LENGTH];    /* name of output port */
-            
+
             // Create the query.
             ACE_Auto_Ptr <ODBC_Query> insert (
                                               dynamic_cast <ODBC_Query *> (this->conn_->create_query ()));
-            
+
             // Create the query.
             ACE_Auto_Ptr <ODBC_Query> update (
                                               dynamic_cast <ODBC_Query *> (this->conn_->create_query ()));
-            
+
             // Prepare the insert statement and its parameters.
             insert->prepare (insert_stmt);
             insert->parameter (0)->bind (&this->database_id_);
@@ -125,7 +125,7 @@ int CUTS_Baseline_Service::handle_deactivate (void)
             insert->parameter (3)->bind (outport, 0);
             insert->parameter (4)->bind (&count);
             insert->parameter (5)->bind (&total);
-            
+
             // Prepare the update statement and its parameters.
             update->prepare (update_stmt);
             update->parameter (0)->bind (&count);
@@ -134,30 +134,30 @@ int CUTS_Baseline_Service::handle_deactivate (void)
             update->parameter (3)->bind (&this->host_id_);
             update->parameter (4)->bind (inport, 0);
             update->parameter (5)->bind (outport, 0);
-            
+
             // Get the component metrics for the component whose id
             // we stored during its activation.
             CUTS_Component_Metric * component_metric =
               this->baseline_.component_metrics (this->uid_);
-            
+
             const CUTS_Port_Metric_Map & map = component_metric->port_metrics ();
-            
+
             for (CUTS_Port_Metric_Map::const_iterator port = map.begin ();
                  port != map.end ();
                  port ++)
               {
                 // Copy the <inport> to the parameter.
                 ACE_OS::strcpy (inport, port->first.c_str ());
-                
+
                 // Get the sender port of the unknown implemenation type. We
                 // are only concerned with this one since we do not know the
                 // id of the test component causing the work.
-                
+
                 CUTS_Sender_Port_Map::const_iterator sender =
                   port->second.find (CUTS_UNKNOWN_IMPL);
-                
+
                 CUTS_Endpoint_Metric_Map::const_iterator endpoint;
-                
+
                 for (endpoint  = sender->second->endpoints ().begin ();
                      endpoint != sender->second->endpoints ().end ();
                      endpoint ++)
@@ -166,7 +166,7 @@ int CUTS_Baseline_Service::handle_deactivate (void)
                     ACE_OS::strcpy (outport, endpoint->first.c_str ());
                     count = endpoint->second->count ();
                     total = endpoint->second->total_time ();
-                    
+
                     try
                       {
                         // Write the record to the database.
@@ -189,11 +189,11 @@ int CUTS_Baseline_Service::handle_deactivate (void)
                                             "*** error [baseline]: failed to update baseline "
                                             "metric\n",
                                             ex.message ().c_str ()));
-                                
+
                               }
                           }
                       }
-                    
+
                     // Notify the user of the collected baseline metrics.
                     VERBOSE_MESSAGE ((LM_DEBUG,
                                       "*** info [baseline]: %s -> %s ("
@@ -229,7 +229,7 @@ int CUTS_Baseline_Service::handle_deactivate (void)
                     "on %s\n",
                     this->server_.c_str ()));
       }
-    
+
     if (this->conn_->is_connected ())
       this->conn_->disconnect ();
   }
@@ -284,6 +284,10 @@ handle_component (const CUTS_Component_Info & info)
                         "*** info [baseline]: successfully connected to "
                         "database on %s\n",
                         this->server_.c_str ()));
+
+      // Register the component information.
+      this->register_component (info.inst_.c_str (),
+                                info.type_.c_str ());
 
       const char * component_stmt =
         "SELECT component_id FROM component_instances "
@@ -515,3 +519,202 @@ long CUTS_Baseline_Service::get_host_id (const char * hostname)
 
   return -1;
 }
+
+//
+// register_component
+//
+bool CUTS_Baseline_Service::
+register_component (const char * uuid,
+                    const char * type)
+{
+  // Get the <type_id> for the component. We do not care if the
+  // operation succeeds or fails.
+  long type_id = 0;
+  this->get_component_typeid (type, &type_id, true);
+
+  ACE_Auto_Ptr <ODBC_Query> query (
+    dynamic_cast <ODBC_Query *> (this->conn_->create_query ()));
+
+  if (query.get () == 0)
+    return false;
+
+  long component_id = 0;
+
+  try
+  {
+    this->get_instance_id (uuid, &component_id);
+
+    // Prepare a SQL statement.
+    const char * query_stmt =
+      "SELECT component_id FROM component_instances WHERE component_name = ?";
+
+    query->prepare (query_stmt);
+    query->parameter (0)->bind (ACE_const_cast (char *, uuid), 0);
+
+    CUTS_DB_Record * record = query->execute ();
+
+    if (record->count () != 0)
+    {
+      // Get the id of the component from the record.
+      record->fetch ();
+      record->get_data (1, component_id);
+
+      // Update the <typeid> for the component just in case.
+      query_stmt =
+        "UPDATE component_instances SET typeid = ? WHERE component_id = ?";
+
+      query->prepare (query_stmt);
+      query->parameter (0)->bind (&type_id);
+      query->parameter (1)->bind (&component_id);
+
+      // Execute the query.
+      query->execute_no_record ();
+    }
+    else
+    {
+      // Create a new id since the component does not exist.
+      query_stmt =
+        "INSERT INTO component_instances (component_name, typeid) VALUES (?, ?)";
+
+      query->prepare (query_stmt);
+      query->parameter (1)->bind (&type_id);
+
+      // Execute the statement
+      query->execute_no_record ();
+    }
+
+    return true;
+  }
+  catch (CUTS_DB_Exception & ex)
+  {
+    ex.print ("*** failed to register component");
+  }
+  catch (...)
+  {
+    ACE_ERROR ((LM_ERROR,
+                "[%M] -%T - unknown exception in "
+                "CUTS_Database_Service::register_component\n"));
+  }
+
+  return false;
+}
+
+//
+// get_component_type_id
+//
+bool CUTS_Baseline_Service::
+get_component_typeid (const char * type,
+                      long * type_id,
+                      bool auto_register)
+{
+  ACE_Auto_Ptr <ODBC_Query> query (
+    dynamic_cast <ODBC_Query *> (this->conn_->create_query ()));
+
+  if (query.get () == 0)
+    return false;
+
+  try
+  {
+    // Prepare a SQL query for execution.
+    const char * query_stmt =
+      "SELECT typeid FROM component_types WHERE typename = ?";
+    query->prepare (query_stmt);
+    query->parameter (0)->bind (ACE_const_cast (char *, type), 0);
+
+    // Execute the query.
+    CUTS_DB_Record * record = query->execute ();
+
+    if (record->count () != 0)
+    {
+      // Extract the data from the record.
+      long type_id_;
+      record->fetch ();
+      record->get_data (1, type_id_);
+
+      // Save the information in the output buffer.
+      if (type_id != 0)
+        *type_id = type_id_;
+    }
+    else
+    {
+      if (auto_register)
+      {
+        // Insert the <typename> into the database.
+        query_stmt = "INSERT INTO component_types (typename) VALUES (?)";
+        query->prepare (query_stmt);
+        query->execute_no_record ();
+
+        // Get the LAST_INSERT_ID () and store it in <type_id>.
+        if (type_id != 0)
+          *type_id = query->last_insert_id ();
+
+        return true;
+      }
+      else
+        return false;
+    }
+    return true;
+  }
+  catch (CUTS_DB_Exception & ex)
+  {
+    ex.print ();
+  }
+  catch (...)
+  {
+    ACE_ERROR ((LM_ERROR,
+                "unknown exception in get_component_typeid ()\n"));
+  }
+
+  return false;
+}
+
+bool CUTS_Baseline_Service::
+get_instance_id (const char * uuid,
+                 long * dest,
+                 bool auto_register)
+{
+  ACE_Auto_Ptr <ODBC_Query> query (
+    dynamic_cast <ODBC_Query *> (this->conn_->create_query ()));
+
+  if (query.get () == 0)
+    return false;
+
+  try
+  {
+    // Prepare the statement to select the component_id of the component
+    // with the specified name.
+    const char * query_stmt =
+      "SELECT component_id FROM component_instances WHERE component_name = ?";
+
+    query->prepare (query_stmt);
+    query->parameter (0)->bind (ACE_const_cast (char *, uuid), 0);
+
+    // Execute the statement and get the returned id.
+    CUTS_DB_Record * record = query->execute ();
+
+    // Even if the client doesn't want to store the id, we
+    // still have to go thro
+
+    if (dest != 0)
+    {
+      record->fetch ();
+      record->get_data (1, *dest);
+      return true;
+    }
+    else
+      return record->count () != 0;
+  }
+  catch (CUTS_DB_Exception & ex)
+  {
+    ex.print ("failed to get instance id");
+  }
+  catch (...)
+  {
+    ACE_ERROR ((LM_ERROR,
+                "[%M] -%T - unknown exception in "
+                "CUTS_Database_Service::get_instance_id\n"));
+  }
+
+  return false;
+}
+

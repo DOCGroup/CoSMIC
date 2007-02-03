@@ -54,6 +54,44 @@ public:
   int handle_metrics (void);
 
 private:
+  /**
+   * Register a new component.
+   *
+   * @param[in]      regid      Registration ID of the component.
+   * @param[in]      uuid       UUID of the component.
+   * @retval         true       Successfully registered component.
+   * @retval         false      Failed to register a component.
+   */
+  bool register_component (const char * uuid,
+                           const char * type);
+
+  /**
+   * Get the typeid of the component. The typeid is the one
+   * stored in the database for the specific component type.
+   * It is also the one used to correlate a component instance
+   * with a component type.
+   *
+   * @param[in]       type        Component type.
+   * @param[out]      type_id     Output buffer for typeid.
+   * @param[in]       auto_reg    Auto-register the type if not found.
+   * @retval          true        Successfully retrieved type.
+   * @retval          false       Failed to retrieve type.
+   */
+  bool get_component_typeid (const char * type,
+                             long * type_id = 0,
+                             bool auto_register = true);
+
+  /**
+   * Get the instance id of a component instance. The client
+   * does not have to store the instance id. If this is the
+   * case, then this method can be used to test for an instance
+   * id. The client also has the option of registering the
+   * id it is not found.
+   */
+  bool get_instance_id (const char * uuid,
+                        long * id = 0,
+                        bool auto_register = true);
+
   long get_host_id (const char * hostname);
 
   /**

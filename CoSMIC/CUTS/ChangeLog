@@ -1,15 +1,58 @@
+Sat Feb  3 02:54:24 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/svcs/baseline/Baseline_Service.h:
+        * cuts/BDC/svcs/baseline/Baseline_Service.cpp:
+
+          Temporarily copied logic for registering a component with
+          the database from the database service component until
+          commonality is factored out into a base class.
+
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.cpp:
+
+          Updated the code generation to guard the set_session_context
+          call on the hosted component just in case there isn't a
+          component loaded.
+
+        * tests/Msg_Log.h:
+        * tests/Msg_Log.cpp:
+
+          First implementation of the message log used by the
+          unit test framework.
+
+        * tests/Test_Client.cpp:
+
+          - Changed the error message format.
+          - Simplified the source code by removing nested control
+            flows and instead returing on failures.
+
+        * tests/Test_Macros.h
+
+          Documented the macros.
+
+        * tests/Test_Suite.h:
+        * tests/Test_Suite.cpp:
+
+          Added the message log open () and close () methods before
+          and after running all the unit tests.
+
+        * tests/cuts/Time_Measurement_Test.cpp:
+        * tests/cuts/Time_Metric_Test.cpp:
+
+          Removed the Test_Macros inclusion since it is now include
+          by default in Test_Suite.h
+
 Sat Feb  3 02:37:52 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * SQL/CUTS-procs.sql:
-        
+
           Added missing deliminator to the `use' statement.
 
         * cuts/BDC/Testing_Service_exec_i.cpp (unregister_component):
-        
+
           Removed try...catch block(s).
 
         * cuts/CCM_CoWorkEr_Proxy_T.cpp:
-        
+
           Added `preactivate' label error messages to help identify
           their origin.
 

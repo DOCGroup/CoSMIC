@@ -343,9 +343,10 @@ write_method_begin (const PICML::Attribute & attr)
       << "this->_proxy_type::cuts_proxy_impl (cuts_proxy_impl);"
       << std::endl
       << single_line_comment ("set context of hosted component")
-      << "this->sc_->set_session_context (this->context_.get ());"
+      << "if (::!CORBA::is_nil (this->sc_.in ()))"
+      << "  this->sc_->set_session_context (this->context_.get ());"
       << std::endl
-      << single_line_comment ("boost::bind event handlers to new component");
+      << single_line_comment ("bind event handlers to new component");
 
     // We need to boost::bind the newly loaded component to the event
     // handlers. We can only do it now since this is when we know
