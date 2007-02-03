@@ -4,6 +4,6 @@ workspace {
   Utils/Utils.mpc
   PIM/PICML/interpreters/Interpreters.mwc
   PSM/CQML/interpreters/Interpreters.mwc
-  PIM/PICML/addons
+  PIM/PICML/addons/UUIDManager
   PIM/PICML/decorators/Decorators.mwc
 }

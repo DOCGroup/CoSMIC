@@ -332,7 +332,7 @@ void PackageVisitor::CreatePropertyElement (string name, const Property& propert
 void PackageVisitor::Visit_DataType(const DataType& type)
 {
   PredefinedType ref = type.ref();
-  string kindName = ref.name();
+  string kindName = ref.meta_name.type();
   if (kindName == "Boolean")
     {
       Boolean boolv = PICML::Boolean::Cast (ref);

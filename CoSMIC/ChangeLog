@@ -1,3 +1,37 @@
+Sat Feb  3 05:29:33 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/addons/UUIDManager/UUIDManager.reg:
+        * PIM/PICML/addons/UUIDManager/UUIDManagerd.reg:
+        * PIM/PICML/decorators/PICMLDecorator.reg:
+        * PIM/PICML/decorators/PICMLDecoratord.reg:
+        * PIM/PICML/interpreters/BGMLComponent/BGMLComponent.reg:
+        * PIM/PICML/interpreters/BGMLComponent/BGMLComponentd.reg:
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponent.reg:
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponentd.reg:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.reg:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGeneratord.reg:
+        * PIM/PICML/interpreters/MPCComponent/MPCComponent.reg:
+        * PIM/PICML/interpreters/MPCComponent/MPCComponentd.reg:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.reg:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponentd.reg:
+        * PIM/PICML/interpreters/PathComponent/PathComponent.reg:
+        * PIM/PICML/interpreters/PathComponent/PathComponentd.reg:
+        * PIM/PICML/interpreters/TargetComponent/DomainComponent.reg:
+        * PIM/PICML/interpreters/TargetComponent/DomainComponentd.reg:
+        * cosmic.mwc:
+        * default.features:
+        * picml.mwc:
+        * register.mpb:
+
+          Register the interpreters, addons and decorators using explicit
+          registry keys instead of relying on self-registration.  This
+          makes it possible to build PICML under Windows Vista.
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:  Use the type
+          of a PredefinedType instead of the name to check for type
+          conformance, when outputting Property types.
+
+
 Tue Jan 30 20:25:08 UTC 2007  unknown  <unknown@vuse.vanderbilt.edu>
 
         * PSM/CQML/SQML-SecurityQoSDSML.ppt:

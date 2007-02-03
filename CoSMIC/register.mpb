@@ -1,22 +1,11 @@
 // $Id$
-// project {
-//   Define_Custom(Register) {
-//     automatic           = 0
-//     command             = regsvr32.exe
-//     commandflags        = /s
-//     inputext            = .dll
-//     generic_outputext   = .txt
-//     postcommand         = echo regsvr32 exec. time <%gt%> <%output%>
-//   }
-// }
 
 project {
   specific (vc6, vc7, vc71, vc8, nmake) {
     postbuild += \
-      regsvr32.exe -s \
-        <%dllout%>/<%libname_prefix%><%sharedname%><%if(use_lib_modifier)%><%lib_modifier%><%endif%><%dll_ext%> \
+      echo Registering \
+        <%dllout%>/<%libname_prefix%><%sharedname%><%if(use_lib_modifier)%><%lib_modifier%><%endif%><%dll_ext%>...\
       <%and%> \
-      echo Successfully registered \
-        <%libname_prefix%><%sharedname%><%if(use_lib_modifier)%><%lib_modifier%><%endif%><%dll_ext%>...
+      reg.exe import <%sharedname%><%if(use_lib_modifier)%><%lib_modifier%><%endif%>.reg
   }
 }

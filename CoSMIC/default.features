@@ -12,7 +12,7 @@
 
 // By default we disable these.
 qt            = 0
-zlib          = 0
+zlib          = 1
 mfc           = 1
 rpc           = 0
 wxWindows     = 1
