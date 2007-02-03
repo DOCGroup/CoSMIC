@@ -1,3 +1,17 @@
+Sat Feb  3 04:22:14 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/utils/CUTS_Utils.mpc:
+        * cuts/utils/Functor_T.h:
+        * cuts/utils/String.h:
+        * cuts/utils/String.cpp:
+        * cuts/utils/UUID.h:
+        * cuts/utils/UUID.inl:
+        * cuts/utils/UUID.cpp:
+        * cuts/utils/Utils.h:
+        * cuts/utils/Utils_Export.h:
+
+          Removed these files.
+
 Sat Feb  3 02:54:24 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/svcs/baseline/Baseline_Service.h:
