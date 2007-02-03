@@ -247,8 +247,8 @@ write_factory_end (const PICML::ComponentFactory & factory,
                    const PICML::Component & type)
 {
   // Generate the export file for the factory.
-  CUTS_Export_File_Generator export ((std::string)type.name () + "_exec");
-  export.generate ();
+  CUTS_Export_File_Generator export_file ((std::string)type.name () + "_exec");
+  export_file.generate ();
 
   // Close off the class definition.
   this->outfile ()
@@ -257,9 +257,9 @@ write_factory_end (const PICML::ComponentFactory & factory,
   _super::write_factory_end (factory, impl, type);
 
   this->outfile ()
-    << "#include \"" << export.export_file () << "\"" << std::endl
+    << "#include \"" << export_file.export_file () << "\"" << std::endl
     << std::endl
-    << "extern \"C\" " << export.export_macro () << std::endl
+    << "extern \"C\" " << export_file.export_macro () << std::endl
     << "::Components::HomeExecutorBase_ptr " << std::endl
     << "create_" << scope (factory, "_")
     << factory.name () << "_Impl (void);"

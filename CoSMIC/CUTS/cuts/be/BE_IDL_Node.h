@@ -9,7 +9,7 @@
 struct CUTS_BE_IDL_Node;
 
 /// Type definition for a collection of CUTS_BE_IDL_Node objects.
-typedef std::set <CUTS_BE_IDL_Node *> CUTS_BE_IDL_Node_Set;
+typedef std::set <const CUTS_BE_IDL_Node *> CUTS_BE_IDL_Node_Set;
 
 //=============================================================================
 /**

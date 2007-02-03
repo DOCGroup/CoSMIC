@@ -289,8 +289,8 @@ write_factory_end (const PICML::ComponentFactory & factory,
                    const PICML::Component & type)
 {
   // Generate the export file for the factory.
-  CUTS_Export_File_Generator export ((std::string)type.name () + "_proxy");
-  export.generate ();
+  CUTS_Export_File_Generator export_file ((std::string)type.name () + "_proxy");
+  export_file.generate ();
 
   this->outfile ()
     // Close off the class definition.
@@ -300,9 +300,9 @@ write_factory_end (const PICML::ComponentFactory & factory,
     << "}"
 
     // Generate the factory method.
-    << "#include \"" << export.export_file () << "\"" << std::endl
+    << "#include \"" << export_file.export_file () << "\"" << std::endl
     << std::endl
-    << "extern \"C\" " << export.export_macro () << std::endl
+    << "extern \"C\" " << export_file.export_macro () << std::endl
     << "::Components::HomeExecutorBase_ptr " << std::endl
     << "create_" << scope (factory, "_")
     << factory.name () << "_Proxy (void);"

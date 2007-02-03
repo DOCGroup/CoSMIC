@@ -97,7 +97,7 @@ Visit_Component (const PICML::Component & component)
   // Ok, let's locate the previous preprocess node so that we can
   // add it to the reference set for the current implementation node.
 
-  CUTS_BE_IDL_Node * idl_node = 0;
+  const CUTS_BE_IDL_Node * idl_node = 0;
 
   if (CUTS_BE_PREPROCESSOR ()->stubs ().find (parent.name (), idl_node))
     this->current_impl_->references_.insert (idl_node);

@@ -17,6 +17,7 @@
 #include "ace/Condition_Thread_Mutex.h"
 #include "ace/RW_Thread_Mutex.h"
 #include "ace/Hash_Map_Manager_T.h"
+#include "ace/Synch_Traits.h"
 #include "ace/Message_Queue_T.h"
 #include "ace/Unbounded_Set.h"
 #include "ace/SString.h"

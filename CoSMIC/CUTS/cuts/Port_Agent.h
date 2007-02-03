@@ -15,7 +15,6 @@
 
 #include "cuts/Port_Measurement_Pool.h"
 #include "ace/SString.h"
-#include <map>
 
 // Forward decl.
 class CUTS_Activation_Record;
@@ -89,7 +88,7 @@ public:
 
 protected:
   /// Name of the port.
-  std::string name_;
+  ACE_CString name_;
 
   /// The active state of the port agent.
   bool active_;

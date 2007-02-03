@@ -1,3 +1,33 @@
+Sat Feb  3 21:39:03 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Component_Registry.h:
+
+          - Added ace/Synch_Traits.h header before message queue
+            header file.
+
+        * cuts/Port_Agent.h:
+
+          - Changed string type to ACE_CString
+          - Removed the STL map header include statement.
+
+        * cuts/Port_Agent.cpp:
+
+          Removed the std::for_each iteration for logging the endpoints
+          in the port agent since the ACE_Hash_Map iterator is not completely
+          compatible with STL in vc8.
+
+        * cuts/be/BE_IDL_Node.h:
+        * cuts/be/BE_Impl_Graph.cpp:
+
+          Changed the reference list to contain const pointers.
+
+        * cuts/be/CIAO/CIAO_Exec_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Project_Generator.cpp:
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.cpp:
+
+          Changed the `export' variable to `export_file' since
+          `export' is a reserved word in vc8.
+
 Sat Feb  3 04:22:14 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/utils/CUTS_Utils.mpc:

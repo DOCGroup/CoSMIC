@@ -41,37 +41,6 @@ private:
 };
 
 //=============================================================================
-/**
- * struct Record_Exit_Point
- */
-//=============================================================================
-
-struct Record_Exit_Point
-{
-  Record_Exit_Point (CUTS_Port_Measurement * port_measurement,
-                     const ACE_Time_Value & start_time)
-  : port_measurement_ (port_measurement),
-    start_time_ (start_time)
-  {
-
-  }
-
-  void operator () (
-    const CUTS_Activation_Record_Endpoints::value_type & entry)
-  {
-    this->port_measurement_->record_exit_point_time (
-      entry.ext_id_, (entry.int_id_ - this->start_time_));
-  }
-
-private:
-  /// Pointer to the target port measurement.
-  CUTS_Port_Measurement * port_measurement_;
-
-  /// Associated start time for all the exit times.
-  const ACE_Time_Value & start_time_;
-};
-
-//=============================================================================
 /*
  * class CUTS_Port_Agent
  */
@@ -134,10 +103,17 @@ update (const CUTS_Activation_Record * record)
                    record->entries ().end (),
                    Record_Record_Entry (measurement));
 
-    // Record all the exit points in the activation record.
-    std::for_each (record->endpoints ().begin (),
-                   record->endpoints ().end (),
-                   Record_Exit_Point (measurement, record->start_time ()));
+    // Transfer the collected endpoints to the port agent.
+    CUTS_Activation_Record_Endpoints::const_iterator
+      iter (record->endpoints ());
+
+    while (!iter.done ())
+    {
+      ACE_Time_Value duration = iter->item () - record->start_time ();
+      measurement->record_exit_point_time (iter->key (), duration);
+
+      iter.advance ();
+    }
   }
 }
 

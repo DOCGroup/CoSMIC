@@ -151,19 +151,19 @@ generate_stub (const CUTS_BE_IDL_Node & node)
 
   // Generate the export file for the project.
   std::string stub_name = node.basename_ + STUB_SUFFIX;
-  CUTS_Export_File_Generator export (stub_name);
-  export.generate ();
+  CUTS_Export_File_Generator export_file (stub_name);
+  export_file.generate ();
 
   // Generate the project.
   outfile
     << "project (" << stub_name << ") : cuts_coworker_stub {" << std::endl
     << "  sharedname   = " << stub_name << std::endl
     << std::endl
-    << "  dynamicflags = " << export.build_flag () << std::endl
+    << "  dynamicflags = " << export_file.build_flag () << std::endl
     << std::endl
-    << "  idlflags += -Wb,export_macro=" << export.export_macro ()
+    << "  idlflags += -Wb,export_macro=" << export_file.export_macro ()
     << " \\" << std::endl
-    << "              -Wb,export_include=" << export.export_file ()
+    << "              -Wb,export_include=" << export_file.export_file ()
     << std::endl;
 
   if (!node.references_.empty ())
@@ -241,7 +241,7 @@ generate_impl_project (std::ofstream & outfile,
                        const CUTS_BE_Impl_Node & node,
                        bool executor_type)
 {
-  // Generate the export file for the project.
+  // Generate the export_file file for the project.
   std::string impl_project = node.basename_;
 
   if (executor_type)
@@ -312,24 +312,24 @@ void CUTS_CIAO_Project_Generator::
 generate_svnt_project (std::ofstream & outfile,
                        const CUTS_BE_Impl_Node & node)
 {
-  // Generate the export file for the project.
+  // Generate the export_file file for the project.
   std::string svnt_project = node.basename_ + SVNT_SUFFIX;
 
-  CUTS_Export_File_Generator export (svnt_project);
-  export.generate ();
+  CUTS_Export_File_Generator export_file (svnt_project);
+  export_file.generate ();
 
-  // Generate the project, keeping in mind the export file.
+  // Generate the project, keeping in mind the export_file file.
   outfile
     << "project (" << svnt_project << ") : cuts_coworker_svnt {" << std::endl
     << "  sharedname   = " << svnt_project << std::endl
     << std::endl
-    << "  dynamicflags = " << export.build_flag () << std::endl
+    << "  dynamicflags = " << export_file.build_flag () << std::endl
     << std::endl
 
     // Generate the IDL flag definitions.
-    << "  idlflags += -Wb,export_macro=" << export.export_macro ()
+    << "  idlflags += -Wb,export_macro=" << export_file.export_macro ()
     << " \\" << std::endl
-    << "              -Wb,export_include=" << export.export_file ()
+    << "              -Wb,export_include=" << export_file.export_file ()
     << std::endl
     << std::endl;
 
