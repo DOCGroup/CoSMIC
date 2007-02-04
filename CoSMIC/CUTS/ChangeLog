@@ -1,3 +1,16 @@
+Sun Feb  4 03:09:07 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * etc/SQL:
+        * SQL:
+        * SQL/CUTS-archive.sql:
+        * SQL/CUTS-baseline.sql:
+        * SQL/CUTS-create.sql:
+        * SQL/CUTS-deployment.sql:
+        * SQL/CUTS-path-analysis.sql:
+        * SQL/CUTS-procs.sql:
+
+          Moved the SQL scripts to the ./etc directory.
+
 Sun Feb  4 03:06:14 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * SQL/CUTS-create.sql:
