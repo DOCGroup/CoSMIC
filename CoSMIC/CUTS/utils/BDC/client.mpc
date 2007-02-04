@@ -1,6 +1,6 @@
 // $Id$
 
-project (CUTS_BDC_client) : ciao_client_dnc, cutsexe {
+project (CUTS_BDC_client) : ciao_client_dnc, cuts_bdcsvc, cutsexe {
   exename = bdc_client
   install = $(CUTS_ROOT)/bin
 

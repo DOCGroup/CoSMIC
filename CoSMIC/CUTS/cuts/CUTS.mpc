@@ -23,13 +23,6 @@ project(CUTS_stub): rt_server, cuts_client_dnc, ciao_events_base_dnc {
   }
 
   Source_Files {
-    CUTSC.cpp
-    CUTSS.cpp
-    performanceC.cpp
-    performanceS.cpp
-    EventsC.cpp
-    EventsS.cpp
-
     Benchmark_Agent_i.cpp
     Benchmark_Collector_Visitor.cpp
     IDL_Streams.cpp

@@ -1,3 +1,19 @@
+Sun Feb  4 02:04:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/Benchmark_Data_Collector.mpc:
+
+          Removed explicit specification of serviceC.cpp and
+          serviceS.cpp
+
+        * cuts/CUTS.mpc:
+
+          Removed explicit specification of service and client
+          files in CUTS_stub project.
+
+        * utils/BDC/client.mpc:
+
+          Fixed project dependencies.
+
 Sun Feb  4 01:39:50 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME:
