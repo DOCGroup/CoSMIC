@@ -1,3 +1,9 @@
+Sun Feb  4 02:58:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * SQL/CUTS-create.sql:
+
+          Added `unknown' host type to the initialization script.
+
 Sun Feb  4 02:04:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/Benchmark_Data_Collector.mpc:
