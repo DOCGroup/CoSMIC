@@ -1,3 +1,10 @@
+Sun Feb  4 03:14:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * etc/SQL/CUTS-archive.sql:
+        * etc/SQL/CUTS-create.sql:
+
+          Fixed syntax errors.
+
 Sun Feb  4 03:09:07 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * etc/SQL:

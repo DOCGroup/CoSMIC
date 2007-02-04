@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS execution_time
 
   INDEX (test_number),
   INDEX (collection_time),
-  INDEX (test_number, collection_time)
+  INDEX (test_number, collection_time),
 
   FOREIGN KEY (test_number) REFERENCES tests (test_number)
     ON DELETE CASCADE,

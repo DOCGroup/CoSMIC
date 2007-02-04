@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS ipaddr_host_map
   UNIQUE (hostname)
 );
 
-INSERT INTO ipaddr_host_map (hostid, ipaddr, hostname)
+INSERT INTO ipaddr_host_map (ipaddr, hostname)
   VALUES ('0.0.0.0', 'unknown'), ('127.0.0.1', 'localhost');
 
 --
