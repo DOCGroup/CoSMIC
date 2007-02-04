@@ -25,6 +25,7 @@ workspace (CUTS) : CUTS_CoSMIC {
   cuts/CUTS_Worker.mpc
   cuts/BDC
   cuts/utils
+  cuts/svcs
 
   // -- MDE environment projects
   MDE

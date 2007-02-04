@@ -78,11 +78,8 @@ project (CUTS) : cutslib {
 
   dynamicflags += CUTS_BUILD_DLL
 
-  after += CUTS_Utils
   after -= CUTS
-
-  libs += CUTS_Utils
-  libs -= CUTS
+  libs  -= CUTS
 
   Header_Files {
     config.h

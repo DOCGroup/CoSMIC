@@ -1,0 +1,9 @@
+// $Id$
+
+project : odbc {
+  after += CUTS_DB_Service \
+           CUTS_ODBC_DBase CUTS_Utils_DBase
+
+  libs  += CUTS_DB_Service \
+           CUTS_ODBC_DBase CUTS_Utils_DBase
+}

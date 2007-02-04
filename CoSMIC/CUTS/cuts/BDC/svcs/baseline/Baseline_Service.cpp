@@ -32,7 +32,8 @@ CUTS_Baseline_Service::CUTS_Baseline_Service (void)
   warmup_count_ (1),
   server_ ("localhost"),
   default_ (false),
-  database_id_ (CUTS_UNKNOWN_IMPL)
+  inst_id_ (-1),
+  host_id_ (-1)
 {
 
 }
@@ -56,348 +57,6 @@ int CUTS_Baseline_Service::init (int argc, ACE_TCHAR * argv[])
   this->conn_.reset (conn);
 
   return this->parse_args (argc, argv);
-}
-
-//
-// handle_deactivate
-//
-int CUTS_Baseline_Service::handle_deactivate (void)
-{
-  if (this->warmup_count_ > 0)
-  {
-    // Notify the user that the test is stopping before the
-    // warmup phase is complete.
-    ACE_ERROR_RETURN ((LM_WARNING,
-                       "*** warn [baseline]: deactivating test before "
-                       "completing warmup\n"),
-                       0);
-  }
-
-
-  try
-  {
-    // Open a connection to the database. We only need to continue
-    // if we have established a connection.
-    this->conn_->connect (CUTS_USERNAME,
-                          CUTS_PASSWORD,
-                          this->server_.c_str (),
-                          CUTS_DEFAULT_PORT);
-
-    if (this->conn_->is_connected ())
-      {
-        VERBOSE_MESSAGE ((LM_INFO,
-                          "*** info: successfully connected to database "
-                          "on %s\n",
-                          this->server_.c_str ()));
-
-        // Insert statement for the database.
-        const char * insert_stmt =
-          "INSERT INTO baseline "
-          "(instance, host, inport, outport, metric_count, metric_total) "
-          "VALUES (?, ?, ?, ?, ?, ?)";
-
-        // Update statement for the database.
-        const char * update_stmt =
-          "UPDATE baseline SET metric_count = ?, metric_total = ? "
-          "WHERE instance = ? AND host = ? AND inport = ? AND outport = ?";
-
-        try
-          {
-            long count,     /* number of events */
-              total;     /* total execution time */
-
-            char inport  [MAX_VARCHAR_LENGTH],    /* name of input port */
-              outport [MAX_VARCHAR_LENGTH];    /* name of output port */
-
-            // Create the query.
-            ACE_Auto_Ptr <ODBC_Query> insert (
-                                              dynamic_cast <ODBC_Query *> (this->conn_->create_query ()));
-
-            // Create the query.
-            ACE_Auto_Ptr <ODBC_Query> update (
-                                              dynamic_cast <ODBC_Query *> (this->conn_->create_query ()));
-
-            // Prepare the insert statement and its parameters.
-            insert->prepare (insert_stmt);
-            insert->parameter (0)->bind (&this->database_id_);
-            insert->parameter (1)->bind (&this->host_id_);
-            insert->parameter (2)->bind (inport, 0);
-            insert->parameter (3)->bind (outport, 0);
-            insert->parameter (4)->bind (&count);
-            insert->parameter (5)->bind (&total);
-
-            // Prepare the update statement and its parameters.
-            update->prepare (update_stmt);
-            update->parameter (0)->bind (&count);
-            update->parameter (1)->bind (&total);
-            update->parameter (2)->bind (&this->database_id_);
-            update->parameter (3)->bind (&this->host_id_);
-            update->parameter (4)->bind (inport, 0);
-            update->parameter (5)->bind (outport, 0);
-
-            // Get the component metrics for the component whose id
-            // we stored during its activation.
-            CUTS_Component_Metric * component_metric =
-              this->baseline_.component_metrics (this->uid_);
-
-            const CUTS_Port_Metric_Map & map = component_metric->port_metrics ();
-
-            for (CUTS_Port_Metric_Map::const_iterator port = map.begin ();
-                 port != map.end ();
-                 port ++)
-              {
-                // Copy the <inport> to the parameter.
-                ACE_OS::strcpy (inport, port->first.c_str ());
-
-                // Get the sender port of the unknown implemenation type. We
-                // are only concerned with this one since we do not know the
-                // id of the test component causing the work.
-
-                CUTS_Sender_Port_Map::const_iterator sender =
-                  port->second.find (CUTS_UNKNOWN_IMPL);
-
-                CUTS_Endpoint_Metric_Map::const_iterator endpoint;
-
-                for (endpoint  = sender->second->endpoints ().begin ();
-                     endpoint != sender->second->endpoints ().end ();
-                     endpoint ++)
-                  {
-                    // Finish updating the remaining parameters.
-                    ACE_OS::strcpy (outport, endpoint->first.c_str ());
-                    count = endpoint->second->count ();
-                    total = endpoint->second->total_time ();
-
-                    try
-                      {
-                        // Write the record to the database.
-                        insert->execute_no_record ();
-                      }
-                    catch (const CUTS_DB_Exception & ex)
-                      {
-                        // We need to update the record if we get a duplicate record
-                        // exception. This would be signified by the state '23000'.
-                        if (ex.state () == "23000")
-                          {
-                            try
-                              {
-                                update->execute_no_record ();
-                              }
-                            catch (const CUTS_DB_Exception & ex)
-                              {
-                                ACE_ERROR ((LM_ERROR,
-                                            "*** error [baseline]: %s\n"
-                                            "*** error [baseline]: failed to update baseline "
-                                            "metric\n",
-                                            ex.message ().c_str ()));
-
-                              }
-                          }
-                      }
-
-                    // Notify the user of the collected baseline metrics.
-                    VERBOSE_MESSAGE ((LM_DEBUG,
-                                      "*** info [baseline]: %s -> %s ("
-                                      "count: %d; min: %d; avg: %f; max: %d)\n",
-                                      inport,
-                                      outport,
-                                      count,
-                                      endpoint->second->best_time (),
-                                      endpoint->second->avg_time (),
-                                      endpoint->second->worse_time ()));
-                  }
-              }
-          }
-        catch (CUTS_DB_Exception & ex)
-          {
-            ACE_ERROR ((LM_ERROR,
-                        "*** error [baseline]: %s\n",
-                        ex.message ().c_str ()));
-          }
-        catch (...)
-          {
-            ACE_ERROR ((LM_ERROR,
-                        "*** error [baseline]: "
-                        "unknown exception in handle_deactivate\n"));
-          }
-      }
-    else
-      {
-        // Notify the user that we failed to connect to the
-        // specified databsae.
-        ACE_ERROR ((LM_ERROR,
-                    "*** error [baseline]: failed to connect to database "
-                    "on %s\n",
-                    this->server_.c_str ()));
-      }
-
-    if (this->conn_->is_connected ())
-      this->conn_->disconnect ();
-  }
-  catch (const CUTS_DB_Exception & ex)
-    {
-      ACE_ERROR ((LM_ERROR,
-                  "*** error [baseline]: %s\n",
-                  ex.message ().c_str ()));
-    }
-
-  return 0;
-}
-
-//
-// handle_activate
-//
-int CUTS_Baseline_Service::handle_activate (void)
-{
-  VERBOSE_MESSAGE ((LM_INFO,
-                    "*** info [baseline]: "
-                    "%d collection(s) in warmup remaining...\n",
-                    this->warmup_count_))
-  return 0;
-}
-
-//
-// handle_component
-//
-int CUTS_Baseline_Service::
-handle_component (const CUTS_Component_Info & info)
-{
-  if (info.inst_ == "Unknown")
-    return 0;
-
-  // Save the id of the component and start the countdown.
-  this->instance_ = info.inst_;
-  this->uid_ = info.uid_;
-  int retval = 1;
-
-  try
-  {
-    // Open a connection to the database. We only need to continue
-    // if we have established a connection.
-    this->conn_->connect (CUTS_USERNAME,
-                          CUTS_PASSWORD,
-                          this->server_.c_str (),
-                          CUTS_DEFAULT_PORT);
-
-    if (this->conn_->is_connected ())
-    {
-      VERBOSE_MESSAGE ((LM_INFO,
-                        "*** info [baseline]: successfully connected to "
-                        "database on %s\n",
-                        this->server_.c_str ()));
-
-      // Register the component information.
-      this->register_component (info.inst_.c_str (),
-                                info.type_.c_str ());
-
-      const char * component_stmt =
-        "SELECT component_id FROM component_instances "
-        "WHERE component_name = ?";
-
-      // Create the query operations and prepare it's statement.
-      ACE_Auto_Ptr <ODBC_Query> query (
-        dynamic_cast <ODBC_Query *> (this->conn_->create_query ()));
-
-      // Prepare the statement and its parameters.
-      char component_name [MAX_VARCHAR_LENGTH];
-
-      query->prepare (component_stmt);
-      query->parameter (0)->bind (component_name, 0);
-      ACE_OS::strcpy (component_name, info.inst_.c_str ());
-
-      // Execute the query and get the record.
-      CUTS_DB_Record * record = query->execute ();
-
-      if (record->count () != 0)
-      {
-        VERBOSE_MESSAGE ((LM_INFO,
-                          "*** info [baseline]: located %d record(s) for %s; "
-                          "using the first record\n",
-                          record->count (),
-                          info.inst_.c_str ()));
-
-        // Get the id of the component from the record.
-        record->fetch ();
-        record->get_data (1, this->database_id_);
-        retval = 0;
-      }
-      else
-      {
-        // Notify the user that we were not able to locate the
-        // specified component in the database.
-        ACE_ERROR ((LM_WARNING,
-                    "*** warn [baseline]: failed to locate %s in "
-                    "database\n",
-                    info.inst_.c_str ()));
-      }
-
-      // Let's get the id of the component's host. If the host
-      // information is not available then we need to treat this
-      // as a default baseline test.
-      if (!this->default_ && info.host_info_ != 0)
-      {
-        this->get_host_id (info.host_info_->hostname_.c_str ());
-      }
-      else
-      {
-        VERBOSE_MESSAGE ((LM_INFO,
-                          "*** info [baseline]: treating baseline "
-                          "test as default\n"));
-
-        this->get_host_id ("unknown");
-      }
-    }
-    else
-    {
-      // Notify the user that we were not able to connect to the
-      // specfied database.
-      ACE_ERROR ((LM_ERROR,
-                  "*** error [baseline]: failed to connect to database "
-                  "on %s\n",
-                  this->server_.c_str ()));
-    }
-  }
-  catch (CUTS_DB_Exception & ex)
-  {
-    ACE_ERROR ((LM_ERROR,
-                "*** error [baseline]: %s\n",
-                ex.message ().c_str ()));
-  }
-  catch (...)
-  {
-
-  }
-
-  // Disconnect from the database if necesary.
-  if (this->conn_->is_connected ())
-    this->conn_->disconnect ();
-
-  return retval;
-}
-
-//
-// handle_metrics
-//
-int CUTS_Baseline_Service::handle_metrics (void)
-{
-  if (this->warmup_count_ == 0)
-  {
-    VERBOSE_MESSAGE ((LM_INFO,
-                      "*** info [baseline]: accumulating metrics...\n"));
-
-    // Accumulate the test metrics.
-    this->baseline_ += *this->svc_mgr ()->metrics ();
-  }
-  else
-  {
-    // Update the warmup counter.
-    -- this->warmup_count_;
-
-    ACE_DEBUG ((LM_INFO,
-                "*** info [baseline]: %d collection(s) in warmup remaining...\n",
-                this->warmup_count_));
-  }
-
-  return 0;
 }
 
 //
@@ -439,14 +98,14 @@ parse_args (int argc, ACE_TCHAR * argv [])
         break;
 
     case '?':
-      ACE_DEBUG ((LM_DEBUG,
-                  "-%c is an unknown option; ignoring\n",
+      ACE_DEBUG ((LM_NOTICE,
+                  "*** notice [baseline]: -%c is unknown option; ignoring\n",
                   get_opt.opt_opt ()));
       break;
 
     case ':':
       ACE_ERROR_RETURN ((LM_ERROR,
-                         "%c is missing an argument\n",
+                         "*** error [baseline]: %c is missing an argument\n",
                          get_opt.opt_opt ()),
                          1);
       break;
@@ -460,261 +119,329 @@ parse_args (int argc, ACE_TCHAR * argv [])
 }
 
 //
-// get_host_id
+// handle_deactivate
 //
-long CUTS_Baseline_Service::get_host_id (const char * hostname)
+int CUTS_Baseline_Service::handle_deactivate (void)
 {
-  try
+  if (this->warmup_count_ > 0)
   {
-    const char * stmt =
-      "SELECT hostid FROM ipaddr_host_map WHERE hostname = ?";
-
-    // Create the query operations and prepare it's statement.
-    ACE_Auto_Ptr <ODBC_Query> query (
-      dynamic_cast <ODBC_Query *> (this->conn_->create_query ()));
-
-    // Prepare the statement and it's parameters.
-    query->prepare (stmt);
-    query->parameter (0)->bind (const_cast <char *> (hostname), 0);
-
-    // Execute the statement and retrieve the record.
-    CUTS_DB_Record * record = query->execute ();
-
-    if (record->count () > 0)
-    {
-      VERBOSE_MESSAGE ((LM_DEBUG,
-                        "*** info [baseline]: located %d id(s) for "
-                        "host '%s'\n",
-                        record->count (),
-                        hostname));
-
-      record->fetch ();
-      record->get_data (1, this->host_id_);
-
-      VERBOSE_MESSAGE ((LM_DEBUG,
-                        "*** info [baseline]: %s has id of %d\n",
-                        hostname,
-                        this->host_id_));
-      return 0;
-    }
-    else
-    {
-      ACE_ERROR ((LM_ERROR,
-                  "*** error: failed to get id of host '%s'\n",
-                  hostname));
-    }
-  }
-  catch (CUTS_DB_Exception & ex)
-  {
-    ACE_ERROR ((LM_ERROR,
-                "*** error: %s\n",
-                ex.message ().c_str ()));
-  }
-  catch (...)
-  {
-    // Notify the user of the unknown exception.
-    ACE_ERROR ((LM_ERROR,
-                "*** error [baseline]: unknown exception in get_host_id\n"));
+    // Notify the user that the test is stopping before the
+    // warmup phase is complete.
+    ACE_ERROR_RETURN ((LM_WARNING,
+                       "*** warn [baseline]: deactivating test before "
+                       "completing warmup\n"),
+                       0);
   }
 
-  return -1;
-}
-
-//
-// register_component
-//
-bool CUTS_Baseline_Service::
-register_component (const char * uuid,
-                    const char * type)
-{
-  // Get the <type_id> for the component. We do not care if the
-  // operation succeeds or fails.
-  long type_id = 0;
-  this->get_component_typeid (type, &type_id, true);
-
-  ACE_Auto_Ptr <ODBC_Query> query (
-    dynamic_cast <ODBC_Query *> (this->conn_->create_query ()));
-
-  if (query.get () == 0)
-    return false;
-
-  long component_id = 0;
-
-  try
+  if (this->inst_id_ != -1 && this->host_id_ != -1)
   {
-    this->get_instance_id (uuid, &component_id);
-
-    // Prepare a SQL statement.
-    const char * query_stmt =
-      "SELECT component_id FROM component_instances WHERE component_name = ?";
-
-    query->prepare (query_stmt);
-    query->parameter (0)->bind (ACE_const_cast (char *, uuid), 0);
-
-    CUTS_DB_Record * record = query->execute ();
-
-    if (record->count () != 0)
+    // Open a connection to the database. We only need to continue
+    // if we have established a connection.
+    if (this->connect (CUTS_USERNAME,
+                       CUTS_PASSWORD,
+                       this->server_.c_str (),
+                       CUTS_DEFAULT_PORT))
     {
-      // Get the id of the component from the record.
-      record->fetch ();
-      record->get_data (1, component_id);
+      VERBOSE_MESSAGE ((LM_INFO,
+                        "*** info [baseline]: successfully connected to "
+                        "database on %s\n",
+                        this->server_.c_str ()));
 
-      // Update the <typeid> for the component just in case.
-      query_stmt =
-        "UPDATE component_instances SET typeid = ? WHERE component_id = ?";
+      // Insert statement for the database.
+      const char * insert_stmt =
+        "INSERT INTO baseline "
+        "(instance, host, inport, outport, metric_count, metric_total) "
+        "VALUES (?, ?, ?, ?, ?, ?)";
 
-      query->prepare (query_stmt);
-      query->parameter (0)->bind (&type_id);
-      query->parameter (1)->bind (&component_id);
+      // Update statement for the database.
+      const char * update_stmt =
+        "UPDATE baseline SET metric_count = ?, metric_total = ? "
+        "WHERE instance = ? AND host = ? AND inport = ? AND outport = ?";
 
-      // Execute the query.
-      query->execute_no_record ();
-    }
-    else
-    {
-      // Create a new id since the component does not exist.
-      query_stmt =
-        "INSERT INTO component_instances (component_name, typeid) VALUES (?, ?)";
-
-      query->prepare (query_stmt);
-      query->parameter (1)->bind (&type_id);
-
-      // Execute the statement
-      query->execute_no_record ();
-    }
-
-    return true;
-  }
-  catch (CUTS_DB_Exception & ex)
-  {
-    ex.print ("*** failed to register component");
-  }
-  catch (...)
-  {
-    ACE_ERROR ((LM_ERROR,
-                "[%M] -%T - unknown exception in "
-                "CUTS_Database_Service::register_component\n"));
-  }
-
-  return false;
-}
-
-//
-// get_component_type_id
-//
-bool CUTS_Baseline_Service::
-get_component_typeid (const char * type,
-                      long * type_id,
-                      bool auto_register)
-{
-  ACE_Auto_Ptr <ODBC_Query> query (
-    dynamic_cast <ODBC_Query *> (this->conn_->create_query ()));
-
-  if (query.get () == 0)
-    return false;
-
-  try
-  {
-    // Prepare a SQL query for execution.
-    const char * query_stmt =
-      "SELECT typeid FROM component_types WHERE typename = ?";
-    query->prepare (query_stmt);
-    query->parameter (0)->bind (ACE_const_cast (char *, type), 0);
-
-    // Execute the query.
-    CUTS_DB_Record * record = query->execute ();
-
-    if (record->count () != 0)
-    {
-      // Extract the data from the record.
-      long type_id_;
-      record->fetch ();
-      record->get_data (1, type_id_);
-
-      // Save the information in the output buffer.
-      if (type_id != 0)
-        *type_id = type_id_;
-    }
-    else
-    {
-      if (auto_register)
+      try
       {
-        // Insert the <typename> into the database.
-        query_stmt = "INSERT INTO component_types (typename) VALUES (?)";
-        query->prepare (query_stmt);
-        query->execute_no_record ();
+        long count,     /* number of events */
+             total;     /* total execution time */
 
-        // Get the LAST_INSERT_ID () and store it in <type_id>.
-        if (type_id != 0)
-          *type_id = query->last_insert_id ();
+        char inport  [MAX_VARCHAR_LENGTH],    /* name of input port */
+             outport [MAX_VARCHAR_LENGTH];    /* name of output port */
 
-        return true;
+        // Create the query.
+        ACE_Auto_Ptr <ODBC_Query> insert (this->create_query ());
+        ACE_Auto_Ptr <ODBC_Query> update (this->create_query ());
+
+        // Prepare the insert statement and its parameters.
+        insert->prepare (insert_stmt);
+        insert->parameter (0)->bind (&this->inst_id_);
+        insert->parameter (1)->bind (&this->host_id_);
+        insert->parameter (2)->bind (inport, 0);
+        insert->parameter (3)->bind (outport, 0);
+        insert->parameter (4)->bind (&count);
+        insert->parameter (5)->bind (&total);
+
+        // Prepare the update statement and its parameters.
+        update->prepare (update_stmt);
+        update->parameter (0)->bind (&count);
+        update->parameter (1)->bind (&total);
+        update->parameter (2)->bind (&this->inst_id_);
+        update->parameter (3)->bind (&this->host_id_);
+        update->parameter (4)->bind (inport, 0);
+        update->parameter (5)->bind (outport, 0);
+
+        // Get the component metrics for the component whose id
+        // we stored during its activation.
+        CUTS_Component_Metric * component_metric =
+          this->baseline_.component_metrics (this->uid_);
+
+        const CUTS_Port_Metric_Map & map = component_metric->port_metrics ();
+
+        for (CUTS_Port_Metric_Map::const_iterator port = map.begin ();
+             port != map.end ();
+             port ++)
+        {
+          // Copy the <inport> to the parameter.
+          ACE_OS::strcpy (inport, port->first.c_str ());
+
+          VERBOSE_MESSAGE ((LM_INFO,
+                            "*** info [baseline]: logging baseline metrics "
+                            "for %s\n",
+                            inport));
+
+          // Get the sender port of the unknown implemenation type. We
+          // are only concerned with this one since we do not know the
+          // id of the test component causing the work.
+
+          CUTS_Sender_Port_Map::const_iterator sender =
+            port->second.find (CUTS_UNKNOWN_IMPL);
+
+          CUTS_Endpoint_Metric_Map::const_iterator endpoint;
+
+          for (endpoint  = sender->second->endpoints ().begin ();
+               endpoint != sender->second->endpoints ().end ();
+               endpoint ++)
+          {
+            // Finish updating the remaining parameters.
+            ACE_OS::strcpy (outport, endpoint->first.c_str ());
+            count = endpoint->second->count ();
+            total = endpoint->second->total_time ();
+
+            try
+            {
+              insert->execute_no_record ();
+            }
+            catch (const CUTS_DB_Exception & ex)
+            {
+              // We need to update the record if we get a duplicate record
+              // exception. This would be signified by the state '23000'.
+              if (ex.state () == "23000")
+              {
+                try
+                {
+                  update->execute_no_record ();
+                }
+                catch (const CUTS_DB_Exception & ex)
+                {
+                  ACE_ERROR ((LM_ERROR,
+                              "*** error [baseline]: %s\n"
+                              "*** error [baseline]: failed to update baseline "
+                              "metric\n",
+                              ex.message ().c_str ()));
+                }
+                catch (...)
+                {
+                  ACE_ERROR ((LM_ERROR,
+                              "*** error [baseline]: caught unknown exception\n"
+                              "*** error [baseline]: failed to update baseline "
+                              "metric\n",
+                              ex.message ().c_str ()));
+                }
+              }
+            }
+
+            // Notify the user of the collected baseline metrics.
+            VERBOSE_MESSAGE ((LM_DEBUG,
+                              "*** info [baseline]: port %s ("
+                              "count: %d; min: %d; avg: %f; max: %d)\n",
+                              outport,
+                              count,
+                              endpoint->second->best_time (),
+                              endpoint->second->avg_time (),
+                              endpoint->second->worse_time ()));
+          }
+        }
+
+        // This is the success exit point. We are going to disconnect
+        // from the database and return a success value.
+        this->disconnect ();
+        return 0;
       }
-      else
-        return false;
-    }
-    return true;
-  }
-  catch (CUTS_DB_Exception & ex)
-  {
-    ex.print ();
-  }
-  catch (...)
-  {
-    ACE_ERROR ((LM_ERROR,
-                "unknown exception in get_component_typeid ()\n"));
-  }
+      catch (CUTS_DB_Exception & ex)
+      {
+        ACE_ERROR ((LM_ERROR,
+                    "*** error [baseline]: %s\n"
+                    "*** error [baseline]: aborting baseline metric logging\n",
+                    ex.message ().c_str ()));
+      }
+      catch (...)
+      {
+        ACE_ERROR ((LM_ERROR,
+                    "*** error [baseline]: caught unknown exception\n"
+                    "*** error [baseline]: aborting baseline metric logging\n"));
+      }
 
-  return false;
-}
-
-bool CUTS_Baseline_Service::
-get_instance_id (const char * uuid,
-                 long * dest,
-                 bool auto_register)
-{
-  ACE_Auto_Ptr <ODBC_Query> query (
-    dynamic_cast <ODBC_Query *> (this->conn_->create_query ()));
-
-  if (query.get () == 0)
-    return false;
-
-  try
-  {
-    // Prepare the statement to select the component_id of the component
-    // with the specified name.
-    const char * query_stmt =
-      "SELECT component_id FROM component_instances WHERE component_name = ?";
-
-    query->prepare (query_stmt);
-    query->parameter (0)->bind (ACE_const_cast (char *, uuid), 0);
-
-    // Execute the statement and get the returned id.
-    CUTS_DB_Record * record = query->execute ();
-
-    // Even if the client doesn't want to store the id, we
-    // still have to go thro
-
-    if (dest != 0)
-    {
-      record->fetch ();
-      record->get_data (1, *dest);
-      return true;
+      // Disconnect from the database, but only this time we are
+      // doing and returning a failed value.
+      this->disconnect ();
     }
     else
-      return record->count () != 0;
+    {
+      // Notify the user that we failed to connect to the
+      // specified databsae.
+      ACE_ERROR ((LM_ERROR,
+                  "*** error [baseline]: failed to connect to database "
+                  "on %s\n",
+                  this->server_.c_str ()));
+    }
   }
-  catch (CUTS_DB_Exception & ex)
+  else
   {
-    ex.print ("failed to get instance id");
-  }
-  catch (...)
-  {
-    ACE_ERROR ((LM_ERROR,
-                "[%M] -%T - unknown exception in "
-                "CUTS_Database_Service::get_instance_id\n"));
+    ACE_DEBUG ((LM_ERROR,
+                "*** info [baseline]: not saving baseline metrics since "
+                "initialization failed\n"));
   }
 
-  return false;
+  return 1;
 }
 
+//
+// handle_activate
+//
+int CUTS_Baseline_Service::handle_activate (void)
+{
+  VERBOSE_MESSAGE ((LM_INFO,
+                    "*** info [baseline]: "
+                    "%d collection(s) in warmup remaining...\n",
+                    this->warmup_count_))
+  return 0;
+}
+
+//
+// handle_component
+//
+int CUTS_Baseline_Service::
+handle_component (const CUTS_Component_Info & info)
+{
+  if (info.inst_ == "Unknown")
+    return 0;
+
+  // Save the id of the component and start the countdown.
+  this->instance_ = info.inst_;
+  this->uid_ = info.uid_;
+  int retval = 1;
+
+  // Open a connection to the database. We only need to continue
+  // if we have established a connection.
+  if (this->connect (CUTS_USERNAME,
+                     CUTS_PASSWORD,
+                     this->server_.c_str (),
+                     CUTS_DEFAULT_PORT))
+  {
+    VERBOSE_MESSAGE ((LM_INFO,
+                      "*** info [baseline]: successfully connected to "
+                      "database on %s\n"
+                      "*** info [baseline]: request id of %s\n",
+                      this->server_.c_str (),
+                      info.inst_.c_str ()));
+
+    // Register the component information.
+    if (!this->register_component (info.inst_.c_str (),
+                                   info.type_.c_str (),
+                                   &this->inst_id_))
+    {
+      ACE_ERROR_RETURN ((LM_ERROR,
+                         "*** error [baseline]: failed to get id of %s\n",
+                         info.inst_.c_str ()),
+                         1);
+    }
+
+    // Let's get the id of the component's host. If the host
+    // information is not available then we need to treat this
+    // as a default baseline test.
+    if (!this->default_ && info.host_info_ != 0)
+    {
+      // We are going to treat this as default baseline since either
+      // the user specified, or we don't know anything about the host.
+      VERBOSE_MESSAGE ((LM_INFO,
+                        "*** info [baseline]: getting id for host %s\n",
+                        info.host_info_->ipaddr_.c_str ()));
+
+      if (!this->get_hostid_by_ipaddr (info.host_info_->ipaddr_.c_str (),
+                                       &this->host_id_))
+      {
+        ACE_ERROR_RETURN ((LM_ERROR,
+                           "*** error [baseline]: failed to get %s "
+                           "host id\n",
+                           info.host_info_->hostname_.c_str ()),
+                           1);
+      }
+    }
+    else
+    {
+      // We are going to treat this as default baseline since either
+      // the user specified, or we don't know anything about the host.
+      VERBOSE_MESSAGE ((LM_INFO,
+                        "*** info [baseline]: treating baseline "
+                        "test as default\n"));
+
+      if (!this->get_hostid_by_ipaddr ("0.0.0.0",
+                                       &this->host_id_))
+      {
+        ACE_ERROR_RETURN ((LM_ERROR,
+                            "*** error [baseline]: failed to get "
+                            "default host id\n"),
+                            1);
+      }
+    }
+
+    // Disconnect from the database.
+    this->disconnect ();
+    return 0;
+  }
+  else
+  {
+    // Notify the user that we were not able to connect to the
+    // specfied database.
+    ACE_ERROR ((LM_ERROR,
+                "*** error [baseline]: failed to connect to database "
+                "on %s\n",
+                this->server_.c_str ()));
+  }
+
+  return 1;
+}
+
+//
+// handle_metrics
+//
+int CUTS_Baseline_Service::handle_metrics (void)
+{
+  if (this->warmup_count_ == 0)
+  {
+    VERBOSE_MESSAGE ((LM_INFO,
+                      "*** info [baseline]: accumulating metrics...\n"));
+
+    // Accumulate the test metrics.
+    this->baseline_ += *this->svc_mgr ()->metrics ();
+  }
+  else
+  {
+    // Update the warmup counter.
+    -- this->warmup_count_;
+
+    ACE_DEBUG ((LM_INFO,
+                "*** info [baseline]: %d collection(s) in warmup remaining...\n",
+                this->warmup_count_));
+  }
+
+  return 0;
+}

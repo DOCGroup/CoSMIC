@@ -1,3 +1,47 @@
+Sun Feb  4 00:26:42 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * CUTS.mwc:
+
+          Added cuts/svcs directory.
+
+        * cuts/BDC/svcs/baseline/Baseline_Service.h:
+        * cuts/BDC/svcs/baseline/Baseline_Service.cpp:
+        * cuts/BDC/svcs/baseline/Baseline_Service.mpc:
+        * cuts/BDC/svcs/dbase/DBase_Service.h:
+        * cuts/BDC/svcs/dbase/DBase_Service.mpc:
+        * cuts/BDC/svcs/dbase/DBase_Service.cpp:
+
+          Refactored both services to subclass the CUTS_DB_Service
+          object to remove alot of redundant code.
+
+        * cuts/CUTS.mpc:
+
+          Removed CUTS_Utils dependency.
+
+        * cuts/svcs/dbase:
+        * cuts/svcs/dbase/DB_Service.h:
+        * cuts/svcs/dbase/DB_Service.inl:
+        * cuts/svcs/dbase/DB_Service.cpp:
+        * cuts/svcs/dbase/DB_Service.mpc:
+        * cuts/svcs/dbase/DB_Service_export.h:
+
+          Refactored the original database service code and removed
+          common code that may be used by all database service objects,
+          both stand-alone and through the BDC.
+
+        * etc/config/cuts_dbsvc.mpb:
+
+          The old cuts_dbasesvc.mpb file.
+
+        * etc/config/odbc.mpb:
+
+          Removed the unixodbc feature block and combined it
+          into the `else' block.
+
+        * etc/config/cuts_dbasesvc.mpb:
+
+          Removed this file.
+
 Sat Feb  3 21:39:03 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Component_Registry.h:
