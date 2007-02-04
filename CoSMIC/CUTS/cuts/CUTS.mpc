@@ -16,7 +16,6 @@ project(CUTS_stub): rt_server, cuts_client_dnc, ciao_events_base_dnc {
   IDL_Files {
     CUTS.idl
     performance.idl
-    Events.idl
   }
 
   Header_Files {
