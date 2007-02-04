@@ -6,11 +6,6 @@
 -- @author      James H. Hill
 --
 
---
--- create the CUTS database
---
-
-CREATE DATABASE IF NOT EXISTS cuts;
 USE cuts;
 
 --

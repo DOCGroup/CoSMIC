@@ -1,3 +1,17 @@
+Sun Feb  4 03:06:14 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * SQL/CUTS-create.sql:
+        * SQL/CUTS-archive.sql:
+        * SQL/CUTS-baseline.sql:
+        * SQL/CUTS-deployment.sql:
+        * SQL/CUTS-path-analysis.sql:
+
+          Filtered the common tables from the tables used by special
+          services. CUTS-create.sql is the SQL file the creates the database
+          and the common table, such component and host info tables. The
+          other scripts create tables that reference columns in of
+          tables in CUTS-create.sql
+
 Sun Feb  4 02:58:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * SQL/CUTS-create.sql:
