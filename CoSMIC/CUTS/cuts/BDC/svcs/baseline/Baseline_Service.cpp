@@ -375,8 +375,9 @@ handle_component (const CUTS_Component_Info & info)
                         "*** info [baseline]: getting id for host %s\n",
                         info.host_info_->ipaddr_.c_str ()));
 
-      if (!this->get_hostid_by_ipaddr (info.host_info_->ipaddr_.c_str (),
-                                       &this->host_id_))
+      if (!this->register_host (info.host_info_->ipaddr_.c_str (),
+                                info.host_info_->hostname_.c_str (),
+                                &this->host_id_))
       {
         ACE_ERROR_RETURN ((LM_ERROR,
                            "*** error [baseline]: failed to get %s "

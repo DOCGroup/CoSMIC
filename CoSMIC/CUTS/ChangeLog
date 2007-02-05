@@ -1,3 +1,30 @@
+Mon Feb  5 23:40:26 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/svcs/baseline/Baseline_Service.cpp (handle_component):
+
+          Fixed bug where an unknown host was not being registered,
+          and resulting in unsuccessful logging of metrics.
+
+Mon Feb  5 21:09:25 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.cpp:
+
+          Fixed bug in generated code for the cuts_proxy_impl
+          setter method.
+
+        * etc/config/cuts_component_dnc.mpb:
+        * etc/config/cuts_coworker_exec.mpb:
+
+          Removed invalid dependencies.
+
+Sun Feb  4 20:32:44 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GEMS/GEMS.h:
+        * MDE/GEMS/GEMS.cpp:
+
+          Added support for triggering the constraint solver from
+          the CORBA world.
+
 Sun Feb  4 03:14:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * etc/SQL/CUTS-archive.sql:
@@ -66,6 +93,7 @@ Sun Feb  4 01:39:50 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
           Removed this file for the workspace.
 
+>>>>>>> .r1133
 Sun Feb  4 00:26:42 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * CUTS.mwc:
