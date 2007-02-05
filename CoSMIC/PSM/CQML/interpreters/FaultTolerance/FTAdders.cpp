@@ -196,7 +196,7 @@ namespace CQML
     {
       time_t t;
       t = time (0);
-      srand (t);
+      srand (static_cast <unsigned int> (t));
       const std::vector <Node> &node_vec = this->node_collector_->get_all_nodes ();
 
       const std::map <std::string, Component> &comp_map = 
@@ -297,7 +297,7 @@ namespace CQML
       for (unsigned int i = 0;i < current_replica_group.size(); ++i)
         {
           int node_num = this->best_permutation_[i];
-          CQML::NodeRef noderef = this->srg_visitor_->get_noderef (node_num);
+          CQML::HostReference noderef = this->srg_visitor_->get_hostref (node_num);
           Node node = noderef.ref ();
           this->node_assignment_.insert 
             (std::make_pair (current_replica_group[i], node));

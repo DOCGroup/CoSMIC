@@ -1,3 +1,48 @@
+Mon Feb  5 09:13:59 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/Injector.h:
+
+          Fixed the DP Framework to suite the needs of FT interpreter.
+
+        * PSM/CQML/interpreters/FaultTolerance/FTAdders.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FTInjector.h:
+        * PSM/CQML/interpreters/FaultTolerance/FTInjector.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.h:
+        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FaultToleranceVisitor.h:
+        * PSM/CQML/interpreters/FaultTolerance/FaultToleranceVisitor.cpp:
+
+          FT interpreter compiles but not tested yet.
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Some QoSModeling and FT paradigm sheets of CQML were modified.
+
+Mon Feb  5 09:10:38 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/PICML/paradigms/PICML.xmp:
+
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/Injector.h:
+
+        * PSM/CQML/interpreters/FaultTolerance/FTAdders.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FTInjector.h:
+        * PSM/CQML/interpreters/FaultTolerance/FTInjector.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.h:
+        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FaultToleranceVisitor.h:
+        * PSM/CQML/interpreters/FaultTolerance/FaultToleranceVisitor.cpp:
+
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
 Sat Feb  3 05:29:33 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/addons/UUIDManager/UUIDManager.reg:

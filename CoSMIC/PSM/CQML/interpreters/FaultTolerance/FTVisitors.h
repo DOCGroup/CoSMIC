@@ -9,6 +9,27 @@
 
 namespace CQML
   {
+    // Function object that accepts visitors
+    template <class Obj>
+	class Acceptor : public std::unary_function <Obj, void>
+      {
+        public:
+          Acceptor (Visitor &v)
+            : visitor_(&v) {}
+          result_type operator ()(const argument_type &o)
+            {
+              const_cast<Obj &> (o).Accept (*visitor_);
+            };
+      private:
+          Visitor *visitor_;
+      };
+
+    // Template that makes the accept code with a single template method call. :-)
+    template <class Container>
+    void accept_each (Container c, Visitor &v)
+      {
+        std::for_each (c.begin (), c.end(), Acceptor<Container::value_type> (v));            
+      }
 
     class FTRequirementsVisitor : public Visitor
       {
@@ -18,9 +39,20 @@ namespace CQML
           virtual ~FTRequirementsVisitor();
 
           // Member functions used by FTRequirementVisitor interpreter
-          virtual void Visit_FTRequirements(const FTRequirements &);
-          virtual void Visit_FailOverUnit(const FailOverUnit &);
-          virtual void Visit_FOU_Requirement (const FOU_Requirement &fou_req);
+		  virtual void Visit_RootFolder (const RootFolder &);
+   		  virtual void Visit_ComponentImplementations (const ComponentImplementations &);
+		  virtual void Visit_ComponentImplementationContainer (const ComponentImplementationContainer &);
+          virtual void Visit_FTDeployment(const FTDeployment &);
+          //virtual void Visit_FailOverUnit(const FailOverUnit &);
+		  virtual void Visit_ComponentAssembly (const ComponentAssembly &assembly);
+		  virtual void Visit_ComponentAssemblyQoS (const ComponentAssemblyQoS & caq);
+		  virtual void Visit_ComponentAssemblyReference 
+			  (const ComponentAssemblyReference &assembly_ref);
+
+		  virtual void Visit_ComponentRef (const ComponentRef &comp_ref);
+		  virtual void Visit_Component(const Component &comp);
+		  virtual void Visit_ComponentQoS (const ComponentQoS & cq);
+		  //virtual void Visit_SRGRiskAssociation (const SRGRiskAssociation &sra);
 
           std::set <std::string> get_all_monolith_components (void) const;
           std::set <std::string> get_all_assembly_components (void) const;
@@ -29,10 +61,20 @@ namespace CQML
         private:
           int strcasecmp (const std::string &, const std::string &);
           void monolith_instance_visit (const Component &);
-          void assembly_instance_visit (const Component &);
+          void component_visit (const Component &);
           void assembly_visit (const ComponentAssembly &);
+/*		  template <class QoSConnectionType, class T, class TRef, class UnaryFunctor>
+		  void qos_connection_visit (const FailOverUnit & fou,
+								     void (QoSConnectionType::*QoS_end)(void),
+								     void (FailOverUnit::*srcTQoS)(void),
+								     UnaryFunctor func);
 
+		  void component_qos_connection_visit (const FailOverUnit & fou);
+		  void assembly_qos_connection_visit (const FailOverUnit & fou);
+*/
           int current_req_replica_;
+		  bool attached_FOU_;
+		  std::set <ComponentAssembly> nonFT_nested_assemblies_; 
           std::map <std::string, FTReq> monolith_instance_req_map_;
           std::map <std::string, FTReq> assembly_instance_req_map_;
       };
@@ -44,20 +86,26 @@ namespace CQML
 
           SRGVisitor ();
           virtual ~SRGVisitor();
-          virtual void Visit_SRGContainer (const SRGContainer &);
-          virtual void Visit_NodeGroup (const NodeGroup &);
-          virtual void Visit_NodeRef (const NodeRef &node_ref);
-          virtual int node_count() const;
-          virtual NodeRef get_noderef (int) const;
+          virtual void Visit_DomainRiskGrouping (const DomainRiskGrouping &);
+		  virtual void Visit_RootRiskAssociation (const RootRiskAssociation &rra);
+		  virtual void Visit_SRGBase (const SRGBase &rra);
+		  virtual void Visit_SharedRiskGroup (const SharedRiskGroup &srg);
+          virtual void Visit_HostReference (const HostReference &hr);
+		  virtual void Visit_RootRiskGroup (const RootRiskGroup &rrg);
+		  virtual void Visit_SRGRiskAssociation (const SRGRiskAssociation &sra);
+          
+		  virtual int node_count() const;
+          virtual HostReference get_hostref (int) const;
           virtual void compute_metric ();
           virtual Distance get_metric_value (int node1, int node2) const;
           virtual int get_node_number (const std::string node_name) const;
         private:
-          void srg_visit (const SharedRiskGroup &);
+          //void srg_visit (const SharedRiskGroup &);
+			MgaObject parent (const MgaObject &);
 
         private:
-          CQML::SRGContainer top_SRGcontainer_;
-          std::vector <NodeRef> noderef_vec_;
+          CQML::RootRiskGroup root_risk_group_;
+          std::vector <HostReference> noderef_vec_;
           std::map <std::string, int> node_to_number_map_;
           std::vector <std::vector <Distance> > node_matrix_;
       };

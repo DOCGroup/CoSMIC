@@ -18,14 +18,18 @@ namespace CQML
           FaultToleranceVisitor (const std::string& outputPath);
           ~FaultToleranceVisitor();
           virtual void Visit_RootFolder(const RootFolder &);
-          virtual void Visit_FaultTolerance(const FaultTolerance&);
-          virtual void Visit_FTRequirements(const FTRequirements &);
+   	      virtual void Visit_DeploymentPlans (const DeploymentPlans& dp_folder);
+          virtual void Visit_DeploymentPlan (const DeploymentPlan& plan);
+
+		protected:
+		  void parse_ft_requirements (const RootFolder &);
 
         private:
-          std::auto_ptr<Injector> injector_;
-          DeploymentPlanFrameworkVisitor dep_plan_framework_visitor_;
+          std::auto_ptr<FTInjector> ft_injector_;
+		  FTRequirementsVisitor *ft_req_visitor_;
+		  ComponentAdder *comp_addr_;
           std::string output_path_;
-          std::map <std::string, Injector *> plan_injector_map_;
+          //std::map <std::string, Injector *> plan_injector_map_;
       };
 
 

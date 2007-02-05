@@ -21,10 +21,21 @@ namespace CQML
 {
   DeploymentPlanFrameworkVisitor::DeploymentPlanFrameworkVisitor (const std::string& outputPath)
     : impl_ (0), doc_ (0), root_ (0), curr_ (0), serializer_ (0), target_ (0),
-      outputPath_ (outputPath)
+	  outputPath_ (outputPath)
   {
     this->init();
     this->injectors_.clear ();
+  }
+
+  DeploymentPlanFrameworkVisitor & DeploymentPlanFrameworkVisitor::instance ()
+  {
+	static DeploymentPlanFrameworkVisitor instance;
+	return instance;
+  }
+  
+  void DeploymentPlanFrameworkVisitor::set_path (std::string const &path)
+  {
+	  this->outputPath_ = path;
   }
 
   DeploymentPlanFrameworkVisitor::~DeploymentPlanFrameworkVisitor ()

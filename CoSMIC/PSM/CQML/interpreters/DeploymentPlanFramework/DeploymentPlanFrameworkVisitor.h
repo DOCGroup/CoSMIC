@@ -31,8 +31,9 @@ namespace CQML
 
   class DeploymentPlanFrameworkVisitor: public Visitor
   {
+  protected:
+    DeploymentPlanFramework_Export DeploymentPlanFrameworkVisitor (const std::string& outputPath="");
   public:
-    DeploymentPlanFramework_Export DeploymentPlanFrameworkVisitor (const std::string& outputPath);
     DeploymentPlanFramework_Export ~DeploymentPlanFrameworkVisitor();
 
     DeploymentPlanFramework_Export void init();
@@ -274,7 +275,7 @@ namespace CQML
 	DeploymentPlanFramework_Export virtual void generate_instance_deployment_descriptions (void);
 	DeploymentPlanFramework_Export virtual void generate_assembly_instance_deployment_descriptions (void);
 	DeploymentPlanFramework_Export virtual void generate_artifact_descriptions (void);
-  DeploymentPlanFramework_Export virtual void generate_infoproperties (const DeploymentPlan &);
+    DeploymentPlanFramework_Export virtual void generate_infoproperties (const DeploymentPlan &);
 	DeploymentPlanFramework_Export virtual void generate_implementation_descriptions (void);
 	DeploymentPlanFramework_Export virtual void generate_child_connections (void);
 	DeploymentPlanFramework_Export virtual void generate_parent_connections (void);
@@ -282,11 +283,13 @@ namespace CQML
 	DeploymentPlanFramework_Export virtual void finalize_deployment_plan_descriptor (void);
 	DeploymentPlanFramework_Export virtual void create_label_and_uuid (DeploymentPlan& dp);
 	DeploymentPlanFramework_Export virtual void add_injector (const std::string& plan_name, Injector* injector);
-  DeploymentPlanFramework_Export virtual void clear_private_variables (void);
+    DeploymentPlanFramework_Export virtual void clear_private_variables (void);
 
   public:
     template <typename T>
     std::string unique_id (const T &comp);
+	DeploymentPlanFramework_Export static DeploymentPlanFrameworkVisitor & instance ();
+	DeploymentPlanFramework_Export void set_path (std::string const &path);
 
   private:
 

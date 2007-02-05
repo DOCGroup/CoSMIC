@@ -7,38 +7,28 @@ namespace CQML
 {
 
   FaultToleranceVisitor::FaultToleranceVisitor (const std::string& op)
-    : dep_plan_framework_visitor_ (op),
-      output_path_ (op),
-      plan_injector_map_ ()
+    : output_path_ (op),
+	  ft_injector_ (0),
+	  ft_req_visitor_ (0),
+	  comp_addr_ (0)
   {
+    DeploymentPlanFrameworkVisitor::instance().set_path (op);
   }
 
   FaultToleranceVisitor::~FaultToleranceVisitor ()
   {
-    for(std::map <std::string, Injector *>::iterator itr 
+/*    for(std::map <std::string, Injector *>::iterator itr 
           = this->plan_injector_map_.begin();
           itr != this->plan_injector_map_.end();
           ++itr)
     {
       delete itr->second;
-    }
+    }*/
   }
 
   void FaultToleranceVisitor::Visit_RootFolder(const RootFolder& rf)
     {
-      std::set<FaultTolerance>
-        ft_folders = rf.FaultTolerance_kind_children();
-      
-      if (ft_folders.empty ())
-          return;
-
-      for (std::set<FaultTolerance>::iterator itr = ft_folders.begin();
-          itr != ft_folders.end();
-          ++itr)
-        {
-          FaultTolerance ft = *itr;
-          ft.Accept (*this);
-        }
+	  this->parse_ft_requirements (rf);
 /*
       for (std::map <std::string, Injector *>::iterator itr 
             = this->plan_injector_map_.begin();
@@ -59,117 +49,65 @@ namespace CQML
          }
 */
 
-      for (std::map <std::string, Injector *>::iterator itr 
-            = this->plan_injector_map_.begin();
-            itr != this->plan_injector_map_.end();
-            ++itr)
-        {
-          this->dep_plan_framework_visitor_.add_injector (itr->first, itr->second);
-        }
-
-        this->dep_plan_framework_visitor_.Visit_RootFolder (rf);
+	    this->ft_injector_->register_with_DPFramework ();
+        DeploymentPlanFrameworkVisitor::instance().Visit_RootFolder (rf);
     }
 
-  void FaultToleranceVisitor::Visit_FaultTolerance(const FaultTolerance & ft)
-  {
-    std::set<FTRequirements>
-      ft_requirements = ft.FTRequirements_kind_children();
-    for (std::set<FTRequirements>::iterator iter = ft_requirements.begin();
-         iter != ft_requirements.end();
-         ++iter)
-      {
-        FTRequirements ft_req = *iter;
-        ft_req.Accept (*this);
-      }
-  }
 
-  void FaultToleranceVisitor::Visit_FTRequirements(const FTRequirements & ft_req)
+  void FaultToleranceVisitor::parse_ft_requirements (const RootFolder& rf)
   {
     std::auto_ptr <FTRequirementsVisitor> ft_req_visitor (new FTRequirementsVisitor ());
-    ft_req_visitor->Visit_FTRequirements (ft_req);
-    
-    DeploymentPlanRef plan_ref = ft_req.DeploymentPlanRef_child ();
-    DeploymentPlan plan = plan_ref.ref();
-    std::string dep_plan_name = std::string (plan.name());
-
-    SRGContainerRef srgc_ref = ft_req.SRGContainerRef_child ();
+    ft_req_visitor->Visit_RootFolder (rf);
+	this->ft_req_visitor_ = ft_req_visitor.get ();
 
     std::auto_ptr <ComponentAdder> comp_addr (new ComponentAdder (ft_req_visitor.get()));
     comp_addr->compute_new_components ();
+	this->comp_addr_ = comp_addr.get ();
 
     std::auto_ptr <ConnectionAdder> conn_addr (new ConnectionAdder (comp_addr.get()));
+	this->ft_injector_ = std::auto_ptr <FTInjector>  (new FTInjector (comp_addr.release(), 
+			     		  							   conn_addr.release(), 
+				  								       ft_req_visitor.release()));
 
-    std::auto_ptr <NodeAssigner> node_assgn;
- 
-    if (Udm::null != srgc_ref)
-      {
-        SRGContainer srg_con = srgc_ref.ref();
-        std::auto_ptr <SRGVisitor> srg_visitor (new SRGVisitor());
-        srg_visitor->Visit_SRGContainer (srg_con);
-        srg_visitor->compute_metric ();
-        node_assgn = std::auto_ptr <NodeAssigner> (new BranchNBoundNodeAssigner 
-                                                    (srg_visitor.release(), 
-                                                     ft_req_visitor.get(), 
-                                                     comp_addr.get()));
-      }
-    else
-      {
-        std::auto_ptr<NodeCollector> node_collector (new NodeCollector ());
-        node_collector->Visit_DeploymentPlan (plan);
-        node_assgn = std::auto_ptr <NodeAssigner> 
-          (new RandomNodeAssigner (node_collector.release (), comp_addr.get()));
-      }
-    //node_assgn->compute_assignment ();  
-    std::auto_ptr <FTInjector> ft_injector (new FTInjector (comp_addr.release(), 
-                                            conn_addr.release(), node_assgn.release(), 
-                                            ft_req_visitor.release()));
-    this->plan_injector_map_.insert (std::make_pair (dep_plan_name, ft_injector.release()));
+	std::set <DeploymentPlans> dep_plan_folders = 
+		rf.DeploymentPlans_kind_children ();
+	accept_each (dep_plan_folders, *this);
+  }
+  
+  void FaultToleranceVisitor::Visit_DeploymentPlans (const DeploymentPlans& dp_folder)
+  {
+	std::set <DeploymentPlan> dp_set = dp_folder.DeploymentPlan_kind_children ();
+	accept_each (dp_set, *this);
   }
 
+  void FaultToleranceVisitor::Visit_DeploymentPlan (const DeploymentPlan& plan)
+  {
+	std::auto_ptr <NodeAssigner> node_assgn;
+	std::string dep_plan_name = std::string (plan.name());
+	std::set <DomainRiskGroupingRef> srgc_refs 
+		= plan.DomainRiskGroupingRef_kind_children ();
+ 
+	if (srgc_refs.empty())
+	  {
+		std::auto_ptr<NodeCollector> node_collector (new NodeCollector ());
+		node_collector->Visit_DeploymentPlan (plan);
+		node_assgn = std::auto_ptr <NodeAssigner> 
+		  (new RandomNodeAssigner (node_collector.release (), this->comp_addr_));
+	  }
+	else
+	  {
+		std::set <DomainRiskGroupingRef>::const_iterator iter 
+			= srgc_refs.begin ();
+		DomainRiskGrouping srg_con = iter->ref(); // Exactly one!!
+		std::auto_ptr <SRGVisitor> srg_visitor (new SRGVisitor());
+		srg_visitor->Visit_DomainRiskGrouping (srg_con);
+		srg_visitor->compute_metric ();
+		node_assgn = std::auto_ptr <NodeAssigner> (new BranchNBoundNodeAssigner 
+													(srg_visitor.release(), 
+													 this->ft_req_visitor_, 
+													 this->comp_addr_));
+	  }
+	this->ft_injector_->add_node_assigner(dep_plan_name, node_assgn.release());
+	}
 }
-
-
-/*
-  Composite *SRG::add_composite (Composite *comp)
-    {
-      this->composites_.push_back (comp);
-      comp->set_parent (this);
-      return comp;
-    }
-
-  SRG::~SRG() 
-    {
-      for (std::vector <Composite *>::iterator itr = this->composites_.begin();
-            itr != this->composites_.end ();
-            ++itr)
-        {
-          delete *itr;
-        }
-    }
-  
-  bool SRG::is_leaf(void) const
-    {
-      return false;
-    }
-
-  Composite *Composite::set_parent (Composite *parent)
-    {
-      this->parent_ = parent;
-      return parent;
-    }
-
-  SRGNode::~SRGNode()
-    {}
-
-  bool SRGNode::is_leaf(void) const
-    {
-      return true;
-    }
-
-  Composite * SRGNode::add_composite (Composite *comp)
-    {
-      return 0;
-    }
-*/
-
 

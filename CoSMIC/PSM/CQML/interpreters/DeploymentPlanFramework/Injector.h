@@ -23,6 +23,7 @@ namespace CQML
 
           Injector ();
           virtual ~Injector ();
+		  virtual void register_with_DPFramework () = 0;
           virtual std::map<std::string, CQML::Component> add_monolith_instances (const std::string& plan_name);
           virtual std::map<std::string, CQML::Component> add_assembly_instances (const std::string& plan_name);
           virtual ConnectionMap add_connections (const std::string& plan_name, const ConnectionMap &);
