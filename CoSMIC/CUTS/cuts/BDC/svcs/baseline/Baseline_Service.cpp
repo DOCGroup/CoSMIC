@@ -371,13 +371,16 @@ handle_component (const CUTS_Component_Info & info)
     {
       // We are going to treat this as default baseline since either
       // the user specified, or we don't know anything about the host.
-      VERBOSE_MESSAGE ((LM_INFO,
-                        "*** info [baseline]: getting id for host %s\n",
-                        info.host_info_->ipaddr_.c_str ()));
-
-      if (!this->register_host (info.host_info_->ipaddr_.c_str (),
-                                info.host_info_->hostname_.c_str (),
-                                &this->host_id_))
+      if (this->register_host (info.host_info_->ipaddr_.c_str (),
+                               info.host_info_->hostname_.c_str (),
+                               &this->host_id_))
+      {
+        VERBOSE_MESSAGE ((LM_INFO,
+                          "*** info [baseline]: host %s has id of %d\n",
+                          info.host_info_->ipaddr_.c_str (),
+                          this->host_id_));
+      }
+      else
       {
         ACE_ERROR_RETURN ((LM_ERROR,
                            "*** error [baseline]: failed to get %s "
