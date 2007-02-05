@@ -2,7 +2,7 @@
 
 project : cuts_component_dnc, rt_server {
   // -- include the required libraries
-  libs += CUTS CUTS_Utils CUTS_exec
+  libs += CUTS CUTS_exec
 
   libpaths += ./lib
 

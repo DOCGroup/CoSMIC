@@ -343,7 +343,7 @@ write_method_begin (const PICML::Attribute & attr)
       << "this->_proxy_type::cuts_proxy_impl (cuts_proxy_impl);"
       << std::endl
       << single_line_comment ("set context of hosted component")
-      << "if (::!CORBA::is_nil (this->sc_.in ()))"
+      << "if (!::CORBA::is_nil (this->sc_.in ()))" << std::endl
       << "  this->sc_->set_session_context (this->context_.get ());"
       << std::endl
       << single_line_comment ("bind event handlers to new component");
