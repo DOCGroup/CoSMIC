@@ -19,9 +19,10 @@ using Utils::CreateUuid;
 namespace CQML
 {
   NetQoSVisitor::NetQoSVisitor (const std::string& outputPath)
-    : dep_plan_framework_ (outputPath), impl_ (0), doc_ (0), root_ (0), curr_ (0), serializer_ (0), 
+    : impl_ (0), doc_ (0), root_ (0), curr_ (0), serializer_ (0), 
       target_ (0), outputPath_ (outputPath)
   {
+    DeploymentPlanFrameworkVisitor::instance().set_path (outputPath);
     this->init();
   }
 
@@ -111,26 +112,14 @@ namespace CQML
   void NetQoSVisitor::Visit_RootFolder(const RootFolder& rf)
   {
     std::set <DeploymentPlans> dep_plan_folders = rf.DeploymentPlans_kind_children ();
-    for (std::set <DeploymentPlans>::const_iterator iter = dep_plan_folders.begin ();
-         iter != dep_plan_folders.end ();
-         ++iter)
-      {
-        DeploymentPlans plans_folder = *iter;
-        plans_folder.Accept (*this);
-      }
-
-    this->initDocument ("CIAO:NetQoSRequirements");
+	accept_each (dep_plan_folders, *this);
+    
+	this->initDocument ("CIAO:NetQoSRequirements");
     this->initRootAttributes(); // this->curr_ is ROOT now.
 
     std::set<ComponentImplementations>
       comp_impls = rf.ComponentImplementations_kind_children();
-    for (std::set<ComponentImplementations>::iterator iter = comp_impls.begin();
-         iter != comp_impls.end();
-         ++iter)
-      {
-        ComponentImplementations comp_impl = *iter;
-        comp_impl.Accept (*this);
-      }
+	accept_each (comp_impls, *this);
 
     for (std::set <std::string>::const_iterator iter = this->filenames_.begin();
          iter != this->filenames_.end ();
@@ -141,32 +130,20 @@ namespace CQML
         this->dumpDocument ();
       }
 
-    this->dep_plan_framework_.Visit_RootFolder (rf);
+    DeploymentPlanFrameworkVisitor::instance().Visit_RootFolder (rf);
   }
 
   void NetQoSVisitor::Visit_DeploymentPlans(const DeploymentPlans& plans_folder)
     {
       std::set <DeploymentPlan> dep_plans = plans_folder.DeploymentPlan_kind_children ();
-      for (std::set <DeploymentPlan>::const_iterator iter = dep_plans.begin ();
-          iter != dep_plans.end ();
-          ++iter)
-        {
-          DeploymentPlan plan = *iter;
-          plan.Accept (*this);
-        }
-    }
+	  accept_each (dep_plans, *this);
+  }
   
   void NetQoSVisitor::Visit_DeploymentPlan(const DeploymentPlan& dep_plan)
     {
       std::set <Property> properties = dep_plan.Property_kind_children ();
-      for (std::set <Property>::const_iterator iter = properties.begin ();
-          iter != properties.end ();
-          ++iter)
-        {
-          Property prop = *iter;
-          prop.Accept (*this);
-        }
-    }
+	  accept_each (properties, *this);
+  }
 
   void NetQoSVisitor::Visit_Property(const Property &property) 
     {
@@ -179,53 +156,29 @@ namespace CQML
   {
     std::set<ComponentImplementationContainer>
       comp_impl_conts = comp_impl.ComponentImplementationContainer_kind_children();
-    for (std::set<ComponentImplementationContainer>::iterator iter = comp_impl_conts.begin();
-         iter != comp_impl_conts.end();
-         ++iter)
-      {
-        ComponentImplementationContainer comp_impl_container = *iter;
-        comp_impl_container.Accept (*this);
-      }
+	accept_each (comp_impl_conts, *this);  
   }
 
   void NetQoSVisitor::Visit_ComponentImplementationContainer(const ComponentImplementationContainer &comp_impl_cont)
   {
     std::set<ComponentAssembly>
       comp_assemblies = comp_impl_cont.ComponentAssembly_kind_children();
-    for (std::set<ComponentAssembly>::iterator iter = comp_assemblies.begin();
-         iter != comp_assemblies.end();
-         ++iter)
-      {
-        ComponentAssembly comp_assembly = *iter;
-        comp_assembly.Accept (*this);
-      }
+	accept_each (comp_assemblies, *this);
   }
 
   void NetQoSVisitor::Visit_ComponentAssembly(const ComponentAssembly &comp_assembly)
     {
       std::set<QoSCharRef> qos_char_refs = comp_assembly.QoSCharRef_kind_children();
-      for (std::set<QoSCharRef>::iterator iter = qos_char_refs.begin();
-           iter != qos_char_refs.end();
-           ++iter)
-        {
-          QoSCharRef qcr = *iter;
-          qcr.Accept (*this);
-        }
-
+	  accept_each (qos_char_refs, *this);
       std::set<NetQoS> netqos = comp_assembly.NetQoS_kind_children();
-      for (std::set<NetQoS>::iterator iter = netqos.begin();
-           iter != netqos.end();
-           ++iter)
-        {
-          NetQoS nq = *iter;
-          nq.Accept (*this);
-        }
+	  accept_each (netqos, *this);    
     }
 
   void NetQoSVisitor::Visit_QoSCharRef(const QoSCharRef &qc_ref)
     {
       QoSCharacteristic qos_char = qc_ref.ref ();
-      if (Udm::null != qos_char && Udm::IsDerivedFrom (qos_char.type(), NetQoS::meta))
+      if (Udm::null != qos_char && 
+		  Udm::IsDerivedFrom (qos_char.type(), NetQoS::meta))
         {
           NetQoS netqos = NetQoS::Cast (qos_char);
           this->current_netqos_ = netqos;
@@ -262,57 +215,55 @@ namespace CQML
       this->pop (); // pop connectionQoS
     }
 
+  void NetQoSVisitor::Visit_QoSReq (const QoSReq &qos_req)
+  {
+	  QoSConnector qos_connector = qos_req.srcQoSReq_end ();
+	  qos_connector.Accept (*this);
+  }
 
-  void NetQoSVisitor::reqqos_base_visit (const ReqQoSBase & reqqos_base)
+  void NetQoSVisitor::Visit_PortQoS (const PortQoS &port_qos)
+  {
+      Port port = port_qos.srcPortQoS_end ();
+      if (Udm::IsDerivedFrom (port.type (), RequiredRequestPort::meta ))
+        {
+          this->visit_adjacent_qos_connector (&RequiredRequestPort::dstRecepInvoke,
+                                              &RecepInvoke::dstRecepInvoke_end,
+                                              port);
+        }
+      else if (Udm::IsDerivedFrom (port.type (), InEventPort::meta ))
+        {
+          this->visit_adjacent_qos_connector (&InEventPort::srcEventSinkPublish,
+                                              &EventSinkPublish::srcEventSinkPublish_end,
+                                              port);
+        }
+      else if (Udm::IsDerivedFrom (port.type (), ProvidedRequestPort::meta ))
+        {
+          this->visit_adjacent_qos_connector (&ProvidedRequestPort::srcFacetInvoke,
+                                              &FacetInvoke::srcFacetInvoke_end,
+                                              port);
+        }
+      else // OutEventPort
+        {
+          this->visit_adjacent_qos_connector (&OutEventPort::dstEventSourcePublish,
+                                              &EventSourcePublish::dstEventSourcePublish_end,
+                                              port); 
+        }
+  }
+
+  void NetQoSVisitor::reqqos_base_visit (const QoSCharacteristicBase & qoschar_base)
     {
-      std::set <QoSReq> qos_req_connections = reqqos_base.srcQoSReq ();
-      if (! qos_req_connections.empty ())
-        {
-          for (std::set<QoSReq>::iterator itr = qos_req_connections.begin();
-              itr != qos_req_connections.end ();
-              ++itr)
-            {
-              QoSReq qos_req = *itr;
-              QoSConnector qos_connector = qos_req.srcQoSReq_end ();
-              qos_connector.Accept (*this);
-            }
-        }
+      if (Udm::IsDerivedFrom (qoschar_base.type (), ConnectionQoSCharacteristic::meta ))
+	  {
+		  ConnectionQoSCharacteristic cqc 
+			  = ConnectionQoSCharacteristic::Cast (qoschar_base);
+		  std::set <QoSReq> qos_req_connections = cqc.srcQoSReq ();
+		  if (! qos_req_connections.empty ())
+				accept_each (qos_req_connections, *this);        
 
-      std::set <PortQoS> port_qos_connections = reqqos_base.srcPortQoS ();
-      if (! port_qos_connections.empty ())
-        {
-          for (std::set<PortQoS>::iterator itr = port_qos_connections.begin();
-              itr != port_qos_connections.end ();
-              ++itr)
-            {
-              PortQoS port_qos = *itr;
-              Port port = port_qos.srcPortQoS_end ();
-              if (Udm::IsDerivedFrom (port.type (), RequiredRequestPort::meta ))
-                {
-                  this->visit_adjacent_qos_connector (&RequiredRequestPort::dstRecepInvoke,
-                                                      &RecepInvoke::dstRecepInvoke_end,
-                                                      port);
-                }
-              else if (Udm::IsDerivedFrom (port.type (), InEventPort::meta ))
-                {
-                  this->visit_adjacent_qos_connector (&InEventPort::srcEventSinkPublish,
-                                                      &EventSinkPublish::srcEventSinkPublish_end,
-                                                      port);
-                }
-              else if (Udm::IsDerivedFrom (port.type (), ProvidedRequestPort::meta ))
-                {
-                  this->visit_adjacent_qos_connector (&ProvidedRequestPort::srcFacetInvoke,
-                                                      &FacetInvoke::srcFacetInvoke_end,
-                                                      port);
-                }
-              else // OutEventPort
-                {
-                  this->visit_adjacent_qos_connector (&OutEventPort::dstEventSourcePublish,
-                                                      &EventSourcePublish::dstEventSourcePublish_end,
-                                                      port); 
-                }
-            }
-        }
+		  std::set <PortQoS> port_qos_connections = qoschar_base.srcPortQoS ();
+		  if (! port_qos_connections.empty ())
+			  accept_each (port_qos_connections, *this);
+	  }
     }
 
   template <typename PortType, typename ConnectionType, typename QoSConnectorRet, typename ConnSetRet>
@@ -504,12 +455,12 @@ namespace CQML
       {
         Component srcComp = iter->first;
         string srcPortName = iter->second;
-        for (map<Component, string>::const_iterator iter = dst.begin();
-             iter != dst.end();
-             ++iter)
+        for (map<Component, string>::const_iterator iter2 = dst.begin();
+             iter2 != dst.end();
+             ++iter2)
           {
-            Component dstComp = iter->first;
-            string dstPortName = iter->second;
+            Component dstComp = iter2->first;
+            string dstPortName = iter2->second;
             this->CreateConnection (srcComp, srcPortName, dstComp, dstPortName);
           }
       }
@@ -520,16 +471,18 @@ namespace CQML
                                          const Component& dstComp,
                                          const string& dstPortName)
   {
-    std::string source_comp_instance = dep_plan_framework_.unique_id (srcComp);
-    std::string dest_comp_instance = dep_plan_framework_.unique_id (dstComp);
+    std::string source_comp_instance 
+		= DeploymentPlanFrameworkVisitor::instance().unique_id (srcComp);
+    std::string dest_comp_instance 
+		= DeploymentPlanFrameworkVisitor::instance().unique_id (dstComp);
 
     std::string connection = srcPortName + "_" + dstPortName + source_comp_instance + dest_comp_instance;
  
     ConnectionInfo conn_info;
     conn_info.connection_name = connection;
-    conn_info.client = dep_plan_framework_.unique_id (srcComp);
+    conn_info.client = DeploymentPlanFrameworkVisitor::instance().unique_id (srcComp);
     conn_info.client_port_name = srcPortName;
-    conn_info.server = dep_plan_framework_.unique_id (dstComp);
+    conn_info.server = DeploymentPlanFrameworkVisitor::instance().unique_id (dstComp);
     conn_info.server_port_name = dstPortName;
     
     this->qos_conn_mmap_.insert (std::make_pair (this->current_netqos_, conn_info));
