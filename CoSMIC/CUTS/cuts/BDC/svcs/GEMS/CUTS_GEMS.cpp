@@ -25,6 +25,7 @@
 
 #include <limits>
 #include <sstream>
+#include <cmath>
 
 #define MAX_VARCHAR_LENGTH  256
 

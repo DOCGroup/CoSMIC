@@ -16,8 +16,6 @@
 #include "cuts/config.h"
 #include "ace/config.h"
 
-#if defined (CUTS_HAS_ODBC)
-
 // SQL headers
 #include <sql.h>
 #include <sqlext.h>
@@ -25,11 +23,5 @@
 #include <odbcinst.h>
 
 #include "ODBC_DBase_Export.h"
-
-#else
-
-#error ODBC databases are not supported
-
-#endif
 
 #endif  // !defined _CUTS_ODBC_H_

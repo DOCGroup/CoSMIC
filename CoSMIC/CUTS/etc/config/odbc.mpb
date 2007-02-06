@@ -2,13 +2,10 @@
 
 project {
   specific (vc6, vc7, vc71, vc8, nmake) {
-    macros   += CUTS_HAS_ODBC
-
     lit_libs += odbc32 odbcbcp odbcCP32
   } else {
     // -- non-Windows systems will require UnixODBC; eventually
     // -- we want to remove this dependency.
-    macros   += CUTS_HAS_ODBC
     requires += unixodbc
 
     libpaths += $(UNIXODBC_ROOT)/lib
