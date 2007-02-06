@@ -15,6 +15,7 @@
 #include "cuts/utils/ODBC/ODBC_Query.h"
 #include "cuts/utils/ODBC/ODBC_Record.h"
 #include "cuts/utils/ODBC/ODBC_Parameter.h"
+#include "GEMS/GEMS.h"
 #include "ace/Get_Opt.h"
 
 /* undef max () macro before including <limits> */
@@ -23,6 +24,7 @@
 #endif
 
 #include <limits>
+#include <sstream>
 
 #define MAX_VARCHAR_LENGTH  256
 
@@ -303,6 +305,78 @@ int CUTS_GEMS_Service::handle_deactivate (void)
                         "%f from baseline\n",
                         avg_time,
                         percentage));
+
+      // If the percentage is less than 0.0, then we need to warn the
+      // user. This means the baseline metric is wrong for this component
+      // on this host using the specified ports. To solution is to rerun
+      // the baseline metrics.
+      if (percentage < 0.0)
+      {
+        // Take absolute value so we don't have a negative change.
+        percentage = std::abs (percentage);
+
+        ACE_ERROR ((LM_WARNING,
+                    "*** warning [GEMS]: experimental value is less than "
+                    "baseline for component %s with inport = %s and outport "
+                    "= %s on host %s; please rerun baseline metrics\n",
+                    iter->first.c_str (),
+                    inport,
+                    outport,
+                    ipaddr.c_str ()));
+      }
+
+      // We are ready to update the GEMS model with the new value
+      // for resource requirements.
+      GEMS::Model_Set requirements =
+        iter->second.second->children ("requirement");
+
+      GEMS::Model_Set::iterator req_iter;
+
+      for (req_iter  = requirements.begin ();
+           req_iter != requirements.end ();
+           req_iter ++)
+      {
+        if ((*req_iter)->role ("name") == "CPU")
+        {
+          // Get the current value for the CPU requirement.
+          std::string strval = (*req_iter)->role ("value");
+          double old_value;
+
+          // Extract the value from the string.
+          std::istringstream istr (strval);
+          istr >> old_value;
+
+          // Calculate how much to increase the current value by.
+          double new_value = old_value + ((100.0 - old_value) * percentage);
+
+          // Convert the value back into a string. We are taking the absolute
+          // value just to be safe, however, this shouldn't be necessary. The
+          // baseline will always be less than the experimental value. If this
+          // is ever the case, then the baseline metric is wrong.
+          std::ostringstream ostr;
+          ostr << std::abs (new_value);
+
+          //
+          (*req_iter)->role ("value", ostr.str ());
+
+          // Display a nice message to the user.
+          VERBOSE_MESSAGE ((LM_DEBUG,
+                            "*** info [GEMS]: update model; increasing CPU "
+                            "value from %f to %f\n",
+                            old_value,
+                            new_value));
+          break;
+        }
+      }
+
+      // Verify that we did indeed update the CPU requirement.
+      if (req_iter == requirements.end ())
+      {
+        ACE_ERROR ((LM_ERROR,
+                    "*** error [GEMS]: failed to locate CPU requirement "
+                    "for %s\n",
+                    iter->first.c_str ()));
+      }
     }
     else
     {
@@ -314,6 +388,10 @@ int CUTS_GEMS_Service::handle_deactivate (void)
     }
   }
 
+  // Apply the changes to the GEMS model and run the constraint solver.
+  // We can then close the singleton since we aren't going to perform
+  // any more operations on the model.
+  GEMS_MODEL_MANAGER ()->run_constraint_solver ();
   GEMS::Model_Manager::close_singleton ();
   return this->fini_gems ();
 }

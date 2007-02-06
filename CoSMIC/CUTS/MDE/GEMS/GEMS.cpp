@@ -329,7 +329,7 @@ namespace GEMS
       // Right now, there isn't a predefined max value for the
       // number of records that can be returned.
       GEMSServer::EntityRecordSeq_var recs;
-      this->gems_model_->getEntities (0, 3000, recs);
+      this->gems_model_->getEntities (0, 5000, recs);
       ::CORBA::ULong length = recs->length ();
 
       for (::CORBA::ULong i = 0; i < length; i ++)
@@ -398,13 +398,19 @@ namespace GEMS
             Connection * conn = this->get_connection (rec);
             conn->target_i (this->get_model (target_id));
           }
+          else
+          {
+            // This is the fallback for unknown non-stringified roles.
+            GEMS::Model * model = this->get_model (id) ;
+            model->roles_[role] = rec.params[1].in ();
+          }
         }
         else
         {
           // Since it is a stringified value, we can just store
           // it into the role database for the model.
-          GEMS::Model * model = this->get_model (rec);
-          model->roles_[role] = destringify (std::string (rec.params[1].in ()));
+          GEMS::Model * model = this->get_model (id) ;
+          model->roles_[role] = destringify (rec.params[1].in ());
         }
 
       }
