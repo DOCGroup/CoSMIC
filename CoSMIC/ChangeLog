@@ -1,3 +1,10 @@
+Tue Feb  6 23:03:49 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.reg:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponentd.reg:
+          Checking in .reg files for these interpreters.  I had missed
+          them in the previous check-in.
+
 Mon Feb  5 18:28:37 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h:
