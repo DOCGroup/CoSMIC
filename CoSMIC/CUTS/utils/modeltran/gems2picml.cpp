@@ -3,6 +3,9 @@
 #include "GEMS/GEMS.h"
 #include "GME/GME.h"
 
+//
+// convert_gems_2_picml
+//
 int convert_gems_2_picml (GME::Model & deployment,
                           const GEMS::Connection_Set & conns)
 {
@@ -100,6 +103,12 @@ int main (int argc, char * argv [])
     {
       ACE_ERROR ((LM_ERROR,
                   "*** error: failed to reconstruct GEMS model\n"));
+    }
+
+    if (GEMS_MODEL_MANAGER ()->run_constraint_solver () == -1)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "failed to run constraint solver\n"));
     }
 
     // Get all the deployment connections in the model.

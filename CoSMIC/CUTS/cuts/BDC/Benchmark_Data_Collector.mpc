@@ -70,11 +70,11 @@ project (Benchmark_Data_Collector_exec) : cuts_component_dnc, rt_client {
   sharedname  = Benchmark_Data_Collector_exec
 
   after      += Benchmark_Data_Collector_svnt \
-                CUTS_BDC
+                CUTS_BDC CUTS_stub
 
   libs       += Benchmark_Data_Collector_stub \
                 Benchmark_Data_Collector_svnt \
-                CUTS_BDC
+                CUTS_BDC CUTS_stub
 
   idlflags  +=  -Wb,export_macro=BENCHMARK_DATA_COLLECTOR_EXEC_Export \
                 -Wb,export_include=Benchmark_Data_Collector_exec_export.h

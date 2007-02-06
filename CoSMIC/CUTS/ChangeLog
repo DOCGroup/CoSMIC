@@ -1,3 +1,17 @@
+Tue Feb  6 05:26:19 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GEMS/GEMS.h:
+        * MDE/GEMS/GEMS.cpp:
+
+          Added support for invoking GEMS constraint solver from
+          the CORBA backend.
+
+        * cuts/BDC/Benchmark_Data_Collector.mpc:
+
+          Fixed build dependency.
+
+        * utils/modeltran/gems2picml.cpp:
+
 Mon Feb  5 23:46:44 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/svcs/baseline/Baseline_Service.cpp (handle_component):

@@ -345,6 +345,11 @@ namespace GEMS
      */
     Connection_Set connections (const std::string & type) const;
 
+    /**
+     *
+     */
+    int run_constraint_solver (bool apply_changes = true);
+
   private:
     /// Default constructor.
     Model_Manager (void);

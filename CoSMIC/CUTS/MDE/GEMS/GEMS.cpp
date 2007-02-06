@@ -411,16 +411,16 @@ namespace GEMS
 
       return 0;
     }
-    catch (const CORBA::Exception & ex)
+    catch (const ::CORBA::Exception & ex)
     {
       ACE_ERROR ((LM_ERROR,
-                  "CORBA exception: %s\n",
+                  "*** error (build): %s\n",
                   ex._info ().c_str ()));
     }
     catch (...)
     {
       ACE_ERROR ((LM_ERROR,
-                  "caught unknown exception\n"));
+                  "*** error (build): caught unknown exception\n"));
     }
     return -1;
   }
@@ -439,19 +439,19 @@ namespace GEMS
     catch (const ::GEMSServer::ModelUpdateException & ex)
     {
       ACE_ERROR ((LM_ERROR,
-                  "failed to apply changes: %s\n",
+                  "*** error (apply_changes): %s\n",
                   ex.reason.in ()));
     }
     catch (const ::CORBA::Exception & ex)
     {
       ACE_ERROR ((LM_ERROR,
-                  "caught unknown CORBA exception: %s\n",
+                  "*** error (apply_changes): %s\n",
                   ex._info ().c_str ()));
     }
     catch (...)
     {
       ACE_ERROR ((LM_ERROR,
-                  "caught unknown exception when updating GEMS model\n"));
+                  "*** error (apply_changes): caught unknown exception\n"));
     }
 
     return -1;
@@ -631,5 +631,51 @@ namespace GEMS
     }
 
     return conn;
+  }
+
+  //
+  // run_constraint_solver
+  //
+  int Model_Manager::run_constraint_solver (bool apply_changes)
+  {
+    if (apply_changes)
+      this->apply_changes ();
+
+    try
+    {
+      // Construct the entity record to invoke the constraint
+      // solver.
+      GEMSServer::EntityRecord entity;
+      entity.op = GEMSServer::Insert;
+      entity.predicate = ::CORBA::string_dup ("trigger");
+      entity.params.length (1);
+      entity.params[0] = ::CORBA::string_dup ("deploy_all");
+
+      // Place the entity record in a sequence then call GEMS.
+      GEMSServer::EntityRecordSeq records (1);
+      records[0] = entity;
+      this->gems_model_->applyChanges (records);
+      return 0;
+    }
+    catch (const GEMSServer::ModelUpdateException & ex)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "*** error (run_constraint_solver): %s\n",
+                  ex.reason.in ()));
+    }
+    catch (const ::CORBA::Exception & ex)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "*** error (apply_changes): %s\n",
+                  ex._info ().c_str ()));
+    }
+    catch (...)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "*** error (run_constraint_solver): caught unknown "
+                  "exception\n"));
+    }
+
+    return -1;
   }
 }
