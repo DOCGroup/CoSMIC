@@ -369,7 +369,13 @@ int CUTS_Database_Service::handle_metrics (void)
 
           // Copy the metrics for the process data into the appropriate
           // parameters before we execute the statement.
-          sender = this->id_map_[spm_iter->first];
+          ID_Map::const_iterator id_iter =
+            this->id_map_.find (spm_iter->first);
+
+          if (id_iter != this->id_map_.end ())
+            sender = id_iter->second;
+          else
+            sender = CUTS_UNKNOWN_IMPL;
 
           query->parameter (7)->null ();
           metric_count = spm_iter->second->transit_time ().count ();
@@ -410,7 +416,6 @@ int CUTS_Database_Service::handle_metrics (void)
             worse_time = em_iter->second->worse_time ();
             total_time = em_iter->second->total_time ();
 
-            // Execute the query.
             query->execute_no_record ();
           }
         }

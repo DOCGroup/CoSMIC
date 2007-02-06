@@ -16,6 +16,7 @@
 #include "CUTS_GEMS_export.h"
 #include "GEMS/GEMSServerC.h"
 #include "cuts/BDC/BDC_Service.h"
+#include "cuts/svcs/dbase/DB_Service.h"
 #include "GEMS/GEMS.h"
 #include "ace/SString.h"
 #include <map>
@@ -33,7 +34,9 @@
  */
 //=============================================================================
 
-class CUTS_GEMS_Service : public CUTS_BDC_Service
+class CUTS_GEMS_Service :
+  public CUTS_BDC_Service,
+  public CUTS_DB_Service
 {
 public:
   /// Default constructor.
@@ -67,10 +70,15 @@ private:
   typedef std::map <size_t, std::string> Id_Name_Map;
 
   /// Type definition for mapping names to GME models.
-  typedef std::map <std::string, GEMS::Model *> GEMS_Model_Map;
+  typedef std::map <std::string,
+                    std::pair <size_t, GEMS::Model *> >
+                    GEMS_Model_Map;
 
   /// Verbose flag for the service.
   bool verbose_;
+
+  /// Location of the baseline server.
+  ACE_CString baseline_server_;
 
   /// The GEMS remote server.
   ::GEMSServer::Model_var gems_;
@@ -85,6 +93,10 @@ private:
   Name_Id_Map cuts_id_;
 
   Id_Name_Map cuts_id_ex_;
+
+  typedef std::map <size_t, std::string> ID_String_Map;
+
+  ID_String_Map host_map_;
 
   /// Map for mapping names to nodes in GEMS.
   GEMS_Model_Map component_map_;

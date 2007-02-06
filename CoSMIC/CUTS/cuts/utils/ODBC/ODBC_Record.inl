@@ -106,3 +106,34 @@ void ODBC_Record::get_data (size_t column,
                     sizeof (unsigned short),
                     0);
 }
+
+//
+// get_data
+//
+CUTS_INLINE
+void ODBC_Record::get_data (size_t column,
+                            float & value)
+                            ACE_THROW_SPEC ((CUTS_DB_Exception))
+{
+  this->get_data_i (static_cast <SQLFLOAT> (column),
+                    SQL_C_FLOAT,
+                    &value,
+                    sizeof (float),
+                    0);
+}
+
+
+//
+// get_data
+//
+CUTS_INLINE
+void ODBC_Record::get_data (size_t column,
+                            double & value)
+                            ACE_THROW_SPEC ((CUTS_DB_Exception))
+{
+  this->get_data_i (static_cast <SQLDOUBLE> (column),
+                    SQL_C_DOUBLE,
+                    &value,
+                    sizeof (double),
+                    0);
+}

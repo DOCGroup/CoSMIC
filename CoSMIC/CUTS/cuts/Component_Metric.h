@@ -28,7 +28,7 @@ class CUTS_Port_Metric;
 class CUTS_System_Metrics_Visitor;
 
 typedef std::map <
-  long, CUTS_Port_Metric *> CUTS_Sender_Port_Map;
+  size_t, CUTS_Port_Metric *> CUTS_Sender_Port_Map;
 
 typedef std::map <
   std::string, CUTS_Sender_Port_Map> CUTS_Port_Metric_Map;
@@ -50,13 +50,16 @@ public:
   ~CUTS_Component_Metric (void);
 
   /// Insert a new port into the component metrics.
-  CUTS_Port_Metric * insert_port (const char * port, long sender = -1);
+  CUTS_Port_Metric * insert_port (const char * port,
+                                  size_t sender = CUTS_UNKNOWN_IMPL);
 
   /// Remove a new port into the component metrics.
-  void remove_port (const char * port, long sender = -1);
+  void remove_port (const char * port,
+                    size_t sender = CUTS_UNKNOWN_IMPL);
 
   /// Get the metrics of the specified port.
-  CUTS_Port_Metric * port_metrics (const char * port, long sender = -1);
+  CUTS_Port_Metric * port_metrics (const char * port,
+                                   size_t sender = CUTS_UNKNOWN_IMPL);
 
   void dump (std::ostream & out);
 

@@ -112,12 +112,30 @@ public:
     ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
 
   /**
-   * Get a character value.
+   * Get a float value.
+   *
+   * @param[in]     column        1-based column index.
+   * @param[out]    value         Float value.
+   */
+  virtual void get_data (size_t column, float & value)
+    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+
+  /**
+   * Get a double value.
+   *
+   * @param[in]     column        1-based column index.
+   * @param[out]    value         Double value.
+   */
+  virtual void get_data (size_t column, double & value)
+    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+
+  /**
+   * Get a date time value.
    *
    * @param[in]     column        1-based column index.
    * @param[out]    value         Character value.
    */
-  virtual void get_data (size_t column, ACE_Date_Time & datetime)
+  virtual void get_data (size_t column, ACE_Date_Time & value)
     ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
 
   /**

@@ -118,7 +118,7 @@ public:
    *
    * @param[in]   owner      Owner of the record.
    */
-  void owner (size_t);
+  void owner (size_t owner = CUTS_UNKNOWN_IMPL);
 
   /**
    * Set the queueing time for the record.

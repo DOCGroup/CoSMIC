@@ -69,6 +69,12 @@ public:
   virtual void get_data (size_t column, unsigned long & value)
     ACE_THROW_SPEC ((CUTS_DB_Exception));
 
+  virtual void get_data (size_t column, float & value)
+    ACE_THROW_SPEC ((CUTS_DB_Exception));
+
+  virtual void get_data (size_t column, double & value)
+    ACE_THROW_SPEC ((CUTS_DB_Exception));
+
   virtual void get_data (size_t column, ACE_Date_Time & datetime)
     ACE_THROW_SPEC ((CUTS_DB_Exception));
 

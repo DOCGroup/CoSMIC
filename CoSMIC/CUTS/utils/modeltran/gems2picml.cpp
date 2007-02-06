@@ -105,12 +105,6 @@ int main (int argc, char * argv [])
                   "*** error: failed to reconstruct GEMS model\n"));
     }
 
-    if (GEMS_MODEL_MANAGER ()->run_constraint_solver () == -1)
-    {
-      ACE_ERROR ((LM_ERROR,
-                  "failed to run constraint solver\n"));
-    }
-
     // Get all the deployment connections in the model.
     GEMS::Connection_Set deployments =
       GEMS_MODEL_MANAGER ()->connections ("deployment");

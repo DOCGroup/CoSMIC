@@ -43,7 +43,7 @@ CUTS_Component_Metric::~CUTS_Component_Metric (void)
 // port_metrics
 //
 CUTS_Port_Metric *
-CUTS_Component_Metric::port_metrics (const char * port, long sender)
+CUTS_Component_Metric::port_metrics (const char * port, size_t sender)
 {
   /// @note This implementation needs to be modified!!!
 

@@ -1,6 +1,6 @@
 // $Id$
 
-project (CUTS_Baseline_Service) : cuts_bdcsvc, cuts_dbsvc, cutslib {
+project (CUTS_Baseline_Service) : cuts_bdcsvc, cuts_dbsvc {
   sharedname   = CUTS_Baseline_Service
   dynamicflags = CUTS_BASELINE_SERVICE_BUILD_DLL
 
