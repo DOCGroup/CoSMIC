@@ -19,6 +19,9 @@ using Utils::CreateUuid;
 
 namespace CQML
 {
+  DeploymentPlanFrameworkVisitor * 
+	  DeploymentPlanFrameworkVisitor::instance_ = 0;
+
   DeploymentPlanFrameworkVisitor::DeploymentPlanFrameworkVisitor (const std::string& outputPath)
     : impl_ (0), doc_ (0), root_ (0), curr_ (0), serializer_ (0), target_ (0),
 	  outputPath_ (outputPath)
@@ -27,12 +30,21 @@ namespace CQML
     this->injectors_.clear ();
   }
 
-  DeploymentPlanFrameworkVisitor & DeploymentPlanFrameworkVisitor::instance ()
+  DeploymentPlanFrameworkVisitor * DeploymentPlanFrameworkVisitor::instance ()
   {
-	static DeploymentPlanFrameworkVisitor instance;
-	return instance;
+	  if (DeploymentPlanFrameworkVisitor::instance_ == 0)
+		  DeploymentPlanFrameworkVisitor::instance_ 
+		  = new DeploymentPlanFrameworkVisitor ();
+	  
+	  return DeploymentPlanFrameworkVisitor::instance_;
   }
-  
+
+  void DeploymentPlanFrameworkVisitor::operator delete (void *arg)
+  {
+	  ::delete arg;
+	  DeploymentPlanFrameworkVisitor::instance_ = 0;
+  }
+
   void DeploymentPlanFrameworkVisitor::set_path (std::string const &path)
   {
 	  this->outputPath_ = path;

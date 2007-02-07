@@ -10,9 +10,10 @@ namespace CQML
     : output_path_ (op),
 	  ft_injector_ (0),
 	  ft_req_visitor_ (0),
-	  comp_addr_ (0)
+	  comp_addr_ (0),
+	  dp_framework_owner (DeploymentPlanFrameworkVisitor::instance ())
   {
-    DeploymentPlanFrameworkVisitor::instance().set_path (op);
+    DeploymentPlanFrameworkVisitor::instance()->set_path (op);
   }
 
   FaultToleranceVisitor::~FaultToleranceVisitor ()
@@ -50,7 +51,7 @@ namespace CQML
 */
 
 	    this->ft_injector_->register_with_DPFramework ();
-        DeploymentPlanFrameworkVisitor::instance().Visit_RootFolder (rf);
+        DeploymentPlanFrameworkVisitor::instance()->Visit_RootFolder (rf);
     }
 
 

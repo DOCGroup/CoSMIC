@@ -58,7 +58,7 @@ namespace CQML
 		  explicit Register (Injector *inj) : injector_(inj) {}
 		  result_type operator() (argument_type const &arg)
 		  {
-			  DeploymentPlanFrameworkVisitor::instance().add_injector(arg.first, injector_);
+			  DeploymentPlanFrameworkVisitor::instance()->add_injector(arg.first, injector_);
 		  }
 	  private:
 		  Injector *injector_;

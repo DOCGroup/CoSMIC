@@ -288,8 +288,11 @@ namespace CQML
   public:
     template <typename T>
     std::string unique_id (const T &comp);
-	DeploymentPlanFramework_Export static DeploymentPlanFrameworkVisitor & instance ();
+	DeploymentPlanFramework_Export static DeploymentPlanFrameworkVisitor * instance ();
+	static void operator delete (void *);
 	DeploymentPlanFramework_Export void set_path (std::string const &path);
+ private:
+	 static DeploymentPlanFrameworkVisitor *instance_;
 
   private:
 

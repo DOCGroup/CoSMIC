@@ -20,9 +20,10 @@ namespace CQML
 {
   NetQoSVisitor::NetQoSVisitor (const std::string& outputPath)
     : impl_ (0), doc_ (0), root_ (0), curr_ (0), serializer_ (0), 
-      target_ (0), outputPath_ (outputPath)
+      target_ (0), outputPath_ (outputPath),
+	  dp_framework_owner (DeploymentPlanFrameworkVisitor::instance())
   {
-    DeploymentPlanFrameworkVisitor::instance().set_path (outputPath);
+    DeploymentPlanFrameworkVisitor::instance()->set_path (outputPath);
     this->init();
   }
 
@@ -130,7 +131,7 @@ namespace CQML
         this->dumpDocument ();
       }
 
-    DeploymentPlanFrameworkVisitor::instance().Visit_RootFolder (rf);
+    DeploymentPlanFrameworkVisitor::instance()->Visit_RootFolder (rf);
   }
 
   void NetQoSVisitor::Visit_DeploymentPlans(const DeploymentPlans& plans_folder)
@@ -176,25 +177,37 @@ namespace CQML
 
   void NetQoSVisitor::Visit_QoSCharRef(const QoSCharRef &qc_ref)
     {
-      QoSCharacteristic qos_char = qc_ref.ref ();
+      QoSCharacteristic qos_char = recursive_dereference(qc_ref);
       if (Udm::null != qos_char && 
 		  Udm::IsDerivedFrom (qos_char.type(), NetQoS::meta))
         {
           NetQoS netqos = NetQoS::Cast (qos_char);
           this->current_netqos_ = netqos;
-          this->reqqos_base_visit (qc_ref);
+          this->conn_qoschar_visit (qc_ref);
         }
-    }
+     }
+
+  QoSCharacteristic NetQoSVisitor::recursive_dereference (const QoSCharacteristic &qos_char)
+  {
+      if (Udm::IsDerivedFrom (qos_char.type(), QoSCharRef::meta))
+	  {
+		  QoSCharRef qos_char_ref = QoSCharRef::Cast (qos_char);
+		  QoSCharacteristic qc = qos_char_ref.ref();
+		  return recursive_dereference (qc);
+	  }
+	  else
+		  return qos_char;
+  }
 
   void NetQoSVisitor::Visit_NetQoS (const NetQoS &netqos)
     {
    	  DOMElement *conn_qos = this->doc_->createElement(XStr ("connectionQoS"));
-		  this->curr_->appendChild (conn_qos);
-		  this->push (); // push connectionQoS
-		  this->curr_ = conn_qos;
+	  this->curr_->appendChild (conn_qos);
+	  this->push (); // push connectionQoS
+	  this->curr_ = conn_qos;
 
       this->current_netqos_ = netqos;
-      this->reqqos_base_visit (netqos);
+      this->conn_qoschar_visit (netqos);
 
       for (std::multimap <NetQoS, ConnectionInfo>::iterator itr = this->qos_conn_mmap_.lower_bound (netqos);
            itr != this->qos_conn_mmap_.upper_bound (netqos);
@@ -250,20 +263,30 @@ namespace CQML
         }
   }
 
-  void NetQoSVisitor::reqqos_base_visit (const QoSCharacteristicBase & qoschar_base)
+  void NetQoSVisitor::conn_qoschar_visit (const ConnectionQoSCharacteristic & conn_qoschar)
     {
-      if (Udm::IsDerivedFrom (qoschar_base.type (), ConnectionQoSCharacteristic::meta ))
-	  {
-		  ConnectionQoSCharacteristic cqc 
-			  = ConnectionQoSCharacteristic::Cast (qoschar_base);
-		  std::set <QoSReq> qos_req_connections = cqc.srcQoSReq ();
-		  if (! qos_req_connections.empty ())
-				accept_each (qos_req_connections, *this);        
+/*		QoSCharacteristicBase base_qos;
+		if (Udm::IsDerivedFrom (qoschar_base.type (), QoSCharRef::meta ))
+		{
+			QoSCharRef qos_char_ref = QoSCharRef::Cast (qoschar_base);
+			QoSCharacteristic qos_char = qos_char_ref.ref ();
+			base_qos = QoSCharacteristicBase::Cast (qos_char);
+		}
+		else
+			base_qos = qoschar_base;
+*/
+		if (Udm::IsDerivedFrom (conn_qoschar.type (), ConnectionQoSCharacteristic::meta ))
+		  {
+			  ConnectionQoSCharacteristic cqc 
+				  = ConnectionQoSCharacteristic::Cast (conn_qoschar);
+			  std::set <QoSReq> qos_req_connections = cqc.srcQoSReq ();
+			  if (! qos_req_connections.empty ())
+					accept_each (qos_req_connections, *this);        
 
-		  std::set <PortQoS> port_qos_connections = qoschar_base.srcPortQoS ();
-		  if (! port_qos_connections.empty ())
-			  accept_each (port_qos_connections, *this);
-	  }
+			  std::set <PortQoS> port_qos_connections = conn_qoschar.srcPortQoS ();
+			  if (! port_qos_connections.empty ())
+				  accept_each (port_qos_connections, *this);
+		  }
     }
 
   template <typename PortType, typename ConnectionType, typename QoSConnectorRet, typename ConnSetRet>
@@ -472,17 +495,17 @@ namespace CQML
                                          const string& dstPortName)
   {
     std::string source_comp_instance 
-		= DeploymentPlanFrameworkVisitor::instance().unique_id (srcComp);
+		= DeploymentPlanFrameworkVisitor::instance()->unique_id (srcComp);
     std::string dest_comp_instance 
-		= DeploymentPlanFrameworkVisitor::instance().unique_id (dstComp);
+		= DeploymentPlanFrameworkVisitor::instance()->unique_id (dstComp);
 
     std::string connection = srcPortName + "_" + dstPortName + source_comp_instance + dest_comp_instance;
  
     ConnectionInfo conn_info;
     conn_info.connection_name = connection;
-    conn_info.client = DeploymentPlanFrameworkVisitor::instance().unique_id (srcComp);
+    conn_info.client = DeploymentPlanFrameworkVisitor::instance()->unique_id (srcComp);
     conn_info.client_port_name = srcPortName;
-    conn_info.server = DeploymentPlanFrameworkVisitor::instance().unique_id (dstComp);
+    conn_info.server = DeploymentPlanFrameworkVisitor::instance()->unique_id (dstComp);
     conn_info.server_port_name = dstPortName;
     
     this->qos_conn_mmap_.insert (std::make_pair (this->current_netqos_, conn_info));

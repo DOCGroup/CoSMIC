@@ -373,7 +373,7 @@ namespace CQML
   void FTRequirementsVisitor::monolith_instance_visit (const Component &component)
     {
         const std::string comp_name = 
-			DeploymentPlanFrameworkVisitor::instance().unique_id(component);
+			DeploymentPlanFrameworkVisitor::instance()->unique_id(component);
         
         // Put the component primary into the replica group set.
         this->monolith_instance_req_map_.insert (std::make_pair(comp_name, 
@@ -384,7 +384,7 @@ namespace CQML
   void FTRequirementsVisitor::component_visit (const Component &component)
     {
         const std::string comp_name 
-			= DeploymentPlanFrameworkVisitor::instance().unique_id(component);
+			= DeploymentPlanFrameworkVisitor::instance()->unique_id(component);
         
         // Put the component primary into the replica group set.
         this->assembly_instance_req_map_.insert (std::make_pair(comp_name, 

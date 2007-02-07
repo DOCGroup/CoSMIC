@@ -1,3 +1,37 @@
+Wed Feb  7 22:43:03 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
+
+          Made it a singleton and lifecycle management functions of the singelton.
+
+        * PSM/CQML/interpreters/FaultTolerance/FTInjector.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FaultToleranceVisitor.h:
+        * PSM/CQML/interpreters/FaultTolerance/FaultToleranceVisitor.cpp:
+
+          Some more changes to the FT interpreter.
+
+        * PSM/CQML/interpreters/FaultToleranceComponent/ComponentConfig.h:
+
+          Works for CQML now.
+
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h:
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp:
+
+          Fixed the NetQoS interpreter. Tested.
+
+        * PSM/CQML/interpreters/NetQoSComponent/compicon.ico:
+
+          New Icon
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Changed the QoSModeling paradigm sheet.
+
 Wed Feb  7 22:09:16 UTC 2007  Aniruddha Gokhale  <gokhale@nospam.invalid.domain>
 
         * PSM/CQML/interpreters/FaultToleranceComponent/FaultToleranceComponent.reg:
@@ -11,7 +45,7 @@ Wed Feb  7 22:09:16 UTC 2007  Aniruddha Gokhale  <gokhale@nospam.invalid.domain>
 
           Added the missing *.reg files to register the interpreters using
           explicit registry keys instead of relying on self-registration.
-          This makes it possible to build CQML under Windows Vista. 
+          This makes it possible to build CQML under Windows Vista.
 
 Wed Feb  7 17:11:37 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
 

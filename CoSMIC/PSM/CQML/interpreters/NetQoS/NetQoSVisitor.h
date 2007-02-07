@@ -104,7 +104,8 @@ namespace CQML
     void visit_adjacent_qos_connector (ConnSetRet (PortType::*connection_set_getter)() const,
                                        QoSConnectorRet (ConnectionType::*connector_getter)() const,
                                        Port generic_port);
-    void reqqos_base_visit (const QoSCharacteristicBase & qoschar_base);
+    void conn_qoschar_visit (const ConnectionQoSCharacteristic &);
+	QoSCharacteristic recursive_dereference (const QoSCharacteristic &qos_char);
 
   private:
 
@@ -112,6 +113,20 @@ namespace CQML
       NetQoSRequirements qos_conn_mmap_;
       std::map <std::string, std::string> plan_nqfile_map_;
       std::set <std::string> filenames_;
+/***************************************************************************/	  
+	  // The const auto_ptr idiom by Hurb Sutter.
+	  // The const auto_ptr is the only owner of the singleton framework pointer
+	  // See Tom Cargill's ownership patterns in PLoPD2.
+	  // that will be deleted at the end. As a side effect of making this member
+	  // a const member, compiler can not generate a copy-constructor for 
+	  // the NetQoSVisitor class because std::auto_ptr uses move semantics. Therefore,
+	  // a protected copy-constructor is declared to supress automatic generation
+	  // of the copy-constructor.
+	  const std::auto_ptr <DeploymentPlanFrameworkVisitor> dp_framework_owner;
+
+  protected:
+	  NetQoSVisitor (const NetQoSVisitor &);
+/***************************************************************************/
 
   private:
 
