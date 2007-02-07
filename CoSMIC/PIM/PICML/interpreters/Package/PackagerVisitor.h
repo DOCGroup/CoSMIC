@@ -39,8 +39,9 @@ namespace PICML
     virtual void Visit_ImplementationArtifact(const ImplementationArtifact& iare);
   
   private:
-    bool copy_from_disk_to_disk(const std::string& from_path, const std::string& to_path);
+    void copy_from_disk_to_disk(const std::string& from_path, const std::string& to_path);
     void copy_implementation_files(const ImplementationArtifact& iare);
+    void remove_dir(const std::string& path);
 
     string         descriptorDir_;
     string         implementationDir_;

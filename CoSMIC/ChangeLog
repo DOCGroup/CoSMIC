@@ -1,3 +1,13 @@
+Wed Feb  7 02:42:01 UTC 2007  Shanshan Jiang <shanshan.jiang@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Package/PackagerVisitor.cpp
+        * PIM/PICML/interpreters/Package/PackagerVisitor.h
+        * PIM/PICML/interpreters/Package/ZIP_create.cpp
+        * PIM/PICML/interpreters/Package/ZIP_create.h
+        
+          Added new functionality to Packager to deal with different
+          versions and operating systems.
+        
 Tue Feb  6 23:03:49 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.reg:

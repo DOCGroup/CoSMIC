@@ -16,6 +16,16 @@ int ZIP_create::compress(const std::string filename,
 						             int compress_level,
                          int append)
 {
+  // append to existing zip file
+  if (append == 2)
+    {
+      // if the file does not exist, we do not append file
+      if (check_if_file_exists(filename) == false)
+        append = 0;
+      else
+        get_exist_files_in_zip(filename, dir);
+    }
+
   ACE_TCHAR full_path[MAXPATHLEN];
   if (ACE_OS::getcwd (full_path, sizeof(full_path)) == NULL)
     throw udm_exception (string ("Get cwd failed: ") + string (full_path));
@@ -25,16 +35,8 @@ int ZIP_create::compress(const std::string filename,
   if (ACE_OS::chdir (full_path) == -1)
     throw udm_exception (string ("chdir failed: ") + string (full_path));
 
-  // append to existing zip file
-  if (append == 2)
-    {
-      // if the file does not exist, we do not append file
-      if (check_if_file_exists(filename) == false)
-        append = 0;
-    }
-
   // open the zip file
-  zipFile zf = zipOpen(filename.c_str (), (append == 2) ? 2 : 0);
+  zipFile zf = zipOpen(filename.c_str (), append);
   if (zf == NULL)
     throw udm_exception (string ("There is some problem in opening the zipfile using zipOpen: " + filename));
 
@@ -61,10 +63,10 @@ int ZIP_create::compress(const std::string filename,
       err = zipCloseFileInZip(zf);
       if (err != ZIP_OK)
         throw udm_exception
-          (string ("There is some problem in opening in closing zipfile using zipCloseFileInZip: " + dirnameinzip));
+          (string ("There is some problem in closing zipfile using zipCloseFileInZip: " + dirnameinzip));
     }
 
-	void *buf;
+	void *buf = NULL;
   int size_buf = WRITEBUFFERSIZE;
   // add each file passed in vector to zip file 
   for(unsigned int i = 0; i < files_.size(); i++)
@@ -83,12 +85,12 @@ int ZIP_create::compress(const std::string filename,
                                     (compress_level != 0) ? Z_DEFLATED : 0, compress_level);                
       if (err != ZIP_OK)
         throw udm_exception
-          (string ("There is some problem in opening in opening zipfile using zipOpenNewFileInZip: " + filenameinzip));
+          (string ("There is some problem in opening zipfile using zipOpenNewFileInZip: " + filenameinzip));
 
       FILE *fin = fopen(filenameinzip.c_str (), "rb");
       if (fin == NULL)
         throw udm_exception
-          (string ("There is some problem in opening in opening file: " + filenameinzip));
+          (string ("There is some problem in opening file: " + filenameinzip));
 
       buf = (void*) malloc(WRITEBUFFERSIZE);      
       int size_read;
@@ -111,17 +113,19 @@ int ZIP_create::compress(const std::string filename,
       err = zipCloseFileInZip(zf);
       if (err != ZIP_OK)
         throw udm_exception
-          (string ("There is some problem in opening in closing zipfile using zipCloseFileInZip: " + filenameinzip));
+          (string ("There is some problem in closing zipfile using zipCloseFileInZip: " + filenameinzip));
     }
 
-  free(buf);
+  if (buf != NULL)
+    free(buf);
+  
   files_.clear();
 
   // close the zip file
   int errclose = zipClose(zf,NULL);
   if (errclose != ZIP_OK)
     throw udm_exception
-      (string ("There is some problem in opening in closing zipFile using zipClose: " + filename));
+      (string ("There is some problem in closing zipFile using zipClose: " + filename));
     
   return 0;
 }
@@ -140,7 +144,7 @@ bool ZIP_create::check_if_file_exists(const std::string filename)
 
 void ZIP_create::get_filenames(const std::string dirname,
                                const std::string dirname_bak)
-{  
+{
   if (ACE_OS::chdir (dirname_bak.c_str ()) == -1)
     throw udm_exception (string ("chdir failed: " + dirname_bak));
 
@@ -164,12 +168,12 @@ void ZIP_create::get_filenames(const std::string dirname,
       temp += directory->d_name;
       switch (stat_buf.st_mode & S_IFMT)
         {
-        case S_IFREG: // Either a regular file or an executable.          
-          files_.push_back(temp);
+        case S_IFREG: // Either a regular file or an executable.
+          add_files(temp);
           break;
 
         case S_IFDIR:
-          dirs_.push_back(temp + "/");
+          add_dirs(temp + "/");
           get_filenames(temp, dirname_bak);
           if (ACE_OS::chdir (ACE_TEXT ("..")) == -1)
             throw udm_exception (string ("chdir failed: " + dirname));
@@ -177,6 +181,59 @@ void ZIP_create::get_filenames(const std::string dirname,
 
         default:
           break;
+        }
+    }
+}
+
+void ZIP_create::add_dirs(const std::string dirname)
+{
+  std::vector<std::string>::iterator pos;
+  pos = find (exist_files_.begin(), exist_files_.end(), dirname);
+  if (pos == exist_files_.end())
+    dirs_.push_back(dirname);
+}
+
+void ZIP_create::add_files(const std::string filename)
+{
+  std::vector<std::string>::iterator pos;
+  pos = find (exist_files_.begin(), exist_files_.end(), filename);
+  if (pos == exist_files_.end())
+    files_.push_back(filename);
+}
+
+void ZIP_create::get_exist_files_in_zip(const std::string filename, const std::string dir)
+{
+  unzFile uf=0;
+  uf = unzOpen (filename.c_str ());
+  if (uf==0)
+    throw udm_exception
+      (string ("There is some problem with zipFile using unzOpen: " + filename));
+
+  uLong i;
+  unz_global_info gi;
+  int err;
+  err = unzGetGlobalInfo (uf,&gi);
+  if (err != UNZ_OK)
+    throw udm_exception
+      (string ("There is some problem with zipFile using unzGetGlobalInfo: " + filename));
+
+  for (i=0;i<gi.number_entry;i++)
+    {
+      char filename_inzip[256];
+      unz_file_info file_info;
+      err = unzGetCurrentFileInfo(uf,&file_info,filename_inzip,sizeof(filename_inzip),NULL,0,NULL,0);
+      if (err!=UNZ_OK)
+        throw udm_exception
+          (string ("There is some problem with zipFile using unzGetCurrentFileInfo: " + filename));
+
+      exist_files_.push_back(dir + "/" + filename_inzip);
+
+      if ((i+1)<gi.number_entry)
+        {
+          err = unzGoToNextFile(uf);
+          if (err!=UNZ_OK)
+            throw udm_exception
+              (string ("There is some problem with zipFile using unzGoToNextFile: " + filename));
         }
     }
 }

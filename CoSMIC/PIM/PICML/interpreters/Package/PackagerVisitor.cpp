@@ -1,3 +1,6 @@
+#include "ace/SString.h"           //for ACE_CString
+#include "ace/Dirent.h"
+
 #include "Package/PackagerVisitor.h"
 #include "Package/ZIP_create.h"
 
@@ -25,8 +28,7 @@ namespace PICML
       throw udm_exception (string ("chdir failed: " + packageDir_));
 
     string pkg = rf.name ();
-    if (ACE_OS::mkdir (pkg.c_str ()) == NULL)
-      throw udm_exception (string ("mkdir failed: " + pkg));
+    ACE_OS::mkdir (pkg.c_str ());
 
     this->packageDir_ += "\\";
     this->packageDir_ += pkg;
@@ -95,6 +97,8 @@ namespace PICML
     string filename = tp.name ();
     filename += ".cpk";
     z.compress(filename, tp.name ());
+
+    remove_dir (package_dir);
   }
 
   void PackagerVisitor::Visit_package(const package& pkg)
@@ -271,7 +275,7 @@ namespace PICML
     ACE_OS::mkdir(impl_dir.c_str ());
 
     string prefix;
-    string suffix;   
+    string suffix;
     if (!os.compare ("Win32") || !os.compare ("Win64"))
       {        
         suffix = ".dll";
@@ -293,6 +297,8 @@ namespace PICML
     name += suffix;
 
     string impl_from_dir = this->implementationDir_;
+    impl_from_dir += "\\";
+    impl_from_dir += os;
     impl_from_dir += "\\";
     impl_from_dir += name;
 
@@ -332,7 +338,7 @@ namespace PICML
     }
   }  
 
-  bool PackagerVisitor::copy_from_disk_to_disk(const std::string& from_path, const std::string& to_path)
+  void PackagerVisitor::copy_from_disk_to_disk(const std::string& from_path, const std::string& to_path)
   {
     // Open the files
     ACE_HANDLE from_handle = ACE_OS::open (from_path.c_str (), O_RDONLY);
@@ -388,7 +394,52 @@ namespace PICML
     // Close the files
     ACE_OS::close (from_handle);
     ACE_OS::close (to_handle);
+  }
 
-    return true;
+  void PackagerVisitor::remove_dir(const std::string& path)
+  {
+    ACE_TCHAR full_path[MAXPATHLEN];
+    if (ACE_OS::getcwd (full_path, sizeof(full_path)) == NULL)
+      throw udm_exception (string ("Get cwd failed: " + string (full_path)));
+
+    if (ACE_OS::chdir (path.c_str ()) == -1)
+      throw udm_exception (string ("chdir failed: " + path));
+
+    ACE_Dirent dir (path.c_str ());
+
+    for (ACE_DIRENT *directory; (directory = dir.read ()) != 0;)
+    {
+      if (ACE_OS::strcmp (directory->d_name, ".") == 0
+          || ACE_OS::strcmp (directory->d_name, "..") == 0)
+        continue;
+
+      ACE_stat stat_buf;
+      if (ACE_OS::lstat (directory->d_name, &stat_buf) == -1)
+        throw udm_exception (string ("lstat failed: ") + string (directory->d_name));
+
+      std::string temp = path;
+      temp += "\\";
+      temp += directory->d_name;
+      switch (stat_buf.st_mode & S_IFMT)
+        {
+        case S_IFREG: // Either a regular file or an executable.   
+          if (remove (temp.c_str ()))
+            throw udm_exception (string ("delete file failed: ") + string (directory->d_name));
+          break;
+
+        case S_IFDIR:
+          remove_dir (temp);
+          break;
+
+        default:
+          break;
+        }
+    }
+    
+    if (ACE_OS::chdir (full_path) == -1)
+      throw udm_exception (string ("chdir failed: ") + full_path);
+    
+    if (ACE_OS::rmdir (path.c_str ()) == -1)
+      throw udm_exception (string ("remove dir failed: ") + path);
   }
 }
