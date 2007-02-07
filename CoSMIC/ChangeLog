@@ -1,3 +1,18 @@
+Wed Feb  7 22:09:16 UTC 2007  Aniruddha Gokhale  <gokhale@nospam.invalid.domain>
+
+        * PSM/CQML/interpreters/FaultToleranceComponent/FaultToleranceComponent.reg:
+        * PSM/CQML/interpreters/FaultToleranceComponent/FaultToleranceComponentd.reg:
+
+        * PSM/CQML/interpreters/NetQoSComponent/NetQoSComponent.reg:
+        * PSM/CQML/interpreters/NetQoSComponent/NetQoSComponentd.reg:
+
+        * PSM/CQML/interpreters/SecurityQoSComponent/SecurityQoSComponent.reg:
+        * PSM/CQML/interpreters/SecurityQoSComponent/SecurityQoSComponentd.reg:
+
+          Added the missing *.reg files to register the interpreters using
+          explicit registry keys instead of relying on self-registration.
+          This makes it possible to build CQML under Windows Vista. 
+
 Wed Feb  7 17:11:37 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
