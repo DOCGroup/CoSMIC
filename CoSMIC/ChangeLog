@@ -1,3 +1,12 @@
+Wed Feb  7 16:07:46 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/ILDGenerator/DependencyVisitor.cpp:
+        
+          Changed a guard around debugging output code to be active -
+          it had accidentally been switched off somehow, and lots
+          of extraneous file were being generated. Thanks to James
+          Hill <hillj@isis.vanderbilt.edu> for reporting the problem.
+
 Wed Feb  7 02:42:01 UTC 2007  Shanshan Jiang <shanshan.jiang@vanderbilt.edu>
 
         * PIM/PICML/interpreters/Package/PackagerVisitor.cpp

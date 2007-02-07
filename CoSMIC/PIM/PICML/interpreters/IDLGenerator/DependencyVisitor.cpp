@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "DependencyVisitor.h"
 
-#define DEPENDS_DEBUG 1
+#define DEPENDS_DEBUG 0
 
 #if (DEPENDS_DEBUG == 1)
 #include "IDLStream.h"
